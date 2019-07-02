@@ -9,29 +9,29 @@ _logger = logging.getLogger(__name__)
 
 
 class NscaCheck(models.Model):
-    _name = "nsca.check"
-    _description = u"NSCA Check"
+    _name = 'nsca.check'
+    _description = 'NSCA Check'
     _inherits = {'ir.cron': 'cron_id'}
 
     cron_id = fields.Many2one(
-        'ir.cron', string=u"Cron",
+        'ir.cron', string='Cron',
         required=True, ondelete='cascade', readonly=True)
     server_id = fields.Many2one(
-        'nsca.server', string=u"Server", required=True)
-    service = fields.Char(u"Service", required=True)
-    nsca_model = fields.Char(u"Model")
-    nsca_function = fields.Char(u"Method")
-    nsca_args = fields.Char(u"Arguments")
+        'nsca.server', string='Server', required=True)
+    service = fields.Char('Service', required=True)
+    nsca_model = fields.Char('NSCA Model')
+    nsca_function = fields.Char('Method')
+    nsca_args = fields.Char('Arguments')
     allow_void_result = fields.Boolean(
-        u"Allow void result", default=False,
-        help=u"By default, a CRITICAL message is sent if the method does not "
-             u"return.\nIf checked, no message will be sent in such a case.")
+        'Allow void result', default=False,
+        help='By default, a CRITICAL message is sent if the method does not '
+             'return.\nIf checked, no message will be sent in such a case.')
 
     @api.model
     def default_get(self, fields_list):
-        """Set some default values on the fly, without overriding fields (which
+        '''Set some default values on the fly, without overriding fields (which
         has the side effect to re-create the fields on the current model).
-        """
+        '''
         res = super(NscaCheck, self).default_get(fields_list)
         res['name'] = 'TEMP'  # Required on 'ir.cron', replaced later
         res['interval_number'] = 10
@@ -40,19 +40,19 @@ class NscaCheck(models.Model):
 
     @api.multi
     def _force_values(self):
-        """Force some values:
+        '''Force some values:
             - Compute the name of the NSCA check to be readable
               among the others 'ir.cron' records.
-        """
+        '''
         model = self.env['ir.model'].search([('model', '=', self._name)])
         for check in self:
             vals = {
-                'name': u"%s - %s" % (_(u"NSCA Check"), check.service),
+                'name': '%s - %s' % (_('NSCA Check'), check.service),
                 'model_id': model.id,
                 'state': 'code',
                 'code': 'model._cron_check(%s,)' % check.id,
                 'doall': False,
-                'numbercall': -1
+                'numbercall': -1,
             }
             super(NscaCheck, check).write(vals)
 
@@ -78,14 +78,14 @@ class NscaCheck(models.Model):
     def _cron_check(self, check_id):
         self.env['nsca.server']._check_send_nsca_command()
         check = self.browse(check_id)
-        rc, message, performance = 3, "Unknown", {}
+        rc, message, performance = 3, 'Unknown', {}
         try:
             NscaModel = self.env[check.nsca_model]
             results = {'model': NscaModel}
             safe_eval(
                 'result = model.%s(%s)' % (
                     check.nsca_function, check.nsca_args or ''),
-                results, mode="exec", nocopy=True)
+                results, mode='exec', nocopy=True)
             result = results['result']
             if not result:
                 if check.allow_void_result:
@@ -97,8 +97,8 @@ class NscaCheck(models.Model):
             else:
                 rc, message, performance = result
         except Exception as exc:
-            rc, message = 2, "%s" % exc
-            _logger.warning("%s - %s", check.service, message)
+            rc, message = 2, '%s' % exc
+            _logger.warning('%s - %s', check.service, message)
         check._send_nsca(rc, message, performance)
         return True
 
