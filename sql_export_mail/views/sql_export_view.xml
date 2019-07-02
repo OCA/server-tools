@@ -19,7 +19,7 @@
                         <field name="mail_user_ids" nolabel="1"/>
                     </group>
                     <group string="Crons" groups="base.group_system">
-                        <field name="cron_ids" nolabel="1" domain="[('function', '=', '_run_all_sql_export_for_cron')]"/>
+                        <field name="cron_ids" nolabel="1" domain="[('function', '=', '_run_all_sql_export_for_cron')]" groups="base.group_system"/>
                     </group>
                 </group>
             </group>
