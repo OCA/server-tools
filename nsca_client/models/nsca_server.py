@@ -4,6 +4,7 @@
 
 import psutil
 import os
+import errno
 import shlex
 import subprocess
 import logging
@@ -101,7 +102,7 @@ class NscaServer(models.Model):
             try:
                 os.makedirs(server.config_dir_path)
             except OSError as exception:
-                if exception.errno != os.errno.EEXIST:
+                if exception.errno != errno.EEXIST:
                     raise
             with open(server.config_file_path, 'w') as config_file:
                 if server.password:
