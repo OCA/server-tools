@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Audit rule-->
+    <record model="ir.ui.view" id="security_audit_ruleform_view">
+        <field name="name">security.audit</field>
+        <field name="model">security.audit.rule</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_check_rule" type="object" string="Check" class="oe_highlight"/>
+                    <field name="state" widget="statusbar" statusbar_visible="new,success"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" placeholder="Rule ..." nolabel="1"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="model_id"/>
+                            <field name="date"/>
+                        </group>
+                        <group>
+                            <field name="group_ids" widget="many2many_tags"/>
+                            <field name="user_ids" widget="many2many_tags"/>
+                        </group>
+                        <group>
+                            <field name="check_read"/>
+                            <field name="check_write"/>
+                            <field name="check_unlink"/>
+                        </group>
+
+                    </group>
+                    <group>
+                        <field name='model_name' invisible='1'/>
+                        <field name="domain" widget="domain" options="{'model': 'model_name'}"/>
+                    </group>
+                    <group name='Traceback'>
+                        <field name="traceback" nolabel="1"/>
+                    </group>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Audit -->
+    <record model="ir.ui.view" id="security_audit_tree_view">
+        <field name="name">security.audit</field>
+        <field name="model">security.audit</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="date"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="security_audit_form_view">
+        <field name="name">security.audit</field>
+        <field name="model">security.audit</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_check_audit" type="object" string="Check" class="oe_highlight"/>
+                    <field name="state" widget="statusbar" statusbar_visible="new,success"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                            <field name="active" widget="boolean_button" options="{&quot;terminology&quot;: &quot;archive&quot;}"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1><field name="name" placeholder="Audit ..." nolabel="1"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="user_id"/>
+                            <field name="date"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Rules">
+                            <field name="rule_ids" nolabel="1">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="model_id"/>
+                                    <field name="group_ids" widget="many2many_tags"/>
+                                    <field name="user_ids" widget="many2many_tags"/>
+                                    <field name="domain"/>
+                                    <field name="check_read"/>
+                                    <field name="check_write"/>
+                                    <field name="check_unlink"/>
+                                    <field name="state"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Traceback">
+                            <field name="traceback" nolabel="1"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="security_audit_search_view" model="ir.ui.view">
+        <field name="name">security.audit</field>
+        <field name="model">security.audit</field>
+        <field name="arch" type="xml">
+            <search string="Search Audit">
+                <field name="name" string="Audit"/>
+                <separator/>
+                <group string="Group By">
+                    <filter string="State" name="group_by_state" domain="[]" context="{'group_by':'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="action_security_audit" model="ir.actions.act_window">
+        <field name="name">Audit Security</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">security.audit</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="security_audit_search_view"/>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to create a audit.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_action_security_audit" action="action_security_audit" parent="base.menu_security" sequence="100"/>
+
+</odoo>
