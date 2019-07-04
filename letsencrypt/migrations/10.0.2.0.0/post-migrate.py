@@ -18,7 +18,8 @@ def migrate_cron(env):
     old_cron = ir_cron.search([
         ('model', '=', 'letsencrypt'),
         ('function', '=', 'cron')])
-    old_cron.write({'function': '_cron'})
+    if old_cron:
+        old_cron.write({'function': '_cron'})
 
 
 def migrate(cr, version):
