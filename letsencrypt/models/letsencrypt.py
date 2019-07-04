@@ -135,7 +135,10 @@ class Letsencrypt(models.AbstractModel):
                     break
                 elif challenge.chall.typ == TYPE_CHALLENGE_DNS:
                     self._respond_challenge_dns(
-                        challenge, authorizations.body.identifier.value)
+                        challenge,
+                        account_key,
+                        authorizations.body.identifier.value,
+                    )
                     client.answer_challenge(
                         challenge, challenges.DNSResponse())
                     auth_responded = True
@@ -210,7 +213,7 @@ class Letsencrypt(models.AbstractModel):
             challenge_file.write(token.rstrip('=') + '.' + jose.b64encode(
                 account_key.thumbprint(hash_function=hashes.SHA256)).decode())
 
-    def _respond_challenge_dns(self, challenge, domain):
+    def _respond_challenge_dns(self, challenge, account_key, domain):
         """
         Respond to the DNS challenge by creating the DNS record
         on the provider.
@@ -218,16 +221,10 @@ class Letsencrypt(models.AbstractModel):
         letsencrypt_dns_function = '_respond_challenge_dns_' + \
             self.env['ir.config_parameter'].get_param(
                 'letsencrypt_dns_provider')
-        getattr(self, letsencrypt_dns_function)(challenge, domain)
+        getattr(self, letsencrypt_dns_function)(challenge, account_key, domain)
 
     @api.model
-    def _call_cmdline(
-            self,
-            cmdline,
-            loglevel=logging.INFO,
-            raise_on_result=True,
-            env=None,
-            shell=False):
+    def _call_cmdline(self, cmdline, env=None, shell=False):
         process = subprocess.Popen(
             cmdline,
             stdout=subprocess.PIPE,
@@ -246,7 +243,7 @@ class Letsencrypt(models.AbstractModel):
                 )))
 
     @api.model
-    def _respond_challenge_dns_shell(self, challenge, domain):
+    def _respond_challenge_dns_shell(self, challenge, account_key, domain):
         script_str = self.env['ir.config_parameter'].get_param(
             'letsencrypt_script')
         if script_str:
