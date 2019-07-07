@@ -22,4 +22,4 @@ to update the data, you have to :
 
     .. image:: ../static/description/base_module_update.png
 
-This will update analysis of your installed module.
+This will update analysis of your installed modules.
