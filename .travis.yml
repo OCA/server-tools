@@ -10,6 +10,7 @@ addons:
   apt:
     packages:
       - expect-dev  # provides unbuffer utility
+      - cloc  # module_analysis
 
 env:
   global:
