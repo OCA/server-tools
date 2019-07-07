@@ -96,7 +96,10 @@ Usage
 
 Open the stats to analyze the detail of the code installed
 
-    .. image:: https://raw.githubusercontent.com/legalsylvain/server-tools/12.0-ADD-module_analysis/module_analysis/static/description/analysis.png
+    .. image:: https://raw.githubusercontent.com/legalsylvain/server-tools/12.0-ADD-module_analysis/module_analysis/static/description/analysis_pivot.png
+
+
+    .. image:: https://raw.githubusercontent.com/legalsylvain/server-tools/12.0-ADD-module_analysis/module_analysis/static/description/analysis_pie.png
 
 Bug Tracker
 ===========
