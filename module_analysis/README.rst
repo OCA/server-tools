@@ -87,7 +87,7 @@ to update the data, you have to :
 
     .. image:: https://raw.githubusercontent.com/legalsylvain/server-tools/12.0-ADD-module_analysis/module_analysis/static/description/base_module_update.png
 
-This will update analysis of your installed module.
+This will update analysis of your installed modules.
 
 Usage
 =====
@@ -96,7 +96,7 @@ Usage
 
 Open the stats to analyze the detail of the code installed
 
-    .. image:: https://raw.githubusercontent.com/legalsylvain/server-tools/12.0-ADD-module_analysis/module_analysis/static/description/default_module_type_rules.png
+    .. image:: https://raw.githubusercontent.com/legalsylvain/server-tools/12.0-ADD-module_analysis/module_analysis/static/description/analysis.png
 
 Bug Tracker
 ===========
