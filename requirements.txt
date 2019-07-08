@@ -11,3 +11,4 @@ raven
 checksumdir
 python-stdnum
 pyopenssl
+odoorpc
