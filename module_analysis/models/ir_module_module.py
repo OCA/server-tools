@@ -27,13 +27,17 @@ class IrModuleModule(models.Model):
     module_type_id = fields.Many2one(
         string='Module Type', comodel_name='ir.module.type', readonly=True)
 
-    python_code_qty = fields.Integer(string='Python Lines', readonly=True)
+    python_code_qty = fields.Integer(
+        string='Python Code Quantity', readonly=True)
 
-    xml_code_qty = fields.Integer(string='XML Lines', readonly=True)
+    xml_code_qty = fields.Integer(
+        string='XML Code Quantity', readonly=True)
 
-    js_code_qty = fields.Integer(string='JS Lines', readonly=True)
+    js_code_qty = fields.Integer(
+        string='JS Code Quantity', readonly=True)
 
-    css_code_qty = fields.Integer(string='CSS Lines', readonly=True)
+    css_code_qty = fields.Integer(
+        string='CSS Code Quantity', readonly=True)
 
     # Overloadable Section
     @api.model
@@ -101,11 +105,14 @@ class IrModuleModule(models.Model):
         IrModuleTypeRule = self.env['ir.module.type.rule']
         rules = IrModuleTypeRule.search([])
 
-        exclude_directories = ['description', 'lib', 'tests']
-        exclude_files = ['__openerp__.py', '__manifest__.py']
+        cfg = self.env['ir.config_parameter']
+        val = cfg.get_param('module_analysis.exclude_directories', '')
+        exclude_directories = [x.strip() for x in val.split(',') if x.strip()]
+        val = cfg.get_param('module_analysis.exclude_files', '')
+        exclude_files = [x.strip() for x in val.split(',') if x.strip()]
 
         for module in self:
-            _logger.info("Analyzing Code for module %s" % (module.name))
+            _logger.info("Analyzing Code for module %s ..." % (module.name))
 
             # Update Authors, based on manifest key
             authors = []
