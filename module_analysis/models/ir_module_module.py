@@ -84,15 +84,15 @@ class IrModuleModule(models.Model):
     @api.model
     def update_list(self):
         res = super(IrModuleModule, self).update_list()
-        if self.env.context.get('analyze_installed_modules', False):
-            self.search([('state', '=', 'installed')]).button_analyze_code()
+        if self.env.context.get('analyse_installed_modules', False):
+            self.search([('state', '=', 'installed')]).button_analyse_code()
         return res
 
     @api.multi
     def write(self, vals):
         res = super(IrModuleModule, self).write(vals)
         if vals.get('state', False) == 'installed':
-            self.button_analyze_code()
+            self.button_analyse_code()
         elif vals.get('state', False) == 'uninstalled'\
                 and 'module_analysis' not in [x.name for x in self]:
             self.write(self._get_clean_analyse_values())
@@ -100,7 +100,7 @@ class IrModuleModule(models.Model):
 
     # Public Section
     @api.multi
-    def button_analyze_code(self):
+    def button_analyse_code(self):
         IrModuleAuthor = self.env['ir.module.author']
         IrModuleTypeRule = self.env['ir.module.type.rule']
         rules = IrModuleTypeRule.search([])
@@ -112,7 +112,7 @@ class IrModuleModule(models.Model):
         exclude_files = [x.strip() for x in val.split(',') if x.strip()]
 
         for module in self:
-            _logger.info("Analyzing Code for module %s ..." % (module.name))
+            _logger.info("Analysing Code for module %s ..." % (module.name))
 
             # Update Authors, based on manifest key
             authors = []
