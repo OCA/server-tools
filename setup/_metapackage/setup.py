@@ -37,6 +37,7 @@ setuptools.setup(
         'odoo10-addon-base_fontawesome',
         'odoo10-addon-base_import_default_enable_tracking',
         'odoo10-addon-base_import_match',
+        'odoo10-addon-base_import_odoo',
         'odoo10-addon-base_import_security_group',
         'odoo10-addon-base_jsonify',
         'odoo10-addon-base_kanban_stage',
