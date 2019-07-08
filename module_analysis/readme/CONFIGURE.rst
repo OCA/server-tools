@@ -28,7 +28,7 @@ This will update analysis of your installed modules.
 Adding Extra data
 ~~~~~~~~~~~~~~~~~
 
-If you want to analyze other data, (for exemple, having the number of HTML
+If you want to analyse other data, (for exemple, having the number of HTML
 files), create a custom modules and overload the module model :
 
 .. code-block:: python
@@ -48,3 +48,14 @@ files), create a custom modules and overload the module model :
             res['.html'] = {}
         res['.html']['documentation'] 'xml_documentation_qty'
         return res
+
+Exclude files and directories
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Two parameters are availaible in 'Settings' / 'Technical' / 'Parameters'
+'System Parameters' :
+
+    .. image:: ../static/description/config_parameters.png
+
+The list of folders and filename will be exclude from the analysis.
+You can change the default settings.
