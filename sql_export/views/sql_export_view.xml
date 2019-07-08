@@ -76,17 +76,17 @@
     <record id="sql_parameter_view_form" model="ir.ui.view">
         <field name="name">Sql_parameter_form_view</field>
         <field name="model">ir.model.fields</field>
-	<field name="priority">150</field>
+        <field name="priority">150</field>
         <field name="arch" type="xml">
             <form string="SQL export">
-		<group>
+                <group>
                     <field name="name"/>
                     <field name="field_description"/>
                     <field name="ttype"/>
-		    <field name="relation" attrs="{'invisible': [('ttype', 'not in', ('many2one', 'many2many', 'one2many'))], 'required': [('ttype', 'in', ('many2one', 'many2many', 'one2many'))]}"/>
+                    <field name="relation" attrs="{'invisible': [('ttype', 'not in', ('many2one', 'many2many', 'one2many'))], 'required': [('ttype', 'in', ('many2one', 'many2many', 'one2many'))]}"/>
                     <field name="model_id" readonly="1"/>
                     <field name="model" invisible="1"/>
-	        </group>
+                </group>
             </form>
         </field>
     </record>
@@ -94,7 +94,7 @@
     <record id="sql_parameter_view_tree" model="ir.ui.view">
         <field name="name">Sql_parameter_tree_view</field>
         <field name="model">ir.model.fields</field>
-	<field name="priority">150</field>
+        <field name="priority">150</field>
         <field name="arch" type="xml">
             <tree string="SQL Parameter">
                 <field name="name"/>

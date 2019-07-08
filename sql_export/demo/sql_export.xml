@@ -44,8 +44,8 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
     <record id="sql_export_partner_with_variables" model="sql.export">
         <field name="name">Export Partners With Variables (Demo Data)</field>
-	<field name="query">SELECT p.id FROM res_partner p LEFT JOIN res_partner_res_partner_category_rel rel ON rel.partner_id = p.id WHERE create_date &lt; %(x_date)s AND id = %(x_id)s AND rel.category_id in %(x_partner_categ_ids)s</field>
-	<field eval="[(6, 0, [ref('date_field_variable_sql'), ref('integer_field_variable_sql'), ref('m2m_field_variable_sql')])]" name="field_ids"/>
+        <field name="query">SELECT p.id FROM res_partner p LEFT JOIN res_partner_res_partner_category_rel rel ON rel.partner_id = p.id WHERE create_date &lt; %(x_date)s AND id = %(x_id)s AND rel.category_id in %(x_partner_categ_ids)s</field>
+        <field eval="[(6, 0, [ref('date_field_variable_sql'), ref('integer_field_variable_sql'), ref('m2m_field_variable_sql')])]" name="field_ids"/>
     </record>
 
     <function model="sql.export" name="button_validate_sql_expression" eval="([ref('sql_export.sql_export_partner_with_variables')])"/>

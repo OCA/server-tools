@@ -146,6 +146,7 @@ class SQLRequestMixin(models.AbstractModel):
 
         query = self.env.cr.mogrify(self.query, params).decode('utf-8')
 
+        # pylint: disable=sql-injection
         if mode in ('fetchone', 'fetchall'):
             pass
         elif mode == 'stdout':
@@ -181,6 +182,7 @@ class SQLRequestMixin(models.AbstractModel):
     # Private Section
     @api.model
     def _create_savepoint(self):
+        # pylint: disable=sql-injection
         rollback_name = '%s_%s' % (
             self._name.replace('.', '_'), uuid.uuid1().hex)
         req = "SAVEPOINT %s" % (rollback_name)
@@ -189,6 +191,7 @@ class SQLRequestMixin(models.AbstractModel):
 
     @api.model
     def _rollback_savepoint(self, rollback_name):
+        # pylint: disable=sql-injection
         req = "ROLLBACK TO SAVEPOINT %s" % (rollback_name)
         self.env.cr.execute(req)
 
