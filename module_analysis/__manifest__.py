@@ -22,12 +22,12 @@
         'views/view_ir_module_type.xml',
         'views/view_ir_module_type_rule.xml',
         'views/view_ir_module_module.xml',
-
+        'data/ir_config_parameter.xml',
         'data/ir_module_type.xml',
         'data/ir_module_type_rule.xml',
     ],
     'external_dependencies': {
-        'lib': ['cloc'],
+        'python': ['pygount'],
     },
     'post_init_hook': 'analyse_installed_modules',
     'installable': True,

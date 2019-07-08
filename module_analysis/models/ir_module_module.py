@@ -2,10 +2,10 @@
 # @author: Sylvain LE GAL (https://twitter.com/legalsylvain)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-import json
-import logging
 import os
-import subprocess
+import pygount
+from pathlib import Path
+import logging
 
 from odoo import api, fields, models
 from odoo.tools.safe_eval import safe_eval
@@ -24,49 +24,96 @@ class IrModuleModule(models.Model):
     module_type_id = fields.Many2one(
         string='Module Type', comodel_name='ir.module.type', readonly=True)
 
-    python_lines_qty = fields.Integer(string='Python Lines', readonly=True)
+    python_code_qty = fields.Integer(
+        string='Python Code Quantity', readonly=True)
 
-    xml_lines_qty = fields.Integer(string='XML Lines', readonly=True)
+    xml_code_qty = fields.Integer(
+        string='XML Code Quantity', readonly=True)
 
-    js_lines_qty = fields.Integer(string='JS Lines', readonly=True)
+    js_code_qty = fields.Integer(
+        string='JS Code Quantity', readonly=True)
 
-    css_lines_qty = fields.Integer(string='CSS Lines', readonly=True)
+    css_code_qty = fields.Integer(
+        string='CSS Code Quantity', readonly=True)
+
+    # Overloadable Section
+    @api.model
+    def _get_analyse_settings(self):
+        """Return a dictionnary of data analysed
+        Overload this function if you want to analyse other data
+        {
+            'extension': {
+                'data_to_analyse': 'field_name',
+            },
+        }, [...]
+        extension: extension of the file, with the '.'
+        data_to_analyse : possible value : code, documentation, empty, string
+        field_name: Odoo field name to store the analysis
+        """
+        return {
+            '.py': {
+                'code': 'python_code_qty',
+            },
+            '.xml': {
+                'code': 'xml_code_qty',
+            },
+            '.js': {
+                'code': 'js_code_qty',
+            },
+            '.css': {
+                'code': 'css_code_qty',
+            },
+        }
 
     @api.model
+    def _get_clean_analyse_values(self):
+        """List of fields to unset when a module is uninstalled"""
+        return {
+            'author_ids': [6, 0, []],
+            'module_type_id': False,
+            'python_code_qty': False,
+            'xml_code_qty': 0,
+            'js_code_qty': 0,
+            'css_code_qty': 0,
+        }
+
+    @api.model
+    def _get_module_encoding(self, file_ext):
+        return 'utf-8'
+
+    # Overload Section
+    @api.model
     def update_list(self):
-        res = super(IrModuleModule, self).update_list()
-        if self.env.context.get('analyze_installed_modules', False):
-            self.search([('state', '=', 'installed')]).button_analyze_code()
+        res = super().update_list()
+        if self.env.context.get('analyse_installed_modules', False):
+            self.search([('state', '=', 'installed')]).button_analyse_code()
         return res
 
     @api.multi
     def write(self, vals):
-        res = super(IrModuleModule, self).write(vals)
+        res = super().write(vals)
         if vals.get('state', False) == 'installed':
-            self.button_analyze_code()
+            self.button_analyse_code()
         elif vals.get('state', False) == 'uninstalled'\
                 and 'module_analysis' not in [x.name for x in self]:
-            self.write({
-                'author_ids': [6, 0, []],
-                'module_type_id': False,
-                'python_lines_qty': False,
-                'xml_lines_qty': 0,
-                'js_lines_qty': 0,
-                'css_lines_qty': 0,
-            })
+            self.write(self._get_clean_analyse_values())
         return res
 
+    # Public Section
     @api.multi
-    def button_analyze_code(self):
+    def button_analyse_code(self):
         IrModuleAuthor = self.env['ir.module.author']
         IrModuleTypeRule = self.env['ir.module.type.rule']
         rules = IrModuleTypeRule.search([])
 
-        exclude_dir = "lib,description,tests,demo"
-        include_lang = self._get_analyzed_languages()
+        cfg = self.env['ir.config_parameter']
+        val = cfg.get_param('module_analysis.exclude_directories', '')
+        exclude_directories = [x.strip() for x in val.split(',') if x.strip()]
+        val = cfg.get_param('module_analysis.exclude_files', '')
+        exclude_files = [x.strip() for x in val.split(',') if x.strip()]
 
         for module in self:
-            _logger.info("Analyzing Code for module %s" % (module.name))
+            _logger.info("Analysing Code for module %s ..." % (module.name))
 
             # Update Authors, based on manifest key
             authors = []
@@ -88,40 +135,52 @@ class IrModuleModule(models.Model):
             module.module_type_id = module_type_id
 
             # Get Path of module folder and parse the code
-            path = get_module_path(module.name)
+            module_path = get_module_path(module.name)
 
-            try:
-                command = [
-                    'cloc',
-                    '--exclude-dir=%s' % (exclude_dir),
-                    '--skip-uniqueness',
-                    '--include-lang=%s' % (include_lang),
-                    '--not-match-f="__openerp__.py|__manifest__.py"',
-                    '--json',
-                    os.path.join(path)]
-                temp = subprocess.Popen(command, stdout=subprocess.PIPE)
-                bytes_output = temp.communicate()
-                output = bytes_output[0].decode("utf-8").replace('\n', '')
-                json_res = json.loads(output)
-                values = self._prepare_values_from_json(json_res)
-                module.write(values)
+            # Get Files
+            analysed_datas = self._get_analyse_data_dict()
+            file_extensions = analysed_datas.keys()
+            file_list = self._get_files_to_analyse(
+                module_path, file_extensions, exclude_directories,
+                exclude_files)
 
-            except Exception as e:
-                _logger.warning(
-                    'Failed to execute the cloc command on module %s\n'
-                    'Exception occured: %s' % (
-                        module.name, e))
+            for file_path, file_ext in file_list:
+                file_res = pygount.source_analysis(
+                    file_path, '',
+                    encoding=self._get_module_encoding(file_ext))
+                for k, v in analysed_datas.get(file_ext).items():
+                    v['value'] += getattr(file_res, k)
+
+            # Update the module with the datas
+            values = {}
+            for file_ext, analyses in analysed_datas.items():
+                for k, v in analyses.items():
+                    values[v['field']] = v['value']
+            module.write(values)
+
+    # Custom Section
+    @api.model
+    def _get_files_to_analyse(
+            self, path, file_extensions, exclude_directories, exclude_files):
+        res = []
+        for root, dirs, files in os.walk(path, followlinks=True):
+            if set(Path(root).parts) & set(exclude_directories):
+                continue
+            for name in files:
+                if name in exclude_files:
+                    continue
+                filename, file_extension = os.path.splitext(name)
+                if file_extension in file_extensions:
+                    res.append((os.path.join(root, name), file_extension))
+        return res
 
     @api.model
-    def _get_analyzed_languages(self):
-        "Overload the function to add extra languages to analyze"
-        return "Python,XML,JavaScript,CSS"
-
-    @api.model
-    def _prepare_values_from_json(self, json_value):
-        return {
-            'python_lines_qty': json_value.get('Python', {}).get('code', 0),
-            'xml_lines_qty': json_value.get('XML', {}).get('code', 0),
-            'js_lines_qty': json_value.get('JavaScript', {}).get('code', 0),
-            'css_lines_qty': json_value.get('CSS', {}).get('code', 0),
-        }
+    def _get_analyse_data_dict(self):
+        res_dict = self._get_analyse_settings().copy()
+        for file_ext, analyse_dict in res_dict.items():
+            for analyse_type, v in analyse_dict.items():
+                analyse_dict[analyse_type] = {
+                    'field': v,
+                    'value': 0
+                }
+        return res_dict

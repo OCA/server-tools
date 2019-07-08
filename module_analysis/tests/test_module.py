@@ -9,7 +9,7 @@ from odoo.tests.common import TransactionCase, post_install
 class TestModule(TransactionCase):
 
     def setUp(self):
-        super(TestModule, self).setUp()
+        super().setUp()
         self.IrModuleModule = self.env['ir.module.module']
 
     def test_installed_modules(self):
@@ -17,15 +17,17 @@ class TestModule(TransactionCase):
             [('state', '=', 'installed')])
         for module in installed_modules:
             self.assertTrue(
-                module.python_lines_qty > 0,
-                "module '%s' doesn't have python lines defined, whereas it is"
-                " installed.")
+                module.python_code_qty > 0 or
+                module.xml_code_qty > 0 or
+                module.js_code_qty > 0,
+                "module '%s' doesn't have code analysed defined, whereas it is"
+                " installed." % (module.name))
 
     def test_uninstalled_modules(self):
         uninstalled_modules = self.IrModuleModule.search(
             [('state', '!=', 'installed')])
         for module in uninstalled_modules:
             self.assertTrue(
-                module.python_lines_qty == 0,
+                module.python_code_qty == 0,
                 "module '%s' has python lines defined, whereas it is"
-                " not installed.")
+                " not installed." % (module.name))

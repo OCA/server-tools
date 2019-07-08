@@ -23,3 +23,39 @@ to update the data, you have to :
     .. image:: ../static/description/base_module_update.png
 
 This will update analysis of your installed modules.
+
+
+Adding Extra data
+~~~~~~~~~~~~~~~~~
+
+If you want to analyse other data, (for exemple, having the number of HTML
+files), create a custom modules and overload the module model :
+
+.. code-block:: python
+
+  from odoo import api, fields, models
+
+  class IrModuleModule(models.Model):
+     _inherit = 'ir.module.module'
+
+     xml_documentation_qty = fields.Integer(
+        string='Quantity of Comments in XML Files')
+
+    @api.model
+    def _get_analyse_settings(self):
+        res = super()._get_analyse_settings()
+        if not '.html' in res:
+            res['.html'] = {}
+        res['.html']['documentation'] 'xml_documentation_qty'
+        return res
+
+Exclude files and directories
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Two parameters are availaible in 'Settings' / 'Technical' / 'Parameters'
+'System Parameters' :
+
+    .. image:: ../static/description/config_parameters.png
+
+The list of folders and filename will be exclude from the analysis.
+You can change the default settings.
