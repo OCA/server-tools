@@ -45,7 +45,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 
     <menuitem id="menu_module_authors"
-        parent="menu_module_analysis" sequence="1"
+        parent="menu_module_analysis_settings" sequence="1"
         action="action_ir_module_author"
         groups="base.group_no_one"/>
 

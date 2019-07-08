@@ -27,7 +27,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
     </record>
 
     <menuitem id="menu_module_type_rules"
-        parent="menu_module_analysis" sequence="3"
+        parent="menu_module_analysis_settings" sequence="3"
         action="action_ir_module_type_rule"
         groups="base.group_no_one"/>
 
