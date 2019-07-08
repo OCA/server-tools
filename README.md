@@ -47,6 +47,7 @@ addon | version | summary
 [base_fontawesome](base_fontawesome/) | 10.0.4.7.0 | Up to date Fontawesome resources.
 [base_import_default_enable_tracking](base_import_default_enable_tracking/) | 10.0.1.0.0 | This modules simply enables history tracking when doing an import.
 [base_import_match](base_import_match/) | 10.0.1.0.0 | Try to avoid duplicates before importing
+[base_import_odoo](base_import_odoo/) | 10.0.1.0.0 | Import records from another Odoo instance
 [base_import_security_group](base_import_security_group/) | 10.0.1.0.0 | Group-based permissions for importing CSV files
 [base_jsonify](base_jsonify/) | 10.0.1.0.0 | Base module that provide the jsonify method on all models
 [base_kanban_stage](base_kanban_stage/) | 10.0.1.2.1 | Provides stage model and abstract logic for inheritance
