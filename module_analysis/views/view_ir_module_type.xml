@@ -43,7 +43,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 
     <menuitem id="menu_module_types"
-        parent="menu_module_analysis" sequence="2"
+        parent="menu_module_analysis_settings" sequence="2"
         action="action_ir_module_type"
         groups="base.group_no_one"/>
 
