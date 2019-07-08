@@ -10,4 +10,4 @@ def analyse_installed_modules(cr, registry):
         env = api.Environment(cr, SUPERUSER_ID, {})
         installed_modules = env['ir.module.module'].search(
             [('state', '=', 'installed')])
-        installed_modules.button_analyze_code()
+        installed_modules.button_analyse_code()
