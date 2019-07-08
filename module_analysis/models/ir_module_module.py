@@ -106,10 +106,11 @@ class IrModuleModule(models.Model):
                 values = self._prepare_values_from_json(json_res)
                 module.write(values)
 
-            except Exception:
+            except Exception as e:
                 _logger.warning(
-                    'Failed to execute the cloc command on module %s' % (
-                        module.name))
+                    'Failed to execute the cloc command on module %s\n'
+                    'Exception occured: %s' % (
+                        module.name, e))
 
     @api.model
     def _get_analyzed_languages(self):
