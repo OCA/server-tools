@@ -54,10 +54,9 @@ Each installed modules have extra data in the 'Technical Data' tab :
 Installation
 ============
 
-To use this module, you have to install the application ``cloc``
+To use this module, you have to install the ``pygount`` python librairy.
 
-``sudo apt-get install cloc``
-
+``pip install pygount``
 
 Configuration
 =============
@@ -88,17 +87,53 @@ to update the data, you have to :
 
 This will update analysis of your installed modules.
 
+
+Adding Extra data
+~~~~~~~~~~~~~~~~~
+
+If you want to analyse other data, (for exemple, having the number of HTML
+files), create a custom modules and overload the module model :
+
+.. code-block:: python
+
+  from odoo import api, fields, models
+
+  class IrModuleModule(models.Model):
+     _inherit = 'ir.module.module'
+
+     xml_documentation_qty = fields.Integer(
+        string='Quantity of Comments in XML Files')
+
+    @api.model
+    def _get_analyse_settings(self):
+        res = super(IrModuleModule, self)._get_analyse_settings()
+        if not '.html' in res:
+            res['.html'] = {}
+        res['.html']['documentation'] 'xml_documentation_qty'
+        return res
+
+Exclude files and directories
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Two parameters are availaible in 'Settings' / 'Technical' / 'Parameters'
+'System Parameters' :
+
+    .. image:: https://raw.githubusercontent.com/legalsylvain/server-tools/12.0-ADD-module_analysis/module_analysis/static/description/config_parameters.png
+
+The list of folders and filename will be exclude from the analysis.
+You can change the default settings.
+
 Usage
 =====
 
 * Go to 'Apps' / 'Module Analysis' / 'Installed module by Types'
 
-Open the stats to analyze the detail of the code installed
+Open the stats to analyse the detail of the code installed
 
     .. image:: https://raw.githubusercontent.com/legalsylvain/server-tools/12.0-ADD-module_analysis/module_analysis/static/description/analysis_pivot.png
 
-
     .. image:: https://raw.githubusercontent.com/legalsylvain/server-tools/12.0-ADD-module_analysis/module_analysis/static/description/analysis_pie.png
+
 
 Bug Tracker
 ===========

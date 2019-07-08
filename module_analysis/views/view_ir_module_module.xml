@@ -12,12 +12,12 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="inherit_id" ref="base.module_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='state']/.." position="after">
-                <button name="button_analyze_code" states="installed" string="Refresh Code Analysis" type="object" class="btn btn-primary"/>
+                <button name="button_analyse_code" states="installed" string="Refresh Code Analysis" type="object" class="btn btn-primary"/>
                 <group string="Code Size" col="4">
-                    <field name="python_lines_qty"/>
-                    <field name="xml_lines_qty"/>
-                    <field name="js_lines_qty"/>
-                    <field name="css_lines_qty"/>
+                    <field name="python_code_qty"/>
+                    <field name="xml_code_qty"/>
+                    <field name="js_code_qty"/>
+                    <field name="css_code_qty"/>
                 </group>
                 <group string="Type and Authors">
                     <field name="author_ids" widget="many2many_tags"/>
@@ -33,10 +33,10 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="arch" type="xml">
             <pivot>
                 <field name="module_type_id" type="row"/>
-                <field name="python_lines_qty" type="measure"/>
-                <field name="xml_lines_qty" type="measure"/>
-                <field name="js_lines_qty" type="measure"/>
-                <field name="css_lines_qty" type="measure"/>
+                <field name="python_code_qty" type="measure"/>
+                <field name="xml_code_qty" type="measure"/>
+                <field name="js_code_qty" type="measure"/>
+                <field name="css_code_qty" type="measure"/>
             </pivot>
         </field>
     </record>
