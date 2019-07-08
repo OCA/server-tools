@@ -8,8 +8,11 @@ from odoo import api, fields, models
 class IrModuleType(models.Model):
     _name = 'ir.module.type'
     _description = 'Modules Types'
+    _order = 'sequence'
 
     name = fields.Char(string='Name', required=True)
+
+    sequence = fields.Integer(string='Sequence')
 
     module_ids = fields.One2many(
         string='Modules', comodel_name='ir.module.module',

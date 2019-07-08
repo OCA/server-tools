@@ -18,7 +18,6 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                     </div>
                     <group>
                         <field name="installed_module_qty"/>
-                        <field name="module_qty"/>
                     </group>
                 </sheet>
             </form>
@@ -32,7 +31,6 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
             <tree>
                 <field name="name"/>
                 <field name="installed_module_qty"/>
-                <field name="module_qty"/>
             </tree>
         </field>
     </record>
