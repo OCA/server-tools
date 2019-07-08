@@ -14,15 +14,17 @@ class IrModuleType(models.Model):
 
     sequence = fields.Integer(string='Sequence')
 
-    module_ids = fields.One2many(
-        string='Modules', comodel_name='ir.module.module',
+    installed_module_ids = fields.One2many(
+        string='Installed Modules', comodel_name='ir.module.module',
         inverse_name='module_type_id')
 
-    module_qty = fields.Integer(
-        string='Modules Quantity', compute='_compute_module_qty', store=True)
+    installed_module_qty = fields.Integer(
+        string='Modules Quantity', compute='_compute_installed_module_qty',
+        store=True)
 
     @api.multi
-    @api.depends('module_ids.module_type_id')
-    def _compute_module_qty(self):
+    @api.depends('installed_module_ids.module_type_id')
+    def _compute_installed_module_qty(self):
         for module_type in self:
-            module_type.module_qty = len(module_type.module_ids)
+            module_type.installed_module_qty = len(
+                module_type.installed_module_ids)
