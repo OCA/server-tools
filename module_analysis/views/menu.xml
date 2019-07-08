@@ -12,4 +12,13 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         parent="base.menu_management" sequence="100"
         groups="base.group_no_one"/>
 
+    <menuitem id="menu_module_analysis_settings"
+        name="Settings"
+        parent="menu_module_analysis" sequence="10"/>
+
+    <menuitem id="menu_module_analysis_reporting"
+        name="Reporting"
+        parent="menu_module_analysis" sequence="20"/>
+
+
 </odoo>
