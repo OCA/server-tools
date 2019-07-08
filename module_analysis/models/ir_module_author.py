@@ -12,15 +12,12 @@ class IrModuleAuthor(models.Model):
     name = fields.Char(string='Name', required=True)
 
     module_ids = fields.Many2many(
-        string='Modules', comodel_name='ir.module.module')
-
-    module_qty = fields.Integer(
-        string="Modules Quantity",
-        compute='_compute_modules', store=True)
+        string='Modules', comodel_name='ir.module.module',
+        relation='ir_module_module_author_rel')
 
     installed_module_qty = fields.Integer(
         string="Installed Modules Quantity",
-        compute='_compute_modules', store=True)
+        compute='_compute_installed_module_qty', store=True)
 
     _sql_constraints = [
         ('name_uniq', 'unique(name)',
@@ -29,11 +26,9 @@ class IrModuleAuthor(models.Model):
 
     @api.multi
     @api.depends('module_ids')
-    def _compute_modules(self):
+    def _compute_installed_module_qty(self):
         for author in self:
-            author.module_qty = len(author.module_ids)
-            author.installed_module_qty = len(
-                author.module_ids.filtered(lambda x: x.state == 'installed'))
+            author.installed_module_qty = len(author.module_ids)
 
     @api.model
     def _get_or_create(self, name):

@@ -18,7 +18,8 @@ class IrModuleModule(models.Model):
     _inherit = 'ir.module.module'
 
     author_ids = fields.Many2many(
-        string='Authors', comodel_name='ir.module.author', readonly=True)
+        string='Authors', comodel_name='ir.module.author', readonly=True,
+        relation='ir_module_module_author_rel')
 
     module_type_id = fields.Many2one(
         string='Module Type', comodel_name='ir.module.type', readonly=True)
@@ -43,7 +44,8 @@ class IrModuleModule(models.Model):
         res = super(IrModuleModule, self).write(vals)
         if vals.get('state', False) == 'installed':
             self.button_analyze_code()
-        elif vals.get('state', False) == 'uninstalled':
+        elif vals.get('state', False) == 'uninstalled'\
+                and 'module_analysis' not in [x.name for x in self]:
             self.write({
                 'author_ids': [6, 0, []],
                 'module_type_id': False,

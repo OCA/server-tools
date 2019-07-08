@@ -29,6 +29,6 @@
     'external_dependencies': {
         'lib': ['cloc'],
     },
-    'post_init_hook': 'post_init_hook',
+    'post_init_hook': 'analyse_installed_modules',
     'installable': True,
 }
