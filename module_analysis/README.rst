@@ -106,7 +106,7 @@ files), create a custom modules and overload the module model :
 
     @api.model
     def _get_analyse_settings(self):
-        res = super(IrModuleModule, self)._get_analyse_settings()
+        res = super()._get_analyse_settings()
         if not '.html' in res:
             res['.html'] = {}
         res['.html']['documentation'] 'xml_documentation_qty'
