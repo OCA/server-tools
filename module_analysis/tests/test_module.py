@@ -9,7 +9,7 @@ from odoo.tests.common import TransactionCase, post_install
 class TestModule(TransactionCase):
 
     def setUp(self):
-        super(TestModule, self).setUp()
+        super().setUp()
         self.IrModuleModule = self.env['ir.module.module']
 
     def test_installed_modules(self):
