@@ -3,12 +3,9 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import os
-# import json
 import pygount
 from pathlib import Path
 import logging
-# import os
-# import subprocess
 
 from odoo import api, fields, models
 from odoo.tools.safe_eval import safe_eval
@@ -83,14 +80,14 @@ class IrModuleModule(models.Model):
     # Overload Section
     @api.model
     def update_list(self):
-        res = super(IrModuleModule, self).update_list()
+        res = super().update_list()
         if self.env.context.get('analyse_installed_modules', False):
             self.search([('state', '=', 'installed')]).button_analyse_code()
         return res
 
     @api.multi
     def write(self, vals):
-        res = super(IrModuleModule, self).write(vals)
+        res = super().write(vals)
         if vals.get('state', False) == 'installed':
             self.button_analyse_code()
         elif vals.get('state', False) == 'uninstalled'\
