@@ -116,6 +116,12 @@ msgid "Populate users from LDAP"
 msgstr ""
 
 #. module: users_ldap_populate
+#: code:addons/users_ldap_populate/models/users_ldap.py:91
+#, python-format
+msgid "Unable to process user with login %s"
+msgstr ""
+
+#. module: users_ldap_populate
 #: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_no_deactivate_user_ids
 msgid "Users never to deactivate"
 msgstr ""

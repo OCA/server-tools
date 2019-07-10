@@ -32,7 +32,8 @@ addon | version | summary
 [auto_backup](auto_backup/) | 10.0.1.0.2 | Backups database
 [base_cron_exclusion](base_cron_exclusion/) | 10.0.1.0.0 | Allow you to select scheduled actions that should not run simultaneously.
 [base_custom_info](base_custom_info/) | 10.0.1.0.0 | Add custom field in models
-[base_exception](base_exception/) | 10.0.2.0.1 | This module provide an abstract model to manage customizable exceptions to be applied on different models (sale order, invoice, ...)
+[base_directory_file_download](base_directory_file_download/) | 10.0.1.0.0 | Download all files of a directory on server
+[base_exception](base_exception/) | 10.0.3.0.2 | This module provide an abstract model to manage customizable exceptions to be applied on different models (sale order, invoice, ...)
 [base_export_manager](base_export_manager/) | 10.0.1.0.0 | Manage model export profiles
 [base_export_security](base_export_security/) | 10.0.1.0.0 | Security features for Odoo exports
 [base_external_dbsource](base_external_dbsource/) | 10.0.2.0.0 | External Database Sources
@@ -46,6 +47,7 @@ addon | version | summary
 [base_fontawesome](base_fontawesome/) | 10.0.4.7.0 | Up to date Fontawesome resources.
 [base_import_default_enable_tracking](base_import_default_enable_tracking/) | 10.0.1.0.0 | This modules simply enables history tracking when doing an import.
 [base_import_match](base_import_match/) | 10.0.1.0.0 | Try to avoid duplicates before importing
+[base_import_odoo](base_import_odoo/) | 10.0.1.0.0 | Import records from another Odoo instance
 [base_import_security_group](base_import_security_group/) | 10.0.1.0.0 | Group-based permissions for importing CSV files
 [base_jsonify](base_jsonify/) | 10.0.1.0.0 | Base module that provide the jsonify method on all models
 [base_kanban_stage](base_kanban_stage/) | 10.0.1.2.1 | Provides stage model and abstract logic for inheritance
@@ -70,6 +72,7 @@ addon | version | summary
 [dbfilter_from_header](dbfilter_from_header/) | 10.0.1.0.0 | Filter databases with HTTP headers
 [dead_mans_switch_client](dead_mans_switch_client/) | 10.0.1.0.0 | Be notified when customers' Odoo instances go down
 [disable_odoo_online](disable_odoo_online/) | 10.0.1.0.0 | Remove odoo.com Bindings
+[fetchmail_attach_from_folder](fetchmail_attach_from_folder/) | 10.0.1.0.0 | Attach mails in an IMAP folder to existing objects
 [fetchmail_notify_error_to_sender](fetchmail_notify_error_to_sender/) | 10.0.1.0.0 | If fetching mails gives error, send an email to sender
 [html_image_url_extractor](html_image_url_extractor/) | 10.0.1.0.0 | Extract images found in any HTML field
 [html_text](html_text/) | 10.0.1.0.0 | Generate excerpts from any HTML field
@@ -107,12 +110,10 @@ Unported addons
 addon | version | summary
 --- | --- | ---
 [admin_technical_features](admin_technical_features/) | 9.0.0.1.0 (unported) | Checks the technical features box for admin user.
-[auth_dynamic_groups](auth_dynamic_groups/) | 8.0.1.0.0 (unported) | Have membership conditions for certain groups
 [auth_from_http_basic](auth_from_http_basic/) | 1.0 (unported) | Authenticate via HTTP basic authentication
 [auth_from_http_basic_logout](auth_from_http_basic_logout/) | 1.0 (unported) | Authenticate via HTTP basic authentication (logout helper)
 [auth_from_http_remote_user](auth_from_http_remote_user/) | 8.0.1.0.0 (unported) | Authenticate via HTTP Remote User
 [email_template_template](email_template_template/) | 1.0 (unported) | Templates for email templates
-[fetchmail_attach_from_folder](fetchmail_attach_from_folder/) | 8.0.1.0.1 (unported) | Attach mails in an IMAP folder to existing objects
 [import_odbc](import_odbc/) | 1.3 (unported) | Import data from SQL and ODBC data sources.
 [ir_config_parameter_viewer](ir_config_parameter_viewer/) | 0.1 (unported) | Ir.config_parameter view
 [language_path_mixin](language_path_mixin/) | 8.0.1.0.0 (unported) | Setting the partner's language in RML reports

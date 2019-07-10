@@ -17,7 +17,7 @@ def patch_leaf_trgm(method):
         model = eleaf.model
         leaf = eleaf.leaf
         left, operator, right = leaf
-        table_alias = '"%s"' % (eleaf.generate_alias())
+        table_alias = u'"%s"' % (eleaf.generate_alias())
 
         if operator == '%':
 
@@ -25,14 +25,14 @@ def patch_leaf_trgm(method):
             params = []
 
             if left in model._fields:
-                column = '%s.%s' % (table_alias, expression._quote(left))
-                query = '(%s %s %s)' % (
+                column = u'%s.%s' % (table_alias, expression._quote(left))
+                query = u'(%s %s %s)' % (
                     column,
                     sql_operator,
                     model._fields[left].column_format,
                 )
             elif left in models.MAGIC_COLUMNS:
-                query = "(%s.\"%s\" %s %%s)" % (
+                query = u"(%s.\"%s\" %s %%s)" % (
                     table_alias, left, sql_operator)
                 params = right
             else:  # Must not happen
@@ -41,7 +41,7 @@ def patch_leaf_trgm(method):
                 ))
 
             if left in model._fields:
-                params = str(right)
+                params = unicode(right)
 
             if isinstance(params, basestring):
                 params = [params]
