@@ -87,7 +87,6 @@ class BaseExceptionMethod(models.AbstractModel):
     def detect_exceptions(self):
         """List all exception_ids applied on self
         Exception ids are also written on records
-        If self is empty, check exceptions on all active records.
         """
         rules = self.env['exception.rule'].sudo().search(
             self._rule_domain())
@@ -95,18 +94,13 @@ class BaseExceptionMethod(models.AbstractModel):
         for rule in rules:
             records_with_exception = self._detect_exceptions(rule)
             reverse_field = self._reverse_field()
-            if self:
-                main_records = self._get_main_records()
-                commons = main_records & rule[reverse_field]
-                to_remove = commons - records_with_exception
-                to_add = records_with_exception - commons
-                to_remove_list = [(3, x.id, _) for x in to_remove]
-                to_add_list = [(4, x.id, _) for x in to_add]
-                rule.write({reverse_field: to_remove_list + to_add_list})
-            else:
-                rule.write({
-                    reverse_field: [(6, 0, records_with_exception.ids)]
-                })
+            main_records = self._get_main_records()
+            commons = main_records & rule[reverse_field]
+            to_remove = commons - records_with_exception
+            to_add = records_with_exception - commons
+            to_remove_list = [(3, x.id, _) for x in to_remove]
+            to_add_list = [(4, x.id, _) for x in to_add]
+            rule.write({reverse_field: to_remove_list + to_add_list})
             if records_with_exception:
                 all_exception_ids.append(rule.id)
         return all_exception_ids
@@ -149,16 +143,12 @@ class BaseExceptionMethod(models.AbstractModel):
 
     @api.multi
     def _get_base_domain(self):
-        domain = [('ignore_exception', '=', False)]
-        if self:
-            domain = osv.expression.AND([domain, [('id', 'in', self.ids)]])
-        return domain
+        return [('ignore_exception', '=', False), ('id', 'in', self.ids)]
 
     @api.multi
     def _detect_exceptions_by_py_code(self, rule):
         """
             Find exceptions found on self.
-            If self is empty, check on all records.
         """
         domain = self._get_base_domain()
         records = self.search(domain)
@@ -172,7 +162,6 @@ class BaseExceptionMethod(models.AbstractModel):
     def _detect_exceptions_by_domain(self, rule):
         """
             Find exceptions found on self.
-            If self is empty, check on all records.
         """
         base_domain = self._get_base_domain()
         rule_domain = rule._get_domain()
