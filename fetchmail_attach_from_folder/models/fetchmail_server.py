@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 import logging
 import re
-import simplejson
+import json
 from lxml import etree
 
 from odoo import _, api, fields, models
@@ -111,7 +111,7 @@ class FetchmailServer(models.Model):
                         nocopy=True)
                     modifier_dict = modifiers[field.attrib['name']]
                     combined_dict = dict(original_dict, **modifier_dict)
-                    field.set('modifiers', simplejson.dumps(combined_dict))
+                    field.set('modifiers', json.dumps(combined_dict))
                 if (field.tag == 'field' and
                         field.get('name') == 'match_algorithm'):
                     field.set('help', docstr)
