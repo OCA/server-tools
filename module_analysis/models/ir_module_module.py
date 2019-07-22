@@ -77,6 +77,10 @@ class IrModuleModule(models.Model):
             'css_code_qty': 0,
         }
 
+    @api.model
+    def _get_module_encoding(self, file_ext):
+        return 'utf-8'
+
     # Overload Section
     @api.model
     def update_list(self):
@@ -141,7 +145,9 @@ class IrModuleModule(models.Model):
                 exclude_files)
 
             for file_path, file_ext in file_list:
-                file_res = pygount.source_analysis(file_path, '')
+                file_res = pygount.source_analysis(
+                    file_path, '',
+                    encoding=self._get_module_encoding(file_ext))
                 for k, v in analysed_datas.get(file_ext).items():
                     v['value'] += getattr(file_res, k)
 
