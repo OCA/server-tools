@@ -112,9 +112,9 @@ class fetchmail_server(models.Model):
                 'finished checking for emails in %s server %s',
                 folder.path, this.name)
 
-        _logger.info('running server actions for matched_object_ids %s',
-            matched_object_ids)
-        this.run_server_action(matched_object_ids, folder)
+            _logger.info('running server actions for matched_object_ids %s',
+                matched_object_ids)
+            this.run_server_action(matched_object_ids, folder)
 
         return matched_object_ids
 
