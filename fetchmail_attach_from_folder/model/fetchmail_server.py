@@ -112,7 +112,26 @@ class fetchmail_server(models.Model):
                 'finished checking for emails in %s server %s',
                 folder.path, this.name)
 
+        _logger.info('running server actions for matched_object_ids %s',
+            matched_object_ids)
+        this.run_server_action(matched_object_ids, folder)
+
         return matched_object_ids
+
+    @api.multi
+    def run_server_action(self, matched_object_ids, folder):
+        self.ensure_one()
+        if not folder.server_id.action_id:
+            return
+        records = self.env[folder.model_id.model].browse(matched_object_ids)
+        for record in records:
+            if not record.exists():
+                continue
+            folder.server_id.action_id.with_context(**{
+                'active_id': record.id,
+                'active_ids': record.ids,
+                'active_model': folder.model_id.model,
+            }).run()
 
     @api.multi
     def get_msgids(self, connection):
@@ -148,12 +167,12 @@ class fetchmail_server(models.Model):
                               folder.match_first):
                 try:
                     self.env.cr.execute('savepoint apply_matching')
-                    match_algorithm.handle_match(
+                    record_ids = match_algorithm.handle_match(
                         self.env.cr, self.env.uid, connection,
                         found_ids[0], folder, mail_message,
                         msgdata[0][1], msgid, self.env.context)
                     self.env.cr.execute('release savepoint apply_matching')
-                    matched_object_ids += found_ids[:1]
+                    matched_object_ids += record_ids
                 except Exception:
                     self.env.cr.execute('rollback to savepoint apply_matching')
                     _logger.exception(
@@ -210,7 +229,7 @@ class fetchmail_server(models.Model):
 
             if folder.delete_matching:
                 connection.store(msgid, '+FLAGS', '\\DELETED')
-        return mail_message_ids
+        return [object_id]
 
     def button_confirm_login(self, cr, uid, ids, context=None):
         retval = super(fetchmail_server, self).button_confirm_login(
