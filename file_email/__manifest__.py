@@ -1,4 +1,3 @@
-# coding: utf-8
 #   @author Sébastien BEAU @ Akretion
 #   @author Florian DA COSTA @ Akretion
 #   @author Benoit GUILLOT @ Akretion
@@ -6,19 +5,18 @@
 
 {
     'name': 'File Email',
-    'version': '9.0.1.0.0',
+    'version': '12.0.1.0.0',
     'author': 'Akretion,Odoo Community Association (OCA)',
     'category': 'Generic Modules',
     'license': 'AGPL-3',
     'website': 'http://www.akretion.com/',
     'depends': [
-        'attachment_base_synchronize',
+        'base_attachment_queue',
         'fetchmail'
     ],
     'data': [
         'security/ir.model.access.csv',
         "views/fetchmail_view.xml",
-        "views/attachment_view.xml",
     ],
     'demo': [],
     'installable': True,

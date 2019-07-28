@@ -1,8 +1,3 @@
-# coding: utf-8
-#   @author Sébastien BEAU @ Akretion
-#   @author Florian DA COSTA @ Akretion
-#   @author Benoit GUILLOT @ Akretion
-#   @author Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from openerp import models, fields, api
@@ -20,7 +15,8 @@ class FetchmailServer(models.Model):
         'res.company', string='Company',
         required=True, default=company_default_get)
     attachment_metadata_condition_ids = fields.One2many(
-        'fetchmail.attachment.condition', 'server_id', string='Attachment')
+        'fetchmail.attachment.condition', 'server_id',
+        string='Attachment Conditions')
 
     @api.multi
     def get_context_for_server(self):
