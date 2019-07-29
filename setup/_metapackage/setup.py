@@ -18,6 +18,7 @@ setuptools.setup(
         'odoo12-addon-base_technical_user',
         'odoo12-addon-database_cleanup',
         'odoo12-addon-datetime_formatter',
+        'odoo12-addon-dbfilter_from_header',
         'odoo12-addon-excel_import_export',
         'odoo12-addon-excel_import_export_demo',
         'odoo12-addon-fetchmail_notify_error_to_sender',
