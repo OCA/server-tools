@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import models, fields, api, modules, _
+from collections import Mapping
 
 FIELDS_BLACKLIST = [
     'id', 'create_uid', 'create_date', 'write_uid', 'write_date',
@@ -227,12 +228,25 @@ class AuditlogRule(models.Model):
         def create_fast(self, vals, **kwargs):
             self = self.with_context(auditlog_disabled=True)
             rule_model = self.env['auditlog.rule']
-            vals2 = dict(vals)
             new_record = create_fast.origin(self, vals, **kwargs)
-            new_values = {new_record.id: vals2}
-            rule_model.sudo().create_logs(
-                self.env.uid, self._name, new_record.ids,
-                'create', None, new_values, {'log_type': log_type})
+
+            # If only a single new record is being created do a fast log.
+            # Otherwise, degrade to a full log.
+            #
+            if isinstance(vals, Mapping):
+                vals2 = dict(vals)
+                new_values = {new_record.id: vals2}
+                rule_model.sudo().create_logs(
+                    self.env.uid, self._name, new_record.ids,
+                    'create', None, new_values, {'log_type': log_type})
+            else:
+                new_values = dict(
+                    (d['id'], d) for d in new_record.sudo()
+                    .with_context(prefetch_fields=False)
+                    .read(list(self._fields)))
+                rule_model.sudo().create_logs(
+                    self.env.uid, self._name, new_record.ids,
+                    'create', None, new_values, {'log_type': log_type})
             return new_record
 
         return create_full if self.log_type == 'full' else create_fast

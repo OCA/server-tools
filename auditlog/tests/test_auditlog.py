@@ -119,3 +119,22 @@ class TestAuditlogFast(TransactionCase, AuditlogCommon):
     def tearDown(self):
         self.groups_rule.unlink()
         super(TestAuditlogFast, self).tearDown()
+
+    def test_LogCreateMulti(self):
+        """Test creation of multiple objects at once."""
+
+        auditlog_log = self.env['auditlog.log']
+        self.groups_rule.subscribe()
+
+        vals = [
+            {'name': 'Test Group 01'},
+            {'name': 'Test Group 02'},
+        ]
+        groups = self.env['res.groups'].create(vals)
+        self.assertTrue(len(groups) == 2)
+        for grp in groups:
+            self.assertTrue(auditlog_log.search([
+                ('model_id', '=', self.groups_model_id),
+                ('method', '=', 'create'),
+                ('res_id', '=', grp.id),
+            ]).ensure_one())
