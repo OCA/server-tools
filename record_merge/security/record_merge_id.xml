@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2019 Digital5 S.L.
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record model="ir.model.access" id="record_merge_id_access_name"> <!-- TODO acl id -->
+        <field name="name">record.merge.id access name</field> <!-- TODO acl name -->
+        <field name="model_id" ref="model_record_merge_id"/>
+        <!-- TODO review and adapt -->
+        <field name="group_id" ref="base.group_user"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+    </record>
+
+</odoo>

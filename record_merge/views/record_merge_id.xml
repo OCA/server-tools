@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2019 Digital5 S.L.
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record model="ir.ui.view" id="record_merge_id_form_view">
+        <field name="name">record.merge.id.form (in record_merge)</field>
+        <field name="model">record.merge.id</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_merge_progress" string="Launch" type="object" class="oe_highlight"
+                            attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                    <button name="action_merge_all" string="Merge" type="object"
+                            attrs="{'invisible': [('state', 'not in', 'progress')]}"/>
+                    <button name="action_mark_done" string="Mark done" type="object"
+                            attrs="{'invisible': [('state', 'not in', 'progress')]}"/>
+                    <button name="action_merge_cancel" string="Cancel" type="object"
+                            attrs="{'invisible': [('state', 'in', ['done', 'cancel'])]}"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,progress,done"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                        <group>
+                            <field name="model_id"/>
+                            <field name="criteria_id" attrs="{'invisible': [('criteria_id', '=', False)]}"/>
+                            <field name="merge_id" attrs="{'invisible': [('merge_id', '=', False)]}"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="definition" string="IDs">
+                            <group name="id_lines" string="Records to merge" colspan="4">
+                                <field name="id_line_ids" nolabel="1"
+                                  attrs="{'readonly':[('state', '!=', 'draft')]}">
+                                        <tree editable="bottom">
+                                            <field name="record_id"/>
+                                            <field name="record_name"/>
+                                            <field name="destiny"/>
+                                        </tree>
+                                </field>
+                            </group>
+                        </page>
+                        <page name="relation" string="Relation Fields"
+                              attrs="{'invisible':[('state', '=', 'draft')]}">
+                            <group name="relation_fields" string="Relation fields to consider" colspan="4">
+                                <field name="relation_line_ids" nolabel="1">
+                                    <tree editable="top" create="false">
+                                        <field name="model_id"/>
+                                        <field name="field_id"/>
+                                        <field name="ttype"/>
+                                        <field name="no_records"/>
+                                        <field name="merge_ids" invisible="1"/>
+                                        <field name="criteria_ids" invisible="1"/>
+                                        <button name="create_relation_object"
+                                                icon="fa-plus-square"
+                                                type="object"
+                                                attrs="{'invisible':['|',('merge_ids', '!=', []),('criteria_ids', '!=', [])]}"
+                                        />
+                                        <button name="view_relation_object"
+                                                icon="fa-eye"
+                                                type="object"
+                                                attrs="{'invisible':[('merge_ids', '=', []),('criteria_ids', '=', [])]}"
+                                        />
+                                    </tree>
+                                </field>
+
+                            </group>
+                        </page>
+                        <page name="consolidate" string="Data consolidation"
+                              attrs="{'invisible':[('state', '=', 'draft')],'readonly':[('state', '!=', 'progress')]}">
+                            <group>
+                                <group>
+                                    <button name="consolidate" string="Consolidate" type="object" class="oe_highlight"
+                                        attrs="{'invisible':[('consolidate_done', '=', True)]}"/>
+                                    <button name="action_refresh_consolidate" string="Refresh" type="object"
+                                        attrs="{'invisible':[('consolidate_done', '=', True)]}"/>
+                                </group>
+                                <group>
+                                    <field name="consolidate_done" invisible="1"/>
+                                </group>
+                            </group>
+                            <group name="consolidate_fields" string="Fields to consolidate" colspan="4">
+                                <field name="consolidate_field_ids" nolabel="1"
+                                    attrs="{'readonly':[('consolidate_done', '=', True)]}">
+                                    <tree editable="top">
+                                        <field name="field_id"/>
+                                        <field name="to_merge"/>
+                                    </tree>
+                                </field>
+
+                            </group>
+                            <group name="consolidate_order" string="Consolidate order" colspan="4">
+                                <field name="consolidate_order_ids" nolabel="1"
+                                    attrs="{'readonly':[('consolidate_done', '=', True)]}">
+                                    <tree editable="top" create="false">
+                                        <field name="sequence" widget="handle"/>
+                                        <field name="record_id" readonly="1"/>
+                                        <field name="record_name" readonly="1"/>
+                                        <field name="to_merge"/>
+                                    </tree>
+                                </field>
+
+                            </group>
+                        </page>
+                        <page name="fk_merge" string="FKs merge"
+                              attrs="{'invisible':[('state', '=', 'draft')],'readonly':[('state', '!=', 'progress')]}">
+                            <group>
+                                <group>
+                                    <button name="fk_merge" string="FKs merge" type="object" class="oe_highlight"
+                                        attrs="{'invisible':[('fk_merge_done', '=', True)]}"/>
+                                    <button name="action_refresh_fk_merge" string="Refresh" type="object"
+                                        attrs="{'invisible':[('fk_merge_done', '=', True)]}"/>
+                                </group>
+                                <group>
+                                    <field name="fk_merge_done" invisible="1"/>
+                                </group>
+                            </group>
+                            <group name="fk_fields" string="FK fields to merge" colspan="4">
+                                <field name="fk_field_ids" nolabel="1"
+                                    attrs="{'readonly':[('fk_merge_done', '=', True)]}">
+                                    <tree editable="top">
+                                        <field name="model_id"/>
+                                        <field name="field_id"/>
+                                        <field name="to_merge"/>
+                                    </tree>
+                                </field>
+
+                            </group>
+                        </page>
+                        <page name="ref_merge" string="References merge"
+                              attrs="{'invisible':[('state', '=', 'draft')],'readonly':[('state', '!=', 'progress')]}">
+                            <group>
+                                <group>
+                                    <button name="ref_merge" string="Reference merge" type="object" class="oe_highlight"
+                                        attrs="{'invisible':[('ref_merge_done', '=', True)]}"/>
+                                    <button name="action_refresh_ref_merge" string="Refresh" type="object"
+                                        attrs="{'invisible':[('ref_merge_done', '=', True)]}"/>
+                                </group>
+                                <group>
+                                    <field name="ref_merge_done" invisible="1"/>
+                                </group>
+                            </group>
+                            <group name="ref_fields" string="Reference fields to merge" colspan="4">
+                                <field name="ref_field_ids" nolabel="1"
+                                    attrs="{'readonly':[('ref_merge_done', '=', True)]}">
+                                    <tree editable="top">
+                                        <field name="model_id"/>
+                                        <field name="field_id"/>
+                                        <field name="to_merge"/>
+                                    </tree>
+                                </field>
+
+                            </group>
+                        </page>
+                        <page name="nonrel_merge" string="Non-relational merge"
+                              attrs="{'invisible':[('state', '=', 'draft')],'readonly':[('state', '!=', 'progress')]}">
+                            <group>
+                                <group>
+                                    <button name="nonrel_merge" string="Non-relational merge" type="object" class="oe_highlight"
+                                        attrs="{'invisible':[('nonrel_merge_done', '=', True)]}"/>
+                                    <button name="action_refresh_nonrel_merge" string="Refresh" type="object"
+                                        attrs="{'invisible':[('nonrel_merge_done', '=', True)]}"/>
+                                </group>
+                                <group>
+                                    <field name="nonrel_merge_done" invisible="1"/>
+                                </group>
+                            </group>
+                            <group name="nonrel_fields" string="Reference fields to merge" colspan="4">
+                                <field name="nonrel_field_ids" nolabel="1"
+                                    attrs="{'readonly':[('nonrel_merge_done', '=', True)]}">
+                                    <tree editable="top">
+                                        <field name="model_id"/>
+                                        <field name="field_id"/>
+                                        <field name="to_merge"/>
+                                    </tree>
+                                </field>
+
+                            </group>
+                        </page>
+                        <page name="recompute" string="Recompute"
+                              attrs="{'invisible':[('state', '=', 'draft')],'readonly':[('state', '!=', 'progress')]}">
+                            <group>
+                                <group>
+                                    <button name="recompute_fields" string="Recompute" type="object" class="oe_highlight"
+                                        attrs="{'invisible':[('recompute_fields_done', '=', True)]}"/>
+                                    <button name="action_refresh_recompute" string="Refresh" type="object"
+                                        attrs="{'invisible':[('recompute_fields_done', '=', True)]}"/>
+                                </group>
+                                <group>
+                                    <field name="recompute_fields_done" invisible="1"/>
+                                </group>
+                            </group>
+                            <group name="rec_fields" string="Fields to recompute" colspan="4">
+                                <field name="rec_field_ids" nolabel="1"
+                                    attrs="{'readonly':[('recompute_fields_done', '=', True)]}">
+                                    <tree editable="top">
+                                        <field name="field_id"/>
+                                        <field name="to_merge"/>
+                                    </tree>
+                                </field>
+
+                            </group>
+                        </page>
+                        <page name="delete" string="Delete merged"
+                              attrs="{'invisible':[('state', '=', 'draft')],'readonly':[('state', '!=', 'progress')]}">
+                            <group>
+                                <group>
+                                    <button name="delete_records" string="Delete" type="object" class="oe_highlight"
+                                        attrs="{'invisible':[('delete_done', '=', True)]}"/>
+                                    <button name="action_refresh_delete" string="Refresh" type="object"
+                                        attrs="{'invisible':[('delete_done', '=', True)]}"/>
+                                </group>
+                                <group>
+                                    <field name="delete_done" invisible="1"/>
+                                </group>
+                            </group>
+                            <group name="delete_records" string="Records to delete" colspan="4">
+                                <field name="delete_line_ids" nolabel="1"
+                                    attrs="{'readonly':[('delete_done', '=', True)]}">
+                                    <tree editable="top">
+                                        <field name="record_id" readonly="1"/>
+                                        <field name="record_name"/>
+                                        <field name="delete"/>
+                                    </tree>
+                                </field>
+
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="record_merge_id_search_view">
+        <field name="name">record.merge.id.search (in record_merge)</field>
+        <field name="model">record.merge.id</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="model_id"/>
+                <field name="state"/>
+                <field name="criteria_id"/>
+                <field name="merge_id"/>
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="record_merge_id_tree_view">
+        <field name="name">record.merge.id.tree (in record_merge)</field>
+        <field name="model">record.merge.id</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="model_id"/>
+                <field name="state"/>
+                <field name="criteria_id"/>
+                <field name="merge_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="record_merge_id_act_window">
+        <field name="name">Record Merge Id</field> <!-- TODO -->
+        <field name="res_model">record.merge.id</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+
+    <menuitem
+        name="Merge records"
+        id="record_merge_menu"
+        parent="base.menu_custom"
+        />
+
+    <record model="ir.ui.menu" id="record_merge_id_menu">
+        <field name="name">Record Merge Id</field>
+        <field name="parent_id" ref="record_merge_menu"/>
+        <field name="action" ref="record_merge_id_act_window"/>
+        <field name="sequence" eval="16"/>
+    </record>
+
+</odoo>
