@@ -1,79 +1,31 @@
-# -*- encoding: utf-8 -*-
-##############################################################################
-#
-#    Tools - Repository of Modules for Odoo
-#    Copyright (C) 2014 GRAP (http://www.grap.coop)
-#    @author Sylvain LE GAL (https://twitter.com/legalsylvain)
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# coding: utf-8
+# Copyright (C) 2014 GRAP (http://www.grap.coop)
+# @author Sylvain LE GAL (https://twitter.com/legalsylvain)
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 {
     'name': 'Repository of Modules',
-    'version': '0.1',
-    'summary': """Allows to see Repository Informations of Modules""",
+    'version': '8.0.1.0.0',
+    'summary': "Allows to see Repository Informations of Modules",
     'category': 'Tools',
-    'description': """
-Allows to see Repository Informations of Modules
-================================================
-
-Functionality:
---------------
-    * Allow to see information of repositories used by a given Database:
-        * Name of the folder of the repository;
-        * URL and name of the current Branch and revision ID;
-        * Number of files with unstaged / uncommitted modifications;
-        * Number of installed modules and total modules available;
-    * Versioning System covered:
-        * Bazaar;
-        * Git;
-
-Technical Information:
-----------------------
-    * This module create a new model ir.module.repository for each"""
-    """ Repository defined in the addons_path parameters in the"""
-    """ configuration file;
-    * Informations update is realized:
-        * Automaticly, when you install or update a module;
-        * Manualy, when you click on 'Update Module List';
-
-Copyright, Authors and Licence:
--------------------------------
-    * Copyright: 2014, GRAP: Groupement Régional Alimentaire de Proximité;
-    * Author: Sylvain LE GAL (https://twitter.com/legalsylvain);""",
-    'author': 'GRAP',
-    'website': 'http://www.grap.coop',
+    'author': 'GRAP,Odoo Community Association (OCA)',
+    'website': 'https://github.com/OCA/server-tools',
     'license': 'AGPL-3',
     'depends': [
         'base',
     ],
     'data': [
-        'security/ir_model_access.yml',
-        'view/view.xml',
-        'view/action.xml',
-        'view/menu.xml',
+        'security/ir.model.access.csv',
+        'views/templates.xml',
+        'views/view_ir_module_module.xml',
+        'views/view_ir_module_repository.xml',
     ],
     'images': [
         'static/src/img/screenshots/ir_module_repository_kanban.png',
         'static/src/img/screenshots/ir_module_module_kanban.png',
     ],
+    'development_status': 'Beta',
     'external_dependencies': {
-        'python': ['git', 'bzrlib'],
-        'bin': ['bzr'],
+        'python': ['git'],
     },
-    'css': [
-        'static/src/css/css.css',
-    ],
 }

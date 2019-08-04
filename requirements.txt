@@ -9,3 +9,5 @@
   odoorpc
   raven
   pyotp<2.4
+  pyotp
+  GitPython

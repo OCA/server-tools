@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Copyright (C) 2014 GRAP (http://www.grap.coop)
+    @author Sylvain LE GAL (https://twitter.com/legalsylvain)
+    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+ -->
+<openerp><data>
+
+        <record id="action_ir_module_module_tree" model="ir.actions.act_window">
+            <field name="name">Modules</field>
+            <field name="res_model">ir.module.module</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,kanban,form</field>
+        </record>
+
+    <record id="view_ir_module_repository_tree" model="ir.ui.view">
+        <field name="model">ir.module.repository</field>
+        <field name="arch" type="xml">
+            <tree colors="gray:installed_module_qty == 0; red:local_modification_qty != 0;">
+                <field name="name" />
+                <field name="path"/>
+                <field name="installed_module_qty"/>
+                <field name="module_qty" />
+                <field name="version_control_type" />
+                <field name="local_modification_qty"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_ir_module_repository_search" model="ir.ui.view">
+        <field name="model">ir.module.repository</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="version_control_type"/>
+                <filter string="With Modules Installed" name="filter_with_module_installed" domain="[('installed_module_qty','!=', 0)]"/>
+                <filter string="With Local Modifications" name="filter_with_local_modification" domain="[('local_modification_qty','!=', 0)]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_ir_module_repository_form" model="ir.ui.view">
+        <field name="model">ir.module.repository</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="update_information" type="object" string="Update Information"/>
+                </header>
+                <sheet>
+                    <div class="oe_right oe_button_box" name="buttons">
+                        <button name="%(action_ir_module_module_tree)d"
+                            type="action" class="oe_stat_button oe_inline" icon="fa-list"
+                            context="{'search_default_repository_id': active_id,
+                            'search_default_installed': True}"
+                            attrs="{'invisible': [('installed_module_qty', '=', 0)]}">
+                            <field name="installed_module_qty" widget="statinfo" string="Installed Modules"/>
+                        </button>
+                        <button name="%(action_ir_module_module_tree)d"
+                            type="action" class="oe_stat_button oe_inline" icon="fa-list"
+                            context="{'search_default_repository_id': active_id}"
+                            attrs="{'invisible': [('module_qty', '=', 0)]}">
+                            <field name="module_qty" widget="statinfo" string="Modules"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group col="4">
+                        <field name="path" colspan="4"/>
+                        <field name="url" colspan="4" widget="url"/>
+                        <field name="version_control_type"/>
+                        <field name="branch"/>
+                        <field name="is_odoo_core"/>
+                        <field name="local_modification_qty"
+                            attrs="{'invisible': [('local_modification_qty', '=', 0)]}"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_ir_module_repository_kanban" model="ir.ui.view">
+        <field name="model">ir.module.repository</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="name"/>
+                <field name="version_control_type"/>
+                <field name="state"/>
+                <field name="installed_module_qty"/>
+                <field name="module_qty"/>
+                <field name="url"/>
+                <field name="branch"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_ir_module_repository_color_#{record.state.raw_value}">
+                            <div class="oe_kanban_ir_module_repository">
+                                <a type="open">
+                                    <t t-if="record.version_control_type.raw_value == 'git'">
+                                        <img t-att-src='_s + "/module_repository/static/src/img/git.png"' class="oe_kanban_image"/>
+                                    </t>
+                                    <t t-if="record.version_control_type.raw_value == 'unknown'">
+                                        <img t-att-src='_s + "/module_repository/static/src/img/unknown.png"' class="oe_kanban_image"/>
+                                    </t>
+                                </a>
+                                <div class="oe_kanban_details">
+                                    <h4 class="oe_partner_heading">
+                                        <a type="open"><field name="name"/></a>
+                                        <span> ( </span>
+                                        <field name="installed_module_qty"/>
+                                        <span> / </span>
+                                        <field name="module_qty"/>
+                                        <span> ) </span>
+                                    </h4>
+                                    <ul>
+                                        <t t-if="record.url.raw_value">
+                                            <li>
+                                                <a t-att-href="record.url.raw_value" target="_blank">Link</a>
+                                            </li>
+                                        </t>
+                                        <li t-if="record.branch.raw_value">
+                                            <span>Branch: </span><field name="branch"/>
+                                        </li>
+                                        <li t-if="record.local_modification_qty.raw_value != 0">
+                                            <span class="local_modification">Local Changes: <field name="local_modification_qty"/></span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="action_ir_module_repository" model="ir.actions.act_window">
+        <field name="name">Repositories</field>
+        <field name="res_model">ir.module.repository</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="context">{'search_default_filter_with_module_installed': True}</field>
+    </record>
+
+    <menuitem id="menu_ir_module_repository" 
+        sequence="40" 
+        parent="base.menu_management" 
+        action="action_ir_module_repository"/>
+
+</data></openerp>
