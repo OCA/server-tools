@@ -64,7 +64,12 @@ class CleanupPurgeWizardModule(models.TransientModel):
     def find(self):
         res = []
         IrModule = self.env['ir.module.module']
-        for module in IrModule.search([('to_buy', '=', False)]):
+        for module in IrModule.search(
+                [
+                    ('to_buy', '=', False),
+                    ('name', '!=', 'studio_customization')
+                ]
+        ):
             if get_module_path(module.name, display_warning=False):
                 continue
             if module.state == 'uninstalled':
