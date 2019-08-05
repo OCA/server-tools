@@ -555,6 +555,12 @@ msgid "Import"
 msgstr ""
 
 #. module: excel_import_export
+#: code:addons/excel_import_export/wizard/import_xlsx_wizard.py:121
+#, python-format
+msgid "Import Excel"
+msgstr ""
+
+#. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_import_xlsx_wizard__import_file
 msgid "Import File (*.xlsx)"
 msgstr ""
@@ -743,7 +749,7 @@ msgid "Optional for CSV, default is full quoting."
 msgstr ""
 
 #. module: excel_import_export
-#: code:addons/excel_import_export/wizard/import_xlsx_wizard.py:131
+#: code:addons/excel_import_export/wizard/import_xlsx_wizard.py:146
 #, python-format
 msgid "Please select Excel file to import"
 msgstr ""
@@ -961,5 +967,10 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:excel_import_export.import_xlsx_wizard
 #: model_terms:ir.ui.view,arch_db:excel_import_export.xlsx_report_view
 msgid "or"
+msgstr ""
+
+#. module: excel_import_export
+#: model_terms:ir.ui.view,arch_db:excel_import_export.import_xlsx_wizard
+msgid "⇒ Get Sample Import Template"
 msgstr ""
 
