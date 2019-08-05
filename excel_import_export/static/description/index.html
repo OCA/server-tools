@@ -379,30 +379,31 @@ ul.auto-toc {
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><a class="reference internal" href="#installation" id="id2">Installation</a></li>
-<li><a class="reference internal" href="#usage" id="id3">Usage</a></li>
-<li><a class="reference internal" href="#known-issues-roadmap" id="id4">Known issues / Roadmap</a></li>
-<li><a class="reference internal" href="#changelog" id="id5">Changelog</a><ul>
-<li><a class="reference internal" href="#id1" id="id6">12.0.1.0.0 (2019-02-24)</a></li>
+<li><a class="reference internal" href="#installation" id="id3">Installation</a></li>
+<li><a class="reference internal" href="#usage" id="id4">Usage</a></li>
+<li><a class="reference internal" href="#known-issues-roadmap" id="id5">Known issues / Roadmap</a></li>
+<li><a class="reference internal" href="#changelog" id="id6">Changelog</a><ul>
+<li><a class="reference internal" href="#id1" id="id7">12.0.1.0.0 (2019-02-24)</a></li>
+<li><a class="reference internal" href="#id2" id="id8">12.0.1.0.2 (2019-06-24)</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#bug-tracker" id="id7">Bug Tracker</a></li>
-<li><a class="reference internal" href="#credits" id="id8">Credits</a><ul>
-<li><a class="reference internal" href="#authors" id="id9">Authors</a></li>
-<li><a class="reference internal" href="#contributors" id="id10">Contributors</a></li>
-<li><a class="reference internal" href="#maintainers" id="id11">Maintainers</a></li>
+<li><a class="reference internal" href="#bug-tracker" id="id9">Bug Tracker</a></li>
+<li><a class="reference internal" href="#credits" id="id10">Credits</a><ul>
+<li><a class="reference internal" href="#authors" id="id11">Authors</a></li>
+<li><a class="reference internal" href="#contributors" id="id12">Contributors</a></li>
+<li><a class="reference internal" href="#maintainers" id="id13">Maintainers</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="section" id="installation">
-<h1><a class="toc-backref" href="#id2">Installation</a></h1>
+<h1><a class="toc-backref" href="#id3">Installation</a></h1>
 <p>To install this module, you need to install following python library, <strong>xlrd, xlwt, openpyxl</strong>.</p>
 <p>Then, simply install <strong>excel_import_export</strong>.</p>
-<p>For samples, install <strong>excel_import_export_sample</strong>.</p>
+<p>For demo, install <strong>excel_import_export_demo</strong>.</p>
 </div>
 <div class="section" id="usage">
-<h1><a class="toc-backref" href="#id3">Usage</a></h1>
+<h1><a class="toc-backref" href="#id4">Usage</a></h1>
 <p>This module contain pre-defined function and wizards to make exporting, importing and reporting easy.</p>
 <p>At the heart of this module, there are 2 <cite>main methods</cite></p>
 <ul class="simple">
@@ -414,9 +415,9 @@ ul.auto-toc {
 <li><tt class="docutils literal"><span class="pre">self.env['xslx.report'].report_xlsx(...)</span></tt></li>
 </ul>
 <p>After install this module, go to Settings &gt; Excel Import/Export &gt; XLSX Templates, this is where the key component located.</p>
-<p>As this module provide tools, it is best to explain as use cases. For example use cases, please install <strong>excel_import_export_sample</strong></p>
+<p>As this module provide tools, it is best to explain as use cases. For example use cases, please install <strong>excel_import_export_demo</strong></p>
 <p><strong>Use Case 1:</strong> Export/Import Excel on existing document</p>
-<p>This add export/import action menus in existing document (example - excel_import_export_sample/import_export_sale_order)</p>
+<p>This add export/import action menus in existing document (example - excel_import_export_demo/import_export_sale_order)</p>
 <ol class="arabic simple">
 <li>Create export action menu on document, &lt;act_window&gt; with res_model=”export.xlsx.wizard” and src_model=”&lt;document_model&gt;”, and context[‘template_domain’] to locate the right template – actions.xml</li>
 <li>Create import action menu on document, &lt;act_window&gt; with res_model=”import.xlsx.wizard” and src_model=”&lt;document_model&gt;”, and context[‘template_domain’] to locate the right template – action.xml</li>
@@ -424,14 +425,14 @@ ul.auto-toc {
 <li>Create instruction dictionary for export/import in xlsx.template model – templates.xml</li>
 </ol>
 <p><strong>Use Case 2:</strong> Import Excel Files</p>
-<p>With menu wizard to create new documents (example - excel_import_export_sample/import_sale_orders)</p>
+<p>With menu wizard to create new documents (example - excel_import_export_demo/import_sale_orders)</p>
 <ol class="arabic simple">
 <li>Create report menu with search wizard, res_model=”import.xlsx.wizard” and context[‘template_domain’] to locate the right template – menu_action.xml</li>
 <li>Create Excel Template File (.xlsx), in the template, name the underlining tab used for import – &lt;import file&gt;.xlsx</li>
 <li>Create instruction dictionary for import in xlsx.template model – templates.xml</li>
 </ol>
 <p><strong>Use Case 3:</strong> Create Excel Report</p>
-<p>This create report menu with criteria wizard. (example - excel_import_export_sample/report_sale_order)</p>
+<p>This create report menu with criteria wizard. (example - excel_import_export_demo/report_sale_order)</p>
 <ol class="arabic simple">
 <li>Create report’s menu, action, and add context[‘template_domain’]  to locate the right template for this report – &lt;report&gt;.xml</li>
 <li>Create report’s wizard for search criteria. The view inherits <tt class="docutils literal">excel_import_export.xlsx_report_view</tt> and mode=”primary”. In this view, you only need to add criteria fields, the rest will reuse from interited view – &lt;report.xml&gt;</li>
@@ -441,23 +442,29 @@ ul.auto-toc {
 </ol>
 </div>
 <div class="section" id="known-issues-roadmap">
-<h1><a class="toc-backref" href="#id4">Known issues / Roadmap</a></h1>
+<h1><a class="toc-backref" href="#id5">Known issues / Roadmap</a></h1>
 <ul class="simple">
 <li>Module extension e.g., excel_import_export_async, that add ability to execute as async process.</li>
 <li>Ability to add contextual action in XLSX Tempalte, e.g., Add import action, Add export action. In similar manner as in Server Action.</li>
 </ul>
 </div>
 <div class="section" id="changelog">
-<h1><a class="toc-backref" href="#id5">Changelog</a></h1>
+<h1><a class="toc-backref" href="#id6">Changelog</a></h1>
 <div class="section" id="id1">
-<h2><a class="toc-backref" href="#id6">12.0.1.0.0 (2019-02-24)</a></h2>
+<h2><a class="toc-backref" href="#id7">12.0.1.0.0 (2019-02-24)</a></h2>
 <ul class="simple">
 <li>Start of the history</li>
 </ul>
 </div>
+<div class="section" id="id2">
+<h2><a class="toc-backref" href="#id8">12.0.1.0.2 (2019-06-24)</a></h2>
+<ul class="simple">
+<li>Fix wizard on v12 can’t download sample template file - <a class="reference external" href="https://github.com/OCA/server-tools/issues/1574">https://github.com/OCA/server-tools/issues/1574</a></li>
+</ul>
+</div>
 </div>
 <div class="section" id="bug-tracker">
-<h1><a class="toc-backref" href="#id7">Bug Tracker</a></h1>
+<h1><a class="toc-backref" href="#id9">Bug Tracker</a></h1>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/server-tools/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
@@ -465,21 +472,21 @@ If you spotted it first, help us smashing it by providing a detailed and welcome
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
-<h1><a class="toc-backref" href="#id8">Credits</a></h1>
+<h1><a class="toc-backref" href="#id10">Credits</a></h1>
 <div class="section" id="authors">
-<h2><a class="toc-backref" href="#id9">Authors</a></h2>
+<h2><a class="toc-backref" href="#id11">Authors</a></h2>
 <ul class="simple">
 <li>Ecosoft</li>
 </ul>
 </div>
 <div class="section" id="contributors">
-<h2><a class="toc-backref" href="#id10">Contributors</a></h2>
+<h2><a class="toc-backref" href="#id12">Contributors</a></h2>
 <ul class="simple">
 <li>Kitti Upariphutthiphong. &lt;<a class="reference external" href="mailto:kittiu&#64;gmail.com">kittiu&#64;gmail.com</a>&gt; (<a class="reference external" href="http://ecosoft.co.th">http://ecosoft.co.th</a>)</li>
 </ul>
 </div>
 <div class="section" id="maintainers">
-<h2><a class="toc-backref" href="#id11">Maintainers</a></h2>
+<h2><a class="toc-backref" href="#id13">Maintainers</a></h2>
 <p>This module is maintained by the OCA.</p>
 <a class="reference external image-reference" href="https://odoo-community.org"><img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" /></a>
 <p>OCA, or the Odoo Community Association, is a nonprofit organization whose
