@@ -112,7 +112,12 @@ class BaseExceptionMethod(models.AbstractModel):
             to_add = records_with_exception - commons
             to_remove_list = [(3, x.id, _) for x in to_remove]
             to_add_list = [(4, x.id, _) for x in to_add]
-            rule.write({reverse_field: to_remove_list + to_add_list})
+            if to_remove_list or to_add_list:
+                self.env.cr.execute(
+                    'SELECT id FROM exception_rule '
+                    'WHERE id = %s FOR UPDATE', (rule.id,)
+                )  # no deadlock because the order is enforced by sequence
+                rule.write({reverse_field: to_remove_list + to_add_list})
             if records_with_exception:
                 all_exception_ids.append(rule.id)
         return all_exception_ids
