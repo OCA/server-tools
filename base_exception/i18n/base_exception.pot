@@ -75,7 +75,7 @@ msgid "Domain"
 msgstr ""
 
 #. module: base_exception
-#: code:addons/base_exception/models/base_exception.py:151
+#: code:addons/base_exception/models/base_exception.py:145
 #, python-format
 msgid "Error when evaluating the exception.rule rule:\n"
 " %s \n"
