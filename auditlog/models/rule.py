@@ -301,7 +301,8 @@ class AuditlogRule(models.Model):
                 # avoid logs on `read` produced by auditlog during internal
                 # processing: read data of relevant records, 'ir.model',
                 # 'ir.model.fields'... (no interest in logging such operations)
-                if kwargs.get('context', {}).get('auditlog_disabled'):
+                context = kwargs.get('context', {}) or {}
+                if context.get('auditlog_disabled'):
                     return result
                 env = api.Environment(cr, uid, {'auditlog_disabled': True})
                 rule_model = env['auditlog.rule']
@@ -412,7 +413,7 @@ class AuditlogRule(models.Model):
                 if isinstance(ids, (int, long)):
                     ids = [ids]
 
-                context = kwargs.get('context', {})
+                context = kwargs.get('context', {}) or {}
 
                 # Set specific context if it is defined by our rule
                 if not context and context_field_number:
