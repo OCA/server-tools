@@ -5,6 +5,7 @@
     "name": "ir_rule_restriction",
     "version": "10.0.1.0.0",
     "author": "Therp BV,Odoo Community Association (OCA)",
+    "description": "AND operation on global rules",
     "license": "AGPL-3",
     "category": "Tools",
     "summary": "Make group rules restrictive",
