@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <report id='action_report_partner_excel'
+            string='Partner List (.xlsx)'
+            model='report.partner.list'
+            name='partner_list.xlsx'
+            file='partner_list'
+            report_type='excel'
+    />
+</odoo>
