@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <report id='action_report_saleorder_excel'
+            string='Quotation / Order (.xlsx)'
+            model='sale.order'
+            name='sale_order_form.xlsx'
+            file='sale_order'
+            print_report_name="(object.state in ('draft', 'sent') and 'Quotation - %s' % (object.name)) or 'Order - %s' % (object.name)"
+            report_type='excel'
+    />
+
+</odoo>
