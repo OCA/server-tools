@@ -39,3 +39,23 @@ This create report menu with criteria wizard. (example - excel_import_export_dem
 3. Create report model as models.Transient, then define search criteria fields, and get reporing data into ``results`` field -- <report>.py
 4. Create/Design Excel Template File (.xlsx), in the template, name the underlining tab used for report results -- <report_file>.xlsx
 5. Create instruction dictionary for report in xlsx.template model -- templates.xml
+
+**Note:**
+
+Another option for reporting is to use report action (report_type='excel'), I.e.,
+
+.. code-block:: xml
+
+    <report id='action_report_saleorder_excel'
+            string='Quotation / Order (.xlsx)'
+            model='sale.order'
+            name='sale_order.xlsx'
+            file='sale_order'
+            report_type='excel'
+    />
+
+By using report action, Odoo will find template using combination of model and name, then do the export for the underlining record.
+Please see example in excel_import_export_demo/report_action, which shows,
+
+1. Print excel from an active sale.order
+2. Run partner list report based on search criteria.

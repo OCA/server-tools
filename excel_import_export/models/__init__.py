@@ -6,3 +6,4 @@ from . import xlsx_export
 from . import xlsx_import
 from . import xlsx_template
 from . import xlsx_report
+from . import ir_report
