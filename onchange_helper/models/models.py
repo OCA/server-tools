@@ -61,7 +61,11 @@ def _get_new_values(self, record, on_change_result):
 
 @api.model
 def play_onchanges(self, values, onchange_fields):
+    # _onchange_spec returns only api.v7 onchanges
     onchange_specs = self._onchange_spec()
+    # api v8
+    for key in self._onchange_methods.keys():
+        onchange_specs[key] = "true"
     # we need all fields in the dict even the empty ones
     # otherwise 'onchange()' will not apply changes to them
     all_values = values.copy()
