@@ -180,28 +180,28 @@ def xlrd_get_sheet_by_name(book, name):
         raise ValidationError(_("'%s' sheet not found") % (name,))
 
 
-def isfloat(input):
+def isfloat(input_val):
     try:
-        float(input)
+        float(input_val)
         return True
     except ValueError:
         return False
 
 
-def isinteger(input):
+def isinteger(input_val):
     try:
-        int(input)
+        int(input_val)
         return True
     except ValueError:
         return False
 
 
-def isdatetime(input):
+def isdatetime(input_val):
     try:
-        if len(input) == 10:
-            dt.strptime(input, '%Y-%m-%d')
-        elif len(input) == 19:
-            dt.strptime(input, '%Y-%m-%d %H:%M:%S')
+        if len(input_val) == 10:
+            dt.strptime(input_val, '%Y-%m-%d')
+        elif len(input_val) == 19:
+            dt.strptime(input_val, '%Y-%m-%d %H:%M:%S')
         else:
             return False
         return True
@@ -209,18 +209,18 @@ def isdatetime(input):
         return False
 
 
-def str_to_number(input):
-    if isinstance(input, str):
-        if ' ' not in input:
-            if isdatetime(input):
-                return parse(input)
-            elif isinteger(input):
-                if not (len(input) > 1 and input[:1] == '0'):
-                    return int(input)
-            elif isfloat(input):
-                if not (input.find(".") > 2 and input[:1] == '0'):  # 00.123
-                    return float(input)
-    return input
+def str_to_number(input_val):
+    if isinstance(input_val, str):
+        if ' ' not in input_val:
+            if isdatetime(input_val):
+                return parse(input_val)
+            elif isinteger(input_val):
+                if not (len(input_val) > 1 and input_val[:1] == '0'):
+                    return int(input_val)
+            elif isfloat(input_val):
+                if not (input_val.find(".") > 2 and input_val[:1] == '0'):
+                    return float(input_val)
+    return input_val
 
 
 def csv_from_excel(excel_content, delimiter, quote):
