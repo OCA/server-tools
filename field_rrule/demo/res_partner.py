@@ -3,8 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from dateutil.rrule import YEARLY, rrule
 from openerp import api, fields, models
-from openerp.addons.field_rrule.field_rrule import FieldRRule,\
-    SerializableRRuleSet
+from .. import FieldRRule, SerializableRRuleSet
 
 
 class ResPartner(models.Model):

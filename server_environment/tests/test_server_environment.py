@@ -19,7 +19,7 @@
 #
 ##############################################################################
 from openerp.tests import common
-from openerp.addons.server_environment import serv_config
+from .. import serv_config
 
 
 class TestEnv(common.TransactionCase):

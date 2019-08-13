@@ -186,12 +186,14 @@ class SQLRequestMixin(models.AbstractModel):
     def _create_savepoint(self):
         rollback_name = '%s_%s' % (
             self._name.replace('.', '_'), uuid.uuid1().hex)
+        # pylint: disable=sql-injection
         req = "SAVEPOINT %s" % (rollback_name)
         self.env.cr.execute(req)
         return rollback_name
 
     @api.model
     def _rollback_savepoint(self, rollback_name):
+        # pylint: disable=sql-injection
         req = "ROLLBACK TO SAVEPOINT %s" % (rollback_name)
         self.env.cr.execute(req)
 

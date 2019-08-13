@@ -4,6 +4,7 @@
 import json
 from datetime import datetime, timedelta
 from openerp import _, api, fields, models
+from psycopg2.extensions import AsIs
 
 
 class DeadMansSwitchInstance(models.Model):
@@ -111,8 +112,7 @@ class DeadMansSwitchInstance(models.Model):
             "where coalesce(l.create_date, '1970-01-01'::timestamp) %s "
             "now() at time zone 'utc' - "
             "(2 * alive_max_delay || 'seconds')::interval "
-            "group by i.id " %
-            (alive and '>=' or '<'))
+            "group by i.id ", (AsIs(alive and '>=' or '<'),))
         return [('id', 'in', [i for i, in self.env.cr.fetchall()])]
 
     @api.multi

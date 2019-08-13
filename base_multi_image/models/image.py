@@ -47,9 +47,11 @@ class Image(models.Model):
         'Image remote URL')
     image_main = fields.Binary(
         "Full-sized image",
+        # pylint: disable=method-compute
         compute="_get_image")
     image_medium = fields.Binary(
         "Medium-sized image",
+        # pylint: disable=method-compute
         compute="_get_image_sizes",
         help="Medium-sized image. It is automatically resized as a "
              "128 x 128 px image, with aspect ratio preserved, only when the "
@@ -57,6 +59,7 @@ class Image(models.Model):
              "or kanban views.")
     image_small = fields.Binary(
         "Small-sized image",
+        # pylint: disable=method-compute
         compute="_get_image_sizes",
         help="Small-sized image. It is automatically resized as a 64 x 64 px "
              "image, with aspect ratio preserved. Use this field anywhere a "
@@ -67,6 +70,7 @@ class Image(models.Model):
     sequence = fields.Integer(
         default=10)
     show_technical = fields.Boolean(
+        # pylint: disable=method-compute
         compute="_show_technical")
 
     @api.multi
@@ -160,17 +164,17 @@ class Image(models.Model):
     @api.constrains('storage', 'url')
     def _check_url(self):
         if self.storage == 'url' and not self.url:
-            raise exceptions.ValidationError(
-                'You must provide an URL for the image.')
+            raise exceptions.ValidationError(_(
+                'You must provide an URL for the image.'))
 
     @api.constrains('storage', 'path')
     def _check_path(self):
         if self.storage == 'file' and not self.path:
-            raise exceptions.ValidationError(
-                'You must provide a file path for the image.')
+            raise exceptions.ValidationError(_(
+                'You must provide a file path for the image.'))
 
     @api.constrains('storage', 'file_db_store')
     def _check_store(self):
         if self.storage == 'db' and not self.file_db_store:
-            raise exceptions.ValidationError(
-                'You must provide an attached file for the image.')
+            raise exceptions.ValidationError(_(
+                'You must provide an attached file for the image.'))

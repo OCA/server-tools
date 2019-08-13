@@ -23,6 +23,7 @@
  "version": "8.0.1.1.0",
  "author": "Camptocamp,Odoo Community Association (OCA)",
  "category": "Specific Module",
+ "license": "AGPL-3",
  "description": """
 Module to regroup all workarounds/fixes to avoid concurrency issues in SQL.
 

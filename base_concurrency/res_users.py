@@ -50,6 +50,7 @@ class ResUsersLogin(orm.Model):
             cr.execute("UPDATE res_users SET login_date = "
                        "(SELECT login_dt FROM res_users_login "
                        "WHERE res_users_login.user_id = res_users.id)")
+            # pylint: disable=invalid-commit
             cr.commit()
         except Exception as e:
             cr.rollback()
@@ -123,6 +124,7 @@ class ResUsers(orm.Model):
                             cr.execute("INSERT INTO res_users_login "
                                        "(user_id, login_dt) "
                                        "VALUES (%s, now())", (user_id,))
+                        # pylint: disable=invalid-commit
                         cr.commit()
                     except psycopg2.OperationalError:
                         _logger.warning("Failed to update last_login "

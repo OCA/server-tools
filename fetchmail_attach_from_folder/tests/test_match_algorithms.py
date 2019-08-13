@@ -20,8 +20,7 @@
 ##############################################################################
 from openerp import models
 from openerp.tests.common import TransactionCase
-from openerp.addons.fetchmail_attach_from_folder.match_algorithm import (
-    email_exact, email_domain, openerp_standard)
+from ..match_algorithm import email_exact, email_domain, openerp_standard
 
 
 class TestMatchAlgorithms(TransactionCase):

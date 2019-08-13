@@ -81,6 +81,7 @@ class CleanupPurgeLineTable(orm.TransientModel):
                 'Dropping table %s', line.name)
             cr.execute("DROP TABLE %s", (IdentifierAdapter(line.name),))
             line.write({'purged': True})
+            # pylint: disable=invalid-commit
             cr.commit()
         return True
 
