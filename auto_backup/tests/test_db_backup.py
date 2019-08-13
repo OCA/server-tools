@@ -2,7 +2,7 @@
 # Copyright 2015 Alessio Gerace <alesiso.gerace@agilebg.com>
 # Copyright 2016 Grupo ESOC Ingenieria de Servicios, S.L.U. - Jairo Llopis
 # Copyright 2016 LasLabs Inc.
-# Copyright 2018 Numigi (tm) and its contributors (https://bit.ly/numigiens)
+# Copyright 2019 Numigi (tm) and its contributors (https://bit.ly/numigiens)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import os
