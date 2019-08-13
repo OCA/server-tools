@@ -247,14 +247,14 @@ class DbBackup(models.Model):
 
                 if rec.method == "local":
                     for name in iglob(os.path.join(rec.folder,
-                                                   "*.dump.zip")):
+                                                   rec.backup_format)):
                         if os.path.basename(name) < oldest:
                             os.unlink(name)
 
                 elif rec.method == "sftp":
                     with rec.sftp_connection() as remote:
                         for name in remote.listdir(rec.folder):
-                            if (name.endswith(".dump.zip") and
+                            if (name.endswith(rec.backup_format) and
                                     os.path.basename(name) < oldest):
                                 remote.unlink('%s/%s' % (rec.folder, name))
 
