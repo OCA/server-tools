@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-# © 2012 Therp BV (<http://therp.nl>)
+# Copyright 2012 Therp BV (<http://therp.nl>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/gpl.html).
 
 from odoo import models, fields, api
@@ -23,11 +22,12 @@ class CompanyLDAPPopulateWizard(models.TransientModel):
         readonly=True
     )
 
-    @api.model
-    @api.returns('self', lambda value: value.id)
-    def create(self, vals):
-        if 'ldap_id' in vals:
-            ldap = self.env['res.company.ldap'].browse(vals['ldap_id'])
-            vals['users_created'], vals['users_deactivated'] =\
-                ldap.action_populate()
-        return super(CompanyLDAPPopulateWizard, self).create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        ResCompanyLDAPObj = self.env['res.company.ldap']
+        for vals in vals_list:
+            if 'ldap_id' in vals:
+                ldap = ResCompanyLDAPObj.browse(vals['ldap_id'])
+                vals['users_created'], vals['users_deactivated'] =\
+                    ldap.action_populate()
+        return super().create(vals_list)

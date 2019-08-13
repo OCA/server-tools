@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2016-2018 Therp BV <https://therp.nl>.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from contextlib import contextmanager
@@ -13,7 +12,7 @@ class PatchLDAPConnection(object):
         return True
 
     def search_st(self, base, scope, ldap_filter, attributes, timeout=None):
-        if ldap_filter == '(uid=*)':
+        if ldap_filter.decode() == '(uid=*)':
             return self.results
         else:
             return []
@@ -46,7 +45,7 @@ def get_fake_ldap(self):
             'ldap_base': 'fake',
             'deactivate_unknown_users': True,
             'no_deactivate_user_ids': [(6, 0, [
-                self.env.ref('base.user_root').id,
+                self.env.ref('base.user_admin').id,
             ])],
         })],
     })
@@ -63,9 +62,10 @@ class TestUsersLdapPopulate(TransactionCase):
             'uid': ['fake'],
             'mail': ['fake@fakery.com'],
         })]):
-            get_fake_ldap(self).populate_wizard()
+            ldap = get_fake_ldap(self)
+            ldap.populate_wizard()
             self.assertFalse(self.env.ref('base.user_demo').active)
-            self.assertTrue(self.env.ref('base.user_root').active)
+            self.assertTrue(self.env.ref('base.user_admin').active)
             self.assertTrue(self.env['res.users'].search([
                 ('login', '=', 'fake')
             ]))

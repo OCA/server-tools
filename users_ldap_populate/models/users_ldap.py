@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-# © 2012 Therp BV (<http://therp.nl>)
+# Copyright 2012 Therp BV (<http://therp.nl>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/gpl.html).
 
 import re
@@ -7,8 +6,7 @@ import re
 from odoo import models, fields, api, _, SUPERUSER_ID
 from odoo.exceptions import UserError
 import logging
-
-_logger = logging.getLogger('orm.ldap')
+_logger = logging.getLogger(__name__)
 
 try:
     import ldap
@@ -52,7 +50,7 @@ class CompanyLDAP(models.Model):
         deactivate_unknown, known_user_ids = self._check_users()
         if deactivate_unknown:
             _logger.debug("will deactivate unknown users")
-        for conf in self.get_ldap_dicts():
+        for conf in self._get_ldap_dicts():
             if not conf['create_user']:
                 continue
             attribute_match = re.search(
@@ -64,12 +62,12 @@ class CompanyLDAP(models.Model):
                     _("No login attribute found: "
                       "Could not extract login attribute from filter %s") %
                     conf['ldap_filter'])
-            results = self.get_ldap_entry_dicts(conf)
+            results = self._get_ldap_entry_dicts(conf)
             for result in results:
                 login = result[1][login_attr][0].lower().strip()
                 user_id = self.with_context(
                     no_reset_password=True
-                ).get_or_create_user(conf, login, result)
+                )._get_or_create_user(conf, login, result)
                 if not user_id:
                     # this happens if the user exists but is active = False
                     # -> fetch the user again and reactivate it
@@ -116,13 +114,13 @@ class CompanyLDAP(models.Model):
             deactivate_unknown &= item['deactivate_unknown_users']
         return deactivate_unknown, known_user_ids
 
-    def get_ldap_entry_dicts(self, conf, user_name='*', timeout=60):
+    def _get_ldap_entry_dicts(self, conf, user_name='*', timeout=60):
         """Execute ldap query as defined in conf.
 
         Don't call self.query because it supresses possible exceptions
         """
         ldap_filter = filter_format(conf['ldap_filter'] % user_name, ())
-        conn = self.connect(conf)
+        conn = self._connect(conf)
         ldap_password = conf['ldap_password'] or ''
         ldap_binddn = conf['ldap_binddn'] or ''
         conn.simple_bind_s(
@@ -145,12 +143,12 @@ class CompanyLDAP(models.Model):
         known_user_ids = list(set(known_user_ids))
         users = self.env['res.users'].sudo().search(
             [('id', 'not in', known_user_ids)], order='login')
-        ldap_confs = self.get_ldap_dicts()
+        ldap_confs = self._get_ldap_dicts()
         for unknown_user in users:
             _logger.debug('checking user %s', unknown_user.login)
             present_in_ldap = any(
                 bool(
-                    self.get_ldap_entry_dicts(
+                    self._get_ldap_entry_dicts(
                         conf,
                         user_name=unknown_user.login,
                     ))
@@ -168,8 +166,7 @@ class CompanyLDAP(models.Model):
         GUI wrapper for the populate method that reports back
         the number of users created.
         """
-        if not self:
-            return
+        self.ensure_one()
         wizard_obj = self.env['res.company.ldap.populate_wizard']
         res_id = wizard_obj.create({'ldap_id': self.id}).id
 

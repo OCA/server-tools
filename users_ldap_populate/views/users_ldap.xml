@@ -2,10 +2,10 @@
 <odoo>
     <record model="ir.ui.view" id="company_form_view">
         <field name="name">Add populate button to ldap view</field>
-        <field name="model">base.config.settings</field>
-        <field name="inherit_id" ref="auth_ldap.view_general_configuration_form_inherit_auth_ldap"/>
+        <field name="model">res.company.ldap</field>
+        <field name="inherit_id" ref="auth_ldap.view_ldap_installer_form"/>
         <field name="arch" type="xml">
-            <xpath name="populate_ldap" expr="//field[@name='ldaps']/form" position="inside">
+            <xpath name="populate_ldap" expr="//group" position="after">
                 <group string="Populate user database">
                     <field name="deactivate_unknown_users"/>
                     <field name="no_deactivate_user_ids"
