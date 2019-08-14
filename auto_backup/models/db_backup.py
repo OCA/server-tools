@@ -219,6 +219,7 @@ class DbBackup(models.Model):
         except:
             _logger.exception("Database backup failed: %s", self.name)
             escaped_tb = tools.html_escape(traceback.format_exc())
+            # pylint: disable=translation-required
             self.message_post(
                 "<p>%s</p><pre>%s</pre>" % (
                     _("Database backup failed."),
@@ -261,6 +262,7 @@ class DbBackup(models.Model):
         except:
             _logger.exception("Cleanup of old database backups failed: %s")
             escaped_tb = tools.html_escape(traceback.format_exc())
+            # pylint: disable=translation-required
             self.message_post(
                 "<p>%s</p><pre>%s</pre>" % (
                     _("Cleanup of old database backups failed."),
