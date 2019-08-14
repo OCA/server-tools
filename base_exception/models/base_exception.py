@@ -91,6 +91,8 @@ class BaseExceptionMethod(models.AbstractModel):
         rules = self.env['exception.rule'].sudo().search(
             self._rule_domain())
         all_exception_ids = []
+        rules_to_remove = {}
+        rules_to_add = {}
         for rule in rules:
             records_with_exception = self._detect_exceptions(rule)
             reverse_field = self._reverse_field()
@@ -98,11 +100,32 @@ class BaseExceptionMethod(models.AbstractModel):
             commons = main_records & rule[reverse_field]
             to_remove = commons - records_with_exception
             to_add = records_with_exception - commons
-            to_remove_list = [(3, x.id, _) for x in to_remove]
-            to_add_list = [(4, x.id, _) for x in to_add]
-            rule.write({reverse_field: to_remove_list + to_add_list})
+            # we expect to always work on the same model type
+            rules_to_remove.setdefault(
+                rule.id, main_records.browse()
+            ).update(to_remove)
+            rules_to_add.setdefault(
+                rule.id, main_records.browse()
+            ).update(to_add)
             if records_with_exception:
                 all_exception_ids.append(rule.id)
+        # Cumulate all the records to attach to the rule
+        # before linking. We don't want to call "rule.write()"
+        # which would:
+        # * write on write_date so lock the expection.rule
+        # * trigger the recomputation of "main_exception_id" on
+        #   all the sale orders related to the rule, locking them all
+        #   and preventing concurrent writes
+        # Reversing the write by writing on SaleOrder instead of
+        # ExceptionRule fixes the 2 kinds of unexpected locks.
+        # It should not result in more queries than writing on ExceptionRule:
+        # the "to remove" part generates one DELETE per rule on the relation
+        # table
+        # and the "to add" part generates one INSERT (with unnest) per rule.
+        for rule_id, records in rules_to_remove.items():
+            records.write({'exception_ids': [(3, rule_id,)]})
+        for rule_id, records in rules_to_add.items():
+            records.write(({'exception_ids': [(4, rule_id,)]}))
         return all_exception_ids
 
     @api.model
