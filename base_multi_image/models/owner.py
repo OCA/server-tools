@@ -19,16 +19,22 @@ class Owner(models.AbstractModel):
     image_main = fields.Binary(
         string="Main image",
         store=False,
+        # pylint: disable=method-compute
         compute="_get_multi_image",
+        # pylint: disable=method-inverse
         inverse="_set_multi_image_main")
     image_main_medium = fields.Binary(
         string="Medium image",
+        # pylint: disable=method-compute
         compute="_get_multi_image",
+        # pylint: disable=method-inverse
         inverse="_set_multi_image_main_medium",
         store=False)
     image_main_small = fields.Binary(
         string="Small image",
+        # pylint: disable=method-compute
         compute="_get_multi_image",
+        # pylint: disable=method-inverse
         inverse="_set_multi_image_main_small",
         store=False)
 

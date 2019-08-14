@@ -54,5 +54,6 @@ class BaseModuleUpgrade(models.TransientModel):
             module_ids = module_ids + list(modules._ids)
             self.env['ir.module.module'].browse(
                 module_ids).button_uninstall_cancel()
+            # pylint: disable=invalid-commit
             self._cr.commit()
         return True

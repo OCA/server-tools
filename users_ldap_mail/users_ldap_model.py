@@ -53,6 +53,7 @@ class CompanyLDAP(orm.Model):
         else:
             id_clause = ''
             args = []
+        # pylint: disable=sql-injection
         cr.execute("""
             SELECT *
             FROM res_company_ldap

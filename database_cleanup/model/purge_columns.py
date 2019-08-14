@@ -68,6 +68,7 @@ class CleanupPurgeLineColumn(orm.TransientModel):
                     IdentifierAdapter(line.name),
                 ))
             line.write({'purged': True})
+            # pylint: disable=invalid-commit
             cr.commit()
         return True
 

@@ -39,6 +39,7 @@ class Console(code.InteractiveConsole):
             import readline
             import rlcompleter
         except ImportError:
+            # pylint: disable=print-used
             print('readline or rlcompleter not available,'
                   ' autocomplete disabled.')
         else:
@@ -59,9 +60,11 @@ class Shell(Command):
             exec sys.stdin in local_vars
         else:
             if 'env' not in local_vars:
+                # pylint: disable=print-used
                 print('No environment set, use `odoo.py shell -d dbname`'
                       ' to get one.')
             for i in sorted(local_vars):
+                # pylint: disable=print-used
                 print('%s: %s' % (i, local_vars[i]))
             logging.disable(logging.CRITICAL)
             Console(locals=local_vars).interact()

@@ -23,7 +23,7 @@ from openerp.modules.registry import RegistryManager
 from openerp.osv import orm, fields
 from openerp import SUPERUSER_ID
 import openerp.exceptions
-from openerp.addons.auth_from_http_remote_user import utils
+from . import utils
 
 
 class res_users(orm.Model):

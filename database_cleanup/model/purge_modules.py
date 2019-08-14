@@ -87,6 +87,7 @@ class CleanupPurgeLineModule(orm.TransientModel):
         self.logger.info('Purging modules %s', ', '.join(module_names))
         module_pool.write(
             cr, uid, module_ids, {'state': 'to remove'}, context=context)
+        # pylint: disable=invalid-commit
         cr.commit()
         _db, _pool = pooler.restart_pool(cr.dbname, update_module=True)
         module_pool.unlink(cr, uid, module_ids, context=context)

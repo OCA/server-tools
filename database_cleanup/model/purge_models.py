@@ -118,6 +118,7 @@ class CleanupPurgeLineModel(orm.TransientModel):
                                          context=local_context)
                 model_pool.unlink(cr, uid, [row[0]], context=local_context)
                 line.write({'purged': True})
+                # pylint: disable=invalid-commit
                 cr.commit()
         return True
 
