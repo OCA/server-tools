@@ -6,13 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2019-08-14 12:44+0000\n"
+"Last-Translator: Pedro Castro Silva <pedrocs@exo.pt>\n"
 "Language-Team: none\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.7.1\n"
 
 #. module: scheduler_error_mailer
 #: model:mail.template,body_html:scheduler_error_mailer.scheduler_error_mailer
@@ -52,30 +54,31 @@ msgstr ""
 #. module: scheduler_error_mailer
 #: model:ir.model.fields,field_description:scheduler_error_mailer.field_ir_cron__email_template_id
 msgid "Error E-mail Template"
-msgstr ""
+msgstr "Modelo do E-mail de Erro"
 
 #. module: scheduler_error_mailer
 #: model:ir.model,name:scheduler_error_mailer.model_ir_cron
 msgid "Scheduled Actions"
-msgstr ""
+msgstr "Ações Agendadas"
 
 #. module: scheduler_error_mailer
 #: model:ir.model.fields,help:scheduler_error_mailer.field_ir_cron__email_template_id
 msgid "Select the email template that will be sent when this scheduler fails."
 msgstr ""
+"Selecione o modelo de email que será enviado quando este agendador falhar."
 
 #. module: scheduler_error_mailer
 #: code:addons/scheduler_error_mailer/models/ir_cron.py:55
 #, python-format
 msgid "Task failure with UID = %d."
-msgstr ""
+msgstr "Falha na tarefa com UID = %d."
 
 #. module: scheduler_error_mailer
 #: model:ir.actions.server,name:scheduler_error_mailer.test_scheduler_error_mailer_ir_actions_server
 #: model:ir.cron,cron_name:scheduler_error_mailer.test_scheduler_error_mailer
 #: model:ir.cron,name:scheduler_error_mailer.test_scheduler_error_mailer
 msgid "Test Scheduler Error Mailer"
-msgstr ""
+msgstr "Testar o Envio de E-mails de Erro do Agendador"
 
 #. module: scheduler_error_mailer
 #: model:mail.template,subject:scheduler_error_mailer.scheduler_error_mailer
