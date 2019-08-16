@@ -123,6 +123,7 @@ class ChromeBrowser():
             return
         switches = {
             '--headless': '',
+            '--disable-gpu': '',
             '--enable-logging': 'stderr',
             '--no-default-browser-check': '',
             '--no-first-run': '',
