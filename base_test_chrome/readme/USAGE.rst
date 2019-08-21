@@ -1,8 +1,8 @@
 To use this module, you need to:
 
 #. depend on it
-#. import ``openerp.addons.base_test_chrome.common.HttpCase``
-#. use this the same way you'd use ``openerp.tests.common.HttpCase``
+#. import ``odoo.addons.base_test_chrome.common.HttpCase``
+#. use this the same way you'd use ``odoo.tests.common.HttpCase``
 
 Notes:
 

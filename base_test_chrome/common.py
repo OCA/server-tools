@@ -19,7 +19,7 @@ import unittest
 import werkzeug.urls
 import xmlrpclib
 from datetime import datetime
-from openerp.tests.common import TransactionCase
+from odoo.tests.common import TransactionCase
 
 try:
     import websocket
@@ -27,18 +27,30 @@ except ImportError:
     # chrome headless tests will be skipped
     websocket = None
 
-import openerp
-from openerp import api
-from openerp.tools.misc import find_in_path
-from openerp.tests.common import HOST, PORT
+try:
+    from xmlrpc import client as xmlrpclib
+except ImportError:
+    # pylint: disable=bad-python3-import
+    import xmlrpclib
 
 
 def get_db_name():
-    db = openerp.tools.config['db_name']
+    db = odoo.tools.config['db_name']
     # If the database name is not provided on the command-line,
     # use the one on the thread (which means if it is provided on
     # the command-line, this will break when installing another
     # database from XML-RPC).
+    if not db and hasattr(threading.current_thread(), 'dbname'):
+        return threading.current_thread().dbname
+    return db
+
+import odoo
+from odoo import api
+from odoo.tools.misc import find_in_path
+from odoo.tests.common import HOST, PORT
+
+def get_db_name():
+    db = odoo.tools.config['db_name']
     if not db and hasattr(threading.current_thread(), 'dbname'):
         return threading.current_thread().dbname
     return db
@@ -99,9 +111,17 @@ class ChromeBrowser():
     def executable(self):
         system = platform.system()
         if system == 'Linux':
-            for bin_ in ['google-chrome', 'chromium', 'chromium-browser']:
-                if find_in_path(bin_):
+            for bin_ in ['chromium', 'google-chrome','chromium-browser']:
+                try:
+                    self._logger.info(
+                        'Searching for %s executable on system',
+                        bin_)
                     return find_in_path(bin_)
+                except IOError:
+                    self._logger.info(
+                        'Not found executable %s on system', bin_)
+                    continue
+            return self._logger.error('No executables found on linux system')
 
         elif system == 'Darwin':
             bins = [
@@ -251,12 +271,12 @@ class ChromeBrowser():
     def _get_shotname(self, prefix, ext):
         """ return a unique filename for screenshot or screencast"""
         timestamp = datetime.now().strftime('%Y%m%d_%H%M%S_%f')
-        base_file = os.path.splitext(openerp.tools.config['logfile'])[0]
+        base_file = os.path.splitext(odoo.tools.config['logfile'])[0]
         name = '%s_%s_%s.%s' % (base_file, prefix, timestamp, ext)
         return name
 
     def take_screenshot(self, prefix='failed'):
-        if not openerp.tools.config['logfile']:
+        if not odoo.tools.config['logfile']:
             self._logger.info('Screenshot disabled !')
             return None
         ss_id = self._websocket_send('Page.captureScreenshot')
@@ -272,7 +292,7 @@ class ChromeBrowser():
     def _save_screencast(self, prefix='failed'):
         # could be encododed with something like that
         #  ffmpeg -framerate 3 -i frame_%05d.png  output.mp4
-        if not openerp.tools.config['logfile']:
+        if not odoo.tools.config['logfile']:
             self._logger.info('Screencast disabled !')
             return None
         sdir = tempfile.mkdtemp(suffix='_chrome_odoo_screencast')
@@ -297,7 +317,7 @@ class ChromeBrowser():
         _id = self._websocket_send('Network.setCookie', params=params)
         return self._websocket_wait_id(_id)
 
-    def _wait_ready(self, ready_code, timeout=60):
+    def _wait_ready(self, ready_code, timeout=600):
         self._logger.info('Evaluate ready code "%s"', ready_code)
         awaited_result = {'result': {'type': 'boolean', 'value': True}}
         ready_id = self._websocket_send('Runtime.evaluate', params={'expression': ready_code})
@@ -426,10 +446,10 @@ class HttpCase(TransactionCase):
             self.registry.enter_test_mode()
             self.addCleanup(self.registry.leave_test_mode)
         # setup a magic session_id that will be rollbacked
-        self.session = openerp.http.root.session_store.new()
+        self.session = odoo.http.root.session_store.new()
         self.session_id = self.session.sid
         self.session.db = get_db_name()
-        openerp.http.root.session_store.save(self.session)
+        odoo.http.root.session_store.save(self.session)
         # setup an url opener helper
         self.opener = requests.Session()
         self.opener.cookies['session_id'] = self.session_id
@@ -444,7 +464,7 @@ class HttpCase(TransactionCase):
     def _wait_remaining_requests(self):
         t0 = int(time.time())
         for thread in threading.enumerate():
-            if thread.name.startswith('openerp.service.http.request.'):
+            if thread.name.startswith('odoo.service.http.request.'):
                 join_retry_count = 10
                 while thread.isAlive():
                     # Need a busyloop here as thread.join() masks signals
@@ -459,7 +479,7 @@ class HttpCase(TransactionCase):
                     t1 = int(time.time())
                     if t0 != t1:
                         self._logger.info('remaining requests')
-                        openerp.tools.misc.dumpstacks()
+                        odoo.tools.misc.dumpstacks()
                         t0 = t1
 
     def authenticate(self, user, password):
@@ -472,7 +492,7 @@ class HttpCase(TransactionCase):
         env = api.Environment(self.cr, uid, {})
 
         # self.session.authenticate(db, user, password, uid=uid)
-        # OpenERPSession.authenticate accesses the current request, which we
+        # OpenErpSession.authenticate accesses the current request, which we
         # don't have, so reimplement it manually...
         session = self.session
 
@@ -484,12 +504,12 @@ class HttpCase(TransactionCase):
         session.context['uid'] = uid
         session._fix_lang(session.context)
 
-        openerp.http.root.session_store.save(session)
+        odoo.http.root.session_store.save(session)
         if self.browser:
             self._logger.info('Setting session cookie in browser')
             self.browser.set_cookie('session_id', self.session_id, '/', HOST)
 
-    def browser_js(self, url_path, code, ready='', login=None, timeout=60, **kw):
+    def browser_js(self, url_path, code, ready='', login=None, timeout=600, **kw):
         """ Test js code running in the browser
         - optionnally log as 'login'
         - load page given by url_path
@@ -521,7 +541,7 @@ class HttpCase(TransactionCase):
             url = "%s%s" % (base_url, url_path or '/')
             self._logger.info('Open "%s" in browser', url)
 
-            if openerp.tools.config['logfile']:
+            if odoo.tools.config['logfile']:
                 self._logger.info('Starting screen cast')
                 self.browser.start_screencast()
             self.browser.navigate_to(url, wait_stop=not bool(ready))
@@ -529,7 +549,9 @@ class HttpCase(TransactionCase):
             # Needed because tests like test01.js (qunit tests) are passing a ready
             # code = ""
             ready = ready or "document.readyState === 'complete'"
-            self.assertTrue(self.browser._wait_ready(ready), 'The ready "%s" code was always falsy' % ready)
+            self.assertTrue(
+                self.browser._wait_ready(ready),
+                'The ready "%s" code was always falsy' % ready)
             if code:
                 message = 'The test code "%s" failed' % code
             else:
