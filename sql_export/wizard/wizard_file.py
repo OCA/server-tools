@@ -69,9 +69,13 @@ class SqlFileWizard(models.TransientModel):
                 else:
                     variable_dict[field.name] = self[field.name]
         if "%(company_id)s" in sql_export.query:
-            variable_dict['company_id'] = self.env.user.company_id.id
+            company_id = self.env.context.get(
+                'force_company', self.env.user.company_id.id)
+            variable_dict['company_id'] = company_id
         if "%(user_id)s" in sql_export.query:
-            variable_dict['user_id'] = self.env.uid
+            user_id = self.env.context.get(
+                'force_user', self._uid)
+            variable_dict['user_id'] = user_id
 
         # Execute Request
         res = sql_export._execute_sql_request(
