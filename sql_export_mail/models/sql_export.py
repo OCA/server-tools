@@ -66,13 +66,23 @@ class SqlExport(models.Model):
                 params=params, mode='fetchone')
             if not res:
                 return
-        binary = self._execute_sql_request(
-            params=params, mode='stdout', copy_options=self.copy_options)
+        ctx = self.env.context.copy()
+        if params:
+            if 'user_id' in params:
+                ctx['force_user'] = params['user_id']
+            if 'company_id' in params:
+                ctx['force_company'] = params['company_id']
+        wizard = self.env['sql.file.wizard'].create({
+            'sql_export_id': self.id,
+        })
+        wizard.with_context(ctx).export_sql()
+        binary = wizard.binary_file
+        filename = wizard.file_name
         msg_id = mail_template.send_mail(self.id, force_send=False)
         mail = self.env['mail.mail'].browse(msg_id)
         attach_vals = {
             'name': now_time + ' - ' + self.name,
-            'datas_fname': now_time + ' - ' + self.name + '.csv',
+            'datas_fname': filename,
             'datas': binary,
             'res_model': 'mail.mail',
             'res_id': mail.id,
