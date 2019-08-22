@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2016 Grupo ESOC Ingeniería de Servicios, S.L.U. - Jairo Llopis
+     Copyright 2016 Tecnativa - Vicent Cubells
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
+
+<odoo noupdate="1">
+    <!-- Match partners by VAT when is_company is True -->
+    <record model="base_import.match" id="res_partner_vat">
+      <field name="model_id" eval="ref('base.model_res_partner')"/>
+      <field name="sequence" type="int">10</field>
+    </record>
+    <record model="base_import.match.field" id="res_partner_vat_vat">
+      <field name="match_id" ref="base_import_match.res_partner_vat"/>
+      <field name="field_id" ref="base.field_res_partner_vat"/>
+    </record>
+    <record model="base_import.match.field" id="res_partner_vat_is_company">
+      <field name="match_id" ref="base_import_match.res_partner_vat"/>
+      <field name="field_id" ref="base.field_res_partner_is_company"/>
+      <field name="conditional">True</field>
+      <field name="imported_value">True</field>
+    </record>
+
+    <!-- Match users by login -->
+    <record model="base_import.match" id="res_users_login">
+      <field name="model_id" eval="ref('base.model_res_users')"/>
+      <field name="sequence" type="int">50</field>
+    </record>
+    <record model="base_import.match.field" id="res_users_login_login">
+      <field name="match_id" ref="base_import_match.res_users_login"/>
+      <field name="field_id" ref="base.field_res_users_login"/>
+    </record>
+
+</odoo>

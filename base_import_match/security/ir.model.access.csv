@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_base_import_match,Access base_import.match,model_base_import_match,base.group_user,1,0,0,0
+access_base_import_match_field,Access base_import.match.field,model_base_import_match_field,base.group_user,1,0,0,0
+write_base_import_match,Write base_import.match,model_base_import_match,base.group_system,1,1,1,1
+write_base_import_match_field,Write base_import.match.field,model_base_import_match_field,base.group_system,1,1,1,1
