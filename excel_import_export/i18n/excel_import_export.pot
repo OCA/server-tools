@@ -162,6 +162,13 @@ msgid "<code>value</code>: value from <b>Field</b>"
 msgstr ""
 
 #. module: excel_import_export
+#. openerp-web
+#: code:addons/excel_import_export/static/src/js/report/action_manager_report.js:49
+#, python-format
+msgid "A popup window with your report was blocked. You may need to change your browser settings to allow popup windows for this page."
+msgstr ""
+
+#. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "Add data column"
 msgstr ""
@@ -371,6 +378,11 @@ msgid "Error importing data\n"
 msgstr ""
 
 #. module: excel_import_export
+#: selection:ir.actions.report,report_type:0
+msgid "Excel"
+msgstr ""
+
+#. module: excel_import_export
 #: model:ir.model,name:excel_import_export.model_xlsx_export
 msgid "Excel Export AbstractModel"
 msgstr ""
@@ -492,6 +504,11 @@ msgstr ""
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__gname
 msgid "Group Name"
+msgstr ""
+
+#. module: excel_import_export
+#: selection:ir.actions.report,report_type:0
+msgid "HTML"
 msgstr ""
 
 #. module: excel_import_export
@@ -729,6 +746,12 @@ msgid "Not enough worksheets"
 msgstr ""
 
 #. module: excel_import_export
+#: code:addons/excel_import_export/models/ir_report.py:17
+#, python-format
+msgid "Only one id is allowed for excel_import_export"
+msgstr ""
+
+#. module: excel_import_export
 #: model:ir.model.fields,help:excel_import_export.field_xlsx_template__redirect_action
 msgid "Optional action, redirection after finish import operation"
 msgstr ""
@@ -746,6 +769,11 @@ msgstr ""
 #. module: excel_import_export
 #: model:ir.model.fields,help:excel_import_export.field_xlsx_template__csv_quote
 msgid "Optional for CSV, default is full quoting."
+msgstr ""
+
+#. module: excel_import_export
+#: selection:ir.actions.report,report_type:0
+msgid "PDF"
 msgstr ""
 
 #. module: excel_import_export
@@ -782,6 +810,16 @@ msgstr ""
 #: code:addons/excel_import_export/models/xlsx_export.py:55
 #, python-format
 msgid "Records in %s exceed max records allowed"
+msgstr ""
+
+#. module: excel_import_export
+#: model:ir.model,name:excel_import_export.model_ir_actions_report
+msgid "Report Action"
+msgstr ""
+
+#. module: excel_import_export
+#: model:ir.model.fields,field_description:excel_import_export.field_ir_actions_report__report_type
+msgid "Report Type"
 msgstr ""
 
 #. module: excel_import_export
@@ -887,6 +925,12 @@ msgid "Template"
 msgstr ""
 
 #. module: excel_import_export
+#: code:addons/excel_import_export/models/ir_report.py:23
+#, python-format
+msgid "Template %s on model %s is not unique!"
+msgstr ""
+
+#. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_import_xlsx_wizard__fname
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__name
 msgid "Template Name"
@@ -906,6 +950,11 @@ msgid "Template's model mismatch"
 msgstr ""
 
 #. module: excel_import_export
+#: selection:ir.actions.report,report_type:0
+msgid "Text"
+msgstr ""
+
+#. module: excel_import_export
 #: model:ir.model.fields,help:excel_import_export.field_xlsx_template__res_model
 msgid "The database object this attachment will be attached to."
 msgstr ""
@@ -914,6 +963,11 @@ msgstr ""
 #: code:addons/excel_import_export/models/xlsx_template.py:110
 #, python-format
 msgid "The selected redirect action is not for model %s"
+msgstr ""
+
+#. module: excel_import_export
+#: model:ir.model.fields,help:excel_import_export.field_ir_actions_report__report_type
+msgid "The type of the report that will be rendered, each one having its own rendering method. HTML means the report will be opened directly in your browser PDF means the report will be rendered using Wkhtmltopdf and downloaded by the user."
 msgstr ""
 
 #. module: excel_import_export
@@ -931,6 +985,13 @@ msgstr ""
 #. module: excel_import_export
 #: model:ir.model.fields,help:excel_import_export.field_xlsx_template__input_instruction
 msgid "This is used to construct instruction in tab Import/Export"
+msgstr ""
+
+#. module: excel_import_export
+#. openerp-web
+#: code:addons/excel_import_export/static/src/js/report/action_manager_report.js:52
+#, python-format
+msgid "Warning"
 msgstr ""
 
 #. module: excel_import_export
