@@ -29,22 +29,23 @@ class ReportController(report.ReportController):
                 if data['context'].get('lang'):
                     del data['context']['lang']
                 context.update(data['context'])
-            excel = report.with_context(context).render_excel(
+            excel, report_name = report.with_context(context).render_excel(
                 docids, data=data
-            )[0]
+            )
             excel = base64.decodestring(excel)
-            report_name = report.report_file
             if report.print_report_name and not len(docids) > 1:
                 obj = request.env[report.model].browse(docids[0])
+                file_ext = report_name.split('.')[-1:].pop()
                 report_name = safe_eval(report.print_report_name,
                                         {'object': obj, 'time': time})
+                report_name = '%s.%s' % (report_name, file_ext)
             excelhttpheaders = [
                 ('Content-Type', 'application/vnd.openxmlformats-'
                                  'officedocument.spreadsheetml.sheet'),
                 ('Content-Length', len(excel)),
                 (
                     'Content-Disposition',
-                    content_disposition(report_name + '.xlsx')
+                    content_disposition(report_name)
                 )
             ]
             return request.make_response(excel, headers=excelhttpheaders)
