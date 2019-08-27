@@ -317,7 +317,7 @@ class ChromeBrowser():
         _id = self._websocket_send('Network.setCookie', params=params)
         return self._websocket_wait_id(_id)
 
-    def _wait_ready(self, ready_code, timeout=600):
+    def _wait_ready(self, ready_code, timeout=60):
         self._logger.info('Evaluate ready code "%s"', ready_code)
         awaited_result = {'result': {'type': 'boolean', 'value': True}}
         ready_id = self._websocket_send('Runtime.evaluate', params={'expression': ready_code})
@@ -509,7 +509,7 @@ class HttpCase(TransactionCase):
             self._logger.info('Setting session cookie in browser')
             self.browser.set_cookie('session_id', self.session_id, '/', HOST)
 
-    def browser_js(self, url_path, code, ready='', login=None, timeout=600, **kw):
+    def browser_js(self, url_path, code, ready='', login=None, timeout=60, **kw):
         """ Test js code running in the browser
         - optionnally log as 'login'
         - load page given by url_path
