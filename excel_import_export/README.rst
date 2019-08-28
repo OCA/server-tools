@@ -119,6 +119,11 @@ Known issues / Roadmap
 Changelog
 =========
 
+12.0.1.0.4 (2019-08-28)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* Fix style sum in footer
+
 12.0.1.0.3 (2019-08-09)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -161,6 +166,7 @@ Contributors
 ~~~~~~~~~~~~
 
 * Kitti Upariphutthiphong. <kittiu@gmail.com> (http://ecosoft.co.th)
+* Saran Lim. <saranl@ecosoft.co.th> (http://ecosoft.co.th)
 
 Maintainers
 ~~~~~~~~~~~
