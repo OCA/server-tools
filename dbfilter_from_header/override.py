@@ -15,6 +15,15 @@ def db_filter(dbs, httprequest=None):
     dbs = db_filter_org(dbs, httprequest)
     httprequest = httprequest or http.request.httprequest
     db_filter_hdr = httprequest.environ.get('HTTP_X_ODOO_DBFILTER')
+
+    # copied from original db_filter function, to support '%h' and '%d'
+    h = httprequest.environ.get('HTTP_HOST', '').split(':')[0]
+    d, _, r = h.partition('.')
+    if d == "www" and r:
+        d = r.partition('.')[0]
+    d, h = re.escape(d), re.escape(h)
+    db_filter_hdr = db_filter_hdr.replace('%h', h).replace('%d', d)
+
     if db_filter_hdr:
         dbs = [db for db in dbs if re.match(db_filter_hdr, db)]
     return dbs
