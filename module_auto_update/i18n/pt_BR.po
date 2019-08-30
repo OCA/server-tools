@@ -9,21 +9,22 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-07-21 02:43+0000\n"
-"PO-Revision-Date: 2017-07-21 02:43+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/"
-"teams/23907/pt_BR/)\n"
+"PO-Revision-Date: 2019-08-30 14:37+0000\n"
+"Last-Translator: Rodrigo Macedo <rmsolucoeseminformatic4@gmail.com>\n"
+"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/"
+"23907/pt_BR/)\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.8\n"
 
 #. module: module_auto_update
 #: model:ir.actions.server,name:module_auto_update.ir_module_module_upgrade_changed_checksum
 #: model:ir.ui.menu,name:module_auto_update.menu_ir_module_module_upgrade_changed_checksum
 msgid "Auto-Upgrade Modules"
-msgstr ""
+msgstr "Módulos de atualização automática"
 
 #. module: module_auto_update
 #: model:ir.model,name:module_auto_update.model_ir_module_module
