@@ -9,15 +9,16 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-01-14 04:21+0000\n"
-"PO-Revision-Date: 2017-01-14 04:21+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/"
-"teams/23907/pt_BR/)\n"
+"PO-Revision-Date: 2019-08-30 17:04+0000\n"
+"Last-Translator: Rodrigo Macedo <rmsolucoeseminformatic4@gmail.com>\n"
+"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/"
+"23907/pt_BR/)\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.8\n"
 
 #. module: base_search_fuzzy
 #: model:ir.model.fields,help:base_search_fuzzy.field_trgm_index__index_type
@@ -26,6 +27,10 @@ msgid ""
 "faster to search than a GiST index, but slower to build or update; so GIN is "
 "better suited for static data and GiST for often-updated data.\""
 msgstr ""
+"Cite a documentação do PostgreSQL: \"Como regra geral, um índice GIN é mais "
+"rápido para pesquisar do que um índice GiST, mas mais lento para construir "
+"ou atualizar; portanto, o GIN é mais adequado para dados estáticos e o GiST "
+"para dados atualizados com frequência.\""
 
 #. module: base_search_fuzzy
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index__create_uid
@@ -50,12 +55,12 @@ msgstr "Campo"
 #. module: base_search_fuzzy
 #: selection:trgm.index,index_type:0
 msgid "GIN"
-msgstr ""
+msgstr "GIN"
 
 #. module: base_search_fuzzy
 #: selection:trgm.index,index_type:0
 msgid "GiST"
-msgstr ""
+msgstr "GIST"
 
 #. module: base_search_fuzzy
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index__id
@@ -65,18 +70,18 @@ msgstr "Identificação"
 #. module: base_search_fuzzy
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index__index_name
 msgid "Index Name"
-msgstr ""
+msgstr "Índice de Nome"
 
 #. module: base_search_fuzzy
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index__index_type
 msgid "Index Type"
-msgstr ""
+msgstr "Tipo de índice"
 
 #. module: base_search_fuzzy
 #: code:addons/base_search_fuzzy/models/ir_model.py:39
 #, python-format
 msgid "Invalid field %r in domain term %r"
-msgstr ""
+msgstr "Campo inválido %r no termo do domínio %r"
 
 #. module: base_search_fuzzy
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index____last_update
@@ -106,12 +111,16 @@ msgid ""
 "this index is reused. If the index is located in another table then a number "
 "is added at the end of the index name."
 msgstr ""
+"O nome do índice é gerado automaticamente como fieldname_indextype_idx. Se o "
+"índice já existir e o índice estiver localizado na mesma tabela, esse índice "
+"será reutilizado. Se o índice estiver localizado em outra tabela, um número "
+"será adicionado no final do nome do índice."
 
 #. module: base_search_fuzzy
 #: code:addons/base_search_fuzzy/models/trgm_index.py:126
 #, python-format
 msgid "The pg_trgm extension does not exists or cannot be installed."
-msgstr ""
+msgstr "A extensão pg_trgm não existe ou não pode ser instalada."
 
 #. module: base_search_fuzzy
 #: model:ir.actions.act_window,name:base_search_fuzzy.trgm_index_action
@@ -120,9 +129,9 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:base_search_fuzzy.trgm_index_view_form
 #: model_terms:ir.ui.view,arch_db:base_search_fuzzy.trgm_index_view_tree
 msgid "Trigram Index"
-msgstr ""
+msgstr "Índice Trigram"
 
 #. module: base_search_fuzzy
 #: model:ir.model.fields,help:base_search_fuzzy.field_trgm_index__field_id
 msgid "You can either select a field of type \"text\" or \"char\"."
-msgstr ""
+msgstr "Você pode selecionar um campo do tipo \"texto\" ou \"caractere\"."
