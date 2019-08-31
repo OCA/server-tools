@@ -454,7 +454,7 @@ files), create a custom modules and overload the module model :</p>
    <span class="n">xml_documentation_qty</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">Integer</span><span class="p">(</span>
       <span class="n">string</span><span class="o">=</span><span class="s1">'Quantity of Comments in XML Files'</span><span class="p">)</span>
 
-  <span class="nd">&#64;api.model</span>
+  <span class="nd">&#64;api</span><span class="o">.</span><span class="n">model</span>
   <span class="k">def</span> <span class="nf">_get_analyse_settings</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
       <span class="n">res</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_get_analyse_settings</span><span class="p">()</span>
       <span class="k">if</span> <span class="ow">not</span> <span class="s1">'.html'</span> <span class="ow">in</span> <span class="n">res</span><span class="p">:</span>
