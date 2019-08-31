@@ -6,25 +6,28 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2019-08-31 05:36+0000\n"
+"Last-Translator: 黎伟杰 <674416404@qq.com>\n"
 "Language-Team: none\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 3.8\n"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
+#, fuzzy
 msgid "${object.post_import_do_something()}"
-msgstr ""
+msgstr "${object.post_import_do_something()}"
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/models/common.py:170
 #: code:addons/excel_import_export/models/common.py:180
 #, python-format
 msgid "'%s' sheet not found"
-msgstr ""
+msgstr "'%s' 找不到工作表"
 
 #. module: excel_import_export
 #: model:ir.model.fields,help:excel_import_export.field_export_xlsx_wizard__state
@@ -33,11 +36,13 @@ msgstr ""
 msgid "* Choose: wizard show in user selection mode\n"
 "* Get: wizard show results from user action"
 msgstr ""
+"* 选择：用户选择模式下的向导显示\n"
+"* 获取：向导显示用户操作的结果"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "<b>Cell</b>: Location of data in excel sheet (e.g., A1, B1, ...)"
-msgstr ""
+msgstr "<b>单元格</b>：Excel工作表中的数据位置（例如：A1,B1,...）"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -48,11 +53,17 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "<b>Field Cond.</b>: Python code in <code>${...}</code> to manipulate field value, e.g., if field = product_id, <code>value</code> will represent product object, e.g., <code>${value and value.uom_id.name or \"\"}</code>"
 msgstr ""
+"<b>字段条件。</b>: Python代码<code>${...}</code> 操纵字段值, 例如, if field = product_id, "
+"<code>value</code> 将代表产品对象, 例如, <code>${value and value.uom_id.name or \"\""
+"}</code>"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "<b>Field Cond.</b>: Python code in <code>${...}</code> value will represent data from excel cell, e.g., if A1 = 'ABC', <code>value</code> will represent 'ABC', e.g., <code>${value == \"ABC\" and \"X\" or \"Y\"}</code> thus can change from cell value to other value for import."
 msgstr ""
+"<b>字段条件.</b>: Python代码 <code>${...}</code> 值将代表来自excel 单元格的数据, 例如, if A1 = "
+"'ABC', <code>value</code> 代表'ABC',例如, <code>${value == \"ABC\" and \"X\" or "
+"\"Y\"}</code> 因此可以从单元格值更改为其他值以进行导入."
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
