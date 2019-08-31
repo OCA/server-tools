@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2019-08-31 05:36+0000\n"
+"PO-Revision-Date: 2019-08-31 10:32+0000\n"
 "Last-Translator: 黎伟杰 <674416404@qq.com>\n"
 "Language-Team: none\n"
 "Language: zh_CN\n"
@@ -18,7 +18,6 @@ msgstr ""
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
-#, fuzzy
 msgid "${object.post_import_do_something()}"
 msgstr "${object.post_import_do_something()}"
 
@@ -53,7 +52,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "<b>Field Cond.</b>: Python code in <code>${...}</code> to manipulate field value, e.g., if field = product_id, <code>value</code> will represent product object, e.g., <code>${value and value.uom_id.name or \"\"}</code>"
 msgstr ""
-"<b>字段条件。</b>: Python代码<code>${...}</code> 操纵字段值, 例如, if field = product_id, "
+"<b>字段条件</b>: Python代码<code>${...}</code> 操纵字段值, 例如, if field = product_id, "
 "<code>value</code> 将代表产品对象, 例如, <code>${value and value.uom_id.name or \"\""
 "}</code>"
 
@@ -61,59 +60,63 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "<b>Field Cond.</b>: Python code in <code>${...}</code> value will represent data from excel cell, e.g., if A1 = 'ABC', <code>value</code> will represent 'ABC', e.g., <code>${value == \"ABC\" and \"X\" or \"Y\"}</code> thus can change from cell value to other value for import."
 msgstr ""
-"<b>字段条件.</b>: Python代码 <code>${...}</code> 值将代表来自excel 单元格的数据, 例如, if A1 = "
+"<b>字段条件</b>: Python代码 <code>${...}</code> 值将代表来自excel 单元格的数据, 例如, if A1 = "
 "'ABC', <code>value</code> 代表'ABC',例如, <code>${value == \"ABC\" and \"X\" or "
 "\"Y\"}</code> 因此可以从单元格值更改为其他值以进行导入."
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "<b>Field</b>: Field of the record to be imported to, e.g., product_id"
-msgstr ""
+msgstr "<b>字段</b>: 要导入的记录的字段，例如product_id"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "<b>Field</b>: Field of the record, e.g., product_id.uom_id.name. They are orm compliant."
-msgstr ""
+msgstr "<b>字段</b>: 记录的字段，例如product_id.uom_id.name。他们是合规的。"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "<b>No Delete</b>: By default, all one2many lines will be deleted before import. Select this, to avoid deletion"
-msgstr ""
+msgstr "<b>不删除</b>: 默认情况下，导入前将删除所有one2many行。选择此项，以避免删除"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "<b>Note:</b>"
-msgstr ""
+msgstr "<b>备注:</b>"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "<b>Row Field</b>: Use _HEAD_ for the record itself, and one2many field (e.g., line_ids) for row data"
-msgstr ""
+msgstr "<b>行字段</b>: 使用_HEAD_表示记录本身，使用one2many字段（例如line_ids）表示行数据"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "<b>Sheet</b>: Name (e.g., Sheet 1) or index (e.g., 1) of excel sheet"
-msgstr ""
+msgstr "<b>工作表</b>: excel工作表的名称（例如，工作表1）或索引（例如，1）"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "<b>Sheet</b>: Name (e.g., Sheet 1) or index (e.g., 1) of excel sheet to export data to"
-msgstr ""
+msgstr "<b>工作表</b>: 要将数据导出到的Excel工作表的名称（例如，工作表1）或索引（例如，1）"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "<b>Style w/Cond.</b>: Conditional style by python code in <code>#?...?</code>, e.g., apply style for specific product, <code>#?value.name == \"ABC\" and #{font=bold;fill=red} or None?</code>"
 msgstr ""
+"<b>样式条件</b>: python代码中的条件样式 <code>#?...?</code>, 例如，为特定产品应用样式, <code>#"
+"?value.name == \"ABC\" and #{font=bold;fill=red} or None?</code>"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "<b>Style</b>: Default style in <code>#{...}</code> that apply to each cell, e.g., <code>#{align=left;style=text}</code>. See module's <b>style.py</b> for available styles."
 msgstr ""
+"<b>样式</b>: 默认样式<code>#{...}</code> 适用于每个单元格, 例如, "
+"<code>#{align=left;style=text}</code>. 请参阅模块的<b>style.py</b> 可用的样式。"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "<b>Sum</b>: Add sum value on last row, <code>@{sum}</code>"
-msgstr ""
+msgstr "<b>和</b>: 在最后一行添加总和值, <code>@{sum}</code>"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -147,137 +150,174 @@ msgid "<code class=\"oe_grey\">\n"
 "\n"
 "                                </code>"
 msgstr ""
+"<code class=\"oe_grey\">\n"
+"{\n"
+"    '__EXPORT__': {\n"
+"        'sale_order': {  # 工作表名称可以是(字符串)或索引(整数)\n"
+"            '_HEAD_': {\n"
+"                'B2': 'partner_id.display_name${value or \"\""
+"}#{align=left;style=text}',\n"
+"                'B3': 'name${value or \"\"}#{align=left;style=text}',\n"
+"            },\n"
+"            'line_ids': {  # prefix with _CONT_ to continue rows from "
+"previous row field\n"
+"                'A6': 'product_id.display_name${value or \"\"}#{style=text}',"
+"\n"
+"                'C6': 'product_uom_qty${value or 0}#{style=number}',\n"
+"                'E6': 'price_unit${value or 0}#{style=number}',\n"
+"                'G6': 'price_subtotal${value or 0}#{style=number}',\n"
+"            },\n"
+"        },\n"
+"    },\n"
+"    '__IMPORT__': {\n"
+"        'sale_order': {  # sheet can be name (string) or index (integer)\n"
+"            'order_line': {  # prefix with _NODEL_ to not delete rows before "
+"import\n"
+"                'A6': 'product_id',\n"
+"                'C6': 'product_uom_qty',\n"
+"                'E6': 'price_unit${value &gt; 0 and value or 0}',\n"
+"            },\n"
+"        },\n"
+"    },\n"
+"    '__POST_IMPORT__': '${object.post_import_do_something()}',\n"
+"}\n"
+"\n"
+"                                </code>"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "<code>date, datetime, time</code>: some useful python classes"
-msgstr ""
+msgstr "<code>date, datetime, time</code>: 一些有用的python类"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "<code>model</code>: active model, e.g., self.env['my.model']"
-msgstr ""
+msgstr "<code>模型</code>: 活动模型,例如., self.env['my.model']"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "<code>object</code>: record object or line object depends on <b>Row Field</b>"
-msgstr ""
+msgstr "<code>object</code>: 记录对象或行对象依赖于 <b>行字段</b>"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "<code>value</code>: value from <b>Cell</b>"
-msgstr ""
+msgstr "<code>value</code>: 值来自 <b>单元格</b>"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "<code>value</code>: value from <b>Field</b>"
-msgstr ""
+msgstr "<code>value</code>: 值来自 <b>字段</b>"
 
 #. module: excel_import_export
 #. openerp-web
 #: code:addons/excel_import_export/static/src/js/report/action_manager_report.js:49
 #, python-format
 msgid "A popup window with your report was blocked. You may need to change your browser settings to allow popup windows for this page."
-msgstr ""
+msgstr "您的报告的弹出窗口被阻止。您可能需要更改浏览器设置以允许此页面的弹出窗口。"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "Add data column"
-msgstr ""
+msgstr "添加数据列"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "Add header section"
-msgstr ""
+msgstr "添加头部分"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "Add row section"
-msgstr ""
+msgstr "添加行部分"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "Add sheet section"
-msgstr ""
+msgstr "添加工作表部分"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_report__choose_template
 msgid "Allow Choose Template"
-msgstr ""
+msgstr "添加表单部分"
 
 #. module: excel_import_export
 #: model:ir.model,name:excel_import_export.model_xlsx_styles
 msgid "Available styles for excel"
-msgstr ""
+msgstr "excel的可用样式"
 
 #. module: excel_import_export
 #: model:ir.model.fields,help:excel_import_export.field_xlsx_template_import__no_delete
 msgid "By default, all rows will be deleted before import.\n"
 "Select No Delete, otherwise"
 msgstr ""
+"默认情况下，导入前将删除所有行。\n"
+"否则请选择“不删除”"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__csv_delimiter
 msgid "CSV Delimiter"
-msgstr ""
+msgstr "CSV分隔符"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__csv_extension
 msgid "CSV File Extension"
-msgstr ""
+msgstr "CSV文件扩展名"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__csv_quote
 msgid "CSV Quoting"
-msgstr ""
+msgstr "CSV引用"
 
 #. module: excel_import_export
 #: model:ir.model.fields,help:excel_import_export.field_xlsx_template__post_import_hook
 msgid "Call a function after successful import, i.e.,\n"
 "${object.post_import_do_something()}"
 msgstr ""
+"成功导入后调用函数，即,\n"
+"${object.post_import_do_something()}"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.export_xlsx_wizard
 #: model_terms:ir.ui.view,arch_db:excel_import_export.import_xlsx_wizard
 #: model_terms:ir.ui.view,arch_db:excel_import_export.xlsx_report_view
 msgid "Cancel"
-msgstr ""
+msgstr "取消"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__excel_cell
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_import__excel_cell
 msgid "Cell"
-msgstr ""
+msgstr "单元格"
 
 #. module: excel_import_export
 #: selection:export.xlsx.wizard,state:0
 #: selection:import.xlsx.wizard,state:0
 #: selection:xlsx.report,state:0
 msgid "Choose"
-msgstr ""
+msgstr "选择"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.xlsx_report_view
 msgid "Choose Template:"
-msgstr ""
+msgstr "选择模板:"
 
 #. module: excel_import_export
 #: model_terms:ir.actions.act_window,help:excel_import_export.action_xlsx_template
 msgid "Click to create a XLSX Template Object."
-msgstr ""
+msgstr "单击以创建XLSX模板对象。"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.export_xlsx_wizard
 #: model_terms:ir.ui.view,arch_db:excel_import_export.import_xlsx_wizard
 #: model_terms:ir.ui.view,arch_db:excel_import_export.xlsx_report_view
 msgid "Close"
-msgstr ""
+msgstr "关闭"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.export_xlsx_wizard
 msgid "Complete Prepare File (.xlsx)"
-msgstr ""
+msgstr "完成准备文件(.xlsx)"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.xlsx_report_view
