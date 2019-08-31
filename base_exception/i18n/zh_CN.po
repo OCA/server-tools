@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-01 10:38+0000\n"
-"PO-Revision-Date: 2019-08-31 04:20+0000\n"
+"PO-Revision-Date: 2019-08-31 04:24+0000\n"
 "Last-Translator: 黎伟杰 <674416404@qq.com>\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/oca/teams/23907/"
 "zh_CN/)\n"
@@ -60,7 +60,7 @@ msgid ""
 msgstr ""
 "通过python代码：允许定义任意检查\n"
 "通过域: 仅限于odoo域的选择:\n"
-"           在评估异常情况时\t\t可以使用几种记录来改进性能"
+"           在评估异常情况时           可以使用几种记录来改进性能"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule__create_uid
