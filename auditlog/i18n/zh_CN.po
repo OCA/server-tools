@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-26 01:45+0000\n"
-"PO-Revision-Date: 2019-08-31 04:20+0000\n"
+"PO-Revision-Date: 2019-09-01 04:34+0000\n"
 "Last-Translator: 黎伟杰 <674416404@qq.com>\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/oca/teams/23907/"
 "zh_CN/)\n"
@@ -81,7 +81,7 @@ msgstr "上下文"
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line__create_uid
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__create_uid
 msgid "Created by"
-msgstr "创建人"
+msgstr "创建者"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_autovacuum__create_date
