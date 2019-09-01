@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2019-08-31 18:23+0000\n"
+"PO-Revision-Date: 2019-09-01 04:34+0000\n"
 "Last-Translator: 黎伟杰 <674416404@qq.com>\n"
 "Language-Team: none\n"
 "Language: zh_CN\n"
@@ -148,45 +148,45 @@ msgstr "结果"
 #: model:ir.actions.act_window,name:excel_import_export_demo.action_import_sale_order
 #: model:ir.ui.menu,name:excel_import_export_demo.menu_import_sale_order
 msgid "Sample Import Sale Order"
-msgstr ""
+msgstr "导入销售订单样本"
 
 #. module: excel_import_export_demo
 #: model:ir.actions.act_window,name:excel_import_export_demo.action_report_sale_order
 #: model:ir.ui.menu,name:excel_import_export_demo.menu_report_sale_order
 msgid "Sample Sales Report"
-msgstr ""
+msgstr "销售报告样本"
 
 #. module: excel_import_export_demo
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__state
 msgid "State"
-msgstr ""
+msgstr "状态"
 
 #. module: excel_import_export_demo
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__supplier
 msgid "Supplier"
-msgstr ""
+msgstr "供应商"
 
 #. module: excel_import_export_demo
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__template_id
 msgid "Template"
-msgstr ""
+msgstr "模板"
 
 #. module: excel_import_export_demo
 #: model:ir.model.fields,help:excel_import_export_demo.field_report_partner_list__results
 msgid "Use compute fields, so there is nothing store in database"
-msgstr ""
+msgstr "使用计算字段，因此数据库中没有任何存储"
 
 #. module: excel_import_export_demo
 #: model:ir.model.fields,help:excel_import_export_demo.field_report_sale_order__results
 msgid "Use compute fields, so there is nothing stored in database"
-msgstr ""
+msgstr "使用计算字段，因此数据库中没有任何内容"
 
 #. module: excel_import_export_demo
 #: model:ir.model,name:excel_import_export_demo.model_report_partner_list
 msgid "Wizard for report.partner.list"
-msgstr ""
+msgstr "业务伙伴名单报告向导"
 
 #. module: excel_import_export_demo
 #: model:ir.model,name:excel_import_export_demo.model_report_sale_order
 msgid "Wizard for report.sale.order"
-msgstr ""
+msgstr "销售订单报告向导"
