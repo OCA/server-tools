@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
 # Copyright 2019 Akretion
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from openerp import api, exceptions, fields, models, _
-from cStringIO import StringIO
+from io import BytesIO
 import logging
 import base64
 _logger = logging.getLogger(__name__)
@@ -78,7 +77,7 @@ class SqlExport(models.Model):
         # Case we insert data in an existing excel file.
         if self.attachment_id:
             datas = self.attachment_id.datas
-            infile = StringIO()
+            infile = BytesIO()
             infile.write(base64.b64decode(datas))
             infile.seek(0)
             wb = openpyxl.load_workbook(filename=infile)
@@ -100,7 +99,7 @@ class SqlExport(models.Model):
         for index, row in enumerate(res, row_position):
             for col, val in enumerate(row, col_position):
                 ws.cell(row=index, column=col).value = val
-        output = StringIO()
+        output = BytesIO()
         wb.save(output)
         output.getvalue()
         output_datas = base64.b64encode(output.getvalue())
