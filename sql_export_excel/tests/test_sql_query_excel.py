@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) 2019 Akretion (<http://www.akretion.com>)
 # @author: Florian da Costa
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp.tests.common import TransactionCase
+from odoo.tests.common import TransactionCase
 import base64
-from cStringIO import StringIO
+from io import BytesIO
 import logging
 
 _logger = logging.getLogger(__name__)
@@ -25,7 +24,7 @@ class TestExportSqlQueryExcel(TransactionCase):
     def get_workbook_from_query(self, wizard):
         wizard.export_sql()
         decoded_data = base64.b64decode(wizard.binary_file)
-        xlsx_file = StringIO(decoded_data)
+        xlsx_file = BytesIO(decoded_data)
         return openpyxl.load_workbook(xlsx_file)
 
     def test_excel_file_generation(self):
@@ -63,7 +62,7 @@ class TestExportSqlQueryExcel(TransactionCase):
         ws2 = wb.create_sheet("data")
         ws2.cell(row=1, column=1, value='Partner Id')
         ws2.cell(row=1, column=2, value='Partner Name')
-        output = StringIO()
+        output = BytesIO()
         wb.save(output)
         data = output.getvalue()
 

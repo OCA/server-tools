@@ -1,10 +1,9 @@
-# -*- coding: utf-8 -*-
 # Copyright 2019 Akretion
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 {
     'name': 'SQL Export Excel',
-    'version': '9.0.1.0.0',
+    'version': '12.0.1.0.0',
     'author': 'Akretion,Odoo Community Association (OCA)',
     'website': 'http://github/oca/server-tools',
     'license': 'AGPL-3',
