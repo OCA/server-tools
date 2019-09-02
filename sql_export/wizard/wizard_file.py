@@ -77,16 +77,15 @@ class SqlFileWizard(models.TransientModel):
                 'force_user', self._uid)
             variable_dict['user_id'] = user_id
 
-        # Execute Request
-        res = sql_export._execute_sql_request(
-            params=variable_dict, mode='stdout',
-            copy_options=sql_export.copy_options)
-        if self.sql_export_id.encoding:
-            res = res.decode(self.sql_export_id.encoding)
+        # Call different method depending on file_type since the logic will be
+        # different
+        method_name = '%s_get_datas_from_query' % sql_export.file_format
+        datas = getattr(sql_export, method_name)(variable_dict)
+        extension = sql_export._get_file_extension()
         self.write({
-            'binary_file': res,
-            'file_name': '%(name)s_%(date)s.csv' % {
-                'name': sql_export.name, 'date': date}
+            'binary_file': datas,
+            'file_name': '%(name)s_%(date)s.%(extension)s' % {
+                'name': sql_export.name, 'date': date, 'extension': extension}
         })
         return {
             'view_mode': 'form',
