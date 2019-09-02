@@ -2,15 +2,15 @@
 # @author: Florian da Costa
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp.tests.common import TransactionCase
-from openerp.tools import config
-from openerp import exceptions
+from odoo.tests.common import TransactionCase
+from odoo.tools import config
+from odoo import exceptions
 
 
 class TestExportSqlQueryExternal(TransactionCase):
 
     def setUp(self):
-        super(TestExportSqlQueryExternal, self).setUp()
+        super().setUp()
         self.sql_report_demo = self.env.ref('sql_export.sql_export_partner')
 
     def test_sql_queryi_external_database(self):
