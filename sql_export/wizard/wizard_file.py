@@ -79,11 +79,11 @@ class SqlFileWizard(models.TransientModel):
 
         # Call different method depending on file_type since the logic will be
         # different
-        method_name = '%s_get_datas_from_query' % sql_export.file_format
-        datas = getattr(sql_export, method_name)(variable_dict)
+        method_name = '%s_get_data_from_query' % sql_export.file_format
+        data = getattr(sql_export, method_name)(variable_dict)
         extension = sql_export._get_file_extension()
         self.write({
-            'binary_file': datas,
+            'binary_file': data,
             'file_name': '%(name)s_%(date)s.%(extension)s' % {
                 'name': sql_export.name, 'date': date, 'extension': extension}
         })
