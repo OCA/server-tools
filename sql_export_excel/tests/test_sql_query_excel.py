@@ -18,7 +18,7 @@ except ImportError:
 class TestExportSqlQueryExcel(TransactionCase):
 
     def setUp(self):
-        super(TestExportSqlQueryExcel, self).setUp()
+        super().setUp()
         self.wizard_obj = self.env['sql.file.wizard']
 
     def get_workbook_from_query(self, wizard):

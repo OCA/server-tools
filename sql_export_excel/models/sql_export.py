@@ -1,7 +1,7 @@
 # Copyright 2019 Akretion
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from openerp import api, exceptions, fields, models, _
+from odoo import api, exceptions, fields, models, _
 from io import BytesIO
 import logging
 import base64
@@ -67,10 +67,10 @@ class SqlExport(models.Model):
         if self.file_format == 'excel':
             return 'xlsx'
         else:
-            return super(SqlExport, self)._get_file_extension()
+            return super()._get_file_extension()
 
     @api.multi
-    def excel_get_datas_from_query(self, variable_dict):
+    def excel_get_data_from_query(self, variable_dict):
         self.ensure_one()
         res = self._execute_sql_request(
             params=variable_dict, mode='fetchall', header=self.header)
