@@ -59,7 +59,7 @@ class SqlExport(models.Model):
         if self.file_format == 'csv':
             return 'csv'
 
-    def csv_get_datas_from_query(self, variable_dict):
+    def csv_get_data_from_query(self, variable_dict):
         self.ensure_one()
         # Execute Request
         res = self._execute_sql_request(
