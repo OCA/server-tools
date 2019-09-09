@@ -7,7 +7,6 @@ from odoo import api, fields, models, _
 
 class IrExportsLine(models.Model):
     _inherit = 'ir.exports.line'
-    _order = 'name'
 
     alias = fields.Char(
         'Alias',
