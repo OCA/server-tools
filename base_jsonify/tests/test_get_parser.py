@@ -9,30 +9,32 @@ class TestParser(TransactionCase):
 
     def test_getting_parser(self):
         expected_parser = [
+            u'name',
             u'active',
-            (u'category_id', [u'name']),
-            (u'child_ids', [(
-                u'child_ids', [u'name']),
-                (u'country_id', [u'code', u'name']),
-                u'email', u'id',
-                u'name'
-            ]),
-            u'color',
-            u'comment',
-            (u'country_id', [u'code', u'name']),
             u'credit_limit',
+            u'color',
+            (u'category_id', [u'name']),
+            (u'country_id', [u'name', u'code']),
+            (u'child_ids', [
+                u'name',
+                u'id',
+                u'email',
+                (u'country_id', [u'name', u'code']),
+                (u'child_ids', [u'name']),
+            ]),
             u'lang',
-            u'name']
+            u'comment'
+        ]
 
         exporter = self.env.ref('base_jsonify.ir_exp_partner')
         parser = exporter.get_json_parser()
-        self.assertEqual(parser, expected_parser)
+        self.assertListEqual(parser, expected_parser)
 
         # modify an ir.exports_line to put an alias for a field
         self.env.ref('base_jsonify.category_id_name').write({
             'alias': 'category_id:category/name'
         })
-        expected_parser[1] = (u'category_id:category', [u'name'])
+        expected_parser[4] = (u'category_id:category', [u'name'])
         parser = exporter.get_json_parser()
         self.assertEqual(parser, expected_parser)
 
