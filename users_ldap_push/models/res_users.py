@@ -67,7 +67,7 @@ class ResUsers(models.Model):
             field_name = mapping.field_id.name
             if field_name not in values or not values[field_name]:
                 continue
-            result[str(mapping.attribute)] = [str(values[field_name])]
+            result[mapping.attribute] = [values[field_name].encode('utf-8')]
         if result:
             result['objectClass'] = conf.create_ldap_entry_objectclass\
                 .encode('utf-8').split(',')
