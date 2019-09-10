@@ -50,13 +50,13 @@ msgid "Index"
 msgstr ""
 
 #. module: base_jsonify
-#: code:addons/base_jsonify/models/ir_exports_line.py:27
+#: code:addons/base_jsonify/models/ir_exports_line.py:26
 #, python-format
 msgid "Name and Alias must have the same hierarchy depth"
 msgstr ""
 
 #. module: base_jsonify
-#: code:addons/base_jsonify/models/ir_exports_line.py:32
+#: code:addons/base_jsonify/models/ir_exports_line.py:31
 #, python-format
 msgid "The alias must reference the same field as in name '%s' not in '%s'"
 msgstr ""
