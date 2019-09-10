@@ -31,7 +31,7 @@ addon | version | summary
 [auth_user_case_insensitive](auth_user_case_insensitive/) | 10.0.1.0.0 | Makes the user login field case insensitive
 [auto_backup](auto_backup/) | 10.0.1.0.2 | Backups database
 [base_cron_exclusion](base_cron_exclusion/) | 10.0.1.0.0 | Allow you to select scheduled actions that should not run simultaneously.
-[base_custom_info](base_custom_info/) | 10.0.1.0.0 | Add custom field in models
+[base_custom_info](base_custom_info/) | 10.0.1.1.0 | Add custom field in models
 [base_directory_file_download](base_directory_file_download/) | 10.0.1.0.0 | Download all files of a directory on server
 [base_exception](base_exception/) | 10.0.4.0.0 | This module provide an abstract model to manage customizable exceptions to be applied on different models (sale order, invoice, ...)
 [base_export_manager](base_export_manager/) | 10.0.1.0.0 | Manage model export profiles
@@ -49,7 +49,7 @@ addon | version | summary
 [base_import_match](base_import_match/) | 10.0.1.0.0 | Try to avoid duplicates before importing
 [base_import_odoo](base_import_odoo/) | 10.0.1.0.0 | Import records from another Odoo instance
 [base_import_security_group](base_import_security_group/) | 10.0.1.0.0 | Group-based permissions for importing CSV files
-[base_jsonify](base_jsonify/) | 10.0.1.0.0 | Base module that provide the jsonify method on all models
+[base_jsonify](base_jsonify/) | 10.0.1.1.0 | Base module that provide the jsonify method on all models
 [base_kanban_stage](base_kanban_stage/) | 10.0.1.2.1 | Provides stage model and abstract logic for inheritance
 [base_kanban_stage_state](base_kanban_stage_state/) | 10.0.1.0.0 | Maps stages from base_kanban_stage to states
 [base_locale_uom_default](base_locale_uom_default/) | 10.0.1.0.0 | This provides settings to select default UoMs at the language level.
