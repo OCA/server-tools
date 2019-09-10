@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* base_jsonify
+# 	* base_jsonify
 #
 msgid ""
 msgstr ""
@@ -53,20 +53,22 @@ msgid "Index"
 msgstr "索引"
 
 #. module: base_jsonify
-#: code:addons/base_jsonify/models/ir_exports_line.py:27
+#: code:addons/base_jsonify/models/ir_exports_line.py:26
 #, python-format
 msgid "Name and Alias must have the same hierarchy depth"
 msgstr "名称和别名必须具有相同的层次结构深度"
 
 #. module: base_jsonify
-#: code:addons/base_jsonify/models/ir_exports_line.py:32
+#: code:addons/base_jsonify/models/ir_exports_line.py:31
 #, python-format
 msgid "The alias must reference the same field as in name '%s' not in '%s'"
 msgstr "别名必须引用与名称相同的字段'%s'不在'%s'"
 
 #. module: base_jsonify
 #: model:ir.model.fields,help:base_jsonify.field_ir_exports_line__alias
-msgid "The complete path to the field where you can specify an alias on the a step as field:alias"
+msgid ""
+"The complete path to the field where you can specify an alias on the a step "
+"as field:alias"
 msgstr "字段的完整路径，您可以在其中指定步骤作为字段的别名：别名"
 
 #. module: base_jsonify
