@@ -53,18 +53,18 @@ class CustomInfoTemplate(models.Model):
         self._inverse_model()
 
     @api.multi
-    @api.constrains("model_id")
-    def _check_model(self):
-        """Avoid error when updating base module and a submodule extends a
-        model that falls out of this one's dependency graph.
+    def _check_model_update_allowed(self, model_id):
+        """Check if the template's model can be updated.
+
+        Template can be updated only if no property values already exists for
+        this template
         """
         for record in self:
-            with self.env.norecompute():
-                oldmodels = record.mapped("property_ids.info_value_ids.model")
-                if oldmodels and record.model not in oldmodels:
-                    raise ValidationError(
-                        _("You cannot change the model because it is in use.")
-                    )
+            if (model_id != record.model_id.id
+                    and record.mapped("property_ids.info_value_ids")):
+                raise ValidationError(
+                    _("You cannot change the model because it is in use.")
+                )
 
     @api.multi
     def check_access_rule(self, operation):
@@ -74,3 +74,9 @@ class CustomInfoTemplate(models.Model):
             model.check_access_rights(operation)
             model.check_access_rule(operation)
         return super(CustomInfoTemplate, self).check_access_rule(operation)
+
+    @api.multi
+    def write(self, vals):
+        if 'model_id' in vals:
+            self._check_model_update_allowed(vals['model_id'])
+        return super(CustomInfoTemplate, self).write(vals)
