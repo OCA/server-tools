@@ -3,8 +3,9 @@
 
 import logging
 
-from os import listdir
-from os.path import isfile, join, exists, normpath, realpath
+from glob import glob
+from os.path import basename, isfile, join, exists, normpath, realpath
+
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError
 
@@ -26,6 +27,7 @@ class IrFilesystemDirectory(models.Model):
         compute='_compute_file_count',
         string="# Files",
     )
+    files_filter = fields.Char()
 
     @api.multi
     def get_dir(self):
@@ -61,10 +63,11 @@ class IrFilesystemDirectory(models.Model):
     @api.multi
     def _get_directory_files(self):
 
-        def get_files(directory, files):
-            for file_name in listdir(directory):
-                full_path = join(directory, file_name)
-
+        def get_files(directory, files_filter):
+            glob_path = join(directory, files_filter)
+            content = glob(glob_path)
+            for full_path in content:
+                file_name = basename(full_path)
                 # Symbolic links and up-level references are not considered
                 norm_path = normpath(realpath(full_path))
                 if norm_path in full_path:
@@ -75,7 +78,7 @@ class IrFilesystemDirectory(models.Model):
         files = []
         if self.get_dir() and exists(self.get_dir()):
             try:
-                get_files(self.get_dir(), files)
+                get_files(self.get_dir(), self.files_filter or '*')
             except (IOError, OSError):
                 _logger.info(
                     "_get_directory_files reading %s",
