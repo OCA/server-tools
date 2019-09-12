@@ -18,6 +18,7 @@
                     </h1>
                     <group>
                         <field name="directory" required="1"/>
+                        <field name="files_filter" placeholder="Enter a pattern to filter file names, eg.: *.txt"/>
                     </group>
                     <notebook name="notebook">
                         <page name="files" string="Files">

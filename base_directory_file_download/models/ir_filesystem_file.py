@@ -14,6 +14,7 @@ _logger = logging.getLogger(__name__)
 
 class IrFilesystemDirectoryLine(models.TransientModel):
     _name = 'ir.filesystem.file'
+    _description = 'File in filesystem'
 
     name = fields.Char(required=True)
     filename = fields.Char()
