@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2019 ACSONE SA/NV
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo noupdate="1">
+
+     <record id="discussion_demo_0" model="test_onchange_helper.discussion">
+            <field name="name">Stuff</field>
+            <field name="participants" eval="[(4, ref('base.user_root')), (4, ref('base.user_demo'))]"/>
+     </record>
+
+</odoo>

@@ -1,26 +1,64 @@
 # -*- coding: utf-8 -*-
 # Copyright 2018 Akretion (http://www.akretion.com).
+# Copyright 2019 ACSONE SA/NV
 # @author Sébastien BEAU <sebastien.beau@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-import openerp.tests.common as common
+import mock
+import odoo.tests.common as common
 
 
 class TestOnchange(common.TransactionCase):
 
     def test_playing_onchange_on_model(self):
-        result = self.env['res.partner'].play_onchanges({
-            'company_type': 'company',
-            }, ['company_type'])
-        self.assertEqual(result['is_company'], True)
+        res_partner = self.env["res.partner"]
+        with mock.patch.object(
+            res_partner.__class__, "write"
+        ) as patched_write:
+            result = self.env["res.partner"].play_onchanges(
+                {"company_type": "company"}, ["company_type"]
+            )
+            patched_write.assert_not_called()
+        self.assertEqual(result["is_company"], True)
 
     def test_playing_onchange_on_record(self):
-        company = self.env.ref('base.main_company')
-        result = company.play_onchanges({
-            'email': 'contact@akretion.com'},
-            ['email'])
+        company = self.env.ref("base.main_company")
+        with mock.patch.object(company.__class__, "write") as patched_write:
+            result = company.play_onchanges(
+                {"email": "contact@akretion.com"}, ["email"]
+            )
+            patched_write.assert_not_called()
+        modified_fields = set(result.keys())
+        self.assertSetEqual(
+            modified_fields, {"rml_footer", "rml_footer_readonly"}
+        )
         self.assertEqual(
-            result['rml_footer'],
-            u'Phone: +1 555 123 8069 | Email: contact@akretion.com | '
-            u'Website: http://www.example.com')
-        self.assertEqual(company.email, u'info@yourcompany.example.com')
+            result["rml_footer"],
+            u"Phone: +1 555 123 8069 | Email: contact@akretion.com | "
+            u"Website: http://www.example.com",
+        )
+        self.assertEqual(result["rml_footer_readonly"], result["rml_footer"])
+
+        # check that the original record is not modified
+        self.assertFalse(company._get_dirty())
+        self.assertEqual(company.email, u"info@yourcompany.example.com")
+
+    def test_onchange_record_with_dirty_field(self):
+        company = self.env.ref("base.main_company")
+        company._set_dirty("name")
+        self.assertListEqual(company._get_dirty(), ["name"])
+        company.play_onchanges({"email": "contact@akretion.com"}, ["email"])
+        self.assertListEqual(company._get_dirty(), ["name"])
+
+    def test_onchange_wrong_key(self):
+        res_partner = self.env["res.partner"]
+        with mock.patch.object(
+                res_partner.__class__, "write"
+        ) as patched_write:
+            # we specify a wrong field name... This field should be
+            # ignored
+            result = self.env["res.partner"].play_onchanges(
+                {"company_type": "company"}, ["company_type", "wrong_key"]
+            )
+            patched_write.assert_not_called()
+        self.assertEqual(result["is_company"], True)
