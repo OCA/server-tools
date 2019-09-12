@@ -84,7 +84,7 @@ addon | version | summary
 [mass_sorting](mass_sorting/) | 10.0.1.0.0 | Sort any models by any fields list
 [module_auto_update](module_auto_update/) | 10.0.2.0.3 | Automatically update Odoo modules
 [module_prototyper](module_prototyper/) | 10.0.1.0.0 | Prototype your module.
-[onchange_helper](onchange_helper/) | 10.0.2.0.0 | Technical module that ease execution of onchange in Python code
+[onchange_helper](onchange_helper/) | 10.0.3.0.0 | Technical module that ease execution of onchange in Python code
 [password_security](password_security/) | 10.0.1.1.4 | Allow admin to set password security requirements.
 [res_config_settings_enterprise_remove](res_config_settings_enterprise_remove/) | 10.0.1.0.0 | Remove fields in all settings views marked as enterprise
 [scheduler_error_mailer](scheduler_error_mailer/) | 10.0.1.0.0 | Scheduler Error Mailer
@@ -97,7 +97,7 @@ addon | version | summary
 [sql_export](sql_export/) | 10.0.1.0.0 | Export data in csv file with SQL requests
 [sql_request_abstract](sql_request_abstract/) | 10.0.1.0.1 | Abstract Model to manage SQL Requests
 [subscription_action](subscription_action/) | 10.0.1.0.0 | Run a server action on a newly created document
-[test_onchange_helper](test_onchange_helper/) | 10.0.1.0.0 | Test addon for the onchange_helper addon
+[test_onchange_helper](test_onchange_helper/) | 10.0.2.0.0 | Test addon for the onchange_helper addon
 [user_immutable](user_immutable/) | 10.0.1.0.0 | Add Immutable User Support
 [user_threshold](user_threshold/) | 10.0.1.0.1 | Add Configurable User Threshold Support
 [users_ldap_groups](users_ldap_groups/) | 10.0.0.0.0 | Adds user accounts to groups based on rules defined by the administrator.
