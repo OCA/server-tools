@@ -128,6 +128,7 @@ class Base(models.AbstractModel):
         This method reimplement the onchange method to be able to work on the
         current recordset if provided.
         """
+        updated_values = values.copy()
         env = self.env
         if self:
             self.ensure_one()
@@ -196,6 +197,14 @@ class Base(models.AbstractModel):
                 dirties = self._compute_onchange_dirty(origin, record, name)
                 dirty |= set(dirties)
                 todo.extend(dirties)
+
+                # preserve values to update since these are the one selected
+                # by the user.
+                for f in dirties:
+                    field = self._fields[f]
+                    if (f in updated_values and
+                            field.type not in ("one2many", "many2many")):
+                        record[f] = values[f]
 
         # prepare the result to return a dictionary with the new values for
         # the dirty fields
