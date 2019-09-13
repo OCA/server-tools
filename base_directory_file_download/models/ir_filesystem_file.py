@@ -25,7 +25,6 @@ class IrFilesystemDirectoryLine(models.TransientModel):
         string='Directory',
     )
 
-    @api.multi
     def _file_read(self, fname, bin_size=False):
 
         def file_not_found(fname):
