@@ -29,14 +29,12 @@ class IrFilesystemDirectory(models.Model):
     )
     files_filter = fields.Char()
 
-    @api.multi
     def get_dir(self):
         self.ensure_one()
         directory = self.directory or ''
         # adds slash character at the end if missing
         return join(directory, '')
 
-    @api.multi
     def _compute_file_ids(self):
         File = self.env['ir.filesystem.file']
         for directory in self:
@@ -55,12 +53,10 @@ class IrFilesystemDirectory(models.Model):
         if self.directory and not exists(self.directory):
             raise UserError(_('Directory does not exist'))
 
-    @api.multi
     def _compute_file_count(self):
         for directory in self:
             directory.file_count = len(directory.file_ids)
 
-    @api.multi
     def _get_directory_files(self):
 
         def get_files(directory, files_filter):
@@ -87,12 +83,10 @@ class IrFilesystemDirectory(models.Model):
                 )
         return files
 
-    @api.multi
     def reload(self):
         self.onchange_directory()
 
-    @api.multi
     def copy(self, default=None):
         self.ensure_one()
         default = dict(default or {}, name=_("%s (copy)") % self.name)
-        return super(IrFilesystemDirectory, self).copy(default=default)
+        return super().copy(default=default)
