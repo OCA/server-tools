@@ -13,6 +13,7 @@ class TestOnchangeHelper(common.TransactionCase):
         self.Category = self.env["test_onchange_helper.category"]
         self.Message = self.env["test_onchange_helper.message"]
         self.Discussion = self.env["test_onchange_helper.discussion"]
+        self.maxDiff = None
 
     @contextmanager
     def assertNoOrmWrite(self, model):
@@ -38,7 +39,7 @@ class TestOnchangeHelper(common.TransactionCase):
     def test_play_onchanges_many2one_new_record(self):
         root = self.Category.create({"name": "root"})
 
-        values = {"name": "test", "parent": root.id, "root_categ": False}
+        values = {"name": "test", "parent": root.id}
 
         self.env.invalidate_all()
         with self.assertNoOrmWrite(self.Category):
@@ -46,20 +47,10 @@ class TestOnchangeHelper(common.TransactionCase):
         self.assertIn("root_categ", result)
         self.assertEqual(result["root_categ"], root.id)
 
-        values.update(result)
-        values["parent"] = False
-
-        self.env.invalidate_all()
-        with self.assertNoOrmWrite(self.Category):
-            result = self.Category.play_onchanges(values, "parent")
-        # since the root_categ is already False into values the field is not
-        # changed by the onchange
-        self.assertNotIn("root_categ", result)
-
     def test_play_onchanges_many2one_existing_record(self):
         root = self.Category.create({"name": "root"})
 
-        values = {"name": "test", "parent": root.id, "root_categ": False}
+        values = {"name": "test", "parent": root.id}
 
         self.env.invalidate_all()
         with self.assertNoOrmWrite(self.Category):
@@ -275,15 +266,13 @@ class TestOnchangeHelper(common.TransactionCase):
         values = {
             "name": discussion.name,
             "moderator": demo.id,
-            "categories": [(4, cat.id) for cat in discussion.categories],
-            "messages": [(4, msg.id) for msg in discussion.messages],
-            "participants": [(4, usr.id) for usr in discussion.participants],
-        }
+            }
         self.env.invalidate_all()
         with self.assertNoOrmWrite(discussion):
             result = discussion.play_onchanges(values, "moderator")
 
         self.assertIn("participants", result)
+        self.assertTrue(discussion.participants)
         self.assertItemsEqual(
             result["participants"],
             [(5,)] + [(4, user.id) for user in discussion.participants + demo],
@@ -304,7 +293,6 @@ class TestOnchangeHelper(common.TransactionCase):
             "categories": [(4, cat.id) for cat in discussion.categories],
             "messages": messages,
             "participants": [(4, usr.id) for usr in discussion.participants],
-            "message_concat": False,
         }
         with self.assertNoOrmWrite(discussion):
             result = discussion.play_onchanges(values, "messages")
