@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 {'name': 'Onchange Helper',
- 'version': '10.0.3.0.0',
+ 'version': '10.0.3.1.0',
  'summary': 'Technical module that ease execution of onchange in Python code',
  'author': 'Akretion,Camptocamp, ACSONE SA/NV, '
            'Odoo Community Association (OCA)',
