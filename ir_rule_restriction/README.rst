@@ -48,15 +48,9 @@ rule have an AND operation performed on it.
 Installation
 ============
 
-Installation
-============
-
 To install this module, you need to:
 
 Follow the usual installation procedure for your version of Odoo
-
-Configuration
-=============
 
 Configuration
 =============
@@ -69,19 +63,9 @@ Go to the rule that interests you, find the checkbox under
 Usage
 =====
 
-Usage
-=====
-
 To use this module, you need to:
 
 Go to the group rule that you want, and tick the AND rule.
-
-.. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
-    :alt: Try me on Runbot
-    :target: https://runbot.odoo-community.org/runbot/149/10.0
-
-Known issues / Roadmap
-======================
 
 Known issues / Roadmap
 ======================
@@ -109,18 +93,10 @@ Authors
 Contributors
 ~~~~~~~~~~~~
 
-Contributors
-------------
-
 * George Daramouskas <gdaramouskas@therp.nl>  
-
-Do not contact contributors directly about help with questions or problems concerning this addon, but use the `community mailing list <mailto:community@mail.odoo.com>`_ or the `appropriate specialized mailinglist <https://odoo-community.org/groups>`_ for help, and the bug tracker linked in `Bug Tracker`_ above for technical issues.
 
 Other credits
 ~~~~~~~~~~~~~
-
-Credits
-=======
 
 Images
 
