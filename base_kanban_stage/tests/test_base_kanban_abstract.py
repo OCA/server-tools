@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2016-2017 LasLabs Inc.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
@@ -28,7 +27,7 @@ class TestBaseKanbanAbstract(TransactionCase):
     def setUp(self):
         super(TestBaseKanbanAbstract, self).setUp()
 
-        self.registry.enter_test_mode()
+        self.registry.enter_test_mode(self.cr)
         self.old_cursor = self.cr
         self.cr = self.registry.cursor()
         self.env = api.Environment(self.cr, self.uid, {})
