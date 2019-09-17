@@ -32,8 +32,8 @@ def deterministic_session_gc(session_store, session_expiry_delay=None):
         try:
             if os.path.getmtime(path) < expired_time:
                 os.unlink(path)
-        except OSError:
-            pass
+        except OSError as e:
+            _logger.debug(e)
 
 
 if 'base_deterministic_session_gc' in config.get('server_wide_modules'):
