@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2016-2017 LasLabs Inc.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
@@ -15,6 +14,7 @@ class BaseKanbanAbstract(models.AbstractModel):
     """
 
     _name = 'base.kanban.abstract'
+    _description = 'Kanban Abstract'
     _order = 'kanban_priority desc, kanban_sequence'
     _group_by_full = {
         'stage_id': lambda s, *a, **k: s._read_group_stage_ids(*a, **k),
