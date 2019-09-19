@@ -1,2 +1,4 @@
+from . import autovacuum_mixin
+from . import ir_attachment
 from . import mail_message
-from . import message_vacuum_rule
+from . import vacuum_rule
