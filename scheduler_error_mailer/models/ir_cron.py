@@ -6,6 +6,7 @@
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 import logging
+import traceback
 
 
 _logger = logging.getLogger(__name__)
@@ -31,11 +32,15 @@ class IrCron(models.Model):
         my_cron = self.browse(job_id)
 
         if my_cron.email_template_id:
+            # catching the trace error
+            trace = traceback.format_exc()
+
             # we put the job_exception in context to be able to print it inside
             # the email template
             context = {
                 'job_exception': job_exception,
                 'dbname': self._cr.dbname,
+                'trace_exception': trace.split("\n") if trace else "",
             }
 
             _logger.debug(
