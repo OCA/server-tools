@@ -18,15 +18,26 @@
 <p>Odoo tried to run the scheduler <em>${object.name or ''}</em> in the database <em>${ctx.get('dbname')}</em> but it failed. Here is the error message :</p>
 
 <strong>
-${ctx.get('job_exception') and ctx.get('job_exception').value or 'Failed to get the error message from the context.'}
+${ctx.get('job_exception') and (ctx.get('job_exception').value or ctx.get('job_exception').name) or 'Failed to get the error message from the context.'}
 </strong>
+
+% if 'trace_exception' in ctx:
+<p>
+<strong>
+% for trace_line in ctx.get('trace_exception'):
+<span>${trace_line}</span>
+<br/>
+% endfor
+</strong>
+</p
+% endif
 
 <p>You may check the logs of the Odoo server to get more information about this failure.</p>
 
 <p>Properties of the scheduler <em>${object.name or ''}</em> :</p>
 <ul>
-<li>Model : ${object.model or ''}</li>
-<li>Method : ${object.function or ''}</li>
+<li>Model : ${object.model_id.name or ''}</li>
+<li>Method : ${object.code or ''}</li>
 <li>Arguments : ${object.args or ''}</li>
 <li>Interval : ${object.interval_number or '0'} ${object.interval_type or ''}</li>
 <li>Number of calls : ${object.numbercall or '0'}</li>

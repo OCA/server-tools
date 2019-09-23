@@ -6,6 +6,7 @@
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 import logging
+import traceback
 
 
 _logger = logging.getLogger(__name__)
@@ -21,6 +22,11 @@ class IrCron(models.Model):
         "this scheduler fails."
     )
 
+    show_error_trace = fields.Boolean(
+        string="Show error trace",
+        help="Check this if you want to show in the error message mail the "
+             "error trace.")
+
     @api.model
     def _handle_callback_exception(self, cron_name, server_action_id, job_id,
                                    job_exception):
@@ -31,12 +37,18 @@ class IrCron(models.Model):
         my_cron = self.browse(job_id)
 
         if my_cron.email_template_id:
+
             # we put the job_exception in context to be able to print it inside
             # the email template
             context = {
                 'job_exception': job_exception,
                 'dbname': self._cr.dbname,
             }
+
+            if my_cron.show_error_trace:
+                trace = traceback.format_exc()
+                context.update({
+                    "trace_exception": trace.split("\n") if trace else ""})
 
             _logger.debug(
                 "Sending scheduler error email with context=%s", context)
