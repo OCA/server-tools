@@ -33,7 +33,7 @@ addon | version | summary
 [base_cron_exclusion](base_cron_exclusion/) | 10.0.1.0.0 | Allow you to select scheduled actions that should not run simultaneously.
 [base_custom_info](base_custom_info/) | 10.0.1.1.0 | Add custom field in models
 [base_directory_file_download](base_directory_file_download/) | 10.0.1.0.0 | Download all files of a directory on server
-[base_exception](base_exception/) | 10.0.4.1.0 | This module provide an abstract model to manage customizable exceptions to be applied on different models (sale order, invoice, ...)
+[base_exception](base_exception/) | 10.0.4.1.1 | This module provide an abstract model to manage customizable exceptions to be applied on different models (sale order, invoice, ...)
 [base_export_manager](base_export_manager/) | 10.0.1.0.0 | Manage model export profiles
 [base_export_security](base_export_security/) | 10.0.1.0.0 | Security features for Odoo exports
 [base_external_dbsource](base_external_dbsource/) | 10.0.2.0.0 | External Database Sources
