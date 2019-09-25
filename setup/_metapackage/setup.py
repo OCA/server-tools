@@ -13,6 +13,7 @@ setuptools.setup(
         'odoo11-addon-auto_backup',
         'odoo11-addon-base_cron_exclusion',
         'odoo11-addon-base_cron_oneshot',
+        'odoo11-addon-base_directory_file_download',
         'odoo11-addon-base_exception',
         'odoo11-addon-base_fontawesome',
         'odoo11-addon-base_name_search_improved',
