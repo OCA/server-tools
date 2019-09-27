@@ -16,6 +16,7 @@
         'security/ir.model.access.csv',
         'views/base_kanban_abstract.xml',
         'views/base_kanban_stage.xml',
+        'views/ir_model_views.xml',
     ],
     'installable': True,
     'application': False,
