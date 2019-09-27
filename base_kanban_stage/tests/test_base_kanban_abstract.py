@@ -1,4 +1,5 @@
 # Copyright 2016-2017 LasLabs Inc.
+# Copyright 2019 Eficent Business and IT Consulting Services S.L.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
 from odoo import api, models
@@ -14,14 +15,18 @@ class TestBaseKanbanAbstract(TransactionCase):
 
     def _init_test_model(self, model_cls):
         model_cls._build_model(self.registry, self.cr)
-        model = self.env[model_cls._name].with_context(todo=[])
+        model = self.env[model_cls._name]
+        # setup_models():
         model._prepare_setup()
-        model._setup_base(partial=False)
-        model._setup_fields(partial=False)
+        model._setup_base()
+        model._setup_fields()
+        # init_models():
         model._setup_complete()
         model._auto_init()
         model.init()
-        model._auto_end()
+        while self.registry._post_init_queue:
+            func = self.registry._post_init_queue.popleft()
+            func()
         return model
 
     def setUp(self):
@@ -35,7 +40,7 @@ class TestBaseKanbanAbstract(TransactionCase):
 
         test_model_record = self.env['ir.model'].search([
             ('name', '=', self.test_model._name),
-        ])
+        ], limit=1)
         self.test_stage = self.env['base.kanban.stage'].create({
             'name': 'Test Stage',
             'res_model_id': test_model_record.id,
