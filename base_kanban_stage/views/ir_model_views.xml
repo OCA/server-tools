@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Copyright 2019 Eficent Business and IT Consulting Services S.L.
+    License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+-->
+
+<odoo>
+
+    <record id="model_form_view" model="ir.ui.view">
+        <field name="model">ir.model</field>
+        <field name="inherit_id" ref="base.view_model_form"/>
+        <field name="arch" type="xml">
+            <field name="transient" position="after">
+                <field name="is_kanban" attrs="{'readonly': [('state','!=', 'manual')]}" groups="base.group_no_one"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="model_search_view" model="ir.ui.view">
+        <field name="model">ir.model</field>
+        <field name="inherit_id" ref="base.view_model_search"/>
+        <field name="arch" type="xml">
+            <filter name="base" position="after">
+                <filter string="Kanban" name="is_kanban" domain="[('is_kanban', '=', True)]"/>
+            </filter>
+        </field>
+    </record>
+
+</odoo>
