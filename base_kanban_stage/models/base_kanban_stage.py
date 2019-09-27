@@ -69,13 +69,14 @@ class BaseKanbanStage(models.Model):
         required=True,
         index=True,
         help='The model that this Kanban stage will be used for',
-        domain=[('transient', '=', False)],
+        domain=['&', ('is_kanban', '=', True), ('transient', '=', False)],
         default=lambda s: s._default_res_model_id(),
+        ondelete='cascade',
     )
 
     @api.model
     def _default_res_model_id(self):
-        '''Useful when creating stages from a Kanban view for another model'''
+        """Useful when creating stages from a Kanban view for another model"""
         action_id = self.env.context.get('params', {}).get('action')
         action = self.env['ir.actions.act_window'].browse(action_id)
         default_model = action.res_model
