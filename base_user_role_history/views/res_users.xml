@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2019 ACSONE SA/NV
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <!--FORM view-->
+
+    <record model="ir.ui.view" id="res_users_form_view">
+        <field name="name">res.users.form (in base_user_role_history)</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button name="show_role_lines_history"
+                        help="Roles history"
+                        class="oe_stat_button"
+                        icon="fa-history"
+                        type="object">
+                    <div class="o_stat_info">
+                        <span class="o_stat_text">Last update of roles</span>
+                        <field class="o_stat_value" name="last_role_line_modification"/>
+                    </div>
+                </button>
+            </div>
+        </field>
+    </record>
+
+</odoo>
