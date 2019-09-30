@@ -51,7 +51,6 @@ class XLSXReport(models.AbstractModel):
         defaults['template_id'] = len(templates) == 1 and templates.id or False
         return defaults
 
-    @api.multi
     def report_xlsx(self):
         self.ensure_one()
         Export = self.env['xlsx.export']

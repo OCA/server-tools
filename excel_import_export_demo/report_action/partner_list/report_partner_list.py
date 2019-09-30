@@ -24,7 +24,6 @@ class ReportPartnerList(models.TransientModel):
         help='Use compute fields, so there is nothing store in database',
     )
 
-    @api.multi
     def _compute_results(self):
         """ On the wizard, result will be computed and added to results line
         before export to excel by report_excel action

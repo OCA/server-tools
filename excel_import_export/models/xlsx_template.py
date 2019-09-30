@@ -101,7 +101,6 @@ class XLSXTemplate(models.Model):
         help="Optional action, redirection after finish import operation",
     )
 
-    @api.multi
     @api.constrains('redirect_action', 'res_model')
     def _check_action_model(self):
         for rec in self:
@@ -135,7 +134,6 @@ class XLSXTemplate(models.Model):
             rec._compute_input_post_import_hook()
         return rec
 
-    @api.multi
     def write(self, vals):
         res = super().write(vals)
         if vals.get('input_instruction'):
@@ -145,7 +143,6 @@ class XLSXTemplate(models.Model):
                 rec._compute_input_post_import_hook()
         return res
 
-    @api.multi
     def _compute_input_export_instruction(self):
         self = self.with_context(compute_from_input=True)
         for rec in self:
@@ -189,7 +186,6 @@ class XLSXTemplate(models.Model):
                         export_lines.append((0, 0, vals))
             rec.write({'export_ids': export_lines})
 
-    @api.multi
     def _compute_input_import_instruction(self):
         self = self.with_context(compute_from_input=True)
         for rec in self:
@@ -233,7 +229,6 @@ class XLSXTemplate(models.Model):
                         import_lines.append((0, 0, vals))
             rec.write({'import_ids': import_lines})
 
-    @api.multi
     def _compute_input_post_import_hook(self):
         self = self.with_context(compute_from_input=True)
         for rec in self:
@@ -241,7 +236,6 @@ class XLSXTemplate(models.Model):
             input_dict = literal_eval(rec.input_instruction.strip())
             rec.post_import_hook = input_dict.get('__POST_IMPORT__')
 
-    @api.multi
     def _compute_output_instruction(self):
         """ From database, compute back to dictionary """
         for rec in self:
