@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
-# Copyright 2018 Camptocamp SA
+# Copyright 2019 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
 
-from openerp import api, fields, models, tools, _
-from openerp.exceptions import ValidationError
+from odoo import api, fields, models, tools, _
+from odoo.exceptions import ValidationError
 
 
 class Image(models.Model):
@@ -56,9 +55,9 @@ class Image(models.Model):
     @api.model
     def create(self, vals):
         self._process_images(vals, required=True)
-        return super(Image, self).create(vals)
+        return super().create(vals)
 
     @api.multi
     def write(self, vals):
         self._process_images(vals)
-        return super(Image, self).write(vals)
+        return super().write(vals)

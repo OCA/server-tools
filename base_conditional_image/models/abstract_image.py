@@ -1,12 +1,11 @@
-# -*- coding: utf-8 -*-
-# Copyright 2018 Camptocamp SA
+# Copyright 2019 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
 
-from openerp import fields, models
-from openerp.tools.safe_eval import safe_eval
+from odoo import fields, models
+from odoo.tools.safe_eval import safe_eval
 
 
-class AbstractImageStorage(models.AbstractModel):
+class AbstractConditionalImage(models.AbstractModel):
     _name = 'abstract.conditional.image'
 
     image = fields.Binary(
@@ -32,9 +31,10 @@ class AbstractImageStorage(models.AbstractModel):
     def _compute_selector_test_with_company(image_selector, record):
         if (image_selector.company_id == record.company_id or
                 record.company_id and not image_selector.company_id):
-            return AbstractImageStorage._compute_selector_test_without_company(
-                image_selector, record
-            )
+            return AbstractConditionalImage\
+                ._compute_selector_test_without_company(
+                    image_selector, record
+                )
         return False
 
     def _compute_image(self):
