@@ -1,0 +1,87 @@
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+
+import logging
+from odoo import api, fields, models, registry
+
+
+_logger = logging.getLogger(__name__)
+
+
+class IrAttachmentMetadata(models.Model):
+    _name = 'ir.attachment.metadata'
+    _inherits = {'ir.attachment': 'attachment_id'}
+    _inherit = ['mail.thread']
+
+    attachment_id = fields.Many2one(
+        'ir.attachment', required=True, ondelete='cascade',
+        help="Link to ir.attachment model ")
+    file_type = fields.Selection(
+        selection=[],
+        help="The file type determines an import method to be used "
+        "to parse and transform data before their import in ERP or an export")
+    sync_date = fields.Datetime()
+    state = fields.Selection([
+        ('pending', 'Pending'),
+        ('failed', 'Failed'),
+        ('done', 'Done'),
+        ], readonly=False, required=True, default='pending')
+    state_message = fields.Text()
+
+    @api.model
+    def run_attachment_metadata_scheduler(self, domain=None):
+        if domain is None:
+            domain = [('state', '=', 'pending')]
+        batch_limit = self.env.ref(
+            'base_attachment_queue.attachment_sync_cron_batch_limit') \
+            .value
+        if batch_limit and batch_limit.isdigit():
+            limit = int(batch_limit)
+        else:
+            limit = 200
+        attachments = self.search(domain, limit=limit)
+        if attachments:
+            return attachments.run()
+        return True
+
+    def run(self):
+        """
+        Run the process for each attachment metadata
+        """
+        for attachment in self:
+            with api.Environment.manage():
+                with registry(self.env.cr.dbname).cursor() as new_cr:
+                    new_env = api.Environment(
+                        new_cr, self.env.uid, self.env.context)
+                    attach = attachment.with_env(new_env)
+                    try:
+                        attach._run()
+                    # pylint: disable=broad-except
+                    except Exception as e:
+                        attach.env.cr.rollback()
+                        _logger.exception(str(e))
+                        attach.write({
+                            'state': 'failed',
+                            'state_message': str(e),
+                        })
+                        attach.env.cr.commit()
+                    else:
+                        vals = {
+                            'state': 'done',
+                            'sync_date': fields.Datetime.now(),
+                        }
+                        attach.write(vals)
+                        attach.env.cr.commit()
+        return True
+
+    @api.multi
+    def _run(self):
+        self.ensure_one()
+        _logger.info('Start to process attachment metadata id %d', self.id)
+
+    @api.multi
+    def set_done(self):
+        """
+        Manually set to done
+        """
+        message = "Manually set to done by %s" % self.env.user.name
+        self.write({'state_message': message, 'state': 'done'})
