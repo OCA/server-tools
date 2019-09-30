@@ -22,7 +22,6 @@ class ReportSaleOrder(models.TransientModel):
         help='Use compute fields, so there is nothing stored in database',
     )
 
-    @api.multi
     def _compute_results(self):
         """ On the wizard, result will be computed and added to results line
         before export to excel, by using xlsx.export

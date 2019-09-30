@@ -63,7 +63,6 @@ class ExportXLSXWizard(models.TransientModel):
         defaults['res_model'] = res_model
         return defaults
 
-    @api.multi
     def action_export(self):
         self.ensure_one()
         Export = self.env['xlsx.export']
