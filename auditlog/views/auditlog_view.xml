@@ -43,7 +43,7 @@
         <field name="name">auditlog.rule.tree</field>
         <field name="model">auditlog.rule</field>
         <field name="arch" type="xml">
-            <tree colors="blue:state == 'draft';black:state == 'subscribed'" string="Rules">
+            <tree decoration-info="state == 'draft'" decoration-bf="state == 'subscribed'">
                 <field name="name"/>
                 <field name="model_id"/>
                 <field name="log_type"/>
@@ -79,7 +79,6 @@
         <field name="name">Rules</field>
         <field name="res_model">auditlog.rule</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="context">{}</field>
         <field name="search_view_id" ref="view_auditlog_rule_search"/>
@@ -145,7 +144,7 @@
         <field name="name">auditlog.log.tree</field>
         <field name="model">auditlog.log</field>
         <field name="arch" type="xml">
-            <tree string="Logs" create="false">
+            <tree create="false">
                 <field name="create_date"/>
                 <field name="name"/>
                 <field name="model_id"/>
@@ -192,7 +191,6 @@
     <record model="ir.actions.act_window" id="action_auditlog_log_tree">
         <field name="name">Logs</field>
         <field name="res_model">auditlog.log</field>
-        <field name="view_type">form</field>
         <field name="search_view_id" ref="view_auditlog_log_search"/>
     </record>
 

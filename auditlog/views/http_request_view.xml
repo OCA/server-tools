@@ -25,7 +25,7 @@
         <field name="name">auditlog.http.request.tree</field>
         <field name="model">auditlog.http.request</field>
         <field name="arch" type="xml">
-            <tree string="HTTP Requests">
+            <tree>
                 <field name="name"/>
                 <field name="create_date"/>
                 <field name="http_session_id"/>
@@ -68,7 +68,6 @@
         <field name="name">HTTP Requests</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">auditlog.http.request</field>
-        <field name="view_type">form</field>
         <field name="view_id" ref="view_auditlog_http_request_tree"/>
     </record>
 
