@@ -23,7 +23,7 @@
         <field name="name">auditlog.http.session.tree</field>
         <field name="model">auditlog.http.session</field>
         <field name="arch" type="xml">
-            <tree string="User sessions">
+            <tree>
                 <field name="user_id"/>
                 <field name="create_date"/>
                 <field name="name"/>
@@ -55,7 +55,6 @@
         <field name="name">User sessions</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">auditlog.http.session</field>
-        <field name="view_type">form</field>
         <field name="view_id" ref="view_auditlog_http_session_tree"/>
     </record>
 
