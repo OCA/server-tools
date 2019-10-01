@@ -34,7 +34,6 @@ class AuditlogHTTPRequest(models.Model):
                 httprequest.name or '?',
                 fields.Datetime.to_string(tz_create_date))
 
-    @api.multi
     def name_get(self):
         return [(request.id, request.display_name) for request in self]
 
