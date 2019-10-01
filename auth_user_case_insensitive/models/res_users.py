@@ -35,9 +35,7 @@ class ResUsers(models.Model):
 
     @api.model
     def search(self, args, offset=0, limit=None, order=None, count=False):
-        """
-         modify all search domains to replace login with login.lower()
-        """
+        """Modifies all search domains to replace login with login.lower()."""
         new_args = []
         for arg in args:
             new_arg = arg
