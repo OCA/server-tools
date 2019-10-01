@@ -50,7 +50,6 @@ def ensure_module_state(env, modules, state):
 class Module(models.Model):
     _inherit = 'ir.module.module'
 
-    @api.multi
     def _get_checksum_dir(self):
         self.ensure_one()
 
