@@ -14,7 +14,7 @@ class AuditlogLog(models.Model):
     res_id = fields.Integer("Resource ID")
     user_id = fields.Many2one(
         'res.users', string="User")
-    method = fields.Char("Method", size=64)
+    method = fields.Char(size=64)
     line_ids = fields.One2many(
         'auditlog.log.line', 'log_id', string="Fields updated")
     http_session_id = fields.Many2one(
@@ -36,8 +36,8 @@ class AuditlogLogLine(models.Model):
         'ir.model.fields', ondelete='cascade', string="Field", required=True)
     log_id = fields.Many2one(
         'auditlog.log', string="Log", ondelete='cascade', index=True)
-    old_value = fields.Text("Old Value")
-    new_value = fields.Text("New Value")
+    old_value = fields.Text()
+    new_value = fields.Text()
     old_value_text = fields.Text("Old value Text")
     new_value_text = fields.Text("New value Text")
     field_name = fields.Char("Technical name", related='field_id.name')
