@@ -240,12 +240,15 @@ class AuditlogRule(models.Model):
             self = self.with_context(auditlog_disabled=True)
             rule_model = self.env["auditlog.rule"]
             new_record = create_full.origin(self, vals, **kwargs)
-            new_values = {
-                d["id"]: d
-                for d in new_record.sudo()
-                .with_context(prefetch_fields=False)
-                .read(list(self._fields))
-            }
+            # Take a snapshot of record values from the cache instead of using
+            # 'read()'. It avoids issues with related/computed fields which
+            # stored in the database only at the end of the transaction, but
+            # their values exist in cache.
+            new_values = {new_record.id: {}}
+            for fname, field in new_record._fields.items():
+                new_values[new_record.id][fname] = field.convert_to_read(
+                    new_record[fname], new_record
+                )
             rule_model.sudo().create_logs(
                 self.env.uid,
                 self._name,
