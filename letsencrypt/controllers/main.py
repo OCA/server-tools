@@ -1,7 +1,7 @@
-# © 2016 Therp BV <http://therp.nl>
-# © 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
-# © 2018 Ignacio Ibeas <ignacio@acysos.com>
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# Copyright 2016 Therp BV <https://therp.nl>
+# Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
+# Copyright 2018 Ignacio Ibeas <ignacio@acysos.com>
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 import os
 from odoo import http
 from odoo.http import request

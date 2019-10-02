@@ -1,9 +1,11 @@
-# © 2016 Therp BV <http://therp.nl>
+# Copyright 2016 Therp BV <http://therp.nl>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-from odoo.tests.common import TransactionCase
+from odoo.tests.common import TransactionCase, tagged
 
 
 class TestLetsencrypt(TransactionCase):
+
+    @tagged('post_install', '-at_install')
     def test_letsencrypt(self):
         from ..hooks import post_init_hook
         post_init_hook(self.cr, None)

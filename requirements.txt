@@ -4,3 +4,5 @@ xlrd
 xlwt
 pysftp
 pygount
+acme-tiny
+IPy
