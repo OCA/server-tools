@@ -1,6 +1,6 @@
-# © 2016 Therp BV <http://therp.nl>
-# © 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
-# © 2018 Ignacio Ibeas <ignacio@acysos.com>
+# Copyright 2016 Therp BV <http://therp.nl>
+# Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
+# Copyright 2018 Ignacio Ibeas <ignacio@acysos.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 import os
 import logging
