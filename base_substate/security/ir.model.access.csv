@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_base_substate_type,base.substate,model_base_substate_type,base.group_user,1,0,0,0
+access_base_substate_type_manager,base.substate,model_base_substate_type,base_substate.group_substate_manager,1,1,1,1
+access_target_state_value,base.substate,model_target_state_value,base.group_user,1,0,0,0
+access_target_state_value_manager,base.substate,model_target_state_value,base_substate.group_substate_manager,1,1,1,1
+access_base_substate,base.substate,model_base_substate,base.group_user,1,0,0,0
+access_base_substate_manager,base.substate,model_base_substate,base_substate.group_substate_manager,1,1,1,1
