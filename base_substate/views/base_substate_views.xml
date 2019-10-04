@@ -5,7 +5,7 @@
 <record id="base_substate_type_view_tree" model="ir.ui.view">
     <field name="model">base.substate.type</field>
     <field name="arch" type="xml">
-        <tree string="Sub State Type">
+        <tree>
             <field name="name"/>
             <field name="model"/>
             <field name="target_state_field"/>
@@ -16,10 +16,19 @@
 <record id="base_substate_type_view_form" model="ir.ui.view">
     <field name="model">base.substate.type</field>
     <field name="arch" type="xml">
-        <form string="Sub State Type">
-            <field name="name"/>
-            <field name="model"/>
-            <field name="target_state_field"/>
+        <form string="Sub State Type" name="base_substate_type">
+            <sheet>
+                <div class="oe_title">
+                    <label for="name" class="oe_edit_only"/>
+                    <h1><field name="name"/></h1>
+                </div>
+                <group>
+                    <group colspan="4" groups="base.group_system">
+                        <field name="model"/>
+                        <field name="target_state_field"/>
+                    </group>
+                </group>
+            </sheet>
         </form>
     </field>
 </record>
@@ -71,7 +80,7 @@
 <record id="target_state_value_view_tree" model="ir.ui.view">
     <field name="model">target.state.value</field>
     <field name="arch" type="xml">
-        <tree string="Target State Value">
+        <tree>
             <field name="name"/>
             <field name="base_substate_type_id"/>
             <field name="target_state_value"/>
@@ -83,10 +92,18 @@
     <field name="model">target.state.value</field>
     <field name="arch" type="xml">
         <form string="Target State Value">
-            <field name="name"/>
-            <field name="base_substate_type_id"/>
-            <field name="target_state_value"/>
-
+            <sheet>
+                <div class="oe_title">
+                    <label for="name" class="oe_edit_only"/>
+                    <h1><field name="name"/></h1>
+                </div>
+                <group>
+                    <group colspan="4" groups="base.group_system">
+                        <field name="base_substate_type_id"/>
+                        <field name="target_state_value"/>
+                    </group>
+                </group>
+            </sheet>
         </form>
     </field>
 </record>
@@ -134,8 +151,12 @@
 <record id="base_substate_view_tree" model="ir.ui.view">
     <field name="model">base.substate</field>
     <field name="arch" type="xml">
-        <tree string="Base Substate">
+        <tree>
             <field name="name"/>
+            <field name="description"/>
+            <field name="sequence" widget="handle"/>
+            <field name="target_state_value_id"/>
+            <field name="active" widget="boolean_toggle"/>
         </tree>
     </field>
 </record>
@@ -143,12 +164,25 @@
 <record id="base_substate_view_form" model="ir.ui.view">
     <field name="model">base.substate</field>
     <field name="arch" type="xml">
-        <form string="Base Substate">
-            <field name="name"/>
-            <field name="description"/>
-            <field name="sequence"/>
-            <field name="target_state_value_id"/>
-            <field name="active"/>
+        <form string="Base Substate" name="base_substate">
+            <sheet>
+              <div class="oe_button_box" name="button_box">
+                    <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                        <field name="active" widget="boolean_button"/>
+                    </button>
+                </div>
+                <div class="oe_title">
+                    <label for="name" class="oe_edit_only"/>
+                    <h1><field name="name"/></h1>
+                </div>
+                <group>
+                    <group>
+                        <field name="description"/>
+                        <field name="sequence"/>
+                        <field name="target_state_value_id"/>
+                    </group>
+                </group>
+            </sheet>
         </form>
     </field>
 </record>
