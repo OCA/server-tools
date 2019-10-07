@@ -4,7 +4,7 @@
 {
     "name": "Case Insensitive Logins",
     "summary": "Makes the user login field case insensitive",
-    "version": "10.0.1.0.0",
+    "version": "10.0.1.0.1",
     "category": "Authentication",
     "website": "https://laslabs.com/",
     "author": "LasLabs, Odoo Community Association (OCA)",
