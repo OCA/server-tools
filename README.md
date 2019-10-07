@@ -28,7 +28,7 @@ addon | version | summary
 [auth_supplier](auth_supplier/) | 10.0.1.0.0 | Auth Supplier
 [auth_totp](auth_totp/) | 10.0.2.0.0 | Allows users to enable MFA and add optional trusted devices
 [auth_totp_password_security](auth_totp_password_security/) | 10.0.1.0.0 | auth_totp and password_security compatibility
-[auth_user_case_insensitive](auth_user_case_insensitive/) | 10.0.1.0.0 | Makes the user login field case insensitive
+[auth_user_case_insensitive](auth_user_case_insensitive/) | 10.0.1.0.1 | Makes the user login field case insensitive
 [auto_backup](auto_backup/) | 10.0.1.0.2 | Backups database
 [base_cron_exclusion](base_cron_exclusion/) | 10.0.1.0.0 | Allow you to select scheduled actions that should not run simultaneously.
 [base_custom_info](base_custom_info/) | 10.0.1.1.0 | Add custom field in models
