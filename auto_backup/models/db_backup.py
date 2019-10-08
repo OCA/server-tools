@@ -100,7 +100,6 @@ class DbBackup(models.Model):
             "backups",
             self.env.cr.dbname)
 
-    @api.multi
     @api.depends("folder", "method", "sftp_host", "sftp_port", "sftp_user")
     def _compute_name(self):
         """Get the right summary for this job."""
@@ -111,7 +110,6 @@ class DbBackup(models.Model):
                 rec.name = "sftp://%s@%s:%d%s" % (
                     rec.sftp_user, rec.sftp_host, rec.sftp_port, rec.folder)
 
-    @api.multi
     @api.constrains("folder", "method")
     def _check_folder(self):
         """Do not use the filestore or you will backup your backups."""
@@ -123,7 +121,6 @@ class DbBackup(models.Model):
                     _("Do not save backups on your filestore, or you will "
                       "backup your backups too!"))
 
-    @api.multi
     def action_sftp_test_connection(self):
         """Check if the SFTP settings are correct."""
         try:
@@ -136,7 +133,6 @@ class DbBackup(models.Model):
             _logger.info("Connection Test Failed!", exc_info=True)
             raise exceptions.Warning(_("Connection Test Failed!"))
 
-    @api.multi
     def action_backup(self):
         """Run selected backups."""
         backup = None
@@ -204,7 +200,6 @@ class DbBackup(models.Model):
         """Run all scheduled backups."""
         return self.search([]).action_backup()
 
-    @api.multi
     @contextmanager
     def backup_log(self):
         """Log a backup result."""
@@ -226,7 +221,6 @@ class DbBackup(models.Model):
             _logger.info("Database backup succeeded: %s", self.name)
             self.message_post(body=_("Database backup succeeded."))
 
-    @api.multi
     def cleanup(self):
         """Clean up old backups."""
         now = datetime.now()
@@ -247,7 +241,6 @@ class DbBackup(models.Model):
                                     os.path.basename(name) < oldest):
                                 remote.unlink('%s/%s' % (rec.folder, name))
 
-    @api.multi
     @contextmanager
     def cleanup_log(self):
         """Log a possible cleanup failure."""
@@ -282,7 +275,6 @@ class DbBackup(models.Model):
             when, ext='dump.zip' if ext == 'zip' else ext
         )
 
-    @api.multi
     def sftp_connection(self):
         """Return a new SFTP connection with found parameters."""
         self.ensure_one()
