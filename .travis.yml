@@ -1,9 +1,11 @@
 language: python
-sudo: false
-cache: pip
+cache:
+  directories:
+  - $HOME/.cache/pip
+  - $HOME/.cache/pre-commit
 
 python:
-  - "3.5"
+  - "3.6"
 
 addons:
   postgresql: "9.6"
@@ -11,17 +13,28 @@ addons:
     packages:
       - expect-dev  # provides unbuffer utility
 
+stages:
+  - linting
+  - test
+
+jobs:
+  include:
+    - stage: linting
+      name: "pre-commit"
+      before_install:
+      install: pip install pre-commit
+      script: pre-commit run --all --show-diff-on-failure
+      after_success:
+    - stage: test
+      env:
+        - TESTS="1" ODOO_REPO="odoo/odoo" MAKEPOT="1"
+    - stage: test
+      env:
+        - TESTS="1" ODOO_REPO="OCA/OCB"
+
 env:
   global:
   - VERSION="13.0" TESTS="0" LINT_CHECK="0" MAKEPOT="0"
-
-  matrix:
-  - LINT_CHECK="1"
-  - TESTS="1" ODOO_REPO="OCA/OCB" EXCLUDE="database_cleanup"
-  - TESTS="1" ODOO_REPO="OCA/OCB" INCLUDE="database_cleanup"
-  - TESTS="1" ODOO_REPO="odoo/odoo" EXCLUDE="database_cleanup" MAKEPOT="1"
-  - TESTS="1" ODOO_REPO="odoo/odoo" INCLUDE="database_cleanup" MAKEPOT="1"
-
 
 install:
   - git clone --depth=1 https://github.com/OCA/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
