@@ -8,6 +8,10 @@ Base Exception
 
 This module provide an abstract model to manage customizable exceptions to be applied on different models (sale order, invoice, ...). It is not usefull for itself. You can see an example of implementation in the 'sale_exception' module. (sale-workflow repository).
 
+Install
+=======
+For a fresh install, disable the hook. It's only purpose is to migrate your install from a previous version.
+
 Usage
 =====
 
