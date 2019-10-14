@@ -251,14 +251,40 @@ class BaseException(models.AbstractModel):
     @api.multi
     def _check_exception(self):
         """
-        This method must be used in a constraint that must be created in the
-        object that inherits for base.exception.
-        for sale :
-        @api.constrains('ignore_exception',)
+        This method must be called in the create and write methods of the model
+        using exceptions. The model has to inherit from 'base.exception'.
+
+        Example for sale (used in OCA/sale-workflow/sale_exception):
+
+        def _fields_trigger_check_exception(self):
+            return ['ignore_exception', 'order_line', 'state']
+
+        @api.model
+        def create(self, vals):
+            record = super(SaleOrder, self).create(vals)
+            check_exceptions = any(
+                field in vals for field
+                in self._fields_trigger_check_exception()
+            )
+            if check_exceptions:
+                record.sale_check_exception()
+            return record
+
+        @api.multi
+        def write(self, vals):
+            result = super(SaleOrder, self).write(vals)
+            check_exceptions = any(
+                field in vals for field
+                in self._fields_trigger_check_exception()
+            )
+            if check_exceptions:
+                self.sale_check_exception()
+            return result
+
         def sale_check_exception(self):
-            ...
-            ...
-            self._check_exception
+            orders = self.filtered(lambda s: s.state == 'sale')
+            if orders:
+                orders._check_exception()
         """
         exception_ids = self.detect_exceptions()
         if exception_ids:
