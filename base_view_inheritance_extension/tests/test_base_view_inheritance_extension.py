@@ -30,6 +30,23 @@ class TestBaseViewInheritanceExtension(TransactionCase):
             view.xpath('//page[@name="phone_book"]')[0]
         )
 
+    def test_target_position(self):
+        view_id = self.env.ref('base.view_partner_simple_form').id
+        fields_view_get = self.env['res.partner'].fields_view_get(
+            view_id=view_id
+        )
+        view = etree.fromstring(fields_view_get['arch'])
+        # verify we moved the phone field (before)
+        self.assertEqual(
+            view.xpath('//field[@name="function"]')[0].getnext(),
+            view.xpath('//separator[@name="info_separator"]')[0]
+        )
+        # verify we moved the mobile field (after)
+        self.assertEqual(
+            view.xpath('//field[@name="email"]')[0].getprevious(),
+            view.xpath('//separator[@name="info_separator"]')[0]
+        )
+
     def test_list_add(self):
         view_model = self.env['ir.ui.view']
         inherit_id = self.env.ref('base.view_partner_form').id

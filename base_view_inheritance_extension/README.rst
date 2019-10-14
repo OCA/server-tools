@@ -33,10 +33,18 @@ Move an element in the view
 
 .. code-block:: xml
 
-    <xpath expr="$xpath" position="move" target="$targetxpath" />
+    <xpath expr="$xpath" position="move" target="$targetxpath" target_position="$target_position"/>
 
-This can also be used to wrap some element into another, create the target
-element first, then move the node youwant to wrap there.
+Availables values for target_position attribute:
+
+* inside (default if omitted)
+* after
+* before
+
+
+This can also be used to wrap some element into another, create the new target
+element first, then move the element you want inside (or before/after) the new
+element.
 
 Add to values in a list (states for example)
 --------------------------------------------
@@ -60,7 +68,6 @@ Known issues / Roadmap
 ======================
 
 * add ``<attribute operation="json_dict" key="$key">$value</attribute>``
-* support ``<xpath expr="$xpath" position="move" target="xpath" target_position="position" />``
 * support an ``eval`` attribute for our new node types
 
 Bug Tracker
