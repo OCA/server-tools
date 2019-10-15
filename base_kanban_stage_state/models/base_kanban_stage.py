@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017 Specialty Medical Drugstore
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
@@ -17,4 +16,4 @@ class BaseKanbanStage(models.Model):
                 ('cancelled', 'Cancelled'),
                 ('exception', 'Exception')]
 
-    state = fields.Selection(_get_states, 'State')
+    state = fields.Selection(_get_states, string='State')
