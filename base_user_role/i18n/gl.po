@@ -66,8 +66,7 @@ msgid "Created on"
 msgstr "Creado en"
 
 #. module: base_user_role
-#: field:res.users.role,display_name:0
-#: field:res.users.role.line,display_name:0
+#: field:res.users.role,display_name:0 field:res.users.role.line,display_name:0
 msgid "Display Name"
 msgstr ""
 
@@ -92,6 +91,11 @@ msgid "Group Name"
 msgstr ""
 
 #. module: base_user_role
+#: help:res.users.role,share:0
+msgid "Group created to set access rights for sharing data with some users."
+msgstr ""
+
+#. module: base_user_role
 #: view:res.users.role:base_user_role.view_res_users_role_form
 msgid "Groups"
 msgstr ""
@@ -100,6 +104,11 @@ msgstr ""
 #: field:res.users.role,id:0 field:res.users.role.line,id:0
 msgid "ID"
 msgstr "ID"
+
+#. module: base_user_role
+#: help:res.users.role,is_portal:0
+msgid "If checked, this group is usable as a portal."
+msgstr ""
 
 #. module: base_user_role
 #: field:res.users.role,implied_ids:0
@@ -128,6 +137,11 @@ msgid "Name"
 msgstr "Nome"
 
 #. module: base_user_role
+#: field:res.users.role,is_portal:0
+msgid "Portal"
+msgstr ""
+
+#. module: base_user_role
 #: view:res.users.role:base_user_role.view_res_users_role_form
 #: view:res.users.role:base_user_role.view_res_users_role_tree
 #: field:res.users.role.line,role_id:0
@@ -151,6 +165,11 @@ msgstr ""
 #. module: base_user_role
 #: field:res.users.role,rule_groups:0
 msgid "Rules"
+msgstr ""
+
+#. module: base_user_role
+#: field:res.users.role,share:0
+msgid "Share Group"
 msgstr ""
 
 #. module: base_user_role
