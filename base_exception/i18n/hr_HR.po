@@ -95,7 +95,7 @@ msgid ""
 msgstr ""
 
 #. module: base_exception
-#: code:addons/base_exception/models/base_exception.py:139
+#: code:addons/base_exception/models/base_exception.py:156
 #, python-format
 msgid ""
 "Error when evaluating the exception.rule rule:\n"
