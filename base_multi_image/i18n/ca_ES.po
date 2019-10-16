@@ -120,7 +120,7 @@ msgid "Last Updated on"
 msgstr "Darrera actualització el"
 
 #. module: base_multi_image
-#: code:addons/base_multi_image/models/owner.py:73
+#: code:addons/base_multi_image/models/owner.py:79
 #: field:base_multi_image.owner,image_main:0
 #, python-format
 msgid "Main image"
@@ -221,4 +221,22 @@ msgstr ""
 #. module: base_multi_image
 #: selection:base_multi_image.image,storage:0
 msgid "URL"
+msgstr ""
+
+#. module: base_multi_image
+#: code:addons/base_multi_image/models/image.py:173
+#, python-format
+msgid "You must provide a file path for the image."
+msgstr ""
+
+#. module: base_multi_image
+#: code:addons/base_multi_image/models/image.py:167
+#, python-format
+msgid "You must provide an URL for the image."
+msgstr ""
+
+#. module: base_multi_image
+#: code:addons/base_multi_image/models/image.py:179
+#, python-format
+msgid "You must provide an attached file for the image."
 msgstr ""
