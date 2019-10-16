@@ -10,10 +10,10 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-07-21 02:42+0000\n"
-"PO-Revision-Date: 2019-08-30 17:04+0000\n"
+"PO-Revision-Date: 2019-11-24 19:57+0000\n"
 "Last-Translator: Rodrigo Macedo <rmsolucoeseminformatic4@gmail.com>\n"
-"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/"
-"teams/23907/pt_BR/)\n"
+"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/"
+"23907/pt_BR/)\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -102,7 +102,7 @@ msgstr ""
 "disponível na guia de ajuda deste documento."
 
 #. module: base_exception
-#: code:addons/base_exception/models/base_exception.py:139
+#: code:addons/base_exception/models/base_exception.py:156
 #, python-format
 msgid ""
 "Error when evaluating the exception.rule rule:\n"
@@ -172,10 +172,8 @@ msgstr "Regras de exceção"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_base_exception__exceptions_summary
-#, fuzzy
-#| msgid "Exception manager"
 msgid "Exceptions Summary"
-msgstr "Gerenciar Exceção"
+msgstr "Resumo de Exceções"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm__exception_ids
