@@ -30,6 +30,13 @@ msgid "Attachment Name"
 msgstr "Nom de la pièce jointe"
 
 #. module: attachment_metadata
+#: field:ir.attachment.metadata,website_url:0
+#, fuzzy
+#| msgid "Attachment"
+msgid "Attachment URL"
+msgstr "Pièce jointe"
+
+#. module: attachment_metadata
 #: field:ir.attachment.metadata,attachment_id:0
 msgid "Attachment id"
 msgstr "ID de la pièce jointe"
@@ -77,6 +84,11 @@ msgid "Database Data"
 msgstr "Données de la base de données"
 
 #. module: attachment_metadata
+#: field:ir.attachment.metadata,datas_checksum:0
+msgid "Datas checksum"
+msgstr ""
+
+#. module: attachment_metadata
 #: field:ir.attachment.metadata,description:0
 msgid "Description"
 msgstr "Description"
@@ -105,6 +117,13 @@ msgstr "Nom du fichier"
 #: field:ir.attachment.metadata,file_size:0
 msgid "File Size"
 msgstr "Taille du fichier"
+
+#. module: attachment_metadata
+#: field:ir.attachment.metadata,file_type_icon:0
+#, fuzzy
+#| msgid "File type"
+msgid "File Type Icon"
+msgstr "Type de fichier"
 
 #. module: attachment_metadata
 #: code:addons/attachment_metadata/models/attachment.py:43
@@ -189,6 +208,13 @@ msgid "Meta data Attachments"
 msgstr "Méta données des pièces jointes"
 
 #. module: attachment_metadata
+#: field:ir.attachment.metadata,mimetype:0
+#, fuzzy
+#| msgid "Type"
+msgid "Mime Type"
+msgstr "Type"
+
+#. module: attachment_metadata
 #: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_search
 msgid "My Document(s)"
 msgstr "Mes docuement(s)"
@@ -197,6 +223,13 @@ msgstr "Mes docuement(s)"
 #: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_search
 msgid "Owner"
 msgstr "Propriétaire"
+
+#. module: attachment_metadata
+#: field:ir.attachment.metadata,datas_big:0
+#, fuzzy
+#| msgid "File Content"
+msgid "Resized file content"
+msgstr "Contenu du fichier"
 
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,res_id:0

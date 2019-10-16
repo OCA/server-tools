@@ -29,6 +29,13 @@ msgid "Attachment Name"
 msgstr "Nom de l'Adjunt "
 
 #. module: attachment_metadata
+#: field:ir.attachment.metadata,website_url:0
+#, fuzzy
+#| msgid "Attachment"
+msgid "Attachment URL"
+msgstr "Adjunt "
+
+#. module: attachment_metadata
 #: field:ir.attachment.metadata,attachment_id:0
 msgid "Attachment id"
 msgstr "ID de l'adjunt "
@@ -76,6 +83,11 @@ msgid "Database Data"
 msgstr "Dades de la Base de Dades "
 
 #. module: attachment_metadata
+#: field:ir.attachment.metadata,datas_checksum:0
+msgid "Datas checksum"
+msgstr ""
+
+#. module: attachment_metadata
 #: field:ir.attachment.metadata,description:0
 msgid "Description"
 msgstr "Descripció"
@@ -104,6 +116,13 @@ msgstr "Nom del Fitxer "
 #: field:ir.attachment.metadata,file_size:0
 msgid "File Size"
 msgstr "Mida del Fitxer "
+
+#. module: attachment_metadata
+#: field:ir.attachment.metadata,file_type_icon:0
+#, fuzzy
+#| msgid "File type"
+msgid "File Type Icon"
+msgstr "Tipus de fitxer "
 
 #. module: attachment_metadata
 #: code:addons/attachment_metadata/models/attachment.py:43
@@ -188,6 +207,13 @@ msgid "Meta data Attachments"
 msgstr "Adjunts de meta-dades "
 
 #. module: attachment_metadata
+#: field:ir.attachment.metadata,mimetype:0
+#, fuzzy
+#| msgid "Type"
+msgid "Mime Type"
+msgstr "Tipus"
+
+#. module: attachment_metadata
 #: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_search
 msgid "My Document(s)"
 msgstr "El meu(s) Document(s)"
@@ -196,6 +222,13 @@ msgstr "El meu(s) Document(s)"
 #: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_search
 msgid "Owner"
 msgstr "Propietari "
+
+#. module: attachment_metadata
+#: field:ir.attachment.metadata,datas_big:0
+#, fuzzy
+#| msgid "File Content"
+msgid "Resized file content"
+msgstr "Contingut del fitxer "
 
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,res_id:0

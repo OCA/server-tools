@@ -30,6 +30,11 @@ msgid "Attachment Name"
 msgstr ""
 
 #. module: attachment_metadata
+#: field:ir.attachment.metadata,website_url:0
+msgid "Attachment URL"
+msgstr ""
+
+#. module: attachment_metadata
 #: field:ir.attachment.metadata,attachment_id:0
 msgid "Attachment id"
 msgstr ""
@@ -77,6 +82,11 @@ msgid "Database Data"
 msgstr ""
 
 #. module: attachment_metadata
+#: field:ir.attachment.metadata,datas_checksum:0
+msgid "Datas checksum"
+msgstr ""
+
+#. module: attachment_metadata
 #: field:ir.attachment.metadata,description:0
 msgid "Description"
 msgstr "Apraksts"
@@ -104,6 +114,11 @@ msgstr ""
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,file_size:0
 msgid "File Size"
+msgstr ""
+
+#. module: attachment_metadata
+#: field:ir.attachment.metadata,file_type_icon:0
+msgid "File Type Icon"
 msgstr ""
 
 #. module: attachment_metadata
@@ -182,6 +197,13 @@ msgid "Meta data Attachments"
 msgstr ""
 
 #. module: attachment_metadata
+#: field:ir.attachment.metadata,mimetype:0
+#, fuzzy
+#| msgid "Type"
+msgid "Mime Type"
+msgstr "Tips"
+
+#. module: attachment_metadata
 #: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_search
 msgid "My Document(s)"
 msgstr ""
@@ -189,6 +211,11 @@ msgstr ""
 #. module: attachment_metadata
 #: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_search
 msgid "Owner"
+msgstr ""
+
+#. module: attachment_metadata
+#: field:ir.attachment.metadata,datas_big:0
+msgid "Resized file content"
 msgstr ""
 
 #. module: attachment_metadata

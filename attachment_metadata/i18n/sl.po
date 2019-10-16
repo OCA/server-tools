@@ -31,6 +31,13 @@ msgid "Attachment Name"
 msgstr "Naziv priponke"
 
 #. module: attachment_metadata
+#: field:ir.attachment.metadata,website_url:0
+#, fuzzy
+#| msgid "Attachment"
+msgid "Attachment URL"
+msgstr "Priponka"
+
+#. module: attachment_metadata
 #: field:ir.attachment.metadata,attachment_id:0
 msgid "Attachment id"
 msgstr "ID priponke"
@@ -78,6 +85,11 @@ msgid "Database Data"
 msgstr "Podatki o podatkovni bazi"
 
 #. module: attachment_metadata
+#: field:ir.attachment.metadata,datas_checksum:0
+msgid "Datas checksum"
+msgstr ""
+
+#. module: attachment_metadata
 #: field:ir.attachment.metadata,description:0
 msgid "Description"
 msgstr "Opis"
@@ -106,6 +118,13 @@ msgstr "Naziv datoteke"
 #: field:ir.attachment.metadata,file_size:0
 msgid "File Size"
 msgstr "Velikost datoteke"
+
+#. module: attachment_metadata
+#: field:ir.attachment.metadata,file_type_icon:0
+#, fuzzy
+#| msgid "File type"
+msgid "File Type Icon"
+msgstr "Tip datoteke"
 
 #. module: attachment_metadata
 #: code:addons/attachment_metadata/models/attachment.py:43
@@ -190,6 +209,13 @@ msgid "Meta data Attachments"
 msgstr "Metadata priponk"
 
 #. module: attachment_metadata
+#: field:ir.attachment.metadata,mimetype:0
+#, fuzzy
+#| msgid "Type"
+msgid "Mime Type"
+msgstr "Tip"
+
+#. module: attachment_metadata
 #: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_search
 msgid "My Document(s)"
 msgstr "Moji dokumenti"
@@ -198,6 +224,13 @@ msgstr "Moji dokumenti"
 #: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_search
 msgid "Owner"
 msgstr "Lastnik"
+
+#. module: attachment_metadata
+#: field:ir.attachment.metadata,datas_big:0
+#, fuzzy
+#| msgid "File Content"
+msgid "Resized file content"
+msgstr "Vsebina datoteke"
 
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,res_id:0
