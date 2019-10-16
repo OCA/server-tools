@@ -204,7 +204,7 @@ msgid "Log lines"
 msgstr ""
 
 #. module: dead_mans_switch_server
-#: code:addons/dead_mans_switch_server/models/dead_mans_switch_instance.py:79
+#: code:addons/dead_mans_switch_server/models/dead_mans_switch_instance.py:80
 #, python-format
 msgid "Logs"
 msgstr "Histórico"
