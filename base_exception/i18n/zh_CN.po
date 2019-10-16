@@ -99,7 +99,7 @@ msgstr ""
 "在这里输入Python代码。有关Python表达式的帮助，请参阅本文档的帮助选项卡。"
 
 #. module: base_exception
-#: code:addons/base_exception/models/base_exception.py:139
+#: code:addons/base_exception/models/base_exception.py:156
 #, python-format
 msgid ""
 "Error when evaluating the exception.rule rule:\n"
