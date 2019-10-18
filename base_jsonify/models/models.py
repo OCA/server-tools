@@ -10,7 +10,7 @@ from odoo.tools.translate import _
 
 class Base(models.AbstractModel):
 
-    _inherit = 'base'
+    _inherit = "base"
 
     @api.model
     def __parse_field(self, parser_field):
@@ -20,8 +20,8 @@ class Base(models.AbstractModel):
         if isinstance(parser_field, tuple):
             field_name, subparser = parser_field
         json_key = field_name
-        if ':' in field_name:
-            field_name, json_key = field_name.split(':')
+        if ":" in field_name:
+            field_name, json_key = field_name.split(":")
         return field_name, json_key, subparser
 
     @api.multi
@@ -57,19 +57,18 @@ class Base(models.AbstractModel):
                 field_name, json_key, subparser = self.__parse_field(field)
                 field_type = rec._fields[field_name].type
                 if subparser:
-                    if field_type in ('one2many', 'many2many'):
+                    if field_type in ("one2many", "many2many"):
                         res[json_key] = rec[field_name].jsonify(subparser)
-                    elif field_type in ('many2one', 'reference'):
+                    elif field_type in ("many2one", "reference"):
                         if rec[field_name]:
-                            res[json_key] =\
-                                rec[field_name].jsonify(subparser)[0]
+                            res[json_key] = rec[field_name].jsonify(subparser)[0]
                         else:
                             res[json_key] = None
                     else:
-                        raise UserError(_('Wrong parser configuration'))
+                        raise UserError(_("Wrong parser configuration"))
                 else:
                     value = rec[field_name]
-                    if value is False and field_type != 'boolean':
+                    if value is False and field_type != "boolean":
                         value = None
                     res[json_key] = value
             result.append(res)
