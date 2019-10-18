@@ -32,7 +32,7 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-    <menuitem id="ui_exports" action="act_ui_exports_view" 
+    <menuitem id="ui_exports" action="act_ui_exports_view"
               parent="base.next_id_2"/>
 
 </odoo>
