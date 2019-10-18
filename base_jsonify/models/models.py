@@ -24,7 +24,6 @@ class Base(models.AbstractModel):
             field_name, json_key = field_name.split(":")
         return field_name, json_key, subparser
 
-    @api.multi
     def jsonify(self, parser):
         """Convert the record according to the given parser.
 

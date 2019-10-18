@@ -4,7 +4,7 @@
 
 from collections import OrderedDict
 
-from odoo import api, models
+from odoo import models
 
 
 def update_dict(data, fields):
@@ -47,7 +47,6 @@ def convert_dict(dict_parser):
 class IrExport(models.Model):
     _inherit = "ir.exports"
 
-    @api.multi
     def get_json_parser(self):
         """Creates a parser from ir.exports record and return it.
 
