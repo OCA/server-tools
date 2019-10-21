@@ -38,11 +38,6 @@ msgid "Collapse?"
 msgstr ""
 
 #. module: base_kanban_stage
-#: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_abstract__kanban_color
-msgid "Color Index"
-msgstr ""
-
-#. module: base_kanban_stage
 #: model:ir.model.fields,help:base_kanban_stage.field_base_kanban_abstract__kanban_color
 msgid "Color index to be used for the record's Kanban card"
 msgstr ""
@@ -165,6 +160,11 @@ msgstr ""
 #. module: base_kanban_stage
 #: model:ir.model,name:base_kanban_stage.model_base_kanban_abstract
 msgid "Kanban Abstract"
+msgstr ""
+
+#. module: base_kanban_stage
+#: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_abstract__kanban_color
+msgid "Kanban Color Index"
 msgstr ""
 
 #. module: base_kanban_stage
