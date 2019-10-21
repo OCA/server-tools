@@ -58,7 +58,7 @@ class BaseKanbanAbstract(models.AbstractModel):
         help='User that the record is currently assigned to',
     )
     kanban_color = fields.Integer(
-        string='Color Index',
+        string='Kanban Color Index',
         help='Color index to be used for the record\'s Kanban card',
     )
     kanban_legend_priority = fields.Text(
