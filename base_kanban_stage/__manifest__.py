@@ -4,7 +4,7 @@
 {
     'name': 'Kanban - Stage Support',
     'summary': 'Provides stage model and abstract logic for inheritance',
-    'version': '12.0.1.2.1',
+    'version': '12.0.1.2.2',
     'author': 'LasLabs, Odoo Community Association (OCA)',
     'category': 'base',
     'depends': [
