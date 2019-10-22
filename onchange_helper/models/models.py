@@ -40,6 +40,8 @@ class Base(models.AbstractModel):
                 continue
             dirties.append(field_name)
         for field_name, field in modified_record._fields.items():
+            if not field.store:
+                continue
             new_value = modified_record[field_name]
             if field.type not in ("one2many", "many2many"):
                 continue
