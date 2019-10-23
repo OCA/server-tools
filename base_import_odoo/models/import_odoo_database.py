@@ -12,6 +12,7 @@ import psycopg2
 import traceback
 from urlparse import urlparse
 from openerp import _, api, exceptions, fields, models, tools
+from openerp.tools.safe_eval import safe_eval
 from collections import namedtuple
 _logger = logging.getLogger('base_import_odoo')
 
@@ -118,7 +119,7 @@ class ImportOdooDatabase(models.Model):
             model = model_line.model_id
             remote_ids[model.model] = remote.execute(
                 model.model, 'search',
-                tools.safe_eval(model_line.domain) if model_line.domain else []
+                safe_eval(model_line.domain) if model_line.domain else []
             )
             remote_counts[model.model] = len(remote_ids[model.model])
         self.write({
@@ -210,6 +211,21 @@ class ImportOdooDatabase(models.Model):
             self.id, model._name.replace('.', '_'), _id or 0,
         )
         record = self._create_record_filter_fields(model, record)
+        model_defaults = {}
+        if context.model_line.defaults:
+            model_defaults.update(safe_eval(context.model_line.defaults))
+        for key, value in model_defaults.items():
+            record.setdefault(key, value)
+        if context.model_line.postprocess:
+            safe_eval(
+                context.model_line.postprocess, {
+                    'vals': record,
+                    'env': self.env,
+                    '_id': _id,
+                    'remote': context.remote,
+                },
+                mode='exec',
+            )
         new = self.env.ref('base_import_odoo.%s' % xmlid, False)
         if new and new.exists():
             if self.duplicates == 'overwrite_empty':

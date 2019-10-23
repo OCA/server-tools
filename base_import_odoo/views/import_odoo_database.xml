@@ -34,6 +34,8 @@
                                 <field name="sequence" widget="handle" />
                                 <field name="model_id" />
                                 <field name="domain" />
+                                <field name="defaults" />
+                                <field name="postprocess" placeholder="# `vals` is the dictionary to be passed to create/write, and you have access to `env`, `_id`, `remote`" />
                             </tree>
                         </field>
                         <field name="import_field_mappings" attrs="{'readonly': [('cronjob_running', '=', True)]}"/>

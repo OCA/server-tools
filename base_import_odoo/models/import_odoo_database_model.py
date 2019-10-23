@@ -18,3 +18,8 @@ class ImportOdooDatabaseModel(models.Model):
         ondelete='cascade',
     )
     domain = fields.Char(help='Optional filter to import only a subset')
+    defaults = fields.Char(help='Optional defaults dict to avoid empty values')
+    postprocess = fields.Text(
+        help='Optional python code for postprocessing. Your code has access '
+        'to `vals` which is the dictionary passed to create/write, and `env`.',
+    )
