@@ -79,6 +79,12 @@ class Base(models.AbstractModel):
             result = [(5,)]
             for record in value:
                 vals = {}
+                # We have to check first if the record already exists
+                # (only in case of M2M).
+                if field.type == "many2many" and not isinstance(
+                        record.id, models.NewId):
+                    result.append((4, record.id))
+                    continue
                 for name in record._cache:
                     if name in models.LOG_ACCESS_COLUMNS:
                         continue
