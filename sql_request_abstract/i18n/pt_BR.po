@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2017-12-01 02:11+0000\n"
 "PO-Revision-Date: 2019-09-03 01:23+0000\n"
 "Last-Translator: Rodrigo Macedo <rmsolucoeseminformatic4@gmail.com>\n"
-"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/"
-"23907/pt_BR/)\n"
+"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/"
+"teams/23907/pt_BR/)\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -46,7 +46,7 @@ msgid "ID"
 msgstr "Identificação"
 
 #. module: sql_request_abstract
-#: code:addons/sql_request_abstract/models/sql_request_mixin.py:140
+#: code:addons/sql_request_abstract/models/sql_request_mixin.py:143
 #, python-format
 msgid "It is not allowed to execute a not checked request."
 msgstr "Não é permitido executar uma solicitação não verificada."
@@ -62,7 +62,7 @@ msgid "Manager"
 msgstr "Gerente"
 
 #. module: sql_request_abstract
-#: code:addons/sql_request_abstract/models/sql_request_mixin.py:207
+#: code:addons/sql_request_abstract/models/sql_request_mixin.py:210
 #, python-format
 msgid ""
 "Materialized View requires PostgreSQL 9.3 or greater but PostgreSQL %s is "
@@ -113,7 +113,7 @@ msgstr ""
 "  * 'SQL Valid': a solicitação SQL foi verificada e é válida"
 
 #. module: sql_request_abstract
-#: code:addons/sql_request_abstract/models/sql_request_mixin.py:246
+#: code:addons/sql_request_abstract/models/sql_request_mixin.py:250
 #, python-format
 msgid ""
 "The SQL query is not valid:\n"
@@ -125,13 +125,13 @@ msgstr ""
 "  %s"
 
 #. module: sql_request_abstract
-#: code:addons/sql_request_abstract/models/sql_request_mixin.py:229
+#: code:addons/sql_request_abstract/models/sql_request_mixin.py:232
 #, python-format
 msgid "The query is not allowed because it contains unsafe word '%s'"
 msgstr "A consulta não é permitida porque contém a palavra não segura '%s'"
 
 #. module: sql_request_abstract
-#: code:addons/sql_request_abstract/models/sql_request_mixin.py:164
+#: code:addons/sql_request_abstract/models/sql_request_mixin.py:167
 #, python-format
 msgid "Unimplemented mode : '%s'"
 msgstr "Modo não implementado: '%s'"
