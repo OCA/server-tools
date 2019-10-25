@@ -180,6 +180,8 @@
                         <field name="description"/>
                         <field name="sequence"/>
                         <field name="target_state_value_id"/>
+                        <field name="model"/>
+                        <field name="mail_template_id" domain="[('model', '=', model)]"/>
                     </group>
                 </group>
             </sheet>

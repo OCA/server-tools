@@ -6,9 +6,6 @@ from odoo.exceptions import ValidationError
 from odoo import api
 from .common import setup_test_model
 from .sale_test import SaleTest, LineTest
-import logging
-
-_logger = logging.getLogger(__name__)
 
 
 class TestBaseSubstate(TransactionCase):
@@ -94,16 +91,13 @@ class TestBaseSubstate(TransactionCase):
         self.assertTrue(so_test1.substate_id ==
                         self.substate_under_negotiation)
 
-        # Block substate not corresponding to draft state
-        with self.assertRaises(ValidationError):
-            so_test1.substate_id = self.substate_wait_docs
         # Test that validation of sale order change substate_id
         so_test1.button_confirm()
         self.assertTrue(so_test1.state == 'sale')
-        self.assertTrue(so_test1.substate_id == self.substate_won)
+        self.assertTrue(so_test1.substate_id == self.substate_wait_docs)
 
         # Test that substate_id is set to false if
         # there is not substate corresponding to state
-        so_test1.buttoni_cancel()
+        so_test1.button_cancel()
         self.assertTrue(so_test1.state == 'cancel')
         self.assertTrue(not so_test1.substate_id)

@@ -62,7 +62,8 @@ class BaseSubstateMixin(models.AbstractModel):
     @api.constrains('substate_id')
     def check_substate_id_consistency(self):
         for mixin_obj in self:
-            if (mixin_obj.substate_id.model != self._name):
+            if (mixin_obj.substate_id and
+                    mixin_obj.substate_id.model != self._name):
                 raise ValidationError(
                     _("This substate is not define for this object but for %s"
                       ) %
