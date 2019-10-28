@@ -63,7 +63,7 @@ Authors
 Contributors
 ~~~~~~~~~~~~
 
-* Mourad EL HADJ MIMOUN <mourad.elhadj.mimoune@akretion.com>
+* Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
 
 Maintainers
 ~~~~~~~~~~~
