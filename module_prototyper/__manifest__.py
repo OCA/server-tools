@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
@@ -22,7 +21,7 @@
 
 {
     "name": "Module Prototyper",
-    "version": "10.0.1.0.0",
+    "version": "12.0.1.0.0",
     "author": "Savoir-faire Linux, Sudokeys, Onestein, "
     "Odoo Community Association (OCA)",
     "maintainer": "Savoir-faire Linux",
