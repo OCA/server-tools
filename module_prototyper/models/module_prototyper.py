@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # #############################################################################
 #
 #    OpenERP, Open Source Management Solution
@@ -233,7 +232,7 @@ class ModulePrototyper(models.Model):
         ),
     )
     report_ids = fields.Many2many(
-        "ir.actions.report.xml",
+        "ir.actions.report",
         "prototype_report_rel",
         "module_prototyper_id",
         "report_id",
