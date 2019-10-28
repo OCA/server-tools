@@ -34,24 +34,26 @@ from odoo.tests import common
 class TestModulePrototyper(common.TransactionCase):
     def setUp(self):
         super(TestModulePrototyper, self).setUp()
-        self.main_model = self.env['module_prototyper']
-        self.module_category_model = self.env['ir.module.category']
-        self.module_module_model = self.env['ir.module.module']
+        self.main_model = self.env["module_prototyper"]
+        self.module_category_model = self.env["ir.module.category"]
+        self.module_module_model = self.env["ir.module.module"]
 
-        self.prototype = self.main_model.create({
-            'name': 't_name',
-            'category_id': self.module_category_model.browse(1).id,
-            'human_name': 't_human_name',
-            'summary': 't_summary',
-            'description': 't_description',
-            'author': 't_author',
-            'maintainer': 't_maintainer',
-            'website': 't_website',
-            'dependencies': [(6, 0, [1, 2, 3, 4])],
-        })
-        self.api_version = self.env['module_prototyper.api_version'].search([
-            ('id', '=', self.ref('module_prototyper.api_version_80'))
-        ])
+        self.prototype = self.main_model.create(
+            {
+                "name": "t_name",
+                "category_id": self.module_category_model.browse(1).id,
+                "human_name": "t_human_name",
+                "summary": "t_summary",
+                "description": "t_description",
+                "author": "t_author",
+                "maintainer": "t_maintainer",
+                "website": "t_website",
+                "dependencies": [(6, 0, [1, 2, 3, 4])],
+            }
+        )
+        self.api_version = self.env["module_prototyper.api_version"].search(
+            [("id", "=", self.ref("module_prototyper.api_version_80"))]
+        )
 
     def test_generate_files_assert_if_no_env(self):
         with self.assertRaises(AssertionError):
@@ -74,15 +76,13 @@ class TestModulePrototyper(common.TransactionCase):
                 contents = contents.encode("utf-8")
                 ast.parse(contents)
                 if pep8:
-                    checker = pep8.Checker(
-                        name,
-                        contents.splitlines(True))
+                    checker = pep8.Checker(name, contents.splitlines(True))
                     res = checker.check_all()
                     self.assertFalse(
                         res,
                         "Python file %s has pep8 errors:\n"
-                        "%s\n%s" % (name, checker.report.messages,
-                                    repr(contents))
+                        "%s\n%s"
+                        % (name, checker.report.messages, repr(contents)),
                     )
 
             elif name.endswith(".xml"):
@@ -90,9 +90,9 @@ class TestModulePrototyper(common.TransactionCase):
                 lxml.etree.fromstring(contents)
 
     def test_generate_files_raise_templatenotfound_if_not_found(self):
-        not_existing_api = self.env['module_prototyper.api_version'].create({
-            'name': 'non_existing_api'
-        })
+        not_existing_api = self.env["module_prototyper.api_version"].create(
+            {"name": "non_existing_api"}
+        )
         self.prototype.setup_env(not_existing_api)
         with self.assertRaises(TemplateNotFound):
             self.prototype.generate_files()
@@ -101,18 +101,12 @@ class TestModulePrototyper(common.TransactionCase):
         """test the jinja2 environment is set."""
         self.assertIsNone(self.prototype._env)
         self.prototype.setup_env(self.api_version)
-        self.assertIsInstance(
-            self.prototype._env, Environment
-        )
-        self.assertEqual(
-            self.api_version,
-            self.prototype._api_version
-        )
+        self.assertIsInstance(self.prototype._env, Environment)
+        self.assertEqual(self.api_version, self.prototype._api_version)
 
     def test_friendly_name_return(self):
         """Test if the returns match the pattern."""
-        name = 'res.partner'
+        name = "res.partner"
         self.assertEqual(
-            self.prototype.friendly_name(name),
-            name.replace('.', '_')
+            self.prototype.friendly_name(name), name.replace(".", "_")
         )

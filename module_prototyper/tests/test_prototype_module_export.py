@@ -27,54 +27,48 @@ import StringIO
 class TestPrototypeModuleExport(common.TransactionCase):
     def setUp(self):
         super(TestPrototypeModuleExport, self).setUp()
-        self.main_model = self.env['module_prototyper.module.export']
-        self.prototype_model = self.env['module_prototyper']
-        self.module_category_model = self.env[
-            'ir.module.category'
-        ]
+        self.main_model = self.env["module_prototyper.module.export"]
+        self.prototype_model = self.env["module_prototyper"]
+        self.module_category_model = self.env["ir.module.category"]
 
-        self.prototype = self.prototype_model.create({
-            'name': 't_name',
-            'category_id': self.module_category_model.browse(1).id,
-            'human_name': 't_human_name',
-            'summary': 't_summary',
-            'description': 't_description',
-            'author': 't_author',
-            'maintainer': 't_maintainer',
-            'website': 't_website',
-        })
+        self.prototype = self.prototype_model.create(
+            {
+                "name": "t_name",
+                "category_id": self.module_category_model.browse(1).id,
+                "human_name": "t_human_name",
+                "summary": "t_summary",
+                "description": "t_description",
+                "author": "t_author",
+                "maintainer": "t_maintainer",
+                "website": "t_website",
+            }
+        )
 
-        self.exporter = self.main_model.create({'name': 't_name'})
+        self.exporter = self.main_model.create({"name": "t_name"})
 
     def test_action_export_assert_for_wrong_active_model(self):
         """Test if the assertion raises."""
         exporter = self.main_model.with_context(
-            active_model='t_active_model'
+            active_model="t_active_model"
         ).create({})
         self.assertRaises(
-            AssertionError,
-            exporter.action_export,
-            [exporter.id],
+            AssertionError, exporter.action_export, [exporter.id]
         )
 
     def test_action_export_update_wizard(self):
         """Test if the wizard is updated during the process."""
         exporter = self.main_model.with_context(
             active_model=self.prototype_model._name,
-            active_id=self.prototype.id
+            active_id=self.prototype.id,
         ).create({})
         exporter.action_export(exporter.id)
-        self.assertEqual(exporter.state, 'get')
-        self.assertEqual(exporter.name, '%s.zip' % (self.prototype.name,))
+        self.assertEqual(exporter.state, "get")
+        self.assertEqual(exporter.name, "%s.zip" % (self.prototype.name,))
 
     def test_zip_files_returns_tuple(self):
         """Test the method return of the method that generate the zip file."""
         ret = self.main_model.zip_files(self.exporter, [self.prototype])
         self.assertIsInstance(ret, tuple)
-        self.assertIsInstance(
-            ret.zip_file, zipfile.ZipFile
-        )
+        self.assertIsInstance(ret.zip_file, zipfile.ZipFile)
 
-        self.assertIsInstance(
-            ret.stringIO, StringIO.StringIO
-        )
+        self.assertIsInstance(ret.stringIO, StringIO.StringIO)
