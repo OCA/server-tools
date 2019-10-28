@@ -19,8 +19,4 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from . import (
-    module_prototyper,
-    module_prototyper_api_version,
-    ir_model_fields
-)
+from . import module_prototyper, module_prototyper_api_version, ir_model_fields

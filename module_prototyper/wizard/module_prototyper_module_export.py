@@ -33,22 +33,19 @@ class PrototypeModuleExport(models.TransientModel):
     _name = "module_prototyper.module.export"
 
     def _default_api_version(self):
-        return self.env.ref('module_prototyper.api_version_100').id
+        return self.env.ref("module_prototyper.api_version_100").id
 
-    name = fields.Char('File Name', readonly=True)
+    name = fields.Char("File Name", readonly=True)
     api_version = fields.Many2one(
-        comodel_name='module_prototyper.api_version',
-        string='API version',
+        comodel_name="module_prototyper.api_version",
+        string="API version",
         required=True,
-        default=_default_api_version
+        default=_default_api_version,
     )
-    data = fields.Binary('File', readonly=True)
+    data = fields.Binary("File", readonly=True)
     state = fields.Selection(
-        [
-            ('choose', 'choose'),  # choose version
-            ('get', 'get')  # get module
-        ],
-        default='choose'
+        [("choose", "choose"), ("get", "get")],  # choose version  # get module
+        default="choose",
     )
 
     @api.model
@@ -61,17 +58,15 @@ class PrototypeModuleExport(models.TransientModel):
             ids = [ids]
         wizard = self.browse(ids)
 
-        active_model = self._context.get('active_model')
+        active_model = self._context.get("active_model")
 
         # checking if the wizard was called by a prototype.
         msg = '%s has to be called from a "module_prototyper" , not a "%s"'
-        assert active_model == 'module_prototyper', msg % (
-            self, active_model
-        )
+        assert active_model == "module_prototyper", msg % (self, active_model)
 
         # getting the prototype of the wizard
         prototypes = self.env[active_model].browse(
-            [self._context.get('active_id')]
+            [self._context.get("active_id")]
         )
 
         zip_details = self.zip_files(wizard, prototypes)
@@ -83,20 +78,20 @@ class PrototypeModuleExport(models.TransientModel):
 
         wizard.write(
             {
-                'name': '%s.zip' % (zip_name,),
-                'state': 'get',
-                'data': base64.encodestring(zip_details.stringIO.getvalue())
+                "name": "%s.zip" % (zip_name,),
+                "state": "get",
+                "data": base64.encodestring(zip_details.stringIO.getvalue()),
             }
         )
 
         return {
-            'type': 'ir.actions.act_window',
-            'res_model': 'module_prototyper.module.export',
-            'view_mode': 'form',
-            'view_type': 'form',
-            'res_id': wizard.id,
-            'views': [(False, 'form')],
-            'target': 'new',
+            "type": "ir.actions.act_window",
+            "res_model": "module_prototyper.module.export",
+            "view_mode": "form",
+            "view_type": "form",
+            "res_id": wizard.id,
+            "views": [(False, "form")],
+            "target": "new",
         }
 
     @staticmethod
@@ -105,10 +100,10 @@ class PrototypeModuleExport(models.TransientModel):
         :param file_details: tuple (filename, file_content)
         :return: tuple (zip_file, stringIO)
         """
-        zip_details = namedtuple('Zip_details', ['zip_file', 'stringIO'])
+        zip_details = namedtuple("Zip_details", ["zip_file", "stringIO"])
         out = StringIO.StringIO()
 
-        with zipfile.ZipFile(out, 'w') as target:
+        with zipfile.ZipFile(out, "w") as target:
             for prototype in prototypes:
                 # setting the jinja environment.
                 # They will help the program to find the template to render the
@@ -122,7 +117,7 @@ class PrototypeModuleExport(models.TransientModel):
                 file_details = prototype.generate_files()
                 for filename, file_content in file_details:
                     if isinstance(file_content, unicode):
-                        file_content = file_content.encode('utf-8')
+                        file_content = file_content.encode("utf-8")
                     # Prefix all names with module technical name
                     filename = os.path.join(prototype.name, filename)
                     info = zipfile.ZipInfo(filename)

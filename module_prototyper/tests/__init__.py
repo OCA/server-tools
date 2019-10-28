@@ -19,7 +19,4 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from . import (
-    test_prototype_module_export,
-    test_prototype
-)
+from . import test_prototype_module_export, test_prototype

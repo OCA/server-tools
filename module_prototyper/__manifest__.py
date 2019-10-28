@@ -21,26 +21,24 @@
 ##############################################################################
 
 {
-    'name': 'Module Prototyper',
-    'version': '10.0.1.0.0',
-    'author': 'Savoir-faire Linux, Sudokeys, Onestein, '
-              'Odoo Community Association (OCA)',
-    'maintainer': 'Savoir-faire Linux',
-    'website': 'http://www.savoirfairelinux.com',
-    'license': 'AGPL-3',
-    'category': 'Others',
-    'summary': 'Prototype your module.',
-    'depends': [],
-    'external_dependencies': {
-        'python': [],
-    },
-    'data': [
-        'data/module_prototyper_api_version_data.xml',
-        'wizard/module_prototyper_module_export_view.xml',
-        'views/module_prototyper_view.xml',
-        'views/ir_model_fields_view.xml',
-        'security/ir.model.access.csv',
+    "name": "Module Prototyper",
+    "version": "10.0.1.0.0",
+    "author": "Savoir-faire Linux, Sudokeys, Onestein, "
+    "Odoo Community Association (OCA)",
+    "maintainer": "Savoir-faire Linux",
+    "website": "http://www.savoirfairelinux.com",
+    "license": "AGPL-3",
+    "category": "Others",
+    "summary": "Prototype your module.",
+    "depends": [],
+    "external_dependencies": {"python": []},
+    "data": [
+        "data/module_prototyper_api_version_data.xml",
+        "wizard/module_prototyper_module_export_view.xml",
+        "views/module_prototyper_view.xml",
+        "views/ir_model_fields_view.xml",
+        "security/ir.model.access.csv",
     ],
-    'installable': True,
-    'application': True,
+    "installable": True,
+    "application": True,
 }
