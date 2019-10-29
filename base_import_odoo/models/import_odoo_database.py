@@ -456,13 +456,20 @@ class ImportOdooDatabase(models.Model):
             elif field.type in ['many2one']:
                 if name in model._inherits.values():
                     continue
+                if not record.get(name):
+                    _logger.error(
+                        'No value for %s in %s[%d] - you probably need to set '
+                        'a value via default or postprocess',
+                        name, model._name, record['id'],
+                    )
+                    continue
                 new_context = context.with_field_context(
                     model._name, name, record['id']
                 )
                 value = self._run_import_get_record(
                     new_context,
                     self.env[model._fields[name].comodel_name],
-                    {'id': record.get(name, [None])[0]},
+                    {'id': record[name][0]},
                 )
             elif field.type in ['selection'] and not callable(field.selection):
                 value = field.selection[0][0]
@@ -501,7 +508,10 @@ class ImportOdooDatabase(models.Model):
                 continue
             ids = data[field_name] if (
                 model._fields[field_name].type != 'many2one'
-            ) else [data[field_name][0]]
+            ) else [
+                isinstance(data[field_name], int) and
+                data[field_name] or data[field_name][0]
+            ]
             new_context = context.with_field_context(
                 model._name, field_name, data['id']
             )
