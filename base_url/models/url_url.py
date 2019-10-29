@@ -18,7 +18,7 @@ class UrlUrl(models.Model):
 
     url_key = fields.Char(required=True)
     model_id = fields.Reference(
-        selection=[],
+        selection="_selection_target_model",
         help="The id of content linked to the url.",
         readonly=True,
         string="Model",
@@ -28,7 +28,7 @@ class UrlUrl(models.Model):
         help="If tick this url is a redirection to the new url"
     )
     backend_id = fields.Reference(
-        selection=[],
+        selection="_selection_target_model",
         compute="_compute_related_fields",
         store=True,
         help="Backend linked to this URL",
@@ -45,6 +45,11 @@ class UrlUrl(models.Model):
             "Already exists in database",
         )
     ]
+
+    @api.model
+    def _selection_target_model(self):
+        models = self.env["ir.model"].search([])
+        return [(model.model, model.name) for model in models]
 
     @api.depends("model_id")
     def _compute_related_fields(self):

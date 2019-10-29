@@ -30,7 +30,6 @@ class ResPartnerAddressableFake(models.Model, TestMixin):
 
     backend_id = fields.Many2one(comodel_name="url.backend.fake")
 
-    @api.multi
     @api.depends("lang_id", "record_id.name")
     def _compute_automatic_url_key(self):
         key_by_id = {}

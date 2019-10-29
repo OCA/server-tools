@@ -67,19 +67,16 @@ class AbstractUrl(models.AbstractModel):
                     }
                 }
 
-    @api.multi
     @api.depends("url_key")
     def _compute_is_urls_sync_required(self):
         for record in self:
             record.is_urls_sync_required = True
 
-    @api.multi
     def _compute_automatic_url_key(self):
         raise NotImplementedError(
             "Automatic url key must be computed in concrete model"
         )
 
-    @api.multi
     @api.depends(
         "manual_url_key", "automatic_url_key", "url_builder", "active"
     )
@@ -94,7 +91,6 @@ class AbstractUrl(models.AbstractModel):
                     new_url = record.automatic_url_key
                 record.url_key = new_url
 
-    @api.multi
     def _compute_redirect_url_url_ids(self):
         for record in self:
             record.redirect_url_url_ids = record.env["url.url"].search(
@@ -104,7 +100,6 @@ class AbstractUrl(models.AbstractModel):
                 ]
             )
 
-    @api.multi
     def _compute_url_url_ids(self):
         for record in self:
             record.url_url_ids = record.env["url.url"].search(
@@ -175,6 +170,10 @@ class AbstractUrl(models.AbstractModel):
             ]
         )
         redirect_urls.write({"redirect": True})
+        # we must explicitly invalidate the cache since there is no depends
+        # defined on this computed fields and this field could have already
+        # been loaded into the cache
+        self.invalidate_cache(fnames=["url_url_ids"], ids=self.ids)
 
     def _redirect_existing_url(self):
         """
@@ -183,7 +182,6 @@ class AbstractUrl(models.AbstractModel):
         """
         return True
 
-    @api.multi
     def _sync_urls(self):
         """
         This method is in charge of syncing the url.url object related to
@@ -204,14 +202,12 @@ class AbstractUrl(models.AbstractModel):
         super(AbstractUrl, synced).write({"is_urls_sync_required": False})
         return res
 
-    @api.multi
     def write(self, value):
         res = super(AbstractUrl, self).write(value)
         synced = self._sync_urls()
         super(AbstractUrl, synced).write({"is_urls_sync_required": False})
         return res
 
-    @api.multi
     def unlink(self):
         for record in self:
             # TODO we should propose to redirect the old url
