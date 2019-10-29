@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+    <record id="view_s3_backup_tree" model="ir.ui.view">
+        <field name="name">s3.backup.tree</field>
+        <field name="model">s3.backup</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="">
+                <field name="name"/>
+                <field name="periodicity"/>
+                <field name="bucket_name"/>
+                <field name="folder"/>
+                <field name="nextcall"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_s3_backup_form" model="ir.ui.view">
+        <field name="name">s3.backup.form</field>
+        <field name="model">s3.backup</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" type="object" name="toggle_active" icon="fa-archive">
+                            <field name="active" widget="boolean_button"
+                            options='{"terminology": "archive"}'/>
+                        </button>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="periodicity"/>
+                            <field name="days_to_keep"/>
+                            <field name="nextcall"/>
+                        </group>
+                        <group>
+                            <field name="bucket_name"/>
+                            <field name="folder"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_view_s3_backup" model="ir.actions.act_window">
+        <field name="name">S3 Backup</field>
+        <field name="res_model">s3.backup</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_s3_backup_tree"/>
+    </record>
+    
+    <menuitem id="menu_backup" name="Backups" parent="base.menu_custom"/>
+    <menuitem id="menu_action_s3_backup" action="action_view_s3_backup" parent="menu_backup"/>
+
+</odoo>
