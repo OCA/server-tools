@@ -16,5 +16,5 @@
     "external_dependencies": {"python": ["slugify"]},
     "data": ["views/url_view.xml", "security/ir.model.access.csv"],
     "url": "",
-    "installable": True,
+    "installable": False,
 }
