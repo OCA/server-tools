@@ -1,6 +1,7 @@
 # Copyright 2017 ACSONE SA/NV
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+from odoo import fields
 from odoo.tests.common import TransactionCase
 
 
@@ -54,7 +55,9 @@ class TestParser(TransactionCase):
             ]),
             ('country_id:country', ['code', 'name']),
             'active',
-            ('category_id', ['name'])
+            ('category_id', ['name']),
+            'create_date',
+            'date',
         ]
         partner = self.env['res.partner'].create({
             'name': 'Akretion',
@@ -67,6 +70,7 @@ class TestParser(TransactionCase):
                     'country_id': self.env.ref('base.fr').id
                 })
             ],
+            'date': fields.Date.today()
         })
         expected_json = {
             'lang': 'en_US',
@@ -91,7 +95,9 @@ class TestParser(TransactionCase):
                 'children': [],
                 'name': 'Sebatien Beau',
                 'email': None
-            }]
+            }],
+            'create_date': fields.Datetime.to_string(partner.create_date),
+            'date': fields.Date.to_string(partner.date)
         }
         json_partner = partner.jsonify(parser)
 
