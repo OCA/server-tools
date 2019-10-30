@@ -1,0 +1,78 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* base_jsonify
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2019-08-31 04:35+0000\n"
+"Last-Translator: 黎伟杰 <674416404@qq.com>\n"
+"Language-Team: none\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 3.8\n"
+
+#. module: base_jsonify
+#: model:ir.model.fields,field_description:base_jsonify.field_ir_exports_line__alias
+msgid "Alias"
+msgstr "别名"
+
+#. module: base_jsonify
+#: model:ir.model,name:base_jsonify.model_base
+msgid "Base"
+msgstr "基础"
+
+#. module: base_jsonify
+#: model_terms:ir.ui.view,arch_db:base_jsonify.view_ir_exports
+msgid "Configuration"
+msgstr "配置"
+
+#. module: base_jsonify
+#: model:ir.actions.act_window,name:base_jsonify.act_ui_exports_view
+#: model:ir.ui.menu,name:base_jsonify.ui_exports
+msgid "Export Fields"
+msgstr "导出字段"
+
+#. module: base_jsonify
+#: model:ir.model,name:base_jsonify.model_ir_exports
+msgid "Exports"
+msgstr "导出"
+
+#. module: base_jsonify
+#: model:ir.model,name:base_jsonify.model_ir_exports_line
+msgid "Exports Line"
+msgstr "导出行"
+
+#. module: base_jsonify
+#: model_terms:ir.ui.view,arch_db:base_jsonify.view_ir_exports
+msgid "Index"
+msgstr "索引"
+
+#. module: base_jsonify
+#: code:addons/base_jsonify/models/ir_exports_line.py:26
+#, python-format
+msgid "Name and Alias must have the same hierarchy depth"
+msgstr "名称和别名必须具有相同的层次结构深度"
+
+#. module: base_jsonify
+#: code:addons/base_jsonify/models/ir_exports_line.py:31
+#, python-format
+msgid "The alias must reference the same field as in name '%s' not in '%s'"
+msgstr "别名必须引用与名称相同的字段'%s'不在'%s'"
+
+#. module: base_jsonify
+#: model:ir.model.fields,help:base_jsonify.field_ir_exports_line__alias
+msgid ""
+"The complete path to the field where you can specify an alias on the a step "
+"as field:alias"
+msgstr "字段的完整路径，您可以在其中指定步骤作为字段的别名：别名"
+
+#. module: base_jsonify
+#: code:addons/base_jsonify/models/models.py:69
+#, python-format
+msgid "Wrong parser configuration"
+msgstr "错误的解析器配置"
