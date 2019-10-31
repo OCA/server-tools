@@ -79,7 +79,7 @@ class TestParser(TransactionCase):
                         },
                     )
                 ],
-                "date": fields.Date.today(),
+                "date": fields.Date.from_string("2019-10-31"),
             }
         )
         expected_json = {
@@ -100,8 +100,8 @@ class TestParser(TransactionCase):
                     "email": None,
                 }
             ],
-            "create_date": fields.Datetime.to_string(partner.create_date),
-            "date": fields.Date.to_string(partner.date),
+            "create_date": partner.create_date.isoformat(),
+            "date": "2019-10-31",
         }
         json_partner = partner.jsonify(parser)
 
