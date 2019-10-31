@@ -72,6 +72,11 @@ class TestParser(TransactionCase):
             ],
             'date': fields.Date.from_string("2019-10-31")
         })
+        self.env.cr.execute(
+            "update res_partner set create_date=%s where id=%s",
+            ("2019-10-31 14:39:49", partner.id),
+        )
+        partner.refresh()
         expected_json = {
             'lang': 'en_US',
             'comment': None,
@@ -96,8 +101,8 @@ class TestParser(TransactionCase):
                 'name': 'Sebatien Beau',
                 'email': None
             }],
-            'create_date': partner.create_date.isoformat(),
-            'date': "2019-10-31"
+            "create_date": "2019-10-31T14:39:49+00:00",
+            "date": "2019-10-31",
         }
         json_partner = partner.jsonify(parser)
 
