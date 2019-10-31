@@ -3,8 +3,6 @@
 # Raphaël Reverdy <raphael.reverdy@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-import pytz
-
 from odoo import api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools.translate import _
@@ -74,11 +72,13 @@ class Base(models.AbstractModel):
                     elif field_type == "date":
                         value = fields.Date.to_date(value).isoformat()
                     elif field_type == "datetime":
-                        value = (
-                            fields.Datetime.to_datetime(value)
-                            .replace(tzinfo=pytz.utc)
-                            .isoformat()
-                        )
+                        # Ensures value is a datetime
+                        value = fields.Datetime.to_datetime(value)
+                        # Get the timestamp converted to the client's timezone.
+                        # This call also add the tzinfo into the datetime
+                        # object
+                        value = fields.Datetime.context_timestamp(rec, value)
+                        value = value.isoformat()
                     res[json_key] = value
             result.append(res)
         return result
