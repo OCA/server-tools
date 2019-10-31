@@ -70,7 +70,7 @@ class TestParser(TransactionCase):
                     'country_id': self.env.ref('base.fr').id
                 })
             ],
-            'date': fields.Date.today()
+            'date': fields.Date.from_string("2019-10-31")
         })
         expected_json = {
             'lang': 'en_US',
@@ -96,8 +96,8 @@ class TestParser(TransactionCase):
                 'name': 'Sebatien Beau',
                 'email': None
             }],
-            'create_date': fields.Datetime.to_string(partner.create_date),
-            'date': fields.Date.to_string(partner.date)
+            'create_date': partner.create_date.isoformat(),
+            'date': "2019-10-31"
         }
         json_partner = partner.jsonify(parser)
 
