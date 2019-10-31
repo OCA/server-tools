@@ -41,6 +41,8 @@ class TestParser(TransactionCase):
         self.assertEqual(parser, expected_parser)
 
     def test_json_export(self):
+        # Enforces TZ to validate the serialization result of a Datetime
+        self.env.user.tz = "Europe/Brussels"
         parser = [
             "lang",
             "comment",
@@ -105,7 +107,7 @@ class TestParser(TransactionCase):
                     "email": None,
                 }
             ],
-            "create_date": "2019-10-31T14:39:49+00:00",
+            "create_date": "2019-10-31T15:39:49+01:00",
             "date": "2019-10-31",
         }
         json_partner = partner.jsonify(parser)
