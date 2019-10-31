@@ -11,7 +11,7 @@
     'author': 'SYLEAM, Odoo Community Association (OCA)',
     'license': 'AGPL-3',
     'installable': True,
-    'external_dependancies': {
+    'external_dependencies': {
         'python': ['oauthlib'],
     },
     'depends': [
