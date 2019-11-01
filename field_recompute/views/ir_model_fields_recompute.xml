@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+
+    <record id="view_ir_model_fields_recompute_tree" model="ir.ui.view">
+        <field name="model">ir.model.fields.recompute</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="model_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_ir_model_fields_recompute_form" model="ir.ui.view">
+        <field name="model">ir.model.fields.recompute</field>
+        <field name="arch" type="xml">
+            <form>
+               <header>
+                    <button name="button_enable" type="object" string="Enable"
+                        attrs="{'invisible': [('state', '!=', 'draft')]}"
+                        class="btn-primary"/>
+                    <button name="button_draft" type="object" string="Set to draft"
+                        attrs="{'invisible': [('state', '=', 'draft')]}"/>
+                    <button name="button_run" type="object" string="Run Manualy"
+                        attrs="{'invisible': [('state', '!=', 'pending')]}"/>
+                    <field name="state" widget="statusbar" nolabel="1"/>
+               </header>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="model_id"/>
+                        <field name="compute_function"/>
+                        <field name="domain"/>
+                        <field name="order"/>
+                        <field name="limit"/>
+                        <field name="field_ids">
+                            <tree>
+                                <field name="name"/>
+                                <field name="field_description"/>
+                                <field name="ttype"/>
+                                <field name="store"/>
+                            </tree>
+                        </field>
+                    </group>
+                    <group attrs="{'invisible': [('state', '=', 'draft')]}">
+                        <field name="progress" widget="progressbar"/>
+                        <field name="current_qty"/>
+                        <field name="total_qty"/>
+                        <field name="check_field_id"/>
+                        <field name="cron_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_ir_model_fields_recompute" model="ir.actions.act_window">
+        <field name="name">Fields Recomputes</field>
+        <field name="res_model">ir.model.fields.recompute</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>
+

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="menu_ir_model_fields_recompute"
+        parent="base.next_id_9" sequence="10"
+        groups="base.group_system"
+        action="action_ir_model_fields_recompute"/>
+</odoo>
