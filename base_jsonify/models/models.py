@@ -70,9 +70,15 @@ class Base(models.AbstractModel):
                     if value is False and field_type != "boolean":
                         value = None
                     elif field_type == "date":
-                        value = fields.Date.to_string(value)
+                        value = fields.Date.to_date(value).isoformat()
                     elif field_type == "datetime":
-                        value = fields.Datetime.to_string(value)
+                        # Ensures value is a datetime
+                        value = fields.Datetime.to_datetime(value)
+                        # Get the timestamp converted to the client's timezone.
+                        # This call also add the tzinfo into the datetime
+                        # object
+                        value = fields.Datetime.context_timestamp(rec, value)
+                        value = value.isoformat()
                     res[json_key] = value
             result.append(res)
         return result
