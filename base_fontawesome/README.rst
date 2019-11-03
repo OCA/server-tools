@@ -1,6 +1,6 @@
 .. image:: https://img.shields.io/badge/licence-agpl--3-blue.svg
    :target: http://www.gnu.org/licenses/AGPL-3.0-standalone.html
-   :alt: License: AGPL-3
+   :alt: License: LGPL-3
 
 ================
 Base Fontawesome
