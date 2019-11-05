@@ -20,7 +20,7 @@
 ##############################################################################
 from odoo.tests import common
 import zipfile
-import StringIO
+import io
 
 
 class TestPrototypeModuleExport(common.TransactionCase):
@@ -70,4 +70,4 @@ class TestPrototypeModuleExport(common.TransactionCase):
         self.assertIsInstance(ret, tuple)
         self.assertIsInstance(ret.zip_file, zipfile.ZipFile)
 
-        self.assertIsInstance(ret.stringIO, StringIO.StringIO)
+        self.assertIsInstance(ret.BytesIO, io.BytesIO)
