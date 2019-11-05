@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<odoo>
+    <!-- TODO: put here a reminder on what to do at the first edition -->
+    {% for view in views %}
+    <record id="{{ unprefix(view.name)|replace('.', '_')}}_view" model="ir.ui.view">
+        <field name="name">{{ unprefix(view.name) }}.view</field>
+        <field name="model">{{ unprefix(view.model) }}</field>
+        <field name="view_type">{{ view.type }}</field>
+        <field name="inherit_id" ref="{{ view.inherit_id.get_xml_id().values()[0] }}"/>
+        <field name="arch" type="xml">
+          {{ fixup_arch(view.arch) }}
+        </field>
+    </record>
+    {% endfor %}
+</odoo>

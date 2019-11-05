@@ -66,8 +66,8 @@ class TestModulePrototyper(common.TransactionCase):
         # namedtuples in tuple
         for file_details in details:
             self.assertIsInstance(file_details, tuple)
-            self.assertIsInstance(file_details.filename, basestring)
-            self.assertIsInstance(file_details.filecontent, basestring)
+            self.assertIsInstance(file_details.filename, str)
+            self.assertIsInstance(file_details.filecontent, str)
 
             name, contents = file_details
             if name.endswith(".py"):

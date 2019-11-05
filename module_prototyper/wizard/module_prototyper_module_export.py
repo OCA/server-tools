@@ -19,10 +19,10 @@
 #
 ##############################################################################
 
-import StringIO
 import base64
 import os
 import zipfile
+from io import BytesIO, StringIO
 from collections import namedtuple
 
 from odoo import fields, models, api
@@ -53,7 +53,7 @@ class PrototypeModuleExport(models.TransientModel):
         Export a zip file containing the module based on the information
         provided in the prototype, using the templates chosen in the wizard.
         """
-        if isinstance(ids, (int, long)):
+        if isinstance(ids, int):
             ids = [ids]
         wizard = self.browse(ids)
 
@@ -79,7 +79,7 @@ class PrototypeModuleExport(models.TransientModel):
             {
                 "name": "%s.zip" % (zip_name,),
                 "state": "get",
-                "data": base64.encodestring(zip_details.stringIO.getvalue()),
+                "data": base64.encodestring(zip_details.BytesIO.getvalue()),
             }
         )
 
@@ -99,8 +99,8 @@ class PrototypeModuleExport(models.TransientModel):
         :param file_details: tuple (filename, file_content)
         :return: tuple (zip_file, stringIO)
         """
-        zip_details = namedtuple("Zip_details", ["zip_file", "stringIO"])
-        out = StringIO.StringIO()
+        zip_details = namedtuple("Zip_details", ["zip_file", "BytesIO"])
+        out = BytesIO()
 
         with zipfile.ZipFile(out, "w") as target:
             for prototype in prototypes:
@@ -115,7 +115,7 @@ class PrototypeModuleExport(models.TransientModel):
                 # ready to be saved by the user.
                 file_details = prototype.generate_files()
                 for filename, file_content in file_details:
-                    if isinstance(file_content, unicode):
+                    if isinstance(file_content, str):
                         file_content = file_content.encode("utf-8")
                     # Prefix all names with module technical name
                     filename = os.path.join(prototype.name, filename)
@@ -124,4 +124,4 @@ class PrototypeModuleExport(models.TransientModel):
                     info.external_attr = 2175008768  # specifies mode 0644
                     target.writestr(info, file_content)
 
-            return zip_details(zip_file=target, stringIO=out)
+            return zip_details(zip_file=target, BytesIO=out)

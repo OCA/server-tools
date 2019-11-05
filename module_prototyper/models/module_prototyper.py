@@ -242,28 +242,6 @@ class ModulePrototyper(models.Model):
             "want to export in this module."
         ),
     )
-    activity_ids = fields.Many2many(
-        "workflow.activity",
-        "prototype_wf_activity_rel",
-        "module_prototyper_id",
-        "activity_id",
-        "Activities",
-        help=(
-            "Enter the list of workflow activities that you have created "
-            "and want to export in this module"
-        ),
-    )
-    transition_ids = fields.Many2many(
-        "workflow.transition",
-        "prototype_wf_transition_rel",
-        "module_prototyper_id",
-        "transition_id",
-        "Transitions",
-        help=(
-            "Enter the list of workflow transitions that you have created "
-            "and want to export in this module"
-        ),
-    )
 
     _env = None
     _api_version = None
@@ -398,7 +376,7 @@ class ModulePrototyper(models.Model):
 
         relations = {}
         field_descriptions = self._field_descriptions or {}
-        for field in field_descriptions.itervalues():
+        for field in list(field_descriptions.values()):
             model = field.get("model_id")
             relations.setdefault(model, []).append(field)
             # dependencies.add(model.id)
@@ -408,8 +386,8 @@ class ModulePrototyper(models.Model):
         #     'dependencies': [(6, 0, [id_ for id_ in dependencies])]
         # })
 
-        files.append(self.generate_models_init_details(relations.keys()))
-        for model, custom_fields in relations.iteritems():
+        files.append(self.generate_models_init_details(list(relations.keys())))
+        for model, custom_fields in list(relations.items()):
             files.append(self.generate_model_details(model, custom_fields))
 
         return files
@@ -433,9 +411,10 @@ class ModulePrototyper(models.Model):
             relations.setdefault(view.model, []).append(view)
 
         views_details = []
-        for model, views in relations.iteritems():
+        _logger.debug(relations)
+        for model, views in list(relations.items()):
             filepath = "views/%s_view.xml" % (
-                self.friendly_name(self.unprefix(model)),
+                self.friendly_name(self.unprefix(model)) if model else 'website_templates',
             )
             views_details.append(
                 self.generate_file_details(
@@ -458,7 +437,7 @@ class ModulePrototyper(models.Model):
             relations.setdefault(model, []).append(menu)
 
         menus_details = []
-        for model_name, menus in relations.iteritems():
+        for model_name, menus in list(relations.items()):
             model_name = self.unprefix(model_name)
             filepath = "views/%s_menus.xml" % (self.friendly_name(model_name),)
             menus_details.append(
@@ -506,7 +485,7 @@ class ModulePrototyper(models.Model):
             ("data", data, self._data_files),
             ("demo", demo, self._demo_files),
         ]:
-            for model_name, records in model_data.iteritems():
+            for model_name, records in list(model_data.items()):
                 fname = self.friendly_name(self.unprefix(model_name))
                 filename = "%s/%s.xml" % (prefix, fname)
                 self._data_files.append(filename)
@@ -564,7 +543,7 @@ class ModulePrototyper(models.Model):
                 continue
 
             if isinstance(attrs, dict):
-                for key, val in attrs.iteritems():
+                for key, val in list(attrs.items()):
                     if isinstance(val, (list, tuple)):
                         attrs[key] = cls.fixup_domain(val)
                 elem.attrib["attrs"] = repr(attrs)
@@ -574,7 +553,7 @@ class ModulePrototyper(models.Model):
             if elem.text and not elem.text.strip():
                 elem.text = None
 
-        return lxml.etree.tostring(doc)
+        return lxml.etree.tostring(doc).decode("utf-8")
 
     @api.model
     def generate_file_details(self, filename, template, **kwargs):

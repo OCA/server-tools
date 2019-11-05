@@ -88,12 +88,6 @@
                             <label for="rule_ids"/>
                             <field name="rule_ids"/>
                         </page>
-                        <page string="Workflows">
-                            <label for="activity_ids" />
-                            <field name="activity_ids" />
-                            <label for="transition_ids" />
-                            <field name="transition_ids" />
-                        </page>
                         <page string="Website">
                         </page>
                     </notebook>
