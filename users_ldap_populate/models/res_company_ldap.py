@@ -87,13 +87,19 @@ class ResCompanyLDAP(models.Model):
         self.ensure_one()
         ldap_filter = filter_format(self.ldap_filter % user_name, ())
         conn = self.connect(conf)
+        ldap_binddn = self.ldap_binddn or ''
+        ldap_password = self.ldap_password or ''
         conn.simple_bind_s(
-            self.ldap_binddn or '',
-            self.ldap_password or '')
+            ldap_binddn.encode('utf-8'),
+            ldap_password.encode('utf-8')
+        )
         try:
             results = conn.search_st(
-                self.ldap_base, ldap.SCOPE_SUBTREE,
-                ldap_filter.encode('utf8'), None, timeout=timeout)
+                self.ldap_base.encode('utf8'),
+                ldap.SCOPE_SUBTREE,
+                ldap_filter.encode('utf8'),
+                None, timeout=timeout
+            )
         except Exception:
             _logger.error(_(
                 'Error searching with filter %s'), ldap_filter, exc_info=True)
