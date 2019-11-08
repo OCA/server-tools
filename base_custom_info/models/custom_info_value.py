@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2016 Jairo Llopis <jairo.llopis@tecnativa.com>
 # Copyright 2017 Pedro M. Baeza <pedro.baeza@tecnativa.com>
 # License LGPL-3 - See http://www.gnu.org/licenses/lgpl-3.0.html
@@ -40,6 +39,7 @@ class CustomInfoValue(models.Model):
         related="property_id.sequence", store=True, index=True, readonly=True,
     )
     category_sequence = fields.Integer(
+        string="Category Sequence",
         related="property_id.category_id.sequence", store=True, readonly=True,
     )
     category_id = fields.Many2one(
@@ -75,7 +75,7 @@ class CustomInfoValue(models.Model):
             for record in self.filtered('owner_id'):
                 record.owner_id.check_access_rights(operation)
                 record.owner_id.check_access_rule(operation)
-        return super(CustomInfoValue, self).check_access_rule(operation)
+        return super().check_access_rule(operation)
 
     @api.model
     def _selection_owner_id(self):
@@ -128,8 +128,8 @@ class CustomInfoValue(models.Model):
     def _inverse_value(self):
         """Write the value correctly converted in the typed field."""
         for record in self:
-            if (record.field_type == "id" and
-                    record.value == record.value_id.display_name):
+            if (record.field_type == "id"
+                    and record.value == record.value_id.display_name):
                 # Avoid another search that can return a different value
                 continue
             record[record.field_name] = self._transform_value(
@@ -178,6 +178,8 @@ class CustomInfoValue(models.Model):
         for record in self:
             if not record.value and record.property_id.default_value:
                 record.value = record.property_id.default_value
+            if not record.field_type and record.property_id.field_type:
+                record.field_type = record.property_id.field_type
 
     @api.onchange('value')
     def _onchange_value(self):
@@ -238,4 +240,4 @@ class CustomInfoValue(models.Model):
                 ("field_type", "=", fmt),
                 ("value_" + fmt, operator, _value),
             ]
-        return ["|"] * (len(domain) / 3 - 1) + domain
+        return ["|"] * int(len(domain) / 3 - 1) + domain

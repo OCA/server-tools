@@ -45,7 +45,7 @@
                 <field name="model_id"/>
                 <field name="property_ids"/>
                 <group expand="0" string="Group By">
-                    <filter string="Model" context="{'group_by': 'model_id'}"/>
+                    <filter string="Model" name="model" context="{'group_by': 'model_id'}"/>
                 </group>
             </search>
         </field>
