@@ -3,14 +3,13 @@
 import logging
 from datetime import datetime, timedelta
 
-from odoo import models, fields, api
-
+from odoo import api, fields, models
 
 _logger = logging.getLogger(__name__)
 
 
 class AuditlogAutovacuum(models.TransientModel):
-    _name = 'auditlog.autovacuum'
+    _name = "auditlog.autovacuum"
     _description = "Auditlog - Delete old logs"
 
     @api.model
@@ -24,17 +23,12 @@ class AuditlogAutovacuum(models.TransientModel):
         """
         days = (days > 0) and int(days) or 0
         deadline = datetime.now() - timedelta(days=days)
-        data_models = (
-            'auditlog.log',
-            'auditlog.http.request',
-            'auditlog.http.session',
-        )
+        data_models = ("auditlog.log", "auditlog.http.request", "auditlog.http.session")
         for data_model in data_models:
             records = self.env[data_model].search(
-                [('create_date', '<=', fields.Datetime.to_string(deadline))])
+                [("create_date", "<=", fields.Datetime.to_string(deadline))]
+            )
             nb_records = len(records)
             records.unlink()
-            _logger.info(
-                "AUTOVACUUM - %s '%s' records deleted",
-                nb_records, data_model)
+            _logger.info("AUTOVACUUM - %s '%s' records deleted", nb_records, data_model)
         return True
