@@ -5,7 +5,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import base64
-import urllib
+from urllib.request import urlretrieve
 import os
 import logging
 from odoo import models, fields, api, exceptions, _
@@ -17,6 +17,7 @@ _logger = logging.getLogger(__name__)
 class Image(models.Model):
     _name = "base_multi_image.image"
     _order = "sequence, owner_model, owner_id, id"
+    _description = """ image model for multiple image functionality """
     _sql_constraints = [
         ('uniq_name_owner', 'UNIQUE(owner_id, owner_model, name)',
          _('A document can have only one image with the same name.')),
@@ -93,7 +94,8 @@ class Image(models.Model):
     def _compute_owner_ref_id(self):
         """Get a reference field based on the split model and id fields."""
         for s in self:
-            s.owner_ref_id = "{0.owner_model},{0.owner_id}".format(s)
+            if s.owner_model:
+                s.owner_ref_id = "{0.owner_model},{0.owner_id}".format(s)
 
     @api.multi
     @api.depends('storage', 'path', 'file_db_store', 'url')
@@ -142,7 +144,7 @@ class Image(models.Model):
         """Allow to download an image and cache it by its URL."""
         if url:
             try:
-                (filename, header) = urllib.urlretrieve(url)
+                (filename, header) = urlretrieve(url)
                 with open(filename, 'rb') as f:
                     return base64.b64encode(f.read())
             except:
@@ -194,24 +196,28 @@ class Image(models.Model):
 
     @api.constrains('storage', 'url')
     def _check_url(self):
-        if self.storage == 'url' and not self.url:
-            raise exceptions.ValidationError(
-                _('You must provide an URL for the image.'))
+        for record in self:
+            if record.storage == 'url' and not record.url:
+                raise exceptions.ValidationError(
+                    _('You must provide an URL for the image.'))
 
     @api.constrains('storage', 'path')
     def _check_path(self):
-        if self.storage == 'file' and not self.path:
-            raise exceptions.ValidationError(
-                _('You must provide a file path for the image.'))
+        for record in self:
+            if record.storage == 'file' and not record.path:
+                raise exceptions.ValidationError(
+                    _('You must provide a file path for the image.'))
 
     @api.constrains('storage', 'file_db_store')
     def _check_store(self):
-        if self.storage == 'db' and not self.file_db_store:
-            raise exceptions.ValidationError(
-                _('You must provide an attached file for the image.'))
+        for record in self:
+            if record.storage == 'db' and not record.file_db_store:
+                raise exceptions.ValidationError(
+                    _('You must provide an attached file for the image.'))
 
     @api.constrains('storage', 'attachment_id')
     def _check_attachment_id(self):
-        if self.storage == 'filestore' and not self.attachment_id:
-            raise exceptions.ValidationError(
-                _('You must provide an attachment for the image.'))
+        for record in self:
+            if record.storage == 'filestore' and not record.attachment_id:
+                raise exceptions.ValidationError(
+                    _('You must provide an attachment for the image.'))
