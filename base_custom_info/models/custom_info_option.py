@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2016 Jairo Llopis <jairo.llopis@tecnativa.com>
 # Copyright 2017 Pedro M. Baeza <pedro.baeza@tecnativa.com>
 # License LGPL-3 - See http://www.gnu.org/licenses/lgpl-3.0.html
@@ -33,13 +32,14 @@ class CustomInfoOption(models.Model):
     @api.multi
     def check_access_rule(self, operation):
         """You access an option if you access at least one property."""
-        last = None
+        last_error = None
         for prop in self.mapped("property_ids"):
             try:
                 prop.check_access_rule(operation)
                 return
-            except Exception as last:
+            except Exception as err:
+                last_error = err
                 pass
-        if last:
-            raise last
-        return super(CustomInfoOption, self).check_access_rule(operation)
+        if last_error:
+            raise last_error
+        return super().check_access_rule(operation)
