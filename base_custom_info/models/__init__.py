@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2015 Antiun Ingeniería S.L. - Sergio Teruel
 # Copyright 2015 Antiun Ingeniería S.L. - Carlos Dauden
 # Copyright 2016 Jairo Llopis <jairo.llopis@tecnativa.com>

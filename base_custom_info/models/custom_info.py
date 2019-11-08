@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2015 Sergio Teruel <sergio.teruel@tecnativa.com>
 # Copyright 2015 Carlos Dauden <carlos.dauden@tecnativa.com>
 # Copyright 2016 Jairo Llopis <jairo.llopis@tecnativa.com>
@@ -41,7 +40,7 @@ class CustomInfo(models.AbstractModel):
                 field_onchange.setdefault(
                     u"{}.{}".format(x2many_field, subfield), u"",
                 )
-        return super(CustomInfo, self).onchange(
+        return super().onchange(
             values, field_name, field_onchange,
         )
 
@@ -75,7 +74,7 @@ class CustomInfo(models.AbstractModel):
         automatically.
         """
         info_values = self.mapped('custom_info_ids')
-        res = super(CustomInfo, self).unlink()
+        res = super().unlink()
         if res:
             info_values.unlink()
         return res
