@@ -8,7 +8,7 @@
         <field name="model">custom.info.value</field>
         <field name="arch" type="xml">
             <tree string="Custom Property Values" create="0" delete="0">
-                <field name="owner_id" invisible="context.get('embed')"/>
+                <field name="owner_id" />
                 <field name="property_id"/>
                 <field name="category_id"/>
                 <field name="required" invisible="1"/>
@@ -28,6 +28,7 @@
             <tree position="attributes">
                 <attribute name="editable">bottom</attribute>
             </tree>
+            <field name="owner_id" position="replace" />
             <field name="value" position="after">
                 <field name="field_type" invisible="1"/>
                 <field name="value_id"
@@ -68,7 +69,7 @@
                                attrs="{'invisible': [('field_type', '!=', 'id')], 'required': [('required', '=', True), ('field_type', '=', 'id')]}"
                         />
                     </group>
-                    <div class="alert alert-warning" invisible="not context.get('embed')">
+                    <div class="alert alert-warning" role="alert" invisible="not context.get('embed')">
                         <strong>Warning!</strong>
                         You might see no changes in parent form until you save it.
                     </div>
@@ -89,12 +90,15 @@
                 <group expand="0" string="Group By">
                     <filter
                         string="Owner"
+                        name="owner"
                         context="{'group_by': ['model' , 'res_id']}"/>
                     <filter
                         string="Category"
+                        name="category"
                         context="{'group_by': 'category_id'}"/>
                     <filter
                         string="Property"
+                        name="property"
                         context="{'group_by': 'property_id'}"/>
                 </group>
             </search>

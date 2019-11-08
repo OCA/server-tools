@@ -50,7 +50,7 @@
                         />
                     </group>
                     <group name="Options" col="1" attrs="{'invisible': [('field_type', '!=', 'id')]}">
-                        <label string="Select one of the existing options or create a new one clicking on 'Add an item'"/>
+                        <label for="option_ids" string="Select one of the existing options or create a new one clicking on 'Add an item'"/>
                         <field name="option_ids"
                                nolabel="1"
                                context="{'form_view_ref': 'base_custom_info.custom_info_option_form', 'tree_view_ref': 'base_custom_info.custom_info_option_tree'}"
@@ -85,9 +85,11 @@
                 <group expand="0" string="Group By">
                     <filter
                         string="Template"
+                        name="template"
                         context="{'group_by': 'template_id'}"/>
                     <filter
                         string="Category"
+                        name="category"
                         context="{'group_by': 'category_id'}"/>
                 </group>
             </search>

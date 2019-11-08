@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2016 Jairo Llopis <jairo.llopis@tecnativa.com>
 # Copyright 2017 Pedro M. Baeza <pedro.baeza@tecnativa.com>
 # License LGPL-3 - See http://www.gnu.org/licenses/lgpl-3.0.html
@@ -25,6 +24,7 @@ class CustomInfoProperty(models.Model):
         string="Category",
     )
     category_sequence = fields.Integer(
+        string="Category Sequence",
         related="category_id.sequence",
         store=True,
         readonly=True,
@@ -81,7 +81,7 @@ class CustomInfoProperty(models.Model):
     def check_access_rule(self, operation):
         """You access a property if you access its template."""
         self.mapped("template_id").check_access_rule(operation)
-        return super(CustomInfoProperty, self).check_access_rule(operation)
+        return super().check_access_rule(operation)
 
     @api.constrains("default_value", "field_type")
     def _check_default_value(self):

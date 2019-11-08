@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2016 Jairo Llopis <jairo.llopis@tecnativa.com>
 # Copyright 2017 Pedro M. Baeza <pedro.baeza@tecnativa.com>
 # License LGPL-3 - See http://www.gnu.org/licenses/lgpl-3.0.html
@@ -73,10 +72,10 @@ class CustomInfoTemplate(models.Model):
             model = self.env[record.model_id.model or record.model]
             model.check_access_rights(operation)
             model.check_access_rule(operation)
-        return super(CustomInfoTemplate, self).check_access_rule(operation)
+        return super().check_access_rule(operation)
 
     @api.multi
     def write(self, vals):
         if 'model_id' in vals:
             self._check_model_update_allowed(vals['model_id'])
-        return super(CustomInfoTemplate, self).write(vals)
+        return super().write(vals)
