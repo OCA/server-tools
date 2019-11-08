@@ -58,8 +58,8 @@ To develop a module based on this one:
 
 * If the model you are extending already had an image field, and you want to
   trick Odoo to make those images to multi-image mode, you will need to make
-  use of the provided :meth:`~.hooks.pre_init_hook_for_submodules` and
-  :meth:`~.hooks.uninstall_hook_for_submodules`, like the
+  use of the provided `~.hooks.pre_init_hook_for_submodules` and
+  `~.hooks.uninstall_hook_for_submodules`, like the
   ``product_multi_image`` module does::
 
     try:
