@@ -198,12 +198,16 @@ class AbstractUrl(models.AbstractModel):
     @api.model
     def create(self, value):
         res = super(AbstractUrl, self).create(value)
+        # without this flush we have cases where the url_key is not stored
+        self.flush()
         synced = res._sync_urls()
         super(AbstractUrl, synced).write({"is_urls_sync_required": False})
         return res
 
     def write(self, value):
         res = super(AbstractUrl, self).write(value)
+        # without this flush we have cases where the url_key is not stored
+        self.flush()
         synced = self._sync_urls()
         super(AbstractUrl, synced).write({"is_urls_sync_required": False})
         return res
@@ -215,4 +219,5 @@ class AbstractUrl(models.AbstractModel):
                 [("model_id", "=", get_model_ref(record))]
             )
             urls.unlink()
+        self.flush()
         return super(AbstractUrl, self).unlink()
