@@ -11,7 +11,7 @@ def convert_to_cache(self, value, record, validate=True):
     # cache format: dict / list
     if value is False or value is None:
         value = {}
-    return value if isinstance(value, (dict, list)) else json.loads(value)
+    return json.dumps(value) if isinstance(value, (dict, list)) else (value or None)
 
 
 fields.Serialized.convert_to_cache = convert_to_cache
