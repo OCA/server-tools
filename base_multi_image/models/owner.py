@@ -9,6 +9,7 @@ from odoo import _, api, fields, models, tools
 
 class Owner(models.AbstractModel):
     _name = "base_multi_image.owner"
+    _description = """ Wizard for base multi image """
 
     image_ids = fields.One2many(
         comodel_name='base_multi_image.image',

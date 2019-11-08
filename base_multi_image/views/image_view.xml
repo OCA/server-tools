@@ -91,6 +91,7 @@
     <field name="model">base_multi_image.image</field>
     <field name="arch" type="xml">
         <kanban string="Product Images">
+            <field name="id"/>
             <field name="name"/>
             <field name="storage"/>
             <field name="sequence"/>
@@ -102,12 +103,13 @@
                            style="position: absolute; right: 0; padding: 4px; diplay: inline-block">X</a>
                         <div class="oe_module_vignette">
                             <a type="open">
-                                <img
-                                    t-att-src="kanban_image(
-                                        'base_multi_image.image',
-                                        'image_small',
-                                        record.id.value)"
-                                    class="oe_kanban_image"/>
+                              <img
+                                  t-att-alt="record.name"
+                                  t-att-src="kanban_image(
+                                      'base_multi_image.image',
+                                      'image_small',
+                                      record.id.value)"
+                                  class="oe_kanban_image"/>
                             </a>
                             <div class="oe_module_desc">
                                 <div class="oe_kanban_box_content oe_kanban_color_bglight oe_kanban_color_border">
