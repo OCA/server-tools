@@ -1,7 +1,7 @@
 {
     "name": "Base Sparse Field List Support",
     "summary": "add list support to convert_to_cache()",
-    "version": "13.0.1.0.0",
+    "version": "13.0.1.0.1",
     "category": "Technical Settings",
     "website": "www.akretion.com",
     "author": "Akretion",
