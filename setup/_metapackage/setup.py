@@ -18,6 +18,7 @@ setuptools.setup(
         'odoo12-addon-base_kanban_stage',
         'odoo12-addon-base_search_fuzzy',
         'odoo12-addon-base_technical_user',
+        'odoo12-addon-company_country',
         'odoo12-addon-database_cleanup',
         'odoo12-addon-datetime_formatter',
         'odoo12-addon-dbfilter_from_header',
