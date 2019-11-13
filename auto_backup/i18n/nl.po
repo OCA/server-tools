@@ -57,7 +57,6 @@ msgstr "Backup mislukt"
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__backup_format
 #, fuzzy
-#| msgid "Backup Failed"
 msgid "Backup Format"
 msgstr "Backup mislukt"
 
@@ -95,7 +94,6 @@ msgstr "Kan een configuratie niet dupliceren."
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__backup_format
 #, fuzzy
-#| msgid "Choose the storage method for this backup."
 msgid "Choose the format for this backup."
 msgstr "Kies een opslag methode voor deze backup."
 
