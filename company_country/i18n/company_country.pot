@@ -1,0 +1,67 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* company_country
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: company_country
+#: model:ir.model,name:company_country.model_company_country_config_settings
+msgid "Company Country Configuration Settings"
+msgstr ""
+
+#. module: company_country
+#: code:addons/company_country/models/res_config.py:34
+#, python-format
+msgid "Country code %s not found. Use ISO 3166 codes 2 letters"
+msgstr ""
+
+#. module: company_country
+#: model:ir.model.fields,field_description:company_country.field_company_country_config_settings__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: company_country
+#: model:ir.model.fields,field_description:company_country.field_company_country_config_settings__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: company_country
+#: model:ir.model.fields,field_description:company_country.field_company_country_config_settings__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: company_country
+#: code:addons/company_country/models/res_config.py:26
+#, python-format
+msgid "Error COUNTRY environment variable with country code not defined and no localization found in pool."
+msgstr ""
+
+#. module: company_country
+#: model:ir.model.fields,field_description:company_country.field_company_country_config_settings__id
+msgid "ID"
+msgstr ""
+
+#. module: company_country
+#: model:ir.model.fields,field_description:company_country.field_company_country_config_settings____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: company_country
+#: model:ir.model.fields,field_description:company_country.field_company_country_config_settings__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: company_country
+#: model:ir.model.fields,field_description:company_country.field_company_country_config_settings__write_date
+msgid "Last Updated on"
+msgstr ""
+
