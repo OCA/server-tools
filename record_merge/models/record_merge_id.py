@@ -577,7 +577,8 @@ class RecordMergeRelationField(models.Model):
             self.env['record.merge.criteria'].create({
                 'name': _('Automatic criteria from %s') % (self.merge_id.model_id.model,),
                 'model_id': self.env['ir.model'].search([('model', '=', self.field_id.relation)], limit=1).id,
-                'domain': "[['project_id', 'in', %s]]" % (
+                'domain': "[['%s', 'in', %s]]" % (
+                    self.field_id.relation_field,
                     tuple(self.merge_id.id_line_ids.mapped('record_id')),
                 ),
                 'key': 'TODO',
