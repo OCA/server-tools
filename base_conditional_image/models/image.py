@@ -13,7 +13,7 @@ class Image(models.Model):
     selector = fields.Text(
         'Selector',
         help='Python expression used as selector when multiple images are used'
-             'for the same object. The variable `object` refer '
+             'for the same object. The variable `object` refers '
              'to the actual record on which the expression will be executed. '
              'An empty expression will always return `True`.'
     )
@@ -22,7 +22,7 @@ class Image(models.Model):
         help='Company related check. If inherited object does not have a '
              '`company_id` field, it will be ignored. '
              'The check will first take the records with a company then, '
-             'if not match is found, the ones without a company.'
+             'if no match is found, the ones without a company.'
     )
 
     # image: all image fields are base64 encoded and PIL-supported
