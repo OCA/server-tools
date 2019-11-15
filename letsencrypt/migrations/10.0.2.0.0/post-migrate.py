@@ -5,21 +5,28 @@ from odoo import api, SUPERUSER_ID
 
 
 def migrate_altnames(env):
-    ir_config_parameter = env['ir.config_parameter']
-    new_domains = ','.join(ir_config_parameter.search([
-        ('key', '=like', 'letsencrypt.altname.%')]).mapped('value'))
-    ir_config_parameter.set_param('letsencrypt_altnames', new_domains)
-    ir_config_parameter.search([
-        ('key', '=like', 'letsencrypt.altname.%')]).unlink()
+    config = env["ir.config_parameter"]
+    existing = config.search([("key", "=like", "letsencrypt.altname.%")])
+    new_domains = "\n".join(existing.mapped("value"))
+    config.set_param("letsencrypt.altnames", new_domains)
+    existing.unlink()
 
 
 def migrate_cron(env):
-    ir_cron = env['ir.cron']
-    old_cron = ir_cron.search([
-        ('model', '=', 'letsencrypt'),
-        ('function', '=', 'cron')])
-    if old_cron:
-        old_cron.write({'function': '_cron'})
+    # Any interval that was appropriate for the old version is inappropriate
+    # for the new one, so it's ok to clobber it.
+    # But tweaking it afterwards is fine, so noupdate="1" still makes sense.
+    jobs = (
+        env["ir.cron"]
+        .with_context(active_test=False)
+        .search([("model", "=", "letsencrypt"), ("function", "=", "cron")])
+    )
+    if not jobs:
+        # ir.cron._try_lock doesn't handle empty recordsets well
+        return
+    jobs.write(
+        {"function": "_cron", "interval_type": "days", "interval_number": "1"}
+    )
 
 
 def migrate(cr, version):

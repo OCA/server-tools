@@ -12,7 +12,7 @@ class Letsencrypt(http.Controller):
     @http.route('/.well-known/acme-challenge/<filename>', auth='none')
     def acme_challenge(self, filename):
         try:
-            with file(os.path.join(_get_challenge_dir(), filename)) as key:
+            with open(os.path.join(_get_challenge_dir(), filename)) as key:
                 return key.read()
         except IOError:
             pass

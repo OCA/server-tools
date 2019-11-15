@@ -17,7 +17,7 @@
             id="letsencrypt_backoff"
             model="ir.config_parameter"
             forcecreate="True">
-            <field name="key">letsencrypt_backoff</field>
+            <field name="key">letsencrypt.backoff</field>
             <field name="value">3</field>
             <field
                 name="group_ids"
