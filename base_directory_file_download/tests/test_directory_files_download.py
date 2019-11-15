@@ -5,42 +5,48 @@ import base64
 import os
 from tempfile import gettempdir
 
-from odoo.tests import common
 from odoo.exceptions import UserError
+from odoo.tests import common
 
 
 class TestBaseDirectoryFilesDownload(common.TransactionCase):
-
     def test_01_create(self):
-        test_dir = self.env['ir.filesystem.directory'].create({
-            'name': 'Test Directory 1',
-            'directory': gettempdir()
-        })
+        test_dir = self.env["ir.filesystem.directory"].create(
+            {"name": "Test Directory 1", "directory": gettempdir()}
+        )
 
         # test method get_dir()
         full_dir = test_dir.get_dir()
-        self.assertEqual(full_dir[-1], '/')
+        self.assertEqual(full_dir[-1], "/")
+
+        # create a temporary file
+        writepath = "/tmp/tmptjujjt"
+
+        mode = "a" if os.path.exists(writepath) else "w"
+        with open(writepath, mode) as f:
+            f.write("Hello, world!\n")
 
         # test computed field file_ids
-        self.assertGreaterEqual(len(test_dir.file_ids), 0)
+        test_dir._compute_file_ids()
+        self.assertGreater(len(test_dir.file_ids), 0)
 
-        # test count list of directory
+        # test count list of files
         self.assertEqual(len(test_dir.file_ids), test_dir.file_count)
 
-        # test reload list of directory
+        # test reload list of files
         test_dir.reload()
         self.assertEqual(len(test_dir.file_ids), test_dir.file_count)
 
-        # test content of files
+        # test content of directory
         for file in test_dir.file_ids:
             filename = file.stored_filename
             directory = test_dir.get_dir()
-            with open(os.path.join(directory, filename), 'rb') as f:
+            with open(os.path.join(directory, filename), "rb") as f:
                 content = base64.b64encode(f.read())
                 self.assertEqual(file.file_content, content)
 
         # test onchange directory (to not existing)
-        test_dir.directory = '/txxx'
+        test_dir.directory = "/txxx"
         with self.assertRaises(UserError):
             test_dir.onchange_directory()
         self.assertEqual(len(test_dir.file_ids), 0)
@@ -49,22 +55,20 @@ class TestBaseDirectoryFilesDownload(common.TransactionCase):
         self.assertEqual(len(test_dir.file_ids), 0)
 
     def test_02_copy(self):
-        test_dir = self.env['ir.filesystem.directory'].create({
-            'name': 'Test Orig',
-            'directory': gettempdir()
-        })
+        test_dir = self.env["ir.filesystem.directory"].create(
+            {"name": "Test Orig", "directory": gettempdir()}
+        )
 
         # test copy
         dir_copy = test_dir.copy()
-        self.assertEqual(dir_copy.name, 'Test Orig (copy)')
+        self.assertEqual(dir_copy.name, "Test Orig (copy)")
         self.assertEqual(len(dir_copy.file_ids), test_dir.file_count)
         self.assertEqual(dir_copy.file_count, test_dir.file_count)
 
     def test_03_not_existing_directory(self):
-        test_dir = self.env['ir.filesystem.directory'].create({
-            'name': 'Test Not Existing Directory',
-            'directory': '/tpd'
-        })
+        test_dir = self.env["ir.filesystem.directory"].create(
+            {"name": "Test Not Existing Directory", "directory": "/tpd"}
+        )
         self.assertEqual(len(test_dir.file_ids), 0)
         self.assertEqual(len(test_dir.file_ids), test_dir.file_count)
 

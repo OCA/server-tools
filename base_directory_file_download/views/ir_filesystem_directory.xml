@@ -60,7 +60,6 @@
     <record id="ir_filesystem_directory_action" model="ir.actions.act_window">
         <field name="name">Directory Content</field>
         <field name="res_model">ir.filesystem.directory</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
 
