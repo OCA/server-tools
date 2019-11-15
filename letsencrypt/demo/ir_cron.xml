@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<openerp>
-    <data>
-        <record id="cronjob" model="ir.cron">
-            <field name="active" eval="False" />
-        </record>
-    </data>
-</openerp>
+<odoo>
+    <record id="cronjob" model="ir.cron">
+        <field name="active" eval="False" />
+    </record>
+</odoo>
