@@ -1,7 +1,7 @@
 # © 2016 Therp BV <http://therp.nl>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
-    "name": "Let's encrypt",
+    "name": "Let's Encrypt",
     "version": "11.0.2.0.0",
     "author": "Therp BV,"
               "Tecnativa,"
@@ -16,8 +16,10 @@
     "data": [
         "data/ir_config_parameter.xml",
         "data/ir_cron.xml",
-        "demo/ir_cron.xml",
         "views/base_config_settings.xml",
+    ],
+    "demo": [
+        "demo/ir_cron.xml",
     ],
     "post_init_hook": "post_init_hook",
     "installable": True,
@@ -25,9 +27,8 @@
         "python": [
             "acme",
             "cryptography",
+            "dns",
             "josepy",
-            "IPy",
-            "OpenSSL",
         ],
     },
 }
