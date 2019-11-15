@@ -2,50 +2,77 @@
 # © 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
 # © 2018 Ignacio Ibeas <ignacio@acysos.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-from datetime import datetime, timedelta
-from os.path import join, isdir, isfile
-from os import makedirs
-from odoo import _, api, models, exceptions
-from odoo.tools import config
-import logging
-import urllib.parse
-import subprocess
-import requests
+
 import base64
+import collections
+import logging
 import os
 import re
+import subprocess
+import time
+import urlparse
+
+from datetime import datetime, timedelta
+
+import requests
+
+from odoo import _, api, models
+from odoo.exceptions import UserError
+from odoo.tools import config
 
 _logger = logging.getLogger(__name__)
-
 try:
+    import acme.challenges
+    import acme.client
+    import acme.crypto_util
+    import acme.errors
+    import acme.messages
+
+    from cryptography import x509
     from cryptography.hazmat.backends import default_backend
-    import josepy as jose
+    from cryptography.hazmat.primitives import serialization
     from cryptography.hazmat.primitives.asymmetric import rsa
-    from cryptography.hazmat.primitives import serialization, hashes
-    from acme import client, crypto_util, errors
-    from acme.messages import Registration, NewRegistration, \
-        RegistrationResource
-    from acme import challenges
-    import IPy
+
+    import dns.resolver
+
+    import josepy
 except ImportError as e:
     _logger.debug(e)
-
 
 WILDCARD = '*.'  # as defined in the spec
 DEFAULT_KEY_LENGTH = 4096
 TYPE_CHALLENGE_HTTP = 'http-01'
 TYPE_CHALLENGE_DNS = 'dns-01'
-V2_STAGING_DIRECTORY_URL = \
+V2_STAGING_DIRECTORY_URL = (
     'https://acme-staging-v02.api.letsencrypt.org/directory'
+)
 V2_DIRECTORY_URL = 'https://acme-v02.api.letsencrypt.org/directory'
+LOCAL_DOMAINS = {
+    'localhost',
+    'localhost.localdomain',
+    'localhost6',
+    'localhost6.localdomain6',
+    'ip6-localhost',
+    'ip6-loopback',
+}
+
+DNSUpdate = collections.namedtuple(
+    "DNSUpdate", ("challenge", "domain", "token")
+)
 
 
 def _get_data_dir():
-    return join(config.options.get('data_dir'), 'letsencrypt')
+    dir_ = os.path.join(config.options.get('data_dir'), 'letsencrypt')
+    if not os.path.isdir(dir_):
+        os.makedirs(dir_)
+    return dir_
 
 
 def _get_challenge_dir():
-    return join(_get_data_dir(), 'acme-challenge')
+    dir_ = os.path.join(_get_data_dir(), 'acme-challenge')
+    if not os.path.isdir(dir_):
+        os.makedirs(dir_)
+    return dir_
 
 
 class Letsencrypt(models.AbstractModel):
@@ -53,208 +80,399 @@ class Letsencrypt(models.AbstractModel):
     _description = 'Abstract model providing functions for letsencrypt'
 
     @api.model
-    def _generate_key(self, key_name):
-        _logger.info('Generating key ' + str(key_name))
-        data_dir = _get_data_dir()
-        if not isdir(data_dir):
-            makedirs(data_dir)
-        key_file = join(data_dir, key_name)
-        if not isfile(key_file):
-            _logger.info('Generating a new key')
-            key_json = jose.JWKRSA(key=jose.ComparableRSAKey(
-                rsa.generate_private_key(
-                    public_exponent=65537,
-                    key_size=DEFAULT_KEY_LENGTH,
-                    backend=default_backend())))
-            key = key_json.key.private_bytes(
-                serialization.Encoding.PEM,
-                serialization.PrivateFormat.PKCS8,
-                serialization.NoEncryption())
-            with open(key_file, 'wb') as _file:
-                _file.write(key)
-        return key_file
+    def _generate_key(self):
+        """Generate an entirely new key."""
+        return rsa.generate_private_key(
+            public_exponent=65537,
+            key_size=DEFAULT_KEY_LENGTH,
+            backend=default_backend(),
+        ).private_bytes(
+            encoding=serialization.Encoding.PEM,
+            format=serialization.PrivateFormat.PKCS8,
+            encryption_algorithm=serialization.NoEncryption(),
+        )
+
+    @api.model
+    def _get_key(self, key_name):
+        """Get a key for a filename, generating if if it doesn't exist."""
+        key_file = os.path.join(_get_data_dir(), key_name)
+        if not os.path.isfile(key_file):
+            _logger.info("Generating new key %s", key_name)
+            key_bytes = self._generate_key()
+            try:
+                with open(key_file, 'wb') as file_:
+                    os.fchmod(file_.fileno(), 0o600)
+                    file_.write(key_bytes)
+            except BaseException:
+                # An incomplete file would block generation of a new one
+                if os.path.isfile(key_file):
+                    os.remove(key_file)
+                raise
+        else:
+            _logger.info("Getting existing key %s", key_name)
+            with open(key_file, 'rb') as file_:
+                key_bytes = file_.read()
+        return key_bytes
 
     @api.model
     def _validate_domain(self, domain):
-        local_domains = [
-            'localhost', 'localhost.localdomain', 'localhost6',
-            'localhost6.localdomain6'
-        ]
+        """Validate that a domain is publicly accessible."""
+        if ':' in domain or all(
+            char.isdigit() or char == '.' for char in domain
+        ):
+            raise UserError(
+                _("Domain %s: Let's Encrypt doesn't support IP addresses!")
+                % domain
+            )
 
-        def _ip_is_private(address):
-            try:
-                ip = IPy.IP(address)
-            except ValueError:
-                return False
-            return ip.iptype() == 'PRIVATE'
+        if domain in LOCAL_DOMAINS or '.' not in domain:
+            raise UserError(
+                _("Domain %s: Let's encrypt doesn't work with local domains!")
+                % domain
+            )
 
-        if domain in local_domains or _ip_is_private(domain):
-            raise exceptions.Warning(
-                _("Let's encrypt doesn't work with private addresses "
-                    "or local domains!"))
+    @api.model
+    def _should_run(self, cert_file, domains):
+        """Inspect the existing certificate to see if action is necessary."""
+        domains = set(domains)
+
+        if not os.path.isfile(cert_file):
+            _logger.info("No existing certificate found, creating a new one")
+            return True
+
+        with open(cert_file, 'rb') as file_:
+            cert = x509.load_pem_x509_certificate(
+                file_.read(), default_backend()
+            )
+        expiry = cert.not_valid_after
+        remaining = expiry - datetime.now()
+        if remaining < timedelta():
+            _logger.warning(
+                "Certificate expired on %s, which was %d days ago!",
+                expiry,
+                -remaining.days,
+            )
+            _logger.info("Renewing certificate now.")
+            return True
+        if remaining < timedelta(days=30):
+            _logger.info(
+                "Certificate expires on %s, which is in %d days, renewing it",
+                expiry,
+                remaining.days,
+            )
+            return True
+
+        # Should be a single name, but this is how the API works
+        names = {
+            entry.value
+            for entry in cert.subject.get_attributes_for_oid(
+                x509.oid.NameOID.COMMON_NAME
+            )
+        }
+        try:
+            names.update(
+                cert.extensions.get_extension_for_oid(
+                    x509.oid.ExtensionOID.SUBJECT_ALTERNATIVE_NAME
+                ).value.get_values_for_type(x509.DNSName)
+            )
+        except x509.extensions.ExtensionNotFound:
+            pass
+
+        missing = domains - names
+        if missing:
+            _logger.info(
+                "Found new domains %s, requesting new certificate",
+                ', '.join(missing),
+            )
+            return True
+
+        _logger.info(
+            "Certificate expires on %s, which is in %d days, no action needed",
+            expiry,
+            remaining.days,
+        )
+        return False
 
     @api.model
     def _cron(self):
         ir_config_parameter = self.env['ir.config_parameter']
-        domain = urllib.parse.urlparse(
-            self.env['ir.config_parameter'].get_param(
-                'web.base.url', 'localhost')).netloc
-        self._validate_domain(domain)
-        # Generate account key
-        account_key_file = self._generate_key('account.key')
-        account_key = jose.JWKRSA.load(open(account_key_file).read())
-        # Generate domain key
-        domain_key_file = self._generate_key(domain)
+        base_url = ir_config_parameter.get_param('web.base.url', 'localhost')
+        domain = urlparse.urlparse(base_url).hostname
+        cert_file = os.path.join(_get_data_dir(), '%s.crt' % domain)
+
+        domains = self._cascade_domains([domain] + self._get_altnames())
+        for dom in domains:
+            self._validate_domain(dom)
+
+        if not self._should_run(cert_file, domains):
+            return
+
+        account_key = josepy.JWKRSA.load(self._get_key('account.key'))
+        domain_key = self._get_key('%s.key' % domain)
+
         client = self._create_client(account_key)
-        new_reg = NewRegistration(
-            key=account_key.public_key(),
-            terms_of_service_agreed=True)
+        new_reg = acme.messages.NewRegistration(
+            key=account_key.public_key(), terms_of_service_agreed=True
+        )
         try:
             client.new_account(new_reg)
-        except errors.ConflictError as e:
-            reg = Registration(key=account_key.public_key())
-            reg_res = RegistrationResource(
-                body=reg,
-                uri=e.location,
+            _logger.info("Successfully registered.")
+        except acme.errors.ConflictError as err:
+            reg = acme.messages.Registration(key=account_key.public_key())
+            reg_res = acme.messages.RegistrationResource(
+                body=reg, uri=err.location
             )
             client.query_registration(reg_res)
-        csr = self._make_csr(account_key, domain_key_file, domain)
+            _logger.info("Reusing existing account.")
+
+        _logger.info('Making CSR for the following domains: %s', domains)
+        csr = acme.crypto_util.make_csr(
+            private_key_pem=domain_key, domains=domains
+        )
         authzr = client.new_order(csr)
-        auth_responded = False
+
+        # For each requested domain name we receive a list of challenges.
+        # We only have to do one from each list.
+        # HTTP challenges are the easiest, so do one of those if possible.
+        # We can do DNS challenges too. There are other types that we don't
+        # support.
+        pending_responses = []
+
+        prefer_dns = (
+            self.env["ir.config_parameter"].get_param("letsencrypt.prefer_dns")
+            == "True"
+        )
         for authorizations in authzr.authorizations:
-            for challenge in sorted(
-                    authorizations.body.challenges,
-                    key=lambda x: x.chall.typ == TYPE_CHALLENGE_HTTP,
-                    reverse=True):
+            http_challenges = [
+                challenge
+                for challenge in authorizations.body.challenges
+                if challenge.chall.typ == TYPE_CHALLENGE_HTTP
+            ]
+            other_challenges = [
+                challenge
+                for challenge in authorizations.body.challenges
+                if challenge.chall.typ != TYPE_CHALLENGE_HTTP
+            ]
+            if prefer_dns:
+                ordered_challenges = other_challenges + http_challenges
+            else:
+                ordered_challenges = http_challenges + other_challenges
+            for challenge in ordered_challenges:
                 if challenge.chall.typ == TYPE_CHALLENGE_HTTP:
                     self._respond_challenge_http(challenge, account_key)
                     client.answer_challenge(
-                        challenge,
-                        challenges.HTTP01Response())
-                    auth_responded = True
+                        challenge, acme.challenges.HTTP01Response()
+                    )
                     break
                 elif challenge.chall.typ == TYPE_CHALLENGE_DNS:
-                    self._respond_challenge_dns(
-                        challenge,
-                        account_key,
-                        authorizations.body.identifier.value,
+                    domain = authorizations.body.identifier.value
+                    token = challenge.validation(account_key)
+                    self._respond_challenge_dns(domain, token)
+                    # We delay this because we wait for each domain.
+                    # That takes less time if they've all already been changed.
+                    pending_responses.append(
+                        DNSUpdate(
+                            challenge=challenge, domain=domain, token=token
+                        )
                     )
-                    client.answer_challenge(
-                        challenge, challenges.DNSResponse())
-                    auth_responded = True
                     break
-        if not auth_responded:
-            raise exceptions.ValidationError(
-                _('Could not respond to letsencrypt challenges.'))
-        # let them know we are done and they should check
-        deadline = datetime.now() + timedelta(
-            minutes=int(
-                ir_config_parameter.get_param('letsencrypt_backoff', 3)))
-        order_resource = client.poll_and_finalize(authzr, deadline)
-        with open(join(_get_data_dir(), '%s.crt' % domain), 'w') as crt:
-            crt.write(order_resource.fullchain_pem)
-            _logger.info('SUCCESS: Certificate saved :%s', crt.name)
-            reload_cmd = ir_config_parameter.get_param(
-                'letsencrypt.reload_command', False)
-            if reload_cmd:
-                self._call_cmdline(['sh', '-c', reload_cmd])
             else:
-                _logger.warning("No reload command defined.")
+                raise UserError(
+                    _('Could not respond to letsencrypt challenges.')
+                )
 
+        if pending_responses:
+            for update in pending_responses:
+                self._wait_for_record(update.domain, update.token)
+            # 1 minute was not always enough during testing, even once records
+            # were visible locally
+            _logger.info(
+                "All TXT records found, waiting 5 minutes more to make sure."
+            )
+            time.sleep(300)
+            for update in pending_responses:
+                client.answer_challenge(
+                    update.challenge, acme.challenges.DNSResponse()
+                )
+
+        # let them know we are done and they should check
+        backoff = int(ir_config_parameter.get_param('letsencrypt.backoff', 3))
+        deadline = datetime.now() + timedelta(minutes=backoff)
+        try:
+            order_resource = client.poll_and_finalize(authzr, deadline)
+        except acme.errors.ValidationError as error:
+            _logger.error("Let's Encrypt validation failed!")
+            for authz in error.failed_authzrs:
+                for challenge in authz.body.challenges:
+                    _logger.error(str(challenge.error))
+            raise
+
+        with open(cert_file, 'w') as crt:
+            crt.write(order_resource.fullchain_pem)
+        _logger.info('SUCCESS: Certificate saved: %s', cert_file)
+        reload_cmd = ir_config_parameter.get_param(
+            'letsencrypt.reload_command', ''
+        )
+        if reload_cmd.strip():
+            self._call_cmdline(reload_cmd)
+        else:
+            _logger.warning("No reload command defined.")
+
+    @api.model
+    def _wait_for_record(self, domain, token):
+        """Wait until a TXT record for a domain is visible."""
+        if not domain.endswith("."):
+            # Fully qualify domain name, or it may try unsuitable names too
+            domain += "."
+        attempt = 0
+        while True:
+            attempt += 1
+            try:
+                for record in dns.resolver.query(
+                    "_acme-challenge." + domain, "TXT"
+                ):
+                    value = record.to_text()[1:-1]
+                    if value == token:
+                        return
+                    else:
+                        _logger.debug("Found %r instead of %r", value, token)
+            except dns.resolver.NXDOMAIN:
+                _logger.debug("Record for %r does not exist yet", domain)
+            if attempt < 30:
+                _logger.info("Waiting for DNS update.")
+                time.sleep(60)
+            else:
+                _logger.warning(
+                    "Could not find new record after 30 minutes! "
+                    "Giving up and hoping for the best."
+                )
+                return
+
+    @api.model
     def _create_client(self, account_key):
-        net = client.ClientNetwork(account_key)
-        if config['test_enable']:
+        param = self.env['ir.config_parameter']
+        testing_mode = param.get_param('letsencrypt.testing_mode') == 'True'
+        if config['test_enable'] or testing_mode:
             directory_url = V2_STAGING_DIRECTORY_URL
         else:
             directory_url = V2_DIRECTORY_URL
         directory_json = requests.get(directory_url).json()
-        return client.ClientV2(directory_json, net)
+        net = acme.client.ClientNetwork(account_key)
+        return acme.client.ClientV2(directory_json, net)
 
-    def _cascade_domains(self, altnames):
-        """ Given an list of domains containing one or more wildcard domains
-        the following are performed:
-            1)  for every wildcard domain:
-                    a) gets the index of it's wildcard characters
-                    b) if there are non wildcard domain names that are the same
-                    after the index of the current wildcard name remove them.
-            2)  when done, return the modified altnames
+    @api.model
+    def _cascade_domains(self, domains):
+        """Remove domains that are obsoleted by wildcard domains in the list.
+
+        Requesting www.example.com is unnecessary if *.example.com is also
+        requested. example.com isn't obsoleted however, and neither is
+        sub.domain.example.com.
         """
-        for altname in filter(lambda x: WILDCARD in x, altnames):
-            pat = re.compile('^.*' + altname.replace(WILDCARD, '') + '.*$')
-            for _altname in filter(lambda x: WILDCARD not in x, altnames):
-                if pat.search(_altname):
-                    altnames.remove(_altname)
-        return altnames
+        to_remove = set()
+        for domain in domains:
+            if WILDCARD in domain[1:]:
+                raise UserError(
+                    _("A wildcard is only allowed at the start of a domain")
+                )
+            if domain.startswith(WILDCARD):
+                postfix = domain[1:]  # e.g. ".example.com"
+                # This makes it O(n²) but n <= 100 so it's ok
+                for other in domains:
+                    if other.startswith(WILDCARD):
+                        continue
+                    if other.endswith(postfix):
+                        prefix = other[: -len(postfix)]  # e.g. "www"
+                        if '.' not in prefix:
+                            to_remove.add(other)
 
-    def _make_csr(self, account_key, domain_key_file, domain):
-        parameter_model = self.env['ir.config_parameter']
-        altnames = parameter_model.get_param('letsencrypt_altnames')
-        if altnames:
-            altnames = re.split(',|\n| |;', altnames)
-            valid_domains = altnames + [domain]
-            valid_domains = self._cascade_domains(valid_domains)
-        else:
-            valid_domains = [domain]
-        _logger.info(
-            'Making CSR for the following domains: ' + str(valid_domains))
-        return crypto_util.make_csr(
-            open(domain_key_file).read(), valid_domains)
+        return sorted(set(domains) - to_remove)
 
+    @api.model
+    def _get_altnames(self):
+        """Get the configured altnames as a list of strings."""
+        altnames = self.env['ir.config_parameter'].get_param(
+            'letsencrypt.altnames'
+        )
+        if not altnames:
+            return []
+        return re.split('(?:,|\n| |;)+', altnames)
+
+    @api.model
     def _respond_challenge_http(self, challenge, account_key):
         """
         Respond to the HTTP challenge by writing the file to serve.
         """
-        challenge_dir = _get_challenge_dir()
-        if not isdir(challenge_dir):
-            makedirs(challenge_dir)
-        token = base64.urlsafe_b64encode(challenge.token)
-        challenge_file = join(_get_challenge_dir(), '%s' % token.rstrip('='))
-        with open(challenge_file, 'wb') as challenge_file:
-            challenge_file.write(token.rstrip('=') + '.' + jose.b64encode(
-                account_key.thumbprint(hash_function=hashes.SHA256)).decode())
+        token = self._base64_encode(challenge.token)
+        challenge_file = os.path.join(_get_challenge_dir(), token.decode())
+        with open(challenge_file, 'w') as file_:
+            file_.write(challenge.validation(account_key))
 
-    def _respond_challenge_dns(self, challenge, account_key, domain):
+    @api.model
+    def _respond_challenge_dns(self, domain, token):
         """
         Respond to the DNS challenge by creating the DNS record
         on the provider.
         """
-        letsencrypt_dns_function = '_respond_challenge_dns_' + \
-            self.env['ir.config_parameter'].get_param(
-                'letsencrypt_dns_provider')
-        getattr(self, letsencrypt_dns_function)(challenge, account_key, domain)
+        provider = self.env['ir.config_parameter'].get_param(
+            'letsencrypt.dns_provider'
+        )
+        if not provider:
+            raise UserError(
+                _("No DNS provider set, can't request wildcard certificate")
+            )
+        dns_function = getattr(self, "_respond_challenge_dns_" + provider)
+        dns_function(domain.replace("*.", ""), token)
 
     @api.model
-    def _call_cmdline(self, cmdline, env=None, shell=False):
+    def _call_cmdline(self, cmdline, env=None):
+        """Call a shell command."""
         process = subprocess.Popen(
             cmdline,
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             env=env,
-            shell=shell,
+            shell=True,
         )
         stdout, stderr = process.communicate()
+        stdout = stdout.strip()
+        stderr = stderr.strip()
         if process.returncode:
-            raise exceptions.Warning(_(
-                'Error calling %s: %s %s %s' % (
-                    cmdline,
-                    str(process.returncode) + ' '.join(cmdline),
-                    stdout,
-                    stderr,
-                )))
+            if stdout:
+                _logger.warning(stdout)
+            if stderr:
+                _logger.warning(stderr)
+            raise UserError(
+                _('Error calling %s: %d') % (cmdline, process.returncode)
+            )
+        if stdout:
+            _logger.info(stdout)
+        if stderr:
+            _logger.info(stderr)
 
     @api.model
-    def _respond_challenge_dns_shell(self, challenge, account_key, domain):
+    def _respond_challenge_dns_shell(self, domain, token):
+        """Respond to a DNS challenge using an arbitrary shell command."""
         script_str = self.env['ir.config_parameter'].get_param(
-            'letsencrypt_script')
+            'letsencrypt.dns_shell_script'
+        )
         if script_str:
-            env = os.environ
+            env = os.environ.copy()
             env.update(
-                LETSENCRYPT_DNS_CHALLENGE=jose.encode_b64jose(
-                    challenge.chall.token),
                 LETSENCRYPT_DNS_DOMAIN=domain,
+                LETSENCRYPT_DNS_CHALLENGE=token,
             )
-            self.env['letsencrypt']._call_cmdline(
-                script_str,
-                env=env,
-                shell=True,
+            self._call_cmdline(script_str, env=env)
+        else:
+            raise UserError(
+                _("No shell command configured for updating DNS records")
             )
+
+    @api.model
+    def _base64_encode(self, data):
+        """Encode data as a URL-safe base64 string without padding.
+
+        This should be the encoding that Let's Encrypt uses for all base64. See
+        https://github.com/ietf-wg-acme/acme/issues/64#issuecomment-168852757
+        and https://golang.org/pkg/encoding/base64/#RawURLEncoding
+        """
+        return base64.urlsafe_b64encode(data).rstrip(b'=').decode('ascii')
