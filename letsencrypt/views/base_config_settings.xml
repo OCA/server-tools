@@ -1,5 +1,4 @@
 <odoo>
-
     <record id="base_config_settings" model="ir.ui.view">
         <field name="name">Letsencrypt base config settings</field>
         <field name="model">base.config.settings</field>
@@ -7,27 +6,28 @@
         <field name="arch" type="xml">
             <xpath expr="./group[last()]" position="after">
                 <group name="letsencrypt">
-                    <group name="letsencrypt" string="LetsEncrypt">
+                    <group name="letsencrypt" string="Let's Encrypt">
                         <field
-                            name="needs_dns_provider"
+                            name="letsencrypt_needs_dns_provider"
                             readonly="1"
                             invisible="1"/>
                         <field
-                            name="dns_provider"
-                            attrs="{'required': 
-                            [('needs_dns_provider', '=', True)]}" />
+                            name="letsencrypt_dns_provider"
+                            attrs="{'required':
+                            [('letsencrypt_needs_dns_provider', '=', True)]}" />
                         <field
-                            name="script"
+                            name="letsencrypt_dns_shell_script"
                             attrs="{
-                                'required': [('dns_provider', '=', 'shell')],
-                                'invisible': [('dns_provider', '!=', 'shell')],
+                                'required': [('letsencrypt_dns_provider', '=', 'shell')],
+                                'invisible': [('letsencrypt_dns_provider', '!=', 'shell')],
                                 }" />
-                        <field name="altnames" />
-                        <field name="reload_command" />
+                        <field name="letsencrypt_altnames" />
+                        <field name="letsencrypt_reload_command" />
+                        <field name="letsencrypt_testing_mode" />
+                        <field name="letsencrypt_prefer_dns" />
                     </group>
                 </group>
             </xpath>
         </field>
     </record>
-
 </odoo>
