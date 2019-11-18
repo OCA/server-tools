@@ -4,7 +4,7 @@ It helps to create `config.settings` by providing an abstract Class.
 
 This class:
 
-  * creates automatically related fields in 'whatiwant.config.settings'
+  * creates automatically related fields in 'res.config.settings'
     using those defined in 'res.company': it avoids duplicated field definitions.
   * company_id field with default value is created
   * onchange_company_id is defined to update all related fields
