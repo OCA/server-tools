@@ -28,7 +28,7 @@ class AbstractConfigSettings(models.AbstractModel):
     @api.model
     def _setup_base(self):
         cls = type(self)
-        super(AbstractConfigSettings, self)._setup_base()
+        super()._setup_base()
 
         comp_fields = filter(
             lambda f: (f[0].startswith(self._prefix) and
@@ -40,6 +40,7 @@ class AbstractConfigSettings(models.AbstractModel):
         for field_key, field in comp_fields:
             kwargs = field.args.copy()
             kwargs['related'] = 'company_id.' + field_key
+            kwargs['readonly'] = False
             field_key = re.sub('^' + self._prefix, '', field_key)
             self._add_field(field_key, field.new(**kwargs))
         cls._proper_fields = set(cls._fields)
