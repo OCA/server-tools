@@ -25,7 +25,7 @@ Company Country
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
-This module allow set a country to main company in order to use the hook of 
+This module allow set a country to main company in order to use the hook of
 account that install l10n_** based on country of main company.
 
 **Table of contents**
@@ -81,12 +81,10 @@ Contributors
 
 * Moisés López <moylop260@vauxoo.com>
 
-
 Other credits
 ~~~~~~~~~~~~~
 
 Vauxoo
-
 
 Maintainers
 ~~~~~~~~~~~
