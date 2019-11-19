@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo13-addon-base_jsonify',
+        'odoo13-addon-company_country',
     ],
     classifiers=[
         'Programming Language :: Python',
