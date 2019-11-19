@@ -35,6 +35,7 @@ jobs:
 env:
   global:
   - VERSION="13.0" TESTS="0" LINT_CHECK="0" MAKEPOT="0"
+  - COUNTRY="US"
 
 install:
   - git clone --depth=1 https://github.com/OCA/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
