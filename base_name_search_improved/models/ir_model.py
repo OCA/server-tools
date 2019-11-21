@@ -17,7 +17,7 @@ def _get_rec_names(self):
     return rec_name + other_names
 
 
-def _extend_name_results(self, domain, results, limit=100):
+def _extend_name_results(self, domain, results, limit):
     result_count = len(results)
     if not limit:
         limit = 0
