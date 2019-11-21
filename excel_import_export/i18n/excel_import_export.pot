@@ -943,7 +943,7 @@ msgid "Template with CSV Quoting = False, data must not contain the same char as
 msgstr ""
 
 #. module: excel_import_export
-#: code:addons/excel_import_export/models/xlsx_export.py:230
+#: code:addons/excel_import_export/models/xlsx_export.py:228
 #: code:addons/excel_import_export/models/xlsx_import.py:244
 #, python-format
 msgid "Template's model mismatch"
