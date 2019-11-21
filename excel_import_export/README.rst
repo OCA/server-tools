@@ -122,6 +122,11 @@ Known issues / Roadmap
 Changelog
 =========
 
+12.0.1.0.5 (2019-12-19)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* Speed up export when dealing with many rows
+
 12.0.1.0.4 (2019-08-28)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
