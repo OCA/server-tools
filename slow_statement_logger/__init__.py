@@ -7,8 +7,8 @@ import time
 
 import psycopg2
 
-from odoo import sql_db
-from odoo.tools import config
+from openerp import sql_db
+from openerp.tools import config
 
 _logger = logging.getLogger(__name__)
 
@@ -22,9 +22,11 @@ if ENV_VAR in os.environ:
 class SlowStatementLoggingCursor(sql_db.Cursor):
     def execute(self, query, params=None, log_exceptions=None):
         if LOG_MIN_DURATION_STATEMENT >= 0:
-            start = time.perf_counter()
-            res = super().execute(query, params, log_exceptions)
-            duration = (time.perf_counter() - start) * 1000.0
+            start = time.clock()
+            res = super(SlowStatementLoggingCursor, self).execute(
+                query, params, log_exceptions)
+            # ! time.clock() is deprecated since Python 3.3, use perf_counter !
+            duration = (time.clock() - start) * 1000.0
             if duration >= LOG_MIN_DURATION_STATEMENT:
                 # same logging technique as Odoo in sql_log mode
                 encoding = psycopg2.extensions.encodings[self.connection.encoding]
@@ -35,7 +37,8 @@ class SlowStatementLoggingCursor(sql_db.Cursor):
                 )
             return res
         else:
-            return super().execute(query, params, log_exceptions)
+            return super(SlowStatementLoggingCursor, self).execute(
+                query, params, log_exceptions)
 
 
 sql_db.Cursor = SlowStatementLoggingCursor
