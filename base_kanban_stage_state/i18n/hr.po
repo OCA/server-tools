@@ -26,6 +26,6 @@ msgid "Kanban Stage"
 msgstr "Kanban status"
 
 #. module: base_kanban_stage_state
-#: model:ir.model.fields,field_description:base_kanban_stage_state.field_base_kanban_stage_state
+#: model:ir.model.fields,field_description:base_kanban_stage_state.field_base_kanban_stage__state
 msgid "State"
 msgstr "Status"
