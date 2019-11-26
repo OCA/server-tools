@@ -28,7 +28,7 @@ class SlowStatementLoggingCursor(sql_db.Cursor):
             if duration >= LOG_MIN_DURATION_STATEMENT:
                 # same logging technique as Odoo in sql_log mode
                 encoding = psycopg2.extensions.encodings[self.connection.encoding]
-                _logger.warning(
+                _logger.debug(
                     "duration: %.3f ms  statement: %s",
                     duration,
                     self._obj.mogrify(query, params).decode(encoding, "replace"),
