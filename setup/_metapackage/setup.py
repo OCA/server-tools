@@ -16,6 +16,7 @@ setuptools.setup(
         'odoo12-addon-base_fontawesome',
         'odoo12-addon-base_jsonify',
         'odoo12-addon-base_kanban_stage',
+        'odoo12-addon-base_kanban_stage_state',
         'odoo12-addon-base_search_fuzzy',
         'odoo12-addon-base_technical_user',
         'odoo12-addon-company_country',
