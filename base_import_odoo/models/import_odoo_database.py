@@ -151,7 +151,8 @@ class ImportOdooDatabase(models.Model):
                     to_delete, field_context(None, None, None),
                 )
                 try:
-                    self._run_import_model(context)
+                    with self.env.norecompute():
+                        self._run_import_model(context)
                 except:  # noqa: E722
                     # pragma: no cover
                     error = traceback.format_exc()
@@ -163,6 +164,8 @@ class ImportOdooDatabase(models.Model):
                     self.env.cr.commit()
                     raise
                 done[model._name] += len(ids)
+                # this write will trigger a recomputation of imported records
+                self.env.invalidate_all()
                 self.write({'status_data': dict(self.status_data, done=done)})
 
                 if commit and not tools.config['test_enable']:
@@ -184,6 +187,22 @@ class ImportOdooDatabase(models.Model):
         for data in context.remote.execute(
                 model._name, 'read', context.ids, fields.keys()
         ):
+            model_defaults = {}
+            if context.model_line.defaults:
+                model_defaults.update(safe_eval(context.model_line.defaults))
+            for key, value in model_defaults.items():
+                if not data.get(key):
+                  data[key] = value
+            if context.model_line.postprocess:
+                safe_eval(
+                    context.model_line.postprocess, {
+                        'vals': data,
+                        'env': self.env,
+                        '_id': data['id'],
+                        'remote': context.remote,
+                    },
+                    mode='exec',
+                )
             self._run_import_get_record(
                 context, model, data, create_dummy=False,
             )
@@ -211,21 +230,6 @@ class ImportOdooDatabase(models.Model):
             self.id, model._name.replace('.', '_'), _id or 0,
         )
         record = self._create_record_filter_fields(model, record)
-        model_defaults = {}
-        if context.model_line.defaults:
-            model_defaults.update(safe_eval(context.model_line.defaults))
-        for key, value in model_defaults.items():
-            record.setdefault(key, value)
-        if context.model_line.postprocess:
-            safe_eval(
-                context.model_line.postprocess, {
-                    'vals': record,
-                    'env': self.env,
-                    '_id': _id,
-                    'remote': context.remote,
-                },
-                mode='exec',
-            )
         new = self.env.ref('base_import_odoo.%s' % xmlid, False)
         if new and new.exists():
             if self.duplicates == 'overwrite_empty':
@@ -278,6 +282,7 @@ class ImportOdooDatabase(models.Model):
         """Return a context that is used when creating a record"""
         context = {
             'tracking_disable': True,
+            'auditlog_disabled': True,
         }
         if model._name == 'res.users':
             context['no_reset_password'] = True
@@ -576,7 +581,10 @@ class ImportOdooDatabase(models.Model):
             name: field
             for name, field
             in self.env[context.model_line.model_id.model]._fields.items()
-            if not field.compute or field.related
+            if not (
+                field.compute and not field.related or
+                field.column and not field.column._classic_write
+            )
         }
 
     @api.multi
