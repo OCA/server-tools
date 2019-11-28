@@ -68,6 +68,8 @@ class TestBaseException(common.SavepointCase):
         # Block because of exception during validation
         with self.assertRaises(ValidationError):
             potest1.button_confirm()
+        # Test that we have linked exceptions
+        self.assertTrue(potest1.exception_ids)
         # Test ignore exeception make possible for the po to validate
         potest1.ignore_exception = True
         potest1.button_confirm()
