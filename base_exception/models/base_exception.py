@@ -101,12 +101,12 @@ class BaseExceptionMethod(models.AbstractModel):
             to_remove = commons - records_with_exception
             to_add = records_with_exception - commons
             # we expect to always work on the same model type
-            rules_to_remove.setdefault(
-                rule.id, main_records.browse()
-            ).update(to_remove)
-            rules_to_add.setdefault(
-                rule.id, main_records.browse()
-            ).update(to_add)
+            if rule.id not in rules_to_remove:
+                rules_to_remove[rule.id] = main_records.browse()
+            rules_to_remove[rule.id] |= to_remove
+            if rule.id not in rules_to_add:
+                rules_to_add[rule.id] = main_records.browse()
+            rules_to_add[rule.id] |= to_add
             if records_with_exception:
                 all_exception_ids.append(rule.id)
         # Cumulate all the records to attach to the rule
