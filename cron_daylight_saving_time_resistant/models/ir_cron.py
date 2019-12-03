@@ -38,25 +38,42 @@ class IrCron(models.Model):
 
     def _process_job(cls, job_cr, job, cron_cr):
         """Add or remove the Daylight saving offset when needed."""
-        with api.Environment.manage():
-            now = osv_fields.datetime.context_timestamp(
-                job_cr, job['user_id'], datetime.now())
-            nextcall = osv_fields.datetime.context_timestamp(
-                job_cr, job['user_id'],
-                datetime.strptime(
-                    job['nextcall'],
-                    DEFAULT_SERVER_DATETIME_FORMAT)
-            )
-            numbercall = job['numbercall']
-            delta = _intervalTypes[job['interval_type']](
-                job['interval_number'])
-            diff_offset = cls._calculate_daylight_offset(
-                nextcall, delta, numbercall, now)
-
-            if diff_offset and job['daylight_saving_time_resistant']:
-                if nextcall < now and numbercall:
-                    nextcall -= diff_offset
-                    modified_next_call = fields.Datetime.to_string(
-                        nextcall.astimezone(pytz.UTC))
-                    job['nextcall'] = modified_next_call
         super(IrCron, cls)._process_job(job_cr, job, cron_cr)
+        # changing the date has to be after the super, else, e may add a hour
+        # to next call, and the super will no run the cron, (because now will
+        # be 1 hour too soon) and the date will just be incremented of 1
+        # hour, each hour...until the changes time really occurs...
+        # if need to test this, use freeze_gun lib.
+        if job['daylight_saving_time_resistant']:
+            with api.Environment.manage():
+                now = osv_fields.datetime.context_timestamp(
+                    job_cr, job['user_id'], datetime.now())
+                nextcall = osv_fields.datetime.context_timestamp(
+                    job_cr, job['user_id'],
+                    datetime.strptime(
+                        job['nextcall'],  # original nextcall
+                        DEFAULT_SERVER_DATETIME_FORMAT)
+                )
+                numbercall = job['numbercall']
+                delta = _intervalTypes[job['interval_type']](
+                    job['interval_number'])
+                diff_offset = cls._calculate_daylight_offset(
+                    nextcall, delta, numbercall, now)
+                if diff_offset and nextcall < now and numbercall:
+                    cron_cr.execute("""
+                        SELECT nextcall FROM ir_cron WHERE id = %s
+                    """, (job['id'],))
+                    res_sql = cron_cr.fetchall()
+                    new_nextcall = res_sql and res_sql[0][0]
+                    new_nextcall = osv_fields.datetime.context_timestamp(
+                        job_cr, job['user_id'],
+                        datetime.strptime(
+                            new_nextcall,  # original nextcall
+                            DEFAULT_SERVER_DATETIME_FORMAT)
+                    )
+                    new_nextcall -= diff_offset
+                    modified_next_call = fields.Datetime.to_string(
+                        new_nextcall.astimezone(pytz.UTC))
+                    cron_cr.execute("UPDATE ir_cron SET nextcall=%s WHERE id=%s",
+                        (modified_next_call, job['id']))
+                    cron_cr.commit()
