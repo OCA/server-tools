@@ -395,11 +395,13 @@ to Odoo’s <tt class="docutils literal"><span class="pre">--log-level=debug_sql
 <tt class="docutils literal">server_wide_modules</tt> configuration file entry.</p>
 <p>Add a <tt class="docutils literal">log_min_duration_statement</tt> entry in the <tt class="docutils literal">options</tt> section of your
 Odoo configuration file. Statements running at least this number of
-milliseconds will be logged with a <em>warning</em> level in the
-<tt class="docutils literal">odoo.addons.slow_statement_logger</tt> handler. <tt class="docutils literal">0</tt> means all statements will be
+milliseconds will be logged with a <em>debug</em> level in the
+<tt class="docutils literal">odoo.addons.slow_statement_logger</tt> logger. <tt class="docutils literal">0</tt> means all statements will be
 logged. <tt class="docutils literal"><span class="pre">-1</span></tt> disables this logging. You can also set an environment variable
 <tt class="docutils literal">ODOO_LOG_MIN_DURATION_STATEMENT</tt> which will have priority over the
 configuration file entry.</p>
+<p>Add <tt class="docutils literal">odoo.addons.slow_statement_logger:DEBUG</tt> in your <tt class="docutils literal">log_handler</tt>
+configuration file entry or <tt class="docutils literal"><span class="pre">--log-handler</span></tt> command line option.</p>
 </div>
 <div class="section" id="bug-tracker">
 <h1><a class="toc-backref" href="#id2">Bug Tracker</a></h1>
