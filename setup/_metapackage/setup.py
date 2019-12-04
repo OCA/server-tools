@@ -33,6 +33,7 @@ setuptools.setup(
         'odoo12-addon-onchange_helper',
         'odoo12-addon-scheduler_error_mailer',
         'odoo12-addon-sentry',
+        'odoo12-addon-slow_statement_logger',
         'odoo12-addon-sql_export',
         'odoo12-addon-sql_request_abstract',
     ],
