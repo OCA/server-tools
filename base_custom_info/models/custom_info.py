@@ -59,7 +59,6 @@ class CustomInfo(models.AbstractModel):
                 "res_id": self.id,
                 "value": prop.default_value,
             })
-            # HACK https://github.com/odoo/odoo/issues/13076
             newvalue._inverse_value()
             newvalue._compute_value()
             values += newvalue
