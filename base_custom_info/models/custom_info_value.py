@@ -65,7 +65,7 @@ class CustomInfoValue(models.Model):
     value_bool = fields.Boolean(string="Yes/No value", index=True)
     value_id = fields.Many2one(
         comodel_name="custom.info.option", string="Selection value",
-        ondelete="cascade", domain="[('property_ids', 'in', [property_id])]",
+        ondelete="cascade", domain="[('property_ids', '=', property_id)]",
     )
 
     @api.multi
