@@ -29,6 +29,7 @@ setuptools.setup(
         'odoo12-addon-fetchmail_notify_error_to_sender',
         'odoo12-addon-html_image_url_extractor',
         'odoo12-addon-html_text',
+        'odoo12-addon-ir_sequence_standard_default',
         'odoo12-addon-module_analysis',
         'odoo12-addon-module_auto_update',
         'odoo12-addon-onchange_helper',
