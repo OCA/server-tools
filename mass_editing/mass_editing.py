@@ -44,8 +44,6 @@ class ir_model_fields(orm.Model):
             cr, uid, model_domain, offset=offset, limit=limit, order=order,
             context=context, count=count)
 
-ir_model_fields()
-
 
 class mass_object(orm.Model):
     _name = "mass.object"
@@ -145,6 +143,3 @@ class mass_object(orm.Model):
         default.update({'name': '', 'field_ids': []})
         return super(mass_object, self).copy(
             cr, uid, record_id, default, context)
-
-mass_object()
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
