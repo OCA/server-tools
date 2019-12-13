@@ -34,11 +34,14 @@ except ImportError:
 class OAuthProviderClient(models.Model):
     _inherit = 'oauth.provider.client'
 
-    CRYPTOSYSTEMS = {
-        'ES': EllipticCurvePrivateKey,
-        'RS': RSAPrivateKey,
-        'PS': RSAPrivateKey,
-    }
+    try:
+        CRYPTOSYSTEMS = {
+            'ES': EllipticCurvePrivateKey,
+            'RS': RSAPrivateKey,
+            'PS': RSAPrivateKey,
+        }
+    except NameError:
+        pass
 
     token_type = fields.Selection(selection_add=[('jwt', 'JSON Web Token')])
     jwt_scope_id = fields.Many2one(

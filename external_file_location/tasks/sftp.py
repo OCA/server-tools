@@ -7,11 +7,13 @@ _logger = logging.getLogger(__name__)
 
 try:
     from fs import sftpfs
+    superclass = sftpfs.SFTPFS
 except ImportError:
     _logger.debug('Cannot `import fs`.')
+    superclass = object
 
 
-class SftpTask(sftpfs.SFTPFS):
+class SftpTask(superclass):
 
     _key = 'sftp'
     _name = 'SFTP'

@@ -12,11 +12,13 @@ _logger = logging.getLogger(__name__)
 
 try:
     from oauthlib.oauth2 import RequestValidator
+    superclass = RequestValidator
 except ImportError:
     _logger.debug('Cannot `import oauthlib`.')
+    superclass = object
 
 
-class OdooValidator(RequestValidator):
+class OdooValidator(superclass):
     """ OAuth2 validator to be used in Odoo
 
     This is an implementation of oauthlib's RequestValidator interface

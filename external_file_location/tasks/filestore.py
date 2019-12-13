@@ -7,11 +7,13 @@ _logger = logging.getLogger(__name__)
 
 try:
     from fs import osfs
+    superclass = osfs.OSFS
 except ImportError:
     _logger.debug('Cannot `import fs`.')
+    superclass = object
 
 
-class FileStoreTask(osfs.OSFS):
+class FileStoreTask(superclass):
 
     _key = 'filestore'
     _name = 'File Store'
