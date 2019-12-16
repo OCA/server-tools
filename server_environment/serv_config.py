@@ -265,7 +265,7 @@ class ServerConfiguration(models.TransientModel):
             return res
         for key in self._conf_defaults:
             if not self.show_passwords and self._is_secret(
-                    cr, uid, context=context, key=key):
+                    cr, uid, key, context=context):
                 res[key] = '**********'
             else:
                 res[key] = self._conf_defaults[key]()
