@@ -85,12 +85,15 @@
                 <field name="res_id"/>
                 <field name="category_id"/>
                 <field name="property_id"/>
-                <field name="value"/>
                 <group expand="0" string="Group By">
                     <filter
-                        string="Owner"
-                        name="owner"
-                        context="{'group_by': ['model' , 'res_id']}"/>
+                        string="Model"
+                        name="model"
+                        context="{'group_by': 'model'}"/>
+                    <filter
+                        string="Resource"
+                        name="resource"
+                        context="{'group_by': 'res_id'}"/>
                     <filter
                         string="Category"
                         name="category"
