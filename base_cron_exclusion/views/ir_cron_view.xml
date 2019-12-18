@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<!-- Copyright 2017 Eficent Business and IT Consulting Services S.L.
-     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0) -->
+<!-- Copyright 2017-19 ForgeFlow S.L. (https://www.forgeflow.com)
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html). -->
 
 <odoo>
     <record id="ir_cron_view_form" model="ir.ui.view">
