@@ -12,6 +12,7 @@ setuptools.setup(
         'odoo12-addon-auditlog',
         'odoo12-addon-auto_backup',
         'odoo12-addon-base_cron_exclusion',
+        'odoo12-addon-base_custom_info',
         'odoo12-addon-base_exception',
         'odoo12-addon-base_fontawesome',
         'odoo12-addon-base_jsonify',
