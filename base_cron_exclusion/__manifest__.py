@@ -5,17 +5,13 @@
 {
     "name": "Base Cron Exclusion",
     "summary": "Allow you to select scheduled actions that should not run "
-               "simultaneously.",
+    "simultaneously.",
     "version": "12.0.1.0.0",
     "author": "Eficent, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/server-tools",
     "category": "Tools",
-    "depends": [
-        "base",
-    ],
-    "data": [
-        "views/ir_cron_view.xml",
-    ],
+    "depends": ["base"],
+    "data": ["views/ir_cron_view.xml"],
     "license": "LGPL-3",
     "installable": True,
 }
