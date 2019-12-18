@@ -1,13 +1,14 @@
-# Copyright 2017 Eficent Business and IT Consulting Services S.L.
-#   (http://www.eficent.com)
+# Copyright 2017-19 ForgeFlow S.L. (https://www.forgeflow.com)
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
 {
     "name": "Base Cron Exclusion",
     "summary": "Allow you to select scheduled actions that should not run "
     "simultaneously.",
-    "version": "12.0.1.0.0",
-    "author": "Eficent, Odoo Community Association (OCA)",
+    "version": "13.0.1.0.0",
+    "author": "ForgeFlow, Odoo Community Association (OCA)",
+    "maintainers": ["LoisRForgeFlow"],
+    "development_status": "Production/Stable",
     "website": "https://github.com/OCA/server-tools",
     "category": "Tools",
     "depends": ["base"],
