@@ -248,7 +248,7 @@ msgid "Default Value"
 msgstr ""
 
 #. module: base_custom_info
-#: code:addons/base_custom_info/models/custom_info_property.py:98
+#: code:addons/base_custom_info/models/custom_info_property.py:96
 #, python-format
 msgid "Default value %s cannot be converted to type %s."
 msgstr ""
@@ -348,13 +348,13 @@ msgid "ID"
 msgstr ""
 
 #. module: base_custom_info
-#: code:addons/base_custom_info/models/custom_info_property.py:108
+#: code:addons/base_custom_info/models/custom_info_property.py:112
 #, python-format
 msgid "If you require a Yes/No field, you can only set Yes."
 msgstr ""
 
 #. module: base_custom_info
-#: code:addons/base_custom_info/models/custom_info_property.py:111
+#: code:addons/base_custom_info/models/custom_info_property.py:115
 #, python-format
 msgid "If you require a numeric field, you cannot set it to zero."
 msgstr ""
