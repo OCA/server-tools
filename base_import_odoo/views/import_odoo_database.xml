@@ -58,6 +58,7 @@
                         return openerp.webclient.action_manager.do_action({
                             'name': model_name,
                             'type': 'ir.actions.act_window',
+                            'context': {'active_test': false},
                             'views': [[false, 'list'], [false, 'form']],
                             'res_model': model,
                             'domain': [['id', 'in', _.map(data, function(x) {return x.res_id})]]
