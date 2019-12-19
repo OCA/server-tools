@@ -83,9 +83,7 @@ class CustomInfoProperty(models.Model):
         self.mapped("template_id").check_access_rule(operation)
         return super().check_access_rule(operation)
 
-    @api.constrains("default_value", "field_type")
-    def _check_default_value(self):
-        """Ensure the default value is valid."""
+    def _check_default_value_one(self):
         if self.default_value:
             try:
                 self.env["custom.info.value"]._transform_value(
@@ -97,6 +95,12 @@ class CustomInfoProperty(models.Model):
                 raise ValidationError(
                     _("Default value %s cannot be converted to type %s.") %
                     (self.default_value, selection[self.field_type]))
+
+    @api.constrains("default_value", "field_type")
+    def _check_default_value(self):
+        """Ensure the default value is valid."""
+        for rec in self:
+            rec._check_default_value_one()
 
     @api.multi
     @api.onchange("required", "field_type")
