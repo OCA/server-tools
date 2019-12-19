@@ -184,15 +184,20 @@ class ImportOdooDatabase(models.Model):
         """Import records of a configured model"""
         model = self.env[context.model_line.model_id.model]
         fields = self._run_import_model_get_fields(context)
+        local_fields = fields.keys()
+        remote_fields = context.remote.execute(
+            model._name, 'fields_get').keys()
+        extra_fields = list(
+            set(local_fields + remote_fields) - set(local_fields))
         for data in context.remote.execute(
-                model._name, 'read', context.ids, fields.keys()
+                model._name, 'read', context.ids, local_fields + extra_fields
         ):
             model_defaults = {}
             if context.model_line.defaults:
                 model_defaults.update(safe_eval(context.model_line.defaults))
             for key, value in model_defaults.items():
                 if not data.get(key):
-                  data[key] = value
+                    data[key] = value
             if context.model_line.postprocess:
                 safe_eval(
                     context.model_line.postprocess, {
@@ -203,6 +208,8 @@ class ImportOdooDatabase(models.Model):
                     },
                     mode='exec',
                 )
+            for key in extra_fields:
+                del data[key]
             self._run_import_get_record(
                 context, model, data, create_dummy=False,
             )
