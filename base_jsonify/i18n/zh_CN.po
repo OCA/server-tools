@@ -53,13 +53,13 @@ msgid "Index"
 msgstr "索引"
 
 #. module: base_jsonify
-#: code:addons/base_jsonify/models/ir_exports_line.py:26
+#: code:addons/base_jsonify/models/ir_exports_line.py:0
 #, python-format
 msgid "Name and Alias must have the same hierarchy depth"
 msgstr "名称和别名必须具有相同的层次结构深度"
 
 #. module: base_jsonify
-#: code:addons/base_jsonify/models/ir_exports_line.py:31
+#: code:addons/base_jsonify/models/ir_exports_line.py:0
 #, python-format
 msgid "The alias must reference the same field as in name '%s' not in '%s'"
 msgstr "别名必须引用与名称相同的字段'%s'不在'%s'"
@@ -72,7 +72,7 @@ msgid ""
 msgstr "字段的完整路径，您可以在其中指定步骤作为字段的别名：别名"
 
 #. module: base_jsonify
-#: code:addons/base_jsonify/models/models.py:69
+#: code:addons/base_jsonify/models/models.py:0
 #, python-format
 msgid "Wrong parser configuration"
 msgstr "错误的解析器配置"
