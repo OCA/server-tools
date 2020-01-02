@@ -2,10 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo.tests import common
-from odoo.tests.common import TransactionCase
-from odoo import api
 from .common import setup_test_model
-from .sale_test import SaleTest, LineTest
 
 
 @common.at_install(False)
@@ -15,6 +12,7 @@ class TestBaseSubstate(common.SavepointCase):
     @classmethod
     def setUpClass(cls):
         super(TestBaseSubstate, cls).setUpClass()
+        from .sale_test import SaleTest, LineTest
 
         setup_test_model(cls.env, [SaleTest, LineTest])
 
