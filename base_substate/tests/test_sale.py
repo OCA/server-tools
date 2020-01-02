@@ -64,3 +64,4 @@ class TestSaleOrderLineMinQty(common.TransactionCase):
         self.assertTrue(self.sale_order.order_line.is_qty_less_min_qty)
 
         self.assertEqual(self.sale_order.order_line.product_uom_qty, 5.0)
+
