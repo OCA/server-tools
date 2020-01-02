@@ -1,78 +1,77 @@
 # Copyright 2019 Akretion Mourad EL HADJ MIMOUNE
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
+from odoo.tests import common
 from odoo.tests.common import TransactionCase
 from odoo import api
 from .common import setup_test_model
 from .sale_test import SaleTest, LineTest
 
 
-class TestBaseSubstate(TransactionCase):
+@common.at_install(False)
+@common.post_install(True)
+class TestBaseSubstate(common.SavepointCase):
 
-    def setUp(self):
-        super(TestBaseSubstate, self).setUp()
+    @classmethod
+    def setUpClass(cls):
+        super(TestBaseSubstate, cls).setUpClass()
 
-        self.registry.enter_test_mode(self.cr)
-        self.old_cursor = self.cr
-        self.cr = self.registry.cursor()
-        self.env = api.Environment(self.cr, self.uid, {})
-        setup_test_model(self.env, [SaleTest, LineTest])
-        # self.substate_test_sale = self._init_test_model(SaleTest)
-        # self.substate_test_sale_line = self._init_test_model(LineTest)
-        self.substate_test_sale = self.env['base.substate.test.sale']
-        self.substate_test_sale_line = self.env['base.substate.test.sale.line']
+        setup_test_model(cls.env, [SaleTest, LineTest])
 
-        self.base_substate = self.env['base.substate.mixin']
-        self.substate_type = self.env['base.substate.type']
+        cls.substate_test_sale = cls.env['base.substate.test.sale']
+        cls.substate_test_sale_line = cls.env['base.substate.test.sale.line']
 
-        self.substate_type._fields['model'].selection.append(
+        cls.base_substate = cls.env['base.substate.mixin']
+        cls.substate_type = cls.env['base.substate.type']
+
+        cls.substate_type._fields['model'].selection.append(
             ('base.substate.test.sale', 'Sale Order'))
 
-        self.substate_type = self.env['base.substate.type'].create({
+        cls.substate_type = cls.env['base.substate.type'].create({
             'name': "Sale",
             'model': "base.substate.test.sale",
             'target_state_field': "state",
         })
 
-        self.substate_val_quotation = self.env['target.state.value'].create({
+        cls.substate_val_quotation = cls.env['target.state.value'].create({
             'name': "Quotation",
-            'base_substate_type_id': self.substate_type.id,
+            'base_substate_type_id': cls.substate_type.id,
             'target_state_value': "draft",
         })
 
-        self.substate_val_sale = self.env['target.state.value'].create({
+        cls.substate_val_sale = cls.env['target.state.value'].create({
             'name': "Sale order",
-            'base_substate_type_id': self.substate_type.id,
+            'base_substate_type_id': cls.substate_type.id,
             'target_state_value': "sale",
         })
-        self.substate_under_negotiation = self.env['base.substate'].create({
+        cls.substate_under_negotiation = cls.env['base.substate'].create({
             'name': "Under negotiation",
             'sequence': 1,
-            'target_state_value_id': self.substate_val_quotation.id,
+            'target_state_value_id': cls.substate_val_quotation.id,
         })
 
-        self.substate_won = self.env['base.substate'].create({
+        cls.substate_won = cls.env['base.substate'].create({
             'name': "Won",
             'sequence': 1,
-            'target_state_value_id': self.substate_val_quotation.id,
+            'target_state_value_id': cls.substate_val_quotation.id,
         })
 
-        self.substate_wait_docs = self.env['base.substate'].create({
+        cls.substate_wait_docs = cls.env['base.substate'].create({
             'name': "Waiting for legal documents",
             'sequence': 2,
-            'target_state_value_id': self.substate_val_sale.id,
+            'target_state_value_id': cls.substate_val_sale.id,
         })
 
-        self.substate_valid_docs = self.env['base.substate'].create({
+        cls.substate_valid_docs = cls.env['base.substate'].create({
             'name': "To validate legal documents",
             'sequence': 3,
-            'target_state_value_id': self.substate_val_sale.id,
+            'target_state_value_id': cls.substate_val_sale.id,
         })
 
-        self.substate_in_delivering = self.env['base.substate'].create({
+        cls.substate_in_delivering = cls.env['base.substate'].create({
             'name': "In delivering",
             'sequence': 4,
-            'target_state_value_id': self.substate_val_sale.id,
+            'target_state_value_id': cls.substate_val_sale.id,
         })
 
     def test_sale_order_substate(self):
