@@ -11,4 +11,3 @@ def setup_test_model(env, model_clses):
         env.cr, [model_cls._name for model_cls in model_clses],
         dict(env.context, update_custom_fields=True)
     )
-
