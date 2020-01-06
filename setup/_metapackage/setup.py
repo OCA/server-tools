@@ -11,6 +11,7 @@ setuptools.setup(
         'odoo13-addon-base_cron_exclusion',
         'odoo13-addon-base_jsonify',
         'odoo13-addon-company_country',
+        'odoo13-addon-onchange_helper',
     ],
     classifiers=[
         'Programming Language :: Python',
