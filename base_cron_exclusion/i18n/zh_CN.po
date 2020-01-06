@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* base_cron_exclusion
+# 	* base_cron_exclusion
 #
 msgid ""
 msgstr ""
@@ -28,7 +28,7 @@ msgid "Scheduled Actions"
 msgstr "安排的动作"
 
 #. module: base_cron_exclusion
-#: code:addons/base_cron_exclusion/models/ir_cron.py:21
+#: code:addons/base_cron_exclusion/models/ir_cron.py:0
 #, python-format
 msgid "You can not mutually exclude a scheduled actions with itself."
 msgstr "您不能相互排除本身安排的动作。"

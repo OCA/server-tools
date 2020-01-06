@@ -31,7 +31,7 @@ msgid "Scheduled Actions"
 msgstr "Plánované akce"
 
 #. module: base_cron_exclusion
-#: code:addons/base_cron_exclusion/models/ir_cron.py:21
+#: code:addons/base_cron_exclusion/models/ir_cron.py:0
 #, python-format
 msgid "You can not mutually exclude a scheduled actions with itself."
 msgstr "Nemůžete vzájemně vylučují naplánovaná akce se sebou samým."
