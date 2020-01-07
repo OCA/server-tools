@@ -24,21 +24,21 @@ msgid "Abstract configuration settings"
 msgstr ""
 
 #. module: configuration_helper
-#: model:ir.model.fields,field_description:configuration_helper.field_abstract_config_settings_company_id
+#: model:ir.model.fields,field_description:configuration_helper.field_abstract_config_settings__company_id
 msgid "Company"
 msgstr ""
 
 #. module: configuration_helper
-#: model:ir.model.fields,field_description:configuration_helper.field_abstract_config_settings_display_name
+#: model:ir.model.fields,field_description:configuration_helper.field_abstract_config_settings__display_name
 msgid "Display Name"
 msgstr "ชื่อที่ใช้แสดง"
 
 #. module: configuration_helper
-#: model:ir.model.fields,field_description:configuration_helper.field_abstract_config_settings_id
+#: model:ir.model.fields,field_description:configuration_helper.field_abstract_config_settings__id
 msgid "ID"
 msgstr "รหัส"
 
 #. module: configuration_helper
-#: model:ir.model.fields,field_description:configuration_helper.field_abstract_config_settings___last_update
+#: model:ir.model.fields,field_description:configuration_helper.field_abstract_config_settings____last_update
 msgid "Last Modified on"
 msgstr "แก้ไขครั้งสุดท้ายเมื่อ"
