@@ -185,10 +185,9 @@ class ImportOdooDatabase(models.Model):
         model = self.env[context.model_line.model_id.model]
         fields = self._run_import_model_get_fields(context)
         local_fields = fields.keys()
-        remote_fields = context.remote.execute(
-            model._name, 'fields_get').keys()
-        extra_fields = list(
-            set(local_fields + remote_fields) - set(local_fields))
+        extra_fields = []
+        if context.model_line.extra_fields:
+			      extra_fields = safe_eval(context.model_line.extra_fields)
         for data in context.remote.execute(
                 model._name, 'read', context.ids, local_fields + extra_fields
         ):
@@ -209,7 +208,8 @@ class ImportOdooDatabase(models.Model):
                     mode='exec',
                 )
             for key in extra_fields:
-                del data[key]
+                if key in data:
+                    del data[key]
             self._run_import_get_record(
                 context, model, data, create_dummy=False,
             )

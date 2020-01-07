@@ -19,6 +19,8 @@ class ImportOdooDatabaseModel(models.Model):
     )
     domain = fields.Char(help='Optional filter to import only a subset')
     defaults = fields.Char(help='Optional defaults dict to avoid empty values')
+    extra_fields = fields.Char(
+        help='Optional list of extra fields to read, for use in postprocessing')
     postprocess = fields.Text(
         help='Optional python code for postprocessing. Your code has access '
         'to `vals` which is the dictionary passed to create/write, and `env`.',
