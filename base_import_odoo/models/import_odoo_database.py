@@ -187,7 +187,7 @@ class ImportOdooDatabase(models.Model):
         local_fields = fields.keys()
         extra_fields = []
         if context.model_line.extra_fields:
-			      extra_fields = safe_eval(context.model_line.extra_fields)
+            extra_fields = safe_eval(context.model_line.extra_fields)
         for data in context.remote.execute(
                 model._name, 'read', context.ids, local_fields + extra_fields
         ):
