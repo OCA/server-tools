@@ -21,7 +21,7 @@ _logger = logging.getLogger(__name__)
 
 class Home(main.Home):
 
-    _REMOTE_USER_ATTRIBUTE = 'HTTP_REMOTE_USER'
+    _REMOTE_USER_ATTRIBUTE = utils.REMOTE_USER_HEADER
 
     @http.route('/web', type='http', auth="none")
     def web_client(self, s_action=None, **kw):
