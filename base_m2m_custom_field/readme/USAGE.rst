@@ -38,12 +38,12 @@ Let's consider following models:
         my_model_a_id = fields.Many2one(
             'my.model.a',
             required=True,
-            index=True,
+            index=True,  # Index is mandatory here
         )
         my_model_b_id = fields.Many2one(
             'my.model.b',
             required=True,
-            index=True,
+            index=True,  # Index is mandatory here
         )
 
 
