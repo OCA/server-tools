@@ -45,7 +45,7 @@ class ExtractorCase(TransactionCase):
     @mute_logger("odoo.addons.html_image_url_extractor" + ".models.ir_fields_converter")
     def test_empty_html(self):
         """Empty HTML handled correctly."""
-        for laps, text in self.imgs_from_html(""):
+        for _ in self.imgs_from_html(""):
             self.assertTrue(False)  # You should never get here
         with self.assertRaises(Exception):
             list(self.imgs_from_html("", fail=True))
@@ -53,7 +53,7 @@ class ExtractorCase(TransactionCase):
     @mute_logger("odoo.addons.html_image_url_extractor" + ".models.ir_fields_converter")
     def test_false_html(self):
         """``False`` HTML handled correctly."""
-        for laps, text in self.imgs_from_html(False):
+        for _ in self.imgs_from_html(False):
             self.assertTrue(False)  # You should never get here
         with self.assertRaises(Exception):
             list(self.imgs_from_html(False, fail=True))
