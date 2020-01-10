@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.sequence</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base_setup.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='integration']" position="after">
+                <div id="sequences_general_settings" groups="base.group_no_one">
+                    <h2>Sequences</h2>
+                    <div class="row mt16 o_settings_container">
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane"/>
+                            <div class="o_setting_right_pane">
+                                <span class="o_form_label">Force Standard</span>
+                                <div class="text-muted">
+                                    Change all your current No Gap sequences to Standard in order to improve performance.
+                                </div>
+                                <div class="mt16">
+                                    <button name="action_change_all_sequences" string="Change all sequences to Standard implementation" type="object" class="oe_link" icon="fa-arrow-right"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

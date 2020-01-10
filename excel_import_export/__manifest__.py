@@ -2,9 +2,9 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
 
 {
-    'name': 'Excel Import/Export',
-    'summary': 'Base module for easy way to develop Excel import/export',
-    'version': '12.0.1.0.0',
+    'name': 'Excel Import/Export/Report',
+    'summary': 'Base module for developing Excel import/export/report',
+    'version': '12.0.1.0.4',
     'author': 'Ecosoft,Odoo Community Association (OCA)',
     'license': 'AGPL-3',
     'website': 'https://github.com/OCA/server-tools/',
@@ -22,8 +22,9 @@
              'wizard/import_xlsx_wizard.xml',
              'views/xlsx_template_view.xml',
              'views/xlsx_report.xml',
+             'views/webclient_templates.xml',
              ],
     'installable': True,
-    'development_status': 'alpha',
+    'development_status': 'beta',
     'maintainers': ['kittiu'],
 }

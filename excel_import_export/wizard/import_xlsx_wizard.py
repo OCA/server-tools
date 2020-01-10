@@ -80,7 +80,7 @@ class ImportXLSXWizard(models.TransientModel):
         # Context testing
         if self._context.get('template_context', False):
             template_context = self._context['template_context']
-            for key, value in template_context.iteritems():
+            for key, value in template_context.items():
                 if key not in record or \
                         (record._fields[key].type == 'many2one' and
                          record[key].id or record[key]) != value:
@@ -113,6 +113,21 @@ class ImportXLSXWizard(models.TransientModel):
         defaults['res_id'] = res_id
         defaults['res_model'] = res_model
         return defaults
+
+    @api.multi
+    def get_import_sample(self):
+        self.ensure_one()
+        return {
+            'name': _('Import Excel'),
+            'type': 'ir.actions.act_window',
+            'res_model': 'import.xlsx.wizard',
+            'view_mode': 'form',
+            'view_type': 'form',
+            'res_id': self.id,
+            'views': [(False, 'form')],
+            'target': 'new',
+            'context': self._context.copy()
+        }
 
     @api.multi
     def action_import(self):

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_sequence_standard_default" model="ir.ui.view">
+        <field name="name">Set All Sequences to Standard</field>
+        <field name="model">sequence.standard.default</field>
+        <field name="arch" type="xml">
+            <form>
+                <h2>Warning:</h2>
+                <p>All sequences in the system will be changed to the Standard
+                    implementation of PostgreSQL. It will improve performance,
+                    but sequence numbers may have gaps between each other.</p>
+                <p>What do you want to do?</p>
+                <footer>
+                    <button name="execute" string="Execute" type="object" class="btn-primary"/>
+                    <button special="cancel" string="Cancel" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_sequence_standard_default" model="ir.actions.act_window">
+        <field name="name">Set All Sequences to Standard</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sequence.standard.default</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>
+

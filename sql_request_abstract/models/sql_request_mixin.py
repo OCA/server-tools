@@ -5,12 +5,15 @@
 
 import re
 import uuid
-from io import StringIO
+import logging
+from io import BytesIO
 import base64
 from psycopg2 import ProgrammingError
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
+
+logger = logging.getLogger(__name__)
 
 
 class SQLRequestMixin(models.AbstractModel):
@@ -167,9 +170,8 @@ class SQLRequestMixin(models.AbstractModel):
             rollback_name = self._create_savepoint()
         try:
             if mode == 'stdout':
-                output = StringIO.StringIO()
+                output = BytesIO()
                 self.env.cr.copy_expert(query, output)
-                output.getvalue()
                 res = base64.b64encode(output.getvalue())
                 output.close()
             else:
@@ -243,6 +245,7 @@ class SQLRequestMixin(models.AbstractModel):
             self.env.cr.execute(query)
             res = self._hook_executed_request()
         except ProgrammingError as e:
+            logger.exception("Failed query: %s", query)
             raise UserError(
                 _("The SQL query is not valid:\n\n %s") % e)
         finally:

@@ -36,10 +36,14 @@ class TestXLSXImportExport(TestExcelImportExport):
                'active_id': self.sale_order.id,
                'template_domain': [('res_model', '=', 'sale.order'),
                                    ('fname', '=', 'sale_order.xlsx'),
-                                   ('gname', '=', False)], }
+                                   ('gname', '=', False)],
+               'template_context': {'state': 'draft'}, }
         with Form(self.env['import.xlsx.wizard'].with_context(ctx)) as f:
             f.import_file = self.export_file
         import_wizard = f.save()
+        # Test sample template
+        import_wizard.get_import_sample()
+        self.assertTrue(import_wizard.datas)
         # Test whether it loads correct template
         self.assertEqual(import_wizard.template_id,
                          self.env.ref('excel_import_export_demo.'

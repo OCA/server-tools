@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="sql_file_wizard_view_form" model="ir.ui.view">
+            <field name="name">sql.file.wizard.view.form</field>
+            <field name="model">sql.file.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Csv File">
+                    <separator string="variables_placeholder" colspan="4" invisible="1"/>
+                    <separator string="Export file" colspan="4"
+                        attrs="{'invisible': [('binary_file', '=', False)]}"/>
+                    <field name="binary_file" filename="file_name"/>
+                    <field name="file_name" invisible="1"/>
+                    <footer>
+                        <button name="export_sql" string="Export" type="object"
+                            icon="fa-download"/>
+                        or
+                        <button special="cancel" string="Cancel" type="object"
+                            icon="fa-times" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</odoo>

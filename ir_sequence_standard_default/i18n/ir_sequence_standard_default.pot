@@ -1,0 +1,112 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* ir_sequence_standard_default
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: ir_sequence_standard_default
+#: model_terms:ir.ui.view,arch_db:ir_sequence_standard_default.res_config_settings_view_form
+msgid "<span class=\"o_form_label\">Force Standard</span>"
+msgstr ""
+
+#. module: ir_sequence_standard_default
+#: model_terms:ir.ui.view,arch_db:ir_sequence_standard_default.view_sequence_standard_default
+msgid "All sequences in the system will be changed to the Standard\n"
+"                    implementation of PostgreSQL. It will improve performance,\n"
+"                    but sequence numbers may have gaps between each other."
+msgstr ""
+
+#. module: ir_sequence_standard_default
+#: model_terms:ir.ui.view,arch_db:ir_sequence_standard_default.view_sequence_standard_default
+msgid "Cancel"
+msgstr ""
+
+#. module: ir_sequence_standard_default
+#: model_terms:ir.ui.view,arch_db:ir_sequence_standard_default.res_config_settings_view_form
+msgid "Change all sequences to Standard implementation"
+msgstr ""
+
+#. module: ir_sequence_standard_default
+#: model_terms:ir.ui.view,arch_db:ir_sequence_standard_default.res_config_settings_view_form
+msgid "Change all your current No Gap sequences to Standard in order to improve performance."
+msgstr ""
+
+#. module: ir_sequence_standard_default
+#: model:ir.model,name:ir_sequence_standard_default.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: ir_sequence_standard_default
+#: model:ir.model.fields,field_description:ir_sequence_standard_default.field_sequence_standard_default__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: ir_sequence_standard_default
+#: model:ir.model.fields,field_description:ir_sequence_standard_default.field_sequence_standard_default__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: ir_sequence_standard_default
+#: model:ir.model.fields,field_description:ir_sequence_standard_default.field_sequence_standard_default__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: ir_sequence_standard_default
+#: model_terms:ir.ui.view,arch_db:ir_sequence_standard_default.view_sequence_standard_default
+msgid "Execute"
+msgstr ""
+
+#. module: ir_sequence_standard_default
+#: model:ir.model.fields,field_description:ir_sequence_standard_default.field_sequence_standard_default__id
+msgid "ID"
+msgstr ""
+
+#. module: ir_sequence_standard_default
+#: model:ir.model.fields,field_description:ir_sequence_standard_default.field_sequence_standard_default____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: ir_sequence_standard_default
+#: model:ir.model.fields,field_description:ir_sequence_standard_default.field_sequence_standard_default__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: ir_sequence_standard_default
+#: model:ir.model.fields,field_description:ir_sequence_standard_default.field_sequence_standard_default__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: ir_sequence_standard_default
+#: model_terms:ir.ui.view,arch_db:ir_sequence_standard_default.res_config_settings_view_form
+msgid "Sequences"
+msgstr ""
+
+#. module: ir_sequence_standard_default
+#: model:ir.actions.act_window,name:ir_sequence_standard_default.action_sequence_standard_default
+msgid "Set All Sequences to Standard"
+msgstr ""
+
+#. module: ir_sequence_standard_default
+#: model_terms:ir.ui.view,arch_db:ir_sequence_standard_default.view_sequence_standard_default
+msgid "Warning:"
+msgstr ""
+
+#. module: ir_sequence_standard_default
+#: model_terms:ir.ui.view,arch_db:ir_sequence_standard_default.view_sequence_standard_default
+msgid "What do you want to do?"
+msgstr ""
+
+#. module: ir_sequence_standard_default
+#: model:ir.model,name:ir_sequence_standard_default.model_sequence_standard_default
+msgid "Wizard to set all sequences to Standard implementation"
+msgstr ""
+

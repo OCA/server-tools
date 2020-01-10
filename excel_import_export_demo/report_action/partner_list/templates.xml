@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="partner_list_xlsx_template" model="xlsx.template">
+        <field name="res_model">report.partner.list</field>
+        <field name="fname">partner_list.xlsx</field>
+        <field name="name">Partner List Report Template</field>
+        <field name="description">Sample Partner List Report Template for testing</field>
+        <field name="input_instruction">
+            {
+                '__EXPORT__': {
+                    1: {
+                        'results': {
+                            'A4': 'id',
+                            'B4': 'name${value or ""}#{style=text}',
+                            'C4': 'phone${value or ""}#{style=text}',
+                            'D4': 'email${value or ""}#{style=text}',
+                        }
+                    }
+                },
+            }
+        </field>
+    </record>
+
+    <function model="xlsx.template" name="load_xlsx_template">
+        <value eval="[ref('partner_list_xlsx_template')]"/>
+    </function>
+
+</odoo>
