@@ -1,12 +1,12 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import models, fields, api
-import odoo
-from odoo import tools
-from base64 import b64encode
-import os
 import datetime
 import logging
+import os
+from fnmatch import fnmatch
+
+import odoo
+from odoo import api, fields, models, tools
 
 _logger = logging.getLogger(__name__)
 
@@ -112,10 +112,10 @@ class StorageTask(models.Model):
         return render_result
 
     @api.model
-    def run_task_scheduler(self, domain=None):
-        if domain is None:
-            domain = []
-        domain.append([('method_type', '=', 'import')])
+    def run_task_scheduler(self, domain=list()):
+        if ('method_type', '=', 'import') not in domain:
+            domain.append([('method_type', '=', 'import')])
+
         tasks = self.env['storage.backend'].search(domain)
         for task in tasks:
             task.run_import()
@@ -127,7 +127,7 @@ class StorageTask(models.Model):
         backend = self.backend_id
         all_filenames = backend._list(relative_path=self.filepath)
         if self.filename:
-            filenames = [x for x in all_filenames if self.filename in x]
+            filenames = [x for x in all_filenames if fnmatch(x, self.filename)]
         for file_name in filenames:
             with api.Environment.manage():
                 with odoo.registry(
@@ -160,7 +160,7 @@ class StorageTask(models.Model):
                             backend._add_b64_data(new_full_path, datas)
                         if self.after_import in (
                                 'delete', 'rename', 'move', 'move_rename'
-                                ):
+                        ):
                             backend._delete(full_absolute_path)
                     except Exception as e:
                         new_env.cr.rollback()
