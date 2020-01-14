@@ -467,7 +467,7 @@ msgid "Values"
 msgstr "Hodnoty"
 
 #. module: auditlog
-#: code:addons/auditlog/models/rule.py:527
+#: code:addons/auditlog/models/rule.py:538
 #, python-format
 msgid "View logs"
 msgstr "Zobrazení protokolů"

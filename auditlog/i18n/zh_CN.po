@@ -148,7 +148,8 @@ msgid ""
 "Fast log: only log the changes made through the create and write operations "
 "(less information, but it is faster)"
 msgstr ""
-"完整日志：在操作之前和之后的数据之间做一个差异（记录更多信息，如更新的计算字段，但速度较慢）\n"
+"完整日志：在操作之前和之后的数据之间做一个差异（记录更多信息，如更新的计算字"
+"段，但速度较慢）\n"
 "快速日志：仅记录通过创建和写入操作所做的更改（信息越少，但速度越快）"
 
 #. module: auditlog
@@ -459,7 +460,7 @@ msgid "Values"
 msgstr "值"
 
 #. module: auditlog
-#: code:addons/auditlog/models/rule.py:527
+#: code:addons/auditlog/models/rule.py:538
 #, python-format
 msgid "View logs"
 msgstr "查看日志"
