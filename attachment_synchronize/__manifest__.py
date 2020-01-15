@@ -1,5 +1,6 @@
 # @ 2016 florian DA COSTA @ Akretion
 # © 2016 @author Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
+# @ 2020 Giovanni Serra @ GSlab.it
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 {
@@ -21,7 +22,7 @@
         'security/ir.model.access.csv',
     ],
     'demo': [
-#        'demo/task_demo.xml',
+        # 'demo/task_demo.xml',
     ],
     'installable': True,
     'application': False,
