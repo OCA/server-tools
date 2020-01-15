@@ -172,5 +172,5 @@ class StorageTask(models.Model):
                         new_env.cr.commit()
 
     def _file_to_import(self, filenames):
-        imported = self.attachment_ids.search([('name', 'in', [n for n in filenames])]).mapped('name')
+        imported = self.attachment_ids.filtered(lambda r: r.name in filenames).mapped('name')
         return list(set(filenames) - set(imported))
