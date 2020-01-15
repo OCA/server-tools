@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="base.model_res_partner" model="ir.model">
+            <field name="filesystem_storage" eval="True"/>
+        </record>
+
+    </data>
+</odoo>

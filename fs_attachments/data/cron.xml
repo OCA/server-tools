@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <data>
+        <!-- Cron job for doing a complete resync -->
+        <record id="ir_cron_resync_all_attachments" model="ir.cron">
+            <field name="name">Resync all attachments on filesystem storage</field>
+            <field eval="True" name="active" />
+            <field name="user_id" ref="base.user_root" />
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="activity_user_type">specific</field>
+            <field name="nextcall" eval="(datetime.now() + timedelta(days=1)).strftime('%Y-%m-%d 03:00:00')"/>
+            <field ref="base.model_ir_attachment" name="model_id" />
+            <field name="code">model.resync_all_cron()</field>
+            <field name="state">code</field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="account.model_account_invoice" model="ir.model">
+            <field name="filesystem_storage" eval="True"/>
+        </record>
+
+    </data>
+</odoo>
