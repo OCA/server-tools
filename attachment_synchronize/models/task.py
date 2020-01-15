@@ -77,7 +77,10 @@ class StorageTask(models.Model):
         string="File Type",
         help="The file type determines an import method to be used "
              "to parse and transform data before their import in ERP")
-    active = fields.Boolean(default=True)
+    enabled = fields.Boolean('Enabled', default=True)
+    check_duplicated_files = fields.Boolean(
+        string='Check duplicated files',
+        help='If checked, will avoid duplication file import')
 
     @api.multi
     def _prepare_attachment_vals(self, datas, filename):
@@ -114,7 +117,7 @@ class StorageTask(models.Model):
     def run_task_scheduler(self, domain=list()):
         if ('method_type', '=', 'import') not in domain:
             domain.append([('method_type', '=', 'import')])
-
+        domain.append([('enabled', '=', True)])
         tasks = self.env['storage.backend'].search(domain)
         for task in tasks:
             task.run_import()
@@ -126,6 +129,8 @@ class StorageTask(models.Model):
         backend = self.backend_id
         filenames = backend._list(
             relative_path=self.filepath, pattern=self.pattern)
+        if self.check_duplicated_files:
+            filenames = self._file_to_import(filenames)
         for file_name in filenames:
             with api.Environment.manage():
                 with odoo.registry(
@@ -165,3 +170,7 @@ class StorageTask(models.Model):
                         raise e
                     else:
                         new_env.cr.commit()
+
+    def _file_to_import(self, filenames):
+        imported = self.attachment_ids.search([('name', 'in', [n for n in filenames])]).mapped('name')
+        return list(set(filenames) - set(imported))
