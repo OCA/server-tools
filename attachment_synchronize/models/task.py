@@ -3,7 +3,6 @@
 import datetime
 import logging
 import os
-from fnmatch import fnmatch
 
 import odoo
 from odoo import api, fields, models, tools
@@ -50,10 +49,10 @@ class StorageTask(models.Model):
     method_type = fields.Selection(
         [('import', 'Import'), ('export', 'Export')],
         required=True)
-    filename = fields.Char(help='File name which is imported.'
-                                'The system will check if the remote file at '
-                                'least contains the pattern in its name. '
-                                'Leave it empty to import all files')
+    pattern = fields.Char(help='File name which is imported.'
+                          'The system will check if the remote file at '
+                          'least contains the pattern in its name. '
+                          'Leave it empty to import all files')
     filepath = fields.Char(help='Path to imported/exported file')
     backend_id = fields.Many2one(
         'storage.backend', string='Backend', required=True)
@@ -125,9 +124,8 @@ class StorageTask(models.Model):
         self.ensure_one()
         attach_obj = self.env['ir.attachment.metadata']
         backend = self.backend_id
-        all_filenames = backend._list(relative_path=self.filepath)
-        if self.filename:
-            filenames = [x for x in all_filenames if fnmatch(x, self.filename)]
+        filenames = backend._list(
+            relative_path=self.filepath, pattern=self.pattern)
         for file_name in filenames:
             with api.Environment.manage():
                 with odoo.registry(
