@@ -18,7 +18,7 @@
                     <group>
                         <field name="enabled"/>
                         <field name="method_type"/>
-                        <field name="filename" attrs="{'invisible':[('method_type','!=','import')]}"/>
+                        <field name="pattern" attrs="{'invisible':[('method_type','!=','import')]}"/>
                         <field name="filepath"/>
                     </group>
                     <group name="action" string="Action">
@@ -40,7 +40,7 @@
             <tree string="Tasks">
                 <field name="name" select="1"/>
                 <field name="method_type"/>
-                <field name="filename"/>
+                <field name="pattern"/>
                 <field name="filepath"/>
             </tree>
         </field>
