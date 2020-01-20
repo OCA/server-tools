@@ -20,6 +20,7 @@
                         <field name="method_type"/>
                         <field name="pattern" attrs="{'invisible':[('method_type','!=','import')]}"/>
                         <field name="filepath"/>
+                        <field name="check_duplicated_files" />
                     </group>
                     <group name="action" string="Action">
                         <field name="after_import" attrs="{'invisible':[('method_type','!=','import')]}"/>
