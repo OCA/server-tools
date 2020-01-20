@@ -131,6 +131,7 @@ class StorageTask(models.Model):
             relative_path=self.filepath, pattern=self.pattern)
         if self.check_duplicated_files:
             filenames = self._file_to_import(filenames)
+        total_import = 0
         for file_name in filenames:
             with api.Environment.manage():
                 with odoo.registry(
@@ -165,11 +166,13 @@ class StorageTask(models.Model):
                                 'delete', 'rename', 'move', 'move_rename'
                         ):
                             backend._delete(full_absolute_path)
+                        total_import += 1
                     except Exception as e:
                         new_env.cr.rollback()
                         raise e
                     else:
                         new_env.cr.commit()
+        _logger.info('Run import complete! Imported {0} files'.format(total_import))
 
     def _file_to_import(self, filenames):
         imported = self.attachment_ids.filtered(lambda r: r.name in filenames).mapped('name')
