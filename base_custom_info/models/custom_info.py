@@ -1,8 +1,8 @@
-# -*- coding: utf-8 -*-
 # Copyright 2015 Sergio Teruel <sergio.teruel@tecnativa.com>
 # Copyright 2015 Carlos Dauden <carlos.dauden@tecnativa.com>
 # Copyright 2016 Jairo Llopis <jairo.llopis@tecnativa.com>
 # Copyright 2017 Pedro M. Baeza <pedro.baeza@tecnativa.com>
+# Copyright 2020 initOS GmbH <https://initos.com>
 # License LGPL-3 - See http://www.gnu.org/licenses/lgpl-3.0.html
 
 from odoo import api, fields, models
@@ -58,9 +58,8 @@ class CustomInfo(models.AbstractModel):
             newvalue = self.custom_info_ids.new({
                 "property_id": prop.id,
                 "res_id": self.id,
-                "value": prop.default_value,
             })
-            # HACK https://github.com/odoo/odoo/issues/13076
+            newvalue._onchange_property_set_default_value()
             newvalue._inverse_value()
             newvalue._compute_value()
             values += newvalue

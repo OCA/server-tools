@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2016 Jairo Llopis <jairo.llopis@tecnativa.com>
 # Copyright 2017 Pedro M. Baeza <pedro.baeza@tecnativa.com>
 # License LGPL-3 - See http://www.gnu.org/licenses/lgpl-3.0.html
@@ -8,6 +7,7 @@ from odoo.exceptions import ValidationError
 
 
 class CustomInfoTemplate(models.Model):
+
     """Defines custom properties expected for a given database object."""
     _description = "Custom information template"
     _name = "custom.info.template"
@@ -29,7 +29,7 @@ class CustomInfoTemplate(models.Model):
     )
     property_ids = fields.One2many(
         comodel_name='custom.info.property', inverse_name='template_id',
-        string='Properties', oldname="info_ids",
+        string='Properties',
     )
 
     @api.multi

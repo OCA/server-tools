@@ -1,6 +1,6 @@
-# -*- coding: utf-8 -*-
 # Copyright 2016 Jairo Llopis <jairo.llopis@tecnativa.com>
 # Copyright 2017 Pedro M. Baeza <pedro.baeza@tecnativa.com>
+# Copyright 2020 initOS GmbH <https://initos.com>
 # License LGPL-3 - See http://www.gnu.org/licenses/lgpl-3.0.html
 from odoo import _, api, fields, models, SUPERUSER_ID
 from odoo.exceptions import ValidationError
@@ -178,6 +178,8 @@ class CustomInfoValue(models.Model):
         for record in self:
             if not record.value and record.property_id.default_value:
                 record.value = record.property_id.default_value
+            if not record.field_type and record.property_id.field_type:
+                record.field_type = record.property_id.field_type
 
     @api.onchange('value')
     def _onchange_value(self):
@@ -238,4 +240,4 @@ class CustomInfoValue(models.Model):
                 ("field_type", "=", fmt),
                 ("value_" + fmt, operator, _value),
             ]
-        return ["|"] * (len(domain) / 3 - 1) + domain
+        return ["|"] * (len(domain) // 3 - 1) + domain

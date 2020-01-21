@@ -1,10 +1,10 @@
-# -*- coding: utf-8 -*-
 # Copyright 2016 Jairo Llopis <jairo.llopis@tecnativa.com>
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 from psycopg2 import IntegrityError
 from odoo.exceptions import AccessError, ValidationError
 from odoo.tests.common import TransactionCase
+from odoo.tools import mute_logger
 
 
 class PartnerCase(TransactionCase):
@@ -82,6 +82,7 @@ class PartnerCase(TransactionCase):
         self.tpl.model = "res.users"
         self.assertEqual(self.tpl.model, self.tpl.model_id.model)
 
+    @mute_logger('odoo.sql_db')
     def test_template_model_must_exist(self):
         """Cannot create templates for unexisting models."""
         with self.assertRaises(IntegrityError):
