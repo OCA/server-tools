@@ -1,12 +1,7 @@
 # Copyright (C) 2018 Akretion
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
-from datetime import date, timedelta
-
 from odoo import _, api, exceptions, fields, models
-from odoo.tools import DEFAULT_SERVER_DATE_FORMAT
-from odoo.tools.safe_eval import safe_eval
-import datetime
 
 
 class VacuumRule(models.Model):
@@ -19,8 +14,10 @@ class VacuumRule(models.Model):
         for rule in self:
             if rule.model_ids and len(rule.model_ids) == 1:
                 rule.model_id = rule.model_ids.id
+                rule.model = rule.model_id.model
             else:
                 rule.model_id = False
+                rule.model = False
 
     name = fields.Char(required=True)
     ttype = fields.Selection(
@@ -53,6 +50,11 @@ class VacuumRule(models.Model):
              "domain, etc...for other fields, like the domain filter")
     model_filter_domain = fields.Text(
         string='Model Filter Domain')
+    model = fields.Char(
+        readonly=True,
+        compute='_get_model_id',
+        string='Model code'
+    )
     message_type = fields.Selection([
         ('email', 'Email'),
         ('comment', 'Comment'),
@@ -74,61 +76,11 @@ class VacuumRule(models.Model):
                 raise exceptions.ValidationError(
                     _("The Retention Time can't be 0 days"))
 
-    @api.multi
-    def _get_message_domain(self):
-        today = date.today()
-        limit_date = (today - timedelta(days=self.retention_time)).strftime(
-            DEFAULT_SERVER_DATE_FORMAT)
-        message_domain = [('date', '<', limit_date)]
-        if self.message_type != 'all':
-            message_domain += [('message_type', '=', self.message_type)]
-        if self.model_ids:
-            models = self.model_ids.mapped('model')
-            message_domain += [('model', 'in', models)]
-
-        subtype_ids = self.message_subtype_ids.ids
-        if subtype_ids and self.empty_subtype:
-            message_domain = ['|', ('subtype_id', 'in', subtype_ids),
-                              ('subtype_id', '=', False)]
-        elif subtype_ids and not self.empty_subtype:
-            message_domain += [('subtype_id', 'in', subtype_ids)]
-        elif not subtype_ids and not self.empty_subtype:
-            message_domain += [('subtype_id', '!=', False)]
-        return message_domain
-
-    @api.multi
-    def _get_attachment_domain(self):
-        today = date.today()
-        limit_date = (today - timedelta(days=self.retention_time)).strftime(
-            DEFAULT_SERVER_DATE_FORMAT)
-        attachment_domain = [('create_date', '<', limit_date)]
-        if self.filename_pattern:
-            attachment_domain += [('name', 'ilike', self.filename_pattern)]
-        if self.model_ids:
-            models = self.model_ids.mapped('model')
-            attachment_domain += [('res_model', 'in', models)]
-        else:
-            # Avoid deleting attachment without model, if there are, it is
-            # probably some attachments created by Odoo
-            attachment_domain += [('res_model', '!=', False)]
-        return attachment_domain
-
-    @api.multi
-    def get_domain(self):
+    def _search_autovacuum_records(self):
         self.ensure_one()
-        domain = []
-        if self.ttype == 'message':
-            domain += self._get_message_domain()
-        elif self.ttype == 'attachment':
-            domain += self._get_attachment_domain()
-
-        # Case we want a condition on linked model records
-        if self.model_id and self.model_filter_domain:
-            record_domain = safe_eval(self.model_filter_domain,
-                                      locals_dict={'datetime': datetime})
-
-            res_ids = self.env[self.model_id.model].with_context(
-                active_test=False).search(record_domain).ids
-            domain += ['|', ('res_id', 'in', res_ids),
-                       ('res_id', '=', False)]
-        return domain
+        model = self.ttype
+        if model == 'message':
+            model = 'mail.message'
+        elif model == 'attachment':
+            model = 'ir.attachment'
+        return self.env[model]._get_autovacuum_records(self)
