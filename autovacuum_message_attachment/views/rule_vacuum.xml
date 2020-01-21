@@ -8,30 +8,35 @@
         <field name="arch" type="xml">
             <form string="Message Vacuum Rule">
                 <sheet>
-                    <group col="4">
-                        <group col="4" colspan="4">
-                            <field name="name" colspan="2"/>
-                            <field name="ttype" colspan="2"/>
-                            <field name="company_id" colspan="2"/>
-                            <field name="retention_time" colspan="2"/>
-                            <field name="active" colspan="2"/>
+                    <group col="1">
+                        <group col="4">
+                            <field name="name"/>
+                            <field name="ttype"/>
+                            <field name="company_id"/>
+                            <field name="retention_time"/>
+                            <field name="active"/>
                         </group>
-                        <group col="4" colspan="4" attrs="{'invisible': [('ttype', '!=', 'message')]}">
-                            <field name="message_type" attrs="{'required': [('ttype', '=', 'message')]}" colspan="2"/>
-                            <field name="empty_subtype" colspan="2"/>
-                            <separator string="Message Subtypes" colspan="4"/>
-                            <field name="message_subtype_ids" nolabel="1" colspan="4"/>
+                        <group col="4" attrs="{'invisible': [('ttype', '!=', 'message')]}">
+                            <field name="message_type" attrs="{'required': [('ttype', '=', 'message')]}"/>
+                            <field name="empty_subtype"/>
                         </group>
-                        <group col="4" colspan="4" attrs="{'invisible': [('ttype', '!=', 'attachment')]}">
-                            <field name="filename_pattern" colspan="2"/>
+                        <group string="Message Subtypes">
+                            <field name="message_subtype_ids" nolabel="1"/>
                         </group>
-                        <separator string="Message Models" colspan="4"/>
-                        <field name="model_ids" nolabel="1" colspan="4"/>
-                        <field name="model_id" colspan="4"/>
-                        <field name="model_filter_domain" attrs="{'invisible': [('model_id', '=', False)]}" colspan="4"/>
-                        
-                        <separator string="Description" colspan="4"/>
-                        <field name="description" nolabel="1" colspan="4"/>
+                        <group attrs="{'invisible': [('ttype', '!=', 'attachment')]}">
+                            <field name="filename_pattern"/>
+                        </group>
+                        <group string="Message Models">
+                            <field name="model_ids" nolabel="1"/>
+                        </group>
+                        <group>
+                            <field name="model_id"/>
+                            <field name="model" invisible="1"/>
+                            <field name="model_filter_domain" attrs="{'invisible': [('model_id', '=', False)]}" widget="domain" options="{'model': 'model'}"/>
+                        </group>
+                        <group string="Description">
+                            <field name="description"/>
+                        </group>
                     </group>
                 </sheet>
             </form>
