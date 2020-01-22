@@ -55,14 +55,18 @@ class ImportOdooDatabaseField(models.Model):
     )
 
     @api.multi
+    @api.depends('mapping_type', 'field_ids')
     def _compute_reference_field(self, field_name, ttype):
         for this in self:
+            if this.mapping_type != 'by_reference':
+                continue
             this[field_name] = this.field_ids.filtered(
                 lambda x: x.ttype == ttype
-            )
+            )[:1]
 
     @api.multi
     def _inverse_reference_field(self, field_name, ttype):
-        self.field_ids = self.field_ids.filtered(
-            lambda x: x.ttype != ttype
-        ) + self[field_name]
+        for this in self:
+            this.field_ids = this.field_ids.filtered(
+                lambda x: x.ttype != ttype
+            )[:1] + this[field_name]
