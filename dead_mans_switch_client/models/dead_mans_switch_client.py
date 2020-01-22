@@ -8,6 +8,7 @@ import os
 import urllib
 
 from odoo import api, models
+from odoo.exceptions import except_orm
 from odoo.tools.config import config
 
 try:
@@ -16,6 +17,11 @@ except ImportError:  # pragma: no cover
     psutil = None
 
 SEND_TIMEOUT = 60
+
+
+class DMSFilterException(except_orm):
+    def __init__(self, msg):
+        super(DMSFilterException, self).__init__(msg, value="")
 
 
 class DeadMansSwitchClient(models.AbstractModel):
@@ -31,7 +37,7 @@ class DeadMansSwitchClient(models.AbstractModel):
             # psutil changed its api through versions
             processes = [process]
             if config.get("workers") and process.parent:  # pragma: no cover
-                if hasattr(process.parent, "__call__"):
+                if callable(process.parent):
                     process = process.parent()
                 else:
                     process = process.parent
@@ -61,6 +67,23 @@ class DeadMansSwitchClient(models.AbstractModel):
         }
 
     @api.model
+    def _filter_check(self):
+        filters = self.env["ir.filters"].search(
+            [("is_dead_mans_switch_filter", "=", True)]
+        )
+        filters_with_recs = []
+        for f in filters:
+            if self.env[f.model_id].search(f._get_eval_domain(), limit=1):
+                filters_with_recs.append(f.name)
+
+        if filters_with_recs:
+            raise DMSFilterException(
+                "Dead Man's Switch filters {} yielded "
+                "records.".format(filters_with_recs)
+            )
+        return True
+
+    @api.model
     def alive(self):
         url = self.env["ir.config_parameter"].get_param("dead_mans_switch_client.url")
         logger = logging.getLogger(__name__)
@@ -70,6 +93,8 @@ class DeadMansSwitchClient(models.AbstractModel):
         timeout = self.env["ir.config_parameter"].get_param(
             "dead_mans_switch_client.send_timeout", SEND_TIMEOUT
         )
+        self._filter_check()
+
         data = self._get_data()
         logger.debug("sending %s", data)
         urllib.request.urlopen(

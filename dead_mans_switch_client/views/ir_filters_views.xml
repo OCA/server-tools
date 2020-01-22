@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- User-defined Filters form -->
+    <record id="view_ir_filters_form_dms" model="ir.ui.view">
+        <field name="name">ir.filters.form.dms</field>
+        <field name="model">ir.filters</field>
+        <field name="inherit_id" ref="base.ir_filters_view_form"/>
+        <field name="arch" type="xml">
+            <field name="active" position="after">
+                <field name="is_dead_mans_switch_filter"/>
+            </field>
+        </field>
+    </record>
+
+    <!-- User-defined Filters tree -->
+    <record id="view_ir_filters_tree_dms" model="ir.ui.view">
+        <field name="name">ir.filters.tree.dms</field>
+        <field name="model">ir.filters</field>
+        <field name="inherit_id" ref="base.ir_filters_view_tree"/>
+        <field name="arch" type="xml">
+            <field name="sort" position="after">
+                <field name="is_dead_mans_switch_filter"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>
