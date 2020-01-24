@@ -57,8 +57,9 @@ class TestBaseSuspendSecurity(TransactionCase):
                 groups_id=[(5,)],
             )
         )
+        model = self.env["ir.config_parameter"]
         # the search is forbidden
         with self.assertRaises(exceptions.AccessError):
-            self.env["ir.config_parameter"].sudo(user_without_access).search([])
+            model.sudo(user_without_access).search([])
         # this tests the search
-        self.env["ir.config_parameter"].sudo(user_without_access).suspend_security().search([])
+            model.sudo(user_without_access).suspend_security().search([])
