@@ -1,11 +1,12 @@
-# Copyright 2018 Eficent Business and IT Consulting Services S.L.
+# Copyright 2020 ForgeFlow, S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 import logging
+import smtplib
 import threading
 
-import odoo.tools as tools
-from odoo.osv import osv
+from odoo import api, models
+from odoo.tools import ustr
 from odoo.tools.translate import _
 
 from odoo.addons.base.models.ir_mail_server import (
@@ -17,7 +18,7 @@ _logger = logging.getLogger(__name__)
 _test_logger = logging.getLogger("odoo.tests")
 
 
-class IrMailServer(osv.Model):
+class IrMailServer(models.Model):
     _inherit = "ir.mail_server"
 
     NO_VALID_RECIPIENT = (
@@ -25,6 +26,7 @@ class IrMailServer(osv.Model):
         "specified for outgoing emails (To/Cc/Bcc)"
     )
 
+    @api.model
     def send_email(
         self,
         message,
@@ -35,7 +37,6 @@ class IrMailServer(osv.Model):
         smtp_password=None,
         smtp_encryption=None,
         smtp_debug=False,
-        context=None,
         smtp_session=None,
     ):
         """Override the standard method to fix the issue of using a mail
@@ -48,9 +49,9 @@ class IrMailServer(osv.Model):
             or self._get_default_bounce_address()
             or message["From"]
         )
-        assert smtp_from, (
-            "The Return-Path or From header is required for " "any outbound email"
-        )
+        assert (
+            smtp_from
+        ), "The Return-Path or From header is required for any outbound email"
 
         # The email's "Envelope From" (Return-Path), and all recipient
         # addresses must only contain ASCII characters.
@@ -121,12 +122,11 @@ class IrMailServer(osv.Model):
             # do not quit() a pre-established smtp_session
             if not smtp_session:
                 smtp.quit()
+        except smtplib.SMTPServerDisconnected:
+            raise
         except Exception as e:
-            msg = _("Mail delivery failed via SMTP server '%s'.\n%s: %s") % (
-                tools.ustr(smtp_server),
-                e.__class__.__name__,
-                tools.ustr(e),
-            )
-            _logger.error(msg)
+            params = (ustr(smtp_server), e.__class__.__name__, ustr(e))
+            msg = _("Mail delivery failed via SMTP server '%s'.\n%s: %s") % params
+            _logger.info(msg)
             raise MailDeliveryException(_("Mail Delivery Failed"), msg)
         return message_id
