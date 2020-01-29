@@ -397,7 +397,7 @@ is needed, for example to be editable in a dedicated tree view.</p>
         <span class="s1">'my_model_a_b_rel'</span><span class="p">,</span>
         <span class="s1">'my_model_a_id'</span><span class="p">,</span>
         <span class="s1">'my_model_b_id'</span><span class="p">,</span>
-        <span class="n">create_table</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">create_table</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="p">)</span>
 
 
@@ -410,7 +410,7 @@ is needed, for example to be editable in a dedicated tree view.</p>
         <span class="s1">'my_model_a_b_rel'</span><span class="p">,</span>
         <span class="s1">'my_model_b_id'</span><span class="p">,</span>
         <span class="s1">'my_model_a_id'</span><span class="p">,</span>
-        <span class="n">create_table</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">create_table</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="p">)</span>
 
 
@@ -420,13 +420,13 @@ is needed, for example to be editable in a dedicated tree view.</p>
 
     <span class="n">my_model_a_id</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">Many2one</span><span class="p">(</span>
         <span class="s1">'my.model.a'</span><span class="p">,</span>
-        <span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
-        <span class="n">index</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>  <span class="c1"># Index is mandatory here</span>
+        <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># Index is mandatory here</span>
     <span class="p">)</span>
     <span class="n">my_model_b_id</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">Many2one</span><span class="p">(</span>
         <span class="s1">'my.model.b'</span><span class="p">,</span>
-        <span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
-        <span class="n">index</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>  <span class="c1"># Index is mandatory here</span>
+        <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># Index is mandatory here</span>
     <span class="p">)</span>
 </pre>
 <p>By setting <cite>create_table=False</cite> on the Many2manyCustom field, and using the
