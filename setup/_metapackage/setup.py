@@ -10,6 +10,7 @@ setuptools.setup(
     install_requires=[
         'odoo13-addon-base_cron_exclusion',
         'odoo13-addon-base_jsonify',
+        'odoo13-addon-base_m2m_custom_field',
         'odoo13-addon-company_country',
         'odoo13-addon-onchange_helper',
     ],
