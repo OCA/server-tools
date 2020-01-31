@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017 LasLabs Inc.
+# Copyright 2020 initOS GmbH.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
 import os
@@ -72,7 +72,7 @@ class ResUsers(models.Model):
             ))
         return super(ResUsers, self).copy(default=default)
 
-    @api.multi
+    @api.model
     def create(self, vals):
         """
         Override method to make sure the Thresholds aren't met before

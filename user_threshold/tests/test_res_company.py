@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017 LasLabs Inc.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
@@ -6,6 +5,7 @@ from lxml import etree
 
 from odoo.exceptions import AccessError
 from .common import Common
+from ..models import res_company as mdl
 
 
 class TestResCompany(Common):
@@ -15,7 +15,6 @@ class TestResCompany(Common):
         It should verify that setting THRESHOLD_HIDE removes the parameter
         from the view
         """
-        import odoo.addons.user_threshold.models.res_company as mdl
         mdl.THRESHOLD_HIDE = True
         view = self.env.ref('user_threshold.view_company_form')
         c = self.env['res.company'].browse(1)

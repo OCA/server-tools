@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017 LasLabs Inc.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
@@ -30,5 +29,5 @@ class TestResGroups(Common):
         self._add_user_to_group(u)
         g = self.env.ref('user_threshold.group_threshold_manager')
         demo_user = self.env.ref('base.user_demo')
-        g.sudo(u.id).write({'users': [(4, [demo_user.id])]})
+        g.sudo(u.id).write({'users': [(4, demo_user.id)]})
         self.assertTrue(demo_user.id in g.users.ids)

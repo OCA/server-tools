@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017 LasLabs Inc.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
@@ -6,6 +5,7 @@ from lxml import etree
 
 from odoo.exceptions import AccessError, ValidationError
 from .common import Common, MAX_DB_USER_PARAM
+from ..models import res_users as mdl
 
 
 class TestResUsers(Common):
@@ -69,7 +69,6 @@ class TestResUsers(Common):
         It should verify that setting THRESHOLD_HIDE removes the parameter
         from the view
         """
-        import odoo.addons.user_threshold.models.res_users as mdl
         mdl.THRESHOLD_HIDE = True
         view = self.env.ref('user_threshold.view_users_form')
         u = self._create_test_user()

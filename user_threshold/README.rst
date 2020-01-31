@@ -81,6 +81,7 @@ Contributors
 
 * Ted Salmon <tsalmon@laslabs.com>
 * Dave Lasley <dave@laslabs.com>
+* Dhara Solanki <dhara.solanki@initos.com>
 
 Maintainer
 ----------
