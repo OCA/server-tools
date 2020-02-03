@@ -1,13 +1,14 @@
-# Copyright 2016 Therp BV <http://therp.nl>
+# Copyright 2016 Therp BV <https://therp.nl>
 # Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
 # Copyright 2018 Ignacio Ibeas <ignacio@acysos.com>
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 import os
 import logging
 import urllib.request
 import urllib.parse
 import subprocess
 import tempfile
+
 from odoo import _, api, models, exceptions
 from odoo.tools import config
 

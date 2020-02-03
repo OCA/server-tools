@@ -1,5 +1,5 @@
-# Copyright 2016 Therp BV <http://therp.nl>
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# Copyright 2016-2020 Therp BV <https://therp.nl>
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 {
     "name": "Let's encrypt",
     "version": "12.0.1.0.0",
@@ -7,6 +7,7 @@
               "Tecnativa,"
               "Acysos S.L,"
               "Odoo Community Association (OCA)",
+    'website': "https://github.com/OCA/server-tools/",
     "license": "AGPL-3",
     "category": "Hidden/Dependency",
     "summary": "Request SSL certificates from letsencrypt.org",
