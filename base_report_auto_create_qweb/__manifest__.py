@@ -1,20 +1,16 @@
-# -*- coding: utf-8 -*-
 # Authors: See README.RST for Contributors
 # Copyright 2015-2017
+# Copyright 2020 initOS GmbH.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 {
     "name": "Report qweb auto generation",
-    "version": "10.0.1.0.0",
+    "version": "11.0.1.0.0",
     "depends": [
-        "report",
+        "base",
     ],
-    "external_dependencies": {
-        "python": [
-            "unidecode",
-        ],
-    },
-    "author": "AvanzOSC, "
+    "author": "initOS GmbH,"
+              "AvanzOSC, "
               "Tecnativa, "
               "Odoo Community Association (OCA), ",
     "website": "https://github.com/OCA/server-tools",

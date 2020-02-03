@@ -1,6 +1,6 @@
-# -*- coding: utf-8 -*-
 # Authors: See README.RST for Contributors
 # Copyright 2015-2017
+# Copyright 2020 initOS GmbH.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import models, api, exceptions, _
@@ -10,16 +10,7 @@ _logger = logging.getLogger(__name__)
 
 
 class IrActionsReport(models.Model):
-    _inherit = 'ir.actions.report.xml'
-
-    def _format_template_name(self, text):
-        try:
-            from unidecode import unidecode
-        except ImportError:
-            _logger.debug('Can not `import unidecode`.')
-        text = unidecode(unicode(text))
-        text.lower()
-        return text.encode('iso-8859-1')
+    _inherit = 'ir.actions.report'
 
     def _prepare_qweb_view_data(self, qweb_name, arch):
         return {
@@ -40,9 +31,9 @@ class IrActionsReport(models.Model):
     def _prepare_value_view_data(self, name, model):
         return {
             'name': name,
-            'model': model,
-            'key2': 'client_print_multi',
-            'value_unpickle': 'ir.actions.report.xml,%s' % self.id,
+            'type': 'ir.actions.server',
+            'model_id': self.env.ref('base.model_ir_actions_report').id,
+            'binding_model_id': self.env['ir.model']._get(model).id,
         }
 
     def _create_qweb(self, name, qweb_name, module, model, arch):
@@ -53,12 +44,10 @@ class IrActionsReport(models.Model):
         self.env['ir.model.data'].create(model_data_data)
         value_view_data = self._prepare_value_view_data(
             name, model)
-        self.env['ir.values'].sudo().create(value_view_data)
+        self.env['ir.actions.server'].sudo().create(value_view_data)
 
     @api.model
     def create(self, values):
-        values['report_name'] = self._format_template_name(
-            values.get('report_name', ''))
         if (values.get('report_type') in ['qweb-pdf', 'qweb-html'] and
                 values.get('report_name') and
                 values['report_name'].find('.') == -1):

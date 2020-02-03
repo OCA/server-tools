@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2015-2017
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
@@ -10,7 +9,7 @@ class TestBaseReportAutoQwebCreate(common.TransactionCase):
 
     def setUp(self):
         super(TestBaseReportAutoQwebCreate, self).setUp()
-        self.report_model = self.env['ir.actions.report.xml']
+        self.report_model = self.env['ir.actions.report']
         self.duplicate_model = self.env['ir.actions.report.xml.duplicate']
         self.view_model = self.env['ir.ui.view']
 
@@ -64,3 +63,17 @@ class TestBaseReportAutoQwebCreate(common.TransactionCase):
                 'report_type': 'qweb-pdf',
                 'report_name': 'report_test',
             })
+
+    def test_creation_duplicate_pdf_01(self):
+        report_pdf = self.report_model.create({
+            'name': 'Test 3',
+            'model': 'res.partner',
+            'report_type': 'qweb-pdf',
+            'report_name': 'test3.report_test3',
+        })
+        wizard = self.duplicate_model.with_context(
+            active_id=report_pdf.id, active_model=report_pdf._name,
+            model=report_pdf.model).create({
+                'suffix': 'copytest',
+            })
+        wizard.duplicate_report()
