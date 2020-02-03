@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017 LasLabs Inc.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html
 
@@ -17,7 +16,7 @@ class TestResGroups(TransactionCase):
     def test_can_add_immutable(self):
         """ It should make sure that `Administrator` can add users to the
          immutable group by default """
-        self.immutable.write({'users': [(4, [self.user.id])]})
+        self.immutable.write({'users': [(4, self.user.id)]})
         self.assertTrue(self.user.has_group('user_immutable.group_immutable'))
 
     def test_non_immutable_cannot_add_immutable(self):

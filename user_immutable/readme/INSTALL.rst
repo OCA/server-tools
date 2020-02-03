@@ -1,0 +1,1 @@
+* Install module as normal
