@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<templates>
+    <t t-name="ChangesetPopover">
+        <table class="pb-4">
+            <tr t-foreach="changes" t-as="change">
+                <td>
+                    <t t-esc="change.origin_value_display" />
+                </td>
+                <td class="pl-2 pr-2">
+                    <i class="fa fa-arrow-right" />
+                </td>
+                <td>
+                    <t t-esc="change.new_value_display" />
+                </td>
+                <td class="pl-4" t-if="change.user_can_validate_changeset">
+                    <div class="btn-group">
+                        <button
+                            class="btn btn-danger base_changeset_reject btn-sm"
+                            t-attf-data-id="#{change.id}"
+                        >
+                            <i class="fa fa-times" />
+                        </button>
+                        <button
+                            class="btn btn-success base_changeset_apply btn-sm"
+                            t-attf-data-id="#{change.id}"
+                        >
+                            <i class="fa fa-check" />
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </t>
+    <t t-name="ChangesetButton">
+        <a
+            role="button"
+            tabindex="0"
+            aria-label="Pending Changes"
+            title="Pending Changes"
+            data-toggle="tooltip"
+            class="badge badge-warning badge-pill base_changeset_button ml-2"
+        >
+            <t t-esc="count" />
+        </a>
+    </t>
+    <t t-name="ChangesetTemplate">
+        <div class="popover base_changeset_popover" role="tooltip">
+            <div class="arrow" />
+            <h3 class="popover-header" />
+            <div class="popover-body" />
+        </div>
+    </t>
+</templates>

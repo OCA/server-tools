@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<odoo>
-      <menuitem id="menu_changeset"
-        name="Partner Changesets"
-        groups="group_changeset_user"
-        parent="sale.menu_sales_config"
-        sequence="20"/>
-</odoo>
