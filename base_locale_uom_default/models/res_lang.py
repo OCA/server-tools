@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# Copyright 2020 initOS GmbH.
 # Copyright 2017 LasLabs Inc.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
@@ -43,7 +43,7 @@ class ResLang(models.Model):
         """
         if lang is None:
             lang = self.env.user.lang
-        if isinstance(lang, basestring):
+        if isinstance(lang, str):
             lang = self.env['res.lang'].search([
                 ('code', '=', lang),
             ],

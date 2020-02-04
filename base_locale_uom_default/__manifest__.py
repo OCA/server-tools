@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# Copyright 2020 initOS GmbH.
 # Copyright 2017 LasLabs Inc.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
@@ -6,10 +6,11 @@
     'name': 'Locale - Default UoM',
     'summary': 'This provides settings to select default UoMs at the '
                'language level.',
-    'version': '10.0.1.0.0',
+    'version': '11.0.1.0.0',
     'category': 'Extra Tools',
     'website': 'https://laslabs.com/',
-    'author': 'LasLabs, '
+    'author': 'initOS GmbH,'
+              'LasLabs,'
               'Odoo Community Association (OCA)',
     'license': 'LGPL-3',
     'application': False,
