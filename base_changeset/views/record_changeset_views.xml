@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_record_changeset_tree" model="ir.ui.view">
+        <field name="model">record.changeset</field>
+        <field name="arch" type="xml">
+            <tree delete="false" create="false">
+                <field name="record_id" />
+                <field name="model" />
+                <field name="res_id" widget="integer" />
+                <field name="date" />
+                <field name="modified_by_id" />
+                <field name="state" />
+                <button
+                    name="apply"
+                    string="Apply"
+                    type="object"
+                    icon="fa-plus-circle"
+                    states="draft"
+                />
+                <button
+                    name="cancel"
+                    string="Reject"
+                    type="object"
+                    icon="fa-times"
+                    states="draft"
+                />
+            </tree>
+        </field>
+    </record>
+    <record id="view_record_changeset_form" model="ir.ui.view">
+        <field name="model">record.changeset</field>
+        <field name="arch" type="xml">
+            <form delete="false" create="false">
+                <header>
+                    <button
+                        name="apply"
+                        string="Apply pending changes"
+                        type="object"
+                        class="oe_highlight"
+                        states="draft"
+                    />
+                    <button
+                        name="cancel"
+                        string="Reject pending changes"
+                        type="object"
+                        class="oe_highlight"
+                        states="draft"
+                    />
+                    <field
+                        name="state"
+                        widget="statusbar"
+                        statusbar_visible="draft,done"
+                    />
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="record_id" />
+                            <field name="model" />
+                            <field name="res_id" widget="integer" />
+                        </group>
+                        <group>
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                                options="{'no_create': True}"
+                            />
+                            <field name="source" />
+                            <field name="date" />
+                            <field name="modified_by_id" />
+                        </group>
+                    </group>
+                    <group string="Changes">
+                        <field name="change_ids" nolabel="1">
+                            <tree>
+                                <field name="field_id" context="{'no_open': True}" />
+                                <field name="field_type" invisible="1" />
+                                <field name="origin_value_display" string="Previous" />
+                                <field name="new_value_display" />
+                                <field name="state" />
+                                <field
+                                    name="user_can_validate_changeset"
+                                    invisible="1"
+                                />
+                                <button
+                                    name="apply"
+                                    string="Apply"
+                                    type="object"
+                                    icon="fa-plus-circle"
+                                    attrs="{'invisible': [('user_can_validate_changeset', '=', False)]}"
+                                />
+                                <button
+                                    name="cancel"
+                                    string="Reject"
+                                    type="object"
+                                    icon="fa-times"
+                                    attrs="{'invisible': [('user_can_validate_changeset', '=', False)]}"
+                                />
+                            </tree>
+                        </field>
+                    </group>
+                    <group>
+                        <field name="note" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="view_record_changeset_search" model="ir.ui.view">
+        <field name="model">record.changeset</field>
+        <field name="arch" type="xml">
+            <search>
+                <filter
+                    string="Pending"
+                    name="pending"
+                    domain="[('state','=','draft')]"
+                />
+                <filter string="Done" name="done" domain="[('state','=','done')]" />
+                <group expand="0" string="Group By">
+                    <filter
+                        string="State"
+                        name="groupby_state"
+                        context="{'group_by': 'state'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="action_record_changeset_view" model="ir.actions.act_window">
+        <field name="name">Record Changeset</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">record.changeset</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_pending': 1}</field>
+        <field name="search_view_id" ref="view_record_changeset_search" />
+    </record>
+</odoo>
