@@ -1,10 +1,11 @@
 <?xml version="1.0"?>
 <odoo>
-    <record model="ir.ui.view" id="company_form_view">
-        <field name="model">base.config.settings</field>
-        <field name="inherit_id" ref="auth_ldap.view_general_configuration_form_inherit_auth_ldap"/>
+      <record id="view_ldap_installer_form" model="ir.ui.view">
+        <field name="name">res.company.ldap.form</field>
+        <field name="model">res.company.ldap</field>
+        <field name="inherit_id" ref="auth_ldap.view_ldap_installer_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='ldaps']/form/group" position="after">
+            <xpath expr="//group/field[@name='ldap_server']/../..">
                 <group string="Map User Groups" >
                     <field name="only_ldap_groups" />
                     <label for="group_mapping_ids" />
@@ -18,7 +19,6 @@
                     </field>
                 </group>
             </xpath>
-
         </field>
     </record>
 </odoo>

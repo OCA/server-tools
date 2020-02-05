@@ -9,7 +9,7 @@ class ResUsers(models.Model):
 
     @classmethod
     def _login(cls, db, login, password):
-        user_id = super(ResUsers, cls)._login(db, login, password)
+        user_id = super()._login(db, login, password)
         if not user_id:
             return user_id
         with registry(db).cursor() as cr:

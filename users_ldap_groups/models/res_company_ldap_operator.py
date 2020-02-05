@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# Copyright 2020 initOS GmbH
 # © 2012-2018 Therp BV <https://therp.nl>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 from logging import getLogger
@@ -21,13 +21,17 @@ class ResCompanyLdapOperator(models.AbstractModel):
     @api.model
     def contains(self, ldap_entry, mapping):
         return mapping.ldap_attribute in ldap_entry[1] and \
-            mapping.value in ldap_entry[1][mapping.ldap_attribute]
+            mapping.value in map(
+                lambda x: x,
+                ldap_entry[1][mapping.ldap_attribute]
+        )
 
     def equals(self, ldap_entry, mapping):
         return mapping.ldap_attribute in ldap_entry[1] and \
-            unicode(mapping.value) == unicode(
+            mapping.value == str(list(map(
+                lambda x: x,
                 ldap_entry[1][mapping.ldap_attribute]
-            )
+            )))
 
     def query(self, ldap_entry, mapping):
         query_string = Template(mapping.value).safe_substitute({
