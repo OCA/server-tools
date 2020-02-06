@@ -1,10 +1,10 @@
-# -*- coding: utf-8 -*-
 # Copyright - 2013-2018 Therp BV <https://therp.nl>.
+# Copyright - 2020 Aures Tic Consultors S.L <https://www.aurestic.es>.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 import base64
 import logging
 
-from odoo import _, api, models, fields
+from odoo import _, api, fields, models
 from odoo.exceptions import UserError, ValidationError
 
 from .. import match_algorithm
@@ -18,6 +18,80 @@ class FetchmailServerFolder(models.Model):
     _rec_name = 'path'
     _order = 'sequence'
 
+    server_id = fields.Many2one(
+        comodel_name='fetchmail.server',
+        string='Server')
+    sequence = fields.Integer(
+        string='Sequence')
+    state = fields.Selection(
+        selection=[
+            ('draft', 'Not Confirmed'),
+            ('done', 'Confirmed')
+        ],
+        string='Status',
+        readonly=True,
+        required=True,
+        copy=False,
+        default='draft')
+    path = fields.Char(
+        string='Path',
+        required=True,
+        help="The path to your mail folder."
+             " Typically would be something like 'INBOX.myfolder'")
+    model_id = fields.Many2one(
+        comodel_name='ir.model',
+        string='Model',
+        required=True,
+        help='The model to attach emails to')
+    model_field = fields.Char(
+        string='Field (model)',
+        help='The field in your model that contains the field to match '
+             'against.\nExamples:\n'
+             "'email' if your model is res.partner, or "
+             "'partner_id.email' if you're matching sale orders")
+    model_order = fields.Char(
+        string='Order (model)',
+        help='Field(s) to order by, this mostly useful in conjunction '
+             "with 'Use 1st match'")
+    match_algorithm = fields.Selection(
+        selection=lambda s: s._get_match_algorithms_sel(),
+        string='Match algorithm',
+        required=True,
+        help='The algorithm used to determine which object an email matches.')
+    mail_field = fields.Char(
+        string='Field (email)',
+        help='The field in the email used for matching. Typically '
+             "this is 'to' or 'from'")
+    delete_matching = fields.Boolean(
+        string='Delete matches',
+        help='Delete matched emails from server')
+    flag_nonmatching = fields.Boolean(
+        string='Flag nonmatching',
+        default=True,
+        help="Flag emails in the server that don't match any object in Odoo")
+    match_first = fields.Boolean(
+        string='Use 1st match',
+        help='If there are multiple matches, use the first one. If '
+             'not checked, multiple matches count as no match at all')
+    domain = fields.Char(
+        string='Domain',
+        help='Fill in a search filter to narrow down objects to match')
+    msg_state = fields.Selection(
+        selection=[('sent', 'Sent'), ('received', 'Received')],
+        string='Message state',
+        default='received',
+        help='The state messages fetched from this folder should be '
+             'assigned in Odoo')
+    active = fields.Boolean(
+        string='Active',
+        default=True)
+    action_id = fields.Many2one(
+        comodel_name='ir.actions.server',
+        name='Server action',
+        help="Optional custom server action to trigger for each incoming "
+             "mail, on the record that was created or updated by this mail")
+
+    @api.model
     def _get_match_algorithms(self):
         def get_all_subclasses(cls):
             return (cls.__subclasses__() +
@@ -28,71 +102,13 @@ class FetchmailServerFolder(models.Model):
                      for cls in get_all_subclasses(
                          match_algorithm.base.Base)])
 
+    @api.model
     def _get_match_algorithms_sel(self):
         algorithms = []
-        for cls in self._get_match_algorithms().itervalues():
+        for cls in list(self._get_match_algorithms().values()):
             algorithms.append((cls.__name__, cls.name))
         algorithms.sort()
         return algorithms
-
-    server_id = fields.Many2one('fetchmail.server', 'Server')
-    sequence = fields.Integer('Sequence')
-    state = fields.Selection([
-        ('draft', 'Not Confirmed'),
-        ('done', 'Confirmed')],
-        string='Status',
-        readonly=True,
-        required=True,
-        copy=False,
-        default='draft')
-    path = fields.Char(
-        'Path',
-        required=True,
-        help="The path to your mail folder."
-             " Typically would be something like 'INBOX.myfolder'")
-    model_id = fields.Many2one(
-        'ir.model', 'Model', required=True,
-        help='The model to attach emails to')
-    model_field = fields.Char(
-        'Field (model)',
-        help='The field in your model that contains the field to match '
-        'against.\n'
-        'Examples:\n'
-        "'email' if your model is res.partner, or "
-        "'partner_id.email' if you're matching sale orders")
-    model_order = fields.Char(
-        'Order (model)',
-        help='Field(s) to order by, this mostly useful in conjunction '
-        "with 'Use 1st match'")
-    match_algorithm = fields.Selection(
-        _get_match_algorithms_sel,
-        'Match algorithm', required=True,
-        help='The algorithm used to determine which object an email matches.')
-    mail_field = fields.Char(
-        'Field (email)',
-        help='The field in the email used for matching. Typically '
-        "this is 'to' or 'from'")
-    delete_matching = fields.Boolean(
-        'Delete matches',
-        help='Delete matched emails from server')
-    flag_nonmatching = fields.Boolean(
-        'Flag nonmatching',
-        default=True,
-        help="Flag emails in the server that don't match any object in Odoo")
-    match_first = fields.Boolean(
-        'Use 1st match',
-        help='If there are multiple matches, use the first one. If '
-        'not checked, multiple matches count as no match at all')
-    domain = fields.Char(
-        'Domain',
-        help='Fill in a search filter to narrow down objects to match')
-    msg_state = fields.Selection(
-        selection=[('sent', 'Sent'), ('received', 'Received')],
-        string='Message state',
-        default='received',
-        help='The state messages fetched from this folder should be '
-        'assigned in Odoo')
-    active = fields.Boolean('Active', default=True)
 
     @api.multi
     def get_algorithm(self):
@@ -230,11 +246,28 @@ class FetchmailServerFolder(models.Model):
         matches = match_algorithm.search_matches(self, mail_message)
         matched = matches and (len(matches) == 1 or self.match_first)
         if matched:
-            match_algorithm.handle_match(
+            thread_id = match_algorithm.handle_match(
                 connection,
                 matches[0], self, mail_message,
                 message_org, msgid)
+            self.run_server_action(thread_id)
         self.update_msg(connection, msgid, matched=matched)
+
+    @api.multi
+    def run_server_action(self, matched_object_ids):
+        self.ensure_one()
+        action = self.action_id or self.server_id.action_id
+        if not action:
+            return
+        records = self.env[self.model_id.model].browse(matched_object_ids)
+        for record in records:
+            if not record.exists():
+                continue
+            action.with_context(**{
+                'active_id': record.id,
+                'active_ids': record.ids,
+                'active_model': self.model_id.model,
+            }).run()
 
     @api.multi
     def attach_mail(self, match_object, mail_message):
@@ -254,7 +287,7 @@ class FetchmailServerFolder(models.Model):
                 if len(attachment) < 2:
                     continue
                 fname, fcontent = attachment[:2]
-                if isinstance(fcontent, unicode):
+                if isinstance(fcontent, str):
                     fcontent = fcontent.encode('utf-8')
                 data_attach = {
                     'name': fname,

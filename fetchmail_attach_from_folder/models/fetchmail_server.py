@@ -1,14 +1,15 @@
-# -*- coding: utf-8 -*-
 # Copyright - 2013-2018 Therp BV <https://therp.nl>.
+# Copyright - 2020 Aures Tic Consultors S.L <https://www.aurestic.es>.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+import json
 import logging
 import re
-import json
+
 from lxml import etree
 
 from odoo import _, api, fields, models
-from odoo.tools.safe_eval import safe_eval
 from odoo.tools.misc import UnquoteEvalContext
+from odoo.tools.safe_eval import safe_eval
 
 
 _logger = logging.getLogger(__name__)
@@ -20,12 +21,28 @@ list_response_pattern = re.compile(
 class FetchmailServer(models.Model):
     _inherit = 'fetchmail.server'
 
+    folders_available = fields.Text(
+        string='Available folders',
+        compute='_compute_folders_available',
+        readonly=True)
+    folder_ids = fields.One2many(
+        comodel_name='fetchmail.server.folder',
+        inverse_name='server_id',
+        string='Folders',
+        context={'active_test': False})
+    object_id = fields.Many2one(required=False)  # comodel_name='ir.model'
+    type = fields.Selection(default='imap')
+    folders_only = fields.Boolean(
+        string='Only folders, not inbox',
+        help="Check this field to leave imap inbox alone"
+             " and only retrieve mail from configured folders.")
+
     @api.multi
     def _compute_folders_available(self):
         """Retrieve available folders from IMAP server."""
         def parse_list_response(line):
             flags, delimiter, mailbox_name = \
-                list_response_pattern.match(line).groups()
+                list_response_pattern.match(line.decode('utf-8')).groups()
             mailbox_name = mailbox_name.strip('"')
             return (flags, delimiter, mailbox_name)
 
@@ -43,22 +60,6 @@ class FetchmailServer(models.Model):
                 folders_available.append(parse_list_response(folder_entry)[2])
             this.folders_available = '\n'.join(folders_available)
             connection.logout()
-
-    folders_available = fields.Text(
-        string='Available folders',
-        compute='_compute_folders_available',
-        readonly=True)
-    folder_ids = fields.One2many(
-        comodel_name='fetchmail.server.folder',
-        inverse_name='server_id',
-        string='Folders',
-        context={'active_test': False})
-    object_id = fields.Many2one(required=False)  # comodel_name='ir.model'
-    type = fields.Selection(default='imap')
-    folders_only = fields.Boolean(
-        string='Only folders, not inbox',
-        help="Check this field to leave imap inbox alone"
-             " and only retrieve mail from configured folders.")
 
     @api.onchange('type', 'is_ssl', 'object_id')
     def onchange_server_type(self):
@@ -90,7 +91,7 @@ class FetchmailServer(models.Model):
             docstr = ''
             folder_model = self.env['fetchmail.server.folder']
             match_algorithms = folder_model._get_match_algorithms()
-            for algorithm in match_algorithms.itervalues():
+            for algorithm in list(match_algorithms.values()):
                 for modifier in ['required', 'readonly']:
                     for field in getattr(algorithm, modifier + '_fields'):
                         modifiers.setdefault(field, {})

@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
 # Copyright - 2013-2018 Therp BV <https://therp.nl>.
+# Copyright - 2020 Aures Tic Consultors S.L <https://www.aurestic.es>.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from .base import Base
 
@@ -25,7 +25,7 @@ class OdooStandard(Base):
             self, connection, match_object, folder,
             mail_message, mail_message_org, msgid):
         thread_model = folder.env['mail.thread']
-        thread_model.message_process(
+        return thread_model.message_process(
             folder.model_id.model, mail_message_org,
             save_original=folder.server_id.original,
             strip_attachments=(not folder.server_id.attach))

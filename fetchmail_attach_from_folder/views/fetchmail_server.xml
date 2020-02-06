@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <record model="ir.ui.view" id="view_email_server_form">
+    <record id="view_email_server_form_inh_faff" model="ir.ui.view">
         <field name="name">fetchmail.server.form</field>
         <field name="model">fetchmail.server</field>
         <field name="inherit_id" ref="fetchmail.view_email_server_form" />
@@ -23,12 +23,13 @@
                         <field
                             name="folder_ids"
                             nolabel="1">
-                            <tree colors="gray:active==False">
+                            <tree decoration-info="active == True" decoration-muted="active == False">
                                 <field name="active" invisible="True" />
                                 <field name="sequence" widget="handle" />
                                 <field name="path" />
                                 <field name="model_id" />
                                 <field name="model_field" />
+                                <field name="action_id" />
                                 <field name="match_algorithm" />
                                 <field name="mail_field" />
                                 <field name="state" />
@@ -66,6 +67,7 @@
                                         <field
                                             name="model_field"
                                             placeholder="email" />
+                                        <field name="action_id" />
                                         <field name="match_algorithm" />
                                         <field
                                             name="mail_field"
