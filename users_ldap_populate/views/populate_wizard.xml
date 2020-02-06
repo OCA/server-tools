@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <odoo>
-    <record model="ir.ui.view" id="populate_wizard_view">
+    <record id="populate_wizard_view" model="ir.ui.view">
         <field name="model">res.company.ldap.populate_wizard</field>
         <field name="arch" type="xml">
             <form string="Add populate button to ldap view">

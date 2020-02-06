@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# Copyright 2020 initOS GmbH
 # Copyright 2016-2018 Therp BV <https://therp.nl>.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from contextlib import contextmanager
@@ -66,6 +66,6 @@ class TestUsersLdapPopulate(TransactionCase):
             get_fake_ldap(self).populate_wizard()
             self.assertFalse(self.env.ref('base.user_demo').active)
             self.assertTrue(self.env.ref('base.user_root').active)
-            self.assertTrue(self.env['res.users'].search([
+            self.assertTrue(bool(self.env['res.users'].search([
                 ('login', '=', 'fake')
-            ]))
+            ])))
