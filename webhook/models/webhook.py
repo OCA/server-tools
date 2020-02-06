@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2016 Vauxoo - https://www.vauxoo.com/
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
@@ -38,35 +37,35 @@ class Webhook(models.Model):
         'Consumer name',
         required=True,
         help='Name of your consumer webhook. '
-             'This name will be used in named of event methods')
+        'This name will be used in named of event methods')
     address_ids = fields.One2many(
         'webhook.address', 'webhook_id', 'IP or Network Address',
         required=True,
         help='This address will be filter to know who is '
-             'consumer webhook')
+        'consumer webhook')
     python_code_get_event = fields.Text(
         'Get event',
         required=True,
         help='Python code to get event from request data.\n'
-             'You have object.env.request variable with full '
-             'webhook request.',
+        'You have object.env.request variable with full '
+        'webhook request.',
         default='# You can use object.env.request variable '
-                'to get full data of webhook request.\n'
-                '# Example:\n#request.httprequest.'
-                'headers.get("X-Github-Event")',
+        'to get full data of webhook request.\n'
+        '# Example:\n#request.httprequest.'
+        'headers.get("X-Github-Event")',
     )
     python_code_get_ip = fields.Text(
         'Get IP',
         required=True,
         help='Python code to get remote IP address '
-             'from request data.\n'
-             'You have object.env.request variable with full '
-             'webhook request.',
+        'from request data.\n'
+        'You have object.env.request variable with full '
+        'webhook request.',
         default='# You can use object.env.request variable '
-                'to get full data of webhook request.\n'
-                '# Example:\n'
-                '#object.env.request.httprequest.remote_addr'
-                '\nrequest.httprequest.remote_addr',
+        'to get full data of webhook request.\n'
+        '# Example:\n'
+        '#object.env.request.httprequest.remote_addr'
+        '\nrequest.httprequest.remote_addr',
 
     )
     active = fields.Boolean(default=True)
@@ -77,7 +76,7 @@ class Webhook(models.Model):
         Execute a python code with eval.
         :param string python_code: Python code to process
         :param object request: Request object with data of json
-                               and http request
+                                                   and http request
         :return: Result of process python code.
         """
         self.ensure_one()
@@ -96,7 +95,7 @@ class Webhook(models.Model):
             _logger.debug(
                 'python_code "%s" with dict [%s] error [%s]',
                 python_code, eval_dict, error)
-        if isinstance(res, basestring):
+        if isinstance(res, str):
             res = tools.ustr(res)
         return res
 
@@ -107,9 +106,9 @@ class Webhook(models.Model):
         and return only one that match with remote address
         and range of address.
         :param object request: Request object with data of json
-                               and http request
+                                                   and http request
         :return: object of webhook found or
-                 if not found then return False
+                         if not found then return False
         """
         for webhook in self.search([]):
             remote_address = webhook.process_python_code(
@@ -127,7 +126,7 @@ class Webhook(models.Model):
         IP or network address of current object data.
         :param string remote_address: Remote IP address
         :return: if remote address match then return True
-                 else then return False
+                         else then return False
         """
         self.ensure_one()
         for address in self.address_ids:
@@ -173,7 +172,7 @@ class Webhook(models.Model):
         'run_CONSUMER_EVENT*'
         Invoke all methods found.
         :param object request: Request object with data of json
-                               and http request
+                                                   and http request
         :return: True
         """
         self.ensure_one()

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2016 Vauxoo - https://www.vauxoo.com/
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
@@ -11,7 +10,7 @@ from odoo.tools.translate import _
 
 
 HOST = '127.0.0.1'
-PORT = tools.config['xmlrpc_port']
+PORT = tools.config['http_port']
 
 
 class Webhook(models.Model):
