@@ -5,20 +5,26 @@
             <field name='model'>base.merge.wizard</field>
             <field name='arch' type='xml'>
                 <form string='Merge Wizard'>
-                    <sheet>
-                        <separator string="Merge the following records"/>
-                        <group col="1">
-                            <p class="oe_grey">
-                                Selected contacts will be merged together.
-                                All documents linked to one of these contacts
-                                will be redirected to the destination contact.
-                                You can remove contacts from this list to avoid merging them.
-                            </p>
-                            <field name="model_id" nolabel="1"/>
-                            <field name="target_id"/>
-                            <field name="source_ids"/>
-                        </group>
-                    </sheet>
+                    <separator string="Merge the following records"/>
+                    <group col="2">
+                        <p class="oe_grey" colspan="2">
+                            All records below will be merged together into
+                            the record selected as target.
+                            All documents linked to one of these records
+                            will be redirected to the destination record.
+                            You can remove records from this list to avoid
+                            merging them.
+                        </p>
+                        <field name="model_id"/>
+                        <field name="data" widget="char" />
+                        <field name="target_id" domain="[('id', 'in', source_ids[0][2])]"/>
+                        <field name="source_ids"/>
+                    </group>
+                    <footer>
+                        <button type="object" name="action_merge" class="btn-primary" string="Merge" />
+                        or
+                        <button type="special" special="cancel" class="btn-default" string="Cancel" />
+                    </footer>
                 </form>
             </field>
         </record>
