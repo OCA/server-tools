@@ -19,6 +19,7 @@
         'security/ir.model.access.csv',
         'data/cron.xml',
         'data/ir_config_parameter.xml',
+        'data/mail_template.xml',
     ],
     'demo': [
         'demo/attachment_metadata_demo.xml'

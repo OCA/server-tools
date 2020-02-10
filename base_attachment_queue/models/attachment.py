@@ -26,6 +26,20 @@ class IrAttachmentMetadata(models.Model):
         ('done', 'Done'),
         ], readonly=False, required=True, default='pending')
     state_message = fields.Text()
+    failure_emails = fields.Char(
+        compute='_compute_failure_emails',
+        string="Failure Emails",
+        help="list of email (separated by comma) which should be notified in "
+             "case of failure")
+
+    def _compute_failure_emails(self):
+        for attach in self:
+            attach.failure_emails = attach._get_failure_emails()
+
+    def _get_failure_emails(self):
+        # to be overriden in submodules implementing the file_type
+        self.ensure_one()
+        return ""
 
     @api.model
     def run_attachment_metadata_scheduler(self, domain=None):
@@ -47,6 +61,8 @@ class IrAttachmentMetadata(models.Model):
         """
         Run the process for each attachment metadata
         """
+        failure_tmpl = self.env.ref(
+            'base_attachment_queue.attachment_failure_notification')
         for attachment in self:
             with api.Environment.manage():
                 with registry(self.env.cr.dbname).cursor() as new_cr:
@@ -63,6 +79,9 @@ class IrAttachmentMetadata(models.Model):
                             'state': 'failed',
                             'state_message': str(e),
                         })
+                        emails = attach.failure_emails
+                        if emails:
+                            failure_tmpl.send_mail(attach.id)
                         attach.env.cr.commit()
                     else:
                         vals = {
