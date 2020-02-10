@@ -18,9 +18,14 @@ class IrAttachmentMetadata(models.Model):
              'Export File (External location)')
         ])
 
-    @api.multi
     def _run(self):
-        super(IrAttachmentMetadata, self)._run()
+        super()._run()
         if self.file_type == 'export':
             path = os.path.join(self.task_id.filepath, self.datas_fname)
             self.storage_backend_id._add_b64_data(path, self.datas)
+
+    def _get_failure_emails(self):
+        res = super()._get_failure_emails()
+        if self.task_id.emails:
+            res = self.task_id.emails
+        return res
