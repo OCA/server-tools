@@ -81,6 +81,10 @@ class StorageTask(models.Model):
     check_duplicated_files = fields.Boolean(
         string='Check duplicated files',
         help='If checked, will avoid duplication file import')
+    emails = fields.Char(
+        string="Emails",
+        help="list of email which should be notified in case of failure "
+             "when excuting the files linked to this task")
 
     @api.multi
     def _prepare_attachment_vals(self, datas, filename):
