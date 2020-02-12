@@ -1,5 +1,5 @@
 # Copyright 2019 Camptocamp SA
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
 
 from odoo import fields, models
 from odoo.tools.safe_eval import safe_eval
@@ -7,17 +7,18 @@ from odoo.tools.safe_eval import safe_eval
 
 class AbstractConditionalImage(models.AbstractModel):
     _name = 'abstract.conditional.image'
+    _description = "Helper class to turn image fields into links to image model."
 
     image = fields.Binary(
         compute='_compute_image', string="Image",
         store=False, readonly=True
     )
     image_medium = fields.Binary(
-        compute='_compute_image', string="Image",
+        compute='_compute_image', string="Medium-sized image",
         store=False, readonly=True
     )
     image_small = fields.Binary(
-        compute='_compute_image', string="Image",
+        compute='_compute_image', string="Small-sized image",
         store=False, readonly=True
     )
 
