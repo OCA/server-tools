@@ -1,6 +1,7 @@
-# Copyright 2016 Therp BV <http://therp.nl>
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# Copyright 2016-2020 Therp BV <https://therp.nl>
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 from psycopg2 import ProgrammingError
+
 from odoo.modules.registry import Registry
 from odoo.tools import config, mute_logger
 from odoo.tests.common import TransactionCase, at_install, post_install
@@ -10,6 +11,7 @@ from odoo.tests.common import TransactionCase, at_install, post_install
 @at_install(False)
 @post_install(True)
 class TestDatabaseCleanup(TransactionCase):
+
     def setUp(self):
         super(TestDatabaseCleanup, self).setUp()
         self.module = None
@@ -95,7 +97,9 @@ class TestDatabaseCleanup(TransactionCase):
         # reference to it
         original_registry = Registry.registries[self.env.cr.dbname]
         config.options['test_enable'] = False
-        purge_modules.purge_all()
+        with mute_logger('odoo.modules.loading'):
+            with mute_logger('odoo.modules.graph'):
+                purge_modules.purge_all()
         config.options['test_enable'] = True
         # must be removed by the wizard
         self.assertFalse(self.env['ir.module.module'].search([
