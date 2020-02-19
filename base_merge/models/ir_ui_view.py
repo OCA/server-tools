@@ -8,7 +8,7 @@ class View(models.Model):
     
     _inherit = 'ir.ui.view'
     
-    def postprocess(
+    def postprocess_deactivated(
         self,
         model, 
         node, 
