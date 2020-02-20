@@ -14,7 +14,12 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: base_conditional_image
-#: code:addons/base_conditional_image/models/image.py:52
+#: model:ir.model,name:base_conditional_image.model_abstract_conditional_image
+msgid "Abstract image"
+msgstr ""
+
+#. module: base_conditional_image
+#: code:addons/base_conditional_image/models/image.py:53
 #, python-format
 msgid "At least one image type must be specified"
 msgstr ""
@@ -52,9 +57,8 @@ msgid "ID"
 msgstr ""
 
 #. module: base_conditional_image
+#: model:ir.model,name:base_conditional_image.model_image
 #: model:ir.model.fields,field_description:base_conditional_image.field_abstract_conditional_image__image
-#: model:ir.model.fields,field_description:base_conditional_image.field_abstract_conditional_image__image_medium
-#: model:ir.model.fields,field_description:base_conditional_image.field_abstract_conditional_image__image_small
 #: model:ir.model.fields,field_description:base_conditional_image.field_image__image
 msgid "Image"
 msgstr ""
@@ -82,6 +86,7 @@ msgid "Last Updated on"
 msgstr ""
 
 #. module: base_conditional_image
+#: model:ir.model.fields,field_description:base_conditional_image.field_abstract_conditional_image__image_medium
 #: model:ir.model.fields,field_description:base_conditional_image.field_image__image_medium
 msgid "Medium-sized image"
 msgstr ""
@@ -113,6 +118,7 @@ msgid "Selector"
 msgstr ""
 
 #. module: base_conditional_image
+#: model:ir.model.fields,field_description:base_conditional_image.field_abstract_conditional_image__image_small
 #: model:ir.model.fields,field_description:base_conditional_image.field_image__image_small
 msgid "Small-sized image"
 msgstr ""
@@ -125,15 +131,5 @@ msgstr ""
 #. module: base_conditional_image
 #: model:ir.model.fields,help:base_conditional_image.field_image__image
 msgid "This field holds the standard image, limited to 1024x1024px"
-msgstr ""
-
-#. module: base_conditional_image
-#: model:ir.model,name:base_conditional_image.model_abstract_conditional_image
-msgid "abstract.conditional.image"
-msgstr ""
-
-#. module: base_conditional_image
-#: model:ir.model,name:base_conditional_image.model_image
-msgid "image"
 msgstr ""
 

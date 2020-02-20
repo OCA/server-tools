@@ -7,17 +7,18 @@ from odoo.tools.safe_eval import safe_eval
 
 class AbstractConditionalImage(models.AbstractModel):
     _name = 'abstract.conditional.image'
+    _description = 'Abstract image'
 
     image = fields.Binary(
         compute='_compute_image', string="Image",
         store=False, readonly=True
     )
     image_medium = fields.Binary(
-        compute='_compute_image', string="Image",
+        compute='_compute_image', string="Medium-sized image",
         store=False, readonly=True
     )
     image_small = fields.Binary(
-        compute='_compute_image', string="Image",
+        compute='_compute_image', string="Small-sized image",
         store=False, readonly=True
     )
 
