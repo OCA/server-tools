@@ -194,6 +194,18 @@ msgid "Allow Choose Template"
 msgstr ""
 
 #. module: excel_import_export
+#: model:ir.model.fields,field_description:excel_import_export.field_export_xlsx_wizard__attachment_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_export__attachment_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_import__attachment_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_report__attachment_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_styles__attachment_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__attachment_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__attachment_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_import__attachment_ids
+msgid "Attachments"
+msgstr ""
+
+#. module: excel_import_export
 #: model:ir.model,name:excel_import_export.model_xlsx_styles
 msgid "Available styles for excel"
 msgstr ""
