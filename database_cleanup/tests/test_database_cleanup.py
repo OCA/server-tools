@@ -95,7 +95,8 @@ class TestDatabaseCleanup(TransactionCase):
         # reference to it
         original_registry = Registry.registries[self.env.cr.dbname]
         config.options['test_enable'] = False
-        purge_modules.purge_all()
+        with mute_logger('odoo.modules.graph', 'odoo.modules.loading'):
+            purge_modules.purge_all()
         config.options['test_enable'] = True
         # must be removed by the wizard
         self.assertFalse(self.env['ir.module.module'].search([
