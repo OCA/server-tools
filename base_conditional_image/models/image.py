@@ -7,6 +7,7 @@ from odoo.exceptions import ValidationError
 
 class Image(models.Model):
     _name = 'image'
+    _description = 'Image'
 
     name = fields.Char('Name', required=True)
     model_name = fields.Char('Model Name', required=True)
