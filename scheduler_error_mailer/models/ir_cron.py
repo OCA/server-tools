@@ -25,7 +25,7 @@ class IrCron(models.Model):
     def _handle_callback_exception(
         self, cron_name, server_action_id, job_id, job_exception
     ):
-        res = super(IrCron, self)._handle_callback_exception(
+        res = super()._handle_callback_exception(
             cron_name, server_action_id, job_id, job_exception
         )
         my_cron = self.browse(job_id)
@@ -33,16 +33,12 @@ class IrCron(models.Model):
         if my_cron.email_template_id:
             # we put the job_exception in context to be able to print it inside
             # the email template
-            context = {
-                "job_exception": str(job_exception),
-                "dbname": self._cr.dbname,
-            }
+            context = {"job_exception": str(job_exception), "dbname": self._cr.dbname}
 
             _logger.debug("Sending scheduler error email with context=%s", context)
 
-            self.env["mail.template"].browse(my_cron.email_template_id.id).with_context(
-                context
-            ).sudo().send_mail(my_cron.id, force_send=True)
+            template = my_cron.email_template_id.with_context(context).sudo()
+            template.send_mail(my_cron.id, force_send=True)
 
         return res
 
