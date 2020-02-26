@@ -7,3 +7,4 @@
 * `Tecnativa <https://www.tecnativa.com>`_:
 
   * Cristina Martin R.
+  * Víctor Martínez
