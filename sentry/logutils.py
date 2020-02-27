@@ -18,56 +18,50 @@ except ImportError:
 
 
 def get_request_info(request):
-    '''
+    """
     Returns context data extracted from :param:`request`.
 
     Heavily based on flask integration for Sentry: https://git.io/vP4i9.
-    '''
+    """
     urlparts = urllib.parse.urlsplit(request.url)
     return {
-        'url': '%s://%s%s' % (urlparts.scheme, urlparts.netloc, urlparts.path),
-        'query_string': urlparts.query,
-        'method': request.method,
-        'headers': dict(get_headers(request.environ)),
-        'env': dict(get_environ(request.environ)),
+        "url": "{}://{}{}".format(urlparts.scheme, urlparts.netloc, urlparts.path),
+        "query_string": urlparts.query,
+        "method": request.method,
+        "headers": dict(get_headers(request.environ)),
+        "env": dict(get_environ(request.environ)),
     }
 
 
 def get_extra_context():
-    '''
+    """
     Extracts additional context from the current request (if such is set).
-    '''
+    """
     request = odoo.http.request
     try:
-        session = getattr(request, 'session', {})
+        session = getattr(request, "session", {})
     except RuntimeError:
         ctx = {}
     else:
         ctx = {
-            'tags': {
-                'database': session.get('db', None),
+            "tags": {"database": session.get("db", None)},
+            "user": {
+                "login": session.get("login", None),
+                "uid": session.get("uid", None),
             },
-            'user': {
-                'login': session.get('login', None),
-                'uid': session.get('uid', None),
-            },
-            'extra': {
-                'context': session.get('context', {}),
-            },
+            "extra": {"context": session.get("context", {})},
         }
         if request.httprequest:
-            ctx.update({
-                'request': get_request_info(request.httprequest),
-            })
+            ctx.update({"request": get_request_info(request.httprequest)})
     return ctx
 
 
 class LoggerNameFilter(logging.Filter):
-    '''
+    """
     Custom :class:`logging.Filter` which allows to filter loggers by name.
-    '''
+    """
 
-    def __init__(self, loggers, name=''):
+    def __init__(self, loggers, name=""):
         super(LoggerNameFilter, self).__init__(name=name)
         self._exclude_loggers = set(loggers)
 
@@ -76,12 +70,12 @@ class LoggerNameFilter(logging.Filter):
 
 
 class OdooSentryHandler(SentryHandler):
-    '''
+    """
     Customized :class:`raven.handlers.logging.SentryHandler`.
 
     Allows to add additional Odoo and HTTP request data to the event which is
     sent to Sentry.
-    '''
+    """
 
     def __init__(self, include_extra_context, *args, **kwargs):
         super(OdooSentryHandler, self).__init__(*args, **kwargs)
@@ -94,12 +88,10 @@ class OdooSentryHandler(SentryHandler):
 
 
 class SanitizeOdooCookiesProcessor(SanitizePasswordsProcessor):
-    '''
+    """
     Custom :class:`raven.processors.Processor`.
 
     Allows to sanitize sensitive Odoo cookies, namely the "session_id" cookie.
-    '''
+    """
 
-    KEYS = FIELDS = frozenset([
-        'session_id',
-    ])
+    KEYS = FIELDS = frozenset(["session_id"])
