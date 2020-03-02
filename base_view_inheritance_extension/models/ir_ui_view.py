@@ -2,34 +2,30 @@
 # Copyright 2018 Tecnativa - Sergio Teruel
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 from lxml import etree
+
 from odoo import api, models, tools
 from odoo.tools.safe_eval import safe_eval
 
 
 class UnquoteObject(str):
     def __getattr__(self, name):
-        return UnquoteObject('%s.%s' % (self, name))
+        return UnquoteObject("{}.{}".format(self, name))
 
     def __repr__(self):
         return self
 
     def __call__(self, *args, **kwargs):
         return UnquoteObject(
-            '%s(%s)' % (
+            "%s(%s)"
+            % (
                 self,
-                ','.join(
+                ",".join(
                     [
-                        UnquoteObject(
-                            a if not isinstance(a, str)
-                            else "'%s'" % a
-                        )
+                        UnquoteObject(a if not isinstance(a, str) else "'%s'" % a)
                         for a in args
-                    ] +
-                    [
-                        '%s=%s' % (UnquoteObject(k), v)
-                        for (k, v) in kwargs.items()
                     ]
-                )
+                    + ["{}={}".format(UnquoteObject(k), v) for (k, v) in kwargs.items()]
+                ),
             )
         )
 
@@ -40,55 +36,47 @@ class UnquoteEvalObjectContext(tools.misc.UnquoteEvalContext):
 
 
 class IrUiView(models.Model):
-    _inherit = 'ir.ui.view'
+    _inherit = "ir.ui.view"
 
     @api.model
-    def apply_inheritance_specs(self, source, specs_tree, inherit_id, pre_locate=lambda s: True):
+    def apply_inheritance_specs(
+        self, source, specs_tree, inherit_id, pre_locate=lambda s: True
+    ):
         for specs, handled_by in self._iter_inheritance_specs(specs_tree):
             source = handled_by(source, specs, inherit_id, pre_locate=pre_locate)
         return source
 
     @api.model
     def _iter_inheritance_specs(self, spec):
-        if spec.tag == 'data':
+        if spec.tag == "data":
             for child in spec:
                 for node, handler in self._iter_inheritance_specs(child):
                     yield node, handler
             return
-        if spec.get('position') == 'attributes':
-            if all(not c.get('operation') for c in spec):
+        if spec.get("position") == "attributes":
+            if all(not c.get("operation") for c in spec):
                 yield spec, self._get_inheritance_handler(spec)
                 return
             for child in spec:
                 node = etree.Element(spec.tag, **spec.attrib)
                 node.insert(0, child)
-                yield node, self._get_inheritance_handler_attributes(
-                    child
-                )
+                yield node, self._get_inheritance_handler_attributes(child)
             return
         yield spec, self._get_inheritance_handler(spec)
 
     @api.model
     def _get_inheritance_handler(self, node):
         handler = super(IrUiView, self).apply_inheritance_specs
-        if hasattr(
-            self, 'inheritance_handler_%s' % node.tag
-        ):
-            handler = getattr(
-                self,
-                'inheritance_handler_%s' % node.tag
-            )
+        if hasattr(self, "inheritance_handler_%s" % node.tag):
+            handler = getattr(self, "inheritance_handler_%s" % node.tag)
         return handler
 
     @api.model
     def _get_inheritance_handler_attributes(self, node):
         handler = super(IrUiView, self).apply_inheritance_specs
-        if hasattr(
-            self, 'inheritance_handler_attributes_%s' % node.get('operation')
-        ):
+        if hasattr(self, "inheritance_handler_attributes_%s" % node.get("operation")):
             handler = getattr(
-                self,
-                'inheritance_handler_attributes_%s' % node.get('operation')
+                self, "inheritance_handler_attributes_%s" % node.get("operation")
             )
         return handler
 
@@ -105,12 +93,10 @@ class IrUiView(models.Model):
         node = self.locate_node(source, specs)
         for attribute_node in specs:
             python_dict = safe_eval(
-                node.get(attribute_node.get('name')) or '{}',
+                node.get(attribute_node.get("name")) or "{}",
                 UnquoteEvalObjectContext(),
-                nocopy=True
+                nocopy=True,
             )
-            python_dict[attribute_node.get('key')] = UnquoteObject(
-                attribute_node.text
-            )
-            node.attrib[attribute_node.get('name')] = str(python_dict)
+            python_dict[attribute_node.get("key")] = UnquoteObject(attribute_node.text)
+            node.attrib[attribute_node.get("name")] = str(python_dict)
         return source
