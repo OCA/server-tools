@@ -12,25 +12,8 @@ to refer to some xmlid, say ``%(xmlid)s``.
 
 **Move an element in the view**
 
-.. code-block:: xml
+This feature is now native, cf the `official Odoo documentation <https://www.odoo.com/documentation/12.0/reference/views.html#inheritance-specs>`_.
 
-    <xpath expr="$xpath" position="move" target="$targetxpath" />
+**Add/remove values in a list (states for example)**
 
-This can also be used to wrap some element into another, create the target
-element first, then move the node youwant to wrap there.
-
-**Add to values in a list (states for example)**
-
-.. code-block:: xml
-
-    <attribute name="$attribute" operation="list_add">
-        $new_value(s)
-    </attribute>
-
-**Remove values from a list (states for example)**
-
-.. code-block:: xml
-
-    <attribute name="$attribute" operation="list_remove">
-        $remove_value(s)
-    </attribute>
+This feature is now native but not documented in the official Odoo doc. You can have a look at the Odoo source code `here <https://github.com/odoo/odoo/blob/12.0/odoo/addons/base/models/ir_ui_view.py#L668>`_ and look for an example in the website_mass_mailing module `here <https://github.com/odoo/odoo/blob/12.0/addons/website_mass_mailing/views/snippets_templates.xml#L55>`_.

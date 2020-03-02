@@ -15,13 +15,6 @@
                 <field name="parent_id" position="attributes">
                     <attribute name="name">parent_id</attribute>
                 </field>
-                <form position="inside">
-                    <notebook>
-                        <page string="Phone numbers" name="phone_book" />
-                    </notebook>
-                </form>
-                <xpath expr="//field[@name='phone']" position="move" target="//page[@name='phone_book']" />
-                <xpath expr="//field[@name='mobile']" position="move" target="//page[@name='phone_book']" />
             </field>
         </record>
 </odoo>
