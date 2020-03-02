@@ -1,6 +1,6 @@
 # Copyright 2016 Therp BV <https://therp.nl>
 # Copyright 2018 Tecnativa - Sergio Teruel
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 from lxml import etree
 from odoo import api, models, tools
 from odoo.tools.safe_eval import safe_eval
@@ -43,9 +43,9 @@ class IrUiView(models.Model):
     _inherit = 'ir.ui.view'
 
     @api.model
-    def apply_inheritance_specs(self, source, specs_tree, inherit_id):
+    def apply_inheritance_specs(self, source, specs_tree, inherit_id, pre_locate=lambda s: True):
         for specs, handled_by in self._iter_inheritance_specs(specs_tree):
-            source = handled_by(source, specs, inherit_id)
+            source = handled_by(source, specs, inherit_id, pre_locate=pre_locate)
         return source
 
     @api.model
@@ -94,7 +94,7 @@ class IrUiView(models.Model):
 
     @api.model
     def inheritance_handler_attributes_python_dict(
-        self, source, specs, inherit_id
+        self, source, specs, inherit_id, pre_locate=lambda s: True
     ):
         """Implement
         <$node position="attributes">
