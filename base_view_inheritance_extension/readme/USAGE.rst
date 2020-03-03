@@ -10,15 +10,6 @@
 Note that views are subject to evaluation of xmlids anyways, so if you need
 to refer to some xmlid, say ``%(xmlid)s``.
 
-**Move an element in the view**
-
-.. code-block:: xml
-
-    <xpath expr="$xpath" position="move" target="$targetxpath" />
-
-This can also be used to wrap some element into another, create the target
-element first, then move the node youwant to wrap there.
-
 **Add to values in a list (states for example)**
 
 .. code-block:: xml
@@ -34,3 +25,9 @@ element first, then move the node youwant to wrap there.
     <attribute name="$attribute" operation="list_remove">
         $remove_value(s)
     </attribute>
+
+**Move an element in the view**
+
+This feature is now native, cf the `official Odoo documentation <https://www.odoo.com/documentation/12.0/reference/views.html#inheritance-specs>`_.
+
+
