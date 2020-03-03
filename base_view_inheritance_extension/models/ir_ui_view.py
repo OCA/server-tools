@@ -1,6 +1,6 @@
 # Copyright 2016 Therp BV <https://therp.nl>
 # Copyright 2018 Tecnativa - Sergio Teruel
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 from lxml import etree
 from odoo import api, models, tools
 from odoo.tools.safe_eval import safe_eval
@@ -113,19 +113,6 @@ class IrUiView(models.Model):
                 attribute_node.text
             )
             node.attrib[attribute_node.get('name')] = str(python_dict)
-        return source
-
-    @api.model
-    def inheritance_handler_xpath(self, source, specs, inherit_id):
-        if not specs.get('position') == 'move':
-            return super(IrUiView, self).apply_inheritance_specs(
-                source, specs, inherit_id
-            )
-        node = self.locate_node(source, specs)
-        target_node = self.locate_node(
-            source, etree.Element(specs.tag, expr=specs.get('target'))
-        )
-        target_node.append(node)
         return source
 
     @api.model
