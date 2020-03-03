@@ -1,6 +1,6 @@
 # Copyright 2016 Therp BV <https://therp.nl>
 # Copyright 2018 Tecnativa - Sergio Teruel
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 {
     "name": "Extended view inheritance",
     "version": "12.0.1.0.0",

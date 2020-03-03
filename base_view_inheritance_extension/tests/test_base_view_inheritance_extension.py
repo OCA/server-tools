@@ -1,5 +1,5 @@
 # Copyright 2016 Therp BV <http://therp.nl>
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 from lxml import etree
 from odoo.tests.common import TransactionCase
 
@@ -22,11 +22,6 @@ class TestBaseViewInheritanceExtension(TransactionCase):
         self.assertTrue(
             "context.get('company_id', context.get('company'))" in
             view.xpath('//field[@name="parent_id"]')[0].get('context')
-        )
-        # verify we moved the child_ids field
-        self.assertEqual(
-            view.xpath('//field[@name="mobile"]')[0].getparent(),
-            view.xpath('//page[@name="phone_book"]')[0]
         )
 
     def test_list_add(self):
