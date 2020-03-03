@@ -29,5 +29,3 @@ to refer to some xmlid, say ``%(xmlid)s``.
 **Move an element in the view**
 
 This feature is now native, cf the `official Odoo documentation <https://www.odoo.com/documentation/12.0/reference/views.html#inheritance-specs>`_.
-
-
