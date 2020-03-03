@@ -23,6 +23,7 @@ setuptools.setup(
         'odoo12-addon-base_m2m_custom_field',
         'odoo12-addon-base_search_fuzzy',
         'odoo12-addon-base_technical_user',
+        'odoo12-addon-base_view_inheritance_extension',
         'odoo12-addon-company_country',
         'odoo12-addon-configuration_helper',
         'odoo12-addon-database_cleanup',
