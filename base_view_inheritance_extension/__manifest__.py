@@ -8,10 +8,6 @@
     "license": "LGPL-3",
     "category": "Hidden/Dependency",
     "summary": "Adds more operators for view inheritance",
-    "depends": [
-        'base',
-    ],
-    "demo": [
-        "demo/ir_ui_view.xml",
-    ],
+    "depends": ["base"],
+    "demo": ["demo/ir_ui_view.xml"],
 }
