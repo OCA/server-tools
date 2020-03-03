@@ -14,13 +14,13 @@ Extended view inheritance
     :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
     :alt: License: LGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github
-    :target: https://github.com/OCA/server-tools/tree/11.0/base_view_inheritance_extension
+    :target: https://github.com/OCA/server-tools/tree/12.0/base_view_inheritance_extension
     :alt: OCA/server-tools
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/server-tools-11-0/server-tools-11-0-base_view_inheritance_extension
+    :target: https://translation.odoo-community.org/projects/server-tools-12-0/server-tools-12-0-base_view_inheritance_extension
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
-    :target: https://runbot.odoo-community.org/runbot/149/11.0
+    :target: https://runbot.odoo-community.org/runbot/149/12.0
     :alt: Try me on Runbot
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
@@ -48,15 +48,6 @@ Usage
 Note that views are subject to evaluation of xmlids anyways, so if you need
 to refer to some xmlid, say ``%(xmlid)s``.
 
-**Move an element in the view**
-
-.. code-block:: xml
-
-    <xpath expr="$xpath" position="move" target="$targetxpath" />
-
-This can also be used to wrap some element into another, create the target
-element first, then move the node youwant to wrap there.
-
 **Add to values in a list (states for example)**
 
 .. code-block:: xml
@@ -73,6 +64,12 @@ element first, then move the node youwant to wrap there.
         $remove_value(s)
     </attribute>
 
+**Move an element in the view**
+
+This feature is now native, cf the `official Odoo documentation <https://www.odoo.com/documentation/12.0/reference/views.html#inheritance-specs>`_.
+
+
+
 Known issues / Roadmap
 ======================
 
@@ -86,7 +83,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/server-tools/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/server-tools/issues/new?body=module:%20base_view_inheritance_extension%0Aversion:%2011.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/server-tools/issues/new?body=module:%20base_view_inheritance_extension%0Aversion:%2012.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -118,6 +115,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/11.0/base_view_inheritance_extension>`_ project on GitHub.
+This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/12.0/base_view_inheritance_extension>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
