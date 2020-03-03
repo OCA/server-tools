@@ -2,9 +2,9 @@
 # Copyright 2018 Tecnativa - Sergio Teruel
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 from lxml import etree
+from yaml import safe_load
 
 from odoo import api, models, tools
-from odoo.tools.safe_eval import safe_eval
 
 
 class UnquoteObject(str):
@@ -78,6 +78,24 @@ class IrUiView(models.Model):
             )
         return handler
 
+    def _is_variable(self, value):
+        return not ("'" in value or '"' in value) and True or False
+
+    def _list_variables(self, str_dict):
+        """
+        Store non literal dictionary values into a list to post-process
+        operations.
+        """
+        variables = []
+        items = str_dict.replace("{", "").replace("}", "").split(",")
+        for item in items:
+            key_value = item.split(":")
+            if len(key_value) == 2:
+                value = key_value[1]
+                if self._is_variable(value):
+                    variables.append(value.strip())
+        return variables
+
     @api.model
     def inheritance_handler_attributes_python_dict(self, source, specs, inherit_id):
         """Implement
@@ -88,13 +106,15 @@ class IrUiView(models.Model):
         </$node>"""
         node = self.locate_node(source, specs)
         for attribute_node in specs:
-            python_dict = safe_eval(
-                node.get(attribute_node.get("name")) or "{}",
-                UnquoteEvalObjectContext(),
-                nocopy=True,
-            )
-            python_dict[attribute_node.get("key")] = UnquoteObject(attribute_node.text)
-            node.attrib[attribute_node.get("name")] = str(python_dict)
+            str_dict = node.get(attribute_node.get("name")) or "{}"
+            variables = self._list_variables(str_dict)
+            if self._is_variable(attribute_node.text):
+                variables.append(attribute_node.text)
+            my_dict = safe_load(str_dict)
+            my_dict[attribute_node.get("key")] = attribute_node.text
+            for k, v in my_dict.items():
+                my_dict[k] = UnquoteObject(v) if v in variables else v
+            node.attrib[attribute_node.get("name")] = str(my_dict)
         return source
 
     @api.model
