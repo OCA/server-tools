@@ -90,3 +90,42 @@ class TestBaseViewInheritanceExtension(TransactionCase):
         )
         button_node = modified_source.xpath('//button[@name="test"]')[0]
         self.assertEqual(button_node.attrib["states"], "draft,valid,paid")
+
+    def test_python_dict_inheritance(self):
+        view_model = self.env["ir.ui.view"]
+        inherit_id = self.env.ref("base.view_partner_form").id
+        source = etree.fromstring(
+            """<form>
+                <field name="invoice_line_ids"
+                    context="{
+                    'default_type': context.get('default_type'),
+                    'journal_id': journal_id,
+                    'default_partner_id': commercial_partner_id,
+                    'default_currency_id':
+                    currency_id != company_currency_id and currency_id or False,
+                    'default_name': 'The company name',
+                    }"/>
+            </form>"""
+        )
+        specs = etree.fromstring(
+            """\
+            <field name="invoice_line_ids" position="attributes">
+                <attribute name="context" operation="python_dict"
+                    key="my_key">my_value</attribute>
+                <attribute name="context" operation="python_dict"
+                    key="my_key2">'my name'</attribute>
+                <attribute name="context" operation="python_dict"
+                 key="default_cost_center_id">cost_center_id</attribute>
+            </field>
+            """
+        )
+        modified_source = view_model.inheritance_handler_attributes_python_dict(
+            source, specs, inherit_id
+        )
+        field_node = modified_source.xpath('//field[@name="invoice_line_ids"]')[0]
+        self.assertTrue(
+            "currency_id != company_currency_id and currency_id or False"
+            in field_node.attrib["context"]
+        )
+        self.assertTrue("my_value" in field_node.attrib["context"])
+        self.assertFalse("'cost_center_id'" in field_node.attrib["context"])
