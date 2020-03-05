@@ -32,6 +32,7 @@ setuptools.setup(
         'odoo11-addon-html_image_url_extractor',
         'odoo11-addon-html_text',
         'odoo11-addon-letsencrypt',
+        'odoo11-addon-mail_cleanup',
         'odoo11-addon-mail_template_attachment_i18n',
         'odoo11-addon-module_auto_update',
         'odoo11-addon-nsca_client',
