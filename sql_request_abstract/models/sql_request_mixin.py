@@ -3,11 +3,12 @@
 # @author: Sylvain LE GAL (https://twitter.com/legalsylvain)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
+import base64
+import logging
 import re
 import uuid
-import logging
 from io import BytesIO
-import base64
+
 from psycopg2 import ProgrammingError
 
 from odoo import _, api, fields, models
@@ -17,8 +18,8 @@ logger = logging.getLogger(__name__)
 
 
 class SQLRequestMixin(models.AbstractModel):
-    _name = 'sql.request.mixin'
-    _description = 'SQL Request Mixin'
+    _name = "sql.request.mixin"
+    _description = "SQL Request Mixin"
 
     _clean_query_enabled = True
 
@@ -30,58 +31,68 @@ class SQLRequestMixin(models.AbstractModel):
 
     _sql_request_users_relation = False
 
-    STATE_SELECTION = [
-        ('draft', 'Draft'),
-        ('sql_valid', 'SQL Valid'),
-    ]
+    STATE_SELECTION = [("draft", "Draft"), ("sql_valid", "SQL Valid")]
 
     PROHIBITED_WORDS = [
-        'delete',
-        'drop',
-        'insert',
-        'alter',
-        'truncate',
-        'execute',
-        'create',
-        'update',
-        'ir_config_parameter',
+        "delete",
+        "drop",
+        "insert",
+        "alter",
+        "truncate",
+        "execute",
+        "create",
+        "update",
+        "ir_config_parameter",
     ]
 
     # Default Section
     @api.model
     def _default_group_ids(self):
-        ir_model_obj = self.env['ir.model.data']
-        return [ir_model_obj.xmlid_to_res_id(
-            'sql_request_abstract.group_sql_request_user')]
+        ir_model_obj = self.env["ir.model.data"]
+        return [
+            ir_model_obj.xmlid_to_res_id("sql_request_abstract.group_sql_request_user")
+        ]
 
     @api.model
     def _default_user_ids(self):
         return []
 
     # Columns Section
-    name = fields.Char('Name', required=True)
+    name = fields.Char("Name", required=True)
 
     query = fields.Text(
-        string='Query', required=True, help="You can't use the following words"
-        ": DELETE, DROP, CREATE, INSERT, ALTER, TRUNCATE, EXECUTE, UPDATE.")
+        string="Query",
+        required=True,
+        help="You can't use the following words"
+        ": DELETE, DROP, CREATE, INSERT, ALTER, TRUNCATE, EXECUTE, UPDATE.",
+    )
 
     state = fields.Selection(
-        string='State', selection=STATE_SELECTION, default='draft',
+        string="State",
+        selection=STATE_SELECTION,
+        default="draft",
         help="State of the Request:\n"
         " * 'Draft': Not tested\n"
-        " * 'SQL Valid': SQL Request has been checked and is valid")
+        " * 'SQL Valid': SQL Request has been checked and is valid",
+    )
 
     group_ids = fields.Many2many(
-        comodel_name='res.groups', string='Allowed Groups',
+        comodel_name="res.groups",
+        string="Allowed Groups",
         relation=_sql_request_groups_relation,
-        column1='sql_id', column2='group_id',
-        default=_default_group_ids)
+        column1="sql_id",
+        column2="group_id",
+        default=_default_group_ids,
+    )
 
     user_ids = fields.Many2many(
-        comodel_name='res.users', string='Allowed Users',
+        comodel_name="res.users",
+        string="Allowed Users",
         relation=_sql_request_users_relation,
-        column1='sql_id', column2='user_id',
-        default=_default_user_ids)
+        column1="sql_id",
+        column2="user_id",
+        default=_default_user_ids,
+    )
 
     # Action Section
     @api.multi
@@ -93,17 +104,22 @@ class SQLRequestMixin(models.AbstractModel):
                 item._check_prohibited_words()
             if item._check_execution_enabled:
                 item._check_execution()
-            item.state = 'sql_valid'
+            item.state = "sql_valid"
 
     @api.multi
     def button_set_draft(self):
-        self.write({'state': 'draft'})
+        self.write({"state": "draft"})
 
     # API Section
     @api.multi
     def _execute_sql_request(
-            self, params=None, mode='fetchall', rollback=True,
-            view_name=False, copy_options="CSV HEADER DELIMITER ';'"):
+        self,
+        params=None,
+        mode="fetchall",
+        rollback=True,
+        view_name=False,
+        copy_options="CSV HEADER DELIMITER ';'",
+    ):
         """Execute a SQL request on the current database.
 
         ??? This function checks before if the user has the
@@ -139,12 +155,11 @@ class SQLRequestMixin(models.AbstractModel):
         self.ensure_one()
         res = False
         # Check if the request is in a valid state
-        if self.state == 'draft':
-            raise UserError(_(
-                "It is not allowed to execute a not checked request."))
+        if self.state == "draft":
+            raise UserError(_("It is not allowed to execute a not checked request."))
 
         # Disable rollback if a creation of a view is asked
-        if mode in ('view', 'materialized_view'):
+        if mode in ("view", "materialized_view"):
             rollback = False
 
         # pylint: disable=sql-injection
@@ -154,31 +169,31 @@ class SQLRequestMixin(models.AbstractModel):
             query = self.query
         query = query
 
-        if mode in ('fetchone', 'fetchall'):
+        if mode in ("fetchone", "fetchall"):
             pass
-        elif mode == 'stdout':
-            query = "COPY (%s) TO STDOUT WITH %s" % (query, copy_options)
-        elif mode in 'view':
-            query = "CREATE VIEW %s AS (%s);" % (query, view_name)
-        elif mode in 'materialized_view':
+        elif mode == "stdout":
+            query = "COPY ({}) TO STDOUT WITH {}".format(query, copy_options)
+        elif mode in "view":
+            query = "CREATE VIEW {} AS ({});".format(query, view_name)
+        elif mode in "materialized_view":
             self._check_materialized_view_available()
-            query = "CREATE MATERIALIZED VIEW %s AS (%s);" % (query, view_name)
+            query = "CREATE MATERIALIZED VIEW {} AS ({});".format(query, view_name)
         else:
             raise UserError(_("Unimplemented mode : '%s'" % mode))
 
         if rollback:
             rollback_name = self._create_savepoint()
         try:
-            if mode == 'stdout':
+            if mode == "stdout":
                 output = BytesIO()
                 self.env.cr.copy_expert(query, output)
                 res = base64.b64encode(output.getvalue())
                 output.close()
             else:
                 self.env.cr.execute(query)
-                if mode == 'fetchall':
+                if mode == "fetchall":
                     res = self.env.cr.fetchall()
-                elif mode == 'fetchone':
+                elif mode == "fetchone":
                     res = self.env.cr.fetchone()
         finally:
             self._rollback_savepoint(rollback_name)
@@ -188,8 +203,7 @@ class SQLRequestMixin(models.AbstractModel):
     # Private Section
     @api.model
     def _create_savepoint(self):
-        rollback_name = '%s_%s' % (
-            self._name.replace('.', '_'), uuid.uuid1().hex)
+        rollback_name = "{}_{}".format(self._name.replace(".", "_"), uuid.uuid1().hex)
         # pylint: disable=sql-injection
         req = "SAVEPOINT %s" % (rollback_name)
         self.env.cr.execute(req)
@@ -204,18 +218,22 @@ class SQLRequestMixin(models.AbstractModel):
     @api.model
     def _check_materialized_view_available(self):
         self.env.cr.execute("SHOW server_version;")
-        res = self.env.cr.fetchone()[0].split('.')
-        minor_version = float('.'.join(res[:2]))
+        res = self.env.cr.fetchone()[0].split(".")
+        minor_version = float(".".join(res[:2]))
         if minor_version < 9.3:
-            raise UserError(_(
-                "Materialized View requires PostgreSQL 9.3 or greater but"
-                " PostgreSQL %s is currently installed.") % (minor_version))
+            raise UserError(
+                _(
+                    "Materialized View requires PostgreSQL 9.3 or greater but"
+                    " PostgreSQL %s is currently installed."
+                )
+                % (minor_version)
+            )
 
     @api.multi
     def _clean_query(self):
         self.ensure_one()
         query = self.query.strip()
-        while query[-1] == ';':
+        while query[-1] == ";":
             query = query[:-1]
         self.query = query
 
@@ -226,12 +244,16 @@ class SQLRequestMixin(models.AbstractModel):
         self.ensure_one()
         query = self.query.lower()
         for word in self.PROHIBITED_WORDS:
-            expr = r'\b%s\b' % word
+            expr = r"\b%s\b" % word
             is_not_safe = re.search(expr, query)
             if is_not_safe:
-                raise UserError(_(
-                    "The query is not allowed because it contains unsafe word"
-                    " '%s'") % (word))
+                raise UserError(
+                    _(
+                        "The query is not allowed because it contains unsafe word"
+                        " '%s'"
+                    )
+                    % (word)
+                )
 
     @api.multi
     def _check_execution(self):
@@ -246,8 +268,7 @@ class SQLRequestMixin(models.AbstractModel):
             res = self._hook_executed_request()
         except ProgrammingError as e:
             logger.exception("Failed query: %s", query)
-            raise UserError(
-                _("The SQL query is not valid:\n\n %s") % e)
+            raise UserError(_("The SQL query is not valid:\n\n %s") % e)
         finally:
             self._rollback_savepoint(rollback_name)
         return res
