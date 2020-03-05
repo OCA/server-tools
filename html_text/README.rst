@@ -63,6 +63,7 @@ Contributors
 * Jairo Llopis <yajo.sk8@gmail.com>
 * Vicent Cubells <vicent.cubells@tecnativa.com>
 * Dennis Sluijk <d.sluijk@onestein.nl>
+* Tharathip Chaweewongphan <tharathipc@ecosoft.co.th>
 
 Do not contact contributors directly about support or help with technical issues.
 
