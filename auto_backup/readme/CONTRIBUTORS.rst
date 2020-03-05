@@ -4,3 +4,4 @@
 * Dave Lasley <dave@laslabs.com>
 * Andrea Stirpe <a.stirpe@onestein.nl>
 * Aitor Bouzas <aitor.bouzas@adaptivecity.com>
+* Iván Todorovich <ivan.todorovich@gmail.com>

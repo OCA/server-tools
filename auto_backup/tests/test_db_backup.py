@@ -196,12 +196,16 @@ class TestDbBackup(common.TransactionCase):
         """ It should initiate SFTP connection w/ proper args and pass """
         rec_id = self.new_record()
         rec_id.sftp_connection()
-        pysftp.Connection.assert_called_once_with(
+        params = dict(
             host=rec_id.sftp_host,
             username=rec_id.sftp_user,
             port=rec_id.sftp_port,
             password=rec_id.sftp_password,
         )
+        # CnOpts added in pysftp==0.2.9
+        if hasattr(pysftp, 'CnOpts'):
+            params['cnopts'] = pysftp.CnOpts()
+        pysftp.Connection.assert_called_once_with(**params)
 
     @mock.patch('%s.pysftp' % model)
     def test_sftp_connection_init_key(self, pysftp):
@@ -212,13 +216,17 @@ class TestDbBackup(common.TransactionCase):
             'sftp_password': 'pkeypass',
         })
         rec_id.sftp_connection()
-        pysftp.Connection.assert_called_once_with(
+        params = dict(
             host=rec_id.sftp_host,
             username=rec_id.sftp_user,
             port=rec_id.sftp_port,
             private_key=rec_id.sftp_private_key,
             private_key_pass=rec_id.sftp_password,
         )
+        # CnOpts added in pysftp==0.2.9
+        if hasattr(pysftp, 'CnOpts'):
+            params['cnopts'] = pysftp.CnOpts()
+        pysftp.Connection.assert_called_once_with(**params)
 
     @mock.patch('%s.pysftp' % model)
     def test_sftp_connection_return(self, pysftp):
