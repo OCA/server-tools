@@ -146,7 +146,10 @@ class SQLRequestMixin(models.AbstractModel):
 
         params = params or {}
         # pylint: disable=sql-injection
-        query = self.query % params
+        if params:
+            query = self.query % params
+        else:
+            query = self.query
         query = query.decode('utf-8')
 
         if mode in ('fetchone', 'fetchall'):
