@@ -19,6 +19,17 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: base_view_inheritance_extension
+#: code:addons/base_view_inheritance_extension/models/ir_ui_view.py:139
+#, python-format
+msgid "Invalid target_position attribute: '%s'"
+msgstr ""
+
+#. module: base_view_inheritance_extension
+#: model:ir.ui.view,arch_db:base_view_inheritance_extension.view_partner_simple_form
+msgid "Other information"
+msgstr ""
+
+#. module: base_view_inheritance_extension
 #: model:ir.ui.view,arch_db:base_view_inheritance_extension.view_partner_simple_form
 msgid "Partner form"
 msgstr "İş ortağı formu"
