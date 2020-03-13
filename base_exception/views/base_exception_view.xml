@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <odoo>
-    
+
     <record id="view_exception_rule_tree" model="ir.ui.view">
         <field name="name">exception.rule.tree</field>
         <field name="model">exception.rule</field>
