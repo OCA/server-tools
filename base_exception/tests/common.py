@@ -8,6 +8,7 @@ def setup_test_model(env, model_clses):
 
     env.registry.setup_models(env.cr)
     env.registry.init_models(
-        env.cr, [model_cls._name for model_cls in model_clses],
-        dict(env.context, update_custom_fields=True)
+        env.cr,
+        [model_cls._name for model_cls in model_clses],
+        dict(env.context, update_custom_fields=True),
     )
