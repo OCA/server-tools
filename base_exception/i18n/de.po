@@ -40,14 +40,18 @@ msgid "Apply on"
 msgstr "Anwenden auf"
 
 #. module: base_exception
-#: selection:exception.rule,exception_type:0
+#: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_form
+msgid "Archived"
+msgstr ""
+
+#. module: base_exception
+#: model:ir.model.fields.selection,name:base_exception.selection__exception_rule__exception_type__by_domain
 msgid "By domain"
 msgstr ""
 
 #. module: base_exception
-#: selection:exception.rule,exception_type:0
+#: model:ir.model.fields.selection,name:base_exception.selection__exception_rule__exception_type__by_py_code
 #, fuzzy
-#| msgid "Python Code"
 msgid "By python code"
 msgstr "Python Code"
 
@@ -58,6 +62,38 @@ msgid ""
 "By domain: limited to a selection by an odoo domain:\n"
 "           performance can be better when exceptions            are "
 "evaluated with several records"
+msgstr ""
+
+#. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_base_exception__changeset_change_ids
+#: model:ir.model.fields,field_description:base_exception.field_base_exception_method__changeset_change_ids
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule__changeset_change_ids
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm__changeset_change_ids
+msgid "Changeset Changes"
+msgstr ""
+
+#. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_base_exception__changeset_ids
+#: model:ir.model.fields,field_description:base_exception.field_base_exception_method__changeset_ids
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule__changeset_ids
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm__changeset_ids
+msgid "Changesets"
+msgstr ""
+
+#. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_base_exception__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_exception.field_base_exception_method__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr ""
+
+#. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_base_exception__count_pending_changesets
+#: model:ir.model.fields,field_description:base_exception.field_base_exception_method__count_pending_changesets
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule__count_pending_changesets
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm__count_pending_changesets
+msgid "Count Pending Changesets"
 msgstr ""
 
 #. module: base_exception
@@ -96,12 +132,8 @@ msgid ""
 msgstr ""
 
 #. module: base_exception
-#: code:addons/base_exception/models/base_exception.py:156
+#: code:addons/base_exception/models/base_exception.py:0
 #, fuzzy, python-format
-#| msgid ""
-#| "Error when evaluating the exception.rule rule:\n"
-#| " %s \n"
-#| "(%s)"
 msgid ""
 "Error when evaluating the exception.rule rule:\n"
 " %s \n"
@@ -114,7 +146,6 @@ msgstr ""
 #. module: base_exception
 #: model:ir.model,name:base_exception.model_base_exception
 #, fuzzy
-#| msgid "Exceptions"
 msgid "Exception"
 msgstr "Ausnahmen"
 
@@ -132,14 +163,12 @@ msgstr "Ausnahmeregel"
 #. module: base_exception
 #: model:ir.model,name:base_exception.model_exception_rule_confirm
 #, fuzzy
-#| msgid "exception.rule.confirm"
 msgid "Exception Rule Confirm Wizard"
 msgstr "exception.rule.confirm"
 
 #. module: base_exception
 #: model:ir.model,name:base_exception.model_base_exception_method
 #, fuzzy
-#| msgid "Exception Rules"
 msgid "Exception Rule Methods"
 msgstr "Ausnahmeregeln"
 
@@ -157,7 +186,6 @@ msgstr "Ausnahmeregeln"
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule__exception_type
 #, fuzzy
-#| msgid "Exception Name"
 msgid "Exception Type"
 msgstr "Ausnahmebezeichnung"
 
@@ -179,7 +207,6 @@ msgstr "Ausnahmenregeln"
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_base_exception__exceptions_summary
 #, fuzzy
-#| msgid "Exception manager"
 msgid "Exceptions Summary"
 msgstr "Ausnahmeverwaltung"
 
@@ -241,7 +268,7 @@ msgid "Main Exception"
 msgstr "Haupt-Ausnahme"
 
 #. module: base_exception
-#: code:addons/base_exception/wizard/base_exception_confirm.py:29
+#: code:addons/base_exception/wizard/base_exception_confirm.py:0
 #, python-format
 msgid "Only 1 ID accepted, got %r."
 msgstr "Nur 1 ID zugelassen, erhielt %r."
@@ -280,7 +307,7 @@ msgid "Sequence"
 msgstr "Reihenfolge"
 
 #. module: base_exception
-#: code:addons/base_exception/models/base_exception.py:50
+#: code:addons/base_exception/models/base_exception.py:0
 #, python-format
 msgid ""
 "There is a problem of configuration, python code or domain is missing to "
@@ -290,6 +317,14 @@ msgstr ""
 #. module: base_exception
 #: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_form
 msgid "To block the exception use: <code>failed = True</code>"
+msgstr ""
+
+#. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_base_exception__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_exception.field_base_exception_method__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm__user_can_see_changeset
+msgid "User Can See Changeset"
 msgstr ""
 
 #. module: base_exception
