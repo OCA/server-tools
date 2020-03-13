@@ -3,52 +3,56 @@
 # Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-import time
 import html
-from odoo import api, fields, models, _
+import time
+
+from odoo import _, api, fields, models, osv
 from odoo.exceptions import UserError, ValidationError
 from odoo.tools.safe_eval import safe_eval
-from odoo import osv
 
 
 class ExceptionRule(models.Model):
-    _name = 'exception.rule'
-    _description = 'Exception Rule'
-    _order = 'active desc, sequence asc'
+    _name = "exception.rule"
+    _description = "Exception Rule"
+    _order = "active desc, sequence asc"
 
-    name = fields.Char('Exception Name', required=True, translate=True)
-    description = fields.Text('Description', translate=True)
+    name = fields.Char("Exception Name", required=True, translate=True)
+    description = fields.Text("Description", translate=True)
     sequence = fields.Integer(
-        string='Sequence',
-        help="Gives the sequence order when applying the test",
+        string="Sequence", help="Gives the sequence order when applying the test"
     )
-    model = fields.Selection(selection=[], string='Apply on', required=True)
+    model = fields.Selection(selection=[], string="Apply on", required=True)
 
     exception_type = fields.Selection(
-        selection=[('by_domain', 'By domain'),
-                   ('by_py_code', 'By python code')],
-        string='Exception Type', required=True, default='by_py_code',
+        selection=[("by_domain", "By domain"), ("by_py_code", "By python code")],
+        string="Exception Type",
+        required=True,
+        default="by_py_code",
         help="By python code: allow to define any arbitrary check\n"
-             "By domain: limited to a selection by an odoo domain:\n"
-             "           performance can be better when exceptions "
-             "           are evaluated with several records")
-    domain = fields.Char('Domain')
+        "By domain: limited to a selection by an odoo domain:\n"
+        "           performance can be better when exceptions "
+        "           are evaluated with several records",
+    )
+    domain = fields.Char("Domain")
 
-    active = fields.Boolean('Active', default=True)
+    active = fields.Boolean("Active", default=True)
     code = fields.Text(
-        'Python Code',
+        "Python Code",
         help="Python code executed to check if the exception apply or "
-             "not. Use failed = True to block the exception",
-        )
+        "not. Use failed = True to block the exception",
+    )
 
-    @api.constrains('exception_type', 'domain', 'code')
+    @api.constrains("exception_type", "domain", "code")
     def check_exception_type_consistency(self):
         for rule in self:
-            if ((rule.exception_type == 'by_py_code' and not rule.code) or
-                    (rule.exception_type == 'by_domain' and not rule.domain)):
+            if (rule.exception_type == "by_py_code" and not rule.code) or (
+                rule.exception_type == "by_domain" and not rule.domain
+            ):
                 raise ValidationError(
-                    _("There is a problem of configuration, python code or "
-                      "domain is missing to match the exception type.")
+                    _(
+                        "There is a problem of configuration, python code or "
+                        "domain is missing to match the exception type."
+                    )
                 )
 
     @api.multi
@@ -59,8 +63,8 @@ class ExceptionRule(models.Model):
 
 
 class BaseExceptionMethod(models.AbstractModel):
-    _name = 'base.exception.method'
-    _description = 'Exception Rule Methods'
+    _name = "base.exception.method"
+    _description = "Exception Rule Methods"
 
     @api.multi
     def _get_main_records(self):
@@ -81,15 +85,14 @@ class BaseExceptionMethod(models.AbstractModel):
         By default, only the rules with the correct model
         will be used.
         """
-        return [('model', '=', self._name)]
+        return [("model", "=", self._name)]
 
     @api.multi
     def detect_exceptions(self):
         """List all exception_ids applied on self
         Exception ids are also written on records
         """
-        rules = self.env['exception.rule'].sudo().search(
-            self._rule_domain())
+        rules = self.env["exception.rule"].sudo().search(self._rule_domain())
         all_exception_ids = []
         rules_to_remove = {}
         rules_to_add = {}
@@ -123,23 +126,23 @@ class BaseExceptionMethod(models.AbstractModel):
         # table
         # and the "to add" part generates one INSERT (with unnest) per rule.
         for rule_id, records in rules_to_remove.items():
-            records.write({'exception_ids': [(3, rule_id,)]})
+            records.write({"exception_ids": [(3, rule_id)]})
         for rule_id, records in rules_to_add.items():
-            records.write(({'exception_ids': [(4, rule_id,)]}))
+            records.write({"exception_ids": [(4, rule_id)]})
         return all_exception_ids
 
     @api.model
     def _exception_rule_eval_context(self, rec):
         return {
-            'time': time,
-            'self': rec,
+            "time": time,
+            "self": rec,
             # object, obj: deprecated.
             # should be removed in future migrations
-            'object': rec,
-            'obj': rec,
+            "object": rec,
+            "obj": rec,
             # copy context to prevent side-effects of eval
             # should be deprecated too, accesible through self.
-            'context': self.env.context.copy()
+            "context": self.env.context.copy(),
         }
 
     @api.model
@@ -147,26 +150,26 @@ class BaseExceptionMethod(models.AbstractModel):
         expr = rule.code
         space = self._exception_rule_eval_context(rec)
         try:
-            safe_eval(expr,
-                      space,
-                      mode='exec',
-                      nocopy=True)  # nocopy allows to return 'result'
+            safe_eval(
+                expr, space, mode="exec", nocopy=True
+            )  # nocopy allows to return 'result'
         except Exception as e:
             raise UserError(
-                _('Error when evaluating the exception.rule '
-                  'rule:\n %s \n(%s)') % (rule.name, e))
-        return space.get('failed', False)
+                _("Error when evaluating the exception.rule " "rule:\n %s \n(%s)")
+                % (rule.name, e)
+            )
+        return space.get("failed", False)
 
     @api.multi
     def _detect_exceptions(self, rule):
-        if rule.exception_type == 'by_py_code':
+        if rule.exception_type == "by_py_code":
             return self._detect_exceptions_by_py_code(rule)
-        elif rule.exception_type == 'by_domain':
+        elif rule.exception_type == "by_domain":
             return self._detect_exceptions_by_domain(rule)
 
     @api.multi
     def _get_base_domain(self):
-        return [('ignore_exception', '=', False), ('id', 'in', self.ids)]
+        return [("ignore_exception", "=", False), ("id", "in", self.ids)]
 
     @api.multi
     def _detect_exceptions_by_py_code(self, rule):
@@ -193,34 +196,29 @@ class BaseExceptionMethod(models.AbstractModel):
 
 
 class BaseException(models.AbstractModel):
-    _inherit = 'base.exception.method'
-    _name = 'base.exception'
-    _order = 'main_exception_id asc'
-    _description = 'Exception'
+    _inherit = "base.exception.method"
+    _name = "base.exception"
+    _order = "main_exception_id asc"
+    _description = "Exception"
 
     main_exception_id = fields.Many2one(
-        'exception.rule',
-        compute='_compute_main_error',
-        string='Main Exception',
+        "exception.rule",
+        compute="_compute_main_error",
+        string="Main Exception",
         store=True,
     )
     exceptions_summary = fields.Html(
-        'Exceptions Summary',
-        compute='_compute_exceptions_summary',
+        "Exceptions Summary", compute="_compute_exceptions_summary"
     )
-    exception_ids = fields.Many2many(
-        'exception.rule',
-        string='Exceptions',
-        copy=False,
-    )
-    ignore_exception = fields.Boolean('Ignore Exceptions', copy=False)
+    exception_ids = fields.Many2many("exception.rule", string="Exceptions", copy=False)
+    ignore_exception = fields.Boolean("Ignore Exceptions", copy=False)
 
     @api.multi
     def action_ignore_exceptions(self):
-        self.write({'ignore_exception': True})
+        self.write({"ignore_exception": True})
         return True
 
-    @api.depends('exception_ids', 'ignore_exception')
+    @api.depends("exception_ids", "ignore_exception")
     def _compute_main_error(self):
         for rec in self:
             if not rec.ignore_exception and rec.exception_ids:
@@ -228,29 +226,35 @@ class BaseException(models.AbstractModel):
             else:
                 rec.main_exception_id = False
 
-    @api.depends('exception_ids', 'ignore_exception')
+    @api.depends("exception_ids", "ignore_exception")
     def _compute_exceptions_summary(self):
         for rec in self:
             if rec.exception_ids and not rec.ignore_exception:
-                rec.exceptions_summary = '<ul>%s</ul>' % ''.join([
-                    '<li>%s: <i>%s</i></li>' % tuple(map(html.escape, (
-                        e.name, e.description))) for e in rec.exception_ids])
+                rec.exceptions_summary = "<ul>%s</ul>" % "".join(
+                    [
+                        "<li>%s: <i>%s</i></li>"
+                        % tuple(map(html.escape, (e.name, e.description)))
+                        for e in rec.exception_ids
+                    ]
+                )
 
     @api.multi
     def _popup_exceptions(self):
         action = self._get_popup_action().read()[0]
-        action.update({
-            'context': {
-                'active_id': self.ids[0],
-                'active_ids': self.ids,
-                'active_model': self._name,
+        action.update(
+            {
+                "context": {
+                    "active_id": self.ids[0],
+                    "active_ids": self.ids,
+                    "active_model": self._name,
+                }
             }
-        })
+        )
         return action
 
     @api.model
     def _get_popup_action(self):
-        return self.env.ref('base_exception.action_exception_rule_confirm')
+        return self.env.ref("base_exception.action_exception_rule_confirm")
 
     @api.multi
     def _check_exception(self):
@@ -266,5 +270,5 @@ class BaseException(models.AbstractModel):
         """
         exception_ids = self.detect_exceptions()
         if exception_ids:
-            exceptions = self.env['exception.rule'].browse(exception_ids)
-            raise ValidationError('\n'.join(exceptions.mapped('name')))
+            exceptions = self.env["exception.rule"].browse(exception_ids)
+            raise ValidationError("\n".join(exceptions.mapped("name")))
