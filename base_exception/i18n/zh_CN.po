@@ -41,12 +41,17 @@ msgid "Apply on"
 msgstr "应用于"
 
 #. module: base_exception
-#: selection:exception.rule,exception_type:0
+#: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_form
+msgid "Archived"
+msgstr ""
+
+#. module: base_exception
+#: model:ir.model.fields.selection,name:base_exception.selection__exception_rule__exception_type__by_domain
 msgid "By domain"
 msgstr "通过域"
 
 #. module: base_exception
-#: selection:exception.rule,exception_type:0
+#: model:ir.model.fields.selection,name:base_exception.selection__exception_rule__exception_type__by_py_code
 msgid "By python code"
 msgstr "通过python代码"
 
@@ -61,6 +66,38 @@ msgstr ""
 "通过python代码：允许定义任意检查\n"
 "通过域: 仅限于odoo域的选择:\n"
 "           在评估异常情况时           可以使用几种记录来改进性能"
+
+#. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_base_exception__changeset_change_ids
+#: model:ir.model.fields,field_description:base_exception.field_base_exception_method__changeset_change_ids
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule__changeset_change_ids
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm__changeset_change_ids
+msgid "Changeset Changes"
+msgstr ""
+
+#. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_base_exception__changeset_ids
+#: model:ir.model.fields,field_description:base_exception.field_base_exception_method__changeset_ids
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule__changeset_ids
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm__changeset_ids
+msgid "Changesets"
+msgstr ""
+
+#. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_base_exception__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_exception.field_base_exception_method__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr ""
+
+#. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_base_exception__count_pending_changesets
+#: model:ir.model.fields,field_description:base_exception.field_base_exception_method__count_pending_changesets
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule__count_pending_changesets
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr ""
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule__create_uid
@@ -99,7 +136,7 @@ msgstr ""
 "在这里输入Python代码。有关Python表达式的帮助，请参阅本文档的帮助选项卡。"
 
 #. module: base_exception
-#: code:addons/base_exception/models/base_exception.py:156
+#: code:addons/base_exception/models/base_exception.py:0
 #, python-format
 msgid ""
 "Error when evaluating the exception.rule rule:\n"
@@ -170,7 +207,6 @@ msgstr "异常规则"
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_base_exception__exceptions_summary
 #, fuzzy
-#| msgid "Exception manager"
 msgid "Exceptions Summary"
 msgstr "异常管理"
 
@@ -232,7 +268,7 @@ msgid "Main Exception"
 msgstr "主要异常"
 
 #. module: base_exception
-#: code:addons/base_exception/wizard/base_exception_confirm.py:29
+#: code:addons/base_exception/wizard/base_exception_confirm.py:0
 #, python-format
 msgid "Only 1 ID accepted, got %r."
 msgstr "只接受了一个ID，得到 %r。"
@@ -271,7 +307,7 @@ msgid "Sequence"
 msgstr "序列"
 
 #. module: base_exception
-#: code:addons/base_exception/models/base_exception.py:50
+#: code:addons/base_exception/models/base_exception.py:0
 #, python-format
 msgid ""
 "There is a problem of configuration, python code or domain is missing to "
@@ -282,6 +318,14 @@ msgstr "存在配置问题，缺少python代码或域以匹配异常类型。"
 #: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_form
 msgid "To block the exception use: <code>failed = True</code>"
 msgstr "阻止异常使用: <code>failed = True</code>"
+
+#. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_base_exception__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_exception.field_base_exception_method__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr ""
 
 #. module: base_exception
 #: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_form
