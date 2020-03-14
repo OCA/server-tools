@@ -15,7 +15,9 @@ class TestCompanyCountry(TransactionCase):
         self.us_country = self.env.ref('base.us')
         self.mx_country = self.env.ref('base.mx')
         self.main_company = self.env.ref('base.main_company')
+        self.module_account = self.env.ref('base.module_account')
         self.main_company.write({'country_id': self.us_country.id})
+        self.module_account.write({'state': 'uninstalled'})
         self.env_country = os.environ.get('COUNTRY')
 
     def tearDown(self):
@@ -44,3 +46,7 @@ class TestCompanyCountry(TransactionCase):
             l10n_to_install.write({'state': 'uninstalled'})
             del os.environ['COUNTRY']
             self.wizard.load_company_country()
+
+        # Account is already installed, shouldn't raise
+        self.module_account.write({'state': 'installed'})
+        self.wizard.load_company_country()
