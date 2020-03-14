@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="view_ir_exports">
         <field name="model">ir.exports</field>
         <field name="priority">50</field>
@@ -9,15 +8,15 @@
                 <sheet>
                     <group name="se" string="Configuration">
                         <group colspan="4" col="4" name="se-main">
-                            <field name="name"/>
-                            <field name="resource"/>
+                            <field name="name" />
+                            <field name="resource" />
                         </group>
                     </group>
                     <group name="index" string="Index">
                         <field name="export_fields" nolabel="1">
                             <tree editable="bottom">
-                                <field name="name"/>
-                                <field name="alias"/>
+                                <field name="name" />
+                                <field name="alias" />
                             </tree>
                         </field>
                     </group>
@@ -25,14 +24,10 @@
             </form>
         </field>
     </record>
-
     <record id="act_ui_exports_view" model="ir.actions.act_window">
         <field name="name">Export Fields</field>
         <field name="res_model">ir.exports</field>
         <field name="view_mode">tree,form</field>
     </record>
-
-    <menuitem id="ui_exports" action="act_ui_exports_view"
-              parent="base.next_id_2"/>
-
+    <menuitem id="ui_exports" action="act_ui_exports_view" parent="base.next_id_2" />
 </odoo>
