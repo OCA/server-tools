@@ -268,13 +268,12 @@ def _get_cell_value(cell, field_type=False):
     datemode = 0  # From book.datemode, but we fix it for simplicity
     if field_type in ['date', 'datetime']:
         ctype = xlrd.sheet.ctype_text.get(cell.ctype, 'unknown type')
-        if ctype == 'number':
+        if ctype in ('xldate', 'number'):
+            is_datetime = cell.value % 1 != 0.0
             time_tuple = xlrd.xldate_as_tuple(cell.value, datemode)
             date = dt(*time_tuple)
-            if field_type == 'date':
-                value = date.strftime("%Y-%m-%d")
-            elif field_type == 'datetime':
-                value = date.strftime("%Y-%m-%d %H:%M:%S")
+            value = (date.strftime("%Y-%m-%d %H:%M:%S")
+                     if is_datetime else date.strftime("%Y-%m-%d"))
         else:
             value = cell.value
     elif field_type in ['integer', 'float']:
