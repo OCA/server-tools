@@ -48,10 +48,19 @@ class CleanupPurgeLineModule(models.TransientModel):
             return True
         self.logger.info('Purging modules %s', ', '.join(module_names))
         modules.filtered(
-            lambda x: x.state not in ('uninstallable', 'uninstalled')
+            lambda x: x.state == 'to install'
+        ).write({'state': 'uninstalled'})
+        modules.filtered(
+            lambda x: x.state in ('to upgrade', 'to remove')
+        ).write({'state': 'installed'})
+        modules.filtered(
+            lambda x: x.state == 'installed' and x.name != 'base'
         ).button_immediate_uninstall()
         modules.refresh()
-        modules.unlink()
+        modules.filtered(
+            lambda x: x.state not in (
+                'installed', 'to upgrade', 'to remove', 'to install')
+        ).unlink()
         return self.write({'purged': True})
 
 
