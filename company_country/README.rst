@@ -80,7 +80,6 @@ Contributors
 ~~~~~~~~~~~~
 
 * Moisés López <moylop260@vauxoo.com>
-* Luis González <lgonzalez@vauxoo.com>
 
 
 Other credits
@@ -105,10 +104,13 @@ promote its widespread use.
 .. |maintainer-moylop260| image:: https://github.com/moylop260.png?size=40px
     :target: https://github.com/moylop260
     :alt: moylop260
+.. |maintainer-luisg123v| image:: https://github.com/luisg123v.png?size=40px
+    :target: https://github.com/luisg123v
+    :alt: luisg123v
 
-Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
+Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-moylop260| 
+|maintainer-moylop260| |maintainer-luisg123v| 
 
 This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/12.0/company_country>`_ project on GitHub.
 
