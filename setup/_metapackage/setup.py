@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo11-addon-attachment_base_synchronize',
+        'odoo11-addon-attachment_unindex_content',
         'odoo11-addon-auditlog',
         'odoo11-addon-auto_backup',
         'odoo11-addon-base_cron_exclusion',
