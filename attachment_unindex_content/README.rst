@@ -23,7 +23,7 @@ Attachment Unindex Content
     :target: https://runbot.odoo-community.org/runbot/149/11.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5|
+|badge1| |badge2| |badge3| |badge4| |badge5| 
 
 This module disables the indexation of attachments content.
 
@@ -114,7 +114,7 @@ promote its widespread use.
 
 Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-moylop260| |maintainer-ebirbe|
+|maintainer-moylop260| |maintainer-ebirbe| 
 
 This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/11.0/attachment_unindex_content>`_ project on GitHub.
 
