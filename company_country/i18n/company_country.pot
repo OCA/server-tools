@@ -25,16 +25,6 @@ msgid "Country code %s not found. Use ISO 3166 codes 2 letters"
 msgstr ""
 
 #. module: company_country
-#: model:ir.model.fields,field_description:company_country.field_company_country_config_settings__create_uid
-msgid "Created by"
-msgstr ""
-
-#. module: company_country
-#: model:ir.model.fields,field_description:company_country.field_company_country_config_settings__create_date
-msgid "Created on"
-msgstr ""
-
-#. module: company_country
 #: model:ir.model.fields,field_description:company_country.field_company_country_config_settings__display_name
 msgid "Display Name"
 msgstr ""
@@ -53,15 +43,5 @@ msgstr ""
 #. module: company_country
 #: model:ir.model.fields,field_description:company_country.field_company_country_config_settings____last_update
 msgid "Last Modified on"
-msgstr ""
-
-#. module: company_country
-#: model:ir.model.fields,field_description:company_country.field_company_country_config_settings__write_uid
-msgid "Last Updated by"
-msgstr ""
-
-#. module: company_country
-#: model:ir.model.fields,field_description:company_country.field_company_country_config_settings__write_date
-msgid "Last Updated on"
 msgstr ""
 
