@@ -9,7 +9,7 @@ from odoo.exceptions import ValidationError
 _logger = logging.getLogger(__name__)
 
 
-class CompanyCountryConfigSettings(models.TransientModel):
+class CompanyCountryConfigSettings(models.AbstractModel):
     _name = 'company.country.config.settings'
     _description = 'Company Country Configuration Settings'
 
