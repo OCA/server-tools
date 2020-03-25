@@ -114,13 +114,14 @@ msgid "Display Name"
 msgstr "显示名称"
 
 #. module: auditlog
-#: selection:auditlog.rule,state:0
+#: model:ir.model.fields.selection,name:auditlog.selection__auditlog_rule__state__draft
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_rule_search
 msgid "Draft"
 msgstr "草稿"
 
 #. module: auditlog
-#: selection:auditlog.log,log_type:0 selection:auditlog.rule,log_type:0
+#: model:ir.model.fields.selection,name:auditlog.selection__auditlog_log__log_type__fast
+#: model:ir.model.fields.selection,name:auditlog.selection__auditlog_rule__log_type__fast
 msgid "Fast log"
 msgstr "快速日志"
 
@@ -136,7 +137,8 @@ msgid "Fields updated"
 msgstr "字段已更新"
 
 #. module: auditlog
-#: selection:auditlog.log,log_type:0 selection:auditlog.rule,log_type:0
+#: model:ir.model.fields.selection,name:auditlog.selection__auditlog_log__log_type__full
+#: model:ir.model.fields.selection,name:auditlog.selection__auditlog_rule__log_type__full
 msgid "Full log"
 msgstr "完整日志"
 
@@ -148,7 +150,8 @@ msgid ""
 "Fast log: only log the changes made through the create and write operations "
 "(less information, but it is faster)"
 msgstr ""
-"完整日志：在操作之前和之后的数据之间做一个差异（记录更多信息，如更新的计算字段，但速度较慢）\n"
+"完整日志：在操作之前和之后的数据之间做一个差异（记录更多信息，如更新的计算字"
+"段，但速度较慢）\n"
 "快速日志：仅记录通过创建和写入操作所做的更改（信息越少，但速度越快）"
 
 #. module: auditlog
@@ -176,7 +179,6 @@ msgstr "HTTP请求"
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_http_session__http_request_ids
 #: model:ir.ui.menu,name:auditlog.menu_action_auditlog_http_request_tree
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_http_request_search
-#: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_http_request_tree
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_http_session_form
 msgid "HTTP Requests"
 msgstr "HTTP请求"
@@ -258,7 +260,6 @@ msgstr "记录写入"
 #: model:ir.ui.menu,name:auditlog.menu_audit_logs
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_http_request_form
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_log_search
-#: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_log_tree
 msgid "Logs"
 msgstr "日志"
 
@@ -333,7 +334,6 @@ msgstr "规则"
 #: model:ir.actions.act_window,name:auditlog.action_auditlog_rule_tree
 #: model:ir.ui.menu,name:auditlog.menu_action_auditlog_rule_tree
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_rule_search
-#: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_rule_tree
 msgid "Rules"
 msgstr "规则"
 
@@ -393,7 +393,7 @@ msgid "Subscribe"
 msgstr "订阅"
 
 #. module: auditlog
-#: selection:auditlog.rule,state:0
+#: model:ir.model.fields.selection,name:auditlog.selection__auditlog_rule__state__subscribed
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_rule_search
 msgid "Subscribed"
 msgstr "订阅"
@@ -404,7 +404,7 @@ msgid "Technical name"
 msgstr "技术名称"
 
 #. module: auditlog
-#: sql_constraint:auditlog.rule:0
+#: model:ir.model.constraint,message:auditlog.constraint_auditlog_rule_model_uniq
 msgid ""
 "There is already a rule defined on this model\n"
 "You cannot define another: please edit the existing one."
@@ -444,7 +444,6 @@ msgstr "用户会话"
 #: model:ir.actions.act_window,name:auditlog.action_auditlog_http_session_tree
 #: model:ir.ui.menu,name:auditlog.menu_action_auditlog_http_session_tree
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_http_session_search
-#: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_http_session_tree
 msgid "User sessions"
 msgstr "用户会话"
 
@@ -459,7 +458,7 @@ msgid "Values"
 msgstr "值"
 
 #. module: auditlog
-#: code:addons/auditlog/models/rule.py:527
+#: code:addons/auditlog/models/rule.py:0
 #, python-format
 msgid "View logs"
 msgstr "查看日志"
