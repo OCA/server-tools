@@ -5,7 +5,7 @@
     "name": "Fuzzy Search",
     "summary": "Fuzzy search with the PostgreSQL trigram extension",
     "category": "Uncategorized",
-    "version": "12.0.1.0.0",
+    "version": "13.0.1.0.0",
     "website": "https://github.com/OCA/server-tools",
     "author": "bloopark systems GmbH & Co. KG, "
     "Eficent, "
@@ -13,6 +13,7 @@
     "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "depends": ["base"],
-    "data": ["views/trgm_index.xml", "security/ir.model.access.csv",],
+    "data": ["views/trgm_index.xml", "security/ir.model.access.csv"],
+    "demo": ["demo/res_partner_demo.xml", "demo/TrgmIndex_demo.xml"],
     "installable": True,
 }

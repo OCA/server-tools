@@ -49,12 +49,12 @@ msgid "Field"
 msgstr "Поле"
 
 #. module: base_search_fuzzy
-#: selection:trgm.index,index_type:0
+#: model:ir.model.fields.selection,name:base_search_fuzzy.selection__trgm_index__index_type__gin
 msgid "GIN"
 msgstr ""
 
 #. module: base_search_fuzzy
-#: selection:trgm.index,index_type:0
+#: model:ir.model.fields.selection,name:base_search_fuzzy.selection__trgm_index__index_type__gist
 msgid "GiST"
 msgstr ""
 
@@ -74,9 +74,9 @@ msgid "Index Type"
 msgstr ""
 
 #. module: base_search_fuzzy
-#: code:addons/base_search_fuzzy/models/ir_model.py:39
+#: code:addons/base_search_fuzzy/models/ir_model.py:0
 #, python-format
-msgid "Invalid field %r in domain term %r"
+msgid "Invalid field {!r} in domain term {!r}"
 msgstr ""
 
 #. module: base_search_fuzzy
@@ -109,7 +109,7 @@ msgid ""
 msgstr ""
 
 #. module: base_search_fuzzy
-#: code:addons/base_search_fuzzy/models/trgm_index.py:126
+#: code:addons/base_search_fuzzy/models/trgm_index.py:0
 #, python-format
 msgid "The pg_trgm extension does not exists or cannot be installed."
 msgstr ""
