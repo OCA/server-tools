@@ -25,15 +25,15 @@ def patch_leaf_trgm(method):
             if left in model._fields:
                 column = "{}.{}".format(table_alias, expression._quote(left))
                 query = "({} {} {})".format(
-                    column,
-                    sql_operator,
-                    model._fields[left].column_format,
+                    column, sql_operator, model._fields[left].column_format,
                 )
             elif left in models.MAGIC_COLUMNS:
                 query = '({}."{}" {} %s)'.format(table_alias, left, sql_operator)
                 params = right
             else:  # Must not happen
-                raise ValueError(_("Invalid field {!r} in domain term {!r}".format(left, leaf)))
+                raise ValueError(
+                    _("Invalid field {!r} in domain term {!r}".format(left, leaf))
+                )
 
             if left in model._fields:
                 params = str(right)
@@ -67,7 +67,6 @@ class IrModel(models.Model):
 
     _inherit = "ir.model"
 
-    @api.model_cr
     def _register_hook(self):
         # We have to prevent wrapping the function twice to avoid recursion
         # errors
@@ -83,4 +82,4 @@ class IrModel(models.Model):
             models.BaseModel._generate_order_by = patch_generate_order_by(
                 models.BaseModel._generate_order_by
             )
-        return super(IrModel, self)._register_hook()
+        return super()._register_hook()
