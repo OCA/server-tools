@@ -2,11 +2,10 @@
 # Copyright 2016 Serpent Consulting Services Pvt. Ltd.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from odoo.osv import expression
-from odoo.tests.common import TransactionCase, at_install, post_install
+from odoo.tests.common import TransactionCase, tagged
 
 
-@at_install(False)
-@post_install(True)
+@tagged("post_install", "-at_install")
 class QueryGenerationCase(TransactionCase):
     def setUp(self):
         super(QueryGenerationCase, self).setUp()
@@ -30,7 +29,8 @@ class QueryGenerationCase(TransactionCase):
         # test the right sql query statement creation
         # now there should be only one '%'
         complete_where = self.env.cr.mogrify(
-            "SELECT FROM {} WHERE {}".format(from_clause, where_clause), where_clause_params
+            "SELECT FROM {} WHERE {}".format(from_clause, where_clause),
+            where_clause_params,
         )
         self.assertEqual(
             complete_where,
@@ -53,7 +53,8 @@ class QueryGenerationCase(TransactionCase):
         )
 
         complete_where = self.env.cr.mogrify(
-            "SELECT FROM {} WHERE {}".format(from_clause, where_clause), where_clause_params
+            "SELECT FROM {} WHERE {}".format(from_clause, where_clause),
+            where_clause_params,
         )
 
         self.assertIn(
@@ -76,7 +77,7 @@ class QueryGenerationCase(TransactionCase):
         if not self.TrgmIndex.index_exists("res.partner", "name"):
             field_partner_name = self.env.ref("base.field_res_partner__name")
             self.TrgmIndex.create(
-                {"field_id": field_partner_name.id, "index_type": "gin",}
+                {"field_id": field_partner_name.id, "index_type": "gin"}
             )
 
         partner1 = self.ResPartner.create({"name": "John Smith"})

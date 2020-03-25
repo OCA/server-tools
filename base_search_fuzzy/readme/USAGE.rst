@@ -22,3 +22,15 @@
 
 For further questions read the Documentation of the
 `pg_trgm <https://www.postgresql.org/docs/current/static/pgtrgm.html>`_ module.
+
+
+Usage with demo data
+====================
+
+There are some demo data that allow you to test functionally this module
+if you are in a **demo** database. The steps are the following:
+
+#. Go to *Contacts* and type the text **Jon Smith** or **Smith John** in
+   the search box and select **Search Display Name for: ...**
+#. You will see two contacts, and they are the ones with display names
+   **John Smith** and **John Smizz**.
