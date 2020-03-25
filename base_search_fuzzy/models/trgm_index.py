@@ -47,7 +47,6 @@ class TrgmIndex(models.Model):
         'GiST for often-updated data."',
     )
 
-    @api.model_cr
     def _trgm_extension_exists(self):
         self.env.cr.execute(
             """
@@ -67,18 +66,16 @@ class TrgmIndex(models.Model):
 
         return "installed"
 
-    @api.model_cr
     def _is_postgres_superuser(self):
         self.env.cr.execute("SHOW is_superuser;")
         superuser = self.env.cr.fetchone()
         return superuser is not None and superuser[0] == "on" or False
 
-    @api.model_cr
     def _install_trgm_extension(self):
         extension = self._trgm_extension_exists()
         if extension == "missing":
             _logger.warning(
-                "To use pg_trgm you have to install the " "postgres-contrib module."
+                "To use pg_trgm you have to install the postgres-contrib module."
             )
         elif extension == "uninstalled":
             if self._is_postgres_superuser():
@@ -94,9 +91,8 @@ class TrgmIndex(models.Model):
             return True
         return False
 
-    @api.model_cr_context
     def _auto_init(self):
-        res = super(TrgmIndex, self)._auto_init()
+        res = super()._auto_init()
         if self._install_trgm_extension():
             _logger.info(
                 "The pg_trgm is loaded in the database and the "
@@ -104,7 +100,6 @@ class TrgmIndex(models.Model):
             )
         return res
 
-    @api.model_cr
     def get_not_used_index(self, index_name, table_name, inc=1):
         if inc > 1:
             new_index_name = index_name + str(inc)
@@ -127,13 +122,12 @@ class TrgmIndex(models.Model):
 
         return False, new_index_name
 
-    @api.multi
     def create_index(self):
         self.ensure_one()
 
         if not self._install_trgm_extension():
             raise exceptions.UserError(
-                _("The pg_trgm extension does not exists or cannot be " "installed.")
+                _("The pg_trgm extension does not exists or cannot be installed.")
             )
 
         table_name = self.env[self.field_id.model_id.model]._table
@@ -172,17 +166,16 @@ class TrgmIndex(models.Model):
 
     @api.model
     def create(self, vals):
-        rec = super(TrgmIndex, self).create(vals)
+        rec = super().create(vals)
         rec.index_name = rec.create_index()
         return rec
 
-    @api.multi
     def unlink(self):
         for rec in self:
             self.env.cr.execute(
                 """
                 DROP INDEX IF EXISTS %(index)s;
                 """,
-                {"index": AsIs(rec.index_name),},
+                {"index": AsIs(rec.index_name)},
             )
-        return super(TrgmIndex, self).unlink()
+        return super().unlink()
