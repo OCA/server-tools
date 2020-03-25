@@ -7,7 +7,6 @@ import logging
 from odoo import _, api, models
 from odoo.osv import expression
 
-
 _logger = logging.getLogger(__name__)
 
 
@@ -18,26 +17,23 @@ def patch_leaf_trgm(method):
         left, operator, right = leaf
         table_alias = '"%s"' % (eleaf.generate_alias())
 
-        if operator == '%':
+        if operator == "%":
 
-            sql_operator = '%%'
+            sql_operator = "%%"
             params = []
 
             if left in model._fields:
-                column = '%s.%s' % (table_alias, expression._quote(left))
-                query = '(%s %s %s)' % (
+                column = "{}.{}".format(table_alias, expression._quote(left))
+                query = "({} {} {})".format(
                     column,
                     sql_operator,
                     model._fields[left].column_format,
                 )
             elif left in models.MAGIC_COLUMNS:
-                query = "(%s.\"%s\" %s %%s)" % (
-                    table_alias, left, sql_operator)
+                query = '({}."{}" {} %s)'.format(table_alias, left, sql_operator)
                 params = right
             else:  # Must not happen
-                raise ValueError(_(
-                    "Invalid field %r in domain term %r" % (left, leaf)
-                ))
+                raise ValueError(_("Invalid field {!r} in domain term {!r}".format(left, leaf)))
 
             if left in model._fields:
                 params = str(right)
@@ -45,8 +41,8 @@ def patch_leaf_trgm(method):
             if isinstance(params, str):
                 params = [params]
             return query, params
-        elif operator == 'inselect':
-            right = (right[0].replace(' % ', ' %% '), right[1])
+        elif operator == "inselect":
+            right = (right[0].replace(" % ", " %% "), right[1])
             eleaf.leaf = (left, operator, right)
         return method(self, eleaf)
 
@@ -56,11 +52,10 @@ def patch_leaf_trgm(method):
 
 
 def patch_generate_order_by(method):
-
     @api.model
     def decorate_generate_order_by(self, order_spec, query):
-        if order_spec and order_spec.startswith('similarity('):
-            return ' ORDER BY ' + order_spec
+        if order_spec and order_spec.startswith("similarity("):
+            return " ORDER BY " + order_spec
         return method(self, order_spec, query)
 
     decorate_generate_order_by.__decorated__ = True
@@ -70,22 +65,22 @@ def patch_generate_order_by(method):
 
 class IrModel(models.Model):
 
-    _inherit = 'ir.model'
+    _inherit = "ir.model"
 
     @api.model_cr
     def _register_hook(self):
         # We have to prevent wrapping the function twice to avoid recursion
         # errors
-        if not hasattr(expression.expression._expression__leaf_to_sql,
-                       '__decorated__'):
+        if not hasattr(expression.expression._expression__leaf_to_sql, "__decorated__"):
             expression.expression._expression__leaf_to_sql = patch_leaf_trgm(
-                expression.expression._expression__leaf_to_sql)
+                expression.expression._expression__leaf_to_sql
+            )
 
-        if '%' not in expression.TERM_OPERATORS:
-            expression.TERM_OPERATORS += ('%',)
+        if "%" not in expression.TERM_OPERATORS:
+            expression.TERM_OPERATORS += ("%",)
 
-        if not hasattr(models.BaseModel._generate_order_by,
-                       '__decorated__'):
+        if not hasattr(models.BaseModel._generate_order_by, "__decorated__"):
             models.BaseModel._generate_order_by = patch_generate_order_by(
-                models.BaseModel._generate_order_by)
+                models.BaseModel._generate_order_by
+            )
         return super(IrModel, self)._register_hook()
