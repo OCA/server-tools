@@ -1,12 +1,12 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* auditlog
+# 	* auditlog
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: <>\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -106,14 +106,14 @@ msgid "Display Name"
 msgstr ""
 
 #. module: auditlog
-#: selection:auditlog.rule,state:0
+#: model:ir.model.fields.selection,name:auditlog.selection__auditlog_rule__state__draft
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_rule_search
 msgid "Draft"
 msgstr ""
 
 #. module: auditlog
-#: selection:auditlog.log,log_type:0
-#: selection:auditlog.rule,log_type:0
+#: model:ir.model.fields.selection,name:auditlog.selection__auditlog_log__log_type__fast
+#: model:ir.model.fields.selection,name:auditlog.selection__auditlog_rule__log_type__fast
 msgid "Fast log"
 msgstr ""
 
@@ -129,14 +129,15 @@ msgid "Fields updated"
 msgstr ""
 
 #. module: auditlog
-#: selection:auditlog.log,log_type:0
-#: selection:auditlog.rule,log_type:0
+#: model:ir.model.fields.selection,name:auditlog.selection__auditlog_log__log_type__full
+#: model:ir.model.fields.selection,name:auditlog.selection__auditlog_rule__log_type__full
 msgid "Full log"
 msgstr ""
 
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule__log_type
-msgid "Full log: make a diff between the data before and after the operation (log more info like computed fields which were updated, but it is slower)\n"
+msgid ""
+"Full log: make a diff between the data before and after the operation (log more info like computed fields which were updated, but it is slower)\n"
 "Fast log: only log the changes made through the create and write operations (less information, but it is faster)"
 msgstr ""
 
@@ -165,7 +166,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_http_session__http_request_ids
 #: model:ir.ui.menu,name:auditlog.menu_action_auditlog_http_request_tree
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_http_request_search
-#: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_http_request_tree
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_http_session_form
 msgid "HTTP Requests"
 msgstr ""
@@ -247,7 +247,6 @@ msgstr ""
 #: model:ir.ui.menu,name:auditlog.menu_audit_logs
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_http_request_form
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_log_search
-#: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_log_tree
 msgid "Logs"
 msgstr ""
 
@@ -322,7 +321,6 @@ msgstr ""
 #: model:ir.actions.act_window,name:auditlog.action_auditlog_rule_tree
 #: model:ir.ui.menu,name:auditlog.menu_action_auditlog_rule_tree
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_rule_search
-#: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_rule_tree
 msgid "Rules"
 msgstr ""
 
@@ -333,22 +331,30 @@ msgstr ""
 
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule__log_create
-msgid "Select this if you want to keep track of creation on any record of the model of this rule"
+msgid ""
+"Select this if you want to keep track of creation on any record of the model"
+" of this rule"
 msgstr ""
 
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule__log_unlink
-msgid "Select this if you want to keep track of deletion on any record of the model of this rule"
+msgid ""
+"Select this if you want to keep track of deletion on any record of the model"
+" of this rule"
 msgstr ""
 
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule__log_write
-msgid "Select this if you want to keep track of modification on any record of the model of this rule"
+msgid ""
+"Select this if you want to keep track of modification on any record of the "
+"model of this rule"
 msgstr ""
 
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule__log_read
-msgid "Select this if you want to keep track of read/open on any record of the model of this rule"
+msgid ""
+"Select this if you want to keep track of read/open on any record of the "
+"model of this rule"
 msgstr ""
 
 #. module: auditlog
@@ -374,7 +380,7 @@ msgid "Subscribe"
 msgstr ""
 
 #. module: auditlog
-#: selection:auditlog.rule,state:0
+#: model:ir.model.fields.selection,name:auditlog.selection__auditlog_rule__state__subscribed
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_rule_search
 msgid "Subscribed"
 msgstr ""
@@ -385,8 +391,9 @@ msgid "Technical name"
 msgstr ""
 
 #. module: auditlog
-#: sql_constraint:auditlog.rule:0
-msgid "There is already a rule defined on this model\n"
+#: model:ir.model.constraint,message:auditlog.constraint_auditlog_rule_model_uniq
+msgid ""
+"There is already a rule defined on this model\n"
 "You cannot define another: please edit the existing one."
 msgstr ""
 
@@ -422,7 +429,6 @@ msgstr ""
 #: model:ir.actions.act_window,name:auditlog.action_auditlog_http_session_tree
 #: model:ir.ui.menu,name:auditlog.menu_action_auditlog_http_session_tree
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_http_session_search
-#: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_http_session_tree
 msgid "User sessions"
 msgstr ""
 
@@ -437,7 +443,7 @@ msgid "Values"
 msgstr ""
 
 #. module: auditlog
-#: code:addons/auditlog/models/rule.py:527
+#: code:addons/auditlog/models/rule.py:0
 #, python-format
 msgid "View logs"
 msgstr ""
@@ -446,4 +452,3 @@ msgstr ""
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule__user_ids
 msgid "if  User is not added then it will applicable for all users"
 msgstr ""
-
