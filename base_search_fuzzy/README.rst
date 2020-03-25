@@ -14,13 +14,13 @@ Fuzzy Search
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github
-    :target: https://github.com/OCA/server-tools/tree/12.0/base_search_fuzzy
+    :target: https://github.com/OCA/server-tools/tree/13.0/base_search_fuzzy
     :alt: OCA/server-tools
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/server-tools-12-0/server-tools-12-0-base_search_fuzzy
+    :target: https://translation.odoo-community.org/projects/server-tools-13-0/server-tools-13-0-base_search_fuzzy
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
-    :target: https://runbot.odoo-community.org/runbot/149/12.0
+    :target: https://runbot.odoo-community.org/runbot/149/13.0
     :alt: Try me on Runbot
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
@@ -81,6 +81,19 @@ Usage
 For further questions read the Documentation of the
 `pg_trgm <https://www.postgresql.org/docs/current/static/pgtrgm.html>`_ module.
 
+
+Usage with demo data
+====================
+
+There are some demo data that allow you to test functionally this module
+if you are in a **demo** database. The steps are the following:
+
+#. Then type the text **Jon Smith** or **Smith John** in the search box and
+   select **Search Display Name for: ...**
+#. You will see two contacts, and they are the ones with display names
+   **John Smith** and **John Smizz**. (See corresponding `demo code
+   <https://github.com/OCA/server-tools/tree/13.0/base_search_fuzzy/demo/res_partner_demo.xml#L18>`_)
+
 Known issues / Roadmap
 ======================
 
@@ -93,7 +106,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/server-tools/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/server-tools/issues/new?body=module:%20base_search_fuzzy%0Aversion:%2012.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/server-tools/issues/new?body=module:%20base_search_fuzzy%0Aversion:%2013.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -133,6 +146,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/12.0/base_search_fuzzy>`_ project on GitHub.
+This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/13.0/base_search_fuzzy>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
