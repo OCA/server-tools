@@ -15,7 +15,6 @@ class CleanupPurgeLineData(models.TransientModel):
         "cleanup.purge.wizard.data", "Purge Wizard", readonly=True
     )
 
-    @api.multi
     def purge(self):
         """Unlink data entries upon manual confirmation."""
         if self:
@@ -26,7 +25,13 @@ class CleanupPurgeLineData(models.TransientModel):
             )
         to_unlink = objs.filtered(lambda x: not x.purged and x.data_id)
         self.logger.info("Purging data entries: %s", to_unlink.mapped("name"))
-        to_unlink.mapped("data_id").unlink()
+        for ul in to_unlink:
+            try:
+                ul.mapped("data_id").unlink()
+            except KeyError:
+                pass
+            except AttributeError:
+                pass
         return to_unlink.write({"purged": True})
 
 
@@ -62,7 +67,7 @@ class CleanupPurgeWizardData(models.TransientModel):
             )
             data_ids.extend(data_row for data_row, in self.env.cr.fetchall())
         data_ids += (
-            self.env["ir.model.data"].search([("model", "in", unknown_models),]).ids
+            self.env["ir.model.data"].search([("model", "in", unknown_models)]).ids
         )
         for data in self.env["ir.model.data"].browse(data_ids):
             res.append(

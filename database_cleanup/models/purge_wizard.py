@@ -21,7 +21,6 @@ class CleanupPurgeLine(models.AbstractModel):
 
     logger = logging.getLogger("odoo.addons.database_cleanup")
 
-    @api.multi
     def purge(self):
         raise NotImplementedError
 
@@ -46,11 +45,9 @@ class PurgeWizard(models.AbstractModel):
             res["purge_line_ids"] = self.find()
         return res
 
-    @api.multi
     def find(self):
         raise NotImplementedError
 
-    @api.multi
     def purge_all(self):
         self.mapped("purge_line_ids").purge()
         return True
@@ -64,10 +61,9 @@ class PurgeWizard(models.AbstractModel):
             "views": [(False, "form")],
             "res_model": self._name,
             "res_id": wizard.id,
-            "flags": {"action_buttons": False, "sidebar": False,},
+            "flags": {"action_buttons": False, "sidebar": False},
         }
 
-    @api.multi
     def select_lines(self):
         return {
             "type": "ir.actions.act_window",
@@ -77,7 +73,6 @@ class PurgeWizard(models.AbstractModel):
             "domain": [("wizard_id", "in", self.ids)],
         }
 
-    @api.multi
     def name_get(self):
         return [(this.id, self._description) for this in self]
 

@@ -25,7 +25,6 @@ class IrModel(models.Model):
 class IrModelFields(models.Model):
     _inherit = "ir.model.fields"
 
-    @api.multi
     def _prepare_update(self):
         """this function crashes for undefined models"""
         existing = self.filtered(lambda x: x.model in self.env)
@@ -41,7 +40,6 @@ class CleanupPurgeLineModel(models.TransientModel):
         "cleanup.purge.wizard.model", "Purge Wizard", readonly=True
     )
 
-    @api.multi
     def purge(self):
         """
         Unlink models upon manual confirmation.
@@ -73,12 +71,17 @@ class CleanupPurgeLineModel(models.TransientModel):
                     "UPDATE ir_attachment SET res_model = NULL " "WHERE id in %s",
                     (tuple(attachments.ids),),
                 )
-            self.env["ir.model.constraint"].search(
-                [("model", "=", line.name),]
-            ).unlink()
+            try:
+                self.env["ir.model.constraint"].search(
+                    [("model", "=", line.name)]
+                ).unlink()
+            except KeyError:
+                continue
+            except AttributeError:
+                continue
             relations = (
                 self.env["ir.model.fields"]
-                .search([("relation", "=", row[1]),])
+                .search([("relation", "=", row[1])])
                 .with_context(**context_flags)
             )
             for relation in relations:

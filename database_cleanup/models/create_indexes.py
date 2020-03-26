@@ -1,7 +1,7 @@
 # Copyright 2017 Therp BV <http://therp.nl>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 # pylint: disable=consider-merging-classes-inherited
-from odoo import api, fields, models
+from odoo import fields, models
 
 from ..identifier_adapter import IdentifierAdapter
 
@@ -14,7 +14,6 @@ class CreateIndexesLine(models.TransientModel):
     wizard_id = fields.Many2one("cleanup.create_indexes.wizard")
     field_id = fields.Many2one("ir.model.fields", required=True)
 
-    @api.multi
     def purge(self):
         tables = set()
         for field in self.mapped("field_id"):
@@ -29,11 +28,9 @@ class CreateIndexesLine(models.TransientModel):
                 ),
             )
             tables.add(model._table)
-        for table in tables:
+        for _table in tables:
             self.env.cr.execute("analyze %s", (IdentifierAdapter(model._table),))
-        self.write(
-            {"purged": True,}
-        )
+        self.write({"purged": True})
 
 
 class CreateIndexesWizard(models.TransientModel):
@@ -43,10 +40,9 @@ class CreateIndexesWizard(models.TransientModel):
 
     purge_line_ids = fields.One2many("cleanup.create_indexes.line", "wizard_id",)
 
-    @api.multi
     def find(self):
         res = list()
-        for field in self.env["ir.model.fields"].search([("index", "=", True),]):
+        for field in self.env["ir.model.fields"].search([("index", "=", True)]):
             if field.model not in self.env.registry:
                 continue
             model = self.env[field.model]
@@ -65,7 +61,7 @@ class CreateIndexesWizard(models.TransientModel):
                 "join pg_class c on a.attrelid=c.oid "
                 "join pg_tables t on t.tablename=c.relname "
                 "where attname=%s and c.relname=%s",
-                (field.name, model._table,),
+                (field.name, model._table),
             )
             if not self.env.cr.rowcount:
                 continue

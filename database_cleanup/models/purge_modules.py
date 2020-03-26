@@ -38,7 +38,6 @@ class CleanupPurgeLineModule(models.TransientModel):
         "cleanup.purge.wizard.module", "Purge Wizard", readonly=True
     )
 
-    @api.multi
     def purge(self):
         """
         Uninstall modules upon manual confirmation, then reload
@@ -59,10 +58,7 @@ class CleanupPurgeLineModule(models.TransientModel):
             lambda x: x.state == "installed" and x.name != "base"
         ).button_immediate_uninstall()
         modules.refresh()
-        modules.filtered(
-            lambda x: x.state
-            not in ("installed", "to upgrade", "to remove", "to install")
-        ).unlink()
+        modules.unlink()
         return self.write({"purged": True})
 
 
@@ -82,7 +78,7 @@ class CleanupPurgeWizardModule(models.TransientModel):
                 continue
             if module.state == "uninstalled":
                 self.env["cleanup.purge.line.module"].create(
-                    {"name": module.name,}
+                    {"name": module.name}
                 ).purge()
                 continue
             res.append((0, 0, {"name": module.name}))

@@ -3,12 +3,13 @@
 from psycopg2 import ProgrammingError
 
 from odoo.modules.registry import Registry
-from odoo.tests.common import TransactionCase, tagged
+from odoo.tests.common import TransactionCase, at_install, post_install
 from odoo.tools import config, mute_logger
 
 
-# Use post_install to get all models loaded, more info: odoo/odoo#13458
-@tagged("post_install", "-at_install")
+# Use post_install to get all models loaded more info: odoo/odoo#13458
+@at_install(False)
+@post_install(True)
 class TestDatabaseCleanup(TransactionCase):
     def setUp(self):
         super(TestDatabaseCleanup, self).setUp()
@@ -98,13 +99,13 @@ class TestDatabaseCleanup(TransactionCase):
         # must be removed by the wizard
         self.assertFalse(
             self.env["ir.model"].search(
-                [("model", "=", "x_database.cleanup.test.model"),]
+                [("model", "=", "x_database.cleanup.test.model")]
             )
         )
 
         # create a nonexistent module
         self.module = self.env["ir.module.module"].create(
-            {"name": "database_cleanup_test", "state": "to upgrade",}
+            {"name": "database_cleanup_test", "state": "to upgrade"}
         )
         purge_modules = self.env["cleanup.purge.wizard.module"].create({})
         # this reloads our registry, and we don't want to run tests twice
@@ -118,7 +119,7 @@ class TestDatabaseCleanup(TransactionCase):
         # must be removed by the wizard
         self.assertFalse(
             self.env["ir.module.module"].search(
-                [("name", "=", "database_cleanup_test"),]
+                [("name", "=", "database_cleanup_test")]
             )
         )
         # reset afterwards
@@ -140,8 +141,8 @@ class TestDatabaseCleanup(TransactionCase):
             self.env.cr.rollback()
             if self.module:
                 cr2.execute(
-                    "DELETE FROM ir_module_module WHERE id=%s", (self.module.id,)
+                    "DELETE FROM ir_module_module WHERE id=%s", (self.module.id)
                 )
             if self.model:
-                cr2.execute("DELETE FROM ir_model WHERE id=%s", (self.model.id,))
+                cr2.execute("DELETE FROM ir_model WHERE id=%s", (self.model.id))
             cr2.commit()

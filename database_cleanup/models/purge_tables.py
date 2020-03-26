@@ -16,7 +16,6 @@ class CleanupPurgeLineTable(models.TransientModel):
         "cleanup.purge.wizard.table", "Purge Wizard", readonly=True
     )
 
-    @api.multi
     def purge(self):
         """
         Unlink tables upon manual confirmation.
