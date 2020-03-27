@@ -25,7 +25,7 @@ def db_filter(dbs, httprequest=None):
     return dbs
 
 if config.get('proxy_mode') and \
-   'dbfilter_from_header' in config.get('server_wide_modules'):
+   'dbfilter_from_header' in (config.get('server_wide_modules') or []):
     _logger = logging.getLogger(__name__)
     _logger.info('monkey patching http.db_filter')
     http.db_filter = db_filter
