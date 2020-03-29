@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* attachment_unindex_content
+# 	* attachment_unindex_content
 #
 msgid ""
 msgstr ""
@@ -10,6 +10,7 @@ msgstr ""
 "PO-Revision-Date: 2020-03-15 20:11+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -19,4 +20,3 @@ msgstr ""
 #: model:ir.model,name:attachment_unindex_content.model_ir_attachment
 msgid "ir.attachment"
 msgstr "ir.attachment"
-
