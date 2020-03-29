@@ -35,14 +35,16 @@ class CompanyCountryConfigSettings(models.AbstractModel):
                 ('state', '=', 'to install'),
                 ('name', '=like', 'l10n_%')], limit=1)
             if not l10n_to_install:
-                raise ValidationError(
-                    _('Error COUNTRY environment variable with country code '
-                        'not defined and no localization found in pool.'))
+                raise ValidationError(_(
+                    'COUNTRY environment variable with country code is not '
+                    'set and no localization module is marked to be '
+                    'installed.'))
             country_code = l10n_to_install.name.split('l10n_')[1][:2].upper()
 
         country = self.env['res.country'].search([
             ('code', 'ilike', country_code)], limit=1)
         if not country:
-            raise ValidationError(
-                _('Country code %s not found. Use ISO 3166 codes 2 letters'))
+            raise ValidationError(_(
+                'Country code %s was not found. Please use a valid two-letter '
+                'ISO 3166 code.'))
         self.env.ref('base.main_company').write({'country_id': country.id})
