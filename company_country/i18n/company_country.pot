@@ -20,8 +20,28 @@ msgid "COUNTRY environment variable with country code is not set and no localiza
 msgstr ""
 
 #. module: company_country
+#: model:ir.model,name:company_country.model_company_country_config_settings
+msgid "Company Country Configuration Settings"
+msgstr ""
+
+#. module: company_country
 #: code:addons/company_country/models/res_config.py:47
 #, python-format
 msgid "Country code %s was not found. Please use a valid two-letter ISO 3166 code."
+msgstr ""
+
+#. module: company_country
+#: model:ir.model.fields,field_description:company_country.field_company_country_config_settings__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: company_country
+#: model:ir.model.fields,field_description:company_country.field_company_country_config_settings__id
+msgid "ID"
+msgstr ""
+
+#. module: company_country
+#: model:ir.model.fields,field_description:company_country.field_company_country_config_settings____last_update
+msgid "Last Modified on"
 msgstr ""
 
