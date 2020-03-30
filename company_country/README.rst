@@ -25,8 +25,14 @@ Company Country
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
-This module allow set a country to main company in order to use the hook of 
-account that install l10n_** based on country of main company.
+This module allows to set a country to the main company before the ``account``
+module is installed, so the hook of that module installs the correct
+``l10n_***`` module.
+
+This is useful because, if the company isn't already set correctly when the
+``account`` module is installed, the generic accounting chart will be installed
+(``l10n_generic_coa``), which may be incorrect depending on your company's
+country.
 
 **Table of contents**
 
@@ -38,21 +44,21 @@ Installation
 
 To install this module, you need to:
 
-#. Add as depends from your main module.
+#. Add it as dependency from your main module.
 
 Configuration
 =============
 
 To configure this module, you need to:
 
-#. Set the environment variable COUNTRY using 2 letter of ISO 3166 codes.
+#. Set the environment variable ``COUNTRY`` using a two-letter ISO 3166 code.
 
 Usage
 =====
 
 To use this module, you need to:
 
-#. Just start server installing your main module.
+#. Just start the server installing your main module.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
@@ -87,7 +93,6 @@ Other credits
 ~~~~~~~~~~~~~
 
 Vauxoo
-
 
 Maintainers
 ~~~~~~~~~~~
