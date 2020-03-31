@@ -4,31 +4,31 @@
 
 <odoo noupdate="1">
 
-    <record model="delivery.week.day" id="delivery_weed_day_monday">
+    <record model="time.weekday" id="time_weekday_monday">
         <field name="name">0</field>
     </record>
 
-    <record model="delivery.week.day" id="delivery_weed_day_tuesday">
+    <record model="time.weekday" id="time_weekday_tuesday">
         <field name="name">1</field>
     </record>
 
-    <record model="delivery.week.day" id="delivery_weed_day_wednesday">
+    <record model="time.weekday" id="time_weekday_wednesday">
         <field name="name">2</field>
     </record>
 
-    <record model="delivery.week.day" id="delivery_weed_day_thursday">
+    <record model="time.weekday" id="time_weekday_thursday">
         <field name="name">3</field>
     </record>
 
-    <record model="delivery.week.day" id="delivery_weed_day_friday">
+    <record model="time.weekday" id="time_weekday_friday">
         <field name="name">4</field>
     </record>
 
-    <record model="delivery.week.day" id="delivery_weed_day_saturday">
+    <record model="time.weekday" id="time_weekday_saturday">
         <field name="name">5</field>
     </record>
 
-    <record model="delivery.week.day" id="delivery_weed_day_sunday">
+    <record model="time.weekday" id="time_weekday_sunday">
         <field name="name">6</field>
     </record>
 </odoo>
