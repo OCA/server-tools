@@ -6,10 +6,10 @@
 Kanban - Stage Support
 ======================
 
-This module provides a stage model compatible with Kanban views and the 
-standard views needed to manage these stages. It also provides the 
-``base.kanban.abstract`` model, which can be inherited to add support for 
-Kanban views with stages to any other model. Lastly, it includes a base Kanban 
+This module provides a stage model compatible with Kanban views and the
+standard views needed to manage these stages. It also provides the
+``base.kanban.abstract`` model, which can be inherited to add support for
+Kanban views with stages to any other model. Lastly, it includes a base Kanban
 view that can be extended as needed.
 
 Installation
@@ -25,7 +25,7 @@ No configuration is needed or possible.
 Usage
 =====
 
-* Inherit from ``base.kanban.abstract`` to add Kanban stage functionality to 
+* Inherit from ``base.kanban.abstract`` to add Kanban stage functionality to
   the child model:
 
   .. code-block:: python
@@ -33,8 +33,8 @@ Usage
     class MyModel(models.Model):
         _name = 'my.model'
         _inherit = 'base.kanban.abstract'
-        
-* Extend the provided base Kanban view (``base_kanban_abstract_view_kanban``) 
+
+* Extend the provided base Kanban view (``base_kanban_abstract_view_kanban``)
   as needed by the child model while making sure to set the ``mode`` to
   ``primary`` so that inheritance works properly. The base view has four
   ``name`` attributes intended to provide convenient XPath access to different
@@ -62,12 +62,12 @@ Usage
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/162/12.0
+   :target: https://runbot.odoo-community.org/runbot/162/13.0
 
 Known Issues / Roadmap
 ======================
 
-* The grouping logic used by ``base.kanban.abstract`` currently does not 
+* The grouping logic used by ``base.kanban.abstract`` currently does not
   support additional domains and alternate sort orders
 
 Bug Tracker
