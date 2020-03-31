@@ -55,6 +55,7 @@ addon | version | summary
 [base_locale_uom_default](base_locale_uom_default/) | 10.0.1.0.0 | This provides settings to select default UoMs at the language level.
 [base_manifest_extension](base_manifest_extension/) | 10.0.1.0.0 | Adds useful keys to manifest files
 [base_multi_image](base_multi_image/) | 10.0.1.0.0 | Allow multiple images for database objects
+[base_onchange_rule](base_onchange_rule/) | 10.0.1.0.0 | Define onchange settings for any models
 [base_optional_quick_create](base_optional_quick_create/) | 10.0.1.0.1 | Avoid 'quick create' on m2o fields, on a 'by model' basis
 [base_report_auto_create_qweb](base_report_auto_create_qweb/) | 10.0.1.0.0 | Report qweb auto generation
 [base_search_fuzzy](base_search_fuzzy/) | 10.0.1.1.0 | Fuzzy search with the PostgreSQL trigram extension
