@@ -108,7 +108,6 @@ class BaseKanbanAbstract(models.AbstractModel):
              ' a specific user)\n'
     )
 
-    @api.multi
     def _read_group_stage_ids(self, stages, domain, order):
         search_domain = [('res_model_id.model', '=', self._name)]
         return stages.search(search_domain, order=order)

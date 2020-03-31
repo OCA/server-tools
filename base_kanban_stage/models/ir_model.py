@@ -13,7 +13,6 @@ class IrModel(models.Model):
         help="Whether this model support kanban stages.",
     )
 
-    @api.multi
     def write(self, vals):
         if self and 'is_kanban' in vals:
             if not all(rec.state == 'manual' for rec in self):
