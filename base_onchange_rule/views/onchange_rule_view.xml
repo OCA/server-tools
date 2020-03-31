@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+
+    <record id="onchange_rule_tree" model="ir.ui.view">
+        <field name="model">onchange.rule</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="model_id"/>
+                <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="onchange_rule_form_view" model="ir.ui.view">
+        <field name="model">onchange.rule</field>
+        <field name="arch" type="xml">
+            <form>
+                <h2>
+                    <field name="name" placeholder="Name"/>
+                </h2>
+                <group col="4">
+                    <field name="model_id"/>
+                    <field name="active"/>
+                    <field name="sequence"/>
+                    <field name="company_id" groups="base.group_multi_company"
+                           options="{'no_create': True}"/>
+                </group>
+                <group col="4">
+                    <field name="rule_line_ids" colspan="4" nolabel="1">
+                        <form string="Rules lines">
+                            <group>
+                                <field name="readonly" invisible="1"/>
+                                <group string="Source">
+                                    <field name="onchange_field_id"
+                                           domain="[('model_id', '=', parent.model_id),
+                                           ('ttype', 'in', ('many2one', 'selection'))]"
+                                           attrs="{'readonly': [('readonly', '=', 1)]}"/>
+                                    <field name="implied_model" readonly="1"/>
+                                    <label for="implied_record"/>
+                                    <div>
+                                        <field
+                                            context="{'onchange_field_id':
+                                             onchange_field_id,}"
+                                            name="implied_record" class="oe_inline" 
+                                            attrs="{'readonly': [('readonly', '=', 1)]}"/>
+                                    </div>
+                                </group>
+                                <group string="Destination">
+                                    <field name="dest_field_id" attrs="{'readonly': [('readonly', '=', 1)]}"
+                                    domain="[('model_id', '=', parent.model_id),
+                                    ('ttype', 'in', ('many2one', 'selection'))]"/>
+                                    <field name="val_type" widget="radio" 
+                                           attrs="{'readonly': [('readonly', '=', 1)]}" />
+                                    <field name="related_field" string="Related Field"
+                                           attrs="{'required': [('val_type', '=', 'related')],
+                                                   'invisible': [('val_type', '!=', 'related')],
+                                                   'readonly': [('readonly', '=', 1)]}"
+                                        placeholer="partner_id.price_list_id"/>
+                                    <field name="m2o_value"
+                                        context="{'dest_field_id': onchange_field_id}"
+                                        attrs="{
+                                        'invisible': ['|', ('selection_value', '!=', False), ('val_type', '!=', 'fixed')],
+                                        'readonly': [('readonly', '=', 1)]}"/>
+                                    <field name="selection_value" string="Selection Value"
+                                           attrs="{'invisible': [('val_type', '!=', 'fixed')], 'readonly': [('readonly', '=', 1)]}"/>
+                                    <field name="method" 
+                                           attrs="{'invisible': [('val_type', '!=', 'method')], 'readonly': [('readonly', '=', 1)]}"/>
+                                    <field name="method_comment" nolabel="1" colspan="2"
+                                           placeholder="... two words about what expect with this method !"
+                                           attrs="{'invisible': [('val_type', '!=', 'method')], 'readonly': [('readonly', '=', 1)]}"/>
+                                    <field name="is_restrictive_rule"/>
+                                </group>
+                                <group string="Onchange Parameters" colspan="4">
+                                    <field name="onchange_domain" placeholder="{'partner_id': [('name', '=', 'Akretion')]}"
+                                           attrs="{'readonly': [('readonly', '=', 1)]}"/>
+                                    <field name="onchange_warning" attrs="{'readonly': [('readonly', '=', 1)]}"/>
+                                </group>
+                            </group>
+                        </form>
+                        <tree>
+                            <field name="sequence" widget="handle"/>
+                            <field name="onchange_field_id"
+                                   domain="[('model_id', '=', parent.model_id),
+                                            ('ttype', 'in', ('many2one', 'selection'))]"/>
+                            <field name="implied_model" readonly="1"/>
+                            <field name="implied_record"
+                                   context="{'onchange_field_id': onchange_field_id}"/>
+                            <field name="dest_field_id" string="Destination Field"
+                                   domain="[('model_id', '=', parent.model_id),
+                                            ('ttype', 'in', ('many2one', 'selection'))]"/>
+                            <field name="val_type"/>
+                            <field name="dest_value" string="Value"/>
+                            <field name="onchange_domain"/>
+                            <field name="is_restrictive_rule" string="Restrictive"/>
+                            <button name="button_duplicate_record" type="object" icon="fa-copy"/>
+                        </tree>
+                    </field>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="onchange_rule_action" model="ir.actions.act_window">
+        <field name="name">Onchange Rules</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">onchange.rule</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+
+    <menuitem action="onchange_rule_action"
+              id="menu_onchange_rule_action"
+              parent="base.menu_automation" sequence="10"/>
+
+
+    <record id="onchange_rule_line_search" model="ir.ui.view">
+        <field name="model">onchange.rule.line</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="onchange_rule_id"/>
+                <field name="onchange_field_id"/>
+                <filter string="Restrictive" name="is_restrictive_rule" domain="[('is_restrictive_rule', '=', True)]"/>
+                <group expand="0" string="Group By...">
+                    <filter string="Onchange Rule" domain="[]" context="{'group_by':'onchange_rule_id'}"/>
+               </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="onchange_rule_line_tree" model="ir.ui.view">
+        <field name="model">onchange.rule.line</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="onchange_rule_id"/>
+                <field name="onchange_field_id"
+                       domain="[('model_id', '=', parent.model_id),
+                                ('ttype', 'in', ('many2one', 'selection'))]"/>
+                <field name="implied_model" readonly="1"/>
+                <field name="implied_record"
+                       context="{'onchange_field_id': onchange_field_id}"/>
+                <field name="dest_field_id" string="Destination Field"
+                       domain="[('model_id', '=', parent.model_id),
+                                ('ttype', 'in', ('many2one', 'selection'))]"/>
+                <field name="related_field" string="Dest. Related Field"/>
+                <field name="m2o_value" string="M2o Value"
+                       context="{'dest_field_id': onchange_field_id}"/>
+                <field name="selection_value" string="Select. Value"/>
+                <field name="onchange_domain"/>
+                <field name="is_restrictive_rule" string="Restrictive"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="onchange_rule_line_action" model="ir.actions.act_window">
+        <field name="name">Onchange Rule Lines</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">onchange.rule.line</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <menuitem action="onchange_rule_line_action"
+              id="menu_onchange_rule_line_action"
+              parent="base.menu_automation" sequence="20"/>
+
+</odoo>
