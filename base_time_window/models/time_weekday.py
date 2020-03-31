@@ -5,10 +5,10 @@
 from odoo import _, api, fields, models, tools
 
 
-class DeliveryWeekDay(models.Model):
+class TimeWeekday(models.Model):
 
-    _name = "delivery.week.day"
-    _description = "Delivery Week Day"
+    _name = "time.weekday"
+    _description = "Time Week Day"
 
     name = fields.Selection(
         selection=[
@@ -38,7 +38,6 @@ class DeliveryWeekDay(models.Model):
         for record in self:
             record.display_name = translated_values[record.name]
 
-    @api.multi
     def name_get(self):
         """
         WORKAROUND since Odoo doesn't handle properly records where name is
@@ -53,18 +52,16 @@ class DeliveryWeekDay(models.Model):
 
     @api.model
     def create(self, vals):
-        result = super(DeliveryWeekDay, self).create(vals)
+        result = super().create(vals)
         self._get_id_by_name.clear_cache(self)
         return result
 
-    @api.multi
     def write(self, vals):
-        result = super(DeliveryWeekDay, self).write(vals)
+        result = super().write(vals)
         self._get_id_by_name.clear_cache(self)
         return result
 
-    @api.multi
     def unlink(self):
-        result = super(DeliveryWeekDay, self).unlink()
+        result = super().unlink()
         self._get_id_by_name.clear_cache(self)
         return result
