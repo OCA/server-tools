@@ -45,6 +45,7 @@ setuptools.setup(
         'odoo10-addon-base_locale_uom_default',
         'odoo10-addon-base_manifest_extension',
         'odoo10-addon-base_multi_image',
+        'odoo10-addon-base_onchange_rule',
         'odoo10-addon-base_optional_quick_create',
         'odoo10-addon-base_report_auto_create_qweb',
         'odoo10-addon-base_search_fuzzy',
