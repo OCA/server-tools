@@ -1,1 +1,2 @@
-This module provides base classes to manage time windows.
+This module provides base classes and models to manage time windows through
+`time.window.mixin`.
