@@ -107,7 +107,7 @@ class TimeWindowMixin(models.AbstractModel):
         return time(hour=hour, minute=minute)
 
     def get_start_time(self):
-        self.float_to_time(self.start)
+        return self.float_to_time(self.start)
 
     def get_end_time(self):
-        self.float_to_time(self.end)
+        return self.float_to_time(self.end)
