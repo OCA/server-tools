@@ -8,7 +8,7 @@
     "author": "ACSONE SA/NV, Camptocamp, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "website": "https://github.com/OCA/server-tools",
-    "depends": ["base"],
-    "data": [],
+    "depends": ["base_time_window"],
+    "data": ["security/ir.model.access.xml"],
     "installable": True,
 }

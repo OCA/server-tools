@@ -11,12 +11,10 @@ class ResPartner(models.Model):
 
     _inherit = "res.partner"
 
-    delivery_window_ids = fields.One2many(
-        comodel_name="delivery.window",
+    time_window_ids = fields.One2many(
+        comodel_name="test.partner.time.window",
         inverse_name="partner_id",
-        string="Delivery windows",
-        help="If specified, delivery is only possible into the specified "
-        "time windows. (Leaves empty if no restriction)",
+        string="Time windows",
     )
 
     def get_delivery_windows(self, day_name):
