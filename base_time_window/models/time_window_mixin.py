@@ -11,7 +11,7 @@ from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
 
-class TimeWindow(models.AbstractModel):
+class TimeWindowMixin(models.AbstractModel):
 
     _name = "time.window.mixin"
     _description = "Time Window"
