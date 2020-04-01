@@ -5,15 +5,17 @@ from odoo import api, fields, models
 
 
 class BaseKanbanStage(models.Model):
-    _inherit = 'base.kanban.stage'
+    _inherit = "base.kanban.stage"
 
     @api.model
     def _get_states(self):
-        return [('draft', 'New'),
-                ('open', 'In Progress'),
-                ('pending', 'Pending'),
-                ('done', 'Done'),
-                ('cancelled', 'Cancelled'),
-                ('exception', 'Exception')]
+        return [
+            ("draft", "New"),
+            ("open", "In Progress"),
+            ("pending", "Pending"),
+            ("done", "Done"),
+            ("cancelled", "Cancelled"),
+            ("exception", "Exception"),
+        ]
 
-    state = fields.Selection(_get_states, string='State')
+    state = fields.Selection(_get_states, string="State")
