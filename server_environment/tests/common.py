@@ -16,10 +16,14 @@ import odoo.addons.server_environment.models.server_env_mixin as \
 
 class ServerEnvironmentCase(common.SavepointCase):
 
+    _test_case_running_env = "testing"
+
     def setUp(self):
         super(ServerEnvironmentCase, self).setUp()
-        self._original_running_env = config.get('running_env')
-        config['running_env'] = 'testing'
+        self._original_running_env = config.get("running_env")
+        if self._test_case_running_env is not None:
+            config["running_env"] = self._test_case_running_env
+        server_env._load_running_env()
 
     def tearDown(self):
         super(ServerEnvironmentCase, self).tearDown()

@@ -8,6 +8,8 @@ used values are 'dev', 'test', 'production'::
 Values associated to keys containing 'passw' are only displayed in the 'dev'
 environment.
 
+If you don't provide any value, `test` is used as a safe default.
+
 You have several possibilities to set configuration values:
 
 server_environment_files
