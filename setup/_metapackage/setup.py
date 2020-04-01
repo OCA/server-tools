@@ -42,6 +42,7 @@ setuptools.setup(
         'odoo12-addon-sentry',
         'odoo12-addon-slow_statement_logger',
         'odoo12-addon-sql_export',
+        'odoo12-addon-sql_export_mail',
         'odoo12-addon-sql_request_abstract',
     ],
     classifiers=[
