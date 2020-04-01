@@ -10,10 +10,6 @@
     "license": "LGPL-3",
     "application": False,
     "installable": True,
-    "depends": [
-        "base_kanban_stage",
-    ],
-    "data": [
-        "views/base_kanban_stage_state_view.xml",
-    ],
+    "depends": ["base_kanban_stage"],
+    "data": ["views/base_kanban_stage_state_view.xml"],
 }
