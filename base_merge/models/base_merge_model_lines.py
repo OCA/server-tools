@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # © 2020 Therp BV <https://therp.nl>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
-from odoo import _, api, fields, models
+from odoo import fields, models
 
 
 class BaseMergeModelLine(models.Model):
@@ -14,5 +14,6 @@ class BaseMergeModelLine(models.Model):
         comodel_name='ir.model.fields',
         required=True)
     # future extensions
-    # operator = fields.Selected([('=', 'Strict equal'), ('=ilike', 'Case sensitive equal')])
+    # operator = fields.Selected(
+    # [('=', 'Strict equal'), ('=ilike', 'Case sensitive equal')])
     # domain = fields.Text()

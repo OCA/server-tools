@@ -5,17 +5,17 @@ from odoo import models
 
 
 class View(models.Model):
-    
+
     _inherit = 'ir.ui.view'
-    
+
     def postprocess_deactivated(
         self,
-        model, 
-        node, 
-        view_id, 
-        in_tree_view, 
-        model_fields,
-    ):  
+        model,
+        node,
+        view_id,
+        in_tree_view,
+        model_fields
+    ):
         dict_o_values = {
             'change_default': False,
             'company_dependent': False,
@@ -32,11 +32,11 @@ class View(models.Model):
         if model == 'base.merge.wizard' and model_fields:
             active_model = self.env.context.get('active_model') or 'ir.model'
             model_fields['target_id'] = dict_o_values.copy()
-            model_fields['target_id']['relation']  = active_model
-            model_fields['target_id']['type']  = 'many2one'
-            model_fields['target_id']['string']  = 'Target model'
+            model_fields['target_id']['relation'] = active_model
+            model_fields['target_id']['type'] = 'many2one'
+            model_fields['target_id']['string'] = 'Target model'
             model_fields['source_ids'] = dict_o_values.copy()
-            model_fields['source_ids']['relation']  = active_model
+            model_fields['source_ids']['relation'] = active_model
             model_fields['source_ids']['type'] = 'many2many'
             model_fields['source_ids']['string'] = 'Target model records'
         result = super(View, self).postprocess(

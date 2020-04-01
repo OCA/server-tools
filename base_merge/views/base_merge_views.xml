@@ -8,51 +8,19 @@
                     <separator string="Merge the following records"/>
                     <group col="2">
                         <p class="oe_grey" colspan="2">
-                            All records below will be merged together into
-                            the record selected as target.
-                            All documents linked to one of these records
-                            will be redirected to the destination record.
-                            You can remove records from this list to avoid
-                            merging them.
+                            The below selected records will be merged into
+                            the target records. All relations to other models
+                            would refer to the target record.
                         </p>
                         <field name="model_id"/>
-                        <field name="data" widget="char" />
+                        <field name="data" widget="char" invisible="True"/>
                         <field name="target_id" domain="[('id', 'in', source_ids[0][2])]"/>
                         <field name="source_ids"/>
                     </group>
                     <footer>
                         <button type="object" name="action_merge" class="btn-primary" string="Merge" />
-                        or
                         <button type="special" special="cancel" class="btn-default" string="Cancel" />
                     </footer>
-                </form>
-            </field>
-        </record>
-
-        <!-- add here a view for enabling launching the wizard -->
-        <record id="base_merge_form" model="ir.ui.view">
-            <field name='name'>base.merge.form</field>
-            <field name='model'>base.merge.model</field>
-            <field name='arch' type='xml'>
-                <form string='Record merger config'>
-                    <sheet>
-                        <separator string="Pick a model"/>
-                        <group col="1">
-                            <field name="model_id" nolabel="1"/>
-                        </group>
-                        <footer>
-                        <button 
-                            name="action_create_action"
-                            string="Enable" 
-                            class="oe_highlight" 
-                            type="object"/>
-                        <button
-                            name="action_delete_action"
-                            string="Disable"
-                            class="oe_highlight"
-                            type="object"/>
-                        </footer>
-                    </sheet>
                 </form>
             </field>
         </record>
@@ -63,29 +31,33 @@
             <field name="model">base.merge.model</field>
             <field name="type">tree</field>
             <field name= "arch" type = "xml">
-                <tree string="Record merger enabled">
+                <tree string="Record merger enabled" editable="true" create ="true">
                     <field name="model_id"/>
-                    <field name="action_id"/>
                 </tree>
             </field>
         </record>
 
         <!-- and required menu and action stuff to enable it -->
         <act_window
-        id="action_base_merge_model"
-        name="Record merger"
-        res_model="base.merge.model"
-        view_type="form"
-        view_mode="tree,form"
-        limit="50"
-    />
+            id="action_base_merge_model"
+            name="Models enabled"
+            res_model="base.merge.model"
+            view_type="form"
+            view_mode="tree,form"
+            view_id="base_merge_tree"
+            limit="50"
+           />
 
-
-        <menuitem 
-            id="menu_base_merge_model"
-            name="Merge model"
+        <menuitem
+            id="menu_base_merge_model_configuration_top"
+            name="Base Merge"
+            parent="base.menu_custom"
+            sequence="10"
+            groups="base.group_erp_manager"
+            />
+        <menuitem
+            id="menu_base_merge_model_configuration"
+            parent="menu_base_merge_model_configuration_top"
             action="action_base_merge_model"
-            sequence="800"
-        />
-
+            />
 </odoo>
