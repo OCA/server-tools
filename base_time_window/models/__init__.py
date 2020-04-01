@@ -1,2 +1,2 @@
-from . import base_time_weekday
-from . import base_time_window
+from . import time_weekday
+from . import time_window_mixin
