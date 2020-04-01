@@ -6,182 +6,216 @@ from odoo.exceptions import ValidationError
 from odoo.tests import SavepointCase
 
 
-class TestDeliveryWindow(SavepointCase):
+class TestTimeWindow(SavepointCase):
     @classmethod
     def setUpClass(cls):
-        super(TestDeliveryWindow, cls).setUpClass()
+        super().setUpClass()
+        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
         cls.partner_1 = cls.env['res.partner'].create({'name': 'partner 1'})
-        cls.partner_2 = cls.env['res.partner'].create({'name': 'patner 2'})
-        cls.DeliveryWindow = cls.env["delivery.window"]
+        cls.partner_2 = cls.env['res.partner'].create({'name': 'partner 2'})
+        cls.TimeWindow = cls.env["test.partner.time.window"]
         cls.monday = cls.env.ref(
-            "partner_delivery_window.delivery_weed_day_monday"
+            "base_time_window.time_weekday_monday"
         )
         cls.sunday = cls.env.ref(
-            "partner_delivery_window.delivery_weed_day_sunday"
+            "base_time_window.time_weekday_sunday"
         )
 
     def test_00(self):
         """
         Data:
-            A partner without delivery window
+            A partner without time window
         Test Case:
-            Add a delivery window
+            Add a time window
         Expected result:
-            A delivery window is created for the partner
+            A time window is created for the partner
         """
 
-        self.assertFalse(self.partner_1.delivery_window_ids)
-        self.DeliveryWindow.create(
+        self.assertFalse(self.partner_1.time_window_ids)
+        self.TimeWindow.create(
             {
                 "partner_id": self.partner_1.id,
                 "start": 10.0,
                 "end": 12.0,
-                "week_day_ids": [(4, self.monday.id)],
+                "weekday_ids": [(4, self.monday.id)],
             }
         )
-        self.assertTrue(self.partner_1.delivery_window_ids)
-        delivery_window = self.partner_1.delivery_window_ids
-        self.assertEqual(delivery_window.start, 10.0)
-        self.assertEqual(delivery_window.end, 12.0)
-        self.assertEqual(delivery_window.week_day_ids, self.monday)
+        self.assertTrue(self.partner_1.time_window_ids)
+        time_window = self.partner_1.time_window_ids
+        self.assertEqual(time_window.start, 10.0)
+        self.assertEqual(time_window.end, 12.0)
+        self.assertEqual(time_window.weekday_ids, self.monday)
 
     def test_01(self):
         """
         Data:
-            A partner without delivery window
+            A partner without time window
         Test Case:
-            1 Add a delivery window
+            1 Add a time window
             2 unlink the partner
         Expected result:
-            1 A delivery window is created for the partner
-            2 The delivery window is removed
+            1 A time window is created for the partner
+            2 The time window is removed
         """
         partner_id = self.partner_1.id
-        self.assertFalse(self.partner_1.delivery_window_ids)
-        self.DeliveryWindow.create(
+        self.assertFalse(self.partner_1.time_window_ids)
+        self.TimeWindow.create(
             {
                 "partner_id": self.partner_1.id,
                 "start": 10.0,
                 "end": 12.0,
-                "week_day_ids": [(4, self.monday.id)],
+                "weekday_ids": [(4, self.monday.id)],
             }
         )
-        self.assertTrue(self.partner_1.delivery_window_ids)
-        delivery_window = self.DeliveryWindow.search(
+        self.assertTrue(self.partner_1.time_window_ids)
+        time_window = self.TimeWindow.search(
             [("partner_id", "=", partner_id)]
         )
-        self.assertTrue(delivery_window)
+        self.assertTrue(time_window)
         self.partner_1.unlink()
-        self.assertFalse(delivery_window.exists())
+        self.assertFalse(time_window.exists())
 
     def test_02(self):
         """
         Data:
-            A partner without delivery window
+            A partner without time window
         Test Case:
-            1 Add a delivery window
-            2 Add a second delivery window that overlaps the first one (same day)
+            1 Add a time window
+            2 Add a second time window that overlaps the first one (same day)
         Expected result:
-            1 A delivery window is created for the partner
+            1 A time window is created for the partner
             2 ValidationError is raised
         """
-        self.DeliveryWindow.create(
+        self.TimeWindow.create(
             {
                 "partner_id": self.partner_1.id,
                 "start": 10.0,
                 "end": 12.0,
-                "week_day_ids": [(4, self.monday.id)],
+                "weekday_ids": [(4, self.monday.id)],
             }
         )
         with self.assertRaises(ValidationError):
-            self.DeliveryWindow.create(
+            self.TimeWindow.create(
                 {
                     "partner_id": self.partner_1.id,
                     "start": 11.0,
                     "end": 13.0,
-                    "week_day_ids": [(4, self.monday.id), (4, self.sunday.id)],
+                    "weekday_ids": [(4, self.monday.id), (4, self.sunday.id)],
                 }
             )
 
     def test_03(self):
         """
         Data:
-            A partner without delivery window
+            A partner without time window
         Test Case:
-            1 Add a delivery window
-            2 Add a second delivery window that overlaps the first one (another day)
+            1 Add a time window
+            2 Add a second time window that overlaps the first one (another day)
         Expected result:
-            1 A delivery window is created for the partner
-            2 A second  delivery window is created for the partner
+            1 A time window is created for the partner
+            2 A second  time window is created for the partner
         """
-        self.assertFalse(self.partner_1.delivery_window_ids)
-        self.DeliveryWindow.create(
+        self.assertFalse(self.partner_1.time_window_ids)
+        self.TimeWindow.create(
             {
                 "partner_id": self.partner_1.id,
                 "start": 10.0,
                 "end": 12.0,
-                "week_day_ids": [(4, self.monday.id)],
+                "weekday_ids": [(4, self.monday.id)],
             }
         )
-        self.assertTrue(self.partner_1.delivery_window_ids)
-        self.DeliveryWindow.create(
+        self.assertTrue(self.partner_1.time_window_ids)
+        self.TimeWindow.create(
             {
                 "partner_id": self.partner_1.id,
                 "start": 11.0,
                 "end": 13.0,
-                "week_day_ids": [(4, self.sunday.id)],
+                "weekday_ids": [(4, self.sunday.id)],
             }
         )
-        self.assertEquals(len(self.partner_1.delivery_window_ids), 2)
+        self.assertEquals(len(self.partner_1.time_window_ids), 2)
 
     def test_04(self):
         """
         Data:
-            Partner 1 without delivery window
-            Partner 2 without delivery window
+            Partner 1 without time window
+            Partner 2 without time window
         Test Case:
-            1 Add a delivery window to partner 1
-            2 Add the same delivery window to partner 2
+            1 Add a time window to partner 1
+            2 Add the same time window to partner 2
         Expected result:
-            1 A delivery window is created for the partner 1
-            1 A delivery window is created for the partner 2
+            1 A time window is created for the partner 1
+            1 A time window is created for the partner 2
         """
-        self.assertFalse(self.partner_1.delivery_window_ids)
-        self.DeliveryWindow.create(
+        self.assertFalse(self.partner_1.time_window_ids)
+        self.TimeWindow.create(
             {
                 "partner_id": self.partner_1.id,
                 "start": 10.0,
                 "end": 12.0,
-                "week_day_ids": [(4, self.monday.id)],
+                "weekday_ids": [(4, self.monday.id)],
             }
         )
-        self.assertTrue(self.partner_1.delivery_window_ids)
-        self.assertFalse(self.partner_2.delivery_window_ids)
-        self.DeliveryWindow.create(
+        self.assertTrue(self.partner_1.time_window_ids)
+        self.assertFalse(self.partner_2.time_window_ids)
+        self.TimeWindow.create(
             {
                 "partner_id": self.partner_2.id,
                 "start": 10.0,
                 "end": 12.0,
-                "week_day_ids": [(4, self.monday.id)],
+                "weekday_ids": [(4, self.monday.id)],
             }
         )
-        self.assertTrue(self.partner_2.delivery_window_ids)
+        self.assertTrue(self.partner_2.time_window_ids)
 
     def test_05(self):
         """""
         Data:
-            Partner 1 without delivery window
+            Partner 1 without time window
         Test Case:
-            Add a delivery window to partner 1 with end > start
+            Add a time window to partner 1 with end > start
         Expected result:
             ValidationError is raised
         """
         with self.assertRaises(ValidationError):
-            self.DeliveryWindow.create(
+            self.TimeWindow.create(
                 {
                     "partner_id": self.partner_1.id,
                     "start": 14.0,
                     "end": 12.0,
-                    "week_day_ids": [(4, self.monday.id)],
+                    "weekday_ids": [(4, self.monday.id)],
                 }
             )
+
+    def test_06(self):
+        """""
+        Data:
+            Partner 1 with time window on monday
+            Partner 2 with time window on monday
+        Test Case:
+            Change time window from Partner 1 to Partner 2
+        Expected result:
+            ValidationError is raised
+        """
+        self.assertFalse(self.partner_1.time_window_ids)
+        p1_timewindow = self.TimeWindow.create(
+            {
+                "partner_id": self.partner_1.id,
+                "start": 10.0,
+                "end": 12.0,
+                "weekday_ids": [(4, self.monday.id)],
+            }
+        )
+        self.assertTrue(self.partner_1.time_window_ids)
+        self.assertFalse(self.partner_2.time_window_ids)
+        self.TimeWindow.create(
+            {
+                "partner_id": self.partner_2.id,
+                "start": 10.0,
+                "end": 12.0,
+                "weekday_ids": [(4, self.monday.id)],
+            }
+        )
+        self.assertTrue(self.partner_2.time_window_ids)
+        with self.assertRaises(ValidationError):
+            p1_timewindow.partner_id = self.partner_2
