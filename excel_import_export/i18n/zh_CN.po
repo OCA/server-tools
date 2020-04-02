@@ -484,7 +484,18 @@ msgstr ""
 "%s"
 
 #. module: excel_import_export
-#: code:addons/excel_import_export/models/xlsx_import.py:219
+#: code:addons/excel_import_export/models/xlsx_import.py:212
+#, fuzzy, python-format
+#| msgid ""
+#| "Error importing data\n"
+#| "%s"
+msgid "Error importing data"
+msgstr ""
+"导入数据时出错\n"
+"%s"
+
+#. module: excel_import_export
+#: code:addons/excel_import_export/models/xlsx_import.py:224
 #, python-format
 msgid ""
 "Error importing data\n"
@@ -823,7 +834,7 @@ msgid "Invalid declaration, %s has no valid field type"
 msgstr "声明无效，%s没有有效的字段类型"
 
 #. module: excel_import_export
-#: code:addons/excel_import_export/models/xlsx_import.py:217
+#: code:addons/excel_import_export/models/xlsx_import.py:222
 #, python-format
 msgid "Invalid file style, only .xls or .xlsx file allowed"
 msgstr "文件样式无效，仅允许.xls或.xlsx文件"
@@ -896,7 +907,7 @@ msgid "No Delete"
 msgstr "不删除"
 
 #. module: excel_import_export
-#: code:addons/excel_import_export/models/xlsx_import.py:249
+#: code:addons/excel_import_export/models/xlsx_import.py:254
 #, python-format
 msgid "No data_dict['__IMPORT__'] in template %s"
 msgstr "模版%s中没有 data_dict['__IMPORT__']"
@@ -977,7 +988,7 @@ msgid "Post Import Hook"
 msgstr "导入后挂钩"
 
 #. module: excel_import_export
-#: code:addons/excel_import_export/models/xlsx_import.py:232
+#: code:addons/excel_import_export/models/xlsx_import.py:237
 #, python-format
 msgid ""
 "Post import operation error\n"
@@ -1126,7 +1137,7 @@ msgstr "CSV Quoting =False的模板，数据不能包含与分隔符相同的字
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/models/xlsx_export.py:228
-#: code:addons/excel_import_export/models/xlsx_import.py:244
+#: code:addons/excel_import_export/models/xlsx_import.py:249
 #, python-format
 msgid "Template's model mismatch"
 msgstr "模板的模型不匹配"
