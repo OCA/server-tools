@@ -383,7 +383,13 @@ msgid "Error filling data into Excel sheets\n"
 msgstr ""
 
 #. module: excel_import_export
-#: code:addons/excel_import_export/models/xlsx_import.py:219
+#: code:addons/excel_import_export/models/xlsx_import.py:212
+#, python-format
+msgid "Error importing data"
+msgstr ""
+
+#. module: excel_import_export
+#: code:addons/excel_import_export/models/xlsx_import.py:224
 #, python-format
 msgid "Error importing data\n"
 "%s"
@@ -664,7 +670,7 @@ msgid "Invalid declaration, %s has no valid field type"
 msgstr ""
 
 #. module: excel_import_export
-#: code:addons/excel_import_export/models/xlsx_import.py:217
+#: code:addons/excel_import_export/models/xlsx_import.py:222
 #, python-format
 msgid "Invalid file style, only .xls or .xlsx file allowed"
 msgstr ""
@@ -731,7 +737,7 @@ msgid "No Delete"
 msgstr ""
 
 #. module: excel_import_export
-#: code:addons/excel_import_export/models/xlsx_import.py:249
+#: code:addons/excel_import_export/models/xlsx_import.py:254
 #, python-format
 msgid "No data_dict['__IMPORT__'] in template %s"
 msgstr ""
@@ -812,7 +818,7 @@ msgid "Post Import Hook"
 msgstr ""
 
 #. module: excel_import_export
-#: code:addons/excel_import_export/models/xlsx_import.py:232
+#: code:addons/excel_import_export/models/xlsx_import.py:237
 #, python-format
 msgid "Post import operation error\n"
 "%s"
@@ -956,7 +962,7 @@ msgstr ""
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/models/xlsx_export.py:228
-#: code:addons/excel_import_export/models/xlsx_import.py:244
+#: code:addons/excel_import_export/models/xlsx_import.py:249
 #, python-format
 msgid "Template's model mismatch"
 msgstr ""
