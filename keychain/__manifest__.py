@@ -16,6 +16,7 @@
     },
     "depends": [
         "base_setup",
+        "base_sparse_field",
     ],
     "data": [
         "security/ir.model.access.csv",
