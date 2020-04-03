@@ -21,17 +21,15 @@ class ResPartner(models.Model):
         """
         Return the list of delivery windows by partner id for the given day
 
-        :param day: The day name (see delivery.week.day, ex: 0,1,2,...)
-        :return: dict partner_id:[delivery_window, ]
+        :param day: The day name (see time.weekday, ex: 0,1,2,...)
+        :return: dict partner_id:[time_window_ids, ]
         """
-        week_day_id = self.env["delivery.week.day"]._get_id_by_name(
-            day_name
-        )
+        weekday_id = self.env["time.weekday"]._get_id_by_name(day_name)
         res = defaultdict(list)
-        windows = self.env["delivery.window"].search(
+        windows = self.env["test.partner.time.window"].search(
             [
                 ("partner_id", "in", self.ids),
-                ("week_day_ids", "in", week_day_id),
+                ("time_window_weekday_ids", "in", weekday_id)
             ]
         )
         for window in windows:
