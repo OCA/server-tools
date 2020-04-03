@@ -35,16 +35,16 @@ class TestTimeWindow(SavepointCase):
         self.TimeWindow.create(
             {
                 "partner_id": self.partner_1.id,
-                "start": 10.0,
-                "end": 12.0,
-                "weekday_ids": [(4, self.monday.id)],
+                "time_window_start": 10.0,
+                "time_window_end": 12.0,
+                "time_window_weekday_ids": [(4, self.monday.id)],
             }
         )
         self.assertTrue(self.partner_1.time_window_ids)
         time_window = self.partner_1.time_window_ids
-        self.assertEqual(time_window.start, 10.0)
-        self.assertEqual(time_window.end, 12.0)
-        self.assertEqual(time_window.weekday_ids, self.monday)
+        self.assertEqual(time_window.time_window_start, 10.0)
+        self.assertEqual(time_window.time_window_end, 12.0)
+        self.assertEqual(time_window.time_window_weekday_ids, self.monday)
 
     def test_01(self):
         """
@@ -62,9 +62,9 @@ class TestTimeWindow(SavepointCase):
         self.TimeWindow.create(
             {
                 "partner_id": self.partner_1.id,
-                "start": 10.0,
-                "end": 12.0,
-                "weekday_ids": [(4, self.monday.id)],
+                "time_window_start": 10.0,
+                "time_window_end": 12.0,
+                "time_window_weekday_ids": [(4, self.monday.id)],
             }
         )
         self.assertTrue(self.partner_1.time_window_ids)
@@ -89,18 +89,18 @@ class TestTimeWindow(SavepointCase):
         self.TimeWindow.create(
             {
                 "partner_id": self.partner_1.id,
-                "start": 10.0,
-                "end": 12.0,
-                "weekday_ids": [(4, self.monday.id)],
+                "time_window_start": 10.0,
+                "time_window_end": 12.0,
+                "time_window_weekday_ids": [(4, self.monday.id)],
             }
         )
         with self.assertRaises(ValidationError):
             self.TimeWindow.create(
                 {
                     "partner_id": self.partner_1.id,
-                    "start": 11.0,
-                    "end": 13.0,
-                    "weekday_ids": [(4, self.monday.id), (4, self.sunday.id)],
+                    "time_window_start": 11.0,
+                    "time_window_end": 13.0,
+                    "time_window_weekday_ids": [(4, self.monday.id), (4, self.sunday.id)],
                 }
             )
 
@@ -119,18 +119,18 @@ class TestTimeWindow(SavepointCase):
         self.TimeWindow.create(
             {
                 "partner_id": self.partner_1.id,
-                "start": 10.0,
-                "end": 12.0,
-                "weekday_ids": [(4, self.monday.id)],
+                "time_window_start": 10.0,
+                "time_window_end": 12.0,
+                "time_window_weekday_ids": [(4, self.monday.id)],
             }
         )
         self.assertTrue(self.partner_1.time_window_ids)
         self.TimeWindow.create(
             {
                 "partner_id": self.partner_1.id,
-                "start": 11.0,
-                "end": 13.0,
-                "weekday_ids": [(4, self.sunday.id)],
+                "time_window_start": 11.0,
+                "time_window_end": 13.0,
+                "time_window_weekday_ids": [(4, self.sunday.id)],
             }
         )
         self.assertEquals(len(self.partner_1.time_window_ids), 2)
@@ -151,9 +151,9 @@ class TestTimeWindow(SavepointCase):
         self.TimeWindow.create(
             {
                 "partner_id": self.partner_1.id,
-                "start": 10.0,
-                "end": 12.0,
-                "weekday_ids": [(4, self.monday.id)],
+                "time_window_start": 10.0,
+                "time_window_end": 12.0,
+                "time_window_weekday_ids": [(4, self.monday.id)],
             }
         )
         self.assertTrue(self.partner_1.time_window_ids)
@@ -161,9 +161,9 @@ class TestTimeWindow(SavepointCase):
         self.TimeWindow.create(
             {
                 "partner_id": self.partner_2.id,
-                "start": 10.0,
-                "end": 12.0,
-                "weekday_ids": [(4, self.monday.id)],
+                "time_window_start": 10.0,
+                "time_window_end": 12.0,
+                "time_window_weekday_ids": [(4, self.monday.id)],
             }
         )
         self.assertTrue(self.partner_2.time_window_ids)
@@ -181,9 +181,9 @@ class TestTimeWindow(SavepointCase):
             self.TimeWindow.create(
                 {
                     "partner_id": self.partner_1.id,
-                    "start": 14.0,
-                    "end": 12.0,
-                    "weekday_ids": [(4, self.monday.id)],
+                    "time_window_start": 14.0,
+                    "time_window_end": 12.0,
+                    "time_window_weekday_ids": [(4, self.monday.id)],
                 }
             )
 
@@ -201,9 +201,9 @@ class TestTimeWindow(SavepointCase):
         p1_timewindow = self.TimeWindow.create(
             {
                 "partner_id": self.partner_1.id,
-                "start": 10.0,
-                "end": 12.0,
-                "weekday_ids": [(4, self.monday.id)],
+                "time_window_start": 10.0,
+                "time_window_end": 12.0,
+                "time_window_weekday_ids": [(4, self.monday.id)],
             }
         )
         self.assertTrue(self.partner_1.time_window_ids)
@@ -211,9 +211,9 @@ class TestTimeWindow(SavepointCase):
         self.TimeWindow.create(
             {
                 "partner_id": self.partner_2.id,
-                "start": 10.0,
-                "end": 12.0,
-                "weekday_ids": [(4, self.monday.id)],
+                "time_window_start": 10.0,
+                "time_window_end": 12.0,
+                "time_window_weekday_ids": [(4, self.monday.id)],
             }
         )
         self.assertTrue(self.partner_2.time_window_ids)
