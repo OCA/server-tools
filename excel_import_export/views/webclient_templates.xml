@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!--
-  Copyright 2019 Ecosoft Co., Ltd. 
+  Copyright 2019 Ecosoft Co., Ltd.
   License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).-->
 <odoo>
     <template id="assets_backend" inherit_id="web.assets_backend">
         <xpath expr="." position="inside">
-            <script type="text/javascript" src="/excel_import_export/static/src/js/report/action_manager_report.js"/>
+            <script
+                type="text/javascript"
+                src="/excel_import_export/static/src/js/report/action_manager_report.js"
+            />
         </xpath>
     </template>
 </odoo>
