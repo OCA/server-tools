@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record id="sale_order_excel_template" model="xlsx.template">
         <field name="res_model">sale.order</field>
         <field name="fname">sale_order_form.xlsx</field>
@@ -28,9 +27,7 @@
             }
         </field>
     </record>
-
     <function model="xlsx.template" name="load_xlsx_template">
-        <value eval="[ref('sale_order_excel_template')]"/>
+        <value eval="[ref('sale_order_excel_template')]" />
     </function>
-
 </odoo>
