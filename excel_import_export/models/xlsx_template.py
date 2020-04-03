@@ -24,18 +24,18 @@ class XLSXTemplate(models.Model):
     _description = "Excel template file and instruction"
     _order = "name"
 
-    name = fields.Char(string="Template Name", required=True,)
+    name = fields.Char(string="Template Name", required=True)
     res_model = fields.Char(
         string="Resource Model",
         help="The database object this attachment will be attached to.",
     )
-    fname = fields.Char(string="File Name",)
+    fname = fields.Char(string="File Name")
     gname = fields.Char(
         string="Group Name",
         help="Multiple template of same model, can belong to same group,\n"
         "result in multiple template selection",
     )
-    description = fields.Char(string="Description",)
+    description = fields.Char(string="Description")
     input_instruction = fields.Text(
         string="Instruction (Input)",
         help="This is used to construct instruction in tab Import/Export",
@@ -45,8 +45,8 @@ class XLSXTemplate(models.Model):
         compute="_compute_output_instruction",
         help="Instruction on how to import/export, prepared by system.",
     )
-    datas = fields.Binary(string="File Content",)
-    to_csv = fields.Boolean(string="Convert to CSV?", default=False,)
+    datas = fields.Binary(string="File Content")
+    to_csv = fields.Boolean(string="Convert to CSV?", default=False)
     csv_delimiter = fields.Char(
         string="CSV Delimiter",
         size=1,
@@ -67,10 +67,10 @@ class XLSXTemplate(models.Model):
         help="Optional for CSV, default is full quoting.",
     )
     export_ids = fields.One2many(
-        comodel_name="xlsx.template.export", inverse_name="template_id",
+        comodel_name="xlsx.template.export", inverse_name="template_id"
     )
     import_ids = fields.One2many(
-        comodel_name="xlsx.template.import", inverse_name="template_id",
+        comodel_name="xlsx.template.import", inverse_name="template_id"
     )
     post_import_hook = fields.Char(
         string="Post Import Function Hook",
@@ -90,7 +90,6 @@ class XLSXTemplate(models.Model):
         help="Optional action, redirection after finish import operation",
     )
 
-    @api.multi
     @api.constrains("redirect_action", "res_model")
     def _check_action_model(self):
         for rec in self:
@@ -111,7 +110,7 @@ class XLSXTemplate(models.Model):
                 addon = list(template.get_external_id().values())[0].split(".")[0]
             addon_path = get_module_path(addon)
             file_path = False
-            for root, dirs, files in os.walk(addon_path):
+            for root, _dirs, files in os.walk(addon_path):
                 for name in files:
                     if name == template.fname:
                         file_path = os.path.abspath(opj(root, name))
@@ -128,7 +127,6 @@ class XLSXTemplate(models.Model):
             rec._compute_input_post_import_hook()
         return rec
 
-    @api.multi
     def write(self, vals):
         res = super().write(vals)
         if vals.get("input_instruction"):
@@ -138,7 +136,6 @@ class XLSXTemplate(models.Model):
                 rec._compute_input_post_import_hook()
         return res
 
-    @api.multi
     def _compute_input_export_instruction(self):
         self = self.with_context(compute_from_input=True)
         for rec in self:
@@ -184,7 +181,6 @@ class XLSXTemplate(models.Model):
                         export_lines.append((0, 0, vals))
             rec.write({"export_ids": export_lines})
 
-    @api.multi
     def _compute_input_import_instruction(self):
         self = self.with_context(compute_from_input=True)
         for rec in self:
@@ -230,7 +226,6 @@ class XLSXTemplate(models.Model):
                         import_lines.append((0, 0, vals))
             rec.write({"import_ids": import_lines})
 
-    @api.multi
     def _compute_input_post_import_hook(self):
         self = self.with_context(compute_from_input=True)
         for rec in self:
@@ -238,7 +233,6 @@ class XLSXTemplate(models.Model):
             input_dict = literal_eval(rec.input_instruction.strip())
             rec.post_import_hook = input_dict.get("__POST_IMPORT__")
 
-    @api.multi
     def _compute_output_instruction(self):
         """ From database, compute back to dictionary """
         for rec in self:
@@ -318,15 +312,15 @@ class XLSXTemplateImport(models.Model):
         ondelete="cascade",
         readonly=True,
     )
-    sequence = fields.Integer(string="Sequence", default=10,)
-    sheet = fields.Char(string="Sheet",)
+    sequence = fields.Integer(string="Sequence", default=10)
+    sheet = fields.Char(string="Sheet")
     section_type = fields.Selection(
         [("sheet", "Sheet"), ("head", "Head"), ("row", "Row"), ("data", "Data")],
         string="Section Type",
         required=True,
     )
     row_field = fields.Char(
-        string="Row Field", help="If section type is row, this field is required",
+        string="Row Field", help="If section type is row, this field is required"
     )
     no_delete = fields.Boolean(
         string="No Delete",
@@ -334,9 +328,9 @@ class XLSXTemplateImport(models.Model):
         help="By default, all rows will be deleted before import.\n"
         "Select No Delete, otherwise",
     )
-    excel_cell = fields.Char(string="Cell",)
-    field_name = fields.Char(string="Field",)
-    field_cond = fields.Char(string="Field Cond.",)
+    excel_cell = fields.Char(string="Cell")
+    field_name = fields.Char(string="Field")
+    field_cond = fields.Char(string="Field Cond.")
 
     @api.model
     def create(self, vals):
@@ -348,9 +342,7 @@ class XLSXTemplateImport(models.Model):
         if self._context.get("compute_from_input") and vals.get("field_name"):
             field_name, field_cond = co.get_field_condition(vals["field_name"])
             field_cond = field_cond and "${%s}" % (field_cond or "") or False
-            vals.update(
-                {"field_name": field_name, "field_cond": field_cond,}
-            )
+            vals.update({"field_name": field_name, "field_cond": field_cond})
         return vals
 
 
@@ -366,25 +358,25 @@ class XLSXTemplateExport(models.Model):
         ondelete="cascade",
         readonly=True,
     )
-    sequence = fields.Integer(string="Sequence", default=10,)
-    sheet = fields.Char(string="Sheet",)
+    sequence = fields.Integer(string="Sequence", default=10)
+    sheet = fields.Char(string="Sheet")
     section_type = fields.Selection(
         [("sheet", "Sheet"), ("head", "Head"), ("row", "Row"), ("data", "Data")],
         string="Section Type",
         required=True,
     )
     row_field = fields.Char(
-        string="Row Field", help="If section type is row, this field is required",
+        string="Row Field", help="If section type is row, this field is required"
     )
     is_cont = fields.Boolean(
-        string="Continue", default=False, help="Continue data rows after last data row",
+        string="Continue", default=False, help="Continue data rows after last data row"
     )
-    excel_cell = fields.Char(string="Cell",)
-    field_name = fields.Char(string="Field",)
-    field_cond = fields.Char(string="Field Cond.",)
-    is_sum = fields.Boolean(string="Sum", default=False,)
-    style = fields.Char(string="Default Style",)
-    style_cond = fields.Char(string="Style w/Cond.",)
+    excel_cell = fields.Char(string="Cell")
+    field_name = fields.Char(string="Field")
+    field_cond = fields.Char(string="Field Cond.")
+    is_sum = fields.Boolean(string="Sum", default=False)
+    style = fields.Char(string="Default Style")
+    style_cond = fields.Char(string="Style w/Cond.")
 
     @api.model
     def create(self, vals):

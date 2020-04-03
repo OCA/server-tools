@@ -86,7 +86,7 @@ class TestExcelImportExport(SingleTransactionCase):
             "price_unit": cls.product_order.list_price,
             "tax_id": False,
         }
-        for i in range(10):
+        for _i in range(10):
             cls.env["sale.order"].create(
                 {
                     "partner_id": cls.partner.id,
@@ -98,7 +98,7 @@ class TestExcelImportExport(SingleTransactionCase):
     def setUpPrepSaleOrder(cls):
         categ_ids = cls.env["res.partner.category"].search([]).ids
         cls.partner = cls.env["res.partner"].create(
-            {"name": "Test Partner", "category_id": [(6, 0, categ_ids)],}
+            {"name": "Test Partner", "category_id": [(6, 0, categ_ids)]}
         )
         # Create a Product
         user_type_income = cls.env.ref("account.data_account_type_direct_costs")
