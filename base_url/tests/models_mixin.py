@@ -58,6 +58,7 @@ class TestMixin(object):
             model = env[cls._name]
             if fname in model:
                 model._pop_field(fname)
+                model._proper_fields.remove(fname)
 
         if not getattr(cls, "_test_teardown_no_delete", False):
             del env.registry.models[cls._name]

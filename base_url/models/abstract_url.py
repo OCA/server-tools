@@ -195,22 +195,11 @@ class AbstractUrl(models.AbstractModel):
                 record.set_url(record.url_key)
         return records
 
-    @api.model
-    def create(self, value):
-        res = super(AbstractUrl, self).create(value)
-        # without this flush we have cases where the url_key is not stored
-        self.flush()
-        synced = res._sync_urls()
-        super(AbstractUrl, synced).write({"is_urls_sync_required": False})
-        return res
-
-    def write(self, value):
-        res = super(AbstractUrl, self).write(value)
-        # without this flush we have cases where the url_key is not stored
-        self.flush()
-        synced = self._sync_urls()
-        super(AbstractUrl, synced).write({"is_urls_sync_required": False})
-        return res
+    def _recompute_done(self, field):
+        super(AbstractUrl, self)._recompute_done(field)
+        if field.name == "is_urls_sync_required":
+            synced = self.exists()._sync_urls()
+            synced.write({"is_urls_sync_required": False})
 
     def unlink(self):
         for record in self:
