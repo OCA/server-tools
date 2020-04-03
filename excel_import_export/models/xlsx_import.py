@@ -89,8 +89,8 @@ class XLSXImport(models.AbstractModel):
                         if line_field in record and record[line_field]:
                             record[line_field].unlink()
             # Remove _NODEL_ from dict
-            for s, sv in data_dict.items():
-                for f, fv in data_dict[s].items():
+            for s, _sv in data_dict.items():
+                for f, _fv in data_dict[s].items():
                     if "_NODEL_" in f:
                         new_fv = data_dict[s].pop(f)
                         data_dict[s][f.replace("_NODEL_", "")] = new_fv
@@ -124,15 +124,62 @@ class XLSXImport(models.AbstractModel):
         return vals
 
     @api.model
+    def _process_worksheet(self, wb, out_wb, out_st, model, data_dict, header_fields):
+        col_idx = 1
+        for sheet_name in data_dict:  # For each Sheet
+            worksheet = data_dict[sheet_name]
+            st = False
+            if isinstance(sheet_name, str):
+                st = co.xlrd_get_sheet_by_name(wb, sheet_name)
+            elif isinstance(sheet_name, int):
+                st = wb.sheet_by_index(sheet_name - 1)
+            if not st:
+                raise ValidationError(_("Sheet %s not found") % sheet_name)
+            # HEAD updates
+            for rc, field in worksheet.get("_HEAD_", {}).items():
+                rc, key_eval_cond = co.get_field_condition(rc)
+                field, val_eval_cond = co.get_field_condition(field)
+                field_type = self._get_field_type(model, field)
+                value = False
+                try:
+                    row, col = co.pos2idx(rc)
+                    value = co._get_cell_value(st.cell(row, col), field_type=field_type)
+                except Exception:
+                    pass
+                eval_context = self.get_eval_context(model=model, value=value)
+                if key_eval_cond:
+                    value = str(safe_eval(key_eval_cond, eval_context))
+                if val_eval_cond:
+                    value = str(safe_eval(val_eval_cond, eval_context))
+                out_st.write(0, col_idx, field)  # Next Column
+                out_st.write(1, col_idx, value)  # Next Value
+                header_fields.append(field)
+                col_idx += 1
+            # Line Items
+            line_fields = filter(lambda x: x != "_HEAD_", worksheet)
+            for line_field in line_fields:
+                vals = self._get_line_vals(st, worksheet, model, line_field)
+                for field in vals:
+                    # Columns, i.e., line_ids/field_id
+                    out_st.write(0, col_idx, field)
+                    header_fields.append(field)
+                    # Data
+                    i = 1
+                    for value in vals[field]:
+                        out_st.write(i, col_idx, value)
+                        i += 1
+                    col_idx += 1
+
+    @api.model
     def _import_record_data(self, import_file, record, data_dict):
         """ From complex excel, create temp simple excel and do import """
         if not data_dict:
             return
         try:
             header_fields = []
+            model = record._name
             decoded_data = base64.decodestring(import_file)
             wb = xlrd.open_workbook(file_contents=decoded_data)
-            col_idx = 0
             out_wb = xlwt.Workbook()
             out_st = out_wb.add_sheet("Sheet 1")
             xml_id = (
@@ -143,53 +190,9 @@ class XLSXImport(models.AbstractModel):
             out_st.write(0, 0, "id")  # id and xml_id on first column
             out_st.write(1, 0, xml_id)
             header_fields.append("id")
-            col_idx += 1
-            model = record._name
-            for sheet_name in data_dict:  # For each Sheet
-                worksheet = data_dict[sheet_name]
-                st = False
-                if isinstance(sheet_name, str):
-                    st = co.xlrd_get_sheet_by_name(wb, sheet_name)
-                elif isinstance(sheet_name, int):
-                    st = wb.sheet_by_index(sheet_name - 1)
-                if not st:
-                    raise ValidationError(_("Sheet %s not found") % sheet_name)
-                # HEAD updates
-                for rc, field in worksheet.get("_HEAD_", {}).items():
-                    rc, key_eval_cond = co.get_field_condition(rc)
-                    field, val_eval_cond = co.get_field_condition(field)
-                    field_type = self._get_field_type(model, field)
-                    value = False
-                    try:
-                        row, col = co.pos2idx(rc)
-                        value = co._get_cell_value(
-                            st.cell(row, col), field_type=field_type
-                        )
-                    except Exception:
-                        pass
-                    eval_context = self.get_eval_context(model=model, value=value)
-                    if key_eval_cond:
-                        value = str(safe_eval(key_eval_cond, eval_context))
-                    if val_eval_cond:
-                        value = str(safe_eval(val_eval_cond, eval_context))
-                    out_st.write(0, col_idx, field)  # Next Column
-                    out_st.write(1, col_idx, value)  # Next Value
-                    header_fields.append(field)
-                    col_idx += 1
-                # Line Items
-                line_fields = filter(lambda x: x != "_HEAD_", worksheet)
-                for line_field in line_fields:
-                    vals = self._get_line_vals(st, worksheet, model, line_field)
-                    for field in vals:
-                        # Columns, i.e., line_ids/field_id
-                        out_st.write(0, col_idx, field)
-                        header_fields.append(field)
-                        # Data
-                        i = 1
-                        for value in vals[field]:
-                            out_st.write(i, col_idx, value)
-                            i += 1
-                        col_idx += 1
+            # Process on all worksheets
+            self._process_worksheet(wb, out_wb, out_st, model, data_dict, header_fields)
+            # --
             content = BytesIO()
             out_wb.save(content)
             content.seek(0)  # Set index to 0, and start reading

@@ -4,13 +4,13 @@
 {
     "name": "Excel Import/Export/Report",
     "summary": "Base module for developing Excel import/export/report",
-    "version": "12.0.1.0.4",
+    "version": "13.0.1.0.0",
     "author": "Ecosoft,Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "website": "https://github.com/OCA/server-tools/",
     "category": "Tools",
     "depends": ["mail"],
-    "external_dependencies": {"python": ["xlrd", "xlwt", "openpyxl",],},
+    "external_dependencies": {"python": ["xlrd", "xlwt", "openpyxl"]},
     "data": [
         "security/ir.model.access.csv",
         "wizard/export_xlsx_wizard.xml",

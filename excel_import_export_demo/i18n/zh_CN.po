@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* excel_import_export_demo
+#	* excel_import_export_demo
 #
 msgid ""
 msgstr ""
@@ -18,8 +18,7 @@ msgstr ""
 
 #. module: excel_import_export_demo
 #: model:ir.model.fields,help:excel_import_export_demo.field_report_sale_order__state
-msgid ""
-"* Choose: wizard show in user selection mode\n"
+msgid "* Choose: wizard show in user selection mode\n"
 "* Get: wizard show results from user action"
 msgstr ""
 "* 选择：用户选择模式下的向导显示\n"
@@ -29,12 +28,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__choose_template
 msgid "Allow Choose Template"
 msgstr "添加表单部分"
-
-#. module: excel_import_export_demo
-#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__attachment_ids
-#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__attachment_ids
-msgid "Attachments"
-msgstr ""
 
 #. module: excel_import_export_demo
 #: model_terms:ir.ui.view,arch_db:excel_import_export_demo.partner_list_wizard
@@ -57,11 +50,6 @@ msgstr "创建者"
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__create_date
 msgid "Created on"
 msgstr "创建时间"
-
-#. module: excel_import_export_demo
-#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__customer
-msgid "Customer"
-msgstr "客户"
 
 #. module: excel_import_export_demo
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__display_name
@@ -167,11 +155,6 @@ msgstr "销售报告样本"
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__state
 msgid "State"
 msgstr "状态"
-
-#. module: excel_import_export_demo
-#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__supplier
-msgid "Supplier"
-msgstr "供应商"
 
 #. module: excel_import_export_demo
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__template_id
