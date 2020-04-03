@@ -9,35 +9,38 @@ from psycopg2.extensions import AsIs
 
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
+from odoo.tools.misc import format_time
 
 
 class TimeWindowMixin(models.AbstractModel):
 
     _name = "time.window.mixin"
     _description = "Time Window"
-    _order = "start"
+    _order = "time_window_start"
 
     # TODO patch api.constrains with field here?
-    _overlap_check_field = False
+    _time_window_overlap_check_field = False
 
-    start = fields.Float("From", required=True)
-    end = fields.Float("To", required=True)
-    weekday_ids = fields.Many2many(
+    time_window_start = fields.Float("From", required=True)
+    time_window_end = fields.Float("To", required=True)
+    time_window_weekday_ids = fields.Many2many(
         comodel_name="time.weekday", required=True
     )
 
-    @api.constrains("start", "end", "weekday_ids")
+    @api.constrains("time_window_start", "time_window_end", "time_window_weekday_ids")
     def check_window_no_overlaps(self):
-        weekdays_field = self._fields["weekday_ids"]
+        weekdays_field = self._fields["time_window_weekday_ids"]
         for record in self:
-            if record.start > record.end:
+            if record.time_window_start > record.time_window_end:
                 raise ValidationError(
                     _("%s must be > %s")
                     % (
-                        self.float_to_time_repr(record.end),
-                        self.float_to_time_repr(record.start),
+                        self.float_to_time_repr(record.time_window_end),
+                        self.float_to_time_repr(record.time_window_start),
                     )
                 )
+            if not record.time_window_weekday_ids:
+                raise ValidationError(_("At least one time.weekday is required"))
             # here we use a plain SQL query to benefit of the numrange
             # function available in PostgresSQL
             # (http://www.postgresql.org/docs/current/static/rangetypes.html)
@@ -49,7 +52,7 @@ class TimeWindowMixin(models.AbstractModel):
                     join %(relation)s as d
                     on d.%(relation_window_fkey)s = w.id
                 WHERE
-                    NUMRANGE(w.start::numeric, w.end::numeric) &&
+                    NUMRANGE(w.time_window_start::numeric, w.time_window_end::numeric) &&
                         NUMRANGE(%(start)s::numeric, %(end)s::numeric)
                     AND w.id != %(window_id)s
                     AND d.%(relation_week_day_fkey)s in %(weekday_ids)s
@@ -61,12 +64,12 @@ class TimeWindowMixin(models.AbstractModel):
                     relation=AsIs(weekdays_field.relation),
                     relation_window_fkey=AsIs(weekdays_field.column1),
                     relation_week_day_fkey=AsIs(weekdays_field.column2),
-                    start=record.start,
-                    end=record.end,
+                    start=record.time_window_start,
+                    end=record.time_window_end,
                     window_id=record.id,
-                    weekday_ids=tuple(record.weekday_ids.ids),
-                    check_field=AsIs(self._overlap_check_field),
-                    check_field_id=record[self._overlap_check_field].id,
+                    weekday_ids=tuple(record.time_window_weekday_ids.ids),
+                    check_field=AsIs(self._time_window_overlap_check_field),
+                    check_field_id=record[self._time_window_overlap_check_field].id,
                 ),
             )
             res = self.env.cr.fetchall()
@@ -77,13 +80,13 @@ class TimeWindowMixin(models.AbstractModel):
                     % (record.display_name, other.display_name)
                 )
 
-    @api.depends("start", "end", "weekday_ids")
+    @api.depends("time_window_start", "time_window_end", "time_window_weekday_ids")
     def _compute_display_name(self):
         for record in self:
             record.display_name = _("{days}: From {start} to {end}").format(
-                days=", ".join(record.weekday_ids.mapped("display_name")),
-                start=self.float_to_time_repr(record.start),
-                end=self.float_to_time_repr(record.end),
+                days=", ".join(record.time_window_weekday_ids.mapped("display_name")),
+                start=format_time(self.env, record.get_time_window_start_time()),
+                end=format_time(self.env, record.get_time_window_end_time()),
             )
 
     @api.model
@@ -106,8 +109,8 @@ class TimeWindowMixin(models.AbstractModel):
         hour, minute = self._get_hour_min_from_value(value)
         return time(hour=hour, minute=minute)
 
-    def get_start_time(self):
-        return self.float_to_time(self.start)
+    def get_time_window_start_time(self):
+        return self.float_to_time(self.time_window_start)
 
-    def get_end_time(self):
-        return self.float_to_time(self.end)
+    def get_time_window_end_time(self):
+        return self.float_to_time(self.time_window_end)
