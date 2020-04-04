@@ -3,17 +3,25 @@
 import mock
 from odoo.exceptions import ValidationError
 from odoo.tests import SavepointCase
+from odoo_test_helper import FakeModelLoader
 
-from .models import ResPartner, ResPartnerAddressableFake, UrlBackendFake
 
-
-class TestAbstractUrl(SavepointCase):
+class TestAbstractUrl(SavepointCase, FakeModelLoader):
     @classmethod
     def setUpClass(cls):
         super(TestAbstractUrl, cls).setUpClass()
-        UrlBackendFake._test_setup_model(cls.env)
-        ResPartnerAddressableFake._test_setup_model(cls.env)
-        ResPartner._test_setup_model(cls.env)
+        cls.loader = FakeModelLoader(cls.env, cls.__module__)
+        cls.loader.backup_registry()
+        from .models import (
+            UrlBackendFake,
+            ResPartner,
+            ResPartnerAddressableFake,
+        )
+
+        cls.loader.update_registry(
+            (UrlBackendFake, ResPartner, ResPartnerAddressableFake)
+        )
+
         cls.lang = cls.env.ref("base.lang_en")
         cls.UrlUrl = cls.env["url.url"]
         cls.ResPartnerAddressable = cls.env["res.partner.addressable.fake"]
@@ -25,9 +33,7 @@ class TestAbstractUrl(SavepointCase):
 
     @classmethod
     def tearDownClass(cls):
-        ResPartnerAddressableFake._test_teardown_model(cls.env)
-        UrlBackendFake._test_teardown_model(cls.env)
-        ResPartner._test_teardown_model(cls.env)
+        cls.loader.restore_registry()
         super(TestAbstractUrl, cls).tearDownClass()
 
     def _get_default_partner_value(self):

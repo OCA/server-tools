@@ -4,34 +4,23 @@ import logging
 
 from odoo import api, fields, models
 
-from .models_mixin import TestMixin
-
 _logger = logging.getLogger(__name__)
 
-try:
-    from slugify import slugify
-except ImportError:
-    _logger.debug("Cannot `import slugify`.")
 
-
-class UrlBackendFake(models.Model, TestMixin):
-
+class UrlBackendFake(models.Model):
     _name = "url.backend.fake"
     _description = "Url Backend"
 
     name = fields.Char(required=True)
 
 
-class ResPartner(models.Model, TestMixin):
-    _name = "res.partner"
+class ResPartner(models.Model):
     _inherit = "res.partner"
-    _test_teardown_no_delete = True
-    _test_purge_fields = ["binding_ids"]
 
     binding_ids = fields.One2many("res.partner.addressable.fake", "record_id")
 
 
-class ResPartnerAddressableFake(models.Model, TestMixin):
+class ResPartnerAddressableFake(models.Model):
     _name = "res.partner.addressable.fake"
     _inherit = "abstract.url"
     _inherits = {"res.partner": "record_id"}
