@@ -60,7 +60,7 @@ msgid "Manager"
 msgstr "Manager"
 
 #. module: sql_request_abstract
-#: code:addons/sql_request_abstract/models/sql_request_mixin.py:206
+#: code:addons/sql_request_abstract/models/sql_request_mixin.py:209
 #, python-format
 msgid ""
 "Materialized View requires PostgreSQL 9.3 or greater but PostgreSQL %s is "
@@ -101,7 +101,7 @@ msgid ""
 msgstr ""
 
 #. module: sql_request_abstract
-#: code:addons/sql_request_abstract/models/sql_request_mixin.py:245
+#: code:addons/sql_request_abstract/models/sql_request_mixin.py:248
 #, python-format
 msgid ""
 "The SQL query is not valid:\n"
@@ -110,13 +110,13 @@ msgid ""
 msgstr ""
 
 #. module: sql_request_abstract
-#: code:addons/sql_request_abstract/models/sql_request_mixin.py:228
+#: code:addons/sql_request_abstract/models/sql_request_mixin.py:231
 #, python-format
 msgid "The query is not allowed because it contains unsafe word '%s'"
 msgstr ""
 
 #. module: sql_request_abstract
-#: code:addons/sql_request_abstract/models/sql_request_mixin.py:162
+#: code:addons/sql_request_abstract/models/sql_request_mixin.py:165
 #, python-format
 msgid "Unimplemented mode : '%s'"
 msgstr ""
