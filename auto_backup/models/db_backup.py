@@ -243,25 +243,21 @@ class DbBackup(models.Model):
         now = datetime.now()
         for rec in self.filtered("days_to_keep"):
             with rec.cleanup_log():
-                oldest = self.filename(
-                    now - timedelta(days=rec.days_to_keep),
-                    ext=rec.backup_format
-                )
+                bu_format = rec.backup_format
+                file_extension = bu_format == 'zip' and 'dump.zip' or bu_format
+                oldest = self.filename(now - timedelta(days=rec.days_to_keep),
+                                       bu_format)
 
                 if rec.method == "local":
-                    path = os.path.join(
-                        rec.folder,
-                        "*.{}".format(rec.backup_format)
-                    )
-
-                    for name in iglob(path):
+                    for name in iglob(os.path.join(rec.folder,
+                                                   '*.%s' % file_extension)):
                         if os.path.basename(name) < oldest:
                             os.unlink(name)
 
                 elif rec.method == "sftp":
                     with rec.sftp_connection() as remote:
                         for name in remote.listdir(rec.folder):
-                            if (name.endswith(rec.backup_format) and
+                            if (name.endswith('.%s' % file_extension) and
                                     os.path.basename(name) < oldest):
                                 remote.unlink('%s/%s' % (rec.folder, name))
 

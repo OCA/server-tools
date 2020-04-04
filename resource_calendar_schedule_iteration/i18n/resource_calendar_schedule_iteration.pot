@@ -1,0 +1,20 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* resource_calendar_schedule_iteration
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: resource_calendar_schedule_iteration
+#: model:ir.model,name:resource_calendar_schedule_iteration.model_resource_calendar
+msgid "Resource Calendar"
+msgstr ""
+
