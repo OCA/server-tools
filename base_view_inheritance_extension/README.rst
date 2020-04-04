@@ -8,6 +8,7 @@ Extended view inheritance
 
 This module was written to make it simple to add custom operators for view
 inheritance.
+It also adds a field `user_ids` to restrict view inheritance to certain users.
 
 Usage
 =====

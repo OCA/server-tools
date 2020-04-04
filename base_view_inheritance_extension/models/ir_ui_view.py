@@ -2,7 +2,7 @@
 # © 2016 Therp BV <http://therp.nl>
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 from lxml import etree
-from openerp import api, models, tools
+from openerp import api, fields, models, tools
 
 
 class UnquoteObject(str):
@@ -41,11 +41,23 @@ class UnquoteEvalObjectContext(tools.misc.UnquoteEvalContext):
 class IrUiView(models.Model):
     _inherit = 'ir.ui.view'
 
+    user_ids = fields.Many2many('res.users', string='Restrict to users')
+
     @api.model
     def apply_inheritance_specs(self, source, specs_tree, inherit_id):
         for specs, handled_by in self._iter_inheritance_specs(specs_tree):
             source = handled_by(source, specs, inherit_id)
         return source
+
+    @api.model
+    def get_inheriting_views_arch(self, view_id, model):
+        return [
+            (arch, view_id_)
+            for arch, view_id_ in
+            super(IrUiView, self).get_inheriting_views_arch(view_id, model)
+            if not self.sudo().browse(view_id_).user_ids or
+            self.sudo().browse(view_id_).user_ids & self.env.user
+        ]
 
     @api.model
     def _iter_inheritance_specs(self, spec):
