@@ -29,9 +29,24 @@ msgid "A new page"
 msgstr "Eine neue Seite"
 
 #. module: base_view_inheritance_extension
+#: view:res.partner:base_view_inheritance_extension.view_partner_form_demo
+msgid "I am a private form for the demo user"
+msgstr ""
+
+#. module: base_view_inheritance_extension
 #: view:res.partner:base_view_inheritance_extension.view_partner_form
 msgid "Partner form"
 msgstr "Partner-Formular"
+
+#. module: base_view_inheritance_extension
+#: field:ir.ui.view,user_ids:0
+msgid "Restrict to users"
+msgstr ""
+
+#. module: base_view_inheritance_extension
+#: model:ir.model,name:base_view_inheritance_extension.model_res_users
+msgid "Users"
+msgstr ""
 
 #. module: base_view_inheritance_extension
 #: view:res.partner:base_view_inheritance_extension.view_partner_form
