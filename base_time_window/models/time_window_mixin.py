@@ -84,7 +84,7 @@ class TimeWindowMixin(models.AbstractModel):
     def _compute_display_name(self):
         for record in self:
             record.display_name = _("{days}: From {start} to {end}").format(
-                days=", ".join(record.weekday_ids.mapped("display_name")),
+                days=", ".join(record.time_window_weekday_ids.mapped("display_name")),
                 start=format_time(self.env, record.get_time_window_start_time()),
                 end=format_time(self.env, record.get_time_window_end_time()),
             )
