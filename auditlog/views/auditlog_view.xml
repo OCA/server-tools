@@ -2,7 +2,7 @@
 <odoo>
     <menuitem id="menu_audit" name="Audit"
         parent="base.menu_custom" sequence="50"
-        groups="base.group_system"/>
+        groups="base.group_erp_manager"/>
 
 
     <!-- auditlog.rule -->
