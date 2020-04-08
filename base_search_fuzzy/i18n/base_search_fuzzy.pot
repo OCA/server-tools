@@ -1,12 +1,12 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* base_search_fuzzy
+# 	* base_search_fuzzy
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: <>\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -15,7 +15,10 @@ msgstr ""
 
 #. module: base_search_fuzzy
 #: model:ir.model.fields,help:base_search_fuzzy.field_trgm_index__index_type
-msgid "Cite from PostgreSQL documentation: \"As a rule of thumb, a GIN index is faster to search than a GiST index, but slower to build or update; so GIN is better suited for static data and GiST for often-updated data.\""
+msgid ""
+"Cite from PostgreSQL documentation: \"As a rule of thumb, a GIN index is "
+"faster to search than a GiST index, but slower to build or update; so GIN is"
+" better suited for static data and GiST for often-updated data.\""
 msgstr ""
 
 #. module: base_search_fuzzy
@@ -39,12 +42,12 @@ msgid "Field"
 msgstr ""
 
 #. module: base_search_fuzzy
-#: selection:trgm.index,index_type:0
+#: model:ir.model.fields.selection,name:base_search_fuzzy.selection__trgm_index__index_type__gin
 msgid "GIN"
 msgstr ""
 
 #. module: base_search_fuzzy
-#: selection:trgm.index,index_type:0
+#: model:ir.model.fields.selection,name:base_search_fuzzy.selection__trgm_index__index_type__gist
 msgid "GiST"
 msgstr ""
 
@@ -64,9 +67,9 @@ msgid "Index Type"
 msgstr ""
 
 #. module: base_search_fuzzy
-#: code:addons/base_search_fuzzy/models/ir_model.py:39
+#: code:addons/base_search_fuzzy/models/ir_model.py:0
 #, python-format
-msgid "Invalid field %r in domain term %r"
+msgid "Invalid field {!r} in domain term {!r}"
 msgstr ""
 
 #. module: base_search_fuzzy
@@ -91,11 +94,15 @@ msgstr ""
 
 #. module: base_search_fuzzy
 #: model:ir.model.fields,help:base_search_fuzzy.field_trgm_index__index_name
-msgid "The index name is automatically generated like fieldname_indextype_idx. If the index already exists and the index is located in the same table then this index is reused. If the index is located in another table then a number is added at the end of the index name."
+msgid ""
+"The index name is automatically generated like fieldname_indextype_idx. If "
+"the index already exists and the index is located in the same table then "
+"this index is reused. If the index is located in another table then a number"
+" is added at the end of the index name."
 msgstr ""
 
 #. module: base_search_fuzzy
-#: code:addons/base_search_fuzzy/models/trgm_index.py:126
+#: code:addons/base_search_fuzzy/models/trgm_index.py:0
 #, python-format
 msgid "The pg_trgm extension does not exists or cannot be installed."
 msgstr ""
@@ -113,4 +120,3 @@ msgstr ""
 #: model:ir.model.fields,help:base_search_fuzzy.field_trgm_index__field_id
 msgid "You can either select a field of type \"text\" or \"char\"."
 msgstr ""
-
