@@ -11,6 +11,8 @@ from openerp.modules.registry import RegistryManager
 from ..models.auth_from_http_remote_user import \
     AuthFromHttpRemoteUserInstalled
 from .. import utils
+from hashlib import sha1
+import hmac
 
 import random
 import logging
@@ -76,7 +78,14 @@ class Home(main.Home):
                     raise http.AuthenticationError()
 
                 # generate a specific key for authentication
-                key = randomString(utils.KEY_LENGTH, '0123456789abcdef')
+                parameters = registry.get("ir.config_parameter")
+                secret = parameters.get_param(cr, SUPERUSER_ID,
+                                              "http_remote_user.secret",
+                                              default=False)
+                if secret:
+                    key = hmac.new(str(secret), str(user_id), sha1).hexdigest()
+                else:
+                    key = randomString(utils.KEY_LENGTH, '0123456789abcdef')
                 res_users.write(cr, SUPERUSER_ID, [user_id], {'sso_key': key})
             request.session.authenticate(db_name, login=login,
                                          password=key, uid=user_id)

@@ -16,6 +16,22 @@ at startup; Add the *--load* parameter to the startup command: ::
 If the field is found in the header and no user matches the given one, the
 system issue a login error page. (*401* `Unauthorized`)
 
+System parameter
+================
+
+By default this module does not allow the same user to connect from different
+browser sessions at the same time. It generates a new random pseudo-password
+(sso_key) that will be different at each session creation.
+To allow the same user to connect from different browser sessions, a system
+parameter can be configured with a secret. At session creation, the pseudo-password
+generated will be a hash based on the secret and the user id making the
+pseudo-password the same for each session of the same user.
+The system parameter key must be ::
+
+  http_remote_user.secret
+
+and the value can be any string (Ex: 123456789abcdefgh).
+
 Use case.
 =========
 
