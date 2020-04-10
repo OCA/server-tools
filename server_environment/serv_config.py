@@ -183,9 +183,6 @@ class ServerConfiguration(models.TransientModel):
         """
         ModelClass = super(ServerConfiguration, cls)._build_model(pool, cr)
         ModelClass._add_columns()
-        ModelClass.running_env = system_base_config['running_env']
-        # Only show passwords in development
-        ModelClass.show_passwords = ModelClass.running_env in ('dev',)
         ModelClass._arch = None
         ModelClass._build_osv()
         return ModelClass
@@ -193,6 +190,10 @@ class ServerConfiguration(models.TransientModel):
     @classmethod
     def _format_key(cls, section, key):
         return '%s_I_%s' % (section, key)
+
+    @property
+    def show_passwords(self):
+        return system_base_config["running_env"] in ("dev",)
 
     @classmethod
     def _format_key_display_name(cls, key_name):

@@ -3,12 +3,21 @@
 # License GPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 
-from odoo.tools.config import config
+from mock import patch
+
+from odoo.tools.config import config as odoo_config
 
 from odoo.addons.server_environment import server_env
 from .common import ServerEnvironmentCase
 
 
+class TestRunningEnvDefault(ServerEnvironmentCase):
+    def test_running_env_default(self):
+        """When var is not provided it defaults to `test`."""
+        self.assertEqual(odoo_config["running_env"], "test")
+
+
+@patch.dict(odoo_config.options, {"running_env": "testing"})
 class TestEnvironmentVariables(ServerEnvironmentCase):
 
     def test_env_variables(self):
@@ -46,11 +55,3 @@ class TestEnvironmentVariables(ServerEnvironmentCase):
             parser = server_env._load_config()
             val = parser.get("external_service.ftp", "user")
             self.assertEqual(val, "foo")
-
-
-class TestRunningEnv(ServerEnvironmentCase):
-
-    _test_case_running_env = ""  # empty -> no env set
-
-    def test_running_env_default(self):
-        self.assertEqual(config["running_env"], "test")
