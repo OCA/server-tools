@@ -1,10 +1,6 @@
-# -*- coding: utf-8 -*-
 # Copyright 2020 ACSONE SA/NV
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-
-import math
-
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 
 
 class TestPartnerTimeWindow(models.Model):
@@ -16,7 +12,7 @@ class TestPartnerTimeWindow(models.Model):
     _time_window_overlap_check_field = "partner_id"
 
     partner_id = fields.Many2one(
-        "res.partner", required=True, index=True, ondelete='cascade'
+        "res.partner", required=True, index=True, ondelete="cascade"
     )
 
     @api.constrains("partner_id")
