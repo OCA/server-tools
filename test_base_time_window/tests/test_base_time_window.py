@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2020 ACSONE SA/NV
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
@@ -11,15 +10,11 @@ class TestTimeWindow(SavepointCase):
     def setUpClass(cls):
         super().setUpClass()
         cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
-        cls.partner_1 = cls.env['res.partner'].create({'name': 'partner 1'})
-        cls.partner_2 = cls.env['res.partner'].create({'name': 'partner 2'})
+        cls.partner_1 = cls.env["res.partner"].create({"name": "partner 1"})
+        cls.partner_2 = cls.env["res.partner"].create({"name": "partner 2"})
         cls.TimeWindow = cls.env["test.partner.time.window"]
-        cls.monday = cls.env.ref(
-            "base_time_window.time_weekday_monday"
-        )
-        cls.sunday = cls.env.ref(
-            "base_time_window.time_weekday_sunday"
-        )
+        cls.monday = cls.env.ref("base_time_window.time_weekday_monday")
+        cls.sunday = cls.env.ref("base_time_window.time_weekday_sunday")
 
     def test_00(self):
         """
@@ -68,9 +63,7 @@ class TestTimeWindow(SavepointCase):
             }
         )
         self.assertTrue(self.partner_1.time_window_ids)
-        time_window = self.TimeWindow.search(
-            [("partner_id", "=", partner_id)]
-        )
+        time_window = self.TimeWindow.search([("partner_id", "=", partner_id)])
         self.assertTrue(time_window)
         self.partner_1.unlink()
         self.assertFalse(time_window.exists())
@@ -100,7 +93,10 @@ class TestTimeWindow(SavepointCase):
                     "partner_id": self.partner_1.id,
                     "time_window_start": 11.0,
                     "time_window_end": 13.0,
-                    "time_window_weekday_ids": [(4, self.monday.id), (4, self.sunday.id)],
+                    "time_window_weekday_ids": [
+                        (4, self.monday.id),
+                        (4, self.sunday.id),
+                    ],
                 }
             )
 
