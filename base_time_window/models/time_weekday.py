@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2020 ACSONE SA/NV
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
@@ -22,9 +21,7 @@ class TimeWeekday(models.Model):
         ],
         required=True,
     )
-    _sql_constraints = [
-        ("name_uniq", "UNIQUE(name)", _("Name must be unique"))
-    ]
+    _sql_constraints = [("name_uniq", "UNIQUE(name)", _("Name must be unique"))]
 
     @api.depends("name")
     def _compute_display_name(self):
@@ -32,9 +29,7 @@ class TimeWeekday(models.Model):
         WORKAROUND since Odoo doesn't handle properly records where name is
         a selection
         """
-        translated_values = dict(
-            self._fields["name"]._description_selection(self.env)
-        )
+        translated_values = dict(self._fields["name"]._description_selection(self.env))
         for record in self:
             record.display_name = translated_values[record.name]
 
