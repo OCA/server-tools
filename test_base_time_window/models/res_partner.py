@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2020 ACSONE SA/NV
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
@@ -29,7 +28,7 @@ class ResPartner(models.Model):
         windows = self.env["test.partner.time.window"].search(
             [
                 ("partner_id", "in", self.ids),
-                ("time_window_weekday_ids", "in", weekday_id)
+                ("time_window_weekday_ids", "in", weekday_id),
             ]
         )
         for window in windows:
