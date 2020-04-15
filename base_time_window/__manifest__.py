@@ -9,9 +9,6 @@
     "license": "AGPL-3",
     "website": "https://github.com/OCA/server-tools",
     "depends": ["base"],
-    "data": [
-        "data/time_weekday.xml",
-        "security/ir.model.access.xml"
-    ],
+    "data": ["data/time_weekday.xml", "security/ir.model.access.xml"],
     "installable": True,
 }
