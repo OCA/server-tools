@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2020 ACSONE SA/NV
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
@@ -52,8 +51,9 @@ class TimeWindowMixin(models.AbstractModel):
                     join %(relation)s as d
                     on d.%(relation_window_fkey)s = w.id
                 WHERE
-                    NUMRANGE(w.time_window_start::numeric, w.time_window_end::numeric) &&
-                        NUMRANGE(%(start)s::numeric, %(end)s::numeric)
+                    NUMRANGE(w.time_window_start::numeric,
+                        w.time_window_end::numeric) &&
+                            NUMRANGE(%(start)s::numeric, %(end)s::numeric)
                     AND w.id != %(window_id)s
                     AND d.%(relation_week_day_fkey)s in %(weekday_ids)s
                     AND w.%(check_field)s = %(check_field_id)s;"""
@@ -76,8 +76,7 @@ class TimeWindowMixin(models.AbstractModel):
             if res:
                 other = self.browse(res[0][0])
                 raise ValidationError(
-                    _("%s overlaps %s")
-                    % (record.display_name, other.display_name)
+                    _("%s overlaps %s") % (record.display_name, other.display_name)
                 )
 
     @api.depends("time_window_start", "time_window_end", "time_window_weekday_ids")
