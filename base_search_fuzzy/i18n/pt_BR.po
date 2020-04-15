@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2017-01-14 04:21+0000\n"
 "PO-Revision-Date: 2019-08-30 17:04+0000\n"
 "Last-Translator: Rodrigo Macedo <rmsolucoeseminformatic4@gmail.com>\n"
-"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/"
-"23907/pt_BR/)\n"
+"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/"
+"teams/23907/pt_BR/)\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -53,12 +53,12 @@ msgid "Field"
 msgstr "Campo"
 
 #. module: base_search_fuzzy
-#: selection:trgm.index,index_type:0
+#: model:ir.model.fields.selection,name:base_search_fuzzy.selection__trgm_index__index_type__gin
 msgid "GIN"
 msgstr "GIN"
 
 #. module: base_search_fuzzy
-#: selection:trgm.index,index_type:0
+#: model:ir.model.fields.selection,name:base_search_fuzzy.selection__trgm_index__index_type__gist
 msgid "GiST"
 msgstr "GIST"
 
@@ -78,9 +78,10 @@ msgid "Index Type"
 msgstr "Tipo de índice"
 
 #. module: base_search_fuzzy
-#: code:addons/base_search_fuzzy/models/ir_model.py:39
-#, python-format
-msgid "Invalid field %r in domain term %r"
+#: code:addons/base_search_fuzzy/models/ir_model.py:0
+#, fuzzy, python-format
+#| msgid "Invalid field %r in domain term %r"
+msgid "Invalid field {!r} in domain term {!r}"
 msgstr "Campo inválido %r no termo do domínio %r"
 
 #. module: base_search_fuzzy
@@ -117,7 +118,7 @@ msgstr ""
 "será adicionado no final do nome do índice."
 
 #. module: base_search_fuzzy
-#: code:addons/base_search_fuzzy/models/trgm_index.py:126
+#: code:addons/base_search_fuzzy/models/trgm_index.py:0
 #, python-format
 msgid "The pg_trgm extension does not exists or cannot be installed."
 msgstr "A extensão pg_trgm não existe ou não pode ser instalada."
