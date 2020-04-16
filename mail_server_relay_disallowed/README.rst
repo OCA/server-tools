@@ -23,7 +23,7 @@ Mail Server Relay Disallowed
     :target: https://runbot.odoo-community.org/runbot/149/13.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5|
+|badge1| |badge2| |badge3| |badge4| |badge5| 
 
 Fixes the issue of using a mail client where relaying is disallowed.
 See:
@@ -56,7 +56,7 @@ Authors
 Contributors
 ~~~~~~~~~~~~
 
-* ForgeFlow <http://www.eficent.com>
+* ForgeFlow <http://www.forgeflow.com>
 
 Maintainers
 ~~~~~~~~~~~
