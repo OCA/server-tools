@@ -77,6 +77,7 @@ addon | version | summary
 [record_archiver](record_archiver/) | 9.0.1.0.0 | Records Archiver
 [res_config_settings_enterprise_remove](res_config_settings_enterprise_remove/) | 9.0.1.0.0 | Remove fields in all settings views marked as enterprise
 [scheduler_error_mailer](scheduler_error_mailer/) | 9.0.1.0.0 | Scheduler Error Mailer
+[sentry](sentry/) | 9.0.1.0.0 | Report Odoo errors to Sentry
 [sequence_check_digit](sequence_check_digit/) | 9.0.1.0.0 | Adds a check digit on sequences
 [server_environment](server_environment/) | 9.0.1.3.0 | move some configurations out of the database
 [server_environment_files_sample](server_environment_files_sample/) | 9.0.1.0.0 | sample config file for server_environment
