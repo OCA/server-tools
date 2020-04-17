@@ -16,7 +16,7 @@ class TestFetchmailNotifyErrorToSender(TestMailgateway):
         self.fetchmail_server = self.env["fetchmail.server"].create(
             {
                 "name": "Test Fetchmail Server",
-                "type": "imap",
+                "server_type": "imap",
                 "error_notice_template_id": self.env.ref(
                     "%s.%s"
                     % (
@@ -41,7 +41,7 @@ class TestFetchmailNotifyErrorToSender(TestMailgateway):
         target_field="name",
         ctx=None,
     ):
-        self.assertFalse(self.env[target_model].search([(target_field, "=", subject),]))
+        self.assertFalse(self.env[target_model].search([(target_field, "=", subject)]))
         mail = template.format(
             to=to_email,
             subject=subject,
@@ -60,7 +60,7 @@ class TestFetchmailNotifyErrorToSender(TestMailgateway):
         email_from = formataddr((self.partner_1.name, self.partner_1.email))
 
         count_return_mails_before = self.env["mail.mail"].search_count(
-            [("email_to", "=", email_from),]
+            [("email_to", "=", email_from)]
         )
 
         with self.assertRaises(ValueError):
@@ -71,11 +71,11 @@ class TestFetchmailNotifyErrorToSender(TestMailgateway):
                 subject="spam",
                 extra="In-Reply-To: <12321321-openerp-%d-mail.test.simple@%s"
                 ">" % (self.test_record.id, socket.gethostname(),),
-                ctx={"fetchmail_server_id": self.fetchmail_server.id,},
+                ctx={"default_fetchmail_server_id": self.fetchmail_server.id},
             )
 
         count_return_mails_after = self.env["mail.mail"].search_count(
-            [("email_to", "=", email_from),]
+            [("email_to", "=", email_from)]
         )
         self.assertEqual(
             count_return_mails_after, count_return_mails_before + 1,
