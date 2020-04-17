@@ -14,7 +14,7 @@ Fetchmail Notify Error to Sender
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github
-    :target: https://github.com/OCA/server-tools/tree/12.0/fetchmail_notify_error_to_sender
+    :target: https://github.com/OCA/server-tools/tree/13.0/fetchmail_notify_error_to_sender
     :alt: OCA/server-tools
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
     :target: https://translation.odoo-community.org/projects/server-tools-12-0/server-tools-12-0-fetchmail_notify_error_to_sender
@@ -23,7 +23,7 @@ Fetchmail Notify Error to Sender
     :target: https://runbot.odoo-community.org/runbot/149/12.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 If fetchmail is not able to correctly route an email, the email is
 "silently" lost (you get an error message in server log).
@@ -75,6 +75,7 @@ Contributors
 * Miquel Raïch <miquel.raich@eficent.com> (migration to v9 and v10)
 * Hai Dinh <haidd.uit@gmail.com> (migration to V11)
 * Nedas Zilinskas <nedas.zilinskas@xpansa.com> (Ventor, Xpansa Group <https://ventor.tech/>)
+* Denis Valenchyts <denis@ventor.tech> (VentorTech OU <https://ventor.tech>)
 
 Maintainers
 ~~~~~~~~~~~
@@ -89,6 +90,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/12.0/fetchmail_notify_error_to_sender>`_ project on GitHub.
+This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/13.0/fetchmail_notify_error_to_sender>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
