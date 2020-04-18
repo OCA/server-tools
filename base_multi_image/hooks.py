@@ -40,7 +40,7 @@ def pre_init_hook_for_submodules(cr, model, field):
                     %(table)s
                 WHERE
                     %(field)s IS NOT NULL
-            """, {"table": AsIs(env[model]._table), "field": AsIs(field), "model": (model,)}
+            """, {"table": AsIs(env[model]._table), "field": AsIs(field), "model": model}
         )
 
 
