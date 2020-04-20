@@ -28,7 +28,7 @@ class CleanupPurgeLineTable(models.TransientModel):
         no_retries = 10
         retry = 0
         retry_objs = self.env['cleanup.purge.line.table']
-        while objs and retry<no_retries:
+        while objs and retry < no_retries:
             retry += 1
             for line in objs:
                 if line.purged:
@@ -37,12 +37,17 @@ class CleanupPurgeLineTable(models.TransientModel):
                     SELECT count(0)
                     FROM pg_depend
                         JOIN pg_rewrite ON pg_depend.objid = pg_rewrite.oid
-                        JOIN pg_class as dependent_view ON pg_rewrite.ev_class = dependent_view.oid
-                        JOIN pg_class as source_table ON pg_depend.refobjid = source_table.oid
-                        JOIN pg_attribute ON pg_depend.refobjid = pg_attribute.attrelid
-                            AND pg_depend.refobjsubid = pg_attribute.attnum
-                        JOIN pg_namespace dependent_ns ON dependent_ns.oid = dependent_view.relnamespace
-                        JOIN pg_namespace source_ns ON source_ns.oid = source_table.relnamespace
+                        JOIN pg_class as dependent_view
+                        ON pg_rewrite.ev_class = dependent_view.oid
+                        JOIN pg_class as source_table
+                        ON pg_depend.refobjid = source_table.oid
+                        JOIN pg_attribute
+                        ON pg_depend.refobjid = pg_attribute.attrelid
+                        AND pg_depend.refobjsubid = pg_attribute.attnum
+                        JOIN pg_namespace dependent_ns
+                        ON dependent_ns.oid = dependent_view.relnamespace
+                        JOIN pg_namespace source_ns
+                        ON source_ns.oid = source_table.relnamespace
                     WHERE
                         source_ns.nspname = 'public'
                         AND source_table.relname = '%s'
@@ -54,13 +59,13 @@ class CleanupPurgeLineTable(models.TransientModel):
                     select count(R.TABLE_NAME)
                     from INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE u
                         inner join INFORMATION_SCHEMA.REFERENTIAL_CONSTRAINTS FK
-                            on U.CONSTRAINT_CATALOG = FK.UNIQUE_CONSTRAINT_CATALOG
-                            and U.CONSTRAINT_SCHEMA = FK.UNIQUE_CONSTRAINT_SCHEMA
-                            and U.CONSTRAINT_NAME = FK.UNIQUE_CONSTRAINT_NAME
+                         on U.CONSTRAINT_CATALOG = FK.UNIQUE_CONSTRAINT_CATALOG
+                         and U.CONSTRAINT_SCHEMA = FK.UNIQUE_CONSTRAINT_SCHEMA
+                         and U.CONSTRAINT_NAME = FK.UNIQUE_CONSTRAINT_NAME
                         inner join INFORMATION_SCHEMA.KEY_COLUMN_USAGE R
-                            ON R.CONSTRAINT_CATALOG = FK.CONSTRAINT_CATALOG
-                            AND R.CONSTRAINT_SCHEMA = FK.CONSTRAINT_SCHEMA
-                            AND R.CONSTRAINT_NAME = FK.CONSTRAINT_NAME
+                         ON R.CONSTRAINT_CATALOG = FK.CONSTRAINT_CATALOG
+                         AND R.CONSTRAINT_SCHEMA = FK.CONSTRAINT_SCHEMA
+                         AND R.CONSTRAINT_NAME = FK.CONSTRAINT_NAME
                     WHERE U.COLUMN_NAME = 'id'
                         AND U.TABLE_NAME = '%s';
                 """, (IdentifierAdapter(line.name, quote=False),))
@@ -109,7 +114,7 @@ class CleanupPurgeLineTable(models.TransientModel):
                 else:
                     retry_objs |= line
             self._cr.commit()
-            if len(objs)>len(retry_objs):
+            if len(objs) > len(retry_objs):
                 objs = retry_objs
                 retry_objs = self.env['cleanup.purge.line.table']
             else:
