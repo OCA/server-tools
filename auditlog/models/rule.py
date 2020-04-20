@@ -1,6 +1,8 @@
 # Copyright 2015 ABF OSIELL <https://osiell.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
+import copy
+
 from odoo import models, fields, api, modules, _
 
 FIELDS_BLACKLIST = [
@@ -208,32 +210,41 @@ class AuditlogRule(models.Model):
         self.ensure_one()
         log_type = self.log_type
 
-        @api.model
+        @api.model_create_multi
         @api.returns('self', lambda value: value.id)
-        def create_full(self, vals, **kwargs):
+        def create_full(self, vals_list, **kwargs):
             self = self.with_context(auditlog_disabled=True)
             rule_model = self.env['auditlog.rule']
-            new_record = create_full.origin(self, vals, **kwargs)
-            new_values = dict(
-                (d['id'], d) for d in new_record.sudo()
-                .with_context(prefetch_fields=False).read(list(self._fields)))
+            new_records = create_full.origin(self, vals_list, **kwargs)
+            # Take a snapshot of record values from the cache instead of using
+            # 'read()'. It avoids issues with related/computed fields which
+            # stored in the database only at the end of the transaction, but
+            # their values exist in cache.
+            new_values = {}
+            for new_record in new_records:
+                new_values.setdefault(new_record.id, {})
+                for fname, field in new_record._fields.items():
+                    new_values[new_record.id][fname] = field.convert_to_read(
+                        new_record[fname], new_record)
             rule_model.sudo().create_logs(
-                self.env.uid, self._name, new_record.ids,
+                self.env.uid, self._name, new_records.ids,
                 'create', None, new_values, {'log_type': log_type})
-            return new_record
+            return new_records
 
-        @api.model
+        @api.model_create_multi
         @api.returns('self', lambda value: value.id)
-        def create_fast(self, vals, **kwargs):
+        def create_fast(self, vals_list, **kwargs):
             self = self.with_context(auditlog_disabled=True)
             rule_model = self.env['auditlog.rule']
-            vals2 = dict(vals)
-            new_record = create_fast.origin(self, vals, **kwargs)
-            new_values = {new_record.id: vals2}
+            vals_list2 = copy.deepcopy(vals_list)
+            new_records = create_fast.origin(self, vals_list, **kwargs)
+            new_values = {}
+            for vals, new_record in zip(vals_list2, new_records):
+                new_values.setdefault(new_record.id, vals)
             rule_model.sudo().create_logs(
-                self.env.uid, self._name, new_record.ids,
+                self.env.uid, self._name, new_records.ids,
                 'create', None, new_values, {'log_type': log_type})
-            return new_record
+            return new_records
 
         return create_full if self.log_type == 'full' else create_fast
 

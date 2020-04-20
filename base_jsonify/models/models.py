@@ -3,7 +3,7 @@
 # Raphaël Reverdy <raphael.reverdy@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import api, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools.translate import _
 
@@ -71,6 +71,16 @@ class Base(models.AbstractModel):
                     value = rec[field_name]
                     if value is False and field_type != 'boolean':
                         value = None
+                    elif field_type == "date":
+                        value = fields.Date.to_date(value).isoformat()
+                    elif field_type == "datetime":
+                        # Ensures value is a datetime
+                        value = fields.Datetime.to_datetime(value)
+                        # Get the timestamp converted to the client's timezone.
+                        # This call also add the tzinfo into the datetime
+                        # object
+                        value = fields.Datetime.context_timestamp(rec, value)
+                        value = value.isoformat()
                     res[json_key] = value
             result.append(res)
         return result

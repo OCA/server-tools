@@ -1,6 +1,7 @@
 # Copyright 2017 ACSONE SA/NV
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+from odoo import fields
 from odoo.tests.common import TransactionCase
 
 
@@ -8,34 +9,39 @@ class TestParser(TransactionCase):
 
     def test_getting_parser(self):
         expected_parser = [
+
+            'name',
             'active',
-            ('category_id', ['name']),
-            ('child_ids', [(
-                'child_ids', ['name']),
-                ('country_id', ['code', 'name']),
-                'email', 'id',
-                'name'
-            ]),
-            'color',
-            'comment',
-            ('country_id', ['code', 'name']),
             'credit_limit',
+            'color',
+            ('category_id', ['name']),
+            ('country_id', ['name', 'code']),
+            ('child_ids', [
+                'name',
+                'id',
+                'email',
+                ('country_id', ['name', 'code']),
+                ('child_ids', ['name']),
+            ]),
             'lang',
-            'name']
+            'comment'
+        ]
 
         exporter = self.env.ref('base_jsonify.ir_exp_partner')
         parser = exporter.get_json_parser()
-        self.assertEqual(parser, expected_parser)
+        self.assertListEqual(parser, expected_parser)
 
         # modify an ir.exports_line to put an alias for a field
         self.env.ref('base_jsonify.category_id_name').write({
             'alias': 'category_id:category/name'
         })
-        expected_parser[1] = ('category_id:category', ['name'])
+        expected_parser[4] = ('category_id:category', ['name'])
         parser = exporter.get_json_parser()
         self.assertEqual(parser, expected_parser)
 
     def test_json_export(self):
+        # Enforces TZ to validate the serialization result of a Datetime
+        self.env.user.tz = "Europe/Brussels"
         parser = [
             'lang',
             'comment',
@@ -51,7 +57,9 @@ class TestParser(TransactionCase):
             ]),
             ('country_id:country', ['code', 'name']),
             'active',
-            ('category_id', ['name'])
+            ('category_id', ['name']),
+            'create_date',
+            'date',
         ]
         partner = self.env['res.partner'].create({
             'name': 'Akretion',
@@ -64,7 +72,13 @@ class TestParser(TransactionCase):
                     'country_id': self.env.ref('base.fr').id
                 })
             ],
+            'date': fields.Date.from_string("2019-10-31")
         })
+        self.env.cr.execute(
+            "update res_partner set create_date=%s where id=%s",
+            ("2019-10-31 14:39:49", partner.id),
+        )
+        partner.refresh()
         expected_json = {
             'lang': 'en_US',
             'comment': None,
@@ -88,7 +102,9 @@ class TestParser(TransactionCase):
                 'children': [],
                 'name': 'Sebatien Beau',
                 'email': None
-            }]
+            }],
+            "create_date": "2019-10-31T15:39:49+01:00",
+            "date": "2019-10-31",
         }
         json_partner = partner.jsonify(parser)
 

@@ -25,23 +25,47 @@ msgid "Allow Choose Template"
 msgstr ""
 
 #. module: excel_import_export_demo
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__attachment_ids
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__attachment_ids
+msgid "Attachments"
+msgstr ""
+
+#. module: excel_import_export_demo
+#: model_terms:ir.ui.view,arch_db:excel_import_export_demo.partner_list_wizard
+msgid "Cancel"
+msgstr ""
+
+#. module: excel_import_export_demo
 #: selection:report.sale.order,state:0
 msgid "Choose"
 msgstr ""
 
 #. module: excel_import_export_demo
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__create_uid
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__create_uid
 msgid "Created by"
 msgstr ""
 
 #. module: excel_import_export_demo
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__create_date
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__create_date
 msgid "Created on"
 msgstr ""
 
 #. module: excel_import_export_demo
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__customer
+msgid "Customer"
+msgstr ""
+
+#. module: excel_import_export_demo
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__display_name
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__display_name
 msgid "Display Name"
+msgstr ""
+
+#. module: excel_import_export_demo
+#: model_terms:ir.ui.view,arch_db:excel_import_export_demo.partner_list_wizard
+msgid "Execute"
 msgstr ""
 
 #. module: excel_import_export_demo
@@ -65,6 +89,7 @@ msgid "Get"
 msgstr ""
 
 #. module: excel_import_export_demo
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__id
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__id
 msgid "ID"
 msgstr ""
@@ -75,26 +100,47 @@ msgid "Import Excel"
 msgstr ""
 
 #. module: excel_import_export_demo
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list____last_update
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order____last_update
 msgid "Last Modified on"
 msgstr ""
 
 #. module: excel_import_export_demo
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__write_uid
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__write_uid
 msgid "Last Updated by"
 msgstr ""
 
 #. module: excel_import_export_demo
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__write_date
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__write_date
 msgid "Last Updated on"
 msgstr ""
 
 #. module: excel_import_export_demo
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__partner_ids
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__partner_id
 msgid "Partner"
 msgstr ""
 
 #. module: excel_import_export_demo
+#: model:ir.actions.report,name:excel_import_export_demo.action_report_partner_excel
+msgid "Partner List (.xlsx)"
+msgstr ""
+
+#. module: excel_import_export_demo
+#: model:ir.actions.act_window,name:excel_import_export_demo.action_report_partner_list
+#: model:ir.ui.menu,name:excel_import_export_demo.menu_report_partner_list
+msgid "Partner List Report"
+msgstr ""
+
+#. module: excel_import_export_demo
+#: model:ir.actions.report,name:excel_import_export_demo.action_report_saleorder_excel
+msgid "Quotation / Order (.xlsx)"
+msgstr ""
+
+#. module: excel_import_export_demo
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__results
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__results
 msgid "Results"
 msgstr ""
@@ -117,13 +163,28 @@ msgid "State"
 msgstr ""
 
 #. module: excel_import_export_demo
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__supplier
+msgid "Supplier"
+msgstr ""
+
+#. module: excel_import_export_demo
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__template_id
 msgid "Template"
 msgstr ""
 
 #. module: excel_import_export_demo
+#: model:ir.model.fields,help:excel_import_export_demo.field_report_partner_list__results
+msgid "Use compute fields, so there is nothing store in database"
+msgstr ""
+
+#. module: excel_import_export_demo
 #: model:ir.model.fields,help:excel_import_export_demo.field_report_sale_order__results
 msgid "Use compute fields, so there is nothing stored in database"
+msgstr ""
+
+#. module: excel_import_export_demo
+#: model:ir.model,name:excel_import_export_demo.model_report_partner_list
+msgid "Wizard for report.partner.list"
 msgstr ""
 
 #. module: excel_import_export_demo

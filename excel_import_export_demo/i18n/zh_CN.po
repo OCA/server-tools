@@ -1,0 +1,199 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* excel_import_export_demo
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2019-09-01 04:34+0000\n"
+"Last-Translator: 黎伟杰 <674416404@qq.com>\n"
+"Language-Team: none\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 3.8\n"
+
+#. module: excel_import_export_demo
+#: model:ir.model.fields,help:excel_import_export_demo.field_report_sale_order__state
+msgid ""
+"* Choose: wizard show in user selection mode\n"
+"* Get: wizard show results from user action"
+msgstr ""
+"* 选择：用户选择模式下的向导显示\n"
+"* 获取：向导显示用户操作的结果"
+
+#. module: excel_import_export_demo
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__choose_template
+msgid "Allow Choose Template"
+msgstr "添加表单部分"
+
+#. module: excel_import_export_demo
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__attachment_ids
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__attachment_ids
+msgid "Attachments"
+msgstr ""
+
+#. module: excel_import_export_demo
+#: model_terms:ir.ui.view,arch_db:excel_import_export_demo.partner_list_wizard
+msgid "Cancel"
+msgstr "取消"
+
+#. module: excel_import_export_demo
+#: selection:report.sale.order,state:0
+msgid "Choose"
+msgstr "选择"
+
+#. module: excel_import_export_demo
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__create_uid
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__create_uid
+msgid "Created by"
+msgstr "创建者"
+
+#. module: excel_import_export_demo
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__create_date
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__create_date
+msgid "Created on"
+msgstr "创建时间"
+
+#. module: excel_import_export_demo
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__customer
+msgid "Customer"
+msgstr "客户"
+
+#. module: excel_import_export_demo
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__display_name
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__display_name
+msgid "Display Name"
+msgstr "显示名称"
+
+#. module: excel_import_export_demo
+#: model_terms:ir.ui.view,arch_db:excel_import_export_demo.partner_list_wizard
+msgid "Execute"
+msgstr "执行"
+
+#. module: excel_import_export_demo
+#: model:ir.actions.act_window,name:excel_import_export_demo.action_sale_oder_export_xlsx
+msgid "Export Excel"
+msgstr "导出Excel"
+
+#. module: excel_import_export_demo
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__data
+msgid "File"
+msgstr "文件"
+
+#. module: excel_import_export_demo
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__name
+msgid "File Name"
+msgstr "文件名"
+
+#. module: excel_import_export_demo
+#: selection:report.sale.order,state:0
+msgid "Get"
+msgstr "获取"
+
+#. module: excel_import_export_demo
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__id
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__id
+msgid "ID"
+msgstr "ID"
+
+#. module: excel_import_export_demo
+#: model:ir.actions.act_window,name:excel_import_export_demo.action_sale_oder_import_xlsx
+msgid "Import Excel"
+msgstr "导入Excel"
+
+#. module: excel_import_export_demo
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list____last_update
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order____last_update
+msgid "Last Modified on"
+msgstr "最后修改时间"
+
+#. module: excel_import_export_demo
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__write_uid
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__write_uid
+msgid "Last Updated by"
+msgstr "最后更新者"
+
+#. module: excel_import_export_demo
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__write_date
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__write_date
+msgid "Last Updated on"
+msgstr "最后更新时间"
+
+#. module: excel_import_export_demo
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__partner_ids
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__partner_id
+msgid "Partner"
+msgstr "业务伙伴"
+
+#. module: excel_import_export_demo
+#: model:ir.actions.report,name:excel_import_export_demo.action_report_partner_excel
+msgid "Partner List (.xlsx)"
+msgstr "业务伙伴名单(.xlsx)"
+
+#. module: excel_import_export_demo
+#: model:ir.actions.act_window,name:excel_import_export_demo.action_report_partner_list
+#: model:ir.ui.menu,name:excel_import_export_demo.menu_report_partner_list
+msgid "Partner List Report"
+msgstr "业务伙伴名单报告"
+
+#. module: excel_import_export_demo
+#: model:ir.actions.report,name:excel_import_export_demo.action_report_saleorder_excel
+msgid "Quotation / Order (.xlsx)"
+msgstr "报价单/订单 (.xlsx)"
+
+#. module: excel_import_export_demo
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__results
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__results
+msgid "Results"
+msgstr "结果"
+
+#. module: excel_import_export_demo
+#: model:ir.actions.act_window,name:excel_import_export_demo.action_import_sale_order
+#: model:ir.ui.menu,name:excel_import_export_demo.menu_import_sale_order
+msgid "Sample Import Sale Order"
+msgstr "导入销售订单样本"
+
+#. module: excel_import_export_demo
+#: model:ir.actions.act_window,name:excel_import_export_demo.action_report_sale_order
+#: model:ir.ui.menu,name:excel_import_export_demo.menu_report_sale_order
+msgid "Sample Sales Report"
+msgstr "销售报告样本"
+
+#. module: excel_import_export_demo
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__state
+msgid "State"
+msgstr "状态"
+
+#. module: excel_import_export_demo
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__supplier
+msgid "Supplier"
+msgstr "供应商"
+
+#. module: excel_import_export_demo
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__template_id
+msgid "Template"
+msgstr "模板"
+
+#. module: excel_import_export_demo
+#: model:ir.model.fields,help:excel_import_export_demo.field_report_partner_list__results
+msgid "Use compute fields, so there is nothing store in database"
+msgstr "使用计算字段，因此数据库中没有任何存储"
+
+#. module: excel_import_export_demo
+#: model:ir.model.fields,help:excel_import_export_demo.field_report_sale_order__results
+msgid "Use compute fields, so there is nothing stored in database"
+msgstr "使用计算字段，因此数据库中没有任何内容"
+
+#. module: excel_import_export_demo
+#: model:ir.model,name:excel_import_export_demo.model_report_partner_list
+msgid "Wizard for report.partner.list"
+msgstr "业务伙伴名单报告向导"
+
+#. module: excel_import_export_demo
+#: model:ir.model,name:excel_import_export_demo.model_report_sale_order
+msgid "Wizard for report.sale.order"
+msgstr "销售订单报告向导"

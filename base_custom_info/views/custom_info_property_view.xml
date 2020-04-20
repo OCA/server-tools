@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2016 Jairo Llopis <jairo.llopis@tecnativa.com>
+     Copyright 2017 Pedro M. Baeza <pedro.baeza@tecnativa.com>
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+<odoo>
+
+    <record id="custom_info_property_tree" model="ir.ui.view">
+        <field name="model">custom.info.property</field>
+        <field name="priority" eval="999"/>
+        <field name="arch" type="xml">
+            <tree string="Custom Info Properties">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="field_type"/>
+                <field name="category_id"/>
+                <field name="required"/>
+                <field name="default_value"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="custom_info_property_tree_full" model="ir.ui.view">
+        <field name="model">custom.info.property</field>
+        <field name="inherit_id" ref="custom_info_property_tree"/>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="template_id"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="custom_info_property_form" model="ir.ui.view">
+        <field name="model">custom.info.property</field>
+        <field name="priority" eval="999"/>
+        <field name="arch" type="xml">
+            <form string="Custom Info Template Properties">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="field_type"/>
+                        <field name="category_id"/>
+                        <field name="required"/>
+                        <field name="default_value"/>
+                        <field name="minimum"
+                               attrs="{'invisible': [('field_type', 'not in', ['str', 'int', 'float'])]}"
+                        />
+                        <field name="maximum"
+                               attrs="{'invisible': [('field_type', 'not in', ['str', 'int', 'float'])]}"
+                        />
+                    </group>
+                    <group name="Options" col="1" attrs="{'invisible': [('field_type', '!=', 'id')]}">
+                        <label for="option_ids" string="Select one of the existing options or create a new one clicking on 'Add an item'"/>
+                        <field name="option_ids"
+                               nolabel="1"
+                               context="{'form_view_ref': 'base_custom_info.custom_info_option_form', 'tree_view_ref': 'base_custom_info.custom_info_option_tree'}"
+                        />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="custom_info_property_form_full" model="ir.ui.view">
+        <field name="model">custom.info.property</field>
+        <field name="inherit_id" ref="custom_info_property_form"/>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="template_id"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="custom_info_property_search" model="ir.ui.view">
+        <field name="model">custom.info.property</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="template_id"/>
+                <field name="field_type"/>
+                <field name="category_id"/>
+                <field name="required"/>
+                <field name="default_value"/>
+                <group expand="0" string="Group By">
+                    <filter
+                        string="Template"
+                        name="template"
+                        context="{'group_by': 'template_id'}"/>
+                    <filter
+                        string="Category"
+                        name="category"
+                        context="{'group_by': 'category_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="custom_info_property_action" model="ir.actions.act_window">
+        <field name="name">Properties</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">custom.info.property</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_type">form</field>
+    </record>
+
+</odoo>

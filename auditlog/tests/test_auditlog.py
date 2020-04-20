@@ -80,6 +80,33 @@ class AuditlogCommon(object):
             ('res_id', '=', testgroup4.id),
         ]).ensure_one())
 
+    def test_LogCreation4(self):
+        """Fourth test, create several records at once (with create multi
+        feature starting from Odoo 12) and check that the same number of logs
+        has been generated.
+        """
+
+        self.groups_rule.subscribe()
+
+        auditlog_log = self.env['auditlog.log']
+        groups_vals = [
+            {'name': 'testgroup1'},
+            {'name': 'testgroup3'},
+            {'name': 'testgroup2'},
+        ]
+        groups = self.env['res.groups'].create(groups_vals)
+        # Ensure that the recordset returns is in the same order
+        # than list of vals
+        expected_names = ['testgroup1', 'testgroup3', 'testgroup2']
+        self.assertEqual(groups.mapped('name'), expected_names)
+
+        logs = auditlog_log.search([
+            ('model_id', '=', self.groups_model_id),
+            ('method', '=', 'create'),
+            ('res_id', 'in', groups.ids),
+        ])
+        self.assertEqual(len(logs), len(groups))
+
 
 class TestAuditlogFull(TransactionCase, AuditlogCommon):
 
