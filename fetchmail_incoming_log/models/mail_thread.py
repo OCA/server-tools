@@ -1,5 +1,4 @@
-# Copyright 2017-18 Eficent Business and IT Consulting Services S.L.
-#           (www.eficent.com)
+# Copyright 2017-20 ForgeFlow S.L. (www.forgeflow.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 import email
@@ -7,7 +6,6 @@ import logging
 import xmlrpc.client as xmlrpclib
 
 from odoo import api, models
-from odoo.tools import pycompat
 
 _logger = logging.getLogger(__name__)
 
@@ -25,29 +23,23 @@ class MailThread(models.AbstractModel):
         strip_attachments=False,
         thread_id=None,
     ):
-
+        message_copy = message
         if isinstance(message, xmlrpclib.Binary):
             message = bytes(message.data)
-            # message_from_string parses from a *native string*, except
-            # apparently sometimes message is ISO-8859-1 binary data or some
-            # shit and the straightforward version (pycompat.to_native) won't
-            # work right -> always encode message to bytes then use the
-            # relevant method depending on ~python version
-        if isinstance(message, pycompat.text_type):
+        if isinstance(message, str):
             message = message.encode("utf-8")
-        extract = getattr(email, "message_from_bytes", email.message_from_string)
-        msg_txt = extract(message)
-        msg = self.message_parse(msg_txt)
+        message = email.message_from_bytes(message)
+        msg_dict = self.message_parse(message, save_original=save_original)
         _logger.info(
             "Fetched mail from %s to %s with Message-Id %s",
-            msg.get("from"),
-            msg.get("to"),
-            msg.get("message_id"),
+            msg_dict.get("from"),
+            msg_dict.get("to"),
+            msg_dict.get("message_id"),
         )
 
         return super(MailThread, self).message_process(
             model,
-            message,
+            message_copy,
             custom_values=custom_values,
             save_original=save_original,
             strip_attachments=strip_attachments,
