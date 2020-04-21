@@ -1,28 +1,11 @@
-# -*- encoding: utf-8 -*-
-##############################################################################
-#
-#    OpenERP, Open Source Management Solution
-#    This module copyright (C) 2013 Therp BV (<http://therp.nl>)
-#    All Rights Reserved
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
-
+# -*- coding: utf-8 -*-
+# Copyright 2013-2020 Therp BV - <https://therp.nl>.
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# pylint: disable=invalid-name,missing-docstring,too-many-arguments
 import base64
 import simplejson
 from lxml import etree
+
 from openerp.osv.orm import Model, except_orm
 from openerp.tools.translate import _
 from openerp.osv import fields
@@ -83,19 +66,16 @@ class fetchmail_server(Model):
 
     def handle_folder(self, cr, uid, ids, connection, folder, context=None):
         '''Return ids of objects matched'''
-
-        matched_object_ids = []
-
         for this in self.browse(cr, uid, ids, context=context):
             logger.info('start checking for emails in %s server %s',
                         folder.path, this.name)
-
             match_algorithm = folder.get_algorithm()
-
             if connection.select(folder.path)[0] != 'OK':
                 logger.error(
-                    'Could not open mailbox %s on %s' % (
-                        folder.path, this.server))
+                    'Could not open mailbox %s on %s',
+                    folder.path,
+                    this.server
+                )
                 connection.select()
                 continue
             result, msgids = this.get_msgids(connection)
@@ -104,30 +84,40 @@ class fetchmail_server(Model):
                     'Could not search mailbox %s on %s' % (
                         folder.path, this.server))
                 continue
-
             for msgid in msgids[0].split():
-                matched_object_ids += this.apply_matching(
-                    connection, folder, msgid, match_algorithm)
-
+                # We will accept exceptions for single messages
+                try:
+                    cr.execute('savepoint apply_matching')
+                    rollback_org = cr.rollback
+                    cr.rollback = lambda: None
+                    # OpenERP 6.1 does a rollback on validation errors
+                    this.apply_matching(connection, folder, msgid, match_algorithm)
+                    cr.execute('release savepoint apply_matching')
+                    cr.rollback = rollback_org
+                except Exception:  # pylint: disable=broad-except
+                    cr.rollback = rollback_org
+                    cr.execute('rollback to savepoint apply_matching')
+                    logger.exception(
+                        "Failed to fetch mail %s from %s",
+                        msgid,
+                        this.name
+                    )
             logger.info(
                 'finished checking for emails in %s server %s',
-                folder.path, this.name)
-
-        return matched_object_ids
+                folder.path,
+                this.name
+            )
 
     def get_msgids(self, cr, uid, ids, connection, context=None):
         '''Return imap ids of messages to process'''
         return connection.search(None, 'UNDELETED')
 
-    def apply_matching(self, cr, uid, ids, connection, folder, msgid,
-                       match_algorithm, context=None):
-        '''Return ids of objects matched'''
-
-        matched_object_ids = []
-
+    def apply_matching(
+            self, cr, uid, ids,
+            connection, folder, msgid, match_algorithm, context=None):
+        """Match retrieved mail with one or only record, else flag message."""
         for this in self.browse(cr, uid, ids, context=context):
             result, msgdata = connection.fetch(msgid, '(RFC822)')
-
             if result != 'OK':
                 logger.error(
                     'Could not fetch %s in %s on %s',
@@ -136,40 +126,22 @@ class fetchmail_server(Model):
 
             mail_message = self.pool.get('mail.message').parse_message(
                 msgdata[0][1], this.original)
-
             if self.pool.get('mail.message').search(
                     cr, uid,
                     [('message_id', '=', mail_message['message-id'])]):
+                # Ignore mails that have been handled already
                 continue
 
             found_ids = match_algorithm.search_matches(
                 cr, uid, folder,
                 mail_message, msgdata[0][1])
-
-            if found_ids and (len(found_ids) == 1 or
-                              folder.match_first):
-                try:
-                    cr.execute('savepoint apply_matching')
-                    # OpenERP 6.1 does a rollback on validation errors
-                    rollback_org = cr.rollback
-                    cr.rollback = lambda: None
-                    match_algorithm.handle_match(
-                        cr, uid, connection,
-                        found_ids[0], folder, mail_message,
-                        msgdata[0][1], msgid, context)
-                    cr.rollback = rollback_org
-                    cr.execute('release savepoint apply_matching')
-                    matched_object_ids += found_ids[:1]
-                except Exception:
-                    logger.exception(
-                        "Failed to fetch mail %s from %s",
-                        msgid, this.name)
-                    cr.rollback = rollback_org
-                    cr.execute('rollback to savepoint apply_matching')
+            if found_ids and (len(found_ids) == 1 or folder.match_first):
+                match_algorithm.handle_match(
+                    cr, uid, connection,
+                    found_ids[0], folder, mail_message,
+                    msgdata[0][1], msgid, context)
             elif folder.flag_nonmatching:
                 connection.store(msgid, '+FLAGS', '\\FLAGGED')
-
-        return matched_object_ids
 
     def attach_mail(
             self, cr, uid, ids, connection, object_id, folder,
