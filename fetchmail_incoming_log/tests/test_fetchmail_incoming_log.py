@@ -1,18 +1,21 @@
-# Copyright 2017-18 Eficent Business and IT Consulting Services S.L.
-#           (www.eficent.com)
+# Copyright 2017-20 ForgeFlow S.L. (www.forgeflow.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+
+from odoo.tests.common import tagged
 
 from odoo.addons.test_mail.data.test_mail_data import MAIL_TEMPLATE
 from odoo.addons.test_mail.tests.test_mail_gateway import TestMailgateway
 
 
+@tagged("mail_gateway")
 class TestFetchmailIncomingLog(TestMailgateway):
-    def setUp(self):
-        super(TestFetchmailIncomingLog, self).setUp()
+    @classmethod
+    def setUpClass(cls):
+        super(TestFetchmailIncomingLog, cls).setUpClass()
 
-        self.fetchmail_server = self.env["fetchmail.server"].create(
-            {"name": "Test Fetchmail Server", "type": "imap",}
+        cls.fetchmail_server = cls.env["fetchmail.server"].create(
+            {"name": "Test Fetchmail Server", "server_type": "imap"}
         )
 
     def test_message_process(self):
@@ -29,5 +32,5 @@ class TestFetchmailIncomingLog(TestMailgateway):
                 msg_id=msg_id,
             )
             self.env["mail.thread"].with_context(
-                {"fetchmail_server_id": self.fetchmail_server.id,}
+                {"fetchmail_server_id": self.fetchmail_server.id}
             ).message_process(None, mail)
