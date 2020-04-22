@@ -70,4 +70,12 @@
         <field name="action" ref="action_purge_actions" />
         <field name="parent_id" ref="menu_database_cleanup"/>
     </record>
+
+    <record model="ir.ui.menu" id="menu_purge_views">
+        <field name="name">Purge obsolete views</field>
+        <field name="sequence" eval="100" />
+        <field name="action" ref="action_purge_views" />
+        <field name="parent_id" ref="menu_database_cleanup"/>
+    </record>
+
 </odoo>
