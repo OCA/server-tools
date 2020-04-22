@@ -10,8 +10,8 @@ DNS_SCRIPT_DEFAULT = """# Write your script here
 """
 
 
-class BaseConfigSettings(models.TransientModel):
-    _inherit = 'base.config.settings'
+class ResConfigSettings(models.TransientModel):
+    _inherit = 'res.config.settings'
 
     letsencrypt_altnames = fields.Text(
         string="Domain names",
@@ -69,7 +69,7 @@ class BaseConfigSettings(models.TransientModel):
 
     @api.model
     def default_get(self, fields_list):
-        res = super(BaseConfigSettings, self).default_get(fields_list)
+        res = super().default_get(fields_list)
         get_param = self.env['ir.config_parameter'].get_param
         res.update(
             {
@@ -97,8 +97,9 @@ class BaseConfigSettings(models.TransientModel):
         return res
 
     @api.multi
-    def set_dns_provider(self):
-        self.ensure_one()
+    def set_values(self):
+        super().set_values()
+
         self.letsencrypt_check_dns_required()
 
         if self.letsencrypt_dns_provider == 'shell':
