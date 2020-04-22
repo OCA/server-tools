@@ -16,7 +16,7 @@
     "data": [
         "data/ir_config_parameter.xml",
         "data/ir_cron.xml",
-        "views/base_config_settings.xml",
+        "views/res_config_settings.xml",
     ],
     "demo": [
         "demo/ir_cron.xml",
