@@ -16,9 +16,6 @@
             forcecreate="True">
             <field name="key">letsencrypt.backoff</field>
             <field name="value">3</field>
-            <field
-                name="group_ids"
-                eval="[(6, False, [ref('base.group_system')])]"/>
         </record>
 
     </data>

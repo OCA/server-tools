@@ -6,6 +6,10 @@ from odoo import api, SUPERUSER_ID
 def migrate_altnames(env):
     config = env["ir.config_parameter"]
     existing = config.search([("key", "=like", "letsencrypt.altname.%")])
+    if not existing:
+        # We may be migrating from 10.0.2.0.0, in which case
+        # letsencrypt.altnames already exists and shouldn't be clobbered.
+        return
     new_domains = "\n".join(existing.mapped("value"))
     config.set_param("letsencrypt.altnames", new_domains)
     existing.unlink()
@@ -18,14 +22,18 @@ def migrate_cron(env):
     jobs = (
         env["ir.cron"]
         .with_context(active_test=False)
-        .search([("model", "=", "letsencrypt"), ("function", "=", "cron")])
+        .search(
+            [
+                ("ir_actions_server_id.model_id.model", "=", "letsencrypt"),
+                ("ir_actions_server_id.code", "=", "model.cron()"),
+            ]
+        )
     )
     if not jobs:
         # ir.cron._try_lock doesn't handle empty recordsets well
         return
-    jobs.write(
-        {"function": "_cron", "interval_type": "days", "interval_number": "1"}
-    )
+    jobs.write({"interval_type": "days", "interval_number": "1"})
+    jobs.mapped("ir_actions_server_id").write({"code": "model._cron()"})
 
 
 def migrate(cr, version):
