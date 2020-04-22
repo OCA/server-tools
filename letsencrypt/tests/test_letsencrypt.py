@@ -1,8 +1,6 @@
 # Copyright 2018 Therp BV <http://therp.nl>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from __future__ import unicode_literals  # cryptography is picky
-
 import os
 import shutil
 
@@ -28,21 +26,21 @@ def _poll(order, deadline):
 
 class TestLetsencrypt(SingleTransactionCase):
     def setUp(self):
-        super(TestLetsencrypt, self).setUp()
+        super().setUp()
         self.env['ir.config_parameter'].set_param(
             'web.base.url', 'http://www.example.com'
         )
-        self.env['base.config.settings'].create(
+        self.env['res.config.settings'].create(
             {
                 'letsencrypt_dns_provider': 'shell',
                 'letsencrypt_dns_shell_script': 'touch /tmp/.letsencrypt_test',
                 'letsencrypt_altnames': '*.example.com',
                 'letsencrypt_reload_command': 'true',  # i.e. /bin/true
             }
-        ).set_dns_provider()
+        ).set_values()
 
     def test_config_settings(self):
-        setting_vals = self.env['base.config.settings'].default_get([])
+        setting_vals = self.env['res.config.settings'].default_get([])
         self.assertEqual(setting_vals['letsencrypt_dns_provider'], 'shell')
         self.assertEqual(
             setting_vals['letsencrypt_dns_shell_script'],
@@ -57,9 +55,9 @@ class TestLetsencrypt(SingleTransactionCase):
     @mock.patch('acme.client.ClientV2.poll_and_finalize', side_effect=_poll)
     def test_http_challenge(self, poll, answer_challenge):
         letsencrypt = self.env['letsencrypt']
-        self.env['base.config.settings'].create(
+        self.env['res.config.settings'].create(
             {'letsencrypt_altnames': 'test.example.com'}
-        ).set_dns_provider()
+        ).set_values()
         letsencrypt._cron()
         poll.assert_called()
         self.assertTrue(os.listdir(_get_challenge_dir()))
@@ -98,22 +96,22 @@ class TestLetsencrypt(SingleTransactionCase):
         )
 
     def test_dns_challenge_error_on_missing_provider(self):
-        self.env['base.config.settings'].create(
+        self.env['res.config.settings'].create(
             {
                 'letsencrypt_altnames': '*.example.com',
                 'letsencrypt_dns_provider': False,
             }
-        ).set_dns_provider()
+        ).set_values()
         with self.assertRaises(UserError):
             self.env['letsencrypt']._cron()
 
     def test_prefer_dns_setting(self):
-        self.env['base.config.settings'].create(
+        self.env['res.config.settings'].create(
             {
                 'letsencrypt_altnames': 'example.com',
                 'letsencrypt_prefer_dns': True,
             }
-        ).set_dns_provider()
+        ).set_values()
         self.env['ir.config_parameter'].set_param(
             'web.base.url', 'http://example.com'
         )
@@ -327,7 +325,7 @@ class TestLetsencrypt(SingleTransactionCase):
             file_.write(cert.public_bytes(serialization.Encoding.PEM))
 
     def tearDown(self):
-        super(TestLetsencrypt, self).tearDown()
+        super().tearDown()
         shutil.rmtree(_get_data_dir(), ignore_errors=True)
         if path.isfile('/tmp/.letsencrypt_test'):
             os.remove('/tmp/.letsencrypt_test')
