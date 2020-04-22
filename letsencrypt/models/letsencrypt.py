@@ -10,7 +10,7 @@ import os
 import re
 import subprocess
 import time
-import urlparse
+import urllib.parse
 
 from datetime import datetime, timedelta
 
@@ -197,7 +197,7 @@ class Letsencrypt(models.AbstractModel):
     def _cron(self):
         ir_config_parameter = self.env['ir.config_parameter']
         base_url = ir_config_parameter.get_param('web.base.url', 'localhost')
-        domain = urlparse.urlparse(base_url).hostname
+        domain = urllib.parse.urlparse(base_url).hostname
         cert_file = os.path.join(_get_data_dir(), '%s.crt' % domain)
 
         domains = self._cascade_domains([domain] + self._get_altnames())
@@ -403,7 +403,7 @@ class Letsencrypt(models.AbstractModel):
         Respond to the HTTP challenge by writing the file to serve.
         """
         token = self._base64_encode(challenge.token)
-        challenge_file = os.path.join(_get_challenge_dir(), token.decode())
+        challenge_file = os.path.join(_get_challenge_dir(), token)
         with open(challenge_file, 'w') as file_:
             file_.write(challenge.validation(account_key))
 
