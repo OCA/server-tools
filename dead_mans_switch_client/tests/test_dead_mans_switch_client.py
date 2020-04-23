@@ -23,7 +23,6 @@ class TestDeadMansSwitchClient(TransactionCase):
             'dead_mans_switch_client.url', 'fake_url')
         with mock.patch("requests.post") as post:
             self.env['dead.mans.switch.client'].alive()
-        post.assert_called()
         args, kwargs = post.call_args
 
         self.assertEqual(args, ("fake_url",))
