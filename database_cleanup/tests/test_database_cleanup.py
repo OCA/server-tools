@@ -73,6 +73,11 @@ class TestDatabaseCleanup(TransactionCase):
             'name': 'Database cleanup test model',
             'model': 'x_database.cleanup.test.model',
         })
+        # and a cronjob for it
+        cronjob = self.env['ir.cron'].create({
+            'name': 'testcronjob',
+            'model_id': self.models.id,
+        })
         self.env.cr.execute(
             'insert into ir_attachment (name, res_model, res_id, type) values '
             "('test attachment', 'database.cleanup.test.model', 42, 'binary')")
@@ -83,6 +88,7 @@ class TestDatabaseCleanup(TransactionCase):
         self.assertFalse(self.env['ir.model'].search([
             ('model', '=', 'x_database.cleanup.test.model'),
         ]))
+        self.assertFalse(cronjob.exists())
 
         # create an orphaned table
         self.env.cr.execute('create table database_cleanup_test (test int)')
