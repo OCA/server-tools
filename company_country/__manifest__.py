@@ -3,10 +3,10 @@
 {
     "name": "Company Country",
     "summary": "Set country to main company",
-    "version": "13.0.1.0.0",
+    "version": "13.0.1.0.2",
     "category": "base",
     "website": "https://github.com/OCA/server-tools/tree/13.0/company_country",
-    "maintainers": ["moylop260"],
+    "maintainers": ["moylop260", "luisg123v"],
     "author": "Vauxoo, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "depends": [],
