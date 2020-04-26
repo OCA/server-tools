@@ -145,8 +145,8 @@ class IrModuleModule(models.Model):
                 exclude_files)
 
             for file_path, file_ext in file_list:
-                file_res = pygount.source_analysis(
-                    file_path, '',
+                file_res = pygount.SourceAnalysis.from_file(
+                    file_path, "",
                     encoding=self._get_module_encoding(file_ext))
                 for k, v in analysed_datas.get(file_ext).items():
                     v['value'] += getattr(file_res, k)

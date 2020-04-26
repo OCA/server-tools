@@ -3,5 +3,4 @@ openpyxl
 xlrd
 xlwt
 pysftp
-# version 1.2.0 deprecates the API module_analysis uses
-pygount<1.2.0
+pygount>1.2.1
