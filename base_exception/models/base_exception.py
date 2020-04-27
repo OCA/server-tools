@@ -231,7 +231,6 @@ class BaseException(models.AbstractModel):
             else:
                 rec.exceptions_summary = False
 
-
     def _popup_exceptions(self):
         action = self._get_popup_action().read()[0]
         action.update(
@@ -248,7 +247,6 @@ class BaseException(models.AbstractModel):
     @api.model
     def _get_popup_action(self):
         return self.env.ref("base_exception.action_exception_rule_confirm")
-
 
     def _check_exception(self):
         """
