@@ -31,7 +31,6 @@ class ExceptionRuleConfirm(models.AbstractModel):
         res.update({"related_model_id": active_id})
         return res
 
-    @api.multi
     def action_confirm(self):
         self.ensure_one()
         return {"type": "ir.actions.act_window_close"}

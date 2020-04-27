@@ -36,7 +36,6 @@
         <field name="name">Outstanding exceptions to manage</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">exception.rule.confirm</field>
-        <field name="view_type">form</field>
         <field name="view_mode">form</field>
         <field name="view_id" ref="view_exception_rule_confirm" />
         <field name="target">new</field>

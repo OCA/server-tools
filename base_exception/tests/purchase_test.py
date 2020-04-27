@@ -32,6 +32,8 @@ class PurchaseTest(models.Model):
         for record in cls:
             for line in record.line_ids:
                 record.amount_total += line.amount * line.qty
+            if not record.line_ids:
+                record.amount_total = 0
 
     @api.constrains("ignore_exception", "line_ids", "state")
     def test_purchase_check_exception(cls):
@@ -39,26 +41,21 @@ class PurchaseTest(models.Model):
         if orders:
             orders._check_exception()
 
-    @api.multi
     def button_approve(cls, force=False):
         cls.write({"state": "to approve"})
         return {}
 
-    @api.multi
     def button_draft(cls):
         cls.write({"state": "draft"})
         return {}
 
-    @api.multi
     def button_confirm(cls):
         cls.write({"state": "purchase"})
         return True
 
-    @api.multi
     def button_cancel(cls):
         cls.write({"state": "cancel"})
 
-    @api.multi
     def _reverse_field(self):
         return "test_purchase_ids"
 
