@@ -28,33 +28,33 @@ class PurchaseTest(models.Model):
     amount_total = fields.Float(compute="_compute_amount_total", store=True)
 
     @api.depends("line_ids")
-    def _compute_amount_total(cls):
-        for record in cls:
+    def _compute_amount_total(self):
+        for record in self:
             for line in record.line_ids:
                 record.amount_total += line.amount * line.qty
             if not record.line_ids:
                 record.amount_total = 0
 
     @api.constrains("ignore_exception", "line_ids", "state")
-    def test_purchase_check_exception(cls):
-        orders = cls.filtered(lambda s: s.state == "purchase")
+    def test_purchase_check_exception(self):
+        orders = self.filtered(lambda s: s.state == "purchase")
         if orders:
             orders._check_exception()
 
-    def button_approve(cls, force=False):
-        cls.write({"state": "to approve"})
+    def button_approve(self, force=False):
+        self.write({"state": "to approve"})
         return {}
 
-    def button_draft(cls):
-        cls.write({"state": "draft"})
+    def button_draft(self):
+        self.write({"state": "draft"})
         return {}
 
-    def button_confirm(cls):
-        cls.write({"state": "purchase"})
+    def button_confirm(self):
+        self.write({"state": "purchase"})
         return True
 
-    def button_cancel(cls):
-        cls.write({"state": "cancel"})
+    def button_cancel(self):
+        self.write({"state": "cancel"})
 
     def _reverse_field(self):
         return "test_purchase_ids"
