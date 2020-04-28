@@ -89,6 +89,11 @@ class TestDatabaseCleanup(TransactionCase):
                 "model": "x_database.cleanup.test.model",
             }
         )
+        # and a cronjob for it
+        cronjob = self.env['ir.cron'].create({
+            'name': 'testcronjob',
+            'model_id': self.models.id,
+        })
         self.env.cr.execute(
             "insert into ir_attachment (name, res_model, res_id, type) values "
             "('test attachment', 'database.cleanup.test.model', 42, 'binary')"
@@ -102,6 +107,7 @@ class TestDatabaseCleanup(TransactionCase):
                 [("model", "=", "x_database.cleanup.test.model")]
             )
         )
+        self.assertFalse(cronjob.exists())
 
         # create a nonexistent module
         self.module = self.env["ir.module.module"].create(
