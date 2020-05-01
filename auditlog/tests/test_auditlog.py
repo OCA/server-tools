@@ -92,12 +92,14 @@ class AuditlogCommon(object):
         groups_vals = [
             {'name': 'testgroup1'},
             {'name': 'testgroup3'},
-            {'name': 'testgroup2'},
+            {'name': 'testgroup2', 'users': self.env['res.users']},
+            {'name': 'testgroup4', 'users': self.env.user},
         ]
         groups = self.env['res.groups'].create(groups_vals)
         # Ensure that the recordset returns is in the same order
         # than list of vals
-        expected_names = ['testgroup1', 'testgroup3', 'testgroup2']
+        expected_names = [
+            'testgroup1', 'testgroup3', 'testgroup2', 'testgroup4']
         self.assertEqual(groups.mapped('name'), expected_names)
 
         logs = auditlog_log.search([

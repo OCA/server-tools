@@ -14,6 +14,13 @@ FIELDS_BLACKLIST = [
 EMPTY_DICT = {}
 
 
+def model__deepcopy__(self, memo={}):
+    return self.browse(self.ids)
+
+
+models.Model.__deepcopy__ = model__deepcopy__
+
+
 class DictDiffer(object):
     """Calculate the difference between two dictionaries as:
     (1) items added
