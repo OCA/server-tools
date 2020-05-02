@@ -14,7 +14,9 @@ FIELDS_BLACKLIST = [
 EMPTY_DICT = {}
 
 
-def model__deepcopy__(self, memo={}):
+def model__deepcopy__(self, memo=None):
+    if memo is None:
+        memo = {}
     return self.browse(self.ids)
 
 
