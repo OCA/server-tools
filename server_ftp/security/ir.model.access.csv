@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_server_ftp,server.ftp,model_server_ftp,base.group_system,1,1,1,1
+access_server_ftp_folder,server.ftp.folder,model_server_ftp_folder,base.group_system,1,1,1,1

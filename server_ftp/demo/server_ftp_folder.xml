@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <!--- FTP folders-->
+    <record id="server_ftp_push_folder_ftp" model="server.ftp.folder">
+        <field name="name">Push folder</field>
+        <field name="path">/</field>
+        <field name="server_id" ref="server_ftp_ftp_server" />
+    </record>
+    <record id="server_ftp_pull_folder_ftp" model="server.ftp.folder">
+        <field name="name">Pull folder</field>
+        <field name="path">/</field>
+        <field name="server_id" ref="server_ftp_ftp_server" />
+    </record>
+</odoo>

@@ -1,0 +1,127 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="view_server_ftp_tree" model="ir.ui.view">
+        <field name="name">server.ftp.list</field>
+        <field name="model">server.ftp</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="server_type" />
+                <field name="host" />
+                <field name="port" />
+                <field name="user" />
+                <field name="password" password="True" />
+                <field name="state" />
+                <button
+                    name="action_test_connection"
+                    type="object"
+                    string="Test connection"
+                    class="oe_highlight"
+                />
+            </tree>
+        </field>
+    </record>
+    <record id="view_server_ftp_form" model="ir.ui.view">
+        <field name="name">server.ftp.form</field>
+        <field name="model">server.ftp</field>
+        <field name="arch" type="xml">
+            <form string="Server">
+                <header>
+                    <button
+                        name="action_test_connection"
+                        type="object"
+                        string="Test connection"
+                        class="oe_highlight"
+                    />
+                    <field name="state" widget="statusbar" />
+                </header>
+                <sheet>
+                    <group col="4">
+                        <field name="name" />
+                        <field name="server_type" />
+                        <field name="host" />
+                        <field name="port" />
+                        <field name="user" />
+                        <field name="password" password="True" />
+                    </group>
+                    <notebook>
+                        <page string="Folders">
+                            <field
+                                name="folder_ids"
+                                context="{'default_server_id': id}"
+                            >
+                                <tree editable="top" create="false" delete="false">
+                                    <field name="name" />
+                                    <field name="path" />
+                                    <field name="server_id" string="Server" />
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Security">
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="view_ftp_server_search" model="ir.ui.view">
+        <field name="name">ftp.server.search</field>
+        <field name="model">server.ftp</field>
+        <field name="arch" type="xml">
+            <search string="Search FTP Servers">
+                <field name="name" string="Server Name" />
+                <filter
+                    string="FTP"
+                    name="ftp"
+                    domain="[('server_type', '=', 'ftp')]"
+                    help="Server type FTP."
+                />
+                <filter
+                    string="SFTP"
+                    name="sftp"
+                    domain="[('server_type', '=', 'sftp')]"
+                    help="Server type SFTP."
+                />
+                <filter
+                    string="FtpLs"
+                    name="ftpls"
+                    domain="[('server_type', '=', 'ftpls')]"
+                    help="Server type FtpLs."
+                />
+                <separator />
+                <filter
+                    string="Confirmed"
+                    name="confirmed"
+                    domain="[('state', '=', 'done')]"
+                />
+                <filter
+                    string="Unconfirmed"
+                    name="unconfirmed"
+                    domain="[('state', '=', 'draft')]"
+                />
+            </search>
+        </field>
+    </record>
+    <record id="action_ftp_ftp_server_tree" model="ir.actions.act_window">
+        <field name="name">Servers</field>
+        <field name="res_model">server.ftp</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_server_ftp_tree" />
+        <field name="search_view_id" ref="view_ftp_server_search" />
+        <field name="context">{'search_default_unconfirmed': 1}</field>
+    </record>
+    <menuitem
+        id="menu_ftp_server_tree"
+        parent="base.menu_custom"
+        name="FTP"
+        sequence="0"
+        groups="base.group_system"
+    />
+    <menuitem
+        id="menu_action_ftp_server_tree"
+        parent="menu_ftp_server_tree"
+        action="action_ftp_ftp_server_tree"
+        name="Servers"
+        sequence="0"
+    />
+</odoo>

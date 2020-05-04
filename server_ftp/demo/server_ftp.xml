@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="server_ftp_ftp_server" model="server.ftp">
+        <field name="name">FTP</field>
+        <field name="server_type">FTP</field>
+        <field name="host">ftp.example.com</field>
+        <field name="user">user</field>
+        <field name="password">password</field>
+    </record>
+</odoo>
