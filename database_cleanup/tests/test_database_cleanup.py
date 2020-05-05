@@ -90,10 +90,9 @@ class TestDatabaseCleanup(TransactionCase):
             }
         )
         # and a cronjob for it
-        cronjob = self.env['ir.cron'].create({
-            'name': 'testcronjob',
-            'model_id': self.models.id,
-        })
+        cronjob = self.env["ir.cron"].create(
+            {"name": "testcronjob", "model_id": self.models.id}
+        )
         self.env.cr.execute(
             "insert into ir_attachment (name, res_model, res_id, type) values "
             "('test attachment', 'database.cleanup.test.model', 42, 'binary')"

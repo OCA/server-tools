@@ -79,11 +79,11 @@ class CleanupPurgeLineModel(models.TransientModel):
                 continue
             except AttributeError:
                 continue
-            cronjobs = self.env['ir.cron'].with_context(
-                active_test=False
-            ).search([
-                ('model_id.model', '=', line.name),
-            ])
+            cronjobs = (
+                self.env["ir.cron"]
+                .with_context(active_test=False)
+                .search([("model_id.model", "=", line.name)])
+            )
             if cronjobs:
                 cronjobs.unlink()
             relations = (

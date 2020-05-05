@@ -46,8 +46,7 @@ class CleanupPurgeWizardMenu(models.TransientModel):
         ):
             if menu.action.type != "ir.actions.act_window":
                 continue
-            if (menu.action.res_model and menu.action.res_model not in self.env
-            ):
+            if menu.action.res_model and menu.action.res_model not in self.env:
                 res.append((0, 0, {"name": menu.complete_name, "menu_id": menu.id}))
         if not res:
             raise UserError(_("No dangling menu entries found"))
