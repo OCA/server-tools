@@ -311,7 +311,7 @@ msgid "No orphaned data entries found"
 msgstr "Yetim veri girişi bulunamadı"
 
 #. module: database_cleanup
-#: code:addons/database_cleanup/models/purge_models.py:113
+#: code:addons/database_cleanup/models/purge_models.py:120
 #, python-format
 msgid "No orphaned models found"
 msgstr "Yetim model bulunamadı"
