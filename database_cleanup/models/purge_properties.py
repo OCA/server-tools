@@ -12,7 +12,7 @@ REASON_UNKNOWN_MODEL = "4"
 class CleanupPurgeLineProperty(models.TransientModel):
     _inherit = "cleanup.purge.line"
     _name = "cleanup.purge.line.property"
-    _description = "Purge properties"
+    _description = "Cleanup Purge Line Property"
 
     wizard_id = fields.Many2one(
         "cleanup.purge.wizard.property", "Purge Wizard", readonly=True

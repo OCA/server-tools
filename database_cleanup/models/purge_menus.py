@@ -8,6 +8,7 @@ from odoo.exceptions import UserError
 class CleanupPurgeLineMenu(models.TransientModel):
     _inherit = "cleanup.purge.line"
     _name = "cleanup.purge.line.menu"
+    _description = "Cleanup Purge Line Menu"
 
     wizard_id = fields.Many2one(
         "cleanup.purge.wizard.menu", "Purge Wizard", readonly=True

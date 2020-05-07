@@ -10,7 +10,7 @@ from ..identifier_adapter import IdentifierAdapter
 class CleanupPurgeLineTable(models.TransientModel):
     _inherit = "cleanup.purge.line"
     _name = "cleanup.purge.line.table"
-    _description = "Purge tables wizard lines"
+    _description = "Cleanup Purge Line Table"
 
     wizard_id = fields.Many2one(
         "cleanup.purge.wizard.table", "Purge Wizard", readonly=True

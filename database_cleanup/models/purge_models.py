@@ -34,7 +34,7 @@ class IrModelFields(models.Model):
 class CleanupPurgeLineModel(models.TransientModel):
     _inherit = "cleanup.purge.line"
     _name = "cleanup.purge.line.model"
-    _description = "Purge models"
+    _description = "Cleanup Purge Line Model"
 
     wizard_id = fields.Many2one(
         "cleanup.purge.wizard.model", "Purge Wizard", readonly=True

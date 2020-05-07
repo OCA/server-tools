@@ -9,6 +9,7 @@ from ..identifier_adapter import IdentifierAdapter
 class CleanupPurgeLineData(models.TransientModel):
     _inherit = "cleanup.purge.line"
     _name = "cleanup.purge.line.data"
+    _description = "Cleanup Purge Line Data"
 
     data_id = fields.Many2one("ir.model.data", "Data entry")
     wizard_id = fields.Many2one(
