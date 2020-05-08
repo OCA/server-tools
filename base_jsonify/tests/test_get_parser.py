@@ -2,14 +2,40 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import fields
-from odoo.tests.common import TransactionCase
+from odoo.tests.common import SavepointCase
 
 
 def jsonify_custom(self, field_name):
     return "yeah!"
 
 
-class TestParser(TransactionCase):
+class TestParser(SavepointCase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        # disable tracking test suite wise
+        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
+        cls.env.user.tz = "Europe/Brussels"
+        cls.partner = cls.env["res.partner"].create(
+            {
+                "name": "Akretion",
+                "country_id": cls.env.ref("base.fr").id,
+                "lang": "en_US",  # default
+                "category_id": [(0, 0, {"name": "Inovator"})],
+                "child_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "name": "Sebatien Beau",
+                            "country_id": cls.env.ref("base.fr").id,
+                        },
+                    )
+                ],
+                "date": fields.Date.from_string("2019-10-31"),
+            }
+        )
+
     def test_getting_parser(self):
         expected_parser = [
             "name",
@@ -46,7 +72,6 @@ class TestParser(TransactionCase):
 
     def test_json_export(self):
         # Enforces TZ to validate the serialization result of a Datetime
-        self.env.user.tz = "Europe/Brussels"
         parser = [
             "lang",
             "comment",
@@ -69,29 +94,10 @@ class TestParser(TransactionCase):
             "create_date",
             "date",
         ]
-        partner = self.env["res.partner"].create(
-            {
-                "name": "Akretion",
-                "country_id": self.env.ref("base.fr").id,
-                "lang": "en_US",  # default
-                "category_id": [(0, 0, {"name": "Inovator"})],
-                "child_ids": [
-                    (
-                        0,
-                        0,
-                        {
-                            "name": "Sebatien Beau",
-                            "country_id": self.env.ref("base.fr").id,
-                        },
-                    )
-                ],
-                "date": fields.Date.from_string("2019-10-31"),
-            }
-        )
         # put our own create date to ease tests
         self.env.cr.execute(
             "update res_partner set create_date=%s where id=%s",
-            ("2019-10-31 14:39:49", partner.id),
+            ("2019-10-31 14:39:49", self.partner.id),
         )
         expected_json = {
             "lang": "en_US",
@@ -104,7 +110,7 @@ class TestParser(TransactionCase):
             "category_id": [{"name": "Inovator"}],
             "children": [
                 {
-                    "id": partner.child_ids.id,
+                    "id": self.partner.child_ids.id,
                     "country": {"code": "FR", "name": "France"},
                     "children": [],
                     "name": "Sebatien Beau",
@@ -114,42 +120,22 @@ class TestParser(TransactionCase):
             "create_date": "2019-10-31T15:39:49+01:00",
             "date": "2019-10-31",
         }
-        json_partner = partner.jsonify(parser)
+        json_partner = self.partner.jsonify(parser)
 
         self.assertDictEqual(json_partner[0], expected_json)
 
         # Check that only boolean fields have boolean values into json
         # By default if a field is not set into Odoo, the value is always False
         # This value is not the expected one into the json
-        partner.write({"child_ids": [(6, 0, [])], "active": False, "lang": False})
-        json_partner = partner.jsonify(parser)
+        self.partner.write({"child_ids": [(6, 0, [])], "active": False, "lang": False})
+        json_partner = self.partner.jsonify(parser)
         expected_json["active"] = False
         expected_json["lang"] = None
         expected_json["children"] = []
         self.assertDictEqual(json_partner[0], expected_json)
 
     def test_json_export_callable_parser(self):
-        # Enforces TZ to validate the serialization result of a Datetime
-        partner = self.env["res.partner"].create(
-            {
-                "name": "Akretion",
-                "country_id": self.env.ref("base.fr").id,
-                "lang": "en_US",  # default
-                "category_id": [(0, 0, {"name": "Inovator"})],
-                "child_ids": [
-                    (
-                        0,
-                        0,
-                        {
-                            "name": "Sebatien Beau",
-                            "country_id": self.env.ref("base.fr").id,
-                        },
-                    )
-                ],
-                "date": fields.Date.from_string("2019-10-31"),
-            }
-        )
-        partner.__class__.jsonify_custom = jsonify_custom
+        self.partner.__class__.jsonify_custom = jsonify_custom
         parser = [
             # callable subparser
             ("name", lambda rec, fname: rec[fname] + " rocks!"),
@@ -159,6 +145,6 @@ class TestParser(TransactionCase):
             "name": "Akretion rocks!",
             "custom": "yeah!",
         }
-        json_partner = partner.jsonify(parser)
+        json_partner = self.partner.jsonify(parser)
         self.assertDictEqual(json_partner[0], expected_json)
-        del partner.__class__.jsonify_custom
+        del self.partner.__class__.jsonify_custom
