@@ -3,12 +3,12 @@
     <!--- FTP folders-->
     <record id="server_ftp_push_folder_ftp" model="server.ftp.folder">
         <field name="name">Push folder</field>
-        <field name="path">/</field>
+        <field name="path">/pull_folder</field>
         <field name="server_id" ref="server_ftp_ftp_server" />
     </record>
     <record id="server_ftp_pull_folder_ftp" model="server.ftp.folder">
         <field name="name">Pull folder</field>
-        <field name="path">/</field>
+        <field name="path">/push_folder</field>
         <field name="server_id" ref="server_ftp_ftp_server" />
     </record>
 </odoo>

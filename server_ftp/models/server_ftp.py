@@ -48,6 +48,18 @@ class ServerFTP(models.Model):
         except Exception as e:
             raise exceptions.Warning(str(e))
         else:
+            # Check if all folders are accessible
+            not_accessible_folders = []
+            for folder in self.folder_ids:
+                try:
+                    server.cd(folder.path)
+                except Exception:
+                    not_accessible_folders.append(
+                        "Folder %s is not accessible" % folder.name
+                    )
+                    continue
+            if not_accessible_folders:
+                raise exceptions.Warning("\n".join(not_accessible_folders))
             server.close()
             self.state = "done"
 
