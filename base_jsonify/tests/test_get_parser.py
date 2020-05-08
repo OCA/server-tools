@@ -5,6 +5,10 @@ from odoo import fields
 from odoo.tests.common import TransactionCase
 
 
+def jsonify_custom(self, field_name):
+    return "yeah!"
+
+
 class TestParser(TransactionCase):
     def test_getting_parser(self):
         expected_parser = [
@@ -114,10 +118,6 @@ class TestParser(TransactionCase):
 
         self.assertDictEqual(json_partner[0], expected_json)
 
-        json_partner = partner.jsonify(parser)
-
-        self.assertDictEqual(json_partner[0], expected_json)
-
         # Check that only boolean fields have boolean values into json
         # By default if a field is not set into Odoo, the value is always False
         # This value is not the expected one into the json
@@ -127,3 +127,38 @@ class TestParser(TransactionCase):
         expected_json["lang"] = None
         expected_json["children"] = []
         self.assertDictEqual(json_partner[0], expected_json)
+
+    def test_json_export_callable_parser(self):
+        # Enforces TZ to validate the serialization result of a Datetime
+        partner = self.env["res.partner"].create(
+            {
+                "name": "Akretion",
+                "country_id": self.env.ref("base.fr").id,
+                "lang": "en_US",  # default
+                "category_id": [(0, 0, {"name": "Inovator"})],
+                "child_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "name": "Sebatien Beau",
+                            "country_id": self.env.ref("base.fr").id,
+                        },
+                    )
+                ],
+                "date": fields.Date.from_string("2019-10-31"),
+            }
+        )
+        partner.__class__.jsonify_custom = jsonify_custom
+        parser = [
+            # callable subparser
+            ("name", lambda rec, fname: rec[fname] + " rocks!"),
+            ("name:custom", "jsonify_custom"),
+        ]
+        expected_json = {
+            "name": "Akretion rocks!",
+            "custom": "yeah!",
+        }
+        json_partner = partner.jsonify(parser)
+        self.assertDictEqual(json_partner[0], expected_json)
+        del partner.__class__.jsonify_custom

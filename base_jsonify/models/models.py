@@ -1,6 +1,8 @@
-# © 2017 Akretion (http://www.akretion.com)
+# Copyright 2017 Akretion (http://www.akretion.com)
 # Sébastien BEAU <sebastien.beau@akretion.com>
 # Raphaël Reverdy <raphael.reverdy@akretion.com>
+# Copyright 2020 Camptocamp SA (http://www.camptocamp.com)
+# Simone Orsi <simahawk@gmail.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, fields, models
@@ -33,6 +35,8 @@ class Base(models.AbstractModel):
                 'number',
                 'create_date',
                 ('partner_id', ['id', 'display_name', 'ref'])
+                ('shipping_id', callable)
+                ('delivery_id', "record_method")
                 ('line_id', ['id', ('product_id', ['name']), 'price_unit'])
             ]
 
@@ -64,6 +68,7 @@ class Base(models.AbstractModel):
     def _jsonify_value(self, field_name):
         field_type = self._fields[field_name].type
         value = self[field_name]
+        # TODO: we should get default by field (eg: char field -> "")
         if value is False and field_type != "boolean":
             value = None
         elif field_type == "date":
@@ -79,15 +84,26 @@ class Base(models.AbstractModel):
         return value
 
     def _jsonify_value_subparser(self, field_name, subparser):
-        field_type = self._fields[field_name].type
-        if field_type in ("one2many", "many2many"):
-            value = self[field_name].jsonify(subparser)
-        elif field_type in ("many2one", "reference"):
-            if self[field_name]:
-                value = self[field_name].jsonify(subparser)[0]
+        value = None
+        if callable(subparser):
+            # a simple function
+            value = subparser(self, field_name)
+        elif isinstance(subparser, str):
+            # a method on the record itself
+            method = getattr(self, subparser, None)
+            if method:
+                value = method(field_name)
             else:
-                # TODO: we should get this by field (eg: char field -> "")
-                value = None
+                self._jsonify_bad_parser_error(field_name)
         else:
-            raise UserError(_("Wrong parser configuration"))
+            field = self._fields[field_name]
+            if not (field.relational or field.type == "reference"):
+                self._jsonify_bad_parser_error(field_name)
+            rec_value = self[field_name]
+            value = rec_value.jsonify(subparser) if rec_value else []
+            if field.type in ("many2one", "reference"):
+                value = value[0] if value else None
         return value
+
+    def _jsonify_bad_parser_error(self, field_name):
+        raise UserError(_("Wrong parser configuration for field: `%s`") % field_name)
