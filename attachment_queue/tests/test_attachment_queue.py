@@ -12,22 +12,20 @@ class TestAttachmentBaseQueue(TransactionCase):
         self.registry.enter_test_mode(self.env.cr)
         self.env = api.Environment(self.registry.test_cr, self.env.uid,
                                    self.env.context)
-        self.attachment = self.env.ref(
-            'base_attachment_queue.attachment_metadata')
-        self.ir_attachment_metadata = self.env['ir.attachment.metadata']
+        self.attachment = self.env.ref('attachment_queue.attachment_queue_demo')
 
     def tearDown(self):
         self.registry.leave_test_mode()
         super().tearDown()
 
-    def test_attachment_metadata(self):
-        """Test run_attachment_metadata_scheduler to ensure set state to done
+    def test_attachment_queue(self):
+        """Test run_attachment_queue_scheduler to ensure set state to done
         """
         self.assertEqual(
             self.attachment.state,
             'pending'
         )
-        self.ir_attachment_metadata.run_attachment_metadata_scheduler()
+        self.env['attachment.queue'].run_attachment_queue_scheduler()
         self.env.cache.invalidate()
         with odoo.registry(self.env.cr.dbname).cursor() as new_cr:
             new_env = api.Environment(

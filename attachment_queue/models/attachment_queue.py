@@ -7,8 +7,8 @@ from odoo import api, fields, models, registry
 _logger = logging.getLogger(__name__)
 
 
-class IrAttachmentMetadata(models.Model):
-    _name = 'ir.attachment.metadata'
+class AttachmentQueue(models.Model):
+    _name = 'attachment.queue'
     _inherits = {'ir.attachment': 'attachment_id'}
     _inherit = ['mail.thread']
 
@@ -19,7 +19,7 @@ class IrAttachmentMetadata(models.Model):
         selection=[],
         help="The file type determines an import method to be used "
         "to parse and transform data before their import in ERP or an export")
-    sync_date = fields.Datetime()
+    date_done = fields.Datetime()
     state = fields.Selection([
         ('pending', 'Pending'),
         ('failed', 'Failed'),
@@ -42,11 +42,11 @@ class IrAttachmentMetadata(models.Model):
         return ""
 
     @api.model
-    def run_attachment_metadata_scheduler(self, domain=None):
+    def run_attachment_queue_scheduler(self, domain=None):
         if domain is None:
             domain = [('state', '=', 'pending')]
         batch_limit = self.env.ref(
-            'base_attachment_queue.attachment_sync_cron_batch_limit') \
+            'attachment_queue.attachment_queue_cron_batch_limit') \
             .value
         if batch_limit and batch_limit.isdigit():
             limit = int(batch_limit)
@@ -59,10 +59,10 @@ class IrAttachmentMetadata(models.Model):
 
     def run(self):
         """
-        Run the process for each attachment metadata
+        Run the process for each attachment queue
         """
         failure_tmpl = self.env.ref(
-            'base_attachment_queue.attachment_failure_notification')
+            'attachment_queue.attachment_failure_notification')
         for attachment in self:
             with api.Environment.manage():
                 with registry(self.env.cr.dbname).cursor() as new_cr:
@@ -86,7 +86,7 @@ class IrAttachmentMetadata(models.Model):
                     else:
                         vals = {
                             'state': 'done',
-                            'sync_date': fields.Datetime.now(),
+                            'date_done': fields.Datetime.now(),
                         }
                         attach.write(vals)
                         attach.env.cr.commit()
@@ -95,7 +95,7 @@ class IrAttachmentMetadata(models.Model):
     @api.multi
     def _run(self):
         self.ensure_one()
-        _logger.info('Start to process attachment metadata id %d', self.id)
+        _logger.info('Start to process attachment queue id %d', self.id)
 
     @api.multi
     def set_done(self):

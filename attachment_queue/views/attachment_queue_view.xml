@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
 
-    <record id="view_attachment_improved_form" model="ir.ui.view">
-        <field name="model">ir.attachment.metadata</field>
-        <field name="inherit_id" ref="base.view_attachment_form" />
+    <record id="view_attachment_queue_form" model="ir.ui.view">
+        <field name="model">attachment.queue</field>
+        <field name="inherit_id" ref="base.view_attachment_form"/>
         <field name="arch" type="xml">
             <xpath expr="/form/*" position="before">
                 <header>
@@ -14,7 +14,7 @@
                 </header>
             </xpath>
             <field name="url" position="after">
-                <field name="sync_date"/>
+                <field name="date_done"/>
                 <field name="state"/>
                 <field name="file_type"/>
             </field>
@@ -26,8 +26,8 @@
         </field>
     </record>
 
-    <record id="view_external_attachment_tree" model="ir.ui.view">
-        <field name="model">ir.attachment.metadata</field>
+    <record id="view_attachment_queue_tree" model="ir.ui.view">
+        <field name="model">attachment.queue</field>
         <field name="arch" type="xml">
             <tree default_order='create_date desc'>
                 <field name="name"/>
@@ -40,8 +40,8 @@
         </field>
     </record>
 
-    <record id="view_external_attachment_search" model="ir.ui.view">
-    <field name="model">ir.attachment.metadata</field>
+    <record id="view_attachment_queue_search" model="ir.ui.view">
+    <field name="model">attachment.queue</field>
     <field name="arch" type="xml">
         <search string="Attachments">
             <field name="name" filter_domain="['|', ('name','ilike',self), ('datas_fname','ilike',self)]" string="Attachment"/>
@@ -53,7 +53,7 @@
                     string="Binary"
                     domain="[('type','=','binary')]"/>
             <separator/>
-            <filter name="my_documents_filter" 
+            <filter name="my_documents_filter"
                 string="My Document(s)"
                 domain="[('create_uid','=',uid)]"
                 help="Filter on my documents"/>
@@ -74,34 +74,33 @@
     </field>
     </record>
 
-    <record id="action_attachment" model="ir.actions.act_window">
-    <field name="name">Meta data Attachments</field>
-    <field name="type">ir.actions.act_window</field>
-    <field name="res_model">ir.attachment.metadata</field>
-    <field name="view_type">form</field>
-    <field name="view_mode">tree,form</field>
-    <field name="view_id" eval="False"/>
-    <field name="search_view_id" ref="view_external_attachment_search"/>
+    <record id="action_attachment_queue" model="ir.actions.act_window">
+        <field name="name">Attachments Queue</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">attachment.queue</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" eval="False"/>
+        <field name="search_view_id" ref="view_attachment_queue_search"/>
     </record>
 
-    <record id="ir_attachment_view2" model="ir.actions.act_window.view">
-    <field eval="10" name="sequence"/>
-    <field name="view_mode">tree</field>
-    <field name="view_id" ref="view_external_attachment_tree"/>
-    <field name="act_window_id" ref="action_attachment"/>
+    <record id="act_open_attachment_que_view_tree" model="ir.actions.act_window.view">
+        <field eval="10" name="sequence"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_attachment_queue_tree"/>
+        <field name="act_window_id" ref="action_attachment_queue"/>
     </record>
 
-    <record id="ir_attachment_view3" model="ir.actions.act_window.view">
-    <field eval="10" name="sequence"/>
-    <field name="view_mode">form</field>
-    <field name="view_id" ref="view_attachment_improved_form"/>
-    <field name="act_window_id" ref="action_attachment"/>
+    <record id="act_open_attachment_que_view_form" model="ir.actions.act_window.view">
+        <field eval="10" name="sequence"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_attachment_queue_form"/>
+        <field name="act_window_id" ref="action_attachment_queue"/>
     </record>
 
-
-    <menuitem id="menu_ir_attachment" 
+    <menuitem id="menu_attachment_queue"
     parent="base.next_id_9"
     sequence="20"
-    action="action_attachment"/>
+    action="action_attachment_queue"/>
 
 </odoo>
