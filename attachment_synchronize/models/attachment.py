@@ -5,8 +5,8 @@ from odoo import models, fields, api
 import os
 
 
-class IrAttachmentMetadata(models.Model):
-    _inherit = 'ir.attachment.metadata'
+class AttachmentQueue(models.Model):
+    _inherit = 'attachment.queue'
 
     task_id = fields.Many2one('storage.backend.task', string='Task')
     storage_backend_id = fields.Many2one(

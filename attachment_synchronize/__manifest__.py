@@ -11,7 +11,7 @@
     'license': 'AGPL-3',
     'category': 'Generic Modules',
     'depends': [
-        'base_attachment_queue',
+        'attachment_queue',
         'storage_backend',
     ],
     'data': [
@@ -22,7 +22,6 @@
         'security/ir.model.access.csv',
     ],
     'demo': [
-        # 'demo/task_demo.xml',
     ],
     'installable': True,
     'application': False,
