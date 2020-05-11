@@ -8,7 +8,7 @@ import os
 class AttachmentQueue(models.Model):
     _inherit = 'attachment.queue'
 
-    task_id = fields.Many2one('storage.backend.task', string='Task')
+    task_id = fields.Many2one('attachment.synchronize.task', string='Task')
     storage_backend_id = fields.Many2one(
         'storage.backend', string='Storage Backend',
         related='task_id.backend_id', store=True)
