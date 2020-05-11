@@ -1,5 +1,3 @@
-This module implement a queue for processing file.
-File are stored in Odoo standard ir.attachment.
-The attachments will be processed depending on their type.
+This module adds async processing capabilities to attachments by implementing a new model attachment.queue that wraps attachments and stores additional information so that it can be processed in an asynchronous way.
 
-An example of the use of this module, can be found in the module `attachment_synchronize`.
+A use case of this module can be found in the attachment_synchronize module.
