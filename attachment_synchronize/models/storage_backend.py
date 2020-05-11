@@ -7,5 +7,5 @@ class StorageBackend(models.Model):
     _inherit = "storage.backend"
 
     synchronize_task_ids = fields.One2many(
-        "attachment.synchronize.task", "backend_id",
-        string="Tasks")
+        "attachment.synchronize.task", "backend_id", string="Tasks"
+    )
