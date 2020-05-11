@@ -6,6 +6,6 @@ from odoo import fields, models
 class StorageBackend(models.Model):
     _inherit = "storage.backend"
 
-    task_ids = fields.One2many(
-        "storage.backend.task", "backend_id",
+    synchronize_task_ids = fields.One2many(
+        "attachment.synchronize.task", "backend_id",
         string="Tasks")

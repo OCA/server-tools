@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <record id="view_task_form" model="ir.ui.view">
-        <field name="model">storage.backend.task</field>
+        <field name="model">attachment.synchronize.task</field>
         <field name="arch" type="xml">
             <form>
                 <header>
@@ -37,7 +37,7 @@
     </record>
 
     <record id="view_task_tree" model="ir.ui.view">
-        <field name="model">storage.backend.task</field>
+        <field name="model">attachment.synchronize.task</field>
         <field name="arch" type="xml">
             <tree string="Tasks">
                 <field name="name" select="1"/>
