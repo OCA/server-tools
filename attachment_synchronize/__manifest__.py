@@ -22,6 +22,7 @@
         'security/ir.model.access.csv',
     ],
     'demo': [
+        "demo/attachment_synchronize_task_demo.xml",
     ],
     'installable': True,
     'application': False,
