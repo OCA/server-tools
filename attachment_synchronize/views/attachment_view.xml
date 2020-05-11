@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
 
-    <record id="view_attachment_improved_form" model="ir.ui.view">
-        <field name="model">ir.attachment.metadata</field>
-        <field name="inherit_id" ref="base_attachment_queue.view_attachment_improved_form" />
+    <record id="view_attachment_queue_form" model="ir.ui.view">
+        <field name="model">attachment.queue</field>
+        <field name="inherit_id" ref="attachment_queue.view_attachment_queue_form" />
         <field name="arch" type="xml">
             <field name="url" position="after">
                 <field name="task_id" attrs="{'required': [('file_type', '=', 'export')]}"/>
@@ -12,9 +12,9 @@
         </field>
     </record>
 
-    <record id="view_external_attachment_tree" model="ir.ui.view">
-        <field name="model">ir.attachment.metadata</field>
-        <field name="inherit_id" ref="base_attachment_queue.view_external_attachment_tree" />
+    <record id="view_attachment_queue_tree" model="ir.ui.view">
+        <field name="model">attachment.queue</field>
+        <field name="inherit_id" ref="attachment_queue.view_attachment_queue_tree" />
         <field name="arch" type="xml">
             <field name="file_type" position="after">
                 <field name="task_id"/>

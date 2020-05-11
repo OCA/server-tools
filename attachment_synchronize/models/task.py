@@ -41,7 +41,7 @@ except ImportError:
     _logger.warning("jinja2 not available, templating features will not work!")
 
 
-class StorageTask(models.Model):
+class StorageBackendTask(models.Model):
     _name = 'storage.backend.task'
     _description = 'Storage Backend task'
 
@@ -56,7 +56,7 @@ class StorageTask(models.Model):
     filepath = fields.Char(help='Path to imported/exported file')
     backend_id = fields.Many2one(
         'storage.backend', string='Backend', required=True)
-    attachment_ids = fields.One2many('ir.attachment.metadata', 'task_id',
+    attachment_ids = fields.One2many('attachment.queue', 'task_id',
                                      string='Attachment')
     move_path = fields.Char(string='Move Path',
                             help='Imported File will be moved to this path')
@@ -118,18 +118,20 @@ class StorageTask(models.Model):
         return render_result
 
     @api.model
-    def run_task_scheduler(self, domain=list()):
-        if ('method_type', '=', 'import') not in domain:
-            domain.append([('method_type', '=', 'import')])
-        domain.append([('enabled', '=', True)])
-        tasks = self.env['storage.backend'].search(domain)
-        for task in tasks:
+    def run_task_scheduler(self, domain=None):
+        if domain is None:
+            domain = []
+        domain = expression.AND(domain, [
+            ('method_type', '=', 'import'),
+            ('enabled', '=', True),
+            ])
+        for task in self.search(domain):
             task.run_import()
 
     @api.multi
     def run_import(self):
         self.ensure_one()
-        attach_obj = self.env['ir.attachment.metadata']
+        attach_obj = self.env['attachment.queue']
         backend = self.backend_id
         filenames = backend._list(
             relative_path=self.filepath, pattern=self.pattern)
