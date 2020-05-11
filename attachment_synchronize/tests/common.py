@@ -8,10 +8,12 @@ from odoo.addons.storage_backend.tests.common import Common
 
 
 class SyncCommon(Common):
-
     def _clean_testing_directory(self):
         for test_dir in [
-                self.directory_input, self.directory_output, self.directory_archived]:
+            self.directory_input,
+            self.directory_output,
+            self.directory_archived,
+        ]:
             for filename in self.backend._list(test_dir):
                 self.backend._delete(os.path.join(test_dir, filename))
 
@@ -19,7 +21,8 @@ class SyncCommon(Common):
         self.backend._add_b64_data(
             os.path.join(self.directory_input, "bar.txt"),
             self.filedata,
-            mimetype=u"text/plain")
+            mimetype=u"text/plain",
+        )
 
     def setUp(self):
         super().setUp()
@@ -30,7 +33,9 @@ class SyncCommon(Common):
         self.directory_archived = "test_archived"
         self._clean_testing_directory()
         self._create_test_file()
-        self.task = self.env.ref("attachment_synchronize.import_from_filestore")
+        self.task = self.env.ref(
+            "attachment_synchronize.import_from_filestore"
+        )
 
     def tearDown(self):
         self.registry.leave_test_mode()
