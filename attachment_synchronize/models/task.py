@@ -6,6 +6,7 @@ import os
 
 import odoo
 from odoo import api, fields, models, tools
+from odoo.osv import expression
 
 _logger = logging.getLogger(__name__)
 
@@ -41,9 +42,9 @@ except ImportError:
     _logger.warning("jinja2 not available, templating features will not work!")
 
 
-class StorageBackendTask(models.Model):
-    _name = 'storage.backend.task'
-    _description = 'Storage Backend task'
+class AttachmentSynchronizeTask(models.Model):
+    _name = 'attachment.synchronize.task'
+    _description = 'Attachment synchronize task'
 
     name = fields.Char(required=True)
     method_type = fields.Selection(
@@ -118,13 +119,13 @@ class StorageBackendTask(models.Model):
         return render_result
 
     @api.model
-    def run_task_scheduler(self, domain=None):
+    def run_task_import_scheduler(self, domain=None):
         if domain is None:
             domain = []
-        domain = expression.AND(domain, [
+        domain = expression.AND([domain, [
             ('method_type', '=', 'import'),
             ('enabled', '=', True),
-            ])
+            ]])
         for task in self.search(domain):
             task.run_import()
 
@@ -133,8 +134,8 @@ class StorageBackendTask(models.Model):
         self.ensure_one()
         attach_obj = self.env['attachment.queue']
         backend = self.backend_id
-        filenames = backend._list(
-            relative_path=self.filepath, pattern=self.pattern)
+        filepath = self.filepath or ""
+        filenames = backend._list(relative_path=filepath, pattern=self.pattern)
         if self.check_duplicated_files:
             filenames = self._file_to_import(filenames)
         total_import = 0
@@ -145,8 +146,7 @@ class StorageBackendTask(models.Model):
                     new_env = api.Environment(new_cr, self.env.uid,
                                               self.env.context)
                     try:
-                        full_absolute_path = os.path.join(
-                            self.filepath, file_name)
+                        full_absolute_path = os.path.join(filepath, file_name)
                         datas = backend._get_b64_data(full_absolute_path)
                         attach_vals = self._prepare_attachment_vals(
                             datas, file_name)
@@ -156,8 +156,7 @@ class StorageBackendTask(models.Model):
                         if self.after_import == 'rename':
                             new_name = self._template_render(
                                 self.new_name, attachment)
-                            new_full_path = os.path.join(
-                                self.filepath, new_name)
+                            new_full_path = os.path.join(filepath, new_name)
                         elif self.after_import == 'move':
                             new_full_path = os.path.join(
                                 self.move_path, file_name)
