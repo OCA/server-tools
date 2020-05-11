@@ -63,10 +63,10 @@
             <filter string="Failed" name="failed" domain="[('state', '=', 'failed')]"/>
             <filter string="Done" name="done" domain="[('state', '=', 'done')]"/>
             <group expand="0" string="Group By">
-                <filter string="Owner" name="owner" icon="terp-personal" domain="[]" context="{'group_by':'create_uid'}"/>
-                <filter string="Type" name="type" icon="terp-stock_symbol-selection" domain="[]" context="{'group_by':'type'}" groups="base.group_no_one"/>
-                <filter string="Company" name="company" icon="terp-gtk-home" domain="[]" context="{'group_by':'company_id'}" groups="base.group_multi_company"/>
-                <filter string="Creation Month" name="creation_month" icon="terp-go-month" domain="[]" context="{'group_by':'create_date'}"/>
+                <filter string="Owner" name="owner" domain="[]" context="{'group_by':'create_uid'}"/>
+                <filter string="Type" name="type" domain="[]" context="{'group_by':'type'}" groups="base.group_no_one"/>
+                <filter string="Company" name="company" domain="[]" context="{'group_by':'company_id'}" groups="base.group_multi_company"/>
+                <filter string="Creation Month" name="creation_month" domain="[]" context="{'group_by':'create_date'}"/>
                 <filter string="State" name="state" domain="[]" context="{'group_by': 'state'}"/>
                 <filter string="File type" name="file_type" domain="[]" context="{'group_by': 'file_type'}"/>
             </group>
