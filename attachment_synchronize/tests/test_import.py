@@ -6,7 +6,6 @@ from .common import SyncCommon
 
 
 class TestImport(SyncCommon):
-
     @property
     def archived_files(self):
         return self.backend._list(self.directory_archived)
@@ -16,7 +15,9 @@ class TestImport(SyncCommon):
         return self.backend._list(self.directory_input)
 
     def _check_attachment_created(self, count=1):
-        attachment = self.env["attachment.queue"].search([("name", "=", "bar.txt")])
+        attachment = self.env["attachment.queue"].search(
+            [("name", "=", "bar.txt")]
+        )
         self.assertEqual(len(attachment), count)
 
     def test_import_with_rename(self):
@@ -27,18 +28,22 @@ class TestImport(SyncCommon):
         self.assertEqual(self.archived_files, [])
 
     def test_import_with_move(self):
-        self.task.write({"after_import": "move", "move_path": self.directory_archived})
+        self.task.write(
+            {"after_import": "move", "move_path": self.directory_archived}
+        )
         self.task.run_import()
         self._check_attachment_created()
         self.assertEqual(self.input_files, [])
         self.assertEqual(self.archived_files, ["bar.txt"])
 
     def test_import_with_move_and_rename(self):
-        self.task.write({
-            "after_import": "move_rename",
-            "new_name": "foo.txt",
-            "move_path": self.directory_archived,
-            })
+        self.task.write(
+            {
+                "after_import": "move_rename",
+                "new_name": "foo.txt",
+                "move_path": self.directory_archived,
+            }
+        )
         self.task.run_import()
         self._check_attachment_created()
         self.assertEqual(self.input_files, [])
@@ -61,7 +66,9 @@ class TestImport(SyncCommon):
         self._check_attachment_created(count=2)
 
     def test_import_twice_no_duplicate(self):
-        self.task.write({"after_import": "delete", "check_duplicated_files": True})
+        self.task.write(
+            {"after_import": "delete", "check_duplicated_files": True}
+        )
         self.task.run_import()
         self._check_attachment_created(count=1)
 
