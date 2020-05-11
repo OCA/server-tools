@@ -9,7 +9,7 @@
             <xpath expr="//group[@name='config']" position="after">
                 <notebook>
                     <page string="Tasks">
-                        <field name="task_ids"/>
+                        <field name="synchronize_task_ids"/>
                     </page>
                 </notebook>
             </xpath>
