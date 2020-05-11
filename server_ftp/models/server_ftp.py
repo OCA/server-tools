@@ -44,7 +44,7 @@ class ServerFTP(models.Model):
             raise exceptions.Warning(_("Make sure that required info is set"))
         try:
             server = self.connect()
-            server.connect()
+            server = server.connect()
         except Exception as e:
             raise exceptions.Warning(str(e))
         else:
@@ -59,6 +59,7 @@ class ServerFTP(models.Model):
                     )
                     continue
             if not_accessible_folders:
+                server.close()
                 raise exceptions.Warning("\n".join(not_accessible_folders))
             server.close()
             self.state = "done"

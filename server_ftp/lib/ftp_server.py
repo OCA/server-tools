@@ -1,6 +1,6 @@
 # Copyright 2020 Therp BV <https://therp.nl>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
-from ftplib import FTP
+from ftplib import FTP, error_perm
 
 from .abstract_ftp_server import AbstractFTPServer
 
@@ -12,7 +12,7 @@ class FTPServer(AbstractFTPServer):
         # Init step by step
         self.server.connect(host=self.host, port=self.port)
         self.server.login(user=self.user, passwd=self.password)
-        return self.server
+        return self
 
     def close(self):
         """ Close connection """
@@ -53,8 +53,7 @@ class FTPServer(AbstractFTPServer):
            name: containt of file in filepath in bytes
            filepath: filename+extension for file at server
         """
-        with open(filepath, "wb") as file:
-            self.server.retrbinary("RETR " + name, file.write)
+        self.server.retrbinary("RETR " + filepath, name.write)
 
     def remove(self, file):
         """Remove file from server"""
@@ -62,7 +61,12 @@ class FTPServer(AbstractFTPServer):
 
     def listdir(self, path=""):
         """ List directory in path """
-        self.server.dir(path)
+        files = []
+        try:
+            files = self.server.nlst(path)
+        except error_perm:
+            files = []
+        return files
 
     def cd(self, path):
         """ Change directory """

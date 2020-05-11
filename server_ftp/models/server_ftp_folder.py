@@ -15,7 +15,7 @@ class ServerFTPFolder(models.Model):
         """ Return appropriate FTP class, cd into path"""
         # Connect to server
         folder_server_object = self.server_id.connect()
-        folder_server_object.connect()
+        folder_server_object = folder_server_object.connect()
         # cd into path
         folder_server_object.cd(self.path)
         return folder_server_object

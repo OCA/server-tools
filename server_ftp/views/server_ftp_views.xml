@@ -53,7 +53,11 @@
                                 <tree editable="top" create="false" delete="false">
                                     <field name="name" />
                                     <field name="path" />
-                                    <field name="server_id" string="Server" />
+                                    <field
+                                        name="server_id"
+                                        string="Server"
+                                        readonly="True"
+                                    />
                                 </tree>
                             </field>
                         </page>

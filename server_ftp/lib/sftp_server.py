@@ -18,7 +18,7 @@ class SFTPServer(AbstractFTPServer):
             port=self.port,
             cnopts=cnopts,
         )
-        return self.server
+        return self
 
     def close(self):
         """ Close connection """
@@ -47,7 +47,7 @@ class SFTPServer(AbstractFTPServer):
         """
         self.server.put(filepath, name)
 
-    def getfo(self, file_like, name):
+    def getfo(self, name, file_like):
         """Get file from server
 
         name: filename of file to retrieve
@@ -62,7 +62,7 @@ class SFTPServer(AbstractFTPServer):
 
     def listdir(self, path=""):
         """ List directory in path """
-        self.server.dir(path)
+        return self.server.listdir(path)
 
     def cd(self, path):
         """ Change directory """
@@ -70,4 +70,4 @@ class SFTPServer(AbstractFTPServer):
 
     def exists(self, file, path=""):
         """ See if file exists in path """
-        self.server.exists(path + file)
+        return self.server.exists(path + file)
