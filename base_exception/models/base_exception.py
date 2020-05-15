@@ -26,14 +26,16 @@ class ExceptionRule(models.Model):
 
     exception_type = fields.Selection(
         selection=[('by_domain', 'By domain'),
-                   ('by_py_code', 'By python code')],
+                   ('by_py_code', 'By python code'),
+                   ('by_method', 'By method'),
+                   ],
         string='Exception Type', required=True, default='by_py_code',
         help="By python code: allow to define any arbitrary check\n"
              "By domain: limited to a selection by an odoo domain:\n"
              "           performance can be better when exceptions "
              "           are evaluated with several records")
     domain = fields.Char('Domain')
-
+    method = fields.Char('Method', readonly=True)
     active = fields.Boolean('Active', default=True)
     code = fields.Text(
         'Python Code',
@@ -45,11 +47,13 @@ class ExceptionRule(models.Model):
     def check_exception_type_consistency(self):
         for rule in self:
             if ((rule.exception_type == 'by_py_code' and not rule.code) or
-                    (rule.exception_type == 'by_domain' and not rule.domain)):
+                    (rule.exception_type == 'by_domain' and not rule.domain) or
+                    (rule.exception_type == 'by_method' and not rule.method)):
                 raise ValidationError(
-                    _("There is a problem of configuration, python code or "
-                      "domain is missing to match the exception type.")
+                    _("There is a problem of configuration, python code, "
+                      "domain or method is missing to match the exception type.")
                 )
+            # TODO in case of by_method exception test that the method exist with hasattr
 
     @api.multi
     def _get_domain(self):
@@ -163,6 +167,8 @@ class BaseExceptionMethod(models.AbstractModel):
             return self._detect_exceptions_by_py_code(rule)
         elif rule.exception_type == 'by_domain':
             return self._detect_exceptions_by_domain(rule)
+        elif rule.exception_type == 'by_method':
+            return self._detect_exceptions_by_method(rule)
 
     @api.multi
     def _get_base_domain(self):
@@ -190,6 +196,15 @@ class BaseExceptionMethod(models.AbstractModel):
         rule_domain = rule._get_domain()
         domain = osv.expression.AND([base_domain, rule_domain])
         return self.search(domain)
+
+    @api.multi
+    def _detect_exceptions_by_method(self, rule):
+        """
+            Find exceptions found on self.
+        """
+        base_domain = self._get_base_domain()
+        records = self.search(base_domain)
+        return getattr(records, rule.method)()
 
 
 class BaseException(models.AbstractModel):
