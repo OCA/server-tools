@@ -33,51 +33,81 @@ class TestBaseException(common.SavepointCase):
             ("base.exception.test.purchase.line", "Purchase Order Line")
         )
 
-        cls.exceptionnozip = cls.env["exception.rule"].create(
-            {
-                "name": "No ZIP code on destination",
-                "sequence": 10,
-                "model": "base.exception.test.purchase",
-                "code": "if not obj.partner_id.zip: failed=True",
-            }
-        )
-
-        cls.exceptionno_minorder = cls.env["exception.rule"].create(
-            {
-                "name": "Min order except",
-                "sequence": 10,
-                "model": "base.exception.test.purchase",
-                "code": "if obj.amount_total <= 200.0: failed=True",
-            }
-        )
-
-        cls.exceptionno_lineqty = cls.env["exception.rule"].create(
-            {
-                "name": "Qty > 0",
-                "sequence": 10,
-                "model": "base.exception.test.purchase.line",
-                "code": "if obj.qty <= 0: failed=True",
-            }
-        )
-
-    def test_purchase_order_exception(self):
-        partner = self.env.ref("base.res_partner_1")
-        partner.zip = False
-        potest1 = self.env["base.exception.test.purchase"].create(
+        cls.partner = cls.env.ref("base.res_partner_1")
+        cls.partner.zip = False
+        cls.potest1 = cls.env["base.exception.test.purchase"].create(
             {
                 "name": "Test base exception to basic purchase",
-                "partner_id": partner.id,
+                "partner_id": cls.partner.id,
                 "line_ids": [
                     (0, 0, {"name": "line test", "amount": 120.0, "qty": 1.5})
                 ],
             }
         )
+
+    def test_purchase_order_valid(self):
+        self.potest1.button_confirm()
+        self.assertFalse(self.potest1.exception_ids)
+
+    def test_purchase_order_exception_invalid_amt_total(self):
+        self.exception_amount_total = self.env["exception.rule"].create(
+            {
+                "name": "Min order except",
+                "sequence": 10,
+                "model": "base.exception.test.purchase",
+                "code": "if obj.amount_total <= 200.0: failed=True",
+                "exception_type": "by_py_code",
+            }
+        )
+        with self.assertRaises(ValidationError):
+            self.potest1.button_confirm()
+        self.assertTrue(self.potest1.exception_ids)
+
+    def test_purchase_order_exception_invalid_partner_zip(self):
+        self.exception_partner_no_zip = self.env["exception.rule"].create(
+            {
+                "name": "No ZIP code on destination",
+                "sequence": 10,
+                "model": "base.exception.test.purchase",
+                "code": "if not obj.partner_id.zip: failed=True",
+                "exception_type": "by_py_code",
+            }
+        )
+        with self.assertRaises(ValidationError):
+            self.potest1.button_confirm()
+        self.assertTrue(self.potest1.exception_ids)
+
+    def test_purchase_order_exception_name(self):
+        self.exception_no_name = self.env["exception.rule"].create(
+            {
+                "name": "No name",
+                "sequence": 10,
+                "model": "base.exception.test.purchase",
+                "method": "exception_method_no_zip",
+                "exception_type": "by_method",
+            }
+        )
+        with self.assertRaises(ValidationError):
+            self.potest1.button_confirm()
+        self.assertTrue(self.potest1.exception_ids)
+
+    def test_ignore_exception(self):
+        # same as 1st test
+        self.exception_amount_total = self.env["exception.rule"].create(
+            {
+                "name": "Min order except",
+                "sequence": 10,
+                "model": "base.exception.test.purchase",
+                "code": "if obj.amount_total <= 200.0: failed=True",
+                "exception_type": "by_py_code",
+            }
+        )
         # Block because of exception during validation
         with self.assertRaises(ValidationError):
-            potest1.button_confirm()
+            self.potest1.button_confirm()
         # Test that we have linked exceptions
-        self.assertTrue(potest1.exception_ids)
+        self.assertTrue(self.potest1.exception_ids)
         # Test ignore exeception make possible for the po to validate
-        potest1.ignore_exception = True
-        potest1.button_confirm()
-        self.assertTrue(potest1.state == "purchase")
+        self.potest1.ignore_exception = True
+        self.potest1.button_confirm()
+        self.assertTrue(self.potest1.state == "purchase")

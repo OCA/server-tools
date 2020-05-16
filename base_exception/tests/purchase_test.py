@@ -62,6 +62,13 @@ class PurchaseTest(models.Model):
     def _reverse_field(self):
         return "test_purchase_ids"
 
+    def exception_method_no_zip(self):
+        records_fail = self.env["base.exception.test.purchase"]
+        for rec in self:
+            if not rec.partner_id.zip:
+                records_fail += rec
+        return records_fail
+
 
 class LineTest(models.Model):
     _name = "base.exception.test.purchase.line"
