@@ -26,7 +26,7 @@ class PartnerCase(TransactionCase):
     def test_access_granted(self):
         """Access to the model implies access to custom info."""
         # Demo user has contact creation permissions by default
-        agrolait = self.agrolait.sudo(self.demouser)
+        agrolait = self.agrolait.with_user(self.demouser)
         agrolait.custom_info_template_id = self.tpl
         agrolait._onchange_custom_info_template_id()
         prop_weaknesses = agrolait.env.ref("base_custom_info.prop_weaknesses")
@@ -42,7 +42,7 @@ class PartnerCase(TransactionCase):
         # Remove permissions to demo user
         self.demouser.groups_id = self.env.ref("base.group_portal")
 
-        agrolait = self.agrolait.sudo(self.demouser)
+        agrolait = self.agrolait.with_user(self.demouser)
         with self.assertRaises(AccessError):
             agrolait.custom_info_template_id = self.tpl
 
