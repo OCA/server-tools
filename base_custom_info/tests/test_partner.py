@@ -1,8 +1,8 @@
-# -*- coding: utf-8 -*-
 # Copyright 2016 Jairo Llopis <jairo.llopis@tecnativa.com>
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 from psycopg2 import IntegrityError
+
 from odoo.exceptions import AccessError, ValidationError
 from odoo.tests.common import TransactionCase
 from odoo.tools import mute_logger
@@ -20,7 +20,8 @@ class PartnerCase(TransactionCase):
         self.agrolait.custom_info_template_id = self.tpl
         self.agrolait._onchange_custom_info_template_id()
         self.agrolait.get_custom_info_value(
-            self.env.ref("base_custom_info.prop_haters")).value_int = 5
+            self.env.ref("base_custom_info.prop_haters")
+        ).value_int = 5
 
     def test_access_granted(self):
         """Access to the model implies access to custom info."""
@@ -46,12 +47,15 @@ class PartnerCase(TransactionCase):
             agrolait.custom_info_template_id = self.tpl
 
         with self.assertRaises(AccessError):
-            agrolait.env["custom.info.value"].create({
-                "res_id": agrolait.id,
-                "property_id":
-                    agrolait.env.ref("base_custom_info.prop_weaknesses").id,
-                "value_id": agrolait.env.ref("base_custom_info.opt_food").id,
-            })
+            agrolait.env["custom.info.value"].create(
+                {
+                    "res_id": agrolait.id,
+                    "property_id": agrolait.env.ref(
+                        "base_custom_info.prop_weaknesses"
+                    ).id,
+                    "value_id": agrolait.env.ref("base_custom_info.opt_food").id,
+                }
+            )
 
         with self.assertRaises(AccessError):
             agrolait.custom_info_template_id.property_ids[0].name = "Changed!"
@@ -64,12 +68,10 @@ class PartnerCase(TransactionCase):
         # Applying a template autofills the values
         self.agrolait.custom_info_template_id = self.tpl
         self.agrolait._onchange_custom_info_template_id()
+        self.assertEqual(len(self.agrolait.custom_info_ids), len(self.tpl.property_ids))
         self.assertEqual(
-            len(self.agrolait.custom_info_ids),
-            len(self.tpl.property_ids))
-        self.assertEqual(
-            self.agrolait.custom_info_ids.mapped("property_id"),
-            self.tpl.property_ids)
+            self.agrolait.custom_info_ids.mapped("property_id"), self.tpl.property_ids
+        )
 
         # Unapplying a template empties the values
         self.agrolait.custom_info_template_id = False
@@ -83,7 +85,7 @@ class PartnerCase(TransactionCase):
         self.tpl.model = "res.users"
         self.assertEqual(self.tpl.model, self.tpl.model_id.model)
 
-    @mute_logger('odoo.sql_db')
+    @mute_logger("odoo.sql_db")
     def test_template_model_must_exist(self):
         """Cannot create templates for unexisting models."""
         with self.assertRaises(IntegrityError):
@@ -107,13 +109,15 @@ class PartnerCase(TransactionCase):
         """Check the computed owner id for a value."""
         self.set_custom_info_for_agrolait()
         self.assertEqual(
-            self.agrolait.mapped("custom_info_ids.owner_id"), self.agrolait)
+            self.agrolait.mapped("custom_info_ids.owner_id"), self.agrolait
+        )
 
     def test_get_custom_info_value(self):
         """Check the custom info getter helper works fine."""
         self.set_custom_info_for_agrolait()
         result = self.agrolait.get_custom_info_value(
-            self.env.ref("base_custom_info.prop_haters"))
+            self.env.ref("base_custom_info.prop_haters")
+        )
         self.assertEqual(result.field_type, "int")
         self.assertEqual(result.field_name, "value_int")
         self.assertEqual(result[result.field_name], 5)
@@ -125,7 +129,8 @@ class PartnerCase(TransactionCase):
         self.agrolait.custom_info_template_id = self.tpl
         self.agrolait._onchange_custom_info_template_id()
         val_weaknesses = self.agrolait.get_custom_info_value(
-            self.env.ref("base_custom_info.prop_weaknesses"))
+            self.env.ref("base_custom_info.prop_weaknesses")
+        )
         opt_glasses = self.env.ref("base_custom_info.opt_glasses")
         self.assertEqual(val_weaknesses.value_id, opt_glasses)
         self.assertEqual(val_weaknesses.value, opt_glasses.name)
@@ -141,26 +146,29 @@ class PartnerCase(TransactionCase):
         self.assertIn(tpl_gamer, self.agrolait.all_custom_info_templates())
         self.agrolait._onchange_custom_info_template_id()
         self.assertTrue(
-            tpl_gamer.property_ids <
-            self.agrolait.mapped("custom_info_ids.property_id"))
+            tpl_gamer.property_ids < self.agrolait.mapped("custom_info_ids.property_id")
+        )
         cat_gaming = self.env.ref("base_custom_info.cat_gaming")
-        self.assertIn(
-            cat_gaming, self.agrolait.mapped("custom_info_ids.category_id"))
+        self.assertIn(cat_gaming, self.agrolait.mapped("custom_info_ids.category_id"))
 
     def test_long_teacher_name(self):
         """Wow, your teacher cannot have such a long name!"""
         self.set_custom_info_for_agrolait()
         val = self.agrolait.get_custom_info_value(
-            self.env.ref("base_custom_info.prop_teacher"))
+            self.env.ref("base_custom_info.prop_teacher")
+        )
         with self.assertRaises(ValidationError):
-            val.value = (u"Don Walter Antonio José de la Cruz Hëisenberg de "
-                         u"Borbón Westley Jordy López Manuélez")
+            val.value = (
+                u"Don Walter Antonio José de la Cruz Hëisenberg de "
+                u"Borbón Westley Jordy López Manuélez"
+            )
 
     def test_low_average_note(self):
         """Come on, you are supposed to be smart!"""
         self.set_custom_info_for_agrolait()
         val = self.agrolait.get_custom_info_value(
-            self.env.ref("base_custom_info.prop_avg_note"))
+            self.env.ref("base_custom_info.prop_avg_note")
+        )
         with self.assertRaises(ValidationError):
             val.value = "-1"
 
@@ -168,6 +176,7 @@ class PartnerCase(TransactionCase):
         """Too smart!"""
         self.set_custom_info_for_agrolait()
         val = self.agrolait.get_custom_info_value(
-            self.env.ref("base_custom_info.prop_avg_note"))
+            self.env.ref("base_custom_info.prop_avg_note")
+        )
         with self.assertRaises(ValidationError):
             val.value = "11"

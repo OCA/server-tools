@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2016 Jairo Llopis <jairo.llopis@tecnativa.com>
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 import logging
@@ -21,8 +20,7 @@ class ValueConversionCase(TransactionCase):
 
     def fill_value(self, prop, value, field="value"):
         """Create a custom info value."""
-        _logger.info(
-            "Creating. prop: %s; value: %s; field: %s", prop, value, field)
+        _logger.info("Creating. prop: %s; value: %s; field: %s", prop, value, field)
         self.agrolait.custom_info_template_id = self.tpl
         self.agrolait._onchange_custom_info_template_id()
         if field == "value":
@@ -33,23 +31,23 @@ class ValueConversionCase(TransactionCase):
     def creation_found(self, value):
         """Ensure you can search what you just created."""
         prop = self.value.property_id
-        _logger.info(
-            "Searching. prop: %s; value: %s", prop, value)
+        _logger.info("Searching. prop: %s; value: %s", prop, value)
         self.assertEqual(
-            self.value.search([
-                ("property_id", "=", prop.id),
-                ("value", "=", value)]),
-            self.value)
+            self.value.search([("property_id", "=", prop.id), ("value", "=", value)]),
+            self.value,
+        )
         self.assertEqual(
-            self.value.search([
-                ("property_id", "=", prop.id),
-                ("value", "in", [value])]),
-            self.value)
+            self.value.search(
+                [("property_id", "=", prop.id), ("value", "in", [value])]
+            ),
+            self.value,
+        )
         self.assertIs(
-            self.value.search([
-                ("property_id", "=", prop.id),
-                ("value", "not in", [value])]).id,
-            False)
+            self.value.search(
+                [("property_id", "=", prop.id), ("value", "not in", [value])]
+            ).id,
+            False,
+        )
 
     def test_to_str(self):
         """Conversion to text."""
@@ -122,8 +120,7 @@ class ValueConversionCase(TransactionCase):
     def test_from_id(self):
         """Conversion from selection."""
         self.fill_value(
-            self.prop_id,
-            self.env.ref("base_custom_info.opt_videogames").id,
-            "value_id")
+            self.prop_id, self.env.ref("base_custom_info.opt_videogames").id, "value_id"
+        )
         self.creation_found("Needs videogames")
         self.assertEqual(self.value.value, self.value.value_id.name)
