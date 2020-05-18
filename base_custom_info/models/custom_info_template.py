@@ -8,27 +8,37 @@ from odoo.exceptions import ValidationError
 
 class CustomInfoTemplate(models.Model):
     """Defines custom properties expected for a given database object."""
+
     _description = "Custom information template"
     _name = "custom.info.template"
     _order = "model_id, name"
     _sql_constraints = [
-        ("name_model",
-         "UNIQUE (name, model_id)",
-         "Another template with that name exists for that model."),
+        (
+            "name_model",
+            "UNIQUE (name, model_id)",
+            "Another template with that name exists for that model.",
+        ),
     ]
 
     name = fields.Char(required=True, translate=True)
     model = fields.Char(
-        string="Model technical name", inverse="_inverse_model",
-        compute="_compute_model", search="_search_model"
+        string="Model technical name",
+        inverse="_inverse_model",
+        compute="_compute_model",
+        search="_search_model",
     )
     model_id = fields.Many2one(
-        comodel_name='ir.model', string='Model', ondelete="restrict",
-        required=True, auto_join=True,
+        comodel_name="ir.model",
+        string="Model",
+        ondelete="restrict",
+        required=True,
+        auto_join=True,
     )
     property_ids = fields.One2many(
-        comodel_name='custom.info.property', inverse_name='template_id',
-        string='Properties', oldname="info_ids",
+        comodel_name="custom.info.property",
+        inverse_name="template_id",
+        string="Properties",
+        oldname="info_ids",
     )
 
     @api.multi
@@ -44,10 +54,10 @@ class CustomInfoTemplate(models.Model):
 
     @api.model
     def _search_model(self, operator, value):
-        models = self.env['ir.model'].search([('model', operator, value)])
-        return [('model_id', 'in', models.ids)]
+        models = self.env["ir.model"].search([("model", operator, value)])
+        return [("model_id", "in", models.ids)]
 
-    @api.onchange('model')
+    @api.onchange("model")
     def _onchange_model(self):
         self._inverse_model()
 
@@ -59,8 +69,9 @@ class CustomInfoTemplate(models.Model):
         this template
         """
         for record in self:
-            if (model_id != record.model_id.id
-                    and record.mapped("property_ids.info_value_ids")):
+            if model_id != record.model_id.id and record.mapped(
+                "property_ids.info_value_ids"
+            ):
                 raise ValidationError(
                     _("You cannot change the model because it is in use.")
                 )
@@ -76,6 +87,6 @@ class CustomInfoTemplate(models.Model):
 
     @api.multi
     def write(self, vals):
-        if 'model_id' in vals:
-            self._check_model_update_allowed(vals['model_id'])
+        if "model_id" in vals:
+            self._check_model_update_allowed(vals["model_id"])
         return super().write(vals)
