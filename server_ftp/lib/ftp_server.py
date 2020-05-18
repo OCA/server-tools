@@ -6,7 +6,8 @@ from .abstract_ftp_server import AbstractFTPServer
 
 
 class FTPServer(AbstractFTPServer):
-    def connect(self):
+
+    def connect(self, host, port, user, password):
         """ Connect to server """
         self.server = FTP()
         # Init step by step

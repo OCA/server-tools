@@ -4,11 +4,11 @@ from abc import ABC, abstractmethod
 
 
 class AbstractFTPServer(ABC):
-    def __init__(self, host, user, password, port):
-        self.host = host
-        self.user = user
-        self.password = password
-        self.port = port
+    def __init__(self):
+        self.host = None
+        self.user = None
+        self.password = None
+        self.port = None
         self.server = None
         super().__init__()
 
