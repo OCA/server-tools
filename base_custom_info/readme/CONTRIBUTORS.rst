@@ -6,3 +6,5 @@
   * Jairo Llopis <jairo.llopis@tecnativa.com>
   * Pedro M. Baeza <pedro.baeza@tecnativa.com>
   * Alexandre Díaz <alexandre.diaz@tecnativa.com>
+
+* David Alonso <david.alonso@solvos.es>

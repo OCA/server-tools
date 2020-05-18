@@ -1,7 +1,7 @@
 # Copyright 2016 Jairo Llopis <jairo.llopis@tecnativa.com>
 # License LGPL-3 - See http://www.gnu.org/licenses/lgpl-3.0.html
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class CustomInfoCategory(models.Model):
@@ -18,7 +18,6 @@ class CustomInfoCategory(models.Model):
         help="Properties in this category.",
     )
 
-    @api.multi
     def check_access_rule(self, operation):
         """You access a category if you access at least one property."""
         last_error = None
