@@ -45,11 +45,11 @@ class TestBaseException(common.SavepointCase):
             }
         )
 
-    def test_purchase_order_valid(self):
+    def test_valid(self):
         self.potest1.button_confirm()
         self.assertFalse(self.potest1.exception_ids)
 
-    def test_purchase_order_exception_invalid_amt_total(self):
+    def test_fail_by_py(self):
         self.exception_amount_total = self.env["exception.rule"].create(
             {
                 "name": "Min order except",
@@ -63,21 +63,21 @@ class TestBaseException(common.SavepointCase):
             self.potest1.button_confirm()
         self.assertTrue(self.potest1.exception_ids)
 
-    def test_purchase_order_exception_invalid_partner_zip(self):
+    def test_fail_by_domain(self):
         self.exception_partner_no_zip = self.env["exception.rule"].create(
             {
                 "name": "No ZIP code on destination",
                 "sequence": 10,
                 "model": "base.exception.test.purchase",
-                "code": "if not obj.partner_id.zip: failed=True",
-                "exception_type": "by_py_code",
+                "domain": "[('partner_id.zip', '=', False)]",
+                "exception_type": "by_domain",
             }
         )
         with self.assertRaises(ValidationError):
             self.potest1.button_confirm()
         self.assertTrue(self.potest1.exception_ids)
 
-    def test_purchase_order_exception_name(self):
+    def test_fail_by_method(self):
         self.exception_no_name = self.env["exception.rule"].create(
             {
                 "name": "No name",
@@ -108,6 +108,6 @@ class TestBaseException(common.SavepointCase):
         # Test that we have linked exceptions
         self.assertTrue(self.potest1.exception_ids)
         # Test ignore exeception make possible for the po to validate
-        self.potest1.ignore_exception = True
+        self.potest1.action_ignore_exceptions()
         self.potest1.button_confirm()
         self.assertTrue(self.potest1.state == "purchase")

@@ -10,7 +10,7 @@
     This module provide an abstract model to manage customizable
     exceptions to be applied on different models (sale order, invoice, ...)""",
     "author": "Akretion, Sodexis, Camptocamp, "
-              "Odoo Community Association (OCA)",
+    "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/server-tools",
     "depends": ["base_setup"],
     "license": "AGPL-3",
