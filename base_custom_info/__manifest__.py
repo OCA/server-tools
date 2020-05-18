@@ -7,8 +7,8 @@
     "name": "Base Custom Info",
     "summary": "Add custom field in models",
     "category": "Tools",
-    "version": "12.0.1.0.1",
-    "depends": ["base_setup",],
+    "version": "13.0.1.0.0",
+    "depends": ["base_setup"],
     "data": [
         "security/ir.model.access.csv",
         "security/res_groups_security.xml",
