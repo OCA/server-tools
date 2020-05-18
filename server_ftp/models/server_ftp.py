@@ -4,6 +4,7 @@ from odoo import _, fields, models
 from odoo.exceptions import UserError
 
 from ..lib.ftp_server import FTPServer
+from ..lib.ftp_tls_server import FTPTLSServer
 from ..lib.sftp_server import SFTPServer
 from ..lib.mock_server import MockServer
 
@@ -82,6 +83,8 @@ class ServerFTP(models.Model):
         """Return server class for selected type."""
         if self.server_type == "FTP":
             return FTPServer()
+        elif self.server_type == "ftptls":
+            return FTPTLSServer()
         elif self.server_type == "sftp":
             return SFTPServer()
         elif self.server_type == "mock":
