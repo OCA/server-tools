@@ -1,9 +1,12 @@
 # Copyright 2020 Therp BV <https://therp.nl>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
-from odoo import _, exceptions, fields, models
+from odoo import _, fields, models
+from odoo.exceptions import UserError
 
 from ..lib.ftp_server import FTPServer
+from ..lib.ftp_tls_server import FTPTLSServer
 from ..lib.sftp_server import SFTPServer
+from ..lib.mock_server import MockServer
 
 
 class ServerFTP(models.Model):
@@ -16,7 +19,12 @@ class ServerFTP(models.Model):
     password = fields.Char()
     port = fields.Integer(required=True, default=21)
     server_type = fields.Selection(
-        selection=[("FTP", "FTP"), ("ftpls", "FTP_TLS"), ("sftp", "SFTP")],
+        selection=[
+            ("ftp", "FTP"),
+            ("ftpls", "FTP_TLS"),
+            ("sftp", "SFTP"),
+            ("mock", "Mock"),
+        ],
         string="Connection protocol",
         required=True,
     )
@@ -41,12 +49,12 @@ class ServerFTP(models.Model):
     def action_test_connection(self):
         """ Test the outcome of connect() """
         if not all([self.host, self.user, self.password, self.port]):
-            raise exceptions.Warning(_("Make sure that required info is set"))
+            raise UserError(_("Make sure that required info is set"))
         try:
             server = self.connect()
             server = server.connect()
         except Exception as e:
-            raise exceptions.Warning(str(e))
+            raise UserError(str(e))
         else:
             # Check if all folders are accessible
             not_accessible_folders = []
@@ -60,18 +68,26 @@ class ServerFTP(models.Model):
                     continue
             if not_accessible_folders:
                 server.close()
-                raise exceptions.Warning("\n".join(not_accessible_folders))
+                raise UserError("\n".join(not_accessible_folders))
             server.close()
             self.state = "done"
 
     def connect(self):
         """ Return appropriate object based on server_type """
         self.ensure_one()
-        if self.server_type not in ("FTP", "ftpls", "sftp"):
-            raise exceptions.Warning(_("Please select a server first"))
+        server = self._make_server_instance()
+        server.connect(self.host, self.port, self.user, self.password)
+        return server
+
+    def _make_server_instance(self):
+        """Return server class for selected type."""
         if self.server_type == "FTP":
-            return FTPServer(self.host, self.user, self.password, self.port)
+            return FTPServer()
+        elif self.server_type == "ftptls":
+            return FTPTLSServer()
         elif self.server_type == "sftp":
-            return SFTPServer(self.host, self.user, self.password, self.port)
+            return SFTPServer()
+        elif self.server_type == "mock":
+            return MockServer()
         else:
-            raise exceptions.Warning(_("Only FTP and sftp for now"))
+            raise UserError(_("Unsupported FTP server type %s") % self.server_type)

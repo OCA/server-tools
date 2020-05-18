@@ -4,11 +4,7 @@ from abc import ABC, abstractmethod
 
 
 class AbstractFTPServer(ABC):
-    def __init__(self, host, user, password, port):
-        self.host = host
-        self.user = user
-        self.password = password
-        self.port = port
+    def __init__(self):
         self.server = None
         super().__init__()
 
@@ -16,7 +12,7 @@ class AbstractFTPServer(ABC):
         return self.server
 
     @abstractmethod
-    def connect(self, host, user, password, port):
+    def connect(self, host, port, user, password):
         """ Connect to object """
         raise NotImplementedError
 
