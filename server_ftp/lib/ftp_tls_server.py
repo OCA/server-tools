@@ -6,7 +6,6 @@ from .ftp_server import FTPServer
 
 
 class FTPTLSServer(FTPServer):
-
     def connect(self, host, port, user, password):
         """ Connect to server """
         self.server = FTP_TLS()

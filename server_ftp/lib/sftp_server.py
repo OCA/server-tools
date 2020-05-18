@@ -6,7 +6,6 @@ from .abstract_ftp_server import AbstractFTPServer
 
 
 class SFTPServer(AbstractFTPServer):
-
     def connect(self, host, port, user, password):
         """ Connect to object """
         # TODO: make this secure
