@@ -11,18 +11,14 @@ class FTPServer(AbstractFTPServer):
         """ Connect to server """
         self.server = FTP()
         # Init step by step
-        self.server.connect(host=self.host, port=self.port)
-        self.server.login(user=self.user, passwd=self.password)
+        self.server.connect(host, port)
+        self.server.login(user, password)
         return self
 
     def close(self):
         """ Close connection """
         self.server.quit()
         self.server = None
-        self.host = None
-        self.username = None
-        self.password = None
-        self.port = None
 
     def putfo(self, file_like, name):
         """Transfer file-like object to server

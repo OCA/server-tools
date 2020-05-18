@@ -11,6 +11,6 @@ class FTPTLSServer(FTPServer):
         """ Connect to server """
         self.server = FTP_TLS()
         # Init step by step
-        self.server.connect(host=self.host, port=self.port)
-        self.server.login(user=self.user, passwd=self.password)
+        self.server.connect(host, port)
+        self.server.login(user, password)
         return self

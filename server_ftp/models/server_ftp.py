@@ -76,7 +76,7 @@ class ServerFTP(models.Model):
         """ Return appropriate object based on server_type """
         self.ensure_one()
         server = self._make_server_instance()
-        server.connect(self.host, self.user, self.password, self.port)
+        server.connect(self.host, self.port, self.user, self.password)
         return server
 
     def _make_server_instance(self):

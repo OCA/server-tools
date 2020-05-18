@@ -16,27 +16,21 @@ class MockServer(AbstractFTPServer):
     """
 
     def __init__(self):
+        super().__init__()
         self.filestore = None  # To hold file-objects in memory
         self.current_directory = None
+        super.__init__()
 
     def connect(self, host, port, user, password):
         """ Connect to object """
         self.filestore = {"/": []}   # One "directory" with no files.
         self.current_directory = "/"
-        self.host = host
-        self.port = port
-        self.username = user
-        self.password = password
         return self
 
     def close(self):
         """ Close connection """
         self.filestore = None
         self.current_directory = None
-        self.host = None
-        self.username = None
-        self.password = None
-        self.port = None
 
     def putfo(self, file_like, name):
         """Transfer file-like object to server
