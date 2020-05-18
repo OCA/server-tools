@@ -2,3 +2,4 @@
 * Juan José Scarafía <jjs@adhoc.com.ar>
 * Jairo Llopis <jairo.llopis@tecnativa.com>
 * Stéphane Bidoul <stephane.bidoul@acsone.eu> (https://acsone.eu)
+* Eric Antones <eantones@nuobit.com>
