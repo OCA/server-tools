@@ -81,7 +81,7 @@ class ServerFTP(models.Model):
 
     def _make_server_instance(self):
         """Return server class for selected type."""
-        if self.server_type == "FTP":
+        if self.server_type == "ftp":
             return FTPServer()
         elif self.server_type == "ftptls":
             return FTPTLSServer()
