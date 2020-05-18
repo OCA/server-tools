@@ -34,7 +34,6 @@ class CustomInfo(models.AbstractModel):
 
     # HACK: Until https://github.com/odoo/odoo/pull/10557 is merged
     # https://github.com/OCA/server-tools/pull/492#issuecomment-237594285
-    @api.multi
     def onchange(self, values, field_name, field_onchange):  # pragma: no cover
         x2many_field = "custom_info_ids"
         if x2many_field in field_onchange:
@@ -43,7 +42,7 @@ class CustomInfo(models.AbstractModel):
                 field_onchange.setdefault(
                     u"{}.{}".format(x2many_field, subfield), u"",
                 )
-        return super().onchange(values, field_name, field_onchange,)
+        return super().onchange(values, field_name, field_onchange)
 
     @api.onchange("custom_info_template_id")
     def _onchange_custom_info_template_id(self):
@@ -71,7 +70,6 @@ class CustomInfo(models.AbstractModel):
         if self.all_custom_info_templates() != tmpls:
             self._onchange_custom_info_template_id()
 
-    @api.multi
     def unlink(self):
         """Remove linked custom info this way, as can't be handled
         automatically.
@@ -82,7 +80,6 @@ class CustomInfo(models.AbstractModel):
             info_values.unlink()
         return res
 
-    @api.multi
     @api.returns("custom.info.value")
     def get_custom_info_value(self, properties):
         """Get ``custom.info.value`` records for the given property."""
@@ -94,7 +91,6 @@ class CustomInfo(models.AbstractModel):
             ]
         )
 
-    @api.multi
     def all_custom_info_templates(self):
         """Get all custom info templates involved in these owners."""
         return self.mapped("custom_info_template_id") | self.mapped(
