@@ -26,7 +26,7 @@ class CustomInfoOption(models.Model):
         comodel_name="custom.info.template",
         string="Additional template",
         help="Additional template to be applied to the owner if this option "
-             "is chosen.",
+        "is chosen.",
     )
 
     @api.multi
