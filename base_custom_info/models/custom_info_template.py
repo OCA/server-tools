@@ -38,16 +38,13 @@ class CustomInfoTemplate(models.Model):
         comodel_name="custom.info.property",
         inverse_name="template_id",
         string="Properties",
-        oldname="info_ids",
     )
 
-    @api.multi
     @api.depends("model_id")
     def _compute_model(self):
         for r in self:
             r.model = r.model_id.model
 
-    @api.multi
     def _inverse_model(self):
         for r in self:
             r.model_id = self.env["ir.model"].search([("model", "=", r.model)])
@@ -61,7 +58,6 @@ class CustomInfoTemplate(models.Model):
     def _onchange_model(self):
         self._inverse_model()
 
-    @api.multi
     def _check_model_update_allowed(self, model_id):
         """Check if the template's model can be updated.
 
@@ -76,7 +72,6 @@ class CustomInfoTemplate(models.Model):
                     _("You cannot change the model because it is in use.")
                 )
 
-    @api.multi
     def check_access_rule(self, operation):
         """You access a template if you access its model."""
         for record in self:
@@ -85,7 +80,6 @@ class CustomInfoTemplate(models.Model):
             model.check_access_rule(operation)
         return super().check_access_rule(operation)
 
-    @api.multi
     def write(self, vals):
         if "model_id" in vals:
             self._check_model_update_allowed(vals["model_id"])
