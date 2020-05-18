@@ -11,6 +11,7 @@ class ResPartner(models.Model):
     Besides adding some visible feature to the module, this is useful for
     testing and example purposes.
     """
+
     _name = "res.partner"
     _inherit = [_name, "custom.info"]
 
