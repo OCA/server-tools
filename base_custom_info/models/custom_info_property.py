@@ -37,7 +37,7 @@ class CustomInfoProperty(models.Model):
         required=True,
         ondelete="cascade",
     )
-    model = fields.Char(related="template_id.model", readonly=True, auto_join=True,)
+    model = fields.Char(related="template_id.model", auto_join=True)
     info_value_ids = fields.One2many(
         comodel_name="custom.info.value",
         inverse_name="property_id",
@@ -80,7 +80,6 @@ class CustomInfoProperty(models.Model):
         "options here.",
     )
 
-    @api.multi
     def check_access_rule(self, operation):
         """You access a property if you access its template."""
         self.mapped("template_id").check_access_rule(operation)
@@ -107,7 +106,6 @@ class CustomInfoProperty(models.Model):
         for rec in self:
             rec._check_default_value_one()
 
-    @api.multi
     @api.onchange("required", "field_type")
     def _onchange_required_warn(self):
         """Warn if the required flag implies a possible weird behavior."""

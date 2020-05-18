@@ -46,24 +46,21 @@ class CustomInfoValue(models.Model):
         readonly=True,
     )
     property_sequence = fields.Integer(
-        related="property_id.sequence", store=True, index=True, readonly=True,
+        related="property_id.sequence", store=True, index=True,
     )
     category_sequence = fields.Integer(
         string="Category Sequence",
         related="property_id.category_id.sequence",
         store=True,
-        readonly=True,
     )
-    category_id = fields.Many2one(
-        related="property_id.category_id", store=True, readonly=True,
-    )
-    name = fields.Char(related="property_id.name", readonly=True)
-    field_type = fields.Selection(related="property_id.field_type", readonly=True,)
+    category_id = fields.Many2one(related="property_id.category_id", store=True)
+    name = fields.Char(related="property_id.name")
+    field_type = fields.Selection(related="property_id.field_type")
     field_name = fields.Char(
         compute="_compute_field_name",
         help="Technical name of the field where the value is stored.",
     )
-    required = fields.Boolean(related="property_id.required", readonly=True)
+    required = fields.Boolean(related="property_id.required")
     value = fields.Char(
         compute="_compute_value",
         inverse="_inverse_value",
@@ -81,7 +78,6 @@ class CustomInfoValue(models.Model):
         domain="[('property_ids', '=', property_id)]",
     )
 
-    @api.multi
     def check_access_rule(self, operation):
         """You access a value if you access its owner record."""
         if self.env.uid != SUPERUSER_ID:
@@ -113,28 +109,24 @@ class CustomInfoValue(models.Model):
             if m.model in self.env and self.env[m.model]._auto
         ]
 
-    @api.multi
     @api.depends("property_id.field_type")
     def _compute_field_name(self):
         """Get the technical name where the real typed value is stored."""
         for s in self:
             s.field_name = "value_{!s}".format(s.property_id.field_type)
 
-    @api.multi
     @api.depends("res_id", "model")
     def _compute_owner_id(self):
         """Get the id from the linked record."""
         for record in self:
             record.owner_id = "{},{}".format(record.model, record.res_id)
 
-    @api.multi
     def _inverse_owner_id(self):
         """Store the owner according to the model and ID."""
         for record in self.filtered("owner_id"):
             record.model = record.owner_id._name
             record.res_id = record.owner_id.id
 
-    @api.multi
     @api.depends(
         "property_id.field_type",
         "field_name",
@@ -154,7 +146,6 @@ class CustomInfoValue(models.Model):
             else:
                 s.value = getattr(s, s.field_name, False)
 
-    @api.multi
     def _inverse_value(self):
         """Write the value correctly converted in the typed field."""
         for record in self:
@@ -168,48 +159,47 @@ class CustomInfoValue(models.Model):
                 record.value, record.field_type, record.property_id,
             )
 
-    @api.one
     @api.constrains("property_id", "value_str", "value_int", "value_float")
     def _check_min_max_limits(self):
         """Ensure value falls inside the property's stablished limits."""
-        minimum, maximum = self.property_id.minimum, self.property_id.maximum
-        if minimum <= maximum:
-            value = self[self.field_name]
-            if not value:
-                # This is a job for :meth:`.~_check_required`
-                return
-            if self.field_type == "str":
-                number = len(self.value_str)
-                message = _(
-                    "Length for %(prop)s is %(val)s, but it should be "
-                    "between %(min)d and %(max)d."
-                )
-            elif self.field_type in {"int", "float"}:
-                number = value
-                if self.field_type == "int":
+        for record in self:
+            minimum, maximum = record.property_id.minimum, record.property_id.maximum
+            if minimum <= maximum:
+                value = record[record.field_name]
+                if not value:
+                    # This is a job for :meth:`.~_check_required`
+                    continue
+                if record.field_type == "str":
+                    number = len(self.value_str)
                     message = _(
-                        "Value for %(prop)s is %(val)s, but it should be "
+                        "Length for %(prop)s is %(val)s, but it should be "
                         "between %(min)d and %(max)d."
                     )
+                elif record.field_type in {"int", "float"}:
+                    number = value
+                    if record.field_type == "int":
+                        message = _(
+                            "Value for %(prop)s is %(val)s, but it should be "
+                            "between %(min)d and %(max)d."
+                        )
+                    else:
+                        message = _(
+                            "Value for %(prop)s is %(val)s, but it should be "
+                            "between %(min)f and %(max)f."
+                        )
                 else:
-                    message = _(
-                        "Value for %(prop)s is %(val)s, but it should be "
-                        "between %(min)f and %(max)f."
+                    continue
+                if not minimum <= number <= maximum:
+                    raise ValidationError(
+                        message
+                        % {
+                            "prop": record.property_id.display_name,
+                            "val": number,
+                            "min": minimum,
+                            "max": maximum,
+                        }
                     )
-            else:
-                return
-            if not minimum <= number <= maximum:
-                raise ValidationError(
-                    message
-                    % {
-                        "prop": self.property_id.display_name,
-                        "val": number,
-                        "min": minimum,
-                        "max": maximum,
-                    }
-                )
 
-    @api.multi
     @api.onchange("property_id")
     def _onchange_property_set_default_value(self):
         """Load default value for this property."""
