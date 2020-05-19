@@ -7,6 +7,7 @@ from odoo.tests.common import TransactionCase
 
 class TestMockServer(TransactionCase):
     """Test MockServer."""
+
     def setUp(self):
         super(TestMockServer).setUp()
         server_model = self.env["server.ftp"]
