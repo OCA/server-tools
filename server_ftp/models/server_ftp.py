@@ -5,8 +5,8 @@ from odoo.exceptions import UserError
 
 from ..lib.ftp_server import FTPServer
 from ..lib.ftp_tls_server import FTPTLSServer
-from ..lib.sftp_server import SFTPServer
 from ..lib.mock_server import MockServer
+from ..lib.sftp_server import SFTPServer
 
 
 class ServerFTP(models.Model):

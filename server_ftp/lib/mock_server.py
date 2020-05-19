@@ -1,9 +1,9 @@
 # Copyright 2020 Therp BV <https://therp.nl>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
-from .abstract_ftp_server import AbstractFTPServer
-
 from odoo import _
 from odoo.exceptions import UserError
+
+from .abstract_ftp_server import AbstractFTPServer
 
 
 class MockServer(AbstractFTPServer):
@@ -23,7 +23,7 @@ class MockServer(AbstractFTPServer):
 
     def connect(self, host, port, user, password):
         """ Connect to object """
-        self.filestore = {"/": []}   # One "directory" with no files.
+        self.filestore = {"/": []}  # One "directory" with no files.
         self.current_directory = "/"
         return self
 
