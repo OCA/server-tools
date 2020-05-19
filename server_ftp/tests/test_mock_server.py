@@ -2,34 +2,11 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 from io import BytesIO
 
-from odoo.tests.common import TransactionCase
+from .common import MockServerCase
 
 
-class TestMockServer(TransactionCase):
+class TestMockServer(MockServerCase):
     """Test MockServer."""
-
-    def setUp(self):
-        super(TestMockServer).setUp()
-        server_model = self.env["server.ftp"]
-        server = server_model.create(
-            {
-                "name": "Mock FTP Server for testing",
-                "server_type": "mock",
-                "host": "example.acme.com",
-                "user": "anonymous",
-                "state": "draft",
-            }
-        )
-        folder_model = self.env["server.ftpi.folder"]
-        self.folder = folder_model.create(
-            {
-                "name": "Mock FTP Folder",
-                "server_id": server.id,
-                "path": "example_directory",
-                "user": "anonymous",
-                "state": "draft",
-            }
-        )
 
     def test_mock_server(self):
         """Test Mock FTP Server."""

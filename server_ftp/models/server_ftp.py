@@ -52,7 +52,6 @@ class ServerFTP(models.Model):
             raise UserError(_("Make sure that required info is set"))
         try:
             server = self.connect()
-            server = server.connect()
         except Exception as e:
             raise UserError(str(e))
         else:

@@ -19,7 +19,6 @@ class MockServer(AbstractFTPServer):
         super().__init__()
         self.filestore = None  # To hold file-objects in memory
         self.current_directory = None
-        super.__init__()
 
     def connect(self, host, port, user, password):
         """ Connect to object """
