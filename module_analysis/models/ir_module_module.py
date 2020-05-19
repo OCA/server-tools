@@ -82,7 +82,6 @@ class IrModuleModule(models.Model):
             self.search([("state", "=", "installed")]).button_analyse_code()
         return res
 
-    @api.multi
     def write(self, vals):
         res = super().write(vals)
         if vals.get("state", False) == "installed":
@@ -94,7 +93,6 @@ class IrModuleModule(models.Model):
         return res
 
     # Public Section
-    @api.multi
     def button_analyse_code(self):
         IrModuleAuthor = self.env["ir.module.author"]
         IrModuleTypeRule = self.env["ir.module.type.rule"]
