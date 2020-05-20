@@ -25,7 +25,7 @@ class TestMockServer(MockServerCase):
         get_datas = BytesIO()
         directory.getfo("hello.txt", get_datas)
         get_datas.seek(0)
-        hello_bytes = get_datas.readall()
+        hello_bytes = get_datas.read()
         self.assertEqual(hello_bytes, b"Hello World!")
         directory.remove("hello.txt")
         self.assertFalse(directory.exists(), "hello.txt")

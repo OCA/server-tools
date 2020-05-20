@@ -40,7 +40,7 @@ class MockServer(AbstractFTPServer):
         """
         directory = self._get_checked_directory()
         file_like.seek(0)
-        directory[name] = file_like.readall()
+        directory[name] = file_like.read()
 
     def put(self, filepath, name):
         """Transfer file object to server
