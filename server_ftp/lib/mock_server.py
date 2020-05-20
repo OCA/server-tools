@@ -22,7 +22,7 @@ class MockServer(AbstractFTPServer):
 
     def connect(self, host, port, user, password):
         """ Connect to object """
-        self.filestore = {"/": []}  # One "directory" with no files.
+        self.filestore = {"/": {}}  # One "directory" with no files.
         self.current_directory = "/"
         return self
 
@@ -71,12 +71,12 @@ class MockServer(AbstractFTPServer):
     def listdir(self, path=""):
         """ List directory in path """
         directory = self._get_checked_directory(path)
-        return directory.keys()
+        return list(directory.keys())  # list: otherwise returns dict_keys object.
 
     def cd(self, path):
         """Change directory, automatically create it if not existing."""
         if path not in self.filestore:
-            self.filestore[path] = []
+            self.filestore[path] = {}
         self.current_directory = path
 
     def exists(self, file, path="."):

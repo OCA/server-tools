@@ -16,6 +16,7 @@ class MockServerCase(TransactionCase):
                 "server_type": "mock",
                 "host": "example.acme.com",
                 "user": "anonymous",
+                "password": "secret",
                 "state": "draft",
             }
         )
