@@ -7,7 +7,28 @@ from .common import MockServerCase
 
 class TestMockServer(MockServerCase):
     """Test MockServer."""
-
+    def setUp(self):
+        super(TestMockServer, self).setUp()
+        server_model = self.env["server.ftp"]
+        server = server_model.create(
+            {
+                "name": "Mock FTP Server for testing",
+                "server_type": "mock",
+                "host": "example.acme.com",
+                "user": "anonymous",
+                "password": "password",
+                "state": "draft",
+            }
+        )
+        folder_model = self.env["server.ftp.folder"]
+        self.folder = folder_model.create(
+            {
+                "name": "Mock FTP Folder",
+                "server_id": server.id,
+                "path": "example_directory",
+            }
+        )
+ 
     def test_mock_server(self):
         """Test Mock FTP Server."""
         folder = self.folder
