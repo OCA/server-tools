@@ -7,6 +7,7 @@ from .common import MockServerCase
 
 class TestMockServer(MockServerCase):
     """Test MockServer."""
+
     def setUp(self):
         super(TestMockServer, self).setUp()
         server_model = self.env["server.ftp"]
@@ -28,7 +29,7 @@ class TestMockServer(MockServerCase):
                 "path": "example_directory",
             }
         )
- 
+
     def test_mock_server(self):
         """Test Mock FTP Server."""
         folder = self.folder
