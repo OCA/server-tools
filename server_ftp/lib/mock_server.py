@@ -19,11 +19,10 @@ class MockServer(AbstractFTPServer):
         super().__init__()
         self.filestore = None  # To hold file-objects in memory
         self.current_directory = None
-        super.__init__()
 
     def connect(self, host, port, user, password):
         """ Connect to object """
-        self.filestore = {"/": []}  # One "directory" with no files.
+        self.filestore = {"/": {}}  # One "directory" with no files.
         self.current_directory = "/"
         return self
 
@@ -41,7 +40,7 @@ class MockServer(AbstractFTPServer):
         """
         directory = self._get_checked_directory()
         file_like.seek(0)
-        directory[name] = file_like.readall()
+        directory[name] = file_like.read()
 
     def put(self, filepath, name):
         """Transfer file object to server
@@ -72,12 +71,12 @@ class MockServer(AbstractFTPServer):
     def listdir(self, path=""):
         """ List directory in path """
         directory = self._get_checked_directory(path)
-        return directory.keys()
+        return list(directory.keys())  # list: otherwise returns dict_keys object.
 
     def cd(self, path):
         """Change directory, automatically create it if not existing."""
         if path not in self.filestore:
-            self.filestore[path] = []
+            self.filestore[path] = {}
         self.current_directory = path
 
     def exists(self, file, path="."):

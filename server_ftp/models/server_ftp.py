@@ -48,11 +48,10 @@ class ServerFTP(models.Model):
 
     def action_test_connection(self):
         """ Test the outcome of connect() """
-        if not all([self.host, self.user, self.password, self.port]):
+        if not all([self.host, self.port, self.user, self.password]):
             raise UserError(_("Make sure that required info is set"))
         try:
             server = self.connect()
-            server = server.connect()
         except Exception as e:
             raise UserError(str(e))
         else:
