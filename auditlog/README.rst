@@ -33,22 +33,19 @@ models such as ``create``, ``read``, ``write`` and ``delete``.
 .. contents::
    :local:
 
-Usage
-=====
+Configuration
+=============
+
+Rules
+~~~~~
 
 Go to `Settings / Technical / Audit / Rules` to subscribe rules. A rule defines
 which operations to log for a given data model.
 
-.. image:: https://raw.githubusercontent.com/auditlog/static/description/rule.png
+.. image:: https://raw.githubusercontent.com/OCA/server-tools/12.0/auditlog/static/description/rule.png
 
-Then, check logs in the `Settings / Technical / Audit / Logs` menu. You can
-group them by user sessions, date, data model or HTTP requests:
-
-.. image:: https://raw.githubusercontent.com/auditlog/static/description/logs.png
-
-Get the details:
-
-.. image:: https://raw.githubusercontent.com/auditlog/static/description/log.png
+Cleanup
+~~~~~~~
 
 A scheduled action exists to delete logs older than 6 months (180 days)
 automatically but is not enabled by default.
@@ -56,13 +53,25 @@ To activate it and/or change the delay, go to the
 `Configuration / Technical / Automation / Scheduled Actions` menu and edit the
 `Auto-vacuum audit logs` entry:
 
-.. image:: https://raw.githubusercontent.com/auditlog/static/description/autovacuum.png
+.. image:: https://raw.githubusercontent.com/OCA/server-tools/12.0/auditlog/static/description/autovacuum.png
+
+Usage
+=====
+
+Check logs in the `Settings / Technical / Audit / Logs` menu. You can
+group them by user sessions, date, data model or HTTP requests:
+
+.. image:: https://raw.githubusercontent.com/OCA/server-tools/12.0/auditlog/static/description/logs.png
+
+Get the details:
+
+.. image:: https://raw.githubusercontent.com/OCA/server-tools/12.0/auditlog/static/description/log.png
 
 Known issues / Roadmap
 ======================
 
- * log only operations triggered by some users (currently it logs all users)
- * log read operations does not work on all data models, need investigation
+* Log only operations triggered by some users. Currently it logs all users.
+* Logging read operations does not work on all data models. Need investigation.
 
 Bug Tracker
 ===========
