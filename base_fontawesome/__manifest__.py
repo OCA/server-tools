@@ -3,16 +3,12 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 {
-    'name': 'Base Fontawesome',
-    'summary': """Up to date Fontawesome resources.""",
-    'version': '12.0.5.7.1',
-    'license': 'LGPL-3',
-    'website': 'https://github.com/OCA/server-tools',
-    'author': 'Camptocamp,Creu Blanca,Odoo Community Association (OCA)',
-    'depends': [
-        'web',
-    ],
-    'data': [
-        'templates/assets.xml',
-    ],
+    "name": "Base Fontawesome",
+    "summary": """Up to date Fontawesome resources.""",
+    "version": "13.0.5.13.0",
+    "license": "LGPL-3",
+    "website": "https://github.com/OCA/server-tools",
+    "author": "Camptocamp,Creu Blanca,Odoo Community Association (OCA)",
+    "depends": ["web"],
+    "data": ["templates/assets.xml"],
 }
