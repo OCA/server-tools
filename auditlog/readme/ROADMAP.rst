@@ -1,2 +1,2 @@
- * log only operations triggered by some users (currently it logs all users)
- * log read operations does not work on all data models, need investigation
+* Log only operations triggered by some users. Currently it logs all users.
+* Logging read operations does not work on all data models. Need investigation.
