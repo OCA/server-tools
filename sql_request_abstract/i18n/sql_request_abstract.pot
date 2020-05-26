@@ -1,12 +1,12 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sql_request_abstract
+# 	* sql_request_abstract
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: <>\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,7 +29,7 @@ msgid "Display Name"
 msgstr ""
 
 #. module: sql_request_abstract
-#: selection:sql.request.mixin,state:0
+#: model:ir.model.fields.selection,name:sql_request_abstract.selection__sql_request_mixin__state__draft
 msgid "Draft"
 msgstr ""
 
@@ -39,7 +39,7 @@ msgid "ID"
 msgstr ""
 
 #. module: sql_request_abstract
-#: code:addons/sql_request_abstract/models/sql_request_mixin.py:143
+#: code:addons/sql_request_abstract/models/sql_request_mixin.py:0
 #, python-format
 msgid "It is not allowed to execute a not checked request."
 msgstr ""
@@ -55,9 +55,11 @@ msgid "Manager"
 msgstr ""
 
 #. module: sql_request_abstract
-#: code:addons/sql_request_abstract/models/sql_request_mixin.py:210
+#: code:addons/sql_request_abstract/models/sql_request_mixin.py:0
 #, python-format
-msgid "Materialized View requires PostgreSQL 9.3 or greater but PostgreSQL %s is currently installed."
+msgid ""
+"Materialized View requires PostgreSQL 9.3 or greater but PostgreSQL %s is "
+"currently installed."
 msgstr ""
 
 #. module: sql_request_abstract
@@ -81,7 +83,7 @@ msgid "SQL Request Mixin"
 msgstr ""
 
 #. module: sql_request_abstract
-#: selection:sql.request.mixin,state:0
+#: model:ir.model.fields.selection,name:sql_request_abstract.selection__sql_request_mixin__state__sql_valid
 msgid "SQL Valid"
 msgstr ""
 
@@ -92,27 +94,29 @@ msgstr ""
 
 #. module: sql_request_abstract
 #: model:ir.model.fields,help:sql_request_abstract.field_sql_request_mixin__state
-msgid "State of the Request:\n"
+msgid ""
+"State of the Request:\n"
 " * 'Draft': Not tested\n"
 " * 'SQL Valid': SQL Request has been checked and is valid"
 msgstr ""
 
 #. module: sql_request_abstract
-#: code:addons/sql_request_abstract/models/sql_request_mixin.py:250
+#: code:addons/sql_request_abstract/models/sql_request_mixin.py:0
 #, python-format
-msgid "The SQL query is not valid:\n"
+msgid ""
+"The SQL query is not valid:\n"
 "\n"
 " %s"
 msgstr ""
 
 #. module: sql_request_abstract
-#: code:addons/sql_request_abstract/models/sql_request_mixin.py:232
+#: code:addons/sql_request_abstract/models/sql_request_mixin.py:0
 #, python-format
 msgid "The query is not allowed because it contains unsafe word '%s'"
 msgstr ""
 
 #. module: sql_request_abstract
-#: code:addons/sql_request_abstract/models/sql_request_mixin.py:167
+#: code:addons/sql_request_abstract/models/sql_request_mixin.py:0
 #, python-format
 msgid "Unimplemented mode : '%s'"
 msgstr ""
@@ -124,6 +128,7 @@ msgstr ""
 
 #. module: sql_request_abstract
 #: model:ir.model.fields,help:sql_request_abstract.field_sql_request_mixin__query
-msgid "You can't use the following words: DELETE, DROP, CREATE, INSERT, ALTER, TRUNCATE, EXECUTE, UPDATE."
+msgid ""
+"You can't use the following words: DELETE, DROP, CREATE, INSERT, ALTER, "
+"TRUNCATE, EXECUTE, UPDATE."
 msgstr ""
-
