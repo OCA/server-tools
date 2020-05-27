@@ -2,6 +2,8 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 from io import BytesIO
 
+from odoo.exceptions import UserError
+
 from .common import MockServerCase
 
 
@@ -38,6 +40,8 @@ class TestMockServer(MockServerCase):
         self.assertEqual(server.state, "done")
         directory = folder.connect()
         self.assertEqual(directory.listdir(), [])
+        with self.assertRaises(UserError):
+            directory._get_checked_directory(path="a_random_path")
         datas = BytesIO()
         datas.write(b"Hello World!")
         directory.putfo(datas, "hello.txt")
