@@ -23,6 +23,12 @@ class TestAuditlog(object):
             ('method', '=', 'write'),
             ('res_id', '=', group.id),
         ]).ensure_one())
+        group.with_context(auditlog_disabled=False).read()
+        self.assertTrue(auditlog_log.search([
+            ('model_id', '=', self.groups_model_id),
+            ('method', '=', 'read'),
+            ('res_id', '=', group.id),
+        ]).ensure_one())
         group.unlink()
         self.assertTrue(auditlog_log.search([
             ('model_id', '=', self.groups_model_id),
