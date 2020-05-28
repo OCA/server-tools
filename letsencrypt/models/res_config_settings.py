@@ -1,7 +1,7 @@
 # Copyright 2018 Therp BV <http://therp.nl>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import api, exceptions, fields, models
+from odoo import _, api, exceptions, fields, models
 
 
 DNS_SCRIPT_DEFAULT = """# Write your script here
@@ -20,6 +20,7 @@ class ResConfigSettings(models.TransientModel):
             'Additional domains to include on the CSR. '
             'Separate with commas or newlines.'
         ),
+        force_config_parameter="letsencrypt.altnames",
     )
     letsencrypt_dns_provider = fields.Selection(
         selection=[('shell', 'Shell script')],
@@ -30,6 +31,7 @@ class ResConfigSettings(models.TransientModel):
             'script. Other options can be added by installing additional '
             'modules.'
         ),
+        config_parameter="letsencrypt.dns_provider",
     )
     letsencrypt_dns_shell_script = fields.Text(
         string='DNS update script',
@@ -39,11 +41,13 @@ class ResConfigSettings(models.TransientModel):
             '$LETSENCRYPT_DNS_DOMAIN variables.'
         ),
         default=DNS_SCRIPT_DEFAULT,
+        force_config_parameter="letsencrypt.dns_shell_script",
     )
     letsencrypt_needs_dns_provider = fields.Boolean()
     letsencrypt_reload_command = fields.Text(
         string='Server reload command',
         help='Fill this with the command to restart your web server.',
+        force_config_parameter="letsencrypt.reload_command",
     )
     letsencrypt_testing_mode = fields.Boolean(
         string='Use testing server',
@@ -51,13 +55,15 @@ class ResConfigSettings(models.TransientModel):
             "Use the Let's Encrypt staging server, which has higher rate "
             "limits but doesn't create valid certificates."
         ),
+        config_parameter="letsencrypt.testing_mode",
     )
     letsencrypt_prefer_dns = fields.Boolean(
         string="Prefer DNS validation",
         help=(
             "Validate through DNS even when HTTP validation is possible. "
-            "Use this if your Odoo instance isn't publicly accessible.",
-        )
+            "Use this if your Odoo instance isn't publicly accessible."
+        ),
+        config_parameter="letsencrypt.prefer_dns",
     )
 
     @api.onchange('letsencrypt_altnames', 'letsencrypt_prefer_dns')
@@ -70,29 +76,9 @@ class ResConfigSettings(models.TransientModel):
     @api.model
     def default_get(self, fields_list):
         res = super().default_get(fields_list)
-        get_param = self.env['ir.config_parameter'].get_param
-        res.update(
-            {
-                'letsencrypt_dns_provider': get_param(
-                    'letsencrypt.dns_provider'
-                ),
-                'letsencrypt_dns_shell_script': get_param(
-                    'letsencrypt.dns_shell_script', DNS_SCRIPT_DEFAULT
-                ),
-                'letsencrypt_altnames': get_param('letsencrypt.altnames', ''),
-                'letsencrypt_reload_command': get_param(
-                    'letsencrypt.reload_command'
-                ),
-                'letsencrypt_needs_dns_provider': (
-                    '*.' in get_param('letsencrypt.altnames', '')
-                ),
-                'letsencrypt_testing_mode': (
-                    get_param('letsencrypt.testing_mode', 'False') == 'True'
-                ),
-                'letsencrypt_prefer_dns': (
-                    get_param('letsencrypt.prefer_dns', 'False') == 'True'
-                ),
-            }
+        res["letsencrypt_needs_dns_provider"] = (
+            "*." in res["letsencrypt_altnames"]
+            or res["letsencrypt_prefer_dns"]
         )
         return res
 
@@ -109,24 +95,29 @@ class ResConfigSettings(models.TransientModel):
             ]
             if all(line == '' or line.startswith('#') for line in lines):
                 raise exceptions.ValidationError(
-                    "You didn't write a DNS update script!"
+                    _("You didn't write a DNS update script!")
                 )
 
-        set_param = self.env['ir.config_parameter'].set_param
-        set_param('letsencrypt.dns_provider', self.letsencrypt_dns_provider)
-        set_param(
-            'letsencrypt.dns_shell_script', self.letsencrypt_dns_shell_script
-        )
-        set_param('letsencrypt.altnames', self.letsencrypt_altnames)
-        set_param(
-            'letsencrypt.reload_command', self.letsencrypt_reload_command
-        )
-        set_param(
-            'letsencrypt.testing_mode',
-            'True' if self.letsencrypt_testing_mode else 'False',
-        )
-        set_param(
-            'letsencrypt.prefer_dns',
-            'True' if self.letsencrypt_prefer_dns else 'False',
-        )
-        return True
+    @api.model
+    def _get_classified_fields(self):
+        """config_parameter is inexplicably allowed on Char but not Text.
+
+        ir.config_parameter values can handle newlines, even in the web
+        interface, so there doesn't seem to be a good reason for this.
+
+        Add "force_config_parameter" as an alternative that ignores types.
+        """
+        # Note: As of writing, Odoo 13 has this limit and Odoo 14 isn't out
+        # Whenever migrating, make sure this is still necessary
+        classified = super()._get_classified_fields()
+        new_other = []
+        for name in classified["other"]:
+            field = self._fields[name]
+            if hasattr(field, "force_config_parameter"):
+                classified["config"].append(
+                    (name, field.force_config_parameter)
+                )
+            else:
+                new_other.append(name)
+        classified["other"] = new_other
+        return classified
