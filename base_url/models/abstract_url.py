@@ -111,6 +111,8 @@ class AbstractUrl(models.AbstractModel):
                 record.automatic_url_key = record._post_process_url_key(
                     key_by_id[record.id]
                 )
+            else:
+                record.automatic_url_key = False
 
     def _compute_automatic_url_key(self):
         raise NotImplementedError(
