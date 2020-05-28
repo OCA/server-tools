@@ -9,8 +9,13 @@ from os import path
 
 import mock
 
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
 from odoo.tests import SingleTransactionCase
+
+try:
+    import dns.resolver
+except ImportError:
+    pass
 
 from ..models.letsencrypt import _get_data_dir, _get_challenge_dir
 
@@ -35,7 +40,7 @@ class TestLetsencrypt(SingleTransactionCase):
                 'letsencrypt_dns_provider': 'shell',
                 'letsencrypt_dns_shell_script': 'touch /tmp/.letsencrypt_test',
                 'letsencrypt_altnames': '*.example.com',
-                'letsencrypt_reload_command': 'true',  # i.e. /bin/true
+                'letsencrypt_reload_command': 'echo reloaded',
             }
         ).set_values()
 
@@ -47,13 +52,18 @@ class TestLetsencrypt(SingleTransactionCase):
             'touch /tmp/.letsencrypt_test',
         )
         self.assertEqual(setting_vals['letsencrypt_altnames'], '*.example.com')
-        self.assertEqual(setting_vals['letsencrypt_reload_command'], 'true')
+        self.assertEqual(setting_vals['letsencrypt_reload_command'], 'echo reloaded')
         self.assertTrue(setting_vals['letsencrypt_needs_dns_provider'])
         self.assertFalse(setting_vals['letsencrypt_prefer_dns'])
 
+        with self.assertRaises(ValidationError):
+            self.env["res.config.settings"].create(
+                {"letsencrypt_dns_shell_script": "# Empty script"}
+            ).set_values()
+
     @mock.patch('acme.client.ClientV2.answer_challenge')
     @mock.patch('acme.client.ClientV2.poll_and_finalize', side_effect=_poll)
-    def test_http_challenge(self, poll, answer_challenge):
+    def test_http_challenge(self, poll, _answer_challenge):
         letsencrypt = self.env['letsencrypt']
         self.env['res.config.settings'].create(
             {'letsencrypt_altnames': 'test.example.com'}
@@ -74,10 +84,12 @@ class TestLetsencrypt(SingleTransactionCase):
     @mock.patch('acme.client.ClientV2.poll_and_finalize', side_effect=_poll)
     def test_dns_challenge(self, poll, answer_challenge, sleep, query, dnsupd):
 
+        record = None
+
         def register_update(challenge, domain, token):
+            nonlocal record
             record = mock.Mock()
             record.to_text.return_value = '"%s"' % token
-            query.return_value = [record]
             ret = mock.Mock()
             ret.challenge = challenge
             ret.domain = domain
@@ -86,10 +98,28 @@ class TestLetsencrypt(SingleTransactionCase):
 
         dnsupd.side_effect = register_update
 
+        ncalls = 0
+
+        def query_effect(domain, rectype):
+            nonlocal ncalls
+            self.assertEqual(domain, "_acme-challenge.example.com.")
+            self.assertEqual(rectype, "TXT")
+            ncalls += 1
+            if ncalls == 1:
+                raise dns.resolver.NXDOMAIN
+            elif ncalls == 2:
+                wrong_record = mock.Mock()
+                wrong_record.to_text.return_value = '"not right"'
+                return [wrong_record]
+            else:
+                return [record]
+
+        query.side_effect = query_effect
+
         self.install_certificate(days_left=10)
         self.env['letsencrypt']._cron()
         poll.assert_called()
-        query.assert_called_with("_acme-challenge.example.com.", "TXT")
+        self.assertEqual(ncalls, 3)
         self.assertTrue(path.isfile('/tmp/.letsencrypt_test'))
         self.assertTrue(
             path.isfile(path.join(_get_data_dir(), 'www.example.com.crt'))
