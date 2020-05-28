@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2020 KMEE INFORMATICA LTDA
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record model="ir.ui.view" id="base_wip_abstract_form_view">
+        <field name="name">base.wip.abstract.form (in base_wip)</field>
+        <field name="model">base.wip.abstract</field>
+        <field name="arch" type="xml">
+            <form noedit="1">
+                <sheet>
+                    <notebook>
+                        <page name="wip_page" string="Metrics">
+                            <field name="wip_ids" readonly="1">
+                                <tree>
+                                    <field name="wip_state"/>
+                                    <field name="date_hour_start"/>
+                                    <field name="date_hour_stop"/>
+                                    <field name="lead_time"/>
+                                    <field name="state"/>
+                                    <field name="user_id"/>
+                                </tree>
+                            </field>
+                            <group>
+                                <group>
+                                    <field name="reaction_time"/>
+                                    <field name="lead_time"/>
+                                </group>
+                                <group>
+                                    <field name="cycle_time"/>
+                                    <field name="logged_time"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter"></div>
+            </form>
+        </field>
+    </record>
+
+
+</odoo>
