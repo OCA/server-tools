@@ -2,10 +2,8 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from lxml import etree
-
 from odoo import api, fields, models
 from odoo.osv.orm import setup_modifiers
-
 
 from .base_wip import display_time
 
@@ -57,8 +55,8 @@ class BaseWipAbstract(models.AbstractModel):
                 lambda x: x.wip_state == 'open'
             ).mapped('lead_time_seconds'))
 
-            record.logged_time_float = logged_time * 3600
-            record.logged_time = display_time(logged_time * 3600, 5)
+            record.logged_time_float = logged_time
+            record.logged_time = display_time(logged_time , 5)
 
             record.lead_time_float = lead_time
             record.lead_time = display_time(lead_time, 5)
