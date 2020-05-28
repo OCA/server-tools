@@ -7,8 +7,7 @@ def migrate_altnames(env):
     config = env["ir.config_parameter"]
     existing = config.search([("key", "=like", "letsencrypt.altname.%")])
     if not existing:
-        # We may be migrating from 10.0.2.0.0, in which case
-        # letsencrypt.altnames already exists and shouldn't be clobbered.
+        # If letsencrypt.altnames already exists it shouldn't be clobbered
         return
     new_domains = "\n".join(existing.mapped("value"))
     config.set_param("letsencrypt.altnames", new_domains)
