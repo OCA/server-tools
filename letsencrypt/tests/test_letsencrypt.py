@@ -12,6 +12,11 @@ import mock
 from odoo.exceptions import UserError, ValidationError
 from odoo.tests import SingleTransactionCase
 
+try:
+    import dns.resolver
+except ImportError:
+    pass
+
 from ..models.letsencrypt import _get_data_dir, _get_challenge_dir
 
 
@@ -100,8 +105,12 @@ class TestLetsencrypt(SingleTransactionCase):
             self.assertEqual(domain, "_acme-challenge.example.com.")
             self.assertEqual(rectype, "TXT")
             ncalls += 1
-            if ncalls < 3:
-                return []
+            if ncalls == 1:
+                raise dns.resolver.NXDOMAIN
+            elif ncalls == 2:
+                wrong_record = mock.Mock()
+                wrong_record.to_text.return_value = '"not right"'
+                return [wrong_record]
             else:
                 return [record]
 
