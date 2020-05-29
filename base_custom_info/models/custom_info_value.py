@@ -20,12 +20,13 @@ class CustomInfoValue(models.Model):
 
     model = fields.Char(
         related="property_id.model", index=True, readonly=True,
-        auto_join=True, store=True,
+        auto_join=True, store=True, compute_sudo=True,
     )
     owner_id = fields.Reference(
         selection="_selection_owner_id", string="Owner",
         compute="_compute_owner_id", inverse="_inverse_owner_id",
         help="Record that owns this custom value.",
+        compute_sudo=True,
     )
     res_id = fields.Integer(
         string="Resource ID", required=True, index=True, store=True,
