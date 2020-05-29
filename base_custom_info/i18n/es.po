@@ -429,7 +429,7 @@ msgid "Last Updated on"
 msgstr "Última actualización en"
 
 #. module: base_custom_info
-#: code:addons/base_custom_info/models/custom_info_value.py:151
+#: code:addons/base_custom_info/models/custom_info_value.py:152
 #, python-format
 msgid ""
 "Length for %(prop)s is %(val)s, but it should be between %(min)d and %(max)d."
@@ -491,8 +491,8 @@ msgid "Needs videogames"
 msgstr "Necesita videojuegos"
 
 #. module: base_custom_info
-#: code:addons/base_custom_info/models/custom_info_value.py:123
-#: code:addons/base_custom_info/models/custom_info_value.py:216
+#: code:addons/base_custom_info/models/custom_info_value.py:124
+#: code:addons/base_custom_info/models/custom_info_value.py:217
 #, python-format
 msgid "No"
 msgstr "No"
@@ -670,7 +670,7 @@ msgid "Value"
 msgstr "Valor"
 
 #. module: base_custom_info
-#: code:addons/base_custom_info/models/custom_info_value.py:157
+#: code:addons/base_custom_info/models/custom_info_value.py:158
 #, python-format
 msgid ""
 "Value for %(prop)s is %(val)s, but it should be between %(min)d and %(max)d."
@@ -678,7 +678,7 @@ msgstr ""
 "El valor de %(prop)s es %(val)s, pero debería estar entre %(min)d y %(max)d."
 
 #. module: base_custom_info
-#: code:addons/base_custom_info/models/custom_info_value.py:161
+#: code:addons/base_custom_info/models/custom_info_value.py:162
 #, python-format
 msgid ""
 "Value for %(prop)s is %(val)s, but it should be between %(min)f and %(max)f."
@@ -740,7 +740,7 @@ msgstr ""
 "se pueda convertir al tipo de campo que ha escogido."
 
 #. module: base_custom_info
-#: code:addons/base_custom_info/models/custom_info_value.py:123
+#: code:addons/base_custom_info/models/custom_info_value.py:124
 #, python-format
 msgid "Yes"
 msgstr "Sí"
