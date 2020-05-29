@@ -393,7 +393,7 @@ msgid "Last Updated on"
 msgstr ""
 
 #. module: base_custom_info
-#: code:addons/base_custom_info/models/custom_info_value.py:151
+#: code:addons/base_custom_info/models/custom_info_value.py:152
 #, python-format
 msgid "Length for %(prop)s is %(val)s, but it should be between %(min)d and %(max)d."
 msgstr ""
@@ -452,8 +452,8 @@ msgid "Needs videogames"
 msgstr ""
 
 #. module: base_custom_info
-#: code:addons/base_custom_info/models/custom_info_value.py:123
-#: code:addons/base_custom_info/models/custom_info_value.py:216
+#: code:addons/base_custom_info/models/custom_info_value.py:124
+#: code:addons/base_custom_info/models/custom_info_value.py:217
 #, python-format
 msgid "No"
 msgstr ""
@@ -622,13 +622,13 @@ msgid "Value"
 msgstr ""
 
 #. module: base_custom_info
-#: code:addons/base_custom_info/models/custom_info_value.py:157
+#: code:addons/base_custom_info/models/custom_info_value.py:158
 #, python-format
 msgid "Value for %(prop)s is %(val)s, but it should be between %(min)d and %(max)d."
 msgstr ""
 
 #. module: base_custom_info
-#: code:addons/base_custom_info/models/custom_info_value.py:161
+#: code:addons/base_custom_info/models/custom_info_value.py:162
 #, python-format
 msgid "Value for %(prop)s is %(val)s, but it should be between %(min)f and %(max)f."
 msgstr ""
@@ -681,7 +681,7 @@ msgid "Will be applied by default to all custom values of this property. This is
 msgstr ""
 
 #. module: base_custom_info
-#: code:addons/base_custom_info/models/custom_info_value.py:123
+#: code:addons/base_custom_info/models/custom_info_value.py:124
 #, python-format
 msgid "Yes"
 msgstr ""
