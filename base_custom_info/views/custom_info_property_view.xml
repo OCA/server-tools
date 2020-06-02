@@ -38,6 +38,7 @@
                 <sheet>
                     <group>
                         <field name="name"/>
+                        <field name="widget"/>
                         <field name="field_type"/>
                         <field name="category_id"/>
                         <field name="required"/>
@@ -78,6 +79,7 @@
             <search>
                 <field name="name"/>
                 <field name="template_id"/>
+                <field name="widget"/>
                 <field name="field_type"/>
                 <field name="category_id"/>
                 <field name="required"/>

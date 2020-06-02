@@ -21,7 +21,7 @@
                         <field name="custom_info_ids"
                                colspan="4"
                                nolabel="1"
-                               context="{'embed': True, 'tree_view_ref': 'base_custom_info.custom_info_value_tree_editable'}"
+                               mode="custom_info"
                         />
                     </group>
                 </page>

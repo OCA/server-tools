@@ -54,13 +54,20 @@ class CustomInfo(models.AbstractModel):
         values = self.custom_info_ids
         values = values.filtered(lambda r: r.property_id not in to_remove)
         for prop in to_add.sorted():
-            newvalue = self.custom_info_ids.new({
+            vals = {
                 "property_id": prop.id,
                 "res_id": self.id,
-                "value": prop.default_value,
-            })
+            }
+            if prop.default_value:
+                if prop.field_type != 'id':
+                    vals["value_%s" % prop.field_type] = prop.default_value
+                else:
+                    vals["value_id"] = self.env['custom.info.option'].search([
+                        ('property_ids', '=', prop.id),
+                        ('name', '=', prop.default_value)
+                    ], limit=1).id
+            newvalue = self.custom_info_ids.new(vals)
             newvalue._onchange_property_set_default_value()
-            newvalue._inverse_value()
             newvalue._compute_value()
             values += newvalue
         self.custom_info_ids = values
