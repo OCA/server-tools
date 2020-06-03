@@ -39,11 +39,16 @@
     <record id="view_task_tree" model="ir.ui.view">
         <field name="model">attachment.synchronize.task</field>
         <field name="arch" type="xml">
-            <tree string="Tasks">
+            <tree string="Tasks" colors="grey: not(enabled)">
                 <field name="name" select="1"/>
                 <field name="method_type"/>
                 <field name="pattern"/>
                 <field name="filepath"/>
+                <field name="move_path"/>
+                <field name="after_import"/>
+                <field name="enabled" invisible="1"/>
+                <button name="button_duplicate_record" type="object" title="Copy" class="fa fa-clone"/>
+                <button name="button_toogle_enabled" type="object" title="Enable" class="fa fa-archive"/>
             </tree>
         </field>
     </record>

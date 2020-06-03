@@ -20,5 +20,6 @@
     ],
     "demo": ["demo/attachment_synchronize_task_demo.xml"],
     "installable": True,
-    "application": False,
+    "development_status": "Beta",
+    "maintainers": ["florian-dacosta", "GSLabIt", "bealdav"],
 }

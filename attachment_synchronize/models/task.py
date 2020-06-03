@@ -102,11 +102,11 @@ class AttachmentSynchronizeTask(models.Model):
         "when excuting the files linked to this task",
     )
 
-    def _prepare_attachment_vals(self, datas, filename):
+    def _prepare_attachment_vals(self, data, filename):
         self.ensure_one()
         vals = {
             "name": filename,
-            "datas": datas,
+            "datas": data,
             "datas_fname": filename,
             "task_id": self.id,
             "file_type": self.file_type or False,
@@ -160,9 +160,9 @@ class AttachmentSynchronizeTask(models.Model):
                     )
                     try:
                         full_absolute_path = os.path.join(filepath, file_name)
-                        datas = backend._get_b64_data(full_absolute_path)
+                        data = backend._get_b64_data(full_absolute_path)
                         attach_vals = self._prepare_attachment_vals(
-                            datas, file_name
+                            data, file_name
                         )
                         attachment = attach_obj.with_env(new_env).create(
                             attach_vals
@@ -185,7 +185,7 @@ class AttachmentSynchronizeTask(models.Model):
                                 self.move_path, new_name
                             )
                         if new_full_path:
-                            backend._add_b64_data(new_full_path, datas)
+                            backend._add_b64_data(new_full_path, data)
                         if self.after_import in (
                             "delete",
                             "rename",
@@ -208,3 +208,18 @@ class AttachmentSynchronizeTask(models.Model):
             lambda r: r.name in filenames
         ).mapped("name")
         return list(set(filenames) - set(imported))
+
+    def button_toogle_enabled(self):
+        for rec in self:
+            rec.enabled = not rec.enabled
+
+    def button_duplicate_record(self):
+        self.ensure_one()
+        record = self.copy({"enabled": False})
+        return {
+            "type": "ir.actions.act_window",
+            "res_model": record.backend_id._name,
+            "target": "current",
+            "view_mode": "form",
+            "res_id": record.backend_id.id,
+        }
