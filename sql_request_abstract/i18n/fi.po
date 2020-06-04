@@ -34,7 +34,7 @@ msgid "Display Name"
 msgstr "Nimi"
 
 #. module: sql_request_abstract
-#: selection:sql.request.mixin,state:0
+#: model:ir.model.fields.selection,name:sql_request_abstract.selection__sql_request_mixin__state__draft
 msgid "Draft"
 msgstr "Luonnos"
 
@@ -44,7 +44,7 @@ msgid "ID"
 msgstr "ID"
 
 #. module: sql_request_abstract
-#: code:addons/sql_request_abstract/models/sql_request_mixin.py:143
+#: code:addons/sql_request_abstract/models/sql_request_mixin.py:0
 #, python-format
 msgid "It is not allowed to execute a not checked request."
 msgstr ""
@@ -60,7 +60,7 @@ msgid "Manager"
 msgstr ""
 
 #. module: sql_request_abstract
-#: code:addons/sql_request_abstract/models/sql_request_mixin.py:210
+#: code:addons/sql_request_abstract/models/sql_request_mixin.py:0
 #, python-format
 msgid ""
 "Materialized View requires PostgreSQL 9.3 or greater but PostgreSQL %s is "
@@ -88,7 +88,7 @@ msgid "SQL Request Mixin"
 msgstr ""
 
 #. module: sql_request_abstract
-#: selection:sql.request.mixin,state:0
+#: model:ir.model.fields.selection,name:sql_request_abstract.selection__sql_request_mixin__state__sql_valid
 msgid "SQL Valid"
 msgstr ""
 
@@ -106,7 +106,7 @@ msgid ""
 msgstr ""
 
 #. module: sql_request_abstract
-#: code:addons/sql_request_abstract/models/sql_request_mixin.py:250
+#: code:addons/sql_request_abstract/models/sql_request_mixin.py:0
 #, python-format
 msgid ""
 "The SQL query is not valid:\n"
@@ -115,13 +115,13 @@ msgid ""
 msgstr ""
 
 #. module: sql_request_abstract
-#: code:addons/sql_request_abstract/models/sql_request_mixin.py:232
+#: code:addons/sql_request_abstract/models/sql_request_mixin.py:0
 #, python-format
 msgid "The query is not allowed because it contains unsafe word '%s'"
 msgstr ""
 
 #. module: sql_request_abstract
-#: code:addons/sql_request_abstract/models/sql_request_mixin.py:167
+#: code:addons/sql_request_abstract/models/sql_request_mixin.py:0
 #, python-format
 msgid "Unimplemented mode : '%s'"
 msgstr ""
