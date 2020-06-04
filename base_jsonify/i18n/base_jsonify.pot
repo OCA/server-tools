@@ -71,5 +71,5 @@ msgstr ""
 #. module: base_jsonify
 #: code:addons/base_jsonify/models/models.py:0
 #, python-format
-msgid "Wrong parser configuration"
+msgid "Wrong parser configuration for field: `%s`"
 msgstr ""
