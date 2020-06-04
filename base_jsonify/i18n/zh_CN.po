@@ -73,6 +73,7 @@ msgstr "字段的完整路径，您可以在其中指定步骤作为字段的别
 
 #. module: base_jsonify
 #: code:addons/base_jsonify/models/models.py:0
-#, python-format
-msgid "Wrong parser configuration"
+#, fuzzy, python-format
+#| msgid "Wrong parser configuration"
+msgid "Wrong parser configuration for field: `%s`"
 msgstr "错误的解析器配置"
