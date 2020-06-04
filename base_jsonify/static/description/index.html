@@ -400,6 +400,14 @@ can define your mapping as follow into the parser definition:</p>
     <span class="p">(</span><span class="s1">'line_id:lines'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'id'</span><span class="p">,</span> <span class="p">(</span><span class="s1">'product_id'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'name'</span><span class="p">]),</span> <span class="s1">'price_unit'</span><span class="p">])</span>
 <span class="p">]</span>
 </pre>
+<p>If you need to parse the value of a field in a custom way,
+you can pass a callable or the name of a method on the model:</p>
+<pre class="code python literal-block">
+<span class="n">parser</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s1">'name'</span><span class="p">,</span> <span class="s2">&quot;jsonify_name&quot;</span><span class="p">)</span>  <span class="c1"># method name</span>
+    <span class="p">(</span><span class="s1">'number'</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">rec</span><span class="p">,</span> <span class="n">field_name</span><span class="p">:</span> <span class="n">rec</span><span class="p">[</span><span class="n">field_name</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2</span><span class="p">))</span>  <span class="c1"># callable</span>
+<span class="p">]</span>
+</pre>
 <p>Also the module provide a method “get_json_parser” on the ir.exports object
 that generate a parser from an ir.exports configuration.</p>
 <p><strong>Table of contents</strong></p>
