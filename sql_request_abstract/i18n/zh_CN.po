@@ -36,7 +36,7 @@ msgid "Display Name"
 msgstr "显示名称"
 
 #. module: sql_request_abstract
-#: selection:sql.request.mixin,state:0
+#: model:ir.model.fields.selection,name:sql_request_abstract.selection__sql_request_mixin__state__draft
 msgid "Draft"
 msgstr "草稿"
 
@@ -46,7 +46,7 @@ msgid "ID"
 msgstr "ID"
 
 #. module: sql_request_abstract
-#: code:addons/sql_request_abstract/models/sql_request_mixin.py:143
+#: code:addons/sql_request_abstract/models/sql_request_mixin.py:0
 #, python-format
 msgid "It is not allowed to execute a not checked request."
 msgstr "不允许执行未检查的请求。"
@@ -62,7 +62,7 @@ msgid "Manager"
 msgstr "管理员"
 
 #. module: sql_request_abstract
-#: code:addons/sql_request_abstract/models/sql_request_mixin.py:210
+#: code:addons/sql_request_abstract/models/sql_request_mixin.py:0
 #, python-format
 msgid ""
 "Materialized View requires PostgreSQL 9.3 or greater but PostgreSQL %s is "
@@ -90,7 +90,7 @@ msgid "SQL Request Mixin"
 msgstr "SQL请求混合"
 
 #. module: sql_request_abstract
-#: selection:sql.request.mixin,state:0
+#: model:ir.model.fields.selection,name:sql_request_abstract.selection__sql_request_mixin__state__sql_valid
 msgid "SQL Valid"
 msgstr "SQL有效"
 
@@ -111,7 +111,7 @@ msgstr ""
 " * 'SQL有效': SQL请求已经过检查并且有效"
 
 #. module: sql_request_abstract
-#: code:addons/sql_request_abstract/models/sql_request_mixin.py:250
+#: code:addons/sql_request_abstract/models/sql_request_mixin.py:0
 #, python-format
 msgid ""
 "The SQL query is not valid:\n"
@@ -123,13 +123,13 @@ msgstr ""
 " %s"
 
 #. module: sql_request_abstract
-#: code:addons/sql_request_abstract/models/sql_request_mixin.py:232
+#: code:addons/sql_request_abstract/models/sql_request_mixin.py:0
 #, python-format
 msgid "The query is not allowed because it contains unsafe word '%s'"
 msgstr "不允许查询，因为它包含不安全的单词 '%s'"
 
 #. module: sql_request_abstract
-#: code:addons/sql_request_abstract/models/sql_request_mixin.py:167
+#: code:addons/sql_request_abstract/models/sql_request_mixin.py:0
 #, python-format
 msgid "Unimplemented mode : '%s'"
 msgstr "未实现的模式 : '%s'"
