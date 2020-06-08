@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* base_technical_user
+# 	* base_technical_user
 #
 msgid ""
 msgstr ""
@@ -15,6 +15,11 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 3.8\n"
+
+#. module: base_technical_user
+#: model:ir.model,name:base_technical_user.model_base
+msgid "Base"
+msgstr ""
 
 #. module: base_technical_user
 #: model:ir.model,name:base_technical_user.model_res_company
@@ -35,6 +40,12 @@ msgstr "技术参数"
 #: model:ir.model.fields,field_description:base_technical_user.field_res_company__user_tech_id
 msgid "Technical User"
 msgstr "技术用户"
+
+#. module: base_technical_user
+#: code:addons/base_technical_user/models/models.py:0
+#, python-format
+msgid "The technical user is missing in the company {}"
+msgstr ""
 
 #. module: base_technical_user
 #: model:ir.model.fields,help:base_technical_user.field_res_company__user_tech_id
