@@ -63,7 +63,7 @@ include_paths, exclude_paths, machine, auto_log_stacks, capture_locals,
 string_max_length, list_max_length, site, include_versions, environment``.
 
 Example Odoo configuration
---------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Below is an example of Odoo configuration file with *Odoo Sentry* options::
 
