@@ -19,6 +19,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: base_technical_user
+#: model:ir.model,name:base_technical_user.model_base
+msgid "Base"
+msgstr ""
+
+#. module: base_technical_user
 #: model:ir.model,name:base_technical_user.model_res_company
 msgid "Companies"
 msgstr "Sociétés"
@@ -36,6 +41,12 @@ msgstr ""
 #. module: base_technical_user
 #: model:ir.model.fields,field_description:base_technical_user.field_res_company__user_tech_id
 msgid "Technical User"
+msgstr ""
+
+#. module: base_technical_user
+#: code:addons/base_technical_user/models/models.py:0
+#, python-format
+msgid "The technical user is missing in the company {}"
 msgstr ""
 
 #. module: base_technical_user
