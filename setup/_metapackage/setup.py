@@ -13,6 +13,7 @@ setuptools.setup(
         'odoo13-addon-base_jsonify',
         'odoo13-addon-base_m2m_custom_field',
         'odoo13-addon-base_search_fuzzy',
+        'odoo13-addon-base_technical_user',
         'odoo13-addon-base_time_window',
         'odoo13-addon-company_country',
         'odoo13-addon-fetchmail_notify_error_to_sender',
