@@ -140,7 +140,7 @@ class BaseWip(models.Model):
     def start(self, model_id, res_id, wip_state='draft'):
         if wip_state != 'cancelled':
             self.env['base.wip'].create({
-                'model_id': self.env['ir.model'].search([('name', '=', model_id)]).id,
+                'model_id': self.env['ir.model'].search([('model', '=', model_id)]).id,
                 'res_id': res_id,
                 'wip_state': wip_state,
             })
