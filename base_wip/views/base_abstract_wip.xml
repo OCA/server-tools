@@ -40,5 +40,91 @@
         </field>
     </record>
 
+    <record id="view_base_wip_report_graph" model="ir.ui.view">
+        <field name="name">base.wip.report.graph</field>
+        <field name="model">base.wip.report</field>
+        <field name="arch" type="xml">
+            <pivot string="Base Wip Report">
+                <field name="id"/>
+                <field name="res_id"/>
+                <field name="model_id"/>
+                <field name="lead_time_float" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+    <record id="view_base_wip_report_kanban" model="ir.ui.view">
+        <field name="name">base.wip.report.kanban</field>
+        <field name="model">base.wip.report</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile" default_group_by="wip_state">
+                <field name="reference_id"/>
+                <field name="wip_state"/>
+                <field name="res_id"/>
+                <field name="model_id"/>
+                <field name="reaction_time"/>
+                <field name="reaction_time_float"/>
+                <field name="lead_time"/>
+                <field name="lead_time_float"/>
+                <field name="cycle_time"/>
+                <field name="cycle_time_float"/>
+                <field name="logged_time"/>
+                <field name="logged_time_float"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_global_click">
+                            <div>
+                                <span class="o_kanban_record_title">
+                                    <strong><t t-esc="record.reference_id.value"/></strong>
+                                </span>
+                            </div>
+<!--?                            <hr class="mt4 mb8"/>-->
+<!--?                            <div class="o_kanban_record_subtitle">-->
+<!--?                                <i class="fa fa-calendar" aria-hidden="true"></i>-->
+<!--?                                <t t-esc="record.check_in.value"/>-->
+<!--?                                - <t t-esc="record.check_out.value"/>-->
+<!--?                            </div>-->
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="view_base_wip_report_tree" model="ir.ui.view">
+        <field name="name">base.wip.report.tree</field>
+        <field name="model">base.wip.report</field>
+        <field name="arch" type="xml">
+            <tree string="Base Wip Report">
+                <field name="reference_id"/>
+                <field name="wip_state"/>
+                <field name="res_id"/>
+                <field name="model_id"/>
+                <field name="reaction_time"/>
+                <field name="reaction_time_float"/>
+                <field name="lead_time"/>
+                <field name="lead_time_float"/>
+                <field name="cycle_time"/>
+                <field name="cycle_time_float"/>
+                <field name="logged_time"/>
+                <field name="logged_time_float"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="base_wip_view_act_window">
+        <field name="name">Wip View</field>
+        <field name="res_model">base.wip.report</field>
+        <field name="view_mode">kanban,pivot,tree</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+
+    <record model="ir.ui.menu" id="base_wip_menu_view">
+        <field name="name">Wip View</field>
+        <field name="parent_id" ref="base.menu_board_root"/>
+        <field name="action" ref="base_wip_view_act_window"/>
+        <field name="sequence" eval="20"/>
+    </record>
+
 
 </odoo>
