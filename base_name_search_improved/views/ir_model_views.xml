@@ -1,25 +1,23 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <!-- © 2016 Daniel Reis
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
-
 <odoo>
-
     <record id="view_model_form" model="ir.ui.view">
         <field name="name">Add Name Searchable to Models</field>
         <field name="model">ir.model</field>
-        <field name="inherit_id" ref="base.view_model_form"/>
+        <field name="inherit_id" ref="base.view_model_form" />
         <field name="arch" type="xml">
             <field name="state" position="after">
-                <field name="add_smart_search"/>
-                <field name="name_search_ids"
-                       widget="many2many_tags"
-                       domain="[('model_id', '=', id), ('store', '=', True)]"
-                    />
-                <field name="name_search_domain"/>
+                <field name="add_smart_search" />
+                <field
+                    name="name_search_ids"
+                    widget="many2many_tags"
+                    domain="[('model_id', '=', id), ('store', '=', True)]"
+                />
+                <field name="name_search_domain" />
             </field>
         </field>
     </record>
-
     <record id="view_model_form_new" model="ir.ui.view">
         <field name="name">view.model.form</field>
         <field name="model">ir.model</field>
@@ -27,37 +25,51 @@
             <form string="Custom Search">
                 <sheet>
                     <div class="oe_button_box" name="buttons">
-                        <button name="toggle_smart_search" type="object" class="oe_stat_button" icon="fa-archive">
-                            <field name="add_smart_search" widget="boolean_button" options="{'terminology': {
+                        <button
+                            name="toggle_smart_search"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-archive"
+                        >
+                            <field
+                                name="add_smart_search"
+                                widget="boolean_button"
+                                options="{'terminology': {
                                 'string_true': 'Smart Active',
                                 'hover_true': 'Remove Smart Search',
                                 'string_false': 'Not Smart Search',
                                 'hover_false': 'Add Smart Search',
-                                }}"/>
+                                }}"
+                            />
                         </button>
                     </div>
                     <div class="oe_title">
-                        <label for="name" class="oe_edit_only"/>
+                        <label for="name" class="oe_edit_only" />
                         <h1>
-                            <field name="name" readonly="1"/>
+                            <field name="name" readonly="1" />
                         </h1>
                     </div>
                     <group>
                         <group>
-                            <field name="id" invisible="1"/>
-                            <field name="model" readonly="1"/>
-                            <field name="name_search_domain"/>
+                            <field name="id" invisible="1" />
+                            <field name="model" readonly="1" />
+                            <field name="name_search_domain" />
                         </group>
                     </group>
                     <notebook colspan="4">
                         <page string="Fields">
                             <!-- widget="many2many_tags" -->
-                            <field name="name_search_ids" colspan="4" nolabel="1" domain="[('model_id', '=', id), ('store', '=', True)]">
+                            <field
+                                name="name_search_ids"
+                                colspan="4"
+                                nolabel="1"
+                                domain="[('model_id', '=', id), ('store', '=', True)]"
+                            >
                                 <tree>
-                                    <field name="name"/>
-                                    <field name="field_description"/>
-                                    <field name="ttype"/>
-                                    <field name="state" groups="base.group_no_one"/>
+                                    <field name="name" />
+                                    <field name="field_description" />
+                                    <field name="ttype" />
+                                    <field name="state" groups="base.group_no_one" />
                                 </tree>
                             </field>
                         </page>
@@ -66,52 +78,70 @@
             </form>
         </field>
     </record>
-
     <record id="view_model_tree" model="ir.ui.view">
         <field name="name">view.model.tree</field>
         <field name="model">ir.model</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="id" invisible="1"/>
-                <field name="name" readonly="1"/>
-                <field name="name_search_ids" widget="many2many_tags" string="Search Fields" domain="[('model_id', '=', id), ('store', '=', True)]"/>
-                <field name="name_search_domain" string="Domain"/>
-                <field name="add_smart_search" string="Smart Search" widget="boolean_toggle"/>
+                <field name="id" invisible="1" />
+                <field name="name" readonly="1" />
+                <field
+                    name="name_search_ids"
+                    widget="many2many_tags"
+                    string="Search Fields"
+                    domain="[('model_id', '=', id), ('store', '=', True)]"
+                />
+                <field name="name_search_domain" string="Domain" />
+                <field
+                    name="add_smart_search"
+                    string="Smart Search"
+                    widget="boolean_toggle"
+                />
             </tree>
         </field>
     </record>
-
     <record id="view_model_search" model="ir.ui.view">
         <field name="name">view.model.search</field>
         <field name="model">ir.model</field>
         <field name="arch" type="xml">
             <search>
-                <field name="id"/>
-                <field name="name"/>
-                <field name="model"/>
-                <filter name="extra_search" string="With Custom Search" domain="[('name_search_ids', '!=', False)]"/>
-                <filter name="smart_search" string="Smart Search" domain="[('add_smart_search', '=', True)]"/>
+                <field name="id" />
+                <field name="name" />
+                <field name="model" />
+                <filter
+                    name="extra_search"
+                    string="With Custom Search"
+                    domain="[('name_search_ids', '!=', False)]"
+                />
+                <filter
+                    name="smart_search"
+                    string="Smart Search"
+                    domain="[('add_smart_search', '=', True)]"
+                />
             </search>
         </field>
     </record>
-
     <record id="action_improved_name_search" model="ir.actions.act_window">
         <field name="name">Custom Searches</field>
         <field name="res_model">ir.model</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
-        <field name="search_view_id" ref="view_model_search"/>
-        <field name="view_ids" eval="[(5, 0, 0),
+        <field name="search_view_id" ref="view_model_search" />
+        <field
+            name="view_ids"
+            eval="[(5, 0, 0),
             (0, 0, {'view_mode': 'tree', 'view_id': ref('view_model_tree')}),
             (0, 0, {'view_mode': 'form', 'view_id': ref('view_model_form_new')}
-        )]"/>
+        )]"
+        />
         <field name="context">{'search_default_extra_search': 1}</field>
         <field name="domain">[('transient', '=', False)]</field>
     </record>
-
-    <menuitem id="menu_improved_name_search" name="Custom Searches"
-        parent="base.menu_administration" sequence="6"
+    <menuitem
+        id="menu_improved_name_search"
+        name="Custom Searches"
+        parent="base.menu_administration"
+        sequence="6"
         action="action_improved_name_search"
-        />
-
+    />
 </odoo>
