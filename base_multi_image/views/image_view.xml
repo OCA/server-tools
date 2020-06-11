@@ -108,7 +108,7 @@
                                   t-att-src="kanban_image(
                                       'base_multi_image.image',
                                       'image_small',
-                                      record.id.value)"
+                                      record.id.raw_value)"
                                   class="oe_kanban_image"/>
                             </a>
                             <div class="oe_module_desc">
