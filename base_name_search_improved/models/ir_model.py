@@ -107,7 +107,6 @@ class IrModel(models.Model):
             if not isinstance(name_search_domain, list):
                 raise ValidationError(_("Name Search Domain must be a list of tuples"))
 
-    @api.model_cr
     def _register_hook(self):
         def make_name_search():
             @api.model
@@ -191,9 +190,8 @@ class IrModel(models.Model):
 
             return fields_view_get
 
-        @api.multi
         def _compute_smart_search(self):
-            return False
+            self.smart_search = False
 
         @api.model
         def _search_smart_search(self, operator, value):
@@ -238,7 +236,6 @@ class IrModel(models.Model):
 
         return super(IrModel, self)._register_hook()
 
-    @api.multi
     def toggle_smart_search(self):
         """ Inverse the value of the field ``add_smart_search`` on the records
         in ``self``. """
