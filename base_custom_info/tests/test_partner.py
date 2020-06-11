@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2016 Jairo Llopis <jairo.llopis@tecnativa.com>
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
@@ -135,7 +134,8 @@ class PartnerCase(TransactionCase):
         self.set_custom_info_for_agrolait()
         prop_weaknesses = self.env.ref("base_custom_info.prop_weaknesses")
         val_weaknesses = self.agrolait.get_custom_info_value(prop_weaknesses)
-        val_weaknesses.value = "Needs videogames"
+        val_weaknesses.value_id = self.env.ref(
+            "base_custom_info.opt_videogames")
         tpl_gamer = self.env.ref("base_custom_info.tpl_gamer")
         self.agrolait.invalidate_cache()
         self.assertIn(tpl_gamer, self.agrolait.all_custom_info_templates())
@@ -153,8 +153,8 @@ class PartnerCase(TransactionCase):
         val = self.agrolait.get_custom_info_value(
             self.env.ref("base_custom_info.prop_teacher"))
         with self.assertRaises(ValidationError):
-            val.value = (u"Don Walter Antonio José de la Cruz Hëisenberg de "
-                         u"Borbón Westley Jordy López Manuélez")
+            val.value_str = (u"Don Walter Antonio José de la Cruz Hëisenberg "
+                             u"de Borbón Westley Jordy López Manuélez")
 
     def test_low_average_note(self):
         """Come on, you are supposed to be smart!"""
@@ -162,7 +162,7 @@ class PartnerCase(TransactionCase):
         val = self.agrolait.get_custom_info_value(
             self.env.ref("base_custom_info.prop_avg_note"))
         with self.assertRaises(ValidationError):
-            val.value = "-1"
+            val.value_float = -1
 
     def test_high_average_note(self):
         """Too smart!"""
@@ -170,4 +170,4 @@ class PartnerCase(TransactionCase):
         val = self.agrolait.get_custom_info_value(
             self.env.ref("base_custom_info.prop_avg_note"))
         with self.assertRaises(ValidationError):
-            val.value = "11"
+            val.value_float = 11

@@ -11,4 +11,6 @@ from . import (
     custom_info_value,
     custom_info,
     res_partner,
+    ir_actions_act_window_view,
+    ir_ui_view
 )
