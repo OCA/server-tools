@@ -224,6 +224,18 @@ class BaseWipReport(models.Model):
             record.reaction_time_float = reaction_time
             record.reaction_time = display_time(reaction_time, 5)
 
+    @api.multi
+    def open_form(self):
+        return {
+            'type': 'ir.actions.act_window',
+            'name': self.reference_id.name,
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': self.model_id.model,
+            'res_id': self.res_id,
+            'target': 'current',
+        }
+
     @api.model_cr
     def init(self):
         """

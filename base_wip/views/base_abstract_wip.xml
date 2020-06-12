@@ -56,7 +56,7 @@
         <field name="name">base.wip.report.kanban</field>
         <field name="model">base.wip.report</field>
         <field name="arch" type="xml">
-            <kanban class="o_kanban_mobile" default_group_by="wip_state">
+            <kanban class="o_kanban_mobile" default_group_by="wip_state" draggable="0">
                 <field name="reference_id"/>
                 <field name="wip_state"/>
                 <field name="res_id"/>
@@ -74,15 +74,24 @@
                         <div t-attf-class="oe_kanban_global_click">
                             <div>
                                 <span class="o_kanban_record_title">
-                                    <strong><t t-esc="record.reference_id.value"/></strong>
+                                    <strong><a type="object" name="open_form"><t t-esc="record.reference_id.value"/> - <t t-esc="record.model_id.value"/></a></strong>
                                 </span>
                             </div>
-<!--?                            <hr class="mt4 mb8"/>-->
-<!--?                            <div class="o_kanban_record_subtitle">-->
-<!--?                                <i class="fa fa-calendar" aria-hidden="true"></i>-->
-<!--?                                <t t-esc="record.check_in.value"/>-->
-<!--?                                - <t t-esc="record.check_out.value"/>-->
-<!--?                            </div>-->
+                            <hr class="mt4 mb8"/>
+                            <div class="o_kanban_record_subtitle">
+                                <div>
+                                    <span><strong><t t-esc="record.reaction_time.string"/>:</strong> <t t-esc="record.reaction_time.value"/></span>
+                                </div>
+                                <div>
+                                    <span><strong><t t-esc="record.lead_time.string"/>:</strong> <t t-esc="record.lead_time.value"/></span>
+                                </div>
+                                <div>
+                                    <span><strong><t t-esc="record.cycle_time.string"/>:</strong> <t t-esc="record.cycle_time.value"/></span>
+                                </div>
+                                <div>
+                                    <span><strong><t t-esc="record.logged_time.string"/>:</strong> <t t-esc="record.logged_time.value"/></span>
+                                </div>
+                            </div>
                         </div>
                     </t>
                 </templates>
