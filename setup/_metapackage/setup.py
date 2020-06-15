@@ -15,6 +15,7 @@ setuptools.setup(
         'odoo13-addon-base_search_fuzzy',
         'odoo13-addon-base_technical_user',
         'odoo13-addon-base_time_window',
+        'odoo13-addon-base_view_inheritance_extension',
         'odoo13-addon-company_country',
         'odoo13-addon-fetchmail_notify_error_to_sender',
         'odoo13-addon-mail_server_relay_disallowed',
