@@ -22,14 +22,18 @@ def migrate_cron(env):
     jobs = (
         env["ir.cron"]
         .with_context(active_test=False)
-        .search([("model", "=", "letsencrypt"), ("function", "=", "cron")])
+        .search(
+            [
+                ("ir_actions_server_id.model_id.model", "=", "letsencrypt"),
+                ("ir_actions_server_id.code", "=", "model.cron()"),
+            ]
+        )
     )
     if not jobs:
         # ir.cron._try_lock doesn't handle empty recordsets well
         return
-    jobs.write(
-        {"function": "_cron", "interval_type": "days", "interval_number": "1"}
-    )
+    jobs.write({"interval_type": "days", "interval_number": "1"})
+    jobs.mapped("ir_actions_server_id").write({"code": "model._cron()"})
 
 
 def migrate(cr, version):
