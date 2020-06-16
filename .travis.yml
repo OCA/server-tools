@@ -13,7 +13,7 @@ addons:
 
 env:
   global:
-  - VERSION="12.0" TESTS="0" LINT_CHECK="0" MAKEPOT="0"
+  - VERSION="12.0" TESTS="0" LINT_CHECK="0" MAKEPOT="0" MQT_DEP="PIP"
   - COUNTRY="US"
 
   matrix:
