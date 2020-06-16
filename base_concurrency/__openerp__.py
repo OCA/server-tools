@@ -42,5 +42,5 @@ avoid breaking modules which access via SQL the login_date column, a cron
  "data": ['security/ir.model.access.csv',
           'cron.xml'],
  "auto_install": False,
- "installable": True
+ "installable": False
  }
