@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * auth_totp
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
@@ -12,129 +12,114 @@ msgstr ""
 "PO-Revision-Date: 2017-07-20 03:01+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: auth_totp
-#: model:ir.ui.view,arch_db:auth_totp.res_users_authenticator_create_view_form
-msgid ""
-"<span>Please provide a name for your app/device. </span>\n"
-"                        <span>Then scan the QR code below to add this account to your authenticator app and enter in the six digit code produced by the app.</span>"
-msgstr ""
-"<span>Pflegen Sie bitte eine Bezeichnung für Ihre Anwendung/App. </span>\n"
-"<span>Danach scannen Sie den unten abgebildeten QR code, um das Konto für Ihre Authentifizierungs-Anwendung zu ergänzen und den erzeugten 6stelligen Schlüssel einzugeben.</span>"
-
-#. module: auth_totp
-#: model:ir.ui.view,arch_db:auth_totp.mfa_login
-msgid "<span>Remember this device</span>"
-msgstr "<span>Merke dieses Gerät</span>"
-
-#. module: auth_totp
-#: model:ir.model.fields,help:auth_totp.field_res_users_authenticator_create_name
+#: help:res.users.authenticator.create,name:0
 msgid "A name that will help you remember this authentication app/device"
 msgstr ""
-"Eine Bezeichnung, die Ihnen hilft sich an die Authentifierung dieser "
-"App/Gerät zu erninnern"
+"Eine Bezeichnung, die Ihnen hilft sich an die Authentifierung dieser App/"
+"Gerät zu erninnern"
 
 #. module: auth_totp
-#: model:ir.ui.view,arch_db:auth_totp.view_users_form_simple_modif
+#: view:res.users:auth_totp.view_users_form_simple_modif
 msgid "Add New App/Device"
 msgstr ""
 
 #. module: auth_totp
-#: model:ir.model.fields,field_description:auth_totp.field_res_users_authenticator_create_user_id
+#: field:res.users.authenticator.create,user_id:0
 msgid "Associated User"
 msgstr ""
 
 #. module: auth_totp
-#: model:ir.model.fields,field_description:auth_totp.field_res_users_authenticator_create_name
+#: field:res.users.authenticator.create,name:0
 msgid "Authentication App/Device Name"
 msgstr ""
 
 #. module: auth_totp
-#: model:ir.model.fields,field_description:auth_totp.field_res_users_authenticator_ids
+#: field:res.users,authenticator_ids:0
 msgid "Authentication Apps/Devices"
 msgstr ""
 
 #. module: auth_totp
-#: model:ir.ui.view,arch_db:auth_totp.res_users_authenticator_create_view_form
+#: view:res.users.authenticator.create:auth_totp.res_users_authenticator_create_view_form
 msgid "Authenticator Info"
 msgstr ""
 
 #. module: auth_totp
-#: model:ir.ui.view,arch_db:auth_totp.res_users_authenticator_create_view_form
+#: view:res.users.authenticator.create:auth_totp.res_users_authenticator_create_view_form
 msgid "Cancel"
 msgstr "Abbrechen"
 
 #. module: auth_totp
-#: model:ir.ui.view,arch_db:auth_totp.mfa_login
+#: view:website:auth_totp.mfa_login
 msgid "Confirm"
 msgstr "Bestätigen"
 
 #. module: auth_totp
-#: model:ir.model.fields,field_description:auth_totp.field_res_users_authenticator_create_confirmation_code
+#: field:res.users.authenticator.create,confirmation_code:0
 msgid "Confirmation Code"
 msgstr ""
 
 #. module: auth_totp
-#: model:ir.ui.view,arch_db:auth_totp.res_users_authenticator_create_view_form
+#: view:res.users.authenticator.create:auth_totp.res_users_authenticator_create_view_form
 msgid "Create"
 msgstr "Erstellen"
 
 #. module: auth_totp
-#: model:ir.model.fields,field_description:auth_totp.field_res_users_authenticator_create_create_uid
-#: model:ir.model.fields,field_description:auth_totp.field_res_users_authenticator_create_uid
-#: model:ir.model.fields,field_description:auth_totp.field_res_users_device_create_uid
+#: field:res.users.authenticator,create_uid:0
+#: field:res.users.authenticator.create,create_uid:0
+#: field:res.users.device,create_uid:0
 msgid "Created by"
 msgstr "Erstellt von"
 
 #. module: auth_totp
-#: model:ir.model.fields,field_description:auth_totp.field_res_users_authenticator_create_create_date
-#: model:ir.model.fields,field_description:auth_totp.field_res_users_authenticator_create_date
-#: model:ir.model.fields,field_description:auth_totp.field_res_users_device_create_date
+#: field:res.users.authenticator,create_date:0
+#: field:res.users.authenticator.create,create_date:0
+#: field:res.users.device,create_date:0
 msgid "Created on"
 msgstr "Angelegt am"
 
 #. module: auth_totp
-#: model:ir.model.fields,field_description:auth_totp.field_res_users_authenticator_create_display_name
-#: model:ir.model.fields,field_description:auth_totp.field_res_users_authenticator_display_name
-#: model:ir.model.fields,field_description:auth_totp.field_res_users_device_display_name
+#: field:res.users.authenticator,display_name:0
+#: field:res.users.authenticator.create,display_name:0
+#: field:res.users.device,display_name:0
 msgid "Display Name"
 msgstr "Anzeigebezeichnung"
 
 #. module: auth_totp
-#: model:ir.model.fields,help:auth_totp.field_res_users_authenticator_create_confirmation_code
+#: help:res.users.authenticator.create,confirmation_code:0
 msgid "Enter the latest six digit code generated by your authentication app"
 msgstr ""
 
 #. module: auth_totp
-#: model:ir.model.fields,field_description:auth_totp.field_res_users_authenticator_create_id
-#: model:ir.model.fields,field_description:auth_totp.field_res_users_authenticator_id
-#: model:ir.model.fields,field_description:auth_totp.field_res_users_device_id
+#: field:res.users.authenticator,id:0 field:res.users.authenticator.create,id:0
+#: field:res.users.device,id:0
 msgid "ID"
 msgstr "Kennung"
 
 #. module: auth_totp
-#: model:ir.model.fields,field_description:auth_totp.field_res_users_authenticator___last_update
-#: model:ir.model.fields,field_description:auth_totp.field_res_users_authenticator_create___last_update
-#: model:ir.model.fields,field_description:auth_totp.field_res_users_device___last_update
+#: field:res.users.authenticator,__last_update:0
+#: field:res.users.authenticator.create,__last_update:0
+#: field:res.users.device,__last_update:0
 msgid "Last Modified on"
 msgstr "Zuletzt verändert am"
 
 #. module: auth_totp
-#: model:ir.model.fields,field_description:auth_totp.field_res_users_authenticator_create_write_uid
-#: model:ir.model.fields,field_description:auth_totp.field_res_users_authenticator_write_uid
-#: model:ir.model.fields,field_description:auth_totp.field_res_users_device_write_uid
+#: field:res.users.authenticator,write_uid:0
+#: field:res.users.authenticator.create,write_uid:0
+#: field:res.users.device,write_uid:0
 msgid "Last Updated by"
 msgstr "Zuletzt aktualisiert durch"
 
 #. module: auth_totp
-#: model:ir.model.fields,field_description:auth_totp.field_res_users_authenticator_create_write_date
-#: model:ir.model.fields,field_description:auth_totp.field_res_users_authenticator_write_date
-#: model:ir.model.fields,field_description:auth_totp.field_res_users_device_write_date
+#: field:res.users.authenticator,write_date:0
+#: field:res.users.authenticator.create,write_date:0
+#: field:res.users.device,write_date:0
 msgid "Last Updated on"
 msgstr "Zuletzt aktualisiert am"
 
@@ -150,64 +135,87 @@ msgid "MFA App/Device Creation Wizard"
 msgstr ""
 
 #. module: auth_totp
-#: model:ir.ui.view,arch_db:auth_totp.mfa_login
+#: view:website:auth_totp.mfa_login
 msgid "MFA Confirmation Code"
 msgstr ""
 
 #. module: auth_totp
-#: model:ir.model.fields,field_description:auth_totp.field_res_users_mfa_enabled
+#: field:res.users,mfa_enabled:0
 msgid "MFA Enabled?"
 msgstr ""
 
 #. module: auth_totp
-#: model:ir.ui.view,arch_db:auth_totp.view_users_form
-#: model:ir.ui.view,arch_db:auth_totp.view_users_form_simple_modif
+#: view:res.users:auth_totp.view_users_form
+#: view:res.users:auth_totp.view_users_form_simple_modif
 msgid "MFA Settings"
 msgstr ""
 
 #. module: auth_totp
-#: model:ir.model.fields,field_description:auth_totp.field_res_users_mfa_login_token
+#: field:res.users,mfa_login_token:0
 msgid "Mfa login token"
 msgstr ""
 
 #. module: auth_totp
-#: model:ir.model.fields,field_description:auth_totp.field_res_users_mfa_login_token_exp
+#: field:res.users,mfa_login_token_exp:0
 msgid "Mfa login token exp"
 msgstr ""
 
 #. module: auth_totp
-#: model:ir.model.fields,field_description:auth_totp.field_res_users_authenticator_name
+#: field:res.users.authenticator,name:0
 msgid "Name"
 msgstr "Bezeichnung"
 
 #. module: auth_totp
-#: model:ir.ui.view,arch_db:auth_totp.view_users_form_simple_modif
+#: view:res.users:auth_totp.view_users_form_simple_modif
 msgid ""
 "Note: Please add at least one authentication app/device before enabling MFA."
 msgstr ""
 
 #. module: auth_totp
-#: model:ir.ui.view,arch_db:auth_totp.view_users_form
+#: view:res.users:auth_totp.view_users_form
 msgid ""
 "Note: Please have user add at least one authentication app/device before "
 "enabling MFA."
 msgstr ""
 
 #. module: auth_totp
-#: model:ir.model.fields,field_description:auth_totp.field_res_users_authenticator_create_qr_code_tag
+#: view:res.users.authenticator.create:auth_totp.res_users_authenticator_create_view_form
+msgid "Please provide a name for your app/device."
+msgstr ""
+
+#. module: auth_totp
+#: field:res.users.authenticator.create,qr_code_tag:0
 msgid "QR Code"
 msgstr ""
 
 #. module: auth_totp
-#: model:ir.model.fields,help:auth_totp.field_res_users_authenticator_create_qr_code_tag
+#: view:website:auth_totp.mfa_login
+#, fuzzy
+msgid "Remember this device"
+msgstr "<span>Merke dieses Gerät</span>"
+
+#. module: auth_totp
+#: help:res.users.authenticator.create,qr_code_tag:0
 msgid "Scan this image with your authentication app to add your account"
 msgstr ""
 
 #. module: auth_totp
-#: model:ir.model.fields,field_description:auth_totp.field_res_users_authenticator_create_secret_key
-#: model:ir.model.fields,field_description:auth_totp.field_res_users_authenticator_secret_key
+#: field:res.users.authenticator,secret_key:0
+#: field:res.users.authenticator.create,secret_key:0
 msgid "Secret key"
 msgstr ""
+
+#. module: auth_totp
+#: view:res.users.authenticator.create:auth_totp.res_users_authenticator_create_view_form
+#, fuzzy
+msgid ""
+"Then scan the QR code below to add this account to your authenticator app "
+"and enter in the six digit code produced by the app."
+msgstr ""
+"<span>Pflegen Sie bitte eine Bezeichnung für Ihre Anwendung/App. </span>\n"
+"<span>Danach scannen Sie den unten abgebildeten QR code, um das Konto für "
+"Ihre Authentifizierungs-Anwendung zu ergänzen und den erzeugten 6stelligen "
+"Schlüssel einzugeben.</span>"
 
 #. module: auth_totp
 #: code:addons/auth_totp/models/res_users_authenticator.py:24
@@ -219,18 +227,18 @@ msgid ""
 msgstr ""
 
 #. module: auth_totp
-#: model:ir.model.fields,help:auth_totp.field_res_users_authenticator_create_user_id
+#: help:res.users.authenticator.create,user_id:0
 msgid ""
 "This is the user whose account the new authentication app/device will be "
 "tied to"
 msgstr ""
 
 #. module: auth_totp
-#: model:ir.model.fields,help:auth_totp.field_res_users_authenticator_ids
+#: help:res.users,authenticator_ids:0
 msgid ""
 "To delete an authentication app, remove it from this list. To add a new "
-"authentication app, please use the button to the right. If the button is not"
-" present, you do not have the permissions to do this."
+"authentication app, please use the button to the right. If the button is not "
+"present, you do not have the permissions to do this."
 msgstr ""
 
 #. module: auth_totp
@@ -239,13 +247,12 @@ msgid "Trusted Device for MFA Auth"
 msgstr ""
 
 #. module: auth_totp
-#: model:ir.model.fields,field_description:auth_totp.field_res_users_trusted_device_ids
+#: field:res.users,trusted_device_ids:0
 msgid "Trusted Devices"
 msgstr ""
 
 #. module: auth_totp
-#: model:ir.model.fields,field_description:auth_totp.field_res_users_authenticator_user_id
-#: model:ir.model.fields,field_description:auth_totp.field_res_users_device_user_id
+#: field:res.users.authenticator,user_id:0 field:res.users.device,user_id:0
 msgid "User id"
 msgstr ""
 
@@ -258,8 +265,8 @@ msgstr "Benutzer"
 #: code:addons/auth_totp/models/res_users.py:46
 #, python-format
 msgid ""
-"You have MFA enabled but do not have any authentication apps/devices set up."
-" To keep from being locked out, please add one before you activate this "
+"You have MFA enabled but do not have any authentication apps/devices set up. "
+"To keep from being locked out, please add one before you activate this "
 "feature."
 msgstr ""
 
@@ -286,7 +293,7 @@ msgid ""
 msgstr ""
 
 #. module: auth_totp
-#: code:addons/auth_totp/controllers/main.py:119
+#: code:addons/auth_totp/controllers/main.py:117
 #, python-format
 msgid "Your confirmation code is not correct. Please try again."
 msgstr ""
