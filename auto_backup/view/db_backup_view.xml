@@ -14,6 +14,7 @@
                 <group string="Basic backup configuration">
                     <field name="folder"/>
                     <field name="days_to_keep"/>
+                    <field name="frequency"/>
                     <field name="method"/>
                     <field name="backup_format"/>
                 </group>
@@ -57,6 +58,7 @@
                 <field name="name"/>
                 <field name="folder"/>
                 <field name="days_to_keep"/>
+                <field name="frequency"/>
             </tree>
         </field>
     </record>
@@ -68,6 +70,7 @@
                 <field name="name"/>
                 <field name="folder"/>
                 <field name="sftp_host"/>
+                <field name="frequency"/>
             </search>
         </field>
     </record>
