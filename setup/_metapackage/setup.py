@@ -17,6 +17,7 @@ setuptools.setup(
         'odoo8-addon-auth_from_http_remote_user',
         'odoo8-addon-auth_signup_verify_email',
         'odoo8-addon-auth_supplier',
+        'odoo8-addon-auth_totp',
         'odoo8-addon-auto_backup',
         'odoo8-addon-base_concurrency',
         'odoo8-addon-base_custom_info',
