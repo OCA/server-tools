@@ -19,19 +19,22 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: base_view_inheritance_extension
-#: model:ir.ui.view,arch_db:base_view_inheritance_extension.view_partner_simple_form
+#: model_terms:ir.ui.view,arch_db:base_view_inheritance_extension.view_partner_simple_form
 msgid "Partner form"
 msgstr "Empresa de "
 
 #. module: base_view_inheritance_extension
-#: model:ir.ui.view,arch_db:base_view_inheritance_extension.view_partner_simple_form
+#: model_terms:ir.ui.view,arch_db:base_view_inheritance_extension.view_partner_simple_form
 msgid "Phone numbers"
 msgstr ""
 
 #. module: base_view_inheritance_extension
 #: model:ir.model,name:base_view_inheritance_extension.model_ir_ui_view
-msgid "ir.ui.view"
-msgstr "ir.ui.view"
+msgid "View"
+msgstr ""
+
+#~ msgid "ir.ui.view"
+#~ msgstr "ir.ui.view"
 
 #~ msgid "A new page"
 #~ msgstr "Una nova pàgina "
