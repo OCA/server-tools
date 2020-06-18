@@ -104,6 +104,11 @@ msgid "ID"
 msgstr "ID"
 
 #. module: base_user_role
+#: model:ir.model.fields,help:base_user_role.field_res_users_role_is_portal
+msgid "If checked, this group is usable as a portal."
+msgstr ""
+
+#. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_implied_ids
 msgid "Inherits"
 msgstr ""
@@ -132,12 +137,17 @@ msgid "Name"
 msgstr "名称"
 
 #. module: base_user_role
+#: model:ir.model.fields,field_description:base_user_role.field_res_users_role_is_portal
+msgid "Portal"
+msgstr ""
+
+#. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_line_role_id
 msgid "Role"
 msgstr ""
 
 #. module: base_user_role
-#: model:ir.model.fields,field_description:base_user_role.field_res_users_role_line_ids_1654
+#: model:ir.model.fields,field_description:base_user_role.field_res_users_role_line_ids_2935
 msgid "Role lines"
 msgstr ""
 
