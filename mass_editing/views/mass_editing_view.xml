@@ -43,6 +43,9 @@
                             <field name="field_ids" colspan="4" nolabel="1"
                             domain="[('ttype', 'not in', ['reference', 'function']), ('model_id', 'in', model_list)]"/>
                         </page>
+                        <page string="Security">
+                            <field name="group_ids" nolabel="1"/>
+                        </page>
                         <page string="Advanced" attrs="{'invisible':[('ref_ir_act_window_id','=',False)]}">
                             <group colspan="2" col="2">
                                 <field name="ref_ir_act_window_id"/>
