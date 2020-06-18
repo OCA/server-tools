@@ -193,7 +193,8 @@ msgstr "ID"
 #. module: date_range
 #: model:ir.model.fields,help:date_range.field_date_range_type_allow_overlap
 msgid "If sets date range of same type must not overlap."
-msgstr "Si s'estableix el rang de dades del mateix tipus no s'ha de sobreposar."
+msgstr ""
+"Si s'estableix el rang de dades del mateix tipus no s'ha de sobreposar."
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range___last_update
@@ -295,8 +296,8 @@ msgstr "El camp actiu li permet amagar el rang de dates sense esborrar-lo."
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_type_id
-#: model:ir.model.fields,field_description:date_range.field_date_range_type_id_2122
-#: model:ir.model.fields,field_description:date_range.field_date_range_type_name_2119
+#: model:ir.model.fields,field_description:date_range.field_date_range_type_id_3142
+#: model:ir.model.fields,field_description:date_range.field_date_range_type_name_3139
 msgid "Type"
 msgstr "Tipus"
 

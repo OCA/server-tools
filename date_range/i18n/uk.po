@@ -287,8 +287,8 @@ msgstr ""
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_type_id
-#: model:ir.model.fields,field_description:date_range.field_date_range_type_id_2122
-#: model:ir.model.fields,field_description:date_range.field_date_range_type_name_2119
+#: model:ir.model.fields,field_description:date_range.field_date_range_type_id_3142
+#: model:ir.model.fields,field_description:date_range.field_date_range_type_name_3139
 msgid "Type"
 msgstr "Тип"
 
