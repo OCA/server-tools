@@ -21,7 +21,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: mass_editing
-#: code:addons/mass_editing/models/mass_object.py:99
+#: code:addons/mass_editing/models/mass_object.py:107
 #, python-format
 msgid "%s (copy)"
 msgstr "%s (cópia)"
@@ -71,6 +71,11 @@ msgid "Fields"
 msgstr "Campos"
 
 #. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_mass_object_group_ids
+msgid "Groups"
+msgstr ""
+
+#. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard_id
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object_id
 msgid "ID"
@@ -102,7 +107,7 @@ msgid "Mass Editing"
 msgstr "Edição Múltipla"
 
 #. module: mass_editing
-#: code:addons/mass_editing/models/mass_object.py:58
+#: code:addons/mass_editing/models/mass_object.py:65
 #, python-format
 msgid "Mass Editing (%s)"
 msgstr "Edição Múltipla (%s)"
@@ -137,7 +142,7 @@ msgid "Name"
 msgstr "Nome"
 
 #. module: mass_editing
-#: code:addons/mass_editing/models/mass_object.py:34
+#: code:addons/mass_editing/models/mass_object.py:41
 #: sql_constraint:mass.object:0
 #, python-format
 msgid "Name must be unique!"
@@ -159,6 +164,11 @@ msgstr "Remover Botão na Barra Lateral"
 msgid "Remove the contextual action to use this template on related documents"
 msgstr ""
 "Remover a ação contextual para usar este modelo em documentos relacionados"
+
+#. module: mass_editing
+#: model:ir.ui.view,arch_db:mass_editing.view_mass_object_form
+msgid "Security"
+msgstr ""
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object_ref_ir_act_window_id

@@ -22,7 +22,7 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #. module: mass_editing
-#: code:addons/mass_editing/models/mass_object.py:99
+#: code:addons/mass_editing/models/mass_object.py:107
 #, python-format
 msgid "%s (copy)"
 msgstr "%s (kopija)"
@@ -72,6 +72,11 @@ msgid "Fields"
 msgstr "Polja"
 
 #. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_mass_object_group_ids
+msgid "Groups"
+msgstr ""
+
+#. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard_id
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object_id
 msgid "ID"
@@ -103,7 +108,7 @@ msgid "Mass Editing"
 msgstr "Grupno uređivanje"
 
 #. module: mass_editing
-#: code:addons/mass_editing/models/mass_object.py:58
+#: code:addons/mass_editing/models/mass_object.py:65
 #, python-format
 msgid "Mass Editing (%s)"
 msgstr "Grupno uredi (%s)"
@@ -138,7 +143,7 @@ msgid "Name"
 msgstr "Naziv"
 
 #. module: mass_editing
-#: code:addons/mass_editing/models/mass_object.py:34
+#: code:addons/mass_editing/models/mass_object.py:41
 #: sql_constraint:mass.object:0
 #, python-format
 msgid "Name must be unique!"
@@ -161,6 +166,11 @@ msgid "Remove the contextual action to use this template on related documents"
 msgstr ""
 "Ukloni kontekstni izbornik za korištenje ovog predloška na povezanim "
 "dokumentima."
+
+#. module: mass_editing
+#: model:ir.ui.view,arch_db:mass_editing.view_mass_object_form
+msgid "Security"
+msgstr ""
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object_ref_ir_act_window_id
