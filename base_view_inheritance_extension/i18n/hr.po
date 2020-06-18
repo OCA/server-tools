@@ -20,16 +20,19 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #. module: base_view_inheritance_extension
-#: model:ir.ui.view,arch_db:base_view_inheritance_extension.view_partner_simple_form
+#: model_terms:ir.ui.view,arch_db:base_view_inheritance_extension.view_partner_simple_form
 msgid "Partner form"
 msgstr "Forma partnera"
 
 #. module: base_view_inheritance_extension
-#: model:ir.ui.view,arch_db:base_view_inheritance_extension.view_partner_simple_form
+#: model_terms:ir.ui.view,arch_db:base_view_inheritance_extension.view_partner_simple_form
 msgid "Phone numbers"
 msgstr "Brojevi telefona"
 
 #. module: base_view_inheritance_extension
 #: model:ir.model,name:base_view_inheritance_extension.model_ir_ui_view
-msgid "ir.ui.view"
-msgstr "ir.ui.view"
+msgid "View"
+msgstr ""
+
+#~ msgid "ir.ui.view"
+#~ msgstr "ir.ui.view"
