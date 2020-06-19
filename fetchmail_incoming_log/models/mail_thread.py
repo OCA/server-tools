@@ -33,7 +33,7 @@ class MailThread(models.AbstractModel):
             # shit and the straightforward version (pycompat.to_native) won't
             # work right -> always encode message to bytes then use the
             # relevant method depending on ~python version
-        if isinstance(message, pycompat.text_type):
+        if isinstance(message, str):
             message = message.encode("utf-8")
         extract = getattr(email, "message_from_bytes", email.message_from_string)
         msg_txt = extract(message)

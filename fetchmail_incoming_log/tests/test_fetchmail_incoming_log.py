@@ -12,7 +12,7 @@ class TestFetchmailIncomingLog(TestMailgateway):
         super(TestFetchmailIncomingLog, self).setUp()
 
         self.fetchmail_server = self.env["fetchmail.server"].create(
-            {"name": "Test Fetchmail Server", "type": "imap",}
+            {"name": "Test Fetchmail Server", "server_type": "imap",}
         )
 
     def test_message_process(self):
