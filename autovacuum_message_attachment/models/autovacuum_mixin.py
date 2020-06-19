@@ -35,7 +35,7 @@ class AutovacuumMixin(models.AbstractModel):
                         new_env.cr.commit()
                 except Exception as e:
                     _logger.exception(
-                        "Failed to delete Ms : %s" % (self._name, str(e)))
+                        "Failed to delete Ms : %s - %s" % (self._name, str(e)))
 
     # Call by cron
     @api.model
