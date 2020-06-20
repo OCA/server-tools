@@ -94,6 +94,7 @@ class SQLRequestMixin(models.AbstractModel):
             if item._check_execution_enabled:
                 item._check_execution()
             item.state = 'sql_valid'
+        return True
 
     @api.multi
     def button_set_draft(self):
