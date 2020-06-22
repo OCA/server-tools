@@ -29,7 +29,7 @@ class SyncCommon(Common):
         self.env.cr.commit = mock.Mock()
         self.registry.enter_test_mode(self.env.cr)
         self.directory_input = "test_import"
-        self.directory_output = "test_output"
+        self.directory_output = "test_export"
         self.directory_archived = "test_archived"
         self._clean_testing_directory()
         self._create_test_file()
