@@ -204,9 +204,11 @@ class AttachmentSynchronizeTask(models.Model):
         )
 
     def _file_to_import(self, filenames):
-        imported = self.attachment_ids.filtered(
-            lambda r: r.name in filenames
-        ).mapped("name")
+        imported = (
+            self.env["attachment.queue"]
+            .search([("name", "in", filenames)])
+            .mapped("name")
+        )
         return list(set(filenames) - set(imported))
 
     def button_toogle_enabled(self):
