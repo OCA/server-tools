@@ -1,56 +1,101 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <record id="view_task_form" model="ir.ui.view">
+    <record id="view_attachment_task_form" model="ir.ui.view">
         <field name="model">attachment.synchronize.task</field>
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="run_import" type="object" string="Run" class="oe_read_only" icon="fa-play-circle" attrs="{'invisible': ['|', ('method_type', '!=', 'import'), ('enabled','=', False)]}"/>
+                    <button name="run_import" type="object" string="Run Import" class="oe_read_only" icon="fa-play-circle" attrs="{'invisible': ['|', ('method_type', '!=', 'import'), ('enabled','=', False)]}"/>
                 </header>
                 <sheet>
                     <field name="method_type" invisible="1"/>
-                    <div class="oe_title" style="width: 390px;" colspan="4">
+                    <div class="oe_title" colspan="4">
                         <label class="oe_edit_only" for="name" string="Name"/>
-                        <h2>
+                        <h1>
                             <field name="name" class="oe_inline"/>
-                        </h2>
+                        </h1>
                     </div>
-                    <group>
-                        <field name="enabled"/>
-                        <field name="method_type"/>
-                        <field name="pattern" attrs="{'invisible':[('method_type','!=','import')]}"/>
-                        <field name="filepath"/>
-                        <field name="check_duplicated_files" />
-                        <field name="emails"/>
-                    </group>
-                    <group name="action" string="Action">
-                        <field name="after_import" attrs="{'invisible':[('method_type','!=','import')]}"/>
-                        <field name="move_path" colspan="4" attrs="{'invisible':['|', '&amp;', ('after_import','!=','move'), ('after_import','!=','move_rename'), ('method_type','!=','import')]}"/>
-                        <field name="new_name" colspan="4" attrs="{'invisible': ['|', '&amp;', ('after_import','!=','rename'), ('after_import','!=','move_rename'), ('method_type','!=','import')]}"/>
-                    </group>
-                    <group string="Data importation setting">
-                        <field name="file_type" attrs="{'invisible':[('method_type','!=','import')]}"/>
-                    </group>
+                    <div class="col-12 col-lg-6">
+                        <group>
+                            <field name="enabled"/>
+                            <field name="method_type"/>
+                            <field name="pattern" attrs="{'invisible':[('method_type','!=','import')]}"/>
+                            <field name="filepath"/>
+                            <field name="backend_id" attrs="{'invisible':[('method_type','!=','import')]}"/>
+                        </group>
+                        <group name="action" string="Action">
+
+                            <field name="emails"/>
+                            <field name="after_import" attrs="{'invisible':[('method_type','!=','import')]}"/>
+                            <field name="move_path" colspan="4" attrs="{'invisible':['|', '&amp;', ('after_import','!=','move'), ('after_import','!=','move_rename'), ('method_type','!=','import')]}"/>
+                            <field name="new_name" colspan="4" attrs="{'invisible': ['|', '&amp;', ('after_import','!=','rename'), ('after_import','!=','move_rename'), ('method_type','!=','import')]}"/>
+                        </group>
+                        <group string="Data importation settings" attrs="{'invisible':[('method_type','!=','import')]}" >
+                            <field name="check_duplicated_files" />
+                            <field name="file_type" />
+                        </group>
+                    </div>
                 </sheet>
             </form>
         </field>
     </record>
 
-    <record id="view_task_tree" model="ir.ui.view">
+    <record id="view_attachment_task_tree" model="ir.ui.view">
         <field name="model">attachment.synchronize.task</field>
         <field name="arch" type="xml">
-            <tree string="Tasks" colors="grey: not(enabled)">
+            <tree string="Tasks" decoration-muted="enabled == False">
                 <field name="name" select="1"/>
                 <field name="method_type"/>
                 <field name="pattern"/>
                 <field name="filepath"/>
                 <field name="move_path"/>
                 <field name="after_import"/>
+                <field name="backend_id"/>
                 <field name="enabled" invisible="1"/>
                 <button name="button_duplicate_record" type="object" title="Copy" class="fa fa-clone"/>
                 <button name="button_toogle_enabled" type="object" title="Enable" class="fa fa-archive"/>
             </tree>
         </field>
     </record>
+
+    <record id="view_attachment_task_search" model="ir.ui.view">
+        <field name="model">attachment.synchronize.task</field>
+        <field name="arch" type="xml">
+            <search string="Attachments">
+                <field name="name" filter_domain="['|', ('name','ilike',self), ('datas_fname','ilike',self)]" string="Attachment Task"/>
+                <field name="create_date"/>
+                <filter string="Backend" name="backend" context="{'group_by':'backend_id'}"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_attachment_task" model="ir.actions.act_window">
+        <field name="name">Attachments Tasks</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">attachment.synchronize.task</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" eval="False"/>
+        <field name="search_view_id" ref="view_attachment_task_search"/>
+    </record>
+
+    <record id="act_open_attachment_task_view_tree" model="ir.actions.act_window.view">
+        <field eval="10" name="sequence"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_attachment_task_tree"/>
+        <field name="act_window_id" ref="action_attachment_task"/>
+    </record>
+
+    <record id="act_open_attachment_task_view_form" model="ir.actions.act_window.view">
+        <field eval="10" name="sequence"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_attachment_task_form"/>
+        <field name="act_window_id" ref="action_attachment_task"/>
+    </record>
+
+    <menuitem id="menu_attachment_task"
+    parent="base.next_id_9"
+    sequence="21"
+    action="action_attachment_task"/>
 
 </odoo>
