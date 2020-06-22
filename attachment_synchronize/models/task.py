@@ -59,7 +59,7 @@ class AttachmentSynchronizeTask(models.Model):
         "least contains the pattern in its name. "
         "Leave it empty to import all files"
     )
-    filepath = fields.Char(help="Path to imported/exported file")
+    filepath = fields.Char(help="Path to imported/exported files in the Backend")
     backend_id = fields.Many2one(
         "storage.backend", string="Backend", required=True
     )
@@ -97,8 +97,8 @@ class AttachmentSynchronizeTask(models.Model):
         help="If checked, will avoid duplication file import",
     )
     emails = fields.Char(
-        string="Emails",
-        help="list of email which should be notified in case of failure "
+        string="Notification Emails",
+        help="List of email which should be notified in case of failure "
         "when excuting the files linked to this task",
     )
 
