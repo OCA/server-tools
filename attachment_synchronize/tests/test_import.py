@@ -15,9 +15,7 @@ class TestImport(SyncCommon):
         return self.backend._list(self.directory_input)
 
     def _check_attachment_created(self, count=1):
-        attachment = self.env["attachment.queue"].search(
-            [("name", "=", "bar.txt")]
-        )
+        attachment = self.env["attachment.queue"].search([("name", "=", "bar.txt")])
         self.assertEqual(len(attachment), count)
 
     def test_import_with_rename(self):
@@ -28,9 +26,7 @@ class TestImport(SyncCommon):
         self.assertEqual(self.archived_files, [])
 
     def test_import_with_move(self):
-        self.task.write(
-            {"after_import": "move", "move_path": self.directory_archived}
-        )
+        self.task.write({"after_import": "move", "move_path": self.directory_archived})
         self.task.run_import()
         self._check_attachment_created()
         self.assertEqual(self.input_files, [])
