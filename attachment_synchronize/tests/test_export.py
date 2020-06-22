@@ -4,6 +4,7 @@
 
 import mock
 from .common import SyncCommon
+from odoo.tools import mute_logger
 
 
 def raising_side_effect(*args, **kwargs):
@@ -29,6 +30,7 @@ class TestExport(SyncCommon):
         result = self.backend._list("test_export")
         self.assertEqual(result, ["foo.txt"])
 
+    @mute_logger("odoo.addons.attachment_queue.models.attachment_queue")
     def test_failing_export(self):
         with mock.patch.object(
             type(self.backend),
