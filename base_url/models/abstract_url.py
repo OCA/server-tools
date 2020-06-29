@@ -81,6 +81,7 @@ class AbstractUrl(models.AbstractModel):
         Note the self already include in the context the lang of the record
         """
         self.ensure_one()
+        # TODO: IMO we should add the ID here by default to make sure the URL is always unique
         return [self.name]
 
     def _post_process_url_key(self, key):
