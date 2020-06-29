@@ -36,9 +36,11 @@ class DeadMansSwitchClient(models.AbstractModel):
             cpu += process.cpu_percent()
         user_count = 0
         if 'bus.presence' in self.env.registry:
-            user_count = self.env['bus.presence'].search_count([
-                ('status', '=', 'online'),
-            ])
+            self.env.cr.execute(
+                """SELECT count(*) FROM bus_presence
+                WHERE age(now() AT TIME ZONE 'UTC', last_poll) < '2 minutes'"""
+            )
+            user_count = self.env.cr.fetchone()[0]
         dbuuid = self.env["ir.config_parameter"].get_param("database.uuid")
         return {
             'database_uuid': dbuuid,
