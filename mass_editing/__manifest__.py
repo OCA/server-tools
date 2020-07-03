@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     'name': 'Mass Editing',
-    'version': '10.0.2.0.0',
+    'version': '10.0.2.0.1',
     'author': 'Serpent Consulting Services Pvt. Ltd., '
               'Tecnativa, '
               'brain-tec AG, '
@@ -20,6 +20,10 @@
     'summary': 'Mass Editing',
     'uninstall_hook': 'uninstall_hook',
     'depends': ['base', 'mail'],
+    "external_dependencies": {
+        "python": [
+            'openupgradelib'],
+    },
     'data': [
         'security/ir.model.access.csv',
         'views/mass_editing_view.xml',

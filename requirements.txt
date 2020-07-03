@@ -12,3 +12,4 @@ checksumdir
 python-stdnum
 pyopenssl
 odoorpc
+openupgradelib
