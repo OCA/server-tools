@@ -89,8 +89,8 @@ class XLSXImport(models.AbstractModel):
                         if line_field in record and record[line_field]:
                             record[line_field].unlink()
             # Remove _NODEL_ from dict
-            for s, _sv in data_dict.items():
-                for f, _fv in data_dict[s].items():
+            for s, _sv in data_dict.copy().items():
+                for f, _fv in data_dict[s].copy().items():
                     if "_NODEL_" in f:
                         new_fv = data_dict[s].pop(f)
                         data_dict[s][f.replace("_NODEL_", "")] = new_fv
@@ -98,9 +98,31 @@ class XLSXImport(models.AbstractModel):
             raise ValidationError(_("Error deleting data\n%s") % e)
 
     @api.model
+    def _get_end_row(self, st, worksheet, line_field):
+        """ Get max row or next empty row as the ending row """
+        _x, max_row = co.get_line_max(line_field)
+        test_rows = {}
+        max_end_row = 0
+        for rc, _col in worksheet.get(line_field, {}).items():
+            rc, key_eval_cond = co.get_field_condition(rc)
+            row, col = co.pos2idx(rc)
+            # Use max_row, i.e., order_line[5], use it. Otherwise, use st.nrows
+            max_end_row = st.nrows if max_row is False else (row + max_row)
+            for idx in range(row, max_row and max_end_row or st.nrows):
+                cell_type = st.cell_type(idx, col)  # empty type = 0
+                r_types = test_rows.get(idx, [])
+                r_types.append(cell_type)
+                test_rows[idx] = r_types
+        empty_list = filter(lambda y: all(i == 0 for i in y[1]), test_rows.items())
+        empty_rows = list(map(lambda z: z[0], empty_list))
+        next_empty_row = empty_rows and min(empty_rows) or max_end_row
+        return next_empty_row
+
+    @api.model
     def _get_line_vals(self, st, worksheet, model, line_field):
         """ Get values of this field from excel sheet """
         vals = {}
+        end_row = self._get_end_row(st, worksheet, line_field)
         for rc, columns in worksheet.get(line_field, {}).items():
             if not isinstance(columns, list):
                 columns = [columns]
@@ -108,10 +130,11 @@ class XLSXImport(models.AbstractModel):
                 rc, key_eval_cond = co.get_field_condition(rc)
                 x_field, val_eval_cond = co.get_field_condition(field)
                 row, col = co.pos2idx(rc)
-                out_field = "{}/{}".format(line_field, x_field)
+                new_line_field, _x = co.get_line_max(line_field)
+                out_field = "{}/{}".format(new_line_field, x_field)
                 field_type = self._get_field_type(model, out_field)
                 vals.update({out_field: []})
-                for idx in range(row, st.nrows):
+                for idx in range(row, end_row):
                     value = co._get_cell_value(st.cell(idx, col), field_type=field_type)
                     eval_context = self.get_eval_context(model=model, value=value)
                     if key_eval_cond:
