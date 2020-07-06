@@ -246,7 +246,9 @@
                                     <li><b
                                         >Sheet</b>: Name (e.g., Sheet 1) or index (e.g., 1) of excel sheet</li>
                                     <li><b
-                                        >Row Field</b>: Use _HEAD_ for the record itself, and one2many field (e.g., line_ids) for row data</li>
+                                        >Row Field</b>: Use _HEAD_ for the record itself, and one2many field for row data, e.g., order_line, line_ids<code
+                                        >[max_row]</code> where <code
+                                        >[max_row]</code> is optional number of rows to import</li>
                                     <li><b
                                         >No Delete</b>: By default, all one2many lines will be deleted before import. Select this, to avoid deletion</li>
                                     <li><b

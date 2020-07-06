@@ -46,7 +46,11 @@ class XLSXTemplate(models.Model):
         help="Instruction on how to import/export, prepared by system.",
     )
     datas = fields.Binary(string="File Content")
-    to_csv = fields.Boolean(string="Convert to CSV?", default=False)
+    to_csv = fields.Boolean(
+        string="Convert to CSV?",
+        default=False,
+        help="Convert file into CSV format on export",
+    )
     csv_delimiter = fields.Char(
         string="CSV Delimiter",
         size=1,
