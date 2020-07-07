@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2016 Jairo Llopis <jairo.llopis@tecnativa.com>
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 import logging
@@ -26,7 +25,13 @@ class ValueConversionCase(TransactionCase):
         self.agrolait.custom_info_template_id = self.tpl
         self.agrolait._onchange_custom_info_template_id()
         if field == "value":
-            value = str(value)
+            field = "value_%s" % prop.field_type
+        if prop.field_type == "id" and isinstance(value, str):
+            value = self.env["custom.info.option"].search([
+                ('property_ids', '=', prop.id),
+                ('name', '=', value)
+            ], limit=1).id
+            self.assertTrue(value)
         self.value = self.agrolait.get_custom_info_value(prop)
         self.value[field] = value
 
@@ -35,6 +40,7 @@ class ValueConversionCase(TransactionCase):
         prop = self.value.property_id
         _logger.info(
             "Searching. prop: %s; value: %s", prop, value)
+
         self.assertEqual(
             self.value.search([
                 ("property_id", "=", prop.id),
@@ -89,21 +95,21 @@ class ValueConversionCase(TransactionCase):
 
     def test_to_bool_true(self):
         """Conversion to yes."""
-        self.fill_value(self.prop_bool, "True")
+        self.fill_value(self.prop_bool, True)
         self.creation_found("True")
         self.assertEqual(self.value.with_context(lang="en_US").value, "Yes")
         self.assertIs(self.value.value_bool, True)
 
     def test_from_bool_true(self):
         """Conversion from yes."""
-        self.fill_value(self.prop_bool, "True", "value_bool")
+        self.fill_value(self.prop_bool, True, "value_bool")
         self.creation_found("True")
         self.assertEqual(self.value.with_context(lang="en_US").value, "Yes")
         self.assertIs(self.value.value_bool, True)
 
     def test_to_bool_false(self):
         """Conversion to no."""
-        self.fill_value(self.prop_bool, "False")
+        self.fill_value(self.prop_bool, False)
         self.assertEqual(self.value.with_context(lang="en_US").value, "No")
         self.assertIs(self.value.value_bool, False)
 

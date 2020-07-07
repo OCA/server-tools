@@ -1,3 +1,3 @@
 To install this module, you need to:
 
-#. Add as depends from your main module.
+#. Add it as dependency from your main module.

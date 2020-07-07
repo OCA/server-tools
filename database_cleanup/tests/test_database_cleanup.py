@@ -1,19 +1,19 @@
 # Copyright 2016 Therp BV <http://therp.nl>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+from contextlib import contextmanager
 from psycopg2 import ProgrammingError
 from odoo.modules.registry import Registry
 from odoo.tools import config, mute_logger
-from odoo.tests.common import TransactionCase, at_install, post_install
+from odoo.tests.common import TransactionCase, tagged
 
 
-# Use post_install to get all models loaded more info: odoo/odoo#13458
-@at_install(False)
-@post_install(True)
+# Use post_install to get all models loaded, more info: odoo/odoo#13458
+@tagged('post_install', '-at_install')
 class TestDatabaseCleanup(TransactionCase):
     def setUp(self):
         super(TestDatabaseCleanup, self).setUp()
-        self.module = None
-        self.model = None
+        self.modules = self.env['ir.module.module']
+        self.models = self.env['ir.model']
         # Create one property for tests
         self.env['ir.property'].create({
             'fields_id': self.env.ref('base.field_res_partner__name').id,
@@ -69,9 +69,14 @@ class TestDatabaseCleanup(TransactionCase):
             self.env.ref('database_cleanup.test_no_data_entry')
 
         # create a nonexistent model
-        self.model = self.env['ir.model'].create({
+        self.models = self.env['ir.model'].create({
             'name': 'Database cleanup test model',
             'model': 'x_database.cleanup.test.model',
+        })
+        # and a cronjob for it
+        cronjob = self.env['ir.cron'].create({
+            'name': 'testcronjob',
+            'model_id': self.models.id,
         })
         self.env.cr.execute(
             'insert into ir_attachment (name, res_model, res_id, type) values '
@@ -83,26 +88,7 @@ class TestDatabaseCleanup(TransactionCase):
         self.assertFalse(self.env['ir.model'].search([
             ('model', '=', 'x_database.cleanup.test.model'),
         ]))
-
-        # create a nonexistent module
-        self.module = self.env['ir.module.module'].create({
-            'name': 'database_cleanup_test',
-            'state': 'to upgrade',
-        })
-        purge_modules = self.env['cleanup.purge.wizard.module'].create({})
-        # this reloads our registry, and we don't want to run tests twice
-        # we also need the original registry for further tests, so save a
-        # reference to it
-        original_registry = Registry.registries[self.env.cr.dbname]
-        config.options['test_enable'] = False
-        purge_modules.purge_all()
-        config.options['test_enable'] = True
-        # must be removed by the wizard
-        self.assertFalse(self.env['ir.module.module'].search([
-            ('name', '=', 'database_cleanup_test'),
-        ]))
-        # reset afterwards
-        Registry.registries[self.env.cr.dbname] = original_registry
+        self.assertFalse(cronjob.exists())
 
         # create an orphaned table
         self.env.cr.execute('create table database_cleanup_test (test int)')
@@ -113,17 +99,59 @@ class TestDatabaseCleanup(TransactionCase):
                 with mute_logger('odoo.sql_db'):
                     cr.execute('select * from database_cleanup_test')
 
+    def test_database_cleanup_modules(self):
+
+        @contextmanager
+        def keep_registry():
+            """purging a module resets the registry, so here we keep a
+            reference to our original registry, as we don't want to run tests
+            twice and need the original for further tests"""
+            original_registry = Registry.registries[self.env.cr.dbname]
+            config.options['test_enable'] = False
+            yield
+            config.options['test_enable'] = True
+            # reset afterwards
+            Registry.registries[self.env.cr.dbname] = original_registry
+
+        # create nonexistent modules in different states
+        self.modules += self.env['ir.module.module'].create({
+            'name': 'database_cleanup_test_to_upgrade',
+            'state': 'to upgrade',
+        })
+        self.modules += self.env['ir.module.module'].create({
+            'name': 'database_cleanup_test_uninstalled',
+            'state': 'uninstalled',
+        })
+
+        with keep_registry(), mute_logger(
+                'odoo.modules.graph', 'odoo.modules.loading'
+        ):
+            purge_modules = self.env['cleanup.purge.wizard.module'].create({})
+            # this module should be purged already during default_get
+            self.assertFalse(self.env['ir.module.module'].search([
+                ('name', '=', 'database_cleanup_test_uninstalled'),
+            ]))
+
+        with keep_registry(), mute_logger(
+                'odoo.modules.graph', 'odoo.modules.loading'
+        ):
+            purge_modules.purge_all()
+            # must be removed by the wizard
+            self.assertFalse(self.env['ir.module.module'].search([
+                ('name', '=', 'database_cleanup_test'),
+            ]))
+
     def tearDown(self):
         super(TestDatabaseCleanup, self).tearDown()
         with self.registry.cursor() as cr2:
             # Release blocked tables with pending deletes
             self.env.cr.rollback()
-            if self.module:
+            if self.modules:
                 cr2.execute(
-                    "DELETE FROM ir_module_module WHERE id=%s",
-                    (self.module.id,))
-            if self.model:
+                    "DELETE FROM ir_module_module WHERE id in %s",
+                    (tuple(self.modules.ids),))
+            if self.models:
                 cr2.execute(
-                    "DELETE FROM ir_model WHERE id=%s",
-                    (self.model.id,))
+                    "DELETE FROM ir_model WHERE id in %s",
+                    (tuple(self.models.ids),))
             cr2.commit()

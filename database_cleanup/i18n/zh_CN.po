@@ -293,7 +293,7 @@ msgid "No dangling menu entries found"
 msgstr "未找到要清除菜单项"
 
 #. module: database_cleanup
-#: code:addons/database_cleanup/models/purge_modules.py:83
+#: code:addons/database_cleanup/models/purge_modules.py:95
 #, python-format
 msgid "No modules found to purge"
 msgstr "未找到要清除的模块"
@@ -311,7 +311,7 @@ msgid "No orphaned data entries found"
 msgstr "未找到要清除的数据项"
 
 #. module: database_cleanup
-#: code:addons/database_cleanup/models/purge_models.py:113
+#: code:addons/database_cleanup/models/purge_models.py:120
 #, python-format
 msgid "No orphaned models found"
 msgstr "未找到要清除模型"

@@ -48,10 +48,19 @@ class CleanupPurgeLineModule(models.TransientModel):
             return True
         self.logger.info('Purging modules %s', ', '.join(module_names))
         modules.filtered(
-            lambda x: x.state not in ('uninstallable', 'uninstalled')
+            lambda x: x.state == 'to install'
+        ).write({'state': 'uninstalled'})
+        modules.filtered(
+            lambda x: x.state in ('to upgrade', 'to remove')
+        ).write({'state': 'installed'})
+        modules.filtered(
+            lambda x: x.state == 'installed' and x.name != 'base'
         ).button_immediate_uninstall()
         modules.refresh()
-        modules.unlink()
+        modules.filtered(
+            lambda x: x.state not in (
+                'installed', 'to upgrade', 'to remove', 'to install')
+        ).unlink()
         return self.write({'purged': True})
 
 
@@ -63,6 +72,7 @@ class CleanupPurgeWizardModule(models.TransientModel):
     @api.model
     def find(self):
         res = []
+        purge_lines = self.env['cleanup.purge.line.module']
         IrModule = self.env['ir.module.module']
         for module in IrModule.search(
                 [
@@ -73,11 +83,13 @@ class CleanupPurgeWizardModule(models.TransientModel):
             if get_module_path(module.name, display_warning=False):
                 continue
             if module.state == 'uninstalled':
-                self.env['cleanup.purge.line.module'].create({
+                purge_lines += self.env['cleanup.purge.line.module'].create({
                     'name': module.name,
-                }).purge()
+                })
                 continue
             res.append((0, 0, {'name': module.name}))
+
+        purge_lines.purge()
 
         if not res:
             raise UserError(_('No modules found to purge'))

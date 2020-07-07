@@ -25,8 +25,14 @@ Company Country
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
-This module allow set a country to main company in order to use the hook of 
-account that install l10n_** based on country of main company.
+This module allows to set a country to the main company before the ``account``
+module is installed, so the hook of that module installs the correct
+``l10n_***`` module.
+
+This is useful because, if the company isn't already set correctly when the
+``account`` module is installed, the generic accounting chart will be installed
+(``l10n_generic_coa``), which may be incorrect depending on your company's
+country.
 
 **Table of contents**
 
@@ -38,21 +44,21 @@ Installation
 
 To install this module, you need to:
 
-#. Add as depends from your main module.
+#. Add it as dependency from your main module.
 
 Configuration
 =============
 
 To configure this module, you need to:
 
-#. Set the environment variable COUNTRY using 2 letter of ISO 3166 codes.
+#. Set the environment variable ``COUNTRY`` using a two-letter ISO 3166 code.
 
 Usage
 =====
 
 To use this module, you need to:
 
-#. Just start server installing your main module.
+#. Just start the server installing your main module.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
@@ -80,13 +86,13 @@ Contributors
 ~~~~~~~~~~~~
 
 * Moisés López <moylop260@vauxoo.com>
+* Luis González <lgonzalez@vauxoo.com>
 
 
 Other credits
 ~~~~~~~~~~~~~
 
 Vauxoo
-
 
 Maintainers
 ~~~~~~~~~~~
@@ -104,10 +110,13 @@ promote its widespread use.
 .. |maintainer-moylop260| image:: https://github.com/moylop260.png?size=40px
     :target: https://github.com/moylop260
     :alt: moylop260
+.. |maintainer-luisg123v| image:: https://github.com/luisg123v.png?size=40px
+    :target: https://github.com/luisg123v
+    :alt: luisg123v
 
-Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
+Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-moylop260| 
+|maintainer-moylop260| |maintainer-luisg123v| 
 
 This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/12.0/company_country>`_ project on GitHub.
 

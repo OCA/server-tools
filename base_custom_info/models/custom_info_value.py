@@ -20,12 +20,13 @@ class CustomInfoValue(models.Model):
 
     model = fields.Char(
         related="property_id.model", index=True, readonly=True,
-        auto_join=True, store=True,
+        auto_join=True, store=True, compute_sudo=True,
     )
     owner_id = fields.Reference(
         selection="_selection_owner_id", string="Owner",
         compute="_compute_owner_id", inverse="_inverse_owner_id",
         help="Record that owns this custom value.",
+        compute_sudo=True,
     )
     res_id = fields.Integer(
         string="Resource ID", required=True, index=True, store=True,
@@ -33,7 +34,6 @@ class CustomInfoValue(models.Model):
     )
     property_id = fields.Many2one(
         comodel_name='custom.info.property', required=True, string='Property',
-        readonly=True,
     )
     property_sequence = fields.Integer(
         related="property_id.sequence", store=True, index=True, readonly=True,
@@ -49,13 +49,16 @@ class CustomInfoValue(models.Model):
     field_type = fields.Selection(
         related="property_id.field_type", readonly=True,
     )
+    widget = fields.Selection(
+        related="property_id.widget", readonly=True,
+    )
     field_name = fields.Char(
         compute="_compute_field_name",
         help="Technical name of the field where the value is stored.",
     )
     required = fields.Boolean(related="property_id.required", readonly=True)
     value = fields.Char(
-        compute="_compute_value", inverse="_inverse_value",
+        compute="_compute_value",
         search="_search_value",
         help="Value, always converted to/from the typed field.",
     )
@@ -63,6 +66,7 @@ class CustomInfoValue(models.Model):
     value_int = fields.Integer(string="Whole number value", index=True)
     value_float = fields.Float(string="Decimal number value", index=True)
     value_bool = fields.Boolean(string="Yes/No value", index=True)
+    value_date = fields.Date(string="Date value", index=True)
     value_id = fields.Many2one(
         comodel_name="custom.info.option", string="Selection value",
         ondelete="cascade", domain="[('property_ids', '=', property_id)]",
@@ -124,18 +128,6 @@ class CustomInfoValue(models.Model):
             else:
                 s.value = getattr(s, s.field_name, False)
 
-    @api.multi
-    def _inverse_value(self):
-        """Write the value correctly converted in the typed field."""
-        for record in self:
-            if (record.field_type == "id"
-                    and record.value == record.value_id.display_name):
-                # Avoid another search that can return a different value
-                continue
-            record[record.field_name] = self._transform_value(
-                record.value, record.field_type, record.property_id,
-            )
-
     @api.one
     @api.constrains("property_id", "value_str", "value_int", "value_float")
     def _check_min_max_limits(self):
@@ -171,7 +163,17 @@ class CustomInfoValue(models.Model):
                     "max": maximum,
                 })
 
-    @api.multi
+    @api.constrains('value_str', 'value_int', 'value_float', 'value_bool',
+                    'value_date', 'value_id', 'property_id')
+    def _check_required(self):
+        for record in self:
+            if not record.required:
+                continue
+            if not record.value:
+                raise ValidationError(_(
+                    'Some required elements have not been fulfilled'
+                ))
+
     @api.onchange("property_id")
     def _onchange_property_set_default_value(self):
         """Load default value for this property."""
@@ -180,12 +182,6 @@ class CustomInfoValue(models.Model):
                 record.value = record.property_id.default_value
             if not record.field_type and record.property_id.field_type:
                 record.field_type = record.property_id.field_type
-
-    @api.onchange('value')
-    def _onchange_value(self):
-        """Inverse function is not launched after writing, so we need to
-        trigger it right now."""
-        self._inverse_value()
 
     @api.model
     def _transform_value(self, value, format_, properties=None):
