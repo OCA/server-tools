@@ -59,13 +59,11 @@ class AttachmentSynchronizeTask(models.Model):
         "least contains the pattern in its name. "
         "Leave it empty to import all files"
     )
-    filepath = fields.Char(help="Path to imported/exported files in the Backend")
-    backend_id = fields.Many2one(
-        "storage.backend", string="Backend", required=True
+    filepath = fields.Char(
+        string="File Path", help="Path to imported/exported files in the Backend"
     )
-    attachment_ids = fields.One2many(
-        "attachment.queue", "task_id", string="Attachment"
-    )
+    backend_id = fields.Many2one("storage.backend", string="Backend")
+    attachment_ids = fields.One2many("attachment.queue", "task_id", string="Attachment")
     move_path = fields.Char(
         string="Move Path", help="Imported File will be moved to this path"
     )
@@ -102,6 +100,10 @@ class AttachmentSynchronizeTask(models.Model):
         "when excuting the files linked to this task",
     )
 
+    def toogle_enabled(self):
+        for task in self:
+            task.enabled = not task.enabled
+
     def _prepare_attachment_vals(self, data, filename):
         self.ensure_one()
         vals = {
@@ -125,8 +127,7 @@ class AttachmentSynchronizeTask(models.Model):
             render_result = template.render(variables)
         except Exception:
             _logger.exception(
-                "Failed to render template %r using values %r"
-                % (template, variables)
+                "Failed to render template %r using values %r" % (template, variables)
             )
             render_result = u""
         if render_result == u"False":
@@ -155,35 +156,21 @@ class AttachmentSynchronizeTask(models.Model):
         for file_name in filenames:
             with api.Environment.manage():
                 with odoo.registry(self.env.cr.dbname).cursor() as new_cr:
-                    new_env = api.Environment(
-                        new_cr, self.env.uid, self.env.context
-                    )
+                    new_env = api.Environment(new_cr, self.env.uid, self.env.context)
                     try:
                         full_absolute_path = os.path.join(filepath, file_name)
                         data = backend._get_b64_data(full_absolute_path)
-                        attach_vals = self._prepare_attachment_vals(
-                            data, file_name
-                        )
-                        attachment = attach_obj.with_env(new_env).create(
-                            attach_vals
-                        )
+                        attach_vals = self._prepare_attachment_vals(data, file_name)
+                        attachment = attach_obj.with_env(new_env).create(attach_vals)
                         new_full_path = False
                         if self.after_import == "rename":
-                            new_name = self._template_render(
-                                self.new_name, attachment
-                            )
+                            new_name = self._template_render(self.new_name, attachment)
                             new_full_path = os.path.join(filepath, new_name)
                         elif self.after_import == "move":
-                            new_full_path = os.path.join(
-                                self.move_path, file_name
-                            )
+                            new_full_path = os.path.join(self.move_path, file_name)
                         elif self.after_import == "move_rename":
-                            new_name = self._template_render(
-                                self.new_name, attachment
-                            )
-                            new_full_path = os.path.join(
-                                self.move_path, new_name
-                            )
+                            new_name = self._template_render(self.new_name, attachment)
+                            new_full_path = os.path.join(self.move_path, new_name)
                         if new_full_path:
                             backend._add_b64_data(new_full_path, data)
                         if self.after_import in (
@@ -199,9 +186,7 @@ class AttachmentSynchronizeTask(models.Model):
                         raise e
                     else:
                         new_env.cr.commit()
-        _logger.info(
-            "Run import complete! Imported {0} files".format(total_import)
-        )
+        _logger.info("Run import complete! Imported {0} files".format(total_import))
 
     def _file_to_import(self, filenames):
         imported = (
