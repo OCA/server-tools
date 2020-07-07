@@ -1,3 +1,1 @@
-from . import attachment
-from . import task
-from . import storage_backend
+from . import attachment_queue, attachment_synchronize_task, storage_backend

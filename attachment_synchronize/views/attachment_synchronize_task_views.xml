@@ -5,9 +5,23 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="run_import" type="object" string="Run Import" class="oe_read_only" icon="fa-play-circle" attrs="{'invisible': ['|', ('method_type', '!=', 'import'), ('enabled','=', False)]}"/>
+                    <button name="run_import" type="object" string="Run Import" class="oe_read_only oe_highlight" icon="fa-play-circle" attrs="{'invisible': ['|', ('method_type', '!=', 'import'), ('enabled','=', False)]}"/>
                 </header>
                 <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="toogle_enabled" type="object" class="oe_stat_button" icon="fa-check-square">
+                            <field
+                              name="enabled"
+                              widget="boolean_button"
+                              options="{'terminology': {
+                                  'string_true': 'Enabled',
+                                  'hover_true': &quot;Disable&quot;,
+                                  'string_false': 'Disabled',
+                                  'hover_false': &quot;Enable&quot;,
+                                  }}"
+                            />
+                        </button>
+                    </div>
                     <field name="method_type" invisible="1"/>
                     <div class="oe_title" colspan="4">
                         <label class="oe_edit_only" for="name" string="Name"/>
@@ -17,22 +31,21 @@
                     </div>
                     <div class="col-12 col-lg-6">
                         <group>
-                            <field name="enabled"/>
+                            <!-- <field name="enabled"/> -->
                             <field name="method_type"/>
                             <field name="pattern" attrs="{'invisible':[('method_type','!=','import')]}"/>
+                            <field name="backend_id"/>
                             <field name="filepath"/>
-                            <field name="backend_id" attrs="{'invisible':[('method_type','!=','import')]}"/>
                         </group>
                         <group name="action" string="Action">
-
                             <field name="emails"/>
                             <field name="after_import" attrs="{'invisible':[('method_type','!=','import')]}"/>
                             <field name="move_path" colspan="4" attrs="{'invisible':['|', '&amp;', ('after_import','!=','move'), ('after_import','!=','move_rename'), ('method_type','!=','import')]}"/>
                             <field name="new_name" colspan="4" attrs="{'invisible': ['|', '&amp;', ('after_import','!=','rename'), ('after_import','!=','move_rename'), ('method_type','!=','import')]}"/>
                         </group>
                         <group string="Data importation settings" attrs="{'invisible':[('method_type','!=','import')]}" >
-                            <field name="check_duplicated_files" />
                             <field name="file_type" />
+                            <field name="check_duplicated_files" />
                         </group>
                     </div>
                 </sheet>
@@ -45,7 +58,6 @@
         <field name="arch" type="xml">
             <tree string="Tasks" decoration-muted="enabled == False">
                 <field name="name" select="1"/>
-                <field name="method_type"/>
                 <field name="pattern"/>
                 <field name="filepath"/>
                 <field name="move_path"/>
@@ -69,33 +81,67 @@
         </field>
     </record>
 
-    <record id="action_attachment_task" model="ir.actions.act_window">
-        <field name="name">Attachments Tasks</field>
+
+    <!-- Attachments Import Tasks Menu -->
+    <record id="action_attachment_import_task" model="ir.actions.act_window">
+        <field name="name">Attachments Import Tasks</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">attachment.synchronize.task</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="view_id" eval="False"/>
         <field name="search_view_id" ref="view_attachment_task_search"/>
+        <field name="domain">[('method_type', '=', 'import')]</field>
     </record>
 
     <record id="act_open_attachment_task_view_tree" model="ir.actions.act_window.view">
         <field eval="10" name="sequence"/>
         <field name="view_mode">tree</field>
         <field name="view_id" ref="view_attachment_task_tree"/>
-        <field name="act_window_id" ref="action_attachment_task"/>
+        <field name="act_window_id" ref="action_attachment_import_task"/>
     </record>
 
     <record id="act_open_attachment_task_view_form" model="ir.actions.act_window.view">
         <field eval="10" name="sequence"/>
         <field name="view_mode">form</field>
         <field name="view_id" ref="view_attachment_task_form"/>
-        <field name="act_window_id" ref="action_attachment_task"/>
+        <field name="act_window_id" ref="action_attachment_import_task"/>
     </record>
 
-    <menuitem id="menu_attachment_task"
+    <menuitem id="menu_attachment_import_task"
     parent="base.next_id_9"
     sequence="21"
-    action="action_attachment_task"/>
+    action="action_attachment_import_task"/>
+
+    <!-- Attachments Export Tasks Menu -->
+    <record id="action_attachment_export_task" model="ir.actions.act_window">
+        <field name="name">Attachments Export Tasks</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">attachment.synchronize.task</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" eval="False"/>
+        <field name="search_view_id" ref="view_attachment_task_search"/>
+        <field name="domain">[('method_type', '=', 'export')]</field>
+    </record>
+
+    <record id="act_open_attachment_task_view_tree" model="ir.actions.act_window.view">
+        <field eval="10" name="sequence"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_attachment_task_tree"/>
+        <field name="act_window_id" ref="action_attachment_export_task"/>
+    </record>
+
+    <record id="act_open_attachment_task_view_form" model="ir.actions.act_window.view">
+        <field eval="10" name="sequence"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_attachment_task_form"/>
+        <field name="act_window_id" ref="action_attachment_export_task"/>
+    </record>
+
+    <menuitem id="menu_attachment_export_task"
+    parent="base.next_id_9"
+    sequence="22"
+    action="action_attachment_export_task"/>
 
 </odoo>
