@@ -12,9 +12,9 @@
     "category": "Generic Modules",
     "depends": ["attachment_queue", "storage_backend"],
     "data": [
-        "views/attachment_view.xml",
-        "views/task_view.xml",
-        "views/storage_backend_view.xml",
+        "views/attachment_queue_views.xml",
+        "views/attachment_synchronize_task_views.xml",
+        "views/storage_backend_views.xml",
         "data/cron.xml",
         "security/ir.model.access.csv",
     ],
