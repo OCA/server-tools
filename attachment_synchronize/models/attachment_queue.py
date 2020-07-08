@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import os
-from odoo import models, fields
+from odoo import api, models, fields
 
 
 class AttachmentQueue(models.Model):
@@ -30,3 +30,9 @@ class AttachmentQueue(models.Model):
         if self.task_id.emails:
             res = self.task_id.emails
         return res
+
+    @api.onchange("task_id")
+    def onchange_task_id(self):
+        for attachment in self:
+            if attachment.task_id.method_type == "export":
+                attachment.file_type = "export"
