@@ -9,6 +9,7 @@ class AttachmentQueue(models.Model):
     _inherit = "attachment.queue"
 
     task_id = fields.Many2one("attachment.synchronize.task", string="Task")
+    method_type = fields.Selection(related="task_id.method_type")
     storage_backend_id = fields.Many2one(
         "storage.backend",
         string="Storage Backend",
