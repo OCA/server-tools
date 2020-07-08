@@ -10,6 +10,7 @@ import uuid
 from io import BytesIO
 
 from psycopg2 import ProgrammingError
+from psycopg2.sql import SQL
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
@@ -165,16 +166,20 @@ class SQLRequestMixin(models.AbstractModel):
             pass
         elif mode == "stdout":
             # pylint: disable=sql-injection
-            query = "COPY ({}) TO STDOUT WITH {}".format(query, copy_options)
+            query = SQL("COPY ({0}) TO STDOUT WITH {1}").format(
+                SQL(query), SQL(copy_options)
+            )
             # pylint: enable=sql-injection
         elif mode in "view":
             # pylint: disable=sql-injection
-            query = "CREATE VIEW {} AS ({});".format(query, view_name)
+            query = SQL("CREATE VIEW {0} AS ({1});").format(SQL(query), SQL(view_name))
             # pylint: enable=sql-injection
         elif mode in "materialized_view":
             self._check_materialized_view_available()
             # pylint: disable=sql-injection
-            query = "CREATE MATERIALIZED VIEW {} AS ({});".format(query, view_name)
+            query = SQL("CREATE MATERIALIZED VIEW {0} AS ({1});").format(
+                SQL(query), SQL(view_name)
+            )
             # pylint: enable=sql-injection
         else:
             raise UserError(_("Unimplemented mode : '%s'" % mode))
