@@ -6,12 +6,27 @@
         <field name="inherit_id" ref="storage_backend.storage_backend_view_form" />
         <field name="priority" eval="250"/>
         <field name="arch" type="xml">
-            <xpath expr="//group[@name='config']" position="after">
-                <notebook>
-                    <page string="Tasks">
-                        <field name="synchronize_task_ids" domain="[('backend_id', '=', id)]" context="{'default_backend_id': id}"/>
-                    </page>
-                </notebook>
+            <xpath expr="//div[hasclass('oe_title')]" position="before">
+                <div class="oe_button_box" name="button_box">
+                    <button
+                        class="oe_stat_button"
+                        type="object"
+                        attrs="{'invisible': [('import_task_count', '&lt;', 1)]}"
+                        name="action_related_import_task"
+                        icon="fa-download"
+                    >
+                        <field name="import_task_count" widget="statinfo" />
+                    </button>
+                    <button
+                        class="oe_stat_button"
+                        type="object"
+                        attrs="{'invisible': [('export_task_count', '&lt;', 1)]}"
+                        name="action_related_export_task"
+                        icon="fa-upload"
+                    >
+                        <field name="export_task_count" widget="statinfo" />
+                    </button>
+                </div>
             </xpath>
         </field>
     </record>
