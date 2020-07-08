@@ -164,12 +164,18 @@ class SQLRequestMixin(models.AbstractModel):
         if mode in ("fetchone", "fetchall"):
             pass
         elif mode == "stdout":
+            # pylint: disable=sql-injection
             query = "COPY ({}) TO STDOUT WITH {}".format(query, copy_options)
+            # pylint: enable=sql-injection
         elif mode in "view":
+            # pylint: disable=sql-injection
             query = "CREATE VIEW {} AS ({});".format(query, view_name)
+            # pylint: enable=sql-injection
         elif mode in "materialized_view":
             self._check_materialized_view_available()
+            # pylint: disable=sql-injection
             query = "CREATE MATERIALIZED VIEW {} AS ({});".format(query, view_name)
+            # pylint: enable=sql-injection
         else:
             raise UserError(_("Unimplemented mode : '%s'" % mode))
 
