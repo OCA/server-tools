@@ -100,9 +100,11 @@ class AttachmentSynchronizeTask(models.Model):
         "when excuting the files linked to this task",
     )
 
-    def toogle_enabled(self):
+    @api.onchange("method_type")
+    def onchange_method_type(self):
         for task in self:
-            task.enabled = not task.enabled
+            if task.method_type == "export":
+                task.file_type = "export"
 
     def _prepare_attachment_vals(self, data, filename):
         self.ensure_one()
@@ -196,17 +198,14 @@ class AttachmentSynchronizeTask(models.Model):
         )
         return list(set(filenames) - set(imported))
 
+    def run_export(self):
+        for task in self:
+            task.attachment_ids.filtered(lambda a: a.state == "pending").run()
+
     def button_toogle_enabled(self):
         for rec in self:
             rec.enabled = not rec.enabled
 
     def button_duplicate_record(self):
         self.ensure_one()
-        record = self.copy({"enabled": False})
-        return {
-            "type": "ir.actions.act_window",
-            "res_model": record.backend_id._name,
-            "target": "current",
-            "view_mode": "form",
-            "res_id": record.backend_id.id,
-        }
+        self.copy({"enabled": False})
