@@ -7,9 +7,12 @@
                 <header>
                     <button name="run_import" type="object" string="Run Import" class="oe_read_only oe_highlight" icon="fa-play-circle" attrs="{'invisible': ['|', ('method_type', '!=', 'import'), ('enabled','=', False)]}"/>
                 </header>
+                <header>
+                    <button name="run_export" type="object" string="Run Export" class="oe_read_only oe_highlight" icon="fa-play-circle" attrs="{'invisible': ['|', ('method_type', '!=', 'export'), ('enabled','=', False)]}"/>
+                </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <button name="toogle_enabled" type="object" class="oe_stat_button" icon="fa-check-square">
+                        <button name="button_toogle_enabled" type="object" class="oe_stat_button" icon="fa-check-square">
                             <field
                               name="enabled"
                               widget="boolean_button"
@@ -31,11 +34,10 @@
                     </div>
                     <div class="col-12 col-lg-6">
                         <group>
-                            <!-- <field name="enabled"/> -->
                             <field name="method_type"/>
-                            <field name="pattern" attrs="{'invisible':[('method_type','!=','import')]}"/>
                             <field name="backend_id"/>
                             <field name="filepath"/>
+                            <field name="pattern" attrs="{'invisible':[('method_type','!=','import')]}"/>
                         </group>
                         <group name="action" string="Action">
                             <field name="emails"/>
@@ -43,11 +45,14 @@
                             <field name="move_path" colspan="4" attrs="{'invisible':['|', '&amp;', ('after_import','!=','move'), ('after_import','!=','move_rename'), ('method_type','!=','import')]}"/>
                             <field name="new_name" colspan="4" attrs="{'invisible': ['|', '&amp;', ('after_import','!=','rename'), ('after_import','!=','move_rename'), ('method_type','!=','import')]}"/>
                         </group>
+                        <field name="file_type" />
                         <group string="Data importation settings" attrs="{'invisible':[('method_type','!=','import')]}" >
-                            <field name="file_type" />
                             <field name="check_duplicated_files" />
                         </group>
                     </div>
+                    <group string="Attachments" attrs="{'invisible':[('method_type','!=','export')]}">
+                        <field name="attachment_ids" domain="[('task_id', '=', id)]" nolabel="1" />
+                    </group>
                 </sheet>
             </form>
         </field>
