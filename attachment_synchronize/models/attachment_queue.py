@@ -28,8 +28,8 @@ class AttachmentQueue(models.Model):
 
     def _get_failure_emails(self):
         res = super()._get_failure_emails()
-        if self.task_id.emails:
-            res = self.task_id.emails
+        if self.task_id.failure_emails:
+            res = self.task_id.failure_emails
         return res
 
     @api.onchange("task_id")
