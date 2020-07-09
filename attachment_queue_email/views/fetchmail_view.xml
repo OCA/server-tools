@@ -9,19 +9,19 @@
                 <field name="company_id" widget="selection" groups="base.group_multi_company"/>
             </field>
             <xpath expr="//field[@name='configuration']/.." position="after">
-		<group string="Attachment Conditions" name="conditions">
-		    <field name="attachment_metadata_condition_ids" colspan="4" nolabel="1"/>
-	        </group>
+            		<group string="Attachment Conditions" name="conditions">
+            		    <field name="attachment_metadata_condition_ids" colspan="4" nolabel="1"/>
+      	        </group>
             </xpath>
         </field>
     </record>
 
-   <!-- Views and menus for the new object prepare.ir.attachment.metadata -->
+   <!-- Views and menus for the new object fetchmail.attachment.condition -->
     <record id="view_fetchmail_attachment_condition_tree" model="ir.ui.view">
         <field name="name">view_fetchmail_attachment_condition_tree</field>
         <field name="model">fetchmail.attachment.condition</field>
         <field name="arch" type="xml">
-            <tree string="Configuration for ir.attachment.metadata">
+            <tree string="Configuration for attachment.queue">
                 <field name="name"/>
                 <field name="from_email"/>
                 <field name="mail_subject"/>
