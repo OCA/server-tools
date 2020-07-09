@@ -54,10 +54,7 @@ class AttachmentSynchronizeTask(models.Model):
         [("import", "Import"), ("export", "Export")], required=True
     )
     pattern = fields.Char(
-        help="File name which is imported."
-        "The system will check if the remote file at "
-        "least contains the pattern in its name. "
-        "Leave it empty to import all files"
+        help="Used to select the files to be imported. Import all the files if empty."
     )
     filepath = fields.Char(
         string="File Path", help="Path to imported/exported files in the Backend"
@@ -86,25 +83,17 @@ class AttachmentSynchronizeTask(models.Model):
     file_type = fields.Selection(
         selection=[],
         string="File Type",
-        help="The file type determines an import method to be used "
-        "to parse and transform data before their import in ERP",
+        help="The file type indicates what Odoo will do with the files once imported",
     )
     enabled = fields.Boolean("Enabled", default=True)
-    check_duplicated_files = fields.Boolean(
-        string="Check duplicated files",
+    avoid_duplicated_files = fields.Boolean(
+        string="Avoid duplicated files importation",
         help="If checked, will avoid duplication file import",
     )
     emails = fields.Char(
         string="Notification Emails",
-        help="List of email which should be notified in case of failure "
-        "when excuting the files linked to this task",
+        help="These emails will receive a notification in case of the task failure",
     )
-
-    @api.onchange("method_type")
-    def onchange_method_type(self):
-        for task in self:
-            if task.method_type == "export":
-                task.file_type = "export"
 
     def _prepare_attachment_vals(self, data, filename):
         self.ensure_one()
@@ -152,7 +141,7 @@ class AttachmentSynchronizeTask(models.Model):
         backend = self.backend_id
         filepath = self.filepath or ""
         filenames = backend._list(relative_path=filepath, pattern=self.pattern)
-        if self.check_duplicated_files:
+        if self.avoid_duplicated_files:
             filenames = self._file_to_import(filenames)
         total_import = 0
         for file_name in filenames:
