@@ -12,7 +12,7 @@
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <button name="button_toogle_enabled" type="object" class="oe_stat_button" icon="fa-check-square">
+                        <button name="button_toogle_enabled" type="object" class="oe_stat_button" icon="fa-archive">
                             <field
                               name="enabled"
                               widget="boolean_button"
@@ -26,19 +26,20 @@
                         </button>
                     </div>
                     <field name="method_type" invisible="1"/>
-                    <div class="oe_title" colspan="4">
+                    <div class="oe_title">
                         <label class="oe_edit_only" for="name" string="Name"/>
                         <h1>
                             <field name="name" class="oe_inline"/>
                         </h1>
+                        <field name="create_date" invisible="1" />
+                        <field name="method_type" widget="radio" options="{'horizontal': true}" attrs="{'readonly':[('create_date', '!=', False)]}"/>
                     </div>
-                    <group class="col-12 col-lg-6">
-                        <field name="method_type"/>
+                    <group string="Storage Location" class="col-12 col-lg-6">
                         <field name="backend_id"/>
                         <field name="filepath"/>
                         <field name="pattern" attrs="{'invisible':[('method_type','!=','import')]}"/>
                     </group>
-                    <group name="action" string="Importation Settings" attrs="{'invisible':[('method_type','!=','import')]}" class="col-12 col-lg-6">
+                    <group name="action" string="Importation" attrs="{'invisible':[('method_type','!=','import')]}" class="col-12 col-lg-6">
                         <field name="avoid_duplicated_files" />
                         <field name="after_import" />
                         <field name="move_path" colspan="4" attrs="{'invisible':[('after_import','!=','move'), ('after_import','!=','move_rename')]}"/>
@@ -47,7 +48,7 @@
                     <group string="Attachments">
                         <group>
                             <field name="file_type" attrs="{'invisible':[('method_type','!=','import')]}" />
-                            <field name="emails" attrs="{'invisible':[('method_type','!=','import')]}" />
+                            <field name="failure_emails" />
                         </group>
                         <field name="attachment_ids" domain="[('task_id', '=', id)]" nolabel="1" attrs="{'invisible':[('method_type','!=','export')]}"/>
                     </group>
@@ -61,14 +62,14 @@
         <field name="arch" type="xml">
             <tree string="Tasks" decoration-muted="enabled == False">
                 <field name="name" select="1"/>
-                <field name="pattern"/>
-                <field name="filepath"/>
-                <field name="move_path"/>
-                <field name="after_import"/>
                 <field name="backend_id"/>
+                <field name="filepath"/>
+                <field name="pattern"/>
+                <field name="after_import"/>
+                <field name="move_path"/>
                 <field name="enabled" invisible="1"/>
-                <button name="button_duplicate_record" type="object" title="Copy" class="fa fa-clone"/>
-                <button name="button_toogle_enabled" type="object" title="Enable" class="fa fa-check-square"/>
+                <button name="button_duplicate_record" type="object" string="Copy" icon="fa-clone"/>
+                <button name="button_toogle_enabled" type="object" string="Enable" icon="fa-archive"/>
             </tree>
         </field>
     </record>
@@ -78,11 +79,11 @@
         <field name="arch" type="xml">
             <tree string="Tasks" decoration-muted="enabled == False">
                 <field name="name" select="1"/>
-                <field name="filepath"/>
                 <field name="backend_id"/>
+                <field name="filepath"/>
                 <field name="enabled" invisible="1"/>
-                <button name="button_duplicate_record" type="object" title="Copy" class="fa fa-clone"/>
-                <button name="button_toogle_enabled" type="object" title="Enable" class="fa fa-check-square"/>
+                <button name="button_duplicate_record" type="object" string="Copy" icon="fa-clone"/>
+                <button name="button_toogle_enabled" type="object" string="Enable" icon="fa-archive"/>
             </tree>
         </field>
     </record>
