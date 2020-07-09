@@ -63,7 +63,7 @@ class TestImport(SyncCommon):
 
     def test_import_twice_no_duplicate(self):
         self.task.write(
-            {"after_import": "delete", "check_duplicated_files": True}
+            {"after_import": "delete", "avoid_duplicated_files": True}
         )
         self.task.run_import()
         self._check_attachment_created(count=1)
