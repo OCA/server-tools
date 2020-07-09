@@ -51,10 +51,11 @@ class AttachmentSynchronizeTask(models.Model):
 
     name = fields.Char(required=True)
     method_type = fields.Selection(
-        [("import", "Import"), ("export", "Export")], required=True
+        [("import", "Import Task"), ("export", "Export Task")], required=True
     )
     pattern = fields.Char(
-        help="Used to select the files to be imported. Import all the files if empty."
+        string="Selection Pattern",
+        help="Used to select the files to be imported. If empty, import all the files.",
     )
     filepath = fields.Char(
         string="File Path", help="Path to imported/exported files in the Backend"
@@ -83,16 +84,20 @@ class AttachmentSynchronizeTask(models.Model):
     file_type = fields.Selection(
         selection=[],
         string="File Type",
-        help="The file type indicates what Odoo will do with the files once imported",
+        help="The file type allows Odoo to recognize what to do with the files "
+        "once imported.",
     )
     enabled = fields.Boolean("Enabled", default=True)
     avoid_duplicated_files = fields.Boolean(
-        string="Avoid duplicated files importation",
-        help="If checked, will avoid duplication file import",
+        string="Avoid importing duplicated files",
+        help="If checked, a file will not be imported if there is already an "
+        "Attachment Queue with the same name.",
     )
-    emails = fields.Char(
-        string="Notification Emails",
-        help="These emails will receive a notification in case of the task failure",
+    failure_emails = fields.Char(
+        string="Failure Emails",
+        help="Used to fill the field 'Failure Emails' in the task related "
+        "Attachments Queues.\nThese emails will be notified if any operation on these "
+        "Attachment Queue's file type fails.",
     )
 
     def _prepare_attachment_vals(self, data, filename):
@@ -111,14 +116,16 @@ class AttachmentSynchronizeTask(models.Model):
         try:
             template = mako_template_env.from_string(tools.ustr(template))
         except Exception:
-            _logger.exception("Failed to load template %r", template)
+            _logger.exception("Failed to load template '{}'".format(template))
 
         variables = {"obj": record}
         try:
             render_result = template.render(variables)
         except Exception:
             _logger.exception(
-                "Failed to render template %r using values %r" % (template, variables)
+                "Failed to render template '{}'' using values '{}'".format(
+                    template, variables
+                )
             )
             render_result = u""
         if render_result == u"False":
