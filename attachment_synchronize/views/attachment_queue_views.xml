@@ -22,10 +22,13 @@
         <field name="model">attachment.queue</field>
         <field name="inherit_id" ref="attachment_queue.view_attachment_queue_tree" />
         <field name="arch" type="xml">
-            <field name="file_type" position="after">
-                <field name="task_id"/>
-                <field name="storage_backend_id"/>
-            </field>
+          <xpath expr="//tree" position="attributes">
+              <attribute name="decoration-muted">state == 'done'</attribute>
+          </xpath>
+          <xpath expr="//field[@name='file_type']" position="after">
+              <field name="task_id"/>
+              <field name="storage_backend_id"/>
+          </xpath>
         </field>
     </record>
 
