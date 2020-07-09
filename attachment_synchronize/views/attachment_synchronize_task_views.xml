@@ -32,33 +32,31 @@
                             <field name="name" class="oe_inline"/>
                         </h1>
                     </div>
-                    <div class="col-12 col-lg-6">
+                    <group class="col-12 col-lg-6">
+                        <field name="method_type"/>
+                        <field name="backend_id"/>
+                        <field name="filepath"/>
+                        <field name="pattern" attrs="{'invisible':[('method_type','!=','import')]}"/>
+                    </group>
+                    <group name="action" string="Importation Settings" attrs="{'invisible':[('method_type','!=','import')]}" class="col-12 col-lg-6">
+                        <field name="avoid_duplicated_files" />
+                        <field name="after_import" />
+                        <field name="move_path" colspan="4" attrs="{'invisible':[('after_import','!=','move'), ('after_import','!=','move_rename')]}"/>
+                        <field name="new_name" colspan="4" attrs="{'invisible': [('after_import','!=','rename'), ('after_import','!=','move_rename')]}"/>
+                    </group>
+                    <group string="Attachments">
                         <group>
-                            <field name="method_type"/>
-                            <field name="backend_id"/>
-                            <field name="filepath"/>
-                            <field name="pattern" attrs="{'invisible':[('method_type','!=','import')]}"/>
+                            <field name="file_type" attrs="{'invisible':[('method_type','!=','import')]}" />
+                            <field name="emails" attrs="{'invisible':[('method_type','!=','import')]}" />
                         </group>
-                        <group name="action" string="Action">
-                            <field name="emails"/>
-                            <field name="after_import" attrs="{'invisible':[('method_type','!=','import')]}"/>
-                            <field name="move_path" colspan="4" attrs="{'invisible':['|', '&amp;', ('after_import','!=','move'), ('after_import','!=','move_rename'), ('method_type','!=','import')]}"/>
-                            <field name="new_name" colspan="4" attrs="{'invisible': ['|', '&amp;', ('after_import','!=','rename'), ('after_import','!=','move_rename'), ('method_type','!=','import')]}"/>
-                        </group>
-                        <field name="file_type" />
-                        <group string="Data importation settings" attrs="{'invisible':[('method_type','!=','import')]}" >
-                            <field name="check_duplicated_files" />
-                        </group>
-                    </div>
-                    <group string="Attachments" attrs="{'invisible':[('method_type','!=','export')]}">
-                        <field name="attachment_ids" domain="[('task_id', '=', id)]" nolabel="1" />
+                        <field name="attachment_ids" domain="[('task_id', '=', id)]" nolabel="1" attrs="{'invisible':[('method_type','!=','export')]}"/>
                     </group>
                 </sheet>
             </form>
         </field>
     </record>
 
-    <record id="view_attachment_task_tree" model="ir.ui.view">
+    <record id="view_attachment_import_task_tree" model="ir.ui.view">
         <field name="model">attachment.synchronize.task</field>
         <field name="arch" type="xml">
             <tree string="Tasks" decoration-muted="enabled == False">
@@ -70,7 +68,21 @@
                 <field name="backend_id"/>
                 <field name="enabled" invisible="1"/>
                 <button name="button_duplicate_record" type="object" title="Copy" class="fa fa-clone"/>
-                <button name="button_toogle_enabled" type="object" title="Enable" class="fa fa-archive"/>
+                <button name="button_toogle_enabled" type="object" title="Enable" class="fa fa-check-square"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_attachment_export_task_tree" model="ir.ui.view">
+        <field name="model">attachment.synchronize.task</field>
+        <field name="arch" type="xml">
+            <tree string="Tasks" decoration-muted="enabled == False">
+                <field name="name" select="1"/>
+                <field name="filepath"/>
+                <field name="backend_id"/>
+                <field name="enabled" invisible="1"/>
+                <button name="button_duplicate_record" type="object" title="Copy" class="fa fa-clone"/>
+                <button name="button_toogle_enabled" type="object" title="Enable" class="fa fa-check-square"/>
             </tree>
         </field>
     </record>
@@ -97,12 +109,13 @@
         <field name="view_id" eval="False"/>
         <field name="search_view_id" ref="view_attachment_task_search"/>
         <field name="domain">[('method_type', '=', 'import')]</field>
+        <field name="context">{'default_method_type': 'import'}</field>
     </record>
 
     <record id="act_open_attachment_task_view_tree" model="ir.actions.act_window.view">
         <field eval="10" name="sequence"/>
         <field name="view_mode">tree</field>
-        <field name="view_id" ref="view_attachment_task_tree"/>
+        <field name="view_id" ref="view_attachment_import_task_tree"/>
         <field name="act_window_id" ref="action_attachment_import_task"/>
     </record>
 
@@ -128,12 +141,13 @@
         <field name="view_id" eval="False"/>
         <field name="search_view_id" ref="view_attachment_task_search"/>
         <field name="domain">[('method_type', '=', 'export')]</field>
+        <field name="context">{'default_method_type': 'export'}</field>
     </record>
 
     <record id="act_open_attachment_task_view_tree" model="ir.actions.act_window.view">
         <field eval="10" name="sequence"/>
         <field name="view_mode">tree</field>
-        <field name="view_id" ref="view_attachment_task_tree"/>
+        <field name="view_id" ref="view_attachment_export_task_tree"/>
         <field name="act_window_id" ref="action_attachment_export_task"/>
     </record>
 
