@@ -10,7 +10,7 @@
             </field>
             <xpath expr="//field[@name='configuration']/.." position="after">
             		<group string="Attachment Conditions" name="conditions">
-            		    <field name="attachment_queue_condition_ids" colspan="4" nolabel="1"/>
+            		    <field name="attachment_condition_ids" colspan="4" nolabel="1"/>
       	        </group>
             </xpath>
         </field>
