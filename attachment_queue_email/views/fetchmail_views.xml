@@ -21,7 +21,7 @@
         <field name="name">view_fetchmail_attachment_condition_tree</field>
         <field name="model">fetchmail.attachment.condition</field>
         <field name="arch" type="xml">
-            <tree string="Configuration for attachment.queue">
+            <tree>
                 <field name="name"/>
                 <field name="email_from"/>
                 <field name="email_subject"/>
@@ -35,18 +35,22 @@
         <field name="name">view_fetchmail_attachment_condition_form</field>
         <field name="model">fetchmail.attachment.condition</field>
         <field name="arch" type="xml">
-            <form string="Configuration for fetchmail.attachment">
+            <form string="Attachment Condition requirements">
                 <sheet>
-                    <h1>
-                        <label for="name"/>
-                        <field name="name" nolabel="1"/>
-                    </h1>
-                    <group col="4">
+                  <div class="oe_title">
+                      <label class="oe_edit_only" for="name" />
+                      <h1>
+                          <field name="name"/>
+                      </h1>
+                  </div>
+                    <group string="Requirements" class="col-12 col-lg-6">
                         <field name="email_from" />
                         <field name="email_subject" />
                         <field name="file_extension" />
-                        <field name="server_id" invisible="1" />
+                    </group>
+                    <group string="Attachment process" class="col-12 col-lg-6">
                         <field name="file_type" />
+                        <field name="server_id" invisible="1" />
                     </group>
                 </sheet>
             </form>
