@@ -10,7 +10,7 @@
             </field>
             <xpath expr="//field[@name='configuration']/.." position="after">
             		<group string="Attachment Conditions" name="conditions">
-            		    <field name="attachment_metadata_condition_ids" colspan="4" nolabel="1"/>
+            		    <field name="attachment_queue_condition_ids" colspan="4" nolabel="1"/>
       	        </group>
             </xpath>
         </field>
@@ -23,11 +23,10 @@
         <field name="arch" type="xml">
             <tree string="Configuration for attachment.queue">
                 <field name="name"/>
-                <field name="from_email"/>
-                <field name="mail_subject"/>
-                <field name="type"/>
+                <field name="email_from"/>
+                <field name="email_subject"/>
                 <field name="file_extension"/>
-                <field name="server_id" invisible="True"/>
+                <field name="server_id" invisible="1"/>
             </tree>
        </field>
     </record>
@@ -40,15 +39,14 @@
                 <sheet>
                     <h1>
                         <label for="name"/>
-                        <field name="name" nolabel="True"/>
+                        <field name="name" nolabel="1"/>
                     </h1>
                     <group col="4">
-                        <field name="from_email" attrs="{'required': [('type', '=', 'normal')]}"/>
-                        <field name="mail_subject" attrs="{'required': [('type', '=', 'normal')]}"/>
-                        <field name="type"/>
-                        <field name="file_extension"/>
-                        <field name="server_id" invisible="True"/>
-                        <field name="file_type"/>
+                        <field name="email_from" />
+                        <field name="email_subject" />
+                        <field name="file_extension" />
+                        <field name="server_id" invisible="1" />
+                        <field name="file_type" />
                     </group>
                 </sheet>
             </form>

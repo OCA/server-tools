@@ -22,7 +22,7 @@ class AttachmentQueue(models.Model):
     )
 
     @api.model
-    def _get_attachment_metadata_data(self, condition, msg, att):
+    def _get_attachment_queue_data(self, condition, msg, att):
         values = {
             "fetchmail_attachment_condition_id": condition.id,
             "file_type": condition.file_type,
@@ -42,19 +42,22 @@ class AttachmentQueue(models.Model):
             and condition.mail_subject in msg["subject"]
         ):
             for att in msg["attachments"]:
-                if condition.file_extension in att[0]:
+                if condition.file_extension in att[0] or not condition.file_extension:
                     vals_list.append(
-                        self._get_attachment_metadata_data(condition, msg, att)
+                        self._get_attachment_queue_data(condition, msg, att)
                     )
         return vals_list
 
     @api.model
-    def _prepare_data_for_attachment_metadata(self, msg):
-        """Method to prepare the data for creating a attachment metadata.
+    def _prepare_data_for_attachment_queue(self, msg):
+        """Prepare the datas for the creation of one or many attachment.queue depending
+        on the number of the email's attachments files and if the email matches the
+        fetchmail.attachment.condition's conditions.
+
         :param msg: a dictionnary with the email data
         :type: dict
 
-        :return: a list of dictionnary that contains the attachment metadata data
+        :return: a list of dictionnary that contains the attachment.queue data
         :rtype: list
         """
         res = []
@@ -69,11 +72,15 @@ class AttachmentQueue(models.Model):
 
     @api.model
     def message_new(self, msg, custom_values):
+        """Create Attachments Queues objects from the new received email's attachments.
+        """
+        # Rewriting completely ``message_new`` instead of overiding it in order to
+        # allows the creation of many new objects instead of only one.
         created_recs = []
-        res = self._prepare_data_for_attachment_metadata(msg)
+        res = self._prepare_data_for_attachment_queue(msg)
         if res:
             for vals in res:
-                default = self.env.context.get("default_attachment_metadata_vals")
+                default = self.env.context.get("default_attachment_queue_vals")
                 if default:
                     for key in default:
                         if key not in vals:
