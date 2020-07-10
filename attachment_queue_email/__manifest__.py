@@ -11,8 +11,8 @@
     "license": "AGPL-3",
     "website": "http://www.akretion.com/",
     "depends": ["attachment_queue", "fetchmail"],
-    "data": ["security/ir.model.access.csv", "views/fetchmail_view.xml"],
     "demo": [],
+    "data": ["security/ir.model.access.csv", "views/fetchmail_views.xml"],
     "installable": True,
     "images": [],
 }

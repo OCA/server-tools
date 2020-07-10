@@ -16,7 +16,7 @@ class FetchmailServer(models.Model):
     attachment_queue_condition_ids = fields.One2many(
         "fetchmail.attachment.condition",
         "server_id",
-        string="Attachment Conditions",
+        string="Attachment Condition",
         help="Files attached to the emails matching these conditions will be imported "
         "in Odoo as 'Attachment Queue' objects",
     )
@@ -51,6 +51,6 @@ class FetchmailAttachmentCondition(models.Model):
     file_type = fields.Selection(
         selection=[],
         help="The 'file type' is transmited to the 'Attachment Queue' objects created "
-        "from the selected emails attachments. It will allow Odoo to recognize "
+        "from the selected emails attachments.\nIt will allow Odoo to recognize "
         "what do do with them once created.",
     )
