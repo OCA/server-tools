@@ -13,19 +13,21 @@ class FetchmailServer(models.Model):
     company_id = fields.Many2one(
         "res.company", string="Company", required=True, default=company_default_get
     )
-    attachment_metadata_condition_ids = fields.One2many(
-        "fetchmail.attachment.condition", "server_id", string="Attachment Conditions"
+    attachment_queue_condition_ids = fields.One2many(
+        "fetchmail.attachment.condition",
+        "server_id",
+        string="Attachment Conditions",
+        help="Files attached to the emails matching these conditions will be imported "
+        "in Odoo as 'Attachment Queue' objects",
     )
 
-    @api.multi
     def get_context_for_server(self):
         self.ensure_one()
         ctx = self.env.context.copy()
         ctx["default_fetchmail_server_id"] = self.id
-        ctx["default_file_document_vals"] = {}
+        ctx["default_attachment_queue_vals"] = {}
         return ctx
 
-    @api.multi
     def fetch_mail(self):
         for server in self:
             ctx = server.get_context_for_server()
@@ -37,18 +39,18 @@ class FetchmailAttachmentCondition(models.Model):
     _name = "fetchmail.attachment.condition"
     _description = "Fetchmail Attachment Conditions"
 
-    name = fields.Char(string="Name", required=True,)
-    from_email = fields.Char(string="Email")
-    mail_subject = fields.Char()
-    type = fields.Selection(
-        selection=[("normal", "Normal")],
-        required=True,
-        default="normal",
-        help="Create your own type if the normal type "
-        "do not correspond to your need",
+    name = fields.Char(string="Condition Name", required=True,)
+    email_from = fields.Char(string="Email From")
+    email_subject = fields.Char(string="Email Subject")
+    file_extension = fields.Char(
+        string="File Extension",
+        help="The extension (or part of the name) of the sought files. "
+        "If empty, all the email's attachments will be imported.",
     )
-    file_extension = fields.Char(required=True, help="File extension or file name")
     server_id = fields.Many2one("fetchmail.server", string="Server Mail")
     file_type = fields.Selection(
-        selection=[], help="The file type will show some special option"
+        selection=[],
+        help="The 'file type' is transmited to the 'Attachment Queue' objects created "
+        "from the selected emails attachments. It will allow Odoo to recognize "
+        "what do do with them once created.",
     )
