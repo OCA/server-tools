@@ -13,13 +13,22 @@ class FetchmailServer(models.Model):
     company_id = fields.Many2one(
         "res.company", string="Company", required=True, default=company_default_get
     )
-    attachment_queue_condition_ids = fields.One2many(
+    attachment_condition_ids = fields.One2many(
         "fetchmail.attachment.condition",
         "server_id",
         string="Attachment Condition",
         help="Files attached to the emails matching these conditions will be imported "
         "in Odoo as 'Attachment Queue' objects",
     )
+
+    @api.onchange("attachment_condition_ids")
+    def onchange_attachment_condition(self):
+        for server in self:
+            if server.attachment_condition_ids:
+                server.object_id = self.env["ir.model"].search(
+                    [("model", "=", "attachment.queue")]
+                )
+                server.attach = True
 
     def get_context_for_server(self):
         self.ensure_one()
