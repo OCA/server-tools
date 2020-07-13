@@ -77,11 +77,6 @@ class AttachmentQueue(models.Model):
         res = self._prepare_data_for_attachment_queue(msg)
         if res:
             for vals in res:
-                default = self.env.context.get("default_attachment_queue_vals")
-                if default:
-                    for key in default:
-                        if key not in vals:
-                            vals[key] = default[key]
                 created_recs.append(self.create(vals))
             return created_recs[0]
         return None

@@ -30,19 +30,6 @@ class FetchmailServer(models.Model):
                 )
                 server.attach = True
 
-    def get_context_for_server(self):
-        self.ensure_one()
-        ctx = self.env.context.copy()
-        ctx["default_fetchmail_server_id"] = self.id
-        ctx["default_attachment_queue_vals"] = {}
-        return ctx
-
-    def fetch_mail(self):
-        for server in self:
-            ctx = server.get_context_for_server()
-            super(FetchmailServer, server.with_context(ctx)).fetch_mail()
-        return True
-
 
 class FetchmailAttachmentCondition(models.Model):
     _name = "fetchmail.attachment.condition"
