@@ -26,26 +26,23 @@ class AttachmentQueue(models.Model):
         values = {
             "fetchmail_attachment_condition_id": condition.id,
             "file_type": condition.file_type,
-            "name": msg["subject"],
-            "sync_date": msg["date"],
-            "datas_fname": att[0],
-            "datas": base64.b64encode(att[1]),
+            "name": msg.get("subject", att.fname),
+            "sync_date": msg.get("date"),
+            "datas_fname": att.fname,
+            "datas": base64.b64encode(att.content),
             "state": "pending",
         }
         return values
 
     @api.model
-    def prepare_data_from_basic_condition(self, condition, msg):
+    def prepare_data_from_basic_condition(self, cond, msg):
         vals_list = []
-        if (
-            condition.from_email in msg["from"]
-            and condition.mail_subject in msg["subject"]
-        ):
+        if str(cond.email_from) in msg.get("from", "") or str(
+            cond.email_subject
+        ) in msg.get("subject", ""):
             for att in msg["attachments"]:
-                if condition.file_extension in att[0] or not condition.file_extension:
-                    vals_list.append(
-                        self._get_attachment_queue_data(condition, msg, att)
-                    )
+                if cond.file_extension in att.fname or not cond.file_extension:
+                    vals_list.append(self._get_attachment_queue_data(cond, msg, att))
         return vals_list
 
     @api.model
@@ -61,7 +58,7 @@ class AttachmentQueue(models.Model):
         :rtype: list
         """
         res = []
-        server_id = self.env.context.get("default_fetchmail_server_id", False)
+        server_id = self.env.context.get("fetchmail_server_id", False)
         file_condition_obj = self.env["fetchmail.attachment.condition"]
         conds = file_condition_obj.search([("server_id", "=", server_id)])
         for cond in conds:
