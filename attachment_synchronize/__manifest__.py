@@ -12,7 +12,7 @@
     "category": "Generic Modules",
     "depends": [
         "attachment_queue",
-        "storage_backend", # https://github.com/OCA/storage
+        "storage_backend",  # https://github.com/OCA/storage
     ],
     "data": [
         "views/attachment_queue_views.xml",
