@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record model="ir.config_parameter" id="slack_log_contabilidad_channel">
+            <field name="key">slack_log_contabilidad_channel</field>
+            <field name="value">#log_odoo_dev</field>
+        </record>
+
+    </data>
+</odoo>

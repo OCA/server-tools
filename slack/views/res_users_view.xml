@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_users_slack_form" model="ir.ui.view">
+        <field name="name">res.users.slack.form</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button string="Test Slack" type="object" name="action_test_slack" attrs="{'invisible': [('slack_member_id', '=', False)]}"/>
+            </xpath>
+            <field name="notification_type" position="before">	    	
+                <field name="slack_member_id"/>
+                <field name="slack_mail_message"/>                
+	       </field>                       
+        </field>
+    </record>
+
+</odoo>

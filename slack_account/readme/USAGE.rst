@@ -1,0 +1,1 @@
+It will be necessary to configure the ir config parameter with the key slack_log_contabilidad_channel (for example #channel_invoice) which will be the Slack channel to which notifications will be sent
