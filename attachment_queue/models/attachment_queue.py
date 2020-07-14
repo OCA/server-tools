@@ -17,7 +17,7 @@ class AttachmentQueue(models.Model):
         "ir.attachment",
         required=True,
         ondelete="cascade",
-        help="Link to ir.attachment model ",
+        help="Link to the related ir.attachment model",
     )
     file_type = fields.Selection(
         selection=[],

@@ -23,12 +23,15 @@
                     <field name="done_uid" readonly="1" class="oe_inline"/>
                 </div>
             </xpath>
-            <field name="url" position="after">
+            <xpath expr="//field[@name='url']" position="before">
                 <field name="file_type"/>
-            </field>
+            </xpath>
+            <xpath expr="//field[@name='mimetype']" position="after">
+                <field name="failure_emails" attrs="{'invisible': [('failure_emails', '=', '')]}" />
+            </xpath>
             <group name="description_group">
                 <group name="state_message" string="Error" colspan="4">
-                    <field name="state_message" nolabel="1"/>
+                    <field name="state_message" nolabel="1" readonly="1"/>
                 </group>
             </group>
         </field>
