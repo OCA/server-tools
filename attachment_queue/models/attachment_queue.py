@@ -24,7 +24,8 @@ class AttachmentQueue(models.Model):
         help="Operations are realized on 'Attachments Queues' objects depending on "
         "their 'File Type' value.",
     )
-    date_done = fields.Datetime()
+    done_date = fields.Datetime()
+    done_uid = fields.Many2one("res.users")
     state = fields.Selection(
         [("pending", "Pending"), ("failed", "Failed"), ("done", "Done")],
         readonly=False,
@@ -88,7 +89,8 @@ class AttachmentQueue(models.Model):
                     else:
                         vals = {
                             "state": "done",
-                            "date_done": fields.Datetime.now(),
+                            "done_date": fields.Datetime.now(),
+                            "done_uid": self.env.user.id,
                         }
                         attach.write(vals)
                         attach.env.cr.commit()
@@ -102,5 +104,10 @@ class AttachmentQueue(models.Model):
         """
         Manually set to done
         """
-        message = "Manually set to done by %s" % self.env.user.name
-        self.write({"state_message": message, "state": "done"})
+        self.write(
+            {
+                "state": "done",
+                "done_date": fields.Datetime.now(),
+                "done_uid": self.env.user.id,
+            }
+        )

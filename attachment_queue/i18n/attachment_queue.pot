@@ -106,7 +106,7 @@ msgid "Database Data"
 msgstr ""
 
 #. module: attachment_queue
-#: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__date_done
+#: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__done_date
 msgid "Date Done"
 msgstr ""
 

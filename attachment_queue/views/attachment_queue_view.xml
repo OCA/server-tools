@@ -15,8 +15,15 @@
                     <field name="state" widget="statusbar"/>
                 </header>
             </xpath>
+            <xpath expr="//field[@name='create_uid']/.." position="after">
+                <label for="done_uid" string="Operation done on" attrs="{'invisible': [('done_date', '=', False)]}"/>
+                <div name="done_div" attrs="{'invisible': [('done_date', '=', False)]}">
+                    <field name="done_date" readonly="1" class="oe_inline"/>
+                    <span attrs="{'invisible': [('done_uid', '=', False)]}"> by </span>
+                    <field name="done_uid" readonly="1" class="oe_inline"/>
+                </div>
+            </xpath>
             <field name="url" position="after">
-                <field name="date_done"/>
                 <field name="file_type"/>
             </field>
             <group name="description_group">
