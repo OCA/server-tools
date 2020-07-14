@@ -55,7 +55,9 @@ class AttachmentSynchronizeTask(models.Model):
     )
     pattern = fields.Char(
         string="Selection Pattern",
-        help="Used to select the files to be imported. If empty, import all the files.",
+        help="Pattern used to select the files to be imported following the 'fnmatch' "
+        "special characters (e.g. '*.txt' to catch all the text files).\n"
+        "If empty, import all the files found in 'File Path'.",
     )
     filepath = fields.Char(
         string="File Path", help="Path to imported/exported files in the Backend"
@@ -67,10 +69,9 @@ class AttachmentSynchronizeTask(models.Model):
     )
     new_name = fields.Char(
         string="New Name",
-        help="Imported File will be renamed to this name\n"
-        "Name can use mako template where obj is an "
-        "ir_attachement. template exemple : "
-        "  ${obj.name}-${obj.create_date}.csv",
+        help="Imported File will be renamed to this name.\n"
+        "New Name can use 'mako' template where 'obj' is the original file's name.\n"
+        "For instance : ${obj.name}-${obj.create_date}.csv",
     )
     after_import = fields.Selection(
         selection=[
@@ -95,8 +96,8 @@ class AttachmentSynchronizeTask(models.Model):
     )
     failure_emails = fields.Char(
         string="Failure Emails",
-        help="Used to fill the field 'Failure Emails' in the task related "
-        "Attachments Queues.\nThese emails will be notified if any operation on these "
+        help="Used to fill the 'Failure Emails' fields in the 'Attachments Queues' "
+        "related to this task.\nThese emails will be notified if any operation on these "
         "Attachment Queue's file type fails.",
     )
 
