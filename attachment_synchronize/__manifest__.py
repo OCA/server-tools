@@ -10,7 +10,10 @@
     "website": "https://github.com/oca/server-tools",
     "license": "AGPL-3",
     "category": "Generic Modules",
-    "depends": ["attachment_queue", "storage_backend"],
+    "depends": [
+        "attachment_queue",
+        "storage_backend", # https://github.com/OCA/storage
+    ],
     "data": [
         "views/attachment_queue_views.xml",
         "views/attachment_synchronize_task_views.xml",

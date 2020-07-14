@@ -13,50 +13,59 @@ Attachment Synchronize
 .. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
-.. |badge3| image:: https://img.shields.io/badge/github-akretion%2Fserver--tools-lightgray.png?logo=github
-    :target: https://github.com/akretion/server-tools/tree/12-mig-external_file_location/attachment_synchronize
-    :alt: akretion/server-tools
+.. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github
+    :target: https://github.com/OCA/server-tools/tree/12.0/attachment_synchronize
+    :alt: OCA/server-tools
+.. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
+    :target: https://translation.odoo-community.org/projects/server-tools-12-0/server-tools-12-0-attachment_synchronize
+    :alt: Translate me on Weblate
+.. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
+    :target: https://runbot.odoo-community.org/runbot/149/12.0
+    :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| 
+|badge1| |badge2| |badge3| |badge4| |badge5| 
 
-This module allow you to deal with remote communication to import/export files.
-It allow to store paths and settings from/to remote servers.
+This module allows to **import/export files** from/to backend servers.
 
-It depends of attachment_queue to store attachments
+A backend server is defined by the basic `storage_backend <https://github.com/OCA/storage/tree/12.0/storage_backend>`_ OCA module, while it can be configured (amazon S3, sftp,...) with additional modules from the `storage <https://github.com/oca/storage>`_ repository.
 
-With additional modules coming from https://github.com/storage you can use ftp, sftp, etc
+The imported files (and the files to be exported) are stored in Odoo as ``attachment.queue`` objects, defined by the `attachment_queue <https://github.com/OCA/server-tools/tree/12.0/attachment_queue>`_ module while the importation itself (resp. exportation) is realized by **"Attachments Import Tasks"** (resp. "Attachments Export Tasks") defined by this current module.
 
 **Table of contents**
 
 .. contents::
    :local:
 
-Configuration
-=============
+Usage
+=====
 
-To use this module, you need to:
+As importation and exportation are different processes, they are triggered in different ways :
 
-* Add a location with your server infos
-* Create a task with your file info and remote communication method
-* A cron task will trigger each task
+**To import files**, you need to create an *"Attachment Import Task"* (menu *Settings > Technical > Attachments Import Tasks*) which defines :
 
+- where to find the files to import from the backend server (path to the files, selection pattern)
+- what to do with the source files in the backend server (avoid duplicates, delete/rename after import...)
+- how the files will be processed once imported (through the **File Type** field).
 
-.. figure:: https://raw.githubusercontent.com/akretion/server-tools/12-mig-external_file_location/attachment_synchronize/static/description/file.png
+.. image:: https://raw.githubusercontent.com/OCA/server-tools/12.0/attachment_synchronize/static/description/import_task.png
 
+.. epigraph::
 
+  🔎 The **File Type** options are defined by other modules built to process the Attachments Queues with the same "File Type".
 
-.. figure:: https://raw.githubusercontent.com/akretion/server-tools/12-mig-external_file_location/attachment_synchronize/static/description/sftp.png
+**To export files**, you need first to register them as *"Attachments Queues"* objects linked to an *"Attachment Export Task"* (which set automatically their **File Type** to *"Export File (External Location)"*).
 
+Then, you can export one file at a time from the *Attachment Queue*'s form view, or export all the *Attachments Queues* in a pending state related to the same *Export Task* from the given *Export Task* form view (menu *Settings > Technical > Attachments Export Tasks*) :
 
-With the help of storage_backend_sftp
+.. image:: https://raw.githubusercontent.com/OCA/server-tools/12.0/attachment_synchronize/static/description/export_task.png
 
 Bug Tracker
 ===========
 
-Bugs are tracked on `GitHub Issues <https://github.com/akretion/server-tools/issues>`_.
+Bugs are tracked on `GitHub Issues <https://github.com/OCA/server-tools/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
-`feedback <https://github.com/akretion/server-tools/issues/new?body=module:%20attachment_synchronize%0Aversion:%2012-mig-external_file_location%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/server-tools/issues/new?body=module:%20attachment_synchronize%0Aversion:%2012.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -76,6 +85,7 @@ Contributors
 - Valentin CHEMIERE
 - Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
 - Florian DA COSTA <florian.dacosta@akretion.com>
+- Clément MOMBEREAU <clement.mombereau@akretion.com.br>
 
 GS Lab:
 
@@ -83,6 +93,16 @@ GS Lab:
 
 Maintainers
 ~~~~~~~~~~~
+
+This module is maintained by the OCA.
+
+.. image:: https://odoo-community.org/logo.png
+   :alt: Odoo Community Association
+   :target: https://odoo-community.org
+
+OCA, or the Odoo Community Association, is a nonprofit organization whose
+mission is to support the collaborative development of Odoo features and
+promote its widespread use.
 
 .. |maintainer-florian-dacosta| image:: https://github.com/florian-dacosta.png?size=40px
     :target: https://github.com/florian-dacosta
@@ -94,10 +114,10 @@ Maintainers
     :target: https://github.com/bealdav
     :alt: bealdav
 
-Current maintainers:
+Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-florian-dacosta| |maintainer-GSLabIt| |maintainer-bealdav| 
 
-This module is part of the `akretion/server-tools <https://github.com/akretion/server-tools/tree/12-mig-external_file_location/attachment_synchronize>`_ project on GitHub.
+This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/12.0/attachment_synchronize>`_ project on GitHub.
 
-You are welcome to contribute.
+You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
