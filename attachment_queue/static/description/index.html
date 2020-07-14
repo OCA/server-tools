@@ -368,8 +368,7 @@ ul.auto-toc {
 !! changes will be overwritten.                   !!
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
 <p><a class="reference external" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external" href="https://github.com/OCA/server-tools/tree/12.0/attachment_queue"><img alt="OCA/server-tools" src="https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github" /></a> <a class="reference external" href="https://translation.odoo-community.org/projects/server-tools-12-0/server-tools-12-0-attachment_queue"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external" href="https://runbot.odoo-community.org/runbot/149/12.0"><img alt="Try me on Runbot" src="https://img.shields.io/badge/runbot-Try%20me-875A7B.png" /></a></p>
-<p>This module adds async processing capabilities to attachments by implementing a new model attachment.queue that wraps attachments and stores additional information so that it can be processed in an asynchronous way.</p>
-<p>A use case of this module can be found in the attachment_synchronize module.</p>
+<p>This module adds asynchronous processing capabilities to attachments by implementing a new model <tt class="docutils literal">attachment.queue</tt> that wraps attachments and stores additional information (mainly a <strong>File Type</strong> and a <strong>State</strong> fields) so it can be processed in an asynchronous way.</p>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
@@ -385,13 +384,18 @@ ul.auto-toc {
 </div>
 <div class="section" id="usage">
 <h1><a class="toc-backref" href="#id1">Usage</a></h1>
-<p>Go the menu Settings &gt; Technical &gt; Database Structure &gt; Attachments Queue</p>
-<p>You can create / see standard attachments with additional fields</p>
-<p>Configure the batch limit for attachments that can be sync by the cron task at a go:</p>
-<p>Settings &gt; Technical &gt; System parameters &gt; attachment_queue_cron_batch_limit</p>
-<p>image:: ../static/description/tree.png</p>
-<p>This module can be used in combination with attachment_synchronize to control file processing workflow</p>
-<p>image:: ../static/description/form.png</p>
+<p>The menu <em>Settings &gt; Technical &gt; Database Structure &gt; Attachments Queue</em> displays all the <em>Attachments Queues</em> objects.</p>
+<img alt="https://raw.githubusercontent.com/OCA/server-tools/12.0/attachment_queue/static/description/tree.png" src="https://raw.githubusercontent.com/OCA/server-tools/12.0/attachment_queue/static/description/tree.png" />
+<img alt="https://raw.githubusercontent.com/OCA/server-tools/12.0/attachment_queue/static/description/form.png" src="https://raw.githubusercontent.com/OCA/server-tools/12.0/attachment_queue/static/description/form.png" />
+<blockquote class="epigraph">
+You can limit the number of attachments processed in the same cron task changing the <tt class="docutils literal">attachment_queue_cron_batch_limit</tt> value in <em>Settings &gt; Technical &gt; System parameters &gt; attachment_queue_cron_batch_limit</em>.</blockquote>
+<hr class="docutils" />
+<p>To implement a module that creates an action to perform on <em>Attachments Queues</em>, you need to :</p>
+<ul class="simple">
+<li>add a new <strong>Field Type</strong> to the current selection field.</li>
+<li>override the <tt class="docutils literal">_run()</tt> method, to perform the action on the <em>Attachments Queues</em> with the right <em>Field Type</em>.</li>
+<li>and optionally override the <tt class="docutils literal">_get_failure_emails()</tt> method, to fill the <em>Failure Emails</em> field and send a notification to these emails if the <tt class="docutils literal">_run()</tt> method fails for a specific attachment.</li>
+</ul>
 </div>
 <div class="section" id="bug-tracker">
 <h1><a class="toc-backref" href="#id2">Bug Tracker</a></h1>
