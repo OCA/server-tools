@@ -12,9 +12,7 @@ class TestAttachmentQueue(TransactionCase):
         self.env = api.Environment(
             self.registry.test_cr, self.env.uid, self.env.context
         )
-        self.attachment = self.env.ref(
-            "attachment_queue.attachment_queue_demo"
-        )
+        self.attachment = self.env.ref("attachment_queue.attachment_queue_demo")
 
     def tearDown(self):
         self.registry.leave_test_mode()
