@@ -188,7 +188,7 @@ class BaseExceptionMethod(models.AbstractModel):
         return self.search(domain)
 
 
-class BaseException(models.AbstractModel):
+class BaseExceptionModel(models.AbstractModel):
     _inherit = "base.exception.method"
     _name = "base.exception"
     _order = "main_exception_id asc"
