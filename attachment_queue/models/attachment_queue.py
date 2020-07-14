@@ -9,6 +9,7 @@ _logger = logging.getLogger(__name__)
 
 class AttachmentQueue(models.Model):
     _name = "attachment.queue"
+    _description = "Attachment Queue"
     _inherits = {"ir.attachment": "attachment_id"}
     _inherit = ["mail.thread"]
 
@@ -20,8 +21,8 @@ class AttachmentQueue(models.Model):
     )
     file_type = fields.Selection(
         selection=[],
-        help="The file type determines an import method to be used "
-        "to parse and transform data before their import in ERP or an export",
+        help="Operations are realized on 'Attachments Queues' objects depending on "
+        "their 'File Type' value.",
     )
     date_done = fields.Datetime()
     state = fields.Selection(
@@ -35,7 +36,7 @@ class AttachmentQueue(models.Model):
         compute="_compute_failure_emails",
         string="Failure Emails",
         help="Comma-separated list of email addresses to be notified in case of"
-             "failure",
+        "operation failure on an 'Attachment Queue' object.",
     )
 
     def _compute_failure_emails(self):

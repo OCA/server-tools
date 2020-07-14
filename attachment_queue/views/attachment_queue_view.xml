@@ -12,11 +12,11 @@
                             string="Run" type="object" class="oe_highlight"/>
                     <button name="set_done" states="pending,failed"
                             string="Set to Done" type="object"/>
+                    <field name="state" widget="statusbar"/>
                 </header>
             </xpath>
             <field name="url" position="after">
                 <field name="date_done"/>
-                <field name="state"/>
                 <field name="file_type"/>
             </field>
             <group name="description_group">

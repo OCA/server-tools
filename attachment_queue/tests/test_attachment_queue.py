@@ -5,7 +5,7 @@ from odoo import api
 from odoo.tests.common import TransactionCase
 
 
-class TestAttachmentBaseQueue(TransactionCase):
+class TestAttachmentQueue(TransactionCase):
     def setUp(self):
         super().setUp()
         self.registry.enter_test_mode(self.env.cr)
