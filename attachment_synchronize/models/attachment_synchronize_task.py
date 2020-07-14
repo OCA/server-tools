@@ -85,20 +85,21 @@ class AttachmentSynchronizeTask(models.Model):
     file_type = fields.Selection(
         selection=[],
         string="File Type",
-        help="The file type allows Odoo to recognize what to do with the files "
-        "once imported.",
+        help="Used to fill the 'File Type' field in the imported 'Attachments Queues'."
+        "\nFurther operations will be realized on these Attachments Queues depending "
+        "on their 'File Type' value.",
     )
     enabled = fields.Boolean("Enabled", default=True)
     avoid_duplicated_files = fields.Boolean(
         string="Avoid importing duplicated files",
-        help="If checked, a file will not be imported if there is already an "
-        "Attachment Queue with the same name.",
+        help="If checked, a file will not be imported if an Attachment Queue with the "
+        "same name already exists.",
     )
     failure_emails = fields.Char(
         string="Failure Emails",
-        help="Used to fill the 'Failure Emails' fields in the 'Attachments Queues' "
-        "related to this task.\nThese emails will be notified if any operation on these "
-        "Attachment Queue's file type fails.",
+        help="Used to fill the 'Failure Emails' field in the 'Attachments Queues' "
+        "related to this task.\nAn alert will be sent to these emails if any operation "
+        "on these Attachment Queue's file type fails.",
     )
 
     def _prepare_attachment_vals(self, data, filename):
