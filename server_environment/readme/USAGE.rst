@@ -13,3 +13,12 @@ by an override of ``_server_env_fields``.
 
 Read the documentation of the class and methods in `models/server_env_mixin.py
 <models/server_env_mixin.py>`__.
+
+
+If you want to have a technical name to reference::
+
+    class StorageBackend(models.Model):
+        _name = "storage.backend"
+        _inherit = ["storage.backend", "server.env.techname.mixin", "server.env.mixin"]
+
+        [...]
