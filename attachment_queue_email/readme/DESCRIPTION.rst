@@ -1,1 +1,3 @@
-Abstract module for importing and processing the attachment of an email. The attachment of the email will be imported as an ir.attachment.metadata and then in your custom module you can process it.
+Abstract module for importing emails attachments.
+
+Each email's attachment matching a given **"Attachment Condition"** will be imported creating a new ``attachment.queue`` object. These ``attachment.queue`` objects are files wrapped with additional fields (mainly a **Filed Type** and a **State**) making them ready to be processed by a custom module as you can read in the `attachment_queue <https://github.com/OCA/server-tools/tree/12.0/attachment_queue>`_ documentation.
