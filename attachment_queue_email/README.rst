@@ -25,7 +25,9 @@ File Email
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
-Abstract module for importing and processing the attachment of an email. The attachment of the email will be imported as an ir.attachment.metadata and then in your custom module you can process it.
+Abstract module for importing emails attachments.
+
+Each email's attachment matching a given **"Attachment Condition"** will be imported creating a new ``attachment.queue`` object. These ``attachment.queue`` objects are files wrapped with additional fields (mainly a **Filed Type** and a **State**) making them ready to be processed by a custom module as you can read in the `attachment_queue <https://github.com/OCA/server-tools/tree/12.0/attachment_queue>`_ documentation.
 
 **Table of contents**
 
@@ -35,9 +37,11 @@ Abstract module for importing and processing the attachment of an email. The att
 Usage
 =====
 
-Go the menu Settings > File Exchange > Configuration
+Adding an **"Attachment Condition"** to your *Incoming Mail Server* configuration will lead to the creation of ``attachment.queue`` objects from emails attachments coming from this server and matching the given *Attachment Condition*.
 
-A implementation must be defined in your own module to test this module on a use case
+  🔎 Recalling that, as the *Incoming Mail Servers* has only one *"Create a New Record"* field, the emails coming from that server **cannot be used to create other type of objects** than ``attachment.queue``.
+
+Filling the condition's **File Type** field will spread this value to the newly created ``attchment.queue`` objects so they can be processed by a custom module following this **File Type** field value.
 
 Bug Tracker
 ===========
@@ -63,6 +67,7 @@ Contributors
 * Valentin CHEMIERE <valentin.chemiere@akretion.com>
 * Florian DA COSTA <florian.dacosta@akretion.com>
 * Sebastien BEAU <sebastian.beau@akretion.com>
+* Clément Mombereau <clement.mombereau@akretion.com.br>
 
 Maintainers
 ~~~~~~~~~~~
