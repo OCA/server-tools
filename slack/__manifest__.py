@@ -13,7 +13,7 @@
         "sale"
     ],
     "external_dependencies": {
-        "python3" : ["slackclient"],
+        "python": ["slackclient"],
     },
     "data": [
         "data/slack_data.xml",

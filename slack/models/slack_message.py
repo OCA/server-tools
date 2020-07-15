@@ -18,23 +18,23 @@ class SlackMessage(models.Model):
     def create(self, values):
         channel = self.env['ir.config_parameter'].sudo().get_param('slack_log_channel')
         api_token = tools.config.get('slack_bot_user_oauth_access_token')
-        if api_token!=None:
-            #api_token
+        if api_token != None:
+            # api_token
             if 'api_token' in values:
                 api_token = values['api_token']
-            #default
+            # default
             msg = ''
             attachments = []
-            #msg
+            # msg
             if 'msg' in values:
                 msg = values['msg']
-            #attachments
+            # attachments
             if 'attachments' in values:
                 attachments = values['attachments']
-            #channel
+            # channel
             if 'channel' in values:
                 channel = values['channel']
-            #SlackClient
+            # SlackClient
             try:
                 sc = slack.WebClient(token=api_token)
                 result = sc.chat_postMessage(
@@ -50,5 +50,5 @@ class SlackMessage(models.Model):
                     })
             except:
                 _logger.debug('Slack Error')
-            #return
+            # return
             return False

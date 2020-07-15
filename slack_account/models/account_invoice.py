@@ -6,12 +6,12 @@ from odoo import api, models, fields, _
 class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
 
-    @api.one    
+    @api.one
     def action_auto_create_message_slack(self):
         res = super(AccountInvoice, self).action_auto_create_message_slack()
-        
+
         web_base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-                                                                        
+
         attachments = [
             {
                 "title": _("Invoice has been created automatically"),
@@ -25,7 +25,7 @@ class AccountInvoice(models.Model):
                         "url": str(web_base_url)+"/web?#id="+str(self.id)+"&view_type=form&model=account.invoice"
                     }
                 ],
-                "fields": [                    
+                "fields": [
                     {
                         "title": _("Customer"),
                         "value": self.partner_id.name,
@@ -39,13 +39,13 @@ class AccountInvoice(models.Model):
                 ],
             }
         ]
-        
+
         slack_message_vals = {
             'attachments': attachments,
             'model': 'account.invoice',
             'res_id': self.id,
-            'channel': self.env['ir.config_parameter'].sudo().get_param('slack_log_contabilidad_channel'),                                                         
-        }                        
-        slack_message_obj = self.env['slack.message'].sudo().create(slack_message_vals)
-        
-        return res            
+            'channel': self.env['ir.config_parameter'].sudo().get_param('slack_log_contabilidad_channel'),
+        }
+        self.env['slack.message'].sudo().create(slack_message_vals)
+
+        return res
