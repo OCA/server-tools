@@ -1,25 +1,23 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <!--
   Copyright 2019 Ecosoft Co., Ltd.
   License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).-->
 <odoo>
-
     <record id="report_sale_order" model="ir.ui.view">
         <field name="name">report.sale.order</field>
         <field name="model">report.sale.order</field>
-        <field name="inherit_id" ref="excel_import_export.xlsx_report_view"/>
+        <field name="inherit_id" ref="excel_import_export.xlsx_report_view" />
         <field name="mode">primary</field>
         <field name="arch" type="xml">
             <xpath expr="//group[@name='criteria']" position="inside">
                 <group>
-                    <field name="partner_id"/>
+                    <field name="partner_id" />
                 </group>
                 <group>
                 </group>
             </xpath>
         </field>
     </record>
-
     <record id="action_report_sale_order" model="ir.actions.act_window">
         <field name="name">Sample Sales Report</field>
         <field name="res_model">report.sale.order</field>
@@ -32,10 +30,10 @@
                                  ('gname', '=', False)]}
         </field>
     </record>
-
-    <menuitem id="menu_report_sale_order"
+    <menuitem
+        id="menu_report_sale_order"
         parent="excel_import_export.menu_excel_import_export"
         action="action_report_sale_order"
-        sequence="20"/>
-
+        sequence="20"
+    />
 </odoo>
