@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data noupdate="1">        
+        <record id="ir_attachment_s3_bucket_name" model="ir.config_parameter">
+            <field name="key">ir_attachment_s3_bucket_name</field>
+            <field name="value">bucket-name-test</field>
+        </record>                                    
+    </data>
+
+</odoo>
