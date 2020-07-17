@@ -29,9 +29,18 @@ class TestAttachmentQueue(TransactionCase):
             attach = self.attachment.with_env(new_env)
             self.assertEqual(attach.state, "done")
 
-    def test_set_done(self):
-        """Test set_done manually
+    def test_run(self):
+        """Test run manually
         """
         self.assertEqual(self.attachment.state, "pending")
-        self.attachment.set_done()
+        self.attachment.run()
         self.assertEqual(self.attachment.state, "done")
+
+    def test_cancel_reset_pending(self):
+        """Test cancel manually
+        """
+        self.assertEqual(self.attachment.state, "pending")
+        self.attachment.cancel()
+        self.assertEqual(self.attachment.state, "cancel")
+        self.attachment.reset_pending()
+        self.assertEqual(self.attachment.state, "pending")

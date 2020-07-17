@@ -10,17 +10,19 @@
                 <header>
                     <button name="run" states="pending,failed"
                             string="Run" type="object" class="oe_highlight"/>
-                    <button name="set_done" states="pending,failed"
-                            string="Set to Done" type="object"/>
-                    <field name="state" widget="statusbar"/>
+                    <button name="reset_pending" states="failed,cancel"
+                            string="Reset to Pending" type="object"/>
+                    <button name="cancel" states="pending,failed"
+                            string="Cancel" type="object"/>
+                    <field name="state" widget="statusbar" statusbar_visible="pending,done"/>
                 </header>
             </xpath>
             <xpath expr="//field[@name='create_uid']/.." position="after">
-                <label for="done_uid" string="Operation done on" attrs="{'invisible': [('done_date', '=', False)]}"/>
+                <label for="done_uid" string="Operation done by" attrs="{'invisible': [('done_date', '=', False)]}"/>
                 <div name="done_div" attrs="{'invisible': [('done_date', '=', False)]}">
-                    <field name="done_date" readonly="1" class="oe_inline"/>
-                    <span attrs="{'invisible': [('done_uid', '=', False)]}"> by </span>
                     <field name="done_uid" readonly="1" class="oe_inline"/>
+                    <span> on </span>
+                    <field name="done_date" readonly="1" class="oe_inline"/>
                 </div>
             </xpath>
             <xpath expr="//field[@name='url']" position="before">
@@ -30,17 +32,23 @@
                 <field name="failure_emails" attrs="{'invisible': [('failure_emails', '=', '')]}" />
             </xpath>
             <group name="description_group">
-                <group name="state_message" string="Error" colspan="4">
-                    <field name="state_message" nolabel="1" readonly="1"/>
+                <group name="error_message" string="Error" colspan="4">
+                    <field name="error_message" nolabel="1" readonly="1"/>
                 </group>
             </group>
+            <xpath expr="//sheet" position="after">
+                  <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </xpath>
         </field>
     </record>
 
     <record id="view_attachment_queue_tree" model="ir.ui.view">
         <field name="model">attachment.queue</field>
         <field name="arch" type="xml">
-            <tree default_order='create_date desc'>
+            <tree default_order='create_date desc' decoration-primary="state=='done'" decoration-muted="state=='cancel'" decoration-warning="state=='failed'">
                 <field name="name"/>
                 <field name="datas_fname"/>
                 <field name="file_type"/>

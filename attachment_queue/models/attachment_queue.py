@@ -27,12 +27,18 @@ class AttachmentQueue(models.Model):
     done_date = fields.Datetime()
     done_uid = fields.Many2one("res.users")
     state = fields.Selection(
-        [("pending", "Pending"), ("failed", "Failed"), ("done", "Done")],
+        [
+            ("pending", "Pending"),
+            ("done", "Done"),
+            ("failed", "Failed"),
+            ("cancel", "Cancelled"),
+        ],
         readonly=False,
         required=True,
         default="pending",
+        track_visibility="onchange",
     )
-    state_message = fields.Text()
+    error_message = fields.Text()
     failure_emails = fields.Char(
         compute="_compute_failure_emails",
         string="Failure Emails",
@@ -81,7 +87,7 @@ class AttachmentQueue(models.Model):
                     except Exception as e:
                         attach.env.cr.rollback()
                         _logger.exception(str(e))
-                        attach.write({"state": "failed", "state_message": str(e)})
+                        attach.write({"state": "failed", "error_message": str(e)})
                         emails = attach.failure_emails
                         if emails:
                             failure_tmpl.send_mail(attach.id)
@@ -100,14 +106,10 @@ class AttachmentQueue(models.Model):
         self.ensure_one()
         _logger.info("Starting processing of attachment queue id %d", self.id)
 
-    def set_done(self):
-        """
-        Manually set to done
-        """
-        self.write(
-            {
-                "state": "done",
-                "done_date": fields.Datetime.now(),
-                "done_uid": self.env.user.id,
-            }
-        )
+    def cancel(self):
+        """Manually cancel operation on attachment"""
+        self.write({"state": "cancel"})
+
+    def reset_pending(self):
+        """Manually reset state to "Pending" """
+        self.write({"state": "pending"})

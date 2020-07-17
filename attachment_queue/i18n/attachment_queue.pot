@@ -17,7 +17,7 @@ msgstr ""
 #: model:mail.template,body_html:attachment_queue.attachment_failure_notification
 msgid "\n"
 "                <p style=\"margin:0px 0px 10px 0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;\">Hello,<br><br></p>\n"
-"                <p style=\"margin:0px 0px 10px 0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;\">The attachment ${object.name} has failed with the following error message : <br>${object.state_message}<br></p><p style=\"margin:0px 0px 10px 0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;\"></p>\n"
+"                <p style=\"margin:0px 0px 10px 0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;\">The attachment ${object.name} has failed with the following error message : <br>${object.error_message}<br></p><p style=\"margin:0px 0px 10px 0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;\"></p>\n"
 "                <p style=\"margin:0px 0px 10px 0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;\">Regards,<br></p>\n"
 "            "
 msgstr ""
@@ -367,7 +367,7 @@ msgid "State"
 msgstr ""
 
 #. module: attachment_queue
-#: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__state_message
+#: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__error_message
 msgid "State Message"
 msgstr ""
 

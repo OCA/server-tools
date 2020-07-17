@@ -8,7 +8,7 @@
             <field name="model_id" ref="attachment_queue.model_attachment_queue"/>
             <field name="body_html"><![CDATA[
                 <p style="margin:0px 0px 10px 0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;">Hello,<br><br></p>
-                <p style="margin:0px 0px 10px 0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;">The attachment ${object.name} has failed with the following error message : <br>${object.state_message}<br></p><p style="margin:0px 0px 10px 0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;"></p>
+                <p style="margin:0px 0px 10px 0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;">The attachment ${object.name} has failed with the following error message : <br>${object.error_message}<br></p><p style="margin:0px 0px 10px 0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;"></p>
                 <p style="margin:0px 0px 10px 0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;">Regards,<br></p>
             ]]></field>
         </record>
