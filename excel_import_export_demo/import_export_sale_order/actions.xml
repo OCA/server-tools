@@ -7,7 +7,7 @@
         id="action_sale_oder_export_xlsx"
         name="Export Excel"
         res_model="export.xlsx.wizard"
-        src_model="sale.order"
+        binding_model="sale.order"
         view_mode="form"
         target="new"
         context="{
@@ -20,7 +20,7 @@
         id="action_sale_oder_import_xlsx"
         name="Import Excel"
         res_model="import.xlsx.wizard"
-        src_model="sale.order"
+        binding_model="sale.order"
         view_mode="form"
         target="new"
         context="{

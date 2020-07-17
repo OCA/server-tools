@@ -89,10 +89,7 @@ class XLSXExport(models.AbstractModel):
                 elif style is False:
                     style = field_style_dict[field[0]]  # Use default style
                 vals[field[0]].append((value, style))
-        return (
-            vals,
-            aggre_func_dict,
-        )
+        return (vals, aggre_func_dict)
 
     @api.model
     def _eval_style_cond(self, model, record, value, style_cond):
@@ -202,7 +199,7 @@ class XLSXExport(models.AbstractModel):
                 # Insert rows to preserve total line
                 if not rows_inserted:
                     rows_inserted = True
-                    st.insert_rows(row + 1, amount=row_count - 1)
+                    st.insert_rows(row + 1, row_count - 1)
                 # --
                 for (row_val, style) in vals[field]:
                     new_row = row + i
