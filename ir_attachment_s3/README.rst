@@ -1,1 +1,0 @@
-The addon contains development to upload all attachments (ir_attachment) to AWS S3 (https://aws.amazon.com/s3/) in order not to have them on the server where Odoo is installed and they are not used as much space
