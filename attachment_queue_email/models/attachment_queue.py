@@ -37,9 +37,13 @@ class AttachmentQueue(models.Model):
     @api.model
     def prepare_data_from_basic_condition(self, cond, msg):
         vals_list = []
-        if str(cond.email_from) in msg.get("from", "") or str(
-            cond.email_subject
-        ) in msg.get("subject", ""):
+        # match_from and match_subj are True if empty or if matching with msg's values
+        match_from = str(cond.email_from) in msg.get("from", "") or not cond.email_from
+        match_subj = (
+            str(cond.email_subject) in msg.get("subject", "") or not cond.email_subject
+        )
+
+        if match_from and match_subj:
             for att in msg["attachments"]:
                 if cond.file_extension in att.fname or not cond.file_extension:
                     vals_list.append(self._get_attachment_queue_data(cond, msg, att))
