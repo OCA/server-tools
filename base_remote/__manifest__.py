@@ -11,5 +11,4 @@
     "depends": ["web"],
     "data": ["security/ir.model.access.csv", "views/res_remote_views.xml"],
     "installable": True,
-    "application": True,
 }
