@@ -5,7 +5,7 @@ from mock import patch
 from werkzeug.utils import redirect
 
 from odoo import http
-from odoo.tests.common import at_install, HttpCase, post_install
+from odoo.tests.common import HttpCase, at_install, post_install
 
 
 @at_install(False)
@@ -24,39 +24,39 @@ class TestRemote(HttpCase):
             "login": "demo",
             "password": "Demo%&/(908409**",
         }
-        self.remote_addr = '127.0.0.1'
+        self.remote_addr = "127.0.0.1"
         with self.cursor() as cr:
             env = self.env(cr)
             # Make sure involved users have good passwords
             env.user.password = self.good_password
-            env["res.users"].search([
-                ("login", "=", self.data_demo["login"]),
-            ]).password = self.data_demo["password"]
-            remote = self.env['res.remote'].search([
-                ('ip', '=', self.remote_addr)
-            ])
+            env["res.users"].search(
+                [("login", "=", self.data_demo["login"])]
+            ).password = self.data_demo["password"]
+            remote = self.env["res.remote"].search([("ip", "=", self.remote_addr)])
             if remote:
                 remote.unlink()
 
     def test_xmlrpc_login_ok(self, *args):
         """Test Login"""
         data1 = self.data_demo
-        self.assertTrue(self.xmlrpc_common.authenticate(
-            self.env.cr.dbname, data1["login"], data1["password"], {}))
+        self.assertTrue(
+            self.xmlrpc_common.authenticate(
+                self.env.cr.dbname, data1["login"], data1["password"], {}
+            )
+        )
         with self.cursor() as cr:
             env = self.env(cr)
-            self.assertTrue(
-                env['res.remote'].search([('ip', '=', self.remote_addr)])
-            )
+            self.assertTrue(env["res.remote"].search([("ip", "=", self.remote_addr)]))
 
     def test_xmlrpc_login_failure(self, *args):
         """Test Login Failure"""
         data1 = self.data_demo
-        data1['password'] = 'Failure!'
-        self.assertFalse(self.xmlrpc_common.authenticate(
-            self.env.cr.dbname, data1["login"], data1["password"], {}))
+        data1["password"] = "Failure!"
+        self.assertFalse(
+            self.xmlrpc_common.authenticate(
+                self.env.cr.dbname, data1["login"], data1["password"], {}
+            )
+        )
         with self.cursor() as cr:
             env = self.env(cr)
-            self.assertTrue(
-                env['res.remote'].search([('ip', '=', self.remote_addr)])
-            )
+            self.assertTrue(env["res.remote"].search([("ip", "=", self.remote_addr)]))
