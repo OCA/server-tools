@@ -2,7 +2,8 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from threading import current_thread
-from odoo import api, models, SUPERUSER_ID
+
+from odoo import SUPERUSER_ID, api, models
 from odoo.exceptions import AccessDenied
 from odoo.service import wsgi_server
 from odoo.tools import config
@@ -31,7 +32,7 @@ class ResUsers(models.Model):
         with cls.pool.cursor() as cr:
             env = api.Environment(cr, SUPERUSER_ID, {})
             remote = env["res.users"].remote
-            if not config['test_enable']:
+            if not config["test_enable"]:
                 remote.ensure_one()
         result = method()
         if not result:
@@ -43,8 +44,7 @@ class ResUsers(models.Model):
     @classmethod
     def _login(cls, db, login, password):
         return cls._auth_check_remote(
-            login,
-            lambda: super(ResUsers, cls)._login(db, login, password),
+            login, lambda: super(ResUsers, cls)._login(db, login, password),
         )
 
     @classmethod
@@ -52,5 +52,6 @@ class ResUsers(models.Model):
         return cls._auth_check_remote(
             login,
             lambda: super(ResUsers, cls).authenticate(
-                db, login, password, user_agent_env),
+                db, login, password, user_agent_env
+            ),
         )
