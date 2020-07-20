@@ -12,9 +12,6 @@ from odoo.tools import config
 class ResUsers(models.Model):
     _inherit = "res.users"
 
-    # HACK https://github.com/odoo/odoo/issues/24183
-    # TODO Remove in v12, and use normal odoo.http.request to get details
-    @api.model_cr
     def _register_hook(self):
         """🐒-patch XML-RPC controller to know remote address."""
         super()._register_hook()
