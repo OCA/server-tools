@@ -15,7 +15,7 @@ class ResUsers(models.Model):
 
     @api.multi
     def action_test_slack(self):
-        if self.slack_member_id != False:
+        if self.slack_member_id:
             attachments = [
                 {
                     "title": _("This is a user test *%s*") % self.name,
@@ -23,10 +23,11 @@ class ResUsers(models.Model):
                     "text": _("Test message"),
                 }
             ]
-            slack_message_vals = {
+            vals = {
                 'attachments': attachments,
                 'model': self._inherit,
                 'res_id': self.id,
                 'channel': self.slack_member_id
             }
-            slack_message_obj = self.env['slack.message'].sudo().create(slack_message_vals)
+            self.env['slack.message'].sudo().create(slack_message_vals)
+

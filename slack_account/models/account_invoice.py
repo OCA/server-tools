@@ -16,13 +16,19 @@ class AccountInvoice(models.Model):
             {
                 "title": _("Invoice has been created automatically"),
                 "text": self.number,
-                "fallback": _("View invoice ")+str(web_base_url)+"/web?#id="+str(self.id)+"&view_type=form&model=account.invoice",
+                "fallback": _("View invoice %s/web?#id=%s&view_type=form&model=account.invoice") % (
+                    web_base_url,
+                    self.id
+                ),
                 "color": "#36a64f",
                 "actions": [
                     {
                         "type": "button",
                         "text": _("View invoice"),
-                        "url": str(web_base_url)+"/web?#id="+str(self.id)+"&view_type=form&model=account.invoice"
+                        "url": "%s/web?#id=%s&view_type=form&model=account.invoice" % (
+                            web_base_url,
+                            self.id
+                        )
                     }
                 ],
                 "fields": [
@@ -33,19 +39,18 @@ class AccountInvoice(models.Model):
                     },
                     {
                         "title": _("Amount"),
-                        "value": str(self.amount_total)+' '+self.currency_id.symbol,
+                        "value": '%s %s' % (self.amount_total, self.currency_id.symbol),
                         'short': True,
                     }
                 ],
             }
         ]
-
-        slack_message_vals = {
+        vals = {
             'attachments': attachments,
             'model': 'account.invoice',
             'res_id': self.id,
             'channel': self.env['ir.config_parameter'].sudo().get_param('slack_log_contabilidad_channel'),
         }
-        self.env['slack.message'].sudo().create(slack_message_vals)
+        self.env['slack.message'].sudo().create(vals)
 
         return res

@@ -19,5 +19,6 @@
         "data/slack_data.xml",
         "views/res_users_view.xml",
     ],
-    "installable": True,
+    "installable": True
 }
+

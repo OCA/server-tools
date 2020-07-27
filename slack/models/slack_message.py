@@ -10,7 +10,7 @@ except (ImportError, IOError) as err:
     _logger.debug(err)
 
 
-class SlackMessage(models.Model):
+class SlackMessage(models.TransientModel):
     _name = 'slack.message'
     _description = 'Slack Message'
 
@@ -18,7 +18,7 @@ class SlackMessage(models.Model):
     def create(self, values):
         channel = self.env['ir.config_parameter'].sudo().get_param('slack_log_channel')
         api_token = tools.config.get('slack_bot_user_oauth_access_token')
-        if api_token != None:
+        if api_token:
             # api_token
             if 'api_token' in values:
                 api_token = values['api_token']
@@ -52,3 +52,4 @@ class SlackMessage(models.Model):
                 _logger.debug('Slack Error')
             # return
             return False
+
