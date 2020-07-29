@@ -1,3 +1,7 @@
+acme
+cryptography
+dnspython
+josepy
 raven
 openpyxl
 xlrd
