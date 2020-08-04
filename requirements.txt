@@ -3,7 +3,7 @@ unidecode
 acme_tiny
 IPy
 email_validator
-pyotp
+pyotp<2.4
 pysftp
 fdb
 sqlalchemy
