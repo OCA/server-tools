@@ -8,4 +8,4 @@
   python-json-logger
   odoorpc
   raven
-  pyotp
+  pyotp<2.4
