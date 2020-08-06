@@ -29,5 +29,4 @@ class ResUsers(models.Model):
                 'res_id': self.id,
                 'channel': self.slack_member_id
             }
-            self.env['slack.message'].sudo().create(slack_message_vals)
-
+            self.env['slack.message'].sudo().create(vals)

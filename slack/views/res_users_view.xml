@@ -11,8 +11,8 @@
             </xpath>
             <field name="notification_type" position="before">	    	
                 <field name="slack_member_id"/>
-                <field name="slack_mail_message"/>                
-	       </field>                       
+                <field name="slack_mail_message"/>
+            </field>
         </field>
     </record>
 

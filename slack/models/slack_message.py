@@ -1,7 +1,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import logging
-from odoo import api, models, fields, tools
+from odoo import api, models, tools
 _logger = logging.getLogger(__name__)
 
 try:
@@ -10,7 +10,7 @@ except (ImportError, IOError) as err:
     _logger.debug(err)
 
 
-class SlackMessage(models.TransientModel):
+class SlackMessage(models.Model):
     _name = 'slack.message'
     _description = 'Slack Message'
 
@@ -18,7 +18,7 @@ class SlackMessage(models.TransientModel):
     def create(self, values):
         channel = self.env['ir.config_parameter'].sudo().get_param('slack_log_channel')
         api_token = tools.config.get('slack_bot_user_oauth_access_token')
-        if api_token:
+        if api_token is not None:
             # api_token
             if 'api_token' in values:
                 api_token = values['api_token']
@@ -52,4 +52,3 @@ class SlackMessage(models.TransientModel):
                 _logger.debug('Slack Error')
             # return
             return False
-

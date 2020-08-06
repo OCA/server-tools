@@ -4,7 +4,7 @@
     "name": "Slack",
     "version": "12.0.1.0.0",
     "category": "Tools",
-    "website": "https://github.com/OCA/server-tools",
+    "website": "https://nodrizatech.com/",
     "author": "Odoo Nodriza Tech (ONT), "
               "Odoo Community Association (OCA)",
     "license": "AGPL-3",
@@ -13,12 +13,14 @@
         "sale"
     ],
     "external_dependencies": {
-        "python": ["slackclient"],
+        "python": [
+            "slackclient"
+        ],
     },
     "data": [
         "data/slack_data.xml",
         "views/res_users_view.xml",
+        "security/ir.model.access.csv",
     ],
     "installable": True
 }
-
