@@ -12,7 +12,11 @@ class TestAuthAdminPasskey(common.TransactionCase):
     """Tests for 'Auth Admin Passkey' Module"""
 
     def setUp(self):
+        """ Enter testmode and fetch the env from the test cursor to ensure
+        data integrity in cursors fetched during login. """
         super(TestAuthAdminPasskey, self).setUp()
+        self.registry.enter_test_mode()
+        self.env = self.env(cr=self.cursor())
 
         self.ru_obj = self.env['res.users']
 
@@ -24,6 +28,10 @@ class TestAuthAdminPasskey(common.TransactionCase):
             'password': 'PasskeyPa$$w0rd',
             'name': 'passkey'
         })
+
+    def tearDown(self):
+        self.registry.leave_test_mode()
+        super(TestAuthAdminPasskey, self).tearDown()
 
     def test_01_normal_login_admin_succeed(self):
         # NOTE: Can fail if admin password changed

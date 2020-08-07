@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="ip_access_rule_view_tree" model="ir.ui.view">
+        <field name="model">ip.access.rule</field>
+        <field name="arch" type="xml">
+            <tree editable="top">
+                <field name="name"/>
+                <field name="group_id" options="{'no_create': true}"/>
+                <field name="user_id" options="{'no_create': true}"/>
+                <field name="private"/>
+                <field name="network"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+    <record id="ip_access_rule_view_search" model="ir.ui.view">
+        <field name="model">ip.access.rule</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="group_id"/>
+                <field name="user_id"/>
+                <field name="private"/>
+                <field name="network"/>
+                <field name="active"/>
+                <filter string="+Inactive" name="plus_inactive" context="{'active_test': False}"/>
+                <filter string="Global rules" name="global" domain="[('group_id', '=', False), ('user_id', '=', False)]"/>
+                <separator/>
+                <group string="Group By">
+                    <filter string="Group" context="{'group_by': 'group_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="ip_access_rule_action" model="ir.actions.act_window">
+        <field name="name">IP Access Rules</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">ip.access.rule</field>
+        <field name="view_mode">tree</field>
+        <field name="view_type">form</field>
+    </record>
+    <record id="ip_access_rule_menu" model="ir.ui.menu">
+        <field name="action" ref="ip_access_rule_action"/>
+        <field name="name">IP Access Rules</field>
+        <field name="parent_id" ref="base.menu_security"/>
+        <field name="sequence" eval="150"/>
+    </record>
+</odoo>
