@@ -164,7 +164,7 @@ Authors
 Contributors
 ~~~~~~~~~~~~
 
-* Holger Brunn <hbrunn@therp.nl>
+* Holger Brunn <mail@hunki-enterprises.nl>
 * Antonio Espinosa <antonio.espinosa@tecnativa.com>
 * Dave Lasley <dave@laslabs.com>
 * Ronald Portier <ronald@therp.nl>
