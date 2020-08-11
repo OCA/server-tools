@@ -98,7 +98,7 @@ class BaseConfigSettings(models.TransientModel):
         return res
 
     @api.multi
-    def set_dns_provider(self):
+    def set_letsencrypt_settings(self):
         self.ensure_one()
         self.letsencrypt_check_dns_required()
 

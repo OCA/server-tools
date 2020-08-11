@@ -196,11 +196,11 @@ class Letsencrypt(models.AbstractModel):
     @api.model
     def _cron(self):
         ir_config_parameter = self.env['ir.config_parameter']
-        base_url = ir_config_parameter.get_param('web.base.url', 'localhost')
-        domain = urlparse.urlparse(base_url).hostname
+        domains = self._get_altnames()
+        domain = domains[0]
         cert_file = os.path.join(_get_data_dir(), '%s.crt' % domain)
 
-        domains = self._cascade_domains([domain] + self._get_altnames())
+        domains = self._cascade_domains(domains)
         for dom in domains:
             self._validate_domain(dom)
 
@@ -390,11 +390,11 @@ class Letsencrypt(models.AbstractModel):
     @api.model
     def _get_altnames(self):
         """Get the configured altnames as a list of strings."""
-        altnames = self.env['ir.config_parameter'].get_param(
-            'letsencrypt.altnames'
-        )
+        parameter = self.env['ir.config_parameter']
+        altnames = parameter.get_param("letsencrypt.altnames")
         if not altnames:
-            return []
+            base_url = parameter.get_param("web.base.url", "http://localhost")
+            return [urlparse.urlparse(base_url).hostname]
         return re.split('(?:,|\n| |;)+', altnames)
 
     @api.model
