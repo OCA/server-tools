@@ -1,5 +1,7 @@
 # Copyright 2018 Therp BV <https://therp.nl>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+import urllib.parse
+
 from odoo import api, SUPERUSER_ID
 
 
@@ -9,8 +11,17 @@ def migrate_altnames(env):
     if not existing:
         # If letsencrypt.altnames already exists it shouldn't be clobbered
         return
-    new_domains = "\n".join(existing.mapped("value"))
-    config.set_param("letsencrypt.altnames", new_domains)
+    domains = existing.mapped("value")
+    base_url = config.get_param("web.base.url", "http://localhost:8069")
+    base_domain = urllib.parse.urlparse(base_url).hostname
+    if (
+        domains
+        and base_domain
+        and base_domain != "localhost"
+        and base_domain not in domains
+    ):
+        domains.insert(0, base_domain)
+    config.set_param("letsencrypt.altnames", "\n".join(domains))
     existing.unlink()
 
 
