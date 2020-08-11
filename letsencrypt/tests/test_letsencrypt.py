@@ -39,7 +39,7 @@ class TestLetsencrypt(SingleTransactionCase):
             {
                 'letsencrypt_dns_provider': 'shell',
                 'letsencrypt_dns_shell_script': 'touch /tmp/.letsencrypt_test',
-                'letsencrypt_altnames': '*.example.com',
+                'letsencrypt_altnames': 'www.example.com,*.example.com',
                 'letsencrypt_reload_command': 'echo reloaded',
             }
         ).set_values()
@@ -51,7 +51,10 @@ class TestLetsencrypt(SingleTransactionCase):
             setting_vals['letsencrypt_dns_shell_script'],
             'touch /tmp/.letsencrypt_test',
         )
-        self.assertEqual(setting_vals['letsencrypt_altnames'], '*.example.com')
+        self.assertEqual(
+            setting_vals['letsencrypt_altnames'],
+            'www.example.com,*.example.com'
+        )
         self.assertEqual(setting_vals['letsencrypt_reload_command'], 'echo reloaded')
         self.assertTrue(setting_vals['letsencrypt_needs_dns_provider'])
         self.assertFalse(setting_vals['letsencrypt_prefer_dns'])
@@ -66,7 +69,7 @@ class TestLetsencrypt(SingleTransactionCase):
     def test_http_challenge(self, poll, _answer_challenge):
         letsencrypt = self.env['letsencrypt']
         self.env['res.config.settings'].create(
-            {'letsencrypt_altnames': 'test.example.com'}
+            {'letsencrypt_altnames': ''}
         ).set_values()
         letsencrypt._cron()
         poll.assert_called()
@@ -142,9 +145,6 @@ class TestLetsencrypt(SingleTransactionCase):
                 'letsencrypt_prefer_dns': True,
             }
         ).set_values()
-        self.env['ir.config_parameter'].set_param(
-            'web.base.url', 'http://example.com'
-        )
         # pylint: disable=no-value-for-parameter
         self.test_dns_challenge()
 
@@ -189,13 +189,16 @@ class TestLetsencrypt(SingleTransactionCase):
         config = self.env['ir.config_parameter']
         letsencrypt = self.env['letsencrypt']
 
-        self.assertEqual(letsencrypt._get_altnames(), ['*.example.com'])
+        self.assertEqual(
+            letsencrypt._get_altnames(),
+            ['www.example.com', '*.example.com']
+        )
 
         config.set_param('letsencrypt.altnames', '')
-        self.assertEqual(letsencrypt._get_altnames(), [])
-
-        config.set_param('letsencrypt.altnames', 'www.example.com')
         self.assertEqual(letsencrypt._get_altnames(), ['www.example.com'])
+
+        config.set_param('letsencrypt.altnames', 'foobar.example.com')
+        self.assertEqual(letsencrypt._get_altnames(), ['foobar.example.com'])
 
         config.set_param(
             'letsencrypt.altnames', 'example.com,example.org,example.net'
@@ -292,6 +295,12 @@ class TestLetsencrypt(SingleTransactionCase):
             self.env['letsencrypt']._should_run(
                 path.join(_get_data_dir(), 'www.example.com.crt'),
                 ['www.example.com', '*.example.com'],
+            )
+        )
+        self.assertFalse(
+            self.env['letsencrypt']._should_run(
+                path.join(_get_data_dir(), 'www.example.com.crt'),
+                ['www.example.com'],
             )
         )
 
