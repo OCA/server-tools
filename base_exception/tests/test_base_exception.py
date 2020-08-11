@@ -5,7 +5,7 @@ from odoo.tests import common
 from odoo.exceptions import ValidationError
 from odoo import fields
 from .common import setup_test_model
-from .purchase_test import PurchaseTest, LineTest
+from .purchase_test import PurchaseTest, LineTest, ExceptionRule
 import logging
 
 _logger = logging.getLogger(__name__)
@@ -17,7 +17,7 @@ class TestBaseException(common.SavepointCase):
     @classmethod
     def setUpClass(cls):
         super(TestBaseException, cls).setUpClass()
-        setup_test_model(cls.env, [PurchaseTest, LineTest])
+        setup_test_model(cls.env, [PurchaseTest, LineTest, ExceptionRule])
 
         cls.base_exception = cls.env["base.exception"]
         cls.exception_rule = cls.env["exception.rule"]

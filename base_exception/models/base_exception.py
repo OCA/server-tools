@@ -39,7 +39,7 @@ class ExceptionRule(models.Model):
         "           are evaluated with several records",
     )
     domain = fields.Char("Domain")
-    method = fields.Char("Method", readonly=True)
+    method = fields.Selection(selection=[], string="Method", readonly=True)
     active = fields.Boolean("Active", default=True)
     code = fields.Text(
         "Python Code",
@@ -53,10 +53,7 @@ class ExceptionRule(models.Model):
             if (
                 (rule.exception_type == "by_py_code" and not rule.code)
                 or (rule.exception_type == "by_domain" and not rule.domain)
-                or (
-                    rule.exception_type == "by_method"
-                    and not self._check_method_valid(rule.method, rule.model)
-                )
+                or (rule.exception_type == "by_method" and not rule.method)
             ):
                 raise ValidationError(
                     _(
@@ -65,13 +62,6 @@ class ExceptionRule(models.Model):
                         "type."
                     )
                 )
-
-    def _check_method_valid(self, method_name, model_name):
-        model = self.env[model_name]
-        method = getattr(model, method_name)
-        if method and callable(method):
-            return True
-        return False
 
     @api.multi
     def _get_domain(self):

@@ -3,6 +3,15 @@
 from odoo import api, fields, models
 
 
+class ExceptionRule(models.Model):
+    _inherit = "exception.rule"
+    _name = "exception.rule"
+
+    method = fields.Selection(
+        selection_add=[('exception_method_no_zip', 'Purchase exception no zip')]
+    )
+
+
 class PurchaseTest(models.Model):
     _inherit = "base.exception"
     _name = "base.exception.test.purchase"
