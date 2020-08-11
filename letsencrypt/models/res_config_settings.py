@@ -17,7 +17,7 @@ class ResConfigSettings(models.TransientModel):
         string="Domain names",
         default='',
         help=(
-            'Additional domains to include on the CSR. '
+            'Domains to use for the certificate. '
             'Separate with commas or newlines.'
         ),
         force_config_parameter="letsencrypt.altnames",
