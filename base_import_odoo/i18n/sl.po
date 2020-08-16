@@ -221,7 +221,6 @@ msgstr "Polje modela"
 #. module: base_import_odoo
 #: model:ir.model.fields,help:base_import_odoo.field_import_odoo_database_model_defaults
 #, fuzzy
-#| msgid "Optional filter to import only a subset"
 msgid "Optional defaults dict to avoid empty values"
 msgstr "Opcijski filter za uvoz dela podatkov"
 
