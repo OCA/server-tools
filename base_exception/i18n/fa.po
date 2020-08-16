@@ -105,7 +105,6 @@ msgstr ""
 #. module: base_exception
 #: model:ir.model,name:base_exception.model_base_exception
 #, fuzzy
-#| msgid "Exception Name"
 msgid "Exception"
 msgstr "نام استثنا"
 
@@ -123,14 +122,12 @@ msgstr "قاعده استثنا"
 #. module: base_exception
 #: model:ir.model,name:base_exception.model_exception_rule_confirm
 #, fuzzy
-#| msgid "Exception Rule"
 msgid "Exception Rule Confirm Wizard"
 msgstr "قاعده استثنا"
 
 #. module: base_exception
 #: model:ir.model,name:base_exception.model_base_exception_method
 #, fuzzy
-#| msgid "Exception Rule"
 msgid "Exception Rule Methods"
 msgstr "قاعده استثنا"
 
@@ -148,7 +145,6 @@ msgstr ""
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule__exception_type
 #, fuzzy
-#| msgid "Exception Name"
 msgid "Exception Type"
 msgstr "نام استثنا"
 
@@ -170,7 +166,6 @@ msgstr ""
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_base_exception__exceptions_summary
 #, fuzzy
-#| msgid "Exception Name"
 msgid "Exceptions Summary"
 msgstr "نام استثنا"
 
