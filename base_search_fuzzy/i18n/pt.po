@@ -78,7 +78,6 @@ msgstr "Tipo de Índice"
 #. module: base_search_fuzzy
 #: code:addons/base_search_fuzzy/models/ir_model.py:0
 #, fuzzy, python-format
-#| msgid "Invalid field %r in domain term %r"
 msgid "Invalid field {!r} in domain term {!r}"
 msgstr "Campo inválido %r no termo do domínio %r"
 
