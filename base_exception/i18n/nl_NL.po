@@ -224,7 +224,6 @@ msgstr "base.exception"
 #. module: base_exception
 #: model:ir.model,name:base_exception.model_base_exception_method
 #, fuzzy
-#| msgid "base.exception"
 msgid "base.exception.method"
 msgstr "base.exception"
 
