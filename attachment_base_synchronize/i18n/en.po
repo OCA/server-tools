@@ -105,7 +105,6 @@ msgstr ""
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_external_hash
 #, fuzzy
-#| msgid "External hash"
 msgid "External Hash"
 msgstr "External hash"
 
@@ -133,7 +132,6 @@ msgstr "File Size"
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_file_type
 #, fuzzy
-#| msgid "File type"
 msgid "File Type"
 msgstr "File type"
 
@@ -196,7 +194,6 @@ msgstr "File Content"
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_internal_hash
 #, fuzzy
-#| msgid "Internal hash"
 msgid "Internal Hash"
 msgstr "Internal hash"
 

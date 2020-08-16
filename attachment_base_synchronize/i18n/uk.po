@@ -131,7 +131,6 @@ msgstr ""
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_file_type
 #, fuzzy
-#| msgid "Type"
 msgid "File Type"
 msgstr "Тип"
 

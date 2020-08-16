@@ -132,7 +132,6 @@ msgstr "Bestandsgrootte"
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_file_type
 #, fuzzy
-#| msgid "File Name"
 msgid "File Type"
 msgstr "Bestandsnaam"
 
@@ -271,7 +270,6 @@ msgstr ""
 #: model:ir.cron,cron_name:attachment_base_synchronize.cronjob_run_attachments_metadata
 #: model:ir.cron,name:attachment_base_synchronize.cronjob_run_attachments_metadata
 #, fuzzy
-#| msgid "ir.attachment.metadata"
 msgid "Run Attachments Metadata"
 msgstr "ir.attachment.metadata"
 

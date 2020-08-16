@@ -105,7 +105,6 @@ msgstr "Erreur"
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_external_hash
 #, fuzzy
-#| msgid "External hash"
 msgid "External Hash"
 msgstr "Empreinte externe"
 
@@ -133,7 +132,6 @@ msgstr "Taille du fichier"
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_file_type
 #, fuzzy
-#| msgid "File type"
 msgid "File Type"
 msgstr "Type de fichier"
 
@@ -195,7 +193,6 @@ msgstr "Contenu Indexé"
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_internal_hash
 #, fuzzy
-#| msgid "Internal hash"
 msgid "Internal Hash"
 msgstr "Empreinte interne"
 
@@ -281,7 +278,6 @@ msgstr "Run"
 #: model:ir.cron,cron_name:attachment_base_synchronize.cronjob_run_attachments_metadata
 #: model:ir.cron,name:attachment_base_synchronize.cronjob_run_attachments_metadata
 #, fuzzy
-#| msgid "ir.attachment.metadata"
 msgid "Run Attachments Metadata"
 msgstr "ir.attachment.metadata"
 
@@ -299,7 +295,6 @@ msgstr "État"
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_state_message
 #, fuzzy
-#| msgid "State message"
 msgid "State Message"
 msgstr "Message"
 
@@ -311,7 +306,6 @@ msgstr "Nom de fichier stocké"
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_sync_date
 #, fuzzy
-#| msgid "Sync date"
 msgid "Sync Date"
 msgstr "Sync date"
 

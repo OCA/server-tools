@@ -105,7 +105,6 @@ msgstr ""
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_external_hash
 #, fuzzy
-#| msgid "External hash"
 msgid "External Hash"
 msgstr "Zunanji hash"
 
@@ -133,7 +132,6 @@ msgstr "Velikost datoteke"
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_file_type
 #, fuzzy
-#| msgid "File type"
 msgid "File Type"
 msgstr "Tip datoteke"
 
@@ -195,7 +193,6 @@ msgstr ""
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_internal_hash
 #, fuzzy
-#| msgid "Internal hash"
 msgid "Internal Hash"
 msgstr "Interni hash"
 
@@ -281,7 +278,6 @@ msgstr ""
 #: model:ir.cron,cron_name:attachment_base_synchronize.cronjob_run_attachments_metadata
 #: model:ir.cron,name:attachment_base_synchronize.cronjob_run_attachments_metadata
 #, fuzzy
-#| msgid "Attachment id"
 msgid "Run Attachments Metadata"
 msgstr "ID priponke"
 
