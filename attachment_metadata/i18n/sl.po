@@ -33,7 +33,6 @@ msgstr "Naziv priponke"
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,website_url:0
 #, fuzzy
-#| msgid "Attachment"
 msgid "Attachment URL"
 msgstr "Priponka"
 
@@ -122,7 +121,6 @@ msgstr "Velikost datoteke"
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,file_type_icon:0
 #, fuzzy
-#| msgid "File type"
 msgid "File Type Icon"
 msgstr "Tip datoteke"
 
@@ -211,7 +209,6 @@ msgstr "Metadata priponk"
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,mimetype:0
 #, fuzzy
-#| msgid "Type"
 msgid "Mime Type"
 msgstr "Tip"
 
@@ -228,7 +225,6 @@ msgstr "Lastnik"
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,datas_big:0
 #, fuzzy
-#| msgid "File Content"
 msgid "Resized file content"
 msgstr "Vsebina datoteke"
 

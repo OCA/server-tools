@@ -31,7 +31,6 @@ msgstr "Nome anexo"
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,website_url:0
 #, fuzzy
-#| msgid "Attachment"
 msgid "Attachment URL"
 msgstr "Anexo"
 
@@ -120,7 +119,6 @@ msgstr "Tamanho do arquivo"
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,file_type_icon:0
 #, fuzzy
-#| msgid "File type"
 msgid "File Type Icon"
 msgstr "Tipo do arquivo"
 
@@ -204,7 +202,6 @@ msgstr ""
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,mimetype:0
 #, fuzzy
-#| msgid "Type"
 msgid "Mime Type"
 msgstr "Tipo"
 
@@ -221,7 +218,6 @@ msgstr ""
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,datas_big:0
 #, fuzzy
-#| msgid "File Content"
 msgid "Resized file content"
 msgstr "Conteúdo do arquivo"
 

@@ -31,7 +31,6 @@ msgstr ""
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,website_url:0
 #, fuzzy
-#| msgid "Attachments"
 msgid "Attachment URL"
 msgstr "Συνημμένα "
 

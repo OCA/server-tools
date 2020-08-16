@@ -33,7 +33,6 @@ msgstr "Nome Allegato"
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,website_url:0
 #, fuzzy
-#| msgid "Attachment"
 msgid "Attachment URL"
 msgstr "Allegato"
 
@@ -202,7 +201,6 @@ msgstr ""
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,mimetype:0
 #, fuzzy
-#| msgid "Type"
 msgid "Mime Type"
 msgstr "Tipo"
 

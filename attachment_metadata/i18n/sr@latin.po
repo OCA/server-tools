@@ -199,7 +199,6 @@ msgstr ""
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,mimetype:0
 #, fuzzy
-#| msgid "Type"
 msgid "Mime Type"
 msgstr "Tip"
 

@@ -32,7 +32,6 @@ msgstr ""
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,website_url:0
 #, fuzzy
-#| msgid "Attachment"
 msgid "Attachment URL"
 msgstr "Privitak"
 
@@ -201,7 +200,6 @@ msgstr ""
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,mimetype:0
 #, fuzzy
-#| msgid "Type"
 msgid "Mime Type"
 msgstr "Tip"
 

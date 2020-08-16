@@ -32,7 +32,6 @@ msgstr "Nom de la pièce jointe"
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,website_url:0
 #, fuzzy
-#| msgid "Attachment"
 msgid "Attachment URL"
 msgstr "Pièce jointe"
 
@@ -121,7 +120,6 @@ msgstr "Taille du fichier"
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,file_type_icon:0
 #, fuzzy
-#| msgid "File type"
 msgid "File Type Icon"
 msgstr "Type de fichier"
 
@@ -210,7 +208,6 @@ msgstr "Méta données des pièces jointes"
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,mimetype:0
 #, fuzzy
-#| msgid "Type"
 msgid "Mime Type"
 msgstr "Type"
 
@@ -227,7 +224,6 @@ msgstr "Propriétaire"
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,datas_big:0
 #, fuzzy
-#| msgid "File Content"
 msgid "Resized file content"
 msgstr "Contenu du fichier"
 
