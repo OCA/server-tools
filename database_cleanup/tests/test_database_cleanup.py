@@ -16,9 +16,12 @@ class TestDatabaseCleanup(TransactionCase):
         self.module = None
         self.model = None
         # Create one property for tests
+        partner_name_field_id = self.env["ir.model.fields"].search(
+            [("name", "=", "name"), ("model_id.model", "=", "res.partner")], limit=1
+        )
         self.env["ir.property"].create(
             {
-                "fields_id": self.env.ref("base.field_res_partner__name").id,
+                "fields_id": partner_name_field_id.id,
                 "type": "char",
                 "value_text": "My default partner name",
             }
@@ -91,7 +94,7 @@ class TestDatabaseCleanup(TransactionCase):
         )
         # and a cronjob for it
         cronjob = self.env["ir.cron"].create(
-            {"name": "testcronjob", "model_id": self.models.id}
+            {"name": "testcronjob", "model_id": self.model.id}
         )
         self.env.cr.execute(
             "insert into ir_attachment (name, res_model, res_id, type) values "
@@ -146,8 +149,8 @@ class TestDatabaseCleanup(TransactionCase):
             self.env.cr.rollback()
             if self.module:
                 cr2.execute(
-                    "DELETE FROM ir_module_module WHERE id=%s", (self.module.id)
+                    "DELETE FROM ir_module_module WHERE id=%s", (self.module.id,)
                 )
             if self.model:
-                cr2.execute("DELETE FROM ir_model WHERE id=%s", (self.model.id))
+                cr2.execute("DELETE FROM ir_model WHERE id=%s", (self.model.id,))
             cr2.commit()
