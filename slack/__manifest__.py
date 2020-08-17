@@ -12,11 +12,6 @@
         "base",
         "sale"
     ],
-    "external_dependencies": {
-        "python": [
-            "slackclient"
-        ],
-    },
     "data": [
         "data/slack_data.xml",
         "views/res_users_view.xml",
