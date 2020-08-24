@@ -10,8 +10,6 @@
                         <field name="partner_ids" widget="many2many_tags" />
                     </group>
                     <group>
-                        <field name="customer" />
-                        <field name="supplier" />
                     </group>
                 </group>
                 <footer>
@@ -29,7 +27,7 @@
     <record id='action_report_partner_list' model='ir.actions.act_window'>
         <field name='name'>Partner List Report</field>
         <field name='res_model'>report.partner.list</field>
-        <field name='view_type'>form</field>
+        <field name='binding_view_types'>form</field>
         <field name='view_mode'>form</field>
         <field name='target'>new</field>
     </record>

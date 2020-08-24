@@ -19,7 +19,7 @@ class TestXLSXReport(TestExcelImportExport):
                 ("res_model", "=", "report.sale.order"),
                 ("fname", "=", "report_sale_order.xlsx"),
                 ("gname", "=", False),
-            ],
+            ]
         }
         with Form(self.env["report.sale.order"].with_context(ctx)) as f:
             f.partner_id = self.partner
