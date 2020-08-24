@@ -1,15 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <!--
   Copyright 2019 Ecosoft Co., Ltd.
   License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).-->
 <odoo>
-
     <record id="import_sale_order_xlsx_template" model="xlsx.template">
         <field name="res_model">sale.order</field>
         <field name="fname">import_sale_order.xlsx</field>
         <field name="name">Import Sale Order Template</field>
         <field name="description">Sample Import Sales Order Tempalte for testing</field>
-        <field name="redirect_action" ref="sale.action_orders"/>
+        <field name="redirect_action" ref="sale.action_orders" />
         <field name="input_instruction">
             {
                 '__IMPORT__': {
@@ -30,9 +29,7 @@
             }
         </field>
     </record>
-
     <function model="xlsx.template" name="load_xlsx_template">
-        <value eval="[ref('import_sale_order_xlsx_template')]"/>
+        <value eval="[ref('import_sale_order_xlsx_template')]" />
     </function>
-
 </odoo>

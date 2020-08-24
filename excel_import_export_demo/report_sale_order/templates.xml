@@ -1,9 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <!--
   Copyright 2019 Ecosoft Co., Ltd.
   License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).-->
 <odoo>
-
     <record id="report_sale_order_template" model="xlsx.template">
         <field name="res_model">report.sale.order</field>
         <field name="fname">report_sale_order.xlsx</field>
@@ -28,9 +27,7 @@
             }
         </field>
     </record>
-
     <function model="xlsx.template" name="load_xlsx_template">
-        <value eval="[ref('report_sale_order_template')]"/>
+        <value eval="[ref('report_sale_order_template')]" />
     </function>
-
 </odoo>
