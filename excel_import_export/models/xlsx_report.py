@@ -11,8 +11,8 @@ class XLSXReport(models.AbstractModel):
     _name = "xlsx.report"
     _description = "Excel Report AbstractModel"
 
-    name = fields.Char(string="File Name", readonly=True, size=500,)
-    data = fields.Binary(string="File", readonly=True,)
+    name = fields.Char(string="File Name", readonly=True, size=500)
+    data = fields.Binary(string="File", readonly=True)
     template_id = fields.Many2one(
         "xlsx.template",
         string="Template",
@@ -20,7 +20,7 @@ class XLSXReport(models.AbstractModel):
         ondelete="cascade",
         domain=lambda self: self._context.get("template_domain", []),
     )
-    choose_template = fields.Boolean(string="Allow Choose Template", default=False,)
+    choose_template = fields.Boolean(string="Allow Choose Template", default=False)
     state = fields.Selection(
         [("choose", "Choose"), ("get", "Get")],
         default="choose",
@@ -41,7 +41,6 @@ class XLSXReport(models.AbstractModel):
         defaults["template_id"] = len(templates) == 1 and templates.id or False
         return defaults
 
-    @api.multi
     def report_xlsx(self):
         self.ensure_one()
         Export = self.env["xlsx.export"]
@@ -51,7 +50,6 @@ class XLSXReport(models.AbstractModel):
             "type": "ir.actions.act_window",
             "res_model": self._name,
             "view_mode": "form",
-            "view_type": "form",
             "res_id": self.id,
             "views": [(False, "form")],
             "target": "new",

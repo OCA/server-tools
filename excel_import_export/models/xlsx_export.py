@@ -51,6 +51,7 @@ class XLSXExport(models.AbstractModel):
         """
         line_field, max_row = co.get_line_max(line_field)
         line_field = line_field.replace("_CONT_", "")  # Remove _CONT_ if any
+        line_field = line_field.replace("_EXTEND_", "")  # Remove _EXTEND_ if any
         lines = record[line_field]
         if max_row > 0 and len(lines) > max_row:
             raise Exception(_("Records in %s exceed max records allowed") % line_field)
@@ -89,10 +90,7 @@ class XLSXExport(models.AbstractModel):
                 elif style is False:
                     style = field_style_dict[field[0]]  # Use default style
                 vals[field[0]].append((value, style))
-        return (
-            vals,
-            aggre_func_dict,
-        )
+        return (vals, aggre_func_dict)
 
     @api.model
     def _eval_style_cond(self, model, record, value, style_cond):
@@ -185,6 +183,7 @@ class XLSXExport(models.AbstractModel):
             fields = ws.get(line_field, {}).values()
             vals, func = self._get_line_vals(record, line_field, fields)
             is_cont = "_CONT_" in line_field and True or False  # continue row
+            is_extend = "_EXTEND_" in line_field and True or False  # extend row
             cont_set = 0
             rows_inserted = False  # flag to insert row
             for rc, field in ws.get(line_field, {}).items():
@@ -200,9 +199,9 @@ class XLSXExport(models.AbstractModel):
                 new_rc = False
                 row_count = len(vals[field])
                 # Insert rows to preserve total line
-                if not rows_inserted:
+                if is_extend and not rows_inserted:
                     rows_inserted = True
-                    st.insert_rows(row + 1, amount=row_count - 1)
+                    st.insert_rows(row + 1, row_count - 1)
                 # --
                 for (row_val, style) in vals[field]:
                     new_row = row + i
@@ -220,6 +219,7 @@ class XLSXExport(models.AbstractModel):
                     new_row += 1
                     f_rc = "{}{}".format(col, new_row)
                     st[f_rc] = "={}({}:{})".format(f, rc, new_rc)
+                    styles = self.env["xlsx.styles"].get_openpyxl_styles()
                     co.fill_cell_style(st[f_rc], style, styles)
                 cont_row = cont_row < new_row and new_row or cont_row
         return
@@ -255,7 +255,7 @@ class XLSXExport(models.AbstractModel):
         content = BytesIO()
         wb.save(content)
         content.seek(0)  # Set index to 0, and start reading
-        out_file = base64.encodestring(content.read())
+        out_file = base64.encodebytes(content.read())
         if record and "name" in record and record.name:
             out_name = record.name.replace(" ", "").replace("/", "")
         else:
