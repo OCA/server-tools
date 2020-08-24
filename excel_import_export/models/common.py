@@ -102,7 +102,7 @@ def get_field_style_cond(field):
 
 
 def fill_cell_style(field, field_style, styles):
-    field_styles = field_style.split(";")
+    field_styles = field_style.split(";") if field_style else []
     for f in field_styles:
         (key, value) = f.split("=")
         if key not in styles.keys():
