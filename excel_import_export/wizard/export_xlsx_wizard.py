@@ -12,8 +12,8 @@ class ExportXLSXWizard(models.TransientModel):
     _name = "export.xlsx.wizard"
     _description = "Wizard for exporting excel"
 
-    name = fields.Char(string="File Name", readonly=True, size=500,)
-    data = fields.Binary(string="File", readonly=True,)
+    name = fields.Char(string="File Name", readonly=True, size=500)
+    data = fields.Binary(string="File", readonly=True)
     template_id = fields.Many2one(
         "xlsx.template",
         string="Template",
@@ -21,9 +21,9 @@ class ExportXLSXWizard(models.TransientModel):
         ondelete="cascade",
         domain=lambda self: self._context.get("template_domain", []),
     )
-    res_id = fields.Integer(string="Resource ID", readonly=True, required=True,)
+    res_id = fields.Integer(string="Resource ID", readonly=True, required=True)
     res_model = fields.Char(
-        string="Resource Model", readonly=True, required=True, size=500,
+        string="Resource Model", readonly=True, required=True, size=500
     )
     state = fields.Selection(
         [("choose", "Choose"), ("get", "Get")],
@@ -49,7 +49,6 @@ class ExportXLSXWizard(models.TransientModel):
         defaults["res_model"] = res_model
         return defaults
 
-    @api.multi
     def action_export(self):
         self.ensure_one()
         Export = self.env["xlsx.export"]
@@ -61,7 +60,6 @@ class ExportXLSXWizard(models.TransientModel):
             "type": "ir.actions.act_window",
             "res_model": "export.xlsx.wizard",
             "view_mode": "form",
-            "view_type": "form",
             "res_id": self.id,
             "views": [(False, "form")],
             "target": "new",
