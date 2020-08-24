@@ -1,3 +1,11 @@
+13.0.1.0.0 (2020-08-23)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* Migration to Odoo 13
+* Enhancement on usability, to be more configurable instead of coding
+  * Import/Export now have "Add/Remove Export Action", "Add/Remove Import Action"
+  * "Easy Report" option which allow user to create export directly by config only.
+
 12.0.1.0.5 (2019-12-19)
 ~~~~~~~~~~~~~~~~~~~~~~~
 

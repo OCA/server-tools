@@ -50,7 +50,7 @@ class TestExcelImportExport(SingleTransactionCase):
             "res_model": "sale.order",
             "fname": "sale_order.xlsx",
             "name": "Sale Order Template",
-            "description": "Sample Sales Order Tempalte for testing",
+            "description": "Sample Sales Order Template for testing",
             "input_instruction": str(input_instruction),
         }
         cls.sample_template = cls.template_obj.create(vals)
@@ -86,7 +86,7 @@ class TestExcelImportExport(SingleTransactionCase):
             "price_unit": cls.product_order.list_price,
             "tax_id": False,
         }
-        for i in range(10):
+        for _i in range(10):
             cls.env["sale.order"].create(
                 {
                     "partner_id": cls.partner.id,
@@ -98,14 +98,14 @@ class TestExcelImportExport(SingleTransactionCase):
     def setUpPrepSaleOrder(cls):
         categ_ids = cls.env["res.partner.category"].search([]).ids
         cls.partner = cls.env["res.partner"].create(
-            {"name": "Test Partner", "category_id": [(6, 0, categ_ids)],}
+            {"name": "Test Partner", "category_id": [(6, 0, categ_ids)]}
         )
         # Create a Product
         user_type_income = cls.env.ref("account.data_account_type_direct_costs")
         cls.account_income_product = cls.env["account.account"].create(
             {
                 "code": "INCOME_PROD111",
-                "name": "Icome - Test Account",
+                "name": "Income - Test Account",
                 "user_type_id": user_type_income.id,
             }
         )

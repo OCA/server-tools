@@ -4,28 +4,28 @@
   License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).-->
 <odoo>
     <act_window
-        id="action_sale_oder_export_xlsx"
+        id="action_purchase_order_export_xlsx"
         name="Export Excel"
         res_model="export.xlsx.wizard"
-        binding_model="sale.order"
+        binding_model="purchase.order"
         view_mode="form"
         target="new"
         context="{
-          'template_domain': [('res_model', '=', 'sale.order'),
-                              ('fname', '=', 'sale_order.xlsx'),
+          'template_domain': [('res_model', '=', 'purchase.order'),
+                              ('fname', '=', 'purchase_order.xlsx'),
                               ('gname', '=', False)],
         }"
     />
     <act_window
-        id="action_sale_oder_import_xlsx"
+        id="action_purchase_order_import_xlsx"
         name="Import Excel"
         res_model="import.xlsx.wizard"
-        binding_model="sale.order"
+        binding_model="purchase.order"
         view_mode="form"
         target="new"
         context="{
-          'template_domain': [('res_model', '=', 'sale.order'),
-                              ('fname', '=', 'sale_order.xlsx'),
+          'template_domain': [('res_model', '=', 'purchase.order'),
+                              ('fname', '=', 'purchase_order.xlsx'),
                               ('gname', '=', False)],
           'template_context': {},
           'template_import_states': [],

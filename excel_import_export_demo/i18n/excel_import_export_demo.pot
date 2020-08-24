@@ -25,12 +25,6 @@ msgid "Allow Choose Template"
 msgstr ""
 
 #. module: excel_import_export_demo
-#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__attachment_ids
-#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__attachment_ids
-msgid "Attachments"
-msgstr ""
-
-#. module: excel_import_export_demo
 #: model_terms:ir.ui.view,arch_db:excel_import_export_demo.partner_list_wizard
 msgid "Cancel"
 msgstr ""
@@ -50,11 +44,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__create_date
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__create_date
 msgid "Created on"
-msgstr ""
-
-#. module: excel_import_export_demo
-#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__customer
-msgid "Customer"
 msgstr ""
 
 #. module: excel_import_export_demo
@@ -163,11 +152,6 @@ msgid "State"
 msgstr ""
 
 #. module: excel_import_export_demo
-#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__supplier
-msgid "Supplier"
-msgstr ""
-
-#. module: excel_import_export_demo
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__template_id
 msgid "Template"
 msgstr ""
@@ -191,4 +175,3 @@ msgstr ""
 #: model:ir.model,name:excel_import_export_demo.model_report_sale_order
 msgid "Wizard for report.sale.order"
 msgstr ""
-

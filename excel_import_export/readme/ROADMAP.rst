@@ -1,2 +1,1 @@
 - Module extension e.g., excel_import_export_async, that add ability to execute as async process.
-- Ability to add contextual action in XLSX Tempalte, e.g., Add import action, Add export action. In similar manner as in Server Action.

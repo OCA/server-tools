@@ -1,21 +1,21 @@
-// Copyright 2019 Ecosoft Co., Ltd.
+// © 2017 Creu Blanca
 // License AGPL-3.0 or later (https://www.gnuorg/licenses/agpl.html).
 odoo.define("excel_import_export.report", function(require) {
     "use strict";
 
     var core = require("web.core");
     var ActionManager = require("web.ActionManager");
-    var crash_manager = require("web.crash_manager");
     var framework = require("web.framework");
     var session = require("web.session");
     var _t = core._t;
 
     ActionManager.include({
         _downloadReportExcel: function(url, actions) {
+            var self = this;
             framework.blockUI();
-            var def = $.Deferred();
             var type = "excel";
             var cloned_action = _.clone(actions);
+            var new_url = url;
 
             if (
                 _.isUndefined(cloned_action.data) ||
@@ -23,41 +23,42 @@ odoo.define("excel_import_export.report", function(require) {
                 (_.isObject(cloned_action.data) && _.isEmpty(cloned_action.data))
             ) {
                 if (cloned_action.context.active_ids) {
-                    url += "/" + cloned_action.context.active_ids.join(",");
+                    new_url += "/" + cloned_action.context.active_ids.join(",");
                 }
             } else {
-                url +=
+                new_url +=
                     "?options=" +
                     encodeURIComponent(JSON.stringify(cloned_action.data));
-                url +=
+                new_url +=
                     "&context=" +
                     encodeURIComponent(JSON.stringify(cloned_action.context));
             }
 
-            var blocked = !session.get_file({
-                url: url,
-                data: {
-                    data: JSON.stringify([url, type]),
-                },
-                success: def.resolve.bind(def),
-                error: function() {
-                    crash_manager.rpc_error.apply(crash_manager, arguments);
-                    def.reject();
-                },
-                complete: framework.unblockUI,
+            return new Promise(function(resolve, reject) {
+                var blocked = !session.get_file({
+                    url: new_url,
+                    data: {
+                        data: JSON.stringify([new_url, type]),
+                    },
+                    success: resolve,
+                    error: error => {
+                        self.call("crash_manager", "rpc_error", error);
+                        reject();
+                    },
+                    complete: framework.unblockUI,
+                });
+                if (blocked) {
+                    // AAB: this check should be done in get_file service directly,
+                    // should not be the concern of the caller (and that way, get_file
+                    // could return a deferred)
+                    var message = _t(
+                        "A popup window with your report was blocked. You " +
+                            "may need to change your browser settings to allow " +
+                            "popup windows for this page."
+                    );
+                    this.do_warn(_t("Warning"), message, true);
+                }
             });
-            if (blocked) {
-                // AAB: this check should be done in get_file service directly,
-                // should not be the concern of the caller (and that way, get_file
-                // could return a deferred)
-                var message = _t(
-                    "A popup window with your report was blocked. You " +
-                        "may need to change your browser settings to allow " +
-                        "popup windows for this page."
-                );
-                this.do_warn(_t("Warning"), message, true);
-            }
-            return def;
         },
 
         _triggerDownload: function(action, options, type) {
