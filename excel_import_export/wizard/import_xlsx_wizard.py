@@ -12,19 +12,19 @@ class ImportXLSXWizard(models.TransientModel):
     _name = "import.xlsx.wizard"
     _description = "Wizard for importing excel"
 
-    import_file = fields.Binary(string="Import File (*.xlsx)",)
+    import_file = fields.Binary(string="Import File (*.xlsx)")
     template_id = fields.Many2one(
         "xlsx.template",
         string="Template",
         required=True,
-        ondelete="set null",
+        ondelete="cascade",
         domain=lambda self: self._context.get("template_domain", []),
     )
-    res_id = fields.Integer(string="Resource ID", readonly=True,)
-    res_model = fields.Char(string="Resource Model", readonly=True, size=500,)
-    datas = fields.Binary(string="Sample", related="template_id.datas", readonly=True,)
+    res_id = fields.Integer(string="Resource ID", readonly=True)
+    res_model = fields.Char(string="Resource Model", readonly=True, size=500)
+    datas = fields.Binary(string="Sample", related="template_id.datas", readonly=True)
     fname = fields.Char(
-        string="Template Name", related="template_id.fname", readonly=True,
+        string="Template Name", related="template_id.fname", readonly=True
     )
     attachment_ids = fields.Many2many(
         "ir.attachment",
@@ -108,7 +108,6 @@ class ImportXLSXWizard(models.TransientModel):
         defaults["res_model"] = res_model
         return defaults
 
-    @api.multi
     def get_import_sample(self):
         self.ensure_one()
         return {
@@ -116,14 +115,12 @@ class ImportXLSXWizard(models.TransientModel):
             "type": "ir.actions.act_window",
             "res_model": "import.xlsx.wizard",
             "view_mode": "form",
-            "view_type": "form",
             "res_id": self.id,
             "views": [(False, "form")],
             "target": "new",
             "context": self._context.copy(),
         }
 
-    @api.multi
     def action_import(self):
         self.ensure_one()
         Import = self.env["xlsx.import"]
@@ -149,7 +146,6 @@ class ImportXLSXWizard(models.TransientModel):
             "type": "ir.actions.act_window",
             "res_model": self._name,
             "view_mode": "form",
-            "view_type": "form",
             "res_id": self.id,
             "views": [(False, "form")],
             "target": "new",

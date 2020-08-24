@@ -1,3 +1,6 @@
+Concepts
+--------
+
 This module contain pre-defined function and wizards to make exporting, importing and reporting easy.
 
 At the heart of this module, there are 2 `main methods`
@@ -12,6 +15,9 @@ For reporting, also call `export_xlsx(...)` but through following method
 After install this module, go to Settings > Excel Import/Export > XLSX Templates, this is where the key component located.
 
 As this module provide tools, it is best to explain as use cases. For example use cases, please install **excel_import_export_demo**
+
+Use Cases
+---------
 
 **Use Case 1:** Export/Import Excel on existing document
 
@@ -59,3 +65,24 @@ Please see example in excel_import_export_demo/report_action, which shows,
 
 1. Print excel from an active sale.order
 2. Run partner list report based on search criteria.
+
+Easy Reporting Option
+---------------------
+
+Technically, this option is the same as "Create Excel Report" use case. But instead of having to write XML / Python code like normally do,
+this option allow user to create a report based on a model or view, all by configuration only.
+
+1. Goto > Technical> Excel Import/Export > XLSX Templates, and create a new template for a report.
+2. On the new template, select "Easy Reporting" option, then select followings
+   - Report Model, this can be data model or data view we want to get the results from.
+   - Click upload your file and add the excel template (.xlsx)
+   - Click Save, system will create sample export line, user can add more fields according to results model.
+3. Click Add Report Menu, the report menu will be created, user can change its location. Now the report is ready to use.
+
+  .. figure:: ../static/description/xlsx_template.png
+     :width: 800 px
+
+Note: Using easy reporting mode, system will used a common criteria wizard.
+
+  .. figure:: ../static/description/common_wizard.png
+     :width: 800 px

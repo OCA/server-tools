@@ -8,7 +8,7 @@ from odoo import api, models
 _logger = logging.getLogger(__name__)
 
 try:
-    from openpyxl.styles import colors, PatternFill, Alignment, Font
+    from openpyxl.styles import PatternFill, Alignment, Font
 except ImportError:
     _logger.debug('Cannot import "openpyxl". Please make sure it is installed.')
 
@@ -23,7 +23,7 @@ class XLSXStyles(models.AbstractModel):
         return {
             "font": {
                 "bold": Font(name="Arial", size=10, bold=True),
-                "bold_red": Font(name="Arial", size=10, color=colors.RED, bold=True),
+                "bold_red": Font(name="Arial", size=10, color="FF0000", bold=True),
             },
             "fill": {
                 "red": PatternFill("solid", fgColor="FF0000"),
