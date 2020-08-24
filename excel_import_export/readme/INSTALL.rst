@@ -2,4 +2,4 @@ To install this module, you need to install following python library, **xlrd, xl
 
 Then, simply install **excel_import_export**.
 
-For demo, install **excel_import_export_demo**.
+For demo, install **excel_import_export_demo**
