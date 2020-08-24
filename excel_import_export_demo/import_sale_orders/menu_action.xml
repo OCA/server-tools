@@ -1,9 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <!--
   Copyright 2019 Ecosoft Co., Ltd.
   License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).-->
 <odoo>
-
     <record id="action_import_sale_order" model="ir.actions.act_window">
         <field name="name">Sample Import Sale Order</field>
         <field name="res_model">import.xlsx.wizard</field>
@@ -16,10 +15,10 @@
                                 ('gname', '=', False)], }
         </field>
     </record>
-
-    <menuitem id="menu_import_sale_order"
+    <menuitem
+        id="menu_import_sale_order"
         parent="excel_import_export.menu_excel_import_export"
         action="action_import_sale_order"
-        sequence="30"/>
-
+        sequence="30"
+    />
 </odoo>
