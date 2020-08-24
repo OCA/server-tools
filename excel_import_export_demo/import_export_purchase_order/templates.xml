@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright 2019 Ecosoft Co., Ltd.
+  License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).-->
+<odoo>
+    <record id="purchase_order_xlsx_template" model="xlsx.template">
+        <field name="res_model">purchase.order</field>
+        <field name="fname">purchase_order.xlsx</field>
+        <field name="name">Purchase Order Template (import/export)</field>
+        <field name="description">Sample Purchase Order Template for testing</field>
+        <field
+            name="import_action_id"
+            eval="ref('action_purchase_order_import_xlsx')"
+        />
+        <field
+            name="export_action_id"
+            eval="ref('action_purchase_order_export_xlsx')"
+        />
+        <field name="input_instruction">
+            {
+                '__EXPORT__': {
+                    'purchase': {
+                        '_HEAD_': {
+                            'B1': 'partner_id.contact_address',
+                            'F4': 'display_name',
+                            'H4': 'date_order',
+                            'B8': 'user_id.display_name',
+                            'B10': 'company_id.name',
+                            'B12': '${"%s, %s, %s" % (object.company_id.street, object.company_id.city, object.company_id.state_id.name)}',
+                            'B15': 'company_id.phone',
+                            'B17': 'company_id.email',
+                            'E8': 'partner_id.name',
+                            'E10': 'partner_id.parent_id.name',
+                            'E15': 'partner_id.phone',
+                            'E17': 'partner_id.email',
+                            'H20': 'date_planned${value or ""}#{style=date}',
+                            'I37': 'amount_untaxed#{style=number}',
+                            'O38': 'amount_tax#{style=number}',
+                            'I39': 'amount_total#{style=number}',
+                        },
+                        'order_line': {
+                            'B22': 'product_id.default_code',
+                            'C22': 'name',
+                            'E22': 'product_qty${value or 0}#{style=number}',
+                            'F22': 'product_uom.name',
+                            'G22': 'price_unit${value or 0}#{style=number}',
+                            'H22': 'taxes_id.name',
+                        }
+                    }
+                },
+                '__IMPORT__': {
+                    'purchase': {
+                        'order_line': {
+                            'B22': 'product_id',
+                            'C22': 'name',
+                            'E22': 'product_qty',
+                            'F22': 'product_uom',
+                            'G22': 'price_unit',
+                            'H22': 'taxes_id',
+                            'I22': 'date_planned${time.strftime("%Y-%m-%d %H:%M:%S")}',
+                        }
+                    }
+                },
+            }
+        </field>
+    </record>
+    <function model="xlsx.template" name="load_xlsx_template">
+        <value eval="[ref('purchase_order_xlsx_template')]" />
+    </function>
+</odoo>

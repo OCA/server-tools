@@ -29,7 +29,7 @@ class TestXLSXImportExport(TestExcelImportExport):
         # Test whether it loads correct template
         self.assertEqual(
             export_wizard.template_id,
-            self.env.ref("excel_import_export_demo." "sale_order_xlsx_template"),
+            self.env.ref("excel_import_export_demo.sale_order_xlsx_template"),
         )
         # Export excel
         export_wizard.action_export()
@@ -56,7 +56,23 @@ class TestXLSXImportExport(TestExcelImportExport):
         # Test whether it loads correct template
         self.assertEqual(
             import_wizard.template_id,
-            self.env.ref("excel_import_export_demo." "sale_order_xlsx_template"),
+            self.env.ref("excel_import_export_demo.sale_order_xlsx_template"),
         )
         # Import Excel
         import_wizard.action_import()
+
+    def test_add_remove_export_import_action(self):
+        """ On the template itself, test add / remove action """
+        template = self.env.ref("excel_import_export_demo.sale_order_xlsx_template")
+        self.assertTrue(template.import_action_id)
+        self.assertTrue(template.export_action_id)
+        # Remove actions
+        template.remove_export_action()
+        template.remove_import_action()
+        self.assertFalse(template.import_action_id)
+        self.assertFalse(template.export_action_id)
+        # Add actions back again
+        template.add_export_action()
+        template.add_import_action()
+        self.assertTrue(template.import_action_id)
+        self.assertTrue(template.export_action_id)
