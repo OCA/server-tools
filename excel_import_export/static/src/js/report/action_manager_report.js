@@ -1,6 +1,6 @@
 // Copyright 2019 Ecosoft Co., Ltd.
 // License AGPL-3.0 or later (https://www.gnuorg/licenses/agpl.html).
-odoo.define("excel_import_export.report", function (require) {
+odoo.define("excel_import_export.report", function(require) {
     "use strict";
 
     var core = require("web.core");
@@ -11,23 +11,27 @@ odoo.define("excel_import_export.report", function (require) {
     var _t = core._t;
 
     ActionManager.include({
-
-        _downloadReportExcel: function (url, actions) {
+        _downloadReportExcel: function(url, actions) {
             framework.blockUI();
             var def = $.Deferred();
             var type = "excel";
             var cloned_action = _.clone(actions);
 
-            if (_.isUndefined(cloned_action.data) ||
+            if (
+                _.isUndefined(cloned_action.data) ||
                 _.isNull(cloned_action.data) ||
-                (_.isObject(cloned_action.data) && _.isEmpty(cloned_action.data)))
-            {
+                (_.isObject(cloned_action.data) && _.isEmpty(cloned_action.data))
+            ) {
                 if (cloned_action.context.active_ids) {
-                    url += "/" + cloned_action.context.active_ids.join(',');
+                    url += "/" + cloned_action.context.active_ids.join(",");
                 }
             } else {
-                url += "?options=" + encodeURIComponent(JSON.stringify(cloned_action.data));
-                url += "&context=" + encodeURIComponent(JSON.stringify(cloned_action.context));
+                url +=
+                    "?options=" +
+                    encodeURIComponent(JSON.stringify(cloned_action.data));
+                url +=
+                    "&context=" +
+                    encodeURIComponent(JSON.stringify(cloned_action.context));
             }
 
             var blocked = !session.get_file({
@@ -36,7 +40,7 @@ odoo.define("excel_import_export.report", function (require) {
                     data: JSON.stringify([url, type]),
                 },
                 success: def.resolve.bind(def),
-                error: function () {
+                error: function() {
                     crash_manager.rpc_error.apply(crash_manager, arguments);
                     def.reject();
                 },
@@ -46,43 +50,48 @@ odoo.define("excel_import_export.report", function (require) {
                 // AAB: this check should be done in get_file service directly,
                 // should not be the concern of the caller (and that way, get_file
                 // could return a deferred)
-                var message = _t('A popup window with your report was blocked. You ' +
-                                 'may need to change your browser settings to allow ' +
-                                 'popup windows for this page.');
-                this.do_warn(_t('Warning'), message, true);
+                var message = _t(
+                    "A popup window with your report was blocked. You " +
+                        "may need to change your browser settings to allow " +
+                        "popup windows for this page."
+                );
+                this.do_warn(_t("Warning"), message, true);
             }
             return def;
         },
 
-        _triggerDownload: function (action, options, type) {
+        _triggerDownload: function(action, options, type) {
             var self = this;
             var reportUrls = this._makeReportUrls(action);
             if (type === "excel") {
-                return this._downloadReportExcel(reportUrls[type], action).then(function () {
-                    if (action.close_on_report_download) {
-                        var closeAction = {type: 'ir.actions.act_window_close'};
-                        return self.doAction(closeAction, _.pick(options, 'on_close'));
-                    } else {
+                return this._downloadReportExcel(reportUrls[type], action).then(
+                    function() {
+                        if (action.close_on_report_download) {
+                            var closeAction = {type: "ir.actions.act_window_close"};
+                            return self.doAction(
+                                closeAction,
+                                _.pick(options, "on_close")
+                            );
+                        }
                         return options.on_close();
                     }
-                });
+                );
             }
             return this._super.apply(this, arguments);
         },
 
-        _makeReportUrls: function (action) {
+        _makeReportUrls: function(action) {
             var reportUrls = this._super.apply(this, arguments);
-            reportUrls.excel = '/report/excel/' + action.report_name;
+            reportUrls.excel = "/report/excel/" + action.report_name;
             return reportUrls;
         },
 
-        _executeReportAction: function (action, options) {
+        _executeReportAction: function(action, options) {
             var self = this;
-            if (action.report_type === 'excel') {
-                return self._triggerDownload(action, options, 'excel');
+            if (action.report_type === "excel") {
+                return self._triggerDownload(action, options, "excel");
             }
             return this._super.apply(this, arguments);
-        }
+        },
     });
-
 });
