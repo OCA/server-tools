@@ -16,6 +16,25 @@
         <field name="arch" type="xml">
             <form string="XLSX Template">
                 <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button
+                            name="add_report_menu"
+                            string="Add Report Menu"
+                            type="object"
+                            attrs="{'invisible': ['|', ('use_report_wizard', '=', False), ('report_menu_id', '!=', False)]}"
+                            icon="fa-plus-square"
+                            help="Add new report menu at root level"
+                            class="oe_stat_button"
+                        />
+                        <button
+                            name="remove_report_menu"
+                            string="Remove Report Menu"
+                            type="object"
+                            attrs="{'invisible': [('report_menu_id', '=', False)]}"
+                            icon="fa-minus-square"
+                            class="oe_stat_button"
+                        />
+                    </div>
                     <h1>
                         <field name="name" colspan="3" />
                     </h1>
@@ -35,6 +54,20 @@
                                 name="csv_quote"
                                 attrs="{'invisible': [('to_csv', '=', False)]}"
                             />
+                            <field name="use_report_wizard" />
+                            <field
+                                name="report_menu_id"
+                                attrs="{'invisible': [('report_menu_id', '=', False)]}"
+                            />
+                            <field
+                                name="result_model_id"
+                                attrs="{'invisible': [('use_report_wizard', '=', False)],
+                                        'required': [('use_report_wizard', '=', True)]}"
+                            />
+                            <field
+                                name="result_field"
+                                attrs="{'invisible': [('use_report_wizard', '=', False)]}"
+                            />
                         </group>
                         <group>
                             <field name="fname" invisible="1" />
@@ -46,6 +79,26 @@
                     </group>
                     <notebook>
                         <page string="Export">
+                            <div
+                                name="export_actions"
+                                attrs="{'invisible': [('use_report_wizard', '=', True)]}"
+                            >
+                                <button
+                                    name="add_export_action"
+                                    class="oe_highlight"
+                                    type="object"
+                                    string="Add Export Action"
+                                    attrs="{'invisible': [('export_action_id', '!=', False)]}"
+                                />
+                                <button
+                                    name="remove_export_action"
+                                    type="object"
+                                    string="Remove Export Action"
+                                    attrs="{'invisible': [('export_action_id', '=', False)]}"
+                                />
+                                <field name="export_action_id" invisible="1" />
+                            </div>
+                            <separator />
                             <field name="export_ids">
                                 <tree name="export_instruction" editable="bottom">
                                     <control>
@@ -80,6 +133,11 @@
                                     />
                                     <field
                                         name="is_cont"
+                                        attrs="{'required': [('section_type', 'in', ('head', 'row'))],
+                                                                  'invisible': [('section_type', 'not in', ('head', 'row'))]}"
+                                    />
+                                    <field
+                                        name="is_extend"
                                         attrs="{'required': [('section_type', 'in', ('head', 'row'))],
                                                                   'invisible': [('section_type', 'not in', ('head', 'row'))]}"
                                     />
@@ -133,6 +191,8 @@
                                     <li><b
                                         >Continue</b>: If not selected, start rolling with specified first row cells. If selected, continue from previous one2many field</li>
                                     <li><b
+                                        >Extend</b>: If selected, extend one row after one data row in order to preserve the sum line</li>
+                                    <li><b
                                         >Cell</b>: Location of data in excel sheet (e.g., A1, B1, ...)</li>
                                     <li><b
                                         >Field</b>: Field of the record, e.g., product_id.uom_id.name. They are orm compliant.</li>
@@ -168,7 +228,27 @@
                                 </ul>
                             </div>
                         </page>
-                        <page string="Import">
+                        <page
+                            string="Import"
+                            attrs="{'invisible': [('use_report_wizard', '=', True)]}"
+                        >
+                            <div name="import_actions">
+                                <button
+                                    name="add_import_action"
+                                    class="oe_highlight"
+                                    type="object"
+                                    string="Add Import Action"
+                                    attrs="{'invisible': [('import_action_id', '!=', False)]}"
+                                />
+                                <button
+                                    name="remove_import_action"
+                                    type="object"
+                                    string="Remove Import Action"
+                                    attrs="{'invisible': [('import_action_id', '=', False)]}"
+                                />
+                                <field name="import_action_id" invisible="1" />
+                            </div>
+                            <separator />
                             <field name="import_ids">
                                 <tree name="import_instruction" editable="bottom">
                                     <control>
@@ -246,7 +326,9 @@
                                     <li><b
                                         >Sheet</b>: Name (e.g., Sheet 1) or index (e.g., 1) of excel sheet</li>
                                     <li><b
-                                        >Row Field</b>: Use _HEAD_ for the record itself, and one2many field (e.g., line_ids) for row data</li>
+                                        >Row Field</b>: Use _HEAD_ for the record itself, and one2many field for row data, e.g., order_line, line_ids<code
+                                        >[max_row]</code> where <code
+                                        >[max_row]</code> is optional number of rows to import</li>
                                     <li><b
                                         >No Delete</b>: By default, all one2many lines will be deleted before import. Select this, to avoid deletion</li>
                                     <li><b
@@ -329,7 +411,6 @@
         <field name="name">XLSX Templates</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">xlsx.template</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">

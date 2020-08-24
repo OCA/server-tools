@@ -194,18 +194,6 @@ msgid "Allow Choose Template"
 msgstr ""
 
 #. module: excel_import_export
-#: model:ir.model.fields,field_description:excel_import_export.field_export_xlsx_wizard__attachment_ids
-#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_export__attachment_ids
-#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_import__attachment_ids
-#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_report__attachment_ids
-#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_styles__attachment_ids
-#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__attachment_ids
-#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__attachment_ids
-#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_import__attachment_ids
-msgid "Attachments"
-msgstr ""
-
-#. module: excel_import_export
 #: model:ir.model,name:excel_import_export.model_xlsx_styles
 msgid "Available styles for excel"
 msgstr ""
@@ -383,13 +371,7 @@ msgid "Error filling data into Excel sheets\n"
 msgstr ""
 
 #. module: excel_import_export
-#: code:addons/excel_import_export/models/xlsx_import.py:212
-#, python-format
-msgid "Error importing data"
-msgstr ""
-
-#. module: excel_import_export
-#: code:addons/excel_import_export/models/xlsx_import.py:224
+#: code:addons/excel_import_export/models/xlsx_import.py:219
 #, python-format
 msgid "Error importing data\n"
 "%s"
@@ -670,7 +652,7 @@ msgid "Invalid declaration, %s has no valid field type"
 msgstr ""
 
 #. module: excel_import_export
-#: code:addons/excel_import_export/models/xlsx_import.py:222
+#: code:addons/excel_import_export/models/xlsx_import.py:217
 #, python-format
 msgid "Invalid file style, only .xls or .xlsx file allowed"
 msgstr ""
@@ -737,7 +719,7 @@ msgid "No Delete"
 msgstr ""
 
 #. module: excel_import_export
-#: code:addons/excel_import_export/models/xlsx_import.py:254
+#: code:addons/excel_import_export/models/xlsx_import.py:249
 #, python-format
 msgid "No data_dict['__IMPORT__'] in template %s"
 msgstr ""
@@ -818,7 +800,7 @@ msgid "Post Import Hook"
 msgstr ""
 
 #. module: excel_import_export
-#: code:addons/excel_import_export/models/xlsx_import.py:237
+#: code:addons/excel_import_export/models/xlsx_import.py:232
 #, python-format
 msgid "Post import operation error\n"
 "%s"
@@ -961,8 +943,8 @@ msgid "Template with CSV Quoting = False, data must not contain the same char as
 msgstr ""
 
 #. module: excel_import_export
-#: code:addons/excel_import_export/models/xlsx_export.py:228
-#: code:addons/excel_import_export/models/xlsx_import.py:249
+#: code:addons/excel_import_export/models/xlsx_export.py:230
+#: code:addons/excel_import_export/models/xlsx_import.py:244
 #, python-format
 msgid "Template's model mismatch"
 msgstr ""
