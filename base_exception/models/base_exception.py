@@ -110,7 +110,7 @@ class BaseException(models.AbstractModel):
     )
     exception_ids = fields.Many2many(
         'exception.rule',
-        string='Exceptions')
+        string='Exceptions', copy=False)
     ignore_exception = fields.Boolean('Ignore Exceptions', copy=False)
 
     @api.depends('exception_ids', 'ignore_exception')
