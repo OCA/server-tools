@@ -8,6 +8,7 @@
     "version": "12.0.1.0.0",
     "author": "Akretion,Odoo Community Association (OCA)",
     "website": "https://github.com/oca/server-tools",
+    "maintainers": ["florian-dacosta", "sebastienbeau", "GSLabIt", "bealdav"],
     "license": "AGPL-3",
     "category": "Generic Modules",
     "depends": [
@@ -24,5 +25,4 @@
     "demo": ["demo/attachment_synchronize_task_demo.xml"],
     "installable": True,
     "development_status": "Beta",
-    "maintainers": ["florian-dacosta", "GSLabIt", "bealdav"],
 }
