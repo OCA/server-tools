@@ -107,6 +107,9 @@ promote its widespread use.
 .. |maintainer-florian-dacosta| image:: https://github.com/florian-dacosta.png?size=40px
     :target: https://github.com/florian-dacosta
     :alt: florian-dacosta
+.. |maintainer-sebastienbeau| image:: https://github.com/sebastienbeau.png?size=40px
+    :target: https://github.com/sebastienbeau
+    :alt: sebastienbeau
 .. |maintainer-GSLabIt| image:: https://github.com/GSLabIt.png?size=40px
     :target: https://github.com/GSLabIt
     :alt: GSLabIt
@@ -116,7 +119,7 @@ promote its widespread use.
 
 Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-florian-dacosta| |maintainer-GSLabIt| |maintainer-bealdav| 
+|maintainer-florian-dacosta| |maintainer-sebastienbeau| |maintainer-GSLabIt| |maintainer-bealdav| 
 
 This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/12.0/attachment_synchronize>`_ project on GitHub.
 
