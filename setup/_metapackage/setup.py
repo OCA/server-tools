@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo12-addon-attachment_queue',
+        'odoo12-addon-attachment_synchronize',
         'odoo12-addon-attachment_unindex_content',
         'odoo12-addon-auditlog',
         'odoo12-addon-auto_backup',
