@@ -132,6 +132,11 @@ msgid "Error"
 msgstr ""
 
 #. module: attachment_queue
+#: selection:attachment.queue,file_type:0
+msgid "Export File (External location)"
+msgstr ""
+
+#. module: attachment_queue
 #: selection:attachment.queue,state:0
 #: model_terms:ir.ui.view,arch_db:attachment_queue.view_attachment_queue_search
 msgid "Failed"
