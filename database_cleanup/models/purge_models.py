@@ -73,6 +73,13 @@ class CleanupPurgeLineModel(models.TransientModel):
             self.env['ir.model.constraint'].search([
                 ('model', '=', line.name),
             ]).unlink()
+            cronjobs = self.env['ir.cron'].with_context(
+                active_test=False
+            ).search([
+                ('model_id.model', '=', line.name),
+            ])
+            if cronjobs:
+                cronjobs.unlink()
             relations = self.env['ir.model.fields'].search([
                 ('relation', '=', row[1]),
             ]).with_context(**context_flags)

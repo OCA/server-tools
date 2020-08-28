@@ -75,7 +75,7 @@ Contributors
 * SodexisTeam <dev@sodexis.com>
 * Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
 * Raphaël Reverdy <raphael.reverdy@akretion.com>
-* Iván Todorovich <ivan.todorovich@gmail.com>
+* Iván Todorovich <ivan.todorovich@druidoo.io>
 
 Maintainers
 ~~~~~~~~~~~
@@ -89,6 +89,17 @@ This module is maintained by the OCA.
 OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
+
+.. |maintainer-hparfr| image:: https://github.com/hparfr.png?size=40px
+    :target: https://github.com/hparfr
+    :alt: hparfr
+.. |maintainer-sebastienbeau| image:: https://github.com/sebastienbeau.png?size=40px
+    :target: https://github.com/sebastienbeau
+    :alt: sebastienbeau
+
+Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
+
+|maintainer-hparfr| |maintainer-sebastienbeau| 
 
 This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/12.0/base_exception>`_ project on GitHub.
 

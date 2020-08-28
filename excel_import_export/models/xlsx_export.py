@@ -200,9 +200,7 @@ class XLSXExport(models.AbstractModel):
                 # Insert rows to preserve total line
                 if not rows_inserted:
                     rows_inserted = True
-                    if row_count > 1:
-                        for _x in range(row_count-1):
-                            st.insert_rows(row+1)
+                    st.insert_rows(row+1, amount=row_count-1)
                 # --
                 for (row_val, style) in vals[field]:
                     new_row = row + i
@@ -220,6 +218,7 @@ class XLSXExport(models.AbstractModel):
                     new_row += 1
                     f_rc = '%s%s' % (col, new_row)
                     st[f_rc] = '=%s(%s:%s)' % (f, rc, new_rc)
+                    co.fill_cell_style(st[f_rc], style, styles)
                 cont_row = cont_row < new_row and new_row or cont_row
         return
 
@@ -236,7 +235,7 @@ class XLSXExport(models.AbstractModel):
             return (out_file, out_name)
         # Prepare temp file (from now, only xlsx file works for openpyxl)
         decoded_data = base64.decodestring(template.datas)
-        ConfParam = self.env['ir.config_parameter']
+        ConfParam = self.env['ir.config_parameter'].sudo()
         ptemp = ConfParam.get_param('path_temp_file') or '/tmp'
         stamp = dt.utcnow().strftime('%H%M%S%f')[:-3]
         ftemp = '%s/temp%s.xlsx' % (ptemp, stamp)

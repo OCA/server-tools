@@ -5,12 +5,15 @@
 
 import re
 import uuid
+import logging
 from io import BytesIO
 import base64
 from psycopg2 import ProgrammingError
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
+
+logger = logging.getLogger(__name__)
 
 
 class SQLRequestMixin(models.AbstractModel):
@@ -91,6 +94,7 @@ class SQLRequestMixin(models.AbstractModel):
             if item._check_execution_enabled:
                 item._check_execution()
             item.state = 'sql_valid'
+        return True
 
     @api.multi
     def button_set_draft(self):
@@ -242,6 +246,7 @@ class SQLRequestMixin(models.AbstractModel):
             self.env.cr.execute(query)
             res = self._hook_executed_request()
         except ProgrammingError as e:
+            logger.exception("Failed query: %s", query)
             raise UserError(
                 _("The SQL query is not valid:\n\n %s") % e)
         finally:

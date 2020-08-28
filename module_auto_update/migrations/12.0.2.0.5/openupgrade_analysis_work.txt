@@ -1,0 +1,8 @@
+---Fields in module 'module_auto_update'---
+---XML records in module 'module_auto_update'---
+NEW ir.actions.server: module_auto_update.ir_module_module_upgrade_changed_checksum
+NEW ir.ui.menu: module_auto_update.menu_ir_module_module_upgrade_changed_checksum
+# NOTHING TO DO
+
+DEL ir.cron: module_auto_update.module_check_upgrades_cron (noupdate)
+# DONE: pots-migration: deleted xmlid safely
