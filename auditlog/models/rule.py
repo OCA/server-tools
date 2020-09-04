@@ -373,6 +373,7 @@ class AuditlogRule(models.Model):
                 'user_id': uid,
                 'http_request_id': http_request_model.current_http_request(),
                 'http_session_id': http_session_model.current_http_session(),
+                'line_ids': False,
             }
             vals.update(additional_log_values or {})
             log = log_model.create(vals)
