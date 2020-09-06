@@ -486,9 +486,6 @@ msgstr ""
 #. module: excel_import_export
 #: code:addons/excel_import_export/models/xlsx_import.py:212
 #, fuzzy, python-format
-#| msgid ""
-#| "Error importing data\n"
-#| "%s"
 msgid "Error importing data"
 msgstr ""
 "导入数据时出错\n"

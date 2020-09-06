@@ -38,6 +38,11 @@ msgid "Allowed Users"
 msgstr ""
 
 #. module: sql_export
+#: selection:sql.export,file_format:0
+msgid "CSV"
+msgstr ""
+
+#. module: sql_export
 #: model_terms:ir.ui.view,arch_db:sql_export.sql_file_wizard_view_form
 msgid "Cancel"
 msgstr "İptal et"
@@ -81,6 +86,11 @@ msgid "Encoding"
 msgstr ""
 
 #. module: sql_export
+#: selection:sql.export,file_format:0
+msgid "Excel"
+msgstr ""
+
+#. module: sql_export
 #: model_terms:ir.ui.view,arch_db:sql_export.sql_export_view_form
 #: model_terms:ir.ui.view,arch_db:sql_export.sql_export_view_tree
 msgid "Execute Query"
@@ -99,6 +109,11 @@ msgstr ""
 #. module: sql_export
 #: model:ir.model.fields,field_description:sql_export.field_sql_file_wizard__binary_file
 msgid "File"
+msgstr ""
+
+#. module: sql_export
+#: model:ir.model.fields,field_description:sql_export.field_sql_export__file_format
+msgid "File Format"
 msgstr ""
 
 #. module: sql_export
