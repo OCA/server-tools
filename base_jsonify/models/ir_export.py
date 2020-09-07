@@ -4,10 +4,20 @@
 
 from collections import OrderedDict
 
-from odoo import models
+from odoo import fields, models
 
 
-def update_dict(data, fields):
+def partition(l, accessor):  # -> Dict
+    result = {}
+    for item in l:
+        key = accessor(item)
+        if key not in result:
+            result[key] = []
+        result[key].append(item)
+    return result
+
+
+def update_dict(data, fields, options):
     """Contruct a tree of fields.
 
     Example:
@@ -23,11 +33,11 @@ def update_dict(data, fields):
     if len(fields) == 1:
         if field == ".id":
             field = "id"
-        data[field] = True
+        data[field] = (True, options)
     else:
         if field not in data:
-            data[field] = OrderedDict()
-        update_dict(data[field], fields[1:])
+            data[field] = (False, OrderedDict())
+        update_dict(data[field][1], fields[1:], options)
 
 
 def convert_dict(dict_parser):
@@ -37,15 +47,39 @@ def convert_dict(dict_parser):
     """
     parser = []
     for field, value in dict_parser.items():
-        if value is True:
-            parser.append(field)
+        if value[0] is True:  # is a leaf
+            parser.append(field_dict(field, value[1]))
         else:
-            parser.append((field, convert_dict(value)))
+            parser.append((field_dict(field), convert_dict(value[1])))
     return parser
+
+
+def field_dict(field, options=None):
+    result = {"name": field.split(":")[0]}
+    if len(field.split(":")) > 1:
+        result["alias"] = field.split(":")[1]
+    for option in options or {}:
+        if options[option]:
+            result[option] = options[option]
+    return result
 
 
 class IrExport(models.Model):
     _inherit = "ir.exports"
+
+    language_agnostic = fields.Boolean(
+        default=False,
+        string="Language Agnostic",
+        help="If set, will set the lang to False when exporting lines without lang,"
+        " otherwise it uses the lang in the given context to export these fields",
+    )
+
+    global_resolver_id = fields.Many2one(
+        comodel_name="ir.exports.resolver",
+        string="Custom global resolver",
+        domain="[('type', '=', 'global')]",
+        help="If set, will apply the global resolver to the result",
+    )
 
     def get_json_parser(self):
         """Creates a parser from ir.exports record and return it.
@@ -53,11 +87,19 @@ class IrExport(models.Model):
         The final parser can be used to "jsonify" records of ir.export's model.
         """
         self.ensure_one()
-        dict_parser = OrderedDict()
-        for line in self.export_fields:
-            names = line.name.split("/")
-            if line.alias:
-                names = line.alias.split("/")
-            update_dict(dict_parser, names)
-
-        return convert_dict(dict_parser)
+        parser = {"language_agnostic": self.language_agnostic}
+        lang_to_lines = partition(self.export_fields, lambda l: l.lang_id.code)
+        lang_parsers = {}
+        for lang in lang_to_lines:
+            dict_parser = OrderedDict()
+            for line in lang_to_lines[lang]:
+                names = line.name.split("/")
+                if line.alias:
+                    names = line.alias.split("/")
+                options = {"resolver": line.resolver_id, "function": line.function}
+                update_dict(dict_parser, names, options)
+            lang_parsers[lang] = convert_dict(dict_parser)
+        parser["langs"] = lang_parsers
+        if self.global_resolver_id:
+            parser["resolver"] = self.global_resolver_id
+        return parser

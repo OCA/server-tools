@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="ir_exports_resolver_dict" model="ir.exports.resolver">
+        <field name="name">ExtraData dictionary (number/text)</field>
+        <field name="python_code">
+is_number = field_type in ('integer', 'float')
+ftype = "NUMBER" if is_number else "TEXT"
+value = value if is_number else str(value)
+result = {"Key": name, "Value": value, "Type": ftype, "IsPublic": True}
+        </field>
+    </record>
+</odoo>
