@@ -14,6 +14,29 @@ class IrExportsLine(models.Model):
         "alias on the a step as field:alias",
     )
     active = fields.Boolean(string="Active", default=True)
+    lang_id = fields.Many2one(
+        comodel_name="res.lang",
+        string="Language",
+        help="If set, the language in which the field is exported",
+    )
+    resolver_id = fields.Many2one(
+        comodel_name="ir.exports.resolver",
+        string="Custom resolver",
+        help="If set, will apply the resolver on the field value",
+    )
+    function = fields.Char(
+        comodel_name="ir.exports.resolver",
+        string="Function",
+        help="A method defined on the model that takes a record and a field_name",
+    )
+
+    @api.constrains("resolver_id", "function")
+    def _check_function_resolver(self):
+        for rec in self:
+            if rec.resolver_id and rec.function:
+                raise ValidationError(
+                    _("Either set a function or a resolver, not both.")
+                )
 
     @api.constrains("alias", "name")
     def _check_alias(self):
