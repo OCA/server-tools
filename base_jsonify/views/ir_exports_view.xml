@@ -10,6 +10,8 @@
                         <group colspan="4" col="4" name="se-main">
                             <field name="name" />
                             <field name="resource" />
+                            <field name="language_agnostic" />
+                            <field name="global_resolver_id" />
                         </group>
                     </group>
                     <group name="index" string="Index">
@@ -17,6 +19,9 @@
                             <tree editable="bottom">
                                 <field name="name" />
                                 <field name="alias" />
+                                <field name="lang_id" />
+                                <field name="resolver_id" />
+                                <field name="function" />
                             </tree>
                         </field>
                     </group>

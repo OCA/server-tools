@@ -35,6 +35,58 @@ class TestParser(SavepointCase):
                 "date": fields.Date.from_string("2019-10-31"),
             }
         )
+        Langs = cls.env["res.lang"].with_context(active_test=False)
+        cls.lang = Langs.search([("code", "=", "fr_FR")])
+        cls.lang.active = True
+        cls.env["ir.translation"]._load_module_terms(["base"], [cls.lang.code])
+        category = cls.env["res.partner.category"].create({"name": "name"})
+        cls.translated_alias = "name_{}".format(cls.lang.code)
+        cls.env["ir.translation"].create(
+            {
+                "type": "model",
+                "name": "res.partner.category,name",
+                "module": "base",
+                "lang": cls.lang.code,
+                "res_id": category.id,
+                "value": cls.translated_alias,
+                "state": "translated",
+            }
+        )
+        cls.global_resolver = cls.env["ir.exports.resolver"].create(
+            {"python_code": "value['X'] = 'X'; result = value", "type": "global"}
+        )
+        cls.resolver = cls.env["ir.exports.resolver"].create(
+            {"python_code": "result = value + '_pidgin'", "type": "field"}
+        )
+        cls.category_export = cls.env["ir.exports"].create(
+            {
+                "global_resolver_id": cls.global_resolver.id,
+                "language_agnostic": True,
+                "export_fields": [
+                    (0, 0, {"name": "name"}),
+                    (
+                        0,
+                        0,
+                        {
+                            "name": "name",
+                            "alias": "name:{}".format(cls.translated_alias),
+                            "lang_id": cls.lang.id,
+                        },
+                    ),
+                    (
+                        0,
+                        0,
+                        {
+                            "name": "name",
+                            "alias": "name:name_resolved",
+                            "resolver_id": cls.resolver.id,
+                        },
+                    ),
+                ],
+            }
+        )
+        cls.category = category.with_context({})
+        cls.category_lang = category.with_context({"lang": cls.lang.code})
 
     def test_getting_parser(self):
         expected_parser = [
@@ -60,7 +112,8 @@ class TestParser(SavepointCase):
 
         exporter = self.env.ref("base_jsonify.ir_exp_partner")
         parser = exporter.get_json_parser()
-        self.assertListEqual(parser, expected_parser)
+        expected_full_parser = exporter.convert_simple_to_full_parser(expected_parser)
+        self.assertEqual(parser, expected_full_parser)
 
         # modify an ir.exports_line to put an alias for a field
         self.env.ref("base_jsonify.category_id_name").write(
@@ -68,7 +121,8 @@ class TestParser(SavepointCase):
         )
         expected_parser[4] = ("category_id:category", ["name"])
         parser = exporter.get_json_parser()
-        self.assertEqual(parser, expected_parser)
+        expected_full_parser = exporter.convert_simple_to_full_parser(expected_parser)
+        self.assertEqual(parser, expected_full_parser)
 
     def test_json_export(self):
         # Enforces TZ to validate the serialization result of a Datetime
@@ -162,3 +216,68 @@ class TestParser(SavepointCase):
         json_partner = self.partner.jsonify(parser)
         self.assertDictEqual(json_partner[0], expected_json)
         del self.partner.__class__.jsonify_custom
+
+    def test_full_parser(self):
+        parser = self.category_export.get_json_parser()
+        json = self.category.jsonify(parser)[0]
+        json_fr = self.category_lang.jsonify(parser)[0]
+
+        self.assertEqual(
+            json, json_fr
+        )  # starting from different languages should not change anything
+        self.assertEqual(json[self.translated_alias], self.translated_alias)
+        self.assertEqual(json["name_resolved"], "name_pidgin")  # field resolver
+        self.assertEqual(json["X"], "X")  # added by global resolver
+
+    def test_simple_parser_translations(self):
+        """The simple parser result should depend on the context language.
+        """
+        parser = ["name"]
+        json = self.category.jsonify(parser)[0]
+        json_fr = self.category_lang.jsonify(parser)[0]
+
+        self.assertEqual(json["name"], "name")
+        self.assertEqual(json_fr["name"], self.translated_alias)
+
+    def test_simple_star_alias_and_field_resolver(self):
+        """The simple parser result should depend on the context language.
+        """
+        code = (
+            "is_number = field_type in ('integer', 'float');"
+            "ftype = 'NUMBER' if is_number else 'TEXT';"
+            "value = value if is_number else str(value);"
+            "result = {'Key': name, 'Value': value, 'Type': ftype, 'IsPublic': True}"
+        )
+        resolver = self.env["ir.exports.resolver"].create({"python_code": code})
+        lang_parser = [
+            {"alias": "customTags*", "name": "name", "resolver": resolver.id},
+            {"alias": "customTags*", "name": "id", "resolver": resolver.id},
+        ]
+        parser = {"language_agnostic": True, "langs": {False: lang_parser}}
+        expected_json = {
+            "customTags": [
+                {"Value": "name", "Key": "name", "Type": "TEXT", "IsPublic": True},
+                {
+                    "Value": self.category.id,
+                    "Key": "id",
+                    "Type": "NUMBER",
+                    "IsPublic": True,
+                },
+            ]
+        }
+
+        json = self.category.jsonify(parser)[0]
+        self.assertEqual(json, expected_json)
+
+    def test_simple_export_with_function(self):
+        self.category.__class__.jsonify_custom = jsonify_custom
+        export = self.env["ir.exports"].create(
+            {
+                "export_fields": [
+                    (0, 0, {"name": "name", "function": "jsonify_custom"}),
+                ],
+            }
+        )
+
+        json = self.category.jsonify(export.get_json_parser())[0]
+        self.assertEqual(json, {"name": "yeah!"})
