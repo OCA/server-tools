@@ -12,14 +12,15 @@
     "author": "Akretion, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "installable": True,
-    "depends": [
-        "base",
-    ],
+    "depends": ["base"],
     "data": [
-        'views/ir_exports_view.xml',
+        "security/ir.model.access.csv",
+        "views/ir_exports_view.xml",
+        "views/ir_exports_resolver_view.xml",
     ],
     "demo": [
-        'demo/export_demo.xml',
-        'demo/ir.exports.line.csv',
+        "demo/resolver_demo.xml",
+        "demo/export_demo.xml",
+        "demo/ir.exports.line.csv",
     ],
 }
