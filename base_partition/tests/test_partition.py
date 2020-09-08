@@ -2,7 +2,9 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import functools
+import math
 
+from odoo.exceptions import UserError
 from odoo.tests.common import TransactionCase
 
 
@@ -85,6 +87,34 @@ class TestPartition(TransactionCase):
 
         records = functools.reduce(sum, partition.values())
         self.assertEqual(self.xyz, records)  # we get the same recordset
+
+    def test_batch(self):
+        """The sum of all batches should be the original recordset;
+           an empty recordset should return no batch;
+           without a batch parameter, the model's _default_batch_size should be used.
+        """
+        records = self.xyz
+        batch_size = 2
+
+        assert len(records)  # only makes sense with nonempty recordset
+        batches = list(records.batch(batch_size))
+        self.assertEqual(len(batches), math.ceil(len(records) / batch_size))
+        for batch in batches[:-1]:
+            self.assertEqual(len(batch), batch_size)
+        last_batch_size = len(records) % batch_size or batch_size
+        self.assertEqual(len(batches[-1]), last_batch_size)
+        self.assertEqual(functools.reduce(sum, batches), records)
+
+        empty_recordset = records.browse()
+        no_batches = list(empty_recordset.batch(batch_size))
+        self.assertEqual(no_batches, [])
+
+        with self.assertRaises(UserError):
+            list(records.batch())
+
+        records.__class__._default_batch_size = batch_size
+        batches_from_default = list(records.batch())
+        self.assertEqual(batches_from_default, batches)
 
     def test_filtered_domain(self):
         """Initially yo satisfy the coverage tools, this test actually documents
