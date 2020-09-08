@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<templates xml:space="preserve">
+    <t t-inherit="base_import.ImportView" t-inherit-mode="extension">
+        <xpath expr="//input[@id='oe_import_tracking']" position="attributes">
+            <attribute name="checked">checked</attribute>
+        </xpath>
+    </t>
+</templates>
