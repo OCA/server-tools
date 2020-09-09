@@ -38,7 +38,7 @@ class Image(models.Model):
     storage = fields.Selection(
         [('url', 'URL'), ('file', 'OS file'), ('db', 'Database'),
          ('filestore', 'Filestore')],
-        required=True)
+        required=True, default='filestore')
     name = fields.Char(
         'Image title',
         translate=True)
@@ -58,19 +58,21 @@ class Image(models.Model):
         help="Image path")
     url = fields.Char(
         'Image remote URL')
-    image_main = fields.Binary(
+    image_main = fields.Image(
         "Full-sized image",
         compute="_get_image")
-    image_medium = fields.Binary(
+    image_medium = fields.Image(
         "Medium-sized image",
-        compute="_get_image_sizes",
+        related="image_main",
+        max_width=128, max_height=128,
         help="Medium-sized image. It is automatically resized as a "
              "128 x 128 px image, with aspect ratio preserved, only when the "
              "image exceeds one of those sizes. Use this field in form views "
              "or kanban views.")
-    image_small = fields.Binary(
+    image_small = fields.Image(
         "Small-sized image",
-        compute="_get_image_sizes",
+        related="image_main",
+        max_width=64, max_height=64,
         help="Small-sized image. It is automatically resized as a 64 x 64 px "
              "image, with aspect ratio preserved. Use this field anywhere a "
              "small image is required.")
@@ -88,7 +90,6 @@ class Image(models.Model):
         """Allow any model; after all, this field is readonly."""
         return [(r.model, r.name) for r in self.env["ir.model"].search([])]
 
-    @api.multi
     @api.depends("owner_model", "owner_id")
     def _compute_owner_ref_id(self):
         """Get a reference field based on the split model and id fields."""
@@ -96,14 +97,12 @@ class Image(models.Model):
             if s.owner_model:
                 s.owner_ref_id = "{0.owner_model},{0.owner_id}".format(s)
 
-    @api.multi
     @api.depends('storage', 'path', 'file_db_store', 'url')
     def _get_image(self):
         """Get image data from the right storage type."""
         for s in self:
             s.image_main = getattr(s, "_get_image_from_%s" % s.storage)()
 
-    @api.multi
     @api.depends("owner_id", "owner_model")
     def _show_technical(self):
         """Know if you need to show the technical fields."""
@@ -111,15 +110,12 @@ class Image(models.Model):
             "default_owner_%s" % f not in self.env.context
             for f in ("id", "model"))
 
-    @api.multi
     def _get_image_from_filestore(self):
         return self.attachment_id.datas
 
-    @api.multi
     def _get_image_from_db(self):
         return self.file_db_store
 
-    @api.multi
     def _get_image_from_file(self):
         if self.path and os.path.exists(self.path):
             try:
@@ -133,7 +129,6 @@ class Image(models.Model):
 
         return False
 
-    @api.multi
     def _get_image_from_url(self):
         return self._get_image_from_url_cached(self.url)
 
@@ -151,18 +146,6 @@ class Image(models.Model):
                               exc_info=True)
 
         return False
-
-    @api.multi
-    @api.depends('image_main')
-    def _get_image_sizes(self):
-        for s in self:
-            try:
-                vals = tools.image_get_resized_images(
-                    s.with_context(bin_size=False).image_main)
-            except:
-                vals = {"image_medium": False,
-                        "image_small": False}
-            s.update(vals)
 
     @api.model
     def _make_name_pretty(self, name):
