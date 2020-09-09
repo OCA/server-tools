@@ -418,11 +418,12 @@ It is also to specify a lang to extract the translation of any given field.</p>
 <p>To use these features, a full parser follows the following structure:</p>
 <pre class="code python literal-block">
 <span class="n">parser</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;resolver&quot;</span><span class="p">:</span> <span class="n">ir</span><span class="o">.</span><span class="n">exports</span><span class="o">.</span><span class="n">resolver</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span>
+    <span class="s2">&quot;resolver&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="s2">&quot;language_agnostic&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
     <span class="s2">&quot;langs&quot;</span><span class="p">:</span> <span class="p">{</span>
         <span class="kc">False</span><span class="p">:</span> <span class="p">[</span>
             <span class="p">{</span><span class="s1">'name'</span><span class="p">:</span> <span class="s1">'description'</span><span class="p">},</span>
-            <span class="p">{</span><span class="s1">'name'</span><span class="p">:</span> <span class="s1">'number'</span><span class="p">,</span> <span class="s1">'resolver'</span><span class="p">:</span> <span class="n">ir</span><span class="o">.</span><span class="n">exports</span><span class="o">.</span><span class="n">resolver</span><span class="p">(</span><span class="mi">5</span><span class="p">)},</span>
+            <span class="p">{</span><span class="s1">'name'</span><span class="p">:</span> <span class="s1">'number'</span><span class="p">,</span> <span class="s1">'resolver'</span><span class="p">:</span> <span class="mi">5</span><span class="p">},</span>
             <span class="p">({</span><span class="s1">'name'</span><span class="p">:</span> <span class="s1">'partner_id'</span><span class="p">,</span> <span class="s1">'alias'</span><span class="p">:</span> <span class="s1">'partners'</span><span class="p">},</span> <span class="p">[{</span><span class="s1">'name'</span><span class="p">:</span> <span class="s1">'display_name'</span><span class="p">}])</span>
         <span class="p">],</span>
         <span class="s1">'fr_FR'</span><span class="p">:</span> <span class="p">[</span>
@@ -430,6 +431,20 @@ It is also to specify a lang to extract the translation of any given field.</p>
             <span class="p">({</span><span class="s1">'name'</span><span class="p">:</span> <span class="s1">'partner_id'</span><span class="p">,</span> <span class="s1">'alias'</span><span class="p">:</span> <span class="s1">'partners'</span><span class="p">},</span> <span class="p">[{</span><span class="s1">'name'</span><span class="p">:</span> <span class="s1">'description'</span><span class="p">,</span> <span class="s1">'alias'</span><span class="p">:</span> <span class="s1">'description_fr'</span><span class="p">}])</span>
         <span class="p">],</span>
     <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+<p>Note that a resolver can be passed either as a recordset or as an id, so as to be fully serializable.
+A slightly simpler version in case the translation of fields is not needed,
+but other features like custom resolvers are:</p>
+<pre class="code python literal-block">
+<span class="n">parser</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;resolver&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="s2">&quot;language_agnostic&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s2">&quot;fields&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span><span class="s1">'name'</span><span class="p">:</span> <span class="s1">'description'</span><span class="p">},</span>
+            <span class="p">{</span><span class="s1">'name'</span><span class="p">:</span> <span class="s1">'number'</span><span class="p">,</span> <span class="s1">'resolver'</span><span class="p">:</span> <span class="mi">5</span><span class="p">},</span>
+            <span class="p">({</span><span class="s1">'name'</span><span class="p">:</span> <span class="s1">'partner_id'</span><span class="p">,</span> <span class="s1">'alias'</span><span class="p">:</span> <span class="s1">'partners'</span><span class="p">},</span> <span class="p">[{</span><span class="s1">'name'</span><span class="p">:</span> <span class="s1">'display_name'</span><span class="p">}]),</span>
+    <span class="p">],</span>
 <span class="p">}</span>
 </pre>
 <p>A simple parser is simply translated into a full parser at export.</p>

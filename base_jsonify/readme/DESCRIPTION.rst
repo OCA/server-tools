@@ -63,11 +63,12 @@ To use these features, a full parser follows the following structure:
 .. code-block:: python
 
     parser = {
-        "resolver": ir.exports.resolver(3),
+        "resolver": 3,
+        "language_agnostic": True,
         "langs": {
             False: [
                 {'name': 'description'},
-                {'name': 'number', 'resolver': ir.exports.resolver(5)},
+                {'name': 'number', 'resolver': 5},
                 ({'name': 'partner_id', 'alias': 'partners'}, [{'name': 'display_name'}])
             ],
             'fr_FR': [
@@ -75,6 +76,23 @@ To use these features, a full parser follows the following structure:
                 ({'name': 'partner_id', 'alias': 'partners'}, [{'name': 'description', 'alias': 'description_fr'}])
             ],
         }
+    }
+
+
+Note that a resolver can be passed either as a recordset or as an id, so as to be fully serializable.
+A slightly simpler version in case the translation of fields is not needed,
+but other features like custom resolvers are:
+
+.. code-block:: python
+
+    parser = {
+        "resolver": 3,
+        "language_agnostic": True,
+        "fields": [
+                {'name': 'description'},
+                {'name': 'number', 'resolver': 5},
+                ({'name': 'partner_id', 'alias': 'partners'}, [{'name': 'display_name'}]),
+        ],
     }
 
 

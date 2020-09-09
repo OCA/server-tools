@@ -99,7 +99,10 @@ class IrExport(models.Model):
                 options = {"resolver": line.resolver_id, "function": line.function}
                 update_dict(dict_parser, names, options)
             lang_parsers[lang] = convert_dict(dict_parser)
-        parser["langs"] = lang_parsers
+        if list(lang_parsers.keys()) == [False]:
+            parser["fields"] = lang_parsers[False]
+        else:
+            parser["langs"] = lang_parsers
         if self.global_resolver_id:
             parser["resolver"] = self.global_resolver_id
         return parser

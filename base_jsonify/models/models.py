@@ -43,7 +43,7 @@ class Base(models.AbstractModel):
                         result.append((_f(f), _convert_parser(sub)))
             return result
 
-        return {"language_agnostic": False, "langs": {False: _convert_parser(parser)}}
+        return {"language_agnostic": False, "fields": _convert_parser(parser)}
 
     @api.model
     def _jsonify_bad_parser_error(self, field_name):
@@ -144,11 +144,12 @@ class Base(models.AbstractModel):
         resolver = parser.get("resolver")
 
         results = [{} for record in self]
-        for lang in parser["langs"]:
-            translate = lang or parser["language_agnostic"]
+        parsers = {False: parser["fields"]} if "fields" in parser else parser["langs"]
+        for lang in parsers:
+            translate = lang or parser.get("language_agnostic")
             records = self.with_context(lang=lang) if translate else self
             for record, json in zip(records, results):
-                self._jsonify_record(parser["langs"][lang], record, json)
+                self._jsonify_record(parsers[lang], record, json)
 
         results = self._resolve(resolver, results, self) if resolver else results
         return results[0] if one else results
