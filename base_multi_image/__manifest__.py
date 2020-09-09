@@ -7,7 +7,7 @@
 {
     "name": "Multiple images base",
     "summary": "Allow multiple images for database objects",
-    "version": "12.0.1.0.0",
+    "version": "13.0.0.0.0",
     "author": "Tecnativa, "
               "Antiun Ingeniería, S.L., Sodexis, "
               "LasLabs, "
