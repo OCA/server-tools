@@ -32,7 +32,6 @@ class Owner(models.AbstractModel):
         inverse="_set_multi_image_main_small",
         store=False)
 
-    @api.multi
     @api.depends('image_ids')
     def _get_multi_image(self):
         """Get the main image for this object.
@@ -46,7 +45,6 @@ class Owner(models.AbstractModel):
             s.image_main_medium = first.image_medium
             s.image_main_small = first.image_small
 
-    @api.multi
     def _set_multi_image(self, image=False, name=False):
         """Save or delete the main image for this record.
 
@@ -76,19 +74,15 @@ class Owner(models.AbstractModel):
             elif s.image_ids:
                 s.image_ids[0].unlink()
 
-    @api.multi
     def _set_multi_image_main(self):
         self._set_multi_image(self.image_main)
 
-    @api.multi
     def _set_multi_image_main_medium(self):
         self._set_multi_image(self.image_main_medium)
 
-    @api.multi
     def _set_multi_image_main_small(self):
         self._set_multi_image(self.image_main_small)
 
-    @api.multi
     def unlink(self):
         """Mimic `ondelete="cascade"` for multi images.
 
