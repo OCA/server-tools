@@ -52,7 +52,7 @@ class XLSXImport(models.AbstractModel):
             ModelData.create(
                 {
                     "name": "{}_{}".format(record._table, record.id),
-                    "module": "excel_import_export",
+                    "module": "__excel_import_export__",
                     "model": record._name,
                     "res_id": record.id,
                 }
