@@ -25,7 +25,6 @@ env:
   - TESTS="1" ODOO_REPO="odoo/odoo" INCLUDE="database_cleanup" MAKEPOT="1"
   - TESTS="1" ODOO_REPO="odoo/odoo" INCLUDE="module_analysis" MAKEPOT="1"
 
-
 install:
   - git clone --depth=1 https://github.com/OCA/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
