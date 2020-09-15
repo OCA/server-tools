@@ -2,6 +2,8 @@
 # Copyright 2017 Pedro M. Baeza <pedro.baeza@tecnativa.com>
 # License LGPL-3 - See http://www.gnu.org/licenses/lgpl-3.0.html
 
+from psycopg2 import IntegrityError
+
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
@@ -47,7 +49,10 @@ class CustomInfoTemplate(models.Model):
 
     def _inverse_model(self):
         for r in self:
-            r.model_id = self.env["ir.model"].search([("model", "=", r.model)])
+            model = self.env["ir.model"].search([("model", "=", r.model)])
+            if r.model and not model:
+                raise IntegrityError(_("You must set a existing model."))
+            r.model_id = model
 
     @api.model
     def _search_model(self, operator, value):
