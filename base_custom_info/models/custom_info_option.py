@@ -31,14 +31,18 @@ class CustomInfoOption(models.Model):
 
     def check_access_rule(self, operation):
         """You access an option if you access at least one property."""
-        last_error = None
-        for prop in self.mapped("property_ids"):
-            try:
-                prop.check_access_rule(operation)
-                return
-            except Exception as err:
-                last_error = err
-                pass
-        if last_error:
-            raise last_error
+        # Avoid to enter in infinite loop
+        if not self.env.context.get("check_access_rule_once"):
+            last_error = None
+            for prop in self.with_context(check_access_rule_once=True).mapped(
+                "property_ids"
+            ):
+                try:
+                    prop.check_access_rule(operation)
+                    return
+                except Exception as err:
+                    last_error = err
+                    pass
+            if last_error:
+                raise last_error
         return super().check_access_rule(operation)

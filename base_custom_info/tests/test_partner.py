@@ -19,6 +19,8 @@ class PartnerCase(TransactionCase):
         """Used when you need to use some created custom info."""
         self.agrolait.custom_info_template_id = self.tpl
         self.agrolait._onchange_custom_info_template_id()
+        # need to invalidate cache here: o2m with an integer (res_id) as inverse_name
+        self.agrolait.custom_info_ids.invalidate_cache()
         self.agrolait.get_custom_info_value(
             self.env.ref("base_custom_info.prop_haters")
         ).value_int = 5
@@ -29,6 +31,8 @@ class PartnerCase(TransactionCase):
         agrolait = self.agrolait.with_user(self.demouser)
         agrolait.custom_info_template_id = self.tpl
         agrolait._onchange_custom_info_template_id()
+        # need to invalidate cache here: o2m with an integer (res_id) as inverse_name
+        self.agrolait.custom_info_ids.invalidate_cache()
         prop_weaknesses = agrolait.env.ref("base_custom_info.prop_weaknesses")
         val_weaknesses = agrolait.get_custom_info_value(prop_weaknesses)
         opt_food = agrolait.env.ref("base_custom_info.opt_food")
@@ -68,6 +72,8 @@ class PartnerCase(TransactionCase):
         # Applying a template autofills the values
         self.agrolait.custom_info_template_id = self.tpl
         self.agrolait._onchange_custom_info_template_id()
+        # need to invalidate cache here: o2m with an integer (res_id) as inverse_name
+        self.agrolait.custom_info_ids.invalidate_cache()
         self.assertEqual(len(self.agrolait.custom_info_ids), len(self.tpl.property_ids))
         self.assertEqual(
             self.agrolait.custom_info_ids.mapped("property_id"), self.tpl.property_ids
@@ -76,6 +82,8 @@ class PartnerCase(TransactionCase):
         # Unapplying a template empties the values
         self.agrolait.custom_info_template_id = False
         self.agrolait._onchange_custom_info_template_id()
+        # need to invalidate cache here: o2m with an integer (res_id) as inverse_name
+        self.agrolait.custom_info_ids.invalidate_cache()
         self.assertFalse(self.agrolait.custom_info_template_id)
         self.assertFalse(self.agrolait.custom_info_ids)
 
@@ -128,6 +136,8 @@ class PartnerCase(TransactionCase):
         """Default values get applied."""
         self.agrolait.custom_info_template_id = self.tpl
         self.agrolait._onchange_custom_info_template_id()
+        # need to invalidate cache here: o2m with an integer (res_id) as inverse_name
+        self.agrolait.custom_info_ids.invalidate_cache()
         val_weaknesses = self.agrolait.get_custom_info_value(
             self.env.ref("base_custom_info.prop_weaknesses")
         )
@@ -145,6 +155,8 @@ class PartnerCase(TransactionCase):
         self.agrolait.invalidate_cache()
         self.assertIn(tpl_gamer, self.agrolait.all_custom_info_templates())
         self.agrolait._onchange_custom_info_template_id()
+        # need to invalidate cache here: o2m with an integer (res_id) as inverse_name
+        self.agrolait.custom_info_ids.invalidate_cache()
         self.assertTrue(
             tpl_gamer.property_ids < self.agrolait.mapped("custom_info_ids.property_id")
         )
