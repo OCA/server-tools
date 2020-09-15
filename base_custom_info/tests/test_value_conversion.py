@@ -27,6 +27,8 @@ class ValueConversionCase(TransactionCase):
             value = str(value)
         self.value = self.agrolait.get_custom_info_value(prop)
         self.value[field] = value
+        # need to invalidate cache here: o2m with an integer (res_id) as inverse_name
+        self.agrolait.custom_info_ids.invalidate_cache()
 
     def creation_found(self, value):
         """Ensure you can search what you just created."""
