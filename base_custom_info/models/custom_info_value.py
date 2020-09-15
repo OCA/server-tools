@@ -37,7 +37,7 @@ class CustomInfoValue(models.Model):
         help="Record that owns this custom value.",
     )
     res_id = fields.Integer(
-        string="Resource ID", required=True, index=True, store=True, ondelete="cascade",
+        string="Resource ID", required=True, index=True, ondelete="cascade",
     )
     property_id = fields.Many2one(
         comodel_name="custom.info.property",
