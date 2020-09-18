@@ -16,13 +16,10 @@ class AttachmentQueue(models.Model):
         related="task_id.backend_id",
         store=True,
     )
-    file_type = fields.Selection(
-        selection_add=[("export", "Export File (External location)")]
-    )
 
     def _run(self):
         super()._run()
-        if self.file_type == "export":
+        if self.task_id and self.task_id.method_type == "export":
             path = os.path.join(self.task_id.filepath, self.datas_fname)
             self.storage_backend_id._add_b64_data(path, self.datas)
 
@@ -31,9 +28,3 @@ class AttachmentQueue(models.Model):
         if self.task_id.failure_emails:
             res = self.task_id.failure_emails
         return res
-
-    @api.onchange("task_id")
-    def onchange_task_id(self):
-        for attachment in self:
-            if attachment.task_id.method_type == "export":
-                attachment.file_type = "export"

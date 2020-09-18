@@ -18,11 +18,6 @@ class AttachmentQueue(models.Model):
         ondelete="cascade",
         help="Link to ir.attachment model ",
     )
-    file_type = fields.Selection(
-        selection=[],
-        help="The file type determines an import method to be used "
-        "to parse and transform data before their import in ERP or an export",
-    )
     date_done = fields.Datetime()
     state = fields.Selection(
         [("pending", "Pending"), ("failed", "Failed"), ("done", "Done")],

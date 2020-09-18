@@ -20,7 +20,6 @@ class TestExport(SyncCommon):
                 "name": "foo.txt",
                 "datas_fname": "foo.txt",
                 "task_id": self.task.id,
-                "file_type": "export",
                 "datas": self.filedata,
             }
         )

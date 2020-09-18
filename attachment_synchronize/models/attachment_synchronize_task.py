@@ -82,13 +82,6 @@ class AttachmentSynchronizeTask(models.Model):
         ],
         help="Action after import a file",
     )
-    file_type = fields.Selection(
-        selection=[],
-        string="File Type",
-        help="Used to fill the 'File Type' field in the imported 'Attachments Queues'."
-        "\nFurther operations will be realized on these Attachments Queues depending "
-        "on their 'File Type' value.",
-    )
     enabled = fields.Boolean("Enabled", default=True)
     avoid_duplicated_files = fields.Boolean(
         string="Avoid importing duplicated files",
@@ -109,7 +102,6 @@ class AttachmentSynchronizeTask(models.Model):
             "datas": data,
             "datas_fname": filename,
             "task_id": self.id,
-            "file_type": self.file_type or False,
         }
         return vals
 
