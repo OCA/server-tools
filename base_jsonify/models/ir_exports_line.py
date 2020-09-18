@@ -14,6 +14,7 @@ class IrExportsLine(models.Model):
         help='The complete path to the field where you can specify an '
              'alias on the a step as field:alias'
     )
+    active = fields.Boolean(string="Active", default=True)
 
     @api.constrains('alias', 'name')
     def _check_alias(self):
