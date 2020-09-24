@@ -134,6 +134,20 @@ class TestParser(SavepointCase):
         expected_json["children"] = []
         self.assertDictEqual(json_partner[0], expected_json)
 
+    def test_one(self):
+        parser = [
+            "name",
+        ]
+        expected_json = {
+            "name": "Akretion",
+        }
+        json_partner = self.partner.jsonify(parser, one=True)
+        self.assertDictEqual(json_partner, expected_json)
+        # cannot call on multiple records
+        with self.assertRaises(ValueError) as err:
+            self.env["res.partner"].search([]).jsonify(parser, one=True)
+        self.assertIn("Expected singleton", str(err.exception))
+
     def test_json_export_callable_parser(self):
         self.partner.__class__.jsonify_custom = jsonify_custom
         parser = [
