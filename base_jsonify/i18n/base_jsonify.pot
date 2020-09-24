@@ -14,6 +14,11 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: base_jsonify
+#: model:ir.model.fields,field_description:base_jsonify.field_ir_exports_line__active
+msgid "Active"
+msgstr ""
+
+#. module: base_jsonify
 #: model:ir.model.fields,field_description:base_jsonify.field_ir_exports_line__alias
 msgid "Alias"
 msgstr ""
