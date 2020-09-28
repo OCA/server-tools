@@ -38,6 +38,11 @@ only the possibility to perform the fuzzy search for external addons.
 Installation
 ============
 
+The `pg_trgm` database extension is required.
+The module will automatically try to create it upon installation.
+
+For reference:
+
 #. The PostgreSQL extension ``pg_trgm`` should be available. In debian based
    distribution you have to install the `postgresql-contrib` module.
 #. Install the ``pg_trgm`` extension to your database or give your postgresql
@@ -119,6 +124,10 @@ Contributors
 
   * Vicent Cubells
   * Ernesto Tejeda
+
+* `Open Source Integrators <https://opensourceintegrators.com>`_:
+
+  * Daniel Reis
 
 Maintainers
 ~~~~~~~~~~~
