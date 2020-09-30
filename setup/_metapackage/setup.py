@@ -13,6 +13,7 @@ setuptools.setup(
         'odoo13-addon-base_cron_exclusion',
         'odoo13-addon-base_jsonify',
         'odoo13-addon-base_m2m_custom_field',
+        'odoo13-addon-base_name_search_multi_lang',
         'odoo13-addon-base_search_fuzzy',
         'odoo13-addon-base_technical_user',
         'odoo13-addon-base_time_window',
