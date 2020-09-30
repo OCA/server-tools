@@ -1,4 +1,4 @@
-# Copyright 2016 Eficent Business and IT Consulting Services S.L.
+# Copyright 2016 ForgeFlow S.L.
 # Copyright 2016 Serpent Consulting Services Pvt. Ltd.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
@@ -8,7 +8,7 @@
     "version": "13.0.1.0.0",
     "website": "https://github.com/OCA/server-tools",
     "author": "bloopark systems GmbH & Co. KG, "
-    "Eficent, "
+    "ForgeFlow, "
     "Serpent CS, "
     "Odoo Community Association (OCA)",
     "license": "AGPL-3",
