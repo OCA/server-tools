@@ -23,7 +23,7 @@ Fetchmail Notify Error to Sender
     :target: https://runbot.odoo-community.org/runbot/149/13.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 If fetchmail is not able to correctly route an email, the email is
 "silently" lost (you get an error message in server log).
@@ -66,13 +66,13 @@ Authors
 ~~~~~~~
 
 * Agile Business Group
-* Eficent
+* ForgeFlow
 
 Contributors
 ~~~~~~~~~~~~
 
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
-* Miquel Raïch <miquel.raich@eficent.com> (migration to v9 and v10)
+* Miquel Raïch <miquel.raich@forgeflow.com> (migration to v9 and v10)
 * Hai Dinh <haidd.uit@gmail.com> (migration to V11)
 * Nedas Zilinskas <nedas.zilinskas@xpansa.com> (Ventor, Xpansa Group <https://ventor.tech/>)
 * Denis Valenchyts <denis@ventor.tech> (VentorTech OU <https://ventor.tech>)
