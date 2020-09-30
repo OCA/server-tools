@@ -116,14 +116,14 @@ Authors
 ~~~~~~~
 
 * bloopark systems GmbH & Co. KG
-* Eficent
+* ForgeFlow
 * Serpent CS
 
 Contributors
 ~~~~~~~~~~~~
 
 * Christoph Giesel <https://github.com/christophlsa>
-* Jordi Ballester <jordi.ballester@eficent.com>
+* Jordi Ballester <jordi.ballester@forgeflow.com>
 * Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
 * Dave Lasley <dave@laslabs.com>
 
