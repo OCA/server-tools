@@ -23,7 +23,7 @@ Fetchmail Notify Error to Sender
     :target: https://runbot.odoo-community.org/runbot/149/13.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5|
+|badge1| |badge2| |badge3| |badge4| |badge5| 
 
 If fetchmail is not able to correctly route an email, the email is
 "silently" lost (you get an error message in server log).
