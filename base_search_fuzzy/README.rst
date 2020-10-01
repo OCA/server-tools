@@ -23,7 +23,7 @@ Fuzzy Search
     :target: https://runbot.odoo-community.org/runbot/149/13.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5|
+|badge1| |badge2| |badge3| |badge4| |badge5| 
 
 This addon provides the ability to create GIN or GiST indexes of char and text
 fields and also to use the search operator `%` in search domains. Currently
