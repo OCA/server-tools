@@ -23,7 +23,7 @@ Fetchmail Notify Error to Sender Test
     :target: https://runbot.odoo-community.org/runbot/149/13.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5|
+|badge1| |badge2| |badge3| |badge4| |badge5| 
 
 This module allows to test fetchmail_notify_error_to_sender without installing
 test_mail.
