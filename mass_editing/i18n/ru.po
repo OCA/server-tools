@@ -21,7 +21,7 @@ msgstr ""
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
 #. module: mass_editing
-#: code:addons/mass_editing/models/mass_object.py:107
+#: code:addons/mass_editing/models/mass_editing.py:110
 #, python-format
 msgid "%s (copy)"
 msgstr "%s (копия)"
@@ -32,25 +32,36 @@ msgid "Add Sidebar Button"
 msgstr "Добавить кнопку на панель"
 
 #. module: mass_editing
+#: model:ir.model.fields,help:mass_editing.field_mass_editing_line_widget_option
+msgid ""
+"Add widget text that will be used to display the field in the wizard. "
+"Example :\n"
+"'many2many_tags', 'selection'"
+msgstr ""
+
+#. module: mass_editing
 #: model:ir.ui.view,arch_db:mass_editing.view_mass_object_form
 msgid "Advanced"
 msgstr "Расширенный"
 
 #. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_create_uid
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line_create_uid
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard_create_uid
-#: model:ir.model.fields,field_description:mass_editing.field_mass_object_create_uid
 msgid "Created by"
 msgstr "Создано"
 
 #. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_create_date
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line_create_date
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard_create_date
-#: model:ir.model.fields,field_description:mass_editing.field_mass_object_create_date
 msgid "Created on"
 msgstr "Создан"
 
 #. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_display_name
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line_display_name
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard_display_name
-#: model:ir.model.fields,field_description:mass_editing.field_mass_object_display_name
 msgid "Display Name"
 msgstr "Отображаемое имя"
 
@@ -62,40 +73,52 @@ msgid ""
 msgstr ""
 
 #. module: mass_editing
-#: model:ir.model,name:mass_editing.model_ir_model_fields
-#: model:ir.model.fields,field_description:mass_editing.field_mass_object_field_ids
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line_field_id
+msgid "Field"
+msgstr ""
+
+#. module: mass_editing
 #: model:ir.ui.view,arch_db:mass_editing.view_mass_object_form
 msgid "Fields"
 msgstr "Поля"
 
 #. module: mass_editing
-#: model:ir.model.fields,field_description:mass_editing.field_mass_object_group_ids
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_group_ids
 msgid "Groups"
 msgstr ""
 
 #. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_id
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line_id
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard_id
-#: model:ir.model.fields,field_description:mass_editing.field_mass_object_id
 msgid "ID"
 msgstr "ID"
 
 #. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing___last_update
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line___last_update
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard___last_update
-#: model:ir.model.fields,field_description:mass_editing.field_mass_object___last_update
 msgid "Last Modified on"
 msgstr "Последний раз редактировалось"
 
 #. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line_write_uid
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard_write_uid
-#: model:ir.model.fields,field_description:mass_editing.field_mass_object_write_uid
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_write_uid
 msgid "Last Updated by"
 msgstr "Последний раз обновлено"
 
 #. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line_write_date
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard_write_date
-#: model:ir.model.fields,field_description:mass_editing.field_mass_object_write_date
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_write_date
 msgid "Last Updated on"
 msgstr "Последний раз обновлено"
+
+#. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line_ids
+msgid "Line ids"
+msgstr ""
 
 #. module: mass_editing
 #: model:ir.actions.act_window,name:mass_editing.action_mass_object_form
@@ -105,41 +128,53 @@ msgid "Mass Editing"
 msgstr "Массовое редактирование"
 
 #. module: mass_editing
-#: code:addons/mass_editing/models/mass_object.py:65
+#: code:addons/mass_editing/models/mass_editing.py:68
 #, python-format
 msgid "Mass Editing (%s)"
 msgstr "Массовое редактирование (%s)"
 
 #. module: mass_editing
-#: model:ir.model,name:mass_editing.model_mass_object
+#: model:ir.model,name:mass_editing.model_mass_editing_line
+msgid "Mass Editing Line"
+msgstr ""
+
+#. module: mass_editing
+#: model:ir.model,name:mass_editing.model_mass_editing
 msgid "Mass Editing Object"
 msgstr "Массовое редактирование Объект"
 
 #. module: mass_editing
-#: model:ir.model.fields,field_description:mass_editing.field_mass_object_model_id
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line_mass_editing_id
+msgid "Mass editing id"
+msgstr ""
+
+#. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line_model_id
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_model_id
 msgid "Model"
 msgstr "Модель"
 
 #. module: mass_editing
-#: model:ir.model.fields,field_description:mass_editing.field_mass_object_model_list
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_model_list
 msgid "Model List"
 msgstr "Список моделей"
 
 #. module: mass_editing
-#: model:ir.model.fields,help:mass_editing.field_mass_object_model_id
+#: model:ir.model.fields,help:mass_editing.field_mass_editing_line_model_id
+#: model:ir.model.fields,help:mass_editing.field_mass_editing_model_id
 msgid ""
 "Model is used for Selecting Fields. This is editable until Sidebar menu is "
 "not created."
 msgstr ""
 
 #. module: mass_editing
-#: model:ir.model.fields,field_description:mass_editing.field_mass_object_name
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_name
 msgid "Name"
 msgstr "Название"
 
 #. module: mass_editing
-#: code:addons/mass_editing/models/mass_object.py:41
-#: sql_constraint:mass.object:0
+#: code:addons/mass_editing/models/mass_editing.py:44
+#: sql_constraint:mass.editing:0
 #, python-format
 msgid "Name must be unique!"
 msgstr "Название должно быть уникальным!"
@@ -166,25 +201,35 @@ msgid "Security"
 msgstr ""
 
 #. module: mass_editing
-#: model:ir.model.fields,field_description:mass_editing.field_mass_object_ref_ir_act_window_id
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line_sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_ref_ir_act_window_id
 msgid "Sidebar action"
 msgstr "Действие панели"
 
 #. module: mass_editing
-#: model:ir.model.fields,help:mass_editing.field_mass_object_ref_ir_act_window_id
+#: model:ir.model.fields,help:mass_editing.field_mass_editing_ref_ir_act_window_id
 msgid ""
 "Sidebar action to make this template available on records of the related "
 "document model."
 msgstr ""
 
 #. module: mass_editing
-#: model:ir.model.fields,field_description:mass_editing.field_mass_object_ref_ir_value_id
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_ref_ir_value_id
 msgid "Sidebar button"
 msgstr "Кнопка панели"
 
 #. module: mass_editing
-#: model:ir.model.fields,help:mass_editing.field_mass_object_ref_ir_value_id
+#: model:ir.model.fields,help:mass_editing.field_mass_editing_ref_ir_value_id
 msgid "Sidebar button to open the sidebar action."
+msgstr ""
+
+#. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line_widget_option
+msgid "Widget Option"
 msgstr ""
 
 #. module: mass_editing
