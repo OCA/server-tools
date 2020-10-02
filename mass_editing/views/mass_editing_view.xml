@@ -2,8 +2,8 @@
 <odoo>
 
     <record model="ir.ui.view" id="view_mass_object_form">
-        <field name="name">mass.object.form</field>
-        <field name="model">mass.object</field>
+        <field name="name">mass.editing.form</field>
+        <field name="model">mass.editing</field>
         <field name="arch" type="xml">
             <form string="Object">
                 <sheet>
@@ -40,8 +40,17 @@
                     </group>
                     <notebook colspan="4">
                         <page string="Fields">
-                            <field name="field_ids" colspan="4" nolabel="1"
-                            domain="[('ttype', 'not in', ['reference', 'function']), ('model_id', 'in', model_list)]"/>
+                            <group>
+                                <field name="line_ids" colspan="4" nolabel="1">
+                                    <tree editable="bottom">
+                                        <field name="model_id" invisible="1"/>
+                                        <field name="mass_editing_id" invisible="1"/>
+                                        <field name="sequence" widget="handle"/>
+                                        <field name="field_id"/>
+                                        <field name="widget_option"/>
+                                    </tree>
+                                </field>
+                            </group>
                         </page>
                         <page string="Security">
                             <field name="group_ids" nolabel="1"/>
@@ -59,8 +68,8 @@
     </record>
 
     <record model="ir.ui.view" id="view_mass_object_tree">
-        <field name="name">mass.object.tree</field>
-        <field name="model">mass.object</field>
+        <field name="name">mass.editing.tree</field>
+        <field name="model">mass.editing</field>
         <field name="arch" type="xml">
             <tree string="Object">
                 <field name="name"/>
@@ -71,7 +80,7 @@
 
     <record model="ir.actions.act_window" id="action_mass_object_form">
         <field name="name">Mass Editing</field>
-        <field name="res_model">mass.object</field>
+        <field name="res_model">mass.editing</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="view_id" ref="view_mass_object_tree"/>

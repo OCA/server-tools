@@ -12,6 +12,10 @@ class MassEditingWizard(models.TransientModel):
     _name = 'mass.editing.wizard'
 
     @api.model
+    def _get_field_options(self, field):
+        return {"name": field.name, "nolabel": "1", "colspan": "4"}
+
+    @api.model
     def fields_view_get(self, view_id=None, view_type='form', toolbar=False,
                         submenu=False):
         result =\
@@ -21,7 +25,7 @@ class MassEditingWizard(models.TransientModel):
                                                            submenu=submenu)
         context = self._context
         if context.get('mass_editing_object'):
-            mass_obj = self.env['mass.object']
+            mass_obj = self.env['mass.editing']
             editing_data = mass_obj.browse(context.get('mass_editing_object'))
             all_fields = {}
             xml_form = etree.Element('form', {
@@ -41,9 +45,10 @@ class MassEditingWizard(models.TransientModel):
             })
             model_obj = self.env[context.get('active_model')]
             field_info = model_obj.fields_get()
-            for field in editing_data.field_ids:
+            for line in editing_data.line_ids:
+                field = line.field_id
+                all_fields[field.name] = field_info[field.name]
                 if field.ttype == "many2many":
-                    all_fields[field.name] = field_info[field.name]
                     all_fields["selection__" + field.name] = {
                         'type': 'selection',
                         'string': field_info[field.name]['string'],
@@ -51,162 +56,23 @@ class MassEditingWizard(models.TransientModel):
                                       ('remove_m2m', 'Remove'),
                                       ('add', 'Add')]
                     }
-                    xml_group = etree.SubElement(xml_group, 'group', {
-                        'colspan': '6',
-                        'col': '6',
-                    })
-                    etree.SubElement(xml_group, 'separator', {
-                        'string': field_info[field.name]['string'],
-                        'colspan': '6',
-                    })
-                    etree.SubElement(xml_group, 'field', {
-                        'name': "selection__" + field.name,
-                        'colspan': '6',
-                        'nolabel': '1'
-                    })
-                    etree.SubElement(xml_group, 'field', {
-                        'name': field.name,
-                        'colspan': '6',
-                        'nolabel': '1',
-                        'attrs': ("{'invisible': [('selection__" +
-                                  field.name + "', '=', 'remove_m2m')]}"),
-                    })
-                elif field.ttype == "one2many":
-                    all_fields["selection__" + field.name] = {
-                        'type': 'selection',
-                        'string': field_info[field.name]['string'],
-                        'selection': [('set', 'Set'), ('remove', 'Remove')],
-                    }
-                    all_fields[field.name] = {
-                        'type': field.ttype,
-                        'string': field.field_description,
-                        'relation': field.relation,
-                    }
-                    etree.SubElement(xml_group, 'field', {
-                        'name': "selection__" + field.name,
-                        'colspan': '4',
-                    })
-                    etree.SubElement(xml_group, 'field', {
-                        'name': field.name,
-                        'colspan': '6',
-                        'nolabel': '1',
-                        'attrs': ("{'invisible':[('selection__" +
-                                  field.name + "', '=', 'remove_o2m')]}"),
-                    })
-                elif field.ttype == "many2one":
-                    all_fields["selection__" + field.name] = {
-                        'type': 'selection',
-                        'string': field_info[field.name]['string'],
-                        'selection': [('set', 'Set'), ('remove', 'Remove')],
-                    }
-                    all_fields[field.name] = {
-                        'type': field.ttype,
-                        'string': field.field_description,
-                        'relation': field.relation,
-                    }
-                    etree.SubElement(xml_group, 'field', {
-                        'name': "selection__" + field.name,
-                        'colspan': '2',
-                    })
-                    etree.SubElement(xml_group, 'field', {
-                        'name': field.name,
-                        'nolabel': '1',
-                        'colspan': '4',
-                        'attrs': ("{'invisible':[('selection__" +
-                                  field.name + "', '=', 'remove')]}"),
-                    })
-                elif field.ttype == "char":
-                    all_fields["selection__" + field.name] = {
-                        'type': 'selection',
-                        'string': field_info[field.name]['string'],
-                        'selection': [('set', 'Set'), ('remove', 'Remove')],
-                    }
-                    all_fields[field.name] = {
-                        'type': field.ttype,
-                        'string': field.field_description,
-                        'size': field.size or 256,
-                    }
-                    etree.SubElement(xml_group, 'field', {
-                        'name': "selection__" + field.name,
-                        'colspan': '2',
-                    })
-                    etree.SubElement(xml_group, 'field', {
-                        'name': field.name,
-                        'nolabel': '1',
-                        'attrs': ("{'invisible':[('selection__" +
-                                  field.name + "','=','remove')]}"),
-                        'colspan': '4',
-                    })
-                elif field.ttype == 'selection':
-                    all_fields["selection__" + field.name] = {
-                        'type': 'selection',
-                        'string': field_info[field.name]['string'],
-                        'selection': [('set', 'Set'), ('remove', 'Remove')]
-                    }
-                    etree.SubElement(xml_group, 'field', {
-                        'name': "selection__" + field.name,
-                        'colspan': '2',
-                    })
-                    etree.SubElement(xml_group, 'field', {
-                        'name': field.name,
-                        'nolabel': '1',
-                        'colspan': '4',
-                        'attrs': ("{'invisible':[('selection__" +
-                                  field.name + "', '=', 'remove')]}"),
-                    })
-                    all_fields[field.name] = {
-                        'type': field.ttype,
-                        'string': field.field_description,
-                        'selection': field_info[field.name]['selection'],
-                    }
                 else:
-                    all_fields[field.name] = {
-                        'type': field.ttype,
-                        'string': field.field_description,
-                    }
                     all_fields["selection__" + field.name] = {
                         'type': 'selection',
                         'string': field_info[field.name]['string'],
-                        'selection': [('set', 'Set'), ('remove', 'Remove')]
+                        'selection': [('set', 'Set'),
+                                      ('remove_m2m', 'Remove')]
                     }
-                    if field.ttype == 'text':
-                        xml_group = etree.SubElement(xml_group, 'group', {
-                            'colspan': '6',
-                            'col': '6',
-                        })
-                        etree.SubElement(xml_group, 'separator', {
-                            'string': all_fields[field.name]['string'],
-                            'colspan': '6',
-                        })
-                        etree.SubElement(xml_group, 'field', {
-                            'name': "selection__" + field.name,
-                            'colspan': '6',
-                            'nolabel': '1',
-                        })
-                        etree.SubElement(xml_group, 'field', {
-                            'name': field.name,
-                            'colspan': '6',
-                            'nolabel': '1',
-                            'attrs': ("{'invisible':[('selection__" +
-                                      field.name + "','=','remove')]}"),
-                        })
-                    else:
-                        all_fields["selection__" + field.name] = {
-                            'type': 'selection',
-                            'string': field_info[field.name]['string'],
-                            'selection': [('set', 'Set'), ('remove', 'Remove')]
-                        }
-                        etree.SubElement(xml_group, 'field', {
-                            'name': "selection__" + field.name,
-                            'colspan': '2',
-                        })
-                        etree.SubElement(xml_group, 'field', {
-                            'name': field.name,
-                            'nolabel': '1',
-                            'attrs': ("{'invisible':[('selection__" +
-                                      field.name + "','=','remove')]}"),
-                            'colspan': '4',
-                        })
+                etree.SubElement(
+                    xml_group,
+                    "field",
+                    {"name": "selection__" + field.name, "colspan": "2"},
+                )
+                field_vals = self._get_field_options(field)
+                if line.widget_option:
+                    field_vals["widget"] = line.widget_option
+                etree.SubElement(xml_group, "field", field_vals)
+
             # Patch fields with required extra data
             for field in all_fields.values():
                 field.setdefault("views", {})
