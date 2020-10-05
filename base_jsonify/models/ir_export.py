@@ -49,7 +49,7 @@ def update_dict(data, fields, options):
 def convert_dict(dict_parser):
     """Convert dict returned by update_dict to list consistent w/ Odoo API.
 
-    The list is composed of strings (field names or aliases) or tuples.
+    The list is composed of strings (field names or targets) or tuples.
     """
     parser = []
     for field, value in dict_parser.items():
@@ -63,7 +63,7 @@ def convert_dict(dict_parser):
 def field_dict(field, options=None):
     result = {"name": field.split(":")[0]}
     if len(field.split(":")) > 1:
-        result["alias"] = field.split(":")[1]
+        result["target"] = field.split(":")[1]
     for option in options or {}:
         if options[option]:
             result[option] = options[option]
@@ -100,8 +100,8 @@ class IrExport(models.Model):
             dict_parser = OrderedDict()
             for line in lang_to_lines[lang]:
                 names = line.name.split("/")
-                if line.alias:
-                    names = line.alias.split("/")
+                if line.target:
+                    names = line.target.split("/")
                 options = {"resolver": line.resolver_id, "function": line.function}
                 update_dict(dict_parser, names, options)
             lang_parsers[lang] = convert_dict(dict_parser)

@@ -25,7 +25,7 @@ class Base(models.AbstractModel):
             field_split = f.split(":")
             field_dict = {"name": field_split[0]}
             if len(field_split) > 1:
-                field_dict["alias"] = field_split[1]
+                field_dict["target"] = field_split[1]
             if function:
                 field_dict["function"] = function
             return field_dict
@@ -86,7 +86,7 @@ class Base(models.AbstractModel):
         for field in parser:
             field_dict, subparser = rec.__parse_field(field)
             field_name = field_dict["name"]
-            json_key = field_dict.get("alias", field_name)
+            json_key = field_dict.get("target", field_name)
             field = rec._fields[field_name]
             if field_dict.get("function"):
                 function = field_dict["function"]
