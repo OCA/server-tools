@@ -96,11 +96,11 @@ To use these features, a full parser follows the following structure:
             False: [
                 {'name': 'description'},
                 {'name': 'number', 'resolver': 5},
-                ({'name': 'partner_id', 'alias': 'partner'}, [{'name': 'display_name'}])
+                ({'name': 'partner_id', 'target': 'partner'}, [{'name': 'display_name'}])
             ],
             'fr_FR': [
-                {'name': 'description', 'alias': 'descriptions_fr'},
-                ({'name': 'partner_id', 'alias': 'partner'}, [{'name': 'description', 'alias': 'description_fr'}])
+                {'name': 'description', 'target': 'descriptions_fr'},
+                ({'name': 'partner_id', 'target': 'partner'}, [{'name': 'description', 'target': 'description_fr'}])
             ],
         }
     }
@@ -132,7 +132,7 @@ but other features like custom resolvers are:
         "fields": [
                 {'name': 'description'},
                 {'name': 'number', 'resolver': 5},
-                ({'name': 'partner_id', 'alias': 'partners'}, [{'name': 'display_name'}]),
+                ({'name': 'partner_id', 'target': 'partners'}, [{'name': 'display_name'}]),
         ],
     }
 
@@ -157,7 +157,7 @@ If the global resolver is given, then the json_dict goes through:
 Which allows to add external data from the context or transform the dictionary
 if necessary. Similarly if given for a field the resolver evaluates the result.
 
-It is possible for an alias to end with a '*':
+It is possible for a target to end with a '*':
 in that case the result is put into a list.
 
 .. code-block:: python
@@ -165,8 +165,8 @@ in that case the result is put into a list.
   parser = {
       fields: [
           {'name': 'name'},
-          {'name': 'field_1', 'alias': 'customTags*'},
-          {'name': 'field_2', 'alias': 'customTags*'},
+          {'name': 'field_1', 'target': 'customTags*'},
+          {'name': 'field_2', 'target': 'customTags*'},
       ]
   }
 
