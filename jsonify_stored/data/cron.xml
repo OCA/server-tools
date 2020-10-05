@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="recompute_all_jsonified" model="ir.cron">
+        <field name="name">Recompute Stored Json data (all models)</field>
+        <field name="model_id" ref="model_jsonify_stored_mixin" />
+        <field name="state">code</field>
+        <field name="code">
+for child in model._inherit_children:
+    env[child].cron_recompute(limit=1000)
+        </field>
+        <field name="active" eval="True" />
+        <field name="user_id" ref="base.user_root" />
+        <field name="interval_number">15</field>
+        <field name="interval_type">minutes</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False" />
+    </record>
+</odoo>
