@@ -41,7 +41,7 @@ class TestParser(SavepointCase):
         cls.lang.active = True
         cls.env["ir.translation"]._load_module_terms(["base"], [cls.lang.code])
         category = cls.env["res.partner.category"].create({"name": "name"})
-        cls.translated_alias = "name_{}".format(cls.lang.code)
+        cls.translated_target = "name_{}".format(cls.lang.code)
         cls.env["ir.translation"].create(
             {
                 "type": "model",
@@ -49,7 +49,7 @@ class TestParser(SavepointCase):
                 "module": "base",
                 "lang": cls.lang.code,
                 "res_id": category.id,
-                "value": cls.translated_alias,
+                "value": cls.translated_target,
                 "state": "translated",
             }
         )
@@ -70,7 +70,7 @@ class TestParser(SavepointCase):
                         0,
                         {
                             "name": "name",
-                            "alias": "name:{}".format(cls.translated_alias),
+                            "target": "name:{}".format(cls.translated_target),
                             "lang_id": cls.lang.id,
                         },
                     ),
@@ -79,7 +79,7 @@ class TestParser(SavepointCase):
                         0,
                         {
                             "name": "name",
-                            "alias": "name:name_resolved",
+                            "target": "name:name_resolved",
                             "resolver_id": cls.resolver.id,
                         },
                     ),
@@ -116,9 +116,9 @@ class TestParser(SavepointCase):
         expected_full_parser = exporter.convert_simple_to_full_parser(expected_parser)
         self.assertEqual(parser, expected_full_parser)
 
-        # modify an ir.exports_line to put an alias for a field
+        # modify an ir.exports_line to put a target for a field
         self.env.ref("base_jsonify.category_id_name").write(
-            {"alias": "category_id:category/name"}
+            {"target": "category_id:category/name"}
         )
         expected_parser[4] = ("category_id:category", ["name"])
         parser = exporter.get_json_parser()
@@ -226,7 +226,7 @@ class TestParser(SavepointCase):
         self.assertEqual(
             json, json_fr
         )  # starting from different languages should not change anything
-        self.assertEqual(json[self.translated_alias], self.translated_alias)
+        self.assertEqual(json[self.translated_target], self.translated_target)
         self.assertEqual(json["name_resolved"], "name_pidgin")  # field resolver
         self.assertEqual(json["X"], "X")  # added by global resolver
 
@@ -238,9 +238,9 @@ class TestParser(SavepointCase):
         json_fr = self.category_lang.jsonify(parser)[0]
 
         self.assertEqual(json["name"], "name")
-        self.assertEqual(json_fr["name"], self.translated_alias)
+        self.assertEqual(json_fr["name"], self.translated_target)
 
-    def test_simple_star_alias_and_field_resolver(self):
+    def test_simple_star_target_and_field_resolver(self):
         """The simple parser result should depend on the context language.
         """
         code = (
@@ -251,8 +251,8 @@ class TestParser(SavepointCase):
         )
         resolver = self.env["ir.exports.resolver"].create({"python_code": code})
         lang_parser = [
-            {"alias": "customTags*", "name": "name", "resolver": resolver.id},
-            {"alias": "customTags*", "name": "id", "resolver": resolver.id},
+            {"target": "customTags*", "name": "name", "resolver": resolver.id},
+            {"target": "customTags*", "name": "id", "resolver": resolver.id},
         ]
         parser = {"language_agnostic": True, "langs": {False: lang_parser}}
         expected_json = {
