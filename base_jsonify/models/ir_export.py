@@ -7,7 +7,13 @@ from collections import OrderedDict
 from odoo import fields, models
 
 
-def partition(l, accessor):  # -> Dict
+def partition(l, accessor):
+    """Partition an iterable (e.g. a recordset) according to an accessor (e.g. a lambda)
+       Return a dictionary whose keys are the values obtained from accessor, and values
+       are the items that have this value.
+       Example: partition([{"name": "ax"}, {"name": "by"}], lambda x: "x" in x["name"])
+                => {True: [{"name": "ax"}], False: [{"name": "by"}]}
+    """
     result = {}
     for item in l:
         key = accessor(item)
