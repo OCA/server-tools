@@ -3,7 +3,9 @@
 
 import functools
 import math
+from datetime import datetime
 
+from odoo import fields
 from odoo.exceptions import UserError
 from odoo.tests.common import TransactionCase
 
@@ -88,6 +90,11 @@ class TestPartition(TransactionCase):
         records = functools.reduce(sum, partition.values())
         self.assertEqual(self.xyz, records)  # we get the same recordset
 
+    def test_partition_lambda(self):
+        """Test an arbitrary predicate."""
+        partition = (self.c1 | self.c2).partition(lambda c: "2" in c.name)
+        self.assertEqual(set(partition.keys()), {True, False})
+
     def test_batch(self):
         """The sum of all batches should be the original recordset;
            an empty recordset should return no batch;
@@ -127,7 +134,7 @@ class TestPartition(TransactionCase):
             self.assertEqual(list(record_data.keys()), field_list)
 
     def test_filtered_domain(self):
-        """Initially yo satisfy the coverage tools, this test actually documents
+        """Initially to satisfy the coverage tools, this test actually documents
            a number of pitfalls of filtered_domain and the differences with a search.
            Commented examples would cause warnings, and even though these are edge-cases
            these behaviours should be known.
@@ -182,3 +189,17 @@ class TestPartition(TransactionCase):
             # eq_domain = [(field, "=", r[field].ids)]
             # self.assertEqual(self.xyz.search(eq_domain), self.xyz)
             # self.assertEqual(self.xyz.filtered_domain(eq_domain), empty_recordset)
+
+        # coverage
+        records.filtered_domain(["!", (1, "=", 1)])
+        for operator in ["<", ">", "<=", ">="]:
+            date_now_str = fields.Datetime.to_string(datetime.now())
+            records.filtered_domain([("create_date", operator, date_now_str)])
+        for operator in ["!=", "like", "not like", "=?", "ilike", "=like", "not ilike"]:
+            records.filtered_domain([("name", operator, "c")])
+        records.filtered_domain(
+            ["&", ("parent_id.id", "in", [self.parent1.id]), (1, "=", 1)]
+        )
+        records.filtered_domain(["|", ("parent_id", "child_of", [42]), (0, "=", 1)])
+        with self.assertRaises(ValueError):
+            records.filtered_domain([("name", "===", "test")])
