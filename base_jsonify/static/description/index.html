@@ -424,13 +424,25 @@ It is also to specify a lang to extract the translation of any given field.</p>
         <span class="kc">False</span><span class="p">:</span> <span class="p">[</span>
             <span class="p">{</span><span class="s1">'name'</span><span class="p">:</span> <span class="s1">'description'</span><span class="p">},</span>
             <span class="p">{</span><span class="s1">'name'</span><span class="p">:</span> <span class="s1">'number'</span><span class="p">,</span> <span class="s1">'resolver'</span><span class="p">:</span> <span class="mi">5</span><span class="p">},</span>
-            <span class="p">({</span><span class="s1">'name'</span><span class="p">:</span> <span class="s1">'partner_id'</span><span class="p">,</span> <span class="s1">'alias'</span><span class="p">:</span> <span class="s1">'partners'</span><span class="p">},</span> <span class="p">[{</span><span class="s1">'name'</span><span class="p">:</span> <span class="s1">'display_name'</span><span class="p">}])</span>
+            <span class="p">({</span><span class="s1">'name'</span><span class="p">:</span> <span class="s1">'partner_id'</span><span class="p">,</span> <span class="s1">'alias'</span><span class="p">:</span> <span class="s1">'partner'</span><span class="p">},</span> <span class="p">[{</span><span class="s1">'name'</span><span class="p">:</span> <span class="s1">'display_name'</span><span class="p">}])</span>
         <span class="p">],</span>
         <span class="s1">'fr_FR'</span><span class="p">:</span> <span class="p">[</span>
             <span class="p">{</span><span class="s1">'name'</span><span class="p">:</span> <span class="s1">'description'</span><span class="p">,</span> <span class="s1">'alias'</span><span class="p">:</span> <span class="s1">'descriptions_fr'</span><span class="p">},</span>
-            <span class="p">({</span><span class="s1">'name'</span><span class="p">:</span> <span class="s1">'partner_id'</span><span class="p">,</span> <span class="s1">'alias'</span><span class="p">:</span> <span class="s1">'partners'</span><span class="p">},</span> <span class="p">[{</span><span class="s1">'name'</span><span class="p">:</span> <span class="s1">'description'</span><span class="p">,</span> <span class="s1">'alias'</span><span class="p">:</span> <span class="s1">'description_fr'</span><span class="p">}])</span>
+            <span class="p">({</span><span class="s1">'name'</span><span class="p">:</span> <span class="s1">'partner_id'</span><span class="p">,</span> <span class="s1">'alias'</span><span class="p">:</span> <span class="s1">'partner'</span><span class="p">},</span> <span class="p">[{</span><span class="s1">'name'</span><span class="p">:</span> <span class="s1">'description'</span><span class="p">,</span> <span class="s1">'alias'</span><span class="p">:</span> <span class="s1">'description_fr'</span><span class="p">}])</span>
         <span class="p">],</span>
     <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+<p>One would get the a result having this structure (note that the translated fields are merged in the same dictionary):</p>
+<pre class="code python literal-block">
+<span class="n">exported_json</span> <span class="o">==</span> <span class="p">{</span>
+    <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;English description&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;description_fr&quot;</span><span class="p">:</span> <span class="s2">&quot;French description, voilà&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;number&quot;</span><span class="p">:</span> <span class="mi">42</span><span class="p">,</span>
+    <span class="s2">&quot;partner&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;display_name&quot;</span><span class="p">:</span> <span class="s2">&quot;partner name&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;description_fr&quot;</span><span class="p">:</span> <span class="s2">&quot;French description of that partner&quot;</span><span class="p">,</span>
+    <span class="p">},</span>
 <span class="p">}</span>
 </pre>
 <p>Note that a resolver can be passed either as a recordset or as an id, so as to be fully serializable.
@@ -439,7 +451,6 @@ but other features like custom resolvers are:</p>
 <pre class="code python literal-block">
 <span class="n">parser</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;resolver&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
-    <span class="s2">&quot;language_agnostic&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
     <span class="s2">&quot;fields&quot;</span><span class="p">:</span> <span class="p">[</span>
             <span class="p">{</span><span class="s1">'name'</span><span class="p">:</span> <span class="s1">'description'</span><span class="p">},</span>
             <span class="p">{</span><span class="s1">'name'</span><span class="p">:</span> <span class="s1">'number'</span><span class="p">,</span> <span class="s1">'resolver'</span><span class="p">:</span> <span class="mi">5</span><span class="p">},</span>
@@ -447,6 +458,13 @@ but other features like custom resolvers are:</p>
     <span class="p">],</span>
 <span class="p">}</span>
 </pre>
+<p>By passing the <cite>fields</cite> key instead of <cite>langs</cite>, we have essentially the same behaviour as simple parsers,
+with the added benefit of being able to use resolvers.</p>
+<p>Standard use-cases of resolvers are:
+- give field-specific defaults (e.g. <cite>“”</cite> instead of <cite>None</cite>)
+- cast a field type (e.g. <cite>int()</cite>)
+- alias a particular field for a specific export
+- …</p>
 <p>A simple parser is simply translated into a full parser at export.</p>
 <p>If the global resolver is given, then the json_dict goes through:</p>
 <pre class="code python literal-block">
@@ -455,16 +473,14 @@ but other features like custom resolvers are:</p>
 <p>Which allows to add external data from the context or transform the dictionary
 if necessary. Similarly if given for a field the resolver evaluates the result.</p>
 <p>It is possible for an alias to end with a ‘*’:
-in that case the result it put into a list.</p>
+in that case the result is put into a list.</p>
 <pre class="code python literal-block">
 <span class="n">parser</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;langs&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="kc">False</span><span class="p">:</span> <span class="p">[</span>
-            <span class="p">{</span><span class="s1">'name'</span><span class="p">:</span> <span class="s1">'name'</span><span class="p">},</span>
-            <span class="p">{</span><span class="s1">'name'</span><span class="p">:</span> <span class="s1">'field_1'</span><span class="p">,</span> <span class="s1">'alias'</span><span class="p">:</span> <span class="s1">'customTags*'</span><span class="p">},</span>
-            <span class="p">{</span><span class="s1">'name'</span><span class="p">:</span> <span class="s1">'field_2'</span><span class="p">,</span> <span class="s1">'alias'</span><span class="p">:</span> <span class="s1">'customTags*'</span><span class="p">},</span>
-        <span class="p">]</span>
-    <span class="p">}</span>
+    <span class="n">fields</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span><span class="s1">'name'</span><span class="p">:</span> <span class="s1">'name'</span><span class="p">},</span>
+        <span class="p">{</span><span class="s1">'name'</span><span class="p">:</span> <span class="s1">'field_1'</span><span class="p">,</span> <span class="s1">'alias'</span><span class="p">:</span> <span class="s1">'customTags*'</span><span class="p">},</span>
+        <span class="p">{</span><span class="s1">'name'</span><span class="p">:</span> <span class="s1">'field_2'</span><span class="p">,</span> <span class="s1">'alias'</span><span class="p">:</span> <span class="s1">'customTags*'</span><span class="p">},</span>
+    <span class="p">]</span>
 <span class="p">}</span>
 </pre>
 <p>Would result in the following json structure:</p>
