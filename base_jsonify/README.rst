@@ -96,13 +96,28 @@ To use these features, a full parser follows the following structure:
             False: [
                 {'name': 'description'},
                 {'name': 'number', 'resolver': 5},
-                ({'name': 'partner_id', 'alias': 'partners'}, [{'name': 'display_name'}])
+                ({'name': 'partner_id', 'alias': 'partner'}, [{'name': 'display_name'}])
             ],
             'fr_FR': [
                 {'name': 'description', 'alias': 'descriptions_fr'},
-                ({'name': 'partner_id', 'alias': 'partners'}, [{'name': 'description', 'alias': 'description_fr'}])
+                ({'name': 'partner_id', 'alias': 'partner'}, [{'name': 'description', 'alias': 'description_fr'}])
             ],
         }
+    }
+
+
+One would get the a result having this structure (note that the translated fields are merged in the same dictionary):
+
+.. code-block:: python
+
+    exported_json == {
+        "description": "English description",
+        "description_fr": "French description, voilà",
+        "number": 42,
+        "partner": {
+            "display_name": "partner name",
+            "description_fr": "French description of that partner",
+        },
     }
 
 
@@ -114,7 +129,6 @@ but other features like custom resolvers are:
 
     parser = {
         "resolver": 3,
-        "language_agnostic": True,
         "fields": [
                 {'name': 'description'},
                 {'name': 'number', 'resolver': 5},
@@ -122,6 +136,15 @@ but other features like custom resolvers are:
         ],
     }
 
+
+By passing the `fields` key instead of `langs`, we have essentially the same behaviour as simple parsers,
+with the added benefit of being able to use resolvers.
+
+Standard use-cases of resolvers are:
+- give field-specific defaults (e.g. `""` instead of `None`)
+- cast a field type (e.g. `int()`)
+- alias a particular field for a specific export
+- ...
 
 A simple parser is simply translated into a full parser at export.
 
@@ -135,18 +158,16 @@ Which allows to add external data from the context or transform the dictionary
 if necessary. Similarly if given for a field the resolver evaluates the result.
 
 It is possible for an alias to end with a '*':
-in that case the result it put into a list.
+in that case the result is put into a list.
 
 .. code-block:: python
 
   parser = {
-      "langs": {
-          False: [
-              {'name': 'name'},
-              {'name': 'field_1', 'alias': 'customTags*'},
-              {'name': 'field_2', 'alias': 'customTags*'},
-          ]
-      }
+      fields: [
+          {'name': 'name'},
+          {'name': 'field_1', 'alias': 'customTags*'},
+          {'name': 'field_2', 'alias': 'customTags*'},
+      ]
   }
 
 
