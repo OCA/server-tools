@@ -67,6 +67,14 @@ class Base(models.AbstractModel):
         for i in range(0, len(self), batch_size):
             yield self[i : i + batch_size]
 
+    def read_per_record(self, fields=None, load="_classic_read"):
+        result = {}
+        data_list = self.read(fields=fields, load=load)
+        for d in data_list:
+            key = d.pop("id")
+            result[key] = d
+        return result
+
     def filtered_domain(self, domain):
         """Backport from standard.
         """
