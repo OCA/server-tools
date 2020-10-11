@@ -116,6 +116,16 @@ class TestPartition(TransactionCase):
         batches_from_default = list(records.batch())
         self.assertEqual(batches_from_default, batches)
 
+    def test_read_per_record(self):
+        categories = self.c1 | self.c2 | self.c3
+        field_list = ["name"]
+        data = categories.read_per_record(field_list)
+        self.assertEqual(len(data), len(categories))
+        for record in categories:
+            self.assertTrue(record.id in data)
+            record_data = data[record.id]
+            self.assertEqual(list(record_data.keys()), field_list)
+
     def test_filtered_domain(self):
         """Initially yo satisfy the coverage tools, this test actually documents
            a number of pitfalls of filtered_domain and the differences with a search.
