@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import fields
+from odoo.exceptions import UserError
 from odoo.tests.common import SavepointCase
 
 
@@ -281,3 +282,16 @@ class TestParser(SavepointCase):
 
         json = self.category.jsonify(export.get_json_parser())[0]
         self.assertEqual(json, {"name": "yeah!"})
+
+    def test_bad_parsers(self):
+        bad_field_name = ["Name"]
+        with self.assertRaises(KeyError):
+            self.category.jsonify(bad_field_name, one=True)
+
+        bad_function_name = {"fields": [{"name": "name", "function": "notafunction"}]}
+        with self.assertRaises(UserError):
+            self.category.jsonify(bad_function_name, one=True)
+
+        bad_subparser = {"fields": [({"name": "name"}, [{"name": "subparser_name"}])]}
+        with self.assertRaises(UserError):
+            self.category.jsonify(bad_subparser, one=True)
