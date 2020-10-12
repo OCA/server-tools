@@ -17,8 +17,7 @@ help_message = [
 
 
 class FieldResolver(models.Model):
-    """Arbitrary function to process a field or a dict at export time.
-    """
+    """Arbitrary function to process a field or a dict at export time."""
 
     _name = "ir.exports.resolver"
     _description = "Export Resolver"
