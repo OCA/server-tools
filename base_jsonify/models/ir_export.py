@@ -8,15 +8,15 @@ from odoo import fields, models
 from odoo.tools import ormcache
 
 
-def partition(l, accessor):
+def partition(line, accessor):
     """Partition a recordset according to an accessor (e.g. a lambda).
-       Returns a dictionary whose keys are the values obtained from accessor,
-       and values are the items that have this value.
-       Example: partition([{"name": "ax"}, {"name": "by"}], lambda x: "x" in x["name"])
-                => {True: [{"name": "ax"}], False: [{"name": "by"}]}
+    Returns a dictionary whose keys are the values obtained from accessor,
+    and values are the items that have this value.
+    Example: partition([{"name": "ax"}, {"name": "by"}], lambda x: "x" in x["name"])
+             => {True: [{"name": "ax"}], False: [{"name": "by"}]}
     """
     result = {}
-    for item in l:
+    for item in line:
         key = accessor(item)
         if key not in result:
             result[key] = []

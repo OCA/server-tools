@@ -233,8 +233,7 @@ class TestParser(SavepointCase):
         self.assertEqual(json["X"], "X")  # added by global resolver
 
     def test_simple_parser_translations(self):
-        """The simple parser result should depend on the context language.
-        """
+        """The simple parser result should depend on the context language."""
         parser = ["name"]
         json = self.category.jsonify(parser)[0]
         json_fr = self.category_lang.jsonify(parser)[0]
@@ -243,8 +242,7 @@ class TestParser(SavepointCase):
         self.assertEqual(json_fr["name"], self.translated_target)
 
     def test_simple_star_target_and_field_resolver(self):
-        """The simple parser result should depend on the context language.
-        """
+        """The simple parser result should depend on the context language."""
         code = (
             "is_number = field_type in ('integer', 'float');"
             "ftype = 'NUMBER' if is_number else 'TEXT';"
