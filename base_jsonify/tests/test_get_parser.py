@@ -283,6 +283,33 @@ class TestParser(SavepointCase):
         json = self.category.jsonify(export.get_json_parser())[0]
         self.assertEqual(json, {"name": "yeah!"})
 
+    def test_export_relational_display_names(self):
+        """If we export a relational, we get its display_name in the json."""
+        parser = [
+            "state_id",
+            "country_id",
+            "category_id",
+            "user_ids",
+        ]
+        expected_json = {
+            "state_id": None,
+            "country_id": "France",
+            "category_id": ["Inovator"],
+            "user_ids": [],
+        }
+
+        json_partner = self.partner.jsonify(parser, one=True)
+
+        self.assertDictEqual(json_partner, expected_json)
+
+    def test_export_reference_display_names(self):
+        """Reference work the same as relational"""
+        menu = self.env.ref("base.menu_action_res_users")
+
+        json_menu = menu.jsonify(["action"], one=True)
+
+        self.assertDictEqual(json_menu, {"action": "Users"})
+
     def test_bad_parsers(self):
         bad_field_name = ["Name"]
         with self.assertRaises(KeyError):
