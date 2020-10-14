@@ -87,6 +87,13 @@ class Base(models.AbstractModel):
             # object
             value = fields.Datetime.context_timestamp(self, value)
             value = value.isoformat()
+        elif field_type in ("many2one", "reference"):
+            if not value:
+                value = None
+            else:
+                value = value.display_name
+        elif field_type in ("one2many", "many2many"):
+            value = [v.display_name for v in value]
         return value
 
     def _jsonify_value_subparser(self, field_name, subparser):
