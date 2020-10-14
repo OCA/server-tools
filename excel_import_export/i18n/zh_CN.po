@@ -284,15 +284,16 @@ msgid "Allow Choose Template"
 msgstr "添加表单部分"
 
 #. module: excel_import_export
-#: model:ir.model.fields,field_description:excel_import_export.field_export_xlsx_wizard__attachment_ids
-#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_export__attachment_ids
-#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_import__attachment_ids
-#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_report__attachment_ids
-#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_styles__attachment_ids
-#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__attachment_ids
-#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__attachment_ids
-#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_import__attachment_ids
-msgid "Attachments"
+#: model:ir.model.fields,field_description:excel_import_export.field_export_xlsx_wizard__assigned_attachment_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_import_xlsx_wizard__assigned_attachment_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_export__assigned_attachment_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_import__assigned_attachment_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_report__assigned_attachment_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_styles__assigned_attachment_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__assigned_attachment_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__assigned_attachment_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_import__assigned_attachment_ids
+msgid "Assigned Attachments"
 msgstr ""
 
 #. module: excel_import_export
