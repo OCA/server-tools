@@ -7,7 +7,7 @@ from odoo import fields, models
 class Base(models.AbstractModel):
     _inherit = "base"
 
-    attachment_ids = fields.One2many(
-        'ir.attachment', 'res_id', string='Attachments',
+    assigned_attachment_ids = fields.One2many(
+        'ir.attachment', 'res_id', string='Assigned Attachments',
         domain=lambda self: [('res_model', '=', self._name)], auto_join=True
     )
