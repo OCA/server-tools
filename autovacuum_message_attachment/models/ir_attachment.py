@@ -8,7 +8,7 @@ from datetime import timedelta
 class IrAttachment(models.Model):
     _name = "ir.attachment"
     _inherit = ["ir.attachment", "autovacuum.mixin"]
-    _autovacuum_relation = 'attachment_ids'
+    _autovacuum_relation = 'assigned_attachment_ids'
 
     def _get_autovacuum_domain(self, rule):
         domain = super()._get_autovacuum_domain(rule)
