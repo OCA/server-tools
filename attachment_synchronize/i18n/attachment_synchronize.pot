@@ -24,6 +24,11 @@ msgid "After Import"
 msgstr ""
 
 #. module: attachment_synchronize
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__assigned_attachment_ids
+msgid "Assigned Attachments"
+msgstr ""
+
+#. module: attachment_synchronize
 #: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__attachment_ids
 msgid "Attachment"
 msgstr ""
