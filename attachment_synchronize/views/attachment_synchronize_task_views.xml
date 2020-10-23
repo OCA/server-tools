@@ -5,16 +5,13 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="run_import" type="object" string="Run Import" class="oe_read_only oe_highlight" icon="fa-play-circle" attrs="{'invisible': ['|', ('method_type', '!=', 'import'), ('enabled','=', False)]}"/>
-                </header>
-                <header>
-                    <button name="run_export" type="object" string="Run Export" class="oe_read_only oe_highlight" icon="fa-play-circle" attrs="{'invisible': ['|', ('method_type', '!=', 'export'), ('enabled','=', False)]}"/>
+                    <button name="run" type="object" string="Run" class="oe_read_only oe_highlight" icon="fa-play-circle" attrs="{'invisible': [('active','=', False)]}"/>
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <button name="button_toogle_enabled" type="object" class="oe_stat_button" icon="fa-archive">
+                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
                             <field
-                              name="enabled"
+                              name="active"
                               widget="boolean_button"
                               options="{'terminology': {
                                   'string_true': 'Enabled',
@@ -70,16 +67,17 @@
     <record id="view_attachment_import_task_tree" model="ir.ui.view">
         <field name="model">attachment.synchronize.task</field>
         <field name="arch" type="xml">
-            <tree string="Tasks" decoration-muted="enabled == False">
+            <tree string="Tasks" decoration-muted="active == False">
                 <field name="name" select="1"/>
                 <field name="backend_id"/>
                 <field name="filepath"/>
                 <field name="pattern"/>
                 <field name="after_import"/>
                 <field name="move_path"/>
-                <field name="enabled" invisible="1"/>
+                <field name="active" invisible="1"/>
+                <button name="run" type="object" string="Run" icon="fa-play-circle"/>
                 <button name="button_duplicate_record" type="object" string="Copy" icon="fa-clone"/>
-                <button name="button_toogle_enabled" type="object" string="Enable" icon="fa-archive"/>
+                <button name="toggle_active" type="object" string="Active/Inactive" icon="fa-archive"/>
             </tree>
         </field>
     </record>
@@ -87,13 +85,13 @@
     <record id="view_attachment_export_task_tree" model="ir.ui.view">
         <field name="model">attachment.synchronize.task</field>
         <field name="arch" type="xml">
-            <tree string="Tasks" decoration-muted="enabled == False">
+            <tree string="Tasks" decoration-muted="active == False">
                 <field name="name" select="1"/>
                 <field name="backend_id"/>
                 <field name="filepath"/>
-                <field name="enabled" invisible="1"/>
+                <field name="active" invisible="1"/>
                 <button name="button_duplicate_record" type="object" string="Copy" icon="fa-clone"/>
-                <button name="button_toogle_enabled" type="object" string="Enable" icon="fa-archive"/>
+                <button name="toggle_active" type="object" string="Enable" icon="fa-archive"/>
             </tree>
         </field>
     </record>
@@ -120,7 +118,7 @@
         <field name="view_id" eval="False"/>
         <field name="search_view_id" ref="view_attachment_task_search"/>
         <field name="domain">[('method_type', '=', 'import')]</field>
-        <field name="context">{'default_method_type': 'import'}</field>
+        <field name="context">{'default_method_type': 'import', "active_test": False}</field>
     </record>
 
     <record id="act_open_attachment_import_task_view_tree" model="ir.actions.act_window.view">
@@ -152,7 +150,7 @@
         <field name="view_id" eval="False"/>
         <field name="search_view_id" ref="view_attachment_task_search"/>
         <field name="domain">[('method_type', '=', 'export')]</field>
-        <field name="context">{'default_method_type': 'export'}</field>
+        <field name="context">{'default_method_type': 'export', "active_test": False}</field>
     </record>
 
     <record id="act_open_attachment_export_task_view_tree" model="ir.actions.act_window.view">
