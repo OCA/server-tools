@@ -78,6 +78,6 @@ class TestImport(SyncCommon):
         self._check_attachment_created(count=1)
 
     def test_running_cron_disable_task(self):
-        self.task.write({"after_import": "delete", "enabled": False})
+        self.task.write({"after_import": "delete", "active": False})
         self.env["attachment.synchronize.task"].run_task_import_scheduler()
         self._check_attachment_created(count=0)
