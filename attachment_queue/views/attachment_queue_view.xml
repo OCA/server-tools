@@ -4,6 +4,7 @@
     <record id="view_attachment_queue_form" model="ir.ui.view">
         <field name="model">attachment.queue</field>
         <field name="inherit_id" ref="base.view_attachment_form"/>
+        <field name="mode">primary</field>
         <field name="arch" type="xml">
             <xpath expr="/form/*" position="before">
                 <header>
