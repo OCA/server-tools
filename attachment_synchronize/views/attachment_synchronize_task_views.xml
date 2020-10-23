@@ -90,8 +90,8 @@
                 <button  name="%(action_attachment_queue_related)d" type="action" icon="fa-spinner" context="{'search_default_pending': 1}"/>
                 <field name="count_attachment_done" string=" "/>
                 <button name="%(action_attachment_queue_related)d" type="action" icon="fa-thumbs-o-up" context="{'search_default_done': 1}"/>
-                <button name="button_duplicate_record" type="object" string="Copy" icon="fa-clone"/>
-                <button name="toggle_active" type="object" string="Active/Inactive" icon="fa-archive"/>
+                <button name="button_duplicate_record" type="object" string="Copy" icon="fa-clone" invisible="not context.get('show_duplicate_button')"/>
+                <button name="toggle_active" type="object" string="Active/Inactive" icon="fa-archive" invisible="not context.get('show_toggle_active_button')"/>
             </tree>
         </field>
     </record>
