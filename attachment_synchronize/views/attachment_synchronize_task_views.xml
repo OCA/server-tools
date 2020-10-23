@@ -9,6 +9,30 @@
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
+                        <button name="%(action_attachment_queue_related)d" type="action" class="oe_stat_button" icon="fa-thumbs-o-down" context="{'search_default_failed': 1}">
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_value">
+                                    <field name="count_attachment_failed" widget="statinfo" nolabel="1"/>
+                                </span>
+                                <span class="o_stat_text">Fail</span>
+                            </div>
+                        </button>
+                        <button  name="%(action_attachment_queue_related)d" type="action" class="oe_stat_button" icon="fa-spinner" context="{'search_default_pending': 1}">
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_value">
+                                    <field name="count_attachment_pending" widget="statinfo" nolabel="1"/>
+                                </span>
+                                <span class="o_stat_text">Pending</span>
+                            </div>
+                        </button>
+                        <button name="%(action_attachment_queue_related)d" type="action" class="oe_stat_button" icon="fa-thumbs-o-up" context="{'search_default_done': 1}">
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_value">
+                                    <field name="count_attachment_done" widget="statinfo" nolabel="1"/>
+                                </span>
+                                <span class="o_stat_text">Success</span>
+                            </div>
+                        </button>
                         <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
                             <field
                               name="active"
@@ -41,57 +65,33 @@
                         <field name="after_import" />
                         <field name="move_path" colspan="4" attrs="{'invisible':[('after_import','!=','move'), ('after_import','!=','move_rename')]}"/>
                         <field name="new_name" colspan="4" attrs="{'invisible': [('after_import','!=','rename'), ('after_import','!=','move_rename')]}"/>
+                        <field name="file_type"/>
                     </group>
-                    <group string="Attachments">
-                        <group>
-                            <field name="file_type" attrs="{'invisible':[('method_type','!=','import')]}" />
-                            <field name="failure_emails" />
-                        </group>
-                        <field name="attachment_ids" domain="[('task_id', '=', id)]" nolabel="1" attrs="{'invisible':[('method_type','!=','export')]}">
-                            <tree>
-                                <field name="name"/>
-                                <field name="datas_fname"/>
-                                <field name="file_type"/>
-                                <field name="storage_backend_id"/>
-                                <field name="type"/>
-                                <field name="create_date"/>
-                                <field name="state"/>
-                            </tree>
-                        </field>
+                    <group string="Notification">
+                        <field name="failure_emails"/>
                     </group>
                 </sheet>
             </form>
         </field>
     </record>
 
-    <record id="view_attachment_import_task_tree" model="ir.ui.view">
+    <record id="view_attachment_task_tree" model="ir.ui.view">
         <field name="model">attachment.synchronize.task</field>
         <field name="arch" type="xml">
             <tree string="Tasks" decoration-muted="active == False">
                 <field name="name" select="1"/>
                 <field name="backend_id"/>
                 <field name="filepath"/>
-                <field name="pattern"/>
-                <field name="after_import"/>
-                <field name="move_path"/>
                 <field name="active" invisible="1"/>
                 <button name="run" type="object" string="Run" icon="fa-play-circle"/>
+                <field name="count_attachment_failed" string=" "/>
+                <button name="%(action_attachment_queue_related)d" type="action" icon="fa-thumbs-o-down" context="{'search_default_failed': 1}"/>
+                <field name="count_attachment_pending" string=" "/>
+                <button  name="%(action_attachment_queue_related)d" type="action" icon="fa-spinner" context="{'search_default_pending': 1}"/>
+                <field name="count_attachment_done" string=" "/>
+                <button name="%(action_attachment_queue_related)d" type="action" icon="fa-thumbs-o-up" context="{'search_default_done': 1}"/>
                 <button name="button_duplicate_record" type="object" string="Copy" icon="fa-clone"/>
                 <button name="toggle_active" type="object" string="Active/Inactive" icon="fa-archive"/>
-            </tree>
-        </field>
-    </record>
-
-    <record id="view_attachment_export_task_tree" model="ir.ui.view">
-        <field name="model">attachment.synchronize.task</field>
-        <field name="arch" type="xml">
-            <tree string="Tasks" decoration-muted="active == False">
-                <field name="name" select="1"/>
-                <field name="backend_id"/>
-                <field name="filepath"/>
-                <field name="active" invisible="1"/>
-                <button name="button_duplicate_record" type="object" string="Copy" icon="fa-clone"/>
-                <button name="toggle_active" type="object" string="Enable" icon="fa-archive"/>
             </tree>
         </field>
     </record>
@@ -121,20 +121,6 @@
         <field name="context">{'default_method_type': 'import', "active_test": False}</field>
     </record>
 
-    <record id="act_open_attachment_import_task_view_tree" model="ir.actions.act_window.view">
-        <field eval="10" name="sequence"/>
-        <field name="view_mode">tree</field>
-        <field name="view_id" ref="view_attachment_import_task_tree"/>
-        <field name="act_window_id" ref="action_attachment_import_task"/>
-    </record>
-
-    <record id="act_open_attachment_import_task_view_form" model="ir.actions.act_window.view">
-        <field eval="10" name="sequence"/>
-        <field name="view_mode">form</field>
-        <field name="view_id" ref="view_attachment_task_form"/>
-        <field name="act_window_id" ref="action_attachment_import_task"/>
-    </record>
-
     <menuitem id="menu_attachment_import_task"
     parent="base.next_id_9"
     sequence="21"
@@ -151,20 +137,6 @@
         <field name="search_view_id" ref="view_attachment_task_search"/>
         <field name="domain">[('method_type', '=', 'export')]</field>
         <field name="context">{'default_method_type': 'export', "active_test": False}</field>
-    </record>
-
-    <record id="act_open_attachment_export_task_view_tree" model="ir.actions.act_window.view">
-        <field eval="10" name="sequence"/>
-        <field name="view_mode">tree</field>
-        <field name="view_id" ref="view_attachment_export_task_tree"/>
-        <field name="act_window_id" ref="action_attachment_export_task"/>
-    </record>
-
-    <record id="act_open_attachment_export_task_view_form" model="ir.actions.act_window.view">
-        <field eval="10" name="sequence"/>
-        <field name="view_mode">form</field>
-        <field name="view_id" ref="view_attachment_task_form"/>
-        <field name="act_window_id" ref="action_attachment_export_task"/>
     </record>
 
     <menuitem id="menu_attachment_export_task"
