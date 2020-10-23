@@ -89,7 +89,7 @@ class AttachmentSynchronizeTask(models.Model):
         "\nFurther operations will be realized on these Attachments Queues depending "
         "on their 'File Type' value.",
     )
-    enabled = fields.Boolean("Enabled", default=True)
+    active = fields.Boolean("Enabled", default=True, old="enabled")
     avoid_duplicated_files = fields.Boolean(
         string="Avoid importing duplicated files",
         help="If checked, a file will not be imported if an Attachment Queue with the "
@@ -139,10 +139,18 @@ class AttachmentSynchronizeTask(models.Model):
         if domain is None:
             domain = []
         domain = expression.AND(
-            [domain, [("method_type", "=", "import"), ("enabled", "=", True)]]
+            [domain, [("method_type", "=", "import")]]
         )
         for task in self.search(domain):
             task.run_import()
+
+    def run(self):
+        for record in self:
+            method = "run_{}".format(record.method_type)
+            if not hasattr(self, method):
+                raise NotImplemented
+            else:
+                getattr(record, method)()
 
     def run_import(self):
         self.ensure_one()
@@ -200,10 +208,6 @@ class AttachmentSynchronizeTask(models.Model):
         for task in self:
             task.attachment_ids.filtered(lambda a: a.state == "pending").run()
 
-    def button_toogle_enabled(self):
-        for rec in self:
-            rec.enabled = not rec.enabled
-
     def button_duplicate_record(self):
         self.ensure_one()
-        self.copy({"enabled": False})
+        self.copy({"active": False})
