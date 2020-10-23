@@ -101,6 +101,16 @@ class AttachmentSynchronizeTask(models.Model):
         "related to this task.\nAn alert will be sent to these emails if any operation "
         "on these Attachment Queue's file type fails.",
     )
+    count_attachment_failed = fields.Integer(compute="_compute_count_state")
+    count_attachment_pending = fields.Integer(compute="_compute_count_state")
+    count_attachment_done = fields.Integer(compute="_compute_count_state")
+
+    def _compute_count_state(self):
+        for record in self:
+            for state in ["failed", "pending", "done"]:
+                record["count_attachment_{}".format(state)] = \
+                    len(record.attachment_ids.filtered(lambda r: r.state == state))
+
 
     def _prepare_attachment_vals(self, data, filename):
         self.ensure_one()
