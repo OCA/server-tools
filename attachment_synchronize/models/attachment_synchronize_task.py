@@ -111,7 +111,6 @@ class AttachmentSynchronizeTask(models.Model):
                 record["count_attachment_{}".format(state)] = \
                     len(record.attachment_ids.filtered(lambda r: r.state == state))
 
-
     def _prepare_attachment_vals(self, data, filename):
         self.ensure_one()
         vals = {
@@ -219,5 +218,15 @@ class AttachmentSynchronizeTask(models.Model):
             task.attachment_ids.filtered(lambda a: a.state == "pending").run()
 
     def button_duplicate_record(self):
-        self.ensure_one()
-        self.copy({"active": False})
+        # due to orm limitation method call from ui should not have params
+        # so we need to define this method to be able to copy
+        # if we do not do this the context will be injected in default params
+        # in V14 maybe we can call copy directly
+        self.copy()
+
+    def copy(self, default=None):
+        if default is None:
+            default = {}
+        if "active" not in default:
+            default["active"] = False
+        return super().copy(default=default)
