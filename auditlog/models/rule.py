@@ -431,7 +431,7 @@ class AuditlogRule(models.Model):
         additional_log_values=None,
     ):
         """Create logs. `old_values` and `new_values` are dictionaries, e.g:
-            {RES_ID: {'FIELD': VALUE, ...}}
+        {RES_ID: {'FIELD': VALUE, ...}}
         """
         if old_values is None:
             old_values = EMPTY_DICT
