@@ -57,6 +57,7 @@ class AuditlogRule(models.Model):
         required=True,
         help="Select model for which you want to generate log.",
         states={"subscribed": [("readonly", True)]},
+        ondelete="cascade",
     )
     user_ids = fields.Many2many(
         "res.users",
