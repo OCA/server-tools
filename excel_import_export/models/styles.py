@@ -24,7 +24,7 @@ class XLSXStyles(models.AbstractModel):
             'font': {
                 'bold': Font(name="Arial", size=10, bold=True),
                 'bold_red': Font(name="Arial", size=10,
-                                 color=colors.RED, bold=True),
+                                 color=colors.COLOR_INDEX[2], bold=True),
             },
             'fill': {
                 'red': PatternFill("solid", fgColor="FF0000"),

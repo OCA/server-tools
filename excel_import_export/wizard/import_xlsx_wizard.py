@@ -18,7 +18,6 @@ class ImportXLSXWizard(models.TransientModel):
         'xlsx.template',
         string='Template',
         required=True,
-        ondelete='set null',
         domain=lambda self: self._context.get('template_domain', []),
     )
     res_id = fields.Integer(
@@ -114,7 +113,6 @@ class ImportXLSXWizard(models.TransientModel):
         defaults['res_model'] = res_model
         return defaults
 
-    @api.multi
     def get_import_sample(self):
         self.ensure_one()
         return {
@@ -129,7 +127,6 @@ class ImportXLSXWizard(models.TransientModel):
             'context': self._context.copy()
         }
 
-    @api.multi
     def action_import(self):
         self.ensure_one()
         Import = self.env['xlsx.import']
