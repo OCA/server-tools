@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_exception_rule_confirm" model="ir.ui.view">
+        <field name="name">Exceptions Rules</field>
+        <field name="model">exception.rule.confirm</field>
+        <field name="arch" type="xml">
+            <form string="Outstanding exceptions to manager" version="7.0">
+                <group>
+                    <field name="exception_ids" nolabel="1" colspan="4">
+                        <tree string="Exceptions Rules">
+                            <field name="name" />
+                            <field name="description" />
+                        </tree>
+                    </field>
+                    <newline />
+                </group>
+                <group>
+                    <field
+                        name="ignore"
+                        groups='base_exception.group_exception_rule_manager'
+                    />
+                </group>
+                <footer>
+                    <button
+                        name="action_confirm"
+                        string="_Close"
+                        colspan="1"
+                        type="object"
+                        class="btn-primary"
+                    />
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_exception_rule_confirm" model="ir.actions.act_window">
+        <field name="name">Outstanding exceptions to manage</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">exception.rule.confirm</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_exception_rule_confirm" />
+        <field name="target">new</field>
+    </record>
+</odoo>
