@@ -10,4 +10,3 @@
         _companyObject = ResCompany
         # all prefixed field with _prefix in res.company, will be available in 'res.config.settings' model
         _prefix = 'prefixyouchoose_'
-

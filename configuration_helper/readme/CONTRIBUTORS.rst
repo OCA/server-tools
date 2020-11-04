@@ -4,3 +4,4 @@
 * Angel Moya <angel.moya@pesol.es>
 * Akim Juillerat <akim.juillerat@camptocamp.com>
 * Patrick Tombez <patrick.tombez@camptocamp.com>
+* Phuc Tran Thanh <phuc@trobz.com>
