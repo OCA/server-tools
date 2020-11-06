@@ -8,15 +8,15 @@ import os
 from odoo import fields, models
 from odoo.modules import get_module_path
 
-from ..lib import compare
+from .. import compare
 
 
-class AnalysisWizard(models.TransientModel):
-    _name = "openupgrade.analysis.wizard"
-    _description = "OpenUpgrade Analysis Wizard"
+class UpgradeAnalysisWizard(models.TransientModel):
+    _name = "upgrade.analysis.wizard"
+    _description = "upgrade Analysis Wizard"
 
-    server_config = fields.Many2one(
-        "openupgrade.comparison.config", "Configuration", required=True
+    server_config_id = fields.Many2one(
+        "upgrade.comparison.config", "Configuration", required=True
     )
     state = fields.Selection(
         [("init", "Init"), ("ready", "Ready")], readonly=True, default="init"
@@ -33,7 +33,7 @@ class AnalysisWizard(models.TransientModel):
         change set
         """
 
-        def write_file(module, version, content, filename="openupgrade_analysis.txt"):
+        def write_file(module, version, content, filename="upgrade_analysis.txt"):
             module_path = get_module_path(module)
             if not module_path:
                 return "ERROR: could not find module path:\n"
@@ -53,9 +53,9 @@ class AnalysisWizard(models.TransientModel):
             return None
 
         self.ensure_one()
-        connection = self.server_config.get_connection()
-        remote_record_obj = connection.env["openupgrade.record"]
-        local_record_obj = self.env["openupgrade.record"]
+        connection = self.server_config_id.get_connection()
+        remote_record_obj = connection.env["upgrade.record"]
+        local_record_obj = self.env["upgrade.record"]
 
         # Retrieve field representations and compare
         remote_records = remote_record_obj.field_dump()
@@ -168,9 +168,9 @@ class AnalysisWizard(models.TransientModel):
                 "base",
                 modules["base"].installed_version,
                 general,
-                "openupgrade_general_log.txt",
+                "upgrade_general_log.txt",
             )
-        self.server_config.write({"last_log": general})
+        self.server_config_id.write({"last_log": general})
         self.write({"state": "ready", "log": general})
 
         return {

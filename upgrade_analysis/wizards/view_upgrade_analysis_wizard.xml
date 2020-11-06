@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <record id="view_openupgrade_analysis_wizard_form" model="ir.ui.view">
-        <field name="name">view.openupgrade.analysis_wizard.form</field>
-        <field name="model">openupgrade.analysis.wizard</field>
+    <record id="view_upgrade_analysis_wizard_form" model="ir.ui.view">
+        <field name="model">upgrade.analysis.wizard</field>
         <field name="arch" type="xml">
-            <form string="OpenUpgrade Analysis Wizard">
+            <form>
                 <group>
-                    <field name="server_config" readonly="1" />
+                    <field name="server_config_id" readonly="1" />
                     <field name="state" />
                     <field
                         name="log"
