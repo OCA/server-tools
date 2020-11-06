@@ -95,7 +95,7 @@ class GenerateWizard(models.TransientModel):
         )
         self.env.cache.invalidate(
             [
-                (self.env["openupgrade.record"]._fields["noupdate"], None),
+                (self.env["upgrade.record"]._fields["noupdate"], None),
             ]
         )
 
