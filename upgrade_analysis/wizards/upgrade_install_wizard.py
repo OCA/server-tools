@@ -9,9 +9,9 @@ from odoo.osv.expression import AND
 from ..blacklist import BLACKLIST_MODULES
 
 
-class InstallAll(models.TransientModel):
-    _name = "openupgrade.install.all.wizard"
-    _description = "OpenUpgrade Install All Wizard"
+class UpgradeInstallWizard(models.TransientModel):
+    _name = "upgrade.install.wizard"
+    _description = "Upgrade Install Wizard"
 
     state = fields.Selection(
         [("init", "init"), ("ready", "ready")], readonly=True, default="init"
@@ -22,7 +22,7 @@ class InstallAll(models.TransientModel):
     def default_get(self, fields):
         """Update module list and retrieve the number
         of installable modules"""
-        res = super(InstallAll, self).default_get(fields)
+        res = super().default_get(fields)
         update, add = self.env["ir.module.module"].update_list()
         modules = self.env["ir.module.module"].search(
             [("state", "not in", ["uninstallable", "unknown"])]

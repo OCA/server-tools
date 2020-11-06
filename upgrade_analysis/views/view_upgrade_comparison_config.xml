@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <record id="view_openupgrade_comparison_config_tree" model="ir.ui.view">
-        <field name="name">view.openupgrade.comparison_config.tree</field>
-        <field name="model">openupgrade.comparison.config</field>
+    <record id="view_upgrade_comparison_config_tree" model="ir.ui.view">
+        <field name="model">upgrade.comparison.config</field>
         <field name="arch" type="xml">
-            <tree string="OpenUpgrade Comparison Config">
+            <tree>
                 <field name="name" />
-                <field name="protocol" />
                 <field name="server" />
                 <field name="port" />
                 <field name="database" />
@@ -15,14 +13,12 @@
         </field>
     </record>
 
-    <record id="view_openupgrade_comparison_config_form" model="ir.ui.view">
-        <field name="name">view.openupgrade.comparison_config.form</field>
-        <field name="model">openupgrade.comparison.config</field>
+    <record id="view_upgrade_comparison_config_form" model="ir.ui.view">
+        <field name="model">upgrade.comparison.config</field>
         <field name="arch" type="xml">
-            <form string="OpenUpgrade Comparison Config" version="6.1">
+            <form>
                 <group>
                     <field name="name" />
-                    <field name="protocol" />
                     <field name="server" />
                     <field name="port" />
                     <field name="database" />
@@ -57,21 +53,18 @@
             </form>
         </field>
     </record>
-)
-    <record
-        id="action_openupgrade_comparison_config_tree"
-        model="ir.actions.act_window"
-    >
-        <field name="name">OpenUpgrade Comparison Configs</field>
+
+    <record id="action_upgrade_comparison_config_tree" model="ir.actions.act_window">
+        <field name="name">upgrade Comparison Configs</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="res_model">openupgrade.comparison.config</field>
+        <field name="res_model">upgrade.comparison.config</field>
     </record>
 
     <menuitem
-        action="action_openupgrade_comparison_config_tree"
-        id="menu_openupgrade_comparison_config"
+        action="action_upgrade_comparison_config_tree"
+        id="menu_upgrade_comparison_config"
         name="Comparison Configurations"
-        parent="menu_openupgrade"
+        parent="menu_upgrade"
     />
 
 </odoo>

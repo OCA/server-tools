@@ -8,25 +8,25 @@ from odoo import fields, models
 from odoo.exceptions import UserError
 from odoo.tools.translate import _
 
-from ..lib import apriori
+from .. import apriori
 
 
-class OpenupgradeComparisonConfig(models.Model):
-    _name = "openupgrade.comparison.config"
-    _description = "OpenUpgrade Comparison Configuration"
+class UpgradeComparisonConfig(models.Model):
+    _name = "upgrade.comparison.config"
+    _description = "Upgrade Comparison Configuration"
 
     name = fields.Char()
-    server = fields.Char(required=True)
+
+    server = fields.Char(required=True, default="localhost")
+
     port = fields.Integer(required=True, default=8069)
-    protocol = fields.Selection(
-        [("http://", "XML-RPC")],
-        # ('https://', 'XML-RPC Secure')], not supported by libopenerp
-        required=True,
-        default="http://",
-    )
+
     database = fields.Char(required=True)
-    username = fields.Char(required=True)
-    password = fields.Char(required=True)
+
+    username = fields.Char(required=True, default="admin")
+
+    password = fields.Char(required=True, default="admin")
+
     last_log = fields.Text()
 
     def get_connection(self):
@@ -51,8 +51,8 @@ class OpenupgradeComparisonConfig(models.Model):
     def analyze(self):
         """ Run the analysis wizard """
         self.ensure_one()
-        wizard = self.env["openupgrade.analysis.wizard"].create(
-            {"server_config": self.id}
+        wizard = self.env["upgrade.analysis.wizard"].create(
+            {"server_config_id": self.id}
         )
         return {
             "name": wizard._description,
