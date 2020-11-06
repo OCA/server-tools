@@ -28,7 +28,7 @@
     </record>
 
     <record id="action_upgrade_generate_record_wizard" model="ir.actions.act_window">
-        <field name="name">Generate Records</field>
+        <field name="name">Generate Records Wizard</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">upgrade.generate.record.wizard</field>
         <field name="view_mode">form,tree</field>
@@ -36,7 +36,7 @@
     </record>
 
     <menuitem
-        name="Generate Records"
+        name="Generate Records Wizard"
         id="menu_upgrade_generate_record"
         parent="menu_upgrade"
         action="action_upgrade_generate_record_wizard"
