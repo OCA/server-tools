@@ -2,18 +2,21 @@
 # Copyright 2016 Opener B.V. <https://opener.am>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
-    "name": "OpenUpgrade Records",
+    "name": "Upgrade Analysis",
+    "summary": "performs a difference analysis between modules"
+    " installed on two different Odoo instances",
     "version": "14.0.1.0.0",
     "category": "Migration",
-    "author": "Therp BV, Opener B.V., Odoo Community Association (OCA)",
+    "author": "Therp BV, Opener B.V., GRAP, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/server-tools",
     "data": [
-        "views/openupgrade_record.xml",
-        "views/comparison_config.xml",
-        "views/analysis_wizard.xml",
-        "views/generate_records_wizard.xml",
-        "views/install_all_wizard.xml",
         "security/ir.model.access.csv",
+        "views/menu.xml",
+        "views/view_upgrade_comparison_config.xml",
+        "views/view_upgrade_record.xml",
+        "wizards/view_upgrade_analysis_wizard.xml",
+        "wizards/view_upgrade_generate_record_wizard.xml",
+        "wizards/view_upgrade_install_wizard.xml",
     ],
     "installable": True,
     "external_dependencies": {

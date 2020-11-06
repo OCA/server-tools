@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <record id="view_openupgrade_install_all_wizard_form" model="ir.ui.view">
-        <field name="name">view.openupgrade.install_all_wizard.form</field>
-        <field name="model">openupgrade.install.all.wizard</field>
+    <record id="view_upgrade_install_wizard_form" model="ir.ui.view">
+        <field name="model">upgrade.install.wizard</field>
         <field name="arch" type="xml">
-            <form string="OpenUpgrade Install All Modules Wizard">
+            <form>
                 <field name="state" invisible="1" />
                 <group states="init" colspan="4">
                     <p
@@ -29,19 +28,19 @@
         </field>
     </record>
 
-    <record id="action_install_all" model="ir.actions.act_window">
-        <field name="name">Install All Modules</field>
+    <record id="action_upgrade_install_wizard" model="ir.actions.act_window">
+        <field name="name">Install Modules</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="res_model">openupgrade.install.all.wizard</field>
+        <field name="res_model">upgrade.install.wizard</field>
         <field name="view_mode">form,tree</field>
         <field name="target">new</field>
     </record>
 
     <menuitem
-        name="Install All Modules"
-        id="menu_openupgrade_install_all"
-        parent="menu_openupgrade"
-        action="action_install_all"
+        name="Install  Modules"
+        id="menu_upgrade_install"
+        parent="menu_upgrade"
+        action="action_upgrade_install_wizard"
         sequence="14"
     />
 
