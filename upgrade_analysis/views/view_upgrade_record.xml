@@ -1,17 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <!-- Top level menu under 'Database structure' -->
-    <menuitem
-        id="menu_openupgrade"
-        name="OpenUpgrade Development"
-        parent="base.menu_administration"
-        sequence="99"
-    />
-
-    <record id="view_openupgrade_record_search" model="ir.ui.view">
-        <field name="name">Search view for openupgrade records</field>
-        <field name="model">openupgrade.record</field>
+    <record id="view_upgrade_record_search" model="ir.ui.view">
+        <field name="model">upgrade.record</field>
         <field name="arch" type="xml">
             <search>
                 <field name="module" />
@@ -39,11 +30,10 @@
         </field>
     </record>
 
-    <record id="view_openupgrade_record_tree" model="ir.ui.view">
-        <field name="name">view.openupgrade.record.tree</field>
-        <field name="model">openupgrade.record</field>
+    <record id="view_upgrade_record_tree" model="ir.ui.view">
+        <field name="model">upgrade.record</field>
         <field name="arch" type="xml">
-            <tree string="OpenUpgrade Records">
+            <tree>
                 <field name="module" />
                 <field name="model" />
                 <field name="field" />
@@ -54,11 +44,10 @@
         </field>
     </record>
 
-    <record id="view_openupgrade_record_form" model="ir.ui.view">
-        <field name="name">view.openupgrade.record.form</field>
-        <field name="model">openupgrade.record</field>
+    <record id="view_upgrade_record_form" model="ir.ui.view">
+        <field name="model">upgrade.record</field>
         <field name="arch" type="xml">
-            <form string="OpenUpgrade Record" version="6.1">
+            <form>
                 <field name="module" />
                 <field name="model" />
                 <field name="field" />
@@ -80,17 +69,17 @@
         </field>
     </record>
 
-    <record id="action_openupgrade_record_tree" model="ir.actions.act_window">
-            <field name="name">OpenUpgrade Records</field>
+    <record id="action_upgrade_record_tree" model="ir.actions.act_window">
+            <field name="name">upgrade Records</field>
             <field name="type">ir.actions.act_window</field>
-            <field name="res_model">openupgrade.record</field>
+            <field name="res_model">upgrade.record</field>
     </record>
 
     <menuitem
-        action="action_openupgrade_record_tree"
-        id="menu_openupgrade_records"
+        action="action_upgrade_record_tree"
+        id="menu_upgrade_records"
         name="Records"
-        parent="menu_openupgrade"
+        parent="menu_upgrade"
     />
 
 </odoo>
