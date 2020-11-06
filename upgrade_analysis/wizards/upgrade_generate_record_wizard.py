@@ -10,8 +10,8 @@ from odoo.modules.registry import Registry
 
 
 class GenerateWizard(models.TransientModel):
-    _name = "openupgrade.generate.records.wizard"
-    _description = "OpenUpgrade Generate Records Wizard"
+    _name = "upgrade.generate.record.wizard"
+    _description = "Upgrade Generate Record Wizard"
     _rec_name = "state"
 
     state = fields.Selection([("init", "init"), ("ready", "ready")], default="init")
@@ -35,9 +35,9 @@ class GenerateWizard(models.TransientModel):
         TODO: update module list and versions, then update all modules?"""
         # Truncate the records table
         if openupgrade_tools.table_exists(
-            self.env.cr, "openupgrade_attribute"
-        ) and openupgrade_tools.table_exists(self.env.cr, "openupgrade_record"):
-            self.env.cr.execute("TRUNCATE openupgrade_attribute, openupgrade_record;")
+            self.env.cr, "upgrade_attribute"
+        ) and openupgrade_tools.table_exists(self.env.cr, "upgrade_record"):
+            self.env.cr.execute("TRUNCATE upgrade_attribute, upgrade_record;")
 
         # Run any quirks
         self.quirk_standard_calendar_attendances()
@@ -67,7 +67,7 @@ class GenerateWizard(models.TransientModel):
 
         # Set domain property
         self.env.cr.execute(
-            """ UPDATE openupgrade_record our
+            """ UPDATE upgrade_record our
             SET domain = iaw.domain
             FROM ir_model_data imd
             JOIN ir_act_window iaw ON imd.res_id = iaw.id
@@ -79,13 +79,13 @@ class GenerateWizard(models.TransientModel):
         )
         self.env.cache.invalidate(
             [
-                (self.env["openupgrade.record"]._fields["domain"], None),
+                (self.env["upgrade.record"]._fields["domain"], None),
             ]
         )
 
         # Set noupdate property from ir_model_data
         self.env.cr.execute(
-            """ UPDATE openupgrade_record our
+            """ UPDATE upgrade_record our
             SET noupdate = imd.noupdate
             FROM ir_model_data imd
             WHERE our.type = 'xmlid'
@@ -101,7 +101,7 @@ class GenerateWizard(models.TransientModel):
 
         # Log model records
         self.env.cr.execute(
-            """INSERT INTO openupgrade_record
+            """INSERT INTO upgrade_record
             (module, name, model, type)
             SELECT imd2.module, imd2.module || '.' || imd.name AS name,
                 im.model, 'model' AS type
