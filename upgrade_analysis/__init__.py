@@ -1,3 +1,4 @@
+from . import odoo_patch
 from . import models
 from . import wizards
 from . import blacklist
