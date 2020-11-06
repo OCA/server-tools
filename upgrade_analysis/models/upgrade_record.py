@@ -5,27 +5,18 @@
 from odoo import api, fields, models
 
 
-class Attribute(models.Model):
-    _name = "openupgrade.attribute"
-    _description = "OpenUpgrade Attribute"
+class UpgradeRecord(models.Model):
+    _name = "upgrade.record"
+    _description = "Upgrade Record"
 
     name = fields.Char(readonly=True)
-    value = fields.Char(readonly=True)
-    record_id = fields.Many2one(
-        "openupgrade.record",
-        ondelete="CASCADE",
-        readonly=True,
-    )
 
-
-class Record(models.Model):
-    _name = "openupgrade.record"
-    _description = "OpenUpgrade Record"
-
-    name = fields.Char(readonly=True)
     module = fields.Char(readonly=True)
+
     model = fields.Char(readonly=True)
+
     field = fields.Char(readonly=True)
+
     mode = fields.Selection(
         [("create", "Create"), ("modify", "Modify")],
         help="Set to Create if a field is newly created "
@@ -33,16 +24,26 @@ class Record(models.Model):
         "existing field, set to Modify.",
         readonly=True,
     )
-    type = fields.Selection(  # Uh oh, reserved keyword
+
+    type = fields.Selection(
         [("field", "Field"), ("xmlid", "XML ID"), ("model", "Model")],
         readonly=True,
     )
-    attribute_ids = fields.One2many("openupgrade.attribute", "record_id", readonly=True)
+
+    attribute_ids = fields.One2many(
+        comodel_name="upgrade.attribute", inverse_name="record_id", readonly=True
+    )
+
     noupdate = fields.Boolean(readonly=True)
+
     domain = fields.Char(readonly=True)
+
     prefix = fields.Char(compute="_compute_prefix_and_suffix")
+
     suffix = fields.Char(compute="_compute_prefix_and_suffix")
+
     model_original_module = fields.Char(compute="_compute_model_original_module")
+
     model_type = fields.Char(compute="_compute_model_type")
 
     @api.depends("name")

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!-- Top level menu under 'Database structure' -->
+    <menuitem
+        id="menu_upgrade"
+        name="upgrade Development"
+        parent="base.menu_administration"
+        sequence="99"
+    />
+
+</odoo>
