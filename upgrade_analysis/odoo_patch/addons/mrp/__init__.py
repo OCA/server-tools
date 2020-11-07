@@ -13,7 +13,6 @@ def _pre_init_mrp(cr):
     # cr.execute("""ALTER TABLE "stock_move" ADD COLUMN "is_done" bool;""")
     # cr.execute("""UPDATE stock_move
     #                  SET is_done=COALESCE(state in ('done', 'cancel'), FALSE);""")
-    pass
     # </OpenUpgrade>
 
 
