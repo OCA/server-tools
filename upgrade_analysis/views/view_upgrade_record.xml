@@ -9,23 +9,18 @@
                 <field name="model" />
                 <field name="field" />
                 <field name="type" />
-                <separator />
                 <filter
-                    name="mode_create"
-                    string="Create mode"
+                    name="filter_create"
+                    string="Create Mode"
                     domain="[('mode', '=', 'create')]"
                 />
                 <filter
-                    name="mode_modify"
-                    string="Modify mode"
+                    name="filter_modify"
+                    string="Modify Mode"
                     domain="[('mode', '=', 'modify')]"
                 />
-
-                <separator />
-                <group expand="1" string="Group By">
-                    <filter name="group_by_module" context="{'group_by': 'module'}" />
-                    <filter name="group_by_model" context="{'group_by': 'model'}" />
-                </group>
+                <filter name="group_by_module" context="{'group_by': 'module'}" />
+                <filter name="group_by_model" context="{'group_by': 'model'}" />
             </search>
         </field>
     </record>
@@ -48,23 +43,24 @@
         <field name="model">upgrade.record</field>
         <field name="arch" type="xml">
             <form>
-                <field name="module" />
-                <field name="model" />
-                <field name="field" />
-                <field name="name" />
-                <field name="type" />
-                <field name="mode" />
-                <separator string="Attributes" colspan="4" />
-                <field name="attribute_ids" mode="tree" nolabel="1" colspan="4">
-                    <tree string="Attributes">
+                <sheet>
+                    <group col="4" colspan="4">
                         <field name="name" />
-                        <field name="value" />
-                    </tree>
-                    <form string="Attribute">
-                        <field name="name" />
-                        <field name="value" />
-                    </form>
-                </field>
+                        <field name="module" />
+                        <field name="model" />
+                        <field name="field" />
+                        <field name="type" />
+                        <field name="mode" />
+                    </group>
+                    <group string="Attributes">
+                        <field name="attribute_ids" nolabel="1" colspan="4">
+                            <tree>
+                                <field name="name" />
+                                <field name="value" />
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
             </form>
         </field>
     </record>
