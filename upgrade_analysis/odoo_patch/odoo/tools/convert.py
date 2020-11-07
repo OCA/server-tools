@@ -18,6 +18,6 @@ form: module.record_id""" % (xml_id,)
                 assert modcnt == 1, """The ID "%s" refers to an uninstalled module""" % (xml_id,)
 
         # OpenUpgrade: log entry of XML imports
-        openupgrade_log.log_xml_id(self.env.cr, self.module, xml_id)
+        upgrade_log.log_xml_id(self.env.cr, self.module, xml_id)
 
 xml_import._test_xml_id = __test_xml_id
