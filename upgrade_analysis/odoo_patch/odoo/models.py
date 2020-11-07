@@ -5,7 +5,7 @@ import odoo
 import psycopg2
 from odoo import _
 from odoo.models import fix_import_export_id_paths, BaseModel, _logger
-from odoo.addons.openupgrade_framework.openupgrade import openupgrade_log
+from ... import upgrade_log
 
 
 if True:
@@ -154,7 +154,7 @@ if True:
                 batch_xml_ids.add(xid)
                 # <OpenUpgrade:ADD>
                 # log csv records
-                openupgrade_log.log_xml_id(self.env.cr, current_module, xid)
+                upgrade_log.log_xml_id(self.env.cr, current_module, xid)
                 # </OpenUpgrade>
             elif id:
                 record['id'] = id
