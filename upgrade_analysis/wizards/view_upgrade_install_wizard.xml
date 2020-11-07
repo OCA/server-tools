@@ -5,7 +5,9 @@
         <field name="model">upgrade.install.wizard</field>
         <field name="arch" type="xml">
             <form>
-                <field name="state" />
+                <header>
+                  <field name="state" widget="statusbar" />
+                </header>
                 <group states="draft">
                     <p
                         class="alert alert-warning"
@@ -18,7 +20,7 @@
                         role="alert"
                     >The modules have been installed successfuly</p>
                 </group>
-                <group col="5" states="draft">
+                <group col="4" states="draft">
                     <button
                         name="select_installable_modules"
                         type="object"
@@ -27,7 +29,8 @@
                     <button
                         name="select_odoo_modules"
                         type="object"
-                        string="All Odoo SA Modules (OpenUpgrade)"
+                        string="All Odoo SA Modules"
+                        class="btn-primary"
                     />
                     <button
                         name="select_oca_modules"
@@ -39,11 +42,6 @@
                         type="object"
                         string="All Other Modules"
                     />
-                    <button
-                        name="unselect_modules"
-                        type="object"
-                        string="Clear the list"
-                    />
                 </group>
                 <group states="draft">
                     <field name="module_qty" />
@@ -51,6 +49,11 @@
                         name="module_ids"
                         widget="many2many_tags"
                         options="{'no_create': True}"
+                    />
+                    <button
+                        name="unselect_modules"
+                        type="object"
+                        string="Clear the list"
                     />
                 </group>
                 <footer>

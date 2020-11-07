@@ -43,6 +43,7 @@ repos:
     rev: 20.8b1
     hooks:
       - id: black
+        exclude: ^upgrade_analysis/odoo_patch/
   - repo: https://github.com/pre-commit/mirrors-prettier
     rev: v2.1.2
     hooks:
@@ -53,6 +54,7 @@ repos:
           - "@prettier/plugin-xml@0.12.0"
         args:
           - --plugin=@prettier/plugin-xml
+        exclude: ^upgrade_analysis/odoo_patch/
   - repo: https://github.com/pre-commit/mirrors-eslint
     rev: v7.8.1
     hooks:
@@ -87,6 +89,7 @@ repos:
     rev: v2.7.2
     hooks:
       - id: pyupgrade
+        exclude: ^upgrade_analysis/odoo_patch/
   - repo: https://github.com/PyCQA/isort
     rev: 5.5.1
     hooks:
@@ -94,7 +97,7 @@ repos:
         name: isort except __init__.py
         args:
           - --settings=.
-        exclude: /__init__\.py$
+        exclude: /__init__\.py$|^upgrade_analysis/odoo_patch/
   - repo: https://github.com/acsone/setuptools-odoo
     rev: 2.6.0
     hooks:
@@ -110,13 +113,14 @@ repos:
     hooks:
       - id: flake8
         name: flake8 except __init__.py
-        exclude: /__init__\.py$
+        exclude: /__init__\.py$|^upgrade_analysis/odoo_patch/
         additional_dependencies: ["flake8-bugbear==20.1.4"]
       - id: flake8
         name: flake8 only __init__.py
         args: ["--extend-ignore=F401"] # ignore unused imports in __init__.py
         files: /__init__\.py$
         additional_dependencies: ["flake8-bugbear==20.1.4"]
+        exclude: ^upgrade_analysis/odoo_patch/
   - repo: https://github.com/PyCQA/pylint
     rev: pylint-2.5.3
     hooks:

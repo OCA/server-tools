@@ -13,7 +13,7 @@ from odoo.modules import loading
 from odoo.modules.module import adapt_version, load_openerp_module, initialize_sys_path
 
 from odoo.modules.loading import load_data, load_demo, _check_module_names
-from odoo.addons.openupgrade_framework.openupgrade import openupgrade_loading
+from .... import upgrade_loading
 
 import os
 
@@ -118,8 +118,8 @@ def _load_module_graph(cr, graph, status=None, perform_checks=True,
             for model in env.values():
                 if not model._auto:
                     continue
-                openupgrade_loading.log_model(model, local_registry)
-            openupgrade_loading.compare_registries(
+                upgrade_loading.log_model(model, local_registry)
+            upgrade_loading.compare_registries(
                 cr, package.name, upg_registry, local_registry)
             # </OpenUpgrade>
 
@@ -289,7 +289,7 @@ def _load_marked_modules(cr, graph, states, force, progressdict, report,
         cr.execute("SELECT name from ir_module_module WHERE state IN %s" ,(tuple(states),))
         module_list = [name for (name,) in cr.fetchall() if name not in graph]
         # <OpenUpgrade:ADD>
-        module_list = openupgrade_loading.add_module_dependencies(cr, module_list)
+        module_list = upgrade_loading.add_module_dependencies(cr, module_list)
         # </OpenUpgrade>
         if not module_list:
             break
