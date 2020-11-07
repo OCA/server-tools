@@ -10,13 +10,13 @@ from openupgradelib.openupgrade_tools import table_exists
 
 from odoo import release
 from odoo.modules.module import get_module_path
-from odoo.tools.safe_eval import safe_eval
 from odoo.tools.config import config
+from odoo.tools.safe_eval import safe_eval
 
 # A collection of functions used in
 # odoo/modules/loading.py
 
-logger = logging.getLogger("OpenUpgrade")
+_logger = logging.getLogger(__name__)
 
 
 def add_module_dependencies(cr, module_list):
@@ -104,7 +104,7 @@ def add_module_dependencies(cr, module_list):
     )
     auto_modules = [row[0] for row in cr.fetchall() if get_module_path(row[0])]
     if auto_modules:
-        logger.info("Selecting autoinstallable modules %s", ",".join(auto_modules))
+        _logger.info("Selecting autoinstallable modules %s", ",".join(auto_modules))
         module_list += auto_modules
 
     # Set proper state for new dependencies so that any init scripts are run
@@ -213,7 +213,7 @@ def get_record_id(cr, module, model, field, mode):
     the key parameter values
     """
     cr.execute(
-        "SELECT id FROM openupgrade_record "
+        "SELECT id FROM upgrade_record "
         "WHERE module = %s AND model = %s AND "
         "field = %s AND mode = %s AND type = %s",
         (module, model, field, mode, "field"),
@@ -222,13 +222,13 @@ def get_record_id(cr, module, model, field, mode):
     if record:
         return record[0]
     cr.execute(
-        "INSERT INTO openupgrade_record "
+        "INSERT INTO upgrade_record "
         "(module, model, field, mode, type) "
         "VALUES (%s, %s, %s, %s, %s)",
         (module, model, field, mode, "field"),
     )
     cr.execute(
-        "SELECT id FROM openupgrade_record "
+        "SELECT id FROM upgrade_record "
         "WHERE module = %s AND model = %s AND "
         "field = %s AND mode = %s AND type = %s",
         (module, model, field, mode, "field"),
@@ -242,7 +242,7 @@ def compare_registries(cr, module, registry, local_registry):
     log any differences and merge the local registry with
     the global one.
     """
-    if not table_exists(cr, "openupgrade_record"):
+    if not table_exists(cr, "upgrade_record"):
         return
     for model, flds in local_registry.items():
         registry.setdefault(model, {})
@@ -255,14 +255,14 @@ def compare_registries(cr, module, registry, local_registry):
                     if not record_id:
                         record_id = get_record_id(cr, module, model, field, mode)
                     cr.execute(
-                        "SELECT id FROM openupgrade_attribute "
+                        "SELECT id FROM upgrade_attribute "
                         "WHERE name = %s AND value = %s AND "
                         "record_id = %s",
                         (key, value, record_id),
                     )
                     if not cr.fetchone():
                         cr.execute(
-                            "INSERT INTO openupgrade_attribute "
+                            "INSERT INTO upgrade_attribute "
                             "(name, value, record_id) VALUES (%s, %s, %s)",
                             (key, value, record_id),
                         )
@@ -295,7 +295,7 @@ def update_field_xmlid(model, field):
             and rec["module"] != model.env.context["module"]
             and rec["module"] not in model.env.registry._init_modules
         ):
-            logging.getLogger(__name__).info(
+            _logger.info(
                 "Moving XMLID for ir.model.fields record of %s#%s " "from %s to %s",
                 model._name,
                 rec["name"],
@@ -308,9 +308,7 @@ def update_field_xmlid(model, field):
                 dict(rec, module=model.env.context["module"]),
             )
             if model.env.cr.fetchone():
-                logging.getLogger(__name__).info(
-                    "Aborting, an XMLID for this module already exists."
-                )
+                _logger.info("Aborting, an XMLID for this module already exists.")
                 continue
             model.env.cr.execute(
                 "UPDATE ir_model_data SET module=%(module)s " "WHERE id=%(xmlid_id)s",

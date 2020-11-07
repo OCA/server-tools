@@ -2,7 +2,6 @@
 # Copyright 2016 Opener B.V. <https://opener.am>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openupgradelib import openupgrade_tools
 
 from odoo import _, fields, models
 from odoo.exceptions import UserError
@@ -12,44 +11,38 @@ from odoo.modules.registry import Registry
 class GenerateWizard(models.TransientModel):
     _name = "upgrade.generate.record.wizard"
     _description = "Upgrade Generate Record Wizard"
-    _rec_name = "state"
 
-    state = fields.Selection([("init", "init"), ("ready", "ready")], default="init")
+    state = fields.Selection([("draft", "Draft"), ("done", "Done")], default="draft")
 
-    def quirk_standard_calendar_attendances(self):
-        """Introduced in Odoo 13. The reinstallation causes a one2many value
-        in [(0, 0, {})] format to be loaded on top of the first load, causing a
-        violation of database constraint."""
-        for cal in ("resource_calendar_std_35h", "resource_calendar_std_38h"):
-            record = self.env.ref("resource.%s" % cal, False)
-            if record:
-                record.attendance_ids.unlink()
+    # from openupgradelib import openupgrade_tools
+    # TODO, SLG, make better a patch in odoo_patch
+    # def quirk_standard_calendar_attendances(self):
+    #     """Introduced in Odoo 13. The reinstallation causes a one2many value
+    #     in [(0, 0, {})] format to be loaded on top of the first load, causing a
+    #     violation of database constraint."""
+    #     for cal in ("resource_calendar_std_35h", "resource_calendar_std_38h"):
+    #         record = self.env.ref("resource.%s" % cal, False)
+    #         if record:
+    #             record.attendance_ids.unlink()
+
+    #     # Truncate the records table
+    #     if openupgrade_tools.table_exists(
+    #         self.env.cr, "upgrade_attribute"
+    #     ) and openupgrade_tools.table_exists(self.env.cr, "upgrade_record"):
+    #         self.env.cr.execute("TRUNCATE upgrade_attribute, upgrade_record;")
+
+    #     # Run any quirks
+    #     self.quirk_standard_calendar_attendances()
 
     def generate(self):
-        """Main wizard step. Make sure that all modules are up-to-date,
-        then reinitialize all installed modules.
+        """Reinitialize all installed modules.
         Equivalent of running the server with '-d <database> --init all'
 
         The goal of this is to fill the records table.
 
         TODO: update module list and versions, then update all modules?"""
-        # Truncate the records table
-        if openupgrade_tools.table_exists(
-            self.env.cr, "upgrade_attribute"
-        ) and openupgrade_tools.table_exists(self.env.cr, "upgrade_record"):
-            self.env.cr.execute("TRUNCATE upgrade_attribute, upgrade_record;")
 
-        # Run any quirks
-        self.quirk_standard_calendar_attendances()
-
-        # Need to get all modules in state 'installed'
-        modules = self.env["ir.module.module"].search(
-            [("state", "in", ["to install", "to upgrade"])]
-        )
-        if modules:
-            self.env.cr.commit()  # pylint: disable=invalid-commit
-            Registry.new(self.env.cr.dbname, update_module=True)
-        # Did we succeed above?
+        # Check of all the modules are correctly installed
         modules = self.env["ir.module.module"].search(
             [("state", "in", ["to install", "to upgrade"])]
         )
@@ -116,4 +109,4 @@ class GenerateWizard(models.TransientModel):
             ORDER BY imd.name, imd.id""",
         )
 
-        return self.write({"state": "ready"})
+        return self.write({"state": "done"})
