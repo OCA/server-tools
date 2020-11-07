@@ -1,9 +1,12 @@
-# coding: utf-8
 # Copyright 2011-2015 Therp BV <https://therp.nl>
 # Copyright 2016 Opener B.V. <https://opener.am>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+import logging
+
 from openupgradelib.openupgrade_tools import table_exists
+
+_logger = logging.getLogger(__name__)
 
 
 def log_xml_id(cr, module, xml_id):
@@ -24,7 +27,7 @@ def log_xml_id(cr, module, xml_id):
     get any meaningful results until the *second* time that you 'init'
     the module.
 
-    - The good news is that the openupgrade_records module that comes
+    - The good news is that the upgrade_analysis module that comes
     with this distribution allows you to deal with all of this with
     one click on the menu item Settings -> Customizations ->
     Database Structure -> OpenUpgrade -> Generate Records
@@ -36,25 +39,27 @@ def log_xml_id(cr, module, xml_id):
     :param module: The module that contains the xml_id
     :param xml_id: the xml_id, with or without 'module.' prefix
     """
-    if not table_exists(cr, 'openupgrade_record'):
+    if not table_exists(cr, "upgrade_record"):
         return
-    if '.' not in xml_id:
-        xml_id = '%s.%s' % (module, xml_id)
+    if "." not in xml_id:
+        xml_id = "{}.{}".format(module, xml_id)
     cr.execute(
-        "SELECT model FROM ir_model_data "
-        "WHERE module = %s AND name = %s",
-        xml_id.split('.'))
+        "SELECT model FROM ir_model_data " "WHERE module = %s AND name = %s",
+        xml_id.split("."),
+    )
     record = cr.fetchone()
     if not record:
-        print("Cannot find xml_id %s" % xml_id)
+        _logger.warning("Cannot find xml_id %s" % xml_id)
         return
     else:
         cr.execute(
-            "SELECT id FROM openupgrade_record "
+            "SELECT id FROM upgrade_record "
             "WHERE module=%s AND model=%s AND name=%s AND type=%s",
-            (module, record[0], xml_id, 'xmlid'))
+            (module, record[0], xml_id, "xmlid"),
+        )
         if not cr.fetchone():
             cr.execute(
-                "INSERT INTO openupgrade_record "
+                "INSERT INTO upgrade_record "
                 "(module, model, name, type) values(%s, %s, %s, %s)",
-                (module, record[0], xml_id, 'xmlid'))
+                (module, record[0], xml_id, "xmlid"),
+            )
