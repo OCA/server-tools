@@ -32,7 +32,7 @@ class ResCompanyLdapOperator(models.AbstractModel):
     def query(self, ldap_entry, mapping):
         query_string = Template(mapping.value).safe_substitute({
             attr: ldap_entry[1][attr][0] for attr in ldap_entry[1]
-        })
+        }).encode('utf8')
         _logger.debug(
             'evaluating query group mapping, filter: %s' % query_string
         )
