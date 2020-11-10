@@ -22,6 +22,7 @@ setuptools.setup(
         'odoo12-addon-base_jsonify',
         'odoo12-addon-base_kanban_stage',
         'odoo12-addon-base_kanban_stage_state',
+        'odoo12-addon-base_locale_uom_default',
         'odoo12-addon-base_m2m_custom_field',
         'odoo12-addon-base_remote',
         'odoo12-addon-base_search_fuzzy',
