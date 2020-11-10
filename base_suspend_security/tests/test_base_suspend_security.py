@@ -24,10 +24,15 @@ from ..base_suspend_security import BaseSuspendSecurityUid
 
 
 class TestBaseSuspendSecurity(TransactionCase):
-    def test_base_suspend_security(self):
+
+    def setUp(self):
+        super(TestBaseSuspendSecurity, self).setUp()
         # tests are called before register_hook
         self.env['ir.rule']._register_hook()
-        user_id = self.env.ref('base.user_demo').id
+        self.user = self.env.ref('base.user_demo')
+
+    def test_base_suspend_security(self):
+        user_id = self.user.id
         other_company = self.env['res.company'].create({
             'name': 'other company',
             # without this, a partner is created and mail's constraint on
@@ -61,3 +66,14 @@ class TestBaseSuspendSecurity(TransactionCase):
         self.assertEqual(
             BaseSuspendSecurityUid(42), BaseSuspendSecurityUid(42),
         )
+
+    def test_changing_access_right(self):
+        env = self.env(user=self.user.id)
+        # we add the access right on company
+        group_manager_id = self.ref('base.group_erp_manager')
+        self.user.write({'groups_id': [(4, group_manager_id)]})
+        env['ir.model.access'].check('res.company', mode='write')
+        # we remove the access right on company
+        self.user.write({'groups_id': [(3, group_manager_id)]})
+        with self.assertRaises(exceptions.AccessError):
+            env['ir.model.access'].check('res.company', mode='write')
