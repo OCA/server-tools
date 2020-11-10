@@ -69,6 +69,11 @@ msgid "Csv File"
 msgstr ""
 
 #. module: sql_export
+#: model:ir.model.fields,field_description:sql_export.date_field_variable_sql
+msgid "Date"
+msgstr ""
+
+#. module: sql_export
 #: model:ir.model.fields,field_description:sql_export.field_sql_export__display_name
 #: model:ir.model.fields,field_description:sql_export.field_sql_file_wizard__display_name
 msgid "Display Name"
@@ -123,6 +128,7 @@ msgstr "Nome del campo"
 #. module: sql_export
 #: model:ir.model.fields,field_description:sql_export.field_sql_export__id
 #: model:ir.model.fields,field_description:sql_export.field_sql_file_wizard__id
+#: model:ir.model.fields,field_description:sql_export.integer_field_variable_sql
 msgid "ID"
 msgstr "ID"
 
@@ -156,6 +162,11 @@ msgid "Parameters"
 msgstr ""
 
 #. module: sql_export
+#: model:ir.model.fields,field_description:sql_export.m2m_field_variable_sql
+msgid "Partner Categories"
+msgstr ""
+
+#. module: sql_export
 #: model:ir.model.fields,field_description:sql_export.field_sql_export__query
 msgid "Query"
 msgstr ""
@@ -172,7 +183,7 @@ msgid "SQL Export"
 msgstr ""
 
 #. module: sql_export
-#: model:ir.actions.act_window,name:sql_export.sql_parameter_tree_action
+#: model:ir.actions.act_window,name:sql_export.sql_parameter_action
 #: model_terms:ir.ui.view,arch_db:sql_export.sql_parameter_view_tree
 msgid "SQL Parameter"
 msgstr ""
