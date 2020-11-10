@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: base_locale_uom_default
-#: model:ir.model.fields,field_description:base_locale_uom_default.field_res_lang_default_uom_ids
+#: model:ir.model.fields,field_description:base_locale_uom_default.field_res_lang__default_uom_ids
 msgid "Default Units"
 msgstr ""
 

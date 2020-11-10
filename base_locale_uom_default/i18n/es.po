@@ -20,7 +20,7 @@ msgstr ""
 "X-Generator: Poedit 1.8.11\n"
 
 #. module: base_locale_uom_default
-#: model:ir.model.fields,field_description:base_locale_uom_default.field_res_lang_default_uom_ids
+#: model:ir.model.fields,field_description:base_locale_uom_default.field_res_lang__default_uom_ids
 msgid "Default Units"
 msgstr "Unidades por defecto"
 
@@ -33,4 +33,5 @@ msgstr "Idiomas"
 #: code:addons/base_locale_uom_default/models/res_lang.py:24
 #, python-format
 msgid "Only one default unit of measure per category may be selected."
-msgstr "Sólo se puede seleccionar una unidad de medida por defecto por categoría."
+msgstr ""
+"Sólo se puede seleccionar una unidad de medida por defecto por categoría."

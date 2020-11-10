@@ -21,7 +21,7 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #. module: base_locale_uom_default
-#: model:ir.model.fields,field_description:base_locale_uom_default.field_res_lang_default_uom_ids
+#: model:ir.model.fields,field_description:base_locale_uom_default.field_res_lang__default_uom_ids
 msgid "Default Units"
 msgstr "Zadane jedinice"
 
