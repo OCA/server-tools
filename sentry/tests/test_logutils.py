@@ -41,7 +41,8 @@ class TestOdooCookieSanitizer(unittest.TestCase):
         self.assertTrue("request" in result)
         http = result["request"]
         self.assertEqual(
-            http["cookies"], "website_lang=en_us;session_id;foo=bar".format(m=proc.MASK)
+            http["cookies"],
+            "website_lang=en_us;session_id={m};foo=bar".format(m=proc.MASK),
         )
 
     def test_cookie_header(self):

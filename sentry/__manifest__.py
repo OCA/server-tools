@@ -3,9 +3,9 @@
 {
     "name": "Sentry",
     "summary": "Report Odoo errors to Sentry",
-    "version": "13.0.1.1.0",
+    "version": "14.0.1.0.0",
     "category": "Extra Tools",
-    "website": "https://odoo-community.org/",
+    "website": "https://github.com/OCA/server-tools",
     "author": "Mohammed Barsi,"
     "Versada,"
     "Nicolas JEUDY,"
