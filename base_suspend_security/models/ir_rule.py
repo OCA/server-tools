@@ -21,6 +21,19 @@ from openerp import models, api
 from ..base_suspend_security import BaseSuspendSecurityUid, SUSPEND_METHOD
 
 
+@api.multi
+def check_access_rule(self, operation, context=None):
+    """ Grant access on transient models in the case of suspended security.
+    Otherwise, the ORM will try to compare the suspended security uid with
+    the integer create_uids from the records in the database
+    """
+    if self.is_transient() and isinstance(
+            self.env.uid, BaseSuspendSecurityUid):
+        return True
+    return self.check_access_rule_before_suspend_security(
+        operation, context=context)
+
+
 class IrRule(models.Model):
     _inherit = 'ir.rule'
 
@@ -35,4 +48,7 @@ class IrRule(models.Model):
             setattr(models.BaseModel, SUSPEND_METHOD,
                     lambda self: self.sudo(
                         user=BaseSuspendSecurityUid(self.env.uid)))
+            models.BaseModel.check_access_rule_before_suspend_security = (
+                models.BaseModel.check_access_rule)
+            models.BaseModel.check_access_rule = check_access_rule
         return super(IrRule, self)._register_hook(cr)
