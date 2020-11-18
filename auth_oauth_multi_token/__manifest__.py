@@ -11,7 +11,7 @@
               'Camptocamp, '
               'Odoo Community Association (OCA)',
     'summary': """Allow multiple connection with the same OAuth account""",
-    'category': 'Tool',
+    'category': 'Tools',
     'website': 'https://github.com/OCA/server-tools',
     'depends': ['auth_oauth'],
     'data': [
