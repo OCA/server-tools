@@ -16,5 +16,7 @@
     "demo": ["demo/ir_cron.xml"],
     "post_init_hook": "post_init_hook",
     "installable": True,
-    "external_dependencies": {"python": ["acme", "cryptography", "dns", "josepy"]},
+    "external_dependencies": {
+        "python": ["acme", "cryptography", "dnspython", "josepy"]
+    },
 }
