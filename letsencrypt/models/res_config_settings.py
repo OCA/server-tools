@@ -1,5 +1,5 @@
-# Copyright 2018 Therp BV <http://therp.nl>
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# Copyright 2018-2020 Therp BV <https://therp.nl>.
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo import _, api, exceptions, fields, models
 
@@ -79,12 +79,9 @@ class ResConfigSettings(models.TransientModel):
         )
         return res
 
-    @api.multi
     def set_values(self):
         super().set_values()
-
         self.letsencrypt_check_dns_required()
-
         if self.letsencrypt_dns_provider == "shell":
             lines = [
                 line.strip() for line in self.letsencrypt_dns_shell_script.split("\n")
