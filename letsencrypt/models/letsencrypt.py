@@ -74,7 +74,6 @@ class Letsencrypt(models.AbstractModel):
     _name = "letsencrypt"
     _description = "Abstract model providing functions for letsencrypt"
 
-    @api.model
     def _generate_key(self):
         """Generate an entirely new key."""
         return rsa.generate_private_key(
@@ -87,7 +86,6 @@ class Letsencrypt(models.AbstractModel):
             encryption_algorithm=serialization.NoEncryption(),
         )
 
-    @api.model
     def _get_key(self, key_name):
         """Get a key for a filename, generating if if it doesn't exist."""
         key_file = os.path.join(_get_data_dir(), key_name)
@@ -109,7 +107,6 @@ class Letsencrypt(models.AbstractModel):
                 key_bytes = file_.read()
         return key_bytes
 
-    @api.model
     def _validate_domain(self, domain):
         """Validate that a domain is publicly accessible."""
         if ":" in domain or all(char.isdigit() or char == "." for char in domain):
@@ -122,7 +119,6 @@ class Letsencrypt(models.AbstractModel):
                 _("Domain %s: Let's encrypt doesn't work with local domains!") % domain
             )
 
-    @api.model
     def _should_run(self, cert_file, domains):
         """Inspect the existing certificate to see if action is necessary."""
         domains = set(domains)
@@ -290,7 +286,6 @@ class Letsencrypt(models.AbstractModel):
         else:
             _logger.warning("No reload command defined.")
 
-    @api.model
     def _wait_for_record(self, domain, token):
         """Wait until a TXT record for a domain is visible."""
         if not domain.endswith("."):
@@ -330,7 +325,6 @@ class Letsencrypt(models.AbstractModel):
         net = acme.client.ClientNetwork(account_key)
         return acme.client.ClientV2(directory_json, net)
 
-    @api.model
     def _cascade_domains(self, domains):
         """Remove domains that are obsoleted by wildcard domains in the list.
 
@@ -367,7 +361,6 @@ class Letsencrypt(models.AbstractModel):
             return [urllib.parse.urlparse(base_url).hostname]
         return re.split("(?:,|\n| |;)+", altnames)
 
-    @api.model
     def _respond_challenge_http(self, challenge, account_key):
         """
         Respond to the HTTP challenge by writing the file to serve.
@@ -391,7 +384,6 @@ class Letsencrypt(models.AbstractModel):
         dns_function = getattr(self, "_respond_challenge_dns_" + provider)
         dns_function(domain.replace("*.", ""), token)
 
-    @api.model
     def _call_cmdline(self, cmdline, env=None):
         """Call a shell command."""
         process = subprocess.Popen(
@@ -430,7 +422,6 @@ class Letsencrypt(models.AbstractModel):
         else:
             raise UserError(_("No shell command configured for updating DNS records"))
 
-    @api.model
     def _base64_encode(self, data):
         """Encode data as a URL-safe base64 string without padding.
 
