@@ -3,7 +3,6 @@
 
 from odoo import _, api, exceptions, fields, models
 
-
 DNS_SCRIPT_DEFAULT = """# Write your script here
 # It should create a TXT record of $LETSENCRYPT_DNS_CHALLENGE
 # on _acme-challenge.$LETSENCRYPT_DNS_DOMAIN
@@ -11,46 +10,45 @@ DNS_SCRIPT_DEFAULT = """# Write your script here
 
 
 class ResConfigSettings(models.TransientModel):
-    _inherit = 'res.config.settings'
+    _inherit = "res.config.settings"
 
     letsencrypt_altnames = fields.Text(
         string="Domain names",
-        default='',
+        default="",
         help=(
-            'Domains to use for the certificate. '
-            'Separate with commas or newlines.'
+            "Domains to use for the certificate. " "Separate with commas or newlines."
         ),
         force_config_parameter="letsencrypt.altnames",
     )
     letsencrypt_dns_provider = fields.Selection(
-        selection=[('shell', 'Shell script')],
-        string='DNS provider',
+        selection=[("shell", "Shell script")],
+        string="DNS provider",
         help=(
-            'For wildcard certificates we need to add a TXT record on your '
+            "For wildcard certificates we need to add a TXT record on your "
             'DNS. If you set this to "Shell script" you can enter a shell '
-            'script. Other options can be added by installing additional '
-            'modules.'
+            "script. Other options can be added by installing additional "
+            "modules."
         ),
         config_parameter="letsencrypt.dns_provider",
     )
     letsencrypt_dns_shell_script = fields.Text(
-        string='DNS update script',
+        string="DNS update script",
         help=(
-            'Write a shell script that will update your DNS TXT records. '
-            'You can use the $LETSENCRYPT_DNS_CHALLENGE and '
-            '$LETSENCRYPT_DNS_DOMAIN variables.'
+            "Write a shell script that will update your DNS TXT records. "
+            "You can use the $LETSENCRYPT_DNS_CHALLENGE and "
+            "$LETSENCRYPT_DNS_DOMAIN variables."
         ),
         default=DNS_SCRIPT_DEFAULT,
         force_config_parameter="letsencrypt.dns_shell_script",
     )
     letsencrypt_needs_dns_provider = fields.Boolean()
     letsencrypt_reload_command = fields.Text(
-        string='Server reload command',
-        help='Fill this with the command to restart your web server.',
+        string="Server reload command",
+        help="Fill this with the command to restart your web server.",
         force_config_parameter="letsencrypt.reload_command",
     )
     letsencrypt_testing_mode = fields.Boolean(
-        string='Use testing server',
+        string="Use testing server",
         help=(
             "Use the Let's Encrypt staging server, which has higher rate "
             "limits but doesn't create valid certificates."
@@ -66,9 +64,9 @@ class ResConfigSettings(models.TransientModel):
         config_parameter="letsencrypt.prefer_dns",
     )
 
-    @api.onchange('letsencrypt_altnames', 'letsencrypt_prefer_dns')
+    @api.onchange("letsencrypt_altnames", "letsencrypt_prefer_dns")
     def letsencrypt_check_dns_required(self):
-        altnames = self.letsencrypt_altnames or ''
+        altnames = self.letsencrypt_altnames or ""
         self.letsencrypt_needs_dns_provider = (
             "*." in altnames or self.letsencrypt_prefer_dns
         )
@@ -77,8 +75,7 @@ class ResConfigSettings(models.TransientModel):
     def default_get(self, fields_list):
         res = super().default_get(fields_list)
         res["letsencrypt_needs_dns_provider"] = (
-            "*." in res["letsencrypt_altnames"]
-            or res["letsencrypt_prefer_dns"]
+            "*." in res["letsencrypt_altnames"] or res["letsencrypt_prefer_dns"]
         )
         return res
 
@@ -88,12 +85,11 @@ class ResConfigSettings(models.TransientModel):
 
         self.letsencrypt_check_dns_required()
 
-        if self.letsencrypt_dns_provider == 'shell':
+        if self.letsencrypt_dns_provider == "shell":
             lines = [
-                line.strip()
-                for line in self.letsencrypt_dns_shell_script.split('\n')
+                line.strip() for line in self.letsencrypt_dns_shell_script.split("\n")
             ]
-            if all(line == '' or line.startswith('#') for line in lines):
+            if all(line == "" or line.startswith("#") for line in lines):
                 raise exceptions.ValidationError(
                     _("You didn't write a DNS update script!")
                 )
@@ -114,9 +110,7 @@ class ResConfigSettings(models.TransientModel):
         for name in classified["other"]:
             field = self._fields[name]
             if hasattr(field, "force_config_parameter"):
-                classified["config"].append(
-                    (name, field.force_config_parameter)
-                )
+                classified["config"].append((name, field.force_config_parameter))
             else:
                 new_other.append(name)
         classified["other"] = new_other
