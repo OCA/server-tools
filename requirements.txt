@@ -1,5 +1,9 @@
+acme
 astor
-raven
+cryptography
+dnspython
+josepy
 openpyxl==3.0.4
 pygount
 pysftp
+raven
