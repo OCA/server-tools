@@ -59,7 +59,6 @@ msgstr "??chec de la saugarde"
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__backup_format
 #, fuzzy
-#| msgid "Backup Failed"
 msgid "Backup Format"
 msgstr "??chec de la saugarde"
 
@@ -97,7 +96,6 @@ msgstr "Impossible de dupliquer une configuration."
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__backup_format
 #, fuzzy
-#| msgid "Choose the storage method for this backup."
 msgid "Choose the format for this backup."
 msgstr "Choisissez la m??thode de stockage pour cette sauvegarde."
 
