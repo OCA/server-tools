@@ -209,7 +209,6 @@ msgstr "Regras de Exceções"
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_base_exception__exceptions_summary
 #, fuzzy
-#| msgid "Exception manager"
 msgid "Exceptions Summary"
 msgstr "Gestor de Exceções"
 
