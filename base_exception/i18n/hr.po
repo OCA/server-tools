@@ -143,7 +143,6 @@ msgstr ""
 #. module: base_exception
 #: model:ir.model,name:base_exception.model_base_exception
 #, fuzzy
-#| msgid "base.exception"
 msgid "Exception"
 msgstr "base.exception"
 
@@ -161,14 +160,12 @@ msgstr ""
 #. module: base_exception
 #: model:ir.model,name:base_exception.model_exception_rule_confirm
 #, fuzzy
-#| msgid "exception.rule.confirm"
 msgid "Exception Rule Confirm Wizard"
 msgstr "exception.rule.confirm"
 
 #. module: base_exception
 #: model:ir.model,name:base_exception.model_base_exception_method
 #, fuzzy
-#| msgid "exception.rule.confirm"
 msgid "Exception Rule Methods"
 msgstr "exception.rule.confirm"
 
@@ -206,7 +203,6 @@ msgstr ""
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_base_exception__exceptions_summary
 #, fuzzy
-#| msgid "base.exception"
 msgid "Exceptions Summary"
 msgstr "base.exception"
 

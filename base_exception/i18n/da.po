@@ -141,7 +141,6 @@ msgstr ""
 #. module: base_exception
 #: model:ir.model,name:base_exception.model_base_exception
 #, fuzzy
-#| msgid "Description"
 msgid "Exception"
 msgstr "Beskrivelse"
 
@@ -200,7 +199,6 @@ msgstr ""
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_base_exception__exceptions_summary
 #, fuzzy
-#| msgid "Description"
 msgid "Exceptions Summary"
 msgstr "Beskrivelse"
 
