@@ -194,28 +194,24 @@ msgstr "Kanban"
 #. module: base_kanban_stage
 #: model:ir.model,name:base_kanban_stage.model_base_kanban_abstract
 #, fuzzy
-#| msgid "Kanban Status"
 msgid "Kanban Abstract"
 msgstr "Kanban Status"
 
 #. module: base_kanban_stage
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_abstract__kanban_color
 #, fuzzy
-#| msgid "Color Index"
 msgid "Kanban Color Index"
 msgstr "Farbindex"
 
 #. module: base_kanban_stage
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_abstract__kanban_priority
 #, fuzzy
-#| msgid "Kanban priority"
 msgid "Kanban Priority"
 msgstr "Kanban Priorität"
 
 #. module: base_kanban_stage
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_abstract__kanban_sequence
 #, fuzzy
-#| msgid "Kanban sequence"
 msgid "Kanban Sequence"
 msgstr "Kanban Sequenz"
 
