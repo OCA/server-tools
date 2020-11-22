@@ -151,7 +151,6 @@ msgstr "Categoría"
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_property__category_sequence
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value__category_sequence
 #, fuzzy
-#| msgid "Category"
 msgid "Category Sequence"
 msgstr "Categoría"
 
@@ -173,7 +172,6 @@ msgstr ""
 #. module: base_custom_info
 #: model:ir.model,name:base_custom_info.model_res_config_settings
 #, fuzzy
-#| msgid "base.config.settings"
 msgid "Config Settings"
 msgstr "base.config.settings"
 
@@ -293,14 +291,12 @@ msgstr ""
 #. module: base_custom_info
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value__value_date
 #, fuzzy
-#| msgid "Text value"
 msgid "Date value"
 msgstr "Valor de texto"
 
 #. module: base_custom_info
 #: selection:custom.info.property,widget:0
 #, fuzzy
-#| msgid "Decimal number"
 msgid "Decimal"
 msgstr "Número decimal"
 
@@ -317,7 +313,6 @@ msgstr "Valor del número decimal"
 #. module: base_custom_info
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_property__default_value
 #, fuzzy
-#| msgid "Default value"
 msgid "Default Value"
 msgstr "Valor por defecto"
 
@@ -370,7 +365,6 @@ msgstr "Género de videojuegos favorito"
 #. module: base_custom_info
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value__field_name
 #, fuzzy
-#| msgid "Field name"
 msgid "Field Name"
 msgstr "Nombre del campo"
 
@@ -378,7 +372,6 @@ msgstr "Nombre del campo"
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_property__field_type
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value__field_type
 #, fuzzy
-#| msgid "Field type"
 msgid "Field Type"
 msgstr "Tipo del campo"
 
@@ -664,7 +657,6 @@ msgstr "Requerido"
 #. module: base_custom_info
 #: model_terms:ir.ui.view,arch_db:base_custom_info.custom_info_value_search
 #, fuzzy
-#| msgid "Resource ID"
 msgid "Resource"
 msgstr "ID del Recurso"
 
@@ -833,7 +825,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_custom_info.field_ir_actions_act_window_view__view_mode
 #: model:ir.model.fields,field_description:base_custom_info.field_ir_ui_view__type
 #, fuzzy
-#| msgid "Field type"
 msgid "View Type"
 msgstr "Tipo del campo"
 
@@ -845,7 +836,6 @@ msgstr "¿Qué debilidades tiene?"
 #. module: base_custom_info
 #: model:custom.info.property,name:base_custom_info.prop_buy_fav_game
 #, fuzzy
-#| msgid "Favourite videogames genre"
 msgid "When Favourite videogame was bought?"
 msgstr "Género de videojuegos favorito"
 

@@ -356,7 +356,6 @@ msgstr ""
 #. module: base_custom_info
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value__field_name
 #, fuzzy
-#| msgid "Display Name"
 msgid "Field Name"
 msgstr "Nom à afficher"
 
@@ -638,7 +637,6 @@ msgstr ""
 #. module: base_custom_info
 #: model_terms:ir.ui.view,arch_db:base_custom_info.custom_info_value_search
 #, fuzzy
-#| msgid "Resource ID"
 msgid "Resource"
 msgstr "ID de l'enregistrement"
 
