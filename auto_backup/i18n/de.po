@@ -58,7 +58,6 @@ msgstr "Backup fehlgeschlagen"
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__backup_format
 #, fuzzy
-#| msgid "Backup Failed"
 msgid "Backup Format"
 msgstr "Backup fehlgeschlagen"
 
@@ -94,7 +93,6 @@ msgstr ""
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__backup_format
 #, fuzzy
-#| msgid "Absolute path for storing the backups"
 msgid "Choose the format for this backup."
 msgstr "Absoluter Pfad zum Speichern der Sicherungen"
 
