@@ -134,10 +134,6 @@ msgstr ""
 #. module: base_exception
 #: code:addons/base_exception/models/base_exception.py:0
 #, fuzzy, python-format
-#| msgid ""
-#| "Error when evaluating the exception.rule rule:\n"
-#| " %s \n"
-#| "(%s)"
 msgid ""
 "Error when evaluating the exception.rule rule:\n"
 " %s \n"
@@ -150,7 +146,6 @@ msgstr ""
 #. module: base_exception
 #: model:ir.model,name:base_exception.model_base_exception
 #, fuzzy
-#| msgid "Exceptions"
 msgid "Exception"
 msgstr "الخلل"
 
@@ -168,14 +163,12 @@ msgstr "قانون الخلل"
 #. module: base_exception
 #: model:ir.model,name:base_exception.model_exception_rule_confirm
 #, fuzzy
-#| msgid "Exception Rule"
 msgid "Exception Rule Confirm Wizard"
 msgstr "قانون الخلل"
 
 #. module: base_exception
 #: model:ir.model,name:base_exception.model_base_exception_method
 #, fuzzy
-#| msgid "Exception Rules"
 msgid "Exception Rule Methods"
 msgstr "قوانين الخلل"
 
@@ -193,7 +186,6 @@ msgstr "قوانين الخلل"
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule__exception_type
 #, fuzzy
-#| msgid "Exception Name"
 msgid "Exception Type"
 msgstr "اسم الخلل"
 
@@ -215,7 +207,6 @@ msgstr "قوانين الخلل"
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_base_exception__exceptions_summary
 #, fuzzy
-#| msgid "Exception manager"
 msgid "Exceptions Summary"
 msgstr "مدير قوانين الخلل"
 
