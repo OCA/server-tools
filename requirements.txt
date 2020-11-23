@@ -2,5 +2,6 @@
 dataclasses
 odoorpc
 openupgradelib
+pyyaml
 raven
 unidecode
