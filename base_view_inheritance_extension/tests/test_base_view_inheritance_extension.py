@@ -23,7 +23,6 @@ class TestBaseViewInheritanceExtension(TransactionCase):
 
     def test_list_add(self):
         view_model = self.env["ir.ui.view"]
-        inherit_id = self.env.ref("base.view_partner_form").id
         source = etree.fromstring(
             """\
             <form>
@@ -43,7 +42,7 @@ class TestBaseViewInheritanceExtension(TransactionCase):
             """
         )
         modified_source = view_model.inheritance_handler_attributes_list_add(
-            source, specs, inherit_id
+            source, specs
         )
         button_node = modified_source.xpath('//button[@name="test"]')[0]
         self.assertEqual(button_node.attrib["states"], "draft,open,valid")
@@ -59,14 +58,13 @@ class TestBaseViewInheritanceExtension(TransactionCase):
             """
         )
         modified_source = view_model.inheritance_handler_attributes_list_add(
-            source, specs, inherit_id
+            source, specs
         )
         button_node = modified_source.xpath('//button[@name="test"]')[0]
         self.assertEqual(button_node.attrib["states"], "draft,open,valid,payable,paid")
 
     def test_list_remove(self):
         view_model = self.env["ir.ui.view"]
-        inherit_id = self.env.ref("base.view_partner_form").id
         source = etree.fromstring(
             """\
             <form>
@@ -86,14 +84,13 @@ class TestBaseViewInheritanceExtension(TransactionCase):
             """
         )
         modified_source = view_model.inheritance_handler_attributes_list_remove(
-            source, specs, inherit_id
+            source, specs
         )
         button_node = modified_source.xpath('//button[@name="test"]')[0]
         self.assertEqual(button_node.attrib["states"], "draft,valid,paid")
 
     def test_python_dict_inheritance(self):
         view_model = self.env["ir.ui.view"]
-        inherit_id = self.env.ref("base.view_partner_form").id
         source = etree.fromstring(
             """<form>
                 <field name="invoice_line_ids"
@@ -120,7 +117,7 @@ class TestBaseViewInheritanceExtension(TransactionCase):
             """
         )
         modified_source = view_model.inheritance_handler_attributes_python_dict(
-            source, specs, inherit_id
+            source, specs
         )
         field_node = modified_source.xpath('//field[@name="invoice_line_ids"]')[0]
         self.assertTrue(
