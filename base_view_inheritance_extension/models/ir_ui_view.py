@@ -39,11 +39,9 @@ class IrUiView(models.Model):
     _inherit = "ir.ui.view"
 
     @api.model
-    def apply_inheritance_specs(
-        self, source, specs_tree, inherit_id, pre_locate=lambda s: True
-    ):
+    def apply_inheritance_specs(self, source, specs_tree, pre_locate=lambda s: True):
         for specs, handled_by in self._iter_inheritance_specs(specs_tree):
-            source = handled_by(source, specs, inherit_id)
+            source = handled_by(source, specs)
         return source
 
     @api.model
@@ -99,7 +97,7 @@ class IrUiView(models.Model):
         return variables
 
     @api.model
-    def inheritance_handler_attributes_python_dict(self, source, specs, inherit_id):
+    def inheritance_handler_attributes_python_dict(self, source, specs):
         """Implement
         <$node position="attributes">
             <attribute name="$attribute" operation="python_dict" key="$key">
@@ -120,7 +118,7 @@ class IrUiView(models.Model):
         return source
 
     @api.model
-    def inheritance_handler_attributes_list_add(self, source, specs, inherit_id):
+    def inheritance_handler_attributes_list_add(self, source, specs):
         """Implement
         <$node position="attributes">
             <attribute name="$attribute" operation="list_add">
@@ -136,7 +134,7 @@ class IrUiView(models.Model):
         return source
 
     @api.model
-    def inheritance_handler_attributes_list_remove(self, source, specs, inherit_id):
+    def inheritance_handler_attributes_list_remove(self, source, specs):
         """Implement
         <$node position="attributes">
             <attribute name="$attribute" operation="list_remove">
