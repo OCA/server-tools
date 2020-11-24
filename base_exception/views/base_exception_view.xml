@@ -77,11 +77,11 @@
                                     <ul>
                                         <li><code
                                             >self</code>: Record on which the rule is evaluated.</li>
-                                        <li><code
-                                            >time</code>: useful Python libraries</li>
                                         <li>To block the exception use: <code
                                             >failed = True</code></li>
                                     </ul>
+                                    <p
+                                    >As well as all the libraries provided in safe_eval.</p>
                                 </div>
                             </group>
                         </page>

@@ -11,3 +11,5 @@
 * Tecnativa <tecnativa.com>
 
   * João Marques
+
+* Kevin Khao <kevin.khao@akretion.com>
