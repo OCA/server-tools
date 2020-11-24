@@ -14,13 +14,13 @@ Exception Rule
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github
-    :target: https://github.com/OCA/server-tools/tree/13.0/base_exception
+    :target: https://github.com/OCA/server-tools/tree/14.0/base_exception
     :alt: OCA/server-tools
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/server-tools-13-0/server-tools-13-0-base_exception
+    :target: https://translation.odoo-community.org/projects/server-tools-14-0/server-tools-14-0-base_exception
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
-    :target: https://runbot.odoo-community.org/runbot/149/13.0
+    :target: https://runbot.odoo-community.org/runbot/149/14.0
     :alt: Try me on Runbot
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
@@ -28,7 +28,7 @@ Exception Rule
 This module provide an abstract model to manage customizable
 exceptions to be applied on different models (sale order, invoice, ...).
 
-It is not useful for itself. You can see an example of implementation
+It is not useful by itself. You can see an example of implementation
 in the 'sale_exception' module. (sale-workflow repository) or
 'purchase_exception' module (purchase-workflow repository).
 
@@ -40,9 +40,9 @@ in the 'sale_exception' module. (sale-workflow repository) or
 Known issues / Roadmap
 ======================
 
-Terms used in old api like `pool`, `cr`, `uid` must be removed porting this module in version 12.
-
-This module execute user provided code though a safe_eval, it's unsecure? How mitigate risks should be adressed in future versions of this module.
+This module executes user-provided code though a safe_eval which might be
+unsecure.
+How to mitigate risks should be adressed in future versions of this module.
 
 Bug Tracker
 ===========
@@ -50,7 +50,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/server-tools/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/server-tools/issues/new?body=module:%20base_exception%0Aversion:%2013.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/server-tools/issues/new?body=module:%20base_exception%0Aversion:%2014.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -81,6 +81,8 @@ Contributors
 
   * João Marques
 
+* Kevin Khao <kevin.khao@akretion.com>
+
 Maintainers
 ~~~~~~~~~~~
 
@@ -94,6 +96,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/13.0/base_exception>`_ project on GitHub.
+This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/14.0/base_exception>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
