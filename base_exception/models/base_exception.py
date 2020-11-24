@@ -68,10 +68,10 @@ class BaseExceptionMethod(models.AbstractModel):
 
     def _get_main_records(self):
         """
-            Used in case we check exceptions on a record but write these
-            exceptions on a parent record. Typical example is with
-            sale.order.line. We check exceptions on some sale order lines but
-            write these exceptions on the sale order, so they are visible.
+        Used in case we check exceptions on a record but write these
+        exceptions on a parent record. Typical example is with
+        sale.order.line. We check exceptions on some sale order lines but
+        write these exceptions on the sale order, so they are visible.
         """
         return self
 
@@ -168,7 +168,7 @@ class BaseExceptionMethod(models.AbstractModel):
 
     def _detect_exceptions_by_py_code(self, rule):
         """
-            Find exceptions found on self.
+        Find exceptions found on self.
         """
         domain = self._get_base_domain()
         records = self.search(domain)
@@ -180,7 +180,7 @@ class BaseExceptionMethod(models.AbstractModel):
 
     def _detect_exceptions_by_domain(self, rule):
         """
-            Find exceptions found on self.
+        Find exceptions found on self.
         """
         base_domain = self._get_base_domain()
         rule_domain = rule._get_domain()
