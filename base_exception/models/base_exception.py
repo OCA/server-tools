@@ -5,7 +5,6 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 import html
-import time
 
 from odoo import _, api, fields, models, osv
 from odoo.exceptions import UserError, ValidationError
@@ -131,15 +130,9 @@ class BaseExceptionMethod(models.AbstractModel):
     @api.model
     def _exception_rule_eval_context(self, rec):
         return {
-            "time": time,
             "self": rec,
-            # object, obj: deprecated.
-            # should be removed in future migrations
             "object": rec,
             "obj": rec,
-            # copy context to prevent side-effects of eval
-            # should be deprecated too, accesible through self.
-            "context": self.env.context.copy(),
         }
 
     @api.model
