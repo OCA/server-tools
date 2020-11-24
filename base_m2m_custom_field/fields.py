@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Copyright 2019 Camptocamp SA
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
 from odoo import fields
@@ -15,7 +16,7 @@ class Many2manyCustom(fields.Many2many):
     def update_db(self, model, columns):
         if not self.create_table:
             return
-        return super().update_db(model, columns)
+        return super(Many2manyCustom, self).update_db(model, columns)
 
 
 fields.Many2manyCustom = Many2manyCustom
