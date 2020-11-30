@@ -38,7 +38,11 @@ def ensure_module_state(env, modules, state):
     if names:
         raise FailedUpgradeError(
             "The following modules should be in state '%s' "
-            "at this stage: %s. Bailing out for safety." % (state, ",".join(names),),
+            "at this stage: %s. Bailing out for safety."
+            % (
+                state,
+                ",".join(names),
+            ),
         )
 
 
@@ -49,14 +53,19 @@ class Module(models.Model):
         self.ensure_one()
 
         exclude_patterns = self.env["ir.config_parameter"].get_param(
-            PARAM_EXCLUDE_PATTERNS, DEFAULT_EXCLUDE_PATTERNS,
+            PARAM_EXCLUDE_PATTERNS,
+            DEFAULT_EXCLUDE_PATTERNS,
         )
         exclude_patterns = [p.strip() for p in exclude_patterns.split(",")]
         keep_langs = self.env["res.lang"].search([]).mapped("code")
 
         module_path = get_module_path(self.name)
         if module_path and os.path.isdir(module_path):
-            checksum_dir = addon_hash(module_path, exclude_patterns, keep_langs,)
+            checksum_dir = addon_hash(
+                module_path,
+                exclude_patterns,
+                keep_langs,
+            )
         else:
             checksum_dir = False
 
