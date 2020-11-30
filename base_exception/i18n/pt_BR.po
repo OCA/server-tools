@@ -1,0 +1,381 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * base_exception
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+# falexandresilva <falexandresilva@gmail.com>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-07-21 02:42+0000\n"
+"PO-Revision-Date: 2019-11-24 19:57+0000\n"
+"Last-Translator: Rodrigo Macedo <rmsolucoeseminformatic4@gmail.com>\n"
+"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/"
+"teams/23907/pt_BR/)\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.8\n"
+
+#. module: base_exception
+#: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_form
+msgid "<code>self</code>: Record on which the rule is evaluated."
+msgstr "<code>self</code>: Registro no qual a regra é avaliada."
+
+#. module: base_exception
+#: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_form
+msgid "<code>time</code>: useful Python libraries"
+msgstr "<code>time</code>: bibliotecas python usáveis"
+
+#. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule__active
+msgid "Active"
+msgstr "Ativo"
+
+#. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule__model
+msgid "Apply on"
+msgstr "Aplicar no"
+
+#. module: base_exception
+#: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_form
+msgid "Archived"
+msgstr ""
+
+#. module: base_exception
+#: model:ir.model.fields.selection,name:base_exception.selection__exception_rule__exception_type__by_domain
+msgid "By domain"
+msgstr "Por domínio"
+
+#. module: base_exception
+#: model:ir.model.fields.selection,name:base_exception.selection__exception_rule__exception_type__by_py_code
+msgid "By python code"
+msgstr "Por código python"
+
+#. module: base_exception
+#: model:ir.model.fields,help:base_exception.field_exception_rule__exception_type
+msgid ""
+"By python code: allow to define any arbitrary check\n"
+"By domain: limited to a selection by an odoo domain:\n"
+"           performance can be better when exceptions            are "
+"evaluated with several records"
+msgstr ""
+"Por código python: permite definir qualquer verificação arbitrária\n"
+"Por domínio: limitado a uma seleção por um domínio odoo:\n"
+"            o desempenho pode ser melhor quando exceções são avaliadas com "
+"vários registros"
+
+#. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_base_exception__changeset_change_ids
+#: model:ir.model.fields,field_description:base_exception.field_base_exception_method__changeset_change_ids
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule__changeset_change_ids
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm__changeset_change_ids
+msgid "Changeset Changes"
+msgstr ""
+
+#. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_base_exception__changeset_ids
+#: model:ir.model.fields,field_description:base_exception.field_base_exception_method__changeset_ids
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule__changeset_ids
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm__changeset_ids
+msgid "Changesets"
+msgstr ""
+
+#. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_base_exception__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_exception.field_base_exception_method__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr ""
+
+#. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_base_exception__count_pending_changesets
+#: model:ir.model.fields,field_description:base_exception.field_base_exception_method__count_pending_changesets
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule__count_pending_changesets
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr ""
+
+#. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule__create_uid
+msgid "Created by"
+msgstr "Criado por"
+
+#. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule__create_date
+msgid "Created on"
+msgstr "Criado em"
+
+#. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule__description
+msgid "Description"
+msgstr "Descrição"
+
+#. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_base_exception__display_name
+#: model:ir.model.fields,field_description:base_exception.field_base_exception_method__display_name
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule__display_name
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm__display_name
+msgid "Display Name"
+msgstr "Mostrar Nome"
+
+#. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule__domain
+msgid "Domain"
+msgstr "Domínio"
+
+#. module: base_exception
+#: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_form
+msgid ""
+"Enter Python code here. Help about Python expression is available in the "
+"help tab of this document."
+msgstr ""
+"Digite o código Python aqui. A ajuda sobre a expressão Python está "
+"disponível na guia de ajuda deste documento."
+
+#. module: base_exception
+#: code:addons/base_exception/models/base_exception.py:0
+#, python-format
+msgid ""
+"Error when evaluating the exception.rule rule:\n"
+" %s \n"
+"(%s)"
+msgstr ""
+"Erro ao avaliar a regra exception.rule:\n"
+" %s \n"
+"(%s)"
+
+#. module: base_exception
+#: model:ir.model,name:base_exception.model_base_exception
+msgid "Exception"
+msgstr "Exceções"
+
+#. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule__name
+msgid "Exception Name"
+msgstr "Nome da exceção"
+
+#. module: base_exception
+#: model:ir.model,name:base_exception.model_exception_rule
+#: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_tree
+msgid "Exception Rule"
+msgstr "Regra de exceção"
+
+#. module: base_exception
+#: model:ir.model,name:base_exception.model_exception_rule_confirm
+msgid "Exception Rule Confirm Wizard"
+msgstr "Assistente de confirmação de regra de exceção"
+
+#. module: base_exception
+#: model:ir.model,name:base_exception.model_base_exception_method
+msgid "Exception Rule Methods"
+msgstr "Métodos de regras de exceção"
+
+#. module: base_exception
+#: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_form
+msgid "Exception Rule Setup"
+msgstr "Configuração da regra da execeção"
+
+#. module: base_exception
+#: model:ir.actions.act_window,name:base_exception.action_exception_rule_tree
+#: model:ir.ui.menu,name:base_exception.menu_action_exception
+msgid "Exception Rules"
+msgstr "Regras de exceção"
+
+#. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule__exception_type
+msgid "Exception Type"
+msgstr "Tipo de exceção"
+
+#. module: base_exception
+#: model:res.groups,name:base_exception.group_exception_rule_manager
+msgid "Exception manager"
+msgstr "Gerenciar Exceção"
+
+#. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_base_exception__exception_ids
+msgid "Exceptions"
+msgstr "Exceções"
+
+#. module: base_exception
+#: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_confirm
+msgid "Exceptions Rules"
+msgstr "Regras de exceção"
+
+#. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_base_exception__exceptions_summary
+msgid "Exceptions Summary"
+msgstr "Resumo de Exceções"
+
+#. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm__exception_ids
+msgid "Exceptions to resolve"
+msgstr "Exceções para resolver"
+
+#. module: base_exception
+#: model:ir.model.fields,help:base_exception.field_exception_rule__sequence
+msgid "Gives the sequence order when applying the test"
+msgstr "Dá a ordem de sequência ao aplicar o teste"
+
+#. module: base_exception
+#: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_form
+msgid "Help"
+msgstr "Ajuda"
+
+#. module: base_exception
+#: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_form
+msgid "Help with Python expressions"
+msgstr "Ajuda com expressões python"
+
+#. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_base_exception__id
+#: model:ir.model.fields,field_description:base_exception.field_base_exception_method__id
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule__id
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm__id
+msgid "ID"
+msgstr "Identificação"
+
+#. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_base_exception__ignore_exception
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm__ignore
+msgid "Ignore Exceptions"
+msgstr "Ignorar Exceções"
+
+#. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_base_exception____last_update
+#: model:ir.model.fields,field_description:base_exception.field_base_exception_method____last_update
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule____last_update
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm____last_update
+msgid "Last Modified on"
+msgstr "Última Modificação em"
+
+#. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule__write_uid
+msgid "Last Updated by"
+msgstr "Última Atualização por"
+
+#. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule__write_date
+msgid "Last Updated on"
+msgstr "Última Atualização em"
+
+#. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_base_exception__main_exception_id
+msgid "Main Exception"
+msgstr "Exceção Principal"
+
+#. module: base_exception
+#: code:addons/base_exception/wizard/base_exception_confirm.py:0
+#, python-format
+msgid "Only 1 ID accepted, got %r."
+msgstr "Apenas 1 ID aceito, tenho %r."
+
+#. module: base_exception
+#: model:ir.actions.act_window,name:base_exception.action_exception_rule_confirm
+msgid "Outstanding exceptions to manage"
+msgstr "Excepções excepcionais para gerir"
+
+#. module: base_exception
+#: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_confirm
+msgid "Outstanding exceptions to manager"
+msgstr "Exceções proeminentes para o gerente"
+
+#. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule__code
+#: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_form
+msgid "Python Code"
+msgstr "Código Python"
+
+#. module: base_exception
+#: model:ir.model.fields,help:base_exception.field_exception_rule__code
+msgid ""
+"Python code executed to check if the exception apply or not. Use failed = "
+"True to block the exception"
+msgstr ""
+"Código Python executado para verificar se a exceção se aplica ou não. Use "
+"failed = True para bloquear a exceção"
+
+#. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm__related_model_id
+msgid "Related Model"
+msgstr "Modelo Relatado"
+
+#. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule__sequence
+msgid "Sequence"
+msgstr "Sequência"
+
+#. module: base_exception
+#: code:addons/base_exception/models/base_exception.py:0
+#, python-format
+msgid ""
+"There is a problem of configuration, python code or domain is missing to "
+"match the exception type."
+msgstr ""
+"Há um problema de configuração, está faltando código ou domínio python para "
+"corresponder ao tipo de exceção."
+
+#. module: base_exception
+#: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_form
+msgid "To block the exception use: <code>failed = True</code>"
+msgstr "Para bloquear a exceção, use: <code>failed = True</code>"
+
+#. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_base_exception__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_exception.field_base_exception_method__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr ""
+
+#. module: base_exception
+#: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_form
+msgid ""
+"Various fields may use Python code or Python expressions. The following "
+"variables can be used:"
+msgstr ""
+"Vários campos podem usar código python ou expressões python. As seguintes "
+"variáveis podem ser usadas:"
+
+#. module: base_exception
+#: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_confirm
+msgid "_Close"
+msgstr "_Fechar"
+
+#~ msgid ""
+#~ "If we detect exception we set the state of object (ex purchase) to the "
+#~ "next_state (ex 'to approve'). If there are more than one exception "
+#~ "detected and all have a value for next_state, we usethe exception having "
+#~ "the smallest sequence value"
+#~ msgstr ""
+#~ "Se detectarmos uma exceção, definimos o estado do objeto (ex-purchase) "
+#~ "para o next_state (ex 'to approve'). Se houver mais de uma exceção "
+#~ "detectada e todas tiverem um valor para next_state, usamos a exceção com "
+#~ "o menor valor de sequência"
+
+#~ msgid "Next state"
+#~ msgstr "Próximo estado"
+
+#~ msgid "Rule Group"
+#~ msgstr "Regra de grupo"
+
+#~ msgid ""
+#~ "Rule group is used to group the rules that must validated at same time "
+#~ "for a target object. Ex: validate sale.order.line rules with sale order "
+#~ "rules."
+#~ msgstr ""
+#~ "O grupo de regras é usado para agrupar as regras que devem ser validadas "
+#~ "ao mesmo tempo para um objeto de destino. Ex: valide as regras de sale."
+#~ "order.line com regras de ordem de venda."
+
+#~ msgid ""
+#~ "The value \"%s\" you choose for the \"next state\" field state of \"%s\" "
+#~ "is wrong. Value must be in this list %s"
+#~ msgstr ""
+#~ "O valor \"%s\" escolhido para o estado do campo \"próximo estado\" de \"%s"
+#~ "\" está errado. O valor deve estar nesta lista %s"
