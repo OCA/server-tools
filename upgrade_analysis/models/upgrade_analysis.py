@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 # flake8: noqa: C901
 
+import logging
 import os
 
 from odoo import fields, models
@@ -11,6 +12,7 @@ from odoo.tools import config
 
 from .. import compare
 
+_logger = logging.getLogger(__name__)
 _IGNORE_MODULES = ["openupgrade_records", "upgrade_analysis"]
 
 
@@ -31,6 +33,10 @@ class UpgradeAnalysis(models.Model):
     )
 
     log = fields.Text(readonly=True)
+    upgrade_path = fields.Char(
+        default=config.get("upgrade_path", False),
+        help="The base file path to save the analyse files of Odoo modules",
+    )
 
     write_files = fields.Boolean(
         help="Write analysis files to the module directories", default=True
@@ -50,10 +56,12 @@ class UpgradeAnalysis(models.Model):
     ):
         module = self.env["ir.module.module"].search([("name", "=", module_name)])[0]
         if module.is_odoo_module:
-            upgrade_path = config.get("upgrade_path", False)
-            if not upgrade_path:
-                return "ERROR: could not find 'upgrade_path' config:\n"
-            module_path = os.path.join(upgrade_path, module_name)
+            if not self.upgrade_path:
+                return (
+                    "ERROR: no upgrade_path set when writing analysis of %s\n"
+                    % module_name
+                )
+            module_path = os.path.join(self.upgrade_path, module_name)
         else:
             module_path = get_module_path(module_name)
         if not module_path:
@@ -71,6 +79,7 @@ class UpgradeAnalysis(models.Model):
             f = open(logfile, "w")
         except Exception:
             return "ERROR: could not open file %s for writing:\n" % logfile
+        _logger.debug("Writing analysis to %s", logfile)
         f.write(content)
         f.close()
         return None
