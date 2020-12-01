@@ -2,10 +2,13 @@
 # Copyright 2016 Opener B.V. <https://opener.am>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+from threading import current_thread
 
 from odoo import _, fields, models
 from odoo.exceptions import UserError
 from odoo.modules.registry import Registry
+
+from ..odoo_patch.odoo_patch import OdooPatch
 
 
 class GenerateWizard(models.TransientModel):
@@ -13,26 +16,6 @@ class GenerateWizard(models.TransientModel):
     _description = "Upgrade Generate Record Wizard"
 
     state = fields.Selection([("draft", "Draft"), ("done", "Done")], default="draft")
-
-    # from openupgradelib import openupgrade_tools
-    # TODO, SLG, make better a patch in odoo_patch
-    # def quirk_standard_calendar_attendances(self):
-    #     """Introduced in Odoo 13. The reinstallation causes a one2many value
-    #     in [(0, 0, {})] format to be loaded on top of the first load, causing a
-    #     violation of database constraint."""
-    #     for cal in ("resource_calendar_std_35h", "resource_calendar_std_38h"):
-    #         record = self.env.ref("resource.%s" % cal, False)
-    #         if record:
-    #             record.attendance_ids.unlink()
-
-    #     # Truncate the records table
-    #     if openupgrade_tools.table_exists(
-    #         self.env.cr, "upgrade_attribute"
-    #     ) and openupgrade_tools.table_exists(self.env.cr, "upgrade_record"):
-    #         self.env.cr.execute("TRUNCATE upgrade_attribute, upgrade_record;")
-
-    #     # Run any quirks
-    #     self.quirk_standard_calendar_attendances()
 
     def generate(self):
         """Reinitialize all installed modules.
@@ -56,7 +39,17 @@ class GenerateWizard(models.TransientModel):
             {"state": "to install"}
         )
         self.env.cr.commit()  # pylint: disable=invalid-commit
-        Registry.new(self.env.cr.dbname, update_module=True)
+
+        # Patch the registry on the thread
+        thread = current_thread()
+        thread._upgrade_registry = {}
+
+        # Regenerate the registry with monkeypatches that log the records
+        with OdooPatch():
+            Registry.new(self.env.cr.dbname, update_module=True)
+
+        # Free the registry
+        delattr(thread, "_upgrade_registry")
 
         # Set domain property
         self.env.cr.execute(
