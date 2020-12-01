@@ -17,6 +17,10 @@ class UpgradeInstallWizard(models.TransientModel):
     _name = "upgrade.install.wizard"
     _description = "Upgrade Install Wizard"
 
+    name = fields.Char(
+        default=_description,
+        help="Workaround for https://github.com/OCA/odoorpc/issues/57",
+    )
     state = fields.Selection(
         [("draft", "Draft"), ("done", "Done")], readonly=True, default="draft"
     )
@@ -52,30 +56,38 @@ class UpgradeInstallWizard(models.TransientModel):
         for wizard in self:
             wizard.module_qty = len(wizard.module_ids)
 
-    def select_odoo_modules(self):
+    def select_odoo_modules(self, extra_domain=None):
         self.ensure_one()
-        modules = self.env["ir.module.module"].search(self._module_ids_domain())
+        modules = self.env["ir.module.module"].search(
+            self._module_ids_domain(extra_domain=extra_domain)
+        )
         modules = modules.filtered(lambda x: x.is_odoo_module)
         self.module_ids = modules
         return self.return_same_form_view()
 
-    def select_oca_modules(self):
+    def select_oca_modules(self, extra_domain=None):
         self.ensure_one()
-        modules = self.env["ir.module.module"].search(self._module_ids_domain())
+        modules = self.env["ir.module.module"].search(
+            self._module_ids_domain(extra_domain=extra_domain)
+        )
         modules = modules.filtered(lambda x: x.is_oca_module)
         self.module_ids = modules
         return self.return_same_form_view()
 
-    def select_other_modules(self):
+    def select_other_modules(self, extra_domain=None):
         self.ensure_one()
-        modules = self.env["ir.module.module"].search(self._module_ids_domain())
+        modules = self.env["ir.module.module"].search(
+            self._module_ids_domain(extra_domain=extra_domain)
+        )
         modules = modules.filtered(lambda x: not (x.is_oca_module or x.is_odoo_module))
         self.module_ids = modules
         return self.return_same_form_view()
 
-    def select_installable_modules(self):
+    def select_installable_modules(self, extra_domain=None):
         self.ensure_one()
-        self.module_ids = self.env["ir.module.module"].search(self._module_ids_domain())
+        self.module_ids = self.env["ir.module.module"].search(
+            self._module_ids_domain(extra_domain=extra_domain)
+        )
         return self.return_same_form_view()
 
     def unselect_modules(self):
