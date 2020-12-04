@@ -5,7 +5,7 @@
     "summary": """
         Add a technical user parameter on the company """,
     "author": "ACSONE SA/NV, Odoo Community Association (OCA)",
-    "website": "https://github.com/OCA/server-tools/",
+    "website": "https://github.com/OCA/server-tools",
     "category": "Hidden/Dependency",
     "version": "13.0.1.0.0",
     "license": "AGPL-3",
