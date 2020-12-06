@@ -62,11 +62,12 @@ class UpgradeAnalysis(models.Model):
                     % module_name
                 )
             module_path = os.path.join(self.upgrade_path, module_name)
+            full_path = os.path.join(module_path, version)
         else:
             module_path = get_module_path(module_name)
+            full_path = os.path.join(module_path, "migrations", version)
         if not module_path:
             return "ERROR: could not find module path of '%s':\n" % (module_name)
-        full_path = os.path.join(module_path, "migrations", version)
         if not os.path.exists(full_path):
             try:
                 os.makedirs(full_path)

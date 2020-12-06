@@ -88,8 +88,9 @@ class GenerateWizard(models.TransientModel):
         # Log model records
         self.env.cr.execute(
             """INSERT INTO upgrade_record
-            (module, name, model, type)
-            SELECT imd2.module, imd2.module || '.' || imd.name AS name,
+            (create_date, module, name, model, type)
+            SELECT NOW() AT TIME ZONE 'UTC',
+                imd2.module, imd2.module || '.' || imd.name AS name,
                 im.model, 'model' AS type
             FROM (
                 SELECT min(id) as id, name, res_id
