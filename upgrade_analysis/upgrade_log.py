@@ -27,8 +27,8 @@ def get_record_id(cr, module, model, field, mode):
         return record[0]
     cr.execute(
         "INSERT INTO upgrade_record "
-        "(module, model, field, mode, type) "
-        "VALUES (%s, %s, %s, %s, %s)",
+        "(create_date, module, model, field, mode, type) "
+        "VALUES (NOW() AT TIME ZONE 'UTC', %s, %s, %s, %s, %s)",
         (module, model, field, mode, "field"),
     )
     cr.execute(
@@ -67,7 +67,8 @@ def compare_registries(cr, module, registry, local_registry):
                     if not cr.fetchone():
                         cr.execute(
                             "INSERT INTO upgrade_attribute "
-                            "(name, value, record_id) VALUES (%s, %s, %s)",
+                            "(create_date, name, value, record_id) "
+                            "VALUES (NOW() AT TIME ZONE 'UTC', %s, %s, %s)",
                             (key, value, record_id),
                         )
                     old_field[key] = value
@@ -212,6 +213,7 @@ def log_xml_id(cr, module, xml_id):
         if not cr.fetchone():
             cr.execute(
                 "INSERT INTO upgrade_record "
-                "(module, model, name, type) values(%s, %s, %s, %s)",
+                "(create_date, module, model, name, type) "
+                "values(NOW() AT TIME ZONE 'UTC', %s, %s, %s, %s)",
                 (module, record[0], xml_id, "xmlid"),
             )
