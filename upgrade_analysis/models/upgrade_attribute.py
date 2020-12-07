@@ -15,6 +15,7 @@ class UpgradeAttribute(models.Model):
 
     record_id = fields.Many2one(
         comodel_name="upgrade.record",
+        index=True,
         ondelete="CASCADE",
         readonly=True,
     )
