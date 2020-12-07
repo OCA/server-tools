@@ -1,6 +1,7 @@
 # Copyright 2017-2018 Therp BV <http://therp.nl>
+# Copyright 2020 Hunki Enterprises BV <https://hunki-enterprises.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class ImportOdooDatabaseField(models.Model):
@@ -15,7 +16,7 @@ class ImportOdooDatabaseField(models.Model):
     model_id = fields.Many2one(
         "ir.model", string="Model", required=True, ondelete="cascade",
     )
-    model = fields.Char(related=["model_id", "model"])
+    model = fields.Char(string="Model name", related=["model_id", "model"])
     field_ids = fields.Many2many(
         "ir.model.fields",
         string="Field",
@@ -31,8 +32,12 @@ class ImportOdooDatabaseField(models.Model):
     id_field_id = fields.Many2one(
         "ir.model.fields",
         string="ID field",
-        compute=lambda self: self._compute_reference_field("id_field_id", "integer"),
-        inverse=lambda self: self._inverse_reference_field("id_field_id", "integer"),
+        compute=lambda self: self._compute_reference_field(
+            "id_field_id", "many2one_reference"
+        ),
+        inverse=lambda self: self._inverse_reference_field(
+            "id_field_id", "many2one_reference"
+        ),
     )
     # TODO: create a reference function field to set this conveniently
     local_id = fields.Integer(
@@ -58,12 +63,10 @@ class ImportOdooDatabaseField(models.Model):
         default="fixed",
     )
 
-    @api.multi
     def _compute_reference_field(self, field_name, ttype):
         for this in self:
             this[field_name] = this.field_ids.filtered(lambda x: x.ttype == ttype)
 
-    @api.multi
     def _inverse_reference_field(self, field_name, ttype):
         self.field_ids = (
             self.field_ids.filtered(lambda x: x.ttype != ttype) + self[field_name]
