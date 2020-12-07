@@ -87,27 +87,32 @@
     </record>
     <template id="view_import_odoo_database_qweb">
         <script type="text/javascript">
-            function base_import_database_open(model, model_name, database_id)
-            {
-                return new openerp.web.Model('ir.model.data')
-                .query(['res_id'])
-                .filter([
-                    ['module', '=', 'base_import_odoo'],
-                    ['model', '=', model],
-                    ['import_database_id', '=', database_id],
-                ])
-                .all()
-                .then(function(data)
-                {
-                    return openerp.webclient.action_manager.do_action({
-                        'name': model_name,
-                        'type': 'ir.actions.act_window',
-                        'views': [[false, 'list'], [false, 'form']],
-                        'res_model': model,
-                        'domain': [['id', 'in', _.map(data, function(x) {return x.res_id})]]
+            odoo.define('base_import_odoo', function(require) {
+                return function base_import_database_open(model, model_name, database_id) {
+                    return require('web.rpc')
+                    .query({
+                        model: 'ir.model.data',
+                        method: 'search_read',
+                        fields: ['res_id'],
+                        domain: [
+                            ['module', '=', 'base_import_odoo'],
+                            ['model', '=', model],
+                            ['import_database_id', '=', database_id],
+                        ],
+                    })
+                    .then(function(data)
+                    {
+                        debugger;
+                        return require('web.web_client').action_manager.do_action({
+                            'name': model_name,
+                            'type': 'ir.actions.act_window',
+                            'views': [[false, 'list'], [false, 'form']],
+                            'res_model': model,
+                            'domain': [['id', 'in', _.map(data, function(x) {return x.res_id})]]
+                        });
                     });
-                });
-            }
+                }
+            })
         </script>
         <h2 t-if="object.cronjob_running">Import progress</h2>
         <h2 t-if="not object.cronjob_running">Import results</h2>
@@ -122,7 +127,7 @@
                 <h3 t-esc="model_display_name" />
                 <a
                     href="#"
-                    t-att-onclick="'base_import_database_open(&quot;%s&quot;, &quot;%s&quot;, %s)' % (model_name, model_display_name, object.id)"
+                    t-att-onclick="'odoo.define(function(require) {require(&quot;base_import_odoo&quot;)(&quot;%s&quot;, &quot;%s&quot;, %s)})' % (model_name, model_display_name, object.id)"
                 >
                     <span
                         t-esc="object.status_data.get('done', {}).get(model_name, 0)"

@@ -1,9 +1,10 @@
 # Copyright 2017-2018 Therp BV <http://therp.nl>
+# Copyright 2020 Hunki Enterprises BV <https://hunki-enterprises.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 import logging
 import traceback
 from collections import namedtuple
-from urlparse import urlparse
+from urllib.parse import urlparse
 
 import psycopg2
 
@@ -86,27 +87,25 @@ class ImportOdooDatabase(models.Model):
         required=True,
     )
 
-    @api.multi
     def action_import(self):
         """Create a cronjob to run the actual import"""
         self.ensure_one()
         if self.cronjob_id:
             return self.cronjob_id.write(
-                {"numbercall": 1, "doall": True, "active": True,}
+                {"numbercall": 1, "doall": True, "active": True}
             )
-        return self.write({"cronjob_id": self._create_cronjob().id,})
+        return self.write({"cronjob_id": self._create_cronjob().id})
 
     @api.model
     def _run_import_cron(self, ids):
         return self.browse(ids)._run_import()
 
-    @api.multi
     def _run_import(self, commit=True, commit_threshold=100):
         """Run the import as cronjob, commit often"""
         self.ensure_one()
         if not self.password:
             self.write(
-                {"status_data": dict(self.status_data, error="No password provided",),}
+                {"status_data": dict(self.status_data, error="No password provided")}
             )
             return
         # model name: [ids]
@@ -160,7 +159,7 @@ class ImportOdooDatabase(models.Model):
                 commit and (commit_threshold or 1) or len(remote_ids[model._name])
             )
 
-            for start_index in range(len(remote_ids[model._name]) / chunk_len + 1):
+            for start_index in range(int(len(remote_ids[model._name]) / chunk_len) + 1):
                 index = start_index * chunk_len
                 ids = remote_ids[model._name][index : index + chunk_len]
                 context = ImportContext(
@@ -179,9 +178,7 @@ class ImportOdooDatabase(models.Model):
                     # pragma: no cover
                     error = traceback.format_exc()
                     self.env.cr.rollback()
-                    self.write(
-                        {"status_data": dict(self.status_data, error=error),}
-                    )
+                    self.write({"status_data": dict(self.status_data, error=error)})
                     # pylint: disable=invalid-commit
                     self.env.cr.commit()
                     raise
@@ -195,17 +192,14 @@ class ImportOdooDatabase(models.Model):
         for dummy_model, remote_id in dummies.keys():
             if remote_id:
                 missing.setdefault(dummy_model, []).append(remote_id)
-        self.write(
-            {"status_data": dict(self.status_data, dummies=dict(missing)),}
-        )
+        self.write({"status_data": dict(self.status_data, dummies=dict(missing))})
 
-    @api.multi
     def _run_import_model(self, context):
         """Import records of a configured model"""
         model = self.env[context.model_line.model_id.model]
         fields = self._run_import_model_get_fields(context)
         for data in context.remote.execute(
-            model._name, "read", context.ids, fields.keys()
+            model._name, "read", context.ids, list(fields.keys())
         ):
             self._run_import_get_record(
                 context, model, data, create_dummy=False,
@@ -226,11 +220,10 @@ class ImportOdooDatabase(models.Model):
                 context, model, _id, record.id,
             )
 
-    @api.multi
     def _create_record(self, context, model, record):
         """Create a record, add an xmlid"""
         _id = record.pop("id")
-        xmlid = "%d-%s-%d" % (self.id, model._name.replace(".", "_"), _id or 0,)
+        xmlid = "%d-%s-%d" % (self.id, model._name.replace(".", "_"), _id or 0)
         record = self._create_record_filter_fields(model, record)
         model_defaults = {}
         if context.model_line.defaults:
@@ -264,7 +257,7 @@ class ImportOdooDatabase(models.Model):
         return new
 
     def _create_record_xmlid(self, model, local_id, remote_id):
-        xmlid = "%d-%s-%d" % (self.id, model._name.replace(".", "_"), remote_id or 0,)
+        xmlid = "%d-%s-%d" % (self.id, model._name.replace(".", "_"), remote_id or 0)
         if self.env.ref("base_import_odoo.%s" % xmlid, False):
             return
         return self.env["ir.model.data"].create(
@@ -282,7 +275,7 @@ class ImportOdooDatabase(models.Model):
     def _create_record_filter_fields(self, model, record):
         """Return a version of record with unknown fields for model removed
         and required fields with no value set to the default if it exists"""
-        defaults = model.default_get(record.keys())
+        defaults = model.default_get(list(record.keys()))
         return {
             key: value
             if value or not model._fields[key].required
@@ -300,7 +293,6 @@ class ImportOdooDatabase(models.Model):
             context["no_reset_password"] = True
         return context
 
-    @api.multi
     def _run_import_get_record(
         self, context, model, record, create_dummy=True,
     ):
@@ -359,7 +351,6 @@ class ImportOdooDatabase(models.Model):
             )
         return _id
 
-    @api.multi
     def _run_import_get_record_mapping(
         self, context, model, record, create_dummy=True,
     ):
@@ -422,7 +413,6 @@ class ImportOdooDatabase(models.Model):
                 raise exceptions.UserError(_("Unknown mapping"))
         return _id
 
-    @api.multi
     def _run_import_create_dummy(
         self, context, model, record, forcecreate=False,
     ):
@@ -512,10 +502,9 @@ class ImportOdooDatabase(models.Model):
         )
         return dummy.id
 
-    @api.multi
     def _run_import_map_values(self, context, data):
         model = self.env[context.model_line.model_id.model]
-        for field_name in data.keys():
+        for field_name in list(data.keys()):
             if (
                 not isinstance(model._fields[field_name], fields._Relational)
                 or not data[field_name]
@@ -547,7 +536,7 @@ class ImportOdooDatabase(models.Model):
                 )
                 for _id in ids
             ]
-            data[field_name] = filter(None, data[field_name])
+            data[field_name] = list(filter(None, data[field_name]))
             if model._fields[field_name].type == "many2one":
                 if data[field_name]:
                     data[field_name] = data[field_name] and data[field_name][0]
@@ -563,7 +552,7 @@ class ImportOdooDatabase(models.Model):
                     value = data.get(field.name, "")
                     counter = 1
                     while model.with_context(active_test=False).search(
-                        [(field.name, "=", data.get(field.name, value)),]
+                        [(field.name, "=", data.get(field.name, value))]
                     ):
                         data[field.name] = "%s (%d)" % (value, counter)
                         counter += 1
@@ -594,7 +583,6 @@ class ImportOdooDatabase(models.Model):
                 data.update(update)
         return data
 
-    @api.multi
     def _run_import_model_get_fields(self, context):
         return {
             name: field
@@ -604,7 +592,6 @@ class ImportOdooDatabase(models.Model):
             if not field.compute or field.inverse
         }
 
-    @api.multi
     def _run_import_model_cleanup_dummies(self, context, model, remote_id, local_id):
         if not (model._name, remote_id) in context.dummies:
             return
@@ -630,7 +617,7 @@ class ImportOdooDatabase(models.Model):
             if record._fields[field_name].type == "many2one":
                 record.write({field_name: local_id})
             elif record._fields[field_name].type == "many2many":
-                record.write({field_name: [(3, dummy_id), (4, local_id),]})
+                record.write({field_name: [(3, dummy_id), (4, local_id)]})
             else:
                 raise exceptions.UserError(
                     _("Unhandled field type %s") % record._fields[field_name].type
@@ -662,7 +649,6 @@ class ImportOdooDatabase(models.Model):
         return remote
 
     @api.constrains("url", "database", "user", "password")
-    @api.multi
     def _constrain_url(self):
         for this in self:
             if this == self.env.ref("base_import_odoo.demodb", False):
@@ -674,19 +660,21 @@ class ImportOdooDatabase(models.Model):
             this._get_connection()
 
     @api.depends("status_data")
-    @api.multi
     def _compute_status_html(self):
         for this in self:
             if not this.status_data:
+                this.status_html = False
                 continue
-            this.status_html = self.env.ref(
-                "base_import_odoo.view_import_odoo_database_qweb"
-            ).render({"object": this})
+            this.status_html = (
+                self.env.ref("base_import_odoo.view_import_odoo_database_qweb")
+                .render({"object": this})
+                .decode("utf8")
+            )
 
     @api.depends("cronjob_id")
-    @api.multi
     def _compute_cronjob_running(self):
         for this in self:
+            this.cronjob_running = False
             if not this.cronjob_id:
                 continue
             try:
@@ -700,20 +688,19 @@ class ImportOdooDatabase(models.Model):
             except psycopg2.OperationalError:
                 this.cronjob_running = True
 
-    @api.multi
     def _create_cronjob(self):
         self.ensure_one()
         return self.env["ir.cron"].create(
             {
                 "name": self.display_name,
-                "model": self._name,
-                "function": "_run_import_cron",
+                "model_id": self.env["ir.model"]
+                .search([("model", "=", self._name)])
+                .id,
+                "code": "model._run_import_cron({})".format(self.ids),
                 "doall": True,
-                "args": str((self.ids,)),
             }
         )
 
-    @api.multi
     def name_get(self):
         return [
             (this.id, "{}@{}, {}".format(this.user, this.url, this.database))
