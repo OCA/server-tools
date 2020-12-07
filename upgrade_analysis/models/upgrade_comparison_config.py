@@ -69,7 +69,8 @@ class UpgradeComparisonConfig(models.Model):
                 "message": _(
                     "You are correctly connected to the server %(server)s"
                     " (version %(version)s) with the user %(user_name)s"
-                ) % dict(
+                )
+                % dict(
                     server=self.server,
                     version=self.version,
                     user_name=user_info["name"],

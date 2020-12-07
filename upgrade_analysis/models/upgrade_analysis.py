@@ -5,6 +5,7 @@
 
 import logging
 import os
+from pathlib import Path
 
 from odoo import fields, models
 from odoo.exceptions import UserError
@@ -16,6 +17,11 @@ from .. import compare
 
 _logger = logging.getLogger(__name__)
 _IGNORE_MODULES = ["openupgrade_records", "upgrade_analysis"]
+
+try:
+    from odoo.addons.openupgrade_scripts import apriori
+except ImportError:
+    apriori = False
 
 
 class UpgradeAnalysis(models.Model):
@@ -36,7 +42,7 @@ class UpgradeAnalysis(models.Model):
 
     log = fields.Text(readonly=True)
     upgrade_path = fields.Char(
-        default=config.get("upgrade_path", False),
+        default=lambda x: x._default_upgrade_path(),
         help=(
             "The base file path to save the analyse files of Odoo modules. "
             "Default is taken from Odoo's --upgrade-path command line option. "
@@ -47,6 +53,17 @@ class UpgradeAnalysis(models.Model):
     write_files = fields.Boolean(
         help="Write analysis files to the module directories", default=True
     )
+
+    def _default_upgrade_path(self):
+        # Return upgrade_path value, if exists
+        config_value = config.get("upgrade_path", False)
+        if config_value:
+            return config_value
+            # Otherwise, try to guess, with the openupgrade_scripts path
+        elif apriori:
+            apriori_path = Path(os.path.abspath(apriori.__file__))
+            return os.path.join(apriori_path.parent, "scripts")
+        return False
 
     def _get_remote_model(self, connection, model):
         self.ensure_one()
@@ -232,3 +249,4 @@ class UpgradeAnalysis(models.Model):
                 "log": general_log,
             }
         )
+        return True
