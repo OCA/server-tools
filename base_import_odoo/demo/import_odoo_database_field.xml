@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo noupdate="1">
     <record id="mapping_partner_id_root" model="import.odoo.database.field">
         <field name="database_id" ref="demodb" />
