@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017-2018 Therp BV <http://therp.nl>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
@@ -9,9 +8,7 @@
     "category": "Tools",
     "summary": "Import records from another Odoo instance",
     "website": "https://github.com/OCA/server-tools",
-    "depends": [
-        'mail',
-    ],
+    "depends": ["mail",],
     "demo": [
         "demo/res_partner.xml",
         "demo/res_users.xml",
@@ -27,7 +24,5 @@
         "views/menu.xml",
     ],
     "installable": True,
-    "external_dependencies": {
-        "python": ['odoorpc'],
-    },
+    "external_dependencies": {"python": ["odoorpc"],},
 }
