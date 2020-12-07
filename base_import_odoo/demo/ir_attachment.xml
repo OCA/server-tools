@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <record id="attachment_demo" model="ir.attachment">
         <field name="name">Demo attachment</field>
