@@ -29,8 +29,8 @@ class TestUpgradeAnalysis(common.TransactionCase):
         )
 
         wizard.select_other_modules()
-        self.assertTrue(
-            self.product_module.id not in wizard.module_ids.ids,
+        self.assertFalse(
+            self.product_module.id in wizard.module_ids.ids,
             "Select Other module should not select 'product' module",
         )
 
