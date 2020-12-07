@@ -2,6 +2,8 @@
 # Copyright 2016 Opener B.V. <https://opener.am>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+from urllib.error import URLError
+
 import odoorpc
 
 from odoo import api, fields, models
@@ -39,7 +41,13 @@ class UpgradeComparisonConfig(models.Model):
 
     def get_connection(self):
         self.ensure_one()
-        remote = odoorpc.ODOO(self.server, port=self.port)
+        try:
+            remote = odoorpc.ODOO(self.server, port=self.port)
+        except URLError:
+            raise UserError(
+                _("Could not connect the Odoo server at %s:%s")
+                % (self.server, self.port)
+            )
         remote.login(self.database, self.username, self.password)
         self.version = remote.version
         return remote
