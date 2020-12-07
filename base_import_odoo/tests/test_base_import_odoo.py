@@ -1,4 +1,5 @@
 # Copyright 2017-2018 Therp BV <http://therp.nl>
+# Copyright 2020 Hunki Enterprises BV <https://hunki-enterprises.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from mock import patch
 
@@ -53,11 +54,9 @@ class TestBaseImportOdoo(TransactionCase):
         group_count = self.env["res.groups"].search([], count=True)
         user_count = self.env["res.users"].search([], count=True)
         run = 1
-        for dummy in range(2):
+        for _dummy in range(2):
             # we run this two times to enter the code path where xmlids exist
-            self.env.ref("base_import_odoo.demodb").write(
-                {"password": "admin",}
-            )
+            self.env.ref("base_import_odoo.demodb").write({"password": "admin"})
             with patch("odoorpc.ODOO.execute", side_effect=_mock_execute):
                 self.env.ref("base_import_odoo.demodb")._run_import()
             # here the actual test begins - check that we created new
@@ -88,7 +87,7 @@ class TestBaseImportOdoo(TransactionCase):
             # check that there's a new attachment
             attachment = self.env.ref("base_import_odoo.attachment_demo")
             imported_attachment = self.env["ir.attachment"].search(
-                [("res_model", "=", "res.users"), ("res_id", "=", imported_user.id),]
+                [("res_model", "=", "res.users"), ("res_id", "=", imported_user.id)]
             )
             self.assertTrue(attachment)
             self.assertEqual(attachment.datas, imported_attachment.datas)
