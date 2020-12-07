@@ -7,8 +7,10 @@ import logging
 import os
 
 from odoo import fields, models
+from odoo.exceptions import UserError
 from odoo.modules import get_module_path
 from odoo.tools import config
+from odoo.tools.translate import _
 
 from .. import compare
 
@@ -35,7 +37,11 @@ class UpgradeAnalysis(models.Model):
     log = fields.Text(readonly=True)
     upgrade_path = fields.Char(
         default=config.get("upgrade_path", False),
-        help="The base file path to save the analyse files of Odoo modules",
+        help=(
+            "The base file path to save the analyse files of Odoo modules. "
+            "Default is taken from Odoo's --upgrade-path command line option. "
+        ),
+        required=True,
     )
 
     write_files = fields.Boolean(
@@ -56,11 +62,6 @@ class UpgradeAnalysis(models.Model):
     ):
         module = self.env["ir.module.module"].search([("name", "=", module_name)])[0]
         if module.is_odoo_module:
-            if not self.upgrade_path:
-                return (
-                    "ERROR: no upgrade_path set when writing analysis of %s\n"
-                    % module_name
-                )
             module_path = os.path.join(self.upgrade_path, module_name)
             full_path = os.path.join(module_path, version)
         else:
@@ -97,6 +98,11 @@ class UpgradeAnalysis(models.Model):
                 "analysis_date": fields.Datetime.now(),
             }
         )
+
+        if not self.upgrade_path:
+            return (
+                "ERROR: no upgrade_path set when writing analysis of %s\n" % module_name
+            )
 
         connection = self.config_id.get_connection()
         RemoteRecord = self._get_remote_model(connection, "record")
