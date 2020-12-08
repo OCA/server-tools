@@ -11,7 +11,19 @@
 import collections
 import copy
 
-from . import apriori
+try:
+    from odoo.addons.openupgrade_scripts import apriori
+except ImportError:
+    from dataclasses import dataclass, field
+
+    @dataclass
+    class NullApriori:
+        renamed_modules: dict = field(default_factory=dict)
+        merged_modules: dict = field(default_factory=dict)
+        renamed_models: dict = field(default_factory=dict)
+        merged_models: dict = field(default_factory=dict)
+
+    apriori = NullApriori()
 
 
 def module_map(module):
