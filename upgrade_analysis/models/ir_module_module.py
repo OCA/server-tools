@@ -24,6 +24,9 @@ class UpgradeAttribute(models.Model):
     def _compute_is_odoo_module(self):
         for module in self:
             module_path = get_module_path(module.name)
+            if not module_path:
+                module.is_odoo_module = False
+                continue
             absolute_repo_path = os.path.split(module_path)[0]
             x, relative_repo_path = os.path.split(absolute_repo_path)
             module.is_odoo_module = relative_repo_path == "addons"

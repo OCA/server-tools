@@ -5,7 +5,6 @@
 
 import logging
 import os
-from pathlib import Path
 
 from odoo import fields, models
 from odoo.exceptions import UserError
@@ -17,11 +16,6 @@ from .. import compare
 
 _logger = logging.getLogger(__name__)
 _IGNORE_MODULES = ["openupgrade_records", "upgrade_analysis"]
-
-try:
-    from odoo.addons.openupgrade_scripts import apriori
-except ImportError:
-    apriori = False
 
 
 class UpgradeAnalysis(models.Model):
@@ -42,28 +36,28 @@ class UpgradeAnalysis(models.Model):
 
     log = fields.Text(readonly=True)
     upgrade_path = fields.Char(
-        default=lambda x: x._default_upgrade_path(),
+        compute="_compute_upgrade_path",
+        readonly=True,
         help=(
             "The base file path to save the analyse files of Odoo modules. "
-            "Default is taken from Odoo's --upgrade-path command line option. "
+            "Taken from Odoo's --upgrade-path command line option or the "
+            "'scripts' subdirectory in the openupgrade_scripts addon."
         ),
-        required=True,
     )
-
     write_files = fields.Boolean(
         help="Write analysis files to the module directories", default=True
     )
 
-    def _default_upgrade_path(self):
-        # Return upgrade_path value, if exists
-        config_value = config.get("upgrade_path", False)
-        if config_value:
-            return config_value
-            # Otherwise, try to guess, with the openupgrade_scripts path
-        elif apriori:
-            apriori_path = Path(os.path.abspath(apriori.__file__))
-            return os.path.join(apriori_path.parent, "scripts")
-        return False
+    def _compute_upgrade_path(self):
+        """Return the --upgrade-path configuration option or the `scripts`
+        directory in `openupgrade_scripts` if available
+        """
+        res = config.get("upgrade_path", False)
+        if not res:
+            module_path = get_module_path("openupgrade_scripts", display_warning=False)
+            if module_path:
+                res = os.path.join(module_path, "scripts")
+        self.upgrade_path = res
 
     def _get_remote_model(self, connection, model):
         self.ensure_one()
@@ -79,13 +73,16 @@ class UpgradeAnalysis(models.Model):
     ):
         module = self.env["ir.module.module"].search([("name", "=", module_name)])[0]
         if module.is_odoo_module:
-            module_path = os.path.join(self.upgrade_path, module_name)
-            full_path = os.path.join(module_path, version)
+            if not self.upgrade_path:
+                return (
+                    "ERROR: no upgrade_path set when writing analysis of %s\n"
+                    % module_name
+                )
+            full_path = os.path.join(self.upgrade_path, module_name, version)
         else:
-            module_path = get_module_path(module_name)
-            full_path = os.path.join(module_path, "migrations", version)
-        if not module_path:
-            return "ERROR: could not find module path of '%s':\n" % (module_name)
+            full_path = os.path.join(
+                get_module_path(module_name, "migrations", version)
+            )
         if not os.path.exists(full_path):
             try:
                 os.makedirs(full_path)
@@ -115,11 +112,6 @@ class UpgradeAnalysis(models.Model):
                 "analysis_date": fields.Datetime.now(),
             }
         )
-
-        if not self.upgrade_path:
-            return (
-                "ERROR: no upgrade_path set when writing analysis of %s\n" % module_name
-            )
 
         connection = self.config_id.get_connection()
         RemoteRecord = self._get_remote_model(connection, "record")
@@ -183,6 +175,17 @@ class UpgradeAnalysis(models.Model):
                 + local_model_records
             }
         )
+        if "base" in affected_modules:
+            try:
+                from odoo.addons.openupgrade_scripts import apriori
+            except ImportError:
+                _logger.error(
+                    "You are using upgrade_analysis on core modules without "
+                    " having openupgrade_scripts module available."
+                    " The analysis process will not work properly,"
+                    " if you are generating analysis for the odoo modules"
+                    " in an openupgrade context."
+                )
 
         # reorder and output the result
         keys = ["general"] + affected_modules
