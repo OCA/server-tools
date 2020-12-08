@@ -13,9 +13,9 @@ class TestAbstractUrl(SavepointCase, FakeModelLoader):
         cls.loader = FakeModelLoader(cls.env, cls.__module__)
         cls.loader.backup_registry()
         from .models import (
-            UrlBackendFake,
             ResPartner,
             ResPartnerAddressableFake,
+            UrlBackendFake,
         )
 
         cls.loader.update_registry(
