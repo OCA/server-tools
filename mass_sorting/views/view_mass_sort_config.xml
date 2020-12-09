@@ -46,8 +46,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                         <field name="model_id"/>
                         <field name="one2many_field_id"/>
                         <field name="action_id" attrs="{'invisible':[('action_id', '=', False)]}"/>
-                        <field name="value_id" attrs="{'invisible':[('action_id', '=', False)]}"/>
-
+                        <field name="server_action_id" attrs="{'invisible':[('action_id', '=', False)]}"/>
                         <field name="allow_custom_setting"/>
                     </group>
                     <group string="Sorting Criterias">
