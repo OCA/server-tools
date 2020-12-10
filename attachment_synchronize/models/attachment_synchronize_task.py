@@ -89,7 +89,7 @@ class AttachmentSynchronizeTask(models.Model):
         "\nFurther operations will be realized on these Attachments Queues depending "
         "on their 'File Type' value.",
     )
-    enabled = fields.Boolean("Enabled", default=True)
+    active = fields.Boolean("Enabled", default=True, old="enabled")
     avoid_duplicated_files = fields.Boolean(
         string="Avoid importing duplicated files",
         help="If checked, a file will not be imported if an Attachment Queue with the "
@@ -101,6 +101,15 @@ class AttachmentSynchronizeTask(models.Model):
         "related to this task.\nAn alert will be sent to these emails if any operation "
         "on these Attachment Queue's file type fails.",
     )
+    count_attachment_failed = fields.Integer(compute="_compute_count_state")
+    count_attachment_pending = fields.Integer(compute="_compute_count_state")
+    count_attachment_done = fields.Integer(compute="_compute_count_state")
+
+    def _compute_count_state(self):
+        for record in self:
+            for state in ["failed", "pending", "done"]:
+                record["count_attachment_{}".format(state)] = \
+                    len(record.attachment_ids.filtered(lambda r: r.state == state))
 
     def _prepare_attachment_vals(self, data, filename):
         self.ensure_one()
@@ -139,10 +148,18 @@ class AttachmentSynchronizeTask(models.Model):
         if domain is None:
             domain = []
         domain = expression.AND(
-            [domain, [("method_type", "=", "import"), ("enabled", "=", True)]]
+            [domain, [("method_type", "=", "import")]]
         )
         for task in self.search(domain):
             task.run_import()
+
+    def run(self):
+        for record in self:
+            method = "run_{}".format(record.method_type)
+            if not hasattr(self, method):
+                raise NotImplemented
+            else:
+                getattr(record, method)()
 
     def run_import(self):
         self.ensure_one()
@@ -200,10 +217,16 @@ class AttachmentSynchronizeTask(models.Model):
         for task in self:
             task.attachment_ids.filtered(lambda a: a.state == "pending").run()
 
-    def button_toogle_enabled(self):
-        for rec in self:
-            rec.enabled = not rec.enabled
-
     def button_duplicate_record(self):
-        self.ensure_one()
-        self.copy({"enabled": False})
+        # due to orm limitation method call from ui should not have params
+        # so we need to define this method to be able to copy
+        # if we do not do this the context will be injected in default params
+        # in V14 maybe we can call copy directly
+        self.copy()
+
+    def copy(self, default=None):
+        if default is None:
+            default = {}
+        if "active" not in default:
+            default["active"] = False
+        return super().copy(default=default)
