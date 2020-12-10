@@ -14,8 +14,28 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: attachment_synchronize
+#: model_terms:ir.ui.view,arch_db:attachment_synchronize.view_attachment_task_form
+msgid "<span class=\"o_stat_text\">Fail</span>"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model_terms:ir.ui.view,arch_db:attachment_synchronize.view_attachment_task_form
+msgid "<span class=\"o_stat_text\">Pending</span>"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model_terms:ir.ui.view,arch_db:attachment_synchronize.view_attachment_task_form
+msgid "<span class=\"o_stat_text\">Success</span>"
+msgstr ""
+
+#. module: attachment_synchronize
 #: model:ir.model.fields,help:attachment_synchronize.field_attachment_synchronize_task__after_import
 msgid "Action after import a file"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model_terms:ir.ui.view,arch_db:attachment_synchronize.view_attachment_task_tree
+msgid "Active/Inactive"
 msgstr ""
 
 #. module: attachment_synchronize
@@ -44,7 +64,6 @@ msgid "Attachment synchronize task"
 msgstr ""
 
 #. module: attachment_synchronize
-#: model_terms:ir.ui.view,arch_db:attachment_synchronize.view_attachment_task_form
 #: model_terms:ir.ui.view,arch_db:attachment_synchronize.view_attachment_task_search
 msgid "Attachments"
 msgstr ""
@@ -62,6 +81,11 @@ msgid "Attachments Import Tasks"
 msgstr ""
 
 #. module: attachment_synchronize
+#: model:ir.actions.act_window,name:attachment_synchronize.action_attachment_queue_related
+msgid "Attachments Queue"
+msgstr ""
+
+#. module: attachment_synchronize
 #: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__avoid_duplicated_files
 msgid "Avoid importing duplicated files"
 msgstr ""
@@ -73,9 +97,23 @@ msgid "Backend"
 msgstr ""
 
 #. module: attachment_synchronize
-#: model_terms:ir.ui.view,arch_db:attachment_synchronize.view_attachment_export_task_tree
-#: model_terms:ir.ui.view,arch_db:attachment_synchronize.view_attachment_import_task_tree
+#: model_terms:ir.ui.view,arch_db:attachment_synchronize.view_attachment_task_tree
 msgid "Copy"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__count_attachment_done
+msgid "Count Attachment Done"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__count_attachment_failed
+msgid "Count Attachment Failed"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__count_attachment_pending
+msgid "Count Attachment Pending"
 msgstr ""
 
 #. module: attachment_synchronize
@@ -99,13 +137,7 @@ msgid "Display Name"
 msgstr ""
 
 #. module: attachment_synchronize
-#: model_terms:ir.ui.view,arch_db:attachment_synchronize.view_attachment_export_task_tree
-#: model_terms:ir.ui.view,arch_db:attachment_synchronize.view_attachment_import_task_tree
-msgid "Enable"
-msgstr ""
-
-#. module: attachment_synchronize
-#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__enabled
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__active
 msgid "Enabled"
 msgstr ""
 
@@ -225,6 +257,11 @@ msgid "New Name"
 msgstr ""
 
 #. module: attachment_synchronize
+#: model_terms:ir.ui.view,arch_db:attachment_synchronize.view_attachment_task_form
+msgid "Notification"
+msgstr ""
+
+#. module: attachment_synchronize
 #: model:ir.model.fields,help:attachment_synchronize.field_attachment_synchronize_task__filepath
 msgid "Path to imported/exported files in the Backend"
 msgstr ""
@@ -242,12 +279,8 @@ msgstr ""
 
 #. module: attachment_synchronize
 #: model_terms:ir.ui.view,arch_db:attachment_synchronize.view_attachment_task_form
-msgid "Run Export"
-msgstr ""
-
-#. module: attachment_synchronize
-#: model_terms:ir.ui.view,arch_db:attachment_synchronize.view_attachment_task_form
-msgid "Run Import"
+#: model_terms:ir.ui.view,arch_db:attachment_synchronize.view_attachment_task_tree
+msgid "Run"
 msgstr ""
 
 #. module: attachment_synchronize
@@ -279,8 +312,7 @@ msgstr ""
 
 #. module: attachment_synchronize
 #: model:ir.model.fields,field_description:attachment_synchronize.field_storage_backend__synchronize_task_ids
-#: model_terms:ir.ui.view,arch_db:attachment_synchronize.view_attachment_export_task_tree
-#: model_terms:ir.ui.view,arch_db:attachment_synchronize.view_attachment_import_task_tree
+#: model_terms:ir.ui.view,arch_db:attachment_synchronize.view_attachment_task_tree
 msgid "Tasks"
 msgstr ""
 
