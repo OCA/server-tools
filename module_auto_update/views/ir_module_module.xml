@@ -20,6 +20,5 @@
         groups="base.group_no_one"
         parent="base.menu_management"
         sequence="45"
-        icon="fa-exchange"
     />
 </odoo>
