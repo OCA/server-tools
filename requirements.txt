@@ -1,4 +1,5 @@
 # generated from manifests external_dependencies
 raven
+dataclasses
 odoorpc
 openupgradelib
