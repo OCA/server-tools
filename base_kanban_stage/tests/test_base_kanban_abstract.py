@@ -1,9 +1,13 @@
 # -*- coding: utf-8 -*-
 # Copyright 2016-2017 LasLabs Inc.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+# Copyright 2020 InitOS Gmbh.
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
 from odoo import api, models
-from odoo.tests.common import TransactionCase
+from odoo.tests import common
+
+TEST_MODEL_NAME = 'base.kanban.abstract.tester'
 
 
 class BaseKanbanAbstractTester(models.Model):
@@ -11,31 +15,33 @@ class BaseKanbanAbstractTester(models.Model):
     _inherit = 'base.kanban.abstract'
 
 
-class TestBaseKanbanAbstract(TransactionCase):
+class TestBaseKanbanAbstract(common.SavepointCase):
 
-    def _init_test_model(self, model_cls):
-        model_cls._build_model(self.registry, self.cr)
-        model = self.env[model_cls._name].with_context(todo=[])
+    def _init_test_model(cls, model_cls):
+        registry = cls.env.registry
+        cls.env.cr.execute(
+            "INSERT INTO ir_model (model, name) VALUES (%s, %s)",
+            (TEST_MODEL_NAME, 'Test AEAT model'),
+        )
+        model_cls._build_model(registry, cls.env.cr)
+        model = cls.env[model_cls._name].with_context(todo=[])
         model._prepare_setup()
-        model._setup_base(partial=False)
-        model._setup_fields(partial=False)
+        model._setup_base()
+        model._setup_fields()
         model._setup_complete()
         model._auto_init()
         model.init()
-        model._auto_end()
         return model
 
     def setUp(self):
         super(TestBaseKanbanAbstract, self).setUp()
-
         self.registry.enter_test_mode()
         self.old_cursor = self.cr
         self.cr = self.registry.cursor()
         self.env = api.Environment(self.cr, self.uid, {})
         self.test_model = self._init_test_model(BaseKanbanAbstractTester)
-
         test_model_record = self.env['ir.model'].search([
-            ('name', '=', self.test_model._name),
+            ('model', '=', self.test_model._name),
         ])
         self.test_stage = self.env['base.kanban.stage'].create({
             'name': 'Test Stage',
@@ -69,7 +75,6 @@ class TestBaseKanbanAbstract(TransactionCase):
     def test_default_stage_id_available_stages(self):
         """It should return lowest sequence stage when model has stages"""
         result = self.test_model._default_stage_id()
-
         self.assertEqual(result, self.test_stage_2)
 
     def test_read_group_stage_ids(self):

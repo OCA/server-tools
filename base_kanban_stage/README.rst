@@ -94,6 +94,7 @@ Contributors
 * Oleg Bulkin <obulkin@laslabs.com>
 * Daniel Reis <dreis.pt@hotmail.com>
 * Alex Comba <alex.comba@agilebg.com>
+* Foram Shah <foram.shah@initos.com>
 
 Maintainer
 ----------

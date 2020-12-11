@@ -55,13 +55,14 @@
         </field>
     </record>
     
-    <record model="ir.actions.act_window" id="base_kanban_stage_action">
+    <record id="base_kanban_stage_action" model="ir.actions.act_window">
         <field name="name">Kanban Stages</field>
         <field name="res_model">base.kanban.stage</field>
         <field name="type">ir.actions.act_window</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
+
 
     <menuitem id="base_kanban_stage_root_menu" name="Kanban" 
         parent="base.menu_custom" sequence="50"/>
