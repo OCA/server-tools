@@ -1,16 +1,27 @@
 # Copyright 2011-2015 Therp BV <https://therp.nl>
-# Copyright 2016 Opener B.V. <https://opener.am>
+# Copyright 2016-2020 Opener B.V. <https://opener.am>
+# Copyright 2019 Eficent <https://eficent.com>
+# Copyright 2020 GRAP <https://grap.coop>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 # flake8: noqa: C901
 
 import logging
 import os
+from copy import deepcopy
+
+from lxml import etree
 
 from odoo import fields, models
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
 from odoo.modules import get_module_path
 from odoo.tools import config
+from odoo.tools.convert import nodeattr2bool
 from odoo.tools.translate import _
+
+try:
+    from odoo.addons.openupgrade_scripts.apriori import renamed_modules
+except ImportError:
+    renamed_modules = {}
 
 from .. import compare
 
@@ -246,10 +257,229 @@ class UpgradeAnalysis(models.Model):
                 general_log,
                 "upgrade_general_log.txt",
             )
+
+        try:
+            self.generate_noupdate_changes()
+        except Exception as e:
+            _logger.exception("Error generating noupdate changes: %s" % e)
+            general_log += "ERROR: error when generating noupdate changes: %s\n" % e
+
         self.write(
             {
                 "state": "done",
                 "log": general_log,
             }
         )
+        return True
+
+    @staticmethod
+    def _get_node_dict(element):
+        res = {}
+        if element is None:
+            return res
+        for child in element:
+            if "name" in child.attrib:
+                key = "./{}[@name='{}']".format(child.tag, child.attrib["name"])
+                res[key] = child
+        return res
+
+    @staticmethod
+    def _get_node_value(element):
+        if "eval" in element.attrib.keys():
+            return element.attrib["eval"]
+        if "ref" in element.attrib.keys():
+            return element.attrib["ref"]
+        if not len(element):
+            return element.text
+        return etree.tostring(element)
+
+    def _get_xml_diff(
+        self, remote_update, remote_noupdate, local_update, local_noupdate
+    ):
+        odoo = etree.Element("odoo")
+        for xml_id in sorted(local_noupdate.keys()):
+            local_record = local_noupdate[xml_id]
+            remote_record = None
+            if xml_id in remote_update and xml_id not in remote_noupdate:
+                remote_record = remote_update[xml_id]
+            elif xml_id in remote_noupdate:
+                remote_record = remote_noupdate[xml_id]
+
+            if "." in xml_id:
+                module_xmlid = xml_id.split(".", 1)[0]
+            else:
+                module_xmlid = ""
+
+            if remote_record is None and not module_xmlid:
+                continue
+
+            element = etree.Element(
+                "record", id=xml_id, model=local_record.attrib["model"]
+            )
+            # Add forcecreate attribute if exists
+            if local_record.attrib.get("forcecreate"):
+                element.attrib["forcecreate"] = local_record.attrib["forcecreate"]
+            record_remote_dict = self._get_node_dict(remote_record)
+            record_local_dict = self._get_node_dict(local_record)
+            for key in sorted(record_remote_dict.keys()):
+                if not local_record.xpath(key):
+                    # The element is no longer present.
+                    # Does the field still exist?
+                    if record_remote_dict[key].tag == "field":
+                        field_name = remote_record.xpath(key)[0].attrib.get("name")
+                        if (
+                            field_name
+                            not in self.env[local_record.attrib["model"]]._fields.keys()
+                        ):
+                            continue
+                    # Overwrite an existing value with an empty one.
+                    attribs = deepcopy(record_remote_dict[key]).attrib
+                    for attr in ["eval", "ref"]:
+                        if attr in attribs:
+                            del attribs[attr]
+                    element.append(etree.Element(record_remote_dict[key].tag, attribs))
+                else:
+                    oldrepr = self._get_node_value(record_remote_dict[key])
+                    newrepr = self._get_node_value(record_local_dict[key])
+
+                    if oldrepr != newrepr:
+                        element.append(deepcopy(record_local_dict[key]))
+
+            for key in sorted(record_local_dict.keys()):
+                if remote_record is None or not remote_record.xpath(key):
+                    element.append(deepcopy(record_local_dict[key]))
+
+            if len(element):
+                odoo.append(element)
+
+        if not len(odoo):
+            return ""
+        return etree.tostring(
+            etree.ElementTree(odoo),
+            pretty_print=True,
+            xml_declaration=True,
+            encoding="utf-8",
+        ).decode("utf-8")
+
+    @staticmethod
+    def _update_node(target, source):
+        for element in source:
+            if "name" in element.attrib:
+                query = "./{}[@name='{}']".format(element.tag, element.attrib["name"])
+            else:
+                # query = "./%s" % element.tag
+                continue
+            for existing in target.xpath(query):
+                target.remove(existing)
+            target.append(element)
+
+    @classmethod
+    def _process_data_node(
+        self, data_node, records_update, records_noupdate, module_name
+    ):
+        noupdate = nodeattr2bool(data_node, "noupdate", False)
+        for record in data_node.xpath("./record"):
+            self._process_record_node(
+                record, noupdate, records_update, records_noupdate, module_name
+            )
+
+    @classmethod
+    def _process_record_node(
+        self, record, noupdate, records_update, records_noupdate, module_name
+    ):
+        xml_id = record.get("id")
+        if not xml_id:
+            return
+        if "." in xml_id and xml_id.startswith(module_name + "."):
+            xml_id = xml_id[len(module_name) + 1 :]
+        for records in records_noupdate, records_update:
+            # records can occur multiple times in the same module
+            # with different noupdate settings
+            if xml_id in records:
+                # merge records (overwriting an existing element
+                # with the same tag). The order processing the
+                # various directives from the manifest is
+                # important here
+                self._update_node(records[xml_id], record)
+                break
+        else:
+            target_dict = records_noupdate if noupdate else records_update
+            target_dict[xml_id] = record
+
+    @classmethod
+    def _parse_files(self, xml_files, module_name):
+        records_update = {}
+        records_noupdate = {}
+        parser = etree.XMLParser(
+            remove_blank_text=True,
+            strip_cdata=False,
+        )
+        for xml_file in xml_files:
+            try:
+                # This is for a final correct pretty print
+                # Ref.: https://stackoverflow.com/a/7904066
+                # Also don't strip CDATA tags as needed for HTML content
+                root_node = etree.fromstring(xml_file.encode("utf-8"), parser=parser)
+            except etree.XMLSyntaxError:
+                continue
+            # Support xml files with root Element either odoo or openerp
+            # Condition: each xml file should have only one root element
+            # {<odoo>, <openerp> or —rarely— <data>};
+            root_node_noupdate = nodeattr2bool(root_node, "noupdate", False)
+            if root_node.tag not in ("openerp", "odoo", "data"):
+                raise ValidationError(
+                    _(
+                        "Unexpected root Element: %s in file: %s"
+                        % (tree.getroot(), xml_file)
+                    )
+                )
+            for node in root_node:
+                if node.tag == "data":
+                    self._process_data_node(
+                        node, records_update, records_noupdate, module_name
+                    )
+                elif node.tag == "record":
+                    self._process_record_node(
+                        node,
+                        root_node_noupdate,
+                        records_update,
+                        records_noupdate,
+                        module_name,
+                    )
+
+        return records_update, records_noupdate
+
+    def generate_noupdate_changes(self):
+        """Communicate with the remote server to fetch all xml data records
+        per module, and generate a diff in XML format that can be imported
+        from the module's migration script using openupgrade.load_data()
+        """
+        self.ensure_one()
+        connection = self.config_id.get_connection()
+        remote_record_obj = self._get_remote_model(connection, "record")
+        local_record_obj = self.env["upgrade.record"]
+        local_modules = local_record_obj.list_modules()
+        for remote_module in remote_record_obj.list_modules():
+            local_module = renamed_modules.get(remote_module, remote_module)
+            if local_module not in local_modules:
+                continue
+            remote_files = remote_record_obj.get_xml_records(remote_module)
+            local_files = local_record_obj.get_xml_records(local_module)
+            remote_update, remote_noupdate = self._parse_files(
+                remote_files, remote_module
+            )
+            local_update, local_noupdate = self._parse_files(local_files, local_module)
+            diff = self._get_xml_diff(
+                remote_update, remote_noupdate, local_update, local_noupdate
+            )
+            if diff:
+                module = self.env["ir.module.module"].search(
+                    [("name", "=", local_module)]
+                )
+                self._write_file(
+                    local_module,
+                    module.installed_version,
+                    diff,
+                    filename="noupdate_changes.xml",
+                )
         return True
