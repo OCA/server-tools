@@ -22,6 +22,7 @@ class TrgmIndex(models.Model):
     field_id = fields.Many2one(
         comodel_name="ir.model.fields",
         string="Field",
+        ondelete="set default",
         required=True,
         help='You can either select a field of type "text" or "char".',
     )
@@ -41,6 +42,7 @@ class TrgmIndex(models.Model):
         string="Index Type",
         default="gin",
         required=True,
+        ondelete={"gin": "set default", "gist": "set default"},
         help='Cite from PostgreSQL documentation: "As a rule of thumb, a '
         "GIN index is faster to search than a GiST index, but slower to "
         "build or update; so GIN is better suited for static data and "

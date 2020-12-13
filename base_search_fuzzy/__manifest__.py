@@ -1,11 +1,12 @@
 # Copyright 2016 ForgeFlow S.L.
 # Copyright 2016 Serpent Consulting Services Pvt. Ltd.
+# Copyright 2020 NextERP SRL.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     "name": "Fuzzy Search",
     "summary": "Fuzzy search with the PostgreSQL trigram extension",
     "category": "Uncategorized",
-    "version": "13.0.1.0.0",
+    "version": "14.0.1.0.0",
     "website": "https://github.com/OCA/server-tools",
     "author": "bloopark systems GmbH & Co. KG, "
     "ForgeFlow, "
