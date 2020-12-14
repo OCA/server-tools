@@ -75,9 +75,7 @@ class TestLetsencrypt(SingleTransactionCase):
         poll.assert_called()
         self.assertTrue(os.listdir(_get_challenge_dir()))
         self.assertFalse(path.isfile('/tmp/.letsencrypt_test'))
-        self.assertTrue(
-            path.isfile(path.join(_get_data_dir(), 'www.example.com.crt'))
-        )
+        self.assertTrue(path.isfile(path.join(_get_data_dir(), 'domain.crt')))
 
     # pylint: disable=unused-argument
     @mock.patch('odoo.addons.letsencrypt.models.letsencrypt.DNSUpdate')
@@ -124,9 +122,7 @@ class TestLetsencrypt(SingleTransactionCase):
         poll.assert_called()
         self.assertEqual(ncalls, 3)
         self.assertTrue(path.isfile('/tmp/.letsencrypt_test'))
-        self.assertTrue(
-            path.isfile(path.join(_get_data_dir(), 'www.example.com.crt'))
-        )
+        self.assertTrue(path.isfile(path.join(_get_data_dir(), 'domain.crt')))
 
     def test_dns_challenge_error_on_missing_provider(self):
         self.env['res.config.settings'].create(
@@ -258,7 +254,7 @@ class TestLetsencrypt(SingleTransactionCase):
         self.install_certificate(60)
         self.assertFalse(
             self.env['letsencrypt']._should_run(
-                path.join(_get_data_dir(), 'www.example.com.crt'),
+                path.join(_get_data_dir(), 'domain.crt'),
                 ['www.example.com', '*.example.com'],
             )
         )
@@ -267,7 +263,7 @@ class TestLetsencrypt(SingleTransactionCase):
         self.install_certificate(20)
         self.assertTrue(
             self.env['letsencrypt']._should_run(
-                path.join(_get_data_dir(), 'www.example.com.crt'),
+                path.join(_get_data_dir(), 'domain.crt'),
                 ['www.example.com', '*.example.com'],
             )
         )
@@ -276,7 +272,7 @@ class TestLetsencrypt(SingleTransactionCase):
         self.install_certificate(-10)
         self.assertTrue(
             self.env['letsencrypt']._should_run(
-                path.join(_get_data_dir(), 'www.example.com.crt'),
+                path.join(_get_data_dir(), 'domain.crt'),
                 ['www.example.com', '*.example.com'],
             )
         )
@@ -284,7 +280,7 @@ class TestLetsencrypt(SingleTransactionCase):
     def test_missing_certificate(self):
         self.assertTrue(
             self.env['letsencrypt']._should_run(
-                path.join(_get_data_dir(), 'www.example.com.crt'),
+                path.join(_get_data_dir(), 'domain.crt'),
                 ['www.example.com', '*.example.com'],
             )
         )
@@ -293,13 +289,13 @@ class TestLetsencrypt(SingleTransactionCase):
         self.install_certificate(60, 'www.example.com', ())
         self.assertTrue(
             self.env['letsencrypt']._should_run(
-                path.join(_get_data_dir(), 'www.example.com.crt'),
+                path.join(_get_data_dir(), 'domain.crt'),
                 ['www.example.com', '*.example.com'],
             )
         )
         self.assertFalse(
             self.env['letsencrypt']._should_run(
-                path.join(_get_data_dir(), 'www.example.com.crt'),
+                path.join(_get_data_dir(), 'domain.crt'),
                 ['www.example.com'],
             )
         )
@@ -308,7 +304,7 @@ class TestLetsencrypt(SingleTransactionCase):
         self.install_certificate(60, use_altnames=False)
         self.assertFalse(
             self.env['letsencrypt']._should_run(
-                path.join(_get_data_dir(), 'www.example.com.crt'),
+                path.join(_get_data_dir(), 'domain.crt'),
                 ['www.example.com'],
             )
         )
@@ -359,7 +355,7 @@ class TestLetsencrypt(SingleTransactionCase):
             )
 
         cert = cert_builder.sign(key, hashes.SHA256(), default_backend())
-        cert_file = path.join(_get_data_dir(), '%s.crt' % common_name)
+        cert_file = path.join(_get_data_dir(), 'domain.crt')
         with open(cert_file, 'wb') as file_:
             file_.write(cert.public_bytes(serialization.Encoding.PEM))
 
