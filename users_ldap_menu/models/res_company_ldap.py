@@ -16,7 +16,7 @@ class ResCompanyLDAP(models.Model):
         lacks any logic. But the company must still be filled, so we default
         it to the company of the user.
 
-        It might be usefull in a multi-company situation to enable imported
+        It might be useful in a multi-company situation to enable imported
         users to one or more, or all companies. As yet we do nothing specific
         to support this.
         """
