@@ -139,8 +139,8 @@ msgstr "Descripción"
 
 #. module: auditlog
 #: field:auditlog.autovacuum,display_name:0 field:auditlog.log,display_name:0
-#: field:auditlog.log.line,display_name:0
-#: field:auditlog.methods,display_name:0 field:auditlog.rule,display_name:0
+#: field:auditlog.log.line,display_name:0 field:auditlog.methods,display_name:0
+#: field:auditlog.rule,display_name:0
 msgid "Display Name"
 msgstr "Nombre a mostrar"
 
@@ -159,6 +159,12 @@ msgstr "Registro rápido"
 #: field:auditlog.log.line,field_id:0
 msgid "Field"
 msgstr "Campo"
+
+#. module: auditlog
+#: code:addons/auditlog/models/rule.py:247
+#, python-format
+msgid "Field 'model_id' cannot be empty."
+msgstr ""
 
 #. module: auditlog
 #: view:auditlog.log:auditlog.view_auditlog_log_form
@@ -307,7 +313,7 @@ msgid "Method"
 msgstr "Método"
 
 #. module: auditlog
-#: code:addons/auditlog/models/rule.py:181
+#: code:addons/auditlog/models/rule.py:185
 #, python-format
 msgid "Method %s does not exist for model %s."
 msgstr ""
@@ -317,6 +323,11 @@ msgstr ""
 #: field:auditlog.log,model_id:0 field:auditlog.rule,model_id:0
 msgid "Model"
 msgstr "Modelo"
+
+#. module: auditlog
+#: field:auditlog.log,model_name:0 field:auditlog.rule,model_name:0
+msgid "Model Name"
+msgstr ""
 
 #. module: auditlog
 #: field:auditlog.http.request,display_name:0
@@ -334,6 +345,18 @@ msgstr "Valor nuevo"
 #: field:auditlog.log.line,new_value_text:0
 msgid "New value Text"
 msgstr "Texto del valor nuevo"
+
+#. module: auditlog
+#: code:addons/auditlog/models/log.py:75
+#, python-format
+msgid "No field defined to create line."
+msgstr ""
+
+#. module: auditlog
+#: code:addons/auditlog/models/rule.py:229
+#, python-format
+msgid "No model defined to create line."
+msgstr ""
 
 #. module: auditlog
 #: field:auditlog.log.line,old_value:0
@@ -463,9 +486,20 @@ msgid "Subscribed"
 msgstr "Suscrito"
 
 #. module: auditlog
+#: field:auditlog.log,model_model:0 field:auditlog.rule,model_model:0
+msgid "Technical Model Name"
+msgstr ""
+
+#. module: auditlog
 #: field:auditlog.log.line,field_name:0
 msgid "Technical name"
 msgstr "Nombre técnico"
+
+#. module: auditlog
+#: code:addons/auditlog/models/log.py:87
+#, python-format
+msgid "The field 'field_id' cannot be empty."
+msgstr ""
 
 #. module: auditlog
 #: sql_constraint:auditlog.rule:0
@@ -527,7 +561,7 @@ msgid "Values"
 msgstr "Valores"
 
 #. module: auditlog
-#: code:addons/auditlog/models/rule.py:662
+#: code:addons/auditlog/models/rule.py:682
 #, python-format
 msgid "View logs"
 msgstr "Ver registros"

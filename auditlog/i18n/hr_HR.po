@@ -116,8 +116,8 @@ msgstr ""
 
 #. module: auditlog
 #: field:auditlog.autovacuum,display_name:0 field:auditlog.log,display_name:0
-#: field:auditlog.log.line,display_name:0
-#: field:auditlog.methods,display_name:0 field:auditlog.rule,display_name:0
+#: field:auditlog.log.line,display_name:0 field:auditlog.methods,display_name:0
+#: field:auditlog.rule,display_name:0
 msgid "Display Name"
 msgstr "Naziv"
 
@@ -135,6 +135,12 @@ msgstr ""
 #. module: auditlog
 #: field:auditlog.log.line,field_id:0
 msgid "Field"
+msgstr ""
+
+#. module: auditlog
+#: code:addons/auditlog/models/rule.py:247
+#, python-format
+msgid "Field 'model_id' cannot be empty."
 msgstr ""
 
 #. module: auditlog
@@ -279,7 +285,7 @@ msgid "Method"
 msgstr ""
 
 #. module: auditlog
-#: code:addons/auditlog/models/rule.py:181
+#: code:addons/auditlog/models/rule.py:185
 #, python-format
 msgid "Method %s does not exist for model %s."
 msgstr ""
@@ -288,6 +294,11 @@ msgstr ""
 #: view:auditlog.log:auditlog.view_auditlog_log_search
 #: field:auditlog.log,model_id:0 field:auditlog.rule,model_id:0
 msgid "Model"
+msgstr ""
+
+#. module: auditlog
+#: field:auditlog.log,model_name:0 field:auditlog.rule,model_name:0
+msgid "Model Name"
 msgstr ""
 
 #. module: auditlog
@@ -305,6 +316,18 @@ msgstr ""
 #. module: auditlog
 #: field:auditlog.log.line,new_value_text:0
 msgid "New value Text"
+msgstr ""
+
+#. module: auditlog
+#: code:addons/auditlog/models/log.py:75
+#, python-format
+msgid "No field defined to create line."
+msgstr ""
+
+#. module: auditlog
+#: code:addons/auditlog/models/rule.py:229
+#, python-format
+msgid "No model defined to create line."
 msgstr ""
 
 #. module: auditlog
@@ -427,8 +450,19 @@ msgid "Subscribed"
 msgstr ""
 
 #. module: auditlog
+#: field:auditlog.log,model_model:0 field:auditlog.rule,model_model:0
+msgid "Technical Model Name"
+msgstr ""
+
+#. module: auditlog
 #: field:auditlog.log.line,field_name:0
 msgid "Technical name"
+msgstr ""
+
+#. module: auditlog
+#: code:addons/auditlog/models/log.py:87
+#, python-format
+msgid "The field 'field_id' cannot be empty."
 msgstr ""
 
 #. module: auditlog
@@ -489,7 +523,7 @@ msgid "Values"
 msgstr ""
 
 #. module: auditlog
-#: code:addons/auditlog/models/rule.py:662
+#: code:addons/auditlog/models/rule.py:682
 #, python-format
 msgid "View logs"
 msgstr ""
