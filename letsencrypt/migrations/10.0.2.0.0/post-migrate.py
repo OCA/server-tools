@@ -1,14 +1,19 @@
 # -*- coding: utf-8 -*-
 # Copyright 2018 Therp BV <https://therp.nl>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+import os
 import urlparse
 
 from odoo import api, SUPERUSER_ID
 
+from odoo.addons.letsencrypt.models.letsencrypt import _get_data_dir
+
 
 def migrate_altnames(env):
     config = env["ir.config_parameter"]
-    existing = config.search([("key", "=like", "letsencrypt.altname.%")])
+    existing = config.search(
+        [("key", "=like", "letsencrypt.altname.%")], order="key"
+    )
     domains = existing.mapped("value")
     base_url = config.get_param("web.base.url", "http://localhost:8069")
     base_domain = urlparse.urlparse(base_url).hostname
@@ -21,6 +26,23 @@ def migrate_altnames(env):
         domains.insert(0, base_domain)
     config.set_param("letsencrypt.altnames", "\n".join(domains))
     existing.unlink()
+
+    old_location = os.path.join(
+        # .netloc includes the port, which is not right, but that's what
+        # the old version did and we're trying to match it
+        _get_data_dir(), urlparse.urlparse(base_url).netloc
+    )
+    new_location = os.path.join(_get_data_dir(), "domain")
+    if (
+        os.path.isfile(old_location + ".crt")
+        and os.path.isfile(old_location + ".key")
+        and not os.path.isfile(new_location + ".crt")
+        and not os.path.isfile(new_location + ".key")
+    ):
+        os.rename(old_location + ".crt", new_location + ".crt")
+        os.symlink(new_location + ".crt", old_location + ".crt")
+        os.rename(old_location + ".key", new_location + ".key")
+        os.symlink(new_location + ".key", old_location + ".key")
 
 
 def migrate_cron(env):
