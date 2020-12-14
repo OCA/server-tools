@@ -19,7 +19,7 @@ class AuditlogHTTPRequest(models.Model):
     user_id = fields.Many2one(
         'res.users', string=u"User")
     http_session_id = fields.Many2one(
-        'auditlog.http.session', string=u"Session")
+        'auditlog.http.session', string=u"Session", index=True)
     user_context = fields.Char(u"Context")
     log_ids = fields.One2many(
         'auditlog.log', 'http_request_id', string=u"Logs")
