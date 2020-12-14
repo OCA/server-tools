@@ -2,6 +2,7 @@
 # © 2015 Therp BV <http://therp.nl>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from openerp.tests.common import TransactionCase
+from openerp.addons.base.ir.ir_model import MODULE_UNINSTALL_FLAG
 
 
 class TestAuditlog(object):
@@ -181,3 +182,100 @@ class TestMethods(TransactionCase):
         ])
 
         self.assertEqual(len(logs), 1)
+
+
+class TestFieldRemoval(TransactionCase):
+    def setUp(self):
+        super(TestFieldRemoval, self).setUp()
+
+        # Clear all existing logging lines
+        existing_audit_logs = self.env['auditlog.log'].search([])
+        existing_audit_logs.unlink()
+
+        # Store cursor
+        self.commit_org = self.env.cr.commit
+        self.env.cr.commit = lambda *args: None
+
+        # Create a test model to remove
+        self.test_model = self.env['ir.model'].create({
+            'name': 'x_test_model',
+            'model': "x_test.model",
+            'state': 'manual'
+        })
+
+        # Create a test model field to remove
+        self.test_field = self.env['ir.model.fields'].create({
+            'name': 'x_test_field',
+            'field_description': 'x_Test Field',
+            'model_id': self.test_model.id,
+            'ttype': 'char',
+            'state': 'manual'
+        })
+
+        # Setup auditlog rule
+        self.auditlog_rule = self.env['auditlog.rule'].create({
+            'name': 'test.model',
+            'model_id': self.test_model.id,
+            'log_type': 'fast',
+            'log_read': False,
+            'log_create': True,
+            'log_write': True,
+            'log_unlink': False,
+            'log_custom_method': True,
+        })
+
+        self.auditlog_rule.subscribe()
+
+    def tearDown(self):
+        """ Clean up after testcase. """
+        self.auditlog_rule.unsubscribe()
+        self.auditlog_rule.unlink()
+        self.registry.models.pop('x_test.model')
+        self.registry._pure_function_fields.pop('x_test.model')
+
+        # Restore cursor
+        self.env.cr.commit = self.commit_org
+
+        super(TestFieldRemoval, self).tearDownClass()
+
+    def test_01_field_and_model_removal(self):
+        """ Test field and model removal to check auditlog line persistence """
+        # Trigger log creation
+        rec = self.env['x_test.model'].create({'x_test_field': "test value"})
+        rec.write({'x_test_field': 'test value 2'})
+
+        logs = self.env['auditlog.log'].search([
+            ('res_id', '=', rec.id),
+            ('model_id', '=', self.test_model.id)
+        ])
+
+        # Get the field to remove
+        log_lines = logs.mapped('line_ids')
+        self.assertEqual(len(log_lines), 2)
+
+        # Remove the field
+        self.test_field.with_context({MODULE_UNINSTALL_FLAG: True}).unlink()
+
+        # The log line should still exist
+        self.assertTrue(log_lines)
+
+        # The field should not be linked
+        self.assertFalse(log_lines.mapped('field_id'))
+
+        # The field name and description as well
+        self.assertEqual(log_lines[0].field_name, 'x_test_field')
+        self.assertEqual(log_lines[0].field_description, 'x_Test Field')
+
+        # Remove the model
+        self.test_model.with_context({MODULE_UNINSTALL_FLAG: True}).unlink()
+
+        # Assert log values
+        self.assertTrue(logs)
+        self.assertFalse(logs.mapped('model_id'))
+        self.assertEqual(logs[0].model_name, 'x_test_model')
+        self.assertEqual(logs[0].model_model, 'x_test.model')
+
+        # Assert rule values
+        self.assertFalse(self.auditlog_rule.model_id)
+        self.assertEqual(self.auditlog_rule.model_name, 'x_test_model')
+        self.assertEqual(self.auditlog_rule.model_model, 'x_test.model')

@@ -61,6 +61,7 @@ Contributors
 
 * Sebastien Alix <sebastien.alix@osiell.com>
 * Holger Brunn <hbrunn@therp.nl>
+* Pieter Paulussen <pieter.paulussen@me.com>
 
 Images
 ------
