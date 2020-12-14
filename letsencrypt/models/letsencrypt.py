@@ -198,7 +198,7 @@ class Letsencrypt(models.AbstractModel):
         ir_config_parameter = self.env['ir.config_parameter']
         domains = self._get_altnames()
         domain = domains[0]
-        cert_file = os.path.join(_get_data_dir(), '%s.crt' % domain)
+        cert_file = os.path.join(_get_data_dir(), 'domain.crt')
 
         domains = self._cascade_domains(domains)
         for dom in domains:
@@ -208,7 +208,7 @@ class Letsencrypt(models.AbstractModel):
             return
 
         account_key = josepy.JWKRSA.load(self._get_key('account.key'))
-        domain_key = self._get_key('%s.key' % domain)
+        domain_key = self._get_key('domain.key')
 
         client = self._create_client(account_key)
         new_reg = acme.messages.NewRegistration(
