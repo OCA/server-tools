@@ -90,6 +90,7 @@ Contributors
 * Holden Rehg <holdenrehg@gmail.com>
 * Eric Lembregts <eric@lembregts.eu>
 * Alan Ramos <alan.ramos@jarsa.com.mx>
+* Tom Blauwendraat <tom@sunflowerweb.nl>
 
 Other credits
 ~~~~~~~~~~~~~
