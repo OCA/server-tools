@@ -20,6 +20,7 @@ setuptools.setup(
         'odoo13-addon-base_time_window',
         'odoo13-addon-base_view_inheritance_extension',
         'odoo13-addon-company_country',
+        'odoo13-addon-dbfilter_from_header',
         'odoo13-addon-fetchmail_incoming_log',
         'odoo13-addon-fetchmail_notify_error_to_sender',
         'odoo13-addon-fetchmail_notify_error_to_sender_test',
