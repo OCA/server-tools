@@ -86,6 +86,7 @@ class ImportOdooDatabase(models.Model):
         default="skip",
         required=True,
     )
+    null_password = fields.Boolean(default=True)
 
     def action_import(self):
         """Create a cronjob to run the actual import"""
@@ -126,7 +127,8 @@ class ImportOdooDatabase(models.Model):
         # dummy_instance
         dummy_instances = []
         remote = self._get_connection()
-        self.write({"password": False})
+        if self.null_password:
+            self.write({"password": False})
         if commit and not tools.config["test_enable"]:
             # pylint: disable=invalid-commit
             self.env.cr.commit()
