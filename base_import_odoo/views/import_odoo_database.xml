@@ -54,6 +54,7 @@
                             password="True"
                             attrs="{'readonly': [('cronjob_running', '=', True)], 'required': [('cronjob_running', '=', False)]}"
                         />
+                        <field name="null_password" />
                         <field name="duplicates" />
                         <field
                             name="cronjob_id"
