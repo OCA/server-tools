@@ -21,6 +21,7 @@ addon | version | summary
 --- | --- | ---
 [auditlog](auditlog/) | 14.0.1.0.0 | Audit Log
 [base_exception](base_exception/) | 14.0.1.0.0 | This module provide an abstract model to manage customizable exceptions to be applied on different models (sale order, invoice, ...)
+[base_technical_user](base_technical_user/) | 14.0.1.0.0 | Add a technical user parameter on the company
 
 [//]: # (end addons)
 
