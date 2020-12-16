@@ -42,7 +42,7 @@ addon | version | summary
 [base_manifest_extension](base_manifest_extension/) | 8.0.1.0.0 | Adds some useful keys to manifest files
 [base_mixin_restrict_field_access](base_mixin_restrict_field_access/) | 8.0.1.0.0 | Make it simple to restrict read and/or write access to certain fields base on some condition
 [base_module_doc_rst](base_module_doc_rst/) | 8.0.1.0.0 | Modules Technical Guides in RST and Relationship Graphs
-[base_multi_image](base_multi_image/) | 8.0.2.0.0 | Allow multiple images for database objects
+[base_multi_image](base_multi_image/) | 8.0.2.0.1 | Allow multiple images for database objects
 [base_name_search_improved](base_name_search_improved/) | 8.0.1.2.0 | Friendlier search when typing in relation fields
 [base_optional_quick_create](base_optional_quick_create/) | 8.0.0.1.0 | Avoid 'quick create' on m2o fields, on a 'by model' basis
 [base_report_auto_create_qweb](base_report_auto_create_qweb/) | 8.0.1.0.0 | Report qweb auto generation
