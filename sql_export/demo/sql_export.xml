@@ -18,7 +18,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
     <record id="integer_field_variable_sql" model="ir.model.fields">
         <field name="name">x_id</field>
-        <field name="field_description">ID</field>
+        <field name="field_description">x_ID</field>
         <field name="ttype">integer</field>
         <field name="model_id" ref="sql_export.model_sql_file_wizard"/>
         <field name="model">sql.file.wizard</field>
