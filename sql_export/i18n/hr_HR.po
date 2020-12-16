@@ -130,7 +130,6 @@ msgstr "Naziv datoteke"
 #. module: sql_export
 #: model:ir.model.fields,field_description:sql_export.field_sql_export__id
 #: model:ir.model.fields,field_description:sql_export.field_sql_file_wizard__id
-#: model:ir.model.fields,field_description:sql_export.integer_field_variable_sql
 msgid "ID"
 msgstr "ID"
 
@@ -312,4 +311,9 @@ msgstr ""
 #. module: sql_export
 #: selection:sql.export,encoding:0
 msgid "windows-1252"
+msgstr ""
+
+#. module: sql_export
+#: model:ir.model.fields,field_description:sql_export.integer_field_variable_sql
+msgid "x_ID"
 msgstr ""
