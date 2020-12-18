@@ -57,6 +57,11 @@ msgid "By domain"
 msgstr ""
 
 #. module: base_exception
+#: model:ir.model.fields.selection,name:base_exception.selection__exception_rule__exception_type__by_method
+msgid "By method"
+msgstr ""
+
+#. module: base_exception
 #: model:ir.model.fields.selection,name:base_exception.selection__exception_rule__exception_type__by_py_code
 msgid "By python code"
 msgstr ""
@@ -66,8 +71,9 @@ msgstr ""
 msgid ""
 "By python code: allow to define any arbitrary check\n"
 "By domain: limited to a selection by an odoo domain:\n"
-"           performance can be better when exceptions            are "
-"evaluated with several records"
+"           performance can be better when exceptions           are evaluated "
+"with several records\n"
+"By method: allow to select an existing check method"
 msgstr ""
 
 #. module: base_exception
@@ -275,6 +281,11 @@ msgid "Main Exception"
 msgstr ""
 
 #. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule__method
+msgid "Method"
+msgstr ""
+
+#. module: base_exception
 #: code:addons/base_exception/wizard/base_exception_confirm.py:0
 #, python-format
 msgid "Only 1 ID accepted, got %r."
@@ -332,8 +343,8 @@ msgstr ""
 #: code:addons/base_exception/models/base_exception.py:0
 #, python-format
 msgid ""
-"There is a problem of configuration, python code or domain is missing to "
-"match the exception type."
+"There is a problem of configuration, python code, domain or method is "
+"missing to match the exception type."
 msgstr ""
 
 #. module: base_exception

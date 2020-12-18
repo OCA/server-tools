@@ -57,6 +57,11 @@ msgid "By domain"
 msgstr "通过域"
 
 #. module: base_exception
+#: model:ir.model.fields.selection,name:base_exception.selection__exception_rule__exception_type__by_method
+msgid "By method"
+msgstr ""
+
+#. module: base_exception
 #: model:ir.model.fields.selection,name:base_exception.selection__exception_rule__exception_type__by_py_code
 msgid "By python code"
 msgstr "通过python代码"
@@ -66,12 +71,10 @@ msgstr "通过python代码"
 msgid ""
 "By python code: allow to define any arbitrary check\n"
 "By domain: limited to a selection by an odoo domain:\n"
-"           performance can be better when exceptions            are "
-"evaluated with several records"
+"           performance can be better when exceptions           are evaluated "
+"with several records\n"
+"By method: allow to select an existing check method"
 msgstr ""
-"通过python代码：允许定义任意检查\n"
-"通过域: 仅限于odoo域的选择:\n"
-"           在评估异常情况时           可以使用几种记录来改进性能"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_base_exception__changeset_change_ids
@@ -279,6 +282,11 @@ msgid "Main Exception"
 msgstr "主要异常"
 
 #. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule__method
+msgid "Method"
+msgstr ""
+
+#. module: base_exception
 #: code:addons/base_exception/wizard/base_exception_confirm.py:0
 #, python-format
 msgid "Only 1 ID accepted, got %r."
@@ -335,9 +343,9 @@ msgstr ""
 #: code:addons/base_exception/models/base_exception.py:0
 #, python-format
 msgid ""
-"There is a problem of configuration, python code or domain is missing to "
-"match the exception type."
-msgstr "存在配置问题，缺少python代码或域以匹配异常类型。"
+"There is a problem of configuration, python code, domain or method is "
+"missing to match the exception type."
+msgstr ""
 
 #. module: base_exception
 #: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_form
@@ -368,6 +376,21 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_confirm
 msgid "_Close"
 msgstr "关闭"
+
+#~ msgid ""
+#~ "By python code: allow to define any arbitrary check\n"
+#~ "By domain: limited to a selection by an odoo domain:\n"
+#~ "           performance can be better when exceptions            are "
+#~ "evaluated with several records"
+#~ msgstr ""
+#~ "通过python代码：允许定义任意检查\n"
+#~ "通过域: 仅限于odoo域的选择:\n"
+#~ "           在评估异常情况时           可以使用几种记录来改进性能"
+
+#~ msgid ""
+#~ "There is a problem of configuration, python code or domain is missing to "
+#~ "match the exception type."
+#~ msgstr "存在配置问题，缺少python代码或域以匹配异常类型。"
 
 #~ msgid "<code>time</code>: useful Python libraries"
 #~ msgstr "<code>time</code>: 有用的Python库"
