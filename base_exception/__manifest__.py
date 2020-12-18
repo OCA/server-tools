@@ -13,6 +13,7 @@
     "author": "Akretion, Sodexis, Camptocamp, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/server-tools",
     "depends": ["base_setup"],
+    "maintainers": ["hparfr", "sebastienbeau"],
     "license": "AGPL-3",
     "data": [
         "security/base_exception_security.xml",
