@@ -57,6 +57,11 @@ msgid "By domain"
 msgstr "Por domínio"
 
 #. module: base_exception
+#: model:ir.model.fields.selection,name:base_exception.selection__exception_rule__exception_type__by_method
+msgid "By method"
+msgstr ""
+
+#. module: base_exception
 #: model:ir.model.fields.selection,name:base_exception.selection__exception_rule__exception_type__by_py_code
 msgid "By python code"
 msgstr "Por código Python"
@@ -66,13 +71,10 @@ msgstr "Por código Python"
 msgid ""
 "By python code: allow to define any arbitrary check\n"
 "By domain: limited to a selection by an odoo domain:\n"
-"           performance can be better when exceptions            are "
-"evaluated with several records"
+"           performance can be better when exceptions           are evaluated "
+"with several records\n"
+"By method: allow to select an existing check method"
 msgstr ""
-"Por código python: permite definir qualquer verificação arbitrária\n"
-"Por domínio: limitado a uma seleção por um domínio Odoo:\n"
-"           o desempenho pode ser superior quando as exceções            são "
-"avaliadas com vários registos"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_base_exception__changeset_change_ids
@@ -281,6 +283,11 @@ msgid "Main Exception"
 msgstr "Exceção Principal"
 
 #. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule__method
+msgid "Method"
+msgstr ""
+
+#. module: base_exception
 #: code:addons/base_exception/wizard/base_exception_confirm.py:0
 #, python-format
 msgid "Only 1 ID accepted, got %r."
@@ -339,11 +346,9 @@ msgstr ""
 #: code:addons/base_exception/models/base_exception.py:0
 #, python-format
 msgid ""
-"There is a problem of configuration, python code or domain is missing to "
-"match the exception type."
+"There is a problem of configuration, python code, domain or method is "
+"missing to match the exception type."
 msgstr ""
-"Há um problema de configuração. Falta código python ou um domínio para "
-"verificação do tipo de exceção."
 
 #. module: base_exception
 #: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_form
@@ -376,6 +381,24 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_confirm
 msgid "_Close"
 msgstr "_Fechar"
+
+#~ msgid ""
+#~ "By python code: allow to define any arbitrary check\n"
+#~ "By domain: limited to a selection by an odoo domain:\n"
+#~ "           performance can be better when exceptions            are "
+#~ "evaluated with several records"
+#~ msgstr ""
+#~ "Por código python: permite definir qualquer verificação arbitrária\n"
+#~ "Por domínio: limitado a uma seleção por um domínio Odoo:\n"
+#~ "           o desempenho pode ser superior quando as exceções            "
+#~ "são avaliadas com vários registos"
+
+#~ msgid ""
+#~ "There is a problem of configuration, python code or domain is missing to "
+#~ "match the exception type."
+#~ msgstr ""
+#~ "Há um problema de configuração. Falta código python ou um domínio para "
+#~ "verificação do tipo de exceção."
 
 #~ msgid "<code>time</code>: useful Python libraries"
 #~ msgstr "<code>time</code>: bibliotecas Python úteis"
