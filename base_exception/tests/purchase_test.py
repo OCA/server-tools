@@ -11,12 +11,17 @@ class ExceptionRule(models.Model):
     method = fields.Selection(
         selection_add=[("exception_method_no_zip", "Purchase exception no zip")]
     )
+    model = fields.Selection(
+        selection_add=[("base.exception.test.purchase", "Purchase Test")],
+        ondelete={"base.exception.test.purchase": "cascade"},
+    )
+    test_purchase_ids = fields.Many2many("base.exception.test.purchase")
 
 
 class PurchaseTest(models.Model):
     _inherit = "base.exception"
     _name = "base.exception.test.purchase"
-    _description = "Base Ecxeption Test Model"
+    _description = "Base Exception Test Model"
 
     name = fields.Char(required=True)
     user_id = fields.Many2one("res.users", string="Responsible")
