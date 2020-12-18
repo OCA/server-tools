@@ -19,7 +19,7 @@ class TestBaseException(common.SavepointCase):
     @classmethod
     def setUpClass(cls):
         super(TestBaseException, cls).setUpClass()
-        setup_test_model(cls.env, [PurchaseTest, LineTest])
+        setup_test_model(cls.env, [PurchaseTest, LineTest, ExceptionRule])
 
         cls.base_exception = cls.env["base.exception"]
         cls.exception_rule = cls.env["exception.rule"]
