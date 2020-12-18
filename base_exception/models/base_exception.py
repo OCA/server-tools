@@ -189,10 +189,9 @@ class BaseExceptionMethod(models.AbstractModel):
         domain = osv.expression.AND([base_domain, rule_domain])
         return self.search(domain)
 
-    @api.multi
     def _detect_exceptions_by_method(self, rule):
         """
-            Find exceptions found on self.
+        Find exceptions found on self.
         """
         base_domain = self._get_base_domain()
         records = self.search(base_domain)
