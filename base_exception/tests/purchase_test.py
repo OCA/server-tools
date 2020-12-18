@@ -4,6 +4,15 @@
 from odoo import api, fields, models
 
 
+class ExceptionRule(models.Model):
+    _inherit = "exception.rule"
+    _name = "exception.rule"
+
+    method = fields.Selection(
+        selection_add=[("exception_method_no_zip", "Purchase exception no zip")]
+    )
+
+
 class PurchaseTest(models.Model):
     _inherit = "base.exception"
     _name = "base.exception.test.purchase"
@@ -57,6 +66,13 @@ class PurchaseTest(models.Model):
 
     def _reverse_field(self):
         return "test_purchase_ids"
+
+    def exception_method_no_zip(self):
+        records_fail = self.env["base.exception.test.purchase"]
+        for rec in self:
+            if not rec.partner_id.zip:
+                records_fail += rec
+        return records_fail
 
 
 class LineTest(models.Model):
