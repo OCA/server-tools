@@ -11,6 +11,7 @@ setuptools.setup(
         'odoo14-addon-auditlog',
         'odoo14-addon-base_exception',
         'odoo14-addon-base_technical_user',
+        'odoo14-addon-onchange_helper',
     ],
     classifiers=[
         'Programming Language :: Python',
