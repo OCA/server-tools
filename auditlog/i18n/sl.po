@@ -552,7 +552,7 @@ msgid "Values"
 msgstr "Vrednosti"
 
 #. module: auditlog
-#: code:addons/auditlog/models/rule.py:682
+#: code:addons/auditlog/models/rule.py:698
 #, python-format
 msgid "View logs"
 msgstr "Prikaz dnevnikov"
