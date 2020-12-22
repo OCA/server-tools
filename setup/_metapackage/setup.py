@@ -10,6 +10,7 @@ setuptools.setup(
     install_requires=[
         'odoo14-addon-auditlog',
         'odoo14-addon-base_exception',
+        'odoo14-addon-base_sparse_field_list_support',
         'odoo14-addon-base_technical_user',
         'odoo14-addon-onchange_helper',
     ],
