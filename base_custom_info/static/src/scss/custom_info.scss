@@ -1,0 +1,10 @@
+.o_form_view {
+    .o_field_widget,
+    .btn {
+        .custom_info_value {
+            .o_field_widget {
+                margin-bottom: $o-form-spacing-unit;
+            }
+        }
+    }
+}

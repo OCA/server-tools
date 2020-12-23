@@ -40,10 +40,7 @@ class CustomInfoValue(models.Model):
         string="Resource ID", required=True, index=True, ondelete="cascade",
     )
     property_id = fields.Many2one(
-        comodel_name="custom.info.property",
-        required=True,
-        string="Property",
-        readonly=True,
+        comodel_name="custom.info.property", required=True, string="Property",
     )
     property_sequence = fields.Integer(
         related="property_id.sequence", store=True, index=True,
@@ -56,6 +53,7 @@ class CustomInfoValue(models.Model):
     category_id = fields.Many2one(related="property_id.category_id", store=True)
     name = fields.Char(related="property_id.name")
     field_type = fields.Selection(related="property_id.field_type")
+    widget = fields.Selection(related="property_id.widget", readonly=True,)
     field_name = fields.Char(
         compute="_compute_field_name",
         help="Technical name of the field where the value is stored.",
@@ -63,7 +61,6 @@ class CustomInfoValue(models.Model):
     required = fields.Boolean(related="property_id.required")
     value = fields.Char(
         compute="_compute_value",
-        inverse="_inverse_value",
         search="_search_value",
         help="Value, always converted to/from the typed field.",
     )
@@ -71,6 +68,7 @@ class CustomInfoValue(models.Model):
     value_int = fields.Integer(string="Whole number value", index=True)
     value_float = fields.Float(string="Decimal number value", index=True)
     value_bool = fields.Boolean(string="Yes/No value", index=True)
+    value_date = fields.Date(string="Date value", index=True)
     value_id = fields.Many2one(
         comodel_name="custom.info.option",
         string="Selection value",
@@ -170,7 +168,7 @@ class CustomInfoValue(models.Model):
                     # This is a job for :meth:`.~_check_required`
                     continue
                 if record.field_type == "str":
-                    number = len(self.value_str)
+                    number = len(record.value_str)
                     message = _(
                         "Length for %(prop)s is %(val)s, but it should be "
                         "between %(min)d and %(max)d."
@@ -199,6 +197,24 @@ class CustomInfoValue(models.Model):
                             "max": maximum,
                         }
                     )
+
+    @api.constrains(
+        "value_str",
+        "value_int",
+        "value_float",
+        "value_bool",
+        "value_date",
+        "value_id",
+        "property_id",
+    )
+    def _check_required(self):
+        for record in self:
+            if not record.required:
+                continue
+            if not record.value:
+                raise ValidationError(
+                    _("Some required elements have not been fulfilled")
+                )
 
     @api.onchange("property_id")
     def _onchange_property_set_default_value(self):
@@ -251,6 +267,10 @@ class CustomInfoValue(models.Model):
                 "off",
                 _("No").lower(),
             }
+        elif format_ in {"date"}:
+            value = fields.Date.from_string(value)
+        elif format_ in {"datetime"}:
+            value = fields.Datetime.from_string(value)
         elif format_ not in {"str", "id"}:
             value = safe_eval("{!s}({!r})".format(format_, value))
         return value

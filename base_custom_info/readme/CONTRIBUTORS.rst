@@ -6,5 +6,9 @@
   * Jairo Llopis <jairo.llopis@tecnativa.com>
   * Pedro M. Baeza <pedro.baeza@tecnativa.com>
   * Alexandre Díaz <alexandre.diaz@tecnativa.com>
+* Creu Blanca:
 
-* David Alonso <david.alonso@solvos.es>
+  * Enric Tobella <etobella@creublanca.es>
+* Solvos:
+
+  * David Alonso <david.alonso@solvos.es>
