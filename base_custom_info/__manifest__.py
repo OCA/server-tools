@@ -10,6 +10,7 @@
     "version": "13.0.1.0.0",
     "depends": ["base_setup"],
     "data": [
+        "views/webclient_templates.xml",
         "security/ir.model.access.csv",
         "security/res_groups_security.xml",
         "views/custom_info_category_view.xml",
@@ -21,6 +22,7 @@
         "views/res_partner_view.xml",
         "wizard/res_config_settings_view.xml",
     ],
+    "qweb": ["static/src/xml/custom_info_item.xml"],
     "demo": [
         "demo/custom.info.category.csv",
         "demo/custom.info.template.csv",
