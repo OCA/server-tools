@@ -201,7 +201,6 @@ msgstr ""
 #. module: base_kanban_stage
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_abstract__kanban_sequence
 #, fuzzy
-#| msgid "Sequence"
 msgid "Kanban Sequence"
 msgstr "Sekvenca"
 

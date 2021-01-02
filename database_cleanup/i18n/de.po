@@ -254,7 +254,6 @@ msgstr "Modell"
 #. module: database_cleanup
 #: model:ir.model,name:database_cleanup.model_ir_model_data
 #, fuzzy
-#| msgid "Model"
 msgid "Model Data"
 msgstr "Modell"
 
@@ -352,14 +351,12 @@ msgstr "Löschen"
 #. module: database_cleanup
 #: model:ir.model,name:database_cleanup.model_cleanup_purge_line
 #, fuzzy
-#| msgid "Purge Wizard"
 msgid "Purge Column Abstract Wizard"
 msgstr "Lösch-Assistent"
 
 #. module: database_cleanup
 #: model:ir.model,name:database_cleanup.model_cleanup_purge_line_column
 #, fuzzy
-#| msgid "Purge Wizard"
 msgid "Purge Column Wizard Lines"
 msgstr "Lösch-Assistent"
 
@@ -477,7 +474,6 @@ msgstr "Lösche Tabellen"
 #. module: database_cleanup
 #: model:ir.model,name:database_cleanup.model_cleanup_purge_line_table
 #, fuzzy
-#| msgid "Purge tables"
 msgid "Purge tables wizard lines"
 msgstr "Lösche Tabellen"
 

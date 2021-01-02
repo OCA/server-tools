@@ -7,11 +7,47 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 <odoo>
 
+    <record id="date_field_variable_sql" model="ir.model.fields">
+        <field name="name">x_date</field>
+        <field name="field_description">Date</field>
+        <field name="ttype">date</field>
+        <field name="model_id" ref="sql_export.model_sql_file_wizard"/>
+        <field name="model">sql.file.wizard</field>
+        <field name="state">manual</field>
+    </record>
+
+    <record id="integer_field_variable_sql" model="ir.model.fields">
+        <field name="name">x_id</field>
+        <field name="field_description">x_ID</field>
+        <field name="ttype">integer</field>
+        <field name="model_id" ref="sql_export.model_sql_file_wizard"/>
+        <field name="model">sql.file.wizard</field>
+        <field name="state">manual</field>
+    </record>
+
+    <record id="m2m_field_variable_sql" model="ir.model.fields">
+        <field name="name">x_partner_categ_ids</field>
+        <field name="field_description">Partner Categories</field>
+        <field name="ttype">many2many</field>
+        <field name="model_id" ref="sql_export.model_sql_file_wizard"/>
+        <field name="model">sql.file.wizard</field>
+        <field name="state">manual</field>
+        <field name="relation">res.partner.category</field>
+    </record>
+
     <record id="sql_export_partner" model="sql.export">
         <field name="name">Export Partners (Demo Data)</field>
         <field name="query">SELECT name, street FROM res_partner;</field>
     </record>
 
     <function model="sql.export" name="button_validate_sql_expression" eval="([ref('sql_export.sql_export_partner')])"/>
+
+    <record id="sql_export_partner_with_variables" model="sql.export">
+        <field name="name">Export Partners With Variables (Demo Data)</field>
+	<field name="query">SELECT p.id FROM res_partner p LEFT JOIN res_partner_res_partner_category_rel rel ON rel.partner_id = p.id WHERE create_date &lt; %(x_date)s AND id = %(x_id)s AND rel.category_id in %(x_partner_categ_ids)s</field>
+	<field eval="[(6, 0, [ref('date_field_variable_sql'), ref('integer_field_variable_sql'), ref('m2m_field_variable_sql')])]" name="field_ids"/>
+    </record>
+
+    <function model="sql.export" name="button_validate_sql_expression" eval="([ref('sql_export.sql_export_partner_with_variables')])"/>
 
 </odoo>

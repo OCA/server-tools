@@ -255,7 +255,6 @@ msgstr "النموذج"
 #. module: database_cleanup
 #: model:ir.model,name:database_cleanup.model_ir_model_data
 #, fuzzy
-#| msgid "Model"
 msgid "Model Data"
 msgstr "النموذج"
 

@@ -1,0 +1,37 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * base_locale_uom_default
+#
+# Translators:
+# Pedro M. Baeza <pedro.baeza@gmail.com>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-12-01 02:10+0000\n"
+"PO-Revision-Date: 2019-04-07 20:45-0400\n"
+"Last-Translator: Pedro M. Baeza <pedro.baeza@gmail.com>, 2017\n"
+"Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.8.11\n"
+
+#. module: base_locale_uom_default
+#: model:ir.model.fields,field_description:base_locale_uom_default.field_res_lang__default_uom_ids
+msgid "Default Units"
+msgstr "Unidades por defecto"
+
+#. module: base_locale_uom_default
+#: model:ir.model,name:base_locale_uom_default.model_res_lang
+msgid "Languages"
+msgstr "Idiomas"
+
+#. module: base_locale_uom_default
+#: code:addons/base_locale_uom_default/models/res_lang.py:24
+#, python-format
+msgid "Only one default unit of measure per category may be selected."
+msgstr ""
+"Sólo se puede seleccionar una unidad de medida por defecto por categoría."

@@ -4,7 +4,7 @@
 {
     'name': 'Excel Import/Export/Report',
     'summary': 'Base module for developing Excel import/export/report',
-    'version': '12.0.1.0.4',
+    'version': '12.0.1.0.6',
     'author': 'Ecosoft,Odoo Community Association (OCA)',
     'license': 'AGPL-3',
     'website': 'https://github.com/OCA/server-tools/',
@@ -25,6 +25,6 @@
              'views/webclient_templates.xml',
              ],
     'installable': True,
-    'development_status': 'beta',
+    'development_status': 'Beta',
     'maintainers': ['kittiu'],
 }

@@ -46,7 +46,7 @@ class XLSXImport(models.AbstractModel):
         xml_id = record.get_external_id()
         if not xml_id or (record.id in xml_id and xml_id[record.id] == ''):
             ModelData.create({'name': '%s_%s' % (record._table, record.id),
-                              'module': 'excel_import_export',
+                              'module': '__excel_import_export__',
                               'model': record._name,
                               'res_id': record.id, })
             xml_id = record.get_external_id()
