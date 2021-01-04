@@ -89,7 +89,6 @@ Contributors
 * Holger Brunn <hbrunn@therp.nl>
 * Holden Rehg <holdenrehg@gmail.com>
 * Eric Lembregts <eric@lembregts.eu>
-* Tom Blauwendraat <tom@sunflowerweb.nl>
 
 Other credits
 ~~~~~~~~~~~~~
