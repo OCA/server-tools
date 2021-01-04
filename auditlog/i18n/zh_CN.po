@@ -460,7 +460,7 @@ msgid "Values"
 msgstr "值"
 
 #. module: auditlog
-#: code:addons/auditlog/models/rule.py:538
+#: code:addons/auditlog/models/rule.py:556
 #, python-format
 msgid "View logs"
 msgstr "查看日志"
