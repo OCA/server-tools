@@ -14,4 +14,3 @@ This module can be used in combination with attachment_synchronize to control fi
 
 
 image:: ../static/description/form.png
-
