@@ -1,24 +1,27 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- 
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
 Copyright (C) 2019-Today: GRAP (<http://www.grap.coop/>)
 @author: Sylvain LE GAL (https://twitter.com/legalsylvain)
 License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
  -->
-
 <odoo>
-
-    <menuitem id="menu_module_analysis"
+    <menuitem
+        id="menu_module_analysis"
         name="Analysis"
-        parent="base.menu_management" sequence="100"
-        groups="base.group_no_one"/>
-
-    <menuitem id="menu_module_analysis_settings"
+        parent="base.menu_management"
+        sequence="100"
+        groups="base.group_no_one"
+    />
+    <menuitem
+        id="menu_module_analysis_settings"
         name="Settings"
-        parent="menu_module_analysis" sequence="10"/>
-
-    <menuitem id="menu_module_analysis_reporting"
+        parent="menu_module_analysis"
+        sequence="10"
+    />
+    <menuitem
+        id="menu_module_analysis_reporting"
         name="Reporting"
-        parent="menu_module_analysis" sequence="20"/>
-
-
+        parent="menu_module_analysis"
+        sequence="20"
+    />
 </odoo>
