@@ -3,32 +3,28 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 {
-    'name': "Module Analysis",
-    'summary': "Add analysis tools regarding installed modules"
+    "name": "Module Analysis",
+    "summary": "Add analysis tools regarding installed modules"
     " to know which installed modules comes from Odoo Core, OCA, or are"
     " custom modules",
-    'author': 'GRAP, Odoo Community Association (OCA)',
-    'website': "https://github.com/OCA/server-tools/",
-    'version': '12.0.1.0.0',
-    'license': 'AGPL-3',
-    'depends': [
-        'base',
+    "author": "GRAP, Odoo Community Association (OCA)",
+    "website": "https://github.com/OCA/server-tools/",
+    "version": "12.0.1.0.0",
+    "license": "AGPL-3",
+    "depends": ["base",],
+    "data": [
+        "security/ir.model.access.csv",
+        "views/menu.xml",
+        "views/view_base_module_update.xml",
+        "views/view_ir_module_author.xml",
+        "views/view_ir_module_type.xml",
+        "views/view_ir_module_type_rule.xml",
+        "views/view_ir_module_module.xml",
+        "data/ir_config_parameter.xml",
+        "data/ir_module_type.xml",
+        "data/ir_module_type_rule.xml",
     ],
-    'data': [
-        'security/ir.model.access.csv',
-        'views/menu.xml',
-        'views/view_base_module_update.xml',
-        'views/view_ir_module_author.xml',
-        'views/view_ir_module_type.xml',
-        'views/view_ir_module_type_rule.xml',
-        'views/view_ir_module_module.xml',
-        'data/ir_config_parameter.xml',
-        'data/ir_module_type.xml',
-        'data/ir_module_type_rule.xml',
-    ],
-    'external_dependencies': {
-        'python': ['pygount'],
-    },
-    'post_init_hook': 'analyse_installed_modules',
-    'installable': True,
+    "external_dependencies": {"python": ["pygount"],},
+    "post_init_hook": "analyse_installed_modules",
+    "installable": True,
 }

@@ -1,23 +1,20 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- 
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
 Copyright (C) 2019-Today: GRAP (<http://www.grap.coop/>)
 @author: Sylvain LE GAL (https://twitter.com/legalsylvain)
 License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
  -->
-
 <odoo>
-
     <record id="view_ir_module_type_rule_tree" model="ir.ui.view">
         <field name="model">ir.module.type.rule</field>
         <field name="arch" type="xml">
             <tree editable="bottom">
-                <field name="sequence" widget="handle"/>
-                <field name="module_type_id"/>
-                <field name="module_domain"/>
+                <field name="sequence" widget="handle" />
+                <field name="module_type_id" />
+                <field name="module_domain" />
             </tree>
         </field>
     </record>
-
     <record id="action_ir_module_type_rule" model="ir.actions.act_window">
         <field name="name">Modules Types Rules</field>
         <field name="type">ir.actions.act_window</field>
@@ -25,10 +22,11 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="view_type">form</field>
         <field name="view_mode">tree</field>
     </record>
-
-    <menuitem id="menu_module_type_rules"
-        parent="menu_module_analysis_settings" sequence="3"
+    <menuitem
+        id="menu_module_type_rules"
+        parent="menu_module_analysis_settings"
+        sequence="3"
         action="action_ir_module_type_rule"
-        groups="base.group_no_one"/>
-
+        groups="base.group_no_one"
+    />
 </odoo>
