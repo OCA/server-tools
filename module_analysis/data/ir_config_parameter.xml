@@ -1,20 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- 
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
 Copyright (C) 2019-Today: GRAP (<http://www.grap.coop/>)
 @author: Sylvain LE GAL (https://twitter.com/legalsylvain)
 License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
  -->
-
 <odoo noupdate="1">
-
     <record id="parameter_exclude_directories" model="ir.config_parameter">
         <field name="key">module_analysis.exclude_directories</field>
         <field name="value">lib,demo,test,tests,doc,description</field>
     </record>
-
     <record id="parameter_exclude_files" model="ir.config_parameter">
         <field name="key">module_analysis.exclude_files</field>
         <field name="value">__openerp__.py,__manifest__.py</field>
     </record>
-
 </odoo>
