@@ -24,7 +24,6 @@ class IrModuleType(models.Model):
         string="Modules Quantity", compute="_compute_installed_module_qty", store=True
     )
 
-    @api.multi
     @api.depends("installed_module_ids.module_type_id")
     def _compute_installed_module_qty(self):
         for module_type in self:
