@@ -55,7 +55,6 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">ir.module.module</field>
         <field name="domain">[('state', '=', 'installed')]</field>
-        <field name="view_type">form</field>
         <field name="view_mode">pivot,graph</field>
     </record>
     <menuitem

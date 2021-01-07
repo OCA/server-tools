@@ -19,7 +19,6 @@ class IrModuleType(models.Model):
         string="Module type", comodel_name="ir.module.type", required=True
     )
 
-    @api.multi
     def _get_module_type_id_from_module(self, module):
         IrModuleModule = self.env["ir.module.module"]
         for rule in self:

@@ -31,7 +31,6 @@ class IrModuleAuthor(models.Model):
         ),
     ]
 
-    @api.multi
     @api.depends("installed_module_ids")
     def _compute_installed_module_qty(self):
         for author in self:

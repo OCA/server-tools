@@ -6,7 +6,7 @@ import logging
 import os
 from pathlib import Path
 
-import pygount
+from pygount import SourceAnalysis
 
 from odoo import api, fields, models
 from odoo.modules.module import get_module_path
@@ -82,7 +82,6 @@ class IrModuleModule(models.Model):
             self.search([("state", "=", "installed")]).button_analyse_code()
         return res
 
-    @api.multi
     def write(self, vals):
         res = super().write(vals)
         if vals.get("state", False) == "installed":
@@ -94,7 +93,6 @@ class IrModuleModule(models.Model):
         return res
 
     # Public Section
-    @api.multi
     def button_analyse_code(self):
         IrModuleAuthor = self.env["ir.module.author"]
         IrModuleTypeRule = self.env["ir.module.type.rule"]
@@ -139,7 +137,7 @@ class IrModuleModule(models.Model):
             )
 
             for file_path, file_ext in file_list:
-                file_res = pygount.source_analysis(
+                file_res = file_res = SourceAnalysis.from_file(
                     file_path, "", encoding=self._get_module_encoding(file_ext)
                 )
                 for k, v in analysed_datas.get(file_ext).items():
