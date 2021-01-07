@@ -37,7 +37,6 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="name">Modules Types</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">ir.module.type</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
     <menuitem
