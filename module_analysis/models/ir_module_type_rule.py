@@ -2,7 +2,7 @@
 # @author: Sylvain LE GAL (https://twitter.com/legalsylvain)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import api, fields, models
+from odoo import fields, models
 from odoo.tools.safe_eval import safe_eval
 
 
@@ -19,7 +19,6 @@ class IrModuleType(models.Model):
         string="Module type", comodel_name="ir.module.type", required=True
     )
 
-    @api.multi
     def _get_module_type_id_from_module(self, module):
         IrModuleModule = self.env["ir.module.module"]
         for rule in self:

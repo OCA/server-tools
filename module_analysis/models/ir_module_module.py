@@ -6,7 +6,7 @@ import logging
 import os
 from pathlib import Path
 
-import pygount
+from pygount import SourceAnalysis
 
 from odoo import api, fields, models
 from odoo.modules.module import get_module_path
@@ -52,10 +52,10 @@ class IrModuleModule(models.Model):
         field_name: Odoo field name to store the analysis
         """
         return {
-            ".py": {"code": "python_code_qty",},
-            ".xml": {"code": "xml_code_qty",},
-            ".js": {"code": "js_code_qty",},
-            ".css": {"code": "css_code_qty",},
+            ".py": {"code": "python_code_qty"},
+            ".xml": {"code": "xml_code_qty"},
+            ".js": {"code": "js_code_qty"},
+            ".css": {"code": "css_code_qty"},
         }
 
     @api.model
@@ -82,7 +82,6 @@ class IrModuleModule(models.Model):
             self.search([("state", "=", "installed")]).button_analyse_code()
         return res
 
-    @api.multi
     def write(self, vals):
         res = super().write(vals)
         if vals.get("state", False) == "installed":
@@ -94,7 +93,6 @@ class IrModuleModule(models.Model):
         return res
 
     # Public Section
-    @api.multi
     def button_analyse_code(self):
         IrModuleAuthor = self.env["ir.module.author"]
         IrModuleTypeRule = self.env["ir.module.type.rule"]
@@ -114,7 +112,7 @@ class IrModuleModule(models.Model):
             if module.author and module.author[0] == "[":
                 author_txt_list = safe_eval(module.author)
             else:
-                author_txt_list = module.author.split(",")
+                author_txt_list = (module.author and module.author.split(",")) or []
 
             author_txt_list = [x.strip() for x in author_txt_list]
             author_txt_list = [x for x in author_txt_list if x]
@@ -139,7 +137,7 @@ class IrModuleModule(models.Model):
             )
 
             for file_path, file_ext in file_list:
-                file_res = pygount.source_analysis(
+                file_res = SourceAnalysis.from_file(
                     file_path, "", encoding=self._get_module_encoding(file_ext)
                 )
                 for k, v in analysed_datas.get(file_ext).items():
@@ -147,8 +145,8 @@ class IrModuleModule(models.Model):
 
             # Update the module with the datas
             values = {}
-            for file_ext, analyses in analysed_datas.items():
-                for k, v in analyses.items():
+            for analyses in analysed_datas.values():
+                for v in analyses.values():
                     values[v["field"]] = v["value"]
             module.write(values)
 
@@ -158,7 +156,9 @@ class IrModuleModule(models.Model):
         self, path, file_extensions, exclude_directories, exclude_files
     ):
         res = []
-        for root, dirs, files in os.walk(path, followlinks=True):
+        if not path:
+            return res
+        for root, _, files in os.walk(path, followlinks=True):
             if set(Path(root).parts) & set(exclude_directories):
                 continue
             for name in files:
@@ -172,7 +172,7 @@ class IrModuleModule(models.Model):
     @api.model
     def _get_analyse_data_dict(self):
         res_dict = self._get_analyse_settings().copy()
-        for file_ext, analyse_dict in res_dict.items():
+        for analyse_dict in res_dict.values():
             for analyse_type, v in analyse_dict.items():
                 analyse_dict[analyse_type] = {"field": v, "value": 0}
         return res_dict
