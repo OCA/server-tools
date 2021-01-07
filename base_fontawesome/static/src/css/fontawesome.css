@@ -2,24 +2,8 @@
 
 @font-face {
   font-family: 'FontAwesome';
-  src:  url("../../lib/fontawesome-5.15.1/webfonts/fa-brands-400.eot"),
-        url("../../lib/fontawesome-5.15.1/webfonts/fa-brands-400.eot?#iefix") format("embedded-opentype"),
-        url("../../lib/fontawesome-5.15.1/webfonts/fa-brands-400.woff2") format("woff2"),
-        url("../../lib/fontawesome-5.15.1/webfonts/fa-brands-400.woff") format("woff"),
-        url("../../lib/fontawesome-5.15.1/webfonts/fa-brands-400.ttf") format("truetype"),
-        url("../../lib/fontawesome-5.15.1/webfonts/fa-brands-400.svg#fontawesome") format("svg"),
-        url("../../lib/fontawesome-5.15.1/webfonts/fa-regular-400.eot"),
-        url("../../lib/fontawesome-5.15.1/webfonts/fa-regular-400.eot?#iefix") format("embedded-opentype"),
-        url("../../lib/fontawesome-5.15.1/webfonts/fa-regular-400.woff2") format("woff2"),
-        url("../../lib/fontawesome-5.15.1/webfonts/fa-regular-400.woff") format("woff"),
-        url("../../lib/fontawesome-5.15.1/webfonts/fa-regular-400.ttf") format("truetype"),
-        url("../../lib/fontawesome-5.15.1/webfonts/fa-regular-400.svg#fontawesome") format("svg"),
-        url("../../lib/fontawesome-5.15.1/webfonts/fa-solid-900.eot"),
-        url("../../lib/fontawesome-5.15.1/webfonts/fa-solid-900.eot?#iefix") format("embedded-opentype"),
-        url("../../lib/fontawesome-5.15.1/webfonts/fa-solid-900.woff2") format("woff2"),
-        url("../../lib/fontawesome-5.15.1/webfonts/fa-solid-900.woff") format("woff"),
-        url("../../lib/fontawesome-5.15.1/webfonts/fa-solid-900.ttf") format("truetype"),
-        url("../../lib/fontawesome-5.15.1/webfonts/fa-solid-900.svg#fontawesome") format("svg");
+  src: url("../../lib/fontawesome-5.15.1/webfonts/fa-solid-900.eot");
+  src: url("../../lib/fontawesome-5.15.1/webfonts/fa-solid-900.eot?#iefix") format("embedded-opentype"), url("../../lib/fontawesome-5.15.1/webfonts/fa-solid-900.woff2") format("woff2"), url("../../lib/fontawesome-5.15.1/webfonts/fa-solid-900.woff") format("woff"), url("../../lib/fontawesome-5.15.1/webfonts/fa-solid-900.ttf") format("truetype"), url("../../lib/fontawesome-5.15.1/webfonts/fa-solid-900.svg#fontawesome") format("svg");
   font-weight: normal;
   font-style: normal;
   }
