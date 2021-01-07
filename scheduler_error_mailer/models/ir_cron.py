@@ -25,7 +25,7 @@ class IrCron(models.Model):
     def _handle_callback_exception(
         self, cron_name, server_action_id, job_id, job_exception
     ):
-        res = super(IrCron, self)._handle_callback_exception(
+        res = super()._handle_callback_exception(
             cron_name, server_action_id, job_id, job_exception
         )
         my_cron = self.browse(job_id)
