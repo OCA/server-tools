@@ -14,16 +14,16 @@ Module Analysis
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github
-    :target: https://github.com/OCA/server-tools/tree/12.0/module_analysis
+    :target: https://github.com/OCA/server-tools/tree/13.0/module_analysis
     :alt: OCA/server-tools
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
     :target: https://translation.odoo-community.org/projects/server-tools-12-0/server-tools-12-0-module_analysis
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
-    :target: https://runbot.odoo-community.org/runbot/149/12.0
+    :target: https://runbot.odoo-community.org/runbot/149/13.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 This module allows you to know 'how much code' is running on your Odoo
 instance, group by 'Type' (Odoo Core, OCA, other...)
@@ -35,22 +35,22 @@ This module can be usefull in the following cases :
 * To evaluate the amount to pay to odoo to upgrade your custom code, or the
   induced workload
 
-.. image:: https://raw.githubusercontent.com/OCA/server-tools/12.0/module_analysis/static/description/installed_modules_by_types.png
+.. image:: https://raw.githubusercontent.com/OCA/server-tools/13.0/module_analysis/static/description/installed_modules_by_types.png
 
 For that purpose, it adds new concepts
 
 * ``ir.module.author``, based on the value ``author`` present in the manifest
   file.
 
-.. image:: https://raw.githubusercontent.com/OCA/server-tools/12.0/module_analysis/static/description/module_authors.png
+.. image:: https://raw.githubusercontent.com/OCA/server-tools/13.0/module_analysis/static/description/module_authors.png
 
 * ``ir.module.type``, populated by default with Odoo and OCA values.
 
-.. image:: https://raw.githubusercontent.com/OCA/server-tools/12.0/module_analysis/static/description/module_types.png
+.. image:: https://raw.githubusercontent.com/OCA/server-tools/13.0/module_analysis/static/description/module_types.png
 
 Each installed modules have extra data in the 'Technical Data' tab :
 
-.. image:: https://raw.githubusercontent.com/OCA/server-tools/12.0/module_analysis/static/description/module_form.png
+.. image:: https://raw.githubusercontent.com/OCA/server-tools/13.0/module_analysis/static/description/module_form.png
 
 **Table of contents**
 
@@ -74,13 +74,13 @@ it information.
 
 This module comes with default rules.
 
-    .. image:: https://raw.githubusercontent.com/OCA/server-tools/12.0/module_analysis/static/description/default_module_type_rules.png
+    .. image:: https://raw.githubusercontent.com/OCA/server-tools/13.0/module_analysis/static/description/default_module_type_rules.png
 
 
 You can add your custom rules to identify the modules your team have
 developped for exemple,
 
-    .. image:: https://raw.githubusercontent.com/OCA/server-tools/12.0/module_analysis/static/description/add_module_type_rules.png
+    .. image:: https://raw.githubusercontent.com/OCA/server-tools/13.0/module_analysis/static/description/add_module_type_rules.png
 
 
 to update the data, you have to :
@@ -89,7 +89,7 @@ to update the data, you have to :
 
 * Check the box 'Analyse Installed modules'
 
-    .. image:: https://raw.githubusercontent.com/OCA/server-tools/12.0/module_analysis/static/description/base_module_update.png
+    .. image:: https://raw.githubusercontent.com/OCA/server-tools/13.0/module_analysis/static/description/base_module_update.png
 
 This will update analysis of your installed modules.
 
@@ -124,7 +124,7 @@ Exclude files and directories
 Two parameters are availaible in 'Settings' / 'Technical' / 'Parameters'
 'System Parameters' :
 
-    .. image:: https://raw.githubusercontent.com/OCA/server-tools/12.0/module_analysis/static/description/config_parameters.png
+    .. image:: https://raw.githubusercontent.com/OCA/server-tools/13.0/module_analysis/static/description/config_parameters.png
 
 The list of folders and filename will be exclude from the analysis.
 You can change the default settings.
@@ -136,9 +136,9 @@ Usage
 
 Open the stats to analyse the detail of the code installed
 
-    .. image:: https://raw.githubusercontent.com/OCA/server-tools/12.0/module_analysis/static/description/analysis_pivot.png
+    .. image:: https://raw.githubusercontent.com/OCA/server-tools/13.0/module_analysis/static/description/analysis_pivot.png
 
-    .. image:: https://raw.githubusercontent.com/OCA/server-tools/12.0/module_analysis/static/description/analysis_pie.png
+    .. image:: https://raw.githubusercontent.com/OCA/server-tools/13.0/module_analysis/static/description/analysis_pie.png
 
 
 Bug Tracker
@@ -177,6 +177,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/12.0/module_analysis>`_ project on GitHub.
+This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/13.0/module_analysis>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
