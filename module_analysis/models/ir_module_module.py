@@ -52,10 +52,10 @@ class IrModuleModule(models.Model):
         field_name: Odoo field name to store the analysis
         """
         return {
-            ".py": {"code": "python_code_qty",},
-            ".xml": {"code": "xml_code_qty",},
-            ".js": {"code": "js_code_qty",},
-            ".css": {"code": "css_code_qty",},
+            ".py": {"code": "python_code_qty"},
+            ".xml": {"code": "xml_code_qty"},
+            ".js": {"code": "js_code_qty"},
+            ".css": {"code": "css_code_qty"},
         }
 
     @api.model
@@ -145,8 +145,8 @@ class IrModuleModule(models.Model):
 
             # Update the module with the datas
             values = {}
-            for file_ext, analyses in analysed_datas.items():
-                for k, v in analyses.items():
+            for _, analyses in analysed_datas.items():
+                for _, v in analyses.items():
                     values[v["field"]] = v["value"]
             module.write(values)
 
@@ -156,7 +156,7 @@ class IrModuleModule(models.Model):
         self, path, file_extensions, exclude_directories, exclude_files
     ):
         res = []
-        for root, dirs, files in os.walk(path, followlinks=True):
+        for root, _, files in os.walk(path, followlinks=True):
             if set(Path(root).parts) & set(exclude_directories):
                 continue
             for name in files:
@@ -170,7 +170,7 @@ class IrModuleModule(models.Model):
     @api.model
     def _get_analyse_data_dict(self):
         res_dict = self._get_analyse_settings().copy()
-        for file_ext, analyse_dict in res_dict.items():
+        for _, analyse_dict in res_dict.items():
             for analyse_type, v in analyse_dict.items():
                 analyse_dict[analyse_type] = {"field": v, "value": 0}
         return res_dict
