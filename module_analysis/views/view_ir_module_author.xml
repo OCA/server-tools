@@ -1,10 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- 
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
 Copyright (C) 2019-Today: GRAP (<http://www.grap.coop/>)
 @author: Sylvain LE GAL (https://twitter.com/legalsylvain)
 License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
  -->
-
 <odoo>
 
     <record id="view_ir_module_author_form" model="ir.ui.view">
@@ -13,11 +12,11 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
             <form>
                 <sheet>
                     <div class="oe_title">
-                        <div class="oe_edit_only"><label for="name"/></div>
-                        <h1><field name="name"/></h1>
+                        <div class="oe_edit_only"><label for="name" /></div>
+                        <h1><field name="name" /></h1>
                     </div>
                     <group>
-                        <field name="installed_module_qty"/>
+                        <field name="installed_module_qty" />
                     </group>
                 </sheet>
             </form>
@@ -29,8 +28,8 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="model">ir.module.author</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="name"/>
-                <field name="installed_module_qty"/>
+                <field name="name" />
+                <field name="installed_module_qty" />
             </tree>
         </field>
     </record>
@@ -44,9 +43,12 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
     </record>
 
 
-    <menuitem id="menu_module_authors"
-        parent="menu_module_analysis_settings" sequence="1"
+    <menuitem
+        id="menu_module_authors"
+        parent="menu_module_analysis_settings"
+        sequence="1"
         action="action_ir_module_author"
-        groups="base.group_no_one"/>
+        groups="base.group_no_one"
+    />
 
 </odoo>

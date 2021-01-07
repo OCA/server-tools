@@ -6,13 +6,15 @@ from odoo import api, fields, models
 
 
 class BaseModuleUpdate(models.TransientModel):
-    _inherit = 'base.module.update'
+    _inherit = "base.module.update"
 
     analyse_installed_modules = fields.Boolean(
-        string='Analyse Installed Modules', default=True)
+        string="Analyse Installed Modules", default=True
+    )
 
     @api.multi
     def update_module(self):
-        return super(BaseModuleUpdate, self.with_context(
-            analyse_installed_modules=self.analyse_installed_modules)
+        return super(
+            BaseModuleUpdate,
+            self.with_context(analyse_installed_modules=self.analyse_installed_modules),
         ).update_module()
