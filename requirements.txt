@@ -9,9 +9,9 @@ lxml
 odoorpc
 openpyxl
 openupgradelib
+pygount
 pysftp
 raven
 unidecode
 xlrd
 xlwt
-pygount

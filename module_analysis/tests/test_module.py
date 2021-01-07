@@ -2,11 +2,11 @@
 # @author: Sylvain LE GAL (https://twitter.com/legalsylvain)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo.tests.common import TransactionCase, post_install
+from odoo.tests import common
 
 
-@post_install(True)
-class TestModule(TransactionCase):
+@common.tagged("post_install")
+class TestModule(common.TransactionCase):
     def setUp(self):
         super().setUp()
         self.IrModuleModule = self.env["ir.module.module"]
