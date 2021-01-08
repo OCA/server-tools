@@ -137,7 +137,7 @@ class IrModuleModule(models.Model):
             )
 
             for file_path, file_ext in file_list:
-                file_res = file_res = SourceAnalysis.from_file(
+                file_res = SourceAnalysis.from_file(
                     file_path, "", encoding=self._get_module_encoding(file_ext)
                 )
                 for k, v in analysed_datas.get(file_ext).items():
