@@ -145,8 +145,8 @@ class IrModuleModule(models.Model):
 
             # Update the module with the datas
             values = {}
-            for _, analyses in analysed_datas.items():
-                for _, v in analyses.items():
+            for analyses in analysed_datas.values():
+                for v in analyses.values():
                     values[v["field"]] = v["value"]
             module.write(values)
 
@@ -170,7 +170,7 @@ class IrModuleModule(models.Model):
     @api.model
     def _get_analyse_data_dict(self):
         res_dict = self._get_analyse_settings().copy()
-        for _, analyse_dict in res_dict.items():
+        for analyse_dict in res_dict.values():
             for analyse_type, v in analyse_dict.items():
                 analyse_dict[analyse_type] = {"field": v, "value": 0}
         return res_dict
