@@ -12,7 +12,8 @@ from cProfile import Profile
 import lxml.html
 from psycopg2 import OperationalError, ProgrammingError
 
-from odoo import _, api, exceptions, fields, models, sql_db, tools
+from odoo import _, api, exceptions, fields, http, models, sql_db, tools
+
 
 if sys.version_info[0] >= 3:
     from io import StringIO as IO
@@ -48,6 +49,83 @@ LINE_STATS_RE = re.compile(
 _logger = logging.getLogger(__name__)
 
 
+class ProfilerProfileRequestLine(models.Model):
+    _name = 'profiler.profile.request.line'
+    _description = 'Profiler HTTP request Line to save cProfiling results'
+    _order = 'total_time DESC'
+
+    profile_id = fields.Many2one('profiler.profile', required=True,
+                                 ondelete='cascade')
+    display_name = fields.Char("Name", compute="_compute_display_name")
+    name = fields.Char("Path")
+    root_url = fields.Char("Root URL")
+    user_id = fields.Many2one(
+        'res.users', string="User")
+    user_context = fields.Char("Context")
+    total_time = fields.Float("Time in ms")
+    attachment_id = fields.Reference(
+        selection=[('ir.attachment', 'ir.attachment')],
+        compute='_compute_attachment_id',
+        string='pStats file')
+
+    @api.multi
+    def _compute_attachment_id(self):
+        attachments = self.env['ir.attachment'].search([
+            ('res_model', '=', self._name),
+            ('res_id', 'in', self.ids)
+        ])
+        attachments_by_id = {a.res_id: a.id for a in attachments}
+        for this in self:
+            attachment_id = attachments_by_id.get(this.id)
+            if not attachment_id:
+                this.attachment_id = None
+            else:
+                this.attachment_id = 'ir.attachment,%d' % (attachment_id,)
+
+    @api.depends('name', 'create_date')
+    def _compute_display_name(self):
+        for httprequest in self:
+            create_date = fields.Datetime.from_string(httprequest.create_date)
+            tz_create_date = fields.Datetime.context_timestamp(
+                httprequest, create_date)
+            httprequest.display_name = u"%s (%s)" % (
+                httprequest.name or '?',
+                fields.Datetime.to_string(tz_create_date))
+
+    def _get_attachment_name(self, prefix, suffix):
+        return '%s_%s_%s_%s' % (
+            prefix,
+            fields.Datetime.from_string(
+                self.create_date).strftime(DATETIME_FORMAT_FILE),
+            re.sub('[^0-9a-zA-Z]+', '_', self.name),
+            suffix,
+        )
+
+    @api.multi
+    def dump_stats(self):
+        self.ensure_one()
+        with tools.osutil.tempdir() as dump_dir:
+            cprofile_fname = self._get_attachment_name("py_stats", ".cprofile")
+            cprofile_path = os.path.join(dump_dir, cprofile_fname)
+            _logger.info("Dumping cProfile '%s'", cprofile_path)
+            ProfilerProfile.profile.dump_stats(cprofile_path)
+            with open(cprofile_path, "rb") as f_cprofile:
+                datas = f_cprofile.read()
+
+            if not datas or datas == CPROFILE_EMPTY_CHARS:
+                _logger.info("cProfile stats empty.")
+                return None
+
+            self.env['ir.attachment'].create({
+                'name': cprofile_fname,
+                'res_id': self.id,
+                'res_model': self._name,
+                'datas': base64.b64encode(datas),
+                'datas_fname': cprofile_fname,
+                'description': 'cProfile dump stats',
+            })
+
+
 class ProfilerProfilePythonLine(models.Model):
     _name = 'profiler.profile.python.line'
     _description = 'Profiler Python Line to save cProfiling results'
@@ -64,10 +142,39 @@ class ProfilerProfilePythonLine(models.Model):
     cprof_ctpercall = fields.Float("CT per call")
     cprof_fname = fields.Char("Filename:lineno(method)")
 
+    @api.multi
+    def unlink(self):
+        self.env['ir.attachment'].search([
+            ('res_model', '=', self._name),
+            ('res_id', 'in', self.ids),
+        ]).unlink()
+        return super(ProfilerProfilePythonLine, self).unlink()
+
 
 class ProfilerProfile(models.Model):
     _name = 'profiler.profile'
     _description = 'Profiler Profile'
+
+    _SELECTION_PYTHON_METHOD = [
+        ('full', 'All activity'),
+        ('request', 'Per HTTP request'),
+    ]
+
+    @api.multi
+    def create_request_line(self):
+        """Create a record corresponding to the current HTTP request and return
+        it. If no HTTP request is available, return None."""
+        self.ensure_one()
+        request = http.request
+        if request and request.httprequest and request.httprequest.session:
+            return self.env['profiler.profile.request.line'].create({
+                'profile_id': self.id,
+                'name': request.httprequest.path,
+                'root_url': request.httprequest.url_root,
+                'user_id': request.uid,
+                'user_context': request.context,
+            })
+        return None
 
     @api.model
     def _find_loggers_path(self):
@@ -88,6 +195,8 @@ class ProfilerProfile(models.Model):
 
     name = fields.Char(required=True)
     enable_python = fields.Boolean(default=True)
+    python_method = fields.Selection(
+        selection=_SELECTION_PYTHON_METHOD, default='full', required=True)
     enable_postgresql = fields.Boolean(
         default=False,
         help="It requires postgresql server logs seudo-enabled")
@@ -115,12 +224,22 @@ class ProfilerProfile(models.Model):
         "PostgreSQL Stats - Most Frequent", readonly=True)
     py_stats_lines = fields.One2many(
         "profiler.profile.python.line", "profile_id", "PY Stats Lines")
+    py_request_lines = fields.One2many(
+        "profiler.profile.request.line", "profile_id", "HTTP requests")
 
     @api.multi
     def _compute_attachment_count(self):
         for record in self:
             self.attachment_count = self.env['ir.attachment'].search_count([
                 ('res_model', '=', self._name), ('res_id', '=', record.id)])
+
+    @api.multi
+    def unlink(self):
+        self.env['ir.attachment'].search([
+            ('res_model', '=', self._name),
+            ('res_id', 'in', self.ids),
+        ]).unlink()
+        return super(ProfilerProfile, self).unlink()
 
     @api.onchange('enable_postgresql')
     def onchange_enable_postgresql(self):
@@ -140,7 +259,7 @@ class ProfilerProfile(models.Model):
             self.pg_remote = db_host
 
         self.description = (
-            "You need seudo-enable logs from your "
+            "You need pseudo-enable logs from your "
             "postgresql-server configuration file.\n\t- %s\n"
             "or your can looking for the service using: "
             "'ps aux | grep postgres'\n\n"
@@ -207,22 +326,25 @@ export PGOPTIONS="-c log_min_duration_statement=0 \\
         self.env.cr.execute("SELECT to_char(current_timestamp AT TIME "
                             "ZONE %s, 'YYYY-MM-DD HH24:MI:SS')", (zone,))
         now = self.env.cr.fetchall()[0][0]
-        # now = fields.Datetime.to_string(
-        #     fields.Datetime.context_timestamp(self, datetime.now()))
         return now
 
     @api.multi
     def enable(self):
         self.ensure_one()
-        if tools.config.get('workers'):
+        if tools.config.get('workers') and self.enable_python \
+                and self.python_method == 'full':
             raise exceptions.UserError(
-                _("Start the odoo server using the parameter '--workers=0'"))
+                _("To profile all activity, start the odoo server using "
+                  "the parameter '--workers=0'"))
         _logger.info("Enabling profiler")
         self.write(dict(
             date_started=self.now_utc(),
             state='enabled'
         ))
-        ProfilerProfile.enabled = self.enable_python
+        if self.enable_python and self.python_method == 'full':
+            ProfilerProfile.enabled = True
+        elif self.enable_python and self.python_method == 'request':
+            http.request.httprequest.session.oca_profiler = self.id
         self._reset_postgresql()
 
     @api.multi
@@ -347,8 +469,9 @@ export PGOPTIONS="-c log_min_duration_statement=0 \\
             prefix, self.id, started, finished, suffix)
         return fname
 
-    @api.model
+    @api.multi
     def dump_stats(self):
+        self.ensure_one()
         attachment = None
         with tools.osutil.tempdir() as dump_dir:
             cprofile_fname = self._get_attachment_name("py_stats", ".cprofile")
@@ -357,6 +480,7 @@ export PGOPTIONS="-c log_min_duration_statement=0 \\
             ProfilerProfile.profile.dump_stats(cprofile_path)
             with open(cprofile_path, "rb") as f_cprofile:
                 datas = f_cprofile.read()
+
             if datas and datas != CPROFILE_EMPTY_CHARS:
                 attachment = self.env['ir.attachment'].create({
                     'name': cprofile_fname,
@@ -369,7 +493,7 @@ export PGOPTIONS="-c log_min_duration_statement=0 \\
                 _logger.info("A datas was saved, here %s", attachment.name)
                 try:
                     if self.use_py_index:
-                        py_stats = self.get_stats_string(cprofile_path)
+                        py_stats = self.get_stats_string(ProfilerProfile.profile)
                         self.env['profiler.profile.python.line'].search([
                             ('profile_id', '=', self.id)]).unlink()
                         for py_stat_line in py_stats.splitlines():
@@ -397,7 +521,7 @@ export PGOPTIONS="-c log_min_duration_statement=0 \\
                         attachment.index_content = py_stats
                 except IOError:
                     # Fancy feature but not stop process if fails
-                    _logger.info("There was an error while getting the stats"
+                    _logger.info("There was an error while getting the stats "
                                  "from the cprofile_path")
                     # pylint: disable=unnecessary-pass
                     pass
@@ -405,6 +529,7 @@ export PGOPTIONS="-c log_min_duration_statement=0 \\
                 _logger.info("cProfile stats stored.")
             else:
                 _logger.info("cProfile stats empty.")
+
         return attachment
 
     @api.multi
@@ -419,10 +544,14 @@ export PGOPTIONS="-c log_min_duration_statement=0 \\
     def disable(self):
         self.ensure_one()
         _logger.info("Disabling profiler")
-        ProfilerProfile.enabled = False
+        if self.enable_python and self.python_method == 'full':
+            ProfilerProfile.enabled = False
+        elif self.enable_python and self.python_method == 'request':
+            http.request.httprequest.session.oca_profiler = False
         self.state = 'disabled'
         self.date_finished = self.now_utc()
-        self.dump_stats()
+        if self.enable_python and self.python_method == 'full':
+            self.dump_stats()
         self.clear(reset_date=False)
         self._reset_postgresql()
 
