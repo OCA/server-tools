@@ -73,6 +73,8 @@ Contributors
 
   * Cristina Martin R.
 
+* Chafique Delli <chafique.delli@akretion.com>
+
 Maintainers
 ~~~~~~~~~~~
 

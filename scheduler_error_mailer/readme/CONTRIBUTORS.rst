@@ -7,3 +7,5 @@
 * `Tecnativa <https://www.tecnativa.com>`_:
 
   * Cristina Martin R.
+  
+* Chafique Delli <chafique.delli@akretion.com>
