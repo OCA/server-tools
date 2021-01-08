@@ -1,4 +1,5 @@
 <odoo>
+
     <record model="ir.ui.view" id="view_profile_list">
         <field name="name">view profile list</field>
         <field name="model">profiler.profile</field>
@@ -6,11 +7,28 @@
             <tree>
                 <field name="name"/>
                 <field name="enable_python"/>
+                <field name="python_method" attrs="{'invisible': [('enable_python', '=', False)]}"/>
                 <field name="use_py_index"/>
                 <field name="enable_postgresql"/>
                 <field name="date_started"/>
                 <field name="date_finished"/>
                 <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_request_lines">
+        <field name="name">view request_lines</field>
+        <field name="model">profiler.profile.request.line</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="create_date"/>
+                <field name="total_time"/>
+                <field name="root_url"/>
+                <field name="user_id"/>
+                <field name="user_context"/>
+                <field name="attachment_id"/>
             </tree>
         </field>
     </record>
@@ -30,6 +48,7 @@
             </tree>
         </field>
     </record>
+
     <record id="view_profiling_lines_search" model="ir.ui.view">
         <field name="name">view.profiling.lines.search</field>
         <field name="model">profiler.profile.python.line</field>
@@ -40,6 +59,7 @@
             </search>
         </field>
     </record>
+
     <record id="action_view_profiling_lines" model="ir.actions.act_window">
         <field name="name">Profiling lines</field>
         <field name="res_model">profiler.profile.python.line</field>
@@ -71,7 +91,7 @@
                             class="oe_stat_button"
                             icon="fa-share-square-o"
                             context="{'search_default_profile_id': active_id, 'default_profile_id': active_id}"
-                            attrs="{'invisible': ['|', ('enable_python', '=', False), ('date_finished', '=', False)]}">
+                            attrs="{'invisible': ['|', '|', ('enable_python', '=', False), ('python_method', '!=', 'full'), ('date_finished', '=', False)]}">
                         </button>
 
                         <button name="action_view_attachment"
@@ -90,6 +110,7 @@
                     <group>
                         <group>
                             <field name="enable_python" attrs="{'readonly': [('state','=', 'enabled')]}"/>
+                            <field name="python_method" attrs="{'invisible': [('enable_python', '=', False)]}"/>
                             <field name="use_py_index"/>
                         </group>
                         <group>
@@ -115,7 +136,7 @@
                         <page string="PostgreSQL Stats - Most Frequent" attrs="{'invisible': ['|', ('enable_postgresql', '=', False), ('date_finished', '=', False)]}">
                             <field name="pg_stats_most_frequent_html" nolabel="1" colspan="4"/>
                         </page>
-                        <page string="Python Stats - Profiling Lines" attrs="{'invisible': ['|', ('enable_python', '=', False), ('date_finished', '=', False)]}">
+                        <page string="Python Stats - Profiling Lines" attrs="{'invisible': ['|', '|', ('enable_python', '=', False), ('python_method', '!=', 'full'), ('date_finished', '=', False)]}">
                             <field name="py_stats_lines" nolabel="1" colspan="4">
                                 <tree>
                                     <field name="cprof_ncalls"/>
@@ -125,6 +146,16 @@
                                     <field name="cprof_cumtime"/>
                                     <field name="cprof_ctpercall"/>
                                     <field name="cprof_fname"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Python Stats - Requests" attrs="{'invisible': ['|', '|', ('enable_python', '=', False), ('python_method', '!=', 'request'), ('date_finished', '=', False)]}">
+                            <field name="py_request_lines" nolabel="1" colspan="4">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="create_date"/>
+                                    <field name="total_time"/>
+                                    <field name="user_id"/>
                                 </tree>
                             </field>
                         </page>
