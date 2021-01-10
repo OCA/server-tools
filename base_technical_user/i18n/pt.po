@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-01 02:10+0000\n"
-"PO-Revision-Date: 2019-08-14 12:44+0000\n"
+"PO-Revision-Date: 2021-01-11 01:44+0000\n"
 "Last-Translator: Pedro Castro Silva <pedrocs@exo.pt>\n"
 "Language-Team: Portuguese (https://www.transifex.com/oca/teams/23907/pt/)\n"
 "Language: pt\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 3.7.1\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: base_technical_user
 #: model:ir.model,name:base_technical_user.model_base
@@ -48,7 +48,7 @@ msgstr "Utilizador Técnico"
 #: code:addons/base_technical_user/models/models.py:0
 #, python-format
 msgid "The technical user is missing in the company {}"
-msgstr ""
+msgstr "O utilizador técnico está em falta na empresa {}"
 
 #. module: base_technical_user
 #: model:ir.model.fields,help:base_technical_user.field_res_company__user_tech_id
