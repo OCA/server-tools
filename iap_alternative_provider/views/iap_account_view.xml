@@ -8,6 +8,7 @@
                 <group string="Info" name="info">
                     <field name="provider" />
                     <field name="name" />
+                    <field name="company_ids" position="move" />
                 </group>
             </xpath>
             <group name="account" position="attributes">
