@@ -3,7 +3,7 @@
 {
     "name": "Base Time Window",
     "summary": "Base model to handle time windows",
-    "version": "13.0.1.0.0",
+    "version": "14.0.1.0.0",
     "category": "Technical Settings",
     "author": "ACSONE SA/NV, Camptocamp, Odoo Community Association (OCA)",
     "license": "AGPL-3",
