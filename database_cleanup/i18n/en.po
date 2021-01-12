@@ -457,7 +457,7 @@ msgstr "Purge obsolete modules"
 #, fuzzy
 #| msgid "Purge obsolete models"
 msgid "Purge obsolete properties"
-msgstr "Purge obsolete models"
+msgstr "Purge obsolete properties"
 
 #. module: database_cleanup
 #: model:ir.ui.menu,name:database_cleanup.menu_purge_tables
