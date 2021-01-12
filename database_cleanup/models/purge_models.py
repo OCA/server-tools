@@ -1,4 +1,5 @@
 # Copyright 2014-2016 Therp BV <http://therp.nl>
+# Copyright 2021 Camptocamp <https://camptocamp.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 # pylint: disable=consider-merging-classes-inherited
 from odoo import _, api, fields, models
@@ -25,7 +26,6 @@ class IrModel(models.Model):
 class IrModelFields(models.Model):
     _inherit = "ir.model.fields"
 
-    @api.multi
     def _prepare_update(self):
         """this function crashes for undefined models"""
         existing = self.filtered(lambda x: x.model in self.env)
@@ -35,13 +35,12 @@ class IrModelFields(models.Model):
 class CleanupPurgeLineModel(models.TransientModel):
     _inherit = "cleanup.purge.line"
     _name = "cleanup.purge.line.model"
-    _description = "Purge models"
+    _description = "Cleanup Purge Line Model"
 
     wizard_id = fields.Many2one(
         "cleanup.purge.wizard.model", "Purge Wizard", readonly=True
     )
 
-    @api.multi
     def purge(self):
         """
         Unlink models upon manual confirmation.
