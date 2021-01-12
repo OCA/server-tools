@@ -1,4 +1,5 @@
 # Copyright 2014-2016 Therp BV <http://therp.nl>
+# Copyright 2021 Camptocamp <https://camptocamp.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
@@ -9,13 +10,13 @@ from ..identifier_adapter import IdentifierAdapter
 class CleanupPurgeLineData(models.TransientModel):
     _inherit = "cleanup.purge.line"
     _name = "cleanup.purge.line.data"
+    _description = "Cleanup Purge Line Data"
 
     data_id = fields.Many2one("ir.model.data", "Data entry")
     wizard_id = fields.Many2one(
         "cleanup.purge.wizard.data", "Purge Wizard", readonly=True
     )
 
-    @api.multi
     def purge(self):
         """Unlink data entries upon manual confirmation."""
         if self:
