@@ -9,13 +9,13 @@ from ..identifier_adapter import IdentifierAdapter
 class CleanupPurgeLineData(models.TransientModel):
     _inherit = "cleanup.purge.line"
     _name = "cleanup.purge.line.data"
+    _description = "Purge Data Wizard Lines"
 
     data_id = fields.Many2one("ir.model.data", "Data entry")
     wizard_id = fields.Many2one(
         "cleanup.purge.wizard.data", "Purge Wizard", readonly=True
     )
 
-    @api.multi
     def purge(self):
         """Unlink data entries upon manual confirmation."""
         if self:
@@ -62,7 +62,7 @@ class CleanupPurgeWizardData(models.TransientModel):
             )
             data_ids.extend(data_row for data_row, in self.env.cr.fetchall())
         data_ids += (
-            self.env["ir.model.data"].search([("model", "in", unknown_models),]).ids
+            self.env["ir.model.data"].search([("model", "in", unknown_models)]).ids
         )
         for data in self.env["ir.model.data"].browse(data_ids):
             res.append(

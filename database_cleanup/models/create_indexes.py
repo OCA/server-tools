@@ -1,7 +1,7 @@
 # Copyright 2017 Therp BV <http://therp.nl>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 # pylint: disable=consider-merging-classes-inherited
-from odoo import api, fields, models
+from odoo import fields, models
 
 from ..identifier_adapter import IdentifierAdapter
 
@@ -9,12 +9,12 @@ from ..identifier_adapter import IdentifierAdapter
 class CreateIndexesLine(models.TransientModel):
     _inherit = "cleanup.purge.line"
     _name = "cleanup.create_indexes.line"
+    _description = "Create Indexes Wizard Lines"
 
     purged = fields.Boolean("Created")
     wizard_id = fields.Many2one("cleanup.create_indexes.wizard")
     field_id = fields.Many2one("ir.model.fields", required=True)
 
-    @api.multi
     def purge(self):
         tables = set()
         for field in self.mapped("field_id"):
@@ -30,10 +30,8 @@ class CreateIndexesLine(models.TransientModel):
             )
             tables.add(model._table)
         for table in tables:
-            self.env.cr.execute("analyze %s", (IdentifierAdapter(model._table),))
-        self.write(
-            {"purged": True,}
-        )
+            self.env.cr.execute("analyze %s", (IdentifierAdapter(table),))
+        self.write({"purged": True})
 
 
 class CreateIndexesWizard(models.TransientModel):
@@ -43,10 +41,9 @@ class CreateIndexesWizard(models.TransientModel):
 
     purge_line_ids = fields.One2many("cleanup.create_indexes.line", "wizard_id",)
 
-    @api.multi
     def find(self):
         res = list()
-        for field in self.env["ir.model.fields"].search([("index", "=", True),]):
+        for field in self.env["ir.model.fields"].search([("index", "=", True)]):
             if field.model not in self.env.registry:
                 continue
             model = self.env[field.model]

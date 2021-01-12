@@ -13,7 +13,7 @@ from odoo.tools import config, mute_logger
 @tagged("post_install", "-at_install")
 class TestDatabaseCleanup(TransactionCase):
     def setUp(self):
-        super(TestDatabaseCleanup, self).setUp()
+        super().setUp()
         self.modules = self.env["ir.module.module"]
         self.models = self.env["ir.model"]
         # Create one property for tests
@@ -92,7 +92,7 @@ class TestDatabaseCleanup(TransactionCase):
         )
         # and a cronjob for it
         cronjob = self.env["ir.cron"].create(
-            {"name": "testcronjob", "model_id": self.models.id,}
+            {"name": "testcronjob", "model_id": self.models.id}
         )
         self.env.cr.execute(
             "insert into ir_attachment (name, res_model, res_id, type) values "
@@ -104,7 +104,7 @@ class TestDatabaseCleanup(TransactionCase):
         # must be removed by the wizard
         self.assertFalse(
             self.env["ir.model"].search(
-                [("model", "=", "x_database.cleanup.test.model"),]
+                [("model", "=", "x_database.cleanup.test.model")]
             )
         )
         self.assertFalse(cronjob.exists())
@@ -133,10 +133,10 @@ class TestDatabaseCleanup(TransactionCase):
 
         # create nonexistent modules in different states
         self.modules += self.env["ir.module.module"].create(
-            {"name": "database_cleanup_test_to_upgrade", "state": "to upgrade",}
+            {"name": "database_cleanup_test_to_upgrade", "state": "to upgrade"}
         )
         self.modules += self.env["ir.module.module"].create(
-            {"name": "database_cleanup_test_uninstalled", "state": "uninstalled",}
+            {"name": "database_cleanup_test_uninstalled", "state": "uninstalled"}
         )
 
         with keep_registry(), mute_logger("odoo.modules.graph", "odoo.modules.loading"):
@@ -144,7 +144,7 @@ class TestDatabaseCleanup(TransactionCase):
             # this module should be purged already during default_get
             self.assertFalse(
                 self.env["ir.module.module"].search(
-                    [("name", "=", "database_cleanup_test_uninstalled"),]
+                    [("name", "=", "database_cleanup_test_uninstalled")]
                 )
             )
 
@@ -153,12 +153,11 @@ class TestDatabaseCleanup(TransactionCase):
             # must be removed by the wizard
             self.assertFalse(
                 self.env["ir.module.module"].search(
-                    [("name", "=", "database_cleanup_test"),]
+                    [("name", "=", "database_cleanup_test")]
                 )
             )
 
     def tearDown(self):
-        super(TestDatabaseCleanup, self).tearDown()
         with self.registry.cursor() as cr2:
             # Release blocked tables with pending deletes
             self.env.cr.rollback()
@@ -172,3 +171,4 @@ class TestDatabaseCleanup(TransactionCase):
                     "DELETE FROM ir_model WHERE id in %s", (tuple(self.models.ids),)
                 )
             cr2.commit()
+        super().tearDown()
