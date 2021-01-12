@@ -1,4 +1,5 @@
 # Copyright 2014-2016 Therp BV <http://therp.nl>
+# Copyright 2021 Camptocamp <https://camptocamp.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 # pylint: disable=consider-merging-classes-inherited
 
@@ -21,7 +22,6 @@ class CleanupPurgeLine(models.AbstractModel):
 
     logger = logging.getLogger("odoo.addons.database_cleanup")
 
-    @api.multi
     def purge(self):
         raise NotImplementedError
 
@@ -46,11 +46,9 @@ class PurgeWizard(models.AbstractModel):
             res["purge_line_ids"] = self.find()
         return res
 
-    @api.multi
     def find(self):
         raise NotImplementedError
 
-    @api.multi
     def purge_all(self):
         self.mapped("purge_line_ids").purge()
         return True
@@ -70,7 +68,6 @@ class PurgeWizard(models.AbstractModel):
             },
         }
 
-    @api.multi
     def select_lines(self):
         return {
             "type": "ir.actions.act_window",
@@ -80,7 +77,6 @@ class PurgeWizard(models.AbstractModel):
             "domain": [("wizard_id", "in", self.ids)],
         }
 
-    @api.multi
     def name_get(self):
         return [(this.id, self._description) for this in self]
 
