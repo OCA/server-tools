@@ -21,7 +21,6 @@ class CleanupPurgeLine(models.AbstractModel):
 
     logger = logging.getLogger("odoo.addons.database_cleanup")
 
-    @api.multi
     def purge(self):
         raise NotImplementedError
 
@@ -30,7 +29,7 @@ class CleanupPurgeLine(models.AbstractModel):
         # make sure the user trying this is actually supposed to do it
         if self.env.ref("base.group_erp_manager") not in self.env.user.groups_id:
             raise AccessDenied
-        return super(CleanupPurgeLine, self).create(values)
+        return super().create(values)
 
 
 class PurgeWizard(models.AbstractModel):
@@ -41,16 +40,14 @@ class PurgeWizard(models.AbstractModel):
 
     @api.model
     def default_get(self, fields_list):
-        res = super(PurgeWizard, self).default_get(fields_list)
+        res = super().default_get(fields_list)
         if "purge_line_ids" in fields_list:
             res["purge_line_ids"] = self.find()
         return res
 
-    @api.multi
     def find(self):
         raise NotImplementedError
 
-    @api.multi
     def purge_all(self):
         self.mapped("purge_line_ids").purge()
         return True
@@ -64,10 +61,9 @@ class PurgeWizard(models.AbstractModel):
             "views": [(False, "form")],
             "res_model": self._name,
             "res_id": wizard.id,
-            "flags": {"action_buttons": False, "sidebar": False,},
+            "flags": {"action_buttons": False, "sidebar": False},
         }
 
-    @api.multi
     def select_lines(self):
         return {
             "type": "ir.actions.act_window",
@@ -77,7 +73,6 @@ class PurgeWizard(models.AbstractModel):
             "domain": [("wizard_id", "in", self.ids)],
         }
 
-    @api.multi
     def name_get(self):
         return [(this.id, self._description) for this in self]
 
@@ -86,6 +81,6 @@ class PurgeWizard(models.AbstractModel):
         # make sure the user trying this is actually supposed to do it
         if self.env.ref("base.group_erp_manager") not in self.env.user.groups_id:
             raise AccessDenied
-        return super(PurgeWizard, self).create(values)
+        return super().create(values)
 
     purge_line_ids = fields.One2many("cleanup.purge.line", "wizard_id")

@@ -27,18 +27,18 @@ class IrModelData(models.Model):
                     continue
             if this.model not in self.env:
                 this.unlink()
-        return super(IrModelData, self)._module_data_uninstall(modules_to_remove)
+        return super()._module_data_uninstall(modules_to_remove)
 
 
 class CleanupPurgeLineModule(models.TransientModel):
     _inherit = "cleanup.purge.line"
     _name = "cleanup.purge.line.module"
+    _description = "Purge modules line"
 
     wizard_id = fields.Many2one(
         "cleanup.purge.wizard.module", "Purge Wizard", readonly=True
     )
 
-    @api.multi
     def purge(self):
         """
         Uninstall modules upon manual confirmation, then reload
@@ -83,7 +83,7 @@ class CleanupPurgeWizardModule(models.TransientModel):
                 continue
             if module.state == "uninstalled":
                 purge_lines += self.env["cleanup.purge.line.module"].create(
-                    {"name": module.name,}
+                    {"name": module.name}
                 )
                 continue
             res.append((0, 0, {"name": module.name}))

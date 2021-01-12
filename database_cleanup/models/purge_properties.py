@@ -3,10 +3,10 @@
 # pylint: disable=consider-merging-classes-inherited
 from odoo import api, fields, models
 
-REASON_DUPLICATE = 1
-REASON_DEFAULT = 2
-REASON_DEFAULT_FALSE = 3
-REASON_UNKNOWN_MODEL = 4
+REASON_DUPLICATE = "REASON_DUPLICATE"
+REASON_DEFAULT = "REASON_DEFAULT"
+REASON_DEFAULT_FALSE = "REASON_DEFAULT_FALSE"
+REASON_UNKNOWN_MODEL = "REASON_UNKNOWN_MODEL"
 
 
 class CleanupPurgeLineProperty(models.TransientModel):
@@ -27,7 +27,6 @@ class CleanupPurgeLineProperty(models.TransientModel):
         ]
     )
 
-    @api.multi
     def purge(self):
         """Delete properties"""
         self.write({"purged": True})
@@ -45,7 +44,7 @@ class CleanupPurgeWizardProperty(models.TransientModel):
         Search property records which are duplicated or the same as the default
         """
         result = []
-        default_properties = self.env["ir.property"].search([("res_id", "=", False),])
+        default_properties = self.env["ir.property"].search([("res_id", "=", False)])
         handled_field_ids = []
         for prop in default_properties:
             value = None
