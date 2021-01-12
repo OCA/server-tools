@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record id="purge_menus_view" model="ir.ui.view">
         <field name="model">cleanup.purge.wizard.menu</field>
         <field name="inherit_id" ref="form_purge_wizard" />
         <field name="mode">primary</field>
         <field name="arch" type="xml">
-            <data/>
+            <data />
         </field>
     </record>
 
@@ -34,6 +34,9 @@
         <field name="state">code</field>
         <field name="model_id" ref="database_cleanup.model_cleanup_purge_line_menu" />
         <field name="code">records.purge()</field>
-        <field name="binding_model_id" ref="database_cleanup.model_cleanup_purge_line_menu" />
+        <field
+            name="binding_model_id"
+            ref="database_cleanup.model_cleanup_purge_line_menu"
+        />
     </record>
 </odoo>

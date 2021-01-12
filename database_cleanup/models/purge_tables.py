@@ -1,18 +1,20 @@
 # Copyright 2014-2016 Therp BV <http://therp.nl>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 # pylint: disable=consider-merging-classes-inherited
-from odoo import api, fields, models, _
+from odoo import _, api, fields, models
 from odoo.exceptions import UserError
+
 from ..identifier_adapter import IdentifierAdapter
 
 
 class CleanupPurgeLineTable(models.TransientModel):
-    _inherit = 'cleanup.purge.line'
-    _name = 'cleanup.purge.line.table'
-    _description = 'Purge tables wizard lines'
+    _inherit = "cleanup.purge.line"
+    _name = "cleanup.purge.line.table"
+    _description = "Purge tables wizard lines"
 
     wizard_id = fields.Many2one(
-        'cleanup.purge.wizard.table', 'Purge Wizard', readonly=True)
+        "cleanup.purge.wizard.table", "Purge Wizard", readonly=True
+    )
 
     @api.multi
     def purge(self):
@@ -22,9 +24,10 @@ class CleanupPurgeLineTable(models.TransientModel):
         if self:
             objs = self
         else:
-            objs = self.env['cleanup.purge.line.table']\
-                .browse(self._context.get('active_ids'))
-        tables = objs.mapped('name')
+            objs = self.env["cleanup.purge.line.table"].browse(
+                self._context.get("active_ids")
+            )
+        tables = objs.mapped("name")
         for line in objs:
             if line.purged:
                 continue
@@ -49,32 +52,35 @@ class CleanupPurgeLineTable(models.TransientModel):
                 WHERE af.attnum = confkey AND af.attrelid = confrelid AND
                 a.attnum = conkey AND a.attrelid = conrelid
                 AND confrelid::regclass = '%s'::regclass;
-                """, (IdentifierAdapter(line.name, quote=False),))
+                """,
+                (IdentifierAdapter(line.name, quote=False),),
+            )
 
             for constraint in self.env.cr.fetchall():
                 if constraint[3] in tables:
                     self.logger.info(
-                        'Dropping constraint %s on table %s (to be dropped)',
-                        constraint[0], constraint[3])
+                        "Dropping constraint %s on table %s (to be dropped)",
+                        constraint[0],
+                        constraint[3],
+                    )
                     self.env.cr.execute(
                         "ALTER TABLE %s DROP CONSTRAINT %s",
                         (
                             IdentifierAdapter(constraint[3]),
-                            IdentifierAdapter(constraint[0])
-                        ))
+                            IdentifierAdapter(constraint[0]),
+                        ),
+                    )
 
-            self.logger.info(
-                'Dropping table %s', line.name)
-            self.env.cr.execute(
-                "DROP TABLE %s", (IdentifierAdapter(line.name),))
-            line.write({'purged': True})
+            self.logger.info("Dropping table %s", line.name)
+            self.env.cr.execute("DROP TABLE %s", (IdentifierAdapter(line.name),))
+            line.write({"purged": True})
         return True
 
 
 class CleanupPurgeWizardTable(models.TransientModel):
-    _inherit = 'cleanup.purge.wizard'
-    _name = 'cleanup.purge.wizard.table'
-    _description = 'Purge tables'
+    _inherit = "cleanup.purge.wizard"
+    _name = "cleanup.purge.wizard.table"
+    _description = "Purge tables"
 
     @api.model
     def find(self):
@@ -83,7 +89,7 @@ class CleanupPurgeWizardTable(models.TransientModel):
         Ignore views for now.
         """
         known_tables = []
-        for model in self.env['ir.model'].search([]):
+        for model in self.env["ir.model"].search([]):
             if model.model not in self.env:
                 continue
             model_pool = self.env[model.model]
@@ -91,8 +97,8 @@ class CleanupPurgeWizardTable(models.TransientModel):
             known_tables += [
                 column.relation
                 for column in model_pool._fields.values()
-                if column.type == 'many2many' and
-                (column.compute is None or column.store)
+                if column.type == "many2many"
+                and (column.compute is None or column.store)
                 and column.relation
             ]
 
@@ -100,12 +106,15 @@ class CleanupPurgeWizardTable(models.TransientModel):
             """
             SELECT table_name FROM information_schema.tables
             WHERE table_schema = 'public' AND table_type = 'BASE TABLE'
-            AND table_name NOT IN %s""", (tuple(known_tables),))
+            AND table_name NOT IN %s""",
+            (tuple(known_tables),),
+        )
 
-        res = [(0, 0, {'name': row[0]}) for row in self.env.cr.fetchall()]
+        res = [(0, 0, {"name": row[0]}) for row in self.env.cr.fetchall()]
         if not res:
-            raise UserError(_('No orphaned tables found'))
+            raise UserError(_("No orphaned tables found"))
         return res
 
     purge_line_ids = fields.One2many(
-        'cleanup.purge.line.table', 'wizard_id', 'Tables to purge')
+        "cleanup.purge.line.table", "wizard_id", "Tables to purge"
+    )
