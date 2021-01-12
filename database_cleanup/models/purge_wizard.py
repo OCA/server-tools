@@ -1,4 +1,5 @@
 # Copyright 2014-2016 Therp BV <http://therp.nl>
+# Copyright 2021 Camptocamp <https://camptocamp.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 # pylint: disable=consider-merging-classes-inherited
 

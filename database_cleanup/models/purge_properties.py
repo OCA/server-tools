@@ -1,4 +1,5 @@
 # Copyright 2017 Therp BV <http://therp.nl>
+# Copyright 2021 Camptocamp <https://camptocamp.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 # pylint: disable=consider-merging-classes-inherited
 from odoo import api, fields, models
@@ -12,7 +13,7 @@ REASON_UNKNOWN_MODEL = "REASON_UNKNOWN_MODEL"
 class CleanupPurgeLineProperty(models.TransientModel):
     _inherit = "cleanup.purge.line"
     _name = "cleanup.purge.line.property"
-    _description = "Purge properties"
+    _description = "Cleanup Purge Line Property"
 
     wizard_id = fields.Many2one(
         "cleanup.purge.wizard.property", "Purge Wizard", readonly=True
@@ -112,8 +113,9 @@ class CleanupPurgeWizardProperty(models.TransientModel):
             for redundant_property in self.env["ir.property"].search(domain):
                 result.append(
                     {
-                        "name": "%s@%s: %s"
-                        % (prop.name, redundant_property.res_id, prop.get_by_record()),
+                        "name": "{}@{}: {}".format(
+                            prop.name, redundant_property.res_id, prop.get_by_record()
+                        ),
                         "property_id": redundant_property.id,
                         "reason": REASON_DEFAULT,
                     }
@@ -133,8 +135,9 @@ class CleanupPurgeWizardProperty(models.TransientModel):
             for prop in self.env["ir.property"].search([("id", "in", ids)])[1:]:
                 result.append(
                     {
-                        "name": "%s@%s: %s"
-                        % (prop.name, prop.res_id, prop.get_by_record()),
+                        "name": "{}@{}: {}".format(
+                            prop.name, prop.res_id, prop.get_by_record()
+                        ),
                         "property_id": prop.id,
                         "reason": REASON_DUPLICATE,
                     }

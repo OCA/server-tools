@@ -1,4 +1,5 @@
 # Copyright 2014-2016 Therp BV <http://therp.nl>
+# Copyright 2021 Camptocamp <https://camptocamp.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 # pylint: disable=consider-merging-classes-inherited
 from odoo import _, api, fields, models
@@ -10,7 +11,7 @@ from ..identifier_adapter import IdentifierAdapter
 class CleanupPurgeLineColumn(models.TransientModel):
     _inherit = "cleanup.purge.line"
     _name = "cleanup.purge.line.column"
-    _description = "Purge Column Wizard Lines"
+    _description = "Cleanup Purge Line Column"
 
     model_id = fields.Many2one("ir.model", "Model", required=True, ondelete="CASCADE")
     wizard_id = fields.Many2one(
