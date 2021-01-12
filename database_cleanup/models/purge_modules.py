@@ -1,4 +1,5 @@
 # Copyright 2014-2016 Therp BV <http://therp.nl>
+# Copyright 2021 Camptocamp <https://camptocamp.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 # pylint: disable=consider-merging-classes-inherited
 from odoo import _, api, fields, models
@@ -33,12 +34,12 @@ class IrModelData(models.Model):
 class CleanupPurgeLineModule(models.TransientModel):
     _inherit = "cleanup.purge.line"
     _name = "cleanup.purge.line.module"
+    _description = "Cleanup Purge Line Module"
 
     wizard_id = fields.Many2one(
         "cleanup.purge.wizard.module", "Purge Wizard", readonly=True
     )
 
-    @api.multi
     def purge(self):
         """
         Uninstall modules upon manual confirmation, then reload
