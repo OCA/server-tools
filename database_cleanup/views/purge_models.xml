@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record id="purge_models_view" model="ir.ui.view">
         <field name="model">cleanup.purge.wizard.model</field>
@@ -13,7 +13,10 @@
         <field name="name">Purge models</field>
         <field name="type">ir.actions.server</field>
         <field name="state">code</field>
-        <field name="model_id" ref="database_cleanup.model_cleanup_purge_wizard_model" />
+        <field
+            name="model_id"
+            ref="database_cleanup.model_cleanup_purge_wizard_model"
+        />
         <field name="code">
             action = env.get('cleanup.purge.wizard.model').get_wizard_action()
         </field>
@@ -34,6 +37,9 @@
         <field name="state">code</field>
         <field name="model_id" ref="database_cleanup.model_cleanup_purge_line_model" />
         <field name="code">records.purge()</field>
-        <field name="binding_model_id" ref="database_cleanup.model_cleanup_purge_line_model" />
+        <field
+            name="binding_model_id"
+            ref="database_cleanup.model_cleanup_purge_line_model"
+        />
     </record>
 </odoo>
