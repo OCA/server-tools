@@ -1,7 +1,8 @@
 # Copyright 2017 Therp BV <http://therp.nl>
+# Copyright 2021 Camptocamp <https://camptocamp.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 # pylint: disable=consider-merging-classes-inherited
-from odoo import api, fields, models
+from odoo import fields, models
 
 from ..identifier_adapter import IdentifierAdapter
 
@@ -9,14 +10,13 @@ from ..identifier_adapter import IdentifierAdapter
 class CreateIndexesLine(models.TransientModel):
     _inherit = "cleanup.purge.line"
     _name = "cleanup.create_indexes.line"
+    _description = "Cleanup Create Indexes line"
 
     purged = fields.Boolean("Created")
     wizard_id = fields.Many2one("cleanup.create_indexes.wizard")
     field_id = fields.Many2one("ir.model.fields", required=True)
 
-    @api.multi
     def purge(self):
-        tables = set()
         for field in self.mapped("field_id"):
             model = self.env[field.model]
             name = "{}_{}_index".format(model._table, field.name)
@@ -28,8 +28,6 @@ class CreateIndexesLine(models.TransientModel):
                     IdentifierAdapter(field.name),
                 ),
             )
-            tables.add(model._table)
-        for table in tables:
             self.env.cr.execute("analyze %s", (IdentifierAdapter(model._table),))
         self.write(
             {
@@ -48,7 +46,6 @@ class CreateIndexesWizard(models.TransientModel):
         "wizard_id",
     )
 
-    @api.multi
     def find(self):
         res = list()
         for field in self.env["ir.model.fields"].search(
