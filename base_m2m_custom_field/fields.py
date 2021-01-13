@@ -10,7 +10,7 @@ class Many2manyCustom(fields.Many2many):
     at the initialization of the field (boolean)
     """
 
-    _slots = {"create_table": True}
+    create_table = True
 
     def update_db(self, model, columns):
         if not self.create_table:
