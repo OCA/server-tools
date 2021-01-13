@@ -4,10 +4,10 @@ from odoo import fields
 
 
 class Many2manyCustom(fields.Many2many):
-    """ Many2manyCustom field is intended to customize Many2many properties.
+    """Many2manyCustom field is intended to customize Many2many properties.
 
-        :param create_table: defines if the relational table must be created
-        at the initialization of the field (boolean)
+    :param create_table: defines if the relational table must be created
+    at the initialization of the field (boolean)
     """
 
     _slots = {"create_table": True}
