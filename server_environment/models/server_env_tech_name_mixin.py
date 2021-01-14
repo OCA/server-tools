@@ -35,8 +35,7 @@ class ServerEnvTechNameMixin(models.AbstractModel):
     # TODO: could leverage the new option for computable / writable fields
     # and get rid of some onchange / read / write code.
     tech_name = fields.Char(
-        required=True,
-        help="Unique name for technical purposes. " "Eg: server env keys.",
+        help="Unique name for technical purposes. Eg: server env keys.",
     )
 
     _server_env_section_name_field = "tech_name"
