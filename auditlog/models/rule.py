@@ -204,6 +204,19 @@ class AuditlogRule(models.Model):
         self.unsubscribe()
         return super(AuditlogRule, self).unlink()
 
+    @api.model
+    def get_auditlog_fields(self, model):
+        """
+        Get the list of auditlog fields for a model
+        By default it is all stored fields only, but you can
+        override this.
+        """
+        return list(
+            n
+            for n, f in model._fields.items()
+            if (not f.compute and not f.related) or f.store
+        )
+
     @api.multi
     def _make_create(self):
         """Instanciate a create method that log its calls."""
@@ -221,9 +234,12 @@ class AuditlogRule(models.Model):
             # stored in the database only at the end of the transaction, but
             # their values exist in cache.
             new_values = {}
-            for new_record in new_records:
+            fields_list = rule_model.get_auditlog_fields(self)
+            for new_record in new_records.sudo():
                 new_values.setdefault(new_record.id, {})
                 for fname, field in new_record._fields.items():
+                    if fname not in fields_list:
+                        continue
                     new_values[new_record.id][fname] = field.convert_to_read(
                         new_record[fname], new_record)
             rule_model.sudo().create_logs(
@@ -288,13 +304,14 @@ class AuditlogRule(models.Model):
         def write_full(self, vals, **kwargs):
             self = self.with_context(auditlog_disabled=True)
             rule_model = self.env['auditlog.rule']
+            fields_list = rule_model.get_auditlog_fields(self)
             old_values = dict(
                 (d['id'], d) for d in self.sudo()
-                .with_context(prefetch_fields=False).read(list(self._fields)))
+                .with_context(prefetch_fields=False).read(fields_list))
             result = write_full.origin(self, vals, **kwargs)
             new_values = dict(
                 (d['id'], d) for d in self.sudo()
-                .with_context(prefetch_fields=False).read(list(self._fields)))
+                .with_context(prefetch_fields=False).read(fields_list))
             rule_model.sudo().create_logs(
                 self.env.uid, self._name, self.ids,
                 'write', old_values, new_values, {'log_type': log_type})
@@ -329,9 +346,10 @@ class AuditlogRule(models.Model):
         def unlink_full(self, **kwargs):
             self = self.with_context(auditlog_disabled=True)
             rule_model = self.env['auditlog.rule']
+            fields_list = rule_model.get_auditlog_fields(self)
             old_values = dict(
                 (d['id'], d) for d in self.sudo()
-                .with_context(prefetch_fields=False).read(list(self._fields)))
+                .with_context(prefetch_fields=False).read(fields_list))
             rule_model.sudo().create_logs(
                 self.env.uid, self._name, self.ids, 'unlink', old_values, None,
                 {'log_type': log_type})
