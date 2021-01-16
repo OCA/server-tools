@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 13.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -73,6 +73,7 @@ msgstr ""
 
 #. module: base_territory
 #: model:ir.model.fields,field_description:base_territory.field_res_branch__display_name
+#: model:ir.model.fields,field_description:base_territory.field_res_country__display_name
 #: model:ir.model.fields,field_description:base_territory.field_res_district__display_name
 #: model:ir.model.fields,field_description:base_territory.field_res_region__display_name
 #: model:ir.model.fields,field_description:base_territory.field_res_territory__display_name
@@ -101,6 +102,7 @@ msgstr ""
 
 #. module: base_territory
 #: model:ir.model.fields,field_description:base_territory.field_res_branch__id
+#: model:ir.model.fields,field_description:base_territory.field_res_country__id
 #: model:ir.model.fields,field_description:base_territory.field_res_district__id
 #: model:ir.model.fields,field_description:base_territory.field_res_region__id
 #: model:ir.model.fields,field_description:base_territory.field_res_territory__id
@@ -109,6 +111,7 @@ msgstr ""
 
 #. module: base_territory
 #: model:ir.model.fields,field_description:base_territory.field_res_branch____last_update
+#: model:ir.model.fields,field_description:base_territory.field_res_country____last_update
 #: model:ir.model.fields,field_description:base_territory.field_res_district____last_update
 #: model:ir.model.fields,field_description:base_territory.field_res_region____last_update
 #: model:ir.model.fields,field_description:base_territory.field_res_territory____last_update
