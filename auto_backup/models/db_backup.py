@@ -161,7 +161,12 @@ class DbBackup(models.Model):
                     # Generate new backup
                     else:
                         with rec.custom_tempdir():
-                            db.dump_db(self.env.cr.dbname, destiny)
+                            try:
+                                db.dump_db(self.env.cr.dbname, destiny)
+                            except:  # noqa
+                                # Avoid filling up disk with failed backups
+                                os.remove(destiny)
+                                raise
                         backup = backup or destiny.name
                 successful |= rec
 

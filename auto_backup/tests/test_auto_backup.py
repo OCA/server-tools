@@ -7,6 +7,7 @@ import mock
 import os
 from datetime import datetime
 from openerp.tests import common
+from openerp.tools import mute_logger
 
 
 class TestsAutoBackup(common.TransactionCase):
@@ -32,6 +33,15 @@ class TestsAutoBackup(common.TransactionCase):
         self.abk.action_backup()
         generated_backup = [f for f in os.listdir(self.abk.folder)
                             if f >= filename]
+        self.assertEqual(len(generated_backup), 2)
+
+        # make backup fail on purpose
+        with mock.patch(
+            'openerp.service.db.dump_db', side_effect=IOError('Disk full')):
+            with self.assertRaises(IOError):
+                with mute_logger('openerp.models'):
+                    self.abk.action_backup()
+        # the incomplete backup must not have been kept
         self.assertEqual(len(generated_backup), 2)
 
     def test_remote(self):
