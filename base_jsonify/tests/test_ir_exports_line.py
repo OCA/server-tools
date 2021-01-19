@@ -62,6 +62,6 @@ class TestIrExportsLine(TransactionCase):
                     "export_id": self.ir_export.id,
                     "name": "name",
                     "resolver_id": resolver.id,
-                    "function": "function_name",
+                    "instance_method_name": "function_name",
                 }
             )

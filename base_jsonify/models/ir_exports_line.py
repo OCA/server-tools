@@ -24,19 +24,18 @@ class IrExportsLine(models.Model):
         string="Custom resolver",
         help="If set, will apply the resolver on the field value",
     )
-    function = fields.Char(
+    instance_method_name = fields.Char(
         comodel_name="ir.exports.resolver",
         string="Function",
         help="A method defined on the model that takes a record and a field_name",
     )
 
-    @api.constrains("resolver_id", "function")
+    @api.constrains("resolver_id", "instance_method_name")
     def _check_function_resolver(self):
         for rec in self:
-            if rec.resolver_id and rec.function:
-                raise ValidationError(
-                    _("Either set a function or a resolver, not both.")
-                )
+            if rec.resolver_id and rec.instance_method_name:
+                msg = _("Either set a function or a resolver, not both.")
+                raise ValidationError(msg)
 
     @api.constrains("target", "name")
     def _check_target(self):
