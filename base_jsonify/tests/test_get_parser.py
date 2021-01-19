@@ -5,6 +5,8 @@ from odoo import fields
 from odoo.exceptions import UserError
 from odoo.tests.common import SavepointCase
 
+from ..models.utils import convert_simple_to_full_parser
+
 
 def jsonify_custom(self, field_name):
     return "yeah!"
@@ -113,7 +115,7 @@ class TestParser(SavepointCase):
 
         exporter = self.env.ref("base_jsonify.ir_exp_partner")
         parser = exporter.get_json_parser()
-        expected_full_parser = exporter.convert_simple_to_full_parser(expected_parser)
+        expected_full_parser = convert_simple_to_full_parser(expected_parser)
         self.assertEqual(parser, expected_full_parser)
 
         # modify an ir.exports_line to put a target for a field
@@ -122,7 +124,7 @@ class TestParser(SavepointCase):
         )
         expected_parser[4] = ("category_id:category", ["name"])
         parser = exporter.get_json_parser()
-        expected_full_parser = exporter.convert_simple_to_full_parser(expected_parser)
+        expected_full_parser = convert_simple_to_full_parser(expected_parser)
         self.assertEqual(parser, expected_full_parser)
 
     def test_json_export(self):
@@ -251,8 +253,8 @@ class TestParser(SavepointCase):
         )
         resolver = self.env["ir.exports.resolver"].create({"python_code": code})
         lang_parser = [
-            {"target": "customTags*", "name": "name", "resolver": resolver.id},
-            {"target": "customTags*", "name": "id", "resolver": resolver.id},
+            {"target": "customTags=list", "name": "name", "resolver": resolver},
+            {"target": "customTags=list", "name": "id", "resolver": resolver},
         ]
         parser = {"language_agnostic": True, "langs": {False: lang_parser}}
         expected_json = {
@@ -275,7 +277,7 @@ class TestParser(SavepointCase):
         export = self.env["ir.exports"].create(
             {
                 "export_fields": [
-                    (0, 0, {"name": "name", "function": "jsonify_custom"}),
+                    (0, 0, {"name": "name", "instance_method_name": "jsonify_custom"}),
                 ],
             }
         )

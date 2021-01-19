@@ -80,7 +80,7 @@ Also the module provide a method "get_json_parser" on the ir.exports object
 that generate a parser from an ir.exports configuration.
 
 Further features are available for advanced uses.
-It defines a simple "resolver" model that has a "python_code" field and an eval
+It defines a simple "resolver" model that has a "python_code" field and a resolve
 function so that arbitrary functions can be configured to transform fields,
 or process the resulting dictionary.
 It is also to specify a lang to extract the translation of any given field.
@@ -152,12 +152,12 @@ If the global resolver is given, then the json_dict goes through:
 
 .. code-block:: python
 
-    resolver.eval(dict, record)
+    resolver.resolve(dict, record)
 
 Which allows to add external data from the context or transform the dictionary
 if necessary. Similarly if given for a field the resolver evaluates the result.
 
-It is possible for a target to end with a '*':
+It is possible for a target to have a marshaller by ending the target with '=list':
 in that case the result is put into a list.
 
 .. code-block:: python
@@ -165,8 +165,8 @@ in that case the result is put into a list.
   parser = {
       fields: [
           {'name': 'name'},
-          {'name': 'field_1', 'target': 'customTags*'},
-          {'name': 'field_2', 'target': 'customTags*'},
+          {'name': 'field_1', 'target': 'customTags=list'},
+          {'name': 'field_2', 'target': 'customTags=list'},
       ]
   }
 
