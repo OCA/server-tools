@@ -9,6 +9,8 @@ from odoo import api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools.translate import _
 
+from .utils import convert_simple_to_full_parser
+
 
 class Base(models.AbstractModel):
 
@@ -18,32 +20,6 @@ class Base(models.AbstractModel):
     def __parse_field(self, parser_field):
         """Deduct how to handle a field from its parser."""
         return parser_field if isinstance(parser_field, tuple) else (parser_field, None)
-
-    @api.model
-    def convert_simple_to_full_parser(self, parser):
-        def _f(f, function=None):
-            field_split = f.split(":")
-            field_dict = {"name": field_split[0]}
-            if len(field_split) > 1:
-                field_dict["target"] = field_split[1]
-            if function:
-                field_dict["function"] = function
-            return field_dict
-
-        def _convert_parser(parser):
-            result = []
-            for line in parser:
-                if isinstance(line, str):
-                    result.append(_f(line))
-                else:
-                    f, sub = line
-                    if callable(sub) or isinstance(sub, str):
-                        result.append(_f(f, sub))
-                    else:
-                        result.append((_f(f), _convert_parser(sub)))
-            return result
-
-        return {"language_agnostic": False, "fields": _convert_parser(parser)}
 
     @api.model
     def _jsonify_bad_parser_error(self, field_name):
@@ -59,9 +35,8 @@ class Base(models.AbstractModel):
             return self._jsonify_bad_parser_error(field_name)
 
     @api.model
-    def _jsonify_value(self, record, field, resolver):
-        # TODO: we should get default by field (eg: char field -> "")
-        value = record[field.name]
+    def _jsonify_value(self, field, value):
+        """Override this function to support new field types."""
         if value is False and field.type != "boolean":
             value = None
         elif field.type == "date":
@@ -71,18 +46,26 @@ class Base(models.AbstractModel):
             value = fields.Datetime.to_datetime(value)
             # Get the timestamp converted to the client's timezone.
             # This call also add the tzinfo into the datetime object
-            value = fields.Datetime.context_timestamp(record, value)
+            value = fields.Datetime.context_timestamp(self, value)
             value = value.isoformat()
-        return self._resolve(resolver, field, record)[0] if resolver else value
+        return value
 
     @api.model
-    def _resolve(self, resolver, *args):
-        if isinstance(resolver, int):
-            resolver = self.env["ir.exports.resolver"].browse(resolver)
-        return resolver.eval(*args)
+    def _add_json_key(self, values, json_key, value):
+        """To manage defaults, you can use a specific resolver."""
+        key_marshaller = json_key.split("=")
+        key = key_marshaller[0]
+        marshaller = key_marshaller[1] if len(key_marshaller) > 1 else None
+        if marshaller == "list":  # sublist field
+            if not values.get(key):
+                values[key] = []
+            values[key].append(value)
+        else:
+            values[key] = value
 
     @api.model
     def _jsonify_record(self, parser, rec, root):
+        """Jsonify one record (rec). Private function called by jsonify."""
         for field in parser:
             field_dict, subparser = rec.__parse_field(field)
             field_name = field_dict["name"]
@@ -100,14 +83,11 @@ class Base(models.AbstractModel):
                 if field.type in ("many2one", "reference"):
                     value = value[0] if value else None
             else:
-                value = self._jsonify_value(rec, field, field_dict.get("resolver"))
-            if json_key.endswith("*"):  # sublist field
-                key = json_key[:-1]
-                if not root.get(key):
-                    root[key] = []
-                root[key].append(value)
-            else:
-                root[json_key] = value
+                resolver = field_dict.get("resolver")
+                value = rec._jsonify_value(field, rec[field.name])
+                value = resolver.resolve(field, rec)[0] if resolver else value
+
+            self._add_json_key(root, json_key, value)
         return root
 
     def jsonify(self, parser, one=False):
@@ -140,7 +120,7 @@ class Base(models.AbstractModel):
         if one:
             self.ensure_one()
         if isinstance(parser, list):
-            parser = self.convert_simple_to_full_parser(parser)
+            parser = convert_simple_to_full_parser(parser)
         resolver = parser.get("resolver")
 
         results = [{} for record in self]
@@ -151,5 +131,5 @@ class Base(models.AbstractModel):
             for record, json in zip(records, results):
                 self._jsonify_record(parsers[lang], record, json)
 
-        results = self._resolve(resolver, results, self) if resolver else results
+        results = resolver.resolve(results, self) if resolver else results
         return results[0] if one else results
