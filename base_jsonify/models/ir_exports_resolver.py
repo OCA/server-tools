@@ -21,7 +21,7 @@ class FieldResolver(models.Model):
     """
 
     _name = "ir.exports.resolver"
-    _description = "Resolver"
+    _description = "Export Resolver"
 
     name = fields.Char()
     type = fields.Selection([("field", "Field"), ("global", "Global")])
@@ -31,7 +31,7 @@ class FieldResolver(models.Model):
         help="\n".join(help_message),
     )
 
-    def eval(self, param, records):
+    def resolve(self, param, records):
         self.ensure_one()
         result = []
         context = records.env.context

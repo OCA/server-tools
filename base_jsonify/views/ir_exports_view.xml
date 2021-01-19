@@ -21,7 +21,7 @@
                                 <field name="target" />
                                 <field name="lang_id" />
                                 <field name="resolver_id" />
-                                <field name="function" />
+                                <field name="instance_method_name" />
                             </tree>
                         </field>
                     </group>
