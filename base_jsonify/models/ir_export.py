@@ -8,9 +8,9 @@ from odoo import fields, models
 
 
 def partition(l, accessor):
-    """Partition an iterable (e.g. a recordset) according to an accessor (e.g. a lambda)
-       Return a dictionary whose keys are the values obtained from accessor, and values
-       are the items that have this value.
+    """Partition a recordset according to an accessor (e.g. a lambda).
+       Returns a dictionary whose keys are the values obtained from accessor,
+       and values are the items that have this value.
        Example: partition([{"name": "ax"}, {"name": "by"}], lambda x: "x" in x["name"])
                 => {True: [{"name": "ax"}], False: [{"name": "by"}]}
     """
@@ -61,6 +61,7 @@ def convert_dict(dict_parser):
 
 
 def field_dict(field, options=None):
+    """Create a parser dict for the field field."""
     result = {"name": field.split(":")[0]}
     if len(field.split(":")) > 1:
         result["target"] = field.split(":")[1]
@@ -93,7 +94,7 @@ class IrExport(models.Model):
         The final parser can be used to "jsonify" records of ir.export's model.
         """
         self.ensure_one()
-        parser = {"language_agnostic": self.language_agnostic}
+        parser = {}
         lang_to_lines = partition(self.export_fields, lambda l: l.lang_id.code)
         lang_parsers = {}
         for lang in lang_to_lines:
@@ -102,7 +103,8 @@ class IrExport(models.Model):
                 names = line.name.split("/")
                 if line.target:
                     names = line.target.split("/")
-                options = {"resolver": line.resolver_id, "function": line.function}
+                function = line.instance_method_name
+                options = {"resolver": line.resolver_id, "function": function}
                 update_dict(dict_parser, names, options)
             lang_parsers[lang] = convert_dict(dict_parser)
         if list(lang_parsers.keys()) == [False]:
@@ -111,4 +113,6 @@ class IrExport(models.Model):
             parser["langs"] = lang_parsers
         if self.global_resolver_id:
             parser["resolver"] = self.global_resolver_id
+        if self.language_agnostic:
+            parser["language_agnostic"] = self.language_agnostic
         return parser
