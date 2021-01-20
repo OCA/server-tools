@@ -8,7 +8,7 @@ from odoo import fields, models
 from odoo.modules import get_module_path
 
 
-class UpgradeAttribute(models.Model):
+class IrModuleModule(models.Model):
     _inherit = "ir.module.module"
 
     is_odoo_module = fields.Boolean(
