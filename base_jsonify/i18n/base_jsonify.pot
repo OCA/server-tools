@@ -19,8 +19,8 @@ msgid "Active"
 msgstr ""
 
 #. module: base_jsonify
-#: model:ir.model.fields,field_description:base_jsonify.field_ir_exports_line__alias
-msgid "Alias"
+#: model:ir.model.fields,field_description:base_jsonify.field_ir_exports_line__target
+msgid "Target"
 msgstr ""
 
 #. module: base_jsonify
@@ -57,20 +57,20 @@ msgstr ""
 #. module: base_jsonify
 #: code:addons/base_jsonify/models/ir_exports_line.py:0
 #, python-format
-msgid "Name and Alias must have the same hierarchy depth"
+msgid "Name and Target must have the same hierarchy depth"
 msgstr ""
 
 #. module: base_jsonify
 #: code:addons/base_jsonify/models/ir_exports_line.py:0
 #, python-format
-msgid "The alias must reference the same field as in name '%s' not in '%s'"
+msgid "The target must reference the same field as in name '%s' not in '%s'"
 msgstr ""
 
 #. module: base_jsonify
-#: model:ir.model.fields,help:base_jsonify.field_ir_exports_line__alias
+#: model:ir.model.fields,help:base_jsonify.field_ir_exports_line__target
 msgid ""
-"The complete path to the field where you can specify an alias on the a step "
-"as field:alias"
+"The complete path to the field where you can specify a target on the a step "
+"as field:target"
 msgstr ""
 
 #. module: base_jsonify
