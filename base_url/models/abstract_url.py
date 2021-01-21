@@ -27,13 +27,9 @@ class AbstractUrl(models.AbstractModel):
     url_builder = fields.Selection(
         selection=[("auto", "Automatic"), ("manual", "Manual")], default="auto"
     )
-    automatic_url_key = fields.Char(
-        compute="_compute_automatic_url_key", store=True
-    )
+    automatic_url_key = fields.Char(compute="_compute_automatic_url_key", store=True)
     manual_url_key = fields.Char()
-    url_key = fields.Char(
-        string="Url key", compute="_compute_url_key", store=True
-    )
+    url_key = fields.Char(string="Url key", compute="_compute_url_key", store=True)
     url_url_ids = fields.One2many(
         compute="_compute_url_url_ids", comodel_name="url.url"
     )
@@ -104,9 +100,7 @@ class AbstractUrl(models.AbstractModel):
         for lang_id, records in records_by_lang.items():
             for record in records.with_context(lang=lang_id.code):
                 if not isinstance(record.id, models.NewId):
-                    key_by_id[record.id] = slugify(
-                        "-".join(record._get_url_keywords())
-                    )
+                    key_by_id[record.id] = slugify("-".join(record._get_url_keywords()))
 
         for record in self:
             if not isinstance(record.id, models.NewId):
@@ -125,9 +119,7 @@ class AbstractUrl(models.AbstractModel):
             "Automatic url key must be computed in concrete model"
         )
 
-    @api.depends(
-        "manual_url_key", "automatic_url_key", "url_builder", "active"
-    )
+    @api.depends("manual_url_key", "automatic_url_key", "url_builder", "active")
     def _compute_url_key(self):
         for record in self:
             if not record.active:
@@ -164,12 +156,10 @@ class AbstractUrl(models.AbstractModel):
 
     def _reuse_url(self, existing_url):
         # TODO add user notification in the futur SEO dashboard
-        existing_url.write(
-            {"model_id": get_model_ref(self), "redirect": False}
-        )
+        existing_url.write({"model_id": get_model_ref(self), "redirect": False})
 
     def set_url(self, url_key):
-        """ Se a new url
+        """Se a new url
         backup old url
 
         1 find url redirect true and same model_id

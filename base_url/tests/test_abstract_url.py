@@ -1,9 +1,10 @@
 # Copyright 2019 ACSONE SA/NV
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 import mock
+from odoo_test_helper import FakeModelLoader
+
 from odoo.exceptions import ValidationError
 from odoo.tests import SavepointCase
-from odoo_test_helper import FakeModelLoader
 
 
 class TestAbstractUrl(SavepointCase, FakeModelLoader):
@@ -12,11 +13,7 @@ class TestAbstractUrl(SavepointCase, FakeModelLoader):
         super(TestAbstractUrl, cls).setUpClass()
         cls.loader = FakeModelLoader(cls.env, cls.__module__)
         cls.loader.backup_registry()
-        from .models import (
-            ResPartner,
-            ResPartnerAddressableFake,
-            UrlBackendFake,
-        )
+        from .models import ResPartner, ResPartnerAddressableFake, UrlBackendFake
 
         cls.loader.update_registry(
             (UrlBackendFake, ResPartner, ResPartnerAddressableFake)
@@ -25,9 +22,7 @@ class TestAbstractUrl(SavepointCase, FakeModelLoader):
         cls.lang = cls.env.ref("base.lang_en")
         cls.UrlUrl = cls.env["url.url"]
         cls.ResPartnerAddressable = cls.env["res.partner.addressable.fake"]
-        cls.url_backend = cls.env["url.backend.fake"].create(
-            {"name": "fake backend"}
-        )
+        cls.url_backend = cls.env["url.backend.fake"].create({"name": "fake backend"})
         cls.name = "partner name"
         cls.auto_key = "partner-name"
 
@@ -45,9 +40,7 @@ class TestAbstractUrl(SavepointCase, FakeModelLoader):
         }
 
     def _create_auto(self):
-        return self.ResPartnerAddressable.create(
-            self._get_default_partner_value()
-        )
+        return self.ResPartnerAddressable.create(self._get_default_partner_value())
 
     def _check_url_key(self, partner_addressable, key_name):
         self.assertFalse(partner_addressable.is_urls_sync_required)
@@ -76,9 +69,7 @@ class TestAbstractUrl(SavepointCase, FakeModelLoader):
     def test_create_manual_url(self):
         value = self._get_default_partner_value()
         manual_url_key = "manual-url key"
-        value.update(
-            {"url_builder": "manual", "manual_url_key": manual_url_key}
-        )
+        value.update({"url_builder": "manual", "manual_url_key": manual_url_key})
         my_partner = self.ResPartnerAddressable.create(value)
         self.assertTrue(my_partner)
         self._check_url_key(my_partner, manual_url_key)
@@ -87,18 +78,14 @@ class TestAbstractUrl(SavepointCase, FakeModelLoader):
         my_partner = self._create_auto()
         with self.assertRaises(ValidationError):
             my_partner.url_builder = "manual"
-        my_partner.write(
-            {"url_builder": "manual", "manual_url_key": "manual url key"}
-        )
+        my_partner.write({"url_builder": "manual", "manual_url_key": "manual url key"})
 
     def test_write_url_builder(self):
         # tests that a new url is created we update the url builder
         my_partner = self._create_auto()
         self._check_url_key(my_partner, "partner-name")
         manual_url_key = "manual-url key"
-        my_partner.write(
-            {"url_builder": "manual", "manual_url_key": manual_url_key}
-        )
+        my_partner.write({"url_builder": "manual", "manual_url_key": manual_url_key})
         my_partner.refresh()
         url_keys = set(my_partner.mapped("url_url_ids.url_key"))
         self.assertSetEqual(url_keys, {manual_url_key, self.auto_key})

@@ -24,9 +24,7 @@ class UrlUrl(models.Model):
         string="Model",
         required=True,
     )
-    redirect = fields.Boolean(
-        help="If tick this url is a redirection to the new url"
-    )
+    redirect = fields.Boolean(help="If tick this url is a redirection to the new url")
     backend_id = fields.Reference(
         selection="_selection_target_model",
         compute="_compute_related_fields",

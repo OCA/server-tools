@@ -66,17 +66,14 @@ class TestMixin(object):
             # models
             parents = cls._inherit
             parents = (
-                [parents]
-                if isinstance(parents, (str, bytes))
-                else (parents or [])
+                [parents] if isinstance(parents, (str, bytes)) else (parents or [])
             )
             # kepp a copy to be sure to not modify the original _inherit
             parents = list(parents)
             parents.extend(cls._inherits.keys())
             parents.append("base")
             funcs = [
-                attrgetter(kind + "_children")
-                for kind in ["_inherits", "_inherit"]
+                attrgetter(kind + "_children") for kind in ["_inherits", "_inherit"]
             ]
             for parent in parents:
                 for func in funcs:
@@ -87,9 +84,7 @@ class TestMixin(object):
                         children.remove(cls._name)
 
     def _test_get_model_id(self):
-        self.env.cr.execute(
-            "SELECT id FROM ir_model WHERE model = %s", (self._name,)
-        )
+        self.env.cr.execute("SELECT id FROM ir_model WHERE model = %s", (self._name,))
         res = self.env.cr.fetchone()
         return res[0] if res else None
 
