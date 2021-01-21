@@ -141,6 +141,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_ir_demo_failure_wizard__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_ir_exports__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_ir_exports_line__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_ir_exports_resolver__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_ir_fields_converter__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_ir_filters__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_ir_http__changeset_change_ids
@@ -366,6 +367,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_ir_demo_failure_wizard__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_ir_exports__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_ir_exports_line__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_ir_exports_resolver__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_ir_fields_converter__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_ir_filters__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_ir_http__changeset_ids
@@ -578,6 +580,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_ir_demo_failure_wizard__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_ir_exports__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_ir_exports_line__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_ir_exports_resolver__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_ir_fields_converter__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_ir_filters__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_ir_http__count_pending_changeset_changes
@@ -783,6 +786,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_ir_demo_failure_wizard__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_ir_exports__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_ir_exports_line__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_ir_exports_resolver__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_ir_fields_converter__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_ir_filters__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_ir_http__count_pending_changesets
@@ -1378,6 +1382,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_ir_demo_failure_wizard__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_ir_exports__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_ir_exports_line__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_ir_exports_resolver__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_ir_fields_converter__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_ir_filters__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_ir_http__user_can_see_changeset
