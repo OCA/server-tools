@@ -38,6 +38,8 @@ class TestParser(SavepointCase):
                 "date": fields.Date.from_string("2019-10-31"),
             }
         )
+        # add value directly to have floating point
+        cls.partner.partner_latitude = 100 / 13.5
         Langs = cls.env["res.lang"].with_context(active_test=False)
         cls.lang = Langs.search([("code", "=", "fr_FR")])
         cls.lang.active = True
@@ -133,6 +135,7 @@ class TestParser(SavepointCase):
             "lang",
             "comment",
             "credit_limit",
+            "partner_latitude",
             "name",
             "color",
             (
@@ -160,6 +163,7 @@ class TestParser(SavepointCase):
             "lang": "en_US",
             "comment": None,
             "credit_limit": 0.0,
+            "partner_latitude": 7.40741,
             "name": "Akretion",
             "color": 0,
             "country": {"code": "FR", "name": "France"},

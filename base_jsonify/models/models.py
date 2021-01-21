@@ -39,6 +39,8 @@ class Base(models.AbstractModel):
         """Override this function to support new field types."""
         if value is False and field.type != "boolean":
             value = None
+        elif field.type == "float":
+            value = float(field.convert_to_column(value, self))
         elif field.type == "date":
             value = fields.Date.to_date(value).isoformat()
         elif field.type == "datetime":
