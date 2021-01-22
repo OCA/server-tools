@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="view_ir_exports">
+        <field name="model">ir.exports</field>
+        <field name="inherit_id" ref="base_ir_export.view_ir_exports" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="default_xml_export" />
+            </xpath>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="tree_view_ir_exports">
+        <field name="model">ir.exports</field>
+        <field name="inherit_id" ref="base_ir_export.tree_view_ir_exports" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='resource']" position="after">
+                <field name="default_xml_export" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="export_wizard_form" model="ir.ui.view">
+        <field name="name">ir.exports.wizard.form</field>
+        <field name="model">ir.exports.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Export to XML">
+                <group>
+                    <field name="model_id" />
+                    <field name="model_name" invisible="1" />
+                    <field name="name" />
+                    <field name="export_field_ids" />
+                </group>
+                <footer>
+                    <button
+                        string="Create Export"
+                        name="create_ir_export"
+                        type="object"
+                        class="btn-primary"
+                    />
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_new_export" model="ir.actions.act_window">
+        <field name="name">Create New Export</field>
+        <field name="res_model">ir.exports.wizard</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="export_wizard_form" />
+        <field name="target">new</field>
+    </record>
+    <menuitem
+        name="Create New Export"
+        action="action_new_export"
+        id="ir_new_export_menu"
+        parent="base.next_id_9"
+    />
+</odoo>
