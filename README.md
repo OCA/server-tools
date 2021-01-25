@@ -21,6 +21,7 @@ addon | version | summary
 --- | --- | ---
 [auditlog](auditlog/) | 14.0.1.0.0 | Audit Log
 [base_exception](base_exception/) | 14.0.1.0.0 | This module provide an abstract model to manage customizable exceptions to be applied on different models (sale order, invoice, ...)
+[base_jsonify](base_jsonify/) | 14.0.1.0.0 | Base module that provide the jsonify method on all models
 [base_sparse_field_list_support](base_sparse_field_list_support/) | 14.0.1.0.1 | add list support to convert_to_cache()
 [base_technical_user](base_technical_user/) | 14.0.1.0.0 | Add a technical user parameter on the company
 [onchange_helper](onchange_helper/) | 14.0.1.0.0 | Technical module that ease execution of onchange in Python code
