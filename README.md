@@ -28,7 +28,7 @@ addon | version | summary
 [auth_signup_verify_email](auth_signup_verify_email/) | 8.0.1.0.0 | Force uninvited users to use a good email for signup
 [auth_supplier](auth_supplier/) | 8.0.1.0.0 | Auth Supplier
 [auth_totp](auth_totp/) | 8.0.1.0.0 | Allows users to enable MFA and add optional trusted devices
-[auto_backup](auto_backup/) | 8.0.1.0.3 | Backups database
+[auto_backup](auto_backup/) | 8.0.1.0.4 | Backups database
 [base_concurrency](base_concurrency/) | 8.0.1.1.0 | Base Concurrency
 [base_custom_info](base_custom_info/) | 8.0.1.0.0 | Add custom field in models
 [base_debug4all](base_debug4all/) | 8.0.1.0.0 | Shows full debug options for all users
