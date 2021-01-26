@@ -112,14 +112,14 @@ msgid "Created on"
 msgstr "Създадено на"
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:224
+#: code:addons/auto_backup/models/db_backup.py:225
 #: model:mail.message.subtype,description:auto_backup.mail_message_subtype_failure
 #, python-format
 msgid "Database backup failed."
 msgstr ""
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:232
+#: code:addons/auto_backup/models/db_backup.py:233
 #: model:mail.message.subtype,description:auto_backup.mail_message_subtype_success
 #, python-format
 msgid "Database backup succeeded."
