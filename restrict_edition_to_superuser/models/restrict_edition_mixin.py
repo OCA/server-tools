@@ -18,4 +18,4 @@ class RestrictEditionMixin(models.AbstractModel):
                     and not self.env.user.id == SUPERUSER_ID
                 ):
                     raise AccessError(_("Only the administrator can edit this record"))
-        super().check_access_rule(operation)
+        return super().check_access_rule(operation)
