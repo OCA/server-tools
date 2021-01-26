@@ -9,7 +9,7 @@ import shutil
 import tempfile
 import traceback
 from contextlib import contextmanager
-from datetime import datetime, timedelta
+from datetime import datetime
 from glob import iglob
 from openerp import exceptions, models, fields, api, _, tools
 from openerp.service import db
@@ -219,6 +219,7 @@ class DbBackup(models.Model):
         except:
             _logger.exception("Database backup failed: %s", self.name)
             escaped_tb = tools.html_escape(traceback.format_exc())
+            # pylint: disable=translation-required
             self.message_post(
                 "<p>%s</p><pre>%s</pre>" % (
                     _("Database backup failed."),
@@ -234,23 +235,21 @@ class DbBackup(models.Model):
     @api.multi
     def cleanup(self):
         """Clean up old backups."""
-        now = datetime.now()
         for rec in self.filtered("days_to_keep"):
             with rec.cleanup_log():
-                oldest = self.filename(now - timedelta(days=rec.days_to_keep))
-
                 if rec.method == "local":
-                    for name in iglob(os.path.join(rec.folder,
-                                                   "*.dump.zip")):
-                        if os.path.basename(name) < oldest:
-                            os.unlink(name)
+                    for name in sorted(
+                            iglob(os.path.join(rec.folder, "*.dump.zip"))
+                    )[:-rec.days_to_keep]:
+                        os.unlink(name)
 
                 elif rec.method == "sftp":
                     with rec.sftp_connection() as remote:
-                        for name in remote.listdir(rec.folder):
-                            if (name.endswith(".dump.zip") and
-                                    os.path.basename(name) < oldest):
-                                remote.unlink('%s/%s' % (rec.folder, name))
+                        for name in sorted(
+                                n for n in remote.listdir(rec.folder)
+                                if n.endswith(".dump.zip")
+                        )[:-rec.days_to_keep]:
+                            remote.unlink('%s/%s' % (rec.folder, name))
 
     @api.multi
     @contextmanager
@@ -263,6 +262,7 @@ class DbBackup(models.Model):
         except:
             _logger.exception("Cleanup of old database backups failed: %s")
             escaped_tb = tools.html_escape(traceback.format_exc())
+            # pylint: disable=translation-required
             self.message_post(
                 "<p>%s</p><pre>%s</pre>" % (
                     _("Cleanup of old database backups failed."),
