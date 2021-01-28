@@ -14,6 +14,18 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: profiler
+#: selection:profiler.profile,python_method:0
+msgid "All activity"
+msgstr ""
+
+#. module: profiler
+#. openerp-web
+#: code:addons/profiler/static/src/js/tour.js:17
+#, python-format
+msgid "Analyze your application performance in the Profiler app."
+msgstr ""
+
+#. module: profiler
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile_attachment_count
 msgid "Attachment Count"
 msgstr ""
@@ -39,14 +51,21 @@ msgid "Clear"
 msgstr ""
 
 #. module: profiler
+#: model:ir.model.fields,field_description:profiler.field_profiler_profile_request_line_user_context
+msgid "Context"
+msgstr ""
+
+#. module: profiler
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile_create_uid
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile_python_line_create_uid
+#: model:ir.model.fields,field_description:profiler.field_profiler_profile_request_line_create_uid
 msgid "Created by"
 msgstr ""
 
 #. module: profiler
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile_create_date
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile_python_line_create_date
+#: model:ir.model.fields,field_description:profiler.field_profiler_profile_request_line_create_date
 msgid "Created on"
 msgstr ""
 
@@ -117,8 +136,26 @@ msgid "Getting the path to the logger"
 msgstr ""
 
 #. module: profiler
+#. openerp-web
+#: code:addons/profiler/static/src/js/tour.js:37
+#, python-format
+msgid "Give this session a name."
+msgstr ""
+
+#. module: profiler
+#: model:ir.model.fields,field_description:profiler.field_profiler_profile_py_request_lines
+msgid "HTTP requests"
+msgstr ""
+
+#. module: profiler
+#: model:ir.model,name:profiler.model_ir_http
+msgid "HTTP routing"
+msgstr ""
+
+#. module: profiler
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile_id
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile_python_line_id
+#: model:ir.model.fields,field_description:profiler.field_profiler_profile_request_line_id
 msgid "ID"
 msgstr ""
 
@@ -135,7 +172,7 @@ msgid "It requires postgresql server logs seudo-enabled"
 msgstr ""
 
 #. module: profiler
-#: code:addons/profiler/models/profiler_profile.py:250
+#: code:addons/profiler/models/profiler_profile.py:372
 #, python-format
 msgid "It's not possible change parameter.\n"
 "%s\n"
@@ -145,29 +182,64 @@ msgstr ""
 #. module: profiler
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile___last_update
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile_python_line___last_update
+#: model:ir.model.fields,field_description:profiler.field_profiler_profile_request_line___last_update
 msgid "Last Modified on"
 msgstr ""
 
 #. module: profiler
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile_python_line_write_uid
+#: model:ir.model.fields,field_description:profiler.field_profiler_profile_request_line_write_uid
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile_write_uid
 msgid "Last Updated by"
 msgstr ""
 
 #. module: profiler
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile_python_line_write_date
+#: model:ir.model.fields,field_description:profiler.field_profiler_profile_request_line_write_date
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile_write_date
 msgid "Last Updated on"
 msgstr ""
 
 #. module: profiler
+#. openerp-web
+#: code:addons/profiler/static/src/js/tour.js:32
+#, python-format
+msgid "Let's create a new profiler session."
+msgstr ""
+
+#. module: profiler
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile_name
+#: model:ir.model.fields,field_description:profiler.field_profiler_profile_request_line_display_name
 msgid "Name"
+msgstr ""
+
+#. module: profiler
+#. openerp-web
+#: code:addons/profiler/static/src/js/tour.js:60
+#, python-format
+msgid "Now disable it to stop profiling."
+msgstr ""
+
+#. module: profiler
+#. openerp-web
+#: code:addons/profiler/static/src/js/tour.js:54
+#, python-format
+msgid "Now enable it to start profiling."
 msgstr ""
 
 #. module: profiler
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile_py_stats_lines
 msgid "PY Stats Lines"
+msgstr ""
+
+#. module: profiler
+#: model:ir.model.fields,field_description:profiler.field_profiler_profile_request_line_name
+msgid "Path"
+msgstr ""
+
+#. module: profiler
+#: selection:profiler.profile,python_method:0
+msgid "Per HTTP request"
 msgstr ""
 
 #. module: profiler
@@ -200,6 +272,7 @@ msgstr ""
 
 #. module: profiler
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile_python_line_profile_id
+#: model:ir.model.fields,field_description:profiler.field_profiler_profile_request_line_profile_id
 #: model:ir.ui.menu,name:profiler.menu_profile
 #: model:ir.ui.view,arch_db:profiler.view_profile_form
 msgid "Profile"
@@ -210,6 +283,11 @@ msgstr ""
 #: model:ir.ui.menu,name:profiler.menu_profiler
 #: model:ir.ui.menu,name:profiler.menu_profiler_root
 msgid "Profiler"
+msgstr ""
+
+#. module: profiler
+#: model:ir.model,name:profiler.model_profiler_profile_request_line
+msgid "Profiler HTTP request Line to save cProfiling results"
 msgstr ""
 
 #. module: profiler
@@ -228,8 +306,18 @@ msgid "Profiling lines"
 msgstr ""
 
 #. module: profiler
+#: model:ir.model.fields,field_description:profiler.field_profiler_profile_python_method
+msgid "Python Method"
+msgstr ""
+
+#. module: profiler
 #: model:ir.ui.view,arch_db:profiler.view_profile_form
 msgid "Python Stats - Profiling Lines"
+msgstr ""
+
+#. module: profiler
+#: model:ir.ui.view,arch_db:profiler.view_profile_form
+msgid "Python Stats - Requests"
 msgstr ""
 
 #. module: profiler
@@ -238,14 +326,20 @@ msgid "Recursive Calls"
 msgstr ""
 
 #. module: profiler
+#: model:ir.model.fields,field_description:profiler.field_profiler_profile_request_line_root_url
+msgid "Root URL"
+msgstr ""
+
+#. module: profiler
 #: model:ir.ui.view,arch_db:profiler.view_profiling_lines_search
 msgid "Search Profiling lines"
 msgstr ""
 
 #. module: profiler
-#: code:addons/profiler/models/profiler_profile.py:219
+#. openerp-web
+#: code:addons/profiler/static/src/js/tour.js:43
 #, python-format
-msgid "Start the odoo server using the parameter '--workers=0'"
+msgid "Select a profiling method."
 msgstr ""
 
 #. module: profiler
@@ -254,8 +348,19 @@ msgid "State"
 msgstr ""
 
 #. module: profiler
+#: model:ir.model.fields,field_description:profiler.field_profiler_profile_request_line_total_time
+msgid "Time in ms"
+msgstr ""
+
+#. module: profiler
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile_python_line_cprof_ttpercall
 msgid "Time per call"
+msgstr ""
+
+#. module: profiler
+#: code:addons/profiler/models/profiler_profile.py:337
+#, python-format
+msgid "To profile all activity, start the odoo server using the parameter '--workers=0'"
 msgstr ""
 
 #. module: profiler
@@ -269,7 +374,36 @@ msgid "Use Py Index"
 msgstr ""
 
 #. module: profiler
+#: model:ir.model.fields,field_description:profiler.field_profiler_profile_request_line_user_id
+msgid "User"
+msgstr ""
+
+#. module: profiler
 #: model:ir.ui.view,arch_db:profiler.view_profile_form
 msgid "View profiling lines"
+msgstr ""
+
+#. module: profiler
+#. openerp-web
+#: code:addons/profiler/static/src/js/tour.js:66
+#, python-format
+msgid "We now have measurements."
+msgstr ""
+
+#. module: profiler
+#. openerp-web
+#: code:addons/profiler/static/src/js/tour.js:49
+#, python-format
+msgid "When you are happy, save it."
+msgstr ""
+
+#. module: profiler
+#: selection:profiler.profile.request.line,attachment_id:0
+msgid "ir.attachment"
+msgstr ""
+
+#. module: profiler
+#: model:ir.model.fields,field_description:profiler.field_profiler_profile_request_line_attachment_id
+msgid "pStats file"
 msgstr ""
 
