@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="sequence_view" model="ir.ui.view">
+        <field name="model">ir.sequence</field>
+        <field name="inherit_id" ref="base.sequence_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page name="code" string="Python Code">
+                    <group>
+                        <field name="use_python_code" />
+                        <field
+                            name="python_code"
+                            widget="ace"
+                            options="{'mode': 'python'}"
+                            placeholder="number"
+                            attrs="{'invisible': [('use_python_code', '=', False)]}"
+                        />
+                        <field
+                            name="python_code_preview"
+                            attrs="{'invisible': [('use_python_code', '=', False)]}"
+                        />
+                    </group>
+                    <div style="margin-top: 4px;">
+                        <h3>Help with Python expressions</h3>
+                        <p
+                        >The expression you type here will be evaluated as the next number. The following variables can be used:</p>
+                        <ul>
+                            <li><code
+                                >number</code>: The next number of the sequence (integer)</li>
+                            <li><code
+                                >number_padded</code>: Padded string of the next number of the sequence</li>
+                            <li><code
+                                >sequence</code>: Odoo record of the sequence being used</li>
+                            <li><code
+                                >uuid</code>: The Python uuid module, eg. to use <code
+                                >uuid.uuid4()</code></li>
+                            <li><code
+                                >random</code>: The Python random module, eg. to use <code
+                                >random.randint(0, 9)</code></li>
+                            <li><code
+                                >string</code>: The Python string module, eg. to use <code
+                                >random.choices(string.ascii_letters + string.digits, k=4)</code></li>
+                        </ul>
+                        <p>Aside from this, you may use several <a
+                                href="https://github.com/odoo/odoo/blob/13.0/odoo/tools/safe_eval.py#L271"
+                            >builtin Python functions</a></p>
+                    </div>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
