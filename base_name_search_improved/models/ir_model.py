@@ -30,7 +30,6 @@ class IrModel(models.Model):
 
     name_search_ids = fields.Many2many("ir.model.fields", string="Name Search Fields")
 
-    @api.model_cr
     def _register_hook(self):
         def make_name_search():
             @api.model
