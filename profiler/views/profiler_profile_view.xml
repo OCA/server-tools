@@ -7,9 +7,7 @@
             <tree>
                 <field name="name"/>
                 <field name="enable_python"/>
-                <field name="python_method" attrs="{'invisible': [('enable_python', '=', False)]}"/>
-                <field name="use_py_index"/>
-                <field name="enable_postgresql"/>
+                <field name="python_method"/>
                 <field name="date_started"/>
                 <field name="date_finished"/>
                 <field name="state"/>
@@ -111,10 +109,11 @@
                         <group>
                             <field name="enable_python" attrs="{'readonly': [('state','=', 'enabled')]}"/>
                             <field name="python_method" attrs="{'invisible': [('enable_python', '=', False)]}"/>
-                            <field name="use_py_index"/>
+                            <field name="session" attrs="{'invisible': [('python_method', '!=', 'request')]}"/>
+                            <field name="use_py_index" attrs="{'invisible': [('python_method', '=', 'request')]}"/>
                         </group>
                         <group>
-                            <field name="enable_postgresql" attrs="{'readonly': [('state','=', 'enabled')]}"/>
+                            <field name="enable_postgresql" attrs="{'invisible': [('python_method', '=', 'request')], 'readonly': [('state','=', 'enabled')]}"/>
                             <field name="pg_log_path"/>
                             <field name="pg_remote"/>
                         </group>
