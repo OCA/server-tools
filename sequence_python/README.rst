@@ -68,7 +68,7 @@ Examples:
    uuid.uuid4().hex
 
    # To use an 8-digit binary number
-   '{0:#010b}'.format(number)[2:]
+   '{0:#010b}'.format(number + 300)[2:]
 
 And so on.
 
