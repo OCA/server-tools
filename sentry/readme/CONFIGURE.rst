@@ -32,13 +32,6 @@ configuration file:
 ``sentry_processors``          A string of comma-separated processor classes which will be applied   ``raven.processors.SanitizePasswordsProcessor,
                                on an event before sending it to Sentry.                              odoo.addons.sentry.logutils.SanitizeOdooCookiesProcessor``
 
-``sentry_transport``           Transport class which will be used to send events to Sentry.          ``threaded``
-                               Possible values: *threaded*: spawns an async worker for processing
-                               messages, *synchronous*: a synchronous blocking transport;
-                               *requests_threaded*: an asynchronous transport using the *requests*
-                               library; *requests_synchronous* - blocking transport using the
-                               *requests* library.
-
 ``sentry_include_context``     If enabled, additional context data will be extracted from current    ``True``
                                HTTP request and user session (if available). This has no effect
                                for Cron jobs, as no request/session is available inside a Cron job.
@@ -74,7 +67,6 @@ Below is an example of Odoo configuration file with *Odoo Sentry* options::
     sentry_exclude_loggers = werkzeug
     sentry_ignore_exceptions = odoo.exceptions.AccessDenied,odoo.exceptions.AccessError,odoo.exceptions.MissingError,odoo.exceptions.RedirectWarning,odoo.exceptions.UserError,odoo.exceptions.ValidationError,odoo.exceptions.Warning,odoo.exceptions.except_orm
     sentry_processors = raven.processors.SanitizePasswordsProcessor,odoo.addons.sentry.logutils.SanitizeOdooCookiesProcessor
-    sentry_transport = threaded
     sentry_include_context = true
     sentry_environment = production
     sentry_auto_log_stacks = false
