@@ -262,7 +262,7 @@ class AuditlogRule(models.Model):
             # their values exist in cache.
             new_values = {}
             fields_list = rule_model.get_auditlog_fields(self)
-            for new_record in new_records:
+            for new_record in new_records.sudo():
                 new_values.setdefault(new_record.id, {})
                 for fname, field in new_record._fields.items():
                     if fname not in fields_list:
