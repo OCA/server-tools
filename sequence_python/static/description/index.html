@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="Docutils: http://docutils.sourceforge.net/" />
+<meta name="generator" content="Docutils 0.15.1: http://docutils.sourceforge.net/" />
 <title>Sequence from Python expression</title>
 <style type="text/css">
 
@@ -404,7 +404,7 @@ their place in the sequence</li>
 <li>Enable the ‘Use Python’ checkbox</li>
 <li>Change the default ‘number’ expression to something more fancy.</li>
 </ul>
-<p>Example:</p>
+<p>Examples:</p>
 <pre class="code python literal-block">
 <span class="c1"># To separate the Odoo-generated number with hyphens eg. 0-0-0-0-1</span>
 <span class="s1">'-'</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">number_padded</span><span class="p">)</span>
@@ -413,9 +413,9 @@ their place in the sequence</li>
 <span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">()</span><span class="o">.</span><span class="n">hex</span>
 
 <span class="c1"># To use an 8-digit binary number</span>
-<span class="p">{</span><span class="mi">0</span><span class="p">:</span><span class="c1">#010b}'.format(number)</span>
+<span class="s1">'</span><span class="si">{0:#010b}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">number</span> <span class="o">+</span> <span class="mi">300</span><span class="p">)[</span><span class="mi">2</span><span class="p">:]</span>
 </pre>
-<p>The possibilities are nearly endless.</p>
+<p>And so on.</p>
 </div>
 <div class="section" id="bug-tracker">
 <h1><a class="toc-backref" href="#id2">Bug Tracker</a></h1>
