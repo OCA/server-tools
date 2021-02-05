@@ -3,14 +3,14 @@
 # * auto_backup
 #
 # Translators:
-# Luk???? Spurn?? <lukasspurny8@gmail.com>, 2018
+# Lukáš Spurný <lukasspurny8@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-03 10:08+0000\n"
 "PO-Revision-Date: 2018-03-03 10:08+0000\n"
-"Last-Translator: Luk???? Spurn?? <lukasspurny8@gmail.com>, 2018\n"
+"Last-Translator: Lukáš Spurný <lukasspurny8@gmail.com>, 2018\n"
 "Language-Team: Czech (Czech Republic) (https://www.transifex.com/oca/"
 "teams/23907/cs_CZ/)\n"
 "Language: cs_CZ\n"
@@ -120,12 +120,12 @@ msgstr ""
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__create_uid
 msgid "Created by"
-msgstr "Vytvo??il"
+msgstr "Vytvořil"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__create_date
 msgid "Created on"
-msgstr "Vytvo??eno"
+msgstr "Vytvořeno"
 
 #. module: auto_backup
 #: model:ir.model,name:auto_backup.model_db_backup
@@ -154,7 +154,7 @@ msgstr ""
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__display_name
 msgid "Display Name"
-msgstr "Zobrazit n??zev"
+msgstr "Zobrazit název"
 
 #. module: auto_backup
 #: code:addons/auto_backup/models/db_backup.py:123
@@ -236,17 +236,17 @@ msgstr ""
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup____last_update
 msgid "Last Modified on"
-msgstr "Posledn?? zm??na dne"
+msgstr "Poslední změna dne"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__write_uid
 msgid "Last Updated by"
-msgstr "Naposledy aktualizov??no"
+msgstr "Naposledy aktualizováno"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__write_date
 msgid "Last Updated on"
-msgstr "Posledn?? aktualizace dne"
+msgstr "Poslední aktualizace dne"
 
 #. module: auto_backup
 #: selection:db.backup,method:0
@@ -276,7 +276,7 @@ msgstr "Metoda"
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__name
 msgid "Name"
-msgstr "N??zev"
+msgstr "Název"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__message_needaction_counter

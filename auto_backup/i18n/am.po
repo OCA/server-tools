@@ -240,12 +240,12 @@ msgstr ""
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__write_uid
 msgid "Last Updated by"
-msgstr "??ltima actualizaci??n por"
+msgstr "Última actualización por"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__write_date
 msgid "Last Updated on"
-msgstr "??ltima actualizaci??n en"
+msgstr "Última actualización en"
 
 #. module: auto_backup
 #: selection:db.backup,method:0

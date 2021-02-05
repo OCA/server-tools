@@ -49,7 +49,7 @@ msgstr "Atuomatski backup"
 #. module: auto_backup
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "Automatic backups of the database can be scheduled as follows:"
-msgstr "Automatski backup baze mo??e biti zadan na sljede??i na??in:"
+msgstr "Automatski backup baze može biti zadan na sljedeći način:"
 
 #. module: auto_backup
 #: model:mail.message.subtype,name:auto_backup.mail_message_subtype_failure
@@ -88,7 +88,7 @@ msgstr "Osnovne postavke backupa"
 #. module: auto_backup
 #: sql_constraint:db.backup:0
 msgid "Cannot duplicate a configuration."
-msgstr "Nije mogu??e dupliciranje postavki."
+msgstr "Nije moguće dupliciranje postavki."
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__backup_format
@@ -104,7 +104,7 @@ msgstr "Odaberite metodu pohrane za ovaj backup."
 #: code:addons/auto_backup/models/db_backup.py:265
 #, python-format
 msgid "Cleanup of old database backups failed."
-msgstr "??i????enje starih backup datoteka nije uspjelo."
+msgstr "Čišćenje starih backup datoteka nije uspjelo."
 
 #. module: auto_backup
 #: code:addons/auto_backup/models/db_backup.py:137
@@ -116,7 +116,7 @@ msgstr "Provjera povezivanja nije uspjela!"
 #: code:addons/auto_backup/models/db_backup.py:132
 #, python-format
 msgid "Connection Test Succeeded!"
-msgstr "Provjera povezivanja uspje??na!"
+msgstr "Provjera povezivanja uspješna!"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__create_uid
@@ -145,17 +145,17 @@ msgstr "Backup baze nije uspio."
 #: model:mail.message.subtype,description:auto_backup.mail_message_subtype_success
 #, python-format
 msgid "Database backup succeeded."
-msgstr "Backup baze uspje??an."
+msgstr "Backup baze uspješan."
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__days_to_keep
 msgid "Days To Keep"
-msgstr "??uvati dana"
+msgstr "Čuvati dana"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__display_name
 msgid "Display Name"
-msgstr "Prika??i naziv"
+msgstr "Prikaži naziv"
 
 #. module: auto_backup
 #: code:addons/auto_backup/models/db_backup.py:123
@@ -163,7 +163,7 @@ msgstr "Prika??i naziv"
 msgid ""
 "Do not save backups on your filestore, or you will backup your backups too!"
 msgstr ""
-"Nemojte ??uvati backup na va??em poslu??itelju me??u ostalim podacima, jer ??e se "
+"Nemojte čuvati backup na vašem poslužitelju među ostalim podacima, jer će se "
 "i on backupirati!"
 
 #. module: auto_backup
@@ -174,7 +174,7 @@ msgstr ""
 #. module: auto_backup
 #: model:ir.actions.server,name:auto_backup.action_server_backup
 msgid "Execute backup(s)"
-msgstr "Izvr??i backup(e)"
+msgstr "Izvrši backup(e)"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__folder
@@ -204,7 +204,7 @@ msgstr ""
 #. module: auto_backup
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "Help"
-msgstr "Pomo??"
+msgstr "Pomoć"
 
 #. module: auto_backup
 #: sql_constraint:db.backup:0
@@ -244,12 +244,12 @@ msgstr "Zadnja izmjena na"
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__write_uid
 msgid "Last Updated by"
-msgstr "Zadnje a??uriranje izvr??io"
+msgstr "Zadnje ažuriranje izvršio"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__write_date
 msgid "Last Updated on"
-msgstr "Zadnje a??uriranje na"
+msgstr "Zadnje ažuriranje na"
 
 #. module: auto_backup
 #: selection:db.backup,method:0
@@ -316,12 +316,12 @@ msgstr ""
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__sftp_private_key
 msgid "Private key location"
-msgstr "Lokacija privatnog klju??a"
+msgstr "Lokacija privatnog ključa"
 
 #. module: auto_backup
 #: selection:db.backup,method:0
 msgid "Remote SFTP server"
-msgstr "Udaljeni SFTP poslu??itelj"
+msgstr "Udaljeni SFTP poslužitelj"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__sftp_password

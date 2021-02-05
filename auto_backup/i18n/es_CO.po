@@ -154,7 +154,7 @@ msgstr ""
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__display_name
 msgid "Display Name"
-msgstr "Nombre P??blico"
+msgstr "Nombre Público"
 
 #. module: auto_backup
 #: code:addons/auto_backup/models/db_backup.py:123
@@ -236,7 +236,7 @@ msgstr ""
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup____last_update
 msgid "Last Modified on"
-msgstr "??ltima Modificaci??n el"
+msgstr "Última Modificación el"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__write_uid

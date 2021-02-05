@@ -48,7 +48,7 @@ msgstr "Automatisiertes Backup"
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "Automatic backups of the database can be scheduled as follows:"
 msgstr ""
-"Automatische Sicherungen der Datenbank k??nnen wie folgt geplant werden:"
+"Automatische Sicherungen der Datenbank können wie folgt geplant werden:"
 
 #. module: auto_backup
 #: model:mail.message.subtype,name:auto_backup.mail_message_subtype_failure
@@ -199,7 +199,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "Go to Settings / Technical / Automation / Scheduled Actions."
 msgstr ""
-"Gehen Sie zu Einstellungen / Technisch / Automation / Geplante Vorg??nge"
+"Gehen Sie zu Einstellungen / Technisch / Automation / Geplante Vorgänge"
 
 #. module: auto_backup
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
@@ -239,7 +239,7 @@ msgstr ""
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup____last_update
 msgid "Last Modified on"
-msgstr "Zuletzt ge??ndert am"
+msgstr "Zuletzt geändert am"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__write_uid
