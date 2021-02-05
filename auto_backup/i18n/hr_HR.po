@@ -242,12 +242,12 @@ msgstr "Zadnje modificirano"
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__write_uid
 msgid "Last Updated by"
-msgstr "Zadnje a??urirao"
+msgstr "Zadnje ažurirao"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__write_date
 msgid "Last Updated on"
-msgstr "Zadnje a??urirano"
+msgstr "Zadnje ažurirano"
 
 #. module: auto_backup
 #: selection:db.backup,method:0

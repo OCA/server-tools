@@ -211,7 +211,7 @@ msgstr ""
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__id
 msgid "ID"
-msgstr "ID (identificaci??n)"
+msgstr "ID (identificación)"
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__message_unread
@@ -236,17 +236,17 @@ msgstr ""
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup____last_update
 msgid "Last Modified on"
-msgstr "??ltima modificaci??n en"
+msgstr "Última modificación en"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__write_uid
 msgid "Last Updated by"
-msgstr "??ltima actualizaci??n de"
+msgstr "Última actualización de"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__write_date
 msgid "Last Updated on"
-msgstr "??ltima actualizaci??n en"
+msgstr "Última actualización en"
 
 #. module: auto_backup
 #: selection:db.backup,method:0
