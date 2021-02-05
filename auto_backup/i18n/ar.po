@@ -120,12 +120,12 @@ msgstr ""
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__create_uid
 msgid "Created by"
-msgstr "???????? ????????????"
+msgstr "أنشئ بواسطة"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__create_date
 msgid "Created on"
-msgstr "???????? ????"
+msgstr "أنشئ في"
 
 #. module: auto_backup
 #: model:ir.model,name:auto_backup.model_db_backup
@@ -154,7 +154,7 @@ msgstr ""
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__display_name
 msgid "Display Name"
-msgstr "?????? ??????????"
+msgstr "اسم العرض"
 
 #. module: auto_backup
 #: code:addons/auto_backup/models/db_backup.py:123
@@ -211,7 +211,7 @@ msgstr ""
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__id
 msgid "ID"
-msgstr "????????????"
+msgstr "المعرف"
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__message_unread
@@ -236,17 +236,17 @@ msgstr ""
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup____last_update
 msgid "Last Modified on"
-msgstr "?????? ?????????? ????"
+msgstr "آخر تعديل في"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__write_uid
 msgid "Last Updated by"
-msgstr "?????? ?????????? ????????????"
+msgstr "آخر تحديث بواسطة"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__write_date
 msgid "Last Updated on"
-msgstr "?????? ?????????? ????"
+msgstr "آخر تحديث في"
 
 #. module: auto_backup
 #: selection:db.backup,method:0
@@ -276,7 +276,7 @@ msgstr ""
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__name
 msgid "Name"
-msgstr "??????????"
+msgstr "الاسم"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__message_needaction_counter

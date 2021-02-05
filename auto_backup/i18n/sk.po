@@ -124,7 +124,7 @@ msgstr "Vytvoril"
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__create_date
 msgid "Created on"
-msgstr "Vytvoren??"
+msgstr "Vytvorené"
 
 #. module: auto_backup
 #: model:ir.model,name:auto_backup.model_db_backup
@@ -153,7 +153,7 @@ msgstr ""
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__display_name
 msgid "Display Name"
-msgstr "Zobrazi?? meno"
+msgstr "Zobraziť meno"
 
 #. module: auto_backup
 #: code:addons/auto_backup/models/db_backup.py:123
@@ -235,7 +235,7 @@ msgstr ""
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup____last_update
 msgid "Last Modified on"
-msgstr "Posledn?? modifik??cia"
+msgstr "Posledná modifikácia"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__write_uid
@@ -245,7 +245,7 @@ msgstr "Naposledy upravoval"
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__write_date
 msgid "Last Updated on"
-msgstr "Naposledy upravovan??"
+msgstr "Naposledy upravované"
 
 #. module: auto_backup
 #: selection:db.backup,method:0

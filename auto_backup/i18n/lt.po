@@ -120,7 +120,7 @@ msgstr ""
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__create_uid
 msgid "Created by"
-msgstr "Suk??r??"
+msgstr "Sukūrė"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__create_date
@@ -236,17 +236,17 @@ msgstr ""
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup____last_update
 msgid "Last Modified on"
-msgstr "Paskutin?? kart?? keista"
+msgstr "Paskutinį kartą keista"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__write_uid
 msgid "Last Updated by"
-msgstr "Paskutini kart?? atnaujino"
+msgstr "Paskutini kartą atnaujino"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__write_date
 msgid "Last Updated on"
-msgstr "Paskutin?? kart?? atnaujinta"
+msgstr "Paskutinį kartą atnaujinta"
 
 #. module: auto_backup
 #: selection:db.backup,method:0
