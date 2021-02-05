@@ -25,7 +25,6 @@ class IrExportsLine(models.Model):
         help="If set, will apply the resolver on the field value",
     )
     instance_method_name = fields.Char(
-        comodel_name="ir.exports.resolver",
         string="Function",
         help="A method defined on the model that takes a record and a field_name",
     )
