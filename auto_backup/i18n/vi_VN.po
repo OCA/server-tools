@@ -120,12 +120,12 @@ msgstr ""
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__create_uid
 msgid "Created by"
-msgstr "T???o b???i"
+msgstr "Tạo bởi"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__create_date
 msgid "Created on"
-msgstr "T???o v??o"
+msgstr "Tạo vào"
 
 #. module: auto_backup
 #: model:ir.model,name:auto_backup.model_db_backup
@@ -241,12 +241,12 @@ msgstr ""
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__write_uid
 msgid "Last Updated by"
-msgstr "C???p nh???t l???n cu???i b???i"
+msgstr "Cập nhật lần cuối bởi"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__write_date
 msgid "Last Updated on"
-msgstr "C???p nh???t l???n cu???i v??o"
+msgstr "Cập nhật lần cuối vào"
 
 #. module: auto_backup
 #: selection:db.backup,method:0
@@ -276,7 +276,7 @@ msgstr ""
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__name
 msgid "Name"
-msgstr "T??n"
+msgstr "Tên"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__message_needaction_counter

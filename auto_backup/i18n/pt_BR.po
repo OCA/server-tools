@@ -33,7 +33,7 @@ msgstr "Caminho absoluto para armazenar os backups"
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__message_needaction
 msgid "Action Needed"
-msgstr "A????o Necess??ria"
+msgstr "Ação Necessária"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__message_attachment_count
@@ -44,7 +44,7 @@ msgstr ""
 #: model:ir.actions.act_window,name:auto_backup.action_backup_conf_form
 #: model:ir.ui.menu,name:auto_backup.backup_conf_menu
 msgid "Automated Backups"
-msgstr "Backups Autom??ticos"
+msgstr "Backups Automáticos"
 
 #. module: auto_backup
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
@@ -133,7 +133,7 @@ msgstr "Criado em"
 #: model:ir.model,name:auto_backup.model_db_backup
 #, fuzzy
 msgid "Database Backup"
-msgstr "Backups Autom??ticos"
+msgstr "Backups Automáticos"
 
 #. module: auto_backup
 #: code:addons/auto_backup/models/db_backup.py:219
@@ -214,7 +214,7 @@ msgstr ""
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__id
 msgid "ID"
-msgstr "Identifica????o"
+msgstr "Identificação"
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__message_unread
@@ -239,17 +239,17 @@ msgstr ""
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup____last_update
 msgid "Last Modified on"
-msgstr "??ltima atualiza????o em"
+msgstr "Última atualização em"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__write_uid
 msgid "Last Updated by"
-msgstr "??ltima atualiza????o por"
+msgstr "Última atualização por"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__write_date
 msgid "Last Updated on"
-msgstr "??ltima atualiza????o em"
+msgstr "Última atualização em"
 
 #. module: auto_backup
 #: selection:db.backup,method:0
@@ -274,7 +274,7 @@ msgstr ""
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__method
 msgid "Method"
-msgstr "M??todo"
+msgstr "Método"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__name

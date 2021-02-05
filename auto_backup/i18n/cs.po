@@ -119,12 +119,12 @@ msgstr ""
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__create_uid
 msgid "Created by"
-msgstr "Vytvo??il(a)"
+msgstr "Vytvořil(a)"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__create_date
 msgid "Created on"
-msgstr "Vytvo??eno"
+msgstr "Vytvořeno"
 
 #. module: auto_backup
 #: model:ir.model,name:auto_backup.model_db_backup
@@ -153,7 +153,7 @@ msgstr ""
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__display_name
 msgid "Display Name"
-msgstr "Zobrazovan?? n??zev"
+msgstr "Zobrazovaný název"
 
 #. module: auto_backup
 #: code:addons/auto_backup/models/db_backup.py:123
@@ -275,7 +275,7 @@ msgstr ""
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__name
 msgid "Name"
-msgstr "N??zev"
+msgstr "Název"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__message_needaction_counter

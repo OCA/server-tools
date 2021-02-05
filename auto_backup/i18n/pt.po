@@ -235,17 +235,17 @@ msgstr ""
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup____last_update
 msgid "Last Modified on"
-msgstr "??ltima Modifica????o Em"
+msgstr "Última Modificação Em"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__write_uid
 msgid "Last Updated by"
-msgstr "??ltima Atualiza????o Por"
+msgstr "Última Atualização Por"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__write_date
 msgid "Last Updated on"
-msgstr "??ltima Atualiza????o Em"
+msgstr "Última Atualização Em"
 
 #. module: auto_backup
 #: selection:db.backup,method:0
@@ -270,7 +270,7 @@ msgstr ""
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__method
 msgid "Method"
-msgstr "M??todo"
+msgstr "Método"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__name
