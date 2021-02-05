@@ -155,7 +155,7 @@ msgstr ""
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__display_name
 msgid "Display Name"
-msgstr "Wy??wietlana nazwa "
+msgstr "Wyświetlana nazwa "
 
 #. module: auto_backup
 #: code:addons/auto_backup/models/db_backup.py:123

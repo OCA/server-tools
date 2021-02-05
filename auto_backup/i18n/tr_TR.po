@@ -120,12 +120,12 @@ msgstr ""
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__create_uid
 msgid "Created by"
-msgstr "Olu??turan"
+msgstr "Oluşturan"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__create_date
 msgid "Created on"
-msgstr "Olu??turulma tarihi"
+msgstr "Oluşturulma tarihi"
 
 #. module: auto_backup
 #: model:ir.model,name:auto_backup.model_db_backup
@@ -154,7 +154,7 @@ msgstr ""
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__display_name
 msgid "Display Name"
-msgstr "G??r??nen ad"
+msgstr "Görünen ad"
 
 #. module: auto_backup
 #: code:addons/auto_backup/models/db_backup.py:123
@@ -236,17 +236,17 @@ msgstr ""
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup____last_update
 msgid "Last Modified on"
-msgstr "En son g??ncelleme tarihi"
+msgstr "En son güncelleme tarihi"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__write_uid
 msgid "Last Updated by"
-msgstr "En son g??ncelleyen "
+msgstr "En son güncelleyen "
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__write_date
 msgid "Last Updated on"
-msgstr "En son g??ncelleme tarihi"
+msgstr "En son güncelleme tarihi"
 
 #. module: auto_backup
 #: selection:db.backup,method:0

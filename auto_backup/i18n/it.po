@@ -47,7 +47,7 @@ msgstr "Backup automatici"
 #. module: auto_backup
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "Automatic backups of the database can be scheduled as follows:"
-msgstr "Il backup automatico del DB ?? pianificato come segue:"
+msgstr "Il backup automatico del DB è pianificato come segue:"
 
 #. module: auto_backup
 #: model:mail.message.subtype,name:auto_backup.mail_message_subtype_failure
@@ -165,7 +165,7 @@ msgstr "Nome da visualizzare"
 msgid ""
 "Do not save backups on your filestore, or you will backup your backups too!"
 msgstr ""
-"Non salvare i backup nel proprio filestore altrimenti verr?? eseguita una "
+"Non salvare i backup nel proprio filestore altrimenti verrà eseguita una "
 "copia di backup anche dei propri backup!"
 
 #. module: auto_backup
@@ -386,7 +386,7 @@ msgid ""
 "then this is the password to decrypt it."
 msgstr ""
 "La password per la connessione SFTP. Se viene specificato un file per la "
-"chiave privata, allora questo ?? la password per decodificarla."
+"chiave privata, allora questo è la password per decodificarla."
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__sftp_port
@@ -399,7 +399,7 @@ msgid ""
 "The username where the SFTP connection should be made with. This is the user "
 "on the external server."
 msgstr ""
-"Il nome utente per la connessione SFTP. Questo ?? l'utente sul server esterno."
+"Il nome utente per la connessione SFTP. Questo è l'utente sul server esterno."
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__message_unread
@@ -417,7 +417,7 @@ msgid ""
 "Use SFTP with caution! This writes files to external servers under the path "
 "you specify."
 msgstr ""
-"Usare SFTP con cautela! Questa modalit?? scrive file nel percorso specificato "
+"Usare SFTP con cautela! Questa modalità scrive file nel percorso specificato "
 "su server esterni."
 
 #. module: auto_backup
