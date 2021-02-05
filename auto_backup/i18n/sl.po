@@ -78,8 +78,8 @@ msgid ""
 "Backups older than this will be deleted automatically. Set 0 to disable "
 "autodeletion."
 msgstr ""
-"Varnostne kopije starej??e od tega bodo samodejno izbrisane. Nastavite 0, da "
-"bi onemogo??ili samodejno brisanje."
+"Varnostne kopije starejše od tega bodo samodejno izbrisane. Nastavite 0, da "
+"bi onemogočili samodejno brisanje."
 
 #. module: auto_backup
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
@@ -106,13 +106,13 @@ msgstr "Izberite metodo shranjevanja za to varnostno kopiranje."
 #: code:addons/auto_backup/models/db_backup.py:265
 #, python-format
 msgid "Cleanup of old database backups failed."
-msgstr "Brisanje starih varnostnih kopij podatkovnih baz neuspe??no."
+msgstr "Brisanje starih varnostnih kopij podatkovnih baz neuspešno."
 
 #. module: auto_backup
 #: code:addons/auto_backup/models/db_backup.py:137
 #, python-format
 msgid "Connection Test Failed!"
-msgstr "Test povezave neuspe??en!"
+msgstr "Test povezave neuspešen!"
 
 #. module: auto_backup
 #: code:addons/auto_backup/models/db_backup.py:132
@@ -140,14 +140,14 @@ msgstr ""
 #: model:mail.message.subtype,description:auto_backup.mail_message_subtype_failure
 #, python-format
 msgid "Database backup failed."
-msgstr "Varnostno kopiranje podatkovne baze neuspe??no."
+msgstr "Varnostno kopiranje podatkovne baze neuspešno."
 
 #. module: auto_backup
 #: code:addons/auto_backup/models/db_backup.py:227
 #: model:mail.message.subtype,description:auto_backup.mail_message_subtype_success
 #, python-format
 msgid "Database backup succeeded."
-msgstr "Varnostno kopiranje podatkovne baze uspe??no."
+msgstr "Varnostno kopiranje podatkovne baze uspešno."
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__days_to_keep
@@ -201,12 +201,12 @@ msgstr ""
 #. module: auto_backup
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "Go to Settings / Technical / Automation / Scheduled Actions."
-msgstr "Pojdi na Nastavitve / Tehni??no / Avtomatizacija / Planirana dejanja"
+msgstr "Pojdi na Nastavitve / Tehnično / Avtomatizacija / Planirana dejanja"
 
 #. module: auto_backup
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "Help"
-msgstr "Pomo??"
+msgstr "Pomoč"
 
 #. module: auto_backup
 #: sql_constraint:db.backup:0
@@ -241,7 +241,7 @@ msgstr ""
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup____last_update
 msgid "Last Modified on"
-msgstr "Zadnji?? spremenjeno"
+msgstr "Zadnjič spremenjeno"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__write_uid
@@ -251,7 +251,7 @@ msgstr "Zadnji posodobil"
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__write_date
 msgid "Last Updated on"
-msgstr "Zadnji?? posodobljeno"
+msgstr "Zadnjič posodobljeno"
 
 #. module: auto_backup
 #: selection:db.backup,method:0
@@ -314,18 +314,18 @@ msgid ""
 "Path to the private key file. Only the Odoo user should have read "
 "permissions for that file."
 msgstr ""
-"Pot do datoteke privatnega klju??a. Le Odoo uporabnik naj ima dovoljenje za "
+"Pot do datoteke privatnega ključa. Le Odoo uporabnik naj ima dovoljenje za "
 "branje te datoteke."
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__sftp_private_key
 msgid "Private key location"
-msgstr "Lokacija privatnega klju??a"
+msgstr "Lokacija privatnega ključa"
 
 #. module: auto_backup
 #: selection:db.backup,method:0
 msgid "Remote SFTP server"
-msgstr "Oddaljeni SFTP stre??nik"
+msgstr "Oddaljeni SFTP strežnik"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__sftp_password
@@ -340,7 +340,7 @@ msgstr "SFTP port"
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__sftp_host
 msgid "SFTP Server"
-msgstr "SFTP stre??nik"
+msgstr "SFTP strežnik"
 
 #. module: auto_backup
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
@@ -357,7 +357,7 @@ msgstr "Iskanje dejanja z nazivom 'Razporejevalnik varnostnih kopiranj'"
 msgid ""
 "Set the scheduler to active and fill in how often you want backups generated."
 msgstr ""
-"Nastavite razporejevalnik kot aktiven in izpolnite, kako pogosto ??elite "
+"Nastavite razporejevalnik kot aktiven in izpolnite, kako pogosto želite "
 "ustvarjati varnostne kopije."
 
 #. module: auto_backup
@@ -374,7 +374,7 @@ msgstr "Test SFTP povezave"
 #: model:ir.model.fields,help:auto_backup.field_db_backup__sftp_host
 msgid ""
 "The host name or IP address from your remote server. For example 192.168.0.1"
-msgstr "IP naslov ali 'hostname' oddaljenega stre??nika. Npr. 192.168.0.1"
+msgstr "IP naslov ali 'hostname' oddaljenega strežnika. Npr. 192.168.0.1"
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__sftp_password
@@ -382,20 +382,20 @@ msgid ""
 "The password for the SFTP connection. If you specify a private key file, "
 "then this is the password to decrypt it."
 msgstr ""
-"Geslo za SFTP povezavo. ??e dolo??ite datoteko privatnega klju??a, je to geslo "
-"za de??ifriranje klju??a."
+"Geslo za SFTP povezavo. Če določite datoteko privatnega ključa, je to geslo "
+"za dešifriranje ključa."
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__sftp_port
 msgid "The port on the FTP server that accepts SSH/SFTP calls."
-msgstr "Vrata FTP stre??nika, ki sprejema SSH/SFTP klice."
+msgstr "Vrata FTP strežnika, ki sprejema SSH/SFTP klice."
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__sftp_user
 msgid ""
 "The username where the SFTP connection should be made with. This is the user "
 "on the external server."
-msgstr "Uporabni??ko ime SFTP povezave. To je uporabnik zunanjega stre??nika."
+msgstr "Uporabniško ime SFTP povezave. To je uporabnik zunanjega strežnika."
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__message_unread
@@ -413,13 +413,13 @@ msgid ""
 "Use SFTP with caution! This writes files to external servers under the path "
 "you specify."
 msgstr ""
-"SFTP uporabljajte previdno! Datoteke se bodo zapisovale na zunanje stre??nike "
-"v pot, ki jo sami dolo??ite."
+"SFTP uporabljajte previdno! Datoteke se bodo zapisovale na zunanje strežnike "
+"v pot, ki jo sami določite."
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__sftp_user
 msgid "Username in the SFTP Server"
-msgstr "Uporabni??ko ime za SFTP stre??nik"
+msgstr "Uporabniško ime za SFTP strežnik"
 
 #. module: auto_backup
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form

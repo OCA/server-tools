@@ -241,12 +241,12 @@ msgstr ""
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__write_uid
 msgid "Last Updated by"
-msgstr "P??d??jo reizi atjaunoja"
+msgstr "Pēdējo reizi atjaunoja"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__write_date
 msgid "Last Updated on"
-msgstr "P??d??j??s izmai??as"
+msgstr "Pēdējās izmaiņas"
 
 #. module: auto_backup
 #: selection:db.backup,method:0
