@@ -202,9 +202,7 @@ class TestDbBackup(common.TransactionCase):
     def test_sftp_connection_init_key(self, pysftp):
         """ It should initiate SFTP connection w/ proper args and key """
         rec_id = self.new_record()
-        rec_id.write(
-            {"sftp_private_key": "pkey", "sftp_password": "pkeypass",}
-        )
+        rec_id.write({"sftp_private_key": "pkey", "sftp_password": "pkeypass"})
         rec_id.sftp_connection()
         pysftp.Connection.assert_called_once_with(
             host=rec_id.sftp_host,
