@@ -133,3 +133,15 @@ class Base(models.AbstractModel):
 
         results = resolver.resolve(results, self) if resolver else results
         return results[0] if one else results
+
+    def _jsonify_m2o_to_id(self, fname):
+        """Helper to get an ID only from a m2o field.
+
+        Example:
+
+            <field name="name">m2o_id</field>
+            <field name="target">m2o_id:rel_id</field>
+            <field name="instance_method_name">_jsonify_m2o_to_id</field>
+
+        """
+        return self[fname].id
