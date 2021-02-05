@@ -240,12 +240,12 @@ msgstr "Viimeksi muokattu"
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__write_uid
 msgid "Last Updated by"
-msgstr "Viimeksi p??ivitt??nyt"
+msgstr "Viimeksi päivittänyt"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__write_date
 msgid "Last Updated on"
-msgstr "Viimeksi p??ivitetty"
+msgstr "Viimeksi päivitetty"
 
 #. module: auto_backup
 #: selection:db.backup,method:0
