@@ -26,7 +26,7 @@ msgstr "/home/odoo/.ssh/id_rsa"
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__folder
 msgid "Absolute path for storing the backups"
-msgstr "Chemin absolu o?? sont conserv??es les sauvegardes"
+msgstr "Chemin absolu où sont conservées les sauvegardes"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__message_needaction
@@ -42,25 +42,25 @@ msgstr ""
 #: model:ir.actions.act_window,name:auto_backup.action_backup_conf_form
 #: model:ir.ui.menu,name:auto_backup.backup_conf_menu
 msgid "Automated Backups"
-msgstr "Sauvegardes automatis??es"
+msgstr "Sauvegardes automatisées"
 
 #. module: auto_backup
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "Automatic backups of the database can be scheduled as follows:"
 msgstr ""
-"Les sauvegardes automatis??es de la base de donn??es peuvent ??tre programm??es "
+"Les sauvegardes automatisées de la base de données peuvent être programmées "
 "comme suit:"
 
 #. module: auto_backup
 #: model:mail.message.subtype,name:auto_backup.mail_message_subtype_failure
 msgid "Backup Failed"
-msgstr "??chec de la saugarde"
+msgstr "Échec de la saugarde"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__backup_format
 #, fuzzy
 msgid "Backup Format"
-msgstr "??chec de la saugarde"
+msgstr "Échec de la saugarde"
 
 #. module: auto_backup
 #: model:ir.actions.server,name:auto_backup.ir_cron_backup_scheduler_0_ir_actions_server
@@ -72,7 +72,7 @@ msgstr ""
 #. module: auto_backup
 #: model:mail.message.subtype,name:auto_backup.mail_message_subtype_success
 msgid "Backup Successful"
-msgstr "Sauvegarde r??ussie"
+msgstr "Sauvegarde réussie"
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__days_to_keep
@@ -80,8 +80,8 @@ msgid ""
 "Backups older than this will be deleted automatically. Set 0 to disable "
 "autodeletion."
 msgstr ""
-"Les sauvegardes plus anciennes que la valeur d??finie seront supprim??es "
-"automatiquement. D??finir ?? 0 pour d??sactiver la suppression automatique."
+"Les sauvegardes plus anciennes que la valeur définie seront supprimées "
+"automatiquement. Définir à 0 pour désactiver la suppression automatique."
 
 #. module: auto_backup
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
@@ -97,40 +97,40 @@ msgstr "Impossible de dupliquer une configuration."
 #: model:ir.model.fields,help:auto_backup.field_db_backup__backup_format
 #, fuzzy
 msgid "Choose the format for this backup."
-msgstr "Choisissez la m??thode de stockage pour cette sauvegarde."
+msgstr "Choisissez la méthode de stockage pour cette sauvegarde."
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__method
 msgid "Choose the storage method for this backup."
-msgstr "Choisissez la m??thode de stockage pour cette sauvegarde."
+msgstr "Choisissez la méthode de stockage pour cette sauvegarde."
 
 #. module: auto_backup
 #: code:addons/auto_backup/models/db_backup.py:265
 #, python-format
 msgid "Cleanup of old database backups failed."
-msgstr "??chec du nettoyage des anciennes sauvegardes de la base de donn??es."
+msgstr "Échec du nettoyage des anciennes sauvegardes de la base de données."
 
 #. module: auto_backup
 #: code:addons/auto_backup/models/db_backup.py:137
 #, python-format
 msgid "Connection Test Failed!"
-msgstr "??chec du test de connexion !"
+msgstr "Échec du test de connexion !"
 
 #. module: auto_backup
 #: code:addons/auto_backup/models/db_backup.py:132
 #, python-format
 msgid "Connection Test Succeeded!"
-msgstr "Test de connexion r??ussi !"
+msgstr "Test de connexion réussi !"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__create_uid
 msgid "Created by"
-msgstr "Cr???? par"
+msgstr "Créé par"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__create_date
 msgid "Created on"
-msgstr "Cr???? le"
+msgstr "Créé le"
 
 #. module: auto_backup
 #: model:ir.model,name:auto_backup.model_db_backup
@@ -142,14 +142,14 @@ msgstr ""
 #: model:mail.message.subtype,description:auto_backup.mail_message_subtype_failure
 #, python-format
 msgid "Database backup failed."
-msgstr "??chec de la sauvegarde de la base de donn??es"
+msgstr "Échec de la sauvegarde de la base de données"
 
 #. module: auto_backup
 #: code:addons/auto_backup/models/db_backup.py:227
 #: model:mail.message.subtype,description:auto_backup.mail_message_subtype_success
 #, python-format
 msgid "Database backup succeeded."
-msgstr "Sauvegarde de la base de donn??es r??ussie."
+msgstr "Sauvegarde de la base de données réussie."
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__days_to_keep
@@ -159,7 +159,7 @@ msgstr ""
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__display_name
 msgid "Display Name"
-msgstr "Nom affich??"
+msgstr "Nom affiché"
 
 #. module: auto_backup
 #: code:addons/auto_backup/models/db_backup.py:123
@@ -168,7 +168,7 @@ msgid ""
 "Do not save backups on your filestore, or you will backup your backups too!"
 msgstr ""
 "Ne conservez pas vos sauvegardes dans le filestore, sinon vos sauvegardes "
-"seront elles-m??mes sauvegard??es ! "
+"seront elles-mêmes sauvegardées ! "
 
 #. module: auto_backup
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
@@ -204,7 +204,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "Go to Settings / Technical / Automation / Scheduled Actions."
 msgstr ""
-"Allez sur Configuration / Technique / Automatisation / Actions planifi??es"
+"Allez sur Configuration / Technique / Automatisation / Actions planifiées"
 
 #. module: auto_backup
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
@@ -244,17 +244,17 @@ msgstr ""
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup____last_update
 msgid "Last Modified on"
-msgstr "Derni??re modification le"
+msgstr "Dernière modification le"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__write_uid
 msgid "Last Updated by"
-msgstr "Mis ?? jour par"
+msgstr "Mis à jour par"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__write_date
 msgid "Last Updated on"
-msgstr "Mis ?? jour le"
+msgstr "Mis à jour le"
 
 #. module: auto_backup
 #: selection:db.backup,method:0
@@ -279,7 +279,7 @@ msgstr ""
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__method
 msgid "Method"
-msgstr "M??thode"
+msgstr "Méthode"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__name
@@ -317,7 +317,7 @@ msgid ""
 "Path to the private key file. Only the Odoo user should have read "
 "permissions for that file."
 msgstr ""
-"Chemin vers la cl?? priv??e. Seul l'utilisateur odoo devrait avoir les "
+"Chemin vers la clé privée. Seul l'utilisateur odoo devrait avoir les "
 "permissions de lecture sur ce fichier."
 
 #. module: auto_backup

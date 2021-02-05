@@ -154,7 +154,7 @@ msgstr ""
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__display_name
 msgid "Display Name"
-msgstr "Prika??i naziv"
+msgstr "Prikaži naziv"
 
 #. module: auto_backup
 #: code:addons/auto_backup/models/db_backup.py:123
@@ -241,12 +241,12 @@ msgstr "Zadnje mijenjano"
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__write_uid
 msgid "Last Updated by"
-msgstr "Zadnji a??urirao"
+msgstr "Zadnji ažurirao"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__write_date
 msgid "Last Updated on"
-msgstr "Zadnje a??urirano"
+msgstr "Zadnje ažurirano"
 
 #. module: auto_backup
 #: selection:db.backup,method:0
