@@ -235,17 +235,17 @@ msgstr ""
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup____last_update
 msgid "Last Modified on"
-msgstr "Darrera modificaci?? el"
+msgstr "Darrera modificació el"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__write_uid
 msgid "Last Updated by"
-msgstr "Darrera Actualitzaci?? per"
+msgstr "Darrera Actualització per"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__write_date
 msgid "Last Updated on"
-msgstr "Darrera Actualitzaci?? el"
+msgstr "Darrera Actualització el"
 
 #. module: auto_backup
 #: selection:db.backup,method:0
