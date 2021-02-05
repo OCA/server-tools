@@ -27,7 +27,7 @@ class Base(models.AbstractModel):
 
     def _function_value(self, record, function, field_name):
         if function in dir(record):
-            method = getattr(self, function, None)
+            method = getattr(record, function, None)
             return method(field_name)
         elif callable(function):
             return function(record, field_name)
