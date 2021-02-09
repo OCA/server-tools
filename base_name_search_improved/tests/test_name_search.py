@@ -26,7 +26,7 @@ class NameSearchCase(TransactionCase):
         self.partner3 = self.Partner.create(
             {
                 "name": "Johann Gambolputty of Ulm",
-                "supplier": True,
+                "color": True,
                 "phone": "+351 777 333 555",
             }
         )
@@ -63,7 +63,7 @@ class NameSearchCase(TransactionCase):
 
     def test_MustHonorDomain(self):
         """Must also honor a provided Domain"""
-        res = self.Partner.name_search("+351", args=[("supplier", "=", True)])
+        res = self.Partner.name_search("+351", args=[("color", "=", True)])
         gambulputty = self.partner3.id
         self.assertEqual(len(res), 1)
         self.assertEqual(res[0][0], gambulputty)
