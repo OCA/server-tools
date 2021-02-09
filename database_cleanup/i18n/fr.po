@@ -10,14 +10,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-03 10:08+0000\n"
-"PO-Revision-Date: 2018-03-03 10:08+0000\n"
-"Last-Translator: Quentin THEURET <odoo@kerpeo.com>, 2018\n"
+"PO-Revision-Date: 2021-02-09 16:45+0000\n"
+"Last-Translator: Yann Papouin <y.papouin@dec-industrie.com>\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_column__purge_line_ids
@@ -141,7 +142,7 @@ msgstr "Propriété dupliquée"
 #. module: database_cleanup
 #: selection:cleanup.purge.line.property,reason:0
 msgid "Empty default property"
-msgstr ""
+msgstr "Propriété vide par défaut"
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_line__field_id
@@ -254,9 +255,8 @@ msgstr "Modèle"
 
 #. module: database_cleanup
 #: model:ir.model,name:database_cleanup.model_ir_model_data
-#, fuzzy
 msgid "Model Data"
-msgstr "Modèle"
+msgstr "Modèle de Données"
 
 #. module: database_cleanup
 #: model:ir.model,name:database_cleanup.model_ir_model
@@ -290,52 +290,52 @@ msgstr "Nom"
 #: code:addons/database_cleanup/models/purge_menus.py:54
 #, python-format
 msgid "No dangling menu entries found"
-msgstr ""
+msgstr "Aucune entrée de menu suspendue trouvée"
 
 #. module: database_cleanup
 #: code:addons/database_cleanup/models/purge_modules.py:95
 #, python-format
 msgid "No modules found to purge"
-msgstr ""
+msgstr "Aucun module trouvé à purger"
 
 #. module: database_cleanup
 #: code:addons/database_cleanup/models/purge_columns.py:128
 #, python-format
 msgid "No orphaned columns found"
-msgstr ""
+msgstr "Aucune colonne orpheline trouvée"
 
 #. module: database_cleanup
 #: code:addons/database_cleanup/models/purge_data.py:68
 #, python-format
 msgid "No orphaned data entries found"
-msgstr ""
+msgstr "Aucune entrée de données orphelines trouvée"
 
 #. module: database_cleanup
 #: code:addons/database_cleanup/models/purge_models.py:120
 #, python-format
 msgid "No orphaned models found"
-msgstr ""
+msgstr "Aucun modèle orphelin trouvé"
 
 #. module: database_cleanup
 #: code:addons/database_cleanup/models/purge_tables.py:107
 #, python-format
 msgid "No orphaned tables found"
-msgstr ""
+msgstr "Aucune table orpheline trouvée"
 
 #. module: database_cleanup
 #: model_terms:ir.ui.view,arch_db:database_cleanup.form_purge_wizard
 msgid "Nothing found to clean up."
-msgstr ""
+msgstr "Rien à nettoyer."
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_property__purge_line_ids
 msgid "Properties to purge"
-msgstr ""
+msgstr "Propriétés à purger"
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_property__property_id
 msgid "Property"
-msgstr ""
+msgstr "Propriété"
 
 #. module: database_cleanup
 #: model:ir.actions.server,name:database_cleanup.action_purge_column_line
@@ -347,23 +347,23 @@ msgstr ""
 #: model:ir.actions.server,name:database_cleanup.action_purge_table_line
 #: model_terms:ir.ui.view,arch_db:database_cleanup.form_purge_wizard
 msgid "Purge"
-msgstr ""
+msgstr "Purger"
 
 #. module: database_cleanup
 #: model:ir.model,name:database_cleanup.model_cleanup_purge_line
 msgid "Purge Column Abstract Wizard"
-msgstr ""
+msgstr "Assistant abstrait de purge des colonnes"
 
 #. module: database_cleanup
 #: model:ir.model,name:database_cleanup.model_cleanup_purge_line_column
 msgid "Purge Column Wizard Lines"
-msgstr ""
+msgstr "Lignes de l'assistant de purge des colonnes"
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_wizard__purge_line_ids
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard__purge_line_ids
 msgid "Purge Line"
-msgstr ""
+msgstr "Ligne de purge"
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_column__wizard_id
@@ -374,34 +374,35 @@ msgstr ""
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_property__wizard_id
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_table__wizard_id
 msgid "Purge Wizard"
-msgstr ""
+msgstr "Assistant de purge"
 
 #. module: database_cleanup
 #: model_terms:ir.ui.view,arch_db:database_cleanup.form_purge_wizard
 msgid "Purge all"
-msgstr ""
+msgstr "Purger tout"
 
 #. module: database_cleanup
 #: model:ir.actions.server,name:database_cleanup.action_purge_columns
 #: model:ir.model,name:database_cleanup.model_cleanup_purge_wizard_column
 msgid "Purge columns"
-msgstr ""
+msgstr "Purger les colonnes"
 
 #. module: database_cleanup
 #: model:ir.model,name:database_cleanup.model_cleanup_purge_wizard_data
 msgid "Purge data"
-msgstr ""
+msgstr "Purger les données"
 
 #. module: database_cleanup
 #: model:ir.actions.server,name:database_cleanup.action_purge_data
 msgid "Purge data entries that refer to missing resources"
 msgstr ""
+"Purger les entrées de données qui font référence aux ressources manquantes"
 
 #. module: database_cleanup
 #: model:ir.actions.server,name:database_cleanup.action_purge_menus
 #: model:ir.model,name:database_cleanup.model_cleanup_purge_wizard_menu
 msgid "Purge menus"
-msgstr ""
+msgstr "Purger les menus"
 
 #. module: database_cleanup
 #: model:ir.actions.server,name:database_cleanup.action_purge_models
@@ -409,76 +410,76 @@ msgstr ""
 #: model:ir.model,name:database_cleanup.model_cleanup_purge_wizard_model
 #: model_terms:ir.ui.view,arch_db:database_cleanup.tree_purge_line
 msgid "Purge models"
-msgstr ""
+msgstr "Purger les modèles"
 
 #. module: database_cleanup
 #: model:ir.actions.server,name:database_cleanup.action_purge_modules
 #: model:ir.model,name:database_cleanup.model_cleanup_purge_wizard_module
 msgid "Purge modules"
-msgstr ""
+msgstr "Purger les modules"
 
 #. module: database_cleanup
 #: model:ir.ui.menu,name:database_cleanup.menu_purge_columns
 msgid "Purge obsolete columns"
-msgstr ""
+msgstr "Purger les colonnes obsolètes"
 
 #. module: database_cleanup
 #: model:ir.ui.menu,name:database_cleanup.menu_purge_data
 msgid "Purge obsolete data entries"
-msgstr ""
+msgstr "Purger les entrées de données obsolètes"
 
 #. module: database_cleanup
 #: model:ir.ui.menu,name:database_cleanup.menu_purge_menus
 msgid "Purge obsolete menu entries"
-msgstr ""
+msgstr "Purger les entrées de menu obsolètes"
 
 #. module: database_cleanup
 #: model:ir.ui.menu,name:database_cleanup.menu_purge_models
 msgid "Purge obsolete models"
-msgstr ""
+msgstr "Purger les modèles obsolètes"
 
 #. module: database_cleanup
 #: model:ir.ui.menu,name:database_cleanup.menu_purge_modules
 msgid "Purge obsolete modules"
-msgstr ""
+msgstr "Purger les modules obsolètes"
 
 #. module: database_cleanup
 #: model:ir.ui.menu,name:database_cleanup.menu_purge_property
 msgid "Purge obsolete properties"
-msgstr ""
+msgstr "Purger les propriétés obsolètes"
 
 #. module: database_cleanup
 #: model:ir.ui.menu,name:database_cleanup.menu_purge_tables
 msgid "Purge obsolete tables"
-msgstr ""
+msgstr "Purger les tables obsolètes"
 
 #. module: database_cleanup
 #: model:ir.actions.server,name:database_cleanup.action_purge_property
 #: model:ir.model,name:database_cleanup.model_cleanup_purge_line_property
 #: model:ir.model,name:database_cleanup.model_cleanup_purge_wizard_property
 msgid "Purge properties"
-msgstr ""
+msgstr "Purger les propriétés"
 
 #. module: database_cleanup
 #: model:ir.model,name:database_cleanup.model_cleanup_purge_wizard
 msgid "Purge stuff"
-msgstr ""
+msgstr "Purger des choses"
 
 #. module: database_cleanup
 #: model:ir.actions.server,name:database_cleanup.action_purge_tables
 #: model:ir.model,name:database_cleanup.model_cleanup_purge_wizard_table
 msgid "Purge tables"
-msgstr ""
+msgstr "Purger les tables"
 
 #. module: database_cleanup
 #: model:ir.model,name:database_cleanup.model_cleanup_purge_line_table
 msgid "Purge tables wizard lines"
-msgstr ""
+msgstr "Lignes de l'assistant de purge des tables"
 
 #. module: database_cleanup
 #: model_terms:ir.ui.view,arch_db:database_cleanup.tree_purge_line
 msgid "Purge this model"
-msgstr ""
+msgstr "Purger ce modèle"
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line__purged
@@ -490,7 +491,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_property__purged
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_table__purged
 msgid "Purged"
-msgstr ""
+msgstr "Purgé"
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_property__reason
@@ -500,51 +501,51 @@ msgstr "Motif"
 #. module: database_cleanup
 #: selection:cleanup.purge.line.property,reason:0
 msgid "Same value as default"
-msgstr ""
+msgstr "Même valeur que par défaut"
 
 #. module: database_cleanup
 #: model_terms:ir.ui.view,arch_db:database_cleanup.form_purge_wizard
 msgid "Select lines"
-msgstr ""
+msgstr "Sélectionnez les lignes"
 
 #. module: database_cleanup
 #: code:addons/database_cleanup/models/purge_wizard.py:75
 #, python-format
 msgid "Select lines to purge"
-msgstr ""
+msgstr "Sélectionnez les lignes à purger"
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_table__purge_line_ids
 msgid "Tables to purge"
-msgstr ""
+msgstr "Tables à purger"
 
 #. module: database_cleanup
 #: selection:cleanup.purge.line.property,reason:0
 msgid "Unknown model"
-msgstr ""
+msgstr "Modèle inconnu"
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_line__wizard_id
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line__wizard_id
 msgid "Wizard"
-msgstr ""
+msgstr "Assistant"
 
 #. module: database_cleanup
 #: model:ir.model,name:database_cleanup.model_cleanup_create_indexes_line
 msgid "cleanup.create_indexes.line"
-msgstr ""
+msgstr "cleanup.create_indexes.line"
 
 #. module: database_cleanup
 #: model:ir.model,name:database_cleanup.model_cleanup_purge_line_data
 msgid "cleanup.purge.line.data"
-msgstr ""
+msgstr "cleanup.purge.line.data"
 
 #. module: database_cleanup
 #: model:ir.model,name:database_cleanup.model_cleanup_purge_line_menu
 msgid "cleanup.purge.line.menu"
-msgstr ""
+msgstr "cleanup.purge.line.menu"
 
 #. module: database_cleanup
 #: model:ir.model,name:database_cleanup.model_cleanup_purge_line_module
 msgid "cleanup.purge.line.module"
-msgstr ""
+msgstr "cleanup.purge.line.module"
