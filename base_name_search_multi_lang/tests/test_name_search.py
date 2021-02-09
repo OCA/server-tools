@@ -1,10 +1,9 @@
 # Copyright 2020 Ecosoft Co., Ltd (http://ecosoft.co.th/)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
-from odoo.tests.common import TransactionCase, at_install, post_install
+from odoo.tests.common import TransactionCase, tagged
 
 
-@at_install(False)
-@post_install(True)
+@tagged("-at_install", "post_install")
 class NameSearchCase(TransactionCase):
     def setUp(self):
         super(NameSearchCase, self).setUp()

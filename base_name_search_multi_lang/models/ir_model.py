@@ -16,7 +16,7 @@ def _extend_name_search_lang(self, lang, name, args, operator, result, limit):
         name, args, operator, limit=limit
     )
     res_ids = [x[0] for x in result]
-    new_res = filter(lambda x: x[0] not in res_ids, res_lang)
+    new_res = [filter(lambda x: x[0] not in res_ids, res_lang)]
     result.extend(new_res)
     return result
 
