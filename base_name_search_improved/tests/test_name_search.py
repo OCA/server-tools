@@ -18,10 +18,14 @@ class NameSearchCase(TransactionCase):
         model_partner.name_search_domain = "[('parent_id', '=', False)]"
         self.Partner = self.env["res.partner"]
         self.partner1 = self.Partner.create(
-            {"name": "Luigi Verconti", "customer": True, "phone": "+351 555 777 333"}
+            {
+                "name": "Luigi Verconti",
+                "partner_share": True,
+                "phone": "+351 555 777 333",
+            }
         )
         self.partner2 = self.Partner.create(
-            {"name": "Ken Shabby", "customer": True, "phone": "+351 555 333 777"}
+            {"name": "Ken Shabby", "partner_share": True, "phone": "+351 555 333 777"}
         )
         self.partner3 = self.Partner.create(
             {
