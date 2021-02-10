@@ -3,7 +3,11 @@
 
 import time
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
+
+from odoo.addons.queue_job.job import identity_exact, job
+
+QUEUE_CHANNEL = "root.jsonify.stored"
 
 
 class JsonifyStored(models.AbstractModel):
@@ -102,6 +106,7 @@ class JsonifyStored(models.AbstractModel):
             time_done = record.jsonify_date_compute
             record.jsonify_data_todo = time_done <= time_todo
 
+    @job(default_channel=QUEUE_CHANNEL)
     def _compute_jsonify_data_stored(self):
         if self:
             parser = self._jsonify_get_export().get_json_parser()
@@ -120,9 +125,20 @@ class JsonifyStored(models.AbstractModel):
             record.jsonify_data = record.jsonify_data_stored
 
     @api.model
-    def cron_recompute(self, limit=None):
+    def _get_batch_size(self):
+        key = self._name + ".batch_size"
+        return self.env["ir.config_parameter"].sudo().get_param(key, 100)
+
+    @api.model
+    def cron_recompute(self, limit=None, batch_size=None):
         records = self.search([("jsonify_data_todo", "=", True)], limit=limit)
-        records._compute_jsonify_data_stored()
+        batch_size = batch_size or self._get_batch_size()
+        desc = _("Recompute stored json.")
+        batching = range(0, len(self), batch_size) if len(self) > batch_size else [0]
+        for i in batching:
+            batch = records[i : i + batch_size]
+            delayed = batch.with_delay(description=desc, identity_key=identity_exact)
+            delayed._compute_jsonify_data_stored()
 
     @api.model_create_multi
     def create(self, vals_list):
