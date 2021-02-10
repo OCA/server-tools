@@ -74,7 +74,7 @@ class TestJsonifyExport(TestJsonifyMixin):
         self.assertTrue(all(not t for t in self.records.mapped("jsonify_data_todo")))
 
         # when  # we modify an export line
-        user_line = self.env.ref("test_jsonify_stored.model_export_line_user")
+        user_line = self.export.export_fields.filtered(lambda e: "user" in e.name)
         user_line.name = "user_id/name"
 
         # then  # everything needs a recompute

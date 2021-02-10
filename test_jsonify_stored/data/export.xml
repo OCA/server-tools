@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <record id="model_export" model="ir.exports">
+    <record id="jsonify_export_test_jsonify_stored" model="ir.exports">
         <field name="name">Test Jsonify Stored Export</field>
         <field name="resource">test.jsonify.stored</field>
     </record>
     <record id="model_export_line_boolean" model="ir.exports.line">
         <field name="name">boolean</field>
-        <field name="export_id" ref="model_export" />
+        <field name="export_id" ref="jsonify_export_test_jsonify_stored" />
     </record>
     <record id="model_export_line_char" model="ir.exports.line">
         <field name="name">char</field>
-        <field name="export_id" ref="model_export" />
+        <field name="export_id" ref="jsonify_export_test_jsonify_stored" />
     </record>
     <record id="model_export_line_float" model="ir.exports.line">
         <field name="name">float</field>
-        <field name="export_id" ref="model_export" />
+        <field name="export_id" ref="jsonify_export_test_jsonify_stored" />
     </record>
     <record id="model_export_line_user" model="ir.exports.line">
         <field name="name">user_id/id</field>
-        <field name="export_id" ref="model_export" />
+        <field name="export_id" ref="jsonify_export_test_jsonify_stored" />
     </record>
 </odoo>
