@@ -102,8 +102,8 @@ class JsonifyStored(models.AbstractModel):
     @api.depends("jsonify_date_update", "jsonify_date_compute")
     def _compute_jsonify_data_todo(self):
         for record in self:
-            time_todo = record.jsonify_date_update
             time_done = record.jsonify_date_compute
+            time_todo = record.jsonify_date_update
             record.jsonify_data_todo = time_done <= time_todo
 
     @job(default_channel=QUEUE_CHANNEL)
@@ -143,5 +143,5 @@ class JsonifyStored(models.AbstractModel):
     @api.model_create_multi
     def create(self, vals_list):
         res = super(JsonifyStored, self).create(vals_list)
-        res._compute_jsonify_date_update()
+        self.env.add_to_compute(self._fields["jsonify_date_update"], res)
         return res

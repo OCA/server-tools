@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<odoo>
+<odoo noupdate="1">
+    <!--it this export is not in noupdate, it will force recompute of all records-->
+    <!--at each update of the module (the update 'rebuilds' the export from scratch)-->
+    <!--even if the export has not changed.-->
     <record id="jsonify_export_test_jsonify_stored" model="ir.exports">
         <field name="name">Test Jsonify Stored Export</field>
         <field name="resource">test.jsonify.stored</field>
