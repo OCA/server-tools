@@ -27,7 +27,7 @@ class IrExport(models.Model):
         xml_ids = self.get_xml_id().values()
         jsonify_mixin = self.env["jsonify.stored.mixin"]
         jsonified_models = [self.env[m] for m in jsonify_mixin._inherit_children]
-        models = [m for m in jsonified_models if m._export_xmlid in xml_ids]
+        models = [m for m in jsonified_models if m._get_export_xmlid() in xml_ids]
         for model in models:
             recompute_field = model._fields["jsonify_date_update"]
             recompute_field.depends = model._jsonify_get_export_depends()

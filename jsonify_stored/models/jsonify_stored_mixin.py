@@ -17,7 +17,7 @@ class JsonifyStored(models.AbstractModel):
     _name = "jsonify.stored.mixin"
     _description = "Stores json data"
 
-    _export_xmlid = ""  # override this key when inheriting this mixin
+    _export_xmlid_pattern = "jsonify_export_{}"
 
     jsonify_data = fields.Serialized(
         string="Jsonify: Data",
@@ -57,9 +57,26 @@ class JsonifyStored(models.AbstractModel):
     )
 
     @api.model
+    def _get_export_xmlid(self):
+        return self._module + "." + self._export_xmlid_pattern.format(self._table)
+
+    @api.model
     def _jsonify_get_export(self):
-        xml_id = self._export_xmlid
-        return self.env.ref(xml_id) if xml_id else self.env["ir.exports"]
+        export = self.env.ref(self._get_export_xmlid(), raise_if_not_found=False)
+        return export or self.__create_jsonify_export()
+
+    @api.model
+    def __create_jsonify_export(self):
+        name = "{} Export".format(self._description)
+        export = self.env["ir.exports"].create({"name": name})
+        vals_data = {
+            "module": self._module,
+            "name": self._export_xmlid_pattern.format(self._table),
+            "model": export._name,
+            "res_id": export.id,
+        }
+        self.env["ir.model.data"].create(vals_data)
+        return export
 
     @api.model
     def _jsonify_get_export_depends(self):
