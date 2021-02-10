@@ -26,7 +26,7 @@ addon | version | summary
 [base_m2m_custom_field](base_m2m_custom_field/) | 14.0.1.1.0 | Customizations of Many2many
 [base_sparse_field_list_support](base_sparse_field_list_support/) | 14.0.1.0.1 | add list support to convert_to_cache()
 [base_technical_user](base_technical_user/) | 14.0.1.0.0 | Add a technical user parameter on the company
-[module_auto_update](module_auto_update/) | 14.0.1.0.0 | Automatically update Odoo modules
+[module_auto_update](module_auto_update/) | 14.0.1.0.1 | Automatically update Odoo modules
 [onchange_helper](onchange_helper/) | 14.0.1.0.0 | Technical module that ease execution of onchange in Python code
 [sentry](sentry/) | 14.0.1.0.0 | Report Odoo errors to Sentry
 [sql_request_abstract](sql_request_abstract/) | 14.0.1.0.0 | Abstract Model to manage SQL Requests
