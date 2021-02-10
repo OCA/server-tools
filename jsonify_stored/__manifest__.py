@@ -8,7 +8,7 @@
     "license": "AGPL-3",
     "author": "ACSONE SA/NV, Odoo Community Association (OCA)",
     "website": "https://acsone.eu",
-    "depends": ["base_jsonify", "base_sparse_field"],
+    "depends": ["base_jsonify", "base_sparse_field", "queue_job"],
     "application": False,
     "data": ["data/cron.xml"],
     "demo": [],
