@@ -2,6 +2,8 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 
+from odoo.tools import mute_logger
+
 from .common import TestJsonifyMixin
 
 
@@ -10,6 +12,7 @@ class TestJsonifyExport(TestJsonifyMixin):
         parser = self.export.get_json_parser()
         return record.jsonify(parser)[0]
 
+    @mute_logger("odoo.addons.queue_job.models.base")
     def test_cron(self):
         """Basic cron that perform a recompute on all inherited models."""
         # given  # all records have to be recomputed
@@ -17,7 +20,7 @@ class TestJsonifyExport(TestJsonifyMixin):
         self.assertTrue(all(self.records.mapped("jsonify_data_todo")))
 
         # when
-        cron.ir_actions_server_id.run()
+        cron.ir_actions_server_id.with_context(test_queue_job_no_delay=True).run()
 
         # then  # all records have been recomputed
         self.assertTrue(all(not t for t in self.records.mapped("jsonify_data_todo")))
