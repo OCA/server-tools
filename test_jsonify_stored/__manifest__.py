@@ -12,5 +12,4 @@
     "application": False,
     "data": ["security/ir.model.access.csv", "data/export.xml"],
     "demo": [],
-    "pre_init_hook": "pre_init_hook",
 }
