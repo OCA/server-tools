@@ -7,7 +7,7 @@
     "version": "13.0.1.0.0",
     "author": "Ecosoft,Odoo Community Association (OCA)",
     "license": "AGPL-3",
-    "website": "https://github.com/OCA/server-tools/",
+    "website": "https://github.com/OCA/server-tools",
     "category": "Tools",
     "depends": ["mail"],
     "external_dependencies": {"python": ["xlrd", "xlwt", "openpyxl"]},

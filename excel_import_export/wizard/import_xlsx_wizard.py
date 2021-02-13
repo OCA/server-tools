@@ -6,8 +6,8 @@ from odoo.exceptions import RedirectWarning, ValidationError
 
 
 class ImportXLSXWizard(models.TransientModel):
-    """ This wizard is used with the template (xlsx.template) to import
-    xlsx template back to active record """
+    """This wizard is used with the template (xlsx.template) to import
+    xlsx template back to active record"""
 
     _name = "import.xlsx.wizard"
     _description = "Wizard for importing excel"
