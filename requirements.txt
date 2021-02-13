@@ -9,3 +9,6 @@ openupgradelib
 pyyaml
 raven
 unidecode
+openpyxl
+xlrd
+xlwt

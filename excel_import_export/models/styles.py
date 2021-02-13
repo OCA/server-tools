@@ -8,7 +8,7 @@ from odoo import api, models
 _logger = logging.getLogger(__name__)
 
 try:
-    from openpyxl.styles import PatternFill, Alignment, Font
+    from openpyxl.styles import Alignment, Font, PatternFill
 except ImportError:
     _logger.debug('Cannot import "openpyxl". Please make sure it is installed.')
 
