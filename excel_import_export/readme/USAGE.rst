@@ -1,5 +1,5 @@
 Concepts
---------
+~~~~~~~~
 
 This module contain pre-defined function and wizards to make exporting, importing and reporting easy.
 
@@ -17,7 +17,7 @@ After install this module, go to Settings > Excel Import/Export > XLSX Templates
 As this module provide tools, it is best to explain as use cases. For example use cases, please install **excel_import_export_demo**
 
 Use Cases
----------
+~~~~~~~~~
 
 **Use Case 1:** Export/Import Excel on existing document
 
@@ -67,7 +67,7 @@ Please see example in excel_import_export_demo/report_action, which shows,
 2. Run partner list report based on search criteria.
 
 Easy Reporting Option
----------------------
+~~~~~~~~~~~~~~~~~~~~~
 
 Technically, this option is the same as "Create Excel Report" use case. But instead of having to write XML / Python code like normally do,
 this option allow user to create a report based on a model or view, all by configuration only.
