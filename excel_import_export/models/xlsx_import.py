@@ -2,7 +2,6 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
 
 import base64
-import time
 import uuid
 from ast import literal_eval
 from datetime import date, datetime as dt
@@ -27,7 +26,6 @@ class XLSXImport(models.AbstractModel):
     def get_eval_context(self, model=False, value=False):
         eval_context = {
             "float_compare": float_compare,
-            "time": time,
             "datetime": dt,
             "date": date,
             "env": self.env,
