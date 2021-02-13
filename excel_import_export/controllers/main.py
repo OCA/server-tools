@@ -3,7 +3,6 @@
 
 import base64
 import json
-import time
 
 from odoo.http import content_disposition, request, route
 from odoo.tools.safe_eval import safe_eval
@@ -36,9 +35,7 @@ class ReportController(report.ReportController):
             if report.print_report_name and not len(docids) > 1:
                 obj = request.env[report.model].browse(docids[0])
                 file_ext = report_name.split(".")[-1:].pop()
-                report_name = safe_eval(
-                    report.print_report_name, {"object": obj, "time": time}
-                )
+                report_name = safe_eval(report.print_report_name, {"object": obj})
                 report_name = "{}.{}".format(report_name, file_ext)
             excelhttpheaders = [
                 (
