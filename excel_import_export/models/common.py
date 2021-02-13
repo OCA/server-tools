@@ -68,12 +68,12 @@ def get_field_condition(field):
 
 def get_field_style(field):
     """
-        Available styles
-        - font = bold, bold_red
-        - fill = red, blue, yellow, green, grey
-        - align = left, center, right
-        - number = true, false
-        i.e., 'field#{font=bold;fill=red;align=center;style=number}'
+    Available styles
+    - font = bold, bold_red
+    - fill = red, blue, yellow, green, grey
+    - align = left, center, right
+    - number = true, false
+    i.e., 'field#{font=bold;fill=red;align=center;style=number}'
     """
     if field and "#{" in field and "}" in field:
         i = field.index("#{")
@@ -267,8 +267,8 @@ def pos2idx(pos):
 
 
 def _get_cell_value(cell, field_type=False):
-    """ If Odoo's field type is known, convert to valid string for import,
-    if not know, just get value  as is """
+    """If Odoo's field type is known, convert to valid string for import,
+    if not know, just get value  as is"""
     value = False
     datemode = 0  # From book.datemode, but we fix it for simplicity
     if field_type in ["date", "datetime"]:
