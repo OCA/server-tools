@@ -3,7 +3,7 @@
 
 {
     "name": "Excel Import/Export/Report Demo",
-    "version": "13.0.1.0.0",
+    "version": "14.0.1.0.0",
     "author": "Ecosoft,Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "website": "https://github.com/OCA/server-tools",
@@ -16,8 +16,10 @@
         "import_export_purchase_order/templates.xml",
         "report_sale_order/report_sale_order.xml",
         "report_sale_order/templates.xml",
+        "report_sale_order/security/ir.model.access.csv",
         "report_crm_lead/report_crm_lead.xml",
         "report_crm_lead/templates.xml",
+        "report_crm_lead/security/ir.model.access.csv",
         "import_sale_orders/menu_action.xml",
         "import_sale_orders/templates.xml",
         # Use report action
@@ -26,6 +28,7 @@
         "report_action/partner_list/report.xml",
         "report_action/partner_list/templates.xml",
         "report_action/partner_list/report_partner_list.xml",
+        "report_action/partner_list/security/ir.model.access.csv",
     ],
     "installable": True,
     "development_status": "Beta",

@@ -8,7 +8,9 @@ from odoo.exceptions import UserError
 class ReportAction(models.Model):
     _inherit = "ir.actions.report"
 
-    report_type = fields.Selection(selection_add=[("excel", "Excel")])
+    report_type = fields.Selection(
+        selection_add=[("excel", "Excel")], ondelete={"excel": "cascade"}
+    )
 
     @api.model
     def render_excel(self, docids, data):
