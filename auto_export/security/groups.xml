@@ -7,6 +7,9 @@
     </record>
     <record id="auto_export_manager" model="res.groups">
         <field name="name">Auto Export Manager</field>
-        <field name="users" eval="[(4, ref('base.user_root'))]" />
+        <field
+            name="users"
+            eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
+        />
     </record>
 </odoo>

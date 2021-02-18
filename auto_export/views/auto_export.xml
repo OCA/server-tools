@@ -59,6 +59,7 @@
                     </div>
                     <div class="oe_title">
                         <label
+                            for=""
                             string="Automated Export Template"
                             class="oe_read_only"
                         />
@@ -171,20 +172,10 @@
     <record id="auto_export_trigger_export_act" model="ir.actions.server">
         <field name="name">Trigger export</field>
         <field name="model_id" ref="model_auto_export" />
-        <field
-            name="code"
-        ><![CDATA[
-            self.trigger_export(cr, uid, context['active_ids'],context=context)
-        ]]></field>
-    </record>
-    <!--Multi action-->
-    <record model="ir.values" id="auto_export_trigger_export_act_multi">
-        <field name="name">Trigger export</field>
-        <field name="key2">client_action_multi</field>
-        <field
-            name="value"
-            eval="'ir.actions.server,%d'%auto_export_trigger_export_act"
-        />
-        <field name="model">auto.export</field>
+        <field name="state">code</field>
+        <field name="code">records.trigger_export()</field>
+        <field name="binding_model_id" ref="auto_export.model_auto_export" />
+        <field name="binding_type">action</field>
+        <field name="binding_view_types">list,form</field>
     </record>
 </odoo>
