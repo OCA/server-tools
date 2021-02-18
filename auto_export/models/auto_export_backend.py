@@ -3,8 +3,7 @@
 
 import logging
 
-from openerp import _, api, fields, models
-from openerp.addons.connector.session import ConnectorSession
+from odoo import _, api, fields, models
 
 from .auto_export_connector_checkpoint import (
     add_checkpoint as auto_export_add_checkpoint,
@@ -18,14 +17,13 @@ class AutoExportBackend(models.Model):
     _inherit = "connector.backend"
     _description = "Auto Export Backend"
 
-    version = fields.Selection(selection_add=[("1", "1.0")])
+    name = fields.Char(string="Name")
+    version = fields.Selection(string="Version", selection=[("1", "1.0")],)
 
-    @api.multi
     def add_checkpoint(self, record, description):
         self.ensure_one()
-        session = ConnectorSession.from_env(self.sudo().env)
         auto_export_add_checkpoint(
-            session, record._name, record.id, self._name, self.id, description
+            self.sudo().env, record._name, record.id, self._name, self.id, description
         )
 
     @api.model
@@ -36,7 +34,6 @@ class AutoExportBackend(models.Model):
             raise ValueError(_("No backend found"))
         return backend
 
-    @api.multi
     def log_auto_export_action(self, msg, record, log_level="info"):
         """
         This method logs the auto export action.
@@ -54,7 +51,6 @@ class AutoExportBackend(models.Model):
         else:
             _logger.info(message)
 
-    @api.multi
     def process_auto_export_exception(self, record, e):
         """
         This method logs the error and creates a checkpoint on the record.

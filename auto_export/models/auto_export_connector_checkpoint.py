@@ -1,8 +1,9 @@
 # Copyright 2018 ACSONE SA/NV
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import fields, models
-from openerp.addons.connector.checkpoint.checkpoint import (
+from odoo import fields, models
+
+from odoo.addons.connector.models.checkpoint import (
     add_checkpoint as original_add_checkpoint,
 )
 
@@ -13,10 +14,10 @@ class AutoExportConnectorCheckpoint(models.Model):
 
 
 def add_checkpoint(
-    session, model_name, record_id, backend_model_name, backend_id, description
+    env, model_name, record_id, backend_model_name, backend_id, description
 ):
     checkpoint = original_add_checkpoint(
-        session, model_name, record_id, backend_model_name, backend_id
+        env, model_name, record_id, backend_model_name, backend_id
     )
     checkpoint.description = description
     return checkpoint

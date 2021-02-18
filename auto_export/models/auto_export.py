@@ -7,15 +7,13 @@ import logging
 import os
 
 import pytz
-from openerp import SUPERUSER_ID, _, api, fields, models
-from openerp.addons.connector.queue.job import job, related_action
-from openerp.addons.connector.session import ConnectorSession
-from openerp.exceptions import UserError, ValidationError
-from openerp.osv.expression import normalize_domain
-from openerp.tools.safe_eval import safe_eval
+
+from odoo import SUPERUSER_ID, _, api, fields, models
+from odoo.exceptions import UserError, ValidationError
+from odoo.osv.expression import normalize_domain
+from odoo.tools.safe_eval import safe_eval
 
 _logger = logging.getLogger(__name__)
-QUEUE_CHANNEL = "root.AUTO_EXPORT"
 
 
 class AutoExport(models.Model):
@@ -44,7 +42,7 @@ class AutoExport(models.Model):
         required=True,
         ondelete="restrict",
         default=lambda self: self._get_default_user_id(),
-        track_visibility="always",
+        tracking=True,
         index=True,
     )
     ir_model_id = fields.Many2one(
@@ -54,7 +52,7 @@ class AutoExport(models.Model):
         required=True,
         ondelete="restrict",
         domain=[("transient", "=", False)],
-        track_visibility="always",
+        tracking=True,
         index=True,
     )
     ir_export_id = fields.Many2one(
@@ -64,17 +62,17 @@ class AutoExport(models.Model):
         comodel_name="ir.exports",
         required=True,
         ondelete="restrict",
-        track_visibility="always",
+        tracking=True,
         index=True,
     )
     technical_domain = fields.Char(
         string="Technical domain",
         help="Optional Odoo domain to filter on the rows to export "
         "(e.g. [('state', '=', 'open')]).",
-        track_visibility="always",
+        tracking=True,
     )
     filename_prefix = fields.Char(
-        string="Filename prefix", required=True, track_visibility="always",
+        string="Filename prefix", required=True, tracking=True,
     )
     file_extension = fields.Selection(
         string="File format",
@@ -94,7 +92,7 @@ class AutoExport(models.Model):
     filesystem_path = fields.Char(
         string="Filesystem path",
         help="Valid path on the filesystem where to save the export file.",
-        track_visibility="always",
+        tracking=True,
     )
     preview_recordset_count = fields.Integer(
         string="Number of records to export",
@@ -116,23 +114,18 @@ class AutoExport(models.Model):
         search="_search_has_checkpoint",
     )
 
-    @api.multi
     @api.onchange("ir_model_id")
     def _onchange_ir_model_id(self):
         self.ensure_one()
         self.ir_export_id = False
-        return {
-            "domain": {"ir_export_id": [("resource", "=", self.ir_model_id.model)],}
-        }
+        return {"domain": {"ir_export_id": [("resource", "=", self.ir_model_id.model)]}}
 
-    @api.multi
     @api.onchange("saving_protocol")
     def _onchange_saving_protocol(self):
         self.ensure_one()
         if self.saving_protocol != "filesystem":
             self.filesystem_path = False
 
-    @api.multi
     @api.constrains("technical_domain")
     def _check_technical_domain(self):
         """
@@ -148,13 +141,11 @@ class AutoExport(models.Model):
                 _logger.exception(err_msg)
                 raise ValidationError(err_msg)
 
-    @api.multi
     @api.constrains("ir_model_id")
     def _check_ir_model_id(self):
         if any(rec.ir_model_id.transient for rec in self):
             raise ValidationError(_("Transient models cannot be exported."))
 
-    @api.multi
     @api.constrains("ir_export_id", "ir_model_id")
     def _check_ir_export_id(self):
         if any(rec.ir_export_id.resource != rec.ir_model_id.model for rec in self):
@@ -162,7 +153,6 @@ class AutoExport(models.Model):
                 _("The saved export does not match the selected data model.")
             )
 
-    @api.multi
     @api.constrains("filesystem_path", "saving_protocol")
     def _check_filesystem_path(self):
         if any(
@@ -176,7 +166,6 @@ class AutoExport(models.Model):
                 )
             )
 
-    @api.multi
     def _get_domain(self, raise_if_exception=False):
         """
         This method transforms the string domain into a valid list domain.
@@ -197,7 +186,6 @@ class AutoExport(models.Model):
                 raise
             _logger.exception("Error in domain evaluation")
 
-    @api.multi
     def _get_secured_model(self):
         """
         This method prepares the model ready to be used as the specified user.
@@ -206,9 +194,8 @@ class AutoExport(models.Model):
         self.ensure_one()
         if not self.ir_model_id:
             return False
-        return self.env[self.ir_model_id.model].sudo(self.user_id)
+        return self.env[self.ir_model_id.model].with_user(self.user_id)
 
-    @api.multi
     @api.depends("ir_model_id", "technical_domain", "user_id")
     def _compute_preview_recordset_count(self):
         """
@@ -226,8 +213,8 @@ class AutoExport(models.Model):
             # pylint:disable=broad-except
             except Exception:
                 _logger.exception("Computation error")
+                rec.preview_recordset_count = 0
 
-    @api.multi
     def _compute_checkpoints(self):
         """
         This method computes the checkpoint_count and has_checkpoint fields.
@@ -269,7 +256,6 @@ class AutoExport(models.Model):
             domain.insert(0, "!")
         return domain
 
-    @api.multi
     def preview_recordset(self):
         self.ensure_one()
         # The preview list may not be relevant for other users than Admin
@@ -286,7 +272,6 @@ class AutoExport(models.Model):
             "domain": self._get_domain(),
         }
 
-    @api.multi
     def _check_can_export(self):
         """
         This method checks whether the auto.export is ready to trigger
@@ -305,7 +290,6 @@ class AutoExport(models.Model):
                 ).format(path=self.filesystem_path)
             )
 
-    @api.multi
     def _prepare_full_filename(self):
         self.ensure_one()
         local_tz = pytz.timezone(self.env.user.tz or pytz.utc)
@@ -326,11 +310,8 @@ class AutoExport(models.Model):
         """
         with open(full_filename, "w+") as export_file:
             writer = csv.writer(export_file)
-            writer.writerows(
-                [[unicode(s).encode("utf-8") for s in row] for row in csv_rows]
-            )
+            writer.writerows([[s for s in row] for row in csv_rows])
 
-    @api.multi
     def _get_data_to_export(self):
         """
         This method creates and return the data to export.
@@ -340,10 +321,9 @@ class AutoExport(models.Model):
         secured_model = self._get_secured_model()
         objects_export = secured_model.search(self._get_domain(raise_if_exception=True))
         field_names = self.ir_export_id.export_fields.mapped("name")
-        export_data = objects_export.export_data(field_names, False).get("datas", [])
+        export_data = objects_export.export_data(field_names).get("datas", [])
         return field_names, export_data
 
-    @api.multi
     def _export_data(self):
         """
         This method exports the data and saves it following the selected
@@ -360,48 +340,32 @@ class AutoExport(models.Model):
                 self._save_filesystem_csv(csv_rows, full_filename)
         return full_filename
 
-    @api.multi
     def trigger_export(self):
-        session = ConnectorSession.from_env(self.env)
         description = _(u"Asynchronous auto export: {auto_export_name}")
         for rec in self:
-            do_trigger_export.delay(
-                session,
-                rec._name,
-                rec.id,
-                description=description.format(auto_export_name=rec.display_name),
-            )
+            rec.with_delay(
+                description=description.format(auto_export_name=rec.display_name)
+            )._do_trigger_export(rec.id)
 
-
-def related_auto_export(session, thejob):
-    """
-    Function called by the button on the job view to open the
-    export template (auto.export) linked to the job.
-    """
-    sba_id = thejob.args[1]
-    return session.env["auto.export"].browse(sba_id).get_access_action()
-
-
-@job(default_channel=QUEUE_CHANNEL)
-@related_action(related_auto_export)
-def do_trigger_export(session, model_name, auto_export_id):
-    auto_export_rec = session.env["auto.export"].browse(auto_export_id)
-    # Log action
-    message = _("Auto Export triggered")
-    session.env["auto.export.backend"].get_backend().log_auto_export_action(
-        msg=message, record=auto_export_rec, log_level="info"
-    )
-    # pylint:disable=broad-except
-    try:
-        full_filename = auto_export_rec._export_data()
-        # Log success
-        message = _("Auto Export: file {filename} created").format(
-            filename=full_filename
-        )
-        session.env["auto.export.backend"].get_backend().log_auto_export_action(
+    @api.model
+    def _do_trigger_export(self, auto_export_id):
+        auto_export_rec = self.env["auto.export"].browse(auto_export_id)
+        # Log action
+        message = _("Auto Export triggered")
+        self.env["auto.export.backend"].get_backend().log_auto_export_action(
             msg=message, record=auto_export_rec, log_level="info"
         )
-    except Exception as e:
-        session.env["auto.export.backend"].get_backend().process_auto_export_exception(
-            record=auto_export_rec, e=e
-        )
+        # pylint:disable=broad-except
+        try:
+            full_filename = auto_export_rec._export_data()
+            # Log success
+            message = _("Auto Export: file {filename} created").format(
+                filename=full_filename
+            )
+            self.env["auto.export.backend"].get_backend().log_auto_export_action(
+                msg=message, record=auto_export_rec, log_level="info"
+            )
+        except Exception as e:
+            self.env["auto.export.backend"].get_backend().process_auto_export_exception(
+                record=auto_export_rec, e=e
+            )

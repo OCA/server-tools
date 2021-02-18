@@ -7,8 +7,8 @@ import logging
 import os
 from os.path import join as opj
 
-from openerp.exceptions import UserError, ValidationError
-from openerp.tests.common import SavepointCase
+from odoo.exceptions import UserError, ValidationError
+from odoo.tests.common import SavepointCase
 
 DATA_DIR = opj(os.path.dirname(__file__), "generated_exports")
 _logger = logging.getLogger(__name__)
@@ -58,8 +58,7 @@ def working_directory(path):
 class TestAutoExport(SavepointCase):
     @classmethod
     def setUpClass(cls):
-        super(TestAutoExport, cls).setUpClass()
-
+        super().setUpClass()
         # MODELS
         cls.auto_export_model = cls.env["auto.export"]
         cls.ir_exports_model = cls.env["ir.exports"]
@@ -68,7 +67,6 @@ class TestAutoExport(SavepointCase):
             [("model", "=", "res.partner")], limit=1
         )
         cls.queue_job_model = cls.env["queue.job"]
-
         # INSTANCES
         # Odoo Exports
         cls.ir_exports_partner_01 = cls.ir_exports_model.create(
@@ -76,19 +74,20 @@ class TestAutoExport(SavepointCase):
                 "name": "Test Ir Exports Partner 01",
                 "resource": cls.ir_model_partner.model,
                 "export_fields": [
-                    (0, 0, {"name": "id",}),
-                    (0, 0, {"name": "street",}),
-                    (0, 0, {"name": "email",}),
+                    (0, 0, {"name": "id"}),
+                    (0, 0, {"name": "street"}),
+                    (0, 0, {"name": "email"}),
                 ],
             }
         )
         # Auto Export Templates
+        os.makedirs(DATA_DIR, exist_ok=True)
         cls.auto_export_01 = cls.auto_export_model.create(
             {
                 "name": "Test Auto Export 01",
                 "ir_model_id": cls.ir_model_partner.id,
                 "ir_export_id": cls.ir_exports_partner_01.id,
-                "technical_domain": "[('supplier', '=',  True)]",
+                "technical_domain": "[('is_company', '=',  False)]",
                 "filename_prefix": "test_partners_export",
                 "filesystem_path": DATA_DIR,
             }
@@ -130,11 +129,12 @@ class TestAutoExport(SavepointCase):
         with working_directory(DATA_DIR):
             full_filename = self.auto_export_01._export_data()
             self.assertTrue(os.path.exists(full_filename))
-            with open(full_filename, "rb") as csv_file:
+            with open(full_filename, "r") as csv_file:
                 csv_read = csv.reader(csv_file, delimiter=",", quotechar='"')
                 # check preview count
                 self.assertEqual(
-                    self.auto_export_01.preview_recordset_count, len(list(csv_read)) - 1
+                    self.auto_export_01.preview_recordset_count,
+                    len(list(csv_read)) - 1,
                 )
                 # check exported values
                 self._check_values(csv_read, self.auto_export_01.ir_export_id)

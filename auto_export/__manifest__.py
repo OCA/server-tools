@@ -6,17 +6,19 @@
     "summary": """
         Configurable asynchronous exports with rows and columns filtering from
         a selected data model.""",
-    "version": "9.0.1.0.0",
+    "version": "13.0.1.0.0",
     "development_status": "Beta",
     "license": "AGPL-3",
     "author": "Odoo Community Association (OCA), ACSONE SA/NV",
     "website": "https://github.com/OCA/server-tools",
-    "depends": ["base", "connector",],
+    "depends": ["base", "connector", "queue_job"],
     "data": [
         "security/groups.xml",
         "security/auto_export.xml",
         "security/auto_export_backend.xml",
         "security/auto_export_rules.xml",
+        "data/queue_job_channel.xml",
+        "data/queue_job_function.xml",
         "data/auto_export_backend.xml",
         "views/auto_export_connector_checkpoint.xml",
         "views/auto_export.xml",
