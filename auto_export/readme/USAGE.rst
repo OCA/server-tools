@@ -5,4 +5,3 @@ To use this module, you need to:
 #. Specify some optional parameters such as a technical domain or another user than Admin
 #. Select a saving protocol (and a path if Filesystem is selected)
 #. Save and click on the Trigger Export button to create the asynchronous export job
-

@@ -4,4 +4,3 @@ An optional technical domain is used to filter on rows. The export is triggered 
 
 The following saving protocols are currently supported:
  - filesystem
-
