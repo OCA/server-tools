@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2018 ACSONE SA/NV
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
@@ -8,8 +7,8 @@ import logging
 import os
 from os.path import join as opj
 
-from openerp.tests.common import SavepointCase
 from openerp.exceptions import UserError, ValidationError
+from openerp.tests.common import SavepointCase
 
 DATA_DIR = opj(os.path.dirname(__file__), "generated_exports")
 _logger = logging.getLogger(__name__)
@@ -57,45 +56,43 @@ def working_directory(path):
 
 
 class TestAutoExport(SavepointCase):
-
     @classmethod
     def setUpClass(cls):
         super(TestAutoExport, cls).setUpClass()
 
         # MODELS
-        cls.auto_export_model = cls.env['auto.export']
-        cls.ir_exports_model = cls.env['ir.exports']
-        cls.ir_model_model = cls.env['ir.model']
+        cls.auto_export_model = cls.env["auto.export"]
+        cls.ir_exports_model = cls.env["ir.exports"]
+        cls.ir_model_model = cls.env["ir.model"]
         cls.ir_model_partner = cls.ir_model_model.search(
-            [('model', '=', 'res.partner')], limit=1)
-        cls.queue_job_model = cls.env['queue.job']
+            [("model", "=", "res.partner")], limit=1
+        )
+        cls.queue_job_model = cls.env["queue.job"]
 
         # INSTANCES
         # Odoo Exports
-        cls.ir_exports_partner_01 = cls.ir_exports_model.create({
-            'name': "Test Ir Exports Partner 01",
-            'resource': cls.ir_model_partner.model,
-            'export_fields': [
-                (0, 0, {
-                    'name': "id",
-                }),
-                (0, 0, {
-                    'name': "street",
-                }),
-                (0, 0, {
-                    'name': "email",
-                })
-            ]
-        })
+        cls.ir_exports_partner_01 = cls.ir_exports_model.create(
+            {
+                "name": "Test Ir Exports Partner 01",
+                "resource": cls.ir_model_partner.model,
+                "export_fields": [
+                    (0, 0, {"name": "id",}),
+                    (0, 0, {"name": "street",}),
+                    (0, 0, {"name": "email",}),
+                ],
+            }
+        )
         # Auto Export Templates
-        cls.auto_export_01 = cls.auto_export_model.create({
-            'name': "Test Auto Export 01",
-            'ir_model_id': cls.ir_model_partner.id,
-            'ir_export_id': cls.ir_exports_partner_01.id,
-            'technical_domain': "[('supplier', '=',  True)]",
-            'filename_prefix': "test_partners_export",
-            'filesystem_path': DATA_DIR,
-        })
+        cls.auto_export_01 = cls.auto_export_model.create(
+            {
+                "name": "Test Auto Export 01",
+                "ir_model_id": cls.ir_model_partner.id,
+                "ir_export_id": cls.ir_exports_partner_01.id,
+                "technical_domain": "[('supplier', '=',  True)]",
+                "filename_prefix": "test_partners_export",
+                "filesystem_path": DATA_DIR,
+            }
+        )
 
     def _check_header(self, header, ir_exports):
         self.assertEqual(len(header), len(ir_exports.export_fields))
@@ -109,7 +106,7 @@ class TestAutoExport(SavepointCase):
                 header = row
                 self._check_header(header, ir_exports)
                 continue
-            if header[0] != 'id':
+            if header[0] != "id":
                 break
             obj = False
             for i, value in enumerate(row):
@@ -133,11 +130,12 @@ class TestAutoExport(SavepointCase):
         with working_directory(DATA_DIR):
             full_filename = self.auto_export_01._export_data()
             self.assertTrue(os.path.exists(full_filename))
-            with open(full_filename, 'rb') as csv_file:
-                csv_read = csv.reader(csv_file, delimiter=',', quotechar='"')
+            with open(full_filename, "rb") as csv_file:
+                csv_read = csv.reader(csv_file, delimiter=",", quotechar='"')
                 # check preview count
-                self.assertEqual(self.auto_export_01.preview_recordset_count,
-                                 len(list(csv_read)) - 1)
+                self.assertEqual(
+                    self.auto_export_01.preview_recordset_count, len(list(csv_read)) - 1
+                )
                 # check exported values
                 self._check_values(csv_read, self.auto_export_01.ir_export_id)
 
@@ -180,7 +178,8 @@ class TestAutoExport(SavepointCase):
         """
         with self.assertRaises(ValidationError):
             self.auto_export_01.ir_model_id = self.ir_model_model.search(
-                [('model', '=', 'res.users')], limit=1)
+                [("model", "=", "res.users")], limit=1
+            )
 
     def test_auto_export_05(self):
         """
@@ -194,7 +193,8 @@ class TestAutoExport(SavepointCase):
         """
         with self.assertRaises(ValidationError):
             self.auto_export_01.ir_model_id = self.ir_model_model.search(
-                [('transient', '=', True)], limit=1)
+                [("transient", "=", True)], limit=1
+            )
 
     def test_auto_export_06(self):
         """
@@ -206,9 +206,11 @@ class TestAutoExport(SavepointCase):
         Expected result:
             - The export job is created
         """
-        self.assertFalse(self.queue_job_model.search(
-            [('model_name', '=', 'auto.export')]))
+        self.assertFalse(
+            self.queue_job_model.search([("model_name", "=", "auto.export")])
+        )
         with working_directory(DATA_DIR):
             self.auto_export_01.trigger_export()
-            self.assertTrue(self.queue_job_model.search(
-                [('model_name', '=', 'auto.export')]))
+            self.assertTrue(
+                self.queue_job_model.search([("model_name", "=", "auto.export")])
+            )
