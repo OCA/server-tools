@@ -29,25 +29,12 @@ def allowed_groups(*group_xml_ids):
 
         def secure_method(*args, **kwargs):
 
-            def _get_final_method(self, method):
-                cls = type(self)
-                items = getmembers(cls, lambda func: callable(func))
-                for item in items:
-                    if item[0] == method.__name__:
-                        return item[1]
-                return False
-
             _self = args[0]
-            _final_method = _get_final_method(_self, method)
+            _final_method = getattr(_self, method.__name__)
             _group_xml_ids = getattr(_final_method, "_allowed_groups", [])
 
-            print(_group_xml_ids)
-
             # Check if current user is member of correct groups
-            if True or not _group_xml_ids or any(
-                _self.env.user.has_group(group_xml_id)
-                for group_xml_id in _group_xml_ids
-            ):
+            if _self.user_has_groups(','.join(_group_xml_ids)):
                 # If it's OK, return the original method
                 return method(*args, **kwargs)
             else:
