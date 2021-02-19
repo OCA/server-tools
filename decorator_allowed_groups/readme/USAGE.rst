@@ -19,7 +19,7 @@ can be replaced by:
 
 .. code-block:: python
 
-    @api.check_groups("purchase.group_purchase_manager")
+    @api.allowed_groups("purchase.group_purchase_manager")
     def my_action(self):
         pass
 
@@ -32,7 +32,7 @@ Note
 
 .. code-block:: python
 
-    @api.check_groups("purchase.group_purchase_manager", "sale.group_sale_manager")
+    @api.allowed_groups("purchase.group_purchase_manager", "sale.group_sale_manager")
     def my_action(self):
         pass
 
@@ -42,7 +42,7 @@ For exemple, if a module define a function like this:
 
 .. code-block:: python
 
-    @api.check_groups("purchase.group_purchase_manager")
+    @api.allowed_groups("purchase.group_purchase_manager")
     def my_action(self):
         pass
 
@@ -51,6 +51,6 @@ level by writing.
 
 .. code-block:: python
 
-    @api.check_groups("purchase.group_purchase_user")
+    @api.allowed_groups("purchase.group_purchase_user")
     def my_action(self):
         return super().my_action()
