@@ -58,7 +58,7 @@ For exemple, if a module A defines a function like this:
 
 In a custom module B, that depends on module A :
 
-1) You can overwrite accreditation level by writing
+* You can overwrite accreditation level by writing
 
 .. code-block:: python
 
@@ -67,7 +67,7 @@ In a custom module B, that depends on module A :
     def my_action(self):
         return super().my_action()
 
-2) You can remove checkes, by writing
+* You can remove checkes, by writing
 
 .. code-block:: python
 
@@ -76,7 +76,7 @@ In a custom module B, that depends on module A :
     def my_action(self):
         return super().my_action()
 
-3) Or you can only overload the function, without changing the accreditation level by writing
+* You can only overload the function, without changing the accreditation level by writing
 
 .. code-block:: python
 

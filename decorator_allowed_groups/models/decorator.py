@@ -5,8 +5,6 @@
 from odoo import _, api
 from odoo.exceptions import AccessError
 
-from inspect import getmembers
-
 
 def allowed_groups(*group_xml_ids):
     """ Return a decorator that specifies group(s)
