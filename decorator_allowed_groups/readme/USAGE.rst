@@ -27,7 +27,7 @@ can be replaced by:
 Multi-group membership checks
 -----------------------------
 
-it is possible to list many groups. In that case, the action will be allowed
+It is possible to list many groups. In that case, the action will be allowed
 if the user belong to at least one group.
 
 .. code-block:: python
@@ -36,17 +36,19 @@ if the user belong to at least one group.
     def my_action(self):
         pass
 
+
 Conflict between view and decorators definition
 -----------------------------------------------
 
 The groups defined in the decorators take precedence over the groups that would be defined in the existing views.
+
 
 Inheritance mechanisms
 ----------------------
 
 it is possible to change accreditation level in custom module.
 
-For exemple, if a module define a function like this:
+For exemple, if a module A defines a function like this:
 
 .. code-block:: python
 
@@ -54,11 +56,31 @@ For exemple, if a module define a function like this:
     def my_action(self):
         pass
 
-Another module that depends on the first module can redefine the accreditation
-level by writing.
+In a custom module B, that depends on module A :
+
+1) You can overwrite accreditation level by writing
 
 .. code-block:: python
 
+    # Now checks if user is member of 'purchase.group_purchase_user'
     @api.allowed_groups("purchase.group_purchase_user")
     def my_action(self):
+        return super().my_action()
+
+2) You can remove checkes, by writing
+
+.. code-block:: python
+
+    # No longer performs checks
+    @api.allowed_groups()
+    def my_action(self):
+        return super().my_action()
+
+3) Or you can only overload the function, without changing the accreditation level by writing
+
+.. code-block:: python
+
+    # the user must always be a member of 'purchase.group_purchase_manager'
+    def my_action(self):
+        # Custom code ...
         return super().my_action()

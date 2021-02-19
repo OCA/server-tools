@@ -10,7 +10,7 @@ class IrUiView(models.Model):
 
     @api.model
     def postprocess(self, model, node, view_id, in_tree_view, model_fields):
-        if node.tag == "button" and node.get("name", False):
+        if node.tag in ["a", "button"] and node.get("name", False):
             func = getattr(self.env[model], node.get("name"), False)
             if func:
                 group_xml_ids = getattr(func, "_allowed_groups", False)
