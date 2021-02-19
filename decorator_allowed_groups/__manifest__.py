@@ -4,9 +4,7 @@
 
 {
     'name': "Decorator - Allowed Groups",
-    'summary': """
-        Add a new decorator @api.allowed_groups that checks
-        if users belong to one of the given groups""",
+    'summary': "Decorator that checks if user belong to given groups",
     'author': 'GRAP, Odoo Community Association (OCA)',
     'website': "https://github.com/OCA/server-tools/",
     'category': 'Technical',
