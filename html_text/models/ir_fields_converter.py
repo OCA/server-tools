@@ -3,7 +3,9 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import logging
+
 from lxml import etree, html
+
 from odoo import api, models
 
 _logger = logging.getLogger(__name__)
@@ -13,8 +15,9 @@ class IrFieldsConverter(models.AbstractModel):
     _inherit = "ir.fields.converter"
 
     @api.model
-    def text_from_html(self, html_content, max_words=None, max_chars=None,
-                       ellipsis=u"…", fail=False):
+    def text_from_html(
+        self, html_content, max_words=None, max_chars=None, ellipsis=u"…", fail=False
+    ):
         """Extract text from an HTML field in a generator.
 
         :param str html_content:
@@ -45,8 +48,7 @@ class IrFieldsConverter(models.AbstractModel):
             if fail:
                 raise
             else:
-                _logger.exception("Failure parsing this HTML:\n%s",
-                                  html_content)
+                _logger.exception("Failure parsing this HTML:\n%s", html_content)
                 return ""
 
         # Get words
@@ -63,7 +65,7 @@ class IrFieldsConverter(models.AbstractModel):
         # Truncate text
         suffix = suffix or max_chars and len(text) > max_chars
         if max_chars:
-            text = text[:max_chars - (len(ellipsis) if suffix else 0)].strip()
+            text = text[: max_chars - (len(ellipsis) if suffix else 0)].strip()
 
         # Append ellipsis if needed
         if suffix:
