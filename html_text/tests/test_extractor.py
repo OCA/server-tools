@@ -1,8 +1,8 @@
 # Copyright 2016-2017 Jairo Llopis <jairo.llopis@tecnativa.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo.tools import mute_logger
 from odoo.tests.common import TransactionCase
+from odoo.tools import mute_logger
 
 
 class ExtractorCase(TransactionCase):
@@ -27,16 +27,18 @@ class ExtractorCase(TransactionCase):
 
         self.assertEqual(
             self.text_from_html(html),
-            u"I'm a title I'm a paragraph ¡Pues yo soy español!")
+            u"I'm a title I'm a paragraph ¡Pues yo soy español!",
+        )
         self.assertEqual(
-            self.text_from_html(html, 8),
-            u"I'm a title I'm a paragraph ¡Pues yo…")
+            self.text_from_html(html, 8), u"I'm a title I'm a paragraph ¡Pues yo…"
+        )
         self.assertEqual(
-            self.text_from_html(html, 8, 31),
-            u"I'm a title I'm a paragraph ¡P…")
+            self.text_from_html(html, 8, 31), u"I'm a title I'm a paragraph ¡P…"
+        )
         self.assertEqual(
             self.text_from_html(html, 7, ellipsis=""),
-            u"I'm a title I'm a paragraph ¡Pues")
+            u"I'm a title I'm a paragraph ¡Pues",
+        )
 
     @mute_logger("odoo.addons.html_text.models.ir_fields_converter")
     def test_empty_html(self):

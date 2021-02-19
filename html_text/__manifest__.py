@@ -8,18 +8,12 @@
     "category": "Tools",
     "website": "https://github.com/OCA/server-tools",
     "author": "Grupo ESOC Ingeniería de Servicios, "
-              "Tecnativa, "
-              "Onestein, "
-              "Odoo Community Association (OCA)",
+    "Tecnativa, "
+    "Onestein, "
+    "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "external_dependencies": {
-        "python": [
-            "lxml",
-        ],
-    },
-    "depends": [
-        "base",
-    ],
+    "external_dependencies": {"python": ["lxml",],},
+    "depends": ["base",],
 }
