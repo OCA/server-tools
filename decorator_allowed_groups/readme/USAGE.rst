@@ -24,11 +24,11 @@ can be replaced by:
         pass
 
 
-Note
-----
+Multi-group membership checks
+-----------------------------
 
-- it is possible to list many groups. In that case, the action will be allowed
-  if the user belong to at least one group.
+it is possible to list many groups. In that case, the action will be allowed
+if the user belong to at least one group.
 
 .. code-block:: python
 
@@ -36,7 +36,15 @@ Note
     def my_action(self):
         pass
 
-- it is possible to change accreditation level in custom module.
+Conflict between view and decorators definition
+-----------------------------------------------
+
+The groups defined in the decorators take precedence over the groups that would be defined in the existing views.
+
+Inheritance mechanisms
+----------------------
+
+it is possible to change accreditation level in custom module.
 
 For exemple, if a module define a function like this:
 
