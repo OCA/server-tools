@@ -24,7 +24,6 @@ examples and read the docs inside the code.
 
 Python example::
 
-    @api.multi
     def some_method(self):
         # Get truncated text from an HTML field. It will 40 words and 100
         # characters at most, and will have "..." appended at the end if it
