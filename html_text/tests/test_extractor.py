@@ -7,7 +7,7 @@ from odoo.tools import mute_logger
 
 class ExtractorCase(TransactionCase):
     def setUp(self):
-        super(ExtractorCase, self).setUp()
+        super().setUp()
         # Shortcut
         self.text_from_html = self.env["ir.fields.converter"].text_from_html
 
@@ -24,7 +24,6 @@ class ExtractorCase(TransactionCase):
                 </body>
             </html>
             """
-
         self.assertEqual(
             self.text_from_html(html),
             u"I'm a title I'm a paragraph ¡Pues yo soy español!",
