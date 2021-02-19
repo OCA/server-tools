@@ -38,7 +38,7 @@ def allowed_groups(*group_xml_ids):
                 return False
 
             _self = args[0]
-            _final_method = getattr(_self, 'button_confirm')._allowed_groups
+            _final_method = _get_final_method(_self, method)
             _group_xml_ids = getattr(_final_method, "_allowed_groups", [])
 
             print(_group_xml_ids)
