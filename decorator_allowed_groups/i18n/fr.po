@@ -18,10 +18,10 @@ msgstr ""
 #. module: decorator_allowed_groups
 #: code:addons/decorator_allowed_groups/models/decorator.py:45
 #, python-format
-msgid "To execute the function {}, you should be member of one of the following groups:\n"
-" {}"
-msgstr "Pour executer cette fonction {}, vous devez être membre de l'un des groupes suivants:\n"
-" {}"
+msgid "To execute the function %s, you should be member of one of the following groups:\n"
+" %s"
+msgstr "Pour executer cette fonction %s, vous devez être membre de l'un des groupes suivants:\n"
+" %s"
 
 #. module: decorator_allowed_groups
 #: model:ir.model,name:decorator_allowed_groups.model_ir_ui_view
