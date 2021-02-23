@@ -137,7 +137,8 @@ class Base(models.AbstractModel):
 
     # TODO perhaps better to create only the field when enabled on the model
     smart_search = fields.Char(
-        compute="_compute_smart_search", search="_search_smart_search",
+        compute="_compute_smart_search",
+        search="_search_smart_search",
     )
 
     def _compute_smart_search(self):
@@ -174,7 +175,9 @@ class Base(models.AbstractModel):
 class IrModel(models.Model):
     _inherit = "ir.model"
 
-    add_smart_search = fields.Boolean(help="Add Smart Search on search views",)
+    add_smart_search = fields.Boolean(
+        help="Add Smart Search on search views",
+    )
     name_search_ids = fields.Many2many("ir.model.fields", string="Name Search Fields")
     name_search_domain = fields.Char()
 
@@ -208,7 +211,7 @@ class IrModel(models.Model):
         return super(IrModel, self)._register_hook()
 
     def toggle_smart_search(self):
-        """ Inverse the value of the field ``add_smart_search`` on the records
-        in ``self``. """
+        """Inverse the value of the field ``add_smart_search`` on the records
+        in ``self``."""
         for record in self:
             record.add_smart_search = not record.add_smart_search
