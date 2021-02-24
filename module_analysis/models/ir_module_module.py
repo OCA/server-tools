@@ -156,6 +156,8 @@ class IrModuleModule(models.Model):
         self, path, file_extensions, exclude_directories, exclude_files
     ):
         res = []
+        if not path:
+            return res
         for root, _, files in os.walk(path, followlinks=True):
             if set(Path(root).parts) & set(exclude_directories):
                 continue
