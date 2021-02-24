@@ -3,11 +3,15 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 import datetime
 from random import random
+
 from odoo.tests.common import TransactionCase
-from odoo.tools import (DEFAULT_SERVER_DATE_FORMAT,
-                        DEFAULT_SERVER_TIME_FORMAT,
-                        DEFAULT_SERVER_DATETIME_FORMAT)
-from ..models.res_lang import MODE_DATE, MODE_TIME, MODE_DATETIME
+from odoo.tools import (
+    DEFAULT_SERVER_DATE_FORMAT,
+    DEFAULT_SERVER_DATETIME_FORMAT,
+    DEFAULT_SERVER_TIME_FORMAT,
+)
+
+from ..models.res_lang import MODE_DATE, MODE_DATETIME, MODE_TIME
 
 
 class FormatterCase(TransactionCase):
@@ -26,10 +30,8 @@ class FormatterCase(TransactionCase):
 
         # Pass a datetime object
         self.assertEqual(
-            self.expected,
-            self.rl.datetime_formatter(
-                self.dt,
-                **self.kwargs))
+            self.expected, self.rl.datetime_formatter(self.dt, **self.kwargs)
+        )
 
         # When the date comes as a string
         if isinstance(self.dt, datetime.datetime):
@@ -41,23 +43,19 @@ class FormatterCase(TransactionCase):
 
         # Pass a string
         self.assertEqual(
-            self.expected,
-            self.rl.datetime_formatter(
-                self.dt_str,
-                **self.kwargs))
+            self.expected, self.rl.datetime_formatter(self.dt_str, **self.kwargs)
+        )
 
         # Pass a unicode
         self.assertEqual(
-            self.expected,
-            self.rl.datetime_formatter(
-                str(self.dt_str),
-                **self.kwargs))
+            self.expected, self.rl.datetime_formatter(str(self.dt_str), **self.kwargs)
+        )
 
         super().tearDown()
 
     def test_datetime(self):
         """Format a datetime."""
-        self.format = "%s %s" % (self.d_fmt, self.t_fmt)
+        self.format = "{} {}".format(self.d_fmt, self.t_fmt)
         self.kwargs = {"template": MODE_DATETIME}
 
     def test_date(self):
@@ -79,14 +77,13 @@ class FormatterCase(TransactionCase):
             # Patch values with >= 24 hours
             fmt = self.format.replace("%H", "%02d" % n)
 
-            time = (datetime.datetime.min +
-                    datetime.timedelta(hours=n)).time()
+            time = (datetime.datetime.min + datetime.timedelta(hours=n)).time()
             self.assertEqual(
-                time.strftime(fmt),
-                self.rl.datetime_formatter(n, **self.kwargs))
+                time.strftime(fmt), self.rl.datetime_formatter(n, **self.kwargs)
+            )
 
     def test_custom_separator(self):
         """Format a datetime with a custom separator."""
         sep = "T"
-        self.format = "%s%s%s" % (self.d_fmt, sep, self.t_fmt)
+        self.format = "{}{}{}".format(self.d_fmt, sep, self.t_fmt)
         self.kwargs = {"template": MODE_DATETIME, "separator": sep}
