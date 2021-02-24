@@ -27,12 +27,10 @@ class FormatterCase(TransactionCase):
     def tearDown(self):
         # This should be returned
         self.expected = self.dt.strftime(self.format)
-
         # Pass a datetime object
         self.assertEqual(
             self.expected, self.rl.datetime_formatter(self.dt, **self.kwargs)
         )
-
         # When the date comes as a string
         if isinstance(self.dt, datetime.datetime):
             self.dt_str = self.dt.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
@@ -40,17 +38,14 @@ class FormatterCase(TransactionCase):
             self.dt_str = self.dt.strftime(DEFAULT_SERVER_DATE_FORMAT)
         elif isinstance(self.dt, datetime.time):
             self.dt_str = self.dt.strftime(DEFAULT_SERVER_TIME_FORMAT)
-
         # Pass a string
         self.assertEqual(
             self.expected, self.rl.datetime_formatter(self.dt_str, **self.kwargs)
         )
-
         # Pass a unicode
         self.assertEqual(
             self.expected, self.rl.datetime_formatter(str(self.dt_str), **self.kwargs)
         )
-
         super().tearDown()
 
     def test_datetime(self):
@@ -69,14 +64,11 @@ class FormatterCase(TransactionCase):
         self.format = self.t_fmt
         self.kwargs = {"template": MODE_TIME}
         self.dt = self.dt.time()
-
         # Test float times
         for n in range(50):
             n = n + random()
-
             # Patch values with >= 24 hours
             fmt = self.format.replace("%H", "%02d" % n)
-
             time = (datetime.datetime.min + datetime.timedelta(hours=n)).time()
             self.assertEqual(
                 time.strftime(fmt), self.rl.datetime_formatter(n, **self.kwargs)
