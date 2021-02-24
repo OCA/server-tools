@@ -10,11 +10,9 @@
     "category": "Tools",
     "website": "https://github.com/OCA/server-tools",
     "author": "Grupo ESOC Ingeniería de Servicios, "
-              "Tecnativa, "
-              "Odoo Community Association (OCA)",
+    "Tecnativa, "
+    "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "installable": True,
-    "depends": [
-        "base",
-    ],
+    "depends": ["base",],
 }
