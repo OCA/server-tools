@@ -4,7 +4,7 @@ _logger = logging.getLogger(__name__)
 
 
 class OdooPatch(object):
-    """ Simple mechanism to apply a collection of monkeypatches using a
+    """Simple mechanism to apply a collection of monkeypatches using a
     context manager.
 
     Classes can register their monkeypatches by inheriting from this class.
@@ -39,21 +39,23 @@ class OdooPatch(object):
         do_something()
     ```
     """
+
     def __enter__(self):
         for cls in OdooPatch.__subclasses__():
             for method_name in cls.method_names:
                 method = getattr(cls, method_name)
-                setattr(method, '_original_method',
-                        getattr(cls.target, method_name))
+                method._original_method = getattr(cls.target, method_name)
                 setattr(cls.target, method_name, method)
 
     def __exit__(self, exc_type, exc_value, tb):
         for cls in OdooPatch.__subclasses__():
             for method_name in cls.method_names:
                 method = getattr(cls.target, method_name)
-                if hasattr(method, '_original_method'):
+                if hasattr(method, "_original_method"):
                     setattr(cls.target, method_name, method._original_method)
                 else:
                     _logger.warn(
-                        '_original_method not found on method %s of class %s',
-                        method_name, cls.target)
+                        "_original_method not found on method %s of class %s",
+                        method_name,
+                        cls.target,
+                    )
