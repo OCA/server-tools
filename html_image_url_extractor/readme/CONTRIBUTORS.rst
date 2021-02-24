@@ -1,4 +1,8 @@
-* Jairo Llopis <jairo.llopis@tecnativa.com>
-* Vicent Cubells <vicent.cubells@tecnativa.com>
 * Dennis Sluijk <d.sluijk@onestein.nl>
-* Cristina Martin R. <cristina.martin@tecnativa.com>
+
+* `Tecnativa <https://www.tecnativa.com>`_:
+
+  * Jairo Llopis
+  * Vicent Cubells
+  * Cristina Martin R
+  * Víctor Martínezz
