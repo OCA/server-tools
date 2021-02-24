@@ -2,9 +2,11 @@
 # Copyright 2016 Tecnativa - Vicent Cubells
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-import re
 import logging
+import re
+
 from lxml import etree, html
+
 from odoo import api, models
 
 _logger = logging.getLogger(__name__)
@@ -33,8 +35,7 @@ class IrFieldsConverter(models.AbstractModel):
             if fail:
                 raise
             else:
-                _logger.exception("Failure parsing this HTML:\n%s",
-                                  html_content)
+                _logger.exception("Failure parsing this HTML:\n%s", html_content)
                 return
 
         # Required tools
@@ -62,10 +63,11 @@ class IrFieldsConverter(models.AbstractModel):
                     # Extract background image
                     parts = rule.split(":", 1)
                     try:
-                        if parts[0].strip().lower() in {"background",
-                                                        "background-image"}:
-                            yield (rgx.search(parts[1])
-                                   .group("url").strip("\"'"))
+                        if parts[0].strip().lower() in {
+                            "background",
+                            "background-image",
+                        }:
+                            yield (rgx.search(parts[1]).group("url").strip("\"'"))
                     # Malformed CSS or no match for URL
                     except (IndexError, AttributeError):
                         pass
