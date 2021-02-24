@@ -1,8 +1,8 @@
 # Copyright 2015, 2017 Jairo Llopis <jairo.llopis@tecnativa.com>
 # Copyright 2016 Tecnativa, S.L. - Vicent Cubells
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-from odoo.tests.common import TransactionCase
 from odoo.exceptions import UserError
+from odoo.tests.common import TransactionCase
 
 
 class BasicCase(TransactionCase):
@@ -25,18 +25,14 @@ class BasicCase(TransactionCase):
         rl.env.user.lang = "pt_PT"
 
         for lang in self.langs:
-            self.assertEqual(
-                rl.search([("code", "=", lang)]).best_match().code,
-                lang)
+            self.assertEqual(rl.search([("code", "=", lang)]).best_match().code, lang)
 
     def test_context(self):
         """When called with a lang in context."""
         self.env.user.lang = "pt_PT"
 
         for lang in self.langs:
-            self.assertEqual(
-                self.rl.with_context(lang=lang).best_match().code,
-                lang)
+            self.assertEqual(self.rl.with_context(lang=lang).best_match().code, lang)
 
     def test_user(self):
         """When lang not specified in context."""
@@ -44,22 +40,16 @@ class BasicCase(TransactionCase):
             self.env.user.lang = lang
 
             # Lang is False in context
-            self.assertEqual(
-                self.rl.with_context(lang=False).best_match().code,
-                lang)
+            self.assertEqual(self.rl.with_context(lang=False).best_match().code, lang)
 
             # Lang not found in context
-            self.assertEqual(
-                self.rl.with_context(dict()).best_match().code,
-                lang)
+            self.assertEqual(self.rl.with_context(dict()).best_match().code, lang)
 
     def test_first_installed(self):
         """When falling back to first installed language."""
         first = self.rl.search([("active", "=", True)], limit=1)
         self.env.user.lang = False
-        self.assertEqual(
-            self.rl.with_context(lang=False).best_match().code,
-            first.code)
+        self.assertEqual(self.rl.with_context(lang=False).best_match().code, first.code)
 
     def test_unavailable(self):
         """When matches to an unavailable language."""

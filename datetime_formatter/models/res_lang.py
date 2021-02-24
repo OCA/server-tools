@@ -2,10 +2,10 @@
 # Copyright 2016 Tecnativa, S.L. - Vicent Cubells
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from datetime import datetime, timedelta
+
 from odoo import _, api, fields, models
-from odoo.tools import (DEFAULT_SERVER_DATE_FORMAT,
-                        DEFAULT_SERVER_TIME_FORMAT)
 from odoo.exceptions import UserError
+from odoo.tools import DEFAULT_SERVER_DATE_FORMAT, DEFAULT_SERVER_TIME_FORMAT
 
 # Available modes for :param:`.ResLang.datetime_formatter.template`
 MODE_DATETIME = "MODE_DATETIME"
@@ -17,7 +17,7 @@ class ResLang(models.Model):
     _inherit = "res.lang"
 
     @api.model
-    @api.returns('self')
+    @api.returns("self")
     def best_match(self, lang=None, failure_safe=True):
         """Get best match of current default lang.
 
@@ -37,16 +37,17 @@ class ResLang(models.Model):
             lang = (
                 # Object's language, if called like
                 # ``record.lang.datetime_formatter(datetime_obj)``
-                (self.ids and self[0].code) or
-
+                (self.ids and self[0].code)
+                or
                 # Context language
-                self.env.context.get("lang") or
-
+                self.env.context.get("lang")
+                or
                 # User's language
-                self.env.user.lang or
-
+                self.env.user.lang
+                or
                 # First installed language found
-                first_installed.code)
+                first_installed.code
+            )
 
         # Get DB lang record
         record = self.search([("code", "=", lang)])
@@ -55,17 +56,16 @@ class ResLang(models.Model):
             record.ensure_one()
         except ValueError:
             if not failure_safe:
-                raise UserError(
-                    _("Best matched language (%s) not found.") % lang
-                )
+                raise UserError(_("Best matched language (%s) not found.") % lang)
             else:
                 record = first_installed
 
         return record
 
     @api.model
-    def datetime_formatter(self, value, lang=None, template=MODE_DATETIME,
-                           separator=" ", failure_safe=True):
+    def datetime_formatter(
+        self, value, lang=None, template=MODE_DATETIME, separator=" ", failure_safe=True
+    ):
         """Convert a datetime field to lang's default format.
 
         :type value: `str`, `float` or `datetime.datetime`
@@ -95,11 +95,9 @@ class ResLang(models.Model):
         if template in {MODE_DATETIME, MODE_DATE, MODE_TIME}:
             defaults = []
             if "DATE" in template:
-                defaults.append(lang.date_format or
-                                DEFAULT_SERVER_DATE_FORMAT)
+                defaults.append(lang.date_format or DEFAULT_SERVER_DATE_FORMAT)
             if "TIME" in template:
-                defaults.append(lang.time_format or
-                                DEFAULT_SERVER_TIME_FORMAT)
+                defaults.append(lang.time_format or DEFAULT_SERVER_TIME_FORMAT)
             template = separator.join(defaults)
 
         # Convert str to datetime objects
