@@ -112,7 +112,7 @@ class IrModuleModule(models.Model):
             if module.author and module.author[0] == "[":
                 author_txt_list = safe_eval(module.author)
             else:
-                author_txt_list = module.author.split(",")
+                author_txt_list = (module.author and module.author.split(",")) or []
 
             author_txt_list = [x.strip() for x in author_txt_list]
             author_txt_list = [x for x in author_txt_list if x]
