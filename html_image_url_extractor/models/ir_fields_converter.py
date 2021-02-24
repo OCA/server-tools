@@ -1,4 +1,4 @@
-# Copyright 2016-2017 Jairo Llopis <jairo.llopis@tecnativa.com>
+# Copyright 2016-2017 Tecnativa - Jairo Llopis
 # Copyright 2016 Tecnativa - Vicent Cubells
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
@@ -18,13 +18,10 @@ class IrFieldsConverter(models.AbstractModel):
     @api.model
     def imgs_from_html(self, html_content, limit=None, fail=False):
         """Extract all images in order from an HTML field in a generator.
-
         :param str html_content:
             HTML contents from where to extract the images.
-
         :param int limit:
             Only get up to this number of images.
-
         :param bool fail:
             If ``True``, exceptions will be raised.
         """
@@ -37,7 +34,6 @@ class IrFieldsConverter(models.AbstractModel):
             else:
                 _logger.exception("Failure parsing this HTML:\n%s", html_content)
                 return
-
         # Required tools
         query = """
             //img[@src] |
@@ -51,7 +47,6 @@ class IrFieldsConverter(models.AbstractModel):
             \s*\)           # End function
         """
         rgx = re.compile(rgx, re.IGNORECASE | re.VERBOSE)
-
         # Loop through possible image URLs
         for lap, element in enumerate(doc.xpath(query)):
             if limit and lap >= limit:
