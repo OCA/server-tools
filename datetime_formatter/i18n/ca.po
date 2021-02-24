@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: datetime_formatter
-#: code:addons/datetime_formatter/models/res_lang.py:59
+#: code:addons/datetime_formatter/models/res_lang.py:0
 #, python-format
 msgid "Best matched language (%s) not found."
 msgstr "No s'ha trobat la millor associació d'idioma (%s). "
