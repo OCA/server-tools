@@ -13,9 +13,16 @@ class TestModule(TransactionCase):
         self.IrModuleModule = self.env['ir.module.module']
 
     def test_installed_modules(self):
+        # Adding tests directories
+        self.env.ref(
+            'module_analysis.parameter_exclude_directories'
+        ).value = "lib,demo,doc,description"
         installed_modules = self.IrModuleModule.search(
             [('state', '=', 'installed')])
         for module in installed_modules:
+            # Analize again test modules
+            if "test_" in module.name:
+                module.button_analyse_code()
             self.assertTrue(
                 module.python_code_qty > 0 or
                 module.xml_code_qty > 0 or
@@ -25,7 +32,7 @@ class TestModule(TransactionCase):
 
     def test_uninstalled_modules(self):
         uninstalled_modules = self.IrModuleModule.search(
-            [('state', '!=', 'installed')])
+            [('state', '=', 'uninstalled')])
         for module in uninstalled_modules:
             self.assertTrue(
                 module.python_code_qty == 0,
