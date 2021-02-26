@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_upgrade_analysis_tree" model="ir.ui.view">
+        <field name="model">upgrade.analysis</field>
+        <field name="arch" type="xml">
+            <tree decoration-info="state == 'draft'">
+                <field name="config_id" />
+                <field name="analysis_date" />
+                <field name="state" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_upgrade_analysis_form" model="ir.ui.view">
+        <field name="model">upgrade.analysis</field>
+        <field name="arch" type="xml">
+            <form create="false">
+                <header>
+                  <field name="state" widget="statusbar" />
+                    <button
+                        name="analyze"
+                        string="Perform Analysis"
+                        type="object"
+                        icon="fa-cogs"
+                        colspan="2"
+                    />
+                </header>
+                <sheet>
+                    <group col="4" colspan="4">
+                        <field
+                            name="config_id"
+                            attrs="{'readonly': [('state', '=', 'done')]}"
+                        />
+                        <field
+                            name="write_files"
+                            attrs="{'readonly': [('state', '=', 'done')]}"
+                        />
+                        <field
+                            name="upgrade_path"
+                            attrs="{'invisible': [('write_files', '=', False)]}"
+                        />
+                        <field
+                            name="analysis_date"
+                            attrs="{'invisible': [('analysis_date', '=', False)]}"
+                        />
+                    </group>
+                    <group string="Log">
+                        <field
+                            name="log"
+                            nolabel="1"
+                            widget="ace"
+                            options="{'mode': 'txt'}"
+                        />
+                    </group>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_upgrade_analysis_tree" model="ir.actions.act_window">
+        <field name="name">Upgrade Analyses</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">upgrade.analysis</field>
+    </record>
+
+    <menuitem
+        action="action_upgrade_analysis_tree"
+        id="menu_upgrade_analysis"
+        name="Upgrade Analyses"
+        parent="menu_upgrade"
+    />
+
+</odoo>
