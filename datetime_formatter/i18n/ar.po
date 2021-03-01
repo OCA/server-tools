@@ -20,7 +20,7 @@ msgstr ""
 "&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 
 #. module: datetime_formatter
-#: code:addons/datetime_formatter/models/res_lang.py:59
+#: code:addons/datetime_formatter/models/res_lang.py:0
 #, python-format
 msgid "Best matched language (%s) not found."
 msgstr ""
