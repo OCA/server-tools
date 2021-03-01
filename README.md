@@ -29,6 +29,7 @@ addon | version | summary
 [module_auto_update](module_auto_update/) | 14.0.1.0.1 | Automatically update Odoo modules
 [onchange_helper](onchange_helper/) | 14.0.1.0.0 | Technical module that ease execution of onchange in Python code
 [sentry](sentry/) | 14.0.1.0.0 | Report Odoo errors to Sentry
+[slow_statement_logger](slow_statement_logger/) | 14.0.1.0.0 | Log slow SQL statements
 [sql_request_abstract](sql_request_abstract/) | 14.0.1.0.0 | Abstract Model to manage SQL Requests
 [upgrade_analysis](upgrade_analysis/) | 14.0.1.0.0 | performs a difference analysis between modules installed on two different Odoo instances
 
