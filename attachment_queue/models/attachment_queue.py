@@ -35,7 +35,7 @@ class AttachmentQueue(models.Model):
         compute="_compute_failure_emails",
         string="Failure Emails",
         help="Comma-separated list of email addresses to be notified in case of"
-             "failure",
+        "failure",
     )
 
     def _compute_failure_emails(self):
@@ -67,15 +67,11 @@ class AttachmentQueue(models.Model):
         """
         Run the process for each attachment queue
         """
-        failure_tmpl = self.env.ref(
-            "attachment_queue.attachment_failure_notification"
-        )
+        failure_tmpl = self.env.ref("attachment_queue.attachment_failure_notification")
         for attachment in self:
             with api.Environment.manage():
                 with registry(self.env.cr.dbname).cursor() as new_cr:
-                    new_env = api.Environment(
-                        new_cr, self.env.uid, self.env.context
-                    )
+                    new_env = api.Environment(new_cr, self.env.uid, self.env.context)
                     attach = attachment.with_env(new_env)
                     try:
                         attach._run()
@@ -83,9 +79,7 @@ class AttachmentQueue(models.Model):
                     except Exception as e:
                         attach.env.cr.rollback()
                         _logger.exception(str(e))
-                        attach.write(
-                            {"state": "failed", "state_message": str(e)}
-                        )
+                        attach.write({"state": "failed", "state_message": str(e)})
                         emails = attach.failure_emails
                         if emails:
                             failure_tmpl.send_mail(attach.id)
