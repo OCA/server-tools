@@ -192,7 +192,7 @@
             <search string="Attachments">
                 <field
                     name="name"
-                    filter_domain="['|', ('name','ilike',self), ('datas_fname','ilike',self)]"
+                    filter_domain="[('name','ilike',self)]"
                     string="Attachment Task"
                 />
                 <field name="create_date" />
@@ -211,7 +211,6 @@
         <field name="name">Attachments Import Tasks</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">attachment.synchronize.task</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="view_id" eval="False" />
         <field name="search_view_id" ref="view_attachment_task_search" />
@@ -233,7 +232,6 @@
         <field name="name">Attachments Export Tasks</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">attachment.synchronize.task</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="view_id" eval="False" />
         <field name="search_view_id" ref="view_attachment_task_search" />

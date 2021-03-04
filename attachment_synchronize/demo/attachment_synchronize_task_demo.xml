@@ -17,7 +17,6 @@
 
     <record id="attachment_queue_imported_demo" model="attachment.queue">
         <field name="datas">bWlncmF0aW9uIHRlc3Q=</field>
-        <field name="datas_fname">attachment_queue_imported_demo.doc</field>
         <field name="name">attachment_queue_imported_demo.doc</field>
         <field name="task_id" ref="import_from_filestore" />
     </record>
