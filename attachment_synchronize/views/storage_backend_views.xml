@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
 
     <record id="view_storage_backend_form" model="ir.ui.view">
         <field name="model">storage.backend</field>
         <field name="inherit_id" ref="storage_backend.storage_backend_view_form" />
-        <field name="priority" eval="250"/>
+        <field name="priority" eval="250" />
         <field name="arch" type="xml">
             <xpath expr="//div[hasclass('oe_title')]" position="before">
                 <div class="oe_button_box" name="button_box">
