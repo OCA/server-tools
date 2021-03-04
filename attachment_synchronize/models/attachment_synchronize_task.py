@@ -117,7 +117,6 @@ class AttachmentSynchronizeTask(models.Model):
         vals = {
             "name": filename,
             "datas": data,
-            "datas_fname": filename,
             "task_id": self.id,
             "file_type": self.file_type or False,
         }
@@ -156,7 +155,7 @@ class AttachmentSynchronizeTask(models.Model):
         for record in self:
             method = "run_{}".format(record.method_type)
             if not hasattr(self, method):
-                raise NotImplemented
+                raise NotImplementedError
             else:
                 getattr(record, method)()
 
