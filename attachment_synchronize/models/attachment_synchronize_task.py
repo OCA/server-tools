@@ -89,7 +89,7 @@ class AttachmentSynchronizeTask(models.Model):
         "\nFurther operations will be realized on these Attachments Queues depending "
         "on their 'File Type' value.",
     )
-    active = fields.Boolean("Enabled", default=True, old="enabled")
+    active = fields.Boolean("Enabled", default=True)
     avoid_duplicated_files = fields.Boolean(
         string="Avoid importing duplicated files",
         help="If checked, a file will not be imported if an Attachment Queue with the "
