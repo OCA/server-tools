@@ -2,8 +2,10 @@
 # @author Sébastien BEAU <sebastien.beau@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-import mock
 import os
+
+import mock
+
 from odoo.addons.storage_backend.tests.common import Common
 
 
@@ -21,7 +23,7 @@ class SyncCommon(Common):
         self.backend._add_b64_data(
             os.path.join(self.directory_input, "bar.txt"),
             self.filedata,
-            mimetype=u"text/plain",
+            mimetype="text/plain",
         )
 
     def setUp(self):
@@ -33,9 +35,7 @@ class SyncCommon(Common):
         self.directory_archived = "test_archived"
         self._clean_testing_directory()
         self._create_test_file()
-        self.task = self.env.ref(
-            "attachment_synchronize.import_from_filestore"
-        )
+        self.task = self.env.ref("attachment_synchronize.import_from_filestore")
 
     def tearDown(self):
         self.registry.leave_test_mode()

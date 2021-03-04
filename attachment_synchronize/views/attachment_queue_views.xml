@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
 
     <record id="view_attachment_queue_form" model="ir.ui.view">
@@ -7,13 +7,13 @@
         <field name="arch" type="xml">
             <!-- Add Related Task and Backend -->
             <xpath expr="//field[@name='url']" position="after">
-                <field name="method_type" invisible="1"/>
+                <field name="method_type" invisible="1" />
                 <field
                     name="task_id"
                     domain="[('method_type', '!=', 'import')]"
                     attrs="{'required': [('file_type', '=', 'export')], 'readonly': [('method_type', '=', 'import')]}"
                 />
-                <field name="storage_backend_id"/>
+                <field name="storage_backend_id" />
             </xpath>
         </field>
     </record>
@@ -26,18 +26,18 @@
               <attribute name="decoration-muted">state == 'done'</attribute>
           </xpath>
           <xpath expr="//field[@name='file_type']" position="after">
-              <field name="task_id"/>
-              <field name="storage_backend_id"/>
+              <field name="task_id" />
+              <field name="storage_backend_id" />
           </xpath>
         </field>
     </record>
 
     <record id="attachment_queue_view_search" model="ir.ui.view">
         <field name="model">attachment.queue</field>
-        <field name="inherit_id" ref="attachment_queue.view_attachment_queue_search"/>
+        <field name="inherit_id" ref="attachment_queue.view_attachment_queue_search" />
         <field name="arch" type="xml">
             <field name="type" position="after">
-                <field name="task_id" filter_domain="[('task_id.name','ilike',self)]"/>
+                <field name="task_id" filter_domain="[('task_id.name','ilike',self)]" />
             </field>
         </field>
     </record>
@@ -48,9 +48,12 @@
         <field name="res_model">attachment.queue</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
-        <field name="view_id" eval="False"/>
+        <field name="view_id" eval="False" />
         <field name="domain">[('task_id', '=', active_id)]</field>
-        <field name="search_view_id" ref="attachment_queue.view_attachment_queue_search"/>
+        <field
+            name="search_view_id"
+            ref="attachment_queue.view_attachment_queue_search"
+        />
     </record>
 
 </odoo>
