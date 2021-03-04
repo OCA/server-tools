@@ -6,10 +6,10 @@ import os
 
 import mock
 
-from odoo.addons.storage_backend.tests.common import Common
+from odoo.addons.storage_backend.tests.common import CommonCase
 
 
-class SyncCommon(Common):
+class SyncCommon(CommonCase):
     def _clean_testing_directory(self):
         for test_dir in [
             self.directory_input,
