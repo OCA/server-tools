@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <record id="import_from_filestore" model="attachment.synchronize.task">
         <field name="name">TEST Import</field>
-        <field name="backend_id" ref="storage_backend.default_storage_backend"/>
+        <field name="backend_id" ref="storage_backend.default_storage_backend" />
         <field name="method_type">import</field>
         <field name="after_import">delete</field>
         <field name="filepath">test_import</field>
@@ -10,7 +10,7 @@
 
     <record id="export_to_filestore" model="attachment.synchronize.task">
         <field name="name">TEST Export</field>
-        <field name="backend_id" ref="storage_backend.default_storage_backend"/>
+        <field name="backend_id" ref="storage_backend.default_storage_backend" />
         <field name="method_type">export</field>
         <field name="filepath">test_export</field>
     </record>
