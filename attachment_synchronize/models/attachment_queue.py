@@ -24,7 +24,7 @@ class AttachmentQueue(models.Model):
     def _run(self):
         super()._run()
         if self.file_type == "export":
-            path = os.path.join(self.task_id.filepath, self.datas_fname)
+            path = os.path.join(self.task_id.filepath, self.name)
             self.storage_backend_id._add_b64_data(path, self.datas)
 
     def _get_failure_emails(self):
