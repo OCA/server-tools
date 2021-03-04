@@ -16,8 +16,8 @@ class SyncCommon(CommonCase):
             self.directory_output,
             self.directory_archived,
         ]:
-            for filename in self.backend._list(test_dir):
-                self.backend._delete(os.path.join(test_dir, filename))
+            for filename in self.backend.list_files(test_dir):
+                self.backend.delete(os.path.join(test_dir, filename))
 
     def _create_test_file(self):
         self.backend._add_b64_data(
