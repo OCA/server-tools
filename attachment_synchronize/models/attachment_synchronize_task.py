@@ -108,8 +108,9 @@ class AttachmentSynchronizeTask(models.Model):
     def _compute_count_state(self):
         for record in self:
             for state in ["failed", "pending", "done"]:
-                record["count_attachment_{}".format(state)] = \
-                    len(record.attachment_ids.filtered(lambda r: r.state == state))
+                record["count_attachment_{}".format(state)] = len(
+                    record.attachment_ids.filtered(lambda r: r.state == state)
+                )
 
     def _prepare_attachment_vals(self, data, filename):
         self.ensure_one()
@@ -138,18 +139,16 @@ class AttachmentSynchronizeTask(models.Model):
                     template, variables
                 )
             )
-            render_result = u""
-        if render_result == u"False":
-            render_result = u""
+            render_result = ""
+        if render_result == "False":
+            render_result = ""
         return render_result
 
     @api.model
     def run_task_import_scheduler(self, domain=None):
         if domain is None:
             domain = []
-        domain = expression.AND(
-            [domain, [("method_type", "=", "import")]]
-        )
+        domain = expression.AND([domain, [("method_type", "=", "import")]])
         for task in self.search(domain):
             task.run_import()
 
@@ -203,7 +202,7 @@ class AttachmentSynchronizeTask(models.Model):
                         raise e
                     else:
                         new_env.cr.commit()
-        _logger.info("Run import complete! Imported {0} files".format(total_import))
+        _logger.info("Run import complete! Imported {} files".format(total_import))
 
     def _file_to_import(self, filenames):
         imported = (
