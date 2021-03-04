@@ -12,17 +12,14 @@ class TestAttachmentBaseQueue(TransactionCase):
         self.env = api.Environment(
             self.registry.test_cr, self.env.uid, self.env.context
         )
-        self.attachment = self.env.ref(
-            "attachment_queue.attachment_queue_demo"
-        )
+        self.attachment = self.env.ref("attachment_queue.attachment_queue_demo")
 
     def tearDown(self):
         self.registry.leave_test_mode()
         super().tearDown()
 
     def test_attachment_queue(self):
-        """Test run_attachment_queue_scheduler to ensure set state to done
-        """
+        """Test run_attachment_queue_scheduler to ensure set state to done"""
         self.assertEqual(self.attachment.state, "pending")
         self.env["attachment.queue"].run_attachment_queue_scheduler()
         self.env.cache.invalidate()
@@ -32,8 +29,7 @@ class TestAttachmentBaseQueue(TransactionCase):
             self.assertEqual(attach.state, "done")
 
     def test_set_done(self):
-        """Test set_done manually
-        """
+        """Test set_done manually"""
         self.assertEqual(self.attachment.state, "pending")
         self.attachment.set_done()
         self.assertEqual(self.attachment.state, "done")
