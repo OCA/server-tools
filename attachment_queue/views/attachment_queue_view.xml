@@ -41,10 +41,8 @@
         <field name="arch" type="xml">
             <tree default_order='create_date desc'>
                 <field name="name" />
-                <field name="datas_fname" />
                 <field name="file_type" />
                 <field name="type" />
-                <field name="create_date" />
                 <field name="state" />
             </tree>
         </field>
@@ -56,7 +54,7 @@
         <search string="Attachments">
             <field
                     name="name"
-                    filter_domain="['|', ('name','ilike',self), ('datas_fname','ilike',self)]"
+                    filter_domain="[('name','ilike',self)]"
                     string="Attachment"
                 />
             <field name="create_date" />
@@ -126,7 +124,6 @@
         <field name="name">Attachments Queue</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">attachment.queue</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="view_id" eval="False" />
         <field name="search_view_id" ref="view_attachment_queue_search" />
