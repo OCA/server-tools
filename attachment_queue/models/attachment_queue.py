@@ -9,6 +9,7 @@ _logger = logging.getLogger(__name__)
 
 class AttachmentQueue(models.Model):
     _name = "attachment.queue"
+    _description = "Attachment Queue"
     _inherits = {"ir.attachment": "attachment_id"}
     _inherit = ["mail.thread"]
 
