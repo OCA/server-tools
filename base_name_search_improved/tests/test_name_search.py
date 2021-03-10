@@ -9,7 +9,7 @@ from odoo.tests.common import TransactionCase, at_install, post_install
 class NameSearchCase(TransactionCase):
     def setUp(self):
         super(NameSearchCase, self).setUp()
-        phone_field = self.env.ref("base.field_res_partner_phone")
+        phone_field = self.env.ref("base.field_res_partner__phone")
         model_partner = self.env.ref("base.model_res_partner")
         model_partner.name_search_ids = phone_field
         model_partner.add_smart_search = True
@@ -19,15 +19,15 @@ class NameSearchCase(TransactionCase):
         model_partner.name_search_domain = "[('parent_id', '=', False)]"
         self.Partner = self.env["res.partner"]
         self.partner1 = self.Partner.create(
-            {"name": "Luigi Verconti", "customer": True, "phone": "+351 555 777 333"}
+            {"name": "Luigi Verconti", "customer_rank": 1, "phone": "+351 555 777 333"}
         )
         self.partner2 = self.Partner.create(
-            {"name": "Ken Shabby", "customer": True, "phone": "+351 555 333 777"}
+            {"name": "Ken Shabby", "customer_rank": 1, "phone": "+351 555 333 777"}
         )
         self.partner3 = self.Partner.create(
             {
                 "name": "Johann Gambolputty of Ulm",
-                "supplier": True,
+                "supplier_rank": 1,
                 "phone": "+351 777 333 555",
             }
         )
@@ -64,7 +64,7 @@ class NameSearchCase(TransactionCase):
 
     def test_MustHonorDomain(self):
         """Must also honor a provided Domain"""
-        res = self.Partner.name_search("+351", args=[("supplier", "=", True)])
+        res = self.Partner.name_search("+351", args=[("supplier_rank", "=", True)])
         gambulputty = self.partner3.id
         self.assertEqual(len(res), 1)
         self.assertEqual(res[0][0], gambulputty)
