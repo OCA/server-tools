@@ -18,14 +18,15 @@ class NameSearchCase(TransactionCase):
         model_partner.name_search_domain = "[('parent_id', '=', False)]"
         self.Partner = self.env["res.partner"]
         self.partner1 = self.Partner.create(
-            {"name": "Luigi Verconti", "phone": "+351 555 777 333"}
+            {"name": "Luigi Verconti", "customer_rank": 1, "phone": "+351 555 777 333"}
         )
         self.partner2 = self.Partner.create(
-            {"name": "Ken Shabby", "phone": "+351 555 333 777"}
+            {"name": "Ken Shabby", "customer_rank": 1, "phone": "+351 555 333 777"}
         )
         self.partner3 = self.Partner.create(
             {
                 "name": "Johann Gambolputty of Ulm",
+                "supplier_rank": 1,
                 "phone": "+351 777 333 555",
                 "barcode": "1111",
             }
@@ -63,7 +64,7 @@ class NameSearchCase(TransactionCase):
 
     def test_MustHonorDomain(self):
         """Must also honor a provided Domain"""
-        res = self.Partner.name_search("+351", args=[("barcode", "=", "1111")])
+        res = self.Partner.name_search("+351", args=[("supplier_rank", "=", True)])
         gambulputty = self.partner3.id
         self.assertEqual(len(res), 1)
         self.assertEqual(res[0][0], gambulputty)
