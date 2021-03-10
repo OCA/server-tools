@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import os
-import pygount
+from pygount import SourceAnalysis
 from pathlib import Path
 import logging
 
@@ -145,7 +145,7 @@ class IrModuleModule(models.Model):
                 exclude_files)
 
             for file_path, file_ext in file_list:
-                file_res = pygount.source_analysis(
+                file_res = SourceAnalysis.from_file(
                     file_path, '',
                     encoding=self._get_module_encoding(file_ext))
                 for k, v in analysed_datas.get(file_ext).items():
