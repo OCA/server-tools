@@ -19,7 +19,7 @@ Available addons
 addon | version | summary
 --- | --- | ---
 [attachment_base_synchronize](attachment_base_synchronize/) | 10.0.1.0.0 | Attachment Base Synchronize
-[auditlog](auditlog/) | 10.0.1.0.0 | Audit Log
+[auditlog](auditlog/) | 10.0.1.0.1 | Audit Log
 [auth_admin_passkey](auth_admin_passkey/) | 10.0.1.0.2 | Authentification - Admin Passkey
 [auth_brute_force](auth_brute_force/) | 10.0.2.2.0 | Track Authentication Attempts and Prevent Brute-force Attacks
 [auth_oauth_multi_token](auth_oauth_multi_token/) | 10.0.1.0.0 | Allow multiple connection with the same OAuth account
