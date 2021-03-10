@@ -2,69 +2,53 @@
 <!-- © 2016 Daniel Reis
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
-    <record id="view_model_form" model="ir.ui.view">
-        <field name="name">Add Name Searchable to Models</field>
-        <field name="model">ir.model</field>
-        <field name="inherit_id" ref="base.view_model_form" />
-        <field name="arch" type="xml">
-            <field name="state" position="after">
-                <field name="add_smart_search" />
-                <field
-                    name="name_search_ids"
-                    widget="many2many_tags"
-                    domain="[('model_id', '=', id), ('store', '=', True)]"
-                />
-                <field name="name_search_domain" />
-            </field>
-        </field>
-    </record>
+
     <record id="view_model_form_new" model="ir.ui.view">
         <field name="name">view.model.form</field>
         <field name="model">ir.model</field>
         <field name="arch" type="xml">
             <form string="Custom Search">
                 <sheet>
-                    <div class="oe_button_box" name="buttons">
-                        <button
-                            name="toggle_smart_search"
-                            type="object"
-                            class="oe_stat_button"
-                            icon="fa-archive"
-                        >
-                            <field
-                                name="add_smart_search"
-                                widget="boolean_button"
-                                options="{'terminology': {
-                                'string_true': 'Smart Active',
-                                'hover_true': 'Remove Smart Search',
-                                'string_false': 'Not Smart Search',
-                                'hover_false': 'Add Smart Search',
-                                }}"
-                            />
-                        </button>
-                    </div>
                     <div class="oe_title">
                         <label for="name" class="oe_edit_only" />
                         <h1>
                             <field name="name" readonly="1" />
                         </h1>
                     </div>
+                    <p class="alert alert-info" role="alert" style="margin-bottom:0px;">
+                        Smart Search se puede activar de dos formas que pueden ser complementarias:
+                        <ul>
+                            <li><b>Vista de búsqueda</b>: a la hora de buscar en vistas listas, kanban y demás, la primer opción será buscar mediante "Smart Search"
+                            </li>
+                            <li><b>Name Search</b>: es para cuando estemos queriendo buscar un registro desde otro registro a través de los widgets m2o/m2m, por ejemplo al agregar un producto en una línea de venta o al elegir un contacto en una factura.
+                            </li>
+                        </ul>
+                        En donde se haya activado "Smart Search" las búsquedas tendrán un comportmiento más "relajado". Nativamente Odoo busca por registors que incluyan las palabras ingresadas tal cual las ha ingresado, al activar esta opción se buscará por registros que contegan dichas palabras y sin importar el orden en el que se ingresen. Por ej. si buscamos un Contacto con "Pedro Picapiedra", naticamente Odoo solo nos retornaría aquellos registros  que contengan exactamente ese texto, con smart search activo se devolverá cualquier registro que contenga las palabras "Pedro" y "Picapiedra".<br/><br/>
+
+                        Al activar Smart Search podrá además agregar configurar estos dos comportamientos opcionales:
+                        <ul>
+                            <li>Definir un <b>dominio personalizado</b> (por ejemplo solo mostrar usuarios internos y no los portal)</li>
+                            <li><b>Búsquedas por otros campos</b>. Podremos definir un conjunto de campos por el cual querramos buscar</li>
+                        </ul>
+                    </p>
+                    <p class="alert alert-warning" role="alert" style="margin-bottom:0px;">
+                        <b>IMPORTANTE:</b> tenga en cuenta que activar smart search puede afectar la performance de las búsquedas y del sistema en general.
+                        <field name="smart_search_warning"/>
+                    </p>
                     <group>
                         <group>
                             <field name="id" invisible="1" />
                             <field name="model" readonly="1" />
-                            <field name="name_search_domain" />
+                            <field name="add_smart_search" string="Smart Search (search view)" widget="boolean_toggle"/>
+                            <field name="use_smart_name_search" string="Smart Name Search" widget="boolean_toggle"/>
+                            <!-- TODO use new odoo domain widget -->
+                            <field name="name_search_domain" attrs="{'invisible': [('use_smart_name_search', '=', False), ('add_smart_search', '=', False)]}"/>
                         </group>
                     </group>
-                    <notebook colspan="4">
-                        <page string="Fields">
-                            <!-- widget="many2many_tags" -->
-                            <field
-                                name="name_search_ids"
-                                colspan="4"
-                                nolabel="1"
-                                domain="[('model_id', '=', id), ('store', '=', True)]"
-                            >
+                    <notebook colspan="4" attrs="{'invisible': [('use_smart_name_search', '=', False), ('add_smart_search', '=', False)]}">
+                        <page string="Smart Search Fields">
+                            <!-- we use default m2m widget and not tags widget so that is clearer the technical name of the field added -->
+                            <field name="name_search_ids" domain="[('model_id', '=', id), ('selectable', '=', True)]">
                                 <tree>
                                     <field name="name" />
                                     <field name="field_description" />
@@ -97,6 +81,11 @@
                     string="Smart Search"
                     widget="boolean_toggle"
                 />
+                <field
+                    name="use_smart_name_search"
+                    string="Smart Name Search"
+                    widget="boolean_toggle"
+                />
             </tree>
         </field>
     </record>
@@ -109,20 +98,20 @@
                 <field name="name" />
                 <field name="model" />
                 <filter
-                    name="extra_search"
-                    string="With Custom Search"
-                    domain="[('name_search_ids', '!=', False)]"
-                />
-                <filter
                     name="smart_search"
                     string="Smart Search"
                     domain="[('add_smart_search', '=', True)]"
+                />
+                <filter
+                    name="smart_name_search"
+                    string="Smart Name Search"
+                    domain="[('use_smart_name_search', '=', True)]"
                 />
             </search>
         </field>
     </record>
     <record id="action_improved_name_search" model="ir.actions.act_window">
-        <field name="name">Custom Searches</field>
+        <field name="name">Smart Searches</field>
         <field name="res_model">ir.model</field>
         <field name="view_mode">tree,form</field>
         <field name="search_view_id" ref="view_model_search" />
@@ -133,12 +122,12 @@
             (0, 0, {'view_mode': 'form', 'view_id': ref('view_model_form_new')}
         )]"
         />
-        <field name="context">{'search_default_extra_search': 1}</field>
+        <field name="context">{'search_default_smart_search': 1, 'search_default_smart_name_search': 1}</field>
         <field name="domain">[('transient', '=', False)]</field>
     </record>
     <menuitem
         id="menu_improved_name_search"
-        name="Custom Searches"
+        name="Smart Searches"
         parent="base.menu_administration"
         sequence="6"
         action="action_improved_name_search"
