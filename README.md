@@ -20,6 +20,7 @@ Available addons
 addon | version | summary
 --- | --- | ---
 [auditlog](auditlog/) | 14.0.1.1.1 | Audit Log
+[auto_backup](auto_backup/) | 14.0.1.0.0 | A tool for all your back-ups, internal and external!
 [base_cron_exclusion](base_cron_exclusion/) | 14.0.1.0.0 | Allow you to select scheduled actions that should not run simultaneously.
 [base_exception](base_exception/) | 14.0.1.0.2 | This module provide an abstract model to manage customizable exceptions to be applied on different models (sale order, invoice, ...)
 [base_jsonify](base_jsonify/) | 14.0.1.1.0 | Base module that provide the jsonify method on all models
