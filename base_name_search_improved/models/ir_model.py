@@ -67,15 +67,14 @@ def patch_name_search():
         res = _name_search.origin(
             self, name=name, args=args, operator=operator, limit=limit, name_get_uid=name_get_uid
         )
-        if name and _get_use_smart_name_search(self) and operator in ALLOWED_OPS:
+        if name and _get_use_smart_name_search(self.sudo()) and operator in ALLOWED_OPS:
             limit = limit or 0
-            superself = self.sudo()
 
             # we add domain
-            args = args or [] + _get_name_search_domain(superself)
+            args = args or [] + _get_name_search_domain(self.sudo())
 
             # Support a list of fields to search on
-            all_names = _get_rec_names(superself)
+            all_names = _get_rec_names(self.sudo())
             base_domain = args or []
             # Try regular search on each additional search field
             for rec_name in all_names[1:]:
@@ -159,9 +158,8 @@ class Base(models.AbstractModel):
         """
         name = value
         if name and operator in ALLOWED_OPS:
-            superself = self.sudo()
-            all_names = _get_rec_names(superself)
-            domain = _get_name_search_domain(superself)
+            all_names = _get_rec_names(self.sudo())
+            domain = _get_name_search_domain(self.sudo())
             for word in name.split():
                 word_domain = []
                 for rec_name in all_names:
