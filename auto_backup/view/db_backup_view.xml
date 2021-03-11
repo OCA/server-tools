@@ -79,11 +79,10 @@
             </search>
         </field>
     </record>
-    <act_window
-        name="Automated Backups"
-        id="action_backup_conf_form"
-        res_model="db.backup"
-    />
+    <record id="action_backup_conf_form" model="ir.actions.act_window">
+        <field name="name">Automated Backups</field>
+        <field name="res_model">db.backup</field>
+    </record>
     <menuitem
         parent="base.next_id_9"
         action="action_backup_conf_form"
