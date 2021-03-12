@@ -47,6 +47,7 @@ setuptools.setup(
         'odoo11-addon-sql_request_abstract',
         'odoo11-addon-test_configuration_helper',
         'odoo11-addon-test_mail_template_attachment_i18n',
+        'odoo11-addon-users_ldap_groups',
     ],
     classifiers=[
         'Programming Language :: Python',
