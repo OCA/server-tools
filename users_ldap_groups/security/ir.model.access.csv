@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_res_company_ldap_groups,res_company_ldap_groups,model_res_company_ldap_group_mapping,base.group_system,1,1,1,1
