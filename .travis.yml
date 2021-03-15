@@ -31,6 +31,7 @@ jobs:
     - stage: test
       env:
         - TESTS="1" ODOO_REPO="OCA/OCB"
+          EXCLUDE="fetchmail_incoming_log,fetchmail_notify_error_to_sender_test"
 
 env:
   global:
