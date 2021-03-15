@@ -83,7 +83,7 @@ class BaseExceptionMethod(models.AbstractModel):
         By default, only the rules with the correct model
         will be used.
         """
-        return [("model", "=", self._name)]
+        return [("model", "=", self._name), ("active", "=", True)]
 
     def detect_exceptions(self):
         """List all exception_ids applied on self
