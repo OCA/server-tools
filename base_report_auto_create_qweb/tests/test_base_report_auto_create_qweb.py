@@ -1,16 +1,15 @@
 # Copyright 2015-2017
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
-import openerp.tests.common as common
-
+import odoo.tests.common as common
 from odoo import exceptions
 
 
 class TestBaseReportAutoQwebCreate(common.TransactionCase):
     def setUp(self):
         super(TestBaseReportAutoQwebCreate, self).setUp()
-        self.report_model = self.env["ir.actions.report.xml"]
-        self.duplicate_model = self.env["ir.actions.report.xml.duplicate"]
+        self.report_model = self.env["ir.actions.report"]
+        self.duplicate_model = self.env["ir.actions.report.duplicate"]
         self.view_model = self.env["ir.ui.view"]
 
     def test_creation_html(self):
@@ -74,7 +73,7 @@ class TestBaseReportAutoQwebCreate(common.TransactionCase):
             )
 
     def test_wrong_template_name(self):
-        with self.assertRaises(exceptions.Warning):
+        with self.assertRaises(exceptions.UserError):
             self.report_model.create(
                 {
                     "name": "Test",

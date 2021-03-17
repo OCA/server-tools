@@ -4,20 +4,21 @@
 
 {
     "name": "Report qweb auto generation",
-    "version": "10.0.1.0.0",
+    "version": "14.0.1.0.0",
     "depends": [
-        "report",
+        "base",
     ],
     "external_dependencies": {
         "python": [
             "unidecode",
         ],
     },
-    "author": "AvanzOSC, " "Tecnativa, " "Odoo Community Association (OCA), ",
+    "author": "AvanzOSC, " "Tecnativa, " "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/server-tools",
     "license": "AGPL-3",
     "category": "Tools",
     "data": [
+        "security/ir.model.access.csv",
         "wizard/report_duplicate_view.xml",
         "views/report_xml_view.xml",
     ],

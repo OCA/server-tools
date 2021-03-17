@@ -2,24 +2,18 @@
 # Copyright 2015-2017
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-import logging
+from unidecode import unidecode
 
 from odoo import _, api, exceptions, models
 
-_logger = logging.getLogger(__name__)
-
 
 class IrActionsReport(models.Model):
-    _inherit = "ir.actions.report.xml"
+    _inherit = "ir.actions.report"
 
     def _format_template_name(self, text):
-        try:
-            from unidecode import unidecode
-        except ImportError:
-            _logger.debug("Can not `import unidecode`.")
-        text = unidecode(unicode(text))
+        text = unidecode(text)
         text.lower()
-        return text.encode("iso-8859-1")
+        return text
 
     def _prepare_qweb_view_data(self, qweb_name, arch):
         return {
@@ -37,21 +31,11 @@ class IrActionsReport(models.Model):
             "model": "ir.ui.view",
         }
 
-    def _prepare_value_view_data(self, name, model):
-        return {
-            "name": name,
-            "model": model,
-            "key2": "client_print_multi",
-            "value_unpickle": "ir.actions.report.xml,%s" % self.id,
-        }
-
     def _create_qweb(self, name, qweb_name, module, model, arch):
         qweb_view_data = self._prepare_qweb_view_data(qweb_name, arch)
         qweb_view = self.env["ir.ui.view"].create(qweb_view_data)
         model_data_data = self._prepare_model_data_data(qweb_name, module, qweb_view)
         self.env["ir.model.data"].create(model_data_data)
-        value_view_data = self._prepare_value_view_data(name, model)
-        self.env["ir.values"].sudo().create(value_view_data)
 
     @api.model
     def create(self, values):
@@ -63,7 +47,7 @@ class IrActionsReport(models.Model):
             and values.get("report_name")
             and values["report_name"].find(".") == -1
         ):
-            raise exceptions.Warning(
+            raise exceptions.UserError(
                 _("Template Name must contain at least a dot in it's name")
             )
         if not self.env.context.get("enable_duplication", False):
@@ -91,7 +75,6 @@ class IrActionsReport(models.Model):
                 report_xml._create_qweb(name, report_name, module, model, arch)
         return report_xml
 
-    @api.multi
     def copy(self, default=None):
         if not self.env.context.get("enable_duplication", False):
             return super(IrActionsReport, self).copy(default=default)
@@ -102,15 +85,13 @@ class IrActionsReport(models.Model):
         module = "{}_{}".format(self.report_name.split(".")[0], suffix.lower())
         report = "{}_{}".format(self.report_name.split(".")[1], suffix.lower())
         default["report_name"] = "{}.{}".format(module, report)
-        report_views = self.env["ir.ui.view"].search(
-            [("name", "ilike", self.report_name.split(".")[1]), ("type", "=", "qweb")]
-        )
+        report_views_domain = self.associated_view()["domain"]
+        report_views = self.env["ir.ui.view"].search(report_views_domain)
         return super(
             IrActionsReport,
             self.with_context(report_views=report_views.ids, suffix=suffix.lower()),
         ).copy(default=default)
 
-    @api.multi
     def button_create_qweb(self):
         self.ensure_one()
         module = self.report_name.split(".")[0]
