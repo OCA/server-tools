@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<openerp>
-    <data>
-        <record model="ir.ui.view" id="ir_actions_report_xml_duplicate_form_view">
-            <field name="name">ir.actions.report.xml.duplicate.form</field>
-            <field name="model">ir.actions.report.xml.duplicate</field>
+<odoo>
+        <record model="ir.ui.view" id="report_duplicate_form_view">
+            <field name="name">ir.actions.report.duplicate.form</field>
+            <field name="model">ir.actions.report.duplicate</field>
             <field name="arch" type="xml">
                 <form string="Report duplication">
                     <group>
@@ -11,11 +10,11 @@
                     </group>
                     <footer>
                         <button
-                            class="oe_highlight"
-                            name="duplicate_report"
-                            string="Duplicate"
-                            type="object"
-                        />
+                        class="oe_highlight"
+                        name="duplicate_report"
+                        string="Duplicate"
+                        type="object"
+                    />
                         or
                         <button class="oe_link" special="cancel" string="Cancel" />
                     </footer>
@@ -23,17 +22,15 @@
             </field>
         </record>
 
-        <record
-            model="ir.actions.act_window"
-            id="ir_actions_report_xml_duplicate_action"
-        >
+        <record model="ir.actions.act_window" id="report_duplicate_action">
             <field name="name">Report duplication</field>
-            <field name="res_model">ir.actions.report.xml.duplicate</field>
-            <field name="view_type">form</field>
+            <field name="res_model">ir.actions.report.duplicate</field>
             <field name="view_mode">form</field>
-            <field name="view_id" ref="ir_actions_report_xml_duplicate_form_view" />
+            <field
+            name="view_id"
+            ref="base_report_auto_create_qweb.report_duplicate_form_view"
+        />
             <field name="target">new</field>
         </record>
 
-    </data>
-</openerp>
+</odoo>
