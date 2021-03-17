@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <openerp>
     <data>
         <record model="ir.ui.view" id="ir_actions_report_xml_form_view">
@@ -8,13 +8,22 @@
             <field name="inherit_id" ref="report.act_report_xml_view_inherit" />
             <field name="arch" type="xml">
                 <xpath expr="//button[@name='unlink_action']" position="after">
-                    <button name="%(ir_actions_report_xml_duplicate_action)d"
-                        string="Duplicate Report" class="oe_highlight" type="action"/>
+                    <button
+                        name="%(ir_actions_report_xml_duplicate_action)d"
+                        string="Duplicate Report"
+                        class="oe_highlight"
+                        type="action"
+                    />
                 </xpath>
                 <button name="associated_view" position="after">
-                    <button type="object" class="oe_link" name="button_create_qweb"
-                        string="Create QWeb view" colspan="2"
-                        attrs="{'invisible':[('report_type', 'not in', ['qweb-pdf', 'qweb-html'])]}" />
+                    <button
+                        type="object"
+                        class="oe_link"
+                        name="button_create_qweb"
+                        string="Create QWeb view"
+                        colspan="2"
+                        attrs="{'invisible':[('report_type', 'not in', ['qweb-pdf', 'qweb-html'])]}"
+                    />
                 </button>
 
             </field>

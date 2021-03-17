@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <openerp>
     <data>
         <record model="ir.ui.view" id="ir_actions_report_xml_duplicate_form_view">
@@ -10,17 +10,23 @@
                         <field name="suffix" />
                     </group>
                     <footer>
-                        <button class="oe_highlight" name="duplicate_report"
-                            string="Duplicate" type="object" />
+                        <button
+                            class="oe_highlight"
+                            name="duplicate_report"
+                            string="Duplicate"
+                            type="object"
+                        />
                         or
-                        <button class="oe_link" special="cancel"
-                            string="Cancel" />
+                        <button class="oe_link" special="cancel" string="Cancel" />
                     </footer>
                 </form>
             </field>
         </record>
 
-        <record model="ir.actions.act_window" id="ir_actions_report_xml_duplicate_action">
+        <record
+            model="ir.actions.act_window"
+            id="ir_actions_report_xml_duplicate_action"
+        >
             <field name="name">Report duplication</field>
             <field name="res_model">ir.actions.report.xml.duplicate</field>
             <field name="view_type">form</field>
