@@ -68,7 +68,7 @@ class ResUsers(models.Model):
 
         # Check if past deadline
         expired = False
-        if deadline is not False:
+        if deadline is not False and session.get('uid', False):
             path = http.root.session_store.get_session_filename(session.sid)
             try:
                 expired = getmtime(path) < deadline
