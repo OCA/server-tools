@@ -61,6 +61,7 @@ class CustomInfoValue(models.Model):
     required = fields.Boolean(related="property_id.required")
     value = fields.Char(
         compute="_compute_value",
+        inverse="_inverse_value",
         search="_search_value",
         help="Value, always converted to/from the typed field.",
     )
