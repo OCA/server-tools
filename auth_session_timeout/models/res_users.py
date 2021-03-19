@@ -10,6 +10,7 @@ from time import time
 from os import utime
 
 from odoo import api, http, models, tools
+from odoo.http import SessionExpiredException
 
 _logger = logging.getLogger(__name__)
 
@@ -71,7 +72,7 @@ class ResUsers(models.Model):
             path = http.root.session_store.get_session_filename(session.sid)
             try:
                 expired = getmtime(path) < deadline
-            except OSError as e:
+            except OSError:
                 _logger.exception(
                     'Exception reading session file modified time.',
                 )
@@ -85,7 +86,7 @@ class ResUsers(models.Model):
 
         # If session terminated, all done
         if terminated:
-            return
+            raise SessionExpiredException("Session expired")
 
         # Else, conditionally update session modified and access times
         ignored_urls = self._auth_timeout_get_ignored_urls()
@@ -97,7 +98,7 @@ class ResUsers(models.Model):
                 )
             try:
                 utime(path, None)
-            except OSError as e:
+            except OSError:
                 _logger.exception(
                     'Exception updating session file access/modified times.',
                 )
