@@ -22,8 +22,12 @@ class ResUsers(models.Model):
         admin_user = self.sudo().browse(SUPERUSER_ID)
         login_user = self.browse(user_id)
 
-        send_to_admin = safe_eval(icp_obj.get_param("auth_admin_passkey.send_to_admin"))
-        send_to_user = safe_eval(icp_obj.get_param("auth_admin_passkey.send_to_user"))
+        send_to_admin = safe_eval(
+            icp_obj.get_param("auth_admin_passkey.send_to_admin") or "False"
+        )
+        send_to_user = safe_eval(
+            icp_obj.get_param("auth_admin_passkey.send_to_user") or "False"
+        )
 
         mails = []
         if send_to_admin and admin_user.email:
