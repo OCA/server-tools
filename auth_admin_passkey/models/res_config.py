@@ -4,6 +4,7 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 from odoo import api, fields, models
+from odoo.tools.safe_eval import safe_eval
 
 
 class BaseConfigSettings(models.TransientModel):
@@ -13,9 +14,12 @@ class BaseConfigSettings(models.TransientModel):
     @api.model
     def get_default_auth_admin_passkey_send_to_admin(self, fields):
         return {
-            "auth_admin_passkey_send_to_admin": self.env[
-                "ir.config_parameter"
-            ].get_param("auth_admin_passkey.send_to_admin")
+            "auth_admin_passkey_send_to_admin": safe_eval(
+                self.env["ir.config_parameter"].get_param(
+                    "auth_admin_passkey.send_to_admin"
+                )
+                or "False"
+            )
         }
 
     @api.multi
@@ -23,15 +27,18 @@ class BaseConfigSettings(models.TransientModel):
         for config in self:
             self.env["ir.config_parameter"].set_param(
                 "auth_admin_passkey.send_to_admin",
-                config.auth_admin_passkey_send_to_admin or "",
+                str(config.auth_admin_passkey_send_to_admin),
             )
 
     @api.model
     def get_default_auth_admin_passkey_send_to_user(self, fields):
         return {
-            "auth_admin_passkey_send_to_user": self.env[
-                "ir.config_parameter"
-            ].get_param("auth_admin_passkey.send_to_user")
+            "auth_admin_passkey_send_to_user": safe_eval(
+                self.env["ir.config_parameter"].get_param(
+                    "auth_admin_passkey.send_to_user"
+                )
+                or "False"
+            )
         }
 
     @api.multi
@@ -39,7 +46,7 @@ class BaseConfigSettings(models.TransientModel):
         for config in self:
             self.env["ir.config_parameter"].set_param(
                 "auth_admin_passkey.send_to_user",
-                config.auth_admin_passkey_send_to_user or "",
+                str(config.auth_admin_passkey_send_to_user),
             )
 
     auth_admin_passkey_send_to_admin = fields.Boolean(
