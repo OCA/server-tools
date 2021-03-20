@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright 2019 Therp BV (https://therp.nl)
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
+
 from odoo.tests import common
 
 
@@ -39,13 +40,13 @@ class TestConfig(common.TransactionCase):
         config.set_auth_admin_passkey_send_to_admin()
         config.set_auth_admin_passkey_send_to_user()
         self.assertEqual(
-            u'True',
+            u"True",
             config_model.get_default_auth_admin_passkey_send_to_admin([])[
                 "auth_admin_passkey_send_to_admin"
             ],
         )
         self.assertEqual(
-            u'True',
+            u"True",
             config_model.get_default_auth_admin_passkey_send_to_user([])[
                 "auth_admin_passkey_send_to_user"
             ],

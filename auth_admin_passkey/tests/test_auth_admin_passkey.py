@@ -14,24 +14,22 @@ class TestAuthAdminPasskey(common.TransactionCase):
     def setUp(self):
         super(TestAuthAdminPasskey, self).setUp()
 
-        self.ru_obj = self.env['res.users']
+        self.ru_obj = self.env["res.users"]
 
         self.db = self.env.cr.dbname
 
-        self.admin_user = self.ru_obj.search([('id', '=', SUPERUSER_ID)])
-        self.passkey_user = self.ru_obj.create({
-            'login': 'passkey',
-            'password': 'PasskeyPa$$w0rd',
-            'name': 'passkey'
-        })
+        self.admin_user = self.ru_obj.search([("id", "=", SUPERUSER_ID)])
+        self.passkey_user = self.ru_obj.create(
+            {"login": "passkey", "password": "PasskeyPa$$w0rd", "name": "passkey"}
+        )
 
     def test_01_normal_login_admin_succeed(self):
         # NOTE: Can fail if admin password changed
-        self.admin_user.check_credentials('admin')
+        self.admin_user.check_credentials("admin")
 
     def test_02_normal_login_admin_fail(self):
         with self.assertRaises(exceptions.AccessDenied):
-            self.admin_user.check_credentials('bad_password')
+            self.admin_user.check_credentials("bad_password")
 
     def test_03_normal_login_passkey_succeed(self):
         """ This test cannot pass because in some way the the _uid of
@@ -39,7 +37,7 @@ class TestAuthAdminPasskey(common.TransactionCase):
             original check_credentials() method, it raises an exception
             """
         try:
-            self.passkey_user.check_credentials('passkey')
+            self.passkey_user.check_credentials("passkey")
         except exceptions.AccessDenied:
             # This exception is raised from the origin check_credentials()
             # method and its an expected behaviour as we catch this in our
@@ -48,14 +46,14 @@ class TestAuthAdminPasskey(common.TransactionCase):
 
     def test_04_normal_login_passkey_fail(self):
         with self.assertRaises(exceptions.AccessDenied):
-            self.passkey_user.check_credentials('bad_password')
+            self.passkey_user.check_credentials("bad_password")
 
     def test_05_passkey_login_passkey_with_admin_password_succeed(self):
         # NOTE: Can fail if admin password changed
-        self.passkey_user.check_credentials('admin')
+        self.passkey_user.check_credentials("admin")
 
     def test_06_passkey_login_passkey_succeed(self):
         """[Bug #1319391]
         Test the correct behaviour of login with 'bad_login' / 'admin'"""
-        res = self.ru_obj.authenticate(self.db, 'bad_login', 'admin', {})
+        res = self.ru_obj.authenticate(self.db, "bad_login", "admin", {})
         self.assertFalse(res)
