@@ -83,7 +83,7 @@
         <field name="name">Sql_export_tree_view</field>
         <field name="model">sql.export</field>
         <field name="arch" type="xml">
-            <tree string="SQL Export" colors="blue:state == 'draft'">
+            <tree string="SQL Export" decoration-info="state=='draft'">
                 <field name="name" />
                 <field name="state" />
                 <button
