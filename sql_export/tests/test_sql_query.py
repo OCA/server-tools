@@ -6,10 +6,10 @@ import base64
 
 from odoo import fields
 from odoo.exceptions import UserError
-from odoo.tests.common import TransactionCase, post_install
+from odoo.tests.common import TransactionCase, tagged
 
 
-@post_install(True)
+@tagged("post_install", "-at_install")
 class TestExportSqlQuery(TransactionCase):
     def setUp(self):
         super(TestExportSqlQuery, self).setUp()

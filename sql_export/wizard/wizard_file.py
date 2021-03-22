@@ -2,11 +2,12 @@
 # @author: Florian da Costa
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
+import json
 from datetime import datetime
 
 from lxml import etree
 
-from odoo import api, fields, models, osv
+from odoo import api, fields, models
 from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 
@@ -37,11 +38,12 @@ class SqlFileWizard(models.TransientModel):
                 toupdate_fields = []
                 for field in sql_export.field_ids:
                     toupdate_fields.append(field.name)
-                    attrib = {"name": field.name}
-                    if field.required:
-                        attrib["required"] = "True"
+                    attrib = {"name": field.name, "required": "0", "readonly": "0"}
                     view_field = etree.SubElement(group, "field", attrib=attrib)
-                    osv.orm.setup_modifiers(view_field, self.fields_get(field.name))
+                    modifiers = json.loads(view_field.get("modifiers", "{}"))
+                    if field.required:
+                        modifiers["required"] = True
+                    view_field.set("modifiers", json.dumps(modifiers))
 
                 res["fields"].update(self.fields_get(toupdate_fields))
                 placeholder = eview.xpath(
