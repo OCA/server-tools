@@ -114,6 +114,8 @@ def fieldprint(old, new, field, text, reprs):
     fullrepr = "{:<12} / {:<24} / {:<30}".format(old["module"], old["model"], fieldrepr)
     if not text:
         text = "{} is now '{}' ('{}')".format(field, new[field], old[field])
+        if field in ("column1", "column2"):
+            text += " [%s]" % old["table"]
         if field == "relation":
             text += " [nothing to do]"
     reprs[module_map(old["module"])].append("{}: {}".format(fullrepr, text))
@@ -161,6 +163,14 @@ def report_generic(new, old, attrs, reprs):
                 else:
                     text = "not related anymore"
                 fieldprint(old, new, "", text, reprs)
+        elif attr == "table":
+            if old[attr] != new[attr]:
+                fieldprint(old, new, attr, "", reprs)
+            if old[attr] and new[attr]:
+                if old["column1"] != new["column1"]:
+                    fieldprint(old, new, "column1", "", reprs)
+                if old["column2"] != new["column2"]:
+                    fieldprint(old, new, "column2", "", reprs)
         elif old[attr] != new[attr]:
             fieldprint(old, new, attr, "", reprs)
 
