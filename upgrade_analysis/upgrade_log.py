@@ -124,6 +124,7 @@ def log_model(model, local_registry):
     model_registry = local_registry.setdefault(model._name, {})
     if model._inherits:
         model_registry["_inherits"] = {"_inherits": str(model._inherits)}
+    model_registry["_order"] = {"_order": model._order}
     for k, v in model._fields.items():
         properties = {
             "type": typemap.get(v.type, v.type),
