@@ -103,6 +103,7 @@ class UpgradeRecord(models.Model):
             "hasdefault",
             "table",
             "_inherits",
+            "_order",
         ]
 
         template = {x: False for x in keys}
