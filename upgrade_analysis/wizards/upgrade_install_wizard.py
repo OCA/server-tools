@@ -17,10 +17,6 @@ class UpgradeInstallWizard(models.TransientModel):
     _name = "upgrade.install.wizard"
     _description = "Upgrade Install Wizard"
 
-    name = fields.Char(
-        default=_description,
-        help="Workaround for https://github.com/OCA/odoorpc/issues/57",
-    )
     state = fields.Selection(
         [("draft", "Draft"), ("done", "Done")], readonly=True, default="draft"
     )
@@ -109,7 +105,6 @@ class UpgradeInstallWizard(models.TransientModel):
             "type": "ir.actions.act_window",
             "res_model": "upgrade.install.wizard",
             "view_mode": "form",
-            "view_type": "form",
             "res_id": self.id,
             "views": [(False, "form")],
             "target": "new",
