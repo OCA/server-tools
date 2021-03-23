@@ -14,14 +14,14 @@ import copy
 try:
     from odoo.addons.openupgrade_scripts import apriori
 except ImportError:
-    from dataclasses import dataclass, field
+    from dataclasses import dataclass, field as dc_field
 
     @dataclass
     class NullApriori:
-        renamed_modules: dict = field(default_factory=dict)
-        merged_modules: dict = field(default_factory=dict)
-        renamed_models: dict = field(default_factory=dict)
-        merged_models: dict = field(default_factory=dict)
+        renamed_modules: dict = dc_field(default_factory=dict)
+        merged_modules: dict = dc_field(default_factory=dict)
+        renamed_models: dict = dc_field(default_factory=dict)
+        merged_models: dict = dc_field(default_factory=dict)
 
     apriori = NullApriori()
 

@@ -54,7 +54,7 @@ class OdooPatch(object):
                 if hasattr(method, "_original_method"):
                     setattr(cls.target, method_name, method._original_method)
                 else:
-                    _logger.warn(
+                    _logger.warning(
                         "_original_method not found on method %s of class %s",
                         method_name,
                         cls.target,
