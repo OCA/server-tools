@@ -87,9 +87,19 @@ msgid "Basic backup configuration"
 msgstr "Configurazione di base del Backup"
 
 #. module: auto_backup
-#: sql_constraint:db.backup:0
+#: model:ir.model.constraint,message:auto_backup.constraint_db_backup_name_unique
 msgid "Cannot duplicate a configuration."
 msgstr "Impossibile duplicare una configurazione."
+
+#. module: auto_backup
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__changeset_change_ids
+msgid "Changeset Changes"
+msgstr ""
+
+#. module: auto_backup
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__changeset_ids
+msgid "Changesets"
+msgstr ""
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__backup_format
@@ -103,22 +113,32 @@ msgid "Choose the storage method for this backup."
 msgstr "Scegliere il tipo di archiviazione per questo metodo di backup. "
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:265
+#: code:addons/auto_backup/models/db_backup.py:0
 #, python-format
 msgid "Cleanup of old database backups failed."
 msgstr "Eliminazione dei vecchi backup di database non riuscita."
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:137
+#: code:addons/auto_backup/models/db_backup.py:0
 #, python-format
 msgid "Connection Test Failed!"
 msgstr "Test connessione Fallito!"
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:132
+#: code:addons/auto_backup/models/db_backup.py:0
 #, python-format
 msgid "Connection Test Succeeded!"
 msgstr "Test connessione avvenuto con successo!"
+
+#. module: auto_backup
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr ""
+
+#. module: auto_backup
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr ""
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__create_uid
@@ -136,14 +156,14 @@ msgid "Database Backup"
 msgstr ""
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:219
+#: code:addons/auto_backup/models/db_backup.py:0
 #: model:mail.message.subtype,description:auto_backup.mail_message_subtype_failure
 #, python-format
 msgid "Database backup failed."
 msgstr "Backup del Database non riuscito."
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:227
+#: code:addons/auto_backup/models/db_backup.py:0
 #: model:mail.message.subtype,description:auto_backup.mail_message_subtype_success
 #, python-format
 msgid "Database backup succeeded."
@@ -160,7 +180,7 @@ msgid "Display Name"
 msgstr "Nome da visualizzare"
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:123
+#: code:addons/auto_backup/models/db_backup.py:0
 #, python-format
 msgid ""
 "Do not save backups on your filestore, or you will backup your backups too!"
@@ -211,7 +231,7 @@ msgid "Help"
 msgstr "Aiuto"
 
 #. module: auto_backup
-#: sql_constraint:db.backup:0
+#: model:ir.model.constraint,message:auto_backup.constraint_db_backup_days_to_keep_positive
 msgid "I cannot remove backups from the future. Ask Doc for that."
 msgstr "Impossibile rimuovere backup dal futuro. Cercare nella Documentazione."
 
@@ -221,17 +241,14 @@ msgid "ID"
 msgstr "ID"
 
 #. module: auto_backup
-#: model:ir.model.fields,help:auto_backup.field_db_backup__message_unread
-msgid "If checked new messages require your attention."
-msgstr ""
-
-#. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__message_needaction
+#: model:ir.model.fields,help:auto_backup.field_db_backup__message_unread
 msgid "If checked, new messages require your attention."
 msgstr ""
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__message_has_error
+#: model:ir.model.fields,help:auto_backup.field_db_backup__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
 
@@ -256,7 +273,7 @@ msgid "Last Updated on"
 msgstr "Ultimo aggiornamento il"
 
 #. module: auto_backup
-#: selection:db.backup,method:0
+#: model:ir.model.fields.selection,name:auto_backup.selection__db_backup__method__local
 msgid "Local disk"
 msgstr "Disco locale"
 
@@ -292,7 +309,7 @@ msgstr ""
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__message_has_error_counter
-msgid "Number of error"
+msgid "Number of errors"
 msgstr ""
 
 #. module: auto_backup
@@ -325,7 +342,7 @@ msgid "Private key location"
 msgstr "Posizione chiave privata"
 
 #. module: auto_backup
-#: selection:db.backup,method:0
+#: model:ir.model.fields.selection,name:auto_backup.selection__db_backup__method__sftp
 msgid "Remote SFTP server"
 msgstr "Server SFTP remoto"
 
@@ -350,6 +367,11 @@ msgid "SFTP Settings"
 msgstr "Impostazioni SFTP"
 
 #. module: auto_backup
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: auto_backup
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "Search the action named 'Backup scheduler'."
 msgstr "Cerca l'azione denominata 'Pianificazione del backup'."
@@ -361,6 +383,11 @@ msgid ""
 msgstr ""
 "Impostare lo scheduler per attivare e compilare la frequenza con cui si "
 "desidera generare il backup."
+
+#. module: auto_backup
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__smart_search
+msgid "Smart Search"
+msgstr ""
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__name
@@ -421,6 +448,11 @@ msgstr ""
 "su server esterni."
 
 #. module: auto_backup
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr ""
+
+#. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__sftp_user
 msgid "Username in the SFTP Server"
 msgstr "Nome utente presso il Server SFTP"
@@ -446,7 +478,7 @@ msgid "john"
 msgstr "john"
 
 #. module: auto_backup
-#: selection:db.backup,backup_format:0
+#: model:ir.model.fields.selection,name:auto_backup.selection__db_backup__backup_format__dump
 msgid "pg_dump custom format (without filestore)"
 msgstr ""
 
@@ -456,6 +488,6 @@ msgid "sftp.example.com"
 msgstr "sftp.example.com"
 
 #. module: auto_backup
-#: selection:db.backup,backup_format:0
+#: model:ir.model.fields.selection,name:auto_backup.selection__db_backup__backup_format__zip
 msgid "zip (includes filestore)"
 msgstr ""
