@@ -430,7 +430,7 @@ class UpgradeAnalysis(models.Model):
                 raise ValidationError(
                     _(
                         "Unexpected root Element: %s in file: %s"
-                        % (tree.getroot(), xml_file)
+                        % (root_node.getroot(), xml_file)
                     )
                 )
             for node in root_node:
