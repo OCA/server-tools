@@ -110,7 +110,9 @@ def search(item, item_list, fields, get_all=None):
 
 
 def fieldprint(old, new, field, text, reprs):
-    fieldrepr = "{} ({})".format(old["field"], old["type"])
+    fieldrepr = "{}".format(old["field"])
+    if old["field"] not in ("_inherits", "_order"):
+        fieldrepr += " ({})".format(old["type"])
     fullrepr = "{:<12} / {:<24} / {:<30}".format(old["module"], old["model"], fieldrepr)
     if not text:
         text = "{} is now '{}' ('{}')".format(field, new[field], old[field])
@@ -244,6 +246,7 @@ def compare_sets(old_records, new_records):
             "isrelated",
             "required",
             "table",
+            "_order",
         ],
     )
 
@@ -260,6 +263,7 @@ def compare_sets(old_records, new_records):
             "isrelated",
             "required",
             "table",
+            "_order",
         ],
     )
 
@@ -276,6 +280,7 @@ def compare_sets(old_records, new_records):
             "isrelated",
             "required",
             "table",
+            "_order",
         ],
     )
 
@@ -289,6 +294,8 @@ def compare_sets(old_records, new_records):
         "attachment",
     ]
     for column in old_records:
+        if column["field"] == "_order":
+            continue
         # we do not care about removed non stored function fields
         if not column["stored"] and (column["isfunction"] or column["isrelated"]):
             continue
@@ -311,6 +318,8 @@ def compare_sets(old_records, new_records):
         ]
     )
     for column in new_records:
+        if column["field"] == "_order":
+            continue
         # we do not care about newly added non stored function fields
         if not column["stored"] and (column["isfunction"] or column["isrelated"]):
             continue
