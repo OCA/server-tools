@@ -7,10 +7,10 @@
 import os
 from contextlib import contextmanager
 from datetime import datetime, timedelta
+from unittest.mock import PropertyMock, patch
 
-import mock
-
-from odoo import exceptions, tools
+from odoo import tools
+from odoo.exceptions import UserError
 from odoo.tests import common
 
 try:
@@ -20,6 +20,7 @@ except ImportError:
 
 
 model = "odoo.addons.auto_backup.models.db_backup"
+class_name = "%s.DbBackup" % model
 
 
 class TestConnectionException(pysftp.ConnectionException):
@@ -36,9 +37,9 @@ class TestDbBackup(common.TransactionCase):
     def mock_assets(self):
         """ It provides mocked core assets """
         self.path_join_val = "/this/is/a/path"
-        with mock.patch("%s.db" % model) as db:
-            with mock.patch("%s.os" % model) as os:
-                with mock.patch("%s.shutil" % model) as shutil:
+        with patch("%s.db" % model) as db:
+            with patch("%s.os" % model) as os:
+                with patch("%s.shutil" % model) as shutil:
                     os.path.join.return_value = self.path_join_val
                     yield {
                         "db": db,
@@ -47,22 +48,16 @@ class TestDbBackup(common.TransactionCase):
                     }
 
     @contextmanager
-    def patch_filtered_sftp(self, record, mocks=None):
+    def patch_filtered_sftp(self, record):
         """ It patches filtered record and provides a mock """
-        if mocks is None:
-            mocks = ["sftp_connection"]
-        mocks = {m: mock.DEFAULT for m in mocks}
-        with mock.patch.object(record, "filtered") as filtered:
-            with mock.patch.object(record, "backup_log"):
-                with mock.patch.multiple(record, **mocks):
-                    filtered.side_effect = [], [record]
+        with patch("%s.filtered" % class_name) as filtered:
+            filtered.side_effect = [], [record]
+            with patch("%s.backup_log" % class_name):
+                with patch("%s.sftp_connection" % class_name):
                     yield filtered
 
     def new_record(self, method="sftp"):
-        vals = {
-            "name": u"Têst backup",
-            "method": method,
-        }
+        vals = {"name": u"Têst backup", "method": method, "days_to_keep": 1}
         if method == "sftp":
             vals.update(
                 {
@@ -93,7 +88,7 @@ class TestDbBackup(common.TransactionCase):
     def test_check_folder(self):
         """ It should not allow recursive backups """
         rec_id = self.new_record("local")
-        with self.assertRaises(exceptions.ValidationError):
+        with self.assertRaises(UserError):
             rec_id.write(
                 {
                     "folder": "%s/another/path"
@@ -101,22 +96,24 @@ class TestDbBackup(common.TransactionCase):
                 }
             )
 
-    @mock.patch("%s._" % model)
+    @patch("%s._" % model)
     def test_action_sftp_test_connection_success(self, _):
         """ It should raise connection succeeded warning """
-        rec_id = self.new_record()
-        with mock.patch.object(rec_id, "sftp_connection"):
-            with self.assertRaises(exceptions.Warning):
+        with patch("%s.sftp_connection" % class_name, new_callable=PropertyMock):
+            rec_id = self.new_record()
+            with self.assertRaises(UserError):
                 rec_id.action_sftp_test_connection()
-            _.assert_called_once_with("Connection Test Succeeded!")
+        _.assert_called_once_with("Connection Test Succeeded!")
 
-    @mock.patch("%s._" % model)
+    @patch("%s._" % model)
     def test_action_sftp_test_connection_fail(self, _):
         """ It should raise connection fail warning """
-        rec_id = self.new_record()
-        with mock.patch.object(rec_id, "sftp_connection") as conn:
-            conn().__enter__.side_effect = TestConnectionException
-            with self.assertRaises(exceptions.Warning):
+        with patch(
+            "%s.sftp_connection" % class_name, new_callable=PropertyMock
+        ) as conn:
+            rec_id = self.new_record()
+            conn().side_effect = TestConnectionException
+            with self.assertRaises(UserError):
                 rec_id.action_sftp_test_connection()
             _.assert_called_once_with("Connection Test Failed!")
 
@@ -131,10 +128,11 @@ class TestDbBackup(common.TransactionCase):
     def test_action_backup_local_cleanup(self):
         """ Backup local database and cleanup old databases """
         rec_id = self.new_record("local")
-        rec_id.days_to_keep = 1
         old_date = datetime.now() - timedelta(days=3)
         filename = rec_id.filename(old_date)
-        rec_id.action_backup()
+        with patch("%s.datetime" % model) as mock_date:
+            mock_date.now.return_value = old_date
+            rec_id.action_backup()
         generated_backup = [f for f in os.listdir(rec_id.folder) if f >= filename]
         self.assertEqual(2, len(generated_backup))
 
@@ -148,45 +146,48 @@ class TestDbBackup(common.TransactionCase):
         rec_id = self.new_record()
         with self.mock_assets():
             with self.patch_filtered_sftp(rec_id):
-                conn = rec_id.sftp_connection().__enter__()
-                rec_id.action_backup()
-                conn.makedirs.assert_called_once_with(rec_id.folder)
+                with patch("%s.cleanup" % class_name, new_callable=PropertyMock):
+                    conn = rec_id.sftp_connection().__enter__()
+                    rec_id.action_backup()
+                    conn.makedirs.assert_called_once_with(rec_id.folder)
 
     def test_action_backup_sftp_mkdirs_conn_exception(self):
         """ It should guard from ConnectionException on remote.mkdirs """
         rec_id = self.new_record()
         with self.mock_assets():
             with self.patch_filtered_sftp(rec_id):
-                conn = rec_id.sftp_connection().__enter__()
-                conn.makedirs.side_effect = TestConnectionException
-                rec_id.action_backup()
-                # No error was raised, test pass
-                self.assertTrue(True)
+                with patch("%s.cleanup" % class_name, new_callable=PropertyMock):
+                    conn = rec_id.sftp_connection().__enter__()
+                    conn.makedirs.side_effect = TestConnectionException
+                    rec_id.action_backup()
+                    # No error was raised, test pass
+                    self.assertTrue(True)
 
     def test_action_backup_sftp_remote_open(self):
         """ It should open remote file w/ proper args """
         rec_id = self.new_record()
         with self.mock_assets() as assets:
             with self.patch_filtered_sftp(rec_id):
-                conn = rec_id.sftp_connection().__enter__()
-                rec_id.action_backup()
-                conn.open.assert_called_once_with(assets["os"].path.join(), "wb")
+                with patch("%s.cleanup" % class_name, new_callable=PropertyMock):
+                    conn = rec_id.sftp_connection().__enter__()
+                    rec_id.action_backup()
+                    conn.open.assert_called_once_with(assets["os"].path.join(), "wb")
 
     def test_action_backup_all_search(self):
         """ It should search all records """
         rec_id = self.new_record()
-        with mock.patch.object(rec_id, "search"):
+        with patch("%s.search" % class_name, new_callable=PropertyMock):
             rec_id.action_backup_all()
             rec_id.search.assert_called_once_with([])
 
     def test_action_backup_all_return(self):
         """ It should return result of backup operation """
         rec_id = self.new_record()
-        with mock.patch.object(rec_id, "search"):
+        with patch("%s.search" % class_name, new_callable=PropertyMock):
             res = rec_id.action_backup_all()
             self.assertEqual(rec_id.search().action_backup(), res)
 
-    @mock.patch("%s.pysftp" % model)
+    @patch("%s.pysftp" % model)
     def test_sftp_connection_init_passwd(self, pysftp):
         """ It should initiate SFTP connection w/ proper args and pass """
         rec_id = self.new_record()
@@ -198,7 +199,7 @@ class TestDbBackup(common.TransactionCase):
             password=rec_id.sftp_password,
         )
 
-    @mock.patch("%s.pysftp" % model)
+    @patch("%s.pysftp" % model)
     def test_sftp_connection_init_key(self, pysftp):
         """ It should initiate SFTP connection w/ proper args and key """
         rec_id = self.new_record()
@@ -212,7 +213,7 @@ class TestDbBackup(common.TransactionCase):
             private_key_pass=rec_id.sftp_password,
         )
 
-    @mock.patch("%s.pysftp" % model)
+    @patch("%s.pysftp" % model)
     def test_sftp_connection_return(self, pysftp):
         """ It should return new sftp connection """
         rec_id = self.new_record()
