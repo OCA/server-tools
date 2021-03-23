@@ -2,8 +2,11 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 import logging
+import re
 import smtplib
+import sys
 import threading
+from email.utils import formataddr, parseaddr
 
 from odoo import api, models
 from odoo.tools import ustr
@@ -12,6 +15,7 @@ from odoo.tools.translate import _
 from odoo.addons.base.models.ir_mail_server import (
     MailDeliveryException,
     extract_rfc2822_addresses,
+    is_ascii,
 )
 
 _logger = logging.getLogger(__name__)
@@ -21,10 +25,25 @@ _test_logger = logging.getLogger("odoo.tests")
 class IrMailServer(models.Model):
     _inherit = "ir.mail_server"
 
-    NO_VALID_RECIPIENT = (
-        "At least one valid recipient address should be "
-        "specified for outgoing emails (To/Cc/Bcc)"
-    )
+    @api.model
+    def switch_smtp_from(self, smtp, message):
+        """Methods that switch the smtp email from to use where relaying is
+        disallowed.
+
+        This method alter the given `message` object and return the smtp email
+        to use.
+
+        :param smtp: established SMTP session
+        :param message: the email.message.Message to send.
+        """
+        # exact name and address
+        (oldname, oldemail) = parseaddr(message["From"])
+        # use original name with new address
+        newfrom = formataddr((oldname, smtp.user))
+        # need to use replace_header instead '=' to prevent
+        # double field
+        message.replace_header("From", newfrom)
+        return smtp.user
 
     @api.model
     def send_email(
@@ -53,17 +72,15 @@ class IrMailServer(models.Model):
             smtp_from
         ), "The Return-Path or From header is required for any outbound email"
 
-        # The email's "Envelope From" (Return-Path), and all recipient
-        # addresses must only contain ASCII characters.
+        # The email's "Envelope From" (Return-Path), and all recipient addresses
+        # must only contain ASCII characters.
         from_rfc2822 = extract_rfc2822_addresses(smtp_from)
         assert from_rfc2822, (
-            "Malformed 'Return-Path' or 'From' address: "
-            "%r - "
-            "It should contain one valid plain ASCII "
-            "email"
+            "Malformed 'Return-Path' or 'From' address: %r - "
+            "It should contain one valid plain ASCII email"
         ) % smtp_from
-        # use last extracted email, to support rarities like 'Support@MyComp
-        # <support@mycompany.com>'
+        # use last extracted email, to support rarities like
+        # 'Support@MyComp <support@mycompany.com>'
         smtp_from = from_rfc2822[-1]
         email_to = message["To"]
         email_cc = message["Cc"]
@@ -96,28 +113,37 @@ class IrMailServer(models.Model):
 
         try:
             message_id = message["Message-Id"]
-
-            # START OF CODE ADDED
-            smtp = self.connect(
+            smtp = smtp_session
+            smtp = smtp or self.connect(
                 smtp_server,
                 smtp_port,
                 smtp_user,
                 smtp_password,
-                smtp_encryption or False,
+                smtp_encryption,
                 smtp_debug,
+                mail_server_id=mail_server_id,
             )
 
-            from email.utils import formataddr, parseaddr
-
-            # exact name and address
-            (oldname, oldemail) = parseaddr(message["From"])
-            # use original name with new address
-            newfrom = formataddr((oldname, smtp.user))
-            # need to use replace_header instead '=' to prevent
-            # double field
-            message.replace_header("From", newfrom)
-            smtp.sendmail(smtp.user, smtp_to_list, message.as_string())
+            # START OF CODE ADDED
+            smtp_from = self.switch_smtp_from(smtp, message)
             # END OF CODE ADDED
+
+            if sys.version_info < (3, 7, 4):
+                # header folding code is buggy and adds redundant carriage
+                # returns, it got fixed in 3.7.4 thanks to bpo-34424
+                message_str = message.as_string()
+                message_str = re.sub("\r+(?!\n)", "", message_str)
+
+                mail_options = []
+                if any(not is_ascii(addr) for addr in smtp_to_list + [smtp_from]):
+                    # non ascii email found, require SMTPUTF8 extension,
+                    # the relay may reject it
+                    mail_options.append("SMTPUTF8")
+                smtp.sendmail(
+                    smtp_from, smtp_to_list, message_str, mail_options=mail_options
+                )
+            else:
+                smtp.send_message(message, smtp_from, smtp_to_list)
 
             # do not quit() a pre-established smtp_session
             if not smtp_session:
@@ -126,7 +152,7 @@ class IrMailServer(models.Model):
             raise
         except Exception as e:
             params = (ustr(smtp_server), e.__class__.__name__, ustr(e))
-            msg = _("Mail delivery failed via SMTP server '%s'.\n%s: %s") % params
+            msg = _("Mail delivery failed via SMTP server '%s'.\n%s: %s", *params)
             _logger.info(msg)
             raise MailDeliveryException(_("Mail Delivery Failed"), msg)
         return message_id
