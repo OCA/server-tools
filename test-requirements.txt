@@ -1,0 +1,2 @@
+odoorpc @ git+https://github.com/OCA/odoorpc.git@master
+openupgradelib @ git+https://github.com/OCA/openupgradelib.git@master
