@@ -2,4 +2,6 @@
 * Holger Brunn <hbrunn@therp.nl>
 * Holden Rehg <holdenrehg@gmail.com>
 * Eric Lembregts <eric@lembregts.eu>
+* Pieter Paulussen <pieter.paulussen@me.com>
 * Alan Ramos <alan.ramos@jarsa.com.mx>
+* Stefan Rijnhart <stefan@opener.amsterdam>
