@@ -128,6 +128,17 @@
                         </group>
                         <group colspan="1">
                             <field name="model_id" readonly="1" />
+                            <field
+                                name="model_name"
+                                attrs="{'invisible': [('model_id', '!=', False)]}"
+                                readonly="1"
+                            />
+                            />
+                            <field
+                                name="model_model"
+                                attrs="{'invisible': [('model_id', '!=', False)]}"
+                                readonly="1"
+                            />
                             <field name="res_id" readonly="1" />
                             <field name="name" readonly="1" />
                         </group>
@@ -141,6 +152,11 @@
                             <form string="Log - Field updated">
                                 <group>
                                     <field name="field_id" readonly="1" />
+                                    <field
+                                        name="field_name"
+                                        attrs="{'invisible': [('field_id', '!=', False)]}"
+                                        readonly="1"
+                                    />
                                 </group>
                                 <group string="Values" col="4">
                                     <field name="old_value" readonly="1" />
