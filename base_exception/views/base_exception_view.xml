@@ -49,6 +49,7 @@
                                 widget="domain"
                                 options="{'model': 'model'}"
                             />
+                            <field name="is_blocking" />
                         </group>
                     </group>
                     <notebook>
