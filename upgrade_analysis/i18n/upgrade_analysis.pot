@@ -302,7 +302,6 @@ msgstr ""
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_attribute__name
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_comparison_config__name
-#: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_install_wizard__name
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_record__name
 msgid "Name"
 msgstr ""
@@ -475,11 +474,6 @@ msgstr ""
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_comparison_config__version
 msgid "Version"
-msgstr ""
-
-#. module: upgrade_analysis
-#: model:ir.model.fields,help:upgrade_analysis.field_upgrade_install_wizard__name
-msgid "Workaround for https://github.com/OCA/odoorpc/issues/57"
 msgstr ""
 
 #. module: upgrade_analysis
