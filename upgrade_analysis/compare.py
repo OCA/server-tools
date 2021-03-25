@@ -83,16 +83,22 @@ def compare_records(dict_old, dict_new, fields):
     return True
 
 
-def search(item, item_list, fields):
+def search(item, item_list, fields, get_all=None):
     """
     Find a match of a dictionary in a list of similar dictionaries
     with respect to the keys in the 'fields' arguments.
     Return the item if found or None.
     """
+    all_found = []
     for other in item_list:
         if not compare_records(item, other, fields):
             continue
-        return other
+        if not get_all:
+            return other
+        if other["module"] != other["prefix"]:
+            all_found.append(other)
+    if get_all:
+        return all_found
     # search for renamed fields
     if "field" in fields:
         for other in item_list:
@@ -104,10 +110,14 @@ def search(item, item_list, fields):
 
 
 def fieldprint(old, new, field, text, reprs):
-    fieldrepr = "{} ({})".format(old["field"], old["type"])
+    fieldrepr = "{}".format(old["field"])
+    if old["field"] not in ("_inherits", "_order"):
+        fieldrepr += " ({})".format(old["type"])
     fullrepr = "{:<12} / {:<24} / {:<30}".format(old["module"], old["model"], fieldrepr)
     if not text:
         text = "{} is now '{}' ('{}')".format(field, new[field], old[field])
+        if field in ("column1", "column2"):
+            text += " [%s]" % old["table"]
         if field == "relation":
             text += " [nothing to do]"
     reprs[module_map(old["module"])].append("{}: {}".format(fullrepr, text))
@@ -155,6 +165,14 @@ def report_generic(new, old, attrs, reprs):
                 else:
                     text = "not related anymore"
                 fieldprint(old, new, "", text, reprs)
+        elif attr == "table":
+            if old[attr] != new[attr]:
+                fieldprint(old, new, attr, "", reprs)
+            if old[attr] and new[attr]:
+                if old["column1"] != new["column1"]:
+                    fieldprint(old, new, "column1", "", reprs)
+                if old["column2"] != new["column2"]:
+                    fieldprint(old, new, "column2", "", reprs)
         elif old[attr] != new[attr]:
             fieldprint(old, new, attr, "", reprs)
 
@@ -222,12 +240,13 @@ def compare_sets(old_records, new_records):
             "relation",
             "type",
             "selection_keys",
-            "inherits",
+            "_inherits",
             "stored",
             "isfunction",
             "isrelated",
             "required",
             "table",
+            "_order",
         ],
     )
 
@@ -238,28 +257,30 @@ def compare_sets(old_records, new_records):
             "module",
             "relation",
             "selection_keys",
-            "inherits",
+            "_inherits",
             "stored",
             "isfunction",
             "isrelated",
             "required",
             "table",
+            "_order",
         ],
     )
 
     # other module, same operation, other type
     matched_other_type = match(
-        ["mode", "model", "field"],
+        ["module", "mode", "model", "field"],
         [
             "relation",
             "type",
             "selection_keys",
-            "inherits",
+            "_inherits",
             "stored",
             "isfunction",
             "isrelated",
             "required",
             "table",
+            "_order",
         ],
     )
 
@@ -268,11 +289,13 @@ def compare_sets(old_records, new_records):
         "required",
         "selection_keys",
         "req_default",
-        "inherits",
+        "_inherits",
         "mode",
         "attachment",
     ]
     for column in old_records:
+        if column["field"] == "_order":
+            continue
         # we do not care about removed non stored function fields
         if not column["stored"] and (column["isfunction"] or column["isrelated"]):
             continue
@@ -295,6 +318,8 @@ def compare_sets(old_records, new_records):
         ]
     )
     for column in new_records:
+        if column["field"] == "_order":
+            continue
         # we do not care about newly added non stored function fields
         if not column["stored"] and (column["isfunction"] or column["isrelated"]):
             continue
@@ -330,6 +355,20 @@ def compare_sets(old_records, new_records):
 def compare_xml_sets(old_records, new_records):
     reprs = collections.defaultdict(list)
 
+    def match_updates(match_fields):
+        old_updated, new_updated = {}, {}
+        for column in copy.copy(old_records):
+            found_all = search(column, old_records, match_fields, True)
+            for found in found_all:
+                old_records.remove(found)
+        for column in copy.copy(new_records):
+            found_all = search(column, new_records, match_fields, True)
+            for found in found_all:
+                new_records.remove(found)
+        matched_records = list(old_updated.values()) + list(new_updated.values())
+        matched_records = [y for x in matched_records for y in x]
+        return matched_records
+
     def match(match_fields, match_type="direct"):
         matched_records = []
         for column in copy.copy(old_records):
@@ -362,6 +401,9 @@ def compare_xml_sets(old_records, new_records):
     # direct match
     modified_records = match(["module", "model", "name"])
 
+    # updated records (will be excluded)
+    match_updates(["model", "name"])
+
     # other module, same full xmlid
     moved_records = match(["model", "name"], "moved")
 
@@ -386,13 +428,13 @@ def compare_xml_sets(old_records, new_records):
         if "old" in entry:
             content = "DEL %(model)s: %(name)s" % entry
             if "moved" in entry:
-                content += " [potentially moved to %(moved)s module]" % entry
+                content += " [moved to %(moved)s module]" % entry
             elif "renamed" in entry:
                 content += " [renamed to %(renamed)s module]" % entry
         elif "new" in entry:
             content = "NEW %(model)s: %(name)s" % entry
             if "moved" in entry:
-                content += " [potentially moved from %(moved)s module]" % entry
+                content += " [moved from %(moved)s module]" % entry
             elif "renamed" in entry:
                 content += " [renamed from %(renamed)s module]" % entry
         if "old" not in entry and "new" not in entry:
