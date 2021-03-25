@@ -5,7 +5,7 @@
     "name": "Upgrade Analysis",
     "summary": "performs a difference analysis between modules"
     " installed on two different Odoo instances",
-    "version": "14.0.1.0.0",
+    "version": "14.0.2.0.0",
     "category": "Migration",
     "author": "Therp BV, Opener B.V., GRAP, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/server-tools",
