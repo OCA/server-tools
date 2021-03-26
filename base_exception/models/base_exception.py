@@ -226,7 +226,7 @@ class BaseExceptionModel(models.AbstractModel):
                 rec.exceptions_summary = False
 
     def _popup_exceptions(self):
-        action = self._get_popup_action().read()[0]
+        action = self._get_popup_action().sudo().read()[0]
         action.update(
             {
                 "context": {
