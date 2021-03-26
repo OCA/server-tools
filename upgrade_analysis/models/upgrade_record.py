@@ -1,6 +1,6 @@
 # Copyright 2011-2015 Therp BV <https://therp.nl>
 # Copyright 2016-2020 Opener B.V. <https://opener.am>
-# Copyright 2019 Eficent <https://eficent.com>
+# Copyright 2019 ForgeFlow <https://forgeflow.com>
 # Copyright 2020 GRAP <https://grap.coop>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
@@ -159,7 +159,7 @@ class UpgradeRecord(models.Model):
         # The order of the keys are important.
         # Load files in the same order as in
         # module/loading.py:load_module_graph
-        files = []
+        paths = []
         for key in ["init_xml", "update_xml", "data"]:
             if not manifest.get(key):
                 continue
@@ -167,6 +167,5 @@ class UpgradeRecord(models.Model):
                 if not xml_file.lower().endswith(".xml"):
                     continue
                 parts = xml_file.split("/")
-                with open(os.path.join(addon_dir, *parts), "r") as xml_handle:
-                    files.append(xml_handle.read())
-        return files
+                paths.append(os.path.join(addon_dir, *parts))
+        return paths
