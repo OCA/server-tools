@@ -1,6 +1,6 @@
 # Copyright 2011-2015 Therp BV <https://therp.nl>
 # Copyright 2016-2020 Opener B.V. <https://opener.am>
-# Copyright 2019 Eficent <https://eficent.com>
+# Copyright 2019 ForgeFlow <https://forgeflow.com>
 # Copyright 2020 GRAP <https://grap.coop>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 # flake8: noqa: C901
@@ -19,9 +19,10 @@ from odoo.tools.convert import nodeattr2bool
 from odoo.tools.translate import _
 
 try:
-    from odoo.addons.openupgrade_scripts.apriori import renamed_modules
+    from odoo.addons.openupgrade_scripts.apriori import merged_modules, renamed_modules
 except ImportError:
     renamed_modules = {}
+    merged_modules = {}
 
 from .. import compare
 
@@ -73,7 +74,7 @@ class UpgradeAnalysis(models.Model):
     def _get_remote_model(self, connection, model):
         self.ensure_one()
         if model == "record":
-            if float(self.config_id.version) < 14:
+            if float(self.config_id.version) < 14.0:
                 return connection.env["openupgrade.record"]
             else:
                 return connection.env["upgrade.record"]
@@ -407,30 +408,31 @@ class UpgradeAnalysis(models.Model):
             target_dict[xml_id] = record
 
     @classmethod
-    def _parse_files(self, xml_files, module_name):
+    def _parse_paths(self, xml_paths, module_name):
         records_update = {}
         records_noupdate = {}
         parser = etree.XMLParser(
             remove_blank_text=True,
             strip_cdata=False,
         )
-        for xml_file in xml_files:
+        for xml_path in xml_paths:
             try:
                 # This is for a final correct pretty print
                 # Ref.: https://stackoverflow.com/a/7904066
                 # Also don't strip CDATA tags as needed for HTML content
-                root_node = etree.fromstring(xml_file.encode("utf-8"), parser=parser)
+                tree = etree.parse(xml_path, parser=parser)
             except etree.XMLSyntaxError:
                 continue
             # Support xml files with root Element either odoo or openerp
             # Condition: each xml file should have only one root element
             # {<odoo>, <openerp> or —rarely— <data>};
+            root_node = tree.getroot()
             root_node_noupdate = nodeattr2bool(root_node, "noupdate", False)
             if root_node.tag not in ("openerp", "odoo", "data"):
                 raise ValidationError(
                     _(
                         "Unexpected root Element: %s in file: %s"
-                        % (root_node.getroot(), xml_file)
+                        % (tree.getroot(), xml_path)
                     )
                 )
             for node in root_node:
@@ -460,15 +462,17 @@ class UpgradeAnalysis(models.Model):
         local_record_obj = self.env["upgrade.record"]
         local_modules = local_record_obj.list_modules()
         for remote_module in remote_record_obj.list_modules():
-            local_module = renamed_modules.get(remote_module, remote_module)
+            local_module = renamed_modules.get(
+                remote_module, merged_modules.get(remote_module, remote_module)
+            )
             if local_module not in local_modules:
                 continue
-            remote_files = remote_record_obj.get_xml_records(remote_module)
-            local_files = local_record_obj.get_xml_records(local_module)
-            remote_update, remote_noupdate = self._parse_files(
-                remote_files, remote_module
+            remote_paths = remote_record_obj.get_xml_records(remote_module)
+            local_paths = local_record_obj.get_xml_records(local_module)
+            remote_update, remote_noupdate = self._parse_paths(
+                remote_paths, remote_module
             )
-            local_update, local_noupdate = self._parse_files(local_files, local_module)
+            local_update, local_noupdate = self._parse_paths(local_paths, local_module)
             diff = self._get_xml_diff(
                 remote_update, remote_noupdate, local_update, local_noupdate
             )
