@@ -25,6 +25,9 @@ class GenerateWizard(models.TransientModel):
 
         TODO: update module list and versions, then update all modules?"""
 
+        # Truncate the records table
+        self.env.cr.execute("TRUNCATE upgrade_attribute, upgrade_record;")
+
         # Check of all the modules are correctly installed
         modules = self.env["ir.module.module"].search(
             [("state", "in", ["to install", "to upgrade"])]
