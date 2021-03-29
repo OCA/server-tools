@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     "name": "Upgrade Analysis",
-    "summary": "performs a difference analysis between modules"
+    "summary": "Performs a difference analysis between modules"
     " installed on two different Odoo instances",
     "version": "14.0.2.0.1",
     "category": "Migration",
@@ -19,6 +19,7 @@
         "wizards/view_upgrade_install_wizard.xml",
     ],
     "installable": True,
+    "depends": ["base"],
     "external_dependencies": {
         "python": ["dataclasses", "odoorpc", "openupgradelib"],
     },
