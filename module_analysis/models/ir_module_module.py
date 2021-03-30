@@ -86,15 +86,13 @@ class IrModuleModule(models.Model):
     def update_list(self):
         res = super().update_list()
         if self.env.context.get('analyse_installed_modules', False):
-            self.search([('state', '=', 'installed')]).button_analyse_code()
+            self.search([('state', '=', 'installed')])._analyse_code()
         return res
 
     @api.multi
     def write(self, vals):
         res = super().write(vals)
-        if vals.get('state', False) == 'installed':
-            self.button_analyse_code()
-        elif vals.get('state', False) == 'uninstalled'\
+        if vals.get('state', False) == 'uninstalled'\
                 and 'module_analysis' not in [x.name for x in self]:
             self.write(self._get_clean_analyse_values())
         return res
@@ -102,6 +100,15 @@ class IrModuleModule(models.Model):
     # Public Section
     @api.multi
     def button_analyse_code(self):
+        self._analyse_code()
+
+    @api.model
+    def cron_analyse_code(self):
+        self.search([('state', '=', 'installed')])._analyse_code()
+
+    # Custom Section
+    @api.multi
+    def _analyse_code(self):
         IrModuleAuthor = self.env['ir.module.author']
         IrModuleTypeRule = self.env['ir.module.type.rule']
         rules = IrModuleTypeRule.search([])
@@ -158,7 +165,6 @@ class IrModuleModule(models.Model):
                     values[v['field']] = v['value']
             module.write(values)
 
-    # Custom Section
     @api.model
     def _get_files_to_analyse(
             self, path, file_extensions, exclude_directories, exclude_files):
