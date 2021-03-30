@@ -11,7 +11,7 @@
     "website": "https://github.com/OCA/server-tools",
     "version": "14.0.1.0.0",
     "license": "AGPL-3",
-    "depends": ["base"],
+    "depends": ["base", "base_automation"],
     "data": [
         "security/ir.model.access.csv",
         "views/menu.xml",

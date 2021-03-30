@@ -5,7 +5,7 @@
 from odoo.tests.common import TransactionCase, tagged
 
 
-@tagged("post_install")
+@tagged("post_install", "-at_install")
 class TestModule(TransactionCase):
     def setUp(self):
         super().setUp()
