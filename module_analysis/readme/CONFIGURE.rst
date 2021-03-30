@@ -14,7 +14,7 @@ developped for exemple,
     .. image:: ../static/description/add_module_type_rules.png
 
 
-to update the data, you have to :
+to update the data manually, you have to :
 
 * Go to 'Apps' / 'Update Apps List'
 
@@ -23,6 +23,12 @@ to update the data, you have to :
     .. image:: ../static/description/base_module_update.png
 
 This will update analysis of your installed modules.
+
+to update the data automatically, you have to :
+
+* Go to 'Settings' / 'Technical' / 'Scheduled Actions'
+
+* Configure the action 'Update Module Analysis'. (By default, the analysis will be done nightly)
 
 
 Adding Extra data
