@@ -42,6 +42,9 @@ class ExceptionRule(models.Model):
         help="Python code executed to check if the exception apply or "
         "not. Use failed = True to block the exception",
     )
+    is_blocking = fields.Boolean(
+        string="Is blocking", help="When checked the exception can not be ignored",
+    )
 
     @api.constrains("exception_type", "domain", "code")
     def check_exception_type_consistency(self):
@@ -207,6 +210,13 @@ class BaseExceptionModel(models.AbstractModel):
     ignore_exception = fields.Boolean("Ignore Exceptions", copy=False)
 
     def action_ignore_exceptions(self):
+        if any(self.exception_ids.mapped("is_blocking")):
+            raise UserError(
+                _(
+                    "The exceptions can not be ignored, because "
+                    "some of them are blocking."
+                )
+            )
         self.write({"ignore_exception": True})
         return True
 
@@ -224,8 +234,17 @@ class BaseExceptionModel(models.AbstractModel):
             if rec.exception_ids and not rec.ignore_exception:
                 rec.exceptions_summary = "<ul>%s</ul>" % "".join(
                     [
-                        "<li>%s: <i>%s</i></li>"
-                        % tuple(map(html.escape, (e.name, e.description)))
+                        "<li>%s: <i>%s</i> <b>%s<b></li>"
+                        % tuple(
+                            map(
+                                html.escape,
+                                (
+                                    e.name,
+                                    e.description,
+                                    _("(Blocking exception)") if e.is_blocking else "",
+                                ),
+                            )
+                        )
                         for e in rec.exception_ids
                     ]
                 )
