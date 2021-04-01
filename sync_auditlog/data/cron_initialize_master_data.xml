@@ -1,0 +1,13 @@
+<odoo>
+
+    <record id="cron_initialize_master_data" model="ir.cron">
+        <field name="name">Sync Auditlog : Initialize Master Data</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False"/>
+        <field name="model_id" ref="auditlog.model_auditlog_log"/>
+        <field name="code">model._cron_initialize_master_data()</field>
+        <field name="state">code</field>
+    </record>
+</odoo>

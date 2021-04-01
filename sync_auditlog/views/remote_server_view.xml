@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="view_auditlog_remote_server_form">
+        <field name="name">auditlog.remote.server.form</field>
+        <field name="model">auditlog.remote.server</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="url" />
+                        <field name="dbname" />
+                        <field name="user" />
+                        <field name="password" password="True"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="view_auditlog_remote_server" model="ir.ui.view">
+        <field name="name">auditlog.remote.server.tree</field>
+        <field name="model">auditlog.remote.server</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="url" />
+                <field name="dbname" />
+                <field name="user" />
+                <field name="password" password="True"/>
+            </tree>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_auditlog_remote_server_tree">
+        <field name="name">Remote Server</field>
+        <field name="res_model">auditlog.remote.server</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+    </record>
+    <menuitem
+        id="menu_action_auditlog_remote_server_tree"
+        parent="auditlog.menu_audit"
+        action="action_auditlog_remote_server_tree"
+    />
+
+</odoo>
