@@ -3,3 +3,4 @@ dataclasses
 odoorpc
 openupgradelib
 raven
+unidecode
