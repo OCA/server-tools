@@ -279,3 +279,8 @@ class SQLRequestMixin(models.AbstractModel):
         """
         self.ensure_one()
         return False
+
+    def button_preview_sql_expression(self):
+        self.button_validate_sql_expression()
+        res = self._execute_sql_request()
+        raise UserError("\n".join(map(lambda x: str(x), res[:100])))
