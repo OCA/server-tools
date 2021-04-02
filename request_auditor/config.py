@@ -1,8 +1,7 @@
 import logging
 from logging.config import DictConfigurator
 
-import openerp
-import openerp.tools.config as openerp_config
+import odoo.tools.config as odoo_config
 
 MAX_VALUE_SIZE = 10000  # maximum size of a value in a method param
 DEFAULT_FILTER_METHODS = "call,call_kw,call_button"
@@ -10,26 +9,22 @@ DEFAULT_FILTER_METHODS = "call,call_kw,call_button"
 
 def _convert_datatypes(cfg):
     new_cfg = dict(cfg)
-    for key, value in new_cfg.iteritems():
-        if isinstance(value, basestring) and value.isdigit():
+    for key, value in new_cfg.items():
+        if isinstance(value, str) and value.isdigit():
             new_cfg[key] = int(value)
     return new_cfg
 
 
 def logger():
-    handler_cfg = openerp.tools.config.misc.get("audit_log")
+    handler_cfg = odoo_config.misc.get("audit_log")
     if handler_cfg:
-        cfg = {}
+        cfg = {"version": 1}
         handler_cfg = _convert_datatypes(handler_cfg)
-
+        formatter_cfg = None
         if "formatter_class" in handler_cfg:
-            formatter_cfg = {"()": handler_cfg["formatter_class"]}
-            del handler_cfg["formatter_class"]
-        elif "format" in handler_cfg:
-            formatter_cfg = {"format": handler_cfg["format"]}
-            del handler_cfg["format"]
-        else:
-            formatter_cfg = None
+            formatter_cfg = {"()": handler_cfg.pop("formatter_class")}
+        if "format" in handler_cfg:
+            formatter_cfg = {"format": handler_cfg.pop("format")}
 
         if formatter_cfg:
             formatter = DictConfigurator({}).configure_formatter(formatter_cfg)
@@ -40,14 +35,14 @@ def logger():
         audit_logger.propagate = False
         audit_logger.addHandler(audit_handler)
         return audit_logger
-    elif not openerp_config["stop_after_init"]:
-        test_mode = openerp_config["test_enable"] or openerp_config["test_file"]
+    elif not odoo_config["stop_after_init"]:
+        test_mode = odoo_config["test_enable"] or odoo_config["test_file"]
         log_level = logging.INFO if test_mode else logging.WARNING
         logging.log(log_level, "Audit Log Handler not configured, not logging")
 
 
 def filter_methods():
-    methods = openerp.tools.config.get_misc(
+    methods = odoo_config.get_misc(
         "audit_log", "filter_methods", DEFAULT_FILTER_METHODS
     )
     return methods.split(",")
