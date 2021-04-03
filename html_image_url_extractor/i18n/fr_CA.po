@@ -1,0 +1,37 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * html_image_url_extractor
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-12-03 04:11+0000\n"
+"PO-Revision-Date: 2016-12-03 04:11+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"Language-Team: French (Canada) (https://www.transifex.com/oca/teams/23907/"
+"fr_CA/)\n"
+"Language: fr_CA\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: html_image_url_extractor
+#: model:ir.model,name:html_image_url_extractor.model_ir_fields_converter
+msgid "Fields Converter"
+msgstr ""
+
+#~ msgid "Created by"
+#~ msgstr "Créé par"
+
+#~ msgid "Created on"
+#~ msgstr "Créé le"
+
+#~ msgid "Last Updated by"
+#~ msgstr "Dernière mise à jour par"
+
+#~ msgid "Last Updated on"
+#~ msgstr "Dernière mise à jour le"
