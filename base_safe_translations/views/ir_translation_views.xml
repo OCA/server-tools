@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright 2021 ACSONE SA/NV.
+    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+<odoo>
+    <record id="action_translation_unsafe" model="ir.actions.act_window">
+        <field name="name">Translated Terms (Unsafe)</field>
+        <field name="res_model">ir.translation</field>
+        <field name="view_type">form</field>
+        <field name="view_id" ref="base.view_translation_tree" />
+        <field name="context">{'skip_translations_checks': True}</field>
+    </record>
+
+    <menuitem
+    action="action_translation_unsafe"
+    id="menu_action_translation_unsafe"
+    parent="base.menu_translation_app"
+  />
+</odoo>
