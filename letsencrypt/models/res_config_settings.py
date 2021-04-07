@@ -12,13 +12,13 @@ DNS_SCRIPT_DEFAULT = """# Write your script here
 class ResConfigSettings(models.TransientModel):
     _inherit = "res.config.settings"
 
-    letsencrypt_altnames = fields.Text(
+    letsencrypt_altnames = fields.Char(
         string="Domain names",
         default="",
         help=(
             "Domains to use for the certificate. " "Separate with commas or newlines."
         ),
-        force_config_parameter="letsencrypt.altnames",
+        config_parameter="letsencrypt.altnames",
     )
     letsencrypt_dns_provider = fields.Selection(
         selection=[("shell", "Shell script")],
@@ -31,7 +31,7 @@ class ResConfigSettings(models.TransientModel):
         ),
         config_parameter="letsencrypt.dns_provider",
     )
-    letsencrypt_dns_shell_script = fields.Text(
+    letsencrypt_dns_shell_script = fields.Char(
         string="DNS update script",
         help=(
             "Write a shell script that will update your DNS TXT records. "
@@ -39,13 +39,13 @@ class ResConfigSettings(models.TransientModel):
             "$LETSENCRYPT_DNS_DOMAIN variables."
         ),
         default=DNS_SCRIPT_DEFAULT,
-        force_config_parameter="letsencrypt.dns_shell_script",
+        config_parameter="letsencrypt.dns_shell_script",
     )
     letsencrypt_needs_dns_provider = fields.Boolean()
-    letsencrypt_reload_command = fields.Text(
+    letsencrypt_reload_command = fields.Char(
         string="Server reload command",
         help="Fill this with the command to restart your web server.",
-        force_config_parameter="letsencrypt.reload_command",
+        config_parameter="letsencrypt.reload_command",
     )
     letsencrypt_testing_mode = fields.Boolean(
         string="Use testing server",
@@ -90,25 +90,3 @@ class ResConfigSettings(models.TransientModel):
                 raise exceptions.ValidationError(
                     _("You didn't write a DNS update script!")
                 )
-
-    @api.model
-    def _get_classified_fields(self):
-        """config_parameter is inexplicably allowed on Char but not Text.
-
-        ir.config_parameter values can handle newlines, even in the web
-        interface, so there doesn't seem to be a good reason for this.
-
-        Add "force_config_parameter" as an alternative that ignores types.
-        """
-        # Note: As of writing, Odoo 13 has this limit and Odoo 14 isn't out
-        # Whenever migrating, make sure this is still necessary
-        classified = super()._get_classified_fields()
-        new_other = []
-        for name in classified["other"]:
-            field = self._fields[name]
-            if hasattr(field, "force_config_parameter"):
-                classified["config"].append((name, field.force_config_parameter))
-            else:
-                new_other.append(name)
-        classified["other"] = new_other
-        return classified
