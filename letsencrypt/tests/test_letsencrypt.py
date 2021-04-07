@@ -192,14 +192,16 @@ class TestLetsencrypt(SingleTransactionCase):
 
         config.set_param("letsencrypt.altnames", "example.com,example.org,example.net")
         self.assertEqual(
-            letsencrypt._get_altnames(), ["example.com", "example.org", "example.net"],
+            letsencrypt._get_altnames(),
+            ["example.com", "example.org", "example.net"],
         )
 
         config.set_param(
             "letsencrypt.altnames", "example.com, example.org\nexample.net"
         )
         self.assertEqual(
-            letsencrypt._get_altnames(), ["example.com", "example.org", "example.net"],
+            letsencrypt._get_altnames(),
+            ["example.com", "example.org", "example.net"],
         )
 
     def test_key_generation_and_retrieval(self):
@@ -285,7 +287,8 @@ class TestLetsencrypt(SingleTransactionCase):
         )
         self.assertFalse(
             self.env["letsencrypt"]._should_run(
-                path.join(_get_data_dir(), "www.example.com.crt"), ["www.example.com"],
+                path.join(_get_data_dir(), "www.example.com.crt"),
+                ["www.example.com"],
             )
         )
 
@@ -293,7 +296,8 @@ class TestLetsencrypt(SingleTransactionCase):
         self.install_certificate(60, use_altnames=False)
         self.assertFalse(
             self.env["letsencrypt"]._should_run(
-                path.join(_get_data_dir(), "www.example.com.crt"), ["www.example.com"],
+                path.join(_get_data_dir(), "www.example.com.crt"),
+                ["www.example.com"],
             )
         )
 
