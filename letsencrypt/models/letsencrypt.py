@@ -26,15 +26,12 @@ try:
     import acme.crypto_util
     import acme.errors
     import acme.messages
-
+    import dns.resolver
+    import josepy
     from cryptography import x509
     from cryptography.hazmat.backends import default_backend
     from cryptography.hazmat.primitives import serialization
     from cryptography.hazmat.primitives.asymmetric import rsa
-
-    import dns.resolver
-
-    import josepy
 except ImportError as e:
     _logger.debug(e)
 
@@ -166,7 +163,8 @@ class Letsencrypt(models.AbstractModel):
         missing = domains - names
         if missing:
             _logger.info(
-                "Found new domains %s, requesting new certificate", ", ".join(missing),
+                "Found new domains %s, requesting new certificate",
+                ", ".join(missing),
             )
             return True
 
@@ -416,7 +414,8 @@ class Letsencrypt(models.AbstractModel):
         if script_str:
             env = os.environ.copy()
             env.update(
-                LETSENCRYPT_DNS_DOMAIN=domain, LETSENCRYPT_DNS_CHALLENGE=token,
+                LETSENCRYPT_DNS_DOMAIN=domain,
+                LETSENCRYPT_DNS_CHALLENGE=token,
             )
             self._call_cmdline(script_str, env=env)
         else:
