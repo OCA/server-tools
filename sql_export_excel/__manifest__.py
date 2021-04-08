@@ -12,6 +12,11 @@
     'depends': [
         'sql_export',
     ],
+    'external_dependencies': {
+        'python': [
+            'openpyxl',
+        ],
+    },
     'data': [
         'views/sql_export_view.xml',
     ],
