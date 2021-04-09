@@ -134,6 +134,9 @@ class BaseExceptionMethod(models.AbstractModel):
             "self": rec,
             "object": rec,
             "obj": rec,
+            # copy context to prevent side-effects of eval
+            # should be deprecated too, accessible through self.
+            "context": self.env.context.copy(),
         }
 
     @api.model
