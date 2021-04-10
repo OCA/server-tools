@@ -62,7 +62,7 @@ Installation
 
 To use this module, you have to install the ``pygount`` python librairy.
 
-``pip install pygount``
+``pip install pygount>1.2.1``
 
 Configuration
 =============
