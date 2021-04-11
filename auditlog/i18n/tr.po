@@ -63,7 +63,7 @@ msgstr "Denetim Günlüğü - Kural"
 #: model:ir.cron,cron_name:auditlog.ir_cron_auditlog_autovacuum
 #: model:ir.cron,name:auditlog.ir_cron_auditlog_autovacuum
 msgid "Auto-vacuum audit logs"
-msgstr ""
+msgstr "Denetim günlüklerini oto-vakumla"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_http_request__user_context
