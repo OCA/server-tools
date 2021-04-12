@@ -91,7 +91,7 @@ msgid "Last Updated on"
 msgstr "Dernière mise à jour le"
 
 #. module: users_ldap_groups
-#: model:ir.ui.view,arch_db:users_ldap_groups.company_form_view
+#: model:ir.ui.view,arch_db:users_ldap_groups.view_ldap_installer_form
 msgid "Map User Groups"
 msgstr ""
 
