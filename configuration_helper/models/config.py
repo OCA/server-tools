@@ -28,7 +28,13 @@ class AbstractConfigSettings(models.AbstractModel):
     @api.model
     def _setup_base(self):
         cls = type(self)
+        old_rec_name = cls._rec_name
         super(AbstractConfigSettings, self)._setup_base()
+        # If a field called "name" or "x_name" exists, _setup_base()
+        # automatically sets it as _rec_name. But that _rec_name can carry
+        # over to places where that field doesn't exist, so we want to
+        # avoid that magic.
+        cls._rec_name = old_rec_name
 
         comp_fields = filter(
             lambda f: (f[0].startswith(self._prefix) and
