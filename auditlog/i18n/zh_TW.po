@@ -24,6 +24,11 @@ msgid "Action"
 msgstr ""
 
 #. module: auditlog
+#: view:website:auditlog.view_auditlog_log_qweb
+msgid "Added"
+msgstr ""
+
+#. module: auditlog
 #: model:ir.ui.menu,name:auditlog.menu_audit
 msgid "Audit"
 msgstr ""
@@ -61,6 +66,11 @@ msgstr ""
 #. module: auditlog
 #: model:ir.model,name:auditlog.model_auditlog_methods
 msgid "Auditlog custom methods"
+msgstr ""
+
+#. module: auditlog
+#: view:website:auditlog.view_auditlog_log_qweb
+msgid "Change"
 msgstr ""
 
 #. module: auditlog
@@ -105,6 +115,7 @@ msgstr ""
 
 #. module: auditlog
 #: view:auditlog.log:auditlog.view_auditlog_log_search
+#: view:website:auditlog.view_auditlog_log_qweb
 msgid "Date"
 msgstr "日期"
 
@@ -133,6 +144,7 @@ msgstr ""
 
 #. module: auditlog
 #: field:auditlog.log.line,field_id:0
+#: view:website:auditlog.view_auditlog_log_qweb
 msgid "Field"
 msgstr ""
 
@@ -318,7 +330,12 @@ msgid "New value Text"
 msgstr ""
 
 #. module: auditlog
-#: code:addons/auditlog/models/log.py:75
+#: view:website:auditlog.view_auditlog_log_qweb
+msgid "No change"
+msgstr ""
+
+#. module: auditlog
+#: code:addons/auditlog/models/log.py:76
 #, python-format
 msgid "No field defined to create line."
 msgstr ""
@@ -327,6 +344,11 @@ msgstr ""
 #: code:addons/auditlog/models/rule.py:229
 #, python-format
 msgid "No model defined to create line."
+msgstr ""
+
+#. module: auditlog
+#: view:website:auditlog.view_auditlog_log_qweb
+msgid "Object"
 msgstr ""
 
 #. module: auditlog
@@ -343,6 +365,16 @@ msgstr ""
 #: view:auditlog.http.request:auditlog.view_auditlog_http_request_search
 #: field:auditlog.http.request,name:0
 msgid "Path"
+msgstr ""
+
+#. module: auditlog
+#: model:ir.actions.report.xml,name:auditlog.report_auditlog_log
+msgid "Print log"
+msgstr ""
+
+#. module: auditlog
+#: view:website:auditlog.view_auditlog_log_qweb
+msgid "Removed"
 msgstr ""
 
 #. module: auditlog
@@ -459,7 +491,7 @@ msgid "Technical name"
 msgstr ""
 
 #. module: auditlog
-#: code:addons/auditlog/models/log.py:87
+#: code:addons/auditlog/models/log.py:88
 #, python-format
 msgid "The field 'field_id' cannot be empty."
 msgstr ""
@@ -492,7 +524,7 @@ msgstr ""
 #: view:auditlog.http.session:auditlog.view_auditlog_http_session_search
 #: field:auditlog.http.session,user_id:0
 #: view:auditlog.log:auditlog.view_auditlog_log_search
-#: field:auditlog.log,user_id:0
+#: field:auditlog.log,user_id:0 view:website:auditlog.view_auditlog_log_qweb
 msgid "User"
 msgstr "使用者"
 
