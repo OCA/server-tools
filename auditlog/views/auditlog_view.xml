@@ -219,6 +219,74 @@
             </field>
         </record>
 
+        <template id="view_auditlog_log_qweb">
+            <t t-call="report.internal_layout">
+                <div class="page">
+                    <table class="table">
+                        <tr>
+                            <th>Date</th>
+                            <th>User</th>
+                            <th>Object</th>
+                            <th>Change</th>
+                        </tr>
+                        <tr t-foreach="docs" t-as="doc">
+                            <td><span t-field="doc.create_date" /></td>
+                            <td t-esc="doc.user_id.display_name" />
+                            <td>
+                                <span t-esc="doc.model_id.name" />:
+                                <t t-if="doc.model_id.model in doc.env.registry">
+                                    <span t-esc="doc.env[doc.model_id.model].search([('id', '=', doc.res_id)]).display_name or '%s,%d' % (doc.model_id.model, doc.res_id)" />
+                                </t>
+                                <t t-if="doc.model_id.model not in doc.env.registry">
+                                    <span t-esc="'%s,%d' % (doc.model_id.model, doc.res_id)" />
+                                </t>
+                            </td>
+                            <td>
+                                <table class="table-striped table-condensed">
+                                    <tr>
+                                        <th>Field</th>
+                                        <th>Change</th>
+                                    </tr>
+                                    <tr t-foreach="doc.line_ids" t-as="line">
+                                        <td t-esc="line.field_description or line.field_id.field_name" />
+                                        <t t-if="line.field_id.ttype not in ['one2many', 'many2many']">
+                                            <td><span t-esc="line.old_value_text"/> &#x2192; <span t-esc="line.new_value_text" /></td>
+                                        </t>
+                                        <t t-if="line.field_id.ttype in ['one2many', 'many2many']">
+                                            <t t-set="old" t-value="line._parse_set('old_value_text') or line._parse_set('old_value')" />
+                                            <t t-set="new" t-value="line._parse_set('new_value_text') or line._parse_set('new_value')" />
+                                            <t t-set="added" t-value="new - old" />
+                                            <t t-set="removed" t-value="old - new" />
+                                            <td>
+                                                <div t-if="added">
+                                                    Added <span t-esc="added" />
+                                                </div>
+                                                <div t-if="removed">
+                                                    Removed <span t-esc="removed" />
+                                                </div>
+                                                <t t-if="not added and not removed">
+                                                    No change
+                                                </t>
+                                            </td>
+                                        </t>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </t>
+        </template>
+
+        <report id="report_auditlog_log"
+            string="Print log"
+            menu="True"
+            model="auditlog.log"
+            report_type="qweb-pdf"
+            name="auditlog.view_auditlog_log_qweb"
+            multi="True"
+        />
+
         <record model="ir.actions.act_window" id="action_auditlog_log_tree">
             <field name="name">Logs</field>
             <field name="res_model">auditlog.log</field>
