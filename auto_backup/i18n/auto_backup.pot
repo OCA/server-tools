@@ -52,6 +52,13 @@ msgid "Backup Scheduler"
 msgstr ""
 
 #. module: auto_backup
+#: model:ir.actions.server,name:auto_backup.ir_cron_backup_scheduler_hourly_ir_actions_server
+#: model:ir.cron,cron_name:auto_backup.ir_cron_backup_scheduler_hourly
+#: model:ir.cron,name:auto_backup.ir_cron_backup_scheduler_hourly
+msgid "Backup Scheduler Hourly"
+msgstr ""
+
+#. module: auto_backup
 #: model:mail.message.subtype,name:auto_backup.mail_message_subtype_success
 msgid "Backup Successful"
 msgstr ""
@@ -82,19 +89,19 @@ msgid "Choose the storage method for this backup."
 msgstr ""
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:265
+#: code:addons/auto_backup/models/db_backup.py:279
 #, python-format
 msgid "Cleanup of old database backups failed."
 msgstr ""
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:137
+#: code:addons/auto_backup/models/db_backup.py:144
 #, python-format
 msgid "Connection Test Failed!"
 msgstr ""
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:132
+#: code:addons/auto_backup/models/db_backup.py:139
 #, python-format
 msgid "Connection Test Succeeded!"
 msgstr ""
@@ -110,19 +117,24 @@ msgid "Created on"
 msgstr ""
 
 #. module: auto_backup
+#: selection:db.backup,frequency:0
+msgid "Daily"
+msgstr ""
+
+#. module: auto_backup
 #: model:ir.model,name:auto_backup.model_db_backup
 msgid "Database Backup"
 msgstr ""
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:219
+#: code:addons/auto_backup/models/db_backup.py:230
 #: model:mail.message.subtype,description:auto_backup.mail_message_subtype_failure
 #, python-format
 msgid "Database backup failed."
 msgstr ""
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:227
+#: code:addons/auto_backup/models/db_backup.py:238
 #: model:mail.message.subtype,description:auto_backup.mail_message_subtype_success
 #, python-format
 msgid "Database backup succeeded."
@@ -139,7 +151,7 @@ msgid "Display Name"
 msgstr ""
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:123
+#: code:addons/auto_backup/models/db_backup.py:130
 #, python-format
 msgid "Do not save backups on your filestore, or you will backup your backups too!"
 msgstr ""
@@ -160,6 +172,11 @@ msgid "Folder"
 msgstr ""
 
 #. module: auto_backup
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup_frequency
+msgid "Frequency"
+msgstr ""
+
+#. module: auto_backup
 #: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "Go to Settings / Technical / Automation / Scheduled Actions."
 msgstr ""
@@ -167,6 +184,16 @@ msgstr ""
 #. module: auto_backup
 #: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "Help"
+msgstr ""
+
+#. module: auto_backup
+#: selection:db.backup,frequency:0
+msgid "Hourly"
+msgstr ""
+
+#. module: auto_backup
+#: model:ir.model.fields,help:auto_backup.field_db_backup_frequency
+msgid "How often this backup is ran."
 msgstr ""
 
 #. module: auto_backup
