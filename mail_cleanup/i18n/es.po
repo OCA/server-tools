@@ -20,6 +20,26 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: mail_cleanup
+#: model:ir.model.fields,field_description:mail_cleanup.field_fetchmail_server_cleanup_days_env_default
+msgid "Cleanup Days Env Default"
+msgstr ""
+
+#. module: mail_cleanup
+#: model:ir.model.fields,field_description:mail_cleanup.field_fetchmail_server_cleanup_days_env_is_editable
+msgid "Cleanup Days Env Is Editable"
+msgstr ""
+
+#. module: mail_cleanup
+#: model:ir.model.fields,field_description:mail_cleanup.field_fetchmail_server_cleanup_folder_env_default
+msgid "Cleanup Folder Env Default"
+msgstr ""
+
+#. module: mail_cleanup
+#: model:ir.model.fields,field_description:mail_cleanup.field_fetchmail_server_cleanup_folder_env_is_editable
+msgid "Cleanup Folder Env Is Editable"
+msgstr ""
+
+#. module: mail_cleanup
 #: model:ir.model.fields,field_description:mail_cleanup.field_fetchmail_server_purge_days
 msgid "Deletion days"
 msgstr "Días para borrado"
@@ -53,3 +73,13 @@ msgstr "Número de días antes de eliminar un correo electrónico"
 #: model:ir.model,name:mail_cleanup.model_fetchmail_server
 msgid "POP/IMAP Server"
 msgstr "Servidor POP/IMAP"
+
+#. module: mail_cleanup
+#: model:ir.model.fields,field_description:mail_cleanup.field_fetchmail_server_purge_days_env_default
+msgid "Purge Days Env Default"
+msgstr ""
+
+#. module: mail_cleanup
+#: model:ir.model.fields,field_description:mail_cleanup.field_fetchmail_server_purge_days_env_is_editable
+msgid "Purge Days Env Is Editable"
+msgstr ""
