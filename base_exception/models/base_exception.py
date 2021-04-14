@@ -6,8 +6,9 @@
 
 import html
 
-from odoo import _, api, fields, models, osv
+from odoo import _, api, fields, models
 from odoo.exceptions import UserError, ValidationError
+from odoo.osv import expression
 from odoo.tools.safe_eval import safe_eval
 
 
@@ -111,7 +112,7 @@ class BaseExceptionMethod(models.AbstractModel):
         # Cumulate all the records to attach to the rule
         # before linking. We don't want to call "rule.write()"
         # which would:
-        # * write on write_date so lock the expection.rule
+        # * write on write_date so lock the exception.rule
         # * trigger the recomputation of "main_exception_id" on
         #   all the sale orders related to the rule, locking them all
         #   and preventing concurrent writes
@@ -145,7 +146,7 @@ class BaseExceptionMethod(models.AbstractModel):
             )  # nocopy allows to return 'result'
         except Exception as e:
             raise UserError(
-                _("Error when evaluating the exception.rule " "rule:\n %s \n(%s)")
+                _("Error when evaluating the exception.rule rule:\n %s \n(%s)")
                 % (rule.name, e)
             )
         return space.get("failed", False)
@@ -177,7 +178,7 @@ class BaseExceptionMethod(models.AbstractModel):
         """
         base_domain = self._get_base_domain()
         rule_domain = rule._get_domain()
-        domain = osv.expression.AND([base_domain, rule_domain])
+        domain = expression.AND([base_domain, rule_domain])
         return self.search(domain)
 
 
