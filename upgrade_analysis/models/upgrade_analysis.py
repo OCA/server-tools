@@ -368,7 +368,7 @@ class UpgradeAnalysis(models.Model):
             if "name" in element.attrib:
                 query = "./{}[@name='{}']".format(element.tag, element.attrib["name"])
             else:
-                # query = "./%s" % element.tag
+                # query = "./{}".format(element.tag)
                 continue
             for existing in target.xpath(query):
                 target.remove(existing)
@@ -461,17 +461,27 @@ class UpgradeAnalysis(models.Model):
         remote_record_obj = self._get_remote_model(connection, "record")
         local_record_obj = self.env["upgrade.record"]
         local_modules = local_record_obj.list_modules()
-        for remote_module in remote_record_obj.list_modules():
-            local_module = renamed_modules.get(
-                remote_module, merged_modules.get(remote_module, remote_module)
-            )
-            if local_module not in local_modules:
+        all_remote_modules = remote_record_obj.list_modules()
+        for local_module in local_modules:
+            remote_paths = []
+            remote_modules = []
+            remote_update, remote_noupdate = {}, {}
+            for remote_module in all_remote_modules:
+                if local_module == renamed_modules.get(
+                    remote_module, merged_modules.get(remote_module, remote_module)
+                ):
+                    remote_paths.extend(
+                        remote_record_obj.get_xml_records(remote_module)
+                    )
+                    remote_modules.append(remote_module)
+                    add_remote_update, add_remote_noupdate = self._parse_paths(
+                        remote_paths, remote_module
+                    )
+                    remote_update.update(add_remote_update)
+                    remote_noupdate.update(add_remote_noupdate)
+            if not remote_modules:
                 continue
-            remote_paths = remote_record_obj.get_xml_records(remote_module)
             local_paths = local_record_obj.get_xml_records(local_module)
-            remote_update, remote_noupdate = self._parse_paths(
-                remote_paths, remote_module
-            )
             local_update, local_noupdate = self._parse_paths(local_paths, local_module)
             diff = self._get_xml_diff(
                 remote_update, remote_noupdate, local_update, local_noupdate
