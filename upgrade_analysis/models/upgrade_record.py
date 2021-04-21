@@ -5,12 +5,15 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import ast
+import logging
 import os
 
 from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 from odoo.modules.module import MANIFEST_NAMES, get_module_path
 from odoo.tools.translate import _
+
+_logger = logging.getLogger(__name__)
 
 
 class UpgradeRecord(models.Model):
@@ -159,7 +162,7 @@ class UpgradeRecord(models.Model):
         # The order of the keys are important.
         # Load files in the same order as in
         # module/loading.py:load_module_graph
-        paths = []
+        files = []
         for key in ["init_xml", "update_xml", "data"]:
             if not manifest.get(key):
                 continue
@@ -167,5 +170,13 @@ class UpgradeRecord(models.Model):
                 if not xml_file.lower().endswith(".xml"):
                     continue
                 parts = xml_file.split("/")
-                paths.append(os.path.join(addon_dir, *parts))
-        return paths
+                try:
+                    with open(os.path.join(addon_dir, *parts), "r") as xml_handle:
+                        files.append(xml_handle.read())
+                except UnicodeDecodeError:
+                    _logger.warning(
+                        "Encoding error: Unable to read %s",
+                        os.path.join(addon_dir, *parts),
+                    )
+                    continue
+        return files
