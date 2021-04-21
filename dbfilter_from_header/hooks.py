@@ -4,11 +4,11 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import logging
-import re
 
 from odoo import http
 from odoo.tools import config
-from odoo.addons.dbfilter_from_header.override import db_filter
+
+from .override import db_filter
 
 
 def post_load():

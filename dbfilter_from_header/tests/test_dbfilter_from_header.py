@@ -2,11 +2,13 @@
 # @author L ATTENTION Philippe <contact@codingdodo.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-import odoo
-from odoo.tests import common
-from odoo.addons.dbfilter_from_header.override import db_filter
 import inspect
 from unittest.mock import Mock, patch
+
+import odoo
+from odoo.tests import common
+
+from ..override import db_filter
 
 
 class TestDbfilterFromHeader(common.BaseCase):
@@ -41,7 +43,7 @@ class TestDbfilterFromHeader(common.BaseCase):
                 ["oca_data_staging", "oca_data_production", "oca_test"],
                 odoo.service.db.list_dbs(True),
             )
-            filtered_dbs = odoo.addons.dbfilter_from_header.override.db_filter(
+            filtered_dbs = db_filter(
                 odoo.service.db.list_dbs(True), httprequest=httprequest
             )
             self.assertEqual(["oca_data_production"], filtered_dbs)
@@ -56,7 +58,7 @@ class TestDbfilterFromHeader(common.BaseCase):
         },
     )
     def test_class_http_is_monkey_patched(self):
-        from odoo.addons.dbfilter_from_header import hooks
+        from .. import hooks
 
         hooks.post_load()
         self.assertEqual(odoo.tools.config.get("proxy_mode"), True)
@@ -65,5 +67,5 @@ class TestDbfilterFromHeader(common.BaseCase):
         )
         self.assertEqual(
             inspect.getsource(odoo.http.db_filter),
-            inspect.getsource(odoo.addons.dbfilter_from_header.override.db_filter),
+            inspect.getsource(db_filter),
         )
