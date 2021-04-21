@@ -408,31 +408,30 @@ class UpgradeAnalysis(models.Model):
             target_dict[xml_id] = record
 
     @classmethod
-    def _parse_paths(self, xml_paths, module_name):
+    def _parse_files(self, xml_files, module_name):
         records_update = {}
         records_noupdate = {}
         parser = etree.XMLParser(
             remove_blank_text=True,
             strip_cdata=False,
         )
-        for xml_path in xml_paths:
+        for xml_file in xml_files:
             try:
                 # This is for a final correct pretty print
                 # Ref.: https://stackoverflow.com/a/7904066
                 # Also don't strip CDATA tags as needed for HTML content
-                tree = etree.parse(xml_path, parser=parser)
+                root_node = etree.fromstring(xml_file.encode("utf-8"), parser=parser)
             except etree.XMLSyntaxError:
                 continue
             # Support xml files with root Element either odoo or openerp
             # Condition: each xml file should have only one root element
             # {<odoo>, <openerp> or —rarely— <data>};
-            root_node = tree.getroot()
             root_node_noupdate = nodeattr2bool(root_node, "noupdate", False)
             if root_node.tag not in ("openerp", "odoo", "data"):
                 raise ValidationError(
                     _(
                         "Unexpected root Element: %s in file: %s"
-                        % (tree.getroot(), xml_path)
+                        % (root_node.getroot(), xml_file)
                     )
                 )
             for node in root_node:
@@ -463,26 +462,26 @@ class UpgradeAnalysis(models.Model):
         local_modules = local_record_obj.list_modules()
         all_remote_modules = remote_record_obj.list_modules()
         for local_module in local_modules:
-            remote_paths = []
+            remote_files = []
             remote_modules = []
             remote_update, remote_noupdate = {}, {}
             for remote_module in all_remote_modules:
                 if local_module == renamed_modules.get(
                     remote_module, merged_modules.get(remote_module, remote_module)
                 ):
-                    remote_paths.extend(
+                    remote_files.extend(
                         remote_record_obj.get_xml_records(remote_module)
                     )
                     remote_modules.append(remote_module)
-                    add_remote_update, add_remote_noupdate = self._parse_paths(
-                        remote_paths, remote_module
+                    add_remote_update, add_remote_noupdate = self._parse_files(
+                        remote_files, remote_module
                     )
                     remote_update.update(add_remote_update)
                     remote_noupdate.update(add_remote_noupdate)
             if not remote_modules:
                 continue
-            local_paths = local_record_obj.get_xml_records(local_module)
-            local_update, local_noupdate = self._parse_paths(local_paths, local_module)
+            local_files = local_record_obj.get_xml_records(local_module)
+            local_update, local_noupdate = self._parse_files(local_files, local_module)
             diff = self._get_xml_diff(
                 remote_update, remote_noupdate, local_update, local_noupdate
             )
