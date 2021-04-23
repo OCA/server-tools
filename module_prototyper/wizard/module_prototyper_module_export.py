@@ -25,14 +25,15 @@ import zipfile
 from collections import namedtuple
 from io import BytesIO
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class PrototypeModuleExport(models.TransientModel):
     _name = "module_prototyper.module.export"
+    _description = "Module Prototype module export"
 
     def _default_api_version(self):
-        return self.env.ref("module_prototyper.api_version_100").id
+        return self.env.ref("module_prototyper.api_version_140").id
 
     name = fields.Char("File Name", readonly=True)
     api_version = fields.Many2one(
@@ -47,16 +48,11 @@ class PrototypeModuleExport(models.TransientModel):
         default="choose",
     )
 
-    @api.model
-    def action_export(self, ids):
+    def action_export(self):
         """
         Export a zip file containing the module based on the information
         provided in the prototype, using the templates chosen in the wizard.
         """
-        if isinstance(ids, int):
-            ids = [ids]
-        wizard = self.browse(ids)
-
         active_model = self._context.get("active_model")
 
         # checking if the wizard was called by a prototype.
@@ -66,18 +62,18 @@ class PrototypeModuleExport(models.TransientModel):
         # getting the prototype of the wizard
         prototypes = self.env[active_model].browse([self._context.get("active_id")])
 
-        zip_details = self.zip_files(wizard, prototypes)
+        zip_details = self.zip_files(self, prototypes)
 
         if len(prototypes) == 1:
             zip_name = prototypes[0].name
         else:
             zip_name = "prototyper_export"
 
-        wizard.write(
+        self.write(
             {
                 "name": "{}.zip".format(zip_name),
                 "state": "get",
-                "data": base64.encodestring(zip_details.BytesIO.getvalue()),
+                "data": base64.encodebytes(zip_details.BytesIO.getvalue()),
             }
         )
 
@@ -85,8 +81,7 @@ class PrototypeModuleExport(models.TransientModel):
             "type": "ir.actions.act_window",
             "res_model": "module_prototyper.module.export",
             "view_mode": "form",
-            "view_type": "form",
-            "res_id": wizard.id,
+            "res_id": self.id,
             "views": [(False, "form")],
             "target": "new",
         }

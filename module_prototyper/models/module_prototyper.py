@@ -121,7 +121,7 @@ class ModulePrototyper(models.Model):
     version = fields.Char(
         "Version",
         size=10,
-        default="10.0.1.0.0",
+        default="14.0.1.0.0",
         help=("Enter the version of your module with 5 digits"),
     )
     auto_install = fields.Boolean(
@@ -257,16 +257,16 @@ class ModulePrototyper(models.Model):
         :param api_version: module_prototyper.api_version, odoo api
         :return: jinja2.Environment instance.
         """
-        if self._env is None:
-            self._env = Environment(
+        if ModulePrototyper._env is None:
+            ModulePrototyper._env = Environment(
                 lstrip_blocks=True,
                 trim_blocks=True,
                 loader=FileSystemLoader(
                     os.path.join(self.template_path, api_version.name)
                 ),
             )
-            self._api_version = api_version
-        return self._env
+            ModulePrototyper._api_version = api_version
+        return ModulePrototyper._env
 
     def set_field_descriptions(self):
         """Mock the list of fields into dictionary.
@@ -300,9 +300,9 @@ class ModulePrototyper(models.Model):
         ), "Run set_env(api_version) before to generate files."
 
         # Avoid sharing these across instances
-        self._data_files = []
-        self._demo_files = []
-        self._field_descriptions = {}
+        ModulePrototyper._data_files = []
+        ModulePrototyper._demo_files = []
+        ModulePrototyper._field_descriptions = {}
         self.set_field_descriptions()
         file_details = []
         file_details.extend(self.generate_models_details())
@@ -480,7 +480,7 @@ class ModulePrototyper(models.Model):
             target[model] |= model_obj.search(safe_eval(ir_filter.domain))
 
         res = []
-        for prefix, model_data, file_list in [
+        for prefix, model_data, _file_list in [
             ("data", data, self._data_files),
             ("demo", demo, self._demo_files),
         ]:

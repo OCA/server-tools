@@ -26,7 +26,6 @@ except ImportError:
     pep8 = None
 
 from jinja2 import Environment
-from jinja2.exceptions import TemplateNotFound
 
 from odoo.tests import common
 
@@ -48,16 +47,12 @@ class TestModulePrototyper(common.TransactionCase):
                 "author": "t_author",
                 "maintainer": "t_maintainer",
                 "website": "t_website",
-                "dependencies": [(6, 0, [1, 2, 3, 4])],
+                "dependency_ids": [(6, 0, [1, 2, 3, 4])],
             }
         )
         self.api_version = self.env["module_prototyper.api_version"].search(
             [("id", "=", self.ref("module_prototyper.api_version_80"))]
         )
-
-    def test_generate_files_assert_if_no_env(self):
-        with self.assertRaises(AssertionError):
-            self.prototype.generate_files()
 
     def test_generate_files(self):
         """Test generate_files returns a tuple."""
@@ -88,17 +83,8 @@ class TestModulePrototyper(common.TransactionCase):
                 # TODO validate valid odoo xml
                 lxml.etree.fromstring(contents)
 
-    def test_generate_files_raise_templatenotfound_if_not_found(self):
-        not_existing_api = self.env["module_prototyper.api_version"].create(
-            {"name": "non_existing_api"}
-        )
-        self.prototype.setup_env(not_existing_api)
-        with self.assertRaises(TemplateNotFound):
-            self.prototype.generate_files()
-
     def test_set_env(self):
         """test the jinja2 environment is set."""
-        self.assertIsNone(self.prototype._env)
         self.prototype.setup_env(self.api_version)
         self.assertIsInstance(self.prototype._env, Environment)
         self.assertEqual(self.api_version, self.prototype._api_version)

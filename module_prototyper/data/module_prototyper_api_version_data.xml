@@ -18,4 +18,9 @@
         <field name="manifest_file_name">__manifest__</field>
     </record>
 
+    <record id="api_version_140" model="module_prototyper.api_version">
+        <field name="name">14.0</field>
+        <field name="manifest_file_name">__manifest__</field>
+    </record>
+
 </odoo>

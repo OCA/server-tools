@@ -113,7 +113,6 @@
     <record id="open_module_prototyper_list" model="ir.actions.act_window">
         <field name="name">Prototypes</field>
         <field name="res_model">module_prototyper</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="view_id" ref="module_prototyper_base_tree_view" />
     </record>

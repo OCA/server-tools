@@ -51,7 +51,7 @@ class TestPrototypeModuleExport(common.TransactionCase):
         exporter = self.main_model.with_context(active_model="t_active_model").create(
             {}
         )
-        self.assertRaises(AssertionError, exporter.action_export, [exporter.id])
+        self.assertRaises(AssertionError, exporter.action_export)
 
     def test_action_export_update_wizard(self):
         """Test if the wizard is updated during the process."""
@@ -59,7 +59,7 @@ class TestPrototypeModuleExport(common.TransactionCase):
             active_model=self.prototype_model._name,
             active_id=self.prototype.id,
         ).create({})
-        exporter.action_export(exporter.id)
+        exporter.action_export()
         self.assertEqual(exporter.state, "get")
         self.assertEqual(exporter.name, "{}.zip".format(self.prototype.name))
 

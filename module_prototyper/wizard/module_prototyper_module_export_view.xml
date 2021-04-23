@@ -47,7 +47,6 @@
     <record id="button_module_export_action" model="ir.actions.act_window">
         <field name="name">Export Module</field>
         <field name="res_model">module_prototyper.module.export</field>
-        <field name="view_type">form</field>
         <field name="view_id" ref="view_module_export_wizard" />
         <field name="target">new</field>
     </record>

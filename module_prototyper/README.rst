@@ -78,7 +78,7 @@ Credits
 =======
 
 Contributors
-------------
+============
 
 * David Arnold <blaggacao@users.noreply.github.com>
 * Jordi Riera <jordi.riera@savoirfairelinux.com>
@@ -90,7 +90,7 @@ Contributors
 * Dennis Sluijk <d.sluijk@onestein.nl>
 
 Maintainer
-----------
+==========
 
 .. image:: http://odoo-community.org/logo.png
    :alt: Odoo Community Association
