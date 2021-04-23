@@ -1,6 +1,7 @@
 # Authors: See README.RST for Contributors
 # Copyright 2015-2017
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+# pylint: disable=protected-access,missing-docstring,no-self-use
 
 from unidecode import unidecode
 
@@ -43,9 +44,9 @@ class IrActionsReport(models.Model):
             values.get("report_name", "")
         )
         if (
-            values.get("report_type") in ["qweb-pdf", "qweb-html"]
-            and values.get("report_name")
-            and values["report_name"].find(".") == -1
+                values.get("report_type") in ["qweb-pdf", "qweb-html"]
+                and values.get("report_name")
+                and values["report_name"].find(".") == -1
         ):
             raise exceptions.UserError(
                 _("Template Name must contain at least a dot in it's name")
@@ -75,6 +76,7 @@ class IrActionsReport(models.Model):
                 report_xml._create_qweb(name, report_name, module, model, arch)
         return report_xml
 
+    @api.multi
     def copy(self, default=None):
         if not self.env.context.get("enable_duplication", False):
             return super(IrActionsReport, self).copy(default=default)
@@ -92,6 +94,7 @@ class IrActionsReport(models.Model):
             self.with_context(report_views=report_views.ids, suffix=suffix.lower()),
         ).copy(default=default)
 
+    @api.multi
     def button_create_qweb(self):
         self.ensure_one()
         module = self.report_name.split(".")[0]

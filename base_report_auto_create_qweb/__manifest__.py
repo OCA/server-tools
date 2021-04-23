@@ -1,10 +1,10 @@
 # Authors: See README.RST for Contributors
 # Copyright 2015-2017
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 {
     "name": "Report qweb auto generation",
-    "version": "14.0.1.0.0",
+    "version": "12.0.1.0.0",
     "depends": [
         "base",
     ],
@@ -18,7 +18,6 @@
     "license": "AGPL-3",
     "category": "Tools",
     "data": [
-        "security/ir.model.access.csv",
         "wizard/report_duplicate_view.xml",
         "views/report_xml_view.xml",
     ],

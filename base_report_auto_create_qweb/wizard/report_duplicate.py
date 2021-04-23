@@ -1,8 +1,8 @@
 # Authors: See README.RST for Contributors
 # Copyright 2015-2017
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class IrActionsReportDuplicate(models.TransientModel):
@@ -13,6 +13,7 @@ class IrActionsReportDuplicate(models.TransientModel):
         string="Suffix", help="This suffix will be added to the report"
     )
 
+    @api.multi
     def duplicate_report(self):
         self.ensure_one()
         active_id = self.env.context.get("active_id")
