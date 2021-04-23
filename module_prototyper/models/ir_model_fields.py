@@ -32,13 +32,11 @@ class IrModelFields(models.Model):
     # TODO: Make column1 and 2 required if a model has a m2m to itself
     column1 = fields.Char(
         "Column1",
-        help="name of the column referring to 'these' records in the "
-        "relation table",
+        help="name of the column referring to 'these' records in the " "relation table",
     )
     column2 = fields.Char(
         "Column2",
-        help="name of the column referring to 'those' records in the "
-        "relation table",
+        help="name of the column referring to 'those' records in the " "relation table",
     )
     limit = fields.Integer("Read limit", help="Read limit")
     client_context = fields.Char(

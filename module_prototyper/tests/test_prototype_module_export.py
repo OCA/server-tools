@@ -18,9 +18,10 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from odoo.tests import common
-import zipfile
 import io
+import zipfile
+
+from odoo.tests import common
 
 
 class TestPrototypeModuleExport(common.TransactionCase):
@@ -47,12 +48,10 @@ class TestPrototypeModuleExport(common.TransactionCase):
 
     def test_action_export_assert_for_wrong_active_model(self):
         """Test if the assertion raises."""
-        exporter = self.main_model.with_context(
-            active_model="t_active_model"
-        ).create({})
-        self.assertRaises(
-            AssertionError, exporter.action_export, [exporter.id]
+        exporter = self.main_model.with_context(active_model="t_active_model").create(
+            {}
         )
+        self.assertRaises(AssertionError, exporter.action_export, [exporter.id])
 
     def test_action_export_update_wizard(self):
         """Test if the wizard is updated during the process."""
@@ -62,7 +61,7 @@ class TestPrototypeModuleExport(common.TransactionCase):
         ).create({})
         exporter.action_export(exporter.id)
         self.assertEqual(exporter.state, "get")
-        self.assertEqual(exporter.name, "%s.zip" % (self.prototype.name,))
+        self.assertEqual(exporter.name, "{}.zip".format(self.prototype.name))
 
     def test_zip_files_returns_tuple(self):
         """Test the method return of the method that generate the zip file."""

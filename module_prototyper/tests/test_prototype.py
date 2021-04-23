@@ -17,6 +17,7 @@
 #
 
 import ast
+
 import lxml.etree
 
 try:
@@ -80,8 +81,7 @@ class TestModulePrototyper(common.TransactionCase):
                     self.assertFalse(
                         res,
                         "Python file %s has pep8 errors:\n"
-                        "%s\n%s"
-                        % (name, checker.report.messages, repr(contents)),
+                        "%s\n%s" % (name, checker.report.messages, repr(contents)),
                     )
 
             elif name.endswith(".xml"):
@@ -106,6 +106,4 @@ class TestModulePrototyper(common.TransactionCase):
     def test_friendly_name_return(self):
         """Test if the returns match the pattern."""
         name = "res.partner"
-        self.assertEqual(
-            self.prototype.friendly_name(name), name.replace(".", "_")
-        )
+        self.assertEqual(self.prototype.friendly_name(name), name.replace(".", "_"))

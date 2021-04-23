@@ -22,10 +22,10 @@
 import base64
 import os
 import zipfile
-from io import BytesIO, StringIO
 from collections import namedtuple
+from io import BytesIO
 
-from odoo import fields, models, api
+from odoo import api, fields, models
 
 
 class PrototypeModuleExport(models.TransientModel):
@@ -64,9 +64,7 @@ class PrototypeModuleExport(models.TransientModel):
         assert active_model == "module_prototyper", msg % (self, active_model)
 
         # getting the prototype of the wizard
-        prototypes = self.env[active_model].browse(
-            [self._context.get("active_id")]
-        )
+        prototypes = self.env[active_model].browse([self._context.get("active_id")])
 
         zip_details = self.zip_files(wizard, prototypes)
 
@@ -77,7 +75,7 @@ class PrototypeModuleExport(models.TransientModel):
 
         wizard.write(
             {
-                "name": "%s.zip" % (zip_name,),
+                "name": "{}.zip".format(zip_name),
                 "state": "get",
                 "data": base64.encodestring(zip_details.BytesIO.getvalue()),
             }
