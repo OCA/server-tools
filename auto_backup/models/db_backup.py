@@ -183,6 +183,7 @@ class DbBackup(models.Model):
                                     os.path.join(rec.folder, filename),
                                     "wb") as destiny:
                                 shutil.copyfileobj(cached, destiny)
+                        cached.seek(0)
                         successful |= rec
 
         # Remove old files for successful backups
