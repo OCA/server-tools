@@ -88,6 +88,11 @@ msgid "SQL Valid"
 msgstr ""
 
 #. module: sql_request_abstract
+#: model:ir.model.fields,field_description:sql_request_abstract.field_sql_request_mixin__smart_search
+msgid "Smart Search"
+msgstr ""
+
+#. module: sql_request_abstract
 #: model:ir.model.fields,field_description:sql_request_abstract.field_sql_request_mixin__state
 msgid "State"
 msgstr ""
