@@ -19,93 +19,102 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: base_report_auto_create_qweb
-#: model:ir.ui.view,arch_db:base_report_auto_create_qweb.ir_actions_report_xml_duplicate_form_view
+#: model_terms:ir.ui.view,arch_db:base_report_auto_create_qweb.report_duplicate_form_view
 msgid "Cancel"
 msgstr "Peruuta"
 
 #. module: base_report_auto_create_qweb
-#: model:ir.ui.view,arch_db:base_report_auto_create_qweb.ir_actions_report_xml_form_view
+#: model_terms:ir.ui.view,arch_db:base_report_auto_create_qweb.report_form_view
 msgid "Create QWeb view"
 msgstr ""
 
 #. module: base_report_auto_create_qweb
-#: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report_xml_duplicate_create_uid
+#: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report_duplicate__create_uid
 msgid "Created by"
 msgstr "Luonut"
 
 #. module: base_report_auto_create_qweb
-#: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report_xml_duplicate_create_date
+#: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report_duplicate__create_date
 msgid "Created on"
 msgstr "Luotu"
 
 #. module: base_report_auto_create_qweb
-#: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report_xml_duplicate_display_name
+#: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report__display_name
+#: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report_duplicate__display_name
 msgid "Display Name"
 msgstr "Nimi"
 
 #. module: base_report_auto_create_qweb
-#: model:ir.ui.view,arch_db:base_report_auto_create_qweb.ir_actions_report_xml_duplicate_form_view
+#: model_terms:ir.ui.view,arch_db:base_report_auto_create_qweb.report_duplicate_form_view
 msgid "Duplicate"
 msgstr ""
 
 #. module: base_report_auto_create_qweb
-#: model:ir.ui.view,arch_db:base_report_auto_create_qweb.ir_actions_report_xml_form_view
+#: model:ir.model,name:base_report_auto_create_qweb.model_ir_actions_report_duplicate
+msgid "Duplicate Qweb report"
+msgstr ""
+
+#. module: base_report_auto_create_qweb
+#: model_terms:ir.ui.view,arch_db:base_report_auto_create_qweb.report_form_view
 msgid "Duplicate Report"
 msgstr ""
 
 #. module: base_report_auto_create_qweb
-#: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report_xml_duplicate_id
+#: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report__id
+#: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report_duplicate__id
 msgid "ID"
 msgstr "ID"
 
 #. module: base_report_auto_create_qweb
-#: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report_xml_duplicate___last_update
+#: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report____last_update
+#: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report_duplicate____last_update
 msgid "Last Modified on"
 msgstr "Viimeksi muokattu"
 
 #. module: base_report_auto_create_qweb
-#: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report_xml_duplicate_write_uid
+#: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report_duplicate__write_uid
 msgid "Last Updated by"
 msgstr "Viimeksi päivittänyt"
 
 #. module: base_report_auto_create_qweb
-#: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report_xml_duplicate_write_date
+#: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report_duplicate__write_date
 msgid "Last Updated on"
 msgstr "Viimeksi päivitetty"
 
 #. module: base_report_auto_create_qweb
-#: model:ir.actions.act_window,name:base_report_auto_create_qweb.ir_actions_report_xml_duplicate_action
-#: model:ir.ui.view,arch_db:base_report_auto_create_qweb.ir_actions_report_xml_duplicate_form_view
+#: model:ir.model,name:base_report_auto_create_qweb.model_ir_actions_report
+msgid "Report Action"
+msgstr ""
+
+#. module: base_report_auto_create_qweb
+#: model:ir.actions.act_window,name:base_report_auto_create_qweb.report_duplicate_action
+#: model_terms:ir.ui.view,arch_db:base_report_auto_create_qweb.report_duplicate_form_view
 msgid "Report duplication"
 msgstr ""
 
 #. module: base_report_auto_create_qweb
-#: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report_xml_duplicate_suffix
+#: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report__smart_search
+#: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report_duplicate__smart_search
+msgid "Smart Search"
+msgstr ""
+
+#. module: base_report_auto_create_qweb
+#: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report_duplicate__suffix
 msgid "Suffix"
 msgstr ""
 
 #. module: base_report_auto_create_qweb
-#: code:addons/base_report_auto_create_qweb/models/report_xml.py:66
+#: code:addons/base_report_auto_create_qweb/models/report_xml.py:0
 #, python-format
 msgid "Template Name must contain at least a dot in it's name"
 msgstr ""
 
 #. module: base_report_auto_create_qweb
-#: model:ir.model.fields,help:base_report_auto_create_qweb.field_ir_actions_report_xml_duplicate_suffix
+#: model:ir.model.fields,help:base_report_auto_create_qweb.field_ir_actions_report_duplicate__suffix
 msgid "This suffix will be added to the report"
 msgstr ""
 
 #. module: base_report_auto_create_qweb
-#: model:ir.model,name:base_report_auto_create_qweb.model_ir_actions_report_xml
-msgid "ir.actions.report.xml"
-msgstr ""
-
-#. module: base_report_auto_create_qweb
-#: model:ir.model,name:base_report_auto_create_qweb.model_ir_actions_report_xml_duplicate
-msgid "ir.actions.report.xml.duplicate"
-msgstr ""
-
-#. module: base_report_auto_create_qweb
-#: model:ir.ui.view,arch_db:base_report_auto_create_qweb.ir_actions_report_xml_duplicate_form_view
+#: model_terms:ir.ui.view,arch_db:base_report_auto_create_qweb.report_duplicate_form_view
 msgid "or"
 msgstr "tai"
