@@ -1,0 +1,30 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * base_name_search_improved
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2016
+# Rudolf Schnapka <rs@techno-flex.de>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-03-04 07:38+0000\n"
+"PO-Revision-Date: 2017-03-04 07:38+0000\n"
+"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>, 2017\n"
+"Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: base_name_search_improved
+#: model:ir.model,name:base_name_search_improved.model_ir_model
+msgid "Models"
+msgstr "Modelle"
+
+#. module: base_name_search_improved
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_model_name_search_ids
+msgid "Name Search Fields"
+msgstr "Felder für Bezeichnungssuche"
