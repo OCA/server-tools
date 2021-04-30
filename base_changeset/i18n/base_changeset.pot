@@ -272,6 +272,9 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_res_users__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_res_users_log__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_reset_view_arch_wizard__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_server_config__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_server_env_mixin__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_server_env_techname_mixin__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_sms_api__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_sms_cancel__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_sms_composer__changeset_change_ids
@@ -284,6 +287,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_snailmail_letter_cancel__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_snailmail_letter_format_error__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_snailmail_letter_missing_required_fields__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_sparse_fields_test__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_sql_request_mixin__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_test_performance_bacon__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_test_performance_base__changeset_change_ids
@@ -519,6 +523,9 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_res_users__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_res_users_log__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_reset_view_arch_wizard__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_server_config__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_server_env_mixin__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_server_env_techname_mixin__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_sms_api__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_sms_cancel__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_sms_composer__changeset_ids
@@ -531,6 +538,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_snailmail_letter_cancel__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_snailmail_letter_format_error__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_snailmail_letter_missing_required_fields__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_sparse_fields_test__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_sql_request_mixin__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_test_performance_bacon__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_test_performance_base__changeset_ids
@@ -753,6 +761,9 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_res_users__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_res_users_log__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_reset_view_arch_wizard__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_server_config__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_server_env_mixin__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_server_env_techname_mixin__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_sms_api__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_sms_cancel__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_sms_composer__count_pending_changeset_changes
@@ -765,6 +776,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_snailmail_letter_cancel__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_snailmail_letter_format_error__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_snailmail_letter_missing_required_fields__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_sparse_fields_test__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_sql_request_mixin__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_test_performance_bacon__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_test_performance_base__count_pending_changeset_changes
@@ -980,6 +992,9 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_res_users__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_res_users_log__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_reset_view_arch_wizard__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_server_config__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_server_env_mixin__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_server_env_techname_mixin__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_sms_api__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_sms_cancel__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_sms_composer__count_pending_changesets
@@ -992,6 +1007,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_snailmail_letter_cancel__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_snailmail_letter_format_error__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_snailmail_letter_missing_required_fields__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_sparse_fields_test__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_sql_request_mixin__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_test_performance_bacon__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_test_performance_base__count_pending_changesets
@@ -1597,6 +1613,9 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_res_users__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_res_users_log__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_reset_view_arch_wizard__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_server_config__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_server_env_mixin__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_server_env_techname_mixin__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_sms_api__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_sms_cancel__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_sms_composer__user_can_see_changeset
@@ -1609,6 +1628,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_snailmail_letter_cancel__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_snailmail_letter_format_error__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_snailmail_letter_missing_required_fields__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_sparse_fields_test__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_sql_request_mixin__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_test_performance_bacon__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_test_performance_base__user_can_see_changeset
