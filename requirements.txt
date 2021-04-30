@@ -1,5 +1,9 @@
 # generated from manifests external_dependencies
+acme
+cryptography
 dataclasses
+dnspython
+josepy
 odoorpc
 openupgradelib
 raven
