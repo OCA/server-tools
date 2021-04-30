@@ -29,6 +29,7 @@ setuptools.setup(
         'odoo13-addon-fetchmail_notify_error_to_sender_test',
         'odoo13-addon-html_image_url_extractor',
         'odoo13-addon-html_text',
+        'odoo13-addon-iap_alternative_provider',
         'odoo13-addon-mail_server_relay_disallowed',
         'odoo13-addon-module_analysis',
         'odoo13-addon-module_auto_update',
