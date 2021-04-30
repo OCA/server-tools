@@ -4,6 +4,7 @@
 import copy
 
 from odoo import _, api, fields, models, modules
+from odoo.exceptions import UserError
 
 FIELDS_BLACKLIST = [
     "id",
@@ -54,11 +55,13 @@ class AuditlogRule(models.Model):
     model_id = fields.Many2one(
         "ir.model",
         "Model",
-        required=True,
         help="Select model for which you want to generate log.",
         states={"subscribed": [("readonly", True)]},
-        ondelete="cascade",
+        ondelete="set null",
+        index=True,
     )
+    model_name = fields.Char(readonly=True)
+    model_model = fields.Char(string="Technical Model Name", readonly=True)
     user_ids = fields.Many2many(
         "res.users",
         "audittail_rules_users",
@@ -165,11 +168,11 @@ class AuditlogRule(models.Model):
         for rule in self:
             if rule.state != "subscribed":
                 continue
-            if not self.pool.get(rule.model_id.model):
+            if not self.pool.get(rule.model_id.model or rule.model_model):
                 # ignore rules for models not loadable currently
                 continue
             model_cache[rule.model_id.model] = rule.model_id.id
-            model_model = self.env[rule.model_id.model]
+            model_model = self.env[rule.model_id.model or rule.model_model]
             # CRUD
             #   -> create
             check_attr = "auditlog_ruled_create"
@@ -201,7 +204,7 @@ class AuditlogRule(models.Model):
         """Restore original ORM methods of models defined in rules."""
         updated = False
         for rule in self:
-            model_model = self.env[rule.model_id.model]
+            model_model = self.env[rule.model_id.model or rule.model_model]
             for method in ["create", "read", "write", "unlink"]:
                 if getattr(rule, "log_%s" % method) and hasattr(
                     getattr(model_model, method), "origin"
@@ -215,17 +218,26 @@ class AuditlogRule(models.Model):
     @api.model
     def create(self, vals):
         """Update the registry when a new rule is created."""
-        new_record = super(AuditlogRule, self).create(vals)
+        if "model_id" not in vals or not vals["model_id"]:
+            raise UserError(_("No model defined to create line."))
+        model = self.env["ir.model"].browse(vals["model_id"])
+        vals.update({"model_name": model.name, "model_model": model.model})
+        new_record = super().create(vals)
         if new_record._register_hook():
             modules.registry.Registry(self.env.cr.dbname).signal_changes()
         return new_record
 
     def write(self, vals):
         """Update the registry when existing rules are updated."""
-        super(AuditlogRule, self).write(vals)
+        if "model_id" in vals:
+            if not vals["model_id"]:
+                raise UserError(_("Field 'model_id' cannot be empty."))
+            model = self.env["ir.model"].browse(vals["model_id"])
+            vals.update({"model_name": model.name, "model_model": model.model})
+        res = super().write(vals)
         if self._register_hook():
             modules.registry.Registry(self.env.cr.dbname).signal_changes()
-        return True
+        return res
 
     def unlink(self):
         """Unsubscribe rules before removing them."""
