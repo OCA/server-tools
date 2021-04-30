@@ -128,6 +128,12 @@ msgid "Field"
 msgstr ""
 
 #. module: auditlog
+#: code:addons/auditlog/models/rule.py:0
+#, python-format
+msgid "Field 'model_id' cannot be empty."
+msgstr ""
+
+#. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log__line_ids
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_log_form
 msgid "Fields updated"
@@ -270,6 +276,12 @@ msgid "Model"
 msgstr ""
 
 #. module: auditlog
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log__model_name
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__model_name
+msgid "Model Name"
+msgstr ""
+
+#. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_http_request__display_name
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_http_session__display_name
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__name
@@ -284,6 +296,24 @@ msgstr ""
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line__new_value_text
 msgid "New value Text"
+msgstr ""
+
+#. module: auditlog
+#: code:addons/auditlog/models/log.py:0
+#, python-format
+msgid "No field defined to create line."
+msgstr ""
+
+#. module: auditlog
+#: code:addons/auditlog/models/rule.py:0
+#, python-format
+msgid "No model defined to create line."
+msgstr ""
+
+#. module: auditlog
+#: code:addons/auditlog/models/log.py:0
+#, python-format
+msgid "No model defined to create log."
 msgstr ""
 
 #. module: auditlog
@@ -393,8 +423,26 @@ msgid "Subscribed"
 msgstr ""
 
 #. module: auditlog
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log__model_model
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__model_model
+msgid "Technical Model Name"
+msgstr ""
+
+#. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line__field_name
 msgid "Technical name"
+msgstr ""
+
+#. module: auditlog
+#: code:addons/auditlog/models/log.py:0
+#, python-format
+msgid "The field 'field_id' cannot be empty."
+msgstr ""
+
+#. module: auditlog
+#: code:addons/auditlog/models/log.py:0
+#, python-format
+msgid "The field 'model_id' cannot be empty."
 msgstr ""
 
 #. module: auditlog
