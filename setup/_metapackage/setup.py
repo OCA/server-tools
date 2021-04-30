@@ -13,6 +13,7 @@ setuptools.setup(
         'odoo14-addon-base_exception',
         'odoo14-addon-base_jsonify',
         'odoo14-addon-base_m2m_custom_field',
+        'odoo14-addon-base_name_search_improved',
         'odoo14-addon-base_report_auto_create_qweb',
         'odoo14-addon-base_sparse_field_list_support',
         'odoo14-addon-base_technical_user',
