@@ -88,6 +88,12 @@ msgid "Report duplication"
 msgstr ""
 
 #. module: base_report_auto_create_qweb
+#: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report__smart_search
+#: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report_duplicate__smart_search
+msgid "Smart Search"
+msgstr ""
+
+#. module: base_report_auto_create_qweb
 #: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report_duplicate__suffix
 msgid "Suffix"
 msgstr ""
