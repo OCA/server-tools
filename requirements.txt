@@ -1,2 +1,3 @@
 raven
+openpyxl==3.0.4
 pygount
