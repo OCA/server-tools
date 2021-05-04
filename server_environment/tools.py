@@ -32,7 +32,7 @@ def slugify(s, max_length=None):
         except TypeError:
             pass
     uni = unicodedata.normalize('NFKD', s).encode('ascii', 'ignore').decode('ascii')
-    slug_str = re.sub('[\W_]', ' ', uni).strip().lower()
-    slug_str = re.sub('[-\s]+', '-', slug_str)
+    slug_str = re.sub(r'[\W_]', ' ', uni).strip().lower()
+    slug_str = re.sub(r'[-\s]+', '-', slug_str)
 
     return slug_str[:max_length]

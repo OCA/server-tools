@@ -347,10 +347,9 @@ class ServerEnvMixin(models.AbstractModel):
         field.compute = '_compute_server_env'
 
         inverse_method_name = '_inverse_server_env_%s' % field.name
-        #inverse_method = partialmethod(
-        #    type(self)._inverse_server_env, field.name
-        #)
-        inverse_method = lambda i, field_name=field.name: i._inverse_server_env(field_name)
+        # noqa: E731
+        inverse_method = lambda i, field_name=field.name: i._inverse_server_env(
+            field_name)
         setattr(type(self), inverse_method_name, inverse_method)
         field.inverse = inverse_method_name
         field.store = False

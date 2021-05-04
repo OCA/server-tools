@@ -318,6 +318,7 @@ class ServerConfiguration(models.TransientModel):
         secret_keys = ['passw', 'key', 'secret', 'token']
         return any(secret_key in key for secret_key in secret_keys)
 
+    # pylint: disable=method-required-super
     @api.model
     def default_get(self, fields_list):
         res = {}
