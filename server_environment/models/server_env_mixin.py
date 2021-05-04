@@ -188,8 +188,8 @@ class ServerEnvMixin(models.AbstractModel):
             # _server_env_has_key_defined so we are sure that the value is
             # either in the global or the record config
             getter = getattr(serv_config, config_getter)
-            if (section_name in serv_config
-                    and field_name in serv_config[section_name]):
+            if (section_name in serv_config.sections()
+                    and serv_config.get(section_name, field_name)):
                 value = getter(section_name, field_name)
             else:
                 value = getter(global_section_name, field_name)
@@ -208,12 +208,12 @@ class ServerEnvMixin(models.AbstractModel):
         global_section_name = self._server_env_global_section_name()
         section_name = self._server_env_section_name()
         has_global_config = (
-            global_section_name in serv_config
-            and field_name in serv_config[global_section_name]
+            global_section_name in serv_config.sections()
+            and serv_config.has_option(global_section_name, field_name)
         )
         has_config = (
-            section_name in serv_config
-            and field_name in serv_config[section_name]
+            section_name in serv_config.sections()
+            and serv_config.has_option(section_name, field_name)
         )
         return has_global_config or has_config
 
@@ -347,9 +347,11 @@ class ServerEnvMixin(models.AbstractModel):
         field.compute = '_compute_server_env'
 
         inverse_method_name = '_inverse_server_env_%s' % field.name
-        # noqa: E731
-        inverse_method = lambda i, field_name=field.name: i._inverse_server_env(
-            field_name)
+
+        def _inverse_method(s, field_name=field.name):
+            s._inverse_server_env(field_name)
+
+        inverse_method = _inverse_method
         setattr(type(self), inverse_method_name, inverse_method)
         field.inverse = inverse_method_name
         field.store = False
