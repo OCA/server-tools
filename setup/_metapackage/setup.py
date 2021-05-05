@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo13-addon-auditlog',
+        'odoo13-addon-auto_backup',
         'odoo13-addon-base_changeset',
         'odoo13-addon-base_cron_exclusion',
         'odoo13-addon-base_custom_info',
