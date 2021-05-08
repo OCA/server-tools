@@ -3,10 +3,10 @@
 {
     "name": "Name Search Multi Lang",
     "summary": "Name search by multiple active language",
-    "version": "13.0.1.0.0",
+    "version": "14.0.1.0.0",
     "category": "Uncategorized",
     "website": "https://github.com/OCA/server-tools",
-    "author": "Ecosoft, Odoo Community Association (OCA)",
+    "author": "khanStore, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "depends": ["base"],
     "data": ["views/ir_model_views.xml"],
