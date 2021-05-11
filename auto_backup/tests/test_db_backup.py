@@ -159,18 +159,6 @@ class TestDbBackup(common.TransactionCase):
                     'wb'
                 )
 
-    def test_action_backup_sftp_remote_open(self):
-        """ It should open remote file w/ proper args """
-        rec_id = self.new_record()
-        with self.mock_assets() as assets:
-            with self.patch_filtered_sftp(rec_id):
-                conn = rec_id.sftp_connection().__enter__()
-                rec_id.action_backup()
-                conn.open.assert_called_once_with(
-                    assets['os'].path.join(),
-                    'wb'
-                )
-
     def test_action_backup_all_search(self):
         """ It should search all records """
         rec_id = self.new_record()
@@ -186,6 +174,25 @@ class TestDbBackup(common.TransactionCase):
             self.assertEqual(
                 rec_id.search().action_backup(), res
             )
+
+    def test_action_backup_all_multi(self):
+        """ It should return result of backup operation
+         when there are more than one record"""
+        rec_id = self.new_record()
+        new_vals = {
+            'name': u'Têst backup 2',
+            'method': 'sftp',
+            'sftp_host': 'test_host_2',
+            'sftp_port': '222',
+            'sftp_user': 'tuser2',
+            'sftp_password': 'password',
+            'folder': '/folder/',
+        }
+        self.Model.create(new_vals)
+        with self.mock_assets() as assets:
+            with mock.patch('%s.%s.sftp_connection' % (model, "DbBackup")):
+                rec_id.action_backup_all()
+                self.assertEqual(assets['shutil'].copyfileobj.call_count, 2)
 
     @mock.patch('%s.pysftp' % model)
     def test_sftp_connection_init_passwd(self, pysftp):
