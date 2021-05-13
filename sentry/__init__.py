@@ -9,7 +9,7 @@ from odoo.tools import config as odoo_config
 from . import const
 from .logutils import LoggerNameFilter, OdooSentryHandler
 
-import collections
+from collections import abc
 
 _logger = logging.getLogger(__name__)
 HAS_RAVEN = True
@@ -53,7 +53,7 @@ def initialize_raven(config, client_cls=None):
     }
     for option in const.get_sentry_options():
         value = config.get("sentry_%s" % option.key, option.default)
-        if isinstance(option.converter, collections.Callable):
+        if isinstance(option.converter, abc.Callable):
             value = option.converter(value)
         options[option.key] = value
 
