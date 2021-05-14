@@ -9,24 +9,25 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-01 02:11+0000\n"
-"PO-Revision-Date: 2017-12-01 02:11+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2021-05-14 19:47+0000\n"
+"Last-Translator: Yves Le Doeuff <yld@alliasys.fr>\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: sql_request_abstract
 #: model:ir.model.fields,field_description:sql_request_abstract.field_sql_request_mixin__group_ids
 msgid "Allowed Groups"
-msgstr ""
+msgstr "Groupes autorisés"
 
 #. module: sql_request_abstract
 #: model:ir.model.fields,field_description:sql_request_abstract.field_sql_request_mixin__user_ids
 msgid "Allowed Users"
-msgstr ""
+msgstr "Utilisateurs autorisés"
 
 #. module: sql_request_abstract
 #: model:ir.model.fields,field_description:sql_request_abstract.field_sql_request_mixin__display_name
@@ -47,7 +48,7 @@ msgstr "ID"
 #: code:addons/sql_request_abstract/models/sql_request_mixin.py:0
 #, python-format
 msgid "It is not allowed to execute a not checked request."
-msgstr ""
+msgstr "Il n'est pas permis d'exécuter une demande non vérifiée."
 
 #. module: sql_request_abstract
 #: model:ir.model.fields,field_description:sql_request_abstract.field_sql_request_mixin____last_update
@@ -66,6 +67,8 @@ msgid ""
 "Materialized View requires PostgreSQL 9.3 or greater but PostgreSQL %s is "
 "currently installed."
 msgstr ""
+"La vue matérialisée nécessite PostgreSQL 9.3 ou supérieur mais PostgreSQL %s "
+"est actuellement installé."
 
 #. module: sql_request_abstract
 #: model:ir.model.fields,field_description:sql_request_abstract.field_sql_request_mixin__name
@@ -75,12 +78,12 @@ msgstr "Nom"
 #. module: sql_request_abstract
 #: model:ir.model.fields,field_description:sql_request_abstract.field_sql_request_mixin__query
 msgid "Query"
-msgstr ""
+msgstr "Requête"
 
 #. module: sql_request_abstract
 #: model:ir.module.category,name:sql_request_abstract.category_sql_abstract
 msgid "SQL Request"
-msgstr ""
+msgstr "Requête SQL"
 
 #. module: sql_request_abstract
 #: model:ir.model,name:sql_request_abstract.model_sql_request_mixin
@@ -95,7 +98,7 @@ msgstr ""
 #. module: sql_request_abstract
 #: model:ir.model.fields,field_description:sql_request_abstract.field_sql_request_mixin__smart_search
 msgid "Smart Search"
-msgstr ""
+msgstr "Recherche intelligente"
 
 #. module: sql_request_abstract
 #: model:ir.model.fields,field_description:sql_request_abstract.field_sql_request_mixin__state
@@ -118,18 +121,21 @@ msgid ""
 "\n"
 " %s"
 msgstr ""
+"La requête SQL n'est pas valide:\n"
+"\n"
+" %s"
 
 #. module: sql_request_abstract
 #: code:addons/sql_request_abstract/models/sql_request_mixin.py:0
 #, python-format
 msgid "The query is not allowed because it contains unsafe word '%s'"
-msgstr ""
+msgstr "La requête n'est pas autorisée car elle contient le mot dangereux '%s'"
 
 #. module: sql_request_abstract
 #: code:addons/sql_request_abstract/models/sql_request_mixin.py:0
 #, python-format
 msgid "Unimplemented mode : '%s'"
-msgstr ""
+msgstr "Mode non implémenté : '%s'"
 
 #. module: sql_request_abstract
 #: model:res.groups,name:sql_request_abstract.group_sql_request_user
@@ -142,3 +148,5 @@ msgid ""
 "You can't use the following words: DELETE, DROP, CREATE, INSERT, ALTER, "
 "TRUNCATE, EXECUTE, UPDATE."
 msgstr ""
+"Vous ne pouvez pas utiliser les mots suivants: DELETE, DROP, CREATE, INSERT, "
+"ALTER, TRUNCATE, EXECUTE, UPDATE."
