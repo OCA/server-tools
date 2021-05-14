@@ -12,7 +12,7 @@ from copy import deepcopy
 from lxml import etree
 
 from odoo import fields, models
-from odoo.exceptions import UserError, ValidationError
+from odoo.exceptions import ValidationError
 from odoo.modules import get_module_path
 from odoo.tools import config
 from odoo.tools.convert import nodeattr2bool
@@ -189,7 +189,7 @@ class UpgradeAnalysis(models.Model):
         )
         if "base" in affected_modules:
             try:
-                from odoo.addons.openupgrade_scripts import apriori
+                pass
             except ImportError:
                 _logger.error(
                     "You are using upgrade_analysis on core modules without "
