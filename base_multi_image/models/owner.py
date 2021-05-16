@@ -11,29 +11,33 @@ class Owner(models.AbstractModel):
     _description = """ Wizard for base multi image """
 
     image_ids = fields.One2many(
-        comodel_name='base_multi_image.image',
-        inverse_name='owner_id',
-        string='Images',
+        comodel_name="base_multi_image.image",
+        inverse_name="owner_id",
+        string="Images",
         domain=lambda self: [("owner_model", "=", self._name)],
-        copy=True)
+        copy=True,
+    )
     image_main = fields.Binary(
         string="Main image",
         store=False,
-        compute="_get_multi_image",
-        inverse="_set_multi_image_main")
+        compute="_compute_multi_image",
+        inverse="_inverse_multi_image_main",
+    )
     image_main_medium = fields.Binary(
         string="Medium image",
-        compute="_get_multi_image",
-        inverse="_set_multi_image_main_medium",
-        store=False)
+        compute="_compute_multi_image",
+        inverse="_inverse_multi_image_main_medium",
+        store=False,
+    )
     image_main_small = fields.Binary(
         string="Small image",
-        compute="_get_multi_image",
-        inverse="_set_multi_image_main_small",
-        store=False)
+        compute="_compute_multi_image",
+        inverse="_inverse_multi_image_main_small",
+        store=False,
+    )
 
-    @api.depends('image_ids')
-    def _get_multi_image(self):
+    @api.depends("image_ids")
+    def _compute_multi_image(self):
         """Get the main image for this object.
 
         This is provided as a compatibility layer for submodels that already
@@ -74,13 +78,13 @@ class Owner(models.AbstractModel):
             elif s.image_ids:
                 s.image_ids[0].unlink()
 
-    def _set_multi_image_main(self):
+    def _inverse_multi_image_main(self):
         self._set_multi_image(self.image_main)
 
-    def _set_multi_image_main_medium(self):
+    def _inverse_multi_image_main_medium(self):
         self._set_multi_image(self.image_main_medium)
 
-    def _set_multi_image_main_small(self):
+    def _inverse_multi_image_main_small(self):
         self._set_multi_image(self.image_main_small)
 
     def unlink(self):
@@ -90,6 +94,6 @@ class Owner(models.AbstractModel):
         """
         images = self.mapped("image_ids")
         result = super(Owner, self).unlink()
-        if result and not self.env.context.get('bypass_image_removal'):
+        if result and not self.env.context.get("bypass_image_removal"):
             images.unlink()
         return result
