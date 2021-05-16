@@ -1,8 +1,9 @@
 # © 2016 Antiun Ingeniería S.L. - Jairo Llopis
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import api, SUPERUSER_ID
 import logging
+
+from odoo import SUPERUSER_ID, api
 
 _logger = logging.getLogger(__name__)
 
@@ -34,7 +35,7 @@ def pre_init_hook_for_submodules(cr, model, field):
                 "field": field,
                 "model": model,
             }
-            image_field = 'file_db_store'
+            image_field = "file_db_store"
         # fields.Binary(attachment=True), get the ir_attachment record ID
         else:
             extract_query = """
@@ -46,9 +47,12 @@ def pre_init_hook_for_submodules(cr, model, field):
                     id
                 FROM ir_attachment
                 WHERE res_field='%(field)s' AND res_model='%(model)s'
-            """ % {"model": model, "field": field}
-            image_field = 'attachment_id'
-        cr.execute(
+            """ % {
+                "model": model,
+                "field": field,
+            }
+            image_field = "attachment_id"
+        cr.execute(  # pylint: disable=sql-injection
             """
                 INSERT INTO base_multi_image_image (
                     owner_id,
@@ -58,12 +62,14 @@ def pre_init_hook_for_submodules(cr, model, field):
                     %s
                 )
                 %s
-            """ % (image_field, extract_query)
+            """
+            % (image_field, extract_query)
         )
 
 
-def uninstall_hook_for_submodules(cr, registry, model, field=None,
-                                  field_medium=None, field_small=None):
+def uninstall_hook_for_submodules(
+    cr, registry, model, field=None, field_medium=None, field_small=None
+):
     """Moves images from multi to single mode and remove multi-images for a
     given model.
 
@@ -92,8 +98,7 @@ def uninstall_hook_for_submodules(cr, registry, model, field=None,
     env = api.Environment(cr, SUPERUSER_ID, {})
     with cr.savepoint():
         Image = env["base_multi_image.image"]
-        images = Image.search([("owner_model", "=", model)],
-                              order="sequence, id")
+        images = Image.search([("owner_model", "=", model)], order="sequence, id")
         if images and (field or field_medium or field_small):
             main_images = {}
             for image in images:
@@ -105,9 +110,11 @@ def uninstall_hook_for_submodules(cr, registry, model, field=None,
             FieldMedium = field_medium and Model._fields[field_medium]
             FieldSmall = field_small and Model._fields[field_small]
             # fields.Binary(), save the binary content directly to the table
-            if field and not Field.attachment \
-                    or field_medium and not FieldMedium.attachment \
-                    or field_small and not FieldSmall.attachment:
+            if (
+                (field and not Field.attachment)
+                or (field_medium and not FieldMedium.attachment)
+                or (field_small and not FieldSmall.attachment)
+            ):
                 fields = []
                 if field and not Field.attachment:
                     fields.append(field + " = " + "%(image)s")
@@ -124,18 +131,20 @@ def uninstall_hook_for_submodules(cr, registry, model, field=None,
                     "fields": ", ".join(fields),
                 }
                 for main_image in main_images:
-                    vars = {"id": main_image.owner_id}
+                    params = {"id": main_image.owner_id}
                     if field and not Field.attachment:
-                        vars["image"] = main_image.image_main
+                        params["image"] = main_image.image_main
                     if field_medium and not FieldMedium.attachment:
-                        vars["image_medium"] = main_image.image_medium
+                        params["image_medium"] = main_image.image_medium
                     if field_small and not FieldSmall.attachment:
-                        vars["image_small"] = main_image.image_small
-                    cr.execute(query, vars)
+                        params["image_small"] = main_image.image_small
+                    cr.execute(query, params)  # pylint: disable=sql-injection
             # fields.Binary(attachment=True), save the ir_attachment record ID
-            if field and Field.attachment \
-                    or field_medium and FieldMedium.attachment \
-                    or field_small and FieldSmall.attachment:
+            if (
+                (field and Field.attachment)
+                or (field_medium and FieldMedium.attachment)
+                or (field_small and FieldSmall.attachment)
+            ):
                 for main_image in main_images:
                     owner = Model.browse(main_image.owner_id)
                     if field and Field.attachment:
@@ -153,5 +162,5 @@ def table_has_column(cr, table, field):
         FROM information_schema.columns
         WHERE table_name=%(table)s and column_name=%(field)s;
     """
-    cr.execute(query, {'table': table, 'field': field})
+    cr.execute(query, {"table": table, "field": field})
     return bool(cr.fetchall())
