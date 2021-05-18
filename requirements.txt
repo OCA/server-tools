@@ -9,6 +9,7 @@ lxml
 odoorpc
 openpyxl
 openupgradelib
+pygount
 pysftp
 sentry_sdk
 unidecode
