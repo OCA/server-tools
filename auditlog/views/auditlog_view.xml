@@ -133,7 +133,6 @@
                                 attrs="{'invisible': [('model_id', '!=', False)]}"
                                 readonly="1"
                             />
-                            />
                             <field
                                 name="model_model"
                                 attrs="{'invisible': [('model_id', '!=', False)]}"
