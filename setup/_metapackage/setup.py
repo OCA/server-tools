@@ -19,6 +19,7 @@ setuptools.setup(
         'odoo12-addon-base_custom_info',
         'odoo12-addon-base_exception',
         'odoo12-addon-base_fontawesome',
+        'odoo12-addon-base_import_module_group',
         'odoo12-addon-base_jsonify',
         'odoo12-addon-base_kanban_stage',
         'odoo12-addon-base_kanban_stage_state',
