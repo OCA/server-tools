@@ -1,0 +1,324 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sql_export
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+# danimaribeiro <danimaribeiro@gmail.com>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-06-06 02:51+0000\n"
+"PO-Revision-Date: 2019-09-02 22:23+0000\n"
+"Last-Translator: Rodrigo Macedo <rmsolucoeseminformatic4@gmail.com>\n"
+"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/"
+"teams/23907/pt_BR/)\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.8\n"
+
+#. module: sql_export
+#: model:ir.model,name:sql_export.model_sql_file_wizard
+msgid "Allow the user to save the file with sql request's data"
+msgstr "Permite ao usuário salvar o arquivo com os dados da requisição sql"
+
+#. module: sql_export
+#: model:ir.model.fields,field_description:sql_export.field_sql_export__group_ids
+#: model_terms:ir.ui.view,arch_db:sql_export.sql_export_view_form
+msgid "Allowed Groups"
+msgstr "Grupos Permitidos"
+
+#. module: sql_export
+#: model:ir.model.fields,field_description:sql_export.field_sql_export__user_ids
+#: model_terms:ir.ui.view,arch_db:sql_export.sql_export_view_form
+msgid "Allowed Users"
+msgstr "Usuários Permitidos"
+
+#. module: sql_export
+#: selection:sql.export,file_format:0
+msgid "CSV"
+msgstr ""
+
+#. module: sql_export
+#: model_terms:ir.ui.view,arch_db:sql_export.sql_file_wizard_view_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: sql_export
+#: model:ir.model.fields,field_description:sql_export.field_sql_export__copy_options
+msgid "Copy Options"
+msgstr "Opções de Cópia"
+
+#. module: sql_export
+#: model:ir.model.fields,field_description:sql_export.field_sql_export__create_uid
+#: model:ir.model.fields,field_description:sql_export.field_sql_file_wizard__create_uid
+msgid "Created by"
+msgstr "Criado por"
+
+#. module: sql_export
+#: model:ir.model.fields,field_description:sql_export.field_sql_export__create_date
+#: model:ir.model.fields,field_description:sql_export.field_sql_file_wizard__create_date
+msgid "Created on"
+msgstr "Criado em"
+
+#. module: sql_export
+#: model_terms:ir.ui.view,arch_db:sql_export.sql_file_wizard_view_form
+msgid "Csv File"
+msgstr "Arquivo Csv"
+
+#. module: sql_export
+#: model:ir.model.fields,field_description:sql_export.date_field_variable_sql
+msgid "Date"
+msgstr ""
+
+#. module: sql_export
+#: model:ir.model.fields,field_description:sql_export.field_sql_export__display_name
+#: model:ir.model.fields,field_description:sql_export.field_sql_file_wizard__display_name
+msgid "Display Name"
+msgstr "Nome para Mostrar"
+
+#. module: sql_export
+#: selection:sql.export,state:0
+msgid "Draft"
+msgstr "Rascunho"
+
+#. module: sql_export
+#: model:ir.model.fields,field_description:sql_export.field_sql_export__encoding
+msgid "Encoding"
+msgstr "Codificação"
+
+#. module: sql_export
+#: selection:sql.export,file_format:0
+msgid "Excel"
+msgstr ""
+
+#. module: sql_export
+#: model_terms:ir.ui.view,arch_db:sql_export.sql_export_view_form
+#: model_terms:ir.ui.view,arch_db:sql_export.sql_export_view_tree
+msgid "Execute Query"
+msgstr "Executar consulta"
+
+#. module: sql_export
+#: model_terms:ir.ui.view,arch_db:sql_export.sql_file_wizard_view_form
+msgid "Export"
+msgstr "Exportar"
+
+#. module: sql_export
+#: model_terms:ir.ui.view,arch_db:sql_export.sql_file_wizard_view_form
+msgid "Export file"
+msgstr "Exportar arquivo"
+
+#. module: sql_export
+#: model:ir.model.fields,field_description:sql_export.field_sql_file_wizard__binary_file
+msgid "File"
+msgstr "Arquivo"
+
+#. module: sql_export
+#: model:ir.model.fields,field_description:sql_export.field_sql_export__file_format
+msgid "File Format"
+msgstr ""
+
+#. module: sql_export
+#: model:ir.model.fields,field_description:sql_export.field_sql_file_wizard__file_name
+msgid "File Name"
+msgstr "Nome do Arquivo"
+
+#. module: sql_export
+#: model:ir.model.fields,field_description:sql_export.field_sql_export__id
+#: model:ir.model.fields,field_description:sql_export.field_sql_file_wizard__id
+msgid "ID"
+msgstr "Identificação"
+
+#. module: sql_export
+#: model:ir.model.fields,field_description:sql_export.field_sql_export____last_update
+#: model:ir.model.fields,field_description:sql_export.field_sql_file_wizard____last_update
+msgid "Last Modified on"
+msgstr "Última atualização em"
+
+#. module: sql_export
+#: model:ir.model.fields,field_description:sql_export.field_sql_export__write_uid
+#: model:ir.model.fields,field_description:sql_export.field_sql_file_wizard__write_uid
+msgid "Last Updated by"
+msgstr "Última atualização por"
+
+#. module: sql_export
+#: model:ir.model.fields,field_description:sql_export.field_sql_export__write_date
+#: model:ir.model.fields,field_description:sql_export.field_sql_file_wizard__write_date
+msgid "Last Updated on"
+msgstr "Última atualização em"
+
+#. module: sql_export
+#: model:ir.model.fields,field_description:sql_export.field_sql_export__name
+msgid "Name"
+msgstr "Nome"
+
+#. module: sql_export
+#: model:ir.model.fields,field_description:sql_export.field_sql_export__field_ids
+#: model_terms:ir.ui.view,arch_db:sql_export.sql_export_view_form
+msgid "Parameters"
+msgstr "Parâmetros"
+
+#. module: sql_export
+#: model:ir.model.fields,field_description:sql_export.m2m_field_variable_sql
+msgid "Partner Categories"
+msgstr ""
+
+#. module: sql_export
+#: model:ir.model.fields,field_description:sql_export.field_sql_export__query
+msgid "Query"
+msgstr "Consulta"
+
+#. module: sql_export
+#: model_terms:ir.ui.view,arch_db:sql_export.sql_export_view_form
+msgid "Request Name"
+msgstr "Solicitar Nome"
+
+#. module: sql_export
+#: model:ir.actions.act_window,name:sql_export.sql_export_tree_action
+#: model_terms:ir.ui.view,arch_db:sql_export.sql_export_view_tree
+msgid "SQL Export"
+msgstr "Exportar SQL"
+
+#. module: sql_export
+#: model:ir.actions.act_window,name:sql_export.sql_parameter_action
+#: model_terms:ir.ui.view,arch_db:sql_export.sql_parameter_view_tree
+msgid "SQL Parameter"
+msgstr "Parâmetros SQL"
+
+#. module: sql_export
+#: model_terms:ir.ui.view,arch_db:sql_export.sql_export_view_form
+msgid "SQL Request"
+msgstr "Solicitar SQL"
+
+#. module: sql_export
+#: selection:sql.export,state:0
+msgid "SQL Valid"
+msgstr "SQL Válido"
+
+#. module: sql_export
+#: model:ir.model,name:sql_export.model_sql_export
+#: model_terms:ir.ui.view,arch_db:sql_export.sql_export_view_form
+#: model_terms:ir.ui.view,arch_db:sql_export.sql_parameter_view_form
+msgid "SQL export"
+msgstr "Exportar SQL"
+
+#. module: sql_export
+#: model_terms:ir.ui.view,arch_db:sql_export.sql_export_view_form
+msgid "Set to Draft"
+msgstr "Definir como Provisório"
+
+#. module: sql_export
+#: model:ir.model.fields,field_description:sql_export.field_sql_file_wizard__sql_export_id
+#: model:ir.ui.menu,name:sql_export.sql_export_menu
+#: model:ir.ui.menu,name:sql_export.sql_export_menu_view
+msgid "Sql Export"
+msgstr "Exportar SQL"
+
+#. module: sql_export
+#: model:ir.ui.menu,name:sql_export.sql_parameter_menu_view
+msgid "Sql Export Variables"
+msgstr "Exportar Variáveis SQL"
+
+#. module: sql_export
+#: model:ir.model.fields,field_description:sql_export.field_sql_export__state
+msgid "State"
+msgstr "Estado"
+
+#. module: sql_export
+#: model:ir.model.fields,help:sql_export.field_sql_export__state
+msgid ""
+"State of the Request:\n"
+" * 'Draft': Not tested\n"
+" * 'SQL Valid': SQL Request has been checked and is valid"
+msgstr ""
+"Estado da solicitação:\n"
+"  * 'Rascunho': não testado\n"
+"  * 'SQL Valid': a solicitação SQL foi verificada e é válida"
+
+#. module: sql_export
+#: model_terms:ir.ui.view,arch_db:sql_export.sql_export_view_form
+msgid "Validate SQL Expression"
+msgstr "Validar expressão SQL"
+
+#. module: sql_export
+#: model:ir.model.fields,help:sql_export.field_sql_export__query
+msgid ""
+"You can't use the following words: DELETE, DROP, CREATE, INSERT, ALTER, "
+"TRUNCATE, EXECUTE, UPDATE."
+msgstr ""
+"Você não pode usar as seguintes palavras: DELETE, DROP, CREATE, INSERT, "
+"ALTER, TRUNCATE, EXECUTE, UPDATE."
+
+#. module: sql_export
+#: selection:sql.export,encoding:0
+msgid "big5"
+msgstr "big5"
+
+#. module: sql_export
+#: selection:sql.export,encoding:0
+msgid "gb18030"
+msgstr "gb18030"
+
+#. module: sql_export
+#: selection:sql.export,encoding:0
+msgid "koir8_r"
+msgstr "koir8_r"
+
+#. module: sql_export
+#: selection:sql.export,encoding:0
+msgid "latin1"
+msgstr "latin1"
+
+#. module: sql_export
+#: selection:sql.export,encoding:0
+msgid "latin2"
+msgstr "latin2"
+
+#. module: sql_export
+#: model_terms:ir.ui.view,arch_db:sql_export.sql_file_wizard_view_form
+msgid "or"
+msgstr "ou"
+
+#. module: sql_export
+#: model_terms:ir.ui.view,arch_db:sql_export.sql_export_view_form
+msgid "select * from res_partner"
+msgstr "select * from res_partner"
+
+#. module: sql_export
+#: selection:sql.export,encoding:0
+msgid "shift_jis"
+msgstr "shift_jis"
+
+#. module: sql_export
+#: selection:sql.export,encoding:0
+msgid "utf-16"
+msgstr "utf-16"
+
+#. module: sql_export
+#: selection:sql.export,encoding:0
+msgid "utf-8"
+msgstr "utf-8"
+
+#. module: sql_export
+#: model_terms:ir.ui.view,arch_db:sql_export.sql_file_wizard_view_form
+msgid "variables_placeholder"
+msgstr "variables_placeholder"
+
+#. module: sql_export
+#: selection:sql.export,encoding:0
+msgid "windows-1251"
+msgstr "windows-1251"
+
+#. module: sql_export
+#: selection:sql.export,encoding:0
+msgid "windows-1252"
+msgstr "windows-1252"
+
+#. module: sql_export
+#: model:ir.model.fields,field_description:sql_export.integer_field_variable_sql
+msgid "x_ID"
+msgstr ""
