@@ -15,4 +15,4 @@ See sql_request_abstract module to fix this issue.
   since variables features has been introduced. This can be fixed by
   overloading _prepare_request_check_execution() function.
 
-* Move modules sql_request_abstract and sql_export to oca/reporting-engine
+* Move modules sql_request_abstract and sql_export to oca/reporting-engine for version 15
