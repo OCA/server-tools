@@ -12,6 +12,7 @@
                         states="draft"
                         string="Validate SQL Expression"
                         class="oe_highlight"
+                        groups="sql_request_abstract.group_sql_request_manager"
                     />
                     <button
                         name="button_set_draft"
@@ -33,19 +34,30 @@
                 <sheet>
                     <group>
                         <h1>
-                            <field name="name" nolabel="1" placeholder="Request Name" />
+                            <field
+                                name="name"
+                                nolabel="1"
+                                placeholder="Request Name"
+                                attrs="{'readonly': [('state', '!=', 'draft')]}"
+                            />
                         </h1>
                     </group>
                     <group
                         name="option"
                         groups="sql_request_abstract.group_sql_request_user"
                     >
-                        <field name="file_format" />
+                        <field
+                            name="file_format"
+                            attrs="{'readonly': [('state', '!=', 'draft')]}"
+                        />
                         <field
                             name="copy_options"
-                            attrs="{'invisible': [('file_format', '!=', 'csv')], 'required': [('file_format', '=', 'csv')]}"
+                            attrs="{'invisible': [('file_format', '!=', 'csv')], 'required': [('file_format', '=', 'csv')], 'readonly': [('state', '!=', 'draft')]}"
                         />
-                        <field name="encoding" />
+                        <field
+                            name="encoding"
+                            attrs="{'readonly': [('state', '!=', 'draft')]}"
+                        />
                     </group>
                     <group
                         name="request"
@@ -56,6 +68,7 @@
                             name="query"
                             nolabel="1"
                             placeholder="select * from res_partner"
+                            attrs="{'readonly': [('state', '!=', 'draft')]}"
                         />
                     </group>
                     <group
@@ -63,7 +76,13 @@
                         string="Parameters"
                         groups="sql_request_abstract.group_sql_request_user"
                     >
-                        <field name="field_ids" nolabel="1" />
+                    <field
+                            name="field_ids"
+                            nolabel="1"
+                            options="{'no_create': True}"
+                            context="{'tree_view_ref': 'sql_export.sql_parameter_view_tree', 'form_view_ref': 'sql_export.sql_parameter_view_form'}"
+                            attrs="{'readonly': [('state', '!=', 'draft')]}"
+                        />
                     </group>
                     <group groups="sql_request_abstract.group_sql_request_manager">
                         <group string="Allowed Users" name="users_allowed">
@@ -163,7 +182,9 @@
             name="context"
             eval="{'default_model_id': ref('sql_export.model_sql_file_wizard'), 'default_size': 64, 'search_default_state': 'manual', 'default_model': 'sql.file.wizard'}"
         />
-        <field name="domain">[('model','=','sql.file.wizard')]</field>
+        <field
+            name="domain"
+        >[('model','=','sql.file.wizard'), ('state', '=', 'manual')]</field>
     </record>
 
         <record id="sql_parameter_action_view_tree" model="ir.actions.act_window.view">

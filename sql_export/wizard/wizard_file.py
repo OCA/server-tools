@@ -70,12 +70,10 @@ class SqlFileWizard(models.TransientModel):
                 else:
                     variable_dict[field.name] = self[field.name]
         if "%(company_id)s" in sql_export.query:
-            company_id = self.env.context.get(
-                "force_company", self.env.user.company_id.id
-            )
+            company_id = self.env.company.id
             variable_dict["company_id"] = company_id
         if "%(user_id)s" in sql_export.query:
-            user_id = self.env.context.get("force_user", self._uid)
+            user_id = self.env.user.id
             variable_dict["user_id"] = user_id
 
         # Call different method depending on file_type since the logic will be
