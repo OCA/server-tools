@@ -41,6 +41,7 @@ class IrUiView(models.Model):
     @api.model
     def apply_inheritance_specs(self, source, specs_tree, pre_locate=lambda s: True):
         for specs, handled_by in self._iter_inheritance_specs(specs_tree):
+            pre_locate(specs)
             source = handled_by(source, specs)
         return source
 
