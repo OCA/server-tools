@@ -58,7 +58,7 @@ class Owner(models.AbstractModel):
         # Values to save
         values = {
             "storage": "db",
-            "file_db_store": tools.image_resize_image_big(image),
+            "file_db_store": tools.image_process(image, size=(1024, 1024)),
             "owner_model": self._name,
         }
         if name:
@@ -93,7 +93,7 @@ class Owner(models.AbstractModel):
         Will be skipped if ``env.context['bypass_image_removal']`` == True
         """
         images = self.mapped("image_ids")
-        result = super(Owner, self).unlink()
+        result = super().unlink()
         if result and not self.env.context.get("bypass_image_removal"):
             images.unlink()
         return result
