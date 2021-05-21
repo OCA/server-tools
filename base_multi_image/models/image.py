@@ -16,6 +16,7 @@ _logger = logging.getLogger(__name__)
 
 class Image(models.Model):
     _name = "base_multi_image.image"
+    # TODO: when migrating to 15.0 use image.mixin
     _order = "sequence, owner_model, owner_id, id"
     _description = """ image model for multiple image functionality """
     _sql_constraints = [
@@ -26,11 +27,8 @@ class Image(models.Model):
         ),
     ]
 
-    owner_id = fields.Integer(
-        "Owner",
-        required=True,
-        ondelete="cascade",  # This Integer is really a split Many2one
-    )
+    # This Integer is really a split Many2one
+    owner_id = fields.Integer("Owner", required=True)
     owner_model = fields.Char(required=True)
     owner_ref_id = fields.Reference(
         selection="_selection_owner_ref_id",
@@ -54,9 +52,7 @@ class Image(models.Model):
     attachment_id = fields.Many2one(
         "ir.attachment", string="Attachment", domain="[('index_content', '=', 'image')]"
     )
-    file_db_store = fields.Binary(
-        "Image stored in database", filters="*.png,*.jpg,*.gif"
-    )
+    file_db_store = fields.Binary("Image stored in database")
     path = fields.Char("Image path", help="Image path")
     url = fields.Char("Image remote URL")
     image_main = fields.Image("Full-sized image", compute="_compute_image")

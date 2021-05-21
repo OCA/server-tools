@@ -109,36 +109,20 @@ def uninstall_hook_for_submodules(
             Field = field and Model._fields[field]
             FieldMedium = field_medium and Model._fields[field_medium]
             FieldSmall = field_small and Model._fields[field_small]
+
             # fields.Binary(), save the binary content directly to the table
             if (
                 (field and not Field.attachment)
                 or (field_medium and not FieldMedium.attachment)
                 or (field_small and not FieldSmall.attachment)
             ):
-                fields = []
-                if field and not Field.attachment:
-                    fields.append(field + " = " + "%(image)s")
-                if field_medium and not FieldMedium.attachment:
-                    fields.append(field_medium + " = " + "%(image_medium)s")
-                if field_small and not FieldSmall.attachment:
-                    fields.append(field_small + " = " + "%(image_small)s")
-                query = """
-                    UPDATE %(table)s
-                    SET %(fields)s
-                    WHERE id = %%(id)s
-                """ % {
-                    "table": Model._table,
-                    "fields": ", ".join(fields),
-                }
-                for main_image in main_images:
-                    params = {"id": main_image.owner_id}
-                    if field and not Field.attachment:
-                        params["image"] = main_image.image_main
-                    if field_medium and not FieldMedium.attachment:
-                        params["image_medium"] = main_image.image_medium
-                    if field_small and not FieldSmall.attachment:
-                        params["image_small"] = main_image.image_small
-                    cr.execute(query, params)  # pylint: disable=sql-injection
+                save_directly_to_table(
+                    cr,
+                    Model,
+                    (field, field_medium, field_small),
+                    (Field, FieldMedium, FieldSmall),
+                    main_images,
+                )
             # fields.Binary(attachment=True), save the ir_attachment record ID
             if (
                 (field and Field.attachment)
@@ -154,6 +138,35 @@ def uninstall_hook_for_submodules(
                     if field_small and FieldSmall.attachment:
                         FieldSmall.write(owner, main_image.image_small)
         images.unlink()
+
+
+def save_directly_to_table(cr, Model, fields, Fields, main_images):
+    field, field_medium, field_small = fields
+    Field, FieldMedium, FieldSmall = Fields
+    fields = []
+    if field and not Field.attachment:
+        fields.append(field + " = " + "%(image)s")
+    if field_medium and not FieldMedium.attachment:
+        fields.append(field_medium + " = " + "%(image_medium)s")
+    if field_small and not FieldSmall.attachment:
+        fields.append(field_small + " = " + "%(image_small)s")
+    query = """
+        UPDATE %(table)s
+        SET %(fields)s
+        WHERE id = %%(id)s
+    """ % {
+        "table": Model._table,
+        "fields": ", ".join(fields),
+    }
+    for main_image in main_images:
+        params = {"id": main_image.owner_id}
+        if field and not Field.attachment:
+            params["image"] = main_image.image_main
+        if field_medium and not FieldMedium.attachment:
+            params["image_medium"] = main_image.image_medium
+        if field_small and not FieldSmall.attachment:
+            params["image_small"] = main_image.image_small
+        cr.execute(query, params)  # pylint: disable=sql-injection
 
 
 def table_has_column(cr, table, field):
