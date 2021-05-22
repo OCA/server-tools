@@ -33,6 +33,7 @@ addon | version | summary
 [onchange_helper](onchange_helper/) | 14.0.1.0.0 | Technical module that ease execution of onchange in Python code
 [sentry](sentry/) | 14.0.1.0.0 | Report Odoo errors to Sentry
 [slow_statement_logger](slow_statement_logger/) | 14.0.1.0.1 | Log slow SQL statements
+[sql_export](sql_export/) | 14.0.1.0.0 | Export data in csv file with SQL requests
 [sql_request_abstract](sql_request_abstract/) | 14.0.1.0.0 | Abstract Model to manage SQL Requests
 [upgrade_analysis](upgrade_analysis/) | 14.0.2.1.0 | Performs a difference analysis between modules installed on two different Odoo instances
 
