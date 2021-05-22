@@ -4,7 +4,7 @@
 
 from openerp import api, fields, models
 import openerp.exceptions
-from openerp.addons.auth_from_http_remote_user import utils
+from .. import utils
 
 
 class ResUsers(models.Model):
