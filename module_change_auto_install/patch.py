@@ -1,0 +1,40 @@
+# Copyright (C) 2021 - Today: GRAP (http://www.grap.coop)
+# @author: Sylvain LE GAL (https://twitter.com/legalsylvain)
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+
+import logging
+
+from odoo import modules
+from odoo.tools import config
+
+_logger = logging.getLogger(__name__)
+_original_load_information_from_description_file = (
+    modules.module.load_information_from_description_file
+)
+
+
+def _overload_load_information_from_description_file(module, mod_path=None):
+    res = _original_load_information_from_description_file(module, mod_path=None)
+    auto_install = res.get("auto_install", False)
+
+    modules_auto_install_enabled = config.get("modules_auto_install_enabled", [])
+    modules_auto_install_disabled = config.get("modules_auto_install_disabled", [])
+
+    if module in modules_auto_install_disabled and auto_install:
+        _logger.info("Module '%s' has been marked as not auto installable." % module)
+        res["auto_install"] = False
+
+    if module in modules_auto_install_enabled and not auto_install:
+        _logger.info("Module '%s' has been marked as auto installable." % module)
+        res["auto_install"] = True
+
+    return res
+
+
+def post_load():
+    modules.module.load_information_from_description_file = (
+        _overload_load_information_from_description_file
+    )
+    modules.load_information_from_description_file = (
+        _overload_load_information_from_description_file
+    )
