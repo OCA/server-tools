@@ -17,6 +17,7 @@ setuptools.setup(
         'odoo14-addon-base_report_auto_create_qweb',
         'odoo14-addon-base_sparse_field_list_support',
         'odoo14-addon-base_technical_user',
+        'odoo14-addon-base_view_inheritance_extension',
         'odoo14-addon-letsencrypt',
         'odoo14-addon-module_auto_update',
         'odoo14-addon-onchange_helper',
