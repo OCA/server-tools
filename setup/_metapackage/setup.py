@@ -20,6 +20,7 @@ setuptools.setup(
         'odoo14-addon-base_view_inheritance_extension',
         'odoo14-addon-letsencrypt',
         'odoo14-addon-module_auto_update',
+        'odoo14-addon-module_change_auto_install',
         'odoo14-addon-onchange_helper',
         'odoo14-addon-sentry',
         'odoo14-addon-slow_statement_logger',
