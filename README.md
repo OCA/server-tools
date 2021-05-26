@@ -31,7 +31,7 @@ addon | version | summary
 [base_view_inheritance_extension](base_view_inheritance_extension/) | 14.0.1.0.1 | Adds more operators for view inheritance
 [letsencrypt](letsencrypt/) | 14.0.1.0.0 | Request SSL certificates from letsencrypt.org
 [module_auto_update](module_auto_update/) | 14.0.1.0.1 | Automatically update Odoo modules
-[module_change_auto_install](module_change_auto_install/) | 14.0.1.0.1 | Customize auto installables modules by configuration
+[module_change_auto_install](module_change_auto_install/) | 14.0.1.0.2 | Customize auto installables modules by configuration
 [onchange_helper](onchange_helper/) | 14.0.1.0.0 | Technical module that ease execution of onchange in Python code
 [sentry](sentry/) | 14.0.1.0.1 | Report Odoo errors to Sentry
 [slow_statement_logger](slow_statement_logger/) | 14.0.1.0.1 | Log slow SQL statements
