@@ -33,7 +33,7 @@ addon | version | summary
 [module_auto_update](module_auto_update/) | 14.0.1.0.1 | Automatically update Odoo modules
 [module_change_auto_install](module_change_auto_install/) | 14.0.1.0.1 | Customize auto installables modules by configuration
 [onchange_helper](onchange_helper/) | 14.0.1.0.0 | Technical module that ease execution of onchange in Python code
-[sentry](sentry/) | 14.0.1.0.0 | Report Odoo errors to Sentry
+[sentry](sentry/) | 14.0.1.0.1 | Report Odoo errors to Sentry
 [slow_statement_logger](slow_statement_logger/) | 14.0.1.0.1 | Log slow SQL statements
 [sql_export](sql_export/) | 14.0.1.0.0 | Export data in csv file with SQL requests
 [sql_request_abstract](sql_request_abstract/) | 14.0.1.0.0 | Abstract Model to manage SQL Requests
