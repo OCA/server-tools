@@ -13,18 +13,40 @@ _original_load_information_from_description_file = (
 )
 
 
+def split_strip(s):
+    """Split string and strip each component sep by comma
+
+    >>> split_strip("foo, bar,")
+    ['foo', 'bar']
+
+    >>> split_strip("")
+    []
+
+    >>> split_strip(None)
+    []
+    """
+    s = (s or "").strip(" ,")
+    if not s:
+        return []
+    return [x.strip() for x in s.split(",")]
+
+
 def _overload_load_information_from_description_file(module, mod_path=None):
     res = _original_load_information_from_description_file(module, mod_path=None)
     auto_install = res.get("auto_install", False)
 
-    modules_auto_install_enabled = config.get("modules_auto_install_enabled", [])
-    modules_auto_install_disabled = config.get("modules_auto_install_disabled", [])
+    modules_auto_install_enabled = split_strip(
+        config.get("modules_auto_install_enabled")
+    )
+    modules_auto_install_disabled = split_strip(
+        config.get("modules_auto_install_disabled")
+    )
 
-    if module in modules_auto_install_disabled and auto_install:
+    if auto_install and module in modules_auto_install_disabled:
         _logger.info("Module '%s' has been marked as not auto installable." % module)
         res["auto_install"] = False
 
-    if module in modules_auto_install_enabled and not auto_install:
+    if not auto_install and module in modules_auto_install_enabled:
         _logger.info("Module '%s' has been marked as auto installable." % module)
         res["auto_install"] = True
 
@@ -32,6 +54,7 @@ def _overload_load_information_from_description_file(module, mod_path=None):
 
 
 def post_load():
+    _logger.info("Applying patch module_change_auto_intall")
     modules.module.load_information_from_description_file = (
         _overload_load_information_from_description_file
     )
