@@ -5,7 +5,7 @@
 {
     "name": "Change auto installable modules",
     "summary": "Customize auto installables modules by configuration",
-    "version": "14.0.1.0.1",
+    "version": "12.0.1.0.1",
     "category": "Tools",
     "maintainers": ["legalsylvain"],
     "author": "GRAP, Odoo Community Association (OCA)",
