@@ -10,6 +10,7 @@ import uuid
 from io import BytesIO
 
 from psycopg2 import ProgrammingError
+from psycopg2.sql import SQL
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
@@ -159,22 +160,21 @@ class SQLRequestMixin(models.AbstractModel):
         if mode in ("view", "materialized_view"):
             rollback = False
 
-        # pylint: disable=sql-injection
-        if params:
-            query = self.query % params
-        else:
-            query = self.query
-        query = query
+        query = self.env.cr.mogrify(self.query, params).decode("utf-8")
 
         if mode in ("fetchone", "fetchall"):
             pass
         elif mode == "stdout":
-            query = "COPY ({}) TO STDOUT WITH {}".format(query, copy_options)
+            query = SQL("COPY ({0}) TO STDOUT WITH {1}").format(
+                SQL(query), SQL(copy_options)
+            )
         elif mode in "view":
-            query = "CREATE VIEW {} AS ({});".format(query, view_name)
+            query = SQL("CREATE VIEW {0} AS ({1});").format(SQL(query), SQL(view_name))
         elif mode in "materialized_view":
             self._check_materialized_view_available()
-            query = "CREATE MATERIALIZED VIEW {} AS ({});".format(query, view_name)
+            query = SQL("CREATE MATERIALIZED VIEW {0} AS ({1});").format(
+                SQL(query), SQL(view_name)
+            )
         else:
             raise UserError(_("Unimplemented mode : '%s'" % mode))
 

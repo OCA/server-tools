@@ -19,14 +19,25 @@ Available addons
 ----------------
 addon | version | summary
 --- | --- | ---
-[auditlog](auditlog/) | 14.0.1.0.1 | Audit Log
-[base_exception](base_exception/) | 14.0.1.0.0 | This module provide an abstract model to manage customizable exceptions to be applied on different models (sale order, invoice, ...)
-[base_jsonify](base_jsonify/) | 14.0.1.0.0 | Base module that provide the jsonify method on all models
+[auditlog](auditlog/) | 14.0.1.1.1 | Audit Log
+[base_cron_exclusion](base_cron_exclusion/) | 14.0.1.0.0 | Allow you to select scheduled actions that should not run simultaneously.
+[base_exception](base_exception/) | 14.0.1.0.2 | This module provide an abstract model to manage customizable exceptions to be applied on different models (sale order, invoice, ...)
+[base_jsonify](base_jsonify/) | 14.0.1.1.0 | Base module that provide the jsonify method on all models
+[base_m2m_custom_field](base_m2m_custom_field/) | 14.0.1.1.0 | Customizations of Many2many
+[base_name_search_improved](base_name_search_improved/) | 14.0.1.0.0 | Friendlier search when typing in relation fields
+[base_report_auto_create_qweb](base_report_auto_create_qweb/) | 14.0.1.0.0 | Report qweb auto generation
 [base_sparse_field_list_support](base_sparse_field_list_support/) | 14.0.1.0.1 | add list support to convert_to_cache()
 [base_technical_user](base_technical_user/) | 14.0.1.0.0 | Add a technical user parameter on the company
+[base_view_inheritance_extension](base_view_inheritance_extension/) | 14.0.1.0.1 | Adds more operators for view inheritance
+[letsencrypt](letsencrypt/) | 14.0.1.0.0 | Request SSL certificates from letsencrypt.org
+[module_auto_update](module_auto_update/) | 14.0.1.0.1 | Automatically update Odoo modules
+[module_change_auto_install](module_change_auto_install/) | 14.0.1.0.2 | Customize auto installables modules by configuration
 [onchange_helper](onchange_helper/) | 14.0.1.0.0 | Technical module that ease execution of onchange in Python code
-[sentry](sentry/) | 14.0.1.0.0 | Report Odoo errors to Sentry
+[sentry](sentry/) | 14.0.1.0.1 | Report Odoo errors to Sentry
+[slow_statement_logger](slow_statement_logger/) | 14.0.1.0.1 | Log slow SQL statements
+[sql_export](sql_export/) | 14.0.1.0.0 | Export data in csv file with SQL requests
 [sql_request_abstract](sql_request_abstract/) | 14.0.1.0.0 | Abstract Model to manage SQL Requests
+[upgrade_analysis](upgrade_analysis/) | 14.0.2.1.0 | Performs a difference analysis between modules installed on two different Odoo instances
 
 [//]: # (end addons)
 

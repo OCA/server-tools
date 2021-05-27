@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+        <record model="ir.ui.view" id="report_duplicate_form_view">
+            <field name="name">ir.actions.report.duplicate.form</field>
+            <field name="model">ir.actions.report.duplicate</field>
+            <field name="arch" type="xml">
+                <form string="Report duplication">
+                    <group>
+                        <field name="suffix" />
+                    </group>
+                    <footer>
+                        <button
+                        class="oe_highlight"
+                        name="duplicate_report"
+                        string="Duplicate"
+                        type="object"
+                    />
+                        or
+                        <button class="oe_link" special="cancel" string="Cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="report_duplicate_action">
+            <field name="name">Report duplication</field>
+            <field name="res_model">ir.actions.report.duplicate</field>
+            <field name="view_mode">form</field>
+            <field
+            name="view_id"
+            ref="base_report_auto_create_qweb.report_duplicate_form_view"
+        />
+            <field name="target">new</field>
+        </record>
+
+</odoo>

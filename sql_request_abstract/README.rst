@@ -66,6 +66,11 @@ Inherit the model:
 
         _sql_request_users_relation = 'my_model_users_rel'
 
+Known issues / Roadmap
+======================
+
+* Move modules sql_request_abstract and sql_export to oca/reporting-engine for version 15
+
 Bug Tracker
 ===========
 

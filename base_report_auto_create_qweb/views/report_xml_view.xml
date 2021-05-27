@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+        <record model="ir.ui.view" id="report_form_view">
+            <field name="name">ir.actions.report.form</field>
+            <field name="model">ir.actions.report</field>
+            <field name="priority" eval="5" />
+            <field name="inherit_id" ref="base.act_report_xml_view" />
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='unlink_action']" position="after">
+                    <button
+                    name="%(base_report_auto_create_qweb.report_duplicate_action)d"
+                    string="Duplicate Report"
+                    type="action"
+                    icon="fa-copy"
+                />
+                </xpath>
+                <button name="associated_view" position="after">
+                    <button
+                    type="object"
+                    name="button_create_qweb"
+                    string="Create QWeb view"
+                    icon="fa-plus-square-o"
+                    attrs="{'invisible':[('report_type', 'not in', ['qweb-pdf', 'qweb-html'])]}"
+                />
+                </button>
+
+            </field>
+        </record>
+</odoo>
