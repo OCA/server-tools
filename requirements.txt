@@ -7,5 +7,5 @@ josepy
 odoorpc
 openupgradelib
 pyyaml
-raven
+sentry_sdk
 unidecode
