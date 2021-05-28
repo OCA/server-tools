@@ -25,7 +25,9 @@ def patch_leaf_trgm(method):
             if left in model._fields:
                 column = "{}.{}".format(table_alias, expression._quote(left))
                 query = "({} {} {})".format(
-                    column, sql_operator, model._fields[left].column_format,
+                    column,
+                    sql_operator,
+                    model._fields[left].column_format,
                 )
             elif left in models.MAGIC_COLUMNS:
                 query = '({}."{}" {} %s)'.format(table_alias, left, sql_operator)
