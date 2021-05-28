@@ -1,7 +1,6 @@
 # Copyright 2017-20 ForgeFlow S.L. (www.forgeflow.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-
 from odoo.tests.common import tagged
 
 from odoo.addons.test_mail.data.test_mail_data import MAIL_TEMPLATE
