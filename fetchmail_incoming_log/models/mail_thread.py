@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 import email
+import email.policy
 import logging
 import xmlrpc.client as xmlrpclib
 
@@ -26,9 +27,10 @@ class MailThread(models.AbstractModel):
         message_copy = message
         if isinstance(message, xmlrpclib.Binary):
             message = bytes(message.data)
+
         if isinstance(message, str):
             message = message.encode("utf-8")
-        message = email.message_from_bytes(message)
+        message = email.message_from_bytes(message, policy=email.policy.SMTP)
         msg_dict = self.message_parse(message, save_original=save_original)
         _logger.info(
             "Fetched mail from %s to %s with Message-Id %s",
@@ -37,7 +39,7 @@ class MailThread(models.AbstractModel):
             msg_dict.get("message_id"),
         )
 
-        return super(MailThread, self).message_process(
+        return super().message_process(
             model,
             message_copy,
             custom_values=custom_values,
