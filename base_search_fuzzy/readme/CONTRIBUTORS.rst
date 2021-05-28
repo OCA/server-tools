@@ -4,6 +4,6 @@
 * Dave Lasley <dave@laslabs.com>
 
 * `Tecnativa <https://www.tecnativa.com>`_:
-
   * Vicent Cubells
   * Ernesto Tejeda
+* teodoralexandru@nexterp.ro  2020            NextERP SRL.
