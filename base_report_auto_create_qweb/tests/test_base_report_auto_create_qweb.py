@@ -18,7 +18,7 @@ class TestBaseReportAutoQwebCreate(common.TransactionCase):
                 "name": "Test 1",
                 "model": "res.partner",
                 "report_type": "qweb-html",
-                "report_name": "test1.report_test",
+                "report_name": "test1.auto_qweb_report_test",
             }
         )
         report_html.button_create_qweb()
@@ -37,7 +37,7 @@ class TestBaseReportAutoQwebCreate(common.TransactionCase):
                 "name": "Test 2",
                 "model": "res.partner",
                 "report_type": "qweb-pdf",
-                "report_name": "test2.report_test",
+                "report_name": "test2.auto_qweb_report_test",
             }
         )
         report_pdf.button_create_qweb()
