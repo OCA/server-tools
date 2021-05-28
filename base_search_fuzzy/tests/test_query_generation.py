@@ -49,7 +49,8 @@ class QueryGenerationCase(TransactionCase):
 
         # the % parameter has to be escaped (%%) for the string replation
         self.assertIn(
-            """SELECT id FROM temp_irt_current WHERE name %% %s""", where_clause
+            """COALESCE("res_partner_category__name"."value", "res_partner_category"."name") %% %s""",  # noqa
+            where_clause,
         )
 
         complete_where = self.env.cr.mogrify(
@@ -58,7 +59,7 @@ class QueryGenerationCase(TransactionCase):
         )
 
         self.assertIn(
-            b"""SELECT id FROM temp_irt_current WHERE name % 'Goschaeftlic'""",
+            b"""SELECT FROM "res_partner_category" LEFT JOIN "ir_translation" AS "res_partner_category__name" ON ("res_partner_category"."id" = "res_partner_category__name"."res_id" AND "res_partner_category__name"."type" = \'model\' AND "res_partner_category__name"."name" = \'res.partner.category,name\' AND "res_partner_category__name"."lang" = \'de_DE\' AND "res_partner_category__name"."value" != \'\') WHERE COALESCE("res_partner_category__name"."value", "res_partner_category"."name") % \'Goschaeftlic\'""",  # noqa
             complete_where,
         )
 
