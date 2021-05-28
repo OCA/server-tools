@@ -1,6 +1,7 @@
 # Copyright 2016 ForgeFlow S.L.
 # Copyright 2016 Serpent Consulting Services Pvt. Ltd.
 # Copyright 2017 LasLabs Inc.
+# Copyright 2020 NextERP SRL.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 import logging
 
@@ -11,12 +12,9 @@ _logger = logging.getLogger(__name__)
 
 
 def patch_leaf_trgm(method):
-    def decorate_leaf_to_sql(self, eleaf):
-        model = eleaf.model
-        leaf = eleaf.leaf
+    def decorate_leaf_to_sql(self, leaf, model, alias):
         left, operator, right = leaf
-        table_alias = '"%s"' % (eleaf.generate_alias())
-
+        table_alias = '"%s"' % alias
         if operator == "%":
 
             sql_operator = "%%"
@@ -45,8 +43,9 @@ def patch_leaf_trgm(method):
             return query, params
         elif operator == "inselect":
             right = (right[0].replace(" % ", " %% "), right[1])
-            eleaf.leaf = (left, operator, right)
-        return method(self, eleaf)
+            leaf = (left, operator, right)
+
+        return method(self, leaf, model, alias)
 
     decorate_leaf_to_sql.__decorated__ = True
 
