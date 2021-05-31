@@ -36,6 +36,7 @@ class IrModuleModule(models.Model):
     js_code_qty = fields.Integer(string="JS Code Quantity", readonly=True)
 
     css_code_qty = fields.Integer(string="CSS Code Quantity", readonly=True)
+    scss_code_qty = fields.Integer(string="SCSS Code Quantity", readonly=True)
 
     # Overloadable Section
     @api.model
@@ -56,6 +57,7 @@ class IrModuleModule(models.Model):
             ".xml": {"code": "xml_code_qty"},
             ".js": {"code": "js_code_qty"},
             ".css": {"code": "css_code_qty"},
+            ".scss": {"code": "scss_code_qty"},
         }
 
     @api.model
@@ -68,6 +70,7 @@ class IrModuleModule(models.Model):
             "xml_code_qty": 0,
             "js_code_qty": 0,
             "css_code_qty": 0,
+            "scss_code_qty": 0,
         }
 
     @api.model
