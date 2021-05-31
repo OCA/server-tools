@@ -25,7 +25,7 @@ addon | version | summary
 [base_jsonify](base_jsonify/) | 14.0.1.1.0 | Base module that provide the jsonify method on all models
 [base_m2m_custom_field](base_m2m_custom_field/) | 14.0.1.1.0 | Customizations of Many2many
 [base_name_search_improved](base_name_search_improved/) | 14.0.1.0.0 | Friendlier search when typing in relation fields
-[base_report_auto_create_qweb](base_report_auto_create_qweb/) | 14.0.1.0.0 | Report qweb auto generation
+[base_report_auto_create_qweb](base_report_auto_create_qweb/) | 14.0.1.0.1 | Report qweb auto generation
 [base_sparse_field_list_support](base_sparse_field_list_support/) | 14.0.1.0.1 | add list support to convert_to_cache()
 [base_technical_user](base_technical_user/) | 14.0.1.0.0 | Add a technical user parameter on the company
 [base_view_inheritance_extension](base_view_inheritance_extension/) | 14.0.1.0.1 | Adds more operators for view inheritance
