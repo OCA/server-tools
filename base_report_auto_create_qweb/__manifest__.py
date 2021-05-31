@@ -4,7 +4,7 @@
 
 {
     "name": "Report qweb auto generation",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.0.1",
     "depends": [
         "base",
     ],
