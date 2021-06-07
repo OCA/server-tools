@@ -27,7 +27,7 @@ class MailThread(models.AbstractModel):
                 raise ve
             fetchmail_server = (
                 self.env["fetchmail.server"]
-                .with_context({"sender_message": message, "route_exception": ve})
+                .with_context(sender_message=message, route_exception=ve)
                 .browse(fetchmail_server_id)
             )
             if not fetchmail_server.error_notice_template_id:
