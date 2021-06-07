@@ -10,7 +10,6 @@
         >Receiving error with: ${ctx.get('sender_message').get('subject')|safe}</field>
         <field name="model_id" ref="fetchmail.model_fetchmail_server" />
         <field name="auto_delete" eval="True" />
-        <field name="user_signature" eval="True" />
         <field name="lang">${ctx.get('lang')}</field>
         <field
             name="body_html"
