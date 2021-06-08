@@ -51,7 +51,8 @@ class TestFetchmailNotifyErrorToSender(TestMailgateway):
             msg_id=msg_id,
         )
         self.env["mail.thread"].with_context(ctx or {}).message_process(
-            model, mail,
+            model,
+            mail,
         )
         return self.env[target_model].search([(target_field, "=", subject)])
 
@@ -70,7 +71,11 @@ class TestFetchmailNotifyErrorToSender(TestMailgateway):
                 to_email="noone@example.com",
                 subject="spam",
                 extra="In-Reply-To: <12321321-openerp-%d-mail.test.simple@%s"
-                ">" % (self.test_record.id, socket.gethostname(),),
+                ">"
+                % (
+                    self.test_record.id,
+                    socket.gethostname(),
+                ),
                 ctx={"default_fetchmail_server_id": self.fetchmail_server.id},
             )
 
@@ -78,5 +83,6 @@ class TestFetchmailNotifyErrorToSender(TestMailgateway):
             [("email_to", "=", email_from)]
         )
         self.assertEqual(
-            count_return_mails_after, count_return_mails_before + 1,
+            count_return_mails_after,
+            count_return_mails_before + 1,
         )
