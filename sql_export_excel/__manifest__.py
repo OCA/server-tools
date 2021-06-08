@@ -3,7 +3,7 @@
 
 {
     'name': 'SQL Export Excel',
-    'version': '12.0.1.0.0',
+    'version': '12.0.1.1.0',
     'author': 'Akretion,Odoo Community Association (OCA)',
     'website': 'http://github/oca/server-tools',
     'license': 'AGPL-3',
@@ -12,6 +12,11 @@
     'depends': [
         'sql_export',
     ],
+    'external_dependencies': {
+        'python': [
+            'openpyxl',
+        ],
+    },
     'data': [
         'views/sql_export_view.xml',
     ],
