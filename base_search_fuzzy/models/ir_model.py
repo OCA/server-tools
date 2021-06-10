@@ -41,6 +41,30 @@ def patch_leaf_trgm(method):
             if isinstance(params, str):
                 params = [params]
             return query, params
+        elif operator == "%any":
+
+            sql_operator = "%%"
+            params = []
+
+            if left in model._fields:
+                column = "{}.{}".format(table_alias, expression._quote(left))
+                query = "({} {} ANY(STRING_TO_ARRAY({}, ' ')))".format(
+                    model._fields[left].column_format, sql_operator, column,
+                )
+            elif left in models.MAGIC_COLUMNS:
+                query = '({}."{}" {} %s)'.format(table_alias, left, sql_operator)
+                params = right
+            else:  # Must not happen
+                raise ValueError(
+                    _("Invalid field {!r} in domain term {!r}".format(left, leaf))
+                )
+
+            if left in model._fields:
+                params = str(right)
+
+            if isinstance(params, str):
+                params = [params]
+            return query, params
         elif operator == "inselect":
             right = (right[0].replace(" % ", " %% "), right[1])
             eleaf.leaf = (left, operator, right)
@@ -76,7 +100,7 @@ class IrModel(models.Model):
             )
 
         if "%" not in expression.TERM_OPERATORS:
-            expression.TERM_OPERATORS += ("%",)
+            expression.TERM_OPERATORS += ("%", "%any")
 
         if not hasattr(models.BaseModel._generate_order_by, "__decorated__"):
             models.BaseModel._generate_order_by = patch_generate_order_by(
