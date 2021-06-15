@@ -30,7 +30,7 @@
                         <field
                             name="cron_ids"
                             nolabel="1"
-                            domain="[('function', '=', '_run_all_sql_export_for_cron')]"
+                            domain="[('model_id', '=', 'sql.export')]"
                             groups="base.group_system"
                         />
                     </group>

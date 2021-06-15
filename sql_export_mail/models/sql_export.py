@@ -5,7 +5,6 @@ from datetime import datetime, timedelta
 
 from odoo import SUPERUSER_ID, _, api, fields, models
 from odoo.exceptions import UserError
-from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 
 class SqlExport(models.Model):
@@ -28,7 +27,6 @@ class SqlExport(models.Model):
         [("not_empty", "File Not Empty")], default="not_empty"
     )
 
-    @api.multi
     def create_cron(self):
         self.ensure_one()
         nextcall = datetime.now() + timedelta(hours=2)
@@ -51,11 +49,9 @@ class SqlExport(models.Model):
         cron.write(write_vals)
         self.write({"cron_ids": [(4, cron.id)]})
 
-    @api.multi
     def send_mail(self, params=None):
         self.ensure_one()
         mail_template = self.env.ref("sql_export_mail.sql_export_mailer")
-        now_time = datetime.strftime(datetime.now(), DEFAULT_SERVER_DATETIME_FORMAT)
         attach_obj = self.env["ir.attachment"]
         if self.mail_condition == "not_empty":
             res = self._execute_sql_request(params=params, mode="fetchone")
@@ -78,8 +74,7 @@ class SqlExport(models.Model):
         msg_id = mail_template.send_mail(self.id, force_send=False)
         mail = self.env["mail.mail"].browse(msg_id)
         attach_vals = {
-            "name": now_time + " - " + self.name,
-            "datas_fname": filename,
+            "name": filename,
             "datas": binary,
             "res_model": "mail.mail",
             "res_id": mail.id,
@@ -115,7 +110,6 @@ class SqlExport(models.Model):
             else:
                 export.send_mail()
 
-    @api.multi
     @api.constrains("field_ids", "mail_user_ids")
     def check_no_parameter_if_sent_by_mail(self):
         for export in self:
@@ -127,7 +121,6 @@ class SqlExport(models.Model):
                     )
                 )
 
-    @api.multi
     @api.constrains("mail_user_ids")
     def check_mail_user(self):
         for export in self:
@@ -135,7 +128,6 @@ class SqlExport(models.Model):
                 if not user.email:
                     raise UserError(_("The user does not have any e-mail address."))
 
-    @api.multi
     def get_email_address_for_template(self):
         """
         Called from mail template
