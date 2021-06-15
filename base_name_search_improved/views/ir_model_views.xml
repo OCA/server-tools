@@ -2,7 +2,6 @@
 <!-- © 2016 Daniel Reis
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
-
     <record id="view_model_form_new" model="ir.ui.view">
         <field name="name">view.model.form</field>
         <field name="model">ir.model</field>
@@ -18,37 +17,64 @@
                     <p class="alert alert-info" role="alert" style="margin-bottom:0px;">
                         Smart Search se puede activar de dos formas que pueden ser complementarias:
                         <ul>
-                            <li><b>Vista de búsqueda</b>: a la hora de buscar en vistas listas, kanban y demás, la primer opción será buscar mediante "Smart Search"
+                            <li><b
+                                >Vista de búsqueda</b>: a la hora de buscar en vistas listas, kanban y demás, la primer opción será buscar mediante "Smart Search"
                             </li>
-                            <li><b>Name Search</b>: es para cuando estemos queriendo buscar un registro desde otro registro a través de los widgets m2o/m2m, por ejemplo al agregar un producto en una línea de venta o al elegir un contacto en una factura.
+                            <li><b
+                                >Name Search</b>: es para cuando estemos queriendo buscar un registro desde otro registro a través de los widgets m2o/m2m, por ejemplo al agregar un producto en una línea de venta o al elegir un contacto en una factura.
                             </li>
                         </ul>
-                        En donde se haya activado "Smart Search" las búsquedas tendrán un comportmiento más "relajado". Nativamente Odoo busca por registors que incluyan las palabras ingresadas tal cual las ha ingresado, al activar esta opción se buscará por registros que contegan dichas palabras y sin importar el orden en el que se ingresen. Por ej. si buscamos un Contacto con "Pedro Picapiedra", naticamente Odoo solo nos retornaría aquellos registros  que contengan exactamente ese texto, con smart search activo se devolverá cualquier registro que contenga las palabras "Pedro" y "Picapiedra".<br/><br/>
+                        En donde se haya activado "Smart Search" las búsquedas tendrán un comportmiento más "relajado". Nativamente Odoo busca por registors que incluyan las palabras ingresadas tal cual las ha ingresado, al activar esta opción se buscará por registros que contegan dichas palabras y sin importar el orden en el que se ingresen. Por ej. si buscamos un Contacto con "Pedro Picapiedra", naticamente Odoo solo nos retornaría aquellos registros  que contengan exactamente ese texto, con smart search activo se devolverá cualquier registro que contenga las palabras "Pedro" y "Picapiedra".<br
+                        /><br />
 
                         Al activar Smart Search podrá además agregar configurar estos dos comportamientos opcionales:
                         <ul>
-                            <li>Definir un <b>dominio personalizado</b> (por ejemplo solo mostrar usuarios internos y no los portal)</li>
-                            <li><b>Búsquedas por otros campos</b>. Podremos definir un conjunto de campos por el cual querramos buscar</li>
+                            <li>Definir un <b
+                                >dominio personalizado</b> (por ejemplo solo mostrar usuarios internos y no los portal)</li>
+                            <li><b
+                                >Búsquedas por otros campos</b>. Podremos definir un conjunto de campos por el cual querramos buscar</li>
                         </ul>
                     </p>
-                    <p class="alert alert-warning" role="alert" style="margin-bottom:0px;">
-                        <b>IMPORTANTE:</b> tenga en cuenta que activar smart search puede afectar la performance de las búsquedas y del sistema en general.
-                        <field name="smart_search_warning"/>
+                    <p
+                        class="alert alert-warning"
+                        role="alert"
+                        style="margin-bottom:0px;"
+                    >
+                        <b
+                        >IMPORTANTE:</b> tenga en cuenta que activar smart search puede afectar la performance de las búsquedas y del sistema en general.
+                        <field name="smart_search_warning" />
                     </p>
                     <group>
                         <group>
                             <field name="id" invisible="1" />
                             <field name="model" readonly="1" />
-                            <field name="add_smart_search" string="Smart Search (search view)" widget="boolean_toggle"/>
-                            <field name="use_smart_name_search" string="Smart Name Search" widget="boolean_toggle"/>
+                            <field
+                                name="add_smart_search"
+                                string="Smart Search (search view)"
+                                widget="boolean_toggle"
+                            />
+                            <field
+                                name="use_smart_name_search"
+                                string="Smart Name Search"
+                                widget="boolean_toggle"
+                            />
                             <!-- TODO use new odoo domain widget -->
-                            <field name="name_search_domain" attrs="{'invisible': [('use_smart_name_search', '=', False), ('add_smart_search', '=', False)]}"/>
+                            <field
+                                name="name_search_domain"
+                                attrs="{'invisible': [('use_smart_name_search', '=', False), ('add_smart_search', '=', False)]}"
+                            />
                         </group>
                     </group>
-                    <notebook colspan="4" attrs="{'invisible': [('use_smart_name_search', '=', False), ('add_smart_search', '=', False)]}">
+                    <notebook
+                        colspan="4"
+                        attrs="{'invisible': [('use_smart_name_search', '=', False), ('add_smart_search', '=', False)]}"
+                    >
                         <page string="Smart Search Fields">
                             <!-- we use default m2m widget and not tags widget so that is clearer the technical name of the field added -->
-                            <field name="name_search_ids" domain="[('model_id', '=', id), ('selectable', '=', True)]">
+                            <field
+                                name="name_search_ids"
+                                domain="[('model_id', '=', id), ('selectable', '=', True)]"
+                            >
                                 <tree>
                                     <field name="name" />
                                     <field name="field_description" />
@@ -122,7 +148,9 @@
             (0, 0, {'view_mode': 'form', 'view_id': ref('view_model_form_new')}
         )]"
         />
-        <field name="context">{'search_default_smart_search': 1, 'search_default_smart_name_search': 1}</field>
+        <field
+            name="context"
+        >{'search_default_smart_search': 1, 'search_default_smart_name_search': 1}</field>
         <field name="domain">[('transient', '=', False)]</field>
     </record>
     <menuitem
