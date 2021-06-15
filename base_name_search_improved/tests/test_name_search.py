@@ -12,21 +12,22 @@ class NameSearchCase(TransactionCase):
         model_partner = self.env.ref("base.model_res_partner")
         model_partner.name_search_ids = phone_field
         model_partner.add_smart_search = True
+        model_partner.use_smart_name_search = True
 
         # this use does not make muche sense but with base module we dont have
         # much models to use for tests
         model_partner.name_search_domain = "[('parent_id', '=', False)]"
         self.Partner = self.env["res.partner"]
         self.partner1 = self.Partner.create(
-            {"name": "Luigi Verconti", "customer_rank": 1, "phone": "+351 555 777 333"}
+            {"name": "Luigi Verconti", "vat": "1111", "phone": "+351 555 777 333"}
         )
         self.partner2 = self.Partner.create(
-            {"name": "Ken Shabby", "customer_rank": 1, "phone": "+351 555 333 777"}
+            {"name": "Ken Shabby", "vat": "2222", "phone": "+351 555 333 777"}
         )
         self.partner3 = self.Partner.create(
             {
                 "name": "Johann Gambolputty of Ulm",
-                "supplier_rank": 1,
+                "vat": "3333",
                 "phone": "+351 777 333 555",
                 "barcode": "1111",
             }
@@ -64,7 +65,7 @@ class NameSearchCase(TransactionCase):
 
     def test_MustHonorDomain(self):
         """Must also honor a provided Domain"""
-        res = self.Partner.name_search("+351", args=[("supplier_rank", "=", True)])
+        res = self.Partner.name_search("+351", args=[("vat", "=", "3333")])
         gambulputty = self.partner3.id
         self.assertEqual(len(res), 1)
         self.assertEqual(res[0][0], gambulputty)
