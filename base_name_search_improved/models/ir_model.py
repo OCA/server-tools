@@ -25,7 +25,11 @@ def _get_rec_names(self):
 
 @tools.ormcache(skiparg=0)
 def _get_use_smart_name_search(self):
-    return self.env['ir.model'].search([('model', '=', str(self._name))]).use_smart_name_search
+    return (
+        self.env["ir.model"]
+        .search([("model", "=", str(self._name))])
+        .use_smart_name_search
+    )
 
 
 @tools.ormcache(skiparg=0)
@@ -55,17 +59,28 @@ def _extend_name_results(self, domain, results, limit, name_get_uid):
     result_count = len(results)
     if result_count < limit:
         domain += [("id", "not in", [x[0] for x in results])]
-        rec_ids = self._search(domain, limit=limit - result_count, access_rights_uid=name_get_uid)
-        results.extend(models.lazy_name_get(self.browse(rec_ids).with_user(name_get_uid)))
+        rec_ids = self._search(
+            domain, limit=limit - result_count, access_rights_uid=name_get_uid
+        )
+        results.extend(
+            models.lazy_name_get(self.browse(rec_ids).with_user(name_get_uid))
+        )
     return results
 
 
 def patch_name_search():
     @api.model
-    def _name_search(self, name='', args=None, operator='ilike', limit=100, name_get_uid=None):
+    def _name_search(
+        self, name="", args=None, operator="ilike", limit=100, name_get_uid=None
+    ):
         # Perform standard name search
         res = _name_search.origin(
-            self, name=name, args=args, operator=operator, limit=limit, name_get_uid=name_get_uid
+            self,
+            name=name,
+            args=args,
+            operator=operator,
+            limit=limit,
+            name_get_uid=name_get_uid,
         )
         if name and _get_use_smart_name_search(self.sudo()) and operator in ALLOWED_OPS:
             limit = limit or 0
@@ -79,11 +94,15 @@ def patch_name_search():
             # Try regular search on each additional search field
             for rec_name in all_names[1:]:
                 domain = [(rec_name, operator, name)]
-                res = _extend_name_results(self, base_domain + domain, res, limit, name_get_uid)
+                res = _extend_name_results(
+                    self, base_domain + domain, res, limit, name_get_uid
+                )
             # Try ordered word search on each of the search fields
             for rec_name in all_names:
                 domain = [(rec_name, operator, name.replace(" ", "%"))]
-                res = _extend_name_results(self, base_domain + domain, res, limit, name_get_uid)
+                res = _extend_name_results(
+                    self, base_domain + domain, res, limit, name_get_uid
+                )
             # Try unordered word search on each of the search fields
             # we only perform this search if we have at least one
             # separator character
@@ -97,7 +116,9 @@ def patch_name_search():
                             word_domain and ["|"] + word_domain or word_domain
                         ) + [(rec_name, operator, word)]
                     domain = (domain and ["&"] + domain or domain) + word_domain
-                res = _extend_name_results(self, base_domain + domain, res, limit, name_get_uid)
+                res = _extend_name_results(
+                    self, base_domain + domain, res, limit, name_get_uid
+                )
 
         return res
 
@@ -176,29 +197,37 @@ class IrModel(models.Model):
 
     add_smart_search = fields.Boolean(help="Add Smart Search on search views",)
     use_smart_name_search = fields.Boolean(
-        string='Smart Name Search Enabled?', help="Use Smart Search for 'name_search', this will affect when searching"
-        "from other records (for eg. from m2o fields")
+        string="Smart Name Search Enabled?",
+        help="Use Smart Search for 'name_search', this will affect when "
+        "searching from other records (for eg. from m2o fields",
+    )
     name_search_ids = fields.Many2many("ir.model.fields", string="Smart Search Fields")
-    name_search_domain = fields.Char(string='Smart Search Domain')
-    smart_search_warning = fields.Html(compute='_smart_search_warning')
+    name_search_domain = fields.Char(string="Smart Search Domain")
+    smart_search_warning = fields.Html(compute="_compute_smart_search_warning")
 
-    @api.depends('name_search_ids')
-    def _smart_search_warning(self):
+    @api.depends("name_search_ids")
+    def _compute_smart_search_warning(self):
         msgs = []
         for rec in self:
             if len(rec.name_search_ids) > 4:
                 msgs.append(
-                    'Ha seleccionado más de 4 campos para smart search, recomendamos que intente utilizar menos '
-                    'campos')
+                    "Ha seleccionado más de 4 campos para smart search, "
+                    "recomendamos que intente utilizar menos "
+                    "campos"
+                )
             if any(x.translate for x in rec.name_search_ids):
                 msgs.append(
-                    'Ha seleccionado campos traducibles en la búsqueda inteligente, de ser posible intente '
-                    'evitar los mismos')
+                    "Ha seleccionado campos traducibles en la búsqueda "
+                    "inteligente, de ser posible intente "
+                    "evitar los mismos"
+                )
             # rec.smart_search_warning = msg
             if msgs:
                 rec.smart_search_warning = (
-                    '<p>Si tiene problemas de performance en las búsquedas le recomendamos revisar estas '
-                    'sugerencias: <ul>%s</ul></p>') % "".join(["<li>%s</li>" % x for x in msgs])
+                    "<p>Si tiene problemas de performance en las búsquedas le "
+                    "recomendamos revisar estas "
+                    "sugerencias: <ul>%s</ul></p>"
+                ) % "".join(["<li>%s</li>" % x for x in msgs])
             else:
                 rec.smart_search_warning = False
 
