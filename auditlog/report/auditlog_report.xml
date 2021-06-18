@@ -1,0 +1,100 @@
+<odoo>
+    <record model="ir.ui.view" id="view_auditlog_report_tree">
+        <field name="name">view.auditlog.report.tree</field>
+        <field name="model">auditlog.report</field>
+        <field name="arch" type="xml">
+            <tree string="Auditlog Report">
+                <field name="create_date" optional="show" />
+                <field name="user_id" optional="show" />
+                <field name="http_session_id" optional="hide" />
+                <field name="http_request_id" optional="hide" />
+                <field name="name" optional="show" />
+                <field name="model_id" optional="hide" />
+                <field name="model_model" optional="hide" />
+                <field name="model_name" optional="hide" />
+                <field name="field_id" optional="hide" />
+                <field name="field_name" optional="hide" />
+                <field name="field_description" optional="show" />
+                <field name="old_value" optional="hide" />
+                <field name="new_value" optional="hide" />
+                <field name="old_value_text" optional="show" />
+                <field name="new_value_text" optional="show" />
+                <field name="log_type" optional="hide" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_auditlog_report_search" model="ir.ui.view">
+        <field name="name">auditlog.report.search</field>
+        <field name="model">auditlog.report</field>
+        <field name="arch" type="xml">
+            <search string="Logs Report">
+                <field name="name" />
+                <field name="model_id" />
+                <field name="res_id" />
+                <field name="user_id" />
+                <group expand="0" string="Group By...">
+                    <filter
+                        name="group_by_user_id"
+                        string="User"
+                        domain="[]"
+                        context="{'group_by':'user_id'}"
+                    />
+                    <filter
+                        name="group_by_model_id"
+                        string="Model"
+                        domain="[]"
+                        context="{'group_by':'model_id'}"
+                    />
+                    <filter
+                        name="group_by_field_id"
+                        string="Field"
+                        domain="[]"
+                        context="{'group_by':'field_id'}"
+                    />
+                    <filter
+                        name="group_by_res_id"
+                        string="Resource ID"
+                        domain="[]"
+                        context="{'group_by':'res_id'}"
+                    />
+                    <filter
+                        name="group_by_create_date"
+                        string="Date"
+                        domain="[]"
+                        context="{'group_by':'create_date'}"
+                    />
+                    <filter
+                        name="group_by_http_session"
+                        string="User session"
+                        domain="[]"
+                        context="{'group_by':'http_session_id'}"
+                    />
+                    <filter
+                        name="group_by_http_request"
+                        string="HTTP Request"
+                        domain="[]"
+                        context="{'group_by':'http_request_id'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_auditlog_report" model="ir.actions.act_window">
+        <field name="name">Auditlog Report</field>
+        <field name="res_model">auditlog.report</field>
+        <field name="view_mode">tree</field>
+        <field name="search_view_id" ref="view_auditlog_report_search" />
+        <field name="context">{'search_default_group_by_model_id': 1}</field>
+    </record>
+
+    <menuitem
+        id="menu_auditlog_report"
+        name="Logs Report"
+        parent="menu_audit"
+        action="action_auditlog_report"
+        sequence="20"
+    />
+
+</odoo>

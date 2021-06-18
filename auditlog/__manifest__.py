@@ -15,6 +15,7 @@
         "views/auditlog_view.xml",
         "views/http_session_view.xml",
         "views/http_request_view.xml",
+        "report/auditlog_report.xml",
     ],
     "application": True,
     "installable": True,
