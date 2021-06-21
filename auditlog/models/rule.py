@@ -387,7 +387,8 @@ class AuditlogRule(models.Model):
             model_model = self.env[res_model]
             name = model_model.browse(res_id).name_get()
             model_id = self.pool._auditlog_model_cache[res_model]
-            auditlog_rule = self.env['auditlog.rule'].search([("model_id", "=", model_id)])
+            auditlog_rule = self.env['auditlog.rule'].search(
+                [("model_id", "=", model_id)])
             res_name = name and name[0] and name[0][1]
             vals = {
                 'name': res_name,
