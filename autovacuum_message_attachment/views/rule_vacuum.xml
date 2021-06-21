@@ -6,13 +6,19 @@
         <field name="arch" type="xml">
             <form string="Message Vacuum Rule">
                 <sheet>
+                    <widget
+                        name="web_ribbon"
+                        text="Archived"
+                        bg_color="bg-danger"
+                        attrs="{'invisible': [('active', '=', True)]}"
+                    />
+                    <field name="active" invisible="1" />
                     <group col="1">
                         <group col="4">
                             <field name="name" />
                             <field name="ttype" />
                             <field name="company_id" />
                             <field name="retention_time" />
-                            <field name="active" />
                         </group>
                         <group
                             col="4"
@@ -24,7 +30,10 @@
                             />
                             <field name="empty_subtype" />
                         </group>
-                        <group string="Message Subtypes">
+                        <group
+                            string="Message Subtypes"
+                            attrs="{'invisible': [('ttype', '!=', 'message')]}"
+                        >
                             <field name="message_subtype_ids" nolabel="1" />
                         </group>
                         <group attrs="{'invisible': [('ttype', '!=', 'attachment')]}">
@@ -65,7 +74,6 @@
     <record model="ir.actions.act_window" id="action_vacuum_rule">
         <field name="name">Message and Attachment Vacuum Rule</field>
         <field name="res_model">vacuum.rule</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
     <menuitem
