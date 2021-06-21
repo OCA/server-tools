@@ -18,6 +18,7 @@ setuptools.setup(
         'odoo14-addon-base_search_fuzzy',
         'odoo14-addon-base_sparse_field_list_support',
         'odoo14-addon-base_technical_user',
+        'odoo14-addon-base_time_window',
         'odoo14-addon-base_view_inheritance_extension',
         'odoo14-addon-letsencrypt',
         'odoo14-addon-module_auto_update',
