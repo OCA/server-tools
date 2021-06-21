@@ -6,6 +6,8 @@ import mock
 from odoo.tests.common import TransactionCase
 from odoo.tools import mute_logger
 
+from odoo.addons.nsca_client.models.nsca_server import NscaServer
+
 
 class Popen:
     def __init__(self, cmd, stdout, stdin, stderr):
@@ -14,6 +16,7 @@ class Popen:
         self.stdin = stdin
         self.stderr = stderr
 
+    # flake8: noqa: B902
     def communicate(input):
         return ["test"]
 
@@ -40,7 +43,7 @@ class TestNsca(TransactionCase):
                 }
             )
             self.assertTrue(check.model_id)
-            self.env["nsca.check"]._cron_check(check.id,)
+            self.env["nsca.check"]._cron_check(check.id)
 
     def test_write(self):
         server = self.env["nsca.server"].create(
@@ -87,7 +90,7 @@ class TestNsca(TransactionCase):
         with mock.patch("subprocess.Popen") as post:
             post.return_value = Popen
             with mute_logger("odoo.addons.nsca_client.models.nsca_check"):
-                self.env["nsca.check"]._cron_check(check.id,)
+                self.env["nsca.check"]._cron_check(check.id)
             post.assert_called_once()
 
     def test_void_ok(self):
@@ -115,5 +118,31 @@ class TestNsca(TransactionCase):
         self.assertEqual(check, self.env["nsca.check"].search(action["domain"]))
         with mock.patch("subprocess.Popen") as post:
             post.return_value = Popen
-            self.env["nsca.check"]._cron_check(check.id,)
+            self.env["nsca.check"]._cron_check(check.id)
             post.assert_not_called()
+
+    def test_values(self):
+        server = self.env["nsca.server"].create(
+            {
+                "name": "localhost",
+                "password": "pass",
+                "encryption_method": "3",
+                "node_hostname": "odoodev",
+            }
+        )
+        check = self.env["nsca.check"].create(
+            {
+                "server_id": server.id,
+                "service": "test",
+                "nsca_model": "nsca.server",
+                "allow_void_result": False,
+                "nsca_function": "_check_send_nsca_command",
+            }
+        )
+        with mock.patch("subprocess.Popen") as post:
+            post.return_value = Popen
+            with mock.patch.object(NscaServer, "_check_send_nsca_command") as func:
+                func.return_value = ("OK", "RESULT")
+                self.env["nsca.check"]._cron_check(check.id)
+                func.assert_called()
+            post.assert_called_once()
