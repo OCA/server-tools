@@ -59,7 +59,7 @@
             <field name="name">nsca.check.tree</field>
             <field name="model">nsca.check</field>
             <field name="arch" type="xml">
-                <tree string="NSCA Checks" colors="gray: active==False">
+                <tree string="NSCA Checks" decoration-muted="active==False">
                     <field name="service" />
                     <field name="server_id" />
                     <field name="nextcall" />
@@ -71,7 +71,7 @@
             <field name="name">Checks</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">nsca.check</field>
-            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
             <field name="view_id" ref="view_nsca_check_tree" />
             <field name="context" eval="{'default_active': True}" />
             <field name="domain">['|', ('active', '=', True), ('active', '=',

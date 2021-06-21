@@ -53,7 +53,7 @@
             <field name="name">Servers</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">nsca.server</field>
-            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
             <field name="view_id" ref="view_nsca_server_tree" />
         </record>
         <menuitem

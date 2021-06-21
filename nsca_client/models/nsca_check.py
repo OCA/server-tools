@@ -40,7 +40,6 @@ class NscaCheck(models.Model):
         res["interval_type"] = "minutes"
         return res
 
-    @api.multi
     def _force_values(self):
         """Force some values:
             - Compute the name of the NSCA check to be readable
@@ -70,7 +69,6 @@ class NscaCheck(models.Model):
         check._force_values()
         return check
 
-    @api.multi
     def write(self, vals):
         res = super(NscaCheck, self).write(vals)
         if "service" in vals:
@@ -86,7 +84,9 @@ class NscaCheck(models.Model):
             NscaModel = self.env[check.nsca_model]
             results = {"model": NscaModel}
             safe_eval(
-                "result = model.{}({})".format(check.nsca_function, check.nsca_args or ""),
+                "result = model.{}({})".format(
+                    check.nsca_function, check.nsca_args or ""
+                ),
                 results,
                 mode="exec",
                 nocopy=True,
@@ -106,7 +106,6 @@ class NscaCheck(models.Model):
         check._send_nsca(rc, message, performance)
         return True
 
-    @api.multi
     def _send_nsca(self, rc, message, performance):
         for check in self:
             check.server_id._send_nsca(check.service, rc, message, performance)
