@@ -10,16 +10,12 @@
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "depends": [
-        'base',
-    ],
+    "depends": ["base",],
     "data": [
         "security/ir.model.access.csv",
         "views/nsca_menu.xml",
         "views/nsca_check.xml",
         "views/nsca_server.xml",
     ],
-    "demo": [
-        "demo/demo_data.xml",
-    ],
+    "demo": ["demo/demo_data.xml",],
 }
