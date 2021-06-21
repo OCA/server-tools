@@ -15,7 +15,6 @@ class AutovacuumMixin(models.AbstractModel):
     _name = "autovacuum.mixin"
     _description = "Mixin used to delete messages or attachments"
 
-    @api.multi
     def batch_unlink(self):
         with api.Environment.manage():
             with odoo.registry(self.env.cr.dbname).cursor() as new_cr:

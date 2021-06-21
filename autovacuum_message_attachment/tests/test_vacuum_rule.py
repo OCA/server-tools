@@ -85,7 +85,6 @@ class TestVacuumRule(common.TransactionCase):
         vals = {
             "name": name,
             "datas": base64.b64encode(b"Content"),
-            "datas_fname": name,
             "res_id": self.env.ref("base.partner_root").id,
             "res_model": "res.partner",
         }
@@ -108,19 +107,19 @@ class TestVacuumRule(common.TransactionCase):
         before_102_days_str = before_102_days.strftime(DEFAULT_SERVER_DATE_FORMAT)
         self.env.cr.execute(
             """
-            UPDATE ir_attachment SET create_date = '%s'
+            UPDATE ir_attachment SET create_date  = %s
             WHERE id = %s
-        """
-            % (before_102_days_str, a2.id)
+        """,
+            (before_102_days_str, a2.id),
         )
         a2.write({"create_date": date.today() - timedelta(days=102)})
         a3 = self.create_attachment("other")
         self.env.cr.execute(
             """
-            UPDATE ir_attachment SET create_date = '%s'
+            UPDATE ir_attachment SET create_date = %s
             WHERE id = %s
-        """
-            % (before_102_days_str, a3.id)
+        """,
+            (before_102_days_str, a3.id),
         )
         attachment_ids = [a1.id, a2.id, a3.id]
         self.attachment_obj.autovacuum(ttype="attachment")
