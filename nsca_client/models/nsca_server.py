@@ -84,21 +84,18 @@ class NscaServer(models.Model):
             ("26", u"26 - SAFER+"),
         ]
 
-    @api.multi
     def _compute_config_dir_path(self):
         for server in self:
             data_dir_path = config.get("data_dir")
             dir_path = os.path.join(data_dir_path, "nsca_client", self.env.cr.dbname)
             server.config_dir_path = dir_path
 
-    @api.multi
     def _compute_config_file_path(self):
         for server in self:
             file_name = "send_nsca_%s.cfg" % server.id
             full_path = os.path.join(server.config_dir_path, file_name)
             server.config_file_path = full_path
 
-    @api.multi
     def write_config_file(self):
         for server in self:
             try:
@@ -112,7 +109,6 @@ class NscaServer(models.Model):
                 config_file.write("encryption_method=%s\n" % server.encryption_method)
         return True
 
-    @api.multi
     def write(self, vals):
         res = super(NscaServer, self).write(vals)
         self.write_config_file()
@@ -133,7 +129,7 @@ class NscaServer(models.Model):
             # psutil changed its api through versions
             processes = [process]
             if config.get("workers") and process.parent:  # pragma: no cover
-                if hasattr(process.parent, "__call__"):
+                if callable(process.parent):
                     process = process.parent()
                 else:
                     process = process.parent
@@ -149,24 +145,21 @@ class NscaServer(models.Model):
         user_count = 0
         if "bus.presence" in self.env.registry:
             user_count = self.env["bus.presence"].search_count(
-                [("status", "=", "online"),]
+                [("status", "=", "online")]
             )
         performance = {
-            "cpu": {"value": cpu,},
-            "ram": {"value": ram,},
-            "user_count": {"value": user_count,},
+            "cpu": {"value": cpu},
+            "ram": {"value": ram},
+            "user_count": {"value": user_count},
         }
         return 0, u"OK", performance
 
-    @api.multi
     def _prepare_command(self):
         """Prepare the shell command used to send the check result
         to the NSCA daemon.
         """
         cmd = u"/usr/sbin/send_nsca -H {} -p {} -c {}".format(
-            self.name,
-            self.port,
-            self.config_file_path,
+            self.name, self.port, self.config_file_path,
         )
         return shlex.split(cmd)
 
@@ -226,7 +219,6 @@ class NscaServer(models.Model):
         cmd = self._prepare_command()
         self._run_command(cmd, check_result)
 
-    @api.multi
     def show_checks(self):
         self.ensure_one()
         action = self.env.ref("nsca_client.action_nsca_check_tree")
