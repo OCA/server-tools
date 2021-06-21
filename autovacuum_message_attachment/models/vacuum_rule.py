@@ -9,8 +9,7 @@ class VacuumRule(models.Model):
     _description = "Rules Used to delete message historic"
 
     @api.depends("model_ids")
-    @api.multi
-    def _get_model_id(self):
+    def _compute_model_id(self):
         for rule in self:
             if rule.model_ids and len(rule.model_ids) == 1:
                 rule.model_id = rule.model_ids.id
@@ -29,11 +28,7 @@ class VacuumRule(models.Model):
         help=("If set, only attachments containing this pattern will be" " deleted.")
     )
     company_id = fields.Many2one(
-        "res.company",
-        string="Company",
-        default=lambda self: self.env["res.company"]._company_default_get(
-            "vacuum.rule"
-        ),
+        "res.company", string="Company", default=lambda self: self.env.company,
     )
     message_subtype_ids = fields.Many2many(
         "mail.message.subtype",
@@ -54,12 +49,12 @@ class VacuumRule(models.Model):
     model_id = fields.Many2one(
         "ir.model",
         readonly=True,
-        compute="_get_model_id",
+        compute="_compute_model_id",
         help="Technical field used to set attributes (invisible/required, "
         "domain, etc...for other fields, like the domain filter",
     )
     model_filter_domain = fields.Text(string="Model Filter Domain")
-    model = fields.Char(readonly=True, compute="_get_model_id", string="Model code")
+    model = fields.Char(readonly=True, compute="_compute_model_id", string="Model code")
     message_type = fields.Selection(
         [
             ("email", "Email"),
@@ -78,7 +73,6 @@ class VacuumRule(models.Model):
     active = fields.Boolean(default=True)
     description = fields.Text()
 
-    @api.multi
     @api.constrains("retention_time")
     def retention_time_not_null(self):
         for rule in self:
