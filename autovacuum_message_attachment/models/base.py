@@ -8,6 +8,9 @@ class Base(models.AbstractModel):
     _inherit = "base"
 
     assigned_attachment_ids = fields.One2many(
-        'ir.attachment', 'res_id', string='Assigned Attachments',
-        domain=lambda self: [('res_model', '=', self._name)], auto_join=True
+        "ir.attachment",
+        "res_id",
+        string="Assigned Attachments",
+        domain=lambda self: [("res_model", "=", self._name)],
+        auto_join=True,
     )
