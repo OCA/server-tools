@@ -105,6 +105,10 @@ class AuditlogRule(models.Model):
     action_id = fields.Many2one(
         'ir.actions.act_window', string="Action",
         states={'subscribed': [('readonly', True)]})
+    capture_record = fields.Boolean(
+        "Capture Record",
+        help="Select this if you want to keep track of Unlink Record",
+    )
 
     _sql_constraints = [
         ('model_uniq', 'unique(model_id)',
@@ -382,6 +386,8 @@ class AuditlogRule(models.Model):
         for res_id in res_ids:
             model_model = self.env[res_model]
             name = model_model.browse(res_id).name_get()
+            model_id = self.pool._auditlog_model_cache[res_model]
+            auditlog_rule = self.env['auditlog.rule'].search([("model_id", "=", model_id)])
             res_name = name and name[0] and name[0][1]
             vals = {
                 'name': res_name,
@@ -407,6 +413,11 @@ class AuditlogRule(models.Model):
             elif method is 'write':
                 self._create_log_line_on_write(
                     log, diff.changed(), old_values, new_values)
+            elif method is 'unlink' and auditlog_rule.capture_record:
+                self._create_log_line_on_read(
+                    log,
+                    list(old_values.get(res_id, EMPTY_DICT).keys()), old_values
+                )
 
     def _get_field(self, model, field_name):
         cache = self.pool._auditlog_field_cache
