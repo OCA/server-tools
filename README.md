@@ -29,6 +29,7 @@ addon | version | summary
 [base_search_fuzzy](base_search_fuzzy/) | 14.0.1.0.0 | Fuzzy search with the PostgreSQL trigram extension
 [base_sparse_field_list_support](base_sparse_field_list_support/) | 14.0.1.0.1 | add list support to convert_to_cache()
 [base_technical_user](base_technical_user/) | 14.0.1.0.0 | Add a technical user parameter on the company
+[base_time_window](base_time_window/) | 14.0.1.0.0 | Base model to handle time windows
 [base_view_inheritance_extension](base_view_inheritance_extension/) | 14.0.1.0.1 | Adds more operators for view inheritance
 [letsencrypt](letsencrypt/) | 14.0.1.0.0 | Request SSL certificates from letsencrypt.org
 [module_auto_update](module_auto_update/) | 14.0.1.0.1 | Automatically update Odoo modules
