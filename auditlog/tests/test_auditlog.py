@@ -134,6 +134,66 @@ class AuditlogCommon(object):
         )
         self.assertEqual(len(logs), len(groups))
 
+    def test_LogCreation5(self):
+        """Fifth test, create a record and check that the same number of logs
+        has been generated. And then delete it, check that it has created log
+        with 0 fields updated.
+        """
+        self.groups_rule.subscribe()
+
+        auditlog_log = self.env["auditlog.log"]
+        testgroup5 = self.env["res.groups"].create({"name": "testgroup5"})
+        self.assertTrue(
+            auditlog_log.search(
+                [
+                    ("model_id", "=", self.groups_model_id),
+                    ("method", "=", "create"),
+                    ("res_id", "=", testgroup5.id),
+                ]
+            ).ensure_one()
+        )
+        testgroup5.unlink()
+        log_record = auditlog_log.search(
+            [
+                ("model_id", "=", self.groups_model_id),
+                ("method", "=", "unlink"),
+                ("res_id", "=", testgroup5.id),
+            ]
+        ).ensure_one()
+        self.assertTrue(log_record)
+        if not self.groups_rule.capture_record:
+            self.assertEqual(len(log_record.line_ids), 0)
+
+    def test_LogCreation6(self):
+        """Six test, create a record and check that the same number of logs
+        has been generated. And then delete it, check that it has created log
+        with x fields updated as per rule
+        """
+        self.groups_rule.subscribe()
+
+        auditlog_log = self.env["auditlog.log"]
+        testgroup6 = self.env["res.groups"].create({"name": "testgroup6"})
+        self.assertTrue(
+            auditlog_log.search(
+                [
+                    ("model_id", "=", self.groups_model_id),
+                    ("method", "=", "create"),
+                    ("res_id", "=", testgroup6.id),
+                ]
+            ).ensure_one()
+        )
+        testgroup6.unlink()
+        log_record = auditlog_log.search(
+            [
+                ("model_id", "=", self.groups_model_id),
+                ("method", "=", "unlink"),
+                ("res_id", "=", testgroup6.id),
+            ]
+        ).ensure_one()
+        self.assertTrue(log_record)
+        if self.groups_rule.capture_record:
+            self.assertTrue(len(log_record.line_ids) > 0)
+
 
 class TestAuditlogFull(TransactionCase, AuditlogCommon):
     def setUp(self):
@@ -286,3 +346,25 @@ class TestFieldRemoval(SavepointCase):
 
         # The migration script is tolerant if the data model is already in place
         mod.migrate(self.env.cr, "14.0.1.0.2")
+
+
+class TestAuditlogFullCaptureRecord(TransactionCase, AuditlogCommon):
+    def setUp(self):
+        super(TestAuditlogFullCaptureRecord, self).setUp()
+        self.groups_model_id = self.env.ref("base.model_res_groups").id
+        self.groups_rule = self.env["auditlog.rule"].create(
+            {
+                "name": "testrule for groups with capture unlink record",
+                "model_id": self.groups_model_id,
+                "log_read": True,
+                "log_create": True,
+                "log_write": True,
+                "log_unlink": True,
+                "log_type": "full",
+                "capture_record": True,
+            }
+        )
+
+    def tearDown(self):
+        self.groups_rule.unlink()
+        super(TestAuditlogFullCaptureRecord, self).tearDown()
