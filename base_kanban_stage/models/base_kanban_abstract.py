@@ -5,7 +5,7 @@ from odoo import api, fields, models
 
 
 class BaseKanbanAbstract(models.AbstractModel):
-    """ Inherit from this class to add support for Kanban stages to your model.
+    """Inherit from this class to add support for Kanban stages to your model.
     All public properties are preceded with kanban_ in order to isolate from
     child models, with the exception of: stage_id, which is a required field in
     the Kanban widget and must be defined as such, and user_id, which is a
@@ -23,7 +23,8 @@ class BaseKanbanAbstract(models.AbstractModel):
     @api.model
     def _default_stage_id(self):
         return self.env["base.kanban.stage"].search(
-            [("res_model_id.model", "=", self._name)], limit=1,
+            [("res_model_id.model", "=", self._name)],
+            limit=1,
         )
 
     kanban_sequence = fields.Integer(
