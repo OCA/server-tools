@@ -27,6 +27,8 @@ setuptools.setup(
         'odoo13-addon-database_cleanup',
         'odoo13-addon-datetime_formatter',
         'odoo13-addon-dbfilter_from_header',
+        'odoo13-addon-excel_import_export',
+        'odoo13-addon-excel_import_export_demo',
         'odoo13-addon-fetchmail_incoming_log',
         'odoo13-addon-fetchmail_notify_error_to_sender',
         'odoo13-addon-fetchmail_notify_error_to_sender_test',
