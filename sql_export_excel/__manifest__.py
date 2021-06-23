@@ -3,15 +3,13 @@
 
 {
     "name": "SQL Export Excel",
-    "version": "12.0.1.1.0",
+    "version": "14.0.1.1.0",
     "author": "Akretion,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/server-tools",
     "license": "AGPL-3",
     "category": "Generic Modules/Others",
     "summary": "Allow to export a sql query to an excel file.",
-    "depends": [
-        "sql_export",
-    ],
+    "depends": ["sql_export"],
     "external_dependencies": {
         "python": [
             "openpyxl",
