@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright 2019 Ecosoft Co., Ltd.
+  License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).-->
+<odoo>
+    <record id="action_import_sale_order" model="ir.actions.act_window">
+        <field name="name">Sample Import Sale Order</field>
+        <field name="res_model">import.xlsx.wizard</field>
+        <field name="binding_view_types">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{
+            'template_domain': [('res_model', '=', 'sale.order'),
+                                ('fname', '=', 'import_sale_order.xlsx'),
+                                ('gname', '=', False)], }
+        </field>
+    </record>
+    <menuitem
+        id="menu_import_sale_order"
+        parent="excel_import_export.menu_excel_import_export"
+        action="action_import_sale_order"
+        sequence="30"
+    />
+</odoo>
