@@ -16,7 +16,8 @@ class BaseKanbanStage(models.Model):
         help="Displayed as the header for this stage in Kanban views",
     )
     description = fields.Text(
-        translate=True, help="Short description of the stage's meaning/purpose",
+        translate=True,
+        help="Short description of the stage's meaning/purpose",
     )
     sequence = fields.Integer(
         default=1,
