@@ -18,7 +18,9 @@ except ImportError:
 class SqlExport(models.Model):
     _inherit = "sql.export"
 
-    file_format = fields.Selection(selection_add=[("excel", "Excel")])
+    file_format = fields.Selection(
+        selection_add=[("excel", "Excel")], ondelete={"excel": "set default"}
+    )
     header = fields.Boolean(
         default=True, help="Indicate if the header should be exported to the file."
     )
@@ -69,7 +71,6 @@ class SqlExport(models.Model):
                     _("The column position can't be less than 1.")
                 )
 
-    @api.multi
     def _get_file_extension(self):
         self.ensure_one()
         if self.file_format == "excel":
@@ -77,7 +78,6 @@ class SqlExport(models.Model):
         else:
             return super()._get_file_extension()
 
-    @api.multi
     def excel_get_data_from_query(self, variable_dict):
         self.ensure_one()
         res = self._execute_sql_request(
