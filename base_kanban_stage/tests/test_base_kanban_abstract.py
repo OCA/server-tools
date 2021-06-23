@@ -82,7 +82,8 @@ class TestBaseKanbanAbstract(TransactionCase):
         )
 
         expected = self.env["base.kanban.stage"].search(
-            [("res_model_id.model", "=", self.test_model._name)], order="id",
+            [("res_model_id.model", "=", self.test_model._name)],
+            order="id",
         )
         self.assertEqual(result[0], expected[0])
         self.assertEqual(result[1], expected[1])
