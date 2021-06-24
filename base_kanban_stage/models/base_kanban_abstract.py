@@ -42,7 +42,7 @@ class BaseKanbanAbstract(models.AbstractModel):
     stage_id = fields.Many2one(
         string="Kanban Stage",
         comodel_name="base.kanban.stage",
-        track_visibility="onchange",
+        tracking=True,
         index=True,
         copy=False,
         help="The Kanban stage that this record is currently in",
@@ -54,7 +54,7 @@ class BaseKanbanAbstract(models.AbstractModel):
         string="Assigned To",
         comodel_name="res.users",
         index=True,
-        track_visibility="onchange",
+        tracking=True,
         help="User that the record is currently assigned to",
     )
     kanban_color = fields.Integer(
@@ -95,7 +95,7 @@ class BaseKanbanAbstract(models.AbstractModel):
         ],
         string="Kanban Status",
         default="normal",
-        track_visibility="onchange",
+        tracking=True,
         required=True,
         copy=False,
         help="A record can have one of several Kanban statuses, which are used"
@@ -107,6 +107,10 @@ class BaseKanbanAbstract(models.AbstractModel):
         "* Special Handling: Blocked in some way (e.g. must be handled by"
         " a specific user)\n",
     )
+
+    def _valid_field_parameter(self, field, name):
+        # allow tracking on models inheriting from 'base.kanban.stage'
+        return name == "tracking" or super()._valid_field_parameter(field, name)
 
     def _read_group_stage_ids(self, stages, domain, order):
         search_domain = [("res_model_id.model", "=", self._name)]
