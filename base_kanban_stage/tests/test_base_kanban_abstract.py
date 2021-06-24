@@ -1,6 +1,8 @@
 # Copyright 2016-2017 LasLabs Inc.
-# Copyright 2019 Eficent Business and IT Consulting Services S.L.
+# Copyright 2019 ForgeFlow.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+
+from collections import deque
 
 from odoo import api, models
 from odoo.tests.common import TransactionCase
@@ -8,6 +10,7 @@ from odoo.tests.common import TransactionCase
 
 class BaseKanbanAbstractTester(models.Model):
     _name = "base.kanban.abstract.tester"
+    _description = "base kanban abstract tester"
     _inherit = "base.kanban.abstract"
 
 
@@ -19,10 +22,16 @@ class TestBaseKanbanAbstract(TransactionCase):
         model._prepare_setup()
         model._setup_base()
         model._setup_fields()
-        # init_models():
         model._setup_complete()
+        # init_models():
+        self.registry._post_init_queue = deque()
+        self.registry._foreign_keys = {}
         model._auto_init()
         model.init()
+        self.env["ir.model"]._reflect_models([model._name])
+        self.env["ir.model.fields"]._reflect_fields([model._name])
+        self.env["ir.model.fields.selection"]._reflect_selections([model._name])
+        self.env["ir.model.constraint"]._reflect_constraints([model._name])
         while self.registry._post_init_queue:
             func = self.registry._post_init_queue.popleft()
             func()
@@ -38,10 +47,18 @@ class TestBaseKanbanAbstract(TransactionCase):
         self.test_model = self._init_test_model(BaseKanbanAbstractTester)
 
         test_model_record = self.env["ir.model"].search(
-            [("name", "=", self.test_model._name)], limit=1
+            [
+                ("model", "=", self.test_model._name),
+            ],
+            limit=1,
         )
+        self.assertEqual(len(test_model_record), 1)
         self.test_stage = self.env["base.kanban.stage"].create(
-            {"name": "Test Stage", "res_model_id": test_model_record.id, "sequence": 2}
+            {
+                "name": "Test Stage",
+                "res_model_id": test_model_record.id,
+                "sequence": 2,
+            }
         )
         self.test_stage_2 = self.env["base.kanban.stage"].create(
             {
@@ -63,7 +80,9 @@ class TestBaseKanbanAbstract(TransactionCase):
     def test_default_stage_id_no_stages(self):
         """It should return empty recordset when model has no stages"""
         self.env["base.kanban.stage"].search(
-            [("res_model_id.model", "=", self.test_model._name)]
+            [
+                ("res_model_id.model", "=", self.test_model._name),
+            ]
         ).unlink()
         result = self.test_model._default_stage_id()
 
