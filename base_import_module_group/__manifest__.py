@@ -11,11 +11,6 @@
     "application": False,
     "installable": True,
     "auto-install": True,
-    "depends": [
-        "base_import_module",
-    ],
-    "data": [
-        "security/res_groups.xml",
-        "views/import_module_group.xml",
-    ],
+    "depends": ["base_import_module",],
+    "data": ["security/res_groups.xml", "views/import_module_group.xml",],
 }
