@@ -94,6 +94,7 @@ Contributors
 * Daniel Reis <dreis.pt@hotmail.com>
 * Alex Comba <alex.comba@agilebg.com>
 * Miquel Raïch <miquel.raich@eficent.com>
+* Helly kapatel <helly.kapatel@initos.com>
 
 Maintainer
 ----------

@@ -24,7 +24,10 @@ class TestBaseKanbanStage(TransactionCase):
     def test_default_res_model_id_info_in_context(self):
         """It should return correct ir.model record if info in context"""
         test_action = self.env["ir.actions.act_window"].create(
-            {"name": "Test Action", "res_model": "res.users"}
+            {
+                "name": "Test Action",
+                "res_model": "res.users",
+            }
         )
         test_stage = self.env["base.kanban.stage"].with_context(
             params={"action": test_action.id},
@@ -38,7 +41,10 @@ class TestBaseKanbanStage(TransactionCase):
     def test_default_res_model_id_ignore_self(self):
         """It should not return ir.model record corresponding to stage model"""
         test_action = self.env["ir.actions.act_window"].create(
-            {"name": "Test Action", "res_model": "base.kanban.stage"}
+            {
+                "name": "Test Action",
+                "res_model": "base.kanban.stage",
+            }
         )
         test_stage = self.env["base.kanban.stage"].with_context(
             params={"action": test_action.id},
