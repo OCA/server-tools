@@ -1,0 +1,107 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * fetchmail_notify_error_to_sender
+#
+# Translators:
+# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2016
+# Antonio Trueba, 2016
+# Antonio Trueba, 2016
+# bossnm11 <bossnm11@gmail.com>, 2014
+# Carles Antoli <carlesantoli@hotmail.com>, 2015
+# Chanseok <kcsgoodboy@gmail.com>, 2014
+# Chul Park <parkchul@nate.com>, 2015
+# David10000 <gameness@naver.com>, 2014
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012-2013
+# Gil <gedwarp@gmail.com>, 2014
+# Hongseob Lee <shevious@gmail.com>, 2015
+# Hongseob Lee <shevreg@yahoo.com>, 2015
+# Hotellook, 2014
+# jeon <bluerespect@nate.com>, 2014
+# JiyeonLee <leejiyeon00@gmail.com>, 2014
+# Jong-Dae Park <jdpark7@gmail.com>, 2013
+# Kevin Min <gr326887@graded.br>, 2015
+# KimKyudong <choemh@nate.com>, 2014
+# mariana1201 <gogo3135@naver.com>, 2014
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
+# Nicole <dlruddk1112@gmail.com>, 2014
+# Paolo Valier, 2016
+# Pope, 2014
+# Rudolf Schnapka <rs@techno-flex.de>, 2016
+# Sarina Canelake <sarina@edx.org>, 2014
+# Seok Jun Yoon <fake2real@dctribe.com>, 2015
+# shin2012 <shin2013@gmail.com>, 2014
+# Sujin Lee <sujinlee.me@gmail.com>, 2014
+# Sunah Lim <whitetree70@snu.ac.kr>, 2013
+# Young Kim <youngck.uw@gmail.com>, 2015
+msgid ""
+msgstr ""
+"Project-Id-Version: server-tools (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-04-14 07:02+0000\n"
+"PO-Revision-Date: 2016-04-07 17:54+0000\n"
+"Last-Translator: Antonio Trueba\n"
+"Language-Team: Spanish (http://www.transifex.com/oca/OCA-server-tools-8-0/"
+"language/es/)\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: fetchmail_notify_error_to_sender
+#: model:mail.template,body_html:fetchmail_notify_error_to_sender.email_template_error_notice
+#, fuzzy
+msgid ""
+"\n"
+"            <div>\n"
+"            <p>Hello ${ctx.get('sender_message').get('from')},</p>\n"
+"            <p>we got a problem with your email: <i>${ctx."
+"get('sender_message').get('subject')}</i></p>\n"
+"            <p>Maybe you used a wrong recipient address?</p>\n"
+"            <p><br/></p>\n"
+"            <p>Technical details:</p>\n"
+"            <p><i>${ctx.get('route_exception')}</i></p>\n"
+"            </div>\n"
+"        "
+msgstr ""
+"\n"
+"<div>\n"
+"    <p>Hola ${ctx.get('sender_message').get('from')},</p>\n"
+"    <p>tenemos un problema con su email: <i>${ctx.get('sender_message')."
+"get('subject')}</i></p>\n"
+"    <p>¿Puede haber usado una dirección de destino incorrecta?</p>\n"
+"    <p><br/></p>\n"
+"    <p>Detalles técnicos:</p>\n"
+"    <p><i>${ctx.get('route_exception').message}</i></p>\n"
+"</div>\n"
+"            "
+
+#. module: fetchmail_notify_error_to_sender
+#: model:ir.model,name:fetchmail_notify_error_to_sender.model_mail_thread
+msgid "Email Thread"
+msgstr "Hilo correo electrónico"
+
+#. module: fetchmail_notify_error_to_sender
+#: model:ir.model.fields,field_description:fetchmail_notify_error_to_sender.field_fetchmail_server__error_notice_template_id
+msgid "Error notice template"
+msgstr ""
+
+#. module: fetchmail_notify_error_to_sender
+#: model:ir.model,name:fetchmail_notify_error_to_sender.model_fetchmail_server
+msgid "Incoming Mail Server"
+msgstr ""
+
+#. module: fetchmail_notify_error_to_sender
+#: model:mail.template,subject:fetchmail_notify_error_to_sender.email_template_error_notice
+msgid "Receiving error with: ${ctx.get('sender_message').get('subject')|safe}"
+msgstr ""
+
+#. module: fetchmail_notify_error_to_sender
+#: model:ir.model.fields,help:fetchmail_notify_error_to_sender.field_fetchmail_server__error_notice_template_id
+msgid ""
+"Set here the template to use to send notice to sender when errors occur "
+"while fetching email"
+msgstr ""
+
+#~ msgid "POP/IMAP Server"
+#~ msgstr "Servidor POP/IMAP"
