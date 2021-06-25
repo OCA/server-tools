@@ -5,3 +5,5 @@
 * Pieter Paulussen <pieter.paulussen@me.com>
 * Alan Ramos <alan.ramos@jarsa.com.mx>
 * Stefan Rijnhart <stefan@opener.amsterdam>
+* Bhavesh Odedra <bodedra@opensourceintegrators.com>
+* Hardik Suthar <hsuthar@opensourceintegrators.com>
