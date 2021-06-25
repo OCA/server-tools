@@ -20,6 +20,7 @@ setuptools.setup(
         'odoo14-addon-base_technical_user',
         'odoo14-addon-base_time_window',
         'odoo14-addon-base_view_inheritance_extension',
+        'odoo14-addon-fetchmail_notify_error_to_sender',
         'odoo14-addon-letsencrypt',
         'odoo14-addon-module_auto_update',
         'odoo14-addon-module_change_auto_install',
