@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-02-12 10:45+0000\n"
-"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
+"PO-Revision-Date: 2021-09-26 20:34+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -20,19 +20,19 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_territory.field_res_territory__branch_id
 #: model_terms:ir.ui.view,arch_db:base_territory.res_branch_form_view
 msgid "Branch"
-msgstr ""
+msgstr "Filiale"
 
 #. module: base_territory
 #: model:ir.model.fields,field_description:base_territory.field_res_branch__partner_id
 msgid "Branch Manager"
-msgstr ""
+msgstr "Responsabile filiale"
 
 #. module: base_territory
 #: model:ir.actions.act_window,name:base_territory.action_res_branch
 #: model:ir.ui.menu,name:base_territory.menu_res_branch
 #: model_terms:ir.ui.view,arch_db:base_territory.res_branch_tree_view
 msgid "Branches"
-msgstr ""
+msgstr "Filiali"
 
 #. module: base_territory
 #: model:ir.model,name:base_territory.model_res_country
@@ -51,7 +51,7 @@ msgstr "Nomi nazioni"
 #: model:ir.model.fields,field_description:base_territory.field_res_region__create_uid
 #: model:ir.model.fields,field_description:base_territory.field_res_territory__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creato da"
 
 #. module: base_territory
 #: model:ir.model.fields,field_description:base_territory.field_res_branch__create_date
@@ -59,12 +59,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_territory.field_res_region__create_date
 #: model:ir.model.fields,field_description:base_territory.field_res_territory__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creato il"
 
 #. module: base_territory
 #: model_terms:ir.ui.view,arch_db:base_territory.res_territory_form_view
 msgid "Definition"
-msgstr ""
+msgstr "Definizione"
 
 #. module: base_territory
 #: model:ir.model.fields,field_description:base_territory.field_res_branch__description
@@ -168,9 +168,8 @@ msgstr "Regioni"
 
 #. module: base_territory
 #: model:ir.model.fields.selection,name:base_territory.selection__res_territory__type__state
-#, fuzzy
 msgid "State"
-msgstr "Provincia"
+msgstr "Stato"
 
 #. module: base_territory
 #: model:ir.actions.act_window,name:base_territory.action_res_territory
@@ -204,4 +203,4 @@ msgstr "CAP"
 #. module: base_territory
 #: model:ir.model,name:base_territory.model_res_branch
 msgid "branch"
-msgstr ""
+msgstr "filiale"
