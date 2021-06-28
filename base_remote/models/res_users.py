@@ -39,10 +39,10 @@ class ResUsers(models.Model):
 
     # Override all auth-related core methods
     @classmethod
-    def _login(cls, db, login, password):
+    def _login(cls, db, login, password, user_agent_env):
         return cls._auth_check_remote(
             login,
-            lambda: super(ResUsers, cls)._login(db, login, password),
+            lambda: super(ResUsers, cls)._login(db, login, password, user_agent_env),
         )
 
     @classmethod
