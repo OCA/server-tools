@@ -4,3 +4,4 @@
   * Vicent Cubells
   * Ernesto Tejeda
   * Víctor Martínez
+* Dhara Solanki <dhara.solanki@initos.com>
