@@ -9,16 +9,19 @@
     'author': 'Mohammed Barsi,'
               'Versada,'
               'Nicolas JEUDY,'
-              'Odoo Community Association (OCA)',
+              'Odoo Community Association (OCA),'
+              'Vauxoo',
+    'maintainers': ['barsi', 'naglis', 'versada', 'moylop260', 'fernandahf'],
     'license': 'AGPL-3',
     'application': False,
     'installable': True,
     'external_dependencies': {
         'python': [
-            'raven',
+            'sentry_sdk',
         ]
     },
     'depends': [
         'base',
     ],
+    'post_load': 'post_load',
 }
