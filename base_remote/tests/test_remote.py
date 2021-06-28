@@ -5,11 +5,11 @@ from mock import patch
 from werkzeug.utils import redirect
 
 from odoo import http
-from odoo.tests.common import HttpCase, at_install, post_install
+from odoo.tests import tagged
+from odoo.tests.common import HttpCase
 
 
-@at_install(False)
-@post_install(True)
+@tagged("post_install", "-at_install")
 # Skip CSRF validation on tests
 @patch(http.__name__ + ".WebRequest.validate_csrf", return_value=True)
 # Skip specific browser forgery on redirections
