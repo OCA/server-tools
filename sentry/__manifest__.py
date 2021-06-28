@@ -3,7 +3,7 @@
 {
     'name': 'Sentry',
     'summary': 'Report Odoo errors to Sentry',
-    'version': '12.0.1.0.0',
+    'version': '12.0.2.0.0',
     'category': 'Extra Tools',
     'website': 'https://odoo-community.org/',
     'author': 'Mohammed Barsi,'
