@@ -17,7 +17,7 @@ class BasicCase(TransactionCase):
         )
         self.rl = self.env["res.lang"]
         for lang in self.langs:
-            self.rl.load_lang(lang.code)
+            self.rl._activate_lang(lang.code)
 
     def test_explicit(self):
         """When an explicit lang is used."""
