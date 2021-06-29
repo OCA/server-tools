@@ -24,7 +24,10 @@ class TestAccessRights(SavepointCase):
                 "name": "Admin",
                 "login": "test_admin",
                 "email": "test_admin@example.com",
-                "groups_id": [cls.env.ref("base.group_system").id,],  # noqa: E231
+                "groups_id": [
+                    cls.env.ref("base.group_system").id,  # noqa: E231
+                    cls.env.ref("base_import_module_group.group_module_import").id,
+                ],  # noqa: E231
             }
         )
 
