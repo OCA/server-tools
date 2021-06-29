@@ -10,7 +10,7 @@ class IrModule(models.Model):
 
     @api.multi
     def _import_module(self, module, path, force=False):
-        group_xid = 'import_module_group.group_module_import'
+        group_xid = 'base_import_module_group.group_module_import'
         if not self.env.user.has_group(group_xid):
             group = self.env.ref(group_xid)
             raise AccessError(
