@@ -82,7 +82,7 @@ class MassEditing(models.Model):
             'groups_id': [(4, x.id) for x in self.group_ids],
             'view_type': 'form',
             'context': "{'mass_editing_object' : %d}" % (self.id),
-            'view_mode': 'form, tree',
+            'view_mode': 'form,tree',
             'target': 'new',
         }).id
         # We make sudo as any user with rights in this model should be able
