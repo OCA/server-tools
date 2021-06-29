@@ -129,7 +129,7 @@ class TestTimeWindow(SavepointCase):
                 "time_window_weekday_ids": [(4, self.sunday.id)],
             }
         )
-        self.assertEquals(len(self.partner_1.time_window_ids), 2)
+        self.assertEqual(len(self.partner_1.time_window_ids), 2)
 
     def test_04(self):
         """
