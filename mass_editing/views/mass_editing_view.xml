@@ -48,8 +48,18 @@
                                         <field name="sequence" widget="handle"/>
                                         <field name="field_id"/>
                                         <field name="widget_option"/>
+                                        <field name="apply_domain" />
                                     </tree>
                                 </field>
+                                <field name="apply_domain_in_lines" invisible="1" />
+                                <div
+                                    colspan="2"
+                                    class="text-warning"
+                                    attrs="{'invisible': [('apply_domain_in_lines','=', False)]}"
+                                >
+                                    <b
+                                    >WARNING</b>: Take into account that adding a field with a domain, and not including the fields of such domain in this operation definition, will lead to an error when trying to perform it. Make sure you include them.
+                                </div>
                             </group>
                         </page>
                         <page string="Security">

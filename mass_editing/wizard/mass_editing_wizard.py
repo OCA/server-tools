@@ -71,6 +71,8 @@ class MassEditingWizard(models.TransientModel):
                 field_vals = self._get_field_options(field)
                 if line.widget_option:
                     field_vals["widget"] = line.widget_option
+                if not line.apply_domain and "domain" in field_info[field.name]:
+                    field_vals["domain"] = "[]"
                 etree.SubElement(xml_group, "field", field_vals)
 
             # Patch fields with required extra data

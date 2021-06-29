@@ -38,6 +38,11 @@ class MassEditingLine(models.Model):
         " to display the field in the wizard. Example :\n"
         "'many2many_tags', 'selection'",
     )
+    apply_domain = fields.Boolean(
+        default=False,
+        string="Apply domain",
+        help="Apply default domain related to field",
+    )
 
     @api.depends("field_id")
     def _compute_widget_option(self):
