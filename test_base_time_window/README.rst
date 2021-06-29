@@ -56,6 +56,7 @@ Contributors
 
 * Laurent Mignon <laurent.mignon@acsone.eu>
 * Akim Juillerat <akim.juillerat@camptocamp.com>
+* Helly kapatel <helly.kapatel@initos.com>
 
 Maintainers
 ~~~~~~~~~~~
