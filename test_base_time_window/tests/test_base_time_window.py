@@ -165,7 +165,7 @@ class TestTimeWindow(SavepointCase):
         self.assertTrue(self.partner_2.time_window_ids)
 
     def test_05(self):
-        """""
+        """ ""
         Data:
             Partner 1 without time window
         Test Case:
@@ -184,7 +184,7 @@ class TestTimeWindow(SavepointCase):
             )
 
     def test_06(self):
-        """""
+        """ ""
         Data:
             Partner 1 with time window on monday
             Partner 2 with time window on monday
