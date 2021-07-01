@@ -163,6 +163,8 @@ class IrModuleModule(models.Model):
     def _get_files_to_analyse(
             self, path, file_extensions, exclude_directories, exclude_files):
         res = []
+        if not path:
+            return res
         for root, dirs, files in os.walk(path, followlinks=True):
             if set(Path(root).parts) & set(exclude_directories):
                 continue
