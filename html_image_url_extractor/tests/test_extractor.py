@@ -8,7 +8,7 @@ from odoo.tools import mute_logger
 
 class ExtractorCase(TransactionCase):
     def setUp(self):
-        super(ExtractorCase, self).setUp()
+        super().setUp()
         # Shortcut
         self.imgs_from_html = self.env["ir.fields.converter"].imgs_from_html
 
