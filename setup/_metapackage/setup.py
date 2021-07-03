@@ -28,6 +28,7 @@ setuptools.setup(
         'odoo14-addon-sentry',
         'odoo14-addon-slow_statement_logger',
         'odoo14-addon-sql_export',
+        'odoo14-addon-sql_export_mail',
         'odoo14-addon-sql_request_abstract',
         'odoo14-addon-upgrade_analysis',
     ],
