@@ -66,12 +66,22 @@ msgid "Crons"
 msgstr "Tâches planifiées"
 
 #. module: sql_export_mail
-#: selection:sql.export,mail_condition:0
+#: model:ir.model.fields,field_description:sql_export_mail.field_sql_export__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sql_export_mail
+#: model:ir.model.fields.selection,name:sql_export_mail.selection__sql_export__mail_condition__not_empty
 msgid "File Not Empty"
 msgstr "Fichier non vide."
 
 #. module: sql_export_mail
-#: code:addons/sql_export_mail/models/sql_export.py:124
+#: model:ir.model.fields,field_description:sql_export_mail.field_sql_export__id
+msgid "ID"
+msgstr ""
+
+#. module: sql_export_mail
+#: code:addons/sql_export_mail/models/sql_export.py:0
 #, python-format
 msgid ""
 "It is not possible to execute and send a query automatically by mail if "
@@ -79,6 +89,11 @@ msgid ""
 msgstr ""
 "Il n'est pas possible d'exécuter en envoyer le résultat d'une requête par "
 "mail si celle-ci contient des paramètres."
+
+#. module: sql_export_mail
+#: model:ir.model.fields,field_description:sql_export_mail.field_sql_export____last_update
+msgid "Last Modified on"
+msgstr ""
 
 #. module: sql_export_mail
 #: model:ir.model.fields,field_description:sql_export_mail.field_sql_export__mail_condition
@@ -92,7 +107,12 @@ msgid "SQL export"
 msgstr "Export SQL"
 
 #. module: sql_export_mail
-#: code:addons/sql_export_mail/models/sql_export.py:134
+#: model:ir.model.fields,field_description:sql_export_mail.field_sql_export__smart_search
+msgid "Smart Search"
+msgstr ""
+
+#. module: sql_export_mail
+#: code:addons/sql_export_mail/models/sql_export.py:0
 #, python-format
 msgid "The user does not have any e-mail address."
 msgstr "L'utilisateur selectionné n'a pas d'addresse mail."
