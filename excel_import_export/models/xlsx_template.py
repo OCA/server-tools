@@ -208,10 +208,9 @@ class XLSXTemplate(models.Model):
             _field.ensure_one()
             _field.write({"relation": self.result_model_id.model})
         _field.compute = """
-self['%s'] = self.env['%s'].search(self.safe_domain(self.domain))
-        """ % (
-            self.result_field,
-            self.result_model_id.model,
+self['{}'] = self.env['{}'].search(self.safe_domain(self.domain))
+        """.format(
+            self.result_field, self.result_model_id.model,
         )
 
     def _update_result_export_ids(self):
