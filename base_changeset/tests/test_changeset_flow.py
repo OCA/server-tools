@@ -12,7 +12,7 @@ from .common import ChangesetTestCommon
 
 
 class TestChangesetFlow(ChangesetTestCommon, TransactionCase):
-    """ Check how changeset are generated and applied based on the rules.
+    """Check how changeset are generated and applied based on the rules.
 
     We do not really care about the types of the fields in this test
     suite, so we only use 'char' fields.  We have to ensure that the
@@ -52,7 +52,7 @@ class TestChangesetFlow(ChangesetTestCommon, TransactionCase):
         self.partner = self.partner.with_context(test_record_changeset=True)
 
     def test_new_changeset(self):
-        """ Add a new changeset on a partner
+        """Add a new changeset on a partner
 
         A new changeset is created when we write on a partner
         """
