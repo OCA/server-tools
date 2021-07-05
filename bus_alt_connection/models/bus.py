@@ -34,8 +34,8 @@ def _connection_info_for(db_name):
 
 class ImDispatch(odoo.addons.bus.models.bus.ImDispatch):
     def loop(self):
-        """ Dispatch postgres notifications to the relevant
-            polling threads/greenlets """
+        """Dispatch postgres notifications to the relevant
+        polling threads/greenlets"""
         connection_info = _connection_info_for("postgres")
         _logger.info(
             "Bus.loop listen imbus on db postgres " "(via %(host)s:%(port)s)",
