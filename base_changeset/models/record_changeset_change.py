@@ -52,7 +52,10 @@ class RecordChangesetChange(models.Model):
         readonly=True,
     )
     field_id = fields.Many2one(
-        comodel_name="ir.model.fields", required=True, readonly=True
+        comodel_name="ir.model.fields",
+        required=True,
+        readonly=True,
+        ondelete="cascade",
     )
     field_name = fields.Char(related="field_id.name", readonly=True)
     field_type = fields.Selection(related="field_id.ttype", readonly=True)
