@@ -110,6 +110,7 @@
         <field name="model">record.changeset</field>
         <field name="arch" type="xml">
             <search>
+                <field name="model" />
                 <filter
                     string="Pending"
                     name="pending"
