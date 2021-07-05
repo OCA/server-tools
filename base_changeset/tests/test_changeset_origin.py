@@ -8,7 +8,7 @@ from .common import ChangesetTestCommon
 
 
 class TestChangesetOrigin(ChangesetTestCommon, TransactionCase):
-    """ Check that origin - old fields are stored as expected.
+    """Check that origin - old fields are stored as expected.
 
     'origin' fields dynamically read fields from the partner when the state
     of the change is 'draft'. Once a change becomes 'done' or 'cancel', the
@@ -32,7 +32,7 @@ class TestChangesetOrigin(ChangesetTestCommon, TransactionCase):
         self.partner = self.partner.with_context(test_record_changeset=True)
 
     def test_origin_value_of_change_with_apply(self):
-        """ Origin field is read from the parter or 'old' - with apply
+        """Origin field is read from the parter or 'old' - with apply
 
         According to the state of the change.
         """
@@ -58,7 +58,7 @@ class TestChangesetOrigin(ChangesetTestCommon, TransactionCase):
         self.assertEqual(self.partner.count_pending_changesets, 0)
 
     def test_origin_value_of_change_with_cancel(self):
-        """ Origin field is read from the parter or 'old' - with cancel
+        """Origin field is read from the parter or 'old' - with cancel
 
         According to the state of the change.
         """
