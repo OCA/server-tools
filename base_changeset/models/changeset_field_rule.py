@@ -40,8 +40,7 @@ class ChangesetFieldRule(models.Model):
     active = fields.Boolean(default=True)
 
     def init(self):
-        """Ensure there is at most one rule with source_model_id NULL.
-        """
+        """Ensure there is at most one rule with source_model_id NULL."""
         self.env.cr.execute(
             """
             CREATE UNIQUE INDEX IF NOT EXISTS source_model_null_field_uniq
@@ -61,7 +60,7 @@ class ChangesetFieldRule(models.Model):
 
     @api.model
     def _domain_source_models(self):
-        """ Returns the models for which we can define rules.
+        """Returns the models for which we can define rules.
 
         Example for submodules (replace by the xmlid of the model):
 
@@ -81,7 +80,7 @@ class ChangesetFieldRule(models.Model):
     @ormcache(skiparg=1)
     @api.model
     def _get_rules(self, source_model_name, record_model_name):
-        """ Cache rules
+        """Cache rules
 
         Keep only the id of the rules, because if we keep the recordsets
         in the ormcache, we won't be able to browse them once their
@@ -118,7 +117,7 @@ class ChangesetFieldRule(models.Model):
 
     @api.model
     def get_rules(self, source_model_name, record_model_name):
-        """ Return the rules for a model
+        """Return the rules for a model
 
         When a model is specified, it will return the rules for this
         model.  Fields that have no rule for this model will use the

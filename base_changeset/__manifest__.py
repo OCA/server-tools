@@ -11,7 +11,7 @@
     "license": "AGPL-3",
     "category": "Tools",
     "depends": ["web"],
-    "website": "https://github.com/OCA/server-tools/",
+    "website": "https://github.com/OCA/server-tools",
     "data": [
         "security/groups.xml",
         "security/ir.model.access.csv",
