@@ -84,6 +84,7 @@
         <field name="model">record.changeset.change</field>
         <field name="arch" type="xml">
             <search>
+                <field name="field_name" />
                 <filter
                     string="Pending"
                     name="pending"
