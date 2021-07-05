@@ -79,7 +79,7 @@ class RecordChangeset(models.Model):
 
     @api.model
     def add_changeset(self, record, values):
-        """ Add a changeset on a record
+        """Add a changeset on a record
 
         By default, when a record is modified by a user or by the
         system, the the changeset will follow the rules configured for
