@@ -6,7 +6,7 @@ from odoo.exceptions import AccessDenied
 
 
 class AutoVacuum(models.AbstractModel):
-    _inherit = 'ir.autovacuum'
+    _inherit = "ir.autovacuum"
 
     @api.model
     def gc_sessions(self, session_expiry_delay=None):
@@ -20,7 +20,6 @@ class AutoVacuum(models.AbstractModel):
         if not self.env.user._is_admin():
             raise AccessDenied()
 
-        http.deterministic_session_gc(http.root.session_store,
-                                      session_expiry_delay)
+        http.deterministic_session_gc(http.root.session_store, session_expiry_delay)
 
         return True
