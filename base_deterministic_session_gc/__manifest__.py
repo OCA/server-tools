@@ -5,7 +5,7 @@
     "name": "Deterministic Session GC",
     "summary": "Provide a deterministic session garbage collection"
     " instead of the default random one",
-    "version": "13.0.1.0.0",
+    "version": "14.0.1.0.0",
     "author": "Trobz,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/server-tools",
     "category": "Extra Tools",
