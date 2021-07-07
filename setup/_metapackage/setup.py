@@ -8,6 +8,7 @@ setuptools.setup(
     description="Meta package for oca-server-tools Odoo addons",
     version=version,
     install_requires=[
+        'odoo13-addon-attachment_unindex_content',
         'odoo13-addon-auditlog',
         'odoo13-addon-auto_backup',
         'odoo13-addon-base_changeset',
