@@ -6,7 +6,7 @@ from odoo.tests.common import TransactionCase
 
 class TestUserRoleCompany(TransactionCase):
     def setUp(self):
-        super().setUp()
+        super(TestUserRoleCompany, self).setUp()
         # COMPANIES
         self.Company = self.env["res.company"]
         self.company1 = self.env.ref("base.main_company")
@@ -27,15 +27,18 @@ class TestUserRoleCompany(TransactionCase):
             "name": "ROLES TEST USER",
             "login": "test_user",
             "company_ids": [(6, 0, [self.company1.id, self.company2.id])],
+        }
+        role_vals = {
             "role_line_ids": [
-                (0, 0, {"role_id": self.roleA.id}),
+                (0, 0, {"role_id": self.roleA.id, "company_id": False}),
                 (0, 0, {"role_id": self.roleB.id, "company_id": self.company1.id}),
                 (0, 0, {"role_id": self.roleC.id, "company_id": self.company1.id}),
                 (0, 0, {"role_id": self.roleC.id, "company_id": self.company2.id}),
             ],
         }
         self.test_user = self.User.create(user_vals)
-        self.User = self.User.with_user(self.test_user)
+        self.test_user.write(role_vals)
+        self.User = self.User.sudo(self.test_user)
 
     def test_110_company_1(self):
         "Company 1 selected: Tech and Settings roles are activated"

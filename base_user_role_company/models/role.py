@@ -43,7 +43,7 @@ class ResUsers(models.Model):
     _inherit = "res.users"
 
     def _get_enabled_roles(self):
-        res = super()._get_enabled_roles()
+        res = super(ResUsers, self)._get_enabled_roles()
         return res.filtered("active_role")
 
     @api.model
