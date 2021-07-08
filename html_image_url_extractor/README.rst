@@ -14,13 +14,13 @@ Image URLs from HTML field
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github
-    :target: https://github.com/OCA/server-tools/tree/13.0/html_image_url_extractor
+    :target: https://github.com/OCA/server-tools/tree/14.0/html_image_url_extractor
     :alt: OCA/server-tools
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/server-tools-13-0/server-tools-13-0-html_image_url_extractor
+    :target: https://translation.odoo-community.org/projects/server-tools-14-0/server-tools-14-0-html_image_url_extractor
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
-    :target: https://runbot.odoo-community.org/runbot/149/13.0
+    :target: https://runbot.odoo-community.org/runbot/149/14.0
     :alt: Try me on Runbot
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
@@ -29,7 +29,7 @@ This module includes a method that extracts image URLs from any chunk of HTML,
 in appearing order.
 
 It is useful for modules such as `website_blog_excerpt_img
-<https://github.com/OCA/website/tree/9.0/website_blog_excerpt_img>`_: blog list shows the first
+<https://github.com/OCA/website/tree/14.0/website_blog_excerpt_img>`_: blog list shows the first
 image included in the post if haven't a defined cover image.
 
 **Table of contents**
@@ -70,7 +70,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/server-tools/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/server-tools/issues/new?body=module:%20html_image_url_extractor%0Aversion:%2013.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/server-tools/issues/new?body=module:%20html_image_url_extractor%0Aversion:%2014.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -95,6 +95,8 @@ Contributors
   * Cristina Martin R
   * Víctor Martínezz
 
+* Helly kapatel <helly.kapatel@initos.com>
+
 Maintainers
 ~~~~~~~~~~~
 
@@ -108,6 +110,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/13.0/html_image_url_extractor>`_ project on GitHub.
+This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/14.0/html_image_url_extractor>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
