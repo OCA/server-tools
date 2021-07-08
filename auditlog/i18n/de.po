@@ -67,6 +67,11 @@ msgid "Auto-vacuum audit logs"
 msgstr "Auto-vacuum Audit-Protokolle"
 
 #. module: auditlog
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__capture_record
+msgid "Capture Record"
+msgstr ""
+
+#. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_http_request__user_context
 msgid "Context"
 msgstr "Kontext"
@@ -344,6 +349,11 @@ msgid "Select model for which you want to generate log."
 msgstr "Wählen Sie das Modell, das protokolliert werden soll."
 
 #. module: auditlog
+#: model:ir.model.fields,help:auditlog.field_auditlog_rule__capture_record
+msgid "Select this if you want to keep track of Unlink Record"
+msgstr ""
+
+#. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule__log_create
 msgid ""
 "Select this if you want to keep track of creation on any record of the model "
@@ -468,7 +478,7 @@ msgid "Values"
 msgstr "Werte"
 
 #. module: auditlog
-#: code:addons/auditlog/models/rule.py:556
+#: code:addons/auditlog/models/rule.py:568
 #, python-format
 msgid "View logs"
 msgstr "Protokolle sichten"

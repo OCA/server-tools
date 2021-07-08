@@ -1,4 +1,4 @@
-raven
+sentry-sdk
 openpyxl
 xlrd
 xlwt

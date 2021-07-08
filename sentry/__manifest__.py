@@ -3,22 +3,25 @@
 {
     'name': 'Sentry',
     'summary': 'Report Odoo errors to Sentry',
-    'version': '12.0.1.0.0',
+    'version': '12.0.2.0.0',
     'category': 'Extra Tools',
     'website': 'https://odoo-community.org/',
     'author': 'Mohammed Barsi,'
               'Versada,'
               'Nicolas JEUDY,'
-              'Odoo Community Association (OCA)',
+              'Odoo Community Association (OCA),'
+              'Vauxoo',
+    'maintainers': ['barsi', 'naglis', 'versada', 'moylop260', 'fernandahf'],
     'license': 'AGPL-3',
     'application': False,
     'installable': True,
     'external_dependencies': {
         'python': [
-            'raven',
+            'sentry_sdk',
         ]
     },
     'depends': [
         'base',
     ],
+    'post_load': 'post_load',
 }
