@@ -32,6 +32,7 @@ addon | version | summary
 [base_time_window](base_time_window/) | 14.0.1.0.0 | Base model to handle time windows
 [base_view_inheritance_extension](base_view_inheritance_extension/) | 14.0.1.0.1 | Adds more operators for view inheritance
 [fetchmail_notify_error_to_sender](fetchmail_notify_error_to_sender/) | 14.0.1.0.0 | If fetching mails gives error, send an email to sender
+[html_image_url_extractor](html_image_url_extractor/) | 14.0.1.0.0 | Extract images found in any HTML field
 [letsencrypt](letsencrypt/) | 14.0.1.0.0 | Request SSL certificates from letsencrypt.org
 [module_auto_update](module_auto_update/) | 14.0.1.0.1 | Automatically update Odoo modules
 [module_change_auto_install](module_change_auto_install/) | 14.0.1.0.2 | Customize auto installables modules by configuration
