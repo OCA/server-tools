@@ -31,6 +31,7 @@ setuptools.setup(
         'odoo14-addon-sql_export',
         'odoo14-addon-sql_export_mail',
         'odoo14-addon-sql_request_abstract',
+        'odoo14-addon-test_base_time_window',
         'odoo14-addon-upgrade_analysis',
     ],
     classifiers=[
