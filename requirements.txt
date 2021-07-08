@@ -4,6 +4,7 @@ cryptography
 dataclasses
 dnspython
 josepy
+lxml
 odoorpc
 openupgradelib
 pyyaml
