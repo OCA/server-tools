@@ -31,6 +31,8 @@ addon | version | summary
 [base_technical_user](base_technical_user/) | 14.0.1.0.0 | Add a technical user parameter on the company
 [base_time_window](base_time_window/) | 14.0.1.0.0 | Base model to handle time windows
 [base_view_inheritance_extension](base_view_inheritance_extension/) | 14.0.1.0.1 | Adds more operators for view inheritance
+[excel_import_export](excel_import_export/) | 14.0.1.0.0 | Base module for developing Excel import/export/report
+[excel_import_export_demo](excel_import_export_demo/) | 14.0.1.0.0 | Excel Import/Export/Report Demo
 [fetchmail_notify_error_to_sender](fetchmail_notify_error_to_sender/) | 14.0.1.0.0 | If fetching mails gives error, send an email to sender
 [html_image_url_extractor](html_image_url_extractor/) | 14.0.1.0.0 | Extract images found in any HTML field
 [letsencrypt](letsencrypt/) | 14.0.1.0.0 | Request SSL certificates from letsencrypt.org
