@@ -20,6 +20,8 @@ setuptools.setup(
         'odoo14-addon-base_technical_user',
         'odoo14-addon-base_time_window',
         'odoo14-addon-base_view_inheritance_extension',
+        'odoo14-addon-excel_import_export',
+        'odoo14-addon-excel_import_export_demo',
         'odoo14-addon-fetchmail_notify_error_to_sender',
         'odoo14-addon-html_image_url_extractor',
         'odoo14-addon-letsencrypt',
