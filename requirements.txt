@@ -6,7 +6,10 @@ dnspython
 josepy
 lxml
 odoorpc
+openpyxl
 openupgradelib
 pyyaml
 raven
 unidecode
+xlrd
+xlwt

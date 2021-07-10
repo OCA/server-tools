@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright 2019 Ecosoft Co., Ltd.
+  License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).-->
+<odoo>
+
+    <record id="action_sale_oder_export_xlsx" model="ir.actions.act_window">
+        <field name="name">Export Excel</field>
+        <field name="res_model">export.xlsx.wizard</field>
+        <field name="binding_view_types">list,form</field>
+        <field name="binding_model_id" ref="sale.model_sale_order" />
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">
+            {
+                'template_domain': [('res_model', '=', 'sale.order'),
+                                    ('fname', '=', 'sale_order.xlsx'),
+                                    ('gname', '=', False)],
+            }
+        </field>
+    </record>
+
+    <record id="action_sale_oder_import_xlsx" model="ir.actions.act_window">
+        <field name="name">Import Excel</field>
+        <field name="res_model">import.xlsx.wizard</field>
+        <field name="binding_view_types">form</field>
+        <field name="binding_model_id" ref="sale.model_sale_order" />
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">
+            {
+                'template_domain': [('res_model', '=', 'sale.order'),
+                                    ('fname', '=', 'sale_order.xlsx'),
+                                    ('gname', '=', False)],
+                'template_context': {},
+                'template_import_states': [],
+            }
+        </field>
+    </record>
+
+</odoo>
