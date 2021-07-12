@@ -14,6 +14,7 @@
         'views/purge_models.xml',
         'views/purge_columns.xml',
         'views/purge_tables.xml',
+        'views/purge_translations.xml',
         'views/purge_data.xml',
         "views/create_indexes.xml",
         'views/purge_properties.xml',
