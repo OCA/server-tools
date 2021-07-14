@@ -5,3 +5,4 @@
 * Akim Juillerat <akim.juillerat@camptocamp.com>
 * Patrick Tombez <patrick.tombez@camptocamp.com>
 * Phuc Tran Thanh <phuc@trobz.com>
+* Helly kapatel <helly.kapatel@initos.com>
