@@ -28,7 +28,9 @@ class VacuumRule(models.Model):
         help=("If set, only attachments containing this pattern will be" " deleted.")
     )
     company_id = fields.Many2one(
-        "res.company", string="Company", default=lambda self: self.env.company,
+        "res.company",
+        string="Company",
+        default=lambda self: self.env.company,
     )
     message_subtype_ids = fields.Many2many(
         "mail.message.subtype",
