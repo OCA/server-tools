@@ -1,30 +1,41 @@
 odoo.define('web.ListImport', function (require) {
     "use strict";
-    var core = require('web.core');
+
+    // Backport from v13:
+    // https://github.com/odoo/odoo/commit/55676110c8787dfafd34a6508b207952f5c5eb88
+
+    var config = require('web.config');
     var ListView = require('web.ListView');
-    var Model = require('web.Model');
+    var KanbanView = require('web.KanbanView');
 
-    ListView.prototype.defaults.import_enabled = false;
-    ListView.include(/** @lends instance.web.ListView# */{
 
-        load_list: function (data, grouped) {
+    var ImportViewMixin = {
+        /**
+         * @override
+         * @param {Object} params
+         * @param {boolean} [params.import_enabled=true] set to false to disable
+         *   the Import feature (no 'Import' button in the control panel). Can also
+         *   be disabled with 'import' attrs set to '0' in the arch.
+         */
+        init: function (viewInfo, params) {
+            var importEnabled = !!JSON.parse(this.arch.attrs.import || '1') &&
+                ('import_enabled' in params ? params.import_enabled : true);
+            this.controllerParams.importEnabled = importEnabled && !config.device.isMobile;
+        },
+    };
 
-            var self = this;
-            var Users = new Model('res.users');
-
-            var result = this._super.apply(this, arguments);
-            Users.call('has_group', ['base_import_security_group.group_import_csv'])
-                .then(function (result) {
-                    var import_enabled = result;
-                    self.options.import_enabled = import_enabled;
-
-                    if (import_enabled === false) {
-                        if (self.$buttons) {
-                            self.$buttons.find('.o_button_import').remove();
-                        }
-                    }
-                });
-            return result;
-        }
+    ListView.include({
+        init: function () {
+            this._super.apply(this, arguments);
+            ImportViewMixin.init.apply(this, arguments);
+        },
     });
+
+    KanbanView.include({
+        init: function () {
+            this._super.apply(this, arguments);
+            ImportViewMixin.init.apply(this, arguments);
+        },
+    });
+
 });
