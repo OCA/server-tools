@@ -104,6 +104,14 @@ class TestAbstractUrl(SavepointCase, FakeModelLoader):
         url_keys = set(my_partner.mapped("url_url_ids.url_key"))
         self.assertSetEqual(url_keys, {"my-new-name", self.auto_key})
 
+    def test_write_on_related_record_launching_automatic_url_key(self):
+        my_partner = self._create_auto()
+        my_partner.record_id.name = "my new name"
+        my_partner.refresh()
+        self.assertEqual(2, len(my_partner.url_url_ids))
+        url_keys = set(my_partner.mapped("url_url_ids.url_key"))
+        self.assertSetEqual(url_keys, {"my-new-name", self.auto_key})
+
     def test_write_inactive(self):
         my_partner = self._create_auto()
         # when we deactivate a record, the redirect method should be called
