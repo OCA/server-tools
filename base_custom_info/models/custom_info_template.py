@@ -32,7 +32,7 @@ class CustomInfoTemplate(models.Model):
     model_id = fields.Many2one(
         comodel_name="ir.model",
         string="Model",
-        ondelete="restrict",
+        ondelete="cascade",
         required=True,
         auto_join=True,
     )

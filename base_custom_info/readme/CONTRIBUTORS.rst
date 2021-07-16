@@ -12,3 +12,6 @@
 * Solvos:
 
   * David Alonso <david.alonso@solvos.es>
+* Ecosoft:
+
+  * Kitti U. <kittiu@ecosoft.co.th> (migration to v14)

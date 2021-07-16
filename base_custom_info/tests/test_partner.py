@@ -117,7 +117,7 @@ class PartnerCase(TransactionCase):
         """Check the computed owner id for a value."""
         self.set_custom_info_for_agrolait()
         self.assertEqual(
-            self.agrolait.mapped("custom_info_ids.owner_id"), self.agrolait
+            set(self.agrolait.mapped("custom_info_ids.owner_id")), set(self.agrolait)
         )
 
     def test_get_custom_info_value(self):
