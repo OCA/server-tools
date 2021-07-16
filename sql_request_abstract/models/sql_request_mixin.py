@@ -117,6 +117,7 @@ class SQLRequestMixin(models.AbstractModel):
         rollback=True,
         view_name=False,
         copy_options="CSV HEADER DELIMITER ';'",
+        header=False,
     ):
         """Execute a SQL request on the current database.
 
@@ -143,6 +144,9 @@ class SQLRequestMixin(models.AbstractModel):
         :param copy_options: (str) mentions extra options for
             "COPY request STDOUT WITH xxx" request.
             (Ignored if @mode != 'stdout')
+        :param header: (boolean) if true, the header of the query will be
+            returned as first element of the list if the mode is fetchall.
+            (Ignored if @mode != fetchall)
 
         ..note:: The following exceptions could be raised:
             psycopg2.ProgrammingError: Error in the SQL Request.
@@ -190,6 +194,9 @@ class SQLRequestMixin(models.AbstractModel):
                 self.env.cr.execute(query)
                 if mode == "fetchall":
                     res = self.env.cr.fetchall()
+                    if header:
+                        colnames = [desc[0] for desc in self.env.cr.description]
+                        res.insert(0, colnames)
                 elif mode == "fetchone":
                     res = self.env.cr.fetchone()
         finally:
