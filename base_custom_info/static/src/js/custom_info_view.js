@@ -1,4 +1,4 @@
-odoo.define("base_custom_info.CustomInfoView", function(require) {
+odoo.define("base_custom_info.CustomInfoView", function (require) {
     "use strict";
 
     var BasicView = require("web.BasicView");
