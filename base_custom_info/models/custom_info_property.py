@@ -38,7 +38,7 @@ class CustomInfoProperty(models.Model):
         required=True,
         ondelete="cascade",
     )
-    model = fields.Char(related="template_id.model", auto_join=True)
+    model = fields.Char(related="template_id.model")
     info_value_ids = fields.One2many(
         comodel_name="custom.info.value",
         inverse_name="property_id",
