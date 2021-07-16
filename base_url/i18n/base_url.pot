@@ -76,11 +76,6 @@ msgid "If tick this url is a redirection to the new url"
 msgstr ""
 
 #. module: base_url
-#: model:ir.model.fields,field_description:base_url.field_abstract_url__is_urls_sync_required
-msgid "Is Urls Sync Required"
-msgstr ""
-
-#. module: base_url
 #: model:ir.model.fields,field_description:base_url.field_abstract_url__lang_id
 #: model:ir.model.fields,field_description:base_url.field_url_url__lang_id
 msgid "Lang"

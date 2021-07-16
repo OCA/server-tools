@@ -37,9 +37,6 @@ class AbstractUrl(models.AbstractModel):
         compute="_compute_redirect_url_url_ids", comodel_name="url.url"
     )
     lang_id = fields.Many2one("res.lang", string="Lang", required=True)
-    is_urls_sync_required = fields.Boolean(
-        compute="_compute_is_urls_sync_required", store=True
-    )
     active = fields.Boolean(string="Active", default=True)
 
     @api.constrains("url_builder", "manual_url_key")
@@ -63,11 +60,6 @@ class AbstractUrl(models.AbstractModel):
                         "message": "it will be adapted to %s" % url,
                     }
                 }
-
-    @api.depends("url_key")
-    def _compute_is_urls_sync_required(self):
-        for record in self:
-            record.is_urls_sync_required = True
 
     def _get_url_keywords(self):
         """This method return a list of keyword that will be concatenated
@@ -124,14 +116,19 @@ class AbstractUrl(models.AbstractModel):
         for record in self:
             if not record.active:
                 record.url_key = ""
+                record._redirect_existing_url()
             else:
                 if record.url_builder == "manual":
                     new_url = record.manual_url_key
                 else:
                     new_url = record.automatic_url_key
-                record.url_key = new_url
+                if record.url_key != new_url:
+                    record.url_key = new_url
+                    record.set_url(record.url_key)
 
+    @api.depends("url_key")
     def _compute_redirect_url_url_ids(self):
+        self.flush()
         for record in self:
             record.redirect_url_url_ids = record.env["url.url"].search(
                 [
@@ -140,7 +137,9 @@ class AbstractUrl(models.AbstractModel):
                 ]
             )
 
+    @api.depends("url_key")
     def _compute_url_url_ids(self):
+        self.flush()
         for record in self:
             record.url_url_ids = record.env["url.url"].search(
                 [("model_id", "=", get_model_ref(record))]
@@ -219,36 +218,6 @@ class AbstractUrl(models.AbstractModel):
         to the concrete model to implement a redirect strategy
         """
         return True
-
-    def _sync_urls(self):
-        """
-        This method is in charge of syncing the url.url object related to
-        the current model
-        """
-        records = self.filtered("is_urls_sync_required")
-        for record in records:
-            if not record.active:
-                record._redirect_existing_url()
-            else:
-                record.set_url(record.url_key)
-        return records
-
-    @api.model
-    def create(self, value):
-        res = super(AbstractUrl, self).create(value)
-        # without this flush we have cases where the url_key is not stored
-        self.flush()
-        synced = res._sync_urls()
-        super(AbstractUrl, synced).write({"is_urls_sync_required": False})
-        return res
-
-    def write(self, value):
-        res = super(AbstractUrl, self).write(value)
-        # without this flush we have cases where the url_key is not stored
-        self.flush()
-        synced = self._sync_urls()
-        super(AbstractUrl, synced).write({"is_urls_sync_required": False})
-        return res
 
     def unlink(self):
         for record in self:

@@ -5,7 +5,7 @@
 
 {
     "name": "Base Url",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.0.1",
     "category": "tools",
     "license": "AGPL-3",
     "summary": "keep history of url for products & categories  ",
