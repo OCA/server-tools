@@ -26,7 +26,6 @@ class CustomInfoValue(models.Model):
         related="property_id.model",
         index=True,
         readonly=True,
-        auto_join=True,
         store=True,
     )
     owner_id = fields.Reference(
@@ -40,7 +39,6 @@ class CustomInfoValue(models.Model):
         string="Resource ID",
         required=True,
         index=True,
-        ondelete="cascade",
     )
     property_id = fields.Many2one(
         comodel_name="custom.info.property",

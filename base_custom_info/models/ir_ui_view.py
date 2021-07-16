@@ -7,4 +7,7 @@ from odoo import fields, models
 class IrUiView(models.Model):
     _inherit = "ir.ui.view"
 
-    type = fields.Selection(selection_add=[("custom_info", "Custom Info")])
+    type = fields.Selection(
+        selection_add=[("custom_info", "Custom Info")],
+        ondelete={"custom_info": "cascade"},
+    )
