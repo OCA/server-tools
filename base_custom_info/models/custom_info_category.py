@@ -30,7 +30,6 @@ class CustomInfoCategory(models.Model):
                     return
                 except Exception as err:
                     last_error = err
-                    pass
         if last_error:
             raise last_error
         return super().check_access_rule(operation)

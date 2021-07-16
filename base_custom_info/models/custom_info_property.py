@@ -23,7 +23,8 @@ class CustomInfoProperty(models.Model):
     name = fields.Char(required=True, translate=True)
     sequence = fields.Integer(index=True)
     category_id = fields.Many2one(
-        comodel_name="custom.info.category", string="Category",
+        comodel_name="custom.info.category",
+        string="Category",
     )
     category_sequence = fields.Integer(
         string="Category Sequence",
