@@ -1,17 +1,17 @@
-odoo.define("base_custom_info.relational_fields", function(require) {
+odoo.define("base_custom_info.relational_fields", function (require) {
     "use strict";
 
     var CustomInfoRenderer = require("base_custom_info.CustomInfoRenderer");
     var relational_fields = require("web.relational_fields");
 
     relational_fields.FieldOne2Many.include({
-        _getRenderer: function() {
+        _getRenderer: function () {
             if (this.view.arch.tag === "custom_info") {
                 return CustomInfoRenderer;
             }
             return this._super.apply(this, arguments);
         },
-        _updateCustomInfoItem: function(data) {
+        _updateCustomInfoItem: function (data) {
             var result = {
                 value_float: data.value_float,
                 value_str: data.value_str,
@@ -23,9 +23,9 @@ odoo.define("base_custom_info.relational_fields", function(require) {
                 result.value_id = {id: data.value_id.res_id};
             return result;
         },
-        _saveCustomInfo: function() {
+        _saveCustomInfo: function () {
             var self = this;
-            _.each(this.renderer.recordWidgets, function(widget) {
+            _.each(this.renderer.recordWidgets, function (widget) {
                 self._setValue({
                     operation: "UPDATE",
                     id: widget.dataPointID,
@@ -33,16 +33,16 @@ odoo.define("base_custom_info.relational_fields", function(require) {
                 });
             });
         },
-        commitChanges: function() {
+        commitChanges: function () {
             if (this.renderer && this.renderer.viewType === "custom_info") {
                 var self = this;
-                this.renderer.commitChanges().then(function() {
+                this.renderer.commitChanges().then(function () {
                     return self._saveCustomInfo();
                 });
             }
             return this._super.apply(this, arguments);
         },
-        activate: function() {
+        activate: function () {
             var result = this._super.apply(this, arguments);
             if (result && this.renderer.viewType === "custom_info") {
                 if (this.renderer.recordWidgets.length > 0) {

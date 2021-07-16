@@ -37,13 +37,20 @@ class CustomInfoValue(models.Model):
         help="Record that owns this custom value.",
     )
     res_id = fields.Integer(
-        string="Resource ID", required=True, index=True, ondelete="cascade",
+        string="Resource ID",
+        required=True,
+        index=True,
+        ondelete="cascade",
     )
     property_id = fields.Many2one(
-        comodel_name="custom.info.property", required=True, string="Property",
+        comodel_name="custom.info.property",
+        required=True,
+        string="Property",
     )
     property_sequence = fields.Integer(
-        related="property_id.sequence", store=True, index=True,
+        related="property_id.sequence",
+        store=True,
+        index=True,
     )
     category_sequence = fields.Integer(
         string="Category Sequence",
@@ -53,7 +60,10 @@ class CustomInfoValue(models.Model):
     category_id = fields.Many2one(related="property_id.category_id", store=True)
     name = fields.Char(related="property_id.name")
     field_type = fields.Selection(related="property_id.field_type")
-    widget = fields.Selection(related="property_id.widget", readonly=True,)
+    widget = fields.Selection(
+        related="property_id.widget",
+        readonly=True,
+    )
     field_name = fields.Char(
         compute="_compute_field_name",
         help="Technical name of the field where the value is stored.",
@@ -155,7 +165,9 @@ class CustomInfoValue(models.Model):
                 # Avoid another search that can return a different value
                 continue
             record[record.field_name] = self._transform_value(
-                record.value, record.field_type, record.property_id,
+                record.value,
+                record.field_type,
+                record.property_id,
             )
 
     @api.constrains("property_id", "value_str", "value_int", "value_float")
