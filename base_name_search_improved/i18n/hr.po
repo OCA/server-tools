@@ -325,6 +325,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_name_search_improved.field_mail_message_subtype__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_mail_moderation__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_mail_notification__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_mail_performance_thread__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_mail_performance_tracking__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_mail_render_mixin__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_mail_resend_cancel__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_mail_resend_message__smart_search
@@ -332,6 +334,15 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_name_search_improved.field_mail_shortcode__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_mail_template__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_mail_template_preview__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_mail_test_activity__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_mail_test_cc__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_mail_test_container__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_mail_test_gateway__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_mail_test_multi_company__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_mail_test_simple__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_mail_test_ticket__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_mail_test_track__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_mail_test_track_compute__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_mail_thread__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_mail_thread_blacklist__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_mail_thread_cc__smart_search
@@ -438,6 +449,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_name_search_improved.field_snailmail_letter_missing_required_fields__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_sparse_fields_test__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_tax_adjustments_wizard__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_test_performance_bacon__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_test_performance_base__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_test_performance_eggs__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_test_performance_line__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_test_performance_tag__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_uom_category__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_uom_uom__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_utm_campaign__smart_search
