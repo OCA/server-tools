@@ -32,8 +32,3 @@ msgstr ""
 #: model:ir.model.fields,field_description:fetchmail_incoming_log.field_mail_thread____last_update
 msgid "Last Modified on"
 msgstr ""
-
-#. module: fetchmail_incoming_log
-#: model:ir.model.fields,field_description:fetchmail_incoming_log.field_mail_thread__smart_search
-msgid "Smart Search"
-msgstr ""
