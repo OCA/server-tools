@@ -1,12 +1,11 @@
 # Copyright (C) 2019 Akretion
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
-import datetime
 import logging
 
 import odoo
 from odoo import api, models
-from odoo.tools.safe_eval import safe_eval
+from odoo.tools.safe_eval import datetime, safe_eval
 
 _logger = logging.getLogger(__name__)
 
