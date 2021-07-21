@@ -48,8 +48,8 @@ class CleanupPurgeWizardMenu(models.TransientModel):
             if menu.action.type != "ir.actions.act_window":
                 continue
             if (menu.action.res_model and menu.action.res_model not in self.env) or (
-                menu.action.binding_model_id
-                and menu.action.binding_model_id not in self.env
+                menu.action.binding_model_id.model
+                and menu.action.binding_model_id.model not in self.env
             ):
                 res.append((0, 0, {"name": menu.complete_name, "menu_id": menu.id}))
         if not res:
