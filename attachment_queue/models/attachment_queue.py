@@ -2,7 +2,7 @@
 
 import logging
 
-from odoo import api, fields, models, registry
+from odoo import SUPERUSER_ID, api, fields, models, registry
 
 _logger = logging.getLogger(__name__)
 
@@ -72,7 +72,7 @@ class AttachmentQueue(models.Model):
         for attachment in self:
             with api.Environment.manage():
                 with registry(self.env.cr.dbname).cursor() as new_cr:
-                    new_env = api.Environment(new_cr, self.env.uid, self.env.context)
+                    new_env = api.Environment(new_cr, SUPERUSER_ID, self.env.context)
                     attach = attachment.with_env(new_env)
                     try:
                         attach._run()
