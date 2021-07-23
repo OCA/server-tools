@@ -218,7 +218,8 @@ class TestDbBackup(common.TransactionCase):
         rec_id = self.new_record()
         res = rec_id.sftp_connection()
         self.assertEqual(
-            pysftp.Connection(), res,
+            pysftp.Connection(),
+            res,
         )
 
     def test_filename_default(self):
