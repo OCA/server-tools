@@ -36,6 +36,7 @@ addon | version | summary
 [fetchmail_incoming_log](fetchmail_incoming_log/) | 14.0.1.0.0 | Log all messages received, before they start to be processed.
 [fetchmail_notify_error_to_sender](fetchmail_notify_error_to_sender/) | 14.0.1.0.0 | If fetching mails gives error, send an email to sender
 [html_image_url_extractor](html_image_url_extractor/) | 14.0.1.0.0 | Extract images found in any HTML field
+[html_text](html_text/) | 14.0.1.0.0 | Generate excerpts from any HTML field
 [letsencrypt](letsencrypt/) | 14.0.1.0.0 | Request SSL certificates from letsencrypt.org
 [module_auto_update](module_auto_update/) | 14.0.1.0.1 | Automatically update Odoo modules
 [module_change_auto_install](module_change_auto_install/) | 14.0.1.0.2 | Customize auto installables modules by configuration
