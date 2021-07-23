@@ -36,7 +36,9 @@ class DbBackup(models.Model):
     ]
 
     name = fields.Char(
-        compute="_compute_name", store=True, help="Summary of this backup process",
+        compute="_compute_name",
+        store=True,
+        help="Summary of this backup process",
     )
     folder = fields.Char(
         default=lambda self: self._default_folder(),

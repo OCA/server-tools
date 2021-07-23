@@ -6,6 +6,7 @@ dnspython
 josepy
 odoorpc
 openupgradelib
+pysftp
 pyyaml
 raven
 unidecode
