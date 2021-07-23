@@ -25,6 +25,7 @@ setuptools.setup(
         'odoo14-addon-fetchmail_incoming_log',
         'odoo14-addon-fetchmail_notify_error_to_sender',
         'odoo14-addon-html_image_url_extractor',
+        'odoo14-addon-html_text',
         'odoo14-addon-letsencrypt',
         'odoo14-addon-module_auto_update',
         'odoo14-addon-module_change_auto_install',
