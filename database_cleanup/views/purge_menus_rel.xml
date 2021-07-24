@@ -12,14 +12,17 @@
         <field name="name">Purge menus</field>
         <field name="type">ir.actions.server</field>
         <field name="state">code</field>
-        <field name="model_id" ref="database_cleanup.model_cleanup_purge_wizard_menu_rel" />
+        <field
+            name="model_id"
+            ref="database_cleanup.model_cleanup_purge_wizard_menu_rel"
+        />
         <field name="code">
             action = env.get('cleanup.purge.wizard.menu.rel').get_wizard_action()
         </field>
     </record>
     <record id="purge_menu_rel_line_tree" model="ir.ui.view">
         <field name="model">cleanup.purge.line.menu.rel</field>
-        <field name="inherit_id" ref="tree_purge_line"/>
+        <field name="inherit_id" ref="tree_purge_line" />
         <field name="mode">primary</field>
         <field name="arch" type="xml">
             <data />
@@ -29,7 +32,10 @@
         <field name="name">Purge</field>
         <field name="type">ir.actions.server</field>
         <field name="state">code</field>
-        <field name="model_id" ref="database_cleanup.model_cleanup_purge_line_menu_rel" />
+        <field
+            name="model_id"
+            ref="database_cleanup.model_cleanup_purge_line_menu_rel"
+        />
         <field name="code">records.purge()</field>
         <field
             name="binding_model_id"

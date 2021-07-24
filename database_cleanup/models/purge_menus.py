@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 # pylint: disable=consider-merging-classes-inherited
 from odoo import _, api, fields, models
-from odoo.exceptions import UserError, MissingError
+from odoo.exceptions import MissingError, UserError
 
 
 class CleanupPurgeLineMenu(models.TransientModel):
@@ -42,7 +42,7 @@ class CleanupPurgeWizardMenu(models.TransientModel):
         res = []
         for menu in (
             self.env["ir.ui.menu"]
-            .with_context({'ir.ui.menu.full_list': True, 'active_test': False})
+            .with_context({"ir.ui.menu.full_list": True, "active_test": False})
             .search([("action", "!=", False)])
         ):
             action_missing = False
@@ -51,9 +51,13 @@ class CleanupPurgeWizardMenu(models.TransientModel):
                     continue
             except MissingError:
                 action_missing = True
-            if action_missing or (menu.action.res_model and menu.action.res_model not in self.env) or (
-                menu.action.binding_model_id.model
-                and menu.action.binding_model_id.model not in self.env
+            if (
+                action_missing
+                or (menu.action.res_model and menu.action.res_model not in self.env)
+                or (
+                    menu.action.binding_model_id.model
+                    and menu.action.binding_model_id.model not in self.env
+                )
             ):
                 # get parent
                 res.append((0, 0, {"name": menu.complete_name, "menu_id": menu.id}))
@@ -64,4 +68,3 @@ class CleanupPurgeWizardMenu(models.TransientModel):
     purge_line_ids = fields.One2many(
         "cleanup.purge.line.menu", "wizard_id", "Menus to purge"
     )
-

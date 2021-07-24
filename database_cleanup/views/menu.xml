@@ -47,7 +47,7 @@
         <field name="name">Purge parent menu &amp; child entries</field>
         <field name="sequence" eval="62" />
         <field name="action" ref="action_purge_menu_rel" />
-        <field name="parent_id" ref="menu_database_cleanup"/>
+        <field name="parent_id" ref="menu_database_cleanup" />
     </record>
     <record model="ir.ui.menu" id="menu_purge_actions">
         <field name="name">Purge obsolete window actions</field>

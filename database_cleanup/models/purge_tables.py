@@ -1,15 +1,16 @@
 # Copyright 2014-2016 Therp BV <http://therp.nl>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 # pylint: disable=consider-merging-classes-inherited
+from psycopg2.extensions import AsIs
+
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
 from ..identifier_adapter import IdentifierAdapter
-from psycopg2.extensions import AsIs
 
 _TABLE_TYPE_SELECTION = [
-    ('base', 'SQL Table'),
-    ('view', 'SQL View'),
+    ("base", "SQL Table"),
+    ("view", "SQL View"),
 ]
 
 
@@ -22,9 +23,7 @@ class CleanupPurgeLineTable(models.TransientModel):
         "cleanup.purge.wizard.table", "Purge Wizard", readonly=True
     )
 
-    table_type = fields.Selection(
-        string='Table Type', selection=_TABLE_TYPE_SELECTION
-    )
+    table_type = fields.Selection(string="Table Type", selection=_TABLE_TYPE_SELECTION)
 
     def purge(self):
         """
@@ -79,16 +78,13 @@ class CleanupPurgeLineTable(models.TransientModel):
                             IdentifierAdapter(constraint[0]),
                         ),
                     )
-            if line.table_type == 'base':
+            if line.table_type == "base":
                 _sql_type = "TABLE"
-            elif line.table_type == 'view':
+            elif line.table_type == "view":
                 _sql_type = "VIEW"
-            self.logger.info(
-                'Dropping %s %s', (_sql_type, line.name))
+            self.logger.info("Dropping %s %s", (_sql_type, line.name))
             self.env.cr.execute(
-                "DROP %s %s", (
-                    AsIs(_sql_type),
-                    IdentifierAdapter(line.name),)
+                "DROP %s %s", (AsIs(_sql_type), IdentifierAdapter(line.name),)
             )
             line.write({"purged": True})
         return True
@@ -123,12 +119,21 @@ class CleanupPurgeWizardTable(models.TransientModel):
             SELECT table_name, table_type FROM information_schema.tables
             WHERE table_schema = 'public'
             AND table_type in ('BASE TABLE', 'VIEW')
-            AND table_name NOT IN %s""", (tuple(known_tables),))
+            AND table_name NOT IN %s""",
+            (tuple(known_tables),),
+        )
 
-        res = [(0, 0, {
-            'name': row[0],
-            'table_type': "base" if row[1] == "BASE TABLE" else "view"
-        }) for row in self.env.cr.fetchall()]
+        res = [
+            (
+                0,
+                0,
+                {
+                    "name": row[0],
+                    "table_type": "base" if row[1] == "BASE TABLE" else "view",
+                },
+            )
+            for row in self.env.cr.fetchall()
+        ]
         if not res:
             raise UserError(_("No orphaned tables found"))
         return res

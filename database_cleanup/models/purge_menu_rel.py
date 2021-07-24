@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 # pylint: disable=consider-merging-classes-inherited
 from odoo import _, api, fields, models
-from odoo.exceptions import UserError, MissingError
+from odoo.exceptions import UserError
 
 
 class CleanupPurgeLineMenuRel(models.TransientModel):
@@ -24,13 +24,15 @@ class CleanupPurgeLineMenuRel(models.TransientModel):
                 self._context.get("active_ids")
             )
         parent_menus = objs.filtered(lambda x: not x.purged and x.menu_id)
-        self.logger.info("Purging menu entries and "
-                         "their children: %s", parent_menus.mapped("name"))
+        self.logger.info(
+            "Purging menu entries and " "their children: %s",
+            parent_menus.mapped("name"),
+        )
         for menu in parent_menus:
             # pass root menu
             self.recursive_purge([menu.menu_id])
             # record success
-            menu.write({'purged': True})
+            menu.write({"purged": True})
 
     # Recursive purge of parent -> children
     #       --- (A) ---
@@ -43,9 +45,11 @@ class CleanupPurgeLineMenuRel(models.TransientModel):
         if not any(purge_lst):
             return True
         menu = purge_lst.pop()
-        child_menus = self.env["ir.ui.menu"].with_context(
-            {'ir.ui.menu.full_list': True, 'active_test': False}) \
-            .search([("parent_path", "ilike", "{0}/%".format(menu.id))])
+        child_menus = (
+            self.env["ir.ui.menu"]
+            .with_context({"ir.ui.menu.full_list": True, "active_test": False})
+            .search([("parent_path", "ilike", "{}/%".format(menu.id))])
+        )
         menu.unlink()
         if child_menus:
             new = [x for x in child_menus]
@@ -65,9 +69,11 @@ class CleanupPurgeWizardMenuitem(models.TransientModel):
         """
         res = []
         # Get all menus who don't have parent set.
-        parent_menus = self.env["ir.ui.menu"].with_context(
-            {'ir.ui.menu.full_list': True, 'active_test': False})\
-            .search([("parent_id", "=", False), ('action', '=', False)])
+        parent_menus = (
+            self.env["ir.ui.menu"]
+            .with_context({"ir.ui.menu.full_list": True, "active_test": False})
+            .search([("parent_id", "=", False), ("action", "=", False)])
+        )
         for menu in parent_menus:
             res.append((0, 0, {"name": menu.complete_name, "menu_id": menu.id}))
         if not res:
@@ -77,4 +83,3 @@ class CleanupPurgeWizardMenuitem(models.TransientModel):
     purge_line_ids = fields.One2many(
         "cleanup.purge.line.menu.rel", "wizard_id", "Parent menu to purge"
     )
-
