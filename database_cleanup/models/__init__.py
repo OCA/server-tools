@@ -8,3 +8,6 @@ from . import purge_menus
 from . import purge_actions
 from . import create_indexes
 from . import purge_properties
+from . import purge_menu_rel
+
+

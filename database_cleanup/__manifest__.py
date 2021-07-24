@@ -11,6 +11,7 @@
         "views/purge_wizard.xml",
         "views/purge_actions.xml",
         "views/purge_menus.xml",
+        "views/purge_menus_rel.xml",
         "views/purge_modules.xml",
         "views/purge_models.xml",
         "views/purge_columns.xml",

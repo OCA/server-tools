@@ -55,6 +55,7 @@ class CleanupPurgeWizardMenu(models.TransientModel):
                 menu.action.binding_model_id.model
                 and menu.action.binding_model_id.model not in self.env
             ):
+                # get parent
                 res.append((0, 0, {"name": menu.complete_name, "menu_id": menu.id}))
         if not res:
             raise UserError(_("No dangling menu entries found"))
@@ -63,3 +64,4 @@ class CleanupPurgeWizardMenu(models.TransientModel):
     purge_line_ids = fields.One2many(
         "cleanup.purge.line.menu", "wizard_id", "Menus to purge"
     )
+
