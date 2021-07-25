@@ -2,6 +2,7 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
 from odoo import fields, models
+from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 from datetime import timedelta
 
 
@@ -13,8 +14,8 @@ class IrAttachment(models.Model):
     def _get_autovacuum_domain(self, rule):
         domain = super()._get_autovacuum_domain(rule)
         today = fields.Datetime.now()
-        limit_date = today - timedelta(days=rule.retention_time)
-        domain += [('create_date', '<', limit_date)]
+        limit_date = fields.datetime.strptime(today, DEFAULT_SERVER_DATETIME_FORMAT) - timedelta(days=rule.retention_time)
+        domain += [('create_date', '<', limit_date.strftime(DEFAULT_SERVER_DATETIME_FORMAT))]
         if rule.filename_pattern:
             domain += [('name', 'ilike', rule.filename_pattern)]
         if rule.model_ids:

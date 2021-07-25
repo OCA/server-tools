@@ -29,9 +29,9 @@ class TestVacuumRule(common.TransactionCase):
 
     def setUp(self):
         super(TestVacuumRule, self).setUp()
-        self.registry.enter_test_mode(self.env.cr)
+        self.registry.enter_test_mode()
         self.env = api.Environment(self.registry.test_cr, self.env.uid,
-                                   self.env.context)
+                                   {})
         self.subtype = self.env.ref('mail.mt_comment')
         self.message_obj = self.env['mail.message']
         self.attachment_obj = self.env['ir.attachment']
@@ -115,7 +115,7 @@ class TestVacuumRule(common.TransactionCase):
             UPDATE ir_attachment SET create_date = '%s'
             WHERE id = %s
         """ % (before_102_days_str, a2.id))
-        a2.write({'create_date': date.today() - timedelta(days=102)})
+        a2.write({'create_date': (date.today() - timedelta(days=102)).strftime(DEFAULT_SERVER_DATE_FORMAT)})
         a3 = self.create_attachment('other')
         self.env.cr.execute("""
             UPDATE ir_attachment SET create_date = '%s'
