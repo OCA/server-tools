@@ -1,8 +1,21 @@
 # Copyright 2021 Therp BV <http://www.sunflowerweb.nl>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 # pylint: disable=consider-merging-classes-inherited
+
+# NB: Dealing with RecursionError: Max no of Maximum Recursion Depth Exceeded
+# -----------------------------------------------------------------------------
+# Since we are using recursion, python has a recursive limit before it throws
+# 'RecursionError' of max no of calls. We can simply randomly increase this
+# limit however in large data menus can exceed the below set limit and leads to
+# random additions. We could possible use for loop based on the 'n' menus to
+# increase number of calls.
+# ----------------------------------------------------------------------------
+import sys
+
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
+
+sys.setrecursionlimit(15000)
 
 
 class CleanupPurgeLineMenuRel(models.TransientModel):
@@ -40,8 +53,14 @@ class CleanupPurgeLineMenuRel(models.TransientModel):
     #      (B)  (C)  (D)
     #            |
     #           (E)
-    #
+    # This works well but python has a limit to the no of calls a recursion
+    # can do. In design of this it is assumed the user will not purge all,
+    # unless running migration script, in this case he/she should increase the
+    # no of calls from sys.setrecursionlimit(10000) e.g 10000. Menus can be
+    # a chain of hierarchy so if you know 'n' then set limit as per n or
+    # n+10 whichever. Also probably a for loop of n would be ok though tricky.
     def recursive_purge(self, purge_lst):
+        # boundary condition to break out of the recursion
         if not any(purge_lst):
             return True
         menu = purge_lst.pop()
