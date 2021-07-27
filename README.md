@@ -32,6 +32,7 @@ addon | version | summary
 [base_technical_user](base_technical_user/) | 14.0.1.0.0 | Add a technical user parameter on the company
 [base_time_window](base_time_window/) | 14.0.1.0.0 | Base model to handle time windows
 [base_view_inheritance_extension](base_view_inheritance_extension/) | 14.0.1.0.1 | Adds more operators for view inheritance
+[datetime_formatter](datetime_formatter/) | 14.0.1.0.0 | Helper functions to give correct format to date[time] fields
 [excel_import_export](excel_import_export/) | 14.0.1.0.0 | Base module for developing Excel import/export/report
 [excel_import_export_demo](excel_import_export_demo/) | 14.0.1.0.0 | Excel Import/Export/Report Demo
 [fetchmail_incoming_log](fetchmail_incoming_log/) | 14.0.1.0.0 | Log all messages received, before they start to be processed.
