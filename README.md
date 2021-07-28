@@ -37,6 +37,7 @@ addon | version | summary
 [excel_import_export_demo](excel_import_export_demo/) | 14.0.1.0.0 | Excel Import/Export/Report Demo
 [fetchmail_incoming_log](fetchmail_incoming_log/) | 14.0.1.0.0 | Log all messages received, before they start to be processed.
 [fetchmail_notify_error_to_sender](fetchmail_notify_error_to_sender/) | 14.0.1.0.0 | If fetching mails gives error, send an email to sender
+[fetchmail_notify_error_to_sender_test](fetchmail_notify_error_to_sender_test/) | 14.0.1.0.0 | Test for Fetchmail Notify Error to Sender
 [html_image_url_extractor](html_image_url_extractor/) | 14.0.1.0.0 | Extract images found in any HTML field
 [html_text](html_text/) | 14.0.1.0.0 | Generate excerpts from any HTML field
 [letsencrypt](letsencrypt/) | 14.0.1.0.0 | Request SSL certificates from letsencrypt.org
