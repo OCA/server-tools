@@ -36,7 +36,26 @@ msgid "Allowed Users"
 msgstr ""
 
 #. module: sql_export
-#: selection:sql.export,file_format:0
+#: model:ir.model.fields,help:sql_export.field_sql_export__field_ids
+msgid ""
+"Before adding parameters, make sure you have created one that fill your need "
+"in the dedicated menu with the right type and label. \n"
+"Then, when you add a parameter here, you have to include it in the SQL query "
+"in order to have dynamic values depending on the user choice.\n"
+"The format of the parameters in the SQL query must be like this : "
+"%(parameter_field_name)s. \n"
+"Example : from the variable menu, create an variable with type 'char', "
+"having field name 'x_name' and field label : 'Name' \n"
+"Then, you can create a SQL query like this : SELECT * FROM res_partner WHERE "
+"name =  %(x_name)s the variable can be used in any number of different SQL "
+"queries. \n"
+"In the SQL query, you can also include these 2 special parameters "
+"%(user_id)s and %(company_id)s which will be replaced respectively by the "
+"user executing the query and the company of the user executing the query."
+msgstr ""
+
+#. module: sql_export
+#: model:ir.model.fields.selection,name:sql_export.selection__sql_export__file_format__csv
 msgid "CSV"
 msgstr ""
 
@@ -79,18 +98,8 @@ msgid "Display Name"
 msgstr "Näidatav nimi"
 
 #. module: sql_export
-#: selection:sql.export,state:0
-msgid "Draft"
-msgstr "Mustand"
-
-#. module: sql_export
 #: model:ir.model.fields,field_description:sql_export.field_sql_export__encoding
 msgid "Encoding"
-msgstr ""
-
-#. module: sql_export
-#: selection:sql.export,file_format:0
-msgid "Excel"
 msgstr ""
 
 #. module: sql_export
@@ -165,6 +174,11 @@ msgid "Partner Categories"
 msgstr ""
 
 #. module: sql_export
+#: model_terms:ir.ui.view,arch_db:sql_export.sql_export_view_form
+msgid "Preview Results"
+msgstr ""
+
+#. module: sql_export
 #: model:ir.model.fields,field_description:sql_export.field_sql_export__query
 msgid "Query"
 msgstr ""
@@ -192,11 +206,6 @@ msgid "SQL Request"
 msgstr ""
 
 #. module: sql_export
-#: selection:sql.export,state:0
-msgid "SQL Valid"
-msgstr ""
-
-#. module: sql_export
 #: model:ir.model,name:sql_export.model_sql_export
 #: model_terms:ir.ui.view,arch_db:sql_export.sql_export_view_form
 #: model_terms:ir.ui.view,arch_db:sql_export.sql_parameter_view_form
@@ -207,6 +216,12 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sql_export.sql_export_view_form
 msgid "Set to Draft"
 msgstr "Sea mustandiks"
+
+#. module: sql_export
+#: model:ir.model.fields,field_description:sql_export.field_sql_export__smart_search
+#: model:ir.model.fields,field_description:sql_export.field_sql_file_wizard__smart_search
+msgid "Smart Search"
+msgstr ""
 
 #. module: sql_export
 #: model:ir.model.fields,field_description:sql_export.field_sql_file_wizard__sql_export_id
@@ -246,27 +261,27 @@ msgid ""
 msgstr ""
 
 #. module: sql_export
-#: selection:sql.export,encoding:0
+#: model:ir.model.fields.selection,name:sql_export.selection__sql_export__encoding__big5
 msgid "big5"
 msgstr ""
 
 #. module: sql_export
-#: selection:sql.export,encoding:0
+#: model:ir.model.fields.selection,name:sql_export.selection__sql_export__encoding__gb18030
 msgid "gb18030"
 msgstr ""
 
 #. module: sql_export
-#: selection:sql.export,encoding:0
+#: model:ir.model.fields.selection,name:sql_export.selection__sql_export__encoding__koir8_r
 msgid "koir8_r"
 msgstr ""
 
 #. module: sql_export
-#: selection:sql.export,encoding:0
+#: model:ir.model.fields.selection,name:sql_export.selection__sql_export__encoding__latin1
 msgid "latin1"
 msgstr ""
 
 #. module: sql_export
-#: selection:sql.export,encoding:0
+#: model:ir.model.fields.selection,name:sql_export.selection__sql_export__encoding__latin2
 msgid "latin2"
 msgstr ""
 
@@ -281,17 +296,17 @@ msgid "select * from res_partner"
 msgstr ""
 
 #. module: sql_export
-#: selection:sql.export,encoding:0
+#: model:ir.model.fields.selection,name:sql_export.selection__sql_export__encoding__shift_jis
 msgid "shift_jis"
 msgstr ""
 
 #. module: sql_export
-#: selection:sql.export,encoding:0
+#: model:ir.model.fields.selection,name:sql_export.selection__sql_export__encoding__utf-16
 msgid "utf-16"
 msgstr ""
 
 #. module: sql_export
-#: selection:sql.export,encoding:0
+#: model:ir.model.fields.selection,name:sql_export.selection__sql_export__encoding__utf-8
 msgid "utf-8"
 msgstr ""
 
@@ -301,12 +316,12 @@ msgid "variables_placeholder"
 msgstr ""
 
 #. module: sql_export
-#: selection:sql.export,encoding:0
+#: model:ir.model.fields.selection,name:sql_export.selection__sql_export__encoding__windows-1251
 msgid "windows-1251"
 msgstr ""
 
 #. module: sql_export
-#: selection:sql.export,encoding:0
+#: model:ir.model.fields.selection,name:sql_export.selection__sql_export__encoding__windows-1252
 msgid "windows-1252"
 msgstr ""
 
@@ -314,3 +329,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:sql_export.integer_field_variable_sql
 msgid "x_ID"
 msgstr ""
+
+#~ msgid "Draft"
+#~ msgstr "Mustand"
