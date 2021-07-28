@@ -15,6 +15,13 @@
                         groups="sql_request_abstract.group_sql_request_manager"
                     />
                     <button
+                        name="button_preview_sql_expression"
+                        type="object"
+                        states="draft"
+                        string="Preview Results"
+                        attrs="{'invisible': [('field_ids', '!=', False)]}"
+                    />
+                    <button
                         name="button_set_draft"
                         type="object"
                         states="sql_valid"
