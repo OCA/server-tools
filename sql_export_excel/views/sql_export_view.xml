@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+<data>
+
+
+    <record id="sql_export_excel_view_form" model="ir.ui.view">
+        <field name="model">sql.export</field>
+        <field name="inherit_id" ref="sql_export.sql_export_view_form" />
+        <field name="arch" type="xml">
+            <field name="file_format" position="after">
+                <field
+                        name="header"
+                        attrs="{'invisible': [('file_format', '=', 'csv')]}"
+                    />
+                <field
+                        name="attachment_id"
+                        attrs="{'invisible': [('file_format', '!=', 'excel')]}"
+                    />
+                <field
+                        name="sheet_position"
+                        attrs="{'invisible': [('attachment_id', '=', False)]}"
+                    />
+                <field
+                        name="row_position"
+                        attrs="{'invisible': [('attachment_id', '=', False)]}"
+                    />
+                <field
+                        name="col_position"
+                        attrs="{'invisible': [('attachment_id', '=', False)]}"
+                    />
+            </field>
+        </field>
+    </record>
+
+</data>
+</openerp>
