@@ -219,7 +219,7 @@ class BaseExceptionModel(models.AbstractModel):
                 rec.exceptions_summary = "<ul>%s</ul>" % "".join(
                     [
                         "<li>%s: <i>%s</i></li>"
-                        % tuple(map(html.escape, (e.name, e.description)))
+                        % tuple(map(html.escape, (e.name, e.description or "")))
                         for e in rec.exception_ids
                     ]
                 )
