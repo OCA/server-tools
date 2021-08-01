@@ -1,0 +1,10 @@
+<odoo>
+    <record
+        id="request_flow.request_action_to_review_category"
+        model="ir.actions.act_window"
+    >
+        <field
+            name="domain"
+        >[('reviewer_ids', 'in', uid), ('state', '=', 'pending'), ('category_id', '=', active_id)]</field>
+    </record>
+</odoo>
