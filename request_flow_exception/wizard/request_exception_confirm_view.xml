@@ -1,0 +1,10 @@
+<odoo>
+    <record id="action_request_exception_confirm" model="ir.actions.act_window">
+        <field name="name">Outstanding exceptions to manage</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">request.exception.confirm</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="base_exception.view_exception_rule_confirm" />
+        <field name="target">new</field>
+    </record>
+</odoo>
