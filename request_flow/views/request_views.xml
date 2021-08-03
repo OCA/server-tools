@@ -171,7 +171,6 @@
                     <field name="has_amount" invisible="1" />
                     <field name="has_reference" invisible="1" />
                     <field name="has_partner" invisible="1" />
-                    <field name="has_payment_method" invisible="1" />
                     <field name="has_location" invisible="1" />
                     <field name="has_product" invisible="1" />
                     <field name="has_document" invisible="1" />

@@ -15,7 +15,6 @@
         <field name="has_amount">optional</field>
         <field name="has_reference">optional</field>
         <field name="has_partner">optional</field>
-        <field name="has_payment_method">optional</field>
         <field name="has_location">optional</field>
         <field name="has_document">optional</field>
         <field name="is_manager_approver">True</field>

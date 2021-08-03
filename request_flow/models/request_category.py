@@ -24,7 +24,7 @@ class RequestCategory(models.Model):
 
     def _get_default_image(self):
         default_image_path = get_module_resource(
-            "request_flow", "static/src/img", "clipboard-svgrepo-com.svg"
+            "request_flow", "static/src/img", "checklist-svgrepo-com.svg"
         )
         return base64.b64encode(open(default_image_path, "rb").read())
 
@@ -62,9 +62,6 @@ class RequestCategory(models.Model):
     )
     has_partner = fields.Selection(
         CATEGORY_SELECTION, string="Has Contact", default="no", required=True
-    )
-    has_payment_method = fields.Selection(
-        CATEGORY_SELECTION, string="Has Payment", default="no", required=True
     )
     has_location = fields.Selection(
         CATEGORY_SELECTION, string="Has Location", default="no", required=True

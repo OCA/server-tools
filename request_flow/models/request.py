@@ -98,7 +98,6 @@ class RequestRequest(models.Model):
     has_amount = fields.Selection(related="category_id.has_amount")
     has_reference = fields.Selection(related="category_id.has_reference")
     has_partner = fields.Selection(related="category_id.has_partner")
-    has_payment_method = fields.Selection(related="category_id.has_payment_method")
     has_location = fields.Selection(related="category_id.has_location")
     has_product = fields.Selection(related="category_id.has_product")
     has_document = fields.Selection(related="category_id.has_document")

@@ -127,7 +127,7 @@
                                 <group name="basic_option_1">
                                     <field
                                         name="has_document"
-                                        string="Document"
+                                        string="Attach Document"
                                         widget="radio"
                                         options="{'horizontal': true}"
                                     />
@@ -173,12 +173,6 @@
                                     <field
                                         name="has_reference"
                                         string="Reference"
-                                        widget="radio"
-                                        options="{'horizontal': true}"
-                                    />
-                                    <field
-                                        name="has_payment_method"
-                                        string="Payment"
                                         widget="radio"
                                         options="{'horizontal': true}"
                                     />
