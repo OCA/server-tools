@@ -5,7 +5,7 @@ from odoo import api, fields, models
 
 
 class BaseKanbanAbstract(models.AbstractModel):
-    """ Inherit from this class to add support for Kanban stages to your model.
+    """Inherit from this class to add support for Kanban stages to your model.
     All public properties are preceded with kanban_ in order to isolate from
     child models, with the exception of: stage_id, which is a required field in
     the Kanban widget and must be defined as such, and user_id, which is a
@@ -41,7 +41,7 @@ class BaseKanbanAbstract(models.AbstractModel):
     stage_id = fields.Many2one(
         string="Kanban Stage",
         comodel_name="base.kanban.stage",
-        track_visibility="onchange",
+        tracking=True,
         index=True,
         copy=False,
         help="The Kanban stage that this record is currently in",
@@ -53,7 +53,7 @@ class BaseKanbanAbstract(models.AbstractModel):
         string="Assigned To",
         comodel_name="res.users",
         index=True,
-        track_visibility="onchange",
+        tracking=True,
         help="User that the record is currently assigned to",
     )
     kanban_color = fields.Integer(
@@ -94,7 +94,7 @@ class BaseKanbanAbstract(models.AbstractModel):
         ],
         string="Kanban Status",
         default="normal",
-        track_visibility="onchange",
+        tracking=True,
         required=True,
         copy=False,
         help="A record can have one of several Kanban statuses, which are used"

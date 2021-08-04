@@ -1,5 +1,5 @@
 # Copyright 2016-2017 LasLabs Inc.
-# Copyright 2019 Eficent Business and IT Consulting Services S.L.
+# Copyright 2019 ForgeFlow S.L.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
 from odoo import api, models
@@ -8,6 +8,7 @@ from odoo.tests.common import TransactionCase
 
 class BaseKanbanAbstractTester(models.Model):
     _name = "base.kanban.abstract.tester"
+    _description = "base kanban abstract tester"
     _inherit = "base.kanban.abstract"
 
 
@@ -19,8 +20,9 @@ class TestBaseKanbanAbstract(TransactionCase):
         model._prepare_setup()
         model._setup_base()
         model._setup_fields()
-        # init_models():
         model._setup_complete()
+        # init_models():
+        self.registry._post_init_queue.clear()
         model._auto_init()
         model.init()
         while self.registry._post_init_queue:
@@ -38,8 +40,9 @@ class TestBaseKanbanAbstract(TransactionCase):
         self.test_model = self._init_test_model(BaseKanbanAbstractTester)
 
         test_model_record = self.env["ir.model"].search(
-            [("name", "=", self.test_model._name)], limit=1
+            [("model", "=", self.test_model._name)], limit=1,
         )
+        self.assertEqual(len(test_model_record), 1)
         self.test_stage = self.env["base.kanban.stage"].create(
             {"name": "Test Stage", "res_model_id": test_model_record.id, "sequence": 2}
         )
