@@ -8,6 +8,7 @@ lxml
 odoorpc
 openpyxl
 openupgradelib
+pysftp
 pyyaml
 raven
 unidecode
