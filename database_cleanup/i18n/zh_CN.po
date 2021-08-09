@@ -317,7 +317,7 @@ msgid "No orphaned models found"
 msgstr "未找到要清除模型"
 
 #. module: database_cleanup
-#: code:addons/database_cleanup/models/purge_tables.py:107
+#: code:addons/database_cleanup/models/purge_tables.py:128
 #, python-format
 msgid "No orphaned tables found"
 msgstr "未找到要清除表"
@@ -498,6 +498,16 @@ msgid "Reason"
 msgstr "理由"
 
 #. module: database_cleanup
+#: selection:cleanup.purge.line.table,table_type:0
+msgid "SQL Table"
+msgstr ""
+
+#. module: database_cleanup
+#: selection:cleanup.purge.line.table,table_type:0
+msgid "SQL View"
+msgstr ""
+
+#. module: database_cleanup
 #: selection:cleanup.purge.line.property,reason:0
 msgid "Same value as default"
 msgstr "与默认值相同"
@@ -512,6 +522,11 @@ msgstr "选择行"
 #, python-format
 msgid "Select lines to purge"
 msgstr "选择要清除的行"
+
+#. module: database_cleanup
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_table__table_type
+msgid "Table Type"
+msgstr ""
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_table__purge_line_ids
