@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    This module copyright (C) 2015 Therp BV <http://therp.nl>.
@@ -24,7 +23,5 @@
     "license": "AGPL-3",
     "category": "Hidden/Dependency",
     "summary": "Suspend security checks for a call",
-    "depends": [
-        'base',
-    ],
+    "depends": ["base",],
 }

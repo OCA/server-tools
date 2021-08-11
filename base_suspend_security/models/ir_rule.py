@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    This module copyright (C) 2015 Therp BV (<http://therp.nl>).
@@ -17,15 +16,16 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from odoo import models, api
+from odoo import api, models
+
 from ..base_suspend_security import BaseSuspendSecurityUid
 
 
 class IrRule(models.Model):
-    _inherit = 'ir.rule'
+    _inherit = "ir.rule"
 
     @api.model
-    def domain_get(self, model_name, mode='read'):
+    def domain_get(self, model_name, mode="read"):
         if isinstance(self.env.uid, BaseSuspendSecurityUid):
             return [], [], ['"%s"' % self.pool[model_name]._table]
         return super(IrRule, self).domain_get(model_name, mode=mode)
