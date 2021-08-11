@@ -26,7 +26,12 @@ class IrModelAccess(models.Model):
 
     @api.model
     @tools.ormcache_context(
-        "self._uid", "model", "mode", "raise_exception", keys=("lang",)
+        "self.env.uid",
+        "self.env.su",
+        "model",
+        "mode",
+        "raise_exception",
+        keys=("lang",),
     )
     def check(self, model, mode="read", raise_exception=True):
         if isinstance(self.env.uid, BaseSuspendSecurityUid):
