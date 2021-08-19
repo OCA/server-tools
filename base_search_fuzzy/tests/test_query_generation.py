@@ -2,10 +2,9 @@
 # Copyright 2016 Serpent Consulting Services Pvt. Ltd.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from odoo.osv import expression
-from odoo.tests.common import TransactionCase, tagged
+from odoo.tests.common import TransactionCase
 
 
-@tagged("post_install", "-at_install")
 class QueryGenerationCase(TransactionCase):
     def setUp(self):
         super(QueryGenerationCase, self).setUp()
@@ -62,13 +61,6 @@ class QueryGenerationCase(TransactionCase):
             b"""SELECT FROM "res_partner_category" LEFT JOIN "ir_translation" AS "res_partner_category__name" ON ("res_partner_category"."id" = "res_partner_category__name"."res_id" AND "res_partner_category__name"."type" = \'model\' AND "res_partner_category__name"."name" = \'res.partner.category,name\' AND "res_partner_category__name"."lang" = \'de_DE\' AND "res_partner_category__name"."value" != \'\') WHERE COALESCE("res_partner_category__name"."value", "res_partner_category"."name") % \'Goschaeftlic\'""",  # noqa
             complete_where,
         )
-
-    def test_fuzzy_order_generation(self):
-        """Check the generation of the where clause."""
-        order = "similarity(%s.name, 'test') DESC" % self.ResPartner._table
-        query = self.ResPartner._where_calc([("name", "%", "test")], active_test=False)
-        order_by = self.ResPartner._generate_order_by(order, query)
-        self.assertEqual(" ORDER BY %s" % order, order_by)
 
     def test_fuzzy_search(self):
         """Test the fuzzy search itself."""
