@@ -257,4 +257,99 @@
         parent="menu_audit"
         action="action_auditlog_log_tree"
     />
+    <!-- auditlog.log.line -->
+    <record model="ir.ui.view" id="view_auditlog_line_tree">
+        <field name="name">view.auditlog.line.tree</field>
+        <field name="model">auditlog.log.line</field>
+        <field name="arch" type="xml">
+            <tree string="Log Lines" create="0">
+                <field name="create_date" optional="show" />
+                <field name="user_id" optional="show" />
+                <field name="http_session_id" optional="hide" />
+                <field name="http_request_id" optional="hide" />
+                <field name="name" optional="show" />
+                <field name="model_id" optional="hide" />
+                <field name="model_model" optional="hide" />
+                <field name="model_name" optional="hide" />
+                <field name="field_id" optional="hide" />
+                <field name="field_name" optional="hide" />
+                <field name="field_description" optional="show" />
+                <field name="old_value" optional="hide" />
+                <field name="new_value" optional="hide" />
+                <field name="old_value_text" optional="show" />
+                <field name="new_value_text" optional="show" />
+                <field name="log_type" optional="hide" />
+            </tree>
+        </field>
+    </record>
+    <record id="view_auditlog_line_search" model="ir.ui.view">
+        <field name="name">auditlog.line.search</field>
+        <field name="model">auditlog.log.line</field>
+        <field name="arch" type="xml">
+            <search string="Log Lines">
+                <field name="name" />
+                <field name="model_id" />
+                <field name="res_id" />
+                <field name="user_id" />
+                <group expand="0" string="Group By...">
+                    <filter
+                        name="group_by_user_id"
+                        string="User"
+                        domain="[]"
+                        context="{'group_by':'user_id'}"
+                    />
+                    <filter
+                        name="group_by_model_id"
+                        string="Model"
+                        domain="[]"
+                        context="{'group_by':'model_id'}"
+                    />
+                    <filter
+                        name="group_by_field_id"
+                        string="Field"
+                        domain="[]"
+                        context="{'group_by':'field_id'}"
+                    />
+                    <filter
+                        name="group_by_res_id"
+                        string="Resource ID"
+                        domain="[]"
+                        context="{'group_by':'res_id'}"
+                    />
+                    <filter
+                        name="group_by_create_date"
+                        string="Date"
+                        domain="[]"
+                        context="{'group_by':'create_date'}"
+                    />
+                    <filter
+                        name="group_by_http_session"
+                        string="User session"
+                        domain="[]"
+                        context="{'group_by':'http_session_id'}"
+                    />
+                    <filter
+                        name="group_by_http_request"
+                        string="HTTP Request"
+                        domain="[]"
+                        context="{'group_by':'http_request_id'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="action_auditlog_line" model="ir.actions.act_window">
+        <field name="name">Log Lines</field>
+        <field name="res_model">auditlog.log.line</field>
+        <field name="view_mode">tree</field>
+        <field name="search_view_id" ref="view_auditlog_line_search" />
+        <field name="context">{'search_default_group_by_model_id': 1}</field>
+    </record>
+    <menuitem
+        id="menu_auditlog_line"
+        name="Log Lines"
+        parent="menu_audit"
+        action="action_auditlog_line"
+        sequence="20"
+    />
 </odoo>
