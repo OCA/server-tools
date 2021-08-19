@@ -76,12 +76,6 @@ msgid "Index Type"
 msgstr "索引类型"
 
 #. module: base_search_fuzzy
-#: code:addons/base_search_fuzzy/models/ir_model.py:0
-#, fuzzy, python-format
-msgid "Invalid field {!r} in domain term {!r}"
-msgstr "域名%r中的字段%r无效"
-
-#. module: base_search_fuzzy
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index____last_update
 msgid "Last Modified on"
 msgstr "最后修改时间"
@@ -95,11 +89,6 @@ msgstr "最后更新者"
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index__write_date
 msgid "Last Updated on"
 msgstr "上次更新日期"
-
-#. module: base_search_fuzzy
-#: model:ir.model,name:base_search_fuzzy.model_ir_model
-msgid "Models"
-msgstr "模型"
 
 #. module: base_search_fuzzy
 #: model:ir.model.fields,help:base_search_fuzzy.field_trgm_index__index_name
@@ -131,3 +120,10 @@ msgstr "Trigram索引"
 #: model:ir.model.fields,help:base_search_fuzzy.field_trgm_index__field_id
 msgid "You can either select a field of type \"text\" or \"char\"."
 msgstr "您可以选择“text”或“char”类型的字段。"
+
+#, fuzzy
+#~ msgid "Invalid field {!r} in domain term {!r}"
+#~ msgstr "域名%r中的字段%r无效"
+
+#~ msgid "Models"
+#~ msgstr "模型"
