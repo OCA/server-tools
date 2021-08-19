@@ -313,6 +313,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_mail_test__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_mail_test_activity__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_mail_test_cc__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_mail_test_field_type__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_mail_test_full__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_mail_test_gateway__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_mail_test_multi_company__changeset_change_ids
@@ -706,6 +707,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_mail_test__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_mail_test_activity__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_mail_test_cc__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_mail_test_field_type__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_mail_test_full__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_mail_test_gateway__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_mail_test_multi_company__changeset_ids
@@ -1086,6 +1088,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_mail_test__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_mail_test_activity__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_mail_test_cc__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_mail_test_field_type__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_mail_test_full__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_mail_test_gateway__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_mail_test_multi_company__count_pending_changeset_changes
@@ -1459,6 +1462,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_mail_test__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_mail_test_activity__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_mail_test_cc__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_mail_test_field_type__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_mail_test_full__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_mail_test_gateway__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_mail_test_multi_company__count_pending_changesets
@@ -2222,6 +2226,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_mail_test__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_mail_test_activity__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_mail_test_cc__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_mail_test_field_type__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_mail_test_full__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_mail_test_gateway__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_mail_test_multi_company__user_can_see_changeset
