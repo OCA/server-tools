@@ -5,8 +5,6 @@ from odoo.osv import expression
 from odoo.tests.common import TransactionCase, at_install, post_install
 
 
-@at_install(False)
-@post_install(True)
 class QueryGenerationCase(TransactionCase):
 
     def setUp(self):
@@ -59,14 +57,6 @@ class QueryGenerationCase(TransactionCase):
         self.assertIn(
             b"""SELECT id FROM temp_irt_current WHERE name % 'Goschaeftlic'""",
             complete_where)
-
-    def test_fuzzy_order_generation(self):
-        """Check the generation of the where clause."""
-        order = "similarity(%s.name, 'test') DESC" % self.ResPartner._table
-        query = self.ResPartner._where_calc(
-            [('name', '%', 'test')], active_test=False)
-        order_by = self.ResPartner._generate_order_by(order, query)
-        self.assertEqual(' ORDER BY %s' % order, order_by)
 
     def test_fuzzy_search(self):
         """Test the fuzzy search itself."""

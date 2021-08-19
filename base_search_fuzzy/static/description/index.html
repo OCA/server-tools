@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="Docutils 0.15.1: http://docutils.sourceforge.net/" />
+<meta name="generator" content="Docutils: http://docutils.sourceforge.net/" />
 <title>Fuzzy Search</title>
 <style type="text/css">
 
@@ -422,13 +422,6 @@ or <cite>John Mill</cite>.</p>
 limit (default: 0.3). NB: Currently you have to set the limit by executing
 the following SQL statement:</p>
 <p><tt class="docutils literal"><span class="pre">self.env.cr.execute(&quot;SELECT</span> <span class="pre">set_limit(0.2);&quot;)</span></tt></p>
-</li>
-<li><p class="first">Another interesting feature is the use of <tt class="docutils literal">similarity(column, 'text')</tt>
-function in the <tt class="docutils literal">order</tt> parameter to order by similarity. This module just
-contains a basic implementation which doesn’t perform validations and has to
-start with this function. For example you can define the function as
-followed:</p>
-<p><tt class="docutils literal"><span class="pre">similarity(%s.name,</span> 'John Mil') DESC&quot; % <span class="pre">self.env['res.partner']._table</span></tt></p>
 </li>
 </ol>
 <p>For further questions read the Documentation of the

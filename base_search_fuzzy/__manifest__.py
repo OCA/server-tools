@@ -5,7 +5,7 @@
     'name': "Fuzzy Search",
     'summary': "Fuzzy search with the PostgreSQL trigram extension",
     'category': 'Uncategorized',
-    'version': '12.0.1.0.0',
+    'version': '12.0.1.0.1',
     'website': 'https://github.com/OCA/server-tools',
     'author': 'bloopark systems GmbH & Co. KG, '
               'Eficent, '
@@ -18,4 +18,5 @@
         'security/ir.model.access.csv',
     ],
     'installable': True,
+    "post_load": "post_load",
 }
