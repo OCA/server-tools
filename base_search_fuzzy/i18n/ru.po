@@ -74,12 +74,6 @@ msgid "Index Type"
 msgstr ""
 
 #. module: base_search_fuzzy
-#: code:addons/base_search_fuzzy/models/ir_model.py:39
-#, python-format
-msgid "Invalid field %r in domain term %r"
-msgstr ""
-
-#. module: base_search_fuzzy
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index____last_update
 msgid "Last Modified on"
 msgstr ""
@@ -93,11 +87,6 @@ msgstr "Последний раз обновлено"
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index__write_date
 msgid "Last Updated on"
 msgstr "Последний раз обновлено"
-
-#. module: base_search_fuzzy
-#: model:ir.model,name:base_search_fuzzy.model_ir_model
-msgid "Models"
-msgstr ""
 
 #. module: base_search_fuzzy
 #: model:ir.model.fields,help:base_search_fuzzy.field_trgm_index__index_name

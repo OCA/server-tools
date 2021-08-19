@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2017-01-14 04:21+0000\n"
 "PO-Revision-Date: 2019-08-30 17:04+0000\n"
 "Last-Translator: Rodrigo Macedo <rmsolucoeseminformatic4@gmail.com>\n"
-"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/"
-"23907/pt_BR/)\n"
+"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/"
+"teams/23907/pt_BR/)\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -78,12 +78,6 @@ msgid "Index Type"
 msgstr "Tipo de índice"
 
 #. module: base_search_fuzzy
-#: code:addons/base_search_fuzzy/models/ir_model.py:39
-#, python-format
-msgid "Invalid field %r in domain term %r"
-msgstr "Campo inválido %r no termo do domínio %r"
-
-#. module: base_search_fuzzy
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index____last_update
 msgid "Last Modified on"
 msgstr "Última atualização em"
@@ -97,11 +91,6 @@ msgstr "Última atualização por"
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index__write_date
 msgid "Last Updated on"
 msgstr "Última atualização em"
-
-#. module: base_search_fuzzy
-#: model:ir.model,name:base_search_fuzzy.model_ir_model
-msgid "Models"
-msgstr "Modelos"
 
 #. module: base_search_fuzzy
 #: model:ir.model.fields,help:base_search_fuzzy.field_trgm_index__index_name
@@ -135,3 +124,9 @@ msgstr "Índice Trigram"
 #: model:ir.model.fields,help:base_search_fuzzy.field_trgm_index__field_id
 msgid "You can either select a field of type \"text\" or \"char\"."
 msgstr "Você pode selecionar um campo do tipo \"texto\" ou \"caractere\"."
+
+#~ msgid "Invalid field %r in domain term %r"
+#~ msgstr "Campo inválido %r no termo do domínio %r"
+
+#~ msgid "Models"
+#~ msgstr "Modelos"

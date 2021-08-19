@@ -27,8 +27,8 @@ msgid ""
 "faster to search than a GiST index, but slower to build or update; so GIN is "
 "better suited for static data and GiST for often-updated data.\""
 msgstr ""
-"引用PostgreSQL文档：“根据经验，GIN索引的搜索速度比GiST索引快，但构建或更新速度较慢;因此GIN更适合静态数据，而GiST更适合经常更新的"
-"数据。”"
+"引用PostgreSQL文档：“根据经验，GIN索引的搜索速度比GiST索引快，但构建或更新速"
+"度较慢;因此GIN更适合静态数据，而GiST更适合经常更新的数据。”"
 
 #. module: base_search_fuzzy
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index__create_uid
@@ -76,12 +76,6 @@ msgid "Index Type"
 msgstr "索引类型"
 
 #. module: base_search_fuzzy
-#: code:addons/base_search_fuzzy/models/ir_model.py:39
-#, python-format
-msgid "Invalid field %r in domain term %r"
-msgstr "域名%r中的字段%r无效"
-
-#. module: base_search_fuzzy
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index____last_update
 msgid "Last Modified on"
 msgstr "最后修改时间"
@@ -97,11 +91,6 @@ msgid "Last Updated on"
 msgstr "上次更新日期"
 
 #. module: base_search_fuzzy
-#: model:ir.model,name:base_search_fuzzy.model_ir_model
-msgid "Models"
-msgstr "模型"
-
-#. module: base_search_fuzzy
 #: model:ir.model.fields,help:base_search_fuzzy.field_trgm_index__index_name
 msgid ""
 "The index name is automatically generated like fieldname_indextype_idx. If "
@@ -109,8 +98,8 @@ msgid ""
 "this index is reused. If the index is located in another table then a number "
 "is added at the end of the index name."
 msgstr ""
-"索引名称自动生成，如fieldname_indextype_idx。如果索引已存在且索引位于同一表中，则重用此索引。如果索引位于另一个表中，则在索引名称的"
-"末尾添加一个数字。"
+"索引名称自动生成，如fieldname_indextype_idx。如果索引已存在且索引位于同一表"
+"中，则重用此索引。如果索引位于另一个表中，则在索引名称的末尾添加一个数字。"
 
 #. module: base_search_fuzzy
 #: code:addons/base_search_fuzzy/models/trgm_index.py:126
@@ -131,3 +120,9 @@ msgstr "Trigram索引"
 #: model:ir.model.fields,help:base_search_fuzzy.field_trgm_index__field_id
 msgid "You can either select a field of type \"text\" or \"char\"."
 msgstr "您可以选择“text”或“char”类型的字段。"
+
+#~ msgid "Invalid field %r in domain term %r"
+#~ msgstr "域名%r中的字段%r无效"
+
+#~ msgid "Models"
+#~ msgstr "模型"
