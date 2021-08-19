@@ -86,5 +86,6 @@
         id="menu_action_auditlog_http_request_tree"
         parent="menu_audit"
         action="action_auditlog_http_request_tree"
+        sequence="40"
     />
 </odoo>
