@@ -62,6 +62,17 @@ class AuditlogLogLine(models.Model):
     new_value_text = fields.Text("New value Text")
     field_name = fields.Char("Technical name", readonly=True)
     field_description = fields.Char("Description", readonly=True)
+    # From log auditlog.log
+    name = fields.Char(related="log_id.name", store=True)
+    model_id = fields.Many2one(related="log_id.model_id", store=True)
+    model_name = fields.Char(related="log_id.model_name", store=True)
+    model_model = fields.Char(related="log_id.model_model", store=True)
+    res_id = fields.Integer(related="log_id.res_id", store=True)
+    user_id = fields.Many2one(related="log_id.user_id", store=True)
+    method = fields.Char(related="log_id.method", store=True)
+    http_session_id = fields.Many2one(related="log_id.http_session_id", store=True)
+    http_request_id = fields.Many2one(related="log_id.http_request_id", store=True)
+    log_type = fields.Selection(related="log_id.log_type", store=True)
 
     @api.model_create_multi
     def create(self, vals_list):
