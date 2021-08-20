@@ -194,6 +194,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_name_search_improved.field_base_import_tests_models_o2m__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_base_import_tests_models_o2m_child__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_base_import_tests_models_preview__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_base_kanban_abstract__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_base_kanban_stage__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_base_language_export__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_base_language_import__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_base_language_install__smart_search
