@@ -147,13 +147,14 @@ class Base(models.AbstractModel):
     @api.model
     def _search_smart_search(self, operator, value):
         """
-        Por ahora este método no llama a
-        self.name_search(name, operator=operator) ya que este no es tan
-        performante si se llama a ilimitados registros que es lo que el
-        name search debe devolver. Por eso se reimplementa acá nuevamente.
-        Además name_search tiene una lógica por la cual trata de devolver
-        primero los que mejor coinciden, en este caso eso no es necesario
-        Igualmente seguro se puede mejorar y unificar bastante código
+        For now this method does not call
+        self._name_search(name, operator=operator) as this is not as
+        performant if you call with unlimited records which is what the
+        name search should return. That is why it is reimplemented here again.
+        In addition name_search has a logic by which it tries to return
+        first the best matches, in this case that is not necessary.
+        However, it can be improved and unify a lot of code.
+
         """
         enabled = self.env.context.get("name_search_extended", True)
         name = value
