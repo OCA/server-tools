@@ -32,7 +32,6 @@ msgid "Created on"
 msgstr ""
 
 #. module: base_search_fuzzy
-#: model:ir.model.fields,field_description:base_search_fuzzy.field_ir_model__display_name
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index__display_name
 msgid "Display Name"
 msgstr ""
@@ -53,7 +52,6 @@ msgid "GiST"
 msgstr ""
 
 #. module: base_search_fuzzy
-#: model:ir.model.fields,field_description:base_search_fuzzy.field_ir_model__id
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index__id
 msgid "ID"
 msgstr ""
@@ -69,13 +67,6 @@ msgid "Index Type"
 msgstr ""
 
 #. module: base_search_fuzzy
-#: code:addons/base_search_fuzzy/models/ir_model.py:0
-#, python-format
-msgid "Invalid field {!r} in domain term {!r}"
-msgstr ""
-
-#. module: base_search_fuzzy
-#: model:ir.model.fields,field_description:base_search_fuzzy.field_ir_model____last_update
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index____last_update
 msgid "Last Modified on"
 msgstr ""
@@ -91,12 +82,6 @@ msgid "Last Updated on"
 msgstr ""
 
 #. module: base_search_fuzzy
-#: model:ir.model,name:base_search_fuzzy.model_ir_model
-msgid "Models"
-msgstr ""
-
-#. module: base_search_fuzzy
-#: model:ir.model.fields,field_description:base_search_fuzzy.field_ir_model__smart_search
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index__smart_search
 msgid "Smart Search"
 msgstr ""
