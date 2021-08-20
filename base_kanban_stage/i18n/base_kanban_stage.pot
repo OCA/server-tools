@@ -1,12 +1,12 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* base_kanban_stage
+# 	* base_kanban_stage
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 13.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: <>\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -15,11 +15,11 @@ msgstr ""
 
 #. module: base_kanban_stage
 #: model:ir.model.fields,help:base_kanban_stage.field_base_kanban_abstract__kanban_status
-msgid "A record can have one of several Kanban statuses, which are used to indicate whether there are any special situations affecting it. The exact meaning of each status is allowed to vary based on the stage the record is in but they are roughly as follow:\n"
+msgid ""
+"A record can have one of several Kanban statuses, which are used to indicate whether there are any special situations affecting it. The exact meaning of each status is allowed to vary based on the stage the record is in but they are roughly as follow:\n"
 "* Normal Handling: Default status, no special situations\n"
 "* Ready: Ready to transition to the next stage\n"
 "* Special Handling: Blocked in some way (e.g. must be handled by a specific user)\n"
-""
 msgstr ""
 
 #. module: base_kanban_stage
@@ -75,6 +75,7 @@ msgstr ""
 #. module: base_kanban_stage
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_abstract__display_name
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_stage__display_name
+#: model:ir.model.fields,field_description:base_kanban_stage.field_ir_model__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -95,58 +96,75 @@ msgstr ""
 
 #. module: base_kanban_stage
 #: model:ir.model.fields,help:base_kanban_stage.field_base_kanban_abstract__kanban_legend_normal
-msgid "Explanation text to help users understand how the normal handling status applies to this record (depends on current stage)"
+msgid ""
+"Explanation text to help users understand how the normal handling status "
+"applies to this record (depends on current stage)"
 msgstr ""
 
 #. module: base_kanban_stage
 #: model:ir.model.fields,help:base_kanban_stage.field_base_kanban_stage__legend_normal
-msgid "Explanation text to help users understand how the normal handling status applies to this stage"
+msgid ""
+"Explanation text to help users understand how the normal handling status "
+"applies to this stage"
 msgstr ""
 
 #. module: base_kanban_stage
 #: model:ir.model.fields,help:base_kanban_stage.field_base_kanban_abstract__kanban_legend_priority
-msgid "Explanation text to help users understand how the priority/star mechanism applies to this record (depends on current stage)"
+msgid ""
+"Explanation text to help users understand how the priority/star mechanism "
+"applies to this record (depends on current stage)"
 msgstr ""
 
 #. module: base_kanban_stage
 #: model:ir.model.fields,help:base_kanban_stage.field_base_kanban_stage__legend_priority
-msgid "Explanation text to help users understand how the priority/star mechanism applies to this stage"
+msgid ""
+"Explanation text to help users understand how the priority/star mechanism "
+"applies to this stage"
 msgstr ""
 
 #. module: base_kanban_stage
 #: model:ir.model.fields,help:base_kanban_stage.field_base_kanban_abstract__kanban_legend_done
-msgid "Explanation text to help users understand how the ready status applies to this record (depends on current stage)"
+msgid ""
+"Explanation text to help users understand how the ready status applies to "
+"this record (depends on current stage)"
 msgstr ""
 
 #. module: base_kanban_stage
 #: model:ir.model.fields,help:base_kanban_stage.field_base_kanban_stage__legend_done
-msgid "Explanation text to help users understand how the ready status applies to this stage"
+msgid ""
+"Explanation text to help users understand how the ready status applies to "
+"this stage"
 msgstr ""
 
 #. module: base_kanban_stage
 #: model:ir.model.fields,help:base_kanban_stage.field_base_kanban_abstract__kanban_legend_blocked
-msgid "Explanation text to help users understand how the special handling status applies to this record (depends on current stage)"
+msgid ""
+"Explanation text to help users understand how the special handling status "
+"applies to this record (depends on current stage)"
 msgstr ""
 
 #. module: base_kanban_stage
 #: model:ir.model.fields,help:base_kanban_stage.field_base_kanban_stage__legend_blocked
-msgid "Explanation text to help users understand how the special handling status applies to this stage"
+msgid ""
+"Explanation text to help users understand how the special handling status "
+"applies to this stage"
 msgstr ""
 
 #. module: base_kanban_stage
-#: code:addons/base_kanban_stage/models/ir_model.py:23
+#: code:addons/base_kanban_stage/models/ir_model.py:0
 #, python-format
 msgid "Field \"Kanban\" cannot be changed to \"False\"."
 msgstr ""
 
 #. module: base_kanban_stage
-#: selection:base.kanban.abstract,kanban_priority:0
+#: model:ir.model.fields.selection,name:base_kanban_stage.selection__base_kanban_abstract__kanban_priority__2
 msgid "High"
 msgstr ""
 
 #. module: base_kanban_stage
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_abstract__id
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_stage__id
+#: model:ir.model.fields,field_description:base_kanban_stage.field_ir_model__id
 msgid "ID"
 msgstr ""
 
@@ -199,6 +217,7 @@ msgstr ""
 #. module: base_kanban_stage
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_abstract____last_update
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_stage____last_update
+#: model:ir.model.fields,field_description:base_kanban_stage.field_ir_model____last_update
 msgid "Last Modified on"
 msgstr ""
 
@@ -213,7 +232,7 @@ msgid "Last Updated on"
 msgstr ""
 
 #. module: base_kanban_stage
-#: selection:base.kanban.abstract,kanban_priority:0
+#: model:ir.model.fields.selection,name:base_kanban_stage.selection__base_kanban_abstract__kanban_priority__1
 msgid "Medium"
 msgstr ""
 
@@ -223,12 +242,12 @@ msgid "Models"
 msgstr ""
 
 #. module: base_kanban_stage
-#: selection:base.kanban.abstract,kanban_priority:0
+#: model:ir.model.fields.selection,name:base_kanban_stage.selection__base_kanban_abstract__kanban_priority__0
 msgid "Normal"
 msgstr ""
 
 #. module: base_kanban_stage
-#: selection:base.kanban.abstract,kanban_status:0
+#: model:ir.model.fields.selection,name:base_kanban_stage.selection__base_kanban_abstract__kanban_status__normal
 msgid "Normal Handling"
 msgstr ""
 
@@ -239,19 +258,22 @@ msgid "Normal Handling Explanation"
 msgstr ""
 
 #. module: base_kanban_stage
-#: code:addons/base_kanban_stage/models/ir_model.py:20
+#: code:addons/base_kanban_stage/models/ir_model.py:0
 #, python-format
 msgid "Only custom models can be modified."
 msgstr ""
 
 #. module: base_kanban_stage
 #: model:ir.model.fields,help:base_kanban_stage.field_base_kanban_abstract__kanban_sequence
-msgid "Order of record in relation to other records in the same Kanban stage and with the same priority"
+msgid ""
+"Order of record in relation to other records in the same Kanban stage and "
+"with the same priority"
 msgstr ""
 
 #. module: base_kanban_stage
 #: model:ir.model.fields,help:base_kanban_stage.field_base_kanban_stage__sequence
-msgid "Order of stage in relation to other stages available for the same model"
+msgid ""
+"Order of stage in relation to other stages available for the same model"
 msgstr ""
 
 #. module: base_kanban_stage
@@ -266,7 +288,7 @@ msgid "Priority and Statuses"
 msgstr ""
 
 #. module: base_kanban_stage
-#: selection:base.kanban.abstract,kanban_status:0
+#: model:ir.model.fields.selection,name:base_kanban_stage.selection__base_kanban_abstract__kanban_status__done
 msgid "Ready"
 msgstr ""
 
@@ -287,7 +309,7 @@ msgid "Short description of the stage's meaning/purpose"
 msgstr ""
 
 #. module: base_kanban_stage
-#: selection:base.kanban.abstract,kanban_status:0
+#: model:ir.model.fields.selection,name:base_kanban_stage.selection__base_kanban_abstract__kanban_status__blocked
 msgid "Special Handling"
 msgstr ""
 
@@ -331,4 +353,3 @@ msgstr ""
 #: model:ir.model.fields,help:base_kanban_stage.field_ir_model__is_kanban
 msgid "Whether this model support kanban stages."
 msgstr ""
-
