@@ -14,6 +14,7 @@ setuptools.setup(
         'odoo14-addon-base_cron_exclusion',
         'odoo14-addon-base_exception',
         'odoo14-addon-base_jsonify',
+        'odoo14-addon-base_kanban_stage',
         'odoo14-addon-base_m2m_custom_field',
         'odoo14-addon-base_name_search_improved',
         'odoo14-addon-base_report_auto_create_qweb',
