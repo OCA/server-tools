@@ -76,12 +76,6 @@ msgid "Index Type"
 msgstr "Tipo de Índice"
 
 #. module: base_search_fuzzy
-#: code:addons/base_search_fuzzy/models/ir_model.py:39
-#, python-format
-msgid "Invalid field %r in domain term %r"
-msgstr "Campo inválido %r no termo do domínio %r"
-
-#. module: base_search_fuzzy
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index____last_update
 msgid "Last Modified on"
 msgstr "Última Modificação Em"
@@ -95,11 +89,6 @@ msgstr "Última Modificação Por"
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index__write_date
 msgid "Last Updated on"
 msgstr "Última Atualização Em"
-
-#. module: base_search_fuzzy
-#: model:ir.model,name:base_search_fuzzy.model_ir_model
-msgid "Models"
-msgstr "Modelos"
 
 #. module: base_search_fuzzy
 #: model:ir.model.fields,help:base_search_fuzzy.field_trgm_index__index_name
@@ -129,3 +118,9 @@ msgstr "Índice Trigram"
 #: model:ir.model.fields,help:base_search_fuzzy.field_trgm_index__field_id
 msgid "You can either select a field of type \"text\" or \"char\"."
 msgstr "Só pode selecionar campos do tipo \"text\" ou \"char\"."
+
+#~ msgid "Invalid field %r in domain term %r"
+#~ msgstr "Campo inválido %r no termo do domínio %r"
+
+#~ msgid "Models"
+#~ msgstr "Modelos"
