@@ -38,6 +38,11 @@ msgid ""
 msgstr ""
 
 #. module: sql_export_mail
+#: model:ir.model.fields,field_description:sql_export_mail.field_sql_export__assigned_attachment_ids
+msgid "Assigned Attachments"
+msgstr ""
+
+#. module: sql_export_mail
 #: model_terms:ir.ui.view,arch_db:sql_export_mail.sql_export_mail_view_form
 msgid "Create Cron"
 msgstr ""
