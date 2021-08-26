@@ -258,6 +258,21 @@ msgid "Allow Choose Template"
 msgstr ""
 
 #. module: excel_import_export
+#: model:ir.model.fields,field_description:excel_import_export.field_export_xlsx_wizard__assigned_attachment_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_import_xlsx_wizard__assigned_attachment_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_ir_actions_report__assigned_attachment_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_report_xlsx_wizard__assigned_attachment_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_export__assigned_attachment_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_import__assigned_attachment_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_report__assigned_attachment_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_styles__assigned_attachment_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__assigned_attachment_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__assigned_attachment_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_import__assigned_attachment_ids
+msgid "Assigned Attachments"
+msgstr ""
+
+#. module: excel_import_export
 #: model:ir.model,name:excel_import_export.model_xlsx_styles
 msgid "Available styles for excel"
 msgstr ""
