@@ -19,6 +19,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: fetchmail_incoming_log
+#: model:ir.model.fields,field_description:fetchmail_incoming_log.field_mail_thread__assigned_attachment_ids
+msgid "Assigned Attachments"
+msgstr ""
+
+#. module: fetchmail_incoming_log
 #: model:ir.model.fields,field_description:fetchmail_incoming_log.field_mail_thread__display_name
 msgid "Display Name"
 msgstr ""
