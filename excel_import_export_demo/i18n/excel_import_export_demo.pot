@@ -35,6 +35,13 @@ msgid "Allow Choose Template"
 msgstr ""
 
 #. module: excel_import_export_demo
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_crm_lead__assigned_attachment_ids
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__assigned_attachment_ids
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__assigned_attachment_ids
+msgid "Assigned Attachments"
+msgstr ""
+
+#. module: excel_import_export_demo
 #: model_terms:ir.ui.view,arch_db:excel_import_export_demo.partner_list_wizard
 msgid "Cancel"
 msgstr ""
