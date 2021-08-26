@@ -29,6 +29,12 @@ msgid ""
 msgstr ""
 
 #. module: fetchmail_notify_error_to_sender
+#: model:ir.model.fields,field_description:fetchmail_notify_error_to_sender.field_fetchmail_server__assigned_attachment_ids
+#: model:ir.model.fields,field_description:fetchmail_notify_error_to_sender.field_mail_thread__assigned_attachment_ids
+msgid "Assigned Attachments"
+msgstr ""
+
+#. module: fetchmail_notify_error_to_sender
 #: model:ir.model.fields,field_description:fetchmail_notify_error_to_sender.field_fetchmail_server__display_name
 #: model:ir.model.fields,field_description:fetchmail_notify_error_to_sender.field_mail_thread__display_name
 msgid "Display Name"
