@@ -2,4 +2,4 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
 from . import common
-from . import test_base_sequence_option
+from . import test_ir_sequence_option

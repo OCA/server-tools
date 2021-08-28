@@ -6,9 +6,10 @@ from odoo.exceptions import ValidationError
 from odoo.tools import safe_eval
 
 
-class BaseSequenceOption(models.Model):
-    _name = "base.sequence.option"
+class IrSequenceOption(models.Model):
+    _name = "ir.sequence.option"
     _description = "Sequence Option Base Model"
+    _check_company_auto = True
 
     name = fields.Char(readonly=True)
     use_sequence_option = fields.Boolean(
@@ -20,21 +21,32 @@ class BaseSequenceOption(models.Model):
         selection=[],
         string="Apply On Model",
         required=True,
-        readonly=True,
+        readonly=False,
+        index=True,
     )
     option_ids = fields.One2many(
         string="Sequence Options",
-        comodel_name="sequence.option",
+        comodel_name="ir.sequence.option.line",
         inverse_name="base_id",
+    )
+    company_id = fields.Many2one(
+        comodel_name="res.company",
+        string="Company",
+        required=True,
+        readonly=False,
+        index=True,
+        default=lambda self: self.env.company,
+        help="Company related to this sequence option",
     )
 
 
-class SequenceOption(models.Model):
-    _name = "sequence.option"
-    _description = "Sequence Options"
+class IrSequenceOptionLine(models.Model):
+    _name = "ir.sequence.option.line"
+    _description = "Sequence Option Line"
+    _check_company_auto = True
 
     base_id = fields.Many2one(
-        comodel_name="base.sequence.option",
+        comodel_name="ir.sequence.option",
         index=True,
         required=True,
         ondelete="cascade",
@@ -61,6 +73,7 @@ class SequenceOption(models.Model):
         comodel_name="ir.sequence",
         string="Sequence",
         required=True,
+        check_company=True,
     )
     prefix = fields.Char(
         related="sequence_id.prefix",
@@ -77,6 +90,11 @@ class SequenceOption(models.Model):
         string="Implementation",
         readonly=True,
     )
+    company_id = fields.Many2one(
+        comodel_name="res.company",
+        related="base_id.company_id",
+        store=True,
+    )
 
     def get_model_options(self, model):
         return self.sudo().search(
@@ -89,6 +107,11 @@ class SequenceOption(models.Model):
         """
         if not options:
             options = self.get_model_options(record._name)
+        # multi-company
+        company = (
+            hasattr(record, "company_id") and record.company_id or self.env.company
+        )
+        options = options.filtered(lambda l: l.company_id == company)
         sequence = self.env["ir.sequence"]
         for option in options:
             domain = safe_eval.safe_eval(option.filter_domain)
