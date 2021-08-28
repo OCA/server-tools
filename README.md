@@ -29,6 +29,7 @@ addon | version | maintainers | summary
 [base_kanban_stage](base_kanban_stage/) | 14.0.1.0.0 |  | Provides stage model and abstract logic for inheritance
 [base_m2m_custom_field](base_m2m_custom_field/) | 14.0.1.1.0 |  | Customizations of Many2many
 [base_name_search_improved](base_name_search_improved/) | 14.0.1.0.0 |  | Friendlier search when typing in relation fields
+[base_remote](base_remote/) | 14.0.1.0.0 |  | Remote Base
 [base_report_auto_create_qweb](base_report_auto_create_qweb/) | 14.0.1.0.1 |  | Report qweb auto generation
 [base_search_fuzzy](base_search_fuzzy/) | 14.0.1.0.1 |  | Fuzzy search with the PostgreSQL trigram extension
 [base_sparse_field_list_support](base_sparse_field_list_support/) | 14.0.1.0.1 |  | add list support to convert_to_cache()
