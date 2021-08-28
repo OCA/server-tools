@@ -13,6 +13,7 @@
     "depends": ["base"],
     "data": [
         "security/ir.model.access.csv",
+        "security/sequence_option_security.xml",
         "views/sequence_option_view.xml",
     ],
     "license": "LGPL-3",
