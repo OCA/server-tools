@@ -13,7 +13,7 @@ class BaseSequenceTester(models.Model):
 
     @api.model
     def create(self, vals):
-        seq = self.env["sequence.option"].get_sequence(self.new(vals))
+        seq = self.env["ir.sequence.option.line"].get_sequence(self.new(vals))
         if seq:  # use sequence from sequence.option, instead of base.sequence.tester
             self = self.with_context(sequence_option_id=seq.id)
         new_seq = self.env["ir.sequence"].next_by_code("base.sequence.tester")
@@ -21,8 +21,8 @@ class BaseSequenceTester(models.Model):
         return super().create(vals)
 
 
-class BaseSequenceOption(models.Model):
-    _inherit = "base.sequence.option"
+class IrSequenceOption(models.Model):
+    _inherit = "ir.sequence.option"
 
     model = fields.Selection(
         selection_add=[("base.sequence.tester", "base.sequence.tester")],

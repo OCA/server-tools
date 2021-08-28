@@ -13,9 +13,9 @@ class CommonBaseSequenceOption(common.SavepointCase):
 
         cls.loader = FakeModelLoader(cls.env, cls.__module__)
         cls.loader.backup_registry()
-        from .base_sequence_tester import BaseSequenceOption, BaseSequenceTester
+        from .base_sequence_tester import BaseSequenceTester, IrSequenceOption
 
-        cls.loader.update_registry((BaseSequenceTester, BaseSequenceOption))
+        cls.loader.update_registry((BaseSequenceTester, IrSequenceOption))
 
         cls.test_model = cls.env[BaseSequenceTester._name]
 
@@ -60,8 +60,8 @@ class CommonBaseSequenceOption(common.SavepointCase):
             }
         )
 
-        # Create sequence options for model bsae.sequence.tester:
-        cls.base_sequence_obj = cls.env["base.sequence.option"]
+        # Create sequence options for model base.sequence.tester:
+        cls.base_sequence_obj = cls.env["ir.sequence.option"]
         cls.base_seq = cls.base_sequence_obj.create(
             {
                 "name": "Test Model",
@@ -69,7 +69,7 @@ class CommonBaseSequenceOption(common.SavepointCase):
                 "use_sequence_option": True,
             }
         )
-        cls.sequence_obj = cls.env["sequence.option"]
+        cls.sequence_obj = cls.env["ir.sequence.option.line"]
         cls.sequence_obj.create(
             {
                 "base_id": cls.base_seq.id,
