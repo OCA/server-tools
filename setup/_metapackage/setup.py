@@ -18,6 +18,7 @@ setuptools.setup(
         'odoo14-addon-base_kanban_stage',
         'odoo14-addon-base_m2m_custom_field',
         'odoo14-addon-base_name_search_improved',
+        'odoo14-addon-base_remote',
         'odoo14-addon-base_report_auto_create_qweb',
         'odoo14-addon-base_search_fuzzy',
         'odoo14-addon-base_sparse_field_list_support',
