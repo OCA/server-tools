@@ -12,3 +12,17 @@ class IrModel(models.Model):
         help="When selected, the model is restricted to read-only unless the "
         "user has the special permission.",
     )
+    restrict_update_method = fields.Selection(
+        selection=[
+            ("model", "Model Restriction"),
+            ("user", "User Restriction"),
+        ],
+        compute="_compute_restrict_update_method",
+    )
+
+    def _compute_restrict_update_method(self):
+        Config = self.env["res.config.settings"]
+        for rec in self:
+            rec.restrict_update_method = Config.get_values().get(
+                "restrict_update_method"
+            )

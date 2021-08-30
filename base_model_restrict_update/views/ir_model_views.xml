@@ -7,7 +7,11 @@
         <field name="inherit_id" ref="base.view_model_form" />
         <field name="arch" type="xml">
             <field name="transient" position="after">
-                <field name="restrict_update" />
+                <field name="restrict_update_method" invisible="1" />
+                <field
+                    name="restrict_update"
+                    attrs="{'invisible': [('restrict_update_method', '=', 'user')]}"
+                />
             </field>
         </field>
     </record>

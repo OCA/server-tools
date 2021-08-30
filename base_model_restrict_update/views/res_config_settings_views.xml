@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+        <record id="res_config_settings_view_form" model="ir.ui.view">
+            <field
+            name="name"
+        >res.config.settings.view.form.inherit.model.restrict</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="base_setup.res_config_settings_view_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//div[@id='access_rights']" position="after">
+                    <div class="col-12 col-lg-6 o_setting_box" id="restrict_update">
+                        <div class="o_setting_left_pane">
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="restrict_update_method" />
+                            <div class="text-muted">
+                                Optional access restriction on top of user current access.<br
+                            />
+                                - Model: restrict update on some model, allow some users to edit.<br
+                            />
+                                - User: readonly access on all model for some users.
+                            </div>
+                            <div class="mt8">
+                                <field
+                                name="restrict_update_method"
+                                class="o_light_label"
+                                widget="radio"
+                                required="True"
+                            />
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+</odoo>
