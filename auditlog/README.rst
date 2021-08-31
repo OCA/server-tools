@@ -94,6 +94,7 @@ Contributors
 * Stefan Rijnhart <stefan@opener.amsterdam>
 * Bhavesh Odedra <bodedra@opensourceintegrators.com>
 * Hardik Suthar <hsuthar@opensourceintegrators.com>
+* Kitti U. <kittiu@ecosoft.co.th>
 
 Other credits
 ~~~~~~~~~~~~~
