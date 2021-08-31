@@ -39,6 +39,14 @@ class MassEditing(models.Model):
         column2="group_id",
         string="Groups",
     )
+    apply_domain_in_lines = fields.Boolean(
+        string="Apply domain in lines", compute="_compute_apply_domain_in_lines"
+    )
+
+    @api.depends("line_ids")
+    def _compute_apply_domain_in_lines(self):
+        for record in self:
+            record.apply_domain_in_lines = any(record.line_ids.mapped("apply_domain"))
 
     _sql_constraints = [
         ('name_uniq', 'unique (name)', _('Name must be unique!')),
@@ -74,7 +82,7 @@ class MassEditing(models.Model):
             'groups_id': [(4, x.id) for x in self.group_ids],
             'view_type': 'form',
             'context': "{'mass_editing_object' : %d}" % (self.id),
-            'view_mode': 'form, tree',
+            'view_mode': 'form,tree',
             'target': 'new',
         }).id
         # We make sudo as any user with rights in this model should be able
