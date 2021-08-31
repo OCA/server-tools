@@ -53,7 +53,7 @@ msgid "Display Name"
 msgstr "Nombre a mostrar"
 
 #. module: base_exception
-#: code:addons/base_exception/models/base_exception.py:220
+#: code:addons/base_exception/models/base_exception.py:246
 #, python-format
 msgid ""
 "Error when evaluating the exception.rule rule:\n"
@@ -208,8 +208,8 @@ msgid ""
 "target object. Ex: validate sale.order.line rules with sale order rules."
 msgstr ""
 "Los grupos de reglas se usan para agrupar las reglas que deben validar al "
-"mismo tiempo para un determinado objeto. Ej: validar las reglas de "
-"sale.order.line con las reglas de pedidos de ventas"
+"mismo tiempo para un determinado objeto. Ej: validar las reglas de sale."
+"order.line con las reglas de pedidos de ventas"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule_sequence
@@ -223,8 +223,8 @@ msgid ""
 "The value \"%s\" you choose for the \"next state\" field state of \"%s\" is "
 "wrong. Value must be in this list %s"
 msgstr ""
-"El valor \"%s\" elegido para el campo del estado  \"estado siguiente\"   \"%"
-"s\" es erróneo. El valor debe estar en la lista %s"
+"El valor \"%s\" elegido para el campo del estado  \"estado siguiente\"   \"%s"
+"\" es erróneo. El valor debe estar en la lista %s"
 
 #. module: base_exception
 #: model:ir.ui.view,arch_db:base_exception.view_exception_rule_confirm
