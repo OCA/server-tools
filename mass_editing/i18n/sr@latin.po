@@ -21,9 +21,17 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #. module: mass_editing
-#: code:addons/mass_editing/models/mass_editing.py:110
+#: code:addons/mass_editing/models/mass_editing.py:118
 #, python-format
 msgid "%s (copy)"
+msgstr ""
+
+#. module: mass_editing
+#: model:ir.ui.view,arch_db:mass_editing.view_mass_object_form
+msgid ""
+"<b>WARNING</b>: Take into account that adding a field with a domain, and not "
+"including the fields of such domain in this operation definition, will lead "
+"to an error when trying to perform it. Make sure you include them."
 msgstr ""
 
 #. module: mass_editing
@@ -42,6 +50,21 @@ msgstr ""
 #. module: mass_editing
 #: model:ir.ui.view,arch_db:mass_editing.view_mass_object_form
 msgid "Advanced"
+msgstr ""
+
+#. module: mass_editing
+#: model:ir.model.fields,help:mass_editing.field_mass_editing_line_apply_domain
+msgid "Apply default domain related to field"
+msgstr ""
+
+#. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_line_apply_domain
+msgid "Apply domain"
+msgstr ""
+
+#. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_apply_domain_in_lines
+msgid "Apply domain in lines"
 msgstr ""
 
 #. module: mass_editing
@@ -128,7 +151,7 @@ msgid "Mass Editing"
 msgstr ""
 
 #. module: mass_editing
-#: code:addons/mass_editing/models/mass_editing.py:68
+#: code:addons/mass_editing/models/mass_editing.py:76
 #, python-format
 msgid "Mass Editing (%s)"
 msgstr ""
@@ -173,7 +196,7 @@ msgid "Name"
 msgstr "Ime:"
 
 #. module: mass_editing
-#: code:addons/mass_editing/models/mass_editing.py:44
+#: code:addons/mass_editing/models/mass_editing.py:52
 #: sql_constraint:mass.editing:0
 #, python-format
 msgid "Name must be unique!"
