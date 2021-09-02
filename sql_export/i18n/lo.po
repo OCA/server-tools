@@ -65,8 +65,32 @@ msgid "Cancel"
 msgstr "ຍົກເລີອກ"
 
 #. module: sql_export
+#: model:ir.model.fields,field_description:sql_export.field_sql_export__changeset_change_ids
+#: model:ir.model.fields,field_description:sql_export.field_sql_file_wizard__changeset_change_ids
+msgid "Changeset Changes"
+msgstr ""
+
+#. module: sql_export
+#: model:ir.model.fields,field_description:sql_export.field_sql_export__changeset_ids
+#: model:ir.model.fields,field_description:sql_export.field_sql_file_wizard__changeset_ids
+msgid "Changesets"
+msgstr ""
+
+#. module: sql_export
 #: model:ir.model.fields,field_description:sql_export.field_sql_export__copy_options
 msgid "Copy Options"
+msgstr ""
+
+#. module: sql_export
+#: model:ir.model.fields,field_description:sql_export.field_sql_export__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:sql_export.field_sql_file_wizard__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr ""
+
+#. module: sql_export
+#: model:ir.model.fields,field_description:sql_export.field_sql_export__count_pending_changesets
+#: model:ir.model.fields,field_description:sql_export.field_sql_file_wizard__count_pending_changesets
+msgid "Count Pending Changesets"
 msgstr ""
 
 #. module: sql_export
@@ -246,6 +270,12 @@ msgid ""
 "State of the Request:\n"
 " * 'Draft': Not tested\n"
 " * 'SQL Valid': SQL Request has been checked and is valid"
+msgstr ""
+
+#. module: sql_export
+#: model:ir.model.fields,field_description:sql_export.field_sql_export__user_can_see_changeset
+#: model:ir.model.fields,field_description:sql_export.field_sql_file_wizard__user_can_see_changeset
+msgid "User Can See Changeset"
 msgstr ""
 
 #. module: sql_export
