@@ -52,6 +52,34 @@ msgid "Cancel"
 msgstr "取消"
 
 #. module: excel_import_export_demo
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_crm_lead__changeset_change_ids
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__changeset_change_ids
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__changeset_change_ids
+msgid "Changeset Changes"
+msgstr ""
+
+#. module: excel_import_export_demo
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_crm_lead__changeset_ids
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__changeset_ids
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__changeset_ids
+msgid "Changesets"
+msgstr ""
+
+#. module: excel_import_export_demo
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_crm_lead__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr ""
+
+#. module: excel_import_export_demo
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_crm_lead__count_pending_changesets
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__count_pending_changesets
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr ""
+
+#. module: excel_import_export_demo
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_crm_lead__create_uid
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__create_uid
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__create_uid
@@ -219,6 +247,13 @@ msgstr "使用计算字段，因此数据库中没有任何存储"
 #: model:ir.model.fields,help:excel_import_export_demo.field_report_sale_order__results
 msgid "Use compute fields, so there is nothing stored in database"
 msgstr "使用计算字段，因此数据库中没有任何内容"
+
+#. module: excel_import_export_demo
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_crm_lead__user_can_see_changeset
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__user_can_see_changeset
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr ""
 
 #. module: excel_import_export_demo
 #: model:ir.model,name:excel_import_export_demo.model_report_crm_lead
