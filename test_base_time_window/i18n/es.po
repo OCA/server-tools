@@ -17,11 +17,13 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 #. module: test_base_time_window
+#: model:ir.model.fields,field_description:test_base_time_window.field_res_partner__changeset_change_ids
 #: model:ir.model.fields,field_description:test_base_time_window.field_test_partner_time_window__changeset_change_ids
 msgid "Changeset Changes"
 msgstr "Cambios en el conjunto de cambios"
 
 #. module: test_base_time_window
+#: model:ir.model.fields,field_description:test_base_time_window.field_res_partner__changeset_ids
 #: model:ir.model.fields,field_description:test_base_time_window.field_test_partner_time_window__changeset_ids
 msgid "Changesets"
 msgstr "Conjunto de cambios"
@@ -32,12 +34,14 @@ msgid "Contact"
 msgstr "Contacto"
 
 #. module: test_base_time_window
+#: model:ir.model.fields,field_description:test_base_time_window.field_res_partner__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:test_base_time_window.field_test_partner_time_window__count_pending_changeset_changes
 #, fuzzy
 msgid "Count Pending Changeset Changes"
 msgstr "Contar los cambios pendientes del conjunto de cambios"
 
 #. module: test_base_time_window
+#: model:ir.model.fields,field_description:test_base_time_window.field_res_partner__count_pending_changesets
 #: model:ir.model.fields,field_description:test_base_time_window.field_test_partner_time_window__count_pending_changesets
 #, fuzzy
 msgid "Count Pending Changesets"
@@ -54,6 +58,7 @@ msgid "Created on"
 msgstr "Creado el"
 
 #. module: test_base_time_window
+#: model:ir.model.fields,field_description:test_base_time_window.field_res_partner__display_name
 #: model:ir.model.fields,field_description:test_base_time_window.field_test_partner_time_window__display_name
 msgid "Display Name"
 msgstr "Nombre mostrado"
@@ -64,11 +69,13 @@ msgid "From"
 msgstr "De"
 
 #. module: test_base_time_window
+#: model:ir.model.fields,field_description:test_base_time_window.field_res_partner__id
 #: model:ir.model.fields,field_description:test_base_time_window.field_test_partner_time_window__id
 msgid "ID"
 msgstr "ID"
 
 #. module: test_base_time_window
+#: model:ir.model.fields,field_description:test_base_time_window.field_res_partner____last_update
 #: model:ir.model.fields,field_description:test_base_time_window.field_test_partner_time_window____last_update
 msgid "Last Modified on"
 msgstr "Última modificación el"
@@ -87,6 +94,12 @@ msgstr "Última actualización el"
 #: model:ir.model.fields,field_description:test_base_time_window.field_test_partner_time_window__partner_id
 msgid "Partner"
 msgstr "Empresa"
+
+#. module: test_base_time_window
+#: model:ir.model.fields,field_description:test_base_time_window.field_res_partner__smart_search
+#: model:ir.model.fields,field_description:test_base_time_window.field_test_partner_time_window__smart_search
+msgid "Smart Search"
+msgstr ""
 
 #. module: test_base_time_window
 #: model:ir.model,name:test_base_time_window.model_test_partner_time_window
@@ -111,6 +124,7 @@ msgid "To"
 msgstr "A"
 
 #. module: test_base_time_window
+#: model:ir.model.fields,field_description:test_base_time_window.field_res_partner__user_can_see_changeset
 #: model:ir.model.fields,field_description:test_base_time_window.field_test_partner_time_window__user_can_see_changeset
 msgid "User Can See Changeset"
 msgstr "Usuario puede ver conjunto de cambios"
