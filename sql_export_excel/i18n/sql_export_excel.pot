@@ -14,8 +14,28 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sql_export_excel
+#: model:ir.model.fields,field_description:sql_export_excel.field_sql_export__changeset_change_ids
+msgid "Changeset Changes"
+msgstr ""
+
+#. module: sql_export_excel
+#: model:ir.model.fields,field_description:sql_export_excel.field_sql_export__changeset_ids
+msgid "Changesets"
+msgstr ""
+
+#. module: sql_export_excel
 #: model:ir.model.fields,field_description:sql_export_excel.field_sql_export__col_position
 msgid "Column Position"
+msgstr ""
+
+#. module: sql_export_excel
+#: model:ir.model.fields,field_description:sql_export_excel.field_sql_export__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr ""
+
+#. module: sql_export_excel
+#: model:ir.model.fields,field_description:sql_export_excel.field_sql_export__count_pending_changesets
+msgid "Count Pending Changesets"
 msgstr ""
 
 #. module: sql_export_excel
@@ -126,4 +146,9 @@ msgstr ""
 #: code:addons/sql_export_excel/models/sql_export.py:0
 #, python-format
 msgid "The sheet position can't be less than 1."
+msgstr ""
+
+#. module: sql_export_excel
+#: model:ir.model.fields,field_description:sql_export_excel.field_sql_export__user_can_see_changeset
+msgid "User Can See Changeset"
 msgstr ""
