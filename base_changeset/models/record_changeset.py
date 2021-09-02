@@ -12,12 +12,11 @@ class RecordChangeset(models.Model):
     _rec_name = "date"
 
     model = fields.Char(index=True, required=True, readonly=True)
-    res_id = fields.Many2oneReference(
+    res_id = fields.Integer(
         string="Record ID",
         index=True,
         required=True,
         readonly=True,
-        model_field="model",
     )
     change_ids = fields.One2many(
         comodel_name="record.changeset.change",

@@ -3,7 +3,7 @@
 
 from lxml import etree
 
-from odoo import _, api, fields, models
+from odoo import _, SUPERUSER_ID, api, fields, models
 from odoo.tools import config
 
 
@@ -153,7 +153,7 @@ class Base(models.AbstractModel):
         return res
 
     def _compute_user_can_see_changeset(self):
-        is_superuser = self.env.is_superuser()
+        is_superuser = self.env.user.id == SUPERUSER_ID
         has_changeset_group = self.user_has_groups(
             "base_changeset.group_changeset_user"
         )

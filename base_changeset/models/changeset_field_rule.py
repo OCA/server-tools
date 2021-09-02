@@ -36,7 +36,9 @@ class ChangesetFieldRule(models.Model):
         "but if a field has no rule with a source model, the global rule "
         "is used.",
     )
-    company_id = fields.Many2one("res.company", default=lambda self: self.env.company)
+    company_id = fields.Many2one(
+        "res.company", default=lambda self: self.env.user.company_id,
+    )
     active = fields.Boolean(default=True)
 
     def init(self):

@@ -5,7 +5,7 @@
 from itertools import groupby
 from operator import attrgetter
 
-from odoo import _, api, fields, models
+from odoo import _, SUPERUSER_ID, api, fields, models
 from odoo.exceptions import UserError
 
 # sentinel object to be sure that no empty value was passed to
@@ -377,7 +377,7 @@ class RecordChangesetChange(models.Model):
         return self.search_read(domain, fields)
 
     def _compute_user_can_validate_changeset(self):
-        is_superuser = self.env.is_superuser()
+        is_superuser = self.env.user.id == SUPERUSER_ID
         has_group = self.user_has_groups("base_changeset.group_changeset_user")
         for rec in self:
             can_validate = rec._is_change_pending() and (is_superuser or has_group)

@@ -25,7 +25,7 @@ class TestChangesetFieldType(ChangesetTestCommon, TransactionCase):
             ("many2one", "country_id"),
             ("many2many", "category_id"),
             ("one2many", "user_ids"),
-            ("binary", "image_1920"),
+            ("binary", "image_medium"),
         )
         for field_type, field in fields:
             attr_name = "field_%s" % field_type
@@ -188,7 +188,11 @@ class TestChangesetFieldType(ChangesetTestCommon, TransactionCase):
     def test_new_changeset_binary(self):
         """ Add a new changeset on a Binary field is not supported """
         with self.assertRaises(NotImplementedError):
-            self.partner.write({self.field_binary.name: "xyz"})
+            self.partner.write({
+                self.field_binary.name:
+                "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAA"
+                "AAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
+            })
 
     def test_apply_char(self):
         """ Apply a change on a Char field """

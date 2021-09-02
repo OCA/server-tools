@@ -5,7 +5,7 @@
         <field name="arch" type="xml">
             <tree delete="false" create="false">
                 <field name="record_id" />
-                <field name="changeset_id" optional="hidden" />
+                <field name="changeset_id" />
                 <field name="field_id" />
                 <field name="field_type" />
                 <field name="origin_value_display" />
