@@ -14,8 +14,32 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: test_base_time_window
+#: model:ir.model.fields,field_description:test_base_time_window.field_res_partner__changeset_change_ids
+#: model:ir.model.fields,field_description:test_base_time_window.field_test_partner_time_window__changeset_change_ids
+msgid "Changeset Changes"
+msgstr ""
+
+#. module: test_base_time_window
+#: model:ir.model.fields,field_description:test_base_time_window.field_res_partner__changeset_ids
+#: model:ir.model.fields,field_description:test_base_time_window.field_test_partner_time_window__changeset_ids
+msgid "Changesets"
+msgstr ""
+
+#. module: test_base_time_window
 #: model:ir.model,name:test_base_time_window.model_res_partner
 msgid "Contact"
+msgstr ""
+
+#. module: test_base_time_window
+#: model:ir.model.fields,field_description:test_base_time_window.field_res_partner__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:test_base_time_window.field_test_partner_time_window__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr ""
+
+#. module: test_base_time_window
+#: model:ir.model.fields,field_description:test_base_time_window.field_res_partner__count_pending_changesets
+#: model:ir.model.fields,field_description:test_base_time_window.field_test_partner_time_window__count_pending_changesets
+msgid "Count Pending Changesets"
 msgstr ""
 
 #. module: test_base_time_window
@@ -91,4 +115,10 @@ msgstr ""
 #. module: test_base_time_window
 #: model:ir.model.fields,field_description:test_base_time_window.field_test_partner_time_window__time_window_end
 msgid "To"
+msgstr ""
+
+#. module: test_base_time_window
+#: model:ir.model.fields,field_description:test_base_time_window.field_res_partner__user_can_see_changeset
+#: model:ir.model.fields,field_description:test_base_time_window.field_test_partner_time_window__user_can_see_changeset
+msgid "User Can See Changeset"
 msgstr ""
