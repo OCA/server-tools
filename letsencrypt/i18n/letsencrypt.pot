@@ -25,6 +25,18 @@ msgid "Abstract model providing functions for letsencrypt"
 msgstr ""
 
 #. module: letsencrypt
+#: model:ir.model.fields,field_description:letsencrypt.field_letsencrypt__changeset_change_ids
+#: model:ir.model.fields,field_description:letsencrypt.field_res_config_settings__changeset_change_ids
+msgid "Changeset Changes"
+msgstr ""
+
+#. module: letsencrypt
+#: model:ir.model.fields,field_description:letsencrypt.field_letsencrypt__changeset_ids
+#: model:ir.model.fields,field_description:letsencrypt.field_res_config_settings__changeset_ids
+msgid "Changesets"
+msgstr ""
+
+#. module: letsencrypt
 #: model:ir.actions.server,name:letsencrypt.cronjob_ir_actions_server
 #: model:ir.cron,cron_name:letsencrypt.cronjob
 #: model:ir.cron,name:letsencrypt.cronjob
@@ -40,6 +52,18 @@ msgstr ""
 #: code:addons/letsencrypt/models/letsencrypt.py:0
 #, python-format
 msgid "Could not respond to letsencrypt challenges."
+msgstr ""
+
+#. module: letsencrypt
+#: model:ir.model.fields,field_description:letsencrypt.field_letsencrypt__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:letsencrypt.field_res_config_settings__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr ""
+
+#. module: letsencrypt
+#: model:ir.model.fields,field_description:letsencrypt.field_letsencrypt__count_pending_changesets
+#: model:ir.model.fields,field_description:letsencrypt.field_res_config_settings__count_pending_changesets
+msgid "Count Pending Changesets"
 msgstr ""
 
 #. module: letsencrypt
@@ -181,6 +205,12 @@ msgstr ""
 msgid ""
 "Use the testing server, which has higher rate limits but creates invalid "
 "certificates."
+msgstr ""
+
+#. module: letsencrypt
+#: model:ir.model.fields,field_description:letsencrypt.field_letsencrypt__user_can_see_changeset
+#: model:ir.model.fields,field_description:letsencrypt.field_res_config_settings__user_can_see_changeset
+msgid "User Can See Changeset"
 msgstr ""
 
 #. module: letsencrypt
