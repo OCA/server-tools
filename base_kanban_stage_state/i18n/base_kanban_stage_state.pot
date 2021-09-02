@@ -14,6 +14,26 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: base_kanban_stage_state
+#: model:ir.model.fields,field_description:base_kanban_stage_state.field_base_kanban_stage__changeset_change_ids
+msgid "Changeset Changes"
+msgstr ""
+
+#. module: base_kanban_stage_state
+#: model:ir.model.fields,field_description:base_kanban_stage_state.field_base_kanban_stage__changeset_ids
+msgid "Changesets"
+msgstr ""
+
+#. module: base_kanban_stage_state
+#: model:ir.model.fields,field_description:base_kanban_stage_state.field_base_kanban_stage__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr ""
+
+#. module: base_kanban_stage_state
+#: model:ir.model.fields,field_description:base_kanban_stage_state.field_base_kanban_stage__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr ""
+
+#. module: base_kanban_stage_state
 #: model:ir.model.fields,field_description:base_kanban_stage_state.field_base_kanban_stage__display_name
 msgid "Display Name"
 msgstr ""
@@ -41,4 +61,9 @@ msgstr ""
 #. module: base_kanban_stage_state
 #: model:ir.model.fields,field_description:base_kanban_stage_state.field_base_kanban_stage__state
 msgid "State"
+msgstr ""
+
+#. module: base_kanban_stage_state
+#: model:ir.model.fields,field_description:base_kanban_stage_state.field_base_kanban_stage__user_can_see_changeset
+msgid "User Can See Changeset"
 msgstr ""
