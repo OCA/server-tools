@@ -86,9 +86,19 @@ msgid "Basic backup configuration"
 msgstr "备份基础设置"
 
 #. module: auto_backup
-#: sql_constraint:db.backup:0
+#: model:ir.model.constraint,message:auto_backup.constraint_db_backup_name_unique
 msgid "Cannot duplicate a configuration."
 msgstr "无法复制配置。"
+
+#. module: auto_backup
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__changeset_change_ids
+msgid "Changeset Changes"
+msgstr ""
+
+#. module: auto_backup
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__changeset_ids
+msgid "Changesets"
+msgstr ""
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__backup_format
@@ -101,22 +111,32 @@ msgid "Choose the storage method for this backup."
 msgstr "选择这个备份的存储方法."
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:265
+#: code:addons/auto_backup/models/db_backup.py:0
 #, python-format
 msgid "Cleanup of old database backups failed."
 msgstr "清除旧数据库备份失败."
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:137
+#: code:addons/auto_backup/models/db_backup.py:0
 #, python-format
 msgid "Connection Test Failed!"
 msgstr "连接测试失败！"
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:132
+#: code:addons/auto_backup/models/db_backup.py:0
 #, python-format
 msgid "Connection Test Succeeded!"
 msgstr "连接测试成功！"
+
+#. module: auto_backup
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr ""
+
+#. module: auto_backup
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr ""
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__create_uid
@@ -134,14 +154,14 @@ msgid "Database Backup"
 msgstr "数据库备份"
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:219
+#: code:addons/auto_backup/models/db_backup.py:0
 #: model:mail.message.subtype,description:auto_backup.mail_message_subtype_failure
 #, python-format
 msgid "Database backup failed."
 msgstr "数据库备份失败。"
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:227
+#: code:addons/auto_backup/models/db_backup.py:0
 #: model:mail.message.subtype,description:auto_backup.mail_message_subtype_success
 #, python-format
 msgid "Database backup succeeded."
@@ -158,7 +178,7 @@ msgid "Display Name"
 msgstr "显示名称"
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:123
+#: code:addons/auto_backup/models/db_backup.py:0
 #, python-format
 msgid ""
 "Do not save backups on your filestore, or you will backup your backups too!"
@@ -205,7 +225,7 @@ msgid "Help"
 msgstr "帮助"
 
 #. module: auto_backup
-#: sql_constraint:db.backup:0
+#: model:ir.model.constraint,message:auto_backup.constraint_db_backup_days_to_keep_positive
 msgid "I cannot remove backups from the future. Ask Doc for that."
 msgstr "我无法从将来删除备份。向Doc询问。"
 
@@ -215,17 +235,14 @@ msgid "ID"
 msgstr "ID"
 
 #. module: auto_backup
-#: model:ir.model.fields,help:auto_backup.field_db_backup__message_unread
-msgid "If checked new messages require your attention."
-msgstr "如果检查了新消息，需要您的注意。"
-
-#. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__message_needaction
+#: model:ir.model.fields,help:auto_backup.field_db_backup__message_unread
 msgid "If checked, new messages require your attention."
 msgstr "如果勾选此项，则需要注意新消息。"
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__message_has_error
+#: model:ir.model.fields,help:auto_backup.field_db_backup__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "如果勾选此项，有些消息会有传递错误。"
 
@@ -250,7 +267,7 @@ msgid "Last Updated on"
 msgstr "最后更新时间"
 
 #. module: auto_backup
-#: selection:db.backup,method:0
+#: model:ir.model.fields.selection,name:auto_backup.selection__db_backup__method__local
 msgid "Local disk"
 msgstr "本地磁盘"
 
@@ -286,8 +303,8 @@ msgstr "行动数量"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__message_has_error_counter
-msgid "Number of error"
-msgstr "错误数量"
+msgid "Number of errors"
+msgstr ""
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__message_needaction_counter
@@ -317,7 +334,7 @@ msgid "Private key location"
 msgstr "私钥位置"
 
 #. module: auto_backup
-#: selection:db.backup,method:0
+#: model:ir.model.fields.selection,name:auto_backup.selection__db_backup__method__sftp
 msgid "Remote SFTP server"
 msgstr "远程SFTP服务器"
 
@@ -342,6 +359,11 @@ msgid "SFTP Settings"
 msgstr "SFTP设置"
 
 #. module: auto_backup
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: auto_backup
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "Search the action named 'Backup scheduler'."
 msgstr "在安排的动作搜索“备份计划”。"
@@ -350,7 +372,14 @@ msgstr "在安排的动作搜索“备份计划”。"
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid ""
 "Set the scheduler to active and fill in how often you want backups generated."
-msgstr "将安排的动作设置为活动状态，并填写备份间隔时间，间隔时间单位，间隔次数，执行时间等数据库具体备份方案。"
+msgstr ""
+"将安排的动作设置为活动状态，并填写备份间隔时间，间隔时间单位，间隔次数，执行"
+"时间等数据库具体备份方案。"
+
+#. module: auto_backup
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__smart_search
+msgid "Smart Search"
+msgstr ""
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__name
@@ -407,6 +436,11 @@ msgstr ""
 "在设置的目录下面。"
 
 #. module: auto_backup
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr ""
+
+#. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__sftp_user
 msgid "Username in the SFTP Server"
 msgstr "SFTP服务器中的用户名"
@@ -432,7 +466,7 @@ msgid "john"
 msgstr "约翰"
 
 #. module: auto_backup
-#: selection:db.backup,backup_format:0
+#: model:ir.model.fields.selection,name:auto_backup.selection__db_backup__backup_format__dump
 msgid "pg_dump custom format (without filestore)"
 msgstr "pg_dump自定义格式（没有文件存储）"
 
@@ -442,6 +476,12 @@ msgid "sftp.example.com"
 msgstr "sftp.example.com"
 
 #. module: auto_backup
-#: selection:db.backup,backup_format:0
+#: model:ir.model.fields.selection,name:auto_backup.selection__db_backup__backup_format__zip
 msgid "zip (includes filestore)"
 msgstr "zip（包括文件存储）"
+
+#~ msgid "If checked new messages require your attention."
+#~ msgstr "如果检查了新消息，需要您的注意。"
+
+#~ msgid "Number of error"
+#~ msgstr "错误数量"
