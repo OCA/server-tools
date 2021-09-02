@@ -68,9 +68,33 @@ msgid "Cancel"
 msgstr "取消"
 
 #. module: sql_export
+#: model:ir.model.fields,field_description:sql_export.field_sql_export__changeset_change_ids
+#: model:ir.model.fields,field_description:sql_export.field_sql_file_wizard__changeset_change_ids
+msgid "Changeset Changes"
+msgstr ""
+
+#. module: sql_export
+#: model:ir.model.fields,field_description:sql_export.field_sql_export__changeset_ids
+#: model:ir.model.fields,field_description:sql_export.field_sql_file_wizard__changeset_ids
+msgid "Changesets"
+msgstr ""
+
+#. module: sql_export
 #: model:ir.model.fields,field_description:sql_export.field_sql_export__copy_options
 msgid "Copy Options"
 msgstr "复制选项"
+
+#. module: sql_export
+#: model:ir.model.fields,field_description:sql_export.field_sql_export__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:sql_export.field_sql_file_wizard__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr ""
+
+#. module: sql_export
+#: model:ir.model.fields,field_description:sql_export.field_sql_export__count_pending_changesets
+#: model:ir.model.fields,field_description:sql_export.field_sql_file_wizard__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr ""
 
 #. module: sql_export
 #: model:ir.model.fields,field_description:sql_export.field_sql_export__create_uid
@@ -253,6 +277,12 @@ msgstr ""
 "请求状态:\n"
 " * '草稿': 没有测试过\n"
 " * 'SQL有效': SQL请求已经过检查并且有效"
+
+#. module: sql_export
+#: model:ir.model.fields,field_description:sql_export.field_sql_export__user_can_see_changeset
+#: model:ir.model.fields,field_description:sql_export.field_sql_file_wizard__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr ""
 
 #. module: sql_export
 #: model_terms:ir.ui.view,arch_db:sql_export.sql_export_view_form
