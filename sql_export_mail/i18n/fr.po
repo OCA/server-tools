@@ -60,6 +60,26 @@ msgid "Assigned Attachments"
 msgstr ""
 
 #. module: sql_export_mail
+#: model:ir.model.fields,field_description:sql_export_mail.field_sql_export__changeset_change_ids
+msgid "Changeset Changes"
+msgstr ""
+
+#. module: sql_export_mail
+#: model:ir.model.fields,field_description:sql_export_mail.field_sql_export__changeset_ids
+msgid "Changesets"
+msgstr ""
+
+#. module: sql_export_mail
+#: model:ir.model.fields,field_description:sql_export_mail.field_sql_export__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr ""
+
+#. module: sql_export_mail
+#: model:ir.model.fields,field_description:sql_export_mail.field_sql_export__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr ""
+
+#. module: sql_export_mail
 #: model_terms:ir.ui.view,arch_db:sql_export_mail.sql_export_mail_view_form
 msgid "Create Cron"
 msgstr "Créer une tâche planfiée"
@@ -121,6 +141,11 @@ msgstr ""
 #, python-format
 msgid "The user does not have any e-mail address."
 msgstr "L'utilisateur selectionné n'a pas d'addresse mail."
+
+#. module: sql_export_mail
+#: model:ir.model.fields,field_description:sql_export_mail.field_sql_export__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr ""
 
 #. module: sql_export_mail
 #: model:ir.model.fields,field_description:sql_export_mail.field_sql_export__mail_user_ids
