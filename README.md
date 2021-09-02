@@ -23,6 +23,7 @@ addon | version | maintainers | summary
 [auditlog](auditlog/) | 14.0.1.2.0 |  | Audit Log
 [auto_backup](auto_backup/) | 14.0.1.0.0 |  | Backups database
 [autovacuum_message_attachment](autovacuum_message_attachment/) | 14.0.1.0.0 |  | Automatically delete old mail messages and attachments
+[base_changeset](base_changeset/) | 14.0.1.0.0 | [![astirpe](https://github.com/astirpe.png?size=30px)](https://github.com/astirpe) | Track record changesets
 [base_cron_exclusion](base_cron_exclusion/) | 14.0.1.0.0 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | Allow you to select scheduled actions that should not run simultaneously.
 [base_exception](base_exception/) | 14.0.1.0.3 |  | This module provide an abstract model to manage customizable exceptions to be applied on different models (sale order, invoice, ...)
 [base_jsonify](base_jsonify/) | 14.0.1.1.0 |  | Base module that provide the jsonify method on all models
