@@ -2,7 +2,7 @@
 # Copyright 2016 Serpent Consulting Services Pvt. Ltd.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from odoo.osv import expression
-from odoo.tests.common import TransactionCase, at_install, post_install
+from odoo.tests.common import TransactionCase
 
 
 class QueryGenerationCase(TransactionCase):
