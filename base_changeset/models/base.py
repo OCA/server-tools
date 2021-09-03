@@ -6,6 +6,10 @@ from lxml import etree
 from odoo import _, api, fields, models
 from odoo.tools import config
 
+# put this object into context key '__no_changeset' to disable changeset
+# functionality
+disable_changeset = object()
+
 
 class Base(models.AbstractModel):
     _inherit = "base"
@@ -70,7 +74,7 @@ class Base(models.AbstractModel):
         return models
 
     def write(self, values):
-        if self.env.context.get("__no_changeset"):
+        if self.env.context.get("__no_changeset") == disable_changeset:
             return super().write(values)
 
         # To avoid conflicts with tests of other modules

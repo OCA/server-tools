@@ -8,6 +8,8 @@ from operator import attrgetter
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
+from .base import disable_changeset
+
 # sentinel object to be sure that no empty value was passed to
 # RecordChangesetChange._value_for_changeset
 _NO_VALUE = object()
@@ -223,7 +225,8 @@ class RecordChangesetChange(models.Model):
         changes_ok = self.browse()
         key = attrgetter("changeset_id")
         for changeset, changes in groupby(
-            self.with_context(__no_changeset=True).sorted(key=key), key=key
+            self.with_context(__no_changeset=disable_changeset).sorted(key=key),
+            key=key
         ):
             values = {}
             for change in changes:
@@ -244,7 +247,9 @@ class RecordChangesetChange(models.Model):
 
             self._check_previous_changesets(changeset)
 
-            changeset.record_id.with_context(__no_changeset=True).write(values)
+            changeset.record_id.with_context(
+                __no_changeset=disable_changeset
+            ).write(values)
 
         changes_ok._finalize_change_approval()
 
