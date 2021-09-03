@@ -25,6 +25,7 @@ msgstr ""
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field__unknown__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_abstract_config_settings__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_account_account__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_account_account_tag__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_account_account_template__assigned_attachment_ids
