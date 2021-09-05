@@ -14,13 +14,13 @@ class IrModelAccess(models.Model):
         "self._uid", "model", "mode", "raise_exception", keys=("lang",)
     )
     def check(self, model, mode="read", raise_exception=True):
-        res = super(IrModelAccess, self).check(model, mode, raise_exception)
-        if self._uid == 1:
+        if self.env.su:
             return True
+        res = super().check(model, mode, raise_exception)
         self._cr.execute(
             "SELECT restrict_update FROM ir_model WHERE model = %s", (model,)
         )
-        query_res = self._cr.dictfetchall()[0]
+        query_res = self._cr.dictfetchone()
         if (
             query_res["restrict_update"]
             and mode != "read"
