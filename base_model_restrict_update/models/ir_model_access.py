@@ -17,19 +17,37 @@ class IrModelAccess(models.Model):
         res = super(IrModelAccess, self).check(model, mode, raise_exception)
         if self._uid == 1:
             return True
-        self._cr.execute(
-            "SELECT restrict_update FROM ir_model WHERE model = %s", (model,)
-        )
-        query_res = self._cr.dictfetchall()[0]
-        if (
-            query_res["restrict_update"]
-            and mode != "read"
-            and not self.env.user.unrestrict_model_update
-        ):
-            if raise_exception:
+        if mode != "read" and raise_exception:
+            if self._test_readonly(model) or self._test_restrict_update(model):
                 raise AccessError(
                     _("You are only allowed to read this record. (%s - %s)")
                     % (model, mode)
                 )
-            return False
         return res
+
+    @api.model
+    def _test_readonly(self, model):
+        exclude_models = self._readonly_exclude_models()
+        if model not in exclude_models and self.env.user.is_readonly_user:
+            return True
+        return False
+
+    @api.model
+    def _test_restrict_update(self, model):
+        self.env.cr.execute(
+            "SELECT restrict_update FROM ir_model WHERE model = %s", (model,)
+        )
+        query_res = self.env.cr.dictfetchone()
+        if query_res["restrict_update"] and not self.env.user.unrestrict_model_update:
+            return True
+        return False
+
+    @api.model
+    def _readonly_exclude_models(self):
+        """ Models updtate/create by system, and should be excluded from checking """
+        return [
+            "res.users",
+            "res.users.log",
+            "mail.channel",
+            "mail.channel.partner",
+        ]

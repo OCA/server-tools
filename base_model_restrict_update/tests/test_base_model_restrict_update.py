@@ -33,24 +33,32 @@ class TestBaseModelRestrictUpdate(SavepointCase):
 
     def test_01_create_partner(self):
         with self.assertRaises(AccessError):
-            self.env["res.partner"].sudo(self.restrict_test_user.id).create(
+            self.env["res.partner"].with_user(self.restrict_test_user.id).create(
                 {"name": "Test Partner"}
             )
-        self.env["res.partner"].sudo(self.permit_test_user.id).create(
+        self.env["res.partner"].with_user(self.permit_test_user.id).create(
             {"name": "Test Partner"}
         )
 
     def test_02_update_partner(self):
         with self.assertRaises(AccessError):
-            self.test_partner.sudo(self.restrict_test_user.id).update(
+            self.test_partner.with_user(self.restrict_test_user.id).update(
                 {"name": "Test Partner 2"}
             )
-        self.test_partner.sudo(self.permit_test_user.id).update(
+        self.test_partner.with_user(self.permit_test_user.id).update(
             {"name": "Test Partner 2"}
         )
 
     def test_03_unlink_partner(self):
         test_partner = self.test_partner.sudo().copy()
         with self.assertRaises(AccessError):
-            test_partner.sudo(self.restrict_test_user.id).unlink()
-        test_partner.sudo(self.permit_test_user.id).unlink()
+            test_partner.with_user(self.restrict_test_user.id).unlink()
+        test_partner.with_user(self.permit_test_user.id).unlink()
+
+    def test_04_readonly_user_update_partner(self):
+        self.permit_test_user.toggle_is_readonly_user()
+        self.assertTrue(self.permit_test_user.is_readonly_user)
+        with self.assertRaises(AccessError):
+            self.test_partner.with_user(self.permit_test_user.id).update(
+                {"name": "Test Partner 2"}
+            )
