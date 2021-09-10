@@ -1,6 +1,6 @@
   pstats_print2list
   python-ldap
-  unidecode
+  unidecode==1.2.0
   validate_email
   pysftp
   acme_tiny
