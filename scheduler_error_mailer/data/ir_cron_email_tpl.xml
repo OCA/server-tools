@@ -25,9 +25,8 @@ ${ctx.get('job_exception') or 'Failed to get the error message from the context.
 
 <p>Properties of the scheduler <em>${object.name or ''}</em> :</p>
 <ul>
-<li>Model : ${object.model or ''}</li>
-<li>Method : ${object.function or ''}</li>
-<li>Arguments : ${object.args or ''}</li>
+<li>Model : ${object.model_id.name or ''}</li>
+<li>Python code : <code>${object.code or ''}</code></li>
 <li>Interval : ${object.interval_number or '0'} ${object.interval_type or ''}</li>
 <li>Number of calls : ${object.numbercall or '0'}</li>
 <li>Repeat missed : ${object.doall}</li>
