@@ -88,6 +88,19 @@ class TimeWindowMixin(models.AbstractModel):
                 end=format_time(self.env, record.get_time_window_end_time()),
             )
 
+    @api.constrains("time_window_start", "time_window_end")
+    def _check_window_under_twenty_four_hours(self):
+        error_msg = _("Hour should be between 00 and 23")
+        for record in self:
+            if record.time_window_start:
+                hour, minute = self._get_hour_min_from_value(record.time_window_start)
+                if hour > 23:
+                    raise ValidationError(error_msg)
+            if record.time_window_end:
+                hour, minute = self._get_hour_min_from_value(record.time_window_end)
+                if hour > 23:
+                    raise ValidationError(error_msg)
+
     @api.model
     def _get_hour_min_from_value(self, value):
         hour = math.floor(value)
