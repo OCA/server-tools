@@ -58,6 +58,12 @@ msgid "From"
 msgstr ""
 
 #. module: base_time_window
+#: code:addons/base_time_window/models/time_window_mixin.py:0
+#, python-format
+msgid "Hour should be between 00 and 23"
+msgstr ""
+
+#. module: base_time_window
 #: model:ir.model.fields,field_description:base_time_window.field_time_weekday__id
 #: model:ir.model.fields,field_description:base_time_window.field_time_window_mixin__id
 msgid "ID"
