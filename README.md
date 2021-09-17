@@ -51,6 +51,7 @@ addon | version | maintainers | summary
 [module_auto_update](module_auto_update/) | 14.0.1.0.1 |  | Automatically update Odoo modules
 [module_change_auto_install](module_change_auto_install/) | 14.0.1.0.2 | [![legalsylvain](https://github.com/legalsylvain.png?size=30px)](https://github.com/legalsylvain) | Customize auto installables modules by configuration
 [onchange_helper](onchange_helper/) | 14.0.1.0.0 |  | Technical module that ease execution of onchange in Python code
+[scheduler_error_mailer](scheduler_error_mailer/) | 14.0.1.0.0 |  | Scheduler Error Mailer
 [sentry](sentry/) | 14.0.1.0.1 |  | Report Odoo errors to Sentry
 [slow_statement_logger](slow_statement_logger/) | 14.0.1.0.1 |  | Log slow SQL statements
 [sql_export](sql_export/) | 14.0.1.1.0 |  | Export data in csv file with SQL requests
