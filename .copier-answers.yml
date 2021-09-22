@@ -1,13 +1,15 @@
 # Do NOT update manually; changes here will be overwritten by Copier
-_commit: v1.1.4
+_commit: v1.2.0
 _src_path: gh:oca/oca-addons-repo-template
 dependency_installation_mode: PIP
 generate_requirements_txt: true
-include_wkhtmltopdf: false
+include_wkhtmltopdf: true
 odoo_version: 14.0
-rebel_module_groups: []
-repo_description: null
-repo_name: server-tools
+rebel_module_groups:
+- fetchmail_incoming_log,fetchmail_notify_error_to_sender_test
+repo_description: This project aims to deal with modules related to manage Odoo server
+  environment and provide useful tools.
+repo_name: Tools for server environment(s)
 repo_slug: server-tools
 travis_apt_packages: []
 travis_apt_sources: []

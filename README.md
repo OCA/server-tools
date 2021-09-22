@@ -5,9 +5,9 @@
 
 <!-- /!\ do not modify above this line -->
 
-# server-tools
+# Tools for server environment(s)
 
-None
+This project aims to deal with modules related to manage Odoo server environment and provide useful tools.
 
 <!-- /!\ do not modify below this line -->
 
