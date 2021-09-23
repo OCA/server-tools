@@ -4,9 +4,10 @@ import logging
 import random
 import string
 import uuid
+from inspect import getmembers, isclass, isfunction
 
 from odoo import fields, models
-from odoo.tools import safe_eval
+from odoo.tools.safe_eval import safe_eval, wrap_module
 
 _logger = logging.getLogger(__name__)
 
@@ -40,13 +41,19 @@ class IrSequence(models.Model):
         You can inherit this in your custom module.
         :return: tuple
         """
+        wrap_random = wrap_module(random, random.__all__)
+        uuid_elements = [e[0] for e in getmembers(uuid, isfunction)] + [
+            e[0] for e in getmembers(uuid, isclass)
+        ]
+        wrap_uuid = wrap_module(uuid, uuid_elements)
+        wrap_string = wrap_module(string, string.__all__)
         return {
             "number": number_next[0] if isinstance(number_next, tuple) else number_next,
             "number_padded": "%%0%sd" % self.padding % number_next,
             "sequence": self,
-            "random": random,
-            "uuid": uuid,
-            "string": string,
+            "random": wrap_random,
+            "uuid": wrap_uuid,
+            "string": wrap_string,
         }
 
     def _get_python_value(self, number_next):
