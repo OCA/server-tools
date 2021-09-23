@@ -25,15 +25,16 @@ class TestIrSequence(SavepointCase):
         )
 
     def test_standard_sequence(self):
-        self.assertEquals(self.sequence.python_code_preview, "AB01C")
+        # import pdb;pdb.set_trace()
+        self.assertEqual(self.sequence.python_code_preview, "AB01C")
         next_number = self.sequence._next()
-        self.assertEquals(next_number, "AB01C")
+        self.assertEqual(next_number, "AB01C")
         next_number = self.sequence._next()
-        self.assertEquals(next_number, "AB02C")
+        self.assertEqual(next_number, "AB02C")
 
     def test_nogap_sequence(self):
         self.sequence.write(dict(implementation="no_gap"))
         next_number = self.sequence._next()
-        self.assertEquals(next_number, "AB01C")
+        self.assertEqual(next_number, "AB01C")
         next_number = self.sequence._next()
-        self.assertEquals(next_number, "AB02C")
+        self.assertEqual(next_number, "AB02C")
