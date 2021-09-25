@@ -6,11 +6,15 @@ import sys
 import unittest
 
 import raven
+from mock import patch
 
 from odoo import exceptions
 
 from .. import initialize_raven
 from ..logutils import OdooSentryHandler
+
+GIT_SHA = "d670460b4b4aece5915caf5c68d12f560a9fe3e4"
+RELEASE = "test@1.2.3"
 
 
 def log_handler_by_class(logger, handler_cls):
@@ -117,3 +121,32 @@ class TestClientSetup(unittest.TestCase):
         record = logging.LogRecord(__name__, level, __file__, 42, msg, (), exc_info)
         handler.emit(record)
         self.assertEventNotCaptured(client, level, msg)
+
+    @patch("odoo.addons.sentry.get_odoo_commit", return_value=GIT_SHA)
+    def test_config_odoo_dir(self, get_odoo_commit):
+        config = {
+            "sentry_enabled": True,
+            "sentry_dsn": "http://public:secret@example.com/1",
+            "sentry_odoo_dir": "/opt/odoo/core",
+        }
+        client = initialize_raven(config, client_cls=InMemoryClient)
+        self.assertEqual(
+            client.release,
+            GIT_SHA,
+            "Failed to use 'sentry_odoo_dir' parameter appropriately",
+        )
+
+    @patch("odoo.addons.sentry.get_odoo_commit", return_value=GIT_SHA)
+    def test_config_release(self, get_odoo_commit):
+        config = {
+            "sentry_enabled": True,
+            "sentry_dsn": "http://public:secret@example.com/1",
+            "sentry_odoo_dir": "/opt/odoo/core",
+            "sentry_release": RELEASE,
+        }
+        client = initialize_raven(config, client_cls=InMemoryClient)
+        self.assertEqual(
+            client.release,
+            RELEASE,
+            "Failed to use 'sentry_release' parameter appropriately",
+        )
