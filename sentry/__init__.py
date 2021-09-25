@@ -46,11 +46,7 @@ def initialize_raven(config, client_cls=None):
         _logger.debug(
             "Both sentry_odoo_dir and sentry_release defined, choosing sentry_release"
         )
-    options = {
-        "release": config.get(
-            "sentry_release", get_odoo_commit(config.get("sentry_odoo_dir"))
-        )
-    }
+    options = {}
     for option in const.get_sentry_options():
         value = config.get("sentry_%s" % option.key, option.default)
         if isinstance(option.converter, abc.Callable):
@@ -63,6 +59,11 @@ def initialize_raven(config, client_cls=None):
     )
     if level not in const.LOG_LEVEL_MAP:
         level = const.DEFAULT_LOG_LEVEL
+
+    if not options.get("release"):
+        options["release"] = config.get(
+            "sentry_release", get_odoo_commit(config.get("sentry_odoo_dir"))
+        )
 
     client_cls = client_cls or raven.Client
     client = client_cls(**options)
