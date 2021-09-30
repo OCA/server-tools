@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-02-18 02:29+0000\n"
-"PO-Revision-Date: 2021-08-24 21:50+0000\n"
-"Last-Translator: Ahmet Altinisik <aaltinisik@altinkaya.com.tr>\n"
+"PO-Revision-Date: 2021-09-30 15:34+0000\n"
+"Last-Translator: Yavuz Avci <yavuzavci@gmail.com>\n"
 "Language-Team: Turkish (https://www.transifex.com/oca/teams/23907/tr/)\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -34,7 +34,7 @@ msgstr "Ek"
 #. module: base_multi_image
 #: model:ir.actions.act_window,help:base_multi_image.image_action
 msgid "Click to add an image attached to an specific record."
-msgstr ""
+msgstr "Belirli bir kayda eklenmiş bir resim eklemek için tıklayın."
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_comments
@@ -81,7 +81,7 @@ msgstr "Dosya deposu"
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_image_main
 msgid "Full-sized image"
-msgstr ""
+msgstr "Tam boyutlu resim"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_id
