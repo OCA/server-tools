@@ -50,6 +50,8 @@ class Base(models.AbstractModel):
             if self._check_field_is_editable(field)
         ]
         onchange_specs = {field_name: "1" for field_name, field in editable_fields}
+        editable_fields_name = [x[0] for x in editable_fields]
+        onchange_fields = [field_name for field_name in editable_fields_name]
         all_values = values.copy()
         # If self is a record (play onchange on existing record)
         # we take the value of the field
