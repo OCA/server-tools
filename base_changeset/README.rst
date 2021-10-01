@@ -173,6 +173,7 @@ Known issues / Roadmap
 
 * Only a subset of the type of fields is actually supported
 * Multicompany not fully supported
+* When accepting a change in a X2Many field (list view) the page will be reloaded to display the new value.
 
 Bug Tracker
 ===========
@@ -201,6 +202,7 @@ Contributors
 * Yannick Vaucher <yannick.vaucher@camptocamp.com>
 * Dennis Sluijk <d.sluijk@onestein.nl>
 * Andrea Stirpe <a.stirpe@onestein.nl>
+* Adria Gil Sorribes <adria.gil@forgeflow.com>
 
 Maintainers
 ~~~~~~~~~~~
