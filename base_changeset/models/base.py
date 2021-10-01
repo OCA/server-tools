@@ -26,7 +26,6 @@ class Base(models.AbstractModel):
     count_pending_changeset_changes = fields.Integer(
         compute="_compute_count_pending_changesets"
     )
-    user_can_see_changeset = fields.Boolean(compute="_compute_user_can_see_changeset")
 
     def _compute_changeset_ids(self):
         model_name = self._name
@@ -124,9 +123,8 @@ class Base(models.AbstractModel):
             view_id=view_id, view_type=view_type, toolbar=toolbar, submenu=submenu
         )
         to_track_changeset = self._name in self.models_to_track_changeset()
-        can_see = len(self) == 1 and self.user_can_see_changeset
         button_label = _("Changes")
-        if to_track_changeset and can_see and view_type == "form":
+        if to_track_changeset and view_type == "form" and self.user_can_see_changeset:
             doc = etree.XML(res["arch"])
             for node in doc.xpath("//div[@name='button_box']"):
                 xml_field = etree.Element(
@@ -147,15 +145,18 @@ class Base(models.AbstractModel):
                         "'search_default_record_id': active_id}",
                     },
                 )
+                xml_button.set(
+                    "attrs",
+                    str({"invisible": [("count_pending_changeset_changes", "=", 0)]}),
+                )
                 xml_button.insert(0, xml_field)
                 node.insert(0, xml_button)
             res["arch"] = etree.tostring(doc, encoding="unicode")
         return res
 
-    def _compute_user_can_see_changeset(self):
+    def user_can_see_changeset(self):
         is_superuser = self.env.is_superuser()
         has_changeset_group = self.user_has_groups(
             "base_changeset.group_changeset_user"
         )
-        for rec in self:
-            rec.user_can_see_changeset = is_superuser or has_changeset_group
+        return is_superuser or has_changeset_group
