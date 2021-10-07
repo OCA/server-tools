@@ -1,29 +1,19 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* base_readonly_user
+#	* base_readonly_user
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 8.0\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-07 15:15+0000\n"
-"PO-Revision-Date: 2017-09-07 17:16+0200\n"
-"Last-Translator: Alex Comba <alex.comba@agilebg.com>\n"
+"POT-Creation-Date: 2021-10-07 10:13+0000\n"
+"PO-Revision-Date: 2021-10-07 10:13+0000\n"
+"Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-"Language: it\n"
-"X-Generator: Poedit 2.0.1\n"
-
-#. module: base_readonly_user
-#: code:addons/base_readonly_user/models/model.py:21
-#: code:addons/base_readonly_user/models/model.py:34
-#: code:addons/base_readonly_user/models/model.py:47
-#, python-format
-msgid "Error"
-msgstr "Errore"
 
 #. module: base_readonly_user
 #: model:ir.model,name:base_readonly_user.model_ir_model
@@ -31,7 +21,7 @@ msgid "Models"
 msgstr "Modelli"
 
 #. module: base_readonly_user
-#: field:res.users,readonly_user:0
+#: model:ir.model.fields,field_description:base_readonly_user.field_res_users__readonly_user
 msgid "Read only user"
 msgstr "Utente in sola lettura"
 
@@ -42,19 +32,19 @@ msgid "Readonly user can't create records"
 msgstr "Gli utenti in sola lettura non possono creare record"
 
 #. module: base_readonly_user
-#: code:addons/base_readonly_user/models/model.py:48
+#: code:addons/base_readonly_user/models/model.py:42
 #, python-format
-msgid "Readonly user can't unlink records"
+msgid "Readonly user can't delete records"
 msgstr "Gli utenti in sola lettura non possono eliminare record"
 
 #. module: base_readonly_user
-#: code:addons/base_readonly_user/models/model.py:35
+#: code:addons/base_readonly_user/models/model.py:32
 #, python-format
 msgid "Readonly user can't write records"
 msgstr "Gli utenti in sola lettura non possono scrivere record"
 
 #. module: base_readonly_user
-#: help:res.users,readonly_user:0
+#: model:ir.model.fields,help:base_readonly_user.field_res_users__readonly_user
 msgid "Set this to prevent this user to modify any data"
 msgstr "Con questo flag selezionato l'utente non potrà modificare alcun dato"
 
@@ -62,3 +52,4 @@ msgstr "Con questo flag selezionato l'utente non potrà modificare alcun dato"
 #: model:ir.model,name:base_readonly_user.model_res_users
 msgid "Users"
 msgstr "Utenti"
+

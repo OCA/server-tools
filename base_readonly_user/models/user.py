@@ -1,8 +1,8 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017 Lorenzo Battistini - Agile Business Group
+# Copyright 2021 Lorenzo Battistini - TAKOBI
 # License GPL-3.0 or later (http://www.gnu.org/licenses/gpl).
 
-from openerp import fields, models
+from odoo import fields, models, api
 
 
 class ResUser(models.Model):

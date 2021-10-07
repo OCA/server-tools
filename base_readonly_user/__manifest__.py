@@ -4,10 +4,10 @@
 # License GPL-3.0 or later (http://www.gnu.org/licenses/gpl).
 {
     "name": "Read only user",
-    "version": "8.0.1.0.0",
+    "version": "12.0.1.0.0",
     'category': 'Tools',
     'summary': "Allows to configure a user as 'readonly'",
-    "website": "https://agilegb.com",
+    "website": "https://github.com/OCA/server-tools",
     "author": "Agile Business Group, Odoo Community Association (OCA)",
     "license": "GPL-3",
     "application": False,

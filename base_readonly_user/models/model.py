@@ -1,69 +1,85 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017 Lorenzo Battistini - Agile Business Group
 # Copyright 2017 Alex Comba - Agile Business Group
+# Copyright 2021 Lorenzo Battistini - TAKOBI
 # License GPL-3.0 or later (http://www.gnu.org/licenses/gpl).
 
-from openerp.osv import orm
-from openerp import SUPERUSER_ID, _
+from collections import defaultdict
+from odoo import models, _, api
+from odoo.exceptions import UserError
+from odoo.modules.registry import Registry
 
 
-class IrModel(orm.Model):
+class IrModel(models.Model):
     _inherit = 'ir.model'
 
-    def _patch_readonly_user(self, cr, ids):
+    def _patch_readonly_user(self):
 
         def make_create():
-            def create(self, cr, uid, vals, context=None, **kwargs):
-                user = self.pool['res.users'].browse(
-                    cr, uid, uid, context=context)
-                if user.readonly_user:
-                    raise orm.except_orm(
-                        _('Error'),
+            @api.model_create_multi
+            def create(self, vals_list, **kw):
+                if self.env.user.readonly_user:
+                    raise UserError(
                         _("Readonly user can't create records"))
                 else:
-                    return create.origin(
-                        self, cr, uid, vals, context=context, **kwargs)
+                    return create.origin(self, vals_list, **kw)
             return create
 
         def make_write():
-            def write(self, cr, uid, ids, vals, context=None, **kwargs):
-                user = self.pool['res.users'].browse(
-                    cr, uid, uid, context=context)
-                if user.readonly_user:
-                    raise orm.except_orm(
-                        _('Error'),
+            @api.multi
+            def _write(self, vals, **kw):
+                if self.env.user.readonly_user:
+                    raise UserError(
                         _("Readonly user can't write records"))
                 else:
-                    return write.origin(
-                        self, cr, uid, ids, vals, context=context, **kwargs)
-            return write
+                    return _write.origin(self, vals, **kw)
+            return _write
 
         def make_unlink():
-            def unlink(self, cr, uid, ids, context=None, **kwargs):
-                user = self.pool['res.users'].browse(
-                    cr, uid, uid, context=context)
-                if user.readonly_user:
-                    raise orm.except_orm(
-                        _('Error'),
-                        _("Readonly user can't unlink records"))
+            @api.multi
+            def unlink(self, **kwargs):
+                if self.env.user.readonly_user:
+                    raise UserError(
+                        _("Readonly user can't delete records"))
                 else:
-                    return unlink.origin(
-                        self, cr, uid, ids, context=context, **kwargs)
+                    return unlink.origin(self, **kwargs)
             return unlink
 
-        for model in self.browse(cr, SUPERUSER_ID, ids):
-            Model = self.pool.get(model.model)
-            if Model:
-                Model._patch_method('create', make_create())
-                Model._patch_method('write', make_write())
-                Model._patch_method('unlink', make_unlink())
-        return super(IrModel, self)._register_hook(cr)
+        patched_models = defaultdict(set)
 
-    def _register_hook(self, cr):
-        self._patch_readonly_user(cr, self.search(cr, SUPERUSER_ID, []))
-        return super(IrModel, self)._register_hook(cr)
+        def patch(model, name, method):
+            if model not in patched_models[name]:
+                patched_models[name].add(model)
+                model._patch_method(name, method)
 
-    def create(self, cr, uid, vals, context=None):
-        res_id = super(IrModel, self).create(cr, uid, vals, context=context)
-        self._patch_readonly_user(cr, [res_id])
-        return res_id
+        for model in self.sudo().search([]):
+            Model = self.env.get(model.model)
+            if Model is not None:
+                patch(Model, 'create', make_create())
+                patch(Model, '_write', make_write())
+                patch(Model, 'unlink', make_unlink())
+
+    @api.model_cr
+    def _register_hook(self):
+        self._patch_readonly_user()
+
+    def _unregister_hook(self):
+        NAMES = ['create', '_write', 'unlink']
+        for Model in self.env.registry.values():
+            for name in NAMES:
+                try:
+                    delattr(Model, name)
+                except AttributeError:
+                    pass
+
+    def _update_registry(self):
+        if self.env.registry.ready:
+            self._cr.commit()
+            self.env.reset()
+            registry = Registry.new(self._cr.dbname)
+            registry.registry_invalidated = True
+
+    @api.model
+    def create(self, vals):
+        res = super(IrModel, self).create(vals)
+        self._update_registry()
+        return res
