@@ -11,7 +11,11 @@ class IrModelAccess(models.Model):
 
     @api.model
     @tools.ormcache_context(
-        "self._uid", "model", "mode", "raise_exception", keys=("lang",)
+        "self.env.uid",
+        "model",
+        "mode",
+        "raise_exception",
+        keys=("lang",)
     )
     def check(self, model, mode="read", raise_exception=True):
         res = super(IrModelAccess, self).check(model, mode, raise_exception)
