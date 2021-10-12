@@ -1,6 +1,6 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import models, fields, api
+from odoo import api, fields, models
 
 
 class FetchmailServer(models.Model):
@@ -35,7 +35,10 @@ class FetchmailAttachmentCondition(models.Model):
     _name = "fetchmail.attachment.condition"
     _description = "Fetchmail Attachment Conditions"
 
-    name = fields.Char(string="Condition Name", required=True,)
+    name = fields.Char(
+        string="Condition Name",
+        required=True,
+    )
     email_from = fields.Char(
         string="Email From",
         help="If empty, catches the emails from every senders.\n"

@@ -1,13 +1,13 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo.addons.test_mail.tests.test_mail_gateway import TestMailgateway
 from odoo.addons.test_mail.data.test_mail_data import (
     MAIL_MULTIPART_IMAGE,
     MAIL_SINGLE_BINARY,
 )
+from odoo.addons.test_mail.tests.common import TestMailCommon
 
 
-class TestAttachmentQueueEmail(TestMailgateway):
+class TestAttachmentQueueEmail(TestMailCommon):
     def setUp(self):
         super().setUp()
         self.attach_condition_1 = self.env["fetchmail.attachment.condition"].create(
@@ -31,7 +31,7 @@ class TestAttachmentQueueEmail(TestMailgateway):
         self.fetchmail_server = self.env["fetchmail.server"].create(
             {
                 "name": "Test Fetchmail Server 1",
-                "type": "imap",
+                "server_type": "imap",
                 "attach": True,
                 "object_id": self.attach_queue_model.id,
                 "attachment_condition_ids": [
@@ -41,7 +41,7 @@ class TestAttachmentQueueEmail(TestMailgateway):
         )
         self.context_server = {
             "fetchmail_server_id": self.fetchmail_server.id,
-            "server_type": self.fetchmail_server.type,
+            "server_type": self.fetchmail_server.server_type,
         }
 
     def test_message_single_binary(self):
@@ -49,15 +49,16 @@ class TestAttachmentQueueEmail(TestMailgateway):
         is created
         """
         self.assertFalse(
-            self.env["attachment.queue"].search([("datas_fname", "=", "thetruth.pdf")])
+            self.env["attachment.queue"].search([("name", "=", "thetruth.pdf")])
         )
 
         self.env["mail.thread"].with_context(self.context_server).message_process(
-            self.fetchmail_server.object_id.model, MAIL_SINGLE_BINARY,
+            self.fetchmail_server.object_id.model,
+            MAIL_SINGLE_BINARY,
         )
 
         attach_queue = self.env["attachment.queue"].search(
-            [("datas_fname", "=", "thetruth.pdf")]
+            [("name", "=", "thetruth.pdf")]
         )
         self.assertEqual(len(attach_queue), 1)
         self.assertEqual(attach_queue.datas, b"SSBhbSB0aGUgQmF0TWFuCg==")
@@ -66,10 +67,11 @@ class TestAttachmentQueueEmail(TestMailgateway):
         mail = MAIL_MULTIPART_IMAGE.format(subject="Wonderful pictures", to="")
 
         self.env["mail.thread"].with_context(self.context_server).message_process(
-            self.fetchmail_server.object_id.model, mail,
+            self.fetchmail_server.object_id.model,
+            mail,
         )
         attach_queues = self.env["attachment.queue"].search(
-            [("datas_fname", "like", ".gif")]
+            [("name", "like", ".gif")]
         )
         self.assertEqual(len(attach_queues), 3)
-        self.assertEqual(attach_queues[0].datas_fname, "orangée.gif")
+        self.assertEqual(attach_queues[0].name, "orangée.gif")

@@ -1,7 +1,8 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import models, fields, api
 import base64
+
+from odoo import api, fields, models
 
 
 class AttachmentQueue(models.Model):
@@ -26,9 +27,7 @@ class AttachmentQueue(models.Model):
         values = {
             "fetchmail_attachment_condition_id": condition.id,
             "file_type": condition.file_type,
-            "name": msg.get("subject", att.fname),
-            "sync_date": msg.get("date"),
-            "datas_fname": att.fname,
+            "name": att.fname,
             "datas": base64.b64encode(att.content),
             "state": "pending",
         }
@@ -73,8 +72,7 @@ class AttachmentQueue(models.Model):
 
     @api.model
     def message_new(self, msg, custom_values):
-        """Create Attachments Queues objects from the new received email's attachments.
-        """
+        """Create Attachments Queues objects from the new received email's attachments."""
         # Rewriting completely ``message_new`` instead of overiding it in order to
         # allows the creation of many new objects instead of only one.
         created_recs = []
