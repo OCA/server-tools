@@ -93,7 +93,7 @@ class UpgradeAnalysis(models.Model):
             full_path = os.path.join(self.upgrade_path, module_name, version)
         else:
             full_path = os.path.join(
-                get_module_path(module_name, "migrations", version)
+                get_module_path(module_name), "migrations", version
             )
         if not os.path.exists(full_path):
             try:
