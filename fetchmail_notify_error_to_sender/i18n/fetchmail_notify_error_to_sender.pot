@@ -29,6 +29,36 @@ msgid ""
 msgstr ""
 
 #. module: fetchmail_notify_error_to_sender
+#: model:ir.model.fields,field_description:fetchmail_notify_error_to_sender.field_fetchmail_server__assigned_attachment_ids
+#: model:ir.model.fields,field_description:fetchmail_notify_error_to_sender.field_mail_thread__assigned_attachment_ids
+msgid "Assigned Attachments"
+msgstr ""
+
+#. module: fetchmail_notify_error_to_sender
+#: model:ir.model.fields,field_description:fetchmail_notify_error_to_sender.field_fetchmail_server__changeset_change_ids
+#: model:ir.model.fields,field_description:fetchmail_notify_error_to_sender.field_mail_thread__changeset_change_ids
+msgid "Changeset Changes"
+msgstr ""
+
+#. module: fetchmail_notify_error_to_sender
+#: model:ir.model.fields,field_description:fetchmail_notify_error_to_sender.field_fetchmail_server__changeset_ids
+#: model:ir.model.fields,field_description:fetchmail_notify_error_to_sender.field_mail_thread__changeset_ids
+msgid "Changesets"
+msgstr ""
+
+#. module: fetchmail_notify_error_to_sender
+#: model:ir.model.fields,field_description:fetchmail_notify_error_to_sender.field_fetchmail_server__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:fetchmail_notify_error_to_sender.field_mail_thread__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr ""
+
+#. module: fetchmail_notify_error_to_sender
+#: model:ir.model.fields,field_description:fetchmail_notify_error_to_sender.field_fetchmail_server__count_pending_changesets
+#: model:ir.model.fields,field_description:fetchmail_notify_error_to_sender.field_mail_thread__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr ""
+
+#. module: fetchmail_notify_error_to_sender
 #: model:ir.model.fields,field_description:fetchmail_notify_error_to_sender.field_fetchmail_server__display_name
 #: model:ir.model.fields,field_description:fetchmail_notify_error_to_sender.field_mail_thread__display_name
 msgid "Display Name"
@@ -71,4 +101,16 @@ msgstr ""
 msgid ""
 "Set here the template to use to send notice to sender when errors occur "
 "while fetching email"
+msgstr ""
+
+#. module: fetchmail_notify_error_to_sender
+#: model:ir.model.fields,field_description:fetchmail_notify_error_to_sender.field_fetchmail_server__smart_search
+#: model:ir.model.fields,field_description:fetchmail_notify_error_to_sender.field_mail_thread__smart_search
+msgid "Smart Search"
+msgstr ""
+
+#. module: fetchmail_notify_error_to_sender
+#: model:ir.model.fields,field_description:fetchmail_notify_error_to_sender.field_fetchmail_server__user_can_see_changeset
+#: model:ir.model.fields,field_description:fetchmail_notify_error_to_sender.field_mail_thread__user_can_see_changeset
+msgid "User Can See Changeset"
 msgstr ""
