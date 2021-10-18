@@ -22,7 +22,6 @@
         "views/changeset_field_rule_views.xml",
         "views/menu.xml",
     ],
-    "demo": ["demo/changeset_field_rule.xml"],
     "qweb": ["static/src/xml/backend.xml"],
     "installable": True,
 }

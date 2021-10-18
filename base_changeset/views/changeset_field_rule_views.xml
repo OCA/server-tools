@@ -27,8 +27,6 @@
                             <field
                                 name="field_id"
                                 options="{'no_create_edit': True, 'no_open': True}"
-                                domain="[('ttype', 'in', ('char', 'selection', 'date', 'datetime', 'float', 'monetary', 'integer', 'text', 'boolean', 'many2one')),
-                                            ('readonly', '=', False)]"
                             />
                         </group>
                         <group>
