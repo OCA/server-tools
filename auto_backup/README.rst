@@ -23,7 +23,7 @@ Database Auto-Backup
     :target: https://runbot.odoo-community.org/runbot/149/14.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 A tool for all your back-ups, internal and external!
 
@@ -37,7 +37,7 @@ Installation
 
 Before installing this module, you need to execute::
 
-    pip3 install pysftp==0.2.8
+    pip3 install pysftp==0.2.9
 
 Configuration
 =============
