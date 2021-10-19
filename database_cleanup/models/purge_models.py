@@ -20,7 +20,7 @@ class IrModel(models.Model):
     def _inherited_models(self):
         """this function crashes for undefined models"""
         existing_model_ids = self.filtered(lambda x: x.model in self.env)
-        super(IrModel, existing_model_ids)._inherited_models()
+        return super(IrModel, existing_model_ids)._inherited_models()
 
 
 class IrModelFields(models.Model):
@@ -91,9 +91,9 @@ class CleanupPurgeLineModel(models.TransientModel):
                     # Fails if the model on the target side
                     # cannot be instantiated
                     relation.unlink()
-                except KeyError:
+                except KeyError:  # pylint: disable=W7938
                     pass
-                except AttributeError:
+                except AttributeError:  # pylint: disable=W7938
                     pass
             self.env["ir.model.relation"].search(
                 [("model", "=", line.name)]
