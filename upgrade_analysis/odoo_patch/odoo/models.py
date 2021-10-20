@@ -10,7 +10,7 @@ class BaseModelPatch(OdooPatch):
 
     @api.model
     def _convert_records(self, records, log=lambda a: None):
-        """ Log data ids that are imported with `load` """
+        """Log data ids that are imported with `load`"""
         current_module = self.env.context["module"]
         for res in BaseModelPatch._convert_records._original_method(
             self, records, log=log
