@@ -1,24 +1,20 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * scheduler_error_mailer
+# 	* scheduler_error_mailer
 #
-# Translators:
-# Jeffery Chenn <jeffery9@gmail.com>, 2016
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 9.0c\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-31 11:58+0000\n"
-"PO-Revision-Date: 2019-08-31 06:18+0000\n"
-"Last-Translator: 黎伟杰 <674416404@qq.com>\n"
-"Language-Team: Chinese (China) (https://www.transifex.com/oca/teams/23907/"
-"zh_CN/)\n"
-"Language: zh_CN\n"
+"PO-Revision-Date: 2021-10-20 11:12+0000\n"
+"Last-Translator: Yann Papouin <y.papouin@dec-industrie.com>\n"
+"Language-Team: none\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.8\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: scheduler_error_mailer
 #: model:mail.template,body_html:scheduler_error_mailer.scheduler_error_mailer
@@ -65,35 +61,37 @@ msgstr ""
 #. module: scheduler_error_mailer
 #: model:ir.model.fields,field_description:scheduler_error_mailer.field_ir_cron__email_template_id
 msgid "Error E-mail Template"
-msgstr "错误E-mail 模板"
+msgstr "Modèle d’e-mail d’erreur"
 
 #. module: scheduler_error_mailer
 #: model:ir.model,name:scheduler_error_mailer.model_ir_cron
 msgid "Scheduled Actions"
-msgstr "安排的动作"
+msgstr "Actions planifiées"
 
 #. module: scheduler_error_mailer
 #: model:ir.model.fields,help:scheduler_error_mailer.field_ir_cron__email_template_id
 msgid "Select the email template that will be sent when this scheduler fails."
-msgstr "选择此调度程序失败时将发送的电子邮件模板。"
+msgstr ""
+"Sélectionnez le modèle d’e-mail qui sera envoyé en cas d’échec de ce "
+"planificateur."
 
 #. module: scheduler_error_mailer
 #: code:addons/scheduler_error_mailer/models/ir_cron.py:55
 #, python-format
 msgid "Task failure with UID = %d."
-msgstr "任务失败 UID = %d."
+msgstr "Échec de la tâche avec UID = %d."
 
 #. module: scheduler_error_mailer
 #: model:ir.actions.server,name:scheduler_error_mailer.test_scheduler_error_mailer_ir_actions_server
 #: model:ir.cron,cron_name:scheduler_error_mailer.test_scheduler_error_mailer
 #: model:ir.cron,name:scheduler_error_mailer.test_scheduler_error_mailer
 msgid "Test Scheduler Error Mailer"
-msgstr "测试调度程序错误邮件程序"
+msgstr "Test du mailer d’erreur du planificateur"
 
 #. module: scheduler_error_mailer
 #: model:mail.template,subject:scheduler_error_mailer.scheduler_error_mailer
 msgid "[DB ${ctx.get('dbname')}] Scheduler '${object.name or ''}' FAILED"
-msgstr "[DB ${ctx.get('dbname')}] 调度'${object.name or ''}' 失败"
+msgstr "[DB ${ctx.get('dbname')}] Planificateur '${object.name or ''}' ECHEC"
 
 #~ msgid ""
 #~ "\n"
@@ -141,37 +139,35 @@ msgstr "[DB ${ctx.get('dbname')}] 调度'${object.name or ''}' 失败"
 #~ "serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; "
 #~ "\">\n"
 #~ "\n"
-#~ "<p>Odoo试图运行调度程序 <em>${object.name or ''}</em> 在数据库中 <em>"
-#~ "${ctx.get('dbname')}</em> 但它失败了。这是错误消息 :</p>\n"
+#~ "<p>Odoo a essayé d’exécuter le planificateur <em>${object.name ou ''}</"
+#~ "em> dans la base de données <em>${ctx.get('dbname')}</em> mais cela a "
+#~ "échoué. Voici le message d’erreur :</p>\n"
 #~ "\n"
 #~ "<strong>\n"
-#~ "${ctx.get('job_exception') and ctx.get('job_exception').value or '无法从上"
-#~ "下文中获取错误消息.'}\n"
+#~ "${ctx.get('job_exception') et ctx.get('job_exception').value ou "
+#~ "'Impossible d’obtenir le message d’erreur du contexte.'}\n"
 #~ "</strong>\n"
 #~ "\n"
-#~ "<p>您可以检查Odoo服务器的日志以获取有关此故障的更多信息.</p>\n"
+#~ "<p>Vous pouvez consulter les journaux du serveur Odoo pour obtenir plus "
+#~ "d’informations sur cette défaillance.</p>\n"
 #~ "\n"
-#~ "<p>调度程序的属性 <em>${object.name or ''}</em> :</p>\n"
+#~ "<p>Propriétés du planificateur <em>${object.name ou ''}</em> :</p>\n"
 #~ "<ul>\n"
-#~ "<li>模型: ${object.model or ''}</li>\n"
-#~ "<li>方法 : ${object.function or ''}</li>\n"
-#~ "<li>参数: ${object.args or ''}</li>\n"
-#~ "<li>间隔: ${object.interval_number or '0'} ${object.interval_type or ''}</"
-#~ "li>\n"
-#~ "<li>通话次数: ${object.numbercall or '0'}</li>\n"
-#~ "<li>重复错过了: ${object.doall}</li>\n"
-#~ "<li>用户: ${object.user_id.name or ''}</li>\n"
+#~ "<li>Modèle : ${object.model ou ''}</li>\n"
+#~ "<li>Méthode : ${object.function ou ''}</li>\n"
+#~ "<li>Arguments : ${object.args ou ''}</li>\n"
+#~ "<li>Intervalle : ${object.interval_number ou '0'} ${object.interval_type "
+#~ "ou ''}</li>\n"
+#~ "<li>Nombre d’appels : ${object.numbercall ou '0'}</li>\n"
+#~ "<li>Recommencer les manqués : ${object.doall}</li>\n"
+#~ "<li>Utilisateur : ${object.user_id.name ou ''}</li>\n"
 #~ "</ul>\n"
 #~ "\n"
 #~ "<p>\n"
 #~ "-- <br/>\n"
-#~ "Odoo发送的自动电子邮件。请勿回复。<br/>\n"
-#~ "数据库: ${ctx.get('dbname')}\n"
+#~ "E-mail automatique envoyé par Odoo. Ne pas répondre.<br/>\n"
+#~ "Base de données : ${ctx.get('dbname')}\n"
 #~ "</p>\n"
 #~ "</div>\n"
 #~ "    \n"
 #~ "            "
-
-#, fuzzy
-#~ msgid "Email Template"
-#~ msgstr "错误E-mail 模板"
