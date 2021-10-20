@@ -34,7 +34,7 @@ class IrCron(models.Model):
             # we put the job_exception in context to be able to print it inside
             # the email template
             context = {
-                'job_exception': job_exception,
+                'job_exception': str(job_exception),
                 'dbname': self._cr.dbname,
             }
 
