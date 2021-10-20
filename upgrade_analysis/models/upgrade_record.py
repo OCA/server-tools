@@ -138,7 +138,7 @@ class UpgradeRecord(models.Model):
 
     @api.model
     def list_modules(self):
-        """ Return the set of covered modules """
+        """Return the set of covered modules"""
         self.env.cr.execute(
             """SELECT DISTINCT(module) FROM upgrade_record
             ORDER BY module"""
@@ -152,11 +152,13 @@ class UpgradeRecord(models.Model):
                 with open(os.path.join(addon_dir, manifest_name), "r") as f:
                     manifest_string = f.read()
                     return ast.literal_eval(manifest_string)
-        raise ValidationError(_("No manifest found in %s" % addon_dir))
+        raise ValidationError(
+            _("No manifest found in %(addon_dir)s") % {"addon_dir": addon_dir}
+        )
 
     @api.model
     def get_xml_records(self, module):
-        """ Return all XML records from the given module """
+        """Return all XML records from the given module"""
         addon_dir = get_module_path(module)
         manifest = self._read_manifest(addon_dir)
         # The order of the keys are important.
