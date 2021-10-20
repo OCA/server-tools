@@ -18,7 +18,7 @@
 <p>Odoo tried to run the scheduler <em>${object.name or ''}</em> in the database <em>${ctx.get('dbname')}</em> but it failed. Here is the error message :</p>
 
 <strong>
-${ctx.get('job_exception') and ctx.get('job_exception').value or 'Failed to get the error message from the context.'}
+${ctx.get('job_exception') or 'Failed to get the error message from the context.'}
 </strong>
 
 <p>You may check the logs of the Odoo server to get more information about this failure.</p>
