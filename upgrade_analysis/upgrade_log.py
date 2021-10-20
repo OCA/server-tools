@@ -141,7 +141,7 @@ def log_model(model, local_registry):
         }
         if v.type == "selection":
             if isinstance(v.selection, (tuple, list)):
-                properties["selection_keys"] = str(sorted([x[0] for x in v.selection]))
+                properties["selection_keys"] = str(sorted(x[0] for x in v.selection))
             else:
                 properties["selection_keys"] = "function"
         elif v.type == "binary":

@@ -43,11 +43,11 @@ class UpgradeComparisonConfig(models.Model):
         self.ensure_one()
         try:
             remote = odoorpc.ODOO(self.server, port=self.port)
-        except URLError:
+        except URLError as exc:
             raise UserError(
-                _("Could not connect the Odoo server at %s:%s")
-                % (self.server, self.port)
-            )
+                _("Could not connect the Odoo server at %(server)s:%(port)s")
+                % {"server": self.server, "port": self.port}
+            ) from exc
         remote.login(self.database, self.username, self.password)
         self.version = remote.version
         return remote
@@ -60,7 +60,7 @@ class UpgradeComparisonConfig(models.Model):
             ids = user_model.search([("login", "=", "admin")])
             user_info = user_model.read([ids[0]], ["name"])[0]
         except Exception as e:
-            raise UserError(_("Connection failed.\n\nDETAIL: %s") % e)
+            raise UserError(_("Connection failed.\n\nDETAIL: %s") % e) from e
         return {
             "type": "ir.actions.client",
             "tag": "display_notification",

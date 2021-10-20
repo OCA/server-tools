@@ -429,10 +429,8 @@ class UpgradeAnalysis(models.Model):
             root_node_noupdate = nodeattr2bool(root_node, "noupdate", False)
             if root_node.tag not in ("openerp", "odoo", "data"):
                 raise ValidationError(
-                    _(
-                        "Unexpected root Element: %s in file: %s"
-                        % (root_node.getroot(), xml_file)
-                    )
+                    _("Unexpected root Element: %(root)s in file: %(file)s")
+                    % {"root": root_node.getroot(), "file": xml_file}
                 )
             for node in root_node:
                 if node.tag == "data":
