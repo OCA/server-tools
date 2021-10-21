@@ -10,7 +10,7 @@ class TestJsonifyStored(models.Model):
 
     _name = "test.jsonify.stored"
     _inherit = "jsonify.stored.mixin"
-    _description = "Basic test model that stores json data"
+    _description = "Basic test model that stores JSON data"
 
     _export_xmlid = "test_jsonify_stored.model_export"  # created in pre_init hook
 

@@ -3,7 +3,7 @@
 {
     "name": "test_jsonify_stored",
     "category": "Uncategorized",
-    "summary": "Test Jsonify Stored",
+    "summary": "Test JSONify Stored",
     "version": "14.0.1.0.0",
     "license": "AGPL-3",
     "author": "ACSONE SA/NV, Odoo Community Association (OCA)",

@@ -19,45 +19,45 @@ class JsonifyStored(models.AbstractModel):
     """
 
     _name = "jsonify.stored.mixin"
-    _description = "Stores json data"
+    _description = "Stores JSON data"
 
     _export_xmlid_pattern = "jsonify_export_{}"
 
     jsonify_data = fields.Serialized(
-        string="Jsonify: Data",
+        string="JSONify: Data",
         compute="_compute_jsonify_data",
         readonly=True,
         store=False,
-        help="Json export value. Always up-to-date, triggers a recompute if necessary.",
+        help="JSON export value. Always up-to-date, triggers a recompute if necessary.",
     )
     jsonify_date_update = fields.Float(
         string="Last Record Update",
         compute="_compute_jsonify_date_update",
         readonly=True,
         store=True,
-        help="Timestamp of the last time the Json needed to be recomputed.",
+        help="Timestamp of the last time the JSON needed to be recomputed.",
     )
     jsonify_date_compute = fields.Float(
-        string="Last Json Update",
+        string="Last JSON Update",
         compute="_compute_jsonify_date_compute",
         readonly=True,
         store=True,
-        help="Timestamp of the last time the Json was computed.",
+        help="Timestamp of the last time the JSON was computed.",
     )
     jsonify_data_todo = fields.Boolean(
-        string="Jsonify: Todo",
+        string="JSONify: Todo",
         compute="_compute_jsonify_data_todo",
         default=True,
         readonly=True,
         store=True,
-        help="If True, the stored json data needs to be recomputed.",
+        help="If True, the stored JSON data needs to be recomputed.",
     )
     jsonify_data_stored = fields.Serialized(
-        string="Jsonify: Stored",
+        string="JSONify: Stored",
         compute="_compute_jsonify_data_stored",
         readonly=True,
         store=True,
-        help="Last computed Json export value. Might not be up to date.",
+        help="Last computed JSON export value. Might not be up to date.",
     )
 
     @api.model
@@ -133,7 +133,7 @@ class JsonifyStored(models.AbstractModel):
     def cron_recompute(self, limit=None, batch_size=None):
         records = self.search([("jsonify_data_todo", "=", True)], limit=limit)
         batch_size = batch_size or self._get_batch_size()
-        desc = _("Recompute stored json.")
+        desc = _("Recompute stored JSON.")
         batching = range(0, len(self), batch_size) if len(self) > batch_size else [0]
         for i in batching:
             batch = records[i : i + batch_size]

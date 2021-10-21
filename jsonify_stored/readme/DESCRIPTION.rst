@@ -1,4 +1,4 @@
-This module provides a mixin to store some json-ified data
+This module provides a mixin to store some JSONified data
 that depends on an export, such that its recomputation is guaranteed by the ORM.
 Moreover the data can be recomputed asynchronously,
 or computed on-demand if accessed explicitly.
