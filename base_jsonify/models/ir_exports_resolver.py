@@ -11,7 +11,7 @@ help_message = [
     ":param value: value of the field",
     ":param field_type: type of the field",
     "For global resolvers:",
-    ":param value: json dict",
+    ":param value: JSON dict",
     ":param record: the record",
 ]
 

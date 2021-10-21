@@ -11,7 +11,7 @@ class TestIrExportsLine(SavepointCase):
         super().setUpClass()
         cls.ir_export = cls.env.ref("base_jsonify.ir_exp_partner")
 
-    def test_target_contrains(self):
+    def test_target_constrains(self):
         ir_export_lines_model = self.env["ir.exports.line"]
         with self.assertRaises(ValidationError):
             # The field into the name must be also into the target
