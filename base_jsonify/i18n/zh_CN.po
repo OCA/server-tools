@@ -40,7 +40,7 @@ msgid ""
 ":param value: value of the field\n"
 ":param field_type: type of the field\n"
 "For global resolvers:\n"
-":param value: json dict\n"
+":param value: JSON dict\n"
 ":param record: the record"
 msgstr ""
 
@@ -203,7 +203,7 @@ msgstr "别名"
 #. module: base_jsonify
 #: model:ir.model.fields,help:base_jsonify.field_ir_exports_line__target
 msgid ""
-"The complete path to the field where you can specify a target on the a step "
+"The complete path to the field where you can specify a target on the step "
 "as field:target"
 msgstr "字段的完整路径，您可以在其中指定步骤作为字段的别名：别名"
 

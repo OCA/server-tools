@@ -11,7 +11,7 @@ class IrExportsLine(models.Model):
     target = fields.Char(
         "Target",
         help="The complete path to the field where you can specify a "
-        "target on the a step as field:target",
+        "target on the step as field:target",
     )
     active = fields.Boolean(string="Active", default=True)
     lang_id = fields.Many2one(

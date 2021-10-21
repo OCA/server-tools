@@ -1,5 +1,5 @@
 ============
-Base Jsonify
+Base JSONify
 ============
 
 .. !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -42,10 +42,10 @@ Example of a simple parser:
         ('line_id', ['id', ('product_id', ['name']), 'price_unit'])
     ]
 
-In order to be consistent with the odoo api the jsonify method always
-return a list of object even if there is only one element in the recordset.
+In order to be consistent with the Odoo API the jsonify method always
+returns a list of objects even if there is only one element in the recordset.
 
-By default the key into the json is the name of the field extracted
+By default the key into the JSON is the name of the field extracted
 from the model. If you need to specify an alternate name to use as key, you
 can define your mapping as follow into the parser definition:
 
@@ -106,7 +106,7 @@ To use these features, a full parser follows the following structure:
     }
 
 
-One would get the a result having this structure (note that the translated fields are merged in the same dictionary):
+One would get a result having this structure (note that the translated fields are merged in the same dictionary):
 
 .. code-block:: python
 
@@ -171,7 +171,7 @@ in that case the result is put into a list.
   }
 
 
-Would result in the following json structure:
+Would result in the following JSON structure:
 
 .. code-block:: python
 
