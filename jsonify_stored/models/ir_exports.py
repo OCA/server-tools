@@ -6,7 +6,7 @@ import time
 from odoo import models
 
 
-class IrExport(models.Model):
+class IrExports(models.Model):
     """Because of jsonify.stored.mixin, models might depend on ir.exports records.
        These records are identifiable by xmlid.
        Therefore, when modifying a record we need to check that no models depend
@@ -18,7 +18,7 @@ class IrExport(models.Model):
     def write(self, vals):
         if "export_fields" in vals:
             self._check_jsonify_stored()
-        res = super(IrExport, self).write(vals)
+        res = super().write(vals)
         return res
 
     def _check_jsonify_stored(self):

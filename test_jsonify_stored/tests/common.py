@@ -8,7 +8,7 @@ from odoo.tests import SavepointCase
 class TestJsonifyMixin(SavepointCase):
     @classmethod
     def setUpClass(cls):
-        super(TestJsonifyMixin, cls).setUpClass()
+        super().setUpClass()
         speedup_dict = {"tracking_disable": True, "no_reset_password": True}
         cls.env = cls.env(context=dict(cls.env.context, **speedup_dict))
 

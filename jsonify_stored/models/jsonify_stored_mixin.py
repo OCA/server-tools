@@ -132,16 +132,16 @@ class JsonifyStored(models.AbstractModel):
     @api.model
     def cron_recompute(self, limit=None, batch_size=None):
         records = self.search([("jsonify_data_todo", "=", True)], limit=limit)
-        batch_size = batch_size or self._get_batch_size()
+        if not batch_size:
+            batch_size = self._get_batch_size()
         desc = _("Recompute stored JSON.")
-        batching = range(0, len(self), batch_size) if len(self) > batch_size else [0]
-        for i in batching:
-            batch = records[i : i + batch_size]
+        while records:
+            batch, records = records[:batch_size], records[batch_size:]
             delayed = batch.with_delay(description=desc, identity_key=identity_exact)
             delayed._compute_jsonify_data_stored()
 
     @api.model_create_multi
     def create(self, vals_list):
-        res = super(JsonifyStored, self).create(vals_list)
+        res = super().create(vals_list)
         self.env.add_to_compute(self._fields["jsonify_date_update"], res)
         return res

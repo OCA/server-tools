@@ -23,13 +23,13 @@ class TestJsonifyExport(TestJsonifyMixin):
         cron.ir_actions_server_id.with_context(test_queue_job_no_delay=True).run()
 
         # then  # all records have been recomputed
-        self.assertTrue(all(not t for t in self.records.mapped("jsonify_data_todo")))
+        self.assertFalse(any(self.records.mapped("jsonify_data_todo")))
 
     def test_write_export_fields(self):
         # given # let's start with everything computed
         self.assertEqual(self.record_1.jsonify_data, self.jsonify(self.record_1))
         self.assertEqual(self.record_2.jsonify_data, self.jsonify(self.record_2))
-        self.assertTrue(all(not t for t in self.records.mapped("jsonify_data_todo")))
+        self.assertFalse(any(self.records.mapped("jsonify_data_todo")))
 
         # when  # we remove an export line from the export
         self.export.export_fields = self.export.export_fields[:-1]
@@ -74,7 +74,7 @@ class TestJsonifyExport(TestJsonifyMixin):
         # given # let's start with everything computed
         self.assertEqual(self.record_1.jsonify_data, self.jsonify(self.record_1))
         self.assertEqual(self.record_2.jsonify_data, self.jsonify(self.record_2))
-        self.assertTrue(all(not t for t in self.records.mapped("jsonify_data_todo")))
+        self.assertFalse(any(self.records.mapped("jsonify_data_todo")))
 
         # when  # we modify an export line
         user_line = self.export.export_fields.filtered(lambda e: "user" in e.name)
@@ -90,7 +90,7 @@ class TestJsonifyExport(TestJsonifyMixin):
         # given # let's start again with everything recomputed
         self.assertEqual(self.record_1.jsonify_data, self.jsonify(self.record_1))
         self.assertEqual(self.record_2.jsonify_data, self.jsonify(self.record_2))
-        self.assertTrue(all(not t for t in self.records.mapped("jsonify_data_todo")))
+        self.assertFalse(any(self.records.mapped("jsonify_data_todo")))
 
         # when
         self.user_2.name = "newname"  # it's now part of the export
@@ -101,7 +101,7 @@ class TestJsonifyExport(TestJsonifyMixin):
         # given # let's start again with everything recomputed
         self.assertEqual(self.record_1.jsonify_data, self.jsonify(self.record_1))
         self.assertEqual(self.record_2.jsonify_data, self.jsonify(self.record_2))
-        self.assertTrue(all(not t for t in self.records.mapped("jsonify_data_todo")))
+        self.assertFalse(any(self.records.mapped("jsonify_data_todo")))
 
         # when  # we create an export line
         new_user_line = user_line.copy({"name": "user_id/create_date"})
@@ -112,7 +112,7 @@ class TestJsonifyExport(TestJsonifyMixin):
         # given # let's start again with everything recomputed
         self.assertEqual(self.record_1.jsonify_data, self.jsonify(self.record_1))
         self.assertEqual(self.record_2.jsonify_data, self.jsonify(self.record_2))
-        self.assertTrue(all(not t for t in self.records.mapped("jsonify_data_todo")))
+        self.assertFalse(any(self.records.mapped("jsonify_data_todo")))
 
         # when  # we remove an export line
         new_user_line.unlink()
