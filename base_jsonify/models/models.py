@@ -74,7 +74,7 @@ class Base(models.AbstractModel):
 
     @api.model
     def _jsonify_record(self, parser, rec, root):
-        """Jsonify one record (rec). Private function called by jsonify."""
+        """JSONify one record (rec). Private function called by jsonify."""
         strict = self.env.context.get("jsonify_record_strict", False)
         for field in parser:
             field_dict, subparser = rec.__parse_field(field)
@@ -143,11 +143,11 @@ class Base(models.AbstractModel):
                 ('line_id', ['id', ('product_id', ['name']), 'price_unit'])
             ]
 
-        In order to be consistent with the odoo api the jsonify method always
-        return a list of object even if there is only one element in input.
+        In order to be consistent with the Odoo API the jsonify method always
+        returns a list of objects even if there is only one element in input.
         You can change this behavior by passing `one=True` to get only one element.
 
-        By default the key into the json is the name of the field extracted
+        By default the key into the JSON is the name of the field extracted
         from the model. If you need to specify an alternate name to use as
         key, you can define your mapping as follow into the parser definition:
 

@@ -18,7 +18,7 @@ def _f(f, function=None):
 
 
 def _convert_parser(parser):
-    """Recursively process each list to replace encoding fields as string
+    """Recursively process each list to replace encoded fields as string
     by dicts specifying each attribute by its relevant key.
     """
     result = []
