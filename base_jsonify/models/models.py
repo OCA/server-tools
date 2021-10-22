@@ -62,9 +62,7 @@ class Base(models.AbstractModel):
     @api.model
     def _add_json_key(self, values, json_key, value):
         """To manage defaults, you can use a specific resolver."""
-        key_marshaller = json_key.split("=")
-        key = key_marshaller[0]
-        marshaller = key_marshaller[1] if len(key_marshaller) > 1 else None
+        key, sep, marshaller = json_key.partition("=")
         if marshaller == "list":  # sublist field
             if not values.get(key):
                 values[key] = []
@@ -170,7 +168,8 @@ class Base(models.AbstractModel):
             for record, json in zip(records, results):
                 self._jsonify_record(parsers[lang], record, json)
 
-        results = resolver.resolve(results, self) if resolver else results
+        if resolver:
+            results = resolver.resolve(results, self)
         return results[0] if one else results
 
     # HELPERS
