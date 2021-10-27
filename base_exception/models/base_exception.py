@@ -244,17 +244,28 @@ class BaseExceptionModel(models.AbstractModel):
         return self.env.ref("base_exception.action_exception_rule_confirm")
 
     def _check_exception(self):
-        """
+        """Check exceptions
+
         This method must be used in a constraint that must be created in the
         object that inherits for base.exception.
-        for sale :
-        @api.constrains('ignore_exception',)
-        def sale_check_exception(self):
-            ...
-            ...
-            self._check_exception
+
+        .. code-block:: python
+
+            @api.constrains("ignore_exception")
+            def sale_check_exception(self):
+                # ...
+                self._check_exception()
+
+        For convenience, this check can be skipped by setting check_exception=False
+        in context.
+
+        Exceptions will be raised as ValidationError, but this can be disabled
+        by setting raise_exception=False in context. They will still be detected
+        and updated on the related record, though.
         """
+        if not self.env.context.get("check_exception", True):  # pragma: no cover
+            return True
         exception_ids = self.detect_exceptions()
-        if exception_ids:
+        if exception_ids and self.env.context.get("raise_exception", True):
             exceptions = self.env["exception.rule"].browse(exception_ids)
             raise ValidationError("\n".join(exceptions.mapped("name")))
