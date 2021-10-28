@@ -2,7 +2,7 @@
 # Copyright 2020 Onestein (<https://www.onestein.eu>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import api, fields, models, tools
 from odoo.tools.cache import ormcache
 
 
@@ -40,6 +40,10 @@ class ChangesetFieldRule(models.Model):
         "res.company", default=lambda self: self.env.user.company_id,
     )
     active = fields.Boolean(default=True)
+    expression = fields.Text(
+        help="Use this rule only on records where this is true. "
+        "Available variables: object, user",
+    )
 
     def init(self):
         """Ensure there is at most one rule with source_model_id NULL.
@@ -79,6 +83,11 @@ class ChangesetFieldRule(models.Model):
     @api.model
     def _selection_action(self):
         return [("auto", "Auto"), ("validate", "Validate"), ("never", "Never")]
+
+    @api.constrains('expression')
+    def _check_expression(self):
+        for this in self:
+            this._evaluate_expression(self.env[this.model_id.model].new({}))
 
     @ormcache(skiparg=1)
     @api.model
@@ -140,6 +149,14 @@ class ChangesetFieldRule(models.Model):
         for field, rule_id in cached_rules.items():
             rules[field] = self.browse(rule_id)
         return rules
+
+    @api.multi
+    def _evaluate_expression(self, record):
+        """ Evaluate expression if set """
+        self.ensure_one()
+        return not self.expression or tools.safe_eval(
+            self.expression, {'object': record, 'user': self.env.user}
+        )
 
     @api.model
     def create(self, vals):
