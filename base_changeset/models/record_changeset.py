@@ -140,6 +140,14 @@ class RecordChangeset(models.Model):
             )
             if pop_value:
                 write_values.pop(field)
+                if not record.id:
+                    # overwrite with null value for new records
+                    write_values[field] = (
+                        # but create some default for required text fields
+                        record._fields[field].required and
+                        record._fields[field].type in ('char', 'text') and
+                        '/' or record._fields[field].null(record)
+                    )
             changes.append(change)
         if changes:
             changeset_vals = self._prepare_changeset_vals(changes, record, source)
@@ -150,9 +158,10 @@ class RecordChangeset(models.Model):
     def _prepare_changeset_vals(self, changes, record, source):
         has_company = "company_id" in self.env[record._name]._fields
         has_company = has_company and record.company_id
-        company = record.company_id if has_company else self.env.company
+        company = record.company_id if has_company else self.env.user.company_id
         return {
-            "res_id": record.id,
+            # newly created records are passed as newid records with the id in ref
+            "res_id": record.id or record.id.ref,
             "model": record._name,
             "company_id": company.id,
             "change_ids": [(0, 0, vals) for vals in changes],
