@@ -75,6 +75,29 @@ class TestChangesetFlow(ChangesetTestCommon, TransactionCase):
         self.assertEqual(self.partner.street, "street X")
         self.assertEqual(self.partner.street2, "street2 X")
 
+    def test_create_new_changeset(self):
+        """ Create a new partner with a changeset """
+        new = self.env["res.partner"].with_context(
+            test_record_changeset=True,
+        ).create({
+            "name": "partner",
+            "street": "street",
+            "street2": "street2",
+        })
+        self.assertEqual(new.count_pending_changesets, 1)
+        self.assert_changeset(
+            new,
+            self.env.user,
+            [
+                (self.field_name, False, "partner", "done"),
+                (self.field_street, False, "street", "draft"),
+                (self.field_street2, False, "street2", "cancel"),
+            ],
+        )
+        self.assertEqual(new.name, "partner")
+        self.assertFalse(new.street)
+        self.assertFalse(new.street2)
+
     def test_new_changeset_empty_value(self):
         """Create a changeset change that empty a value"""
         self.partner.write({"street": False})

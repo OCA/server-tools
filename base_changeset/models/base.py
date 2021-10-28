@@ -73,21 +73,58 @@ class Base(models.AbstractModel):
                 models += ["res.partner"]  # Used in tests
         return models
 
+    @api.model_create_multi
+    def create(self, vals_list):
+        result = super().create(vals_list)
+        if self._changeset_disabled():
+            return result
+        for this, vals in zip(result, vals_list):
+            local_vals = self.env["record.changeset"].add_changeset(
+                # create a record-like object with empty values,
+                # but pass required many2one fields as those are
+                # most likely to be used in rule conditions
+                self.new(
+                    {
+                        field_name: value
+                        for field_name, value in vals.items()
+                        if self._fields[field_name].required
+                        and isinstance(
+                            self._fields[field_name], fields.Many2one,
+                        )
+                    },
+                    this,
+                ),
+                vals,
+            )
+            local_vals = {
+                key: value
+                for key, value in local_vals.items()
+                if vals[key] != value
+            }
+            if local_vals:
+                this.with_context(
+                    __no_changeset=disable_changeset, tracking_disable=True,
+                ).write(local_vals)
+        return result
+
     def write(self, values):
-        if self.env.context.get("__no_changeset") == disable_changeset:
-            return super().write(values)
-
-        # To avoid conflicts with tests of other modules
-        if config["test_enable"] and not self.env.context.get("test_record_changeset"):
-            return super().write(values)
-
-        if self._name not in self.models_to_track_changeset():
+        if self._changeset_disabled():
             return super().write(values)
 
         for record in self:
             local_values = self.env["record.changeset"].add_changeset(record, values)
             super(Base, record).write(local_values)
         return True
+
+    def _changeset_disabled(self):
+        if self.env.context.get("__no_changeset") == disable_changeset:
+            return True
+        # To avoid conflicts with tests of other modules
+        if config["test_enable"] and not self.env.context.get("test_record_changeset"):
+            return True
+        if self._name not in self.models_to_track_changeset():
+            return True
+        return False
 
     def action_record_changeset_change_view(self):
         self.ensure_one()
