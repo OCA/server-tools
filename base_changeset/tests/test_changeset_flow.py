@@ -401,3 +401,17 @@ class TestChangesetFlow(ChangesetTestCommon, TransactionCase):
         bank.active = False
         self.assertTrue(bank.changeset_ids)
         self.assertIn(bank.acc_number, bank.changeset_ids.name_get()[0][1])
+
+    def test_new_changeset_expression(self):
+        """ Test that rules can be conditional """
+        self.env["changeset.field.rule"].search([
+            ("field_id", "=", self.field_street.id),
+        ]).expression = "object.street != 'street X'"
+        self.partner.street = "street Y"
+        self.partner.refresh()
+        self.assertEqual(self.partner.street, 'street Y')
+        self.assertFalse(self.partner.changeset_ids)
+        self.partner.street = "street Z"
+        self.partner.refresh()
+        self.assertTrue(self.partner.changeset_ids)
+        self.assertEqual(self.partner.street, 'street Y')

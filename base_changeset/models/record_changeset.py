@@ -130,7 +130,7 @@ class RecordChangeset(models.Model):
         )
         for field in values:
             rule = rules.get(field)
-            if not rule:
+            if not rule or not rule._evaluate_expression(record):
                 continue
             if field in values:
                 if not change_model._has_field_changed(record, field, values[field]):
