@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-02-18 02:29+0000\n"
-"PO-Revision-Date: 2021-09-30 15:34+0000\n"
+"PO-Revision-Date: 2021-10-28 11:35+0000\n"
 "Last-Translator: Yavuz Avci <yavuzavci@gmail.com>\n"
 "Language-Team: Turkish (https://www.transifex.com/oca/teams/23907/tr/)\n"
 "Language: tr\n"
@@ -92,34 +92,35 @@ msgstr "ID"
 #. module: base_multi_image
 #: model:ir.ui.view,arch_db:base_multi_image.image_form_view
 msgid "Image"
-msgstr ""
+msgstr "Resim"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_path
 #: model:ir.model.fields,help:base_multi_image.field_base_multi_image_image_path
 msgid "Image path"
-msgstr ""
+msgstr "Resmin bulunduğu dizin"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_url
+#, fuzzy
 msgid "Image remote URL"
-msgstr ""
+msgstr "Resmin uzak URL si"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_file_db_store
 msgid "Image stored in database"
-msgstr ""
+msgstr "Veri tabanında tutulan resim"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_name
 msgid "Image title"
-msgstr ""
+msgstr "Resim başlığı"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_owner_image_ids
 #: model:ir.ui.view,arch_db:base_multi_image.image_tree_view
 msgid "Images"
-msgstr ""
+msgstr "Resimler"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image___last_update
@@ -142,17 +143,17 @@ msgstr "Son güncellenme"
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_owner_image_main
 #, python-format
 msgid "Main image"
-msgstr ""
+msgstr "Ana resim"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_owner_image_main_medium
 msgid "Medium image"
-msgstr ""
+msgstr "Orta resim"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_image_medium
 msgid "Medium-sized image"
-msgstr ""
+msgstr "Orta boyutlu resim"
 
 #. module: base_multi_image
 #: model:ir.model.fields,help:base_multi_image.field_base_multi_image_image_image_medium
