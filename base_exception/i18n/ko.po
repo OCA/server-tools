@@ -19,6 +19,12 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: base_exception
+#: code:addons/base_exception/models/base_exception.py:0
+#, python-format
+msgid "(Blocking exception)"
+msgstr ""
+
+#. module: base_exception
 #: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_form
 msgid "<code>self</code>: Record on which the rule is evaluated."
 msgstr ""
@@ -237,6 +243,11 @@ msgid "Ignore Exceptions"
 msgstr ""
 
 #. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule__is_blocking
+msgid "Is blocking"
+msgstr ""
+
+#. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_base_exception____last_update
 #: model:ir.model.fields,field_description:base_exception.field_base_exception_method____last_update
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule____last_update
@@ -310,6 +321,12 @@ msgstr ""
 #. module: base_exception
 #: code:addons/base_exception/models/base_exception.py:0
 #, python-format
+msgid "The exceptions can not be ignored, because some of them are blocking."
+msgstr ""
+
+#. module: base_exception
+#: code:addons/base_exception/models/base_exception.py:0
+#, python-format
 msgid ""
 "There is a problem of configuration, python code or domain is missing to "
 "match the exception type."
@@ -333,6 +350,11 @@ msgstr ""
 msgid ""
 "Various fields may use Python code or Python expressions. The following "
 "variables can be used:"
+msgstr ""
+
+#. module: base_exception
+#: model:ir.model.fields,help:base_exception.field_exception_rule__is_blocking
+msgid "When checked the exception can not be ignored"
 msgstr ""
 
 #. module: base_exception

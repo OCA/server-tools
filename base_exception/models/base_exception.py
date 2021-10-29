@@ -43,7 +43,8 @@ class ExceptionRule(models.Model):
         "not. Use failed = True to block the exception",
     )
     is_blocking = fields.Boolean(
-        string="Is blocking", help="When checked the exception can not be ignored",
+        string="Is blocking",
+        help="When checked the exception can not be ignored",
     )
 
     @api.constrains("exception_type", "domain", "code")
