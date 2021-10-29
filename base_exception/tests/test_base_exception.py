@@ -5,7 +5,7 @@
 import logging
 
 from odoo import fields
-from odoo.exceptions import ValidationError
+from odoo.exceptions import UserError, ValidationError
 from odoo.tests import common
 
 from .common import setup_test_model
@@ -81,6 +81,36 @@ class TestBaseException(common.SavepointCase):
         # Test that we have linked exceptions
         self.assertTrue(potest1.exception_ids)
         # Test ignore exeception make possible for the po to validate
-        potest1.ignore_exception = True
+        potest1.action_ignore_exceptions()
+        self.assertTrue(potest1.ignore_exception)
+        self.assertFalse(potest1.exceptions_summary)
         potest1.button_confirm()
         self.assertTrue(potest1.state == "purchase")
+
+    def test_purchase_order_exception_blocking(self):
+        self.exceptionnozip.is_blocking = True
+        partner = self.env.ref("base.res_partner_1")
+        partner.zip = False
+        potest1 = self.env["base.exception.test.purchase"].create(
+            {
+                "name": "Test base exception to basic purchase",
+                "partner_id": partner.id,
+                "line_ids": [
+                    (0, 0, {"name": "line test", "amount": 120.0, "qty": 1.5})
+                ],
+            }
+        )
+        # Block because of exception during validation
+        with self.assertRaises(ValidationError):
+            potest1.button_confirm()
+        # Test that we have linked exceptions
+        self.assertTrue(potest1.exception_ids)
+        self.assertTrue(potest1.exceptions_summary)
+        # Test cannot ignore blocked exception
+        with self.assertRaises(UserError):
+            potest1.action_ignore_exceptions()
+        self.assertFalse(potest1.ignore_exception)
+        with self.assertRaises(ValidationError):
+            potest1.button_confirm()
+        self.assertTrue(potest1.exception_ids)
+        self.assertTrue(potest1.exceptions_summary)
