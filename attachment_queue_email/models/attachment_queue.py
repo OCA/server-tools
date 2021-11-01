@@ -61,7 +61,7 @@ class AttachmentQueue(models.Model):
         :rtype: list
         """
         res = []
-        server_id = self.env.context.get("fetchmail_server_id", False)
+        server_id = self.env.context.get("default_fetchmail_server_id", False)
         file_condition_obj = self.env["fetchmail.attachment.condition"]
         conds = file_condition_obj.search([("server_id", "=", server_id)])
         for cond in conds:

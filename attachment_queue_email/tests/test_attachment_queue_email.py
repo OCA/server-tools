@@ -40,8 +40,7 @@ class TestAttachmentQueueEmail(TestMailCommon):
             }
         )
         self.context_server = {
-            "fetchmail_server_id": self.fetchmail_server.id,
-            "server_type": self.fetchmail_server.server_type,
+            "default_fetchmail_server_id": self.fetchmail_server.id,
         }
 
     def test_message_single_binary(self):
