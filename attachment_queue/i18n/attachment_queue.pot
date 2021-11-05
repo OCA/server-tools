@@ -70,6 +70,16 @@ msgid "Binary"
 msgstr ""
 
 #. module: attachment_queue
+#: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__changeset_change_ids
+msgid "Changeset Changes"
+msgstr ""
+
+#. module: attachment_queue
+#: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__changeset_ids
+msgid "Changesets"
+msgstr ""
+
+#. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__checksum
 msgid "Checksum/SHA1"
 msgstr ""
@@ -83,6 +93,16 @@ msgstr ""
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__company_id
 #: model_terms:ir.ui.view,arch_db:attachment_queue.view_attachment_queue_search
 msgid "Company"
+msgstr ""
+
+#. module: attachment_queue
+#: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr ""
+
+#. module: attachment_queue
+#: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__count_pending_changesets
+msgid "Count Pending Changesets"
 msgstr ""
 
 #. module: attachment_queue
@@ -425,6 +445,11 @@ msgstr ""
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__url
 msgid "Url"
+msgstr ""
+
+#. module: attachment_queue
+#: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__user_can_see_changeset
+msgid "User Can See Changeset"
 msgstr ""
 
 #. module: attachment_queue
