@@ -134,6 +134,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_cash_box_out__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_change_password_user__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_change_password_wizard__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_changeset_field_rule__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_collection_base__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_company_country_config_settings__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_component_builder__assigned_attachment_ids
@@ -274,6 +275,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_product_template_attribute_line__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_product_template_attribute_value__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_publisher_warranty_contract__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_record_changeset__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_record_changeset_change__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_report_account_report_agedpartnerbalance__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_report_account_report_invoice_with_payments__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_report_account_report_journal__assigned_attachment_ids
@@ -368,6 +371,18 @@ msgid "Base"
 msgstr ""
 
 #. module: autovacuum_message_attachment
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_autovacuum_mixin__changeset_change_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_vacuum_rule__changeset_change_ids
+msgid "Changeset Changes"
+msgstr ""
+
+#. module: autovacuum_message_attachment
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_autovacuum_mixin__changeset_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_vacuum_rule__changeset_ids
+msgid "Changesets"
+msgstr ""
+
+#. module: autovacuum_message_attachment
 #: selection:vacuum.rule,message_type:0
 msgid "Comment"
 msgstr ""
@@ -375,6 +390,18 @@ msgstr ""
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_vacuum_rule__company_id
 msgid "Company"
+msgstr ""
+
+#. module: autovacuum_message_attachment
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_autovacuum_mixin__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_vacuum_rule__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr ""
+
+#. module: autovacuum_message_attachment
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_autovacuum_mixin__count_pending_changesets
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_vacuum_rule__count_pending_changesets
+msgid "Count Pending Changesets"
 msgstr ""
 
 #. module: autovacuum_message_attachment
@@ -557,5 +584,11 @@ msgstr ""
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_vacuum_rule__ttype
 msgid "Type"
+msgstr ""
+
+#. module: autovacuum_message_attachment
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_autovacuum_mixin__user_can_see_changeset
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_vacuum_rule__user_can_see_changeset
+msgid "User Can See Changeset"
 msgstr ""
 
