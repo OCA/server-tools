@@ -19,6 +19,26 @@ msgid "Base"
 msgstr ""
 
 #. module: base_remote
+#: model:ir.model.fields,field_description:base_remote.field_res_remote__changeset_change_ids
+msgid "Changeset Changes"
+msgstr ""
+
+#. module: base_remote
+#: model:ir.model.fields,field_description:base_remote.field_res_remote__changeset_ids
+msgid "Changesets"
+msgstr ""
+
+#. module: base_remote
+#: model:ir.model.fields,field_description:base_remote.field_res_remote__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr ""
+
+#. module: base_remote
+#: model:ir.model.fields,field_description:base_remote.field_res_remote__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr ""
+
+#. module: base_remote
 #: model:ir.model.fields,field_description:base_remote.field_res_remote__create_uid
 msgid "Created by"
 msgstr ""
@@ -89,6 +109,11 @@ msgstr ""
 #. module: base_remote
 #: model:ir.model.fields,help:base_remote.field_res_remote__in_network
 msgid "Shows if the remote can be found through the socket"
+msgstr ""
+
+#. module: base_remote
+#: model:ir.model.fields,field_description:base_remote.field_res_remote__user_can_see_changeset
+msgid "User Can See Changeset"
 msgstr ""
 
 #. module: base_remote
