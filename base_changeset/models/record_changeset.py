@@ -25,7 +25,7 @@ class RecordChangeset(models.Model):
         readonly=True,
     )
     date = fields.Datetime(
-        string="Modified on", default=fields.Datetime.now(), index=True, readonly=True
+        string="Modified on", default=fields.Datetime.now, index=True, readonly=True
     )
     modified_by_id = fields.Many2one(
         "res.users", default=lambda self: self.env.user, readonly=True
