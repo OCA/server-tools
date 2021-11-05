@@ -91,6 +91,16 @@ msgid "Cannot duplicate a configuration."
 msgstr ""
 
 #. module: auto_backup
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__changeset_change_ids
+msgid "Changeset Changes"
+msgstr ""
+
+#. module: auto_backup
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__changeset_ids
+msgid "Changesets"
+msgstr ""
+
+#. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__backup_format
 #, fuzzy
 msgid "Choose the format for this backup."
@@ -117,6 +127,16 @@ msgstr ""
 #: code:addons/auto_backup/models/db_backup.py:132
 #, python-format
 msgid "Connection Test Succeeded!"
+msgstr ""
+
+#. module: auto_backup
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr ""
+
+#. module: auto_backup
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__count_pending_changesets
+msgid "Count Pending Changesets"
 msgstr ""
 
 #. module: auto_backup
@@ -411,6 +431,11 @@ msgid ""
 msgstr ""
 "Verwenden Sie SFTP mit Vorsicht! Dies schreibt Dateien auf externen Servern "
 "unter dem Pfad, den Sie angeben."
+
+#. module: auto_backup
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr ""
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__sftp_user
