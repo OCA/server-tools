@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_record_changeset,access_record_changeset,model_record_changeset,base.group_user,1,1,1,1
+access_record_changeset_change,access_record_changeset_change,model_record_changeset_change,base.group_user,1,1,1,1
+access_changeset_field_rule,access_changeset_field_rule,model_changeset_field_rule,base.group_user,1,1,1,1
+access_view_record_changeset_user,changeset for changeset users,model_record_changeset,group_changeset_user,1,1,1,0
+access_view_record_changeset_change_user,changeset change for changeset users,model_record_changeset_change,group_changeset_user,1,1,1,0
+access_view_record_changeset_manager,changeset for changeset managers,model_record_changeset,group_changeset_manager,1,1,1,1
+access_view_record_changeset_change_manager,changeset change for changeset managers,model_record_changeset_change,group_changeset_manager,1,1,1,1
