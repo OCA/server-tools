@@ -14,6 +14,7 @@ setuptools.setup(
         'odoo12-addon-auditlog',
         'odoo12-addon-auto_backup',
         'odoo12-addon-autovacuum_message_attachment',
+        'odoo12-addon-base_changeset',
         'odoo12-addon-base_conditional_image',
         'odoo12-addon-base_cron_exclusion',
         'odoo12-addon-base_custom_info',
