@@ -19,24 +19,24 @@ stages:
 
 jobs:
   include:
-    # Test separately: fetchmail_incoming_log,fetchmail_notify_error_to_sender_test
+    # Test separately: fetchmail_incoming_log,fetchmail_notify_error_to_sender_test,fetchmail_notify_error_to_sender
     - stage: test
       env:
         - TESTS=1 ODOO_REPO="odoo/odoo" MAKEPOT=1
-          INCLUDE="fetchmail_incoming_log,fetchmail_notify_error_to_sender_test"
+          INCLUDE="fetchmail_incoming_log,fetchmail_notify_error_to_sender_test,fetchmail_notify_error_to_sender"
     - stage: test
       env:
         - TESTS=1 ODOO_REPO="OCA/OCB"
-          INCLUDE="fetchmail_incoming_log,fetchmail_notify_error_to_sender_test"
+          INCLUDE="fetchmail_incoming_log,fetchmail_notify_error_to_sender_test,fetchmail_notify_error_to_sender"
     # Test all other addons together
     - stage: test
       env:
         - TESTS=1 ODOO_REPO="odoo/odoo" MAKEPOT=1
-          EXCLUDE="fetchmail_incoming_log,fetchmail_notify_error_to_sender_test"
+          EXCLUDE="fetchmail_incoming_log,fetchmail_notify_error_to_sender_test,fetchmail_notify_error_to_sender"
     - stage: test
       env:
         - TESTS=1 ODOO_REPO="OCA/OCB"
-          EXCLUDE="fetchmail_incoming_log,fetchmail_notify_error_to_sender_test"
+          EXCLUDE="fetchmail_incoming_log,fetchmail_notify_error_to_sender_test,fetchmail_notify_error_to_sender"
 env:
   global:
     - VERSION="14.0" TESTS="0" LINT_CHECK="0" MAKEPOT="0"
