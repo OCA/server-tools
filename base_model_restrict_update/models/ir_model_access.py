@@ -49,9 +49,8 @@ class IrModelAccess(models.Model):
     @api.model
     def _readonly_exclude_models(self):
         """ Models updtate/create by system, and should be excluded from checking """
-        return [
-            "res.users",
-            "res.users.log",
-            "mail.channel",
-            "mail.channel.partner",
-        ]
+        return self.sudo().search([
+            ("group_id", "=", False),
+            "|", ("perm_write", "=", True),
+            "|", ("perm_create", "=", True), ("perm_unlink", "=", True)
+        ]).mapped("model_id.model")
