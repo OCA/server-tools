@@ -46,7 +46,7 @@ class ChangesetFieldRule(models.Model):
     )
     validator_group_ids = fields.Many2many(
         'res.groups', 'changeset_field_rule_validator_group_rel',
-        string='Validators', default=lambda self: self.env.ref(
+        string='Validator Groups', default=lambda self: self.env.ref(
             'base_changeset.group_changeset_user',
             raise_if_not_found=False,
         ) or self.env['res.groups'],
