@@ -35,7 +35,7 @@ odoo.define('profiler.tour', function(require) {
       },
       {
         content: _t("Give this session a name."),
-        trigger: "h1 input[name='name']",
+        trigger: "h1 input.o_form_field",
         extra_trigger: ".o_form_editable",
         position: "right",
       },
@@ -43,7 +43,9 @@ odoo.define('profiler.tour', function(require) {
         content: _t("Select a profiling method."),
         trigger: "select[name='python_method']",
         position: "right",
-        run: "text Per HTTP request",
+        run: function() {
+          $('select[name="python_method"]').val('"request"');
+        },
       },
       {
         content: _t("When you are happy, save it."),
@@ -52,19 +54,19 @@ odoo.define('profiler.tour', function(require) {
       },
       {
         content: _t("Now enable it to start profiling."),
-        trigger: ".o_statusbar_buttons button:containsExact(Enable)",
+        trigger: "button:has(span:containsExact(Enable))",
         extra_trigger: ".o_form_readonly",
         position: "right",
       },
       {
         content: _t("Now disable it to stop profiling."),
-        trigger: ".o_statusbar_buttons button:containsExact(Disable)",
+        trigger: "button:has(span:containsExact(Disable))",
         extra_trigger: ".o_form_readonly",
         position: "right",
       },
       {
         content: _t("We now have measurements."),
-        trigger: "tr[class='o_data_row']",
+        trigger: "td[data-field='total_time']",
       },
     ]
   );

@@ -170,8 +170,8 @@
         <field name="res_model">profiler.profile</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem name="Profiler" id="menu_profiler_root" web_icon="profiler,static/description/icon.png"/>
-    <menuitem name="Profiler" id="menu_profiler" parent="menu_profiler_root"/>
+    <menuitem name="Profiler" id="menu_profiler_root" web_icon="profiler,static/description/icon.png" load_xmlid="True"/>
+    <menuitem name="Profiler" id="menu_profiler" parent="menu_profiler_root" load_xmlid="True"/>
     <menuitem name="Profile" id="menu_profile" parent="menu_profiler"
-        action="profile_action_window"/>
+        action="profile_action_window" load_xmlid="True"/>
 </odoo>
