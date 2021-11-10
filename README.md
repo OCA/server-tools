@@ -15,7 +15,11 @@ TODO: add repo description.
 
 [//]: # (addons)
 
-This part will be replaced when running the oca-gen-addons-table script from OCA/maintainer-tools.
+Available addons
+----------------
+addon | version | maintainers | summary
+--- | --- | --- | ---
+[upgrade_analysis](upgrade_analysis/) | 15.0.1.0.1 |  | Performs a difference analysis between modules installed on two different Odoo instances
 
 [//]: # (end addons)
 
