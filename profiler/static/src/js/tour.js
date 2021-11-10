@@ -12,7 +12,7 @@ odoo.define('profiler.tour', function(require) {
       url: "/web",
     },
     [
-      tour.STEPS.MENU_MORE,
+      tour.STEPS.SHOW_APPS_MENU_ITEM,
       {
         content: _t("Analyze your application performance in the Profiler app."),
         trigger: '.o_app[data-menu-xmlid="profiler.menu_profiler_root"], .oe_menu_toggler[data-menu-xmlid="profiler.menu_profiler_root"]',
@@ -52,13 +52,13 @@ odoo.define('profiler.tour', function(require) {
       },
       {
         content: _t("Now enable it to start profiling."),
-        trigger: ".o_statusbar_buttons button:containsExact(Enable)",
+        trigger: ".o_statusbar_buttons button:contains(Enable)",
         extra_trigger: ".o_form_readonly",
         position: "right",
       },
       {
         content: _t("Now disable it to stop profiling."),
-        trigger: ".o_statusbar_buttons button:containsExact(Disable)",
+        trigger: ".o_statusbar_buttons button:contains(Disable)",
         extra_trigger: ".o_form_readonly",
         position: "right",
       },

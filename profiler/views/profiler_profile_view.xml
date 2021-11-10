@@ -93,6 +93,7 @@
                         </button>
 
                         <button name="action_view_attachment"
+                            string="View attachment"
                             type="object"
                             class="oe_stat_button"
                             icon="fa-pencil-square-o"
