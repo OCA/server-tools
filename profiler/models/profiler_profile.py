@@ -89,9 +89,8 @@ class ProfilerProfileRequestLine(models.Model):
     @api.depends('name', 'create_date')
     def _compute_display_name(self):
         for httprequest in self:
-            create_date = fields.Datetime.from_string(httprequest.create_date)
             tz_create_date = fields.Datetime.context_timestamp(
-                httprequest, create_date)
+                httprequest, httprequest.create_date)
             httprequest.display_name = u"%s (%s)" % (
                 httprequest.name or '?',
                 fields.Datetime.to_string(tz_create_date))
@@ -476,9 +475,11 @@ export PGOPTIONS="-c log_min_duration_statement=0 \\
 
     def _get_attachment_name(self, prefix, suffix):
         started = fields.Datetime.from_string(
-            self.date_started).strftime(DATETIME_FORMAT_FILE)
+            self.date_started
+        ).strftime(DATETIME_FORMAT_FILE)
         finished = fields.Datetime.from_string(
-            self.date_finished).strftime(DATETIME_FORMAT_FILE)
+            self.date_finished
+        ).strftime(DATETIME_FORMAT_FILE)
         fname = '%s_%d_%s_to_%s%s' % (
             prefix, self.id, started, finished, suffix)
         return fname
