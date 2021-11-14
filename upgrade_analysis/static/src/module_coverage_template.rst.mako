@@ -6,7 +6,7 @@ Module coverage ${start_version} -> ${end_version}
 +-------------------------------------------------+-------------------------------------------------+
 |Module                                           |Status                                           |
 +=================================================+=================================================+
-% for module_description in module_descriptions:
-|${module_description}|                                                 |
+% for module, status in module_descriptions.items():
+|${module}|${status}|
 +-------------------------------------------------+-------------------------------------------------+
 % endfor
