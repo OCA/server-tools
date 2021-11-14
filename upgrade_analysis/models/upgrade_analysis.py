@@ -210,6 +210,8 @@ class UpgradeAnalysis(models.Model):
         }
         general_log = ""
 
+        no_changes_modules = []
+
         for ignore_module in _IGNORE_MODULES:
             if ignore_module in keys:
                 keys.remove(ignore_module)
@@ -232,6 +234,7 @@ class UpgradeAnalysis(models.Model):
                     contents += "\n"
             if key not in res and key not in res_xml and key not in res_model:
                 contents += "---nothing has changed in this module--\n"
+                no_changes_modules.append(key)
             if key == "general":
                 general_log += contents
                 continue
@@ -267,7 +270,7 @@ class UpgradeAnalysis(models.Model):
             general_log += "ERROR: error when generating noupdate changes: %s\n" % e
 
         try:
-            self.generate_module_coverage_file()
+            self.generate_module_coverage_file(no_changes_modules)
         except Exception as e:
             _logger.exception("Error generating module coverage file: %s" % e)
             general_log += "ERROR: error when generating module coverage file: %s\n" % e
@@ -502,7 +505,7 @@ class UpgradeAnalysis(models.Model):
                 )
         return True
 
-    def generate_module_coverage_file(self):
+    def generate_module_coverage_file(self, no_changes_modules):
         self.ensure_one()
 
         module_coverage_file_folder = config.get("module_coverage_file_folder", False)
@@ -538,15 +541,34 @@ class UpgradeAnalysis(models.Model):
         end_version = release.major_version
 
         all_modules = sorted(list(set(all_remote_modules + all_local_modules)))
-        module_descriptions = []
+        module_descriptions = {}
         for module in all_modules:
+            status = ""
             if module in all_local_modules and module in all_remote_modules:
                 module_description = " %s" % module
             elif module in all_local_modules:
                 module_description = " |new| %s" % module
             else:
                 module_description = " |del| %s" % module
-            module_descriptions.append(module_description.ljust(49, " "))
+
+            if module in compare.apriori.merged_modules:
+                status = "Merged into %s. " % compare.apriori.merged_modules[module]
+            elif module in compare.apriori.renamed_modules:
+                status = "Renamed to %s. " % compare.apriori.renamed_modules[module]
+            elif module in compare.apriori.renamed_modules.values():
+                status = (
+                    "Renamed from %s. "
+                    % [
+                        x
+                        for x in compare.apriori.renamed_modules
+                        if compare.apriori.renamed_modules[x] == module
+                    ][0]
+                )
+            if module in no_changes_modules:
+                status += "No changes. "
+            module_descriptions[module_description.ljust(49, " ")] = status.ljust(
+                49, " "
+            )
 
         rendered_text = file_template.render(
             start_version=start_version,
@@ -563,3 +585,4 @@ class UpgradeAnalysis(models.Model):
         f = open(file_path, "w+")
         f.write(rendered_text)
         f.close()
+        return True
