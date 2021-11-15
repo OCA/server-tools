@@ -564,8 +564,8 @@ class UpgradeAnalysis(models.Model):
                         if compare.apriori.renamed_modules[x] == module
                     ][0]
                 )
-            if module in no_changes_modules:
-                status += "No changes. "
+            elif module in no_changes_modules:
+                status += "No DB layout changes. "
             module_descriptions[module_description.ljust(49, " ")] = status.ljust(
                 49, " "
             )
