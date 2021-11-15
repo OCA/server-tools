@@ -1,15 +1,14 @@
 # Copyright 2020 Ecosoft Co., Ltd (http://ecosoft.co.th/)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
-from odoo.tests.common import TransactionCase, at_install, post_install
+from odoo.tests.common import TransactionCase, tagged
 
 
-@at_install(False)
-@post_install(True)
+@tagged("-at_install", "post_install")
 class NameSearchCase(TransactionCase):
     def setUp(self):
         super(NameSearchCase, self).setUp()
         # Install another language, th_TH
-        self.env["res.lang"].load_lang("th_TH")
+        self.env["res.lang"]._activate_lang("th_TH")
         self.env.ref("base.module_base")._update_translations()
 
     def test_name_search_normal(self):
