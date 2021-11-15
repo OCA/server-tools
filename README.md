@@ -19,7 +19,7 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
-[upgrade_analysis](upgrade_analysis/) | 15.0.1.0.1 |  | Performs a difference analysis between modules installed on two different Odoo instances
+[upgrade_analysis](upgrade_analysis/) | 15.0.1.0.2 |  | Performs a difference analysis between modules installed on two different Odoo instances
 
 [//]: # (end addons)
 
