@@ -10,8 +10,9 @@ import os
 from copy import deepcopy
 
 from lxml import etree
+from mako.template import Template
 
-from odoo import fields, models
+from odoo import fields, models, release
 from odoo.exceptions import ValidationError
 from odoo.modules import get_module_path
 from odoo.tools import config
@@ -209,6 +210,8 @@ class UpgradeAnalysis(models.Model):
         }
         general_log = ""
 
+        no_changes_modules = []
+
         for ignore_module in _IGNORE_MODULES:
             if ignore_module in keys:
                 keys.remove(ignore_module)
@@ -231,6 +234,7 @@ class UpgradeAnalysis(models.Model):
                     contents += "\n"
             if key not in res and key not in res_xml and key not in res_model:
                 contents += "---nothing has changed in this module--\n"
+                no_changes_modules.append(key)
             if key == "general":
                 general_log += contents
                 continue
@@ -264,6 +268,12 @@ class UpgradeAnalysis(models.Model):
         except Exception as e:
             _logger.exception("Error generating noupdate changes: %s" % e)
             general_log += "ERROR: error when generating noupdate changes: %s\n" % e
+
+        try:
+            self.generate_module_coverage_file(no_changes_modules)
+        except Exception as e:
+            _logger.exception("Error generating module coverage file: %s" % e)
+            general_log += "ERROR: error when generating module coverage file: %s\n" % e
 
         self.write(
             {
@@ -493,4 +503,86 @@ class UpgradeAnalysis(models.Model):
                     diff,
                     filename="noupdate_changes.xml",
                 )
+        return True
+
+    def generate_module_coverage_file(self, no_changes_modules):
+        self.ensure_one()
+
+        module_coverage_file_folder = config.get("module_coverage_file_folder", False)
+
+        if not module_coverage_file_folder:
+            return
+
+        file_template = Template(
+            filename=os.path.join(
+                get_module_path("upgrade_analysis"),
+                "static",
+                "src",
+                "module_coverage_template.rst.mako",
+            )
+        )
+
+        module_domain = [
+            ("state", "=", "installed"),
+            ("name", "not in", ["upgrade_analysis", "openupgrade_records"]),
+        ]
+
+        connection = self.config_id.get_connection()
+        all_local_modules = (
+            self.env["ir.module.module"].search(module_domain).mapped("name")
+        )
+        all_remote_modules = (
+            connection.env["ir.module.module"]
+            .browse(connection.env["ir.module.module"].search(module_domain))
+            .mapped("name")
+        )
+
+        start_version = connection.version
+        end_version = release.major_version
+
+        all_modules = sorted(list(set(all_remote_modules + all_local_modules)))
+        module_descriptions = {}
+        for module in all_modules:
+            status = ""
+            if module in all_local_modules and module in all_remote_modules:
+                module_description = " %s" % module
+            elif module in all_local_modules:
+                module_description = " |new| %s" % module
+            else:
+                module_description = " |del| %s" % module
+
+            if module in compare.apriori.merged_modules:
+                status = "Merged into %s. " % compare.apriori.merged_modules[module]
+            elif module in compare.apriori.renamed_modules:
+                status = "Renamed to %s. " % compare.apriori.renamed_modules[module]
+            elif module in compare.apriori.renamed_modules.values():
+                status = (
+                    "Renamed from %s. "
+                    % [
+                        x
+                        for x in compare.apriori.renamed_modules
+                        if compare.apriori.renamed_modules[x] == module
+                    ][0]
+                )
+            elif module in no_changes_modules:
+                status += "No DB layout changes. "
+            module_descriptions[module_description.ljust(49, " ")] = status.ljust(
+                49, " "
+            )
+
+        rendered_text = file_template.render(
+            start_version=start_version,
+            end_version=end_version,
+            module_descriptions=module_descriptions,
+        )
+
+        file_name = "modules{}-{}.rst".format(
+            start_version.replace(".", ""),
+            end_version.replace(".", ""),
+        )
+
+        file_path = os.path.join(module_coverage_file_folder, file_name)
+        f = open(file_path, "w+")
+        f.write(rendered_text)
+        f.close()
         return True
