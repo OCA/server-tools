@@ -12,11 +12,10 @@ def _get_model_name_search_multi_lang(self, model):
 
 
 def _extend_name_search_lang(self, lang, name, args, operator, result, limit):
-    res_lang = self.with_context(lang=lang)._name_search(
-        name, args, operator, limit=limit
+    res_lang = list(
+        self.with_context(lang=lang)._name_search(name, args, operator, limit=limit)
     )
-    res_ids = [x[0] for x in result]
-    new_res = filter(lambda x: x[0] not in res_ids, res_lang)
+    new_res = list(filter(lambda x: x not in result, res_lang))
     result.extend(new_res)
     return result
 
@@ -40,6 +39,7 @@ class IrModel(models.Model):
                 res = name_search.origin(
                     self, name=name, args=args, operator=operator, limit=limit
                 )
+                res_ids = [x[0] for x in res]
                 # For model with name_search_multi_lang, extend result
                 multi_lang = _get_model_name_search_multi_lang(self, self._name)
                 if multi_lang:
@@ -47,10 +47,10 @@ class IrModel(models.Model):
                     installed_langs = self.env["res.lang"].get_installed()
                     langs = [x[0] for x in installed_langs if x[0] != context_lang]
                     for lang in langs:
-                        res = _extend_name_search_lang(
-                            self, lang, name, args, operator, res, limit
+                        res_ids = _extend_name_search_lang(
+                            self, lang, name, args, operator, res_ids, limit
                         )
-                    domain = [("id", "in", [x[0] for x in res])]
+                    domain = [("id", "in", [x for x in res_ids])]
                     _ids = self._search(domain, limit=limit)
                     res = models.lazy_name_get(self.browse(_ids))
                 return res
