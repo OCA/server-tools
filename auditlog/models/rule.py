@@ -473,44 +473,69 @@ class AuditlogRule(models.Model):
         if new_values is None:
             new_values = EMPTY_DICT
         log_model = self.env["auditlog.log"]
-        http_request_model = self.env["auditlog.http.request"]
-        http_session_model = self.env["auditlog.http.session"]
-        for res_id in res_ids:
-            model_model = self.env[res_model]
-            name = model_model.browse(res_id).name_get()
-            model_id = self.pool._auditlog_model_cache[res_model]
-            auditlog_rule = self.env["auditlog.rule"].search(
-                [("model_id", "=", model_id)]
-            )
-            res_name = name and name[0] and name[0][1]
-            vals = {
-                "name": res_name,
-                "model_id": self.pool._auditlog_model_cache[res_model],
-                "res_id": res_id,
-                "method": method,
-                "user_id": uid,
-                "http_request_id": http_request_model.current_http_request(),
-                "http_session_id": http_session_model.current_http_session(),
-            }
-            vals.update(additional_log_values or {})
-            log = log_model.create(vals)
+        current_http_request = self.env["auditlog.http.request"].current_http_request()
+        current_http_session = self.env["auditlog.http.session"].current_http_session()
+
+        model_id = self.pool._auditlog_model_cache[res_model]
+        auditlog_rule = self.env["auditlog.rule"].search(
+            [("model_id", "=", model_id)],
+            limit=1,
+        )
+        log_rules_values_to_create = []
+        for batched_res_ids in self._cr.split_for_in_conditions(res_ids):
+            names = self.env[res_model].browse(batched_res_ids).name_get()
+            for name, res_id in zip(names, batched_res_ids):
+                res_name = name and name[1]
+                vals = {
+                    "name": res_name,
+                    "model_id": model_id,
+                    "res_id": res_id,
+                    "method": method,
+                    "user_id": uid,
+                    "http_request_id": current_http_request,
+                    "http_session_id": current_http_session,
+                }
+                vals.update(additional_log_values or {})
+                log_rules_values_to_create.append(vals)
+
+            log_rules = log_model.create(log_rules_values_to_create)
+            auditlog_rule.create_log_lines(log_rules, method, old_values, new_values)
+            log_rules_values_to_create = []
+
+    def create_log_lines(self, log_rules, method, old_values, new_values):
+        """
+        Create new `auditlog.log.line` records by batches
+        """
+        log_lines_vals_to_create = []
+        for log in log_rules:
+            res_id = log.res_id
             diff = DictDiffer(
                 new_values.get(res_id, EMPTY_DICT), old_values.get(res_id, EMPTY_DICT)
             )
             if method == "create":
-                self._create_log_line_on_create(log, diff.added(), new_values)
+                log_lines_vals_to_create.extend(
+                    self._create_log_line_on_create(log, diff.added(), new_values)
+                )
             elif method == "read":
-                self._create_log_line_on_read(
-                    log, list(old_values.get(res_id, EMPTY_DICT).keys()), old_values
+                log_lines_vals_to_create.extend(
+                    self._create_log_line_on_read(
+                        log, list(old_values.get(res_id, EMPTY_DICT).keys()), old_values
+                    ),
                 )
             elif method == "write":
-                self._create_log_line_on_write(
-                    log, diff.changed(), old_values, new_values
+                log_lines_vals_to_create.extend(
+                    self._create_log_line_on_write(
+                        log, diff.changed(), old_values, new_values
+                    ),
                 )
-            elif method == "unlink" and auditlog_rule.capture_record:
-                self._create_log_line_on_read(
-                    log, list(old_values.get(res_id, EMPTY_DICT).keys()), old_values
+            elif method == "unlink" and self.capture_record:
+                log_lines_vals_to_create.extend(
+                    self._create_log_line_on_read(
+                        log, list(old_values.get(res_id, EMPTY_DICT).keys()), old_values
+                    ),
                 )
+        if log_lines_vals_to_create:
+            self.env["auditlog.log.line"].create(log_lines_vals_to_create)
 
     def _get_field(self, model, field_name):
         cache = self.pool._auditlog_field_cache
@@ -536,7 +561,7 @@ class AuditlogRule(models.Model):
 
     def _create_log_line_on_read(self, log, fields_list, read_values):
         """Log field filled on a 'read' operation."""
-        log_line_model = self.env["auditlog.log.line"]
+        log_line_vals = []
         for field_name in fields_list:
             if field_name in FIELDS_BLACKLIST:
                 continue
@@ -544,7 +569,8 @@ class AuditlogRule(models.Model):
             # not all fields have an ir.models.field entry (ie. related fields)
             if field:
                 log_vals = self._prepare_log_line_vals_on_read(log, field, read_values)
-                log_line_model.create(log_vals)
+                log_line_vals.append(log_vals)
+        return log_line_vals
 
     def _prepare_log_line_vals_on_read(self, log, field, read_values):
         """Prepare the dictionary of values used to create a log line on a
@@ -567,7 +593,7 @@ class AuditlogRule(models.Model):
 
     def _create_log_line_on_write(self, log, fields_list, old_values, new_values):
         """Log field updated on a 'write' operation."""
-        log_line_model = self.env["auditlog.log.line"]
+        log_line_vals = []
         for field_name in fields_list:
             if field_name in FIELDS_BLACKLIST:
                 continue
@@ -577,7 +603,8 @@ class AuditlogRule(models.Model):
                 log_vals = self._prepare_log_line_vals_on_write(
                     log, field, old_values, new_values
                 )
-                log_line_model.create(log_vals)
+                log_line_vals.append(log_vals)
+        return log_line_vals
 
     def _prepare_log_line_vals_on_write(self, log, field, old_values, new_values):
         """Prepare the dictionary of values used to create a log line on a
@@ -616,7 +643,7 @@ class AuditlogRule(models.Model):
 
     def _create_log_line_on_create(self, log, fields_list, new_values):
         """Log field filled on a 'create' operation."""
-        log_line_model = self.env["auditlog.log.line"]
+        log_line_vals = []
         for field_name in fields_list:
             if field_name in FIELDS_BLACKLIST:
                 continue
@@ -624,7 +651,8 @@ class AuditlogRule(models.Model):
             # not all fields have an ir.models.field entry (ie. related fields)
             if field:
                 log_vals = self._prepare_log_line_vals_on_create(log, field, new_values)
-                log_line_model.create(log_vals)
+                log_line_vals.append(log_vals)
+        return log_line_vals
 
     def _prepare_log_line_vals_on_create(self, log, field, new_values):
         """Prepare the dictionary of values used to create a log line on a
