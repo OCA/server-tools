@@ -281,6 +281,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_ir_rule__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_ir_sequence__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_ir_sequence_date_range__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_ir_sequence_option__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_ir_sequence_option_line__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_ir_server_object_lines__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_ir_translation__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_ir_ui_menu__changeset_change_ids
@@ -670,6 +672,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_ir_rule__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_ir_sequence__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_ir_sequence_date_range__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_ir_sequence_option__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_ir_sequence_option_line__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_ir_server_object_lines__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_ir_translation__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_ir_ui_menu__changeset_ids
@@ -1046,6 +1050,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_ir_rule__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_ir_sequence__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_ir_sequence_date_range__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_ir_sequence_option__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_ir_sequence_option_line__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_ir_server_object_lines__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_ir_translation__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_ir_ui_menu__count_pending_changeset_changes
@@ -1415,6 +1421,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_ir_rule__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_ir_sequence__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_ir_sequence_date_range__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_ir_sequence_option__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_ir_sequence_option_line__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_ir_server_object_lines__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_ir_translation__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_ir_ui_menu__count_pending_changesets
@@ -2185,6 +2193,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_ir_rule__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_ir_sequence__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_ir_sequence_date_range__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_ir_sequence_option__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_ir_sequence_option_line__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_ir_server_object_lines__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_ir_translation__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_ir_ui_menu__user_can_see_changeset
