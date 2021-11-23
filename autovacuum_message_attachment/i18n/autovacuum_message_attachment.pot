@@ -235,6 +235,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_ir_rule__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_ir_sequence__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_ir_sequence_date_range__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_ir_sequence_option__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_ir_sequence_option_line__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_ir_server_object_lines__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_ir_translation__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_ir_ui_menu__assigned_attachment_ids
