@@ -31,5 +31,5 @@ class TestFetchmailIncomingLog(TestMailgateway):
                 msg_id=msg_id,
             )
             self.env["mail.thread"].with_context(
-                {"fetchmail_server_id": self.fetchmail_server.id}
+                fetchmail_server_id=self.fetchmail_server.id
             ).message_process(None, mail)
