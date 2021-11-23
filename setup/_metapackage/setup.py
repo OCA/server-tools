@@ -23,6 +23,7 @@ setuptools.setup(
         'odoo14-addon-base_remote',
         'odoo14-addon-base_report_auto_create_qweb',
         'odoo14-addon-base_search_fuzzy',
+        'odoo14-addon-base_sequence_option',
         'odoo14-addon-base_sparse_field_list_support',
         'odoo14-addon-base_technical_user',
         'odoo14-addon-base_time_window',
