@@ -4,23 +4,27 @@
 
 import logging
 
+from odoo_test_helper import FakeModelLoader
+
 from odoo import fields
 from odoo.exceptions import ValidationError
 from odoo.tests import common
 
-from .common import setup_test_model
-from .purchase_test import LineTest, PurchaseTest
-
 _logger = logging.getLogger(__name__)
 
 
-@common.at_install(False)
-@common.post_install(True)
 class TestBaseException(common.SavepointCase):
     @classmethod
     def setUpClass(cls):
-        super(TestBaseException, cls).setUpClass()
-        setup_test_model(cls.env, [PurchaseTest, LineTest])
+        super().setUpClass()
+        cls.loader = FakeModelLoader(cls.env, cls.__module__)
+        cls.loader.backup_registry()
+        cls.addClassCleanup(cls.loader.restore_registry)
+
+        # Must be lazy-imported
+        from ._purchase_test_models import PurchaseTest, LineTest
+
+        cls.loader.update_registry((PurchaseTest, LineTest))
 
         cls.base_exception = cls.env["base.exception"]
         cls.exception_rule = cls.env["exception.rule"]
