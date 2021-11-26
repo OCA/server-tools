@@ -668,6 +668,16 @@ msgid "Single line text"
 msgstr ""
 
 #. module: base_custom_info
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info__smart_search
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_category__smart_search
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_option__smart_search
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_property__smart_search
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_template__smart_search
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value__smart_search
+msgid "Smart Search"
+msgstr ""
+
+#. module: base_custom_info
 #: model:custom.info.template,name:base_custom_info.tpl_smart
 msgid "Smart partners"
 msgstr ""
