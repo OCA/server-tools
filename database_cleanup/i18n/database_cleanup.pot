@@ -527,6 +527,28 @@ msgid "Select lines to purge"
 msgstr ""
 
 #. module: database_cleanup
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_line__smart_search
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_wizard__smart_search
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line__smart_search
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_column__smart_search
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_data__smart_search
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_menu__smart_search
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_model__smart_search
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_module__smart_search
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_property__smart_search
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_table__smart_search
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard__smart_search
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_column__smart_search
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_data__smart_search
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_menu__smart_search
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_model__smart_search
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_module__smart_search
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_property__smart_search
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_table__smart_search
+msgid "Smart Search"
+msgstr ""
+
+#. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_table__purge_line_ids
 msgid "Tables to purge"
 msgstr ""
