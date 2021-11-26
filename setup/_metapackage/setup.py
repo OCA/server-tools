@@ -18,6 +18,7 @@ setuptools.setup(
         'odoo13-addon-base_fontawesome',
         'odoo13-addon-base_jsonify',
         'odoo13-addon-base_m2m_custom_field',
+        'odoo13-addon-base_name_search_improved',
         'odoo13-addon-base_name_search_multi_lang',
         'odoo13-addon-base_remote',
         'odoo13-addon-base_search_fuzzy',
