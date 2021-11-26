@@ -8,6 +8,7 @@
                 <field name="field_id" />
                 <field name="source_model_id" />
                 <field name="expression" />
+                <field name="validator_group_ids" />
                 <field
                     name="company_id"
                     groups="base.group_multi_company"
@@ -41,6 +42,7 @@
                             <field name="action" />
                             <field name="source_model_id" widget="selection" />
                             <field name="expression" placeholder="True" />
+                            <field name="validator_group_ids" widget="many2many_tags" />
                         </group>
                     </group>
                 </sheet>
@@ -54,6 +56,7 @@
                 <field name="field_id" />
                 <field name="source_model_id" />
                 <field name="action" />
+                <field name="validator_group_ids" />
                 <group string="Group By" name="groupby">
                     <filter
                         name="model_groupby"

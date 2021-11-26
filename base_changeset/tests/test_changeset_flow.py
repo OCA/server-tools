@@ -83,6 +83,8 @@ class TestChangesetFlow(ChangesetTestCommon, TransactionCase):
             "name": "partner",
             "street": "street",
             "street2": "street2",
+            # our code must not break on this
+            "!unknown_field": False,
         })
         self.assertEqual(new.count_pending_changesets, 1)
         self.assert_changeset(

@@ -44,6 +44,13 @@ class ChangesetFieldRule(models.Model):
         help="Use this rule only on records where this is true. "
         "Available variables: object, user",
     )
+    validator_group_ids = fields.Many2many(
+        'res.groups', 'changeset_field_rule_validator_group_rel',
+        string='Validator Groups', default=lambda self: self.env.ref(
+            'base_changeset.group_changeset_user',
+            raise_if_not_found=False,
+        ) or self.env['res.groups'],
+    )
 
     def init(self):
         """Ensure there is at most one rule with source_model_id NULL.

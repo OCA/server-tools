@@ -384,8 +384,13 @@ class RecordChangesetChange(models.Model):
     def _compute_user_can_validate_changeset(self):
         is_superuser = self.env.user.id == SUPERUSER_ID
         has_group = self.user_has_groups("base_changeset.group_changeset_user")
+        user_groups = self.env.user.groups_id
         for rec in self:
-            can_validate = rec._is_change_pending() and (is_superuser or has_group)
+            can_validate = rec._is_change_pending() and (
+                is_superuser or
+                rec.rule_id.validator_group_ids & user_groups or
+                has_group
+            )
             rec.user_can_validate_changeset = can_validate
 
     @api.model

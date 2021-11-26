@@ -87,7 +87,8 @@ class Base(models.AbstractModel):
                     {
                         field_name: value
                         for field_name, value in vals.items()
-                        if self._fields[field_name].required
+                        if field_name in self._fields and
+                        self._fields[field_name].required
                         and isinstance(
                             self._fields[field_name], fields.Many2one,
                         )
