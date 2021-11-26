@@ -91,6 +91,11 @@ msgid "Last Updated on"
 msgstr "上次更新日期"
 
 #. module: base_search_fuzzy
+#: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index__smart_search
+msgid "Smart Search"
+msgstr ""
+
+#. module: base_search_fuzzy
 #: model:ir.model.fields,help:base_search_fuzzy.field_trgm_index__index_name
 msgid ""
 "The index name is automatically generated like fieldname_indextype_idx. If "
