@@ -59,7 +59,7 @@ msgid "Base"
 msgstr ""
 
 #. module: base_changeset
-#: code:addons/base_changeset/models/base.py:169
+#: code:addons/base_changeset/models/base.py:170
 #: model:ir.actions.act_window,name:base_changeset.action_record_changeset_change_view
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset__change_ids
 #: model:ir.ui.menu,name:base_changeset.menu_record_changeset_change
@@ -1608,7 +1608,7 @@ msgid "Record"
 msgstr ""
 
 #. module: base_changeset
-#: code:addons/base_changeset/models/base.py:142
+#: code:addons/base_changeset/models/base.py:143
 #, python-format
 msgid "Record Changes"
 msgstr ""
@@ -2025,6 +2025,11 @@ msgstr ""
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset_change__user_can_validate_changeset
 msgid "User Can Validate Changeset"
+msgstr ""
+
+#. module: base_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_changeset_field_rule__validator_group_ids
+msgid "Validator Groups"
 msgstr ""
 
 #. module: base_changeset
