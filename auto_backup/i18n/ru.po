@@ -375,6 +375,11 @@ msgid ""
 msgstr ""
 
 #. module: auto_backup
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__smart_search
+msgid "Smart Search"
+msgstr ""
+
+#. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__name
 msgid "Summary of this backup process"
 msgstr ""
