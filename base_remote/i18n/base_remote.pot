@@ -112,6 +112,11 @@ msgid "Shows if the remote can be found through the socket"
 msgstr ""
 
 #. module: base_remote
+#: model:ir.model.fields,field_description:base_remote.field_res_remote__smart_search
+msgid "Smart Search"
+msgstr ""
+
+#. module: base_remote
 #: model:ir.model.fields,field_description:base_remote.field_res_remote__user_can_see_changeset
 msgid "User Can See Changeset"
 msgstr ""
