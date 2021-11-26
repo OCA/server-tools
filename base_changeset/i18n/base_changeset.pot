@@ -1935,6 +1935,13 @@ msgid "Rule"
 msgstr ""
 
 #. module: base_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_changeset_field_rule__smart_search
+#: model:ir.model.fields,field_description:base_changeset.field_record_changeset__smart_search
+#: model:ir.model.fields,field_description:base_changeset.field_record_changeset_change__smart_search
+msgid "Smart Search"
+msgstr ""
+
+#. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_changeset_field_rule__source_model_id
 msgid "Source Model"
 msgstr ""
