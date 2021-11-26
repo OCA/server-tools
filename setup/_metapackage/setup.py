@@ -18,6 +18,7 @@ setuptools.setup(
         'odoo12-addon-base_conditional_image',
         'odoo12-addon-base_cron_exclusion',
         'odoo12-addon-base_custom_info',
+        'odoo12-addon-base_deterministic_session_gc',
         'odoo12-addon-base_exception',
         'odoo12-addon-base_fontawesome',
         'odoo12-addon-base_import_module_group',
