@@ -6,4 +6,4 @@ from odoo import SUPERUSER_ID, api
 
 def post_init_hook(cr, pool):
     env = api.Environment(cr, SUPERUSER_ID, {})
-    env['letsencrypt'].generate_account_key()
+    env['letsencrypt']._get_key('account.key')

@@ -5,14 +5,14 @@
 import os
 from odoo import http
 from odoo.http import request
-from ..models.letsencrypt import get_challenge_dir
+from ..models.letsencrypt import _get_challenge_dir
 
 
 class Letsencrypt(http.Controller):
     @http.route('/.well-known/acme-challenge/<filename>', auth='none')
     def acme_challenge(self, filename):
         try:
-            with file(os.path.join(get_challenge_dir(), filename)) as key:
+            with open(os.path.join(_get_challenge_dir(), filename)) as key:
                 return key.read()
         except IOError:
             pass

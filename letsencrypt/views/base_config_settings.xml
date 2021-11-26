@@ -1,0 +1,33 @@
+<odoo>
+    <record id="base_config_settings" model="ir.ui.view">
+        <field name="name">Letsencrypt base config settings</field>
+        <field name="model">base.config.settings</field>
+        <field name="inherit_id" ref="base_setup.view_general_configuration" />
+        <field name="arch" type="xml">
+            <xpath expr="./group[last()]" position="after">
+                <group name="letsencrypt">
+                    <group name="letsencrypt" string="Let's Encrypt">
+                        <field
+                            name="letsencrypt_needs_dns_provider"
+                            readonly="1"
+                            invisible="1"/>
+                        <field
+                            name="letsencrypt_dns_provider"
+                            attrs="{'required':
+                            [('letsencrypt_needs_dns_provider', '=', True)]}" />
+                        <field
+                            name="letsencrypt_dns_shell_script"
+                            attrs="{
+                                'required': [('letsencrypt_dns_provider', '=', 'shell')],
+                                'invisible': [('letsencrypt_dns_provider', '!=', 'shell')],
+                                }" />
+                        <field name="letsencrypt_altnames" />
+                        <field name="letsencrypt_reload_command" />
+                        <field name="letsencrypt_testing_mode" />
+                        <field name="letsencrypt_prefer_dns" />
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
