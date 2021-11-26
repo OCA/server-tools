@@ -84,6 +84,7 @@ setuptools.setup(
         'odoo10-addon-sequence_date_range',
         'odoo10-addon-server_environment',
         'odoo10-addon-server_environment_ir_config_parameter',
+        'odoo10-addon-slow_statement_logger',
         'odoo10-addon-sql_export',
         'odoo10-addon-sql_request_abstract',
         'odoo10-addon-subscription_action',
