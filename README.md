@@ -78,7 +78,7 @@ addon | version | maintainers | summary
 [html_image_url_extractor](html_image_url_extractor/) | 10.0.1.0.0 |  | Extract images found in any HTML field
 [html_text](html_text/) | 10.0.1.0.0 |  | Generate excerpts from any HTML field
 [keychain](keychain/) | 10.0.2.0.2 |  | Store accounts and credentials
-[letsencrypt](letsencrypt/) | 10.0.1.0.0 |  | Request SSL certificates from letsencrypt.org
+[letsencrypt](letsencrypt/) | 10.0.2.0.0 |  | Request SSL certificates from letsencrypt.org
 [mail_environment](mail_environment/) | 10.0.1.0.0 |  | Configure mail servers with server_environment_files
 [mail_log_message_to_process](mail_log_message_to_process/) | 10.0.1.0.0 |  | Log all messages received, before they start to be processed.
 [mass_editing](mass_editing/) | 10.0.2.1.0 |  | Mass Editing
