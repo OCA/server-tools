@@ -89,6 +89,11 @@ msgid "Partner"
 msgstr "Empresa"
 
 #. module: test_base_time_window
+#: model:ir.model.fields,field_description:test_base_time_window.field_test_partner_time_window__smart_search
+msgid "Smart Search"
+msgstr ""
+
+#. module: test_base_time_window
 #: model:ir.model,name:test_base_time_window.model_test_partner_time_window
 #, fuzzy
 msgid "Test partner time Window"
