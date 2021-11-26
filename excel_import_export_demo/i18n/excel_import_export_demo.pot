@@ -208,6 +208,13 @@ msgid "Sample Sales Report"
 msgstr ""
 
 #. module: excel_import_export_demo
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_crm_lead__smart_search
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__smart_search
+#: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__smart_search
+msgid "Smart Search"
+msgstr ""
+
+#. module: excel_import_export_demo
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_crm_lead__state
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__state
 msgid "State"
