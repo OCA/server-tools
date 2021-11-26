@@ -27,7 +27,7 @@
         "python": [
             "acme",
             "cryptography",
-            "dns",
+            "dnspython",
             "josepy",
         ],
     },
