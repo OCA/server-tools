@@ -6,7 +6,6 @@
 import datetime
 
 from odoo import SUPERUSER_ID, _, api, exceptions, models
-from odoo.tools.safe_eval import safe_eval
 
 
 class ResUsers(models.Model):
@@ -22,12 +21,14 @@ class ResUsers(models.Model):
         admin_user = self.sudo().browse(SUPERUSER_ID)
         login_user = self.browse(user_id)
 
-        send_to_admin = safe_eval(
-            icp_obj.get_param('auth_admin_passkey.send_to_admin')
-        )
-        send_to_user = safe_eval(
-            icp_obj.get_param('auth_admin_passkey.send_to_user')
-        )
+        def read_param(key):
+            record = icp_obj.search([("key", "=", key)], limit=1)
+            if not record:
+                return True
+            return record.value == "True"
+
+        send_to_admin = read_param('auth_admin_passkey.send_to_admin')
+        send_to_user = read_param('auth_admin_passkey.send_to_user')
 
         mails = []
         if send_to_admin and admin_user.email:
