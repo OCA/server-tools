@@ -363,6 +363,9 @@ msgstr "Tous"
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_sale_payment_acquirer_onboarding_wizard__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_sale_report__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_sequence_mixin__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_server_config__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_server_env_mixin__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_server_env_techname_mixin__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_sms_api__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_sms_cancel__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_sms_composer__assigned_attachment_ids
