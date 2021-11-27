@@ -76,6 +76,7 @@ msgstr ""
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field__unknown__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_abstract_config_settings__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_account_account__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_account_account_tag__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_account_account_template__changeset_change_ids
@@ -470,6 +471,7 @@ msgstr ""
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field__unknown__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_abstract_config_settings__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_account_account__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_account_account_tag__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_account_account_template__changeset_ids
@@ -851,6 +853,7 @@ msgstr ""
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field__unknown__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_abstract_config_settings__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_account_account__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_account_account_tag__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_account_account_template__count_pending_changeset_changes
@@ -1225,6 +1228,7 @@ msgstr ""
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field__unknown__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_abstract_config_settings__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_account_account__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_account_account_tag__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_account_account_template__count_pending_changesets
@@ -1996,6 +2000,7 @@ msgstr ""
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field__unknown__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_abstract_config_settings__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_account_account__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_account_account_tag__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_account_account_template__user_can_see_changeset
