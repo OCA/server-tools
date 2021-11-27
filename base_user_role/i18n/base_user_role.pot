@@ -104,6 +104,11 @@ msgid "If checked, this group is usable as a portal."
 msgstr ""
 
 #. module: base_user_role
+#: model:ir.model.fields,help:base_user_role.field_res_users_role_line_company_id
+msgid "If set, this role only applies when this is the main company selected. Otherwise it applies to all companies."
+msgstr ""
+
+#. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_implied_ids
 msgid "Inherits"
 msgstr ""
