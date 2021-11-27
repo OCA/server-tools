@@ -1,0 +1,78 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* base_user_role_company
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: base_user_role_company
+#: model:ir.model.fields,field_description:base_user_role_company.field_res_users_role_line__active_role
+msgid "Active Role"
+msgstr ""
+
+#. module: base_user_role_company
+#: model:ir.model.fields,field_description:base_user_role_company.field_res_users_role_line__company_id
+msgid "Company"
+msgstr ""
+
+#. module: base_user_role_company
+#: model:ir.model.fields,field_description:base_user_role_company.field_ir_http__display_name
+#: model:ir.model.fields,field_description:base_user_role_company.field_res_users__display_name
+#: model:ir.model.fields,field_description:base_user_role_company.field_res_users_role_line__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: base_user_role_company
+#: model:ir.model,name:base_user_role_company.model_ir_http
+msgid "HTTP Routing"
+msgstr ""
+
+#. module: base_user_role_company
+#: model:ir.model.fields,field_description:base_user_role_company.field_ir_http__id
+#: model:ir.model.fields,field_description:base_user_role_company.field_res_users__id
+#: model:ir.model.fields,field_description:base_user_role_company.field_res_users_role_line__id
+msgid "ID"
+msgstr ""
+
+#. module: base_user_role_company
+#: model:ir.model.fields,help:base_user_role_company.field_res_users_role_line__company_id
+msgid ""
+"If set, this role only applies when this is the main company selected. "
+"Otherwise it applies to all companies."
+msgstr ""
+
+#. module: base_user_role_company
+#: model:ir.model.fields,field_description:base_user_role_company.field_ir_http____last_update
+#: model:ir.model.fields,field_description:base_user_role_company.field_res_users____last_update
+#: model:ir.model.fields,field_description:base_user_role_company.field_res_users_role_line____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: base_user_role_company
+#: model:ir.model.constraint,message:base_user_role_company.constraint_res_users_role_line_user_role_uniq
+msgid "Roles can be assigned to a user only once at a time"
+msgstr ""
+
+#. module: base_user_role_company
+#: code:addons/base_user_role_company/models/role.py:0
+#, python-format
+msgid "User \"{}\" does not have access to the company \"{}\""
+msgstr ""
+
+#. module: base_user_role_company
+#: model:ir.model,name:base_user_role_company.model_res_users
+msgid "Users"
+msgstr ""
+
+#. module: base_user_role_company
+#: model:ir.model,name:base_user_role_company.model_res_users_role_line
+msgid "Users associated to a role"
+msgstr ""

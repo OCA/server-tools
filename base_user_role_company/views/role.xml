@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_res_users_form_inherit_company" model="ir.ui.view">
+        <field name="name">res.users.form.inherit.company</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base_user_role.view_res_users_form_inherit" />
+        <field name="arch" type="xml">
+            <field name="role_id" position="after">
+                <field name="company_id" groups="base.group_multi_company" />
+                <field name="active_role" groups="base.group_no_one" readonly="1" />
+            </field>
+        </field>
+    </record>
+</odoo>
