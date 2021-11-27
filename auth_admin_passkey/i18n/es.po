@@ -20,7 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: auth_admin_passkey
-#: code:addons/auth_admin_passkey/models/res_users.py:64
+#: code:addons/auth_admin_passkey/models/res_users.py:65
 #, python-format
 msgid "<pre>User with login '%s' has the same password as you.</pre>"
 msgstr ""
@@ -28,7 +28,7 @@ msgstr ""
 "pre>"
 
 #. module: auth_admin_passkey
-#: code:addons/auth_admin_passkey/models/res_users.py:39
+#: code:addons/auth_admin_passkey/models/res_users.py:40
 #, python-format
 msgid ""
 "Admin user used his passkey to login with '%s'.\n"
@@ -55,7 +55,7 @@ msgid "Passkey"
 msgstr "Clave de acceso"
 
 #. module: auth_admin_passkey
-#: code:addons/auth_admin_passkey/models/res_users.py:38
+#: code:addons/auth_admin_passkey/models/res_users.py:39
 #, python-format
 msgid "Passkey used"
 msgstr "Clave de acceso utilizada"
@@ -90,7 +90,7 @@ msgid ""
 msgstr ""
 
 #. module: auth_admin_passkey
-#: code:addons/auth_admin_passkey/models/res_users.py:62
+#: code:addons/auth_admin_passkey/models/res_users.py:63
 #, python-format
 msgid "[WARNING] Odoo Security Risk"
 msgstr "[ADVERTENCIA] Riesgo de seguridad de Odoo"

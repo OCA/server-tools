@@ -21,13 +21,13 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #. module: auth_admin_passkey
-#: code:addons/auth_admin_passkey/models/res_users.py:64
+#: code:addons/auth_admin_passkey/models/res_users.py:65
 #, python-format
 msgid "<pre>User with login '%s' has the same password as you.</pre>"
 msgstr "<pre>Korisnik '%s' ima istu zaporku kao i Vi.</pre>"
 
 #. module: auth_admin_passkey
-#: code:addons/auth_admin_passkey/models/res_users.py:39
+#: code:addons/auth_admin_passkey/models/res_users.py:40
 #, python-format
 msgid ""
 "Admin user used his passkey to login with '%s'.\n"
@@ -54,7 +54,7 @@ msgid "Passkey"
 msgstr "Ključ"
 
 #. module: auth_admin_passkey
-#: code:addons/auth_admin_passkey/models/res_users.py:38
+#: code:addons/auth_admin_passkey/models/res_users.py:39
 #, python-format
 msgid "Passkey used"
 msgstr "Korišten ključ"
@@ -93,7 +93,7 @@ msgstr ""
 "će administratoru poslati email obavijest o tome."
 
 #. module: auth_admin_passkey
-#: code:addons/auth_admin_passkey/models/res_users.py:62
+#: code:addons/auth_admin_passkey/models/res_users.py:63
 #, python-format
 msgid "[WARNING] Odoo Security Risk"
 msgstr "[UPOZORENJE] Odoo sigurnosni rizik"
