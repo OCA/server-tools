@@ -403,6 +403,9 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_sale_payment_acquirer_onboarding_wizard__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_sale_report__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_sequence_mixin__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_server_config__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_server_env_mixin__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_server_env_techname_mixin__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_sms_api__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_sms_cancel__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_sms_composer__changeset_change_ids
@@ -794,6 +797,9 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_sale_payment_acquirer_onboarding_wizard__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_sale_report__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_sequence_mixin__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_server_config__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_server_env_mixin__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_server_env_techname_mixin__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_sms_api__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_sms_cancel__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_sms_composer__changeset_ids
@@ -1172,6 +1178,9 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_sale_payment_acquirer_onboarding_wizard__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_sale_report__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_sequence_mixin__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_server_config__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_server_env_mixin__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_server_env_techname_mixin__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_sms_api__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_sms_cancel__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_sms_composer__count_pending_changeset_changes
@@ -1543,6 +1552,9 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_sale_payment_acquirer_onboarding_wizard__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_sale_report__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_sequence_mixin__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_server_config__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_server_env_mixin__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_server_env_techname_mixin__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_sms_api__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_sms_cancel__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_sms_composer__count_pending_changesets
@@ -2312,6 +2324,9 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_sale_payment_acquirer_onboarding_wizard__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_sale_report__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_sequence_mixin__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_server_config__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_server_env_mixin__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_server_env_techname_mixin__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_sms_api__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_sms_cancel__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_sms_composer__user_can_see_changeset
