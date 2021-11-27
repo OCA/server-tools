@@ -26,6 +26,7 @@ setuptools.setup(
         'odoo13-addon-base_time_window',
         'odoo13-addon-base_view_inheritance_extension',
         'odoo13-addon-company_country',
+        'odoo13-addon-configuration_helper',
         'odoo13-addon-database_cleanup',
         'odoo13-addon-datetime_formatter',
         'odoo13-addon-dbfilter_from_header',
