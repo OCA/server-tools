@@ -55,6 +55,7 @@ setuptools.setup(
         'odoo10-addon-base_tier_validation',
         'odoo10-addon-base_user_gravatar',
         'odoo10-addon-base_user_role',
+        'odoo10-addon-base_user_role_company',
         'odoo10-addon-base_view_inheritance_extension',
         'odoo10-addon-configuration_helper',
         'odoo10-addon-database_cleanup',
