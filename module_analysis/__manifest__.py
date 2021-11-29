@@ -23,6 +23,7 @@
         "data/ir_config_parameter.xml",
         "data/ir_module_type.xml",
         "data/ir_module_type_rule.xml",
+        "data/ir_cron.xml",
     ],
     "external_dependencies": {
         "python": ["pygount"],
