@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="module_form" model="ir.ui.view">
+        <field name="model">ir.module.module</field>
+        <field name="inherit_id" ref="base.module_form"/>
+        <field name="arch" type="xml">
+            <button name="button_install_cancel" position="after">
+                <button name="button_save_translation"
+                    string="Save translation file"
+                    confirm="Overwrite all i18n files for this module ?"
+                    type="object"
+                    states="installed"
+                    icon="terp-translate"
+                />
+            </button>
+        </field>
+    </record>
+    <record id="module_tree" model="ir.ui.view">
+        <field name="model">ir.module.module</field>
+        <field name="inherit_id" ref="base.module_tree"/>
+        <field name="arch" type="xml">
+            <field name="state" position="after">
+                <button name="button_save_translation"
+                    string="Save translation file"
+                    confirm="Overwrite all i18n files for this module ?"
+                    type="object"
+                    states="installed"
+                    icon="terp-translate"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>
