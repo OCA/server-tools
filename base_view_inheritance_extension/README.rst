@@ -50,30 +50,21 @@ to refer to some xmlid, say ``%(xmlid)s``.
 
 **Add to values in a list (states for example)**
 
-.. code-block:: xml
-
-    <attribute name="$attribute" operation="list_add">
-        $new_value(s)
-    </attribute>
+Deprecated. This feature is now native, use `<attribute name="attrname" separator="," add="something" />`.
 
 **Remove values from a list (states for example)**
 
-.. code-block:: xml
-
-    <attribute name="$attribute" operation="list_remove">
-        $remove_value(s)
-    </attribute>
+Deprecated. This feature is now native, use `<attribute name="attrname" separator="," remove="something" />`.
 
 **Move an element in the view**
 
-This feature is now native, cf the `official Odoo documentation <https://www.odoo.com/documentation/14.0/reference/views.html#inheritance-specs>`_.
+This feature is now native, cf the `official Odoo documentation <https://www.odoo.com/documentation/14.0/developer/reference/addons/views.html#inheritance-specs>`_.
 
 Known issues / Roadmap
 ======================
 
-* add ``<attribute operation="json_dict" key="$key">$value</attribute>``
-* support ``<xpath expr="$xpath" position="move" target="xpath" target_position="position" />``
-* support an ``eval`` attribute for our new node types
+* On `15.0`, remove `list_add` and `list_remove` fetures.
+* Support an ``eval`` attribute for our new node types.
 
 Bug Tracker
 ===========
@@ -99,6 +90,7 @@ Contributors
 * Holger Brunn <hbrunn@therp.nl>
 * Ronald Portier <rportier@therp.nl>
 * Sergio Teruel <sergio.teruel@tecnativa.com>
+* Iván Todorovich <ivan.todorovich@camptocamp.com>
 
 Maintainers
 ~~~~~~~~~~~
