@@ -24,6 +24,16 @@ msgid "Models"
 msgstr ""
 
 #. module: base_model_restrict_update
+#: model:ir.model.fields,field_description:base_model_restrict_update.field_res_users__is_readonly_user
+msgid "Ready User"
+msgstr ""
+
+#. module: base_model_restrict_update
+#: model:ir.model.fields,help:base_model_restrict_update.field_res_users__is_readonly_user
+msgid "Set to true and the user are readonly user on all models"
+msgstr ""
+
+#. module: base_model_restrict_update
 #: model:ir.model.fields,help:base_model_restrict_update.field_res_users__unrestrict_model_update
 msgid "Set to true and the user can update restricted model."
 msgstr ""
@@ -49,8 +59,14 @@ msgid "When selected, the model is restricted to read-only unless the user has t
 msgstr ""
 
 #. module: base_model_restrict_update
-#: code:addons/base_model_restrict_update/models/ir_model_access.py:31
+#: code:addons/base_model_restrict_update/models/ir_model_access.py:27
 #, python-format
 msgid "You are only allowed to read this record. (%s - %s)"
+msgstr ""
+
+#. module: base_model_restrict_update
+#: code:addons/base_model_restrict_update/models/res_users.py:24
+#, python-format
+msgid "You cannot set admin user as a readonly user."
 msgstr ""
 
