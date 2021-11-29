@@ -54,3 +54,11 @@ class TestBaseModelRestrictUpdate(SavepointCase):
         with self.assertRaises(AccessError):
             test_partner.sudo(self.restrict_test_user.id).unlink()
         test_partner.sudo(self.permit_test_user.id).unlink()
+
+    def test_04_readonly_user_update_partner(self):
+        self.permit_test_user.toggle_is_readonly_user()
+        self.assertTrue(self.permit_test_user.is_readonly_user)
+        with self.assertRaises(AccessError):
+            self.test_partner.sudo(self.permit_test_user.id).update(
+                {"name": "Test Partner 2"}
+            )
