@@ -79,6 +79,7 @@ setuptools.setup(
         'odoo10-addon-onchange_helper',
         'odoo10-addon-password_security',
         'odoo10-addon-res_config_settings_enterprise_remove',
+        'odoo10-addon-save_translation_file',
         'odoo10-addon-scheduler_error_mailer',
         'odoo10-addon-sentry',
         'odoo10-addon-sequence_check_digit',
