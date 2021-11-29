@@ -89,6 +89,7 @@ addon | version | maintainers | summary
 [onchange_helper](onchange_helper/) | 10.0.3.1.2 |  | Technical module that ease execution of onchange in Python code
 [password_security](password_security/) | 10.0.1.1.4 |  | Allow admin to set password security requirements.
 [res_config_settings_enterprise_remove](res_config_settings_enterprise_remove/) | 10.0.1.0.0 |  | Remove fields in all settings views marked as enterprise
+[save_translation_file](save_translation_file/) | 10.0.1.0.0 |  | Allows developpers to easily generate i18n files
 [scheduler_error_mailer](scheduler_error_mailer/) | 10.0.1.0.0 |  | Scheduler Error Mailer
 [sentry](sentry/) | 10.0.1.0.1 |  | Report Odoo errors to Sentry
 [sequence_check_digit](sequence_check_digit/) | 10.0.1.0.0 |  | Adds a check digit on sequences
