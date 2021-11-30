@@ -1,5 +1,6 @@
 # generated from manifests external_dependencies
 acme
+astor
 cryptography
 dataclasses
 dnspython
@@ -9,7 +10,6 @@ odoorpc
 openpyxl
 openupgradelib
 pysftp
-pyyaml
 raven
 unidecode
 xlrd
