@@ -395,26 +395,17 @@ inheritance.</p>
 <p>Note that views are subject to evaluation of xmlids anyways, so if you need
 to refer to some xmlid, say <tt class="docutils literal">%(xmlid)s</tt>.</p>
 <p><strong>Add to values in a list (states for example)</strong></p>
-<pre class="code xml literal-block">
-<span class="nt">&lt;attribute</span> <span class="na">name=</span><span class="s">&quot;$attribute&quot;</span> <span class="na">operation=</span><span class="s">&quot;list_add&quot;</span><span class="nt">&gt;</span>
-    $new_value(s)
-<span class="nt">&lt;/attribute&gt;</span>
-</pre>
+<p>Deprecated. This feature is now native, use <cite>&lt;attribute name=”attrname” separator=”,” add=”something” /&gt;</cite>.</p>
 <p><strong>Remove values from a list (states for example)</strong></p>
-<pre class="code xml literal-block">
-<span class="nt">&lt;attribute</span> <span class="na">name=</span><span class="s">&quot;$attribute&quot;</span> <span class="na">operation=</span><span class="s">&quot;list_remove&quot;</span><span class="nt">&gt;</span>
-    $remove_value(s)
-<span class="nt">&lt;/attribute&gt;</span>
-</pre>
+<p>Deprecated. This feature is now native, use <cite>&lt;attribute name=”attrname” separator=”,” remove=”something” /&gt;</cite>.</p>
 <p><strong>Move an element in the view</strong></p>
-<p>This feature is now native, cf the <a class="reference external" href="https://www.odoo.com/documentation/14.0/reference/views.html#inheritance-specs">official Odoo documentation</a>.</p>
+<p>This feature is now native, cf the <a class="reference external" href="https://www.odoo.com/documentation/14.0/developer/reference/addons/views.html#inheritance-specs">official Odoo documentation</a>.</p>
 </div>
 <div class="section" id="known-issues-roadmap">
 <h1><a class="toc-backref" href="#id2">Known issues / Roadmap</a></h1>
 <ul class="simple">
-<li>add <tt class="docutils literal">&lt;attribute <span class="pre">operation=&quot;json_dict&quot;</span> <span class="pre">key=&quot;$key&quot;&gt;$value&lt;/attribute&gt;</span></tt></li>
-<li>support <tt class="docutils literal">&lt;xpath <span class="pre">expr=&quot;$xpath&quot;</span> <span class="pre">position=&quot;move&quot;</span> <span class="pre">target=&quot;xpath&quot;</span> <span class="pre">target_position=&quot;position&quot;</span> /&gt;</tt></li>
-<li>support an <tt class="docutils literal">eval</tt> attribute for our new node types</li>
+<li>On <cite>15.0</cite>, remove <cite>list_add</cite> and <cite>list_remove</cite> fetures.</li>
+<li>Support an <tt class="docutils literal">eval</tt> attribute for our new node types.</li>
 </ul>
 </div>
 <div class="section" id="bug-tracker">
@@ -439,6 +430,7 @@ If you spotted it first, help us smashing it by providing a detailed and welcome
 <li>Holger Brunn &lt;<a class="reference external" href="mailto:hbrunn&#64;therp.nl">hbrunn&#64;therp.nl</a>&gt;</li>
 <li>Ronald Portier &lt;<a class="reference external" href="mailto:rportier&#64;therp.nl">rportier&#64;therp.nl</a>&gt;</li>
 <li>Sergio Teruel &lt;<a class="reference external" href="mailto:sergio.teruel&#64;tecnativa.com">sergio.teruel&#64;tecnativa.com</a>&gt;</li>
+<li>Iván Todorovich &lt;<a class="reference external" href="mailto:ivan.todorovich&#64;camptocamp.com">ivan.todorovich&#64;camptocamp.com</a>&gt;</li>
 </ul>
 </div>
 <div class="section" id="maintainers">
