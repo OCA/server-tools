@@ -30,6 +30,7 @@ addon | version | maintainers | summary
 [base_kanban_stage](base_kanban_stage/) | 14.0.1.0.0 |  | Provides stage model and abstract logic for inheritance
 [base_kanban_stage_state](base_kanban_stage_state/) | 14.0.1.0.0 |  | Maps stages from base_kanban_stage to states
 [base_m2m_custom_field](base_m2m_custom_field/) | 14.0.1.1.0 |  | Customizations of Many2many
+[base_model_restrict_update](base_model_restrict_update/) | 14.0.1.0.0 |  | Update Restrict Model
 [base_name_search_improved](base_name_search_improved/) | 14.0.1.0.0 |  | Friendlier search when typing in relation fields
 [base_name_search_multi_lang](base_name_search_multi_lang/) | 14.0.1.0.0 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Name search by multiple active language
 [base_remote](base_remote/) | 14.0.1.0.0 |  | Remote Base
