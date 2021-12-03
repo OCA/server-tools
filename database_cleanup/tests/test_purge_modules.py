@@ -4,7 +4,7 @@ import threading
 
 from odoo.tools import config
 
-from .common import Common
+from .common import Common, new_rollbacked_env
 
 
 class TestCleanupPurgeLineModule(Common):
@@ -19,17 +19,18 @@ class TestCleanupPurgeLineModule(Common):
         )
 
     def test_remove_to_upgrade_module(self):
-        wizard = self.env["cleanup.purge.wizard.module"].create({})
-        config.options["test_enable"] = False  # Maybe useless now ?!
-        self.patch(threading.currentThread(), "testing", False)
-        wizard.purge_all()
-        config.options["test_enable"] = True  # Maybe useless now ?!
-        self.patch(threading.currentThread(), "testing", True)
-        # must be removed by the wizard
-        self.assertFalse(
-            self.env["ir.module.module"].search(
-                [
-                    ("name", "=", "database_cleanup_test"),
-                ]
+        with new_rollbacked_env() as env:
+            wizard = env["cleanup.purge.wizard.module"].create({})
+            config.options["test_enable"] = False  # Maybe useless now ?!
+            self.patch(threading.currentThread(), "testing", False)
+            wizard.purge_all()
+            config.options["test_enable"] = True  # Maybe useless now ?!
+            self.patch(threading.currentThread(), "testing", True)
+            # must be removed by the wizard
+            self.assertFalse(
+                env["ir.module.module"].search(
+                    [
+                        ("name", "=", "database_cleanup_test"),
+                    ]
+                )
             )
-        )
