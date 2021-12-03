@@ -22,7 +22,7 @@ class TestCleanupPurgeLineColumn(Common):
         self.env.registry.models.pop(self.model_name)
 
     def tearDown(self):
-        """ We recreate the model to avoid registry Exception at loading """
+        """We recreate the model to avoid registry Exception at loading"""
         super(TestCleanupPurgeLineColumn, self).tearDown()
         # FIXME: issue origin is not clear but it must be addressed.
         self.model = self.env["ir.model"].create(self.model_values)
