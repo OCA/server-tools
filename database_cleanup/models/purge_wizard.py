@@ -10,14 +10,14 @@ from odoo.exceptions import AccessDenied
 
 
 class CleanupPurgeLine(models.AbstractModel):
-    """ Abstract base class for the purge wizard lines """
+    """Abstract base class for the purge wizard lines"""
 
     _name = "cleanup.purge.line"
     _order = "name"
     _description = "Purge Column Abstract Wizard"
 
-    name = fields.Char("Name", readonly=True)
-    purged = fields.Boolean("Purged", readonly=True)
+    name = fields.Char(readonly=True)
+    purged = fields.Boolean(readonly=True)
     wizard_id = fields.Many2one("cleanup.purge.wizard")
 
     logger = logging.getLogger("odoo.addons.database_cleanup")
@@ -34,7 +34,7 @@ class CleanupPurgeLine(models.AbstractModel):
 
 
 class PurgeWizard(models.AbstractModel):
-    """ Abstract base class for the purge wizards """
+    """Abstract base class for the purge wizards"""
 
     _name = "cleanup.purge.wizard"
     _description = "Purge stuff"

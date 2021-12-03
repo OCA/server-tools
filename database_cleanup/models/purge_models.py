@@ -1,7 +1,7 @@
 # Copyright 2014-2016 Therp BV <http://therp.nl>
 # Copyright 2021 Camptocamp <https://camptocamp.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-# pylint: disable=consider-merging-classes-inherited
+# pylint: disable=consider-merging-classes-inherited,except-pass
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
@@ -20,7 +20,7 @@ class IrModel(models.Model):
     def _inherited_models(self):
         """this function crashes for undefined models"""
         existing_model_ids = self.filtered(lambda x: x.model in self.env)
-        super(IrModel, existing_model_ids)._inherited_models()
+        return super(IrModel, existing_model_ids)._inherited_models()
 
 
 class IrModelFields(models.Model):
