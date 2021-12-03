@@ -1,7 +1,9 @@
 # Copyright 2017 ACSONE SA/NV
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import fields
+import mock
+
+from odoo import fields, tools
 from odoo.exceptions import UserError
 from odoo.tests.common import SavepointCase
 
@@ -310,15 +312,41 @@ class TestParser(SavepointCase):
 
         self.assertDictEqual(json_menu, {"action": "Users"})
 
-    def test_bad_parsers(self):
+    def test_bad_parsers_strict(self):
+        rec = self.category.with_context(jsonify_record_strict=True)
         bad_field_name = ["Name"]
         with self.assertRaises(KeyError):
-            self.category.jsonify(bad_field_name, one=True)
+            rec.jsonify(bad_field_name, one=True)
 
         bad_function_name = {"fields": [{"name": "name", "function": "notafunction"}]}
         with self.assertRaises(UserError):
-            self.category.jsonify(bad_function_name, one=True)
+            rec.jsonify(bad_function_name, one=True)
 
         bad_subparser = {"fields": [({"name": "name"}, [{"name": "subparser_name"}])]}
         with self.assertRaises(UserError):
-            self.category.jsonify(bad_subparser, one=True)
+            rec.jsonify(bad_subparser, one=True)
+
+    def test_bad_parsers_fail_gracefully(self):
+        rec = self.category
+
+        logger_patch_path = "odoo.addons.base_jsonify.models.models._logger.error"
+
+        # logging is disabled when testing as it's useless and makes build fail.
+        tools.config["test_enable"] = False
+
+        bad_field_name = ["Name"]
+        with mock.patch(logger_patch_path) as mocked_logger:
+            rec.jsonify(bad_field_name, one=True)
+            mocked_logger.assert_called()
+
+        bad_function_name = {"fields": [{"name": "name", "function": "notafunction"}]}
+        with mock.patch(logger_patch_path) as mocked_logger:
+            rec.jsonify(bad_function_name, one=True)
+            mocked_logger.assert_called()
+
+        bad_subparser = {"fields": [({"name": "name"}, [{"name": "subparser_name"}])]}
+        with mock.patch(logger_patch_path) as mocked_logger:
+            rec.jsonify(bad_subparser, one=True)
+            mocked_logger.assert_called()
+
+        tools.config["test_enable"] = True
