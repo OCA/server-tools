@@ -11,6 +11,7 @@ setuptools.setup(
         'odoo13-addon-attachment_unindex_content',
         'odoo13-addon-auditlog',
         'odoo13-addon-auto_backup',
+        'odoo13-addon-autovacuum_message_attachment',
         'odoo13-addon-base_changeset',
         'odoo13-addon-base_cron_exclusion',
         'odoo13-addon-base_custom_info',
