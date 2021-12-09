@@ -5,11 +5,15 @@
 # Simone Orsi <simahawk@gmail.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import api, fields, models
+import logging
+
+from odoo import api, fields, models, tools
 from odoo.exceptions import UserError
 from odoo.tools.translate import _
 
 from .utils import convert_simple_to_full_parser
+
+_logger = logging.getLogger(__name__)
 
 
 class Base(models.AbstractModel):
@@ -70,17 +74,47 @@ class Base(models.AbstractModel):
     @api.model
     def _jsonify_record(self, parser, rec, root):
         """Jsonify one record (rec). Private function called by jsonify."""
+        strict = self.env.context.get("jsonify_record_strict", False)
         for field in parser:
             field_dict, subparser = rec.__parse_field(field)
             field_name = field_dict["name"]
+            if field_name not in rec._fields:
+                if strict:
+                    # let it fail
+                    rec._fields[field_name]  # pylint: disable=pointless-statement
+                if not tools.config["test_enable"]:
+                    # If running live, log proper error
+                    # so that techies can track it down
+                    _logger.error(
+                        "%(model)s.%(fname)s not available",
+                        {"model": self._name, "fname": field_name},
+                    )
+                continue
             json_key = field_dict.get("target", field_name)
             field = rec._fields[field_name]
             if field_dict.get("function"):
                 function = field_dict["function"]
-                value = self._function_value(rec, function, field_name)
+                try:
+                    value = self._function_value(rec, function, field_name)
+                except UserError:
+                    if strict:
+                        raise
+                    if not tools.config["test_enable"]:
+                        _logger.error(
+                            "%(model)s.%(func)s not available",
+                            {"model": self._name, "func": str(function)},
+                        )
+                    continue
             elif subparser:
                 if not (field.relational or field.type == "reference"):
-                    self._jsonify_bad_parser_error(field_name)
+                    if strict:
+                        self._jsonify_bad_parser_error(field_name)
+                    if not tools.config["test_enable"]:
+                        _logger.error(
+                            "%(model)s.%(fname)s not relational",
+                            {"model": self._name, "fname": field_name},
+                        )
+                    continue
                 value = [
                     self._jsonify_record(subparser, r, {}) for r in rec[field_name]
                 ]
