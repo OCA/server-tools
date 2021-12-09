@@ -48,21 +48,24 @@ class Base(models.AbstractModel):
                     for field_name, field in self._fields.items()
                 }
             )
+            for name in all_values:
+                field = self._fields.get(name)
+                if field:
+                    for invf in self._field_inverses[field]:
+                        invf._update(self[name], self)
         else:
             # We get default values, they may be used in onchange
             record_values = self.default_get(self._fields.keys())
 
-        for fn, field in self._fields.items():
-            if not field.related and fn not in all_values:  # related fields are False
-                all_values[fn] = record_values.get(fn, False)
+        for field in self._fields:
+            if field not in all_values:
+                all_values[field] = record_values.get(field, False)
 
         new_values = {}
-        with self.env.do_in_onchange():  # avoid cache issues with related fields!
-            new = self.new(all_values)
-            for field in onchange_fields:
-                onchange_values = new.onchange(all_values, field, onchange_specs)
-                new_values.update(self._get_new_values(values, onchange_values))
-                all_values.update(new_values)
+        for field in onchange_fields:
+            onchange_values = self.onchange(all_values, field, onchange_specs)
+            new_values.update(self._get_new_values(values, onchange_values))
+            all_values.update(new_values)
 
         return {
             f: v
