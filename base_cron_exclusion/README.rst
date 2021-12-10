@@ -23,7 +23,7 @@ Base Cron Exclusion
     :target: https://runbot.odoo-community.org/runbot/149/14.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 This module extends the functionality of scheduled actions to allow you to
 select the ones that should not run simultaneously.
@@ -68,6 +68,7 @@ Contributors
 * Lois Rilo <lois.rilo@forgeflow.com>
 * Jordi Ballester <jordi.ballester@forgeflow.com>
 * Bhavesh Odedra <bodedra@opensourceintegrators.com>
+* Christopher Ormaza <chris.ormaza@forgeflow.com>
 
 Maintainers
 ~~~~~~~~~~~
@@ -85,10 +86,13 @@ promote its widespread use.
 .. |maintainer-LoisRForgeFlow| image:: https://github.com/LoisRForgeFlow.png?size=40px
     :target: https://github.com/LoisRForgeFlow
     :alt: LoisRForgeFlow
+.. |maintainer-ChrisOForgeFlow| image:: https://github.com/ChrisOForgeFlow.png?size=40px
+    :target: https://github.com/ChrisOForgeFlow
+    :alt: ChrisOForgeFlow
 
-Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
+Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-LoisRForgeFlow| 
+|maintainer-LoisRForgeFlow| |maintainer-ChrisOForgeFlow|
 
 This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/14.0/base_cron_exclusion>`_ project on GitHub.
 
