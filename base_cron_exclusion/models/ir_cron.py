@@ -1,9 +1,9 @@
-# Copyright 2017-19 ForgeFlow S.L. (https://www.forgeflow.com)
+# Copyright 2017-21 ForgeFlow S.L. (https://www.forgeflow.com)
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
 import logging
 
-from odoo import _, api, fields, models, sql_db
+from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
 _logger = logging.getLogger(__name__)
@@ -61,11 +61,10 @@ class IrCron(models.Model):
         return lock_cr
 
     @classmethod
-    def _process_job(cls, job_cr, job, cron_cr):
-        db = sql_db.db_connect(cls.pool._db.dbname)
+    def _process_job(cls, db, cron_cr, job):
         locked_crons = cls._lock_mutually_exclusive_cron(db, job["id"])
         try:
-            res = super(IrCron, cls)._process_job(job_cr, job, cron_cr)
+            res = super(IrCron, cls)._process_job(db, cron_cr, job)
         finally:
             locked_crons.close()
             _logger.debug("released blocks for cron job %s" % job["cron_name"])
