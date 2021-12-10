@@ -45,7 +45,7 @@ class IrCron(models.Model):
                 GROUP BY cron_id;""",
             (job_id, job_id),
         )
-        locked_ids = tuple([row[0] for row in lock_cr.fetchall()])
+        locked_ids = tuple(row[0] for row in lock_cr.fetchall())
         if locked_ids:
             lock_cr.execute(
                 """SELECT *
