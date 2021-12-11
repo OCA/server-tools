@@ -14,6 +14,7 @@ setuptools.setup(
         'odoo14-addon-autovacuum_message_attachment',
         'odoo14-addon-base_changeset',
         'odoo14-addon-base_cron_exclusion',
+        'odoo14-addon-base_custom_info',
         'odoo14-addon-base_exception',
         'odoo14-addon-base_jsonify',
         'odoo14-addon-base_kanban_stage',
