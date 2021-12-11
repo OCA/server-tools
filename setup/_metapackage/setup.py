@@ -30,6 +30,7 @@ setuptools.setup(
         'odoo14-addon-base_sparse_field_list_support',
         'odoo14-addon-base_technical_user',
         'odoo14-addon-base_time_window',
+        'odoo14-addon-base_video_link',
         'odoo14-addon-base_view_inheritance_extension',
         'odoo14-addon-configuration_helper',
         'odoo14-addon-datetime_formatter',
