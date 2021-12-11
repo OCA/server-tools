@@ -163,6 +163,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_crm_stage__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_crm_tag__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_crm_team__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_custom_info__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_custom_info_category__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_custom_info_option__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_custom_info_property__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_custom_info_template__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_custom_info_value__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_db_backup__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_decimal_precision__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_digest_digest__assigned_attachment_ids
