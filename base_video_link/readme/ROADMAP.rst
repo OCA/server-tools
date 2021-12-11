@@ -1,0 +1,1 @@
+- we should be able to sort video locally (the sort is global), for this it will be great to have a generic module that implement "m2m_sortable" and store the sequence in the relation table
