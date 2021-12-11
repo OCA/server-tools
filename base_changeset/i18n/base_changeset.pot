@@ -441,6 +441,9 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_utm_stage__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_utm_tag__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_validate_account_move__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_video_link_mixin__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_video_provider__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_video_video__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_web_editor_assets__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_web_editor_converter_test_sub__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_web_tour_tour__changeset_change_ids
@@ -835,6 +838,9 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_utm_stage__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_utm_tag__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_validate_account_move__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_video_link_mixin__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_video_provider__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_video_video__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_web_editor_assets__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_web_editor_converter_test_sub__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_web_tour_tour__changeset_ids
@@ -1216,6 +1222,9 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_utm_stage__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_utm_tag__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_validate_account_move__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_video_link_mixin__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_video_provider__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_video_video__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_web_editor_assets__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_web_editor_converter_test_sub__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_web_tour_tour__count_pending_changeset_changes
@@ -1590,6 +1599,9 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_utm_stage__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_utm_tag__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_validate_account_move__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_video_link_mixin__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_video_provider__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_video_video__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_web_editor_assets__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_web_editor_converter_test_sub__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_web_tour_tour__count_pending_changesets
@@ -2362,6 +2374,9 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_utm_stage__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_utm_tag__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_validate_account_move__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_video_link_mixin__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_video_provider__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_video_video__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_web_editor_assets__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_web_editor_converter_test_sub__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_web_tour_tour__user_can_see_changeset
