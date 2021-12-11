@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+<menuitem id="video_root_menu" parent="base.menu_custom" sequence="110" name="Video" />
+
+<menuitem
+        id="video_provider_menu"
+        parent="video_root_menu"
+        sequence="20"
+        action="video_provider_action"
+    />
+
+<menuitem
+        id="video_video_menu"
+        parent="video_root_menu"
+        sequence="20"
+        action="video_video_action"
+    />
+
+</odoo>
