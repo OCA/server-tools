@@ -5,7 +5,7 @@
 {
     "name": "Base video link",
     "summary": "Add the possibility to link video on record",
-    "version": "14.0.1.0.1",
+    "version": "14.0.1.1.0",
     "development_status": "Alpha",
     "category": "Others",
     "website": "https://github.com/OCA/server-tools",
