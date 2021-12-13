@@ -8,16 +8,12 @@
                 <attribute name="string">Partner form</attribute>
             </xpath>
             <field name="parent_id" position="attributes">
-                <attribute
-                    name="context"
-                    operation="python_dict"
-                    key="default_name"
-                >'The company name'</attribute>
-                <attribute
-                    name="context"
-                    operation="python_dict"
-                    key="default_company_id"
-                >context.get('company_id', context.get('company'))</attribute>
+                <attribute name="context" operation="update">
+                    {
+                        "default_name": "The company name",
+                        "default_company_id": context.get("company_id", context.get("company"))
+                    }
+                </attribute>
             </field>
             <!-- without operations, the standard handler should be called /-->
             <field name="parent_id" position="attributes">
