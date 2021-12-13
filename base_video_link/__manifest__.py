@@ -6,12 +6,11 @@
     "name": "Base video link",
     "summary": "Add the possibility to link video on record",
     "version": "14.0.1.0.1",
+    "development_status": "Alpha",
     "category": "Others",
     "website": "https://github.com/OCA/server-tools",
     "author": " Akretion, Odoo Community Association (OCA)",
     "license": "AGPL-3",
-    "application": False,
-    "installable": True,
     "external_dependencies": {
         "python": [],
         "bin": [],
