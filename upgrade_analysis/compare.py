@@ -387,14 +387,22 @@ def compare_xml_sets(old_records, new_records):
                     and found["domain"] is False
                 )
                 column["domain"] = False
+                found["definition"] = (
+                    column["definition"]
+                    and column["definition"] != found["definition"]
+                    and "is now '{}' ('{}')".format(
+                        found["definition"], column["definition"]
+                    )
+                )
+                column["definition"] = False
                 column["noupdate_switched"] = False
                 found["noupdate_switched"] = column["noupdate"] != found["noupdate"]
                 if match_type != "direct":
                     matched_records.append(column)
                     matched_records.append(found)
-                elif (match_type == "direct" and found["domain"]) or found[
-                    "noupdate_switched"
-                ]:
+                elif (
+                    match_type == "direct" and (found["domain"] or found["definition"])
+                ) or found["noupdate_switched"]:
                     matched_records.append(found)
         return matched_records
 
@@ -413,10 +421,12 @@ def compare_xml_sets(old_records, new_records):
     for record in old_records:
         record["old"] = True
         record["domain"] = False
+        record["definition"] = False
         record["noupdate_switched"] = False
     for record in new_records:
         record["new"] = True
         record["domain"] = False
+        record["definition"] = False
         record["noupdate_switched"] = False
 
     sorted_records = sorted(
@@ -441,6 +451,8 @@ def compare_xml_sets(old_records, new_records):
             content = "%(model)s: %(name)s" % entry
         if entry["domain"]:
             content += " (deleted domain)"
+        if entry["definition"]:
+            content += " (changed definition: %(definition)s)" % entry
         if entry["noupdate"]:
             content += " (noupdate)"
         if entry["noupdate_switched"]:
