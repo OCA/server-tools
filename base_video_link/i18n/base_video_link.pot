@@ -51,7 +51,7 @@ msgstr ""
 
 #. module: base_video_link
 #: model:ir.model.fields,field_description:base_video_link.field_video_video__identifier
-msgid "identifier"
+msgid "Identifier"
 msgstr ""
 
 #. module: base_video_link
@@ -92,6 +92,20 @@ msgstr ""
 #. module: base_video_link
 #: model:ir.model.fields,field_description:base_video_link.field_video_provider__pattern_video_url
 msgid "Pattern Video Url"
+msgstr ""
+
+#. module: base_video_link
+#: model:ir.model.fields,help:base_video_link.field_video_provider__pattern_video_url
+msgid ""
+"Pattern to generate the video's URL. `record` variable represents the video "
+"record."
+msgstr ""
+
+#. module: base_video_link
+#: model:ir.model.fields,help:base_video_link.field_video_provider__pattern_thumbnail_url
+msgid ""
+"Pattern to generate the video's thumb URL. `record` variable represents the "
+"video record."
 msgstr ""
 
 #. module: base_video_link
