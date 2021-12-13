@@ -20,13 +20,10 @@ class VideoVideo(models.Model):
     @api.depends("identifier", "provider_id")
     def _compute_url(self):
         for record in self:
-            if record.provider_id.pattern_video_url:
-                record.url = record.provider_id.pattern_video_url.format(
-                    record.identifier
-                )
-                record.thumbnail_url = record.provider_id.pattern_thumbnail_url.format(
-                    record.identifier
-                )
-            else:
-                record.url = None
-                record.thumbnail_url = None
+            record.url = ""
+            record.thumbnail_url = ""
+            provider = record.provider_id
+            if provider.pattern_video_url:
+                record.url = provider.pattern_video_url.format(record)
+            if provider.pattern_thumbnail_url:
+                record.thumbnail_url = provider.pattern_thumbnail_url.format(record)
