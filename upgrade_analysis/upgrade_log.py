@@ -165,7 +165,10 @@ def log_model(model, local_registry):
 def log_xml_id(cr, module, xml_id):
     """
     Log xml_ids at load time in the records table.
-    Called from tools/convert.py:xml_import._test_xml_id()
+    Called from:
+     - tools/convert.py:xml_import._test_xml_id()
+     - odoo/models.py:BaseModel.load()
+     - odoo/addons/base/models/ir_model.py:IrModelConstraint._reflect_model()
 
     # Catcha's
     - The module needs to be loaded with 'init', or the calling method
