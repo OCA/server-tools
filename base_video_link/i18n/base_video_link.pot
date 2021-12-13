@@ -50,8 +50,8 @@ msgid "ID"
 msgstr ""
 
 #. module: base_video_link
-#: model:ir.model.fields,field_description:base_video_link.field_video_video__idendifier
-msgid "Idendifier"
+#: model:ir.model.fields,field_description:base_video_link.field_video_video__identifier
+msgid "identifier"
 msgstr ""
 
 #. module: base_video_link
