@@ -72,6 +72,24 @@ class GenerateWizard(models.TransientModel):
             ]
         )
 
+        # Set constraint definition
+        self.env.cr.execute(
+            """ UPDATE upgrade_record our
+            SET definition = btrim(replace(replace(replace(replace(
+                imc.definition, chr(9), ' '), chr(10), ' '), '   ', ' '), '  ', ' '))
+            FROM ir_model_data imd
+            JOIN ir_model_constraint imc ON imd.res_id = imc.id
+            WHERE our.type = 'xmlid'
+                AND imd.model = 'ir.model.constraint'
+                AND our.model = imd.model
+                AND our.name = imd.module || '.' || imd.name"""
+        )
+        self.env.cache.invalidate(
+            [
+                (self.env["upgrade.record"]._fields["definition"], None),
+            ]
+        )
+
         # Set noupdate property from ir_model_data
         self.env.cr.execute(
             """ UPDATE upgrade_record our
