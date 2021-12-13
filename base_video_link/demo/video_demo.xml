@@ -4,7 +4,7 @@
 <record id="video_video_1" model="video.video">
     <field name="provider_id" ref="video_provider_youtube" />
     <field name="name">Talk</field>
-    <field name="idendifier">6JByIDOnuv8</field>
+    <field name="identifier">6JByIDOnuv8</field>
 </record>
 
 </odoo>
