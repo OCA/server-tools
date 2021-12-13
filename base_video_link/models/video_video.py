@@ -24,6 +24,8 @@ class VideoVideo(models.Model):
             record.thumbnail_url = ""
             provider = record.provider_id
             if provider.pattern_video_url:
-                record.url = provider.pattern_video_url.format(record)
+                record.url = provider.pattern_video_url.format(record=record)
             if provider.pattern_thumbnail_url:
-                record.thumbnail_url = provider.pattern_thumbnail_url.format(record)
+                record.thumbnail_url = provider.pattern_thumbnail_url.format(
+                    record=record
+                )

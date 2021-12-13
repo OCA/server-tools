@@ -4,8 +4,12 @@
     <record id="video_provider_youtube" model="video.provider">
         <field name="code">youtube</field>
         <field name="name">Youtube</field>
-        <field name="pattern_video_url">https://www.youtube.com/watch?v={}</field>
-        <field name="pattern_thumbnail_url">https://img.youtube.com/vi/{}/0.jpg</field>
+        <field
+            name="pattern_video_url"
+        >https://www.youtube.com/watch?v={record.identifier}</field>
+        <field
+            name="pattern_thumbnail_url"
+        >https://img.youtube.com/vi/{record.identifier}/0.jpg</field>
     </record>
 
 </odoo>
