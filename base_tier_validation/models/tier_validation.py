@@ -88,6 +88,8 @@ class TierValidation(models.AbstractModel):
 
     @api.multi
     def evaluate_tier(self, tier):
+        if not tier.python_code:
+            tier.python_code = "1 == 1"
         try:
             res = safe_eval(tier.python_code, globals_dict={'rec': self})
         except Exception, error:
