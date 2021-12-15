@@ -8,6 +8,7 @@
     " to know which installed modules comes from Odoo Core, OCA, or are"
     " custom modules",
     "author": "GRAP, Odoo Community Association (OCA)",
+    "maintainers": ["legalsylvain"],
     "website": "https://github.com/OCA/server-tools",
     "version": "13.0.1.1.1",
     "license": "AGPL-3",
