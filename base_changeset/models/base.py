@@ -83,7 +83,7 @@ class Base(models.AbstractModel):
         for record in self:
             local_values = self.env["record.changeset"].add_changeset(record, values)
             super(Base, record).write(local_values)
-        return self
+        return True
 
     def action_record_changeset_change_view(self):
         self.ensure_one()
