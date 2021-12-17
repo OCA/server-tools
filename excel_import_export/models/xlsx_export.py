@@ -200,7 +200,11 @@ class XLSXExport(models.AbstractModel):
                 # Insert rows to preserve total line
                 if not rows_inserted:
                     rows_inserted = True
-                    st.insert_rows(row+1, amount=row_count-1)
+                    # Avoid deletion of bottom rows if only one data row exists.
+                    if row_count == 1:
+                        st.insert_rows(row+1, amount=row_count)
+                    else:
+                        st.insert_rows(row+1, amount=row_count-1)
                 # --
                 for (row_val, style) in vals[field]:
                     new_row = row + i
