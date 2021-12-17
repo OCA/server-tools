@@ -29,6 +29,37 @@ class SqlExport(models.Model):
     mail_condition = fields.Selection(
         [('not_empty', 'File Not Empty')], default='not_empty')
 
+    option_mail_mute = fields.Boolean(
+        string="Deactivate After Sending",
+        default=False,
+        help="check this box if you want to disable the sending of an email,"
+        " once a first email is sent."
+        " This feature is useful to implement alerts that you want to process."
+        " Once processed, you will have to 'unmute' the report.")
+
+    mail_active = fields.Boolean(string="Active Mail Sending", default=True)
+
+    def get_url(self):
+        self.ensure_one()
+        base_url = self.env["ir.config_parameter"].sudo().get_param("web.base.url")
+        action_id = self.env.ref(
+            "sql_export.sql_export_tree_action"
+        ).id
+        menu_id = self.env.ref("sql_export.sql_export_menu").id
+        return (
+            "{base_url}/web?"
+            "#id={sql_report_id}"
+            "&action={action_id}"
+            "&model=sql.export"
+            "&view_type=form"
+            "&menu_id={menu_id}".format(
+                base_url=base_url,
+                sql_report_id=self.id,
+                action_id=action_id,
+                menu_id=menu_id,
+            )
+        )
+
     @api.multi
     def create_cron(self):
         self.ensure_one()
@@ -57,6 +88,9 @@ class SqlExport(models.Model):
     @api.multi
     def send_mail(self, params=None):
         self.ensure_one()
+        if not self.mail_active:
+            # Sending mail has been disabled
+            return
         mail_template = self.env.ref('sql_export_mail.sql_export_mailer')
         now_time = datetime.strftime(datetime.now(),
                                      DEFAULT_SERVER_DATETIME_FORMAT)
@@ -66,6 +100,8 @@ class SqlExport(models.Model):
                 params=params, mode='fetchone')
             if not res:
                 return
+        if self.option_mail_mute:
+            self.mail_active = False
         ctx = self.env.context.copy()
         if params:
             if 'user_id' in params:

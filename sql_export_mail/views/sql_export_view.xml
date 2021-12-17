@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+    <record id="sql_export_mail_view_tree" model="ir.ui.view">
+        <field name="model">sql.export</field>
+        <field name="inherit_id" ref="sql_export.sql_export_view_tree" />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="option_mail_mute" invisible="1"/>
+                <field name="mail_active" attrs="{'invisible': [('option_mail_mute', '=', False)]}" widget="boolean_toggle"/>
+            </field>
+        </field>
+    </record>
 
     <record id="sql_export_mail_view_form" model="ir.ui.view">
         <field name="model">sql.export</field>
@@ -12,6 +22,8 @@
             </button>
             <field name="copy_options" position="after">
                 <field name="mail_condition" attrs="{'invisible': [('cron_ids', '=', [(6, False, [])])]}"/>
+                <field name="option_mail_mute"/>
+                <field name="mail_active" attrs="{'invisible': [('option_mail_mute', '=', False)]}" widget="boolean_toggle"/>
             </field>
             <group name="parameters" position="after">
                 <group groups="sql_request_abstract.group_sql_request_user">
