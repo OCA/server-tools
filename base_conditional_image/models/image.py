@@ -51,7 +51,10 @@ class Image(models.Model):
     @api.model
     def _process_images(self, vals, required=False):
         if {"image", "image_medium", "image_small"} & set(vals.keys()):
-            tools.image_resize_images(vals)
+            vals["image_medium"] = tools.image_process(
+                vals.get("image"), size=(128, 128)
+            )
+            vals["image_small"] = tools.image_process(vals.get("image"), size=(64, 64))
         elif required:
             raise ValidationError(_("At least one image type must be specified"))
 
@@ -60,7 +63,6 @@ class Image(models.Model):
         self._process_images(vals, required=True)
         return super().create(vals)
 
-    @api.multi
     def write(self, vals):
         self._process_images(vals)
         return super().write(vals)
