@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-10-28 11:35+0000\n"
+"PO-Revision-Date: 2021-12-20 08:39+0000\n"
 "Last-Translator: Yavuz Avci <yavuzavci@gmail.com>\n"
 "Language-Team: none\n"
 "Language: tr\n"
@@ -158,6 +158,7 @@ msgstr "<b>Toplam</b>: Son satıra toplam değerini ekle, <code>@{sum}</code>"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
+#, fuzzy
 msgid ""
 "<code class=\"oe_grey\">\n"
 "{\n"
@@ -193,6 +194,39 @@ msgid ""
 "\n"
 "                                </code>"
 msgstr ""
+"<code class=\"oe_grey\">\n"
+"{\n"
+"    '__EXPORT__': {\n"
+"        'sale_order': {  # sayfa adı (string) veya dizini(integer) olabilir\n"
+"            '_HEAD_': {\n"
+"                'B2': 'partner_id.display_name${value or \"\""
+"}#{align=left;style=text}',\n"
+"                'B3': 'name${value or \"\"}#{align=left;style=text}',\n"
+"            },\n"
+"            'line_ids': {  # önceki satır alanından devam etmek için _CONT_ "
+"ile ön ekleyin\n"
+"                'A6': 'product_id.display_name${value or \"\"}#{style=text}',"
+"\n"
+"                'C6': 'product_uom_qty${value or 0}#{style=number}',\n"
+"                'E6': 'price_unit${value or 0}#{style=number}',\n"
+"                'G6': 'price_subtotal${value or 0}#{style=number}',\n"
+"            },\n"
+"        },\n"
+"    },\n"
+"    '__IMPORT__': {\n"
+"        'sale_order': {  # sayfa adı (string) veya dizini(integer) olabilir\n"
+"            'order_line': {  # içe aktarmadan önce satırların silinmemesi "
+"için _NODEL_ ile ön ekleyin\n"
+"                'A6': 'product_id',\n"
+"                'C6': 'product_uom_qty',\n"
+"                'E6': 'price_unit${value &gt; 0 and value or 0}',\n"
+"            },\n"
+"        },\n"
+"    },\n"
+"    '__POST_IMPORT__': '${object.post_import_do_something()}',\n"
+"}\n"
+"\n"
+"                                </code>"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -568,7 +602,7 @@ msgstr "Excel şablon dosyası ve talimat"
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.xlsx_report_view
 msgid "Execute Report"
-msgstr ""
+msgstr "Raporu Yürüt"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__export_ids
@@ -579,6 +613,7 @@ msgstr "Dışa Aktar"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
+#, fuzzy
 msgid ""
 "Export Instruction is how to write data from an active data record to "
 "specified cells in excel sheet.\n"
@@ -591,6 +626,16 @@ msgid ""
 "Excel Sheet(s), each with 1 header section (_HEAD_) and multiple row "
 "sections (one2many fields)."
 msgstr ""
+"Dışa Aktarma Talimatı aktif bir veri kaydından excel sayfasına verilerin "
+"nasıl yazılacağıdır.\n"
+"                                  Örneğin, etkin kayıt kullanıcının dışarı "
+"aktarmak istediği bir satış siparişi olabilir.\n"
+"                                  Kaydın kendisi Excel sayfasının başlık "
+"kısmıyla eşleştirilecektir. Kayıt, veri satırı olarak yazılmak üzere birden "
+"fazla one2many alanı içerebilir.\n"
+"                                  Aşağıdaki talimata Excel Sayfası / "
+"Sayfaları olarak bakabilirsiniz ki her sayfa, 1 başlık bölümü (_HEAD_) ve "
+"çoklu satır bölümü içerir(one2many alanları)."
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__field_name
@@ -636,11 +681,15 @@ msgstr "Aşağıda her sütunda daha fazla açıklama bulunmaktadır:"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
+#, fuzzy
 msgid ""
 "Following show very simple example of the dictionary construct.\n"
 "                                    Normally, this will be within templates."
 "xml file within addons."
 msgstr ""
+"Aşağıda dictionary yapısının en basit örneği gösterilmektedir.\n"
+"                                    Normalde bu, eklentinin içindeki "
+"templates.xml dosyasının içinde yer almaktadır."
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -684,7 +733,7 @@ msgstr "HTML"
 #: selection:xlsx.template.export,section_type:0
 #: selection:xlsx.template.import,section_type:0
 msgid "Head"
-msgstr ""
+msgstr "Başlık"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -781,6 +830,15 @@ msgid ""
 "section (_HEAD_) and data table can be mapped to row section (one2many "
 "field, begins from specifed cells."
 msgstr ""
+"İçe Aktarma Talimatı excel sayfasından  alınan verinin etkin bir kayda nasıl "
+"yazılacağıdır.\n"
+"                                  Örneğin, kullanıcı satış siparişi belgesi "
+"oluşturup, excelden sipariş satırlarını aktarmak isteyebilir.\n"
+"                                  Dışa aktarmaya ters yönlü olarak, excel "
+"hücrelerindeki veriler içe aktarılırken kaydın alanlarıyla eşleştirilir.\n"
+"                                  Hücreler başlık bölümünde (_HEAD_) kayıtla "
+"eşleştirilebilir ve veri tablosu satır kısmıyla eşleştirilebilir(one2many "
+"alanı, belirtilen hücrelerden başlar)."
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.import_xlsx_wizard
@@ -828,46 +886,48 @@ msgstr ""
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "Input Instruction (Dict.)"
-msgstr ""
+msgstr "Giriş Talimatı (Dict.)"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__instruction
 msgid "Instruction"
-msgstr ""
+msgstr "Talimat"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__input_instruction
 msgid "Instruction (Input)"
-msgstr ""
+msgstr "Talimat (Giriş)"
 
 #. module: excel_import_export
 #: model:ir.model.fields,help:excel_import_export.field_xlsx_template__instruction
+#, fuzzy
 msgid "Instruction on how to import/export, prepared by system."
-msgstr ""
+msgstr "Sistem tarafından hazırlanan, içe/dışa nasıl aktarılacağı talimatı."
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/models/xlsx_import.py:67
 #, python-format
 msgid "Invalid declaration, %s has no valid field type"
-msgstr ""
+msgstr "Geçersiz beyan, %s geçerli bir alan türüne sahip değil"
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/models/xlsx_import.py:222
 #, python-format
 msgid "Invalid file style, only .xls or .xlsx file allowed"
 msgstr ""
+"Geçersiz dosya biçimi, sadece .xls veya .xlsx dosyalarına izin verilmektedir"
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/models/common.py:108
 #, python-format
 msgid "Invalid style type %s"
-msgstr ""
+msgstr "Geçersiz stil türü %s"
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/models/common.py:111
 #, python-format
 msgid "Invalid value %s for style type %s"
-msgstr ""
+msgstr "Değer %s stil türü %s için geçersizdir"
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/models/xlsx_export.py:134
@@ -888,7 +948,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export____last_update
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_import____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Son Düzenleme"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_export_xlsx_wizard__write_uid
@@ -897,7 +957,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__write_uid
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_import__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Son Güncelleyen"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_export_xlsx_wizard__write_date
@@ -906,14 +966,17 @@ msgstr ""
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__write_date
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_import__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Son Güncellenme"
 
 #. module: excel_import_export
 #: model:ir.model.fields,help:excel_import_export.field_xlsx_template__gname
+#, fuzzy
 msgid ""
 "Multiple template of same model, can belong to same group,\n"
 "result in multiple template selection"
 msgstr ""
+"Aynı modelin birden çok şablonu, aynı gruba ait olabilir,\n"
+"bu da birden çok şablondan birinin seçilebilmesine izin verir"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_import__no_delete
@@ -922,16 +985,16 @@ msgstr "Silme Yok"
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/models/xlsx_import.py:254
-#, python-format
+#, fuzzy, python-format
 msgid "No data_dict['__IMPORT__'] in template %s"
-msgstr ""
+msgstr "Şablon %s de data_dict['__IMPORT__'] yok"
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/models/xlsx_report.py:50
 #: code:addons/excel_import_export/wizard/export_xlsx_wizard.py:60
 #, python-format
 msgid "No file in %s"
-msgstr ""
+msgstr "%s de dosya yok"
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/models/xlsx_report.py:46
@@ -939,13 +1002,13 @@ msgstr ""
 #: code:addons/excel_import_export/wizard/import_xlsx_wizard.py:103
 #, python-format
 msgid "No template found"
-msgstr ""
+msgstr "Şablon bulunamadı"
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/models/xlsx_export.py:125
 #, python-format
 msgid "Not enough worksheets"
-msgstr ""
+msgstr "Yeterli çalışma sayfası yok"
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/models/ir_report.py:17
@@ -982,7 +1045,7 @@ msgstr ""
 #: code:addons/excel_import_export/wizard/import_xlsx_wizard.py:146
 #, python-format
 msgid "Please select Excel file to import"
-msgstr ""
+msgstr "Lütfen içe aktarılacak Excel dosyasını seçin"
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/models/common.py:158
@@ -1047,13 +1110,13 @@ msgstr ""
 #: selection:xlsx.template.export,section_type:0
 #: selection:xlsx.template.import,section_type:0
 msgid "Row"
-msgstr ""
+msgstr "Satır"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__row_field
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_import__row_field
 msgid "Row Field"
-msgstr ""
+msgstr "Satır Alanı"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_import_xlsx_wizard__datas
