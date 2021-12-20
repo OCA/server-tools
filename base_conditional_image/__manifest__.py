@@ -3,7 +3,8 @@
 
 {
     "name": "Conditional Images",
-    "version": "12.0.1.0.1",
+    "summary": "This module extends the functionality to support conditional images",
+    "version": "14.0.1.0.0",
     "author": "Camptocamp, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "category": "Misc",
