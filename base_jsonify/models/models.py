@@ -89,6 +89,10 @@ class Base(models.AbstractModel):
             # This call also add the tzinfo into the datetime object
             value = fields.Datetime.context_timestamp(self, value)
             value = value.isoformat()
+        elif field.type in ("many2one", "reference"):
+            value = value.display_name if value else None
+        elif field.type in ("one2many", "many2many"):
+            value = [v.display_name for v in value]
         return value
 
     def _jsonify_value_subparser(self, field_name, subparser):
