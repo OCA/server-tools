@@ -48,7 +48,7 @@ def _overload_load_information_from_description_file(module, mod_path=None):
 
     if not auto_install and module in modules_auto_install_enabled:
         _logger.info("Module '%s' has been marked as auto installable." % module)
-        res["auto_install"] = True
+        res["auto_install"] = set(res["depends"])
 
     return res
 
