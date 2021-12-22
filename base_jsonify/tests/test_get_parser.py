@@ -117,7 +117,7 @@ class TestParser(SavepointCase):
                     "email": None,
                 }
             ],
-            "create_date": "2019-10-31 14:39:49",
+            "create_date": "2019-10-31T15:39:49+01:00",
             "date": "2019-10-31",
         }
         json_partner = self.partner.jsonify(parser)

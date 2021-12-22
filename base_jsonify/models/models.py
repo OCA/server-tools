@@ -6,7 +6,7 @@
 # Simone Orsi <simahawk@gmail.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import api, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools.translate import _
 
@@ -75,11 +75,20 @@ class Base(models.AbstractModel):
         return result
 
     def _jsonify_value(self, field_name):
-        field_type = self._fields[field_name].type
+        field = self._fields[field_name]
         value = self[field_name]
         # TODO: we should get default by field (eg: char field -> "")
-        if value is False and field_type != "boolean":
+        if value is False and field.type != "boolean":
             value = None
+        elif field.type == "date":
+            value = fields.Date.from_string(value).isoformat()
+        elif field.type == "datetime":
+            # Ensures value is a datetime
+            value = fields.Datetime.from_string(value)
+            # Get the timestamp converted to the client's timezone.
+            # This call also add the tzinfo into the datetime object
+            value = fields.Datetime.context_timestamp(self, value)
+            value = value.isoformat()
         return value
 
     def _jsonify_value_subparser(self, field_name, subparser):
