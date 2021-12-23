@@ -155,14 +155,24 @@ class RecordChangesetChange(models.Model):
     @api.depends("changeset_id.res_id", "changeset_id.model")
     def _compute_origin_values(self):
         states = self.get_pending_changes_states()
+        field_names = [
+            field_name
+            for field_name in self._fields.keys()
+            if field_name.startswith("origin_value_")
+            and field_name != "origin_value_display"
+        ]
         for rec in self:
             field_name = rec.get_field_for_type(rec.field_id, "origin")
-            if rec.state in states:
-                value = rec.record_id[rec.field_id.name]
-            else:
-                old_field = rec.get_field_for_type(rec.field_id, "old")
-                value = rec[old_field]
-            setattr(rec, field_name, value)
+            for fname in field_names:
+                if fname == field_name:
+                    if rec.state in states:
+                        value = rec.record_id[rec.field_id.name]
+                    else:
+                        old_field = rec.get_field_for_type(rec.field_id, "old")
+                        value = rec[old_field]
+                    setattr(rec, fname, value)
+                else:
+                    setattr(rec, fname, False)
 
     @api.depends(lambda self: self._value_fields)
     def _compute_value_display(self):
