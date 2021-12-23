@@ -215,8 +215,7 @@ class RecordChangesetChange(models.Model):
         changes_ok = self.browse()
         key = attrgetter("changeset_id")
         for changeset, changes in groupby(
-            self.with_context(__no_changeset=disable_changeset).sorted(key=key),
-            key=key
+            self.with_context(__no_changeset=disable_changeset).sorted(key=key), key=key
         ):
             values = {}
             for change in changes:
@@ -237,9 +236,9 @@ class RecordChangesetChange(models.Model):
 
             self._check_previous_changesets(changeset)
 
-            changeset.record_id.with_context(
-                __no_changeset=disable_changeset
-            ).write(values)
+            changeset.record_id.with_context(__no_changeset=disable_changeset).write(
+                values
+            )
 
         changes_ok._finalize_change_approval()
 
@@ -390,9 +389,9 @@ class RecordChangesetChange(models.Model):
         user_groups = self.env.user.groups_id
         for rec in self:
             can_validate = rec._is_change_pending() and (
-                is_superuser or
-                rec.rule_id.validator_group_ids & user_groups or
-                has_group
+                is_superuser
+                or rec.rule_id.validator_group_ids & user_groups
+                or has_group
             )
             rec.user_can_validate_changeset = can_validate
 

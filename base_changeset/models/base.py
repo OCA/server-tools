@@ -87,10 +87,11 @@ class Base(models.AbstractModel):
                     {
                         field_name: value
                         for field_name, value in vals.items()
-                        if field_name in self._fields and
-                        self._fields[field_name].required
+                        if field_name in self._fields
+                        and self._fields[field_name].required
                         and isinstance(
-                            self._fields[field_name], fields.Many2one,
+                            self._fields[field_name],
+                            fields.Many2one,
                         )
                     },
                     this,
@@ -98,13 +99,12 @@ class Base(models.AbstractModel):
                 vals,
             )
             local_vals = {
-                key: value
-                for key, value in local_vals.items()
-                if vals[key] != value
+                key: value for key, value in local_vals.items() if vals[key] != value
             }
             if local_vals:
                 this.with_context(
-                    __no_changeset=disable_changeset, tracking_disable=True,
+                    __no_changeset=disable_changeset,
+                    tracking_disable=True,
                 ).write(local_vals)
         return result
 

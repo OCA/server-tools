@@ -8,8 +8,8 @@ from odoo import fields
 from odoo.exceptions import UserError
 from odoo.tests.common import TransactionCase
 
-from .common import ChangesetTestCommon
 from ..models.base import disable_changeset
+from .common import ChangesetTestCommon
 
 
 class TestChangesetFlow(ChangesetTestCommon, TransactionCase):
@@ -120,9 +120,9 @@ class TestChangesetFlow(ChangesetTestCommon, TransactionCase):
         """ No changeset created when both sides have an empty value """
         # we have to ensure that even if we write '' to a False field, we won't
         # write a changeset
-        self.partner.with_context(
-            __no_changeset=disable_changeset
-        ).write({"street": False})
+        self.partner.with_context(__no_changeset=disable_changeset).write(
+            {"street": False}
+        )
         self.partner._compute_changeset_ids()
         self.partner._compute_count_pending_changesets()
         self.assertEqual(self.partner.count_pending_changesets, 0)
@@ -364,14 +364,16 @@ class TestChangesetFlow(ChangesetTestCommon, TransactionCase):
 
     def test_new_changeset_expression(self):
         """ Test that rules can be conditional """
-        self.env["changeset.field.rule"].search([
-            ("field_id", "=", self.field_street.id),
-        ]).expression = "object.street != 'street X'"
+        self.env["changeset.field.rule"].search(
+            [
+                ("field_id", "=", self.field_street.id),
+            ]
+        ).expression = "object.street != 'street X'"
         self.partner.street = "street Y"
         self.partner.refresh()
-        self.assertEqual(self.partner.street, 'street Y')
+        self.assertEqual(self.partner.street, "street Y")
         self.assertFalse(self.partner.changeset_ids)
         self.partner.street = "street Z"
         self.partner.refresh()
         self.assertTrue(self.partner.changeset_ids)
-        self.assertEqual(self.partner.street, 'street Y')
+        self.assertEqual(self.partner.street, "street Y")

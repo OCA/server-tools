@@ -43,11 +43,14 @@ class ChangesetFieldRule(models.Model):
         "Available variables: object, user",
     )
     validator_group_ids = fields.Many2many(
-        'res.groups', 'changeset_field_rule_validator_group_rel',
-        string='Validator Groups', default=lambda self: self.env.ref(
-            'base_changeset.group_changeset_user',
+        "res.groups",
+        "changeset_field_rule_validator_group_rel",
+        string="Validator Groups",
+        default=lambda self: self.env.ref(
+            "base_changeset.group_changeset_user",
             raise_if_not_found=False,
-        ) or self.env['res.groups'],
+        )
+        or self.env["res.groups"],
     )
 
     def init(self):
@@ -88,7 +91,7 @@ class ChangesetFieldRule(models.Model):
     def _selection_action(self):
         return [("auto", "Auto"), ("validate", "Validate"), ("never", "Never")]
 
-    @api.constrains('expression')
+    @api.constrains("expression")
     def _check_expression(self):
         for this in self:
             this._evaluate_expression(self.env[this.model_id.model].new({}))
