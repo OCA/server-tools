@@ -13,7 +13,7 @@ Record Changesets > Fields Rules``.
 
 * Configuration of rules
 
-  .. image:: base_changeset/static/src/img/rules.png
+  .. image:: ../static/src/img/rules.png
 
 For each record field, an action can be defined:
 
