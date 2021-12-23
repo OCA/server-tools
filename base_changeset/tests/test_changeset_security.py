@@ -34,4 +34,4 @@ class TestChangesetFlow(ChangesetTestCommon, TransactionCase):
             ]
         )
         self.assertTrue(changeset)
-        self.assertFalse(changeset.sudo(user).search([("id", "=", changeset.id)]))
+        self.assertFalse(changeset.with_user(user).search([("id", "=", changeset.id)]))
