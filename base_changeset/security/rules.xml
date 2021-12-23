@@ -26,6 +26,8 @@
         <field name="name">Allow changeset change access for changeset users</field>
         <field name="model_id" ref="model_record_changeset_change" />
         <field name="groups" eval="[(4, ref('group_changeset_user'))]" />
-        <field name="domain_force">[('rule_id.validator_group_ids', 'in', user.groups_id.ids)]</field>
+        <field
+            name="domain_force"
+        >[('rule_id.validator_group_ids', 'in', user.groups_id.ids)]</field>
     </record>
 </odoo>

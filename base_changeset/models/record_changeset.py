@@ -144,9 +144,10 @@ class RecordChangeset(models.Model):
                     # overwrite with null value for new records
                     write_values[field] = (
                         # but create some default for required text fields
-                        record._fields[field].required and
-                        record._fields[field].type in ('char', 'text') and
-                        '/' or record._fields[field].null(record)
+                        record._fields[field].required
+                        and record._fields[field].type in ("char", "text")
+                        and "/"
+                        or record._fields[field].null(record)
                     )
             changes.append(change)
         if changes:

@@ -225,8 +225,7 @@ class RecordChangesetChange(models.Model):
         changes_ok = self.browse()
         key = attrgetter("changeset_id")
         for changeset, changes in groupby(
-            self.with_context(__no_changeset=disable_changeset).sorted(key=key),
-            key=key
+            self.with_context(__no_changeset=disable_changeset).sorted(key=key), key=key
         ):
             values = {}
             for change in changes:
@@ -247,9 +246,9 @@ class RecordChangesetChange(models.Model):
 
             self._check_previous_changesets(changeset)
 
-            changeset.record_id.with_context(
-                __no_changeset=disable_changeset
-            ).write(values)
+            changeset.record_id.with_context(__no_changeset=disable_changeset).write(
+                values
+            )
 
         changes_ok._finalize_change_approval()
 
