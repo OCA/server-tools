@@ -15,7 +15,7 @@ Remove the "Pending" filter to show all the changesets.
 
 * Changeset waiting for validation
 
-  .. image:: base_changeset/static/src/img/changeset.png
+  .. image:: ../static/src/img/changeset.png
 
 The changes view shows the name of the record's field, the Origin value
 and the New value alongside the state of the change. By clicking on the
@@ -35,13 +35,13 @@ number of pending changes next to it like this:
 
 * Badge with the number of pending changes
 
-  .. image:: base_changeset/static/src/img/badge.png
+  .. image:: ../static/src/img/badge.png
 
 When you click on it:
 
 * Clicking the badge: red button to reject, green one to apply
 
-  .. image:: base_changeset/static/src/img/badge_click.png
+  .. image:: ../static/src/img/badge_click.png
 
 Click the red button to reject the change, click the green one to apply it.
 
