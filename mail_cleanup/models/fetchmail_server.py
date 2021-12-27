@@ -6,7 +6,7 @@ import logging
 
 from dateutil.relativedelta import relativedelta
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 _logger = logging.getLogger(__name__)
 
@@ -66,7 +66,7 @@ class FetchmailServer(models.Model):
             except Exception:
                 _logger.exception(
                     "Failed to cleanup mail from %s server %s.",
-                    server.type,
+                    server.server_type,
                     server.name,
                 )
                 failed += 1
@@ -74,7 +74,7 @@ class FetchmailServer(models.Model):
         _logger.info(
             "Marked %d email(s) as read on %s server %s;" " %d succeeded, %d failed.",
             count,
-            server.type,
+            server.server_type,
             server.name,
             (count - failed),
             failed,
@@ -94,29 +94,32 @@ class FetchmailServer(models.Model):
                 imap_server.store(num, "+FLAGS", "\\Deleted")
             except Exception:
                 _logger.exception(
-                    "Failed to remove mail from %s server %s.", server.type, server.name
+                    "Failed to remove mail from %s server %s.",
+                    server.server_type,
+                    server.name,
                 )
                 failed += 1
             count += 1
         _logger.info(
             "Removed %d email(s) on %s server %s;" " %d succeeded, %d failed.",
             count,
-            server.type,
+            server.server_type,
             server.name,
             (count - failed),
             failed,
         )
 
-    @api.multi
     def fetch_mail(self):
         # Called before the fetch, in order to clean up right before
         # retrieving emails.
         for server in self:
             _logger.info(
-                "start cleaning up emails on %s server %s", server.type, server.name
+                "start cleaning up emails on %s server %s",
+                server.server_type,
+                server.name,
             )
             imap_server = False
-            if server.type == "imap":
+            if server.server_type == "imap":
                 try:
                     imap_server = server.connect()
                     if server.cleanup_days > 0:
@@ -130,7 +133,7 @@ class FetchmailServer(models.Model):
                     _logger.exception(
                         "General failure when trying to cleanup"
                         " mail from %s server %s.",
-                        server.type,
+                        server.server_type,
                         server.name,
                     )
                 finally:
