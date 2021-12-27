@@ -1,19 +1,19 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record model="ir.ui.view" id="inherit_fetchmail_cleanup">
         <!-- must be unique in this module. -->
         <field name="name">inherit_fetchmail_for cleanup</field>
         <field name="model">fetchmail.server</field>
         <!--parent python entity -->
-        <field name="inherit_id" ref="fetchmail.view_email_server_form"/>
+        <field name="inherit_id" ref="fetchmail.view_email_server_form" />
         <!-- modulename.view -->
         <field name="arch" type="xml">
             <field name="is_ssl" position="after">
-                <field name="cleanup_days"/>
-                <field name="purge_days"/>
+                <field name="cleanup_days" />
+                <field name="purge_days" />
             </field>
             <field name="password" position="after">
-                <field name="cleanup_folder"/>
+                <field name="cleanup_folder" />
             </field>
         </field>
     </record>
