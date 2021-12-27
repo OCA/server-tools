@@ -6,7 +6,7 @@ import json
 import logging
 import os
 
-from odoo import api, exceptions, models, tools
+from odoo import _, api, exceptions, models, tools
 from odoo.modules.module import get_module_path
 
 from ..addon_hash import addon_hash
@@ -143,7 +143,20 @@ class Module(models.Model):
                 "No checksum change detected in installed modules "
                 "and all modules installed, nothing to do."
             )
-            return
+
+            return {
+                "type": "ir.actions.client",
+                "tag": "display_notification",
+                "params": {
+                    "message": _(
+                        "No checksum change detected in installed modules "
+                        "and all modules installed, nothing to do."
+                    ),
+                    "type": "success",
+                    "sticky": False,
+                },
+            }
+
         _logger.info(
             "Marking the following modules to upgrade, "
             "for their checksums changed: %s...",
@@ -174,3 +187,12 @@ class Module(models.Model):
             )
 
         _logger.info("Checksum upgrade complete.")
+        return {
+            "type": "ir.actions.client",
+            "tag": "display_notification",
+            "params": {
+                "message": _("Checksum upgrade complete."),
+                "type": "success",
+                "sticky": False,
+            },
+        }
