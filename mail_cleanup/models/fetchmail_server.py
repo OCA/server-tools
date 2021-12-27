@@ -1,8 +1,8 @@
 # Copyright 2015-2019 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-import logging
 import datetime
+import logging
 
 from dateutil.relativedelta import relativedelta
 
@@ -13,20 +13,21 @@ _logger = logging.getLogger(__name__)
 
 class FetchmailServer(models.Model):
     """Incoming POP/IMAP mail server account."""
-    _inherit = 'fetchmail.server'
+
+    _inherit = "fetchmail.server"
 
     cleanup_days = fields.Integer(
-        string='Expiration days',
+        string="Expiration days",
         help="Number of days before marking an e-mail as read",
     )
 
     cleanup_folder = fields.Char(
-        string='Expiration folder',
+        string="Expiration folder",
         help="Folder where an e-mail marked as read will be moved.",
     )
 
     purge_days = fields.Integer(
-        string='Deletion days',
+        string="Deletion days",
         help="Number of days before removing an e-mail",
     )
 
@@ -34,13 +35,13 @@ class FetchmailServer(models.Model):
     def _server_env_fields(self):
         base_fields = super()._server_env_fields
         mail_cleanup_fields = {
-            'cleanup_days': {
-                'getter': 'getint',
+            "cleanup_days": {
+                "getter": "getint",
             },
-            'purge_days': {
-                'getter': 'getint',
+            "purge_days": {
+                "getter": "getint",
             },
-            'cleanup_folder': {},
+            "cleanup_folder": {},
         }
         mail_cleanup_fields.update(base_fields)
         return mail_cleanup_fields
@@ -49,62 +50,73 @@ class FetchmailServer(models.Model):
         count, failed = 0, 0
         expiration_date = datetime.date.today()
         expiration_date -= relativedelta(days=server.cleanup_days)
-        search_text = expiration_date.strftime('(UNSEEN BEFORE %d-%b-%Y)')
+        search_text = expiration_date.strftime("(UNSEEN BEFORE %d-%b-%Y)")
         imap_server.select()
         result, data = imap_server.search(None, search_text)
         for num in data[0].split():
             try:
                 # Mark message as read
-                imap_server.store(num, '+FLAGS', '\\Seen')
+                imap_server.store(num, "+FLAGS", "\\Seen")
                 if server.cleanup_folder:
                     # To move a message, you have to COPY
                     # then DELETE the message
                     result = imap_server.copy(num, server.cleanup_folder)
-                    if result[0] == 'OK':
-                        imap_server.store(num, '+FLAGS', '\\Deleted')
+                    if result[0] == "OK":
+                        imap_server.store(num, "+FLAGS", "\\Deleted")
             except Exception:
                 _logger.exception(
-                    'Failed to cleanup mail from %s server %s.',
-                    server.type, server.name)
+                    "Failed to cleanup mail from %s server %s.",
+                    server.type,
+                    server.name,
+                )
                 failed += 1
             count += 1
         _logger.info(
-            'Marked %d email(s) as read on %s server %s;'
-            ' %d succeeded, %d failed.', count, server.type,
-            server.name, (count - failed), failed)
+            "Marked %d email(s) as read on %s server %s;" " %d succeeded, %d failed.",
+            count,
+            server.type,
+            server.name,
+            (count - failed),
+            failed,
+        )
 
     def _purge_fetchmail_server(self, server, imap_server):
         # Purging e-mails older than the purge date, if available
         count, failed = 0, 0
         purge_date = datetime.date.today()
         purge_date -= relativedelta(days=server.purge_days)
-        search_text = purge_date.strftime('(BEFORE %d-%b-%Y)')
+        search_text = purge_date.strftime("(BEFORE %d-%b-%Y)")
         imap_server.select()
         result, data = imap_server.search(None, search_text)
         for num in data[0].split():
             try:
                 # Delete message
-                imap_server.store(num, '+FLAGS', '\\Deleted')
+                imap_server.store(num, "+FLAGS", "\\Deleted")
             except Exception:
                 _logger.exception(
-                    'Failed to remove mail from %s server %s.',
-                    server.type, server.name)
+                    "Failed to remove mail from %s server %s.", server.type, server.name
+                )
                 failed += 1
             count += 1
         _logger.info(
-            'Removed %d email(s) on %s server %s;'
-            ' %d succeeded, %d failed.', count, server.type,
-            server.name, (count - failed), failed)
+            "Removed %d email(s) on %s server %s;" " %d succeeded, %d failed.",
+            count,
+            server.type,
+            server.name,
+            (count - failed),
+            failed,
+        )
 
     @api.multi
     def fetch_mail(self):
         # Called before the fetch, in order to clean up right before
         # retrieving emails.
         for server in self:
-            _logger.info('start cleaning up emails on %s server %s',
-                         server.type, server.name)
+            _logger.info(
+                "start cleaning up emails on %s server %s", server.type, server.name
+            )
             imap_server = False
-            if server.type == 'imap':
+            if server.type == "imap":
                 try:
                     imap_server = server.connect()
                     if server.cleanup_days > 0:
@@ -116,9 +128,11 @@ class FetchmailServer(models.Model):
                     imap_server.expunge()
                 except Exception:
                     _logger.exception(
-                        'General failure when trying to cleanup'
-                        ' mail from %s server %s.',
-                        server.type, server.name)
+                        "General failure when trying to cleanup"
+                        " mail from %s server %s.",
+                        server.type,
+                        server.name,
+                    )
                 finally:
                     if imap_server:
                         imap_server.close()
