@@ -62,7 +62,7 @@ class IrModuleModule(models.Model):
     def _get_clean_analyse_values(self):
         """List of fields to unset when a module is uninstalled"""
         return {
-            "author_ids": [6, 0, []],
+            "author_ids": [(6, 0, [])],
             "module_type_id": False,
             "python_code_qty": False,
             "xml_code_qty": 0,
