@@ -6,6 +6,10 @@ from lxml import etree
 from odoo import _, api, fields, models
 from odoo.tools import config
 
+# put this object into context key '__no_changeset' to disable changeset
+# functionality
+disable_changeset = object()
+
 
 class Base(models.AbstractModel):
     _inherit = "base"
@@ -69,21 +73,43 @@ class Base(models.AbstractModel):
                 models += ["res.partner"]  # Used in tests
         return models
 
+    @api.model_create_multi
+    def create(self, vals_list):
+        result = super().create(vals_list)
+        if self._changeset_disabled():
+            return result
+        for this, vals in zip(result, vals_list):
+            local_vals = self.env["record.changeset"].add_changeset(
+                this, vals, create=True
+            )
+            local_vals = {
+                key: value for key, value in local_vals.items() if vals[key] != value
+            }
+            if local_vals:
+                this.with_context(
+                    __no_changeset=disable_changeset,
+                    tracking_disable=True,
+                ).write(local_vals)
+        return result
+
     def write(self, values):
-        if self.env.context.get("__no_changeset"):
-            return super().write(values)
-
-        # To avoid conflicts with tests of other modules
-        if config["test_enable"] and not self.env.context.get("test_record_changeset"):
-            return super().write(values)
-
-        if self._name not in self.models_to_track_changeset():
+        if self._changeset_disabled():
             return super().write(values)
 
         for record in self:
             local_values = self.env["record.changeset"].add_changeset(record, values)
             super(Base, record).write(local_values)
         return True
+
+    def _changeset_disabled(self):
+        if self.env.context.get("__no_changeset") == disable_changeset:
+            return True
+        # To avoid conflicts with tests of other modules
+        if config["test_enable"] and not self.env.context.get("test_record_changeset"):
+            return True
+        if self._name not in self.models_to_track_changeset():
+            return True
+        return False
 
     def action_record_changeset_change_view(self):
         self.ensure_one()
