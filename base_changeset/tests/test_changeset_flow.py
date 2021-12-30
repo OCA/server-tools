@@ -379,3 +379,18 @@ class TestChangesetFlow(ChangesetTestCommon, TransactionCase):
         self.partner.refresh()
         self.assertTrue(self.partner.changeset_ids)
         self.assertEqual(self.partner.street, "street Y")
+
+    def test_name_get(self):
+        """Test the name_get of a changeset for a model without name field"""
+        self.env["changeset.field.rule"].create(
+            {
+                "field_id": self.env.ref("base.field_res_partner_bank__active").id,
+                "action": "validate",
+            }
+        )
+        bank = self.env.ref("base.bank_partner_demo").with_context(
+            test_record_changeset=True
+        )
+        bank.active = False
+        self.assertTrue(bank.changeset_ids)
+        self.assertIn(bank.acc_number, bank.changeset_ids.name_get()[0][1])

@@ -67,7 +67,7 @@ class RecordChangeset(models.Model):
     def name_get(self):
         result = []
         for changeset in self:
-            name = "{} ({})".format(changeset.date, changeset.record_id.name)
+            name = "{} ({})".format(changeset.date, changeset.record_id.display_name)
             result.append((changeset.id, name))
         return result
 
