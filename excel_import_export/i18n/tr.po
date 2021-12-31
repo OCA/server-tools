@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-12-20 08:39+0000\n"
+"PO-Revision-Date: 2021-12-31 11:39+0000\n"
 "Last-Translator: Yavuz Avci <yavuzavci@gmail.com>\n"
 "Language-Team: none\n"
 "Language: tr\n"
@@ -280,7 +280,7 @@ msgstr "Başlık bölümü ekle"
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "Add row section"
-msgstr "Sayfa bölümü ekle"
+msgstr "Satır bölümü ekle"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -737,15 +737,13 @@ msgstr "Başlık"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
-#, fuzzy
 msgid "Help with Export Instruction"
-msgstr "Dışa Aktarma Yönergesiyle İlgili Yardım"
+msgstr "Dışa Aktarma Talimatıyla İlgili Yardım"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
-#, fuzzy
 msgid "Help with Import Instruction"
-msgstr "İçe Aktarma Yönergesiyle İlgili Yardım"
+msgstr "İçe Aktarma Talimatıyla İlgili Yardım"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.export_xlsx_wizard
