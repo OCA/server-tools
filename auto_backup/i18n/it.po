@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-03 10:08+0000\n"
-"PO-Revision-Date: 2021-12-22 23:39+0000\n"
+"PO-Revision-Date: 2021-12-31 21:39+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -27,7 +27,7 @@ msgstr "/home/odoo/.ssh/id_rsa"
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__folder
 msgid "Absolute path for storing the backups"
-msgstr "Percorso assoluto per conservare i backup"
+msgstr "Percorso assoluto per archiviare i backup"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__message_needaction
@@ -48,7 +48,7 @@ msgstr "Backup automatici"
 #. module: auto_backup
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "Automatic backups of the database can be scheduled as follows:"
-msgstr "Il backup automatico del DB è pianificato come segue:"
+msgstr "Il backup automatico del database può essere programmato come segue:"
 
 #. module: auto_backup
 #: model:mail.message.subtype,name:auto_backup.mail_message_subtype_failure
@@ -74,18 +74,17 @@ msgstr "Backup riuscito"
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__days_to_keep
-#, fuzzy
 msgid ""
 "Backups older than this will be deleted automatically. Set 0 to disable "
 "autodeletion."
 msgstr ""
-"I Backup antecedenti questo numero di giorni saranno eliminati "
-"automaticamente. Impostare a 0 per disattivare l'eliminazione automatica."
+"I backup precedenti verranno eliminati automaticamente. Per disattivare "
+"l'eliminazione automatica impostare a 0."
 
 #. module: auto_backup
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "Basic backup configuration"
-msgstr "Configurazione di base del backup"
+msgstr "Configurazione base del backup"
 
 #. module: auto_backup
 #: model:ir.model.constraint,message:auto_backup.constraint_db_backup_name_unique
@@ -104,13 +103,11 @@ msgstr ""
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__backup_format
-#, fuzzy
 msgid "Choose the format for this backup."
-msgstr "Scegliere il tipo di archiviazione per questo metodo di backup. "
+msgstr "Scegliere il formato del backup."
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__method
-#, fuzzy
 msgid "Choose the storage method for this backup."
 msgstr "Scegliere il metodo di archiviazione per il backup."
 
