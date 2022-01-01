@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-03 10:08+0000\n"
-"PO-Revision-Date: 2021-12-31 21:39+0000\n"
+"PO-Revision-Date: 2022-01-01 23:39+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -78,7 +78,7 @@ msgid ""
 "Backups older than this will be deleted automatically. Set 0 to disable "
 "autodeletion."
 msgstr ""
-"I backup precedenti verranno eliminati automaticamente. Per disattivare "
+"I backup più vecchi verranno eliminati automaticamente. Per disattivare "
 "l'eliminazione automatica impostare a 0."
 
 #. module: auto_backup
@@ -171,7 +171,7 @@ msgstr "Backup del database riuscito."
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__days_to_keep
 msgid "Days To Keep"
-msgstr ""
+msgstr "Giorni di conservazione"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__display_name
@@ -184,8 +184,8 @@ msgstr "Nome visualizzato"
 msgid ""
 "Do not save backups on your filestore, or you will backup your backups too!"
 msgstr ""
-"Non salvare i backup nel proprio filestore altrimenti verrà effettuato anche "
-"un backup degli stessi backup."
+"Non salvare i backup nel filestore altrimenti verrà anche effettuato un "
+"backup degli stessi backup."
 
 #. module: auto_backup
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
@@ -219,11 +219,10 @@ msgstr "Chi sta seguendo (partner)"
 
 #. module: auto_backup
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
-#, fuzzy
 msgid "Go to Settings / Technical / Automation / Scheduled Actions."
 msgstr ""
-"Andare in  Configurazione / Funzioni Tecniche / Automazione / Azioni "
-"Programmate."
+"Andare in Configurazione / Funzioni Tecniche / Automazione / Azioni "
+"programmate."
 
 #. module: auto_backup
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
@@ -373,18 +372,16 @@ msgstr "Errore di consegna SMS"
 
 #. module: auto_backup
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
-#, fuzzy
 msgid "Search the action named 'Backup scheduler'."
-msgstr "Cerca l'azione denominata 'Pianificazione del backup'."
+msgstr "Cercare l'azione chiamata \"Pianificazione backup\"."
 
 #. module: auto_backup
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
-#, fuzzy
 msgid ""
 "Set the scheduler to active and fill in how often you want backups generated."
 msgstr ""
-"Impostare lo scheduler per attivare e compilare la frequenza con cui si "
-"desidera generare il backup."
+"Impostare il pianificatore su attivo e inserire la frequenza di generazione "
+"dei backup desiderata."
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__smart_search
@@ -394,7 +391,7 @@ msgstr "Ricerca intelligente"
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__name
 msgid "Summary of this backup process"
-msgstr "Riepilogo di questo processo di backup"
+msgstr "Riepilogo del processo di backup"
 
 #. module: auto_backup
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
@@ -405,7 +402,7 @@ msgstr "Prova connessione SFTP"
 #: model:ir.model.fields,help:auto_backup.field_db_backup__sftp_host
 msgid ""
 "The host name or IP address from your remote server. For example 192.168.0.1"
-msgstr "Nome host o indirizzo IP del server remoto. Per esempio 192.168.0.1"
+msgstr "Nome host o indirizzo IP del server remoto. Ad esempio 192.168.0.1"
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__sftp_password
@@ -482,7 +479,7 @@ msgstr "john"
 #. module: auto_backup
 #: model:ir.model.fields.selection,name:auto_backup.selection__db_backup__backup_format__dump
 msgid "pg_dump custom format (without filestore)"
-msgstr "formato personalizzato pg_dump (senza filestore)"
+msgstr "Formato personalizzato pg_dump (senza filestore)"
 
 #. module: auto_backup
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
