@@ -1,17 +1,14 @@
 # Copyright 2016-2017 Versada <https://versada.eu/>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-
 import collections
 import logging
+import warnings
+
+from sentry_sdk import HttpTransport
+from sentry_sdk.consts import DEFAULT_OPTIONS
+from sentry_sdk.integrations.logging import LoggingIntegration
 
 import odoo.loglevels
-
-_logger = logging.getLogger(__name__)
-try:
-    import raven
-    from raven.conf import defaults
-except ImportError:
-    _logger.debug('Cannot import "raven". Please make sure it is installed.')
 
 
 def split_multiple(string, delimiter=",", strip_chars=None):
@@ -43,43 +40,67 @@ ODOO_USER_EXCEPTIONS = [
 ]
 DEFAULT_IGNORED_EXCEPTIONS = ",".join(ODOO_USER_EXCEPTIONS)
 
-PROCESSORS = (
-    "raven.processors.SanitizePasswordsProcessor",
-    "odoo.addons.sentry.logutils.SanitizeOdooCookiesProcessor",
-)
-DEFAULT_PROCESSORS = ",".join(PROCESSORS)
-
 EXCLUDE_LOGGERS = ("werkzeug",)
 DEFAULT_EXCLUDE_LOGGERS = ",".join(EXCLUDE_LOGGERS)
+
+DEFAULT_ENVIRONMENT = "develop"
 
 DEFAULT_TRANSPORT = "threaded"
 
 
 def select_transport(name=DEFAULT_TRANSPORT):
+    warnings.warn(
+        "`sentry_transport` has been deprecated.  "
+        "Its not neccesary send it, will use `HttpTranport` by default.",
+        DeprecationWarning,
+    )
     return {
-        "requests_synchronous": raven.transport.RequestsHTTPTransport,
-        "requests_threaded": raven.transport.ThreadedRequestsHTTPTransport,
-        "synchronous": raven.transport.HTTPTransport,
-        "threaded": raven.transport.ThreadedHTTPTransport,
-    }.get(name, DEFAULT_TRANSPORT)
+        "threaded": HttpTransport,
+    }.get(name, HttpTransport)
+
+
+def get_sentry_logging(level=DEFAULT_LOG_LEVEL):
+    if level not in LOG_LEVEL_MAP:
+        level = DEFAULT_LOG_LEVEL
+
+    return LoggingIntegration(level=LOG_LEVEL_MAP[level], event_level=logging.WARNING)
 
 
 def get_sentry_options():
     return [
         SentryOption("dsn", "", str.strip),
-        SentryOption("install_sys_hook", False, None),
-        SentryOption("transport", DEFAULT_TRANSPORT, select_transport),
-        SentryOption("include_paths", "", split_multiple),
-        SentryOption("exclude_paths", "", split_multiple),
-        SentryOption("machine", defaults.NAME, None),
-        SentryOption("auto_log_stacks", defaults.AUTO_LOG_STACKS, None),
-        SentryOption("capture_locals", defaults.CAPTURE_LOCALS, None),
-        SentryOption("string_max_length", defaults.MAX_LENGTH_STRING, None),
-        SentryOption("list_max_length", defaults.MAX_LENGTH_LIST, None),
-        SentryOption("site", None, None),
-        SentryOption("include_versions", True, None),
+        SentryOption("transport", DEFAULT_OPTIONS["transport"], select_transport),
+        SentryOption("logging_level", DEFAULT_LOG_LEVEL, get_sentry_logging),
+        SentryOption("with_locals", DEFAULT_OPTIONS["with_locals"], None),
+        SentryOption("max_breadcrumbs", DEFAULT_OPTIONS["max_breadcrumbs"], None),
+        SentryOption("release", DEFAULT_OPTIONS["release"], None),
+        SentryOption("environment", DEFAULT_OPTIONS["environment"], None),
+        SentryOption("server_name", DEFAULT_OPTIONS["server_name"], None),
+        SentryOption("shutdown_timeout", DEFAULT_OPTIONS["shutdown_timeout"], None),
+        SentryOption("integrations", DEFAULT_OPTIONS["integrations"], None),
+        SentryOption(
+            "in_app_include", DEFAULT_OPTIONS["in_app_include"], split_multiple
+        ),
+        SentryOption(
+            "in_app_exclude", DEFAULT_OPTIONS["in_app_exclude"], split_multiple
+        ),
+        SentryOption(
+            "default_integrations", DEFAULT_OPTIONS["default_integrations"], None
+        ),
+        SentryOption("dist", DEFAULT_OPTIONS["dist"], None),
+        SentryOption("sample_rate", DEFAULT_OPTIONS["sample_rate"], None),
+        SentryOption("send_default_pii", DEFAULT_OPTIONS["send_default_pii"], None),
+        SentryOption("http_proxy", DEFAULT_OPTIONS["http_proxy"], None),
+        SentryOption("https_proxy", DEFAULT_OPTIONS["https_proxy"], None),
         SentryOption("ignore_exceptions", DEFAULT_IGNORED_EXCEPTIONS, split_multiple),
-        SentryOption("processors", DEFAULT_PROCESSORS, split_multiple),
-        SentryOption("environment", None, None),
-        SentryOption("release", None, None),
+        SentryOption("request_bodies", DEFAULT_OPTIONS["request_bodies"], None),
+        SentryOption("attach_stacktrace", DEFAULT_OPTIONS["attach_stacktrace"], None),
+        SentryOption("ca_certs", DEFAULT_OPTIONS["ca_certs"], None),
+        SentryOption("propagate_traces", DEFAULT_OPTIONS["propagate_traces"], None),
+        SentryOption("traces_sample_rate", DEFAULT_OPTIONS["traces_sample_rate"], None),
+        SentryOption(
+            "auto_enabling_integrations",
+            DEFAULT_OPTIONS["auto_enabling_integrations"],
+            None,
+        ),
     ]
