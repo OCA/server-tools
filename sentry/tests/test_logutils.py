@@ -1,14 +1,12 @@
 # Copyright 2016-2017 Versada <https://versada.eu/>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-import unittest
-
-import mock
+from odoo.tests import TransactionCase
 
 from ..logutils import SanitizeOdooCookiesProcessor
 
 
-class TestOdooCookieSanitizer(unittest.TestCase):
+class TestOdooCookieSanitizer(TransactionCase):
     def test_cookie_as_string(self):
         data = {
             "request": {
@@ -19,7 +17,7 @@ class TestOdooCookieSanitizer(unittest.TestCase):
             }
         }
 
-        proc = SanitizeOdooCookiesProcessor(mock.Mock())
+        proc = SanitizeOdooCookiesProcessor()
         result = proc.process(data)
 
         self.assertTrue("request" in result)
@@ -35,14 +33,14 @@ class TestOdooCookieSanitizer(unittest.TestCase):
     def test_cookie_as_string_with_partials(self):
         data = {"request": {"cookies": "website_lang=en_us;session_id;foo=bar"}}
 
-        proc = SanitizeOdooCookiesProcessor(mock.Mock())
+        proc = SanitizeOdooCookiesProcessor()
         result = proc.process(data)
 
         self.assertTrue("request" in result)
         http = result["request"]
         self.assertEqual(
             http["cookies"],
-            "website_lang=en_us;session_id={m};foo=bar".format(m=proc.MASK),
+            "website_lang=en_us;session_id;foo=bar",
         )
 
     def test_cookie_header(self):
@@ -57,7 +55,7 @@ class TestOdooCookieSanitizer(unittest.TestCase):
             }
         }
 
-        proc = SanitizeOdooCookiesProcessor(mock.Mock())
+        proc = SanitizeOdooCookiesProcessor()
         result = proc.process(data)
 
         self.assertTrue("request" in result)
