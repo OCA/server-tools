@@ -4,6 +4,7 @@
 
 from odoo.tests.common import Form, TransactionCase
 
+from ..models.base import disable_changeset
 from .common import ChangesetTestCommon
 
 
@@ -44,14 +45,18 @@ class TestChangesetOrigin(ChangesetTestCommon, TransactionCase):
         self.assertEqual(self.partner.name, "X")
         self.assertEqual(change.origin_value_char, "X")
         self.assertEqual(change.origin_value_display, "X")
-        with Form(self.partner.with_context(__no_changeset=True)) as partner_form:
+        with Form(
+            self.partner.with_context(__no_changeset=disable_changeset)
+        ) as partner_form:
             partner_form.name = "A"
         self.assertEqual(change.origin_value_char, "A")
         self.assertEqual(change.origin_value_display, "A")
         change.apply()
         self.assertEqual(change.origin_value_char, "A")
         self.assertEqual(change.origin_value_display, "A")
-        with Form(self.partner.with_context(__no_changeset=True)) as partner_form:
+        with Form(
+            self.partner.with_context(__no_changeset=disable_changeset)
+        ) as partner_form:
             partner_form.name = "B"
         self.assertEqual(change.origin_value_char, "A")
         self.assertEqual(change.origin_value_display, "A")
@@ -70,14 +75,18 @@ class TestChangesetOrigin(ChangesetTestCommon, TransactionCase):
         self.assertEqual(self.partner.name, "X")
         self.assertEqual(change.origin_value_char, "X")
         self.assertEqual(change.origin_value_display, "X")
-        with Form(self.partner.with_context(__no_changeset=True)) as partner_form:
+        with Form(
+            self.partner.with_context(__no_changeset=disable_changeset)
+        ) as partner_form:
             partner_form.name = "A"
         self.assertEqual(change.origin_value_char, "A")
         self.assertEqual(change.origin_value_display, "A")
         change.cancel()
         self.assertEqual(change.origin_value_char, "A")
         self.assertEqual(change.origin_value_display, "A")
-        with Form(self.partner.with_context(__no_changeset=True)) as partner_form:
+        with Form(
+            self.partner.with_context(__no_changeset=disable_changeset)
+        ) as partner_form:
             partner_form.name = "B"
         self.assertEqual(change.origin_value_char, "A")
         self.assertEqual(change.origin_value_display, "A")
@@ -92,12 +101,16 @@ class TestChangesetOrigin(ChangesetTestCommon, TransactionCase):
         change = changeset.change_ids
         self.assertEqual(self.partner.name, "X")
         self.assertFalse(change.old_value_char)
-        with Form(self.partner.with_context(__no_changeset=True)) as partner_form:
+        with Form(
+            self.partner.with_context(__no_changeset=disable_changeset)
+        ) as partner_form:
             partner_form.name = "A"
         self.assertFalse(change.old_value_char)
         change.apply()
         self.assertEqual(change.old_value_char, "A")
-        with Form(self.partner.with_context(__no_changeset=True)) as partner_form:
+        with Form(
+            self.partner.with_context(__no_changeset=disable_changeset)
+        ) as partner_form:
             partner_form.name = "B"
         self.assertEqual(change.old_value_char, "A")
         self.assertEqual(self.partner.count_pending_changesets, 0)
@@ -111,12 +124,16 @@ class TestChangesetOrigin(ChangesetTestCommon, TransactionCase):
         change = changeset.change_ids
         self.assertEqual(self.partner.name, "X")
         self.assertFalse(change.old_value_char)
-        with Form(self.partner.with_context(__no_changeset=True)) as partner_form:
+        with Form(
+            self.partner.with_context(__no_changeset=disable_changeset)
+        ) as partner_form:
             partner_form.name = "A"
         self.assertFalse(change.old_value_char)
         change.cancel()
         self.assertEqual(change.old_value_char, "A")
-        with Form(self.partner.with_context(__no_changeset=True)) as partner_form:
+        with Form(
+            self.partner.with_context(__no_changeset=disable_changeset)
+        ) as partner_form:
             partner_form.name = "B"
         self.assertEqual(change.old_value_char, "A")
         self.assertEqual(self.partner.count_pending_changesets, 0)
