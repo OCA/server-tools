@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import logging
+import warnings
 from collections import abc
 
 import odoo.http
@@ -72,6 +73,12 @@ def initialize_sentry(config):
         _logger.debug(
             "Both sentry_odoo_dir and \
                        sentry_release defined, choosing sentry_release"
+        )
+    if config.get("sentry_transport"):
+        warnings.warn(
+            "`sentry_transport` has been deprecated.  "
+            "Its not neccesary send it, will use `HttpTranport` by default.",
+            DeprecationWarning,
         )
     options = {}
     for option in const.get_sentry_options():
