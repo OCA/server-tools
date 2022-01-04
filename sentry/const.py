@@ -18,6 +18,18 @@ def split_multiple(string, delimiter=",", strip_chars=None):
     return [v.strip(strip_chars) for v in string.split(delimiter)]
 
 
+def to_int_if_defined(value):
+    if value == "" or value is None:
+        return
+    return int(value)
+
+
+def to_float_if_defined(value):
+    if value == "" or value is None:
+        return
+    return float(value)
+
+
 SentryOption = collections.namedtuple("SentryOption", ["key", "default", "converter"])
 
 # Mapping of Odoo logging level -> Python stdlib logging library log level.
@@ -72,7 +84,9 @@ def get_sentry_options():
         SentryOption("transport", DEFAULT_OPTIONS["transport"], select_transport),
         SentryOption("logging_level", DEFAULT_LOG_LEVEL, get_sentry_logging),
         SentryOption("with_locals", DEFAULT_OPTIONS["with_locals"], None),
-        SentryOption("max_breadcrumbs", DEFAULT_OPTIONS["max_breadcrumbs"], None),
+        SentryOption(
+            "max_breadcrumbs", DEFAULT_OPTIONS["max_breadcrumbs"], to_int_if_defined
+        ),
         SentryOption("release", DEFAULT_OPTIONS["release"], None),
         SentryOption("environment", DEFAULT_OPTIONS["environment"], None),
         SentryOption("server_name", DEFAULT_OPTIONS["server_name"], None),
@@ -88,7 +102,9 @@ def get_sentry_options():
             "default_integrations", DEFAULT_OPTIONS["default_integrations"], None
         ),
         SentryOption("dist", DEFAULT_OPTIONS["dist"], None),
-        SentryOption("sample_rate", DEFAULT_OPTIONS["sample_rate"], None),
+        SentryOption(
+            "sample_rate", DEFAULT_OPTIONS["sample_rate"], to_float_if_defined
+        ),
         SentryOption("send_default_pii", DEFAULT_OPTIONS["send_default_pii"], None),
         SentryOption("http_proxy", DEFAULT_OPTIONS["http_proxy"], None),
         SentryOption("https_proxy", DEFAULT_OPTIONS["https_proxy"], None),
@@ -97,7 +113,11 @@ def get_sentry_options():
         SentryOption("attach_stacktrace", DEFAULT_OPTIONS["attach_stacktrace"], None),
         SentryOption("ca_certs", DEFAULT_OPTIONS["ca_certs"], None),
         SentryOption("propagate_traces", DEFAULT_OPTIONS["propagate_traces"], None),
-        SentryOption("traces_sample_rate", DEFAULT_OPTIONS["traces_sample_rate"], None),
+        SentryOption(
+            "traces_sample_rate",
+            DEFAULT_OPTIONS["traces_sample_rate"],
+            to_float_if_defined,
+        ),
         SentryOption(
             "auto_enabling_integrations",
             DEFAULT_OPTIONS["auto_enabling_integrations"],
