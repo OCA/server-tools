@@ -5,7 +5,7 @@
     "name": "Base Territory",
     "summary": "This module allows you to define territories, branches,"
     " districts and regions to be used for Field Service operations or Sales.",
-    "version": "14.0.1.0.0",
+    "version": "15.0.1.0.0",
     "category": "Hidden",
     "author": "Open Source Integrators, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/field-service",
