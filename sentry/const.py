@@ -2,7 +2,6 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 import collections
 import logging
-import warnings
 
 from sentry_sdk import HttpTransport
 from sentry_sdk.consts import DEFAULT_OPTIONS
@@ -61,11 +60,6 @@ DEFAULT_TRANSPORT = "threaded"
 
 
 def select_transport(name=DEFAULT_TRANSPORT):
-    warnings.warn(
-        "`sentry_transport` has been deprecated.  "
-        "Its not neccesary send it, will use `HttpTranport` by default.",
-        DeprecationWarning,
-    )
     return {
         "threaded": HttpTransport,
     }.get(name, HttpTransport)
