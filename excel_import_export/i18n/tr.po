@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-12-31 11:39+0000\n"
+"PO-Revision-Date: 2022-01-06 13:39+0000\n"
 "Last-Translator: Yavuz Avci <yavuzavci@gmail.com>\n"
 "Language-Team: none\n"
 "Language: tr\n"
@@ -158,7 +158,6 @@ msgstr "<b>Toplam</b>: Son satıra toplam değerini ekle, <code>@{sum}</code>"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
-#, fuzzy
 msgid ""
 "<code class=\"oe_grey\">\n"
 "{\n"
@@ -367,8 +366,9 @@ msgstr "Hücre"
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__changeset_change_ids
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__changeset_change_ids
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_import__changeset_change_ids
+#, fuzzy
 msgid "Changeset Changes"
-msgstr ""
+msgstr "Değişiklik Seti Değişiklikleri"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_export_xlsx_wizard__changeset_ids
@@ -380,8 +380,9 @@ msgstr ""
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__changeset_ids
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__changeset_ids
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_import__changeset_ids
+#, fuzzy
 msgid "Changesets"
-msgstr ""
+msgstr "Değişiklik Setleri"
 
 #. module: excel_import_export
 #: selection:export.xlsx.wizard,state:0 selection:import.xlsx.wizard,state:0
@@ -443,8 +444,9 @@ msgstr "CSV`ye Çevrilsin Mi?"
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_import__count_pending_changeset_changes
+#, fuzzy
 msgid "Count Pending Changeset Changes"
-msgstr ""
+msgstr "Bekleyen Değişiklik Seti Değişimlerini Say"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_export_xlsx_wizard__count_pending_changesets
@@ -456,8 +458,9 @@ msgstr ""
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__count_pending_changesets
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__count_pending_changesets
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_import__count_pending_changesets
+#, fuzzy
 msgid "Count Pending Changesets"
-msgstr ""
+msgstr "Bekleyen Değişiklik Setlerini Say"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_export_xlsx_wizard__create_uid
@@ -571,13 +574,15 @@ msgstr "Excel"
 
 #. module: excel_import_export
 #: model:ir.model,name:excel_import_export.model_xlsx_export
+#, fuzzy
 msgid "Excel Export AbstractModel"
-msgstr ""
+msgstr "Excel Dışa Aktarma AbstractModel"
 
 #. module: excel_import_export
 #: model:ir.model,name:excel_import_export.model_xlsx_import
+#, fuzzy
 msgid "Excel Import AbstractModel"
-msgstr ""
+msgstr "Excel İçe Aktarma AbstractModel"
 
 #. module: excel_import_export
 #: model:ir.ui.menu,name:excel_import_export.menu_excel_import_export
@@ -591,8 +596,9 @@ msgstr "Excel Raporu"
 
 #. module: excel_import_export
 #: model:ir.model,name:excel_import_export.model_xlsx_report
+#, fuzzy
 msgid "Excel Report AbstractModel"
-msgstr ""
+msgstr "Excel Raporu AbstractModel"
 
 #. module: excel_import_export
 #: model:ir.model,name:excel_import_export.model_xlsx_template
@@ -613,7 +619,6 @@ msgstr "Dışa Aktar"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
-#, fuzzy
 msgid ""
 "Export Instruction is how to write data from an active data record to "
 "specified cells in excel sheet.\n"
@@ -675,13 +680,11 @@ msgstr "Dosya Adı"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
-#, fuzzy
 msgid "Following are more explaination on each column:"
 msgstr "Aşağıda her sütunda daha fazla açıklama bulunmaktadır:"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
-#, fuzzy
 msgid ""
 "Following show very simple example of the dictionary construct.\n"
 "                                    Normally, this will be within templates."
@@ -693,7 +696,6 @@ msgstr ""
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
-#, fuzzy
 msgid ""
 "For code block <code>${...}</code> and <code>#?...?</code>, following object "
 "are available,"
@@ -703,7 +705,6 @@ msgstr ""
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
-#, fuzzy
 msgid "For code block <code>${...}</code>, following object are available,"
 msgstr "Kod bloğu <code>${...}</code> için, aşağıdaki nesne mevcuttur"
 
@@ -765,7 +766,6 @@ msgstr "İşte rapor dosyası:"
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__id
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__id
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_import__id
-#, fuzzy
 msgid "ID"
 msgstr "ID"
 
@@ -777,7 +777,7 @@ msgstr "Bölüm tipi satır ise, bu alan zorunludur"
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/models/xlsx_export.py:137
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "IllegalCharacterError\n"
 "Some exporting data contain special character\n"
@@ -863,7 +863,6 @@ msgstr ""
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
-#, fuzzy
 msgid ""
 "In row section, data list will be rolled out from one2many row field (e.g., "
 "order_line), and map data field (i.e., product_id.name, uom_id.name, qty) "
@@ -880,6 +879,9 @@ msgid ""
 "(e.g., order_line) by mapping cells on first row onwards (e.g., A6, B6, C6) "
 "to fields (e.g., product_id, uom_id, qty)"
 msgstr ""
+"Satır kısmında excelden gelen veri tablosu, ilk satırdan başlamak üzere "
+"hücreler (ör. , A6, B6, C6) alanlarla eşleştirilerek (ör. , product_id, "
+"uom_id, qty) one2many satır alanına aktarılabilir (ör. , order_line)"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -898,7 +900,6 @@ msgstr "Talimat (Giriş)"
 
 #. module: excel_import_export
 #: model:ir.model.fields,help:excel_import_export.field_xlsx_template__instruction
-#, fuzzy
 msgid "Instruction on how to import/export, prepared by system."
 msgstr "Sistem tarafından hazırlanan, içe/dışa nasıl aktarılacağı talimatı."
 
@@ -968,7 +969,6 @@ msgstr "Son Güncellenme"
 
 #. module: excel_import_export
 #: model:ir.model.fields,help:excel_import_export.field_xlsx_template__gname
-#, fuzzy
 msgid ""
 "Multiple template of same model, can belong to same group,\n"
 "result in multiple template selection"
@@ -983,7 +983,7 @@ msgstr "Silme Yok"
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/models/xlsx_import.py:254
-#, fuzzy, python-format
+#, python-format
 msgid "No data_dict['__IMPORT__'] in template %s"
 msgstr "Şablon %s de data_dict['__IMPORT__'] yok"
 
@@ -1012,32 +1012,34 @@ msgstr "Yeterli çalışma sayfası yok"
 #: code:addons/excel_import_export/models/ir_report.py:17
 #, python-format
 msgid "Only one id is allowed for excel_import_export"
-msgstr ""
+msgstr "Sadece bir ID ye excel_import_export izni verilmektedir"
 
 #. module: excel_import_export
 #: model:ir.model.fields,help:excel_import_export.field_xlsx_template__redirect_action
 msgid "Optional action, redirection after finish import operation"
 msgstr ""
+"Tercihe bağlı eylem, içe aktarma işi bittikten sonra yapılacak yönlendirme"
 
 #. module: excel_import_export
 #: model:ir.model.fields,help:excel_import_export.field_xlsx_template__csv_extension
 msgid "Optional for CSV, default is .csv"
-msgstr ""
+msgstr "CSV için isteğe bağlı, varsayılan .csv"
 
 #. module: excel_import_export
 #: model:ir.model.fields,help:excel_import_export.field_xlsx_template__csv_delimiter
 msgid "Optional for CSV, default is comma."
-msgstr ""
+msgstr "CSV için isteğe bağlı, varsayılan virgüldür."
 
 #. module: excel_import_export
 #: model:ir.model.fields,help:excel_import_export.field_xlsx_template__csv_quote
+#, fuzzy
 msgid "Optional for CSV, default is full quoting."
-msgstr ""
+msgstr "CSV için isteğe bağlı, varsayılan tam alıntılamadır (\")"
 
 #. module: excel_import_export
 #: selection:ir.actions.report,report_type:0
 msgid "PDF"
-msgstr ""
+msgstr "PDF"
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/wizard/import_xlsx_wizard.py:146
@@ -1050,17 +1052,19 @@ msgstr "Lütfen içe aktarılacak Excel dosyasını seçin"
 #: code:addons/excel_import_export/models/common.py:255
 #, python-format
 msgid "Position %s is not valid"
-msgstr ""
+msgstr "Konum %s geçersizdir"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__post_import_hook
+#, fuzzy
 msgid "Post Import Function Hook"
-msgstr ""
+msgstr "İçe Aktarım İşlevi Kancası"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
+#, fuzzy
 msgid "Post Import Hook"
-msgstr ""
+msgstr "İçe Aktarım Sonrası Kanca"
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/models/xlsx_import.py:237
@@ -1069,35 +1073,37 @@ msgid ""
 "Post import operation error\n"
 "%s"
 msgstr ""
+"İçe aktarım sonrası işlemi hatası\n"
+"%s"
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/models/xlsx_export.py:55
 #, python-format
 msgid "Records in %s exceed max records allowed"
-msgstr ""
+msgstr "%s deki kayıtlar izin verilen maksimum kayıt sayısını geçmektedir"
 
 #. module: excel_import_export
 #: model:ir.model,name:excel_import_export.model_ir_actions_report
 msgid "Report Action"
-msgstr ""
+msgstr "Rapor Eylemi"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_ir_actions_report__report_type
 msgid "Report Type"
-msgstr ""
+msgstr "Rapor Tipi"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_export_xlsx_wizard__res_id
 #: model:ir.model.fields,field_description:excel_import_export.field_import_xlsx_wizard__res_id
 msgid "Resource ID"
-msgstr ""
+msgstr "Kaynak ID"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_export_xlsx_wizard__res_model
 #: model:ir.model.fields,field_description:excel_import_export.field_import_xlsx_wizard__res_model
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__res_model
 msgid "Resource Model"
-msgstr ""
+msgstr "Kaynak Model"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__redirect_action
@@ -1119,30 +1125,30 @@ msgstr "Satır Alanı"
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_import_xlsx_wizard__datas
 msgid "Sample"
-msgstr ""
+msgstr "Örnek"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "Sample Input Instruction as Dictionary"
-msgstr ""
+msgstr "Dictionary Olarak Örnek Giriş Talimatı"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__section_type
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_import__section_type
 msgid "Section Type"
-msgstr ""
+msgstr "Bölüm Türü"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__sequence
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_import__sequence
 msgid "Sequence"
-msgstr ""
+msgstr "Sıra"
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/wizard/import_xlsx_wizard.py:111
 #, python-format
 msgid "Set Templates"
-msgstr ""
+msgstr "Şablonları Ayarla"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__sheet
@@ -1150,55 +1156,55 @@ msgstr ""
 #: selection:xlsx.template.export,section_type:0
 #: selection:xlsx.template.import,section_type:0
 msgid "Sheet"
-msgstr ""
+msgstr "Sayfa"
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/models/xlsx_export.py:129
 #: code:addons/excel_import_export/models/xlsx_import.py:147
 #, python-format
 msgid "Sheet %s not found"
-msgstr ""
+msgstr "Sayfa %s bulunamadı"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__show_instruction
 msgid "Show Output"
-msgstr ""
+msgstr "Çıktıyı Göster"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_export_xlsx_wizard__state
 #: model:ir.model.fields,field_description:excel_import_export.field_import_xlsx_wizard__state
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_report__state
 msgid "State"
-msgstr ""
+msgstr "Durum"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__style_cond
 msgid "Style w/Cond."
-msgstr ""
+msgstr "Koşullu Stil"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__is_sum
 msgid "Sum"
-msgstr ""
+msgstr "Toplam"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_export_xlsx_wizard__template_id
 #: model:ir.model.fields,field_description:excel_import_export.field_import_xlsx_wizard__template_id
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_report__template_id
 msgid "Template"
-msgstr ""
+msgstr "Şablon"
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/models/ir_report.py:23
 #, python-format
 msgid "Template %s on model %s is not unique!"
-msgstr ""
+msgstr "Şablon %s %s modelinde benzersiz değil!"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_import_xlsx_wizard__fname
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__name
 msgid "Template Name"
-msgstr ""
+msgstr "Şablon Adı"
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/models/common.py:242
@@ -1207,29 +1213,31 @@ msgid ""
 "Template with CSV Quoting = False, data must not contain the same char as "
 "delimiter -> \"%s\""
 msgstr ""
+"CSV Alıntılaması = False olan Şablon, veri sınırlayıcı -> \"%s\" ile aynı "
+"karakteri içermemelidir"
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/models/xlsx_export.py:228
 #: code:addons/excel_import_export/models/xlsx_import.py:249
 #, python-format
 msgid "Template's model mismatch"
-msgstr ""
+msgstr "Şablonun model uyuşmazlığı"
 
 #. module: excel_import_export
 #: selection:ir.actions.report,report_type:0
 msgid "Text"
-msgstr ""
+msgstr "Metin"
 
 #. module: excel_import_export
 #: model:ir.model.fields,help:excel_import_export.field_xlsx_template__res_model
 msgid "The database object this attachment will be attached to."
-msgstr ""
+msgstr "Bu ekin ekleneceği veritabanı nesnesi."
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/models/xlsx_template.py:110
 #, python-format
 msgid "The selected redirect action is not for model %s"
-msgstr ""
+msgstr "Seçili yeniden yönlendirme eylemi model %s için değildir"
 
 #. module: excel_import_export
 #: model:ir.model.fields,help:excel_import_export.field_ir_actions_report__report_type
@@ -1239,12 +1247,16 @@ msgid ""
 "browser PDF means the report will be rendered using Wkhtmltopdf and "
 "downloaded by the user."
 msgstr ""
+"Oluşturulacak raporun türü, her biri kendi oluşturma yöntemine sahiptir. "
+"HTML raporun doğrudan tarayıcınızda açılacağını ifade ederken PDF "
+"Wkhtmltopdf kullanılarak raporun oluşturulacağını ve kullanıcı tarafından "
+"indirileceğini ifade eder."
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/wizard/import_xlsx_wizard.py:89
 #, python-format
 msgid "This import action is not usable in this document context"
-msgstr ""
+msgstr "Bu içe aktarma eylemi bu belgenin bağlamı içinde kullanılamaz"
 
 #. module: excel_import_export
 #: model:ir.model.fields,help:excel_import_export.field_xlsx_template__show_instruction
@@ -1252,11 +1264,13 @@ msgid ""
 "This is the computed instruction based on tab Import/Export,\n"
 "to be used by xlsx import/export engine"
 msgstr ""
+"XLSX içe/dışa aktarma motoru tarafından kullanılmak üzere,\n"
+"İçe/Dışa Aktar sekmesine dayalı hesaplanmış talimattır"
 
 #. module: excel_import_export
 #: model:ir.model.fields,help:excel_import_export.field_xlsx_template__input_instruction
 msgid "This is used to construct instruction in tab Import/Export"
-msgstr ""
+msgstr "Bu İçe/Dışa Aktarma sekmesinde talimat oluşturmak için kullanılır"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_export_xlsx_wizard__user_can_see_changeset
@@ -1269,24 +1283,24 @@ msgstr ""
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__user_can_see_changeset
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_import__user_can_see_changeset
 msgid "User Can See Changeset"
-msgstr ""
+msgstr "Kullanıcı Değişiklik Setini Görebilir"
 
 #. module: excel_import_export
 #. openerp-web
 #: code:addons/excel_import_export/static/src/js/report/action_manager_report.js:52
 #, python-format
 msgid "Warning"
-msgstr ""
+msgstr "Uyarı"
 
 #. module: excel_import_export
 #: model:ir.model,name:excel_import_export.model_export_xlsx_wizard
 msgid "Wizard for exporting excel"
-msgstr ""
+msgstr "Excel dışa aktarımı için sihirbaz"
 
 #. module: excel_import_export
 #: model:ir.model,name:excel_import_export.model_import_xlsx_wizard
 msgid "Wizard for importing excel"
-msgstr ""
+msgstr "Excel içe aktarımı için sihirbaz"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__template_id
@@ -1294,27 +1308,27 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_tree
 msgid "XLSX Template"
-msgstr ""
+msgstr "XLSX Şablonu"
 
 #. module: excel_import_export
 #: model:ir.actions.act_window,name:excel_import_export.action_xlsx_template
 #: model:ir.ui.menu,name:excel_import_export.menu_xlsx_template
 msgid "XLSX Templates"
-msgstr ""
+msgstr "XLSX Şablonları"
 
 #. module: excel_import_export
 #: model:ir.model.fields,help:excel_import_export.field_import_xlsx_wizard__attachment_ids
 msgid "You can select multiple files to import."
-msgstr ""
+msgstr "İçe aktarmak için birden çok dosya seçebilirsiniz."
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.export_xlsx_wizard
 #: model_terms:ir.ui.view,arch_db:excel_import_export.import_xlsx_wizard
 #: model_terms:ir.ui.view,arch_db:excel_import_export.xlsx_report_view
 msgid "or"
-msgstr ""
+msgstr "veya"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.import_xlsx_wizard
 msgid "⇒ Get Sample Import Template"
-msgstr ""
+msgstr "⇒ Örnek İçe Aktarma Şablonu Al"
