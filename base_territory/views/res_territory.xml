@@ -4,7 +4,7 @@
         <field name="name">res.territory.tree</field>
         <field name="model">res.territory</field>
         <field name="arch" type="xml">
-            <tree string="Territories">
+            <tree>
                 <field name="name" />
                 <field name="branch_id" />
             </tree>

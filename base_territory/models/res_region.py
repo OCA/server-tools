@@ -8,6 +8,6 @@ class ResRegion(models.Model):
     _name = "res.region"
     _description = "Region"
 
-    name = fields.Char(string="Name", required=True)
-    description = fields.Char(string="Description")
+    name = fields.Char(required=True)
+    description = fields.Char()
     partner_id = fields.Many2one("res.partner", string="Region Manager")

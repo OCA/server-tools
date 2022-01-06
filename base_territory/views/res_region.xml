@@ -4,7 +4,7 @@
         <field name="name">res.region.tree</field>
         <field name="model">res.region</field>
         <field name="arch" type="xml">
-            <tree string="Regions">
+            <tree>
                 <field name="name" />
             </tree>
         </field>

@@ -8,15 +8,15 @@ class ResTerritory(models.Model):
     _name = "res.territory"
     _description = "Territory"
 
-    name = fields.Char(string="Name", required=True)
+    name = fields.Char(required=True)
     branch_id = fields.Many2one("res.branch", string="Branch")
     district_id = fields.Many2one(related="branch_id.district_id", string="District")
     region_id = fields.Many2one(
         related="branch_id.district_id.region_id", string="Region"
     )
-    description = fields.Char(string="Description")
+    description = fields.Char()
     type = fields.Selection(
-        [("zip", "Zip"), ("state", "State"), ("country", "Country")], "Type"
+        [("zip", "Zip"), ("state", "State"), ("country", "Country")],
     )
-    zip_codes = fields.Char(string="ZIP Codes")
+    zip_codes = fields.Char("ZIP Codes")
     country_ids = fields.One2many("res.country", "territory_id", string="Country Names")
