@@ -318,6 +318,9 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_mail_thread_phone__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_mail_tracking_value__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_mail_wizard_invite__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_module_prototyper__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_module_prototyper_api_version__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_module_prototyper_module_export__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_payment_acquirer__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_payment_acquirer_onboarding_wizard__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_payment_icon__changeset_change_ids
@@ -715,6 +718,9 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_mail_thread_phone__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_mail_tracking_value__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_mail_wizard_invite__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_module_prototyper__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_module_prototyper_api_version__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_module_prototyper_module_export__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_payment_acquirer__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_payment_acquirer_onboarding_wizard__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_payment_icon__changeset_ids
@@ -1099,6 +1105,9 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_mail_thread_phone__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_mail_tracking_value__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_mail_wizard_invite__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_module_prototyper__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_module_prototyper_api_version__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_module_prototyper_module_export__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_payment_acquirer__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_payment_acquirer_onboarding_wizard__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_payment_icon__count_pending_changeset_changes
@@ -1476,6 +1485,9 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_mail_thread_phone__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_mail_tracking_value__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_mail_wizard_invite__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_module_prototyper__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_module_prototyper_api_version__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_module_prototyper_module_export__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_payment_acquirer__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_payment_acquirer_onboarding_wizard__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_payment_icon__count_pending_changesets
@@ -2254,6 +2266,9 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_mail_thread_phone__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_mail_tracking_value__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_mail_wizard_invite__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_module_prototyper__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_module_prototyper_api_version__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_module_prototyper_module_export__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_payment_acquirer__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_payment_acquirer_onboarding_wizard__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_payment_icon__user_can_see_changeset
