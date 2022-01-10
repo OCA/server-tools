@@ -143,6 +143,7 @@ class UpgradeAnalysis(models.Model):
             "prefix",
             "suffix",
             "domain",
+            "definition",
         ]
         local_xml_records = [
             {field: record[field] for field in flds}
