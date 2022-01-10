@@ -46,6 +46,7 @@ setuptools.setup(
         'odoo14-addon-letsencrypt',
         'odoo14-addon-module_auto_update',
         'odoo14-addon-module_change_auto_install',
+        'odoo14-addon-module_prototyper',
         'odoo14-addon-onchange_helper',
         'odoo14-addon-scheduler_error_mailer',
         'odoo14-addon-sentry',
