@@ -340,6 +340,9 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_name_search_improved.field_mail_thread_phone__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_mail_tracking_value__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_mail_wizard_invite__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_module_prototyper__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_module_prototyper_api_version__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_module_prototyper_module_export__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_payment_acquirer__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_payment_acquirer_onboarding_wizard__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_payment_icon__smart_search
