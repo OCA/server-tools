@@ -1,6 +1,8 @@
 # Copyright 2016-2017 Jairo Llopis <jairo.llopis@tecnativa.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
+from lxml import etree
+
 from odoo.tests.common import TransactionCase
 from odoo.tools import mute_logger
 
@@ -43,12 +45,12 @@ class ExtractorCase(TransactionCase):
     def test_empty_html(self):
         """Empty HTML handled correctly."""
         self.assertEqual(self.text_from_html(""), "")
-        with self.assertRaises(Exception):
+        with self.assertRaises(etree.ParserError):
             self.text_from_html("", fail=True)
 
     @mute_logger("odoo.addons.html_text.models.ir_fields_converter")
     def test_false_html(self):
         """``False`` HTML handled correctly."""
         self.assertEqual(self.text_from_html(False), "")
-        with self.assertRaises(Exception):
+        with self.assertRaises(TypeError):
             self.text_from_html(False, fail=True)
