@@ -25,4 +25,5 @@
     "demo": ["demo/changeset_field_rule.xml"],
     "qweb": ["static/src/xml/backend.xml"],
     "installable": True,
+    "post_load": "post_load",
 }
