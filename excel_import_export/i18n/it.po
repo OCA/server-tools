@@ -6,25 +6,27 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2022-01-14 13:39+0000\n"
+"Last-Translator: Alessandro Fiorino <alessandro.fiorino@digitaldomus.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "${object.post_import_do_something()}"
-msgstr ""
+msgstr "${object.post_import_do_something()}"
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/models/common.py:0
 #: code:addons/excel_import_export/models/common.py:0
 #, python-format
 msgid "'%s' sheet not found"
-msgstr ""
+msgstr "Foglio '%s' non trovato"
 
 #. module: excel_import_export
 #: model:ir.model.fields,help:excel_import_export.field_export_xlsx_wizard__state
@@ -38,7 +40,7 @@ msgstr ""
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "<b>Cell</b>: Location of data in excel sheet (e.g., A1, B1, ...)"
-msgstr ""
+msgstr "<b>Cella</b>: Posizione del dato nel foglio excel (ad es. A1, B1, ...)"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -46,6 +48,8 @@ msgid ""
 "<b>Continue</b>: If not selected, start rolling with specified first row "
 "cells. If selected, continue from previous one2many field"
 msgstr ""
+"<b>Continua</b>: Se non selezionato, inizia riempiendo la prima riga di "
+"celle specificata. Se selezionato, continua dal precedente campo one2many"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -53,6 +57,8 @@ msgid ""
 "<b>Extend</b>: If selected, extend one row after one data row in order to "
 "preserve the sum line"
 msgstr ""
+"<b>Estendi</b>: Se selezionato, estende una riga dopo l'altra al fine di "
+"preservare la riga di somma"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -74,7 +80,7 @@ msgstr ""
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "<b>Field</b>: Field of the record to be imported to, e.g., product_id"
-msgstr ""
+msgstr "<b>Campo</b>: Campo del record dove importare, ad es. product_id"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -82,6 +88,8 @@ msgid ""
 "<b>Field</b>: Field of the record, e.g., product_id.uom_id.name. They are "
 "orm compliant."
 msgstr ""
+"<b>Campo</b>: Campo del record, ad es. product_id.uom_id.name. Seguono le "
+"convenzioni dell'orm."
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -89,11 +97,14 @@ msgid ""
 "<b>No Delete</b>: By default, all one2many lines will be deleted before "
 "import. Select this, to avoid deletion"
 msgstr ""
+"<b>Non cancellare</b>: Per default, tutte le righe one2many saranno "
+"cancellate prima dell'importazione. Seleziona questo per evitare la "
+"cancellazione"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "<b>Note:</b>"
-msgstr ""
+msgstr "<b>Note:</b>"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -101,6 +112,8 @@ msgid ""
 "<b>Row Field</b>: Use _HEAD_ for the record itself, and one2many field "
 "(e.g., line_ids) for row data"
 msgstr ""
+"<b>Campo Riga</b>: Usa _HEAD_ per il record stesso, e un campo one2many (ad "
+"es. line_ids) per i dati della riga"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -109,6 +122,10 @@ msgid ""
 "row data, e.g., order_line, line_ids<code>[max_row]</code> where "
 "<code>[max_row]</code> is optional number of rows to import"
 msgstr ""
+"<b>Campo riga</b>: Usa _HEAD_ per il record stesso, e un campo one2many per "
+"i dati della riga, ad es. order_line, line_ids<code>[max_row]</code> "
+"dove<code>[max_row]</code> è il numero massimo opzionale di righe da "
+"importare"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
