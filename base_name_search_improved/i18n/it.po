@@ -9,71 +9,73 @@ msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-17 02:42+0000\n"
-"PO-Revision-Date: 2016-06-17 02:42+0000\n"
-"Last-Translator: Paolo Valier <paolo.valier@hotmail.it>, 2016\n"
+"PO-Revision-Date: 2022-01-15 01:39+0000\n"
+"Last-Translator: Alessandro Fiorino <alessandro.fiorino@digitaldomus.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: base_name_search_improved
 #: model:ir.model.fields,field_description:base_name_search_improved.field_ir_model__add_smart_search
 msgid "Add Smart Search"
-msgstr ""
+msgstr "Aggiunge Ricerca Intelligente"
 
 #. module: base_name_search_improved
 #: model:ir.model.fields,help:base_name_search_improved.field_ir_model__add_smart_search
 msgid "Add Smart Search on search views"
-msgstr ""
+msgstr "Aggiunge Ricerca Intelligente su viste ricerca"
 
 #. module: base_name_search_improved
 #: model:ir.model,name:base_name_search_improved.model_base
+#, fuzzy
 msgid "Base"
-msgstr ""
+msgstr "Base"
 
 #. module: base_name_search_improved
 #: code:addons/base_name_search_improved/models/ir_model.py:0
 #, python-format
 msgid "Couldn't eval Name Search Domain (%s)"
-msgstr ""
+msgstr "Non si può valutare il Dominio di Ricerca del Nome (%s)"
 
 #. module: base_name_search_improved
 #: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_form_new
 msgid "Custom Search"
-msgstr ""
+msgstr "Ricerca Personalizzata"
 
 #. module: base_name_search_improved
 #: model:ir.actions.act_window,name:base_name_search_improved.action_improved_name_search
 #: model:ir.ui.menu,name:base_name_search_improved.menu_improved_name_search
 msgid "Custom Searches"
-msgstr ""
+msgstr "Ricerche Personalizzate"
 
 #. module: base_name_search_improved
 #: model:ir.model.fields,field_description:base_name_search_improved.field_ir_model__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome Visualizzato"
 
 #. module: base_name_search_improved
 #: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_tree
 msgid "Domain"
-msgstr ""
+msgstr "Dominio"
 
 #. module: base_name_search_improved
 #: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_form_new
 msgid "Fields"
-msgstr ""
+msgstr "Campi"
 
 #. module: base_name_search_improved
 #: model:ir.model.fields,field_description:base_name_search_improved.field_ir_model__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: base_name_search_improved
 #: model:ir.model.fields,field_description:base_name_search_improved.field_ir_model____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima Modifica il"
 
 #. module: base_name_search_improved
 #: model:ir.model,name:base_name_search_improved.model_ir_model
@@ -83,23 +85,23 @@ msgstr "Modelli"
 #. module: base_name_search_improved
 #: model:ir.model.fields,field_description:base_name_search_improved.field_ir_model__name_search_domain
 msgid "Name Search Domain"
-msgstr ""
+msgstr "Dominio Ricerca Nome"
 
 #. module: base_name_search_improved
 #: code:addons/base_name_search_improved/models/ir_model.py:0
 #, python-format
 msgid "Name Search Domain must be a list of tuples"
-msgstr ""
+msgstr "Dominio Ricerca Nome deve essere una lista di tuple"
 
 #. module: base_name_search_improved
 #: model:ir.model.fields,field_description:base_name_search_improved.field_ir_model__name_search_ids
 msgid "Name Search Fields"
-msgstr ""
+msgstr "Campi Ricerca Nome"
 
 #. module: base_name_search_improved
 #: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_tree
 msgid "Search Fields"
-msgstr ""
+msgstr "Campi Ricerca"
 
 #. module: base_name_search_improved
 #: model:ir.model.fields,field_description:base_name_search_improved.field__unknown__smart_search
@@ -461,9 +463,9 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_search
 #: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_tree
 msgid "Smart Search"
-msgstr ""
+msgstr "Ricerca Intelligente"
 
 #. module: base_name_search_improved
 #: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_search
 msgid "With Custom Search"
-msgstr ""
+msgstr "Con Ricerca Personalizzata"
