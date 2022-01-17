@@ -4,7 +4,7 @@
 
 from odoo.tests.common import Form, TransactionCase
 
-from ..models.base import disable_changeset
+from ..common import disable_changeset
 from .common import ChangesetTestCommon
 
 

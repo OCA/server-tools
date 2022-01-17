@@ -8,7 +8,7 @@ from odoo.tools import config, ormcache
 
 # put this object into context key '__no_changeset' to disable changeset
 # functionality
-disable_changeset = object()
+from ..common import disable_changeset
 
 
 class Base(models.AbstractModel):

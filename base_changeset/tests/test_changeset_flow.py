@@ -8,7 +8,7 @@ from odoo import fields
 from odoo.exceptions import UserError
 from odoo.tests.common import TransactionCase
 
-from ..models.base import disable_changeset
+from ..common import disable_changeset
 from .common import ChangesetTestCommon
 
 
