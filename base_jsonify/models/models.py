@@ -9,6 +9,7 @@ import logging
 
 from odoo import api, fields, models, tools
 from odoo.exceptions import UserError
+from odoo.tools.misc import format_duration
 from odoo.tools.translate import _
 
 from .utils import convert_simple_to_full_parser
@@ -172,6 +173,8 @@ class Base(models.AbstractModel):
         results = resolver.resolve(results, self) if resolver else results
         return results[0] if one else results
 
+    # HELPERS
+
     def _jsonify_m2o_to_id(self, fname):
         """Helper to get an ID only from a m2o field.
 
@@ -183,3 +186,26 @@ class Base(models.AbstractModel):
 
         """
         return self[fname].id
+
+    def _jsonify_x2m_to_ids(self, fname):
+        """Helper to get a list of IDs only from a o2m or m2m field.
+
+        Example:
+
+            <field name="name">m2m_ids</field>
+            <field name="target">m2m_ids:rel_ids</field>
+            <field name="instance_method_name">_jsonify_x2m_to_ids</field>
+
+        """
+        return self[fname].ids
+
+    def _jsonify_format_duration(self, fname):
+        """Helper to format a Float-like duration to string 00:00.
+
+        Example:
+
+            <field name="name">duration</field>
+            <field name="instance_method_name">_jsonify_format_duration</field>
+
+        """
+        return format_duration(self[fname])
