@@ -67,7 +67,9 @@ class TestDatabaseCleanup(TransactionCase):
 
         # Create an inherited table
         self.env.cr.execute(
-            "CREATE table dbcleanup_inherited_test (database_cleanup_test2 int) INHERITS (res_partner)")
+            "CREATE table dbcleanup_inherited_test (database_cleanup_test2 int) "
+            "INHERITS (res_partner)"
+            )
 
         # We need use a model that inherits from another
         client_action_model = self.env["ir.model"].search(

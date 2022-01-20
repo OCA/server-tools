@@ -32,13 +32,23 @@ class CleanupPurgeLineColumn(models.TransientModel):
             model_pool = self.env[line.model_id.model]
             # Check whether the column actually still exists.
             # Inheritance such as stock.picking.in from stock.picking
-            # can lead to double attempts at removal
+            # can lead to double attempts at removal.
+            # Ignore the column if it is inherited.
             self.env.cr.execute(
-                'SELECT count(attname) FROM pg_attribute '
-                'WHERE attrelid = '
-                '( SELECT oid FROM pg_class WHERE relname = %s ) '
-                'AND attname = %s',
-                (model_pool._table, line.name))
+                """
+                SELECT COUNT(pa.attname)
+                FROM pg_attribute AS pa
+                JOIN pg_class AS pc ON pa.attrelid = pc.oid
+                LEFT JOIN pg_inherits AS pi ON pc.oid = pi.inhrelid
+                WHERE pc.relname = %(table_name)s
+                AND pa.attname = %(column_name)s
+                AND pi.inhrelid IS NULL;""",
+                {
+                    'table_name': model_pool._table,
+                    'column_name': line.name,
+                },
+            )
+
             if not self.env.cr.fetchone()[0]:
                 continue
 
@@ -88,11 +98,14 @@ class CleanupPurgeWizardColumn(models.TransientModel):
 
         self.env.cr.execute(
             "SELECT a.attname FROM pg_class c, pg_attribute a "
-            "WHERE c.relname=%s AND c.oid=a.attrelid AND a.attisdropped=False "
+            "WHERE c.relname=%(table_name)s AND c.oid=a.attrelid "
+            "AND a.attisdropped=False "
             "AND pg_catalog.format_type(a.atttypid, a.atttypmod) "
             "NOT IN ('cid', 'tid', 'oid', 'xid') "
-            "AND a.attname NOT IN %s",
-            (model_pools[0]._table, tuple(columns)))
+            "AND a.attname NOT IN %(columns_names)s AND (SELECT count(inhrelid) "
+            "FROM pg_inherits WHERE inhrelid = "
+            "(SELECT oid FROM pg_class WHERE relname = %(table_name)s )) = 0",
+            {'table_name': model_pools[0]._table, 'columns_names': tuple(columns)})
         return [column for column, in self.env.cr.fetchall()]
 
     @api.model
