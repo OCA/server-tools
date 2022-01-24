@@ -405,6 +405,8 @@ class RecordChangesetChange(models.Model):
                 or rec.rule_id.validator_group_ids & user_groups
                 or has_group
             )
+            if self.rule_id.prevent_self_validation:
+                can_validate = can_validate and rec.modified_by_id != self.env.user
             rec.user_can_validate_changeset = can_validate
 
     @api.model
