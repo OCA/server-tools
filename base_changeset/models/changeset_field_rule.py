@@ -52,6 +52,7 @@ class ChangesetFieldRule(models.Model):
         )
         or self.env["res.groups"],
     )
+    prevent_self_validation = fields.Boolean(default=False)
 
     def init(self):
         """Ensure there is at most one rule with source_model_id NULL."""

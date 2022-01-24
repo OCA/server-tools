@@ -43,6 +43,7 @@
                             <field name="source_model_id" widget="selection" />
                             <field name="expression" placeholder="True" />
                             <field name="validator_group_ids" widget="many2many_tags" />
+                            <field name="prevent_self_validation" />
                         </group>
                     </group>
                 </sheet>
