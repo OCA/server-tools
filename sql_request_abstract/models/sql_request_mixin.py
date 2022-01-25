@@ -51,7 +51,7 @@ class SQLRequestMixin(models.AbstractModel):
     def _default_group_ids(self):
         ir_model_obj = self.env["ir.model.data"]
         return [
-            ir_model_obj.xmlid_to_res_id("sql_request_abstract.group_sql_request_user")
+            ir_model_obj._xmlid_to_res_id("sql_request_abstract.group_sql_request_user")
         ]
 
     @api.model
