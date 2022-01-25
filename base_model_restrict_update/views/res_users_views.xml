@@ -7,9 +7,22 @@
         <field name="inherit_id" ref="base.view_users_form" />
         <field name="arch" type="xml">
             <div class="oe_button_box" name="button_box" position="inside">
-                <button name="toggle_unrestrict_model_update" type="object" class="oe_stat_button" icon="fa-pencil">
+                <button name="toggle_unrestrict_model_update" type="object" class="oe_stat_button" icon="fa-pencil"
+                    attrs="{'invisible': [('is_readonly_user', '=', True)]}">
                     <field name="unrestrict_model_update" widget="boolean_button"
                            options='{"terminology": {"string_true": "Update Permit", "string_false": "Unpermitted"}}'/>
+                </button>
+                <button
+                    name="toggle_is_readonly_user"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-ban"
+                >
+                    <field
+                        name="is_readonly_user"
+                        widget="boolean_button"
+                        options='{"terminology": {"string_false": "Editable", "string_true": "Readonly"}}'
+                    />
                 </button>
             </div>
         </field>

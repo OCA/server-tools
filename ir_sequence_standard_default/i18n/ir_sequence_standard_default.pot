@@ -41,8 +41,28 @@ msgid "Change all your current No Gap sequences to Standard in order to improve 
 msgstr ""
 
 #. module: ir_sequence_standard_default
+#: model:ir.model.fields,field_description:ir_sequence_standard_default.field_sequence_standard_default__changeset_change_ids
+msgid "Changeset Changes"
+msgstr ""
+
+#. module: ir_sequence_standard_default
+#: model:ir.model.fields,field_description:ir_sequence_standard_default.field_sequence_standard_default__changeset_ids
+msgid "Changesets"
+msgstr ""
+
+#. module: ir_sequence_standard_default
 #: model:ir.model,name:ir_sequence_standard_default.model_res_config_settings
 msgid "Config Settings"
+msgstr ""
+
+#. module: ir_sequence_standard_default
+#: model:ir.model.fields,field_description:ir_sequence_standard_default.field_sequence_standard_default__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr ""
+
+#. module: ir_sequence_standard_default
+#: model:ir.model.fields,field_description:ir_sequence_standard_default.field_sequence_standard_default__count_pending_changesets
+msgid "Count Pending Changesets"
 msgstr ""
 
 #. module: ir_sequence_standard_default
@@ -93,6 +113,11 @@ msgstr ""
 #. module: ir_sequence_standard_default
 #: model:ir.actions.act_window,name:ir_sequence_standard_default.action_sequence_standard_default
 msgid "Set All Sequences to Standard"
+msgstr ""
+
+#. module: ir_sequence_standard_default
+#: model:ir.model.fields,field_description:ir_sequence_standard_default.field_sequence_standard_default__user_can_see_changeset
+msgid "User Can See Changeset"
 msgstr ""
 
 #. module: ir_sequence_standard_default

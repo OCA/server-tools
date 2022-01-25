@@ -14,9 +14,11 @@ setuptools.setup(
         'odoo12-addon-auditlog',
         'odoo12-addon-auto_backup',
         'odoo12-addon-autovacuum_message_attachment',
+        'odoo12-addon-base_changeset',
         'odoo12-addon-base_conditional_image',
         'odoo12-addon-base_cron_exclusion',
         'odoo12-addon-base_custom_info',
+        'odoo12-addon-base_deterministic_session_gc',
         'odoo12-addon-base_exception',
         'odoo12-addon-base_fontawesome',
         'odoo12-addon-base_import_module_group',
@@ -60,5 +62,6 @@ setuptools.setup(
     classifiers=[
         'Programming Language :: Python',
         'Framework :: Odoo',
+        'Framework :: Odoo :: 12.0',
     ]
 )

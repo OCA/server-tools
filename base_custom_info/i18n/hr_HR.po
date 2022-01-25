@@ -152,6 +152,26 @@ msgid "Category Sequence"
 msgstr ""
 
 #. module: base_custom_info
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info__changeset_change_ids
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_category__changeset_change_ids
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_option__changeset_change_ids
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_property__changeset_change_ids
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_template__changeset_change_ids
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value__changeset_change_ids
+msgid "Changeset Changes"
+msgstr ""
+
+#. module: base_custom_info
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info__changeset_ids
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_category__changeset_ids
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_option__changeset_ids
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_property__changeset_ids
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_template__changeset_ids
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value__changeset_ids
+msgid "Changesets"
+msgstr ""
+
+#. module: base_custom_info
 #: selection:custom.info.property,widget:0
 msgid "Choice"
 msgstr ""
@@ -174,6 +194,26 @@ msgstr ""
 #. module: base_custom_info
 #: model:ir.model,name:base_custom_info.model_res_partner
 msgid "Contact"
+msgstr ""
+
+#. module: base_custom_info
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_category__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_option__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_property__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_template__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr ""
+
+#. module: base_custom_info
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info__count_pending_changesets
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_category__count_pending_changesets
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_option__count_pending_changesets
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_property__count_pending_changesets
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_template__count_pending_changesets
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value__count_pending_changesets
+msgid "Count Pending Changesets"
 msgstr ""
 
 #. module: base_custom_info
@@ -752,6 +792,16 @@ msgstr ""
 #: model:ir.model.fields,help:base_custom_info.field_custom_info_property__widget
 #: model:ir.model.fields,help:base_custom_info.field_custom_info_value__widget
 msgid "Type of information that can be stored in the property."
+msgstr ""
+
+#. module: base_custom_info
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_category__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_option__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_property__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_template__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value__user_can_see_changeset
+msgid "User Can See Changeset"
 msgstr ""
 
 #. module: base_custom_info

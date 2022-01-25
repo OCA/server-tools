@@ -97,6 +97,16 @@ msgid "Backend"
 msgstr ""
 
 #. module: attachment_synchronize
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__changeset_change_ids
+msgid "Changeset Changes"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__changeset_ids
+msgid "Changesets"
+msgstr ""
+
+#. module: attachment_synchronize
 #: model_terms:ir.ui.view,arch_db:attachment_synchronize.view_attachment_task_tree
 msgid "Copy"
 msgstr ""
@@ -114,6 +124,16 @@ msgstr ""
 #. module: attachment_synchronize
 #: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__count_attachment_pending
 msgid "Count Attachment Pending"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__count_pending_changesets
+msgid "Count Pending Changesets"
 msgstr ""
 
 #. module: attachment_synchronize
@@ -331,6 +351,11 @@ msgstr ""
 #: model:ir.model.fields,help:attachment_synchronize.field_attachment_synchronize_task__file_type
 msgid "Used to fill the 'File Type' field in the imported 'Attachments Queues'.\n"
 "Further operations will be realized on these Attachments Queues depending on their 'File Type' value."
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__user_can_see_changeset
+msgid "User Can See Changeset"
 msgstr ""
 
 #. module: attachment_synchronize

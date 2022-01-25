@@ -91,6 +91,16 @@ msgid "Cannot duplicate a configuration."
 msgstr "无法复制配置。"
 
 #. module: auto_backup
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__changeset_change_ids
+msgid "Changeset Changes"
+msgstr ""
+
+#. module: auto_backup
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__changeset_ids
+msgid "Changesets"
+msgstr ""
+
+#. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__backup_format
 msgid "Choose the format for this backup."
 msgstr "选择这个备份的格式."
@@ -117,6 +127,16 @@ msgstr "连接测试失败！"
 #, python-format
 msgid "Connection Test Succeeded!"
 msgstr "连接测试成功！"
+
+#. module: auto_backup
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr ""
+
+#. module: auto_backup
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr ""
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__create_uid
@@ -350,7 +370,9 @@ msgstr "在安排的动作搜索“备份计划”。"
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid ""
 "Set the scheduler to active and fill in how often you want backups generated."
-msgstr "将安排的动作设置为活动状态，并填写备份间隔时间，间隔时间单位，间隔次数，执行时间等数据库具体备份方案。"
+msgstr ""
+"将安排的动作设置为活动状态，并填写备份间隔时间，间隔时间单位，间隔次数，执行"
+"时间等数据库具体备份方案。"
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__name
@@ -405,6 +427,11 @@ msgid ""
 msgstr ""
 "请注意你的 SFTP服务器网络安全！数据库备份文件将备份到你的SFTP服务器，文件保存"
 "在设置的目录下面。"
+
+#. module: auto_backup
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr ""
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__sftp_user
