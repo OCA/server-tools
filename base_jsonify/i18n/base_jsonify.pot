@@ -206,8 +206,8 @@ msgstr ""
 #. module: base_jsonify
 #: model:ir.model.fields,help:base_jsonify.field_ir_exports_line__target
 msgid ""
-"The complete path to the field where you can specify a target on the step "
-"as field:target"
+"The complete path to the field where you can specify a target on the step as"
+" field:target"
 msgstr ""
 
 #. module: base_jsonify
