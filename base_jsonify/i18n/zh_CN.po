@@ -76,6 +76,8 @@ msgid "Custom resolver"
 msgstr ""
 
 #. module: base_jsonify
+#: model:ir.model.fields,field_description:base_jsonify.field_ir_exports__display_name
+#: model:ir.model.fields,field_description:base_jsonify.field_ir_exports_line__display_name
 #: model:ir.model.fields,field_description:base_jsonify.field_ir_exports_resolver__display_name
 msgid "Display Name"
 msgstr ""
@@ -123,6 +125,8 @@ msgid "Global"
 msgstr ""
 
 #. module: base_jsonify
+#: model:ir.model.fields,field_description:base_jsonify.field_ir_exports__id
+#: model:ir.model.fields,field_description:base_jsonify.field_ir_exports_line__id
 #: model:ir.model.fields,field_description:base_jsonify.field_ir_exports_resolver__id
 msgid "ID"
 msgstr ""
@@ -165,6 +169,8 @@ msgid "Language Agnostic"
 msgstr ""
 
 #. module: base_jsonify
+#: model:ir.model.fields,field_description:base_jsonify.field_ir_exports____last_update
+#: model:ir.model.fields,field_description:base_jsonify.field_ir_exports_line____last_update
 #: model:ir.model.fields,field_description:base_jsonify.field_ir_exports_resolver____last_update
 msgid "Last Modified on"
 msgstr ""
@@ -203,8 +209,8 @@ msgstr "别名"
 #. module: base_jsonify
 #: model:ir.model.fields,help:base_jsonify.field_ir_exports_line__target
 msgid ""
-"The complete path to the field where you can specify a target on the step "
-"as field:target"
+"The complete path to the field where you can specify a target on the step as "
+"field:target"
 msgstr "字段的完整路径，您可以在其中指定步骤作为字段的别名：别名"
 
 #. module: base_jsonify
