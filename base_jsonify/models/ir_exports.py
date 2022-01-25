@@ -72,7 +72,7 @@ def field_dict(field, options=None):
     return result
 
 
-class IrExport(models.Model):
+class IrExports(models.Model):
     _inherit = "ir.exports"
 
     language_agnostic = fields.Boolean(

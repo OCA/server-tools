@@ -4,31 +4,32 @@ def convert_simple_to_full_parser(parser):
     return {"fields": _convert_parser(parser)}
 
 
-def _f(f, function=None):
+def _convert_field(fld, function=None):
     """Return a dict from the string encoding a field to export.
     The : is used as a separator to specify a target, if any.
     """
-    field_split = f.split(":")
-    field_dict = {"name": field_split[0]}
-    if len(field_split) > 1:
-        field_dict["target"] = field_split[1]
+    name, sep, target = fld.partition(":")
+    field_dict = {"name": name}
+    if target:
+        field_dict["target"] = target
     if function:
         field_dict["function"] = function
     return field_dict
 
 
 def _convert_parser(parser):
-    """Recursively process each list to replace encoding fields as string
+    """Recursively process each list to replace encoded fields as string
     by dicts specifying each attribute by its relevant key.
     """
     result = []
     for line in parser:
         if isinstance(line, str):
-            result.append(_f(line))
+            field_def = _convert_field(line)
         else:
-            f, sub = line
+            fld, sub = line
             if callable(sub) or isinstance(sub, str):
-                result.append(_f(f, sub))
+                field_def = _convert_field(fld, sub)
             else:
-                result.append((_f(f), _convert_parser(sub)))
+                field_def = (_convert_field(fld), _convert_parser(sub))
+        result.append(field_def)
     return result
