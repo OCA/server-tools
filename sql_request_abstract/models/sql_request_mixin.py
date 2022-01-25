@@ -59,17 +59,15 @@ class SQLRequestMixin(models.AbstractModel):
         return []
 
     # Columns Section
-    name = fields.Char("Name", required=True)
+    name = fields.Char(required=True)
 
     query = fields.Text(
-        string="Query",
         required=True,
         help="You can't use the following words"
         ": DELETE, DROP, CREATE, INSERT, ALTER, TRUNCATE, EXECUTE, UPDATE.",
     )
 
     state = fields.Selection(
-        string="State",
         selection=STATE_SELECTION,
         default="draft",
         help="State of the Request:\n"
@@ -180,7 +178,7 @@ class SQLRequestMixin(models.AbstractModel):
                 SQL(query), SQL(view_name)
             )
         else:
-            raise UserError(_("Unimplemented mode : '%s'" % mode))
+            raise UserError(_("Unimplemented mode : '%(mode)s'", mode=mode))
 
         if rollback:
             rollback_name = self._create_savepoint()
@@ -269,7 +267,7 @@ class SQLRequestMixin(models.AbstractModel):
             res = self._hook_executed_request()
         except ProgrammingError as e:
             logger.exception("Failed query: %s", query)
-            raise UserError(_("The SQL query is not valid:\n\n %s") % e)
+            raise UserError(_("The SQL query is not valid:\n\n %s") % e) from e
         finally:
             self._rollback_savepoint(rollback_name)
         return res
