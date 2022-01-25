@@ -86,7 +86,7 @@ class SQLRequestMixin(models.AbstractModel):
     # Action Section
     @api.multi
     def button_validate_sql_expression(self):
-        for item in self:
+        for item in self.filtered(lambda x: x.state == "draft"):
             if item._clean_query_enabled:
                 item._clean_query()
             if item._check_prohibited_words_enabled:
@@ -98,7 +98,9 @@ class SQLRequestMixin(models.AbstractModel):
 
     @api.multi
     def button_set_draft(self):
-        self.write({'state': 'draft'})
+        return self.filtered(lambda x: x.state != "draft").write(
+            {'state': 'draft'}
+        )
 
     # API Section
     @api.multi
