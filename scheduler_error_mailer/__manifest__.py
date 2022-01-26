@@ -5,18 +5,15 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
-    'name': 'Scheduler Error Mailer',
-    'version': '12.0.1.2.0',
-    'category': 'Extra Tools',
-    'license': 'AGPL-3',
-    'author': "Akretion,Sodexis,Odoo Community Association (OCA)",
-    'website': 'https://github.com/OCA/server-tools',
-    'depends': ['mail'],
-    'data': [
-        'data/ir_cron_email_tpl.xml',
-        'views/ir_cron.xml',
-    ],
-    'demo': ['demo/ir_cron_demo.xml'],
-    'images': ['images/scheduler_error_mailer.jpg'],
-    'installable': True,
+    "name": "Scheduler Error Mailer",
+    "version": "12.0.1.2.0",
+    "category": "Extra Tools",
+    "license": "AGPL-3",
+    "author": "Akretion,Sodexis,Odoo Community Association (OCA)",
+    "website": "https://github.com/OCA/server-tools",
+    "depends": ["mail"],
+    "data": ["data/ir_cron_email_tpl.xml", "views/ir_cron.xml",],
+    "demo": ["demo/ir_cron_demo.xml"],
+    "images": ["images/scheduler_error_mailer.jpg"],
+    "installable": True,
 }
