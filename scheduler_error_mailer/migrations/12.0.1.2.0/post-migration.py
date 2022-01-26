@@ -15,5 +15,5 @@ def migrate(env, version):
     )
     template.body_html = template.body_html.replace(
         "<li>Arguments : ${object.args or ''}</li>",
-        "<li>Python code : <code>${object.code or ''}</code></li>"
+        "<li>Python code : <code>${object.code or ''}</code></li>",
     )
