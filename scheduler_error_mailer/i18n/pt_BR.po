@@ -78,7 +78,7 @@ msgstr ""
 "Selecione o modelo de email que será enviado quando o agendador falhar."
 
 #. module: scheduler_error_mailer
-#: code:addons/scheduler_error_mailer/models/ir_cron.py:55
+#: code:addons/scheduler_error_mailer/models/ir_cron.py:0
 #, python-format
 msgid "Task failure with UID = %d."
 msgstr "Tarefa falhou com UID = %d."
