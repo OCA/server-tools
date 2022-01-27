@@ -116,6 +116,35 @@ class TestChangesetFlow(ChangesetTestCommon, TransactionCase):
         self.assertEqual(self.partner.name, "Y")
         self.assertEqual(changeset.change_ids.state, "done")
 
+    def test_apply_change_with_prevent_self_validation(self):
+        """ Don't apply a changeset change and prevent self validation """
+        self.partner.write({"street": "street Z"})
+        self.partner._compute_changeset_ids()
+        self.partner._compute_count_pending_changesets()
+        self.assertEqual(self.partner.count_pending_changesets, 1)
+        self.assertEqual(self.partner.count_pending_changeset_changes, 1)
+        self.partner.changeset_ids.change_ids.rule_id.prevent_self_validation = True
+        with self.assertRaises(
+            UserError, msg="You don't have the rights to reject the changes."
+        ):
+            self.partner.changeset_ids.change_ids.apply()
+        self.partner._compute_changeset_ids()
+        self.partner._compute_count_pending_changesets()
+        self.assertEqual(self.partner.count_pending_changesets, 1)
+        self.assertEqual(self.partner.count_pending_changeset_changes, 1)
+        self.assertEqual(self.partner.street, "street X")
+        self.assertEqual(self.partner.changeset_ids.change_ids.state, "draft")
+
+        user = self.env.ref("base.user_demo")
+        user.groups_id += self.env.ref("base_changeset.group_changeset_user")
+        self.partner.changeset_ids.change_ids.with_user(user).apply()
+        self.partner._compute_changeset_ids()
+        self.partner._compute_count_pending_changesets()
+        self.assertEqual(self.partner.count_pending_changesets, 0)
+        self.assertEqual(self.partner.count_pending_changeset_changes, 0)
+        self.assertEqual(self.partner.street, "street Z")
+        self.assertEqual(self.partner.changeset_ids.change_ids.state, "done")
+
     def test_apply_done_change(self):
         """ Done changes do not apply (already applied) """
         changes = [(self.field_name, "Y", "done")]
