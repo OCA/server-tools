@@ -38,6 +38,7 @@ class ChangesetFieldRule(models.Model):
     )
     company_id = fields.Many2one("res.company", default=lambda self: self.env.company)
     active = fields.Boolean(default=True)
+    prevent_self_validation = fields.Boolean(default=False)
 
     def init(self):
         """Ensure there is at most one rule with source_model_id NULL."""

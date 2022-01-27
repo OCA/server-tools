@@ -39,6 +39,7 @@
                             />
                             <field name="action" />
                             <field name="source_model_id" widget="selection" />
+                            <field name="prevent_self_validation" />
                         </group>
                     </group>
                 </sheet>
