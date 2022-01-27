@@ -44,6 +44,7 @@ setuptools.setup(
         'odoo13-addon-module_analysis',
         'odoo13-addon-module_auto_update',
         'odoo13-addon-onchange_helper',
+        'odoo13-addon-scheduler_error_mailer',
         'odoo13-addon-sentry',
         'odoo13-addon-sequence_python',
         'odoo13-addon-slow_statement_logger',
