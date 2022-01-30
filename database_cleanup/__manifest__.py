@@ -12,6 +12,7 @@
         'views/purge_menus.xml',
         'views/purge_modules.xml',
         'views/purge_models.xml',
+        'views/purge_model_fields.xml',
         'views/purge_columns.xml',
         'views/purge_tables.xml',
         'views/purge_data.xml',
