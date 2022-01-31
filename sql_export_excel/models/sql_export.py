@@ -93,13 +93,13 @@ class SqlExport(models.Model):
             sheets = wb.worksheets
             try:
                 ws = sheets[self.sheet_position - 1]
-            except IndexError:
+            except IndexError as err:
                 raise exceptions.ValidationError(
                     _(
                         "The Excel Template file contains less than %s sheets "
                         "Please, adjust the Sheet Position parameter."
                     )
-                )
+                ) from err
             row_position = self.row_position or 1
             col_position = self.col_position or 1
         # Case of excel file creation
