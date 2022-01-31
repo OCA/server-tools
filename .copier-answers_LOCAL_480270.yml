@@ -7,7 +7,7 @@ generate_requirements_txt: true
 include_wkhtmltopdf: false
 odoo_version: 15.0
 rebel_module_groups: []
-repo_description: null
+repo_description: "TODO: add repo description."
 repo_name: server-tools
 repo_slug: server-tools
 travis_apt_packages: []
