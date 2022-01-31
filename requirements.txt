@@ -2,4 +2,5 @@
 dataclasses
 mako
 odoorpc
+openpyxl
 openupgradelib
