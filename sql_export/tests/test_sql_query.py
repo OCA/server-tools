@@ -11,11 +11,12 @@ from odoo.tests.common import TransactionCase, tagged
 
 @tagged("post_install", "-at_install")
 class TestExportSqlQuery(TransactionCase):
-    def setUp(self):
-        super(TestExportSqlQuery, self).setUp()
-        self.sql_export_obj = self.env["sql.export"]
-        self.wizard_obj = self.env["sql.file.wizard"]
-        self.sql_report_demo = self.env.ref("sql_export.sql_export_partner")
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.sql_export_obj = cls.env["sql.export"]
+        cls.wizard_obj = cls.env["sql.file.wizard"]
+        cls.sql_report_demo = cls.env.ref("sql_export.sql_export_partner")
 
     def test_sql_query(self):
         wizard = self.wizard_obj.create(
