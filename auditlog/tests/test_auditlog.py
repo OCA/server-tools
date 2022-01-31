@@ -3,7 +3,7 @@
 # © 2021 Stefan Rijnhart <stefan@opener.amsterdam>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo.modules.migration import load_script
-from odoo.tests.common import SavepointCase, TransactionCase
+from odoo.tests.common import TransactionCase
 
 from odoo.addons.base.models.ir_model import MODULE_UNINSTALL_FLAG
 
@@ -237,7 +237,7 @@ class TestAuditlogFast(TransactionCase, AuditlogCommon):
         super(TestAuditlogFast, self).tearDown()
 
 
-class TestFieldRemoval(SavepointCase):
+class TestFieldRemoval(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -247,32 +247,43 @@ class TestFieldRemoval(SavepointCase):
         existing_audit_logs.unlink()
 
         # Create a test model to remove
-        cls.test_model = cls.env["ir.model"].create(
-            {"name": "x_test_model", "model": "x_test.model", "state": "manual"}
+        cls.test_model = (
+            cls.env["ir.model"]
+            .sudo()
+            .create(
+                [{"name": "x_test_model", "model": "x_test.model", "state": "manual"}]
+            )
         )
 
         # Create a test model field to remove
-        cls.test_field = cls.env["ir.model.fields"].create(
-            {
-                "name": "x_test_field",
-                "field_description": "x_Test Field",
-                "model_id": cls.test_model.id,
-                "ttype": "char",
-                "state": "manual",
-            }
+        cls.test_field = (
+            cls.env["ir.model.fields"]
+            .sudo()
+            .create(
+                [
+                    {
+                        "name": "x_test_field",
+                        "field_description": "x_Test Field",
+                        "model_id": cls.test_model.id,
+                        "ttype": "char",
+                        "state": "manual",
+                    }
+                ]
+            )
         )
-
         # Setup auditlog rule
         cls.auditlog_rule = cls.env["auditlog.rule"].create(
-            {
-                "name": "test.model",
-                "model_id": cls.test_model.id,
-                "log_type": "fast",
-                "log_read": False,
-                "log_create": True,
-                "log_write": True,
-                "log_unlink": False,
-            }
+            [
+                {
+                    "name": "test.model",
+                    "model_id": cls.test_model.id,
+                    "log_type": "fast",
+                    "log_read": False,
+                    "log_create": True,
+                    "log_write": True,
+                    "log_unlink": False,
+                }
+            ]
         )
 
         cls.auditlog_rule.subscribe()
@@ -305,13 +316,13 @@ class TestFieldRemoval(SavepointCase):
         self.assert_values()
 
         # Remove the field
-        self.test_field.with_context({MODULE_UNINSTALL_FLAG: True}).unlink()
+        self.test_field.with_context(**{MODULE_UNINSTALL_FLAG: True}).unlink()
         self.assert_values()
         # The field should not be linked
         self.assertFalse(self.logs.mapped("line_ids.field_id"))
 
         # Remove the model
-        self.test_model.with_context({MODULE_UNINSTALL_FLAG: True}).unlink()
+        self.test_model.with_context(**{MODULE_UNINSTALL_FLAG: True}).unlink()
         self.assert_values()
 
         # The model should not be linked
