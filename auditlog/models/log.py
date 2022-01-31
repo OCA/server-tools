@@ -31,7 +31,7 @@ class AuditlogLog(models.Model):
         for vals in vals_list:
             if not vals.get("model_id"):
                 raise UserError(_("No model defined to create log."))
-            model = self.env["ir.model"].browse(vals["model_id"])
+            model = self.env["ir.model"].sudo().browse(vals["model_id"])
             vals.update({"model_name": model.name, "model_model": model.model})
         return super().create(vals_list)
 
@@ -41,7 +41,7 @@ class AuditlogLog(models.Model):
         if "model_id" in vals:
             if not vals["model_id"]:
                 raise UserError(_("The field 'model_id' cannot be empty."))
-            model = self.env["ir.model"].browse(vals["model_id"])
+            model = self.env["ir.model"].sudo().browse(vals["model_id"])
             vals.update({"model_name": model.name, "model_model": model.model})
         return super().write(vals)
 
@@ -81,7 +81,7 @@ class AuditlogLogLine(models.Model):
         for vals in vals_list:
             if not vals.get("field_id"):
                 raise UserError(_("No field defined to create line."))
-            field = self.env["ir.model.fields"].browse(vals["field_id"])
+            field = self.env["ir.model.fields"].sudo().browse(vals["field_id"])
             vals.update(
                 {"field_name": field.name, "field_description": field.field_description}
             )
@@ -93,7 +93,7 @@ class AuditlogLogLine(models.Model):
         if "field_id" in vals:
             if not vals["field_id"]:
                 raise UserError(_("The field 'field_id' cannot be empty."))
-            field = self.env["ir.model.fields"].browse(vals["field_id"])
+            field = self.env["ir.model.fields"].sudo().browse(vals["field_id"])
             vals.update(
                 {"field_name": field.name, "field_description": field.field_description}
             )
