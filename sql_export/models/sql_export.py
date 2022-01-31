@@ -15,9 +15,7 @@ class SqlExport(models.Model):
 
     _check_execution_enabled = False
 
-    copy_options = fields.Char(
-        string="Copy Options", required=False, default="CSV HEADER DELIMITER ';'"
-    )
+    copy_options = fields.Char(required=False, default="CSV HEADER DELIMITER ';'")
 
     file_format = fields.Selection([("csv", "CSV")], default="csv", required=True)
 
@@ -58,7 +56,6 @@ class SqlExport(models.Model):
             ("windows-1251", "windows-1251"),
             ("koir8_r", "koir8_r"),
         ],
-        string="Encoding",
         required=True,
         default="utf-8",
     )

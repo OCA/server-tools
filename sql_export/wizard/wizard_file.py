@@ -16,7 +16,7 @@ class SqlFileWizard(models.TransientModel):
     _description = "Allow the user to save the file with sql request's data"
 
     binary_file = fields.Binary("File", readonly=True)
-    file_name = fields.Char("File Name", readonly=True)
+    file_name = fields.Char(readonly=True)
     sql_export_id = fields.Many2one(comodel_name="sql.export", required=True)
 
     @api.model
