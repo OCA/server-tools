@@ -110,8 +110,12 @@
         <field name="model">sql.export</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="name" />
-                <field name="state" />
+                <field name="name" decoration-bf="True" />
+                <field
+                    name="state"
+                    decoration-info="state == 'draft'"
+                    decoration-success="state == 'sql_valid'"
+                />
                 <button
                     name="export_sql_query"
                     string="Execute Query"
