@@ -262,7 +262,7 @@
         <field name="name">view.auditlog.line.tree</field>
         <field name="model">auditlog.log.line</field>
         <field name="arch" type="xml">
-            <tree string="Log Lines" create="0">
+            <tree create="0">
                 <field name="create_date" optional="show" />
                 <field name="user_id" optional="show" />
                 <field name="http_session_id" optional="hide" />
