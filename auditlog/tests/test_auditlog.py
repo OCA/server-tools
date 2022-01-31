@@ -301,7 +301,7 @@ class TestFieldRemoval(SavepointCase):
         self.assertEqual(self.auditlog_rule.model_model, "x_test.model")
 
     def test_01_field_and_model_removal(self):
-        """ Test field and model removal to check auditlog line persistence """
+        """Test field and model removal to check auditlog line persistence"""
         self.assert_values()
 
         # Remove the field

@@ -27,7 +27,7 @@ class AuditlogLog(models.Model):
 
     @api.model_create_multi
     def create(self, vals_list):
-        """ Insert model_name and model_model field values upon creation. """
+        """Insert model_name and model_model field values upon creation."""
         for vals in vals_list:
             if not vals.get("model_id"):
                 raise UserError(_("No model defined to create log."))
