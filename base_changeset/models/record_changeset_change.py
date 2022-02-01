@@ -384,6 +384,8 @@ class RecordChangesetChange(models.Model):
         has_group = self.user_has_groups("base_changeset.group_changeset_user")
         for rec in self:
             can_validate = rec._is_change_pending() and (is_superuser or has_group)
+            if rec.rule_id.prevent_self_validation:
+                can_validate = can_validate and rec.modified_by_id != self.env.user
             rec.user_can_validate_changeset = can_validate
 
     @api.model
