@@ -1903,6 +1903,11 @@ msgid "Pending Changes"
 msgstr "Modifiche in sospeso"
 
 #. module: base_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_changeset_field_rule__prevent_self_validation
+msgid "Prevent Self Validation"
+msgstr ""
+
+#. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset_change__origin_value_display
 #: model_terms:ir.ui.view,arch_db:base_changeset.view_record_changeset_form
 msgid "Previous"
