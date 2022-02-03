@@ -15,24 +15,28 @@
                         </h1>
                     </div>
                     <p class="alert alert-info" role="alert" style="margin-bottom:0px;">
-                        Smart Search se puede activar de dos formas que pueden ser complementarias:
+                        Smart Search can be activated in two complementary ways:
                         <ul>
-                            <li><b
-                                >Vista de búsqueda</b>: a la hora de buscar en vistas listas, kanban y demás, la primer opción será buscar mediante "Smart Search"
+                            <li>
+                                <b
+                                >Smart Search</b>: when searching in list, kanban and other views, the first option will be to search using "Smart Search"
                             </li>
-                            <li><b
-                                >Name Search</b>: es para cuando estemos queriendo buscar un registro desde otro registro a través de los widgets m2o/m2m, por ejemplo al agregar un producto en una línea de venta o al elegir un contacto en una factura.
+                            <li>
+                                <b
+                                >Smart Name Search</b>: when searching for a record from another record through the m2o/m2m widgets, for example when adding a Product in a Sales Order Line or when selecting a Contact in an Invoice.
                             </li>
                         </ul>
-                        En donde se haya activado "Smart Search" las búsquedas tendrán un comportmiento más "relajado". Nativamente Odoo busca por registors que incluyan las palabras ingresadas tal cual las ha ingresado, al activar esta opción se buscará por registros que contegan dichas palabras y sin importar el orden en el que se ingresen. Por ej. si buscamos un Contacto con "Pedro Picapiedra", naticamente Odoo solo nos retornaría aquellos registros  que contengan exactamente ese texto, con smart search activo se devolverá cualquier registro que contenga las palabras "Pedro" y "Picapiedra".<br
-                        /><br />
+                        If "Smart Search" has been activated, searches will have a more "relaxed" behaviour. Odoo natively searches for records that include the phrases entered as they are entered. When activating this option it will search for records that contain entered words regardless of the order in which they are entered. For example if we search for a Contact "Fred Flinstone", Odoo would by default only return those records that contain exactly that phrase. With Smart Search active any record containing the words "Fred" and "Flinstone" will be returned.
+                        <br />
+                        <br />
 
-                        Al activar Smart Search podrá además agregar configurar estos dos comportamientos opcionales:
+                        By enabling Smart Search you can also add configure these two optional behaviours:
                         <ul>
-                            <li>Definir un <b
-                                >dominio personalizado</b> (por ejemplo solo mostrar usuarios internos y no los portal)</li>
-                            <li><b
-                                >Búsquedas por otros campos</b>. Podremos definir un conjunto de campos por el cual querramos buscar</li>
+                            <li>Define a <b
+                                >Smart Search Domain</b> (for example, only show internal users and not portal users)</li>
+                            <li>
+                                <b
+                                >Smart Search Fields</b>. You can define a set of fields by which we want to search</li>
                         </ul>
                     </p>
                     <p
@@ -41,7 +45,7 @@
                         style="margin-bottom:0px;"
                     >
                         <b
-                        >IMPORTANTE:</b> tenga en cuenta que activar smart search puede afectar la performance de las búsquedas y del sistema en general.
+                        >IMPORTANT:</b> Please note that enabling smart search may affect the performance of searches and the system in general.
                         <field name="smart_search_warning" />
                     </p>
                     <group>
