@@ -58,13 +58,11 @@ def _get_name_search_domain(self):
 def _extend_name_results(self, domain, results, limit, name_get_uid):
     result_count = len(results)
     if result_count < limit:
-        domain += [("id", "not in", [x[0] for x in results])]
+        domain += [("id", "not in", results)]
         rec_ids = self._search(
             domain, limit=limit - result_count, access_rights_uid=name_get_uid
         )
-        results.extend(
-            models.lazy_name_get(self.browse(rec_ids).with_user(name_get_uid))
-        )
+        results.extend(rec_ids)
     return results
 
 
@@ -169,13 +167,13 @@ class Base(models.AbstractModel):
     @api.model
     def _search_smart_search(self, operator, value):
         """
-        Por ahora este método no llama a
-        self._name_search(name, operator=operator) ya que este no es tan
-        performante si se llama a ilimitados registros que es lo que el
-        name search debe devolver. Por eso se reimplementa acá nuevamente.
-        Además name_search tiene una lógica por la cual trata de devolver
-        primero los que mejor coinciden, en este caso eso no es necesario
-        Igualmente seguro se puede mejorar y unificar bastante código
+        For now this method does not call
+        self._name_search(name, operator=operator) since it is not as
+        performant if unlimited records are called which is what name
+        search should return. That is why it is reimplemented here
+        again. In addition, name_search has a logic which first tries
+        to return best match, which in this case is not necessary.
+        Surely, it can be improved and a lot of code can be unified.
         """
         name = value
         if name and operator in ALLOWED_OPS:
@@ -195,7 +193,7 @@ class Base(models.AbstractModel):
 class IrModel(models.Model):
     _inherit = "ir.model"
 
-    add_smart_search = fields.Boolean(help="Add Smart Search on search views",)
+    add_smart_search = fields.Boolean(help="Add Smart Search on search views")
     use_smart_name_search = fields.Boolean(
         string="Smart Name Search Enabled?",
         help="Use Smart Search for 'name_search', this will affect when "
@@ -211,22 +209,19 @@ class IrModel(models.Model):
         for rec in self:
             if len(rec.name_search_ids) > 4:
                 msgs.append(
-                    "Ha seleccionado más de 4 campos para smart search, "
-                    "recomendamos que intente utilizar menos "
-                    "campos"
+                    "You have selected more than 4 fields for smart search, "
+                    "fewerer fields is recommended"
                 )
             if any(x.translate for x in rec.name_search_ids):
                 msgs.append(
-                    "Ha seleccionado campos traducibles en la búsqueda "
-                    "inteligente, de ser posible intente "
-                    "evitar los mismos"
+                    "You have selected translatable fields in the smart search,"
+                    " try to avoid them if possible"
                 )
             # rec.smart_search_warning = msg
             if msgs:
                 rec.smart_search_warning = (
-                    "<p>Si tiene problemas de performance en las búsquedas le "
-                    "recomendamos revisar estas "
-                    "sugerencias: <ul>%s</ul></p>"
+                    "<p>In case of performance issues we recommend to review "
+                    "these suggestions: <ul>%s</ul></p>"
                 ) % "".join(["<li>%s</li>" % x for x in msgs])
             else:
                 rec.smart_search_warning = False
