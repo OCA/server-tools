@@ -8,7 +8,7 @@
         <field name="name">view.ir.sequence.option.tree</field>
         <field name="model">ir.sequence.option</field>
         <field name="arch" type="xml">
-            <tree string="Manage Sequence Options" create="1" delete="1">
+            <tree create="1" delete="1">
                 <field name="name" />
                 <field name="model" />
                 <field name="use_sequence_option" />
@@ -21,7 +21,7 @@
         <field name="name">view.ir.sequence.option.line.tree</field>
         <field name="model">ir.sequence.option.line</field>
         <field name="arch" type="xml">
-            <tree string="Doctype Sequence">
+            <tree>
                 <field name="name" />
                 <field name="sequence_id" />
                 <field name="prefix" />
