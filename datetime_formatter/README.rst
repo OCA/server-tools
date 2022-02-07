@@ -23,7 +23,7 @@ Date & Time Formatter
     :target: https://runbot.odoo-community.org/runbot/149/14.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 This module was written to extend the functionality of Odoo language engine to
 support formatting `Date`, `Time` and `Datetime` fields easily and allow you to
@@ -87,6 +87,7 @@ Contributors
   * Vicent Cubells
   * Ernesto Tejeda
   * Víctor Martínez
+* Tautvydas Banevičius <baneviciustautvydas@gmail.com>
 * Dhara Solanki <dhara.solanki@initos.com>
 
 Maintainers

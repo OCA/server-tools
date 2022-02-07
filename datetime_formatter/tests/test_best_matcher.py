@@ -50,7 +50,7 @@ class BasicCase(TransactionCase):
                 self.rl.with_context(lang=False).best_match().code, lang.code
             )
             # Lang not found in context
-            self.assertEqual(self.rl.with_context(dict()).best_match().code, lang.code)
+            self.assertEqual(self.rl.with_context(**{}).best_match().code, lang.code)
 
     def test_first_installed(self):
         """When falling back to first installed language."""
