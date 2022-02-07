@@ -22,6 +22,7 @@ addon | version | maintainers | summary
 [base_cron_exclusion](base_cron_exclusion/) | 15.0.1.0.0 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) [![ChrisOForgeFlow](https://github.com/ChrisOForgeFlow.png?size=30px)](https://github.com/ChrisOForgeFlow) | Allow you to select scheduled actions that should not run simultaneously.
 [fetchmail_incoming_log](fetchmail_incoming_log/) | 15.0.1.0.0 |  | Log all messages received, before they start to be processed.
 [html_text](html_text/) | 15.0.1.0.0 |  | Generate excerpts from any HTML field
+[module_auto_update](module_auto_update/) | 15.0.1.0.0 |  | Automatically update Odoo modules
 [upgrade_analysis](upgrade_analysis/) | 15.0.1.0.2 |  | Performs a difference analysis between modules installed on two different Odoo instances
 
 [//]: # (end addons)
