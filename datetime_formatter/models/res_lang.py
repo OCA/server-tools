@@ -42,9 +42,11 @@ class ResLang(models.Model):
         record = self.search([("code", "=", lang)])
         try:
             record.ensure_one()
-        except ValueError:
+        except ValueError as error:
             if not failure_safe:
-                raise UserError(_("Best matched language (%s) not found.") % lang)
+                raise UserError(
+                    _("Best matched language (%s) not found.") % lang
+                ) from error
             else:
                 record = first_installed
         return record
