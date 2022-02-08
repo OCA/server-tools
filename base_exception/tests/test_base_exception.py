@@ -15,7 +15,7 @@ _logger = logging.getLogger(__name__)
 
 
 @common.tagged("post_install", "-at_install")
-class TestBaseException(common.SavepointCase):
+class TestBaseException(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super(TestBaseException, cls).setUpClass()
