@@ -61,7 +61,7 @@ class ExceptionRule(models.Model):
                 )
 
     def _get_domain(self):
-        """ override me to customize domains according exceptions cases """
+        """override me to customize domains according exceptions cases"""
         self.ensure_one()
         return safe_eval(self.domain)
 
