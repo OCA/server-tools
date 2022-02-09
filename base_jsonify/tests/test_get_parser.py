@@ -5,7 +5,7 @@ import mock
 
 from odoo import fields, tools
 from odoo.exceptions import UserError
-from odoo.tests.common import SavepointCase
+from odoo.tests.common import TransactionCase
 
 from ..models.utils import convert_simple_to_full_parser
 
@@ -14,7 +14,7 @@ def jsonify_custom(self, field_name):
     return "yeah!"
 
 
-class TestParser(SavepointCase):
+class TestParser(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
