@@ -139,7 +139,6 @@ class AuditlogRule(models.Model):
         states={"subscribed": [("readonly", True)]},
     )
     capture_record = fields.Boolean(
-        "Capture Record",
         help="Select this if you want to keep track of Unlink Record",
     )
 

@@ -305,13 +305,13 @@ class TestFieldRemoval(TransactionCase):
         self.assert_values()
 
         # Remove the field
-        self.test_field.with_context({MODULE_UNINSTALL_FLAG: True}).unlink()
+        self.test_field.with_context(**{MODULE_UNINSTALL_FLAG: True}).unlink()
         self.assert_values()
         # The field should not be linked
         self.assertFalse(self.logs.mapped("line_ids.field_id"))
 
         # Remove the model
-        self.test_model.with_context({MODULE_UNINSTALL_FLAG: True}).unlink()
+        self.test_model.with_context(**{MODULE_UNINSTALL_FLAG: True}).unlink()
         self.assert_values()
 
         # The model should not be linked
