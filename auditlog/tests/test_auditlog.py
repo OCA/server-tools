@@ -3,7 +3,7 @@
 # © 2021 Stefan Rijnhart <stefan@opener.amsterdam>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo.modules.migration import load_script
-from odoo.tests.common import SavepointCase, TransactionCase
+from odoo.tests.common import TransactionCase
 
 from odoo.addons.base.models.ir_model import MODULE_UNINSTALL_FLAG
 
@@ -237,7 +237,7 @@ class TestAuditlogFast(TransactionCase, AuditlogCommon):
         super(TestAuditlogFast, self).tearDown()
 
 
-class TestFieldRemoval(SavepointCase):
+class TestFieldRemoval(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -301,7 +301,7 @@ class TestFieldRemoval(SavepointCase):
         self.assertEqual(self.auditlog_rule.model_model, "x_test.model")
 
     def test_01_field_and_model_removal(self):
-        """ Test field and model removal to check auditlog line persistence """
+        """Test field and model removal to check auditlog line persistence"""
         self.assert_values()
 
         # Remove the field
