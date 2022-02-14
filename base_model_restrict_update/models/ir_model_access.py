@@ -48,8 +48,10 @@ class IrModelAccess(models.Model):
 
     @api.model
     def _readonly_exclude_models(self):
-        """ Models updtate/create by system, and should be excluded from checking """
-        return self.sudo().search([
+        transient_models = self.env["ir.model"].sudo().search(
+            [("transient", "=", True)]).mapped("model")
+        # Models updtate/create by system, and should be excluded from checking
+        return transient_models + self.sudo().search([
             ("group_id", "=", False),
             "|", ("perm_write", "=", True),
             "|", ("perm_create", "=", True), ("perm_unlink", "=", True)
