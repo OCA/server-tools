@@ -1,0 +1,125 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* test_base_time_window
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#. module: test_base_time_window
+#: model:ir.model.fields,field_description:test_base_time_window.field_res_partner__changeset_change_ids
+#: model:ir.model.fields,field_description:test_base_time_window.field_test_partner_time_window__changeset_change_ids
+msgid "Changeset Changes"
+msgstr ""
+
+#. module: test_base_time_window
+#: model:ir.model.fields,field_description:test_base_time_window.field_res_partner__changeset_ids
+#: model:ir.model.fields,field_description:test_base_time_window.field_test_partner_time_window__changeset_ids
+msgid "Changesets"
+msgstr ""
+
+#. module: test_base_time_window
+#: model:ir.model,name:test_base_time_window.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: test_base_time_window
+#: model:ir.model.fields,field_description:test_base_time_window.field_res_partner__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:test_base_time_window.field_test_partner_time_window__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr ""
+
+#. module: test_base_time_window
+#: model:ir.model.fields,field_description:test_base_time_window.field_res_partner__count_pending_changesets
+#: model:ir.model.fields,field_description:test_base_time_window.field_test_partner_time_window__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr ""
+
+#. module: test_base_time_window
+#: model:ir.model.fields,field_description:test_base_time_window.field_test_partner_time_window__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: test_base_time_window
+#: model:ir.model.fields,field_description:test_base_time_window.field_test_partner_time_window__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: test_base_time_window
+#: model:ir.model.fields,field_description:test_base_time_window.field_res_partner__display_name
+#: model:ir.model.fields,field_description:test_base_time_window.field_test_partner_time_window__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: test_base_time_window
+#: model:ir.model.fields,field_description:test_base_time_window.field_test_partner_time_window__time_window_start
+msgid "From"
+msgstr ""
+
+#. module: test_base_time_window
+#: model:ir.model.fields,field_description:test_base_time_window.field_res_partner__id
+#: model:ir.model.fields,field_description:test_base_time_window.field_test_partner_time_window__id
+msgid "ID"
+msgstr ""
+
+#. module: test_base_time_window
+#: model:ir.model.fields,field_description:test_base_time_window.field_res_partner____last_update
+#: model:ir.model.fields,field_description:test_base_time_window.field_test_partner_time_window____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: test_base_time_window
+#: model:ir.model.fields,field_description:test_base_time_window.field_test_partner_time_window__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: test_base_time_window
+#: model:ir.model.fields,field_description:test_base_time_window.field_test_partner_time_window__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: test_base_time_window
+#: model:ir.model.fields,field_description:test_base_time_window.field_test_partner_time_window__partner_id
+msgid "Partner"
+msgstr ""
+
+#. module: test_base_time_window
+#: model:ir.model.fields,field_description:test_base_time_window.field_res_partner__smart_search
+#: model:ir.model.fields,field_description:test_base_time_window.field_test_partner_time_window__smart_search
+msgid "Smart Search"
+msgstr ""
+
+#. module: test_base_time_window
+#: model:ir.model,name:test_base_time_window.model_test_partner_time_window
+msgid "Test partner time Window"
+msgstr ""
+
+#. module: test_base_time_window
+#: model:ir.model.fields,field_description:test_base_time_window.field_test_partner_time_window__time_window_weekday_ids
+msgid "Time Window Weekday"
+msgstr ""
+
+#. module: test_base_time_window
+#: model:ir.model.fields,field_description:test_base_time_window.field_res_partner__time_window_ids
+#: model:ir.model.fields,field_description:test_base_time_window.field_res_users__time_window_ids
+msgid "Time windows"
+msgstr ""
+
+#. module: test_base_time_window
+#: model:ir.model.fields,field_description:test_base_time_window.field_test_partner_time_window__time_window_end
+msgid "To"
+msgstr ""
+
+#. module: test_base_time_window
+#: model:ir.model.fields,field_description:test_base_time_window.field_res_partner__user_can_see_changeset
+#: model:ir.model.fields,field_description:test_base_time_window.field_test_partner_time_window__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr ""
