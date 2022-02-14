@@ -6,13 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2022-02-14 11:16+0000\n"
+"Last-Translator: Dept. Técnico <tecnico@extrememicro.es>\n"
 "Language-Team: none\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: base_changeset
 #: model:ir.model.constraint,message:base_changeset.constraint_changeset_field_rule_model_field_uniq
@@ -77,6 +79,7 @@ msgstr ""
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field__unknown__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_abstract_conditional_image__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_abstract_config_settings__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_account_account__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_account_account_tag__changeset_change_ids
@@ -98,8 +101,15 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_account_chart_template__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_account_common_journal_report__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_account_common_report__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_account_edi_common__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_account_edi_document__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_account_edi_format__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_account_edi_xml_cii__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_account_edi_xml_ubl_20__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_account_edi_xml_ubl_21__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_account_edi_xml_ubl_bis3__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_account_edi_xml_ubl_de__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_account_edi_xml_ubl_efff__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_account_financial_year_op__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_account_fiscal_position__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_account_fiscal_position_account__changeset_change_ids
@@ -177,8 +187,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_base_module_uninstall__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_base_module_update__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_base_module_upgrade__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_base_multi_image_image__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_base_multi_image_owner__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_base_partner_merge_automatic_wizard__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_base_partner_merge_line__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_base_time_parameter__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_base_time_parameter_value__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_base_update_translations__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_bus_bus__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_bus_presence__changeset_change_ids
@@ -193,6 +207,26 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_change_password_user__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_change_password_wizard__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_changeset_field_rule__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_create_indexes_line__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_create_indexes_wizard__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_line__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_line_column__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_line_data__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_line_menu__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_line_model__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_line_module__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_line_property__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_line_table__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_wizard__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_wizard_column__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_wizard_data__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_wizard_menu__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_wizard_model__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_wizard_module__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_wizard_property__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_wizard_table__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_collection_base__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_component_builder__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_crm_activity_report__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_crm_iap_lead_helpers__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_crm_iap_lead_industry__changeset_change_ids
@@ -219,6 +253,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_format_address_mixin__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_iap_account__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_iap_enrich_api__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_image__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_image_mixin__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_ir_actions_act_url__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_ir_actions_act_window__changeset_change_ids
@@ -426,6 +461,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_snailmail_letter_missing_required_fields__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_sparse_fields_test__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_sql_request_mixin__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_storage_backend__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_tax_adjustments_wizard__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_time_weekday__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_time_window_mixin__changeset_change_ids
@@ -477,6 +513,7 @@ msgstr ""
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field__unknown__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_abstract_conditional_image__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_abstract_config_settings__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_account_account__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_account_account_tag__changeset_ids
@@ -498,8 +535,15 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_account_chart_template__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_account_common_journal_report__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_account_common_report__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_account_edi_common__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_account_edi_document__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_account_edi_format__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_account_edi_xml_cii__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_account_edi_xml_ubl_20__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_account_edi_xml_ubl_21__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_account_edi_xml_ubl_bis3__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_account_edi_xml_ubl_de__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_account_edi_xml_ubl_efff__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_account_financial_year_op__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_account_fiscal_position__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_account_fiscal_position_account__changeset_ids
@@ -577,8 +621,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_base_module_uninstall__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_base_module_update__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_base_module_upgrade__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_base_multi_image_image__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_base_multi_image_owner__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_base_partner_merge_automatic_wizard__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_base_partner_merge_line__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_base_time_parameter__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_base_time_parameter_value__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_base_update_translations__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_bus_bus__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_bus_presence__changeset_ids
@@ -593,6 +641,26 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_change_password_user__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_change_password_wizard__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_changeset_field_rule__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_create_indexes_line__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_create_indexes_wizard__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_line__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_line_column__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_line_data__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_line_menu__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_line_model__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_line_module__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_line_property__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_line_table__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_wizard__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_wizard_column__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_wizard_data__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_wizard_menu__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_wizard_model__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_wizard_module__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_wizard_property__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_wizard_table__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_collection_base__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_component_builder__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_crm_activity_report__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_crm_iap_lead_helpers__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_crm_iap_lead_industry__changeset_ids
@@ -619,6 +687,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_format_address_mixin__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_iap_account__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_iap_enrich_api__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_image__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_image_mixin__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_ir_actions_act_url__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_ir_actions_act_window__changeset_ids
@@ -826,6 +895,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_snailmail_letter_missing_required_fields__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_sparse_fields_test__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_sql_request_mixin__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_storage_backend__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_tax_adjustments_wizard__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_time_weekday__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_time_window_mixin__changeset_ids
@@ -864,6 +934,7 @@ msgstr ""
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field__unknown__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_abstract_conditional_image__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_abstract_config_settings__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_account_account__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_account_account_tag__count_pending_changeset_changes
@@ -885,8 +956,15 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_account_chart_template__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_account_common_journal_report__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_account_common_report__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_account_edi_common__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_account_edi_document__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_account_edi_format__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_account_edi_xml_cii__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_account_edi_xml_ubl_20__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_account_edi_xml_ubl_21__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_account_edi_xml_ubl_bis3__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_account_edi_xml_ubl_de__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_account_edi_xml_ubl_efff__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_account_financial_year_op__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_account_fiscal_position__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_account_fiscal_position_account__count_pending_changeset_changes
@@ -964,8 +1042,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_base_module_uninstall__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_base_module_update__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_base_module_upgrade__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_base_multi_image_image__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_base_multi_image_owner__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_base_partner_merge_automatic_wizard__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_base_partner_merge_line__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_base_time_parameter__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_base_time_parameter_value__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_base_update_translations__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_bus_bus__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_bus_presence__count_pending_changeset_changes
@@ -980,6 +1062,26 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_change_password_user__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_change_password_wizard__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_changeset_field_rule__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_create_indexes_line__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_create_indexes_wizard__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_line__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_line_column__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_line_data__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_line_menu__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_line_model__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_line_module__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_line_property__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_line_table__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_wizard__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_wizard_column__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_wizard_data__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_wizard_menu__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_wizard_model__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_wizard_module__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_wizard_property__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_wizard_table__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_collection_base__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_component_builder__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_crm_activity_report__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_crm_iap_lead_helpers__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_crm_iap_lead_industry__count_pending_changeset_changes
@@ -1006,6 +1108,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_format_address_mixin__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_iap_account__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_iap_enrich_api__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_image__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_image_mixin__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_ir_actions_act_url__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_ir_actions_act_window__count_pending_changeset_changes
@@ -1213,6 +1316,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_snailmail_letter_missing_required_fields__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_sparse_fields_test__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_sql_request_mixin__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_storage_backend__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_tax_adjustments_wizard__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_time_weekday__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_time_window_mixin__count_pending_changeset_changes
@@ -1244,6 +1348,7 @@ msgstr ""
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field__unknown__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_abstract_conditional_image__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_abstract_config_settings__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_account_account__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_account_account_tag__count_pending_changesets
@@ -1265,8 +1370,15 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_account_chart_template__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_account_common_journal_report__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_account_common_report__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_account_edi_common__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_account_edi_document__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_account_edi_format__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_account_edi_xml_cii__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_account_edi_xml_ubl_20__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_account_edi_xml_ubl_21__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_account_edi_xml_ubl_bis3__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_account_edi_xml_ubl_de__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_account_edi_xml_ubl_efff__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_account_financial_year_op__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_account_fiscal_position__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_account_fiscal_position_account__count_pending_changesets
@@ -1344,8 +1456,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_base_module_uninstall__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_base_module_update__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_base_module_upgrade__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_base_multi_image_image__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_base_multi_image_owner__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_base_partner_merge_automatic_wizard__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_base_partner_merge_line__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_base_time_parameter__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_base_time_parameter_value__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_base_update_translations__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_bus_bus__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_bus_presence__count_pending_changesets
@@ -1360,6 +1476,26 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_change_password_user__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_change_password_wizard__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_changeset_field_rule__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_create_indexes_line__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_create_indexes_wizard__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_line__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_line_column__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_line_data__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_line_menu__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_line_model__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_line_module__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_line_property__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_line_table__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_wizard__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_wizard_column__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_wizard_data__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_wizard_menu__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_wizard_model__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_wizard_module__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_wizard_property__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_wizard_table__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_collection_base__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_component_builder__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_crm_activity_report__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_crm_iap_lead_helpers__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_crm_iap_lead_industry__count_pending_changesets
@@ -1386,6 +1522,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_format_address_mixin__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_iap_account__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_iap_enrich_api__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_image__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_image_mixin__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_ir_actions_act_url__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_ir_actions_act_window__count_pending_changesets
@@ -1593,6 +1730,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_snailmail_letter_missing_required_fields__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_sparse_fields_test__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_sql_request_mixin__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_storage_backend__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_tax_adjustments_wizard__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_time_weekday__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_time_window_mixin__count_pending_changesets
@@ -1688,8 +1826,11 @@ msgstr ""
 #. module: base_changeset
 #: model:ir.model.fields,help:base_changeset.field_changeset_field_rule__source_model_id
 msgid ""
-"If a source model is defined, the rule will be applied only when the change is made from this origin.  Rules without source model are global and applies to all backends.\n"
-"Rules with a source model have precedence over global rules, but if a field has no rule with a source model, the global rule is used."
+"If a source model is defined, the rule will be applied only when the change "
+"is made from this origin.  Rules without source model are global and applies "
+"to all backends.\n"
+"Rules with a source model have precedence over global rules, but if a field "
+"has no rule with a source model, the global rule is used."
 msgstr ""
 
 #. module: base_changeset
@@ -1740,7 +1881,7 @@ msgstr ""
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset_change__new_value_display
 msgid "New"
-msgstr ""
+msgstr "New"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset_change__new_value_boolean
@@ -1893,7 +2034,6 @@ msgstr ""
 #. module: base_changeset
 #. openerp-web
 #: code:addons/base_changeset/static/src/xml/backend.xml:0
-#: code:addons/base_changeset/static/src/xml/backend.xml:0
 #, python-format
 msgid "Pending Changes"
 msgstr ""
@@ -2015,7 +2155,8 @@ msgstr ""
 #: code:addons/base_changeset/models/record_changeset_change.py:0
 #, python-format
 msgid ""
-"This change cannot be applied because a previous changeset for the same record is pending.\n"
+"This change cannot be applied because a previous changeset for the same "
+"record is pending.\n"
 "Apply all the anterior changesets before applying this one."
 msgstr ""
 
@@ -2027,6 +2168,7 @@ msgstr ""
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field__unknown__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_abstract_conditional_image__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_abstract_config_settings__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_account_account__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_account_account_tag__user_can_see_changeset
@@ -2048,8 +2190,15 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_account_chart_template__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_account_common_journal_report__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_account_common_report__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_account_edi_common__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_account_edi_document__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_account_edi_format__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_account_edi_xml_cii__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_account_edi_xml_ubl_20__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_account_edi_xml_ubl_21__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_account_edi_xml_ubl_bis3__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_account_edi_xml_ubl_de__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_account_edi_xml_ubl_efff__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_account_financial_year_op__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_account_fiscal_position__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_account_fiscal_position_account__user_can_see_changeset
@@ -2127,8 +2276,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_base_module_uninstall__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_base_module_update__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_base_module_upgrade__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_base_multi_image_image__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_base_multi_image_owner__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_base_partner_merge_automatic_wizard__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_base_partner_merge_line__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_base_time_parameter__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_base_time_parameter_value__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_base_update_translations__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_bus_bus__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_bus_presence__user_can_see_changeset
@@ -2143,6 +2296,26 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_change_password_user__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_change_password_wizard__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_changeset_field_rule__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_create_indexes_line__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_create_indexes_wizard__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_line__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_line_column__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_line_data__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_line_menu__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_line_model__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_line_module__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_line_property__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_line_table__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_wizard__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_wizard_column__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_wizard_data__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_wizard_menu__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_wizard_model__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_wizard_module__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_wizard_property__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_wizard_table__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_collection_base__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_component_builder__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_crm_activity_report__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_crm_iap_lead_helpers__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_crm_iap_lead_industry__user_can_see_changeset
@@ -2169,6 +2342,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_format_address_mixin__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_iap_account__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_iap_enrich_api__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_image__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_image_mixin__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_ir_actions_act_url__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_ir_actions_act_window__user_can_see_changeset
@@ -2376,6 +2550,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_snailmail_letter_missing_required_fields__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_sparse_fields_test__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_sql_request_mixin__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_storage_backend__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_tax_adjustments_wizard__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_time_weekday__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_time_window_mixin__user_can_see_changeset
