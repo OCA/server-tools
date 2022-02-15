@@ -10,7 +10,7 @@ class VacuumRule(models.Model):
 
     @api.depends('model_ids')
     @api.multi
-    def _get_model_id(self):
+    def _compute_model_id(self):
         for rule in self:
             if rule.model_ids and len(rule.model_ids) == 1:
                 rule.model_id = rule.model_ids.id
@@ -45,14 +45,14 @@ class VacuumRule(models.Model):
              "models into account")
     model_id = fields.Many2one(
         'ir.model', readonly=True,
-        compute='_get_model_id',
+        compute='_compute_model_id',
         help="Technical field used to set attributes (invisible/required, "
              "domain, etc...for other fields, like the domain filter")
     model_filter_domain = fields.Text(
         string='Model Filter Domain')
     model = fields.Char(
         readonly=True,
-        compute='_get_model_id',
+        compute='_compute_model_id',
         string='Model code'
     )
     message_type = fields.Selection([
