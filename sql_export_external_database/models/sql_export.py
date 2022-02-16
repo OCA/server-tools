@@ -1,6 +1,7 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
-from odoo import models, fields, api
+from odoo import api, fields, models
+
 from ..sql_db import get_external_cursor
 
 
@@ -8,8 +9,11 @@ class SqlExport(models.Model):
     _inherit = "sql.export"
 
     use_external_database = fields.Boolean(
-        help=("If filled, the query will be executed against an external "
-              "database, configured in Odoo main configuration file. "))
+        help=(
+            "If filled, the query will be executed against an external "
+            "database, configured in Odoo main configuration file. "
+        )
+    )
 
     @api.multi
     def _get_cr_for_query(self):
