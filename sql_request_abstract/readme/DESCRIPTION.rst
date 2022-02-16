@@ -18,3 +18,6 @@ Implemented features
     * SQL Request / User : Can see all the sql requests by default and execute
       them, if they are valid.
     * SQL Request / Manager : has full access on sql requests.
+
+* The request can be run against an external database (only read queries for now)
+  It may be usefull to avoid overloading the production server for example.

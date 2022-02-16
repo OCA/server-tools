@@ -65,6 +65,10 @@
                             name="encoding"
                             attrs="{'readonly': [('state', '!=', 'draft')]}"
                         />
+                        <field
+                            name="use_external_database"
+                            attrs="{'readonly': [('state', '!=', 'draft')]}"
+                        />
                     </group>
                     <group
                         name="request"
