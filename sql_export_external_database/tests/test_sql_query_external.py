@@ -1,5 +1,3 @@
-# Copyright (C) 2019 Akretion (<http://www.akretion.com>)
-# @author: Florian da Costa
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import exceptions
@@ -12,7 +10,7 @@ class TestExportSqlQueryExternal(TransactionCase):
         super().setUp()
         self.sql_report_demo = self.env.ref("sql_export.sql_export_partner")
 
-    def test_sql_queryi_external_database(self):
+    def test_sql_query_external_database(self):
         # since we can't easily test a query on an external database
         # without mock, we just test that, when the option is checked, the
         # query is executed on a different cursor. Meaning Odoo did

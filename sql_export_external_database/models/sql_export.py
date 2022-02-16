@@ -15,7 +15,6 @@ class SqlExport(models.Model):
         )
     )
 
-    @api.multi
     def _get_cr_for_query(self):
         if self.use_external_database:
             external_db_cr = get_external_cursor()
