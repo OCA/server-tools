@@ -1,7 +1,9 @@
-# Copyright 2016-2021 Therp BV <https://therp.nl>.
+# Copyright 2016-2022 Therp BV <https://therp.nl>.
 # Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>.
 # Copyright 2018 Ignacio Ibeas <ignacio@acysos.com>.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+"""Fully automatic retrieval of Letsencrypt certificates."""
+# pylint: disable=no-self-use,consider-using-f-string
 
 import base64
 import collections
@@ -68,6 +70,8 @@ def _get_challenge_dir():
 
 
 class Letsencrypt(models.AbstractModel):
+    """Fully automatic retrieval of Letsencrypt certificates."""
+
     _name = "letsencrypt"
     _description = "Abstract model providing functions for letsencrypt"
 
@@ -178,7 +182,7 @@ class Letsencrypt(models.AbstractModel):
                 ).value.get_values_for_type(x509.DNSName)
             )
         except x509.extensions.ExtensionNotFound:
-            pass
+            _logger.exception(_("Error updating name"))
 
         domains = set(domains)
         missing = domains - names
@@ -294,7 +298,7 @@ class Letsencrypt(models.AbstractModel):
                     self._respond_challenge_http(challenge, account_key)
                     client.answer_challenge(challenge, acme.challenges.HTTP01Response())
                     break
-                elif challenge.chall.typ == TYPE_CHALLENGE_DNS:
+                if challenge.chall.typ == TYPE_CHALLENGE_DNS:
                     domain = authorizations.body.identifier.value
                     token = challenge.validation(account_key)
                     self._respond_challenge_dns(domain, token)
@@ -323,7 +327,7 @@ class Letsencrypt(models.AbstractModel):
         """
         token = self._base64_encode(challenge.token)
         challenge_file = os.path.join(_get_challenge_dir(), token)
-        with open(challenge_file, "w") as file_:
+        with open(challenge_file, "w", encoding="utf-8") as file_:
             file_.write(challenge.validation(account_key))
 
     def _respond_challenge_dns(self, domain, token):
@@ -376,8 +380,7 @@ class Letsencrypt(models.AbstractModel):
                     value = record.to_text()[1:-1]
                     if value == token:
                         return
-                    else:
-                        _logger.debug("Found %r instead of %r", value, token)
+                    _logger.debug("Found %r instead of %r", value, token)
             except dns.resolver.NXDOMAIN:
                 _logger.debug("Record for %r does not exist yet", domain)
             if attempt < 30:
@@ -409,7 +412,7 @@ class Letsencrypt(models.AbstractModel):
     def _save_and_reload(self, cert_file, order_resource):
         """Save certfile and reload nginx or other webserver."""
         ir_config_parameter = self.env["ir.config_parameter"]
-        with open(cert_file, "w") as crt:
+        with open(cert_file, "w", encoding="utf-8") as crt:
             crt.write(order_resource.fullchain_pem)
         _logger.info("SUCCESS: Certificate saved: %s", cert_file)
         reload_cmd = ir_config_parameter.get_param("letsencrypt.reload_command", "")
@@ -420,23 +423,29 @@ class Letsencrypt(models.AbstractModel):
 
     def _call_cmdline(self, cmdline, env=None):
         """Call a shell command."""
-        process = subprocess.Popen(
+        with subprocess.Popen(
             cmdline,
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             env=env,
             shell=True,
-        )
-        stdout, stderr = process.communicate()
-        stdout = stdout.strip()
-        stderr = stderr.strip()
-        if process.returncode:
+        ) as process:
+            stdout, stderr = process.communicate()
+            stdout = stdout.strip()
+            stderr = stderr.strip()
+            if process.returncode:
+                if stdout:
+                    _logger.warning(stdout)
+                if stderr:
+                    _logger.warning(stderr)
+                raise UserError(
+                    _("Error calling %(cmdline)s: %(returncode)d")
+                    % {
+                        "cmdline": cmdline,
+                        "returncode": process.returncode,
+                    }
+                )
             if stdout:
-                _logger.warning(stdout)
+                _logger.info(stdout)
             if stderr:
-                _logger.warning(stderr)
-            raise UserError(_("Error calling %s: %d") % (cmdline, process.returncode))
-        if stdout:
-            _logger.info(stdout)
-        if stderr:
-            _logger.info(stderr)
+                _logger.info(stderr)

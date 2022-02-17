@@ -1,4 +1,4 @@
-# Copyright 2018-2020 Therp BV <https://therp.nl>.
+# Copyright 2018-2022 Therp BV <https://therp.nl>.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 import os
@@ -6,18 +6,13 @@ import shutil
 from datetime import datetime, timedelta
 from os import path
 
+import dns.resolver
 import mock
 
 from odoo.exceptions import UserError, ValidationError
 from odoo.tests import SingleTransactionCase
 
 from ..models.letsencrypt import _get_challenge_dir, _get_data_dir
-
-try:
-    import dns.resolver
-except ImportError:
-    pass
-
 
 CERT_DIR = path.join(path.dirname(__file__), "certs")
 
