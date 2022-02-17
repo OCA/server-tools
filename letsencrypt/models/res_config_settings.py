@@ -1,5 +1,6 @@
-# Copyright 2018-2020 Therp BV <https://therp.nl>.
+# Copyright 2018-2022 Therp BV <https://therp.nl>.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+"""Configuration of Letsencrypt."""
 
 from odoo import _, api, exceptions, fields, models
 
@@ -10,6 +11,8 @@ DNS_SCRIPT_DEFAULT = """# Write your script here
 
 
 class ResConfigSettings(models.TransientModel):
+    """Configuration of Letsencrypt."""
+
     _inherit = "res.config.settings"
 
     letsencrypt_altnames = fields.Char(
@@ -66,6 +69,7 @@ class ResConfigSettings(models.TransientModel):
 
     @api.onchange("letsencrypt_altnames", "letsencrypt_prefer_dns")
     def letsencrypt_check_dns_required(self):
+        """Check wether DNS required for Letsencrypt."""
         altnames = self.letsencrypt_altnames or ""
         self.letsencrypt_needs_dns_provider = (
             "*." in altnames or self.letsencrypt_prefer_dns
@@ -80,7 +84,8 @@ class ResConfigSettings(models.TransientModel):
         return res
 
     def set_values(self):
-        super().set_values()
+        """Set Letsencrypt values on settings object."""
+        result = super().set_values()
         self.letsencrypt_check_dns_required()
         if self.letsencrypt_dns_provider == "shell":
             lines = [
@@ -90,3 +95,4 @@ class ResConfigSettings(models.TransientModel):
                 raise exceptions.ValidationError(
                     _("You didn't write a DNS update script!")
                 )
+        return result
