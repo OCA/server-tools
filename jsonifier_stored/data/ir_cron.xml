@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="recompute_all_jsonified" model="ir.cron">
+        <field name="name">Recompute Stored Json data (all models)</field>
+        <field name="model_id" ref="jsonify_stored.model_jsonify_stored_mixin" />
+        <field name="state">code</field>
+        <field name="code">
+for child in model._inherit_children:
+    env[child].cron_update_jsonify_stored()
+        </field>
+        <!-- It's recommended that you add your own cron for your own model -->
+        <field name="active" eval="False" />
+        <field name="user_id" ref="base.user_root" />
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False" />
+    <field
+            name="nextcall"
+            eval="(DateTime.now().replace(hour=1, minute=0) + timedelta(days=1)).strftime('%Y-%m-%d %H:%M:%S')"
+        />
+    </record>
+</odoo>
