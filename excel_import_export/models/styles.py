@@ -7,7 +7,7 @@ import logging
 _logger = logging.getLogger(__name__)
 
 try:
-    from openpyxl.styles import PatternFill, Alignment, Font
+    from openpyxl.styles import PatternFill, Alignment, Font, Border, Side
 except ImportError:
     _logger.debug(
         'Cannot import "openpyxl". Please make sure it is installed.')
@@ -37,6 +37,19 @@ class XLSXStyles(models.AbstractModel):
                 'left': Alignment(horizontal='left'),
                 'center': Alignment(horizontal='center'),
                 'right': Alignment(horizontal='right'),
+                'full_center': Alignment(horizontal='center', vertical='center')
+            },
+            'vert-align': {
+                'top': Alignment(vertical='top'),
+                'justify': Alignment(vertical='justify'),
+                'center': Alignment(vertical='center'),
+                'bottom': Alignment(vertical='bottom'),
+            },
+            'border': {
+                'thin_border': Border(left=Side(style='thin'),
+                                      right=Side(style='thin'),
+                                      top=Side(style='thin'),
+                                      bottom=Side(style='thin'))
             },
             'style': {
                 'number': '#,##0.00',
