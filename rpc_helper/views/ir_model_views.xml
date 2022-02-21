@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright 2022 Camptocamp SA
+    License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+-->
+<odoo>
+    <record id="view_model_form" model="ir.ui.view">
+        <field name="name">rpc_helper view_model_form</field>
+        <field name="model">ir.model</field>
+        <field name="inherit_id" ref="base.view_model_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[@name='views']" position="after">
+                <page name="rpc_config" string="RPC config">
+                  <field
+                        name="rpc_config_edit"
+                        groups="base.group_no_one"
+                        widget="ace"
+                    />
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
