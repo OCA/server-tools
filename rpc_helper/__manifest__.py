@@ -11,5 +11,7 @@
     "website": "https://github.com/OCA/server-tools",
     "author": "Camptocamp, Odoo Community Association (OCA)",
     "maintainers": ["simahawk"],
+    "depends": ["base_sparse_field"],
+    "data": ["views/ir_model_views.xml"],
     "post_load": "post_load_hook",
 }
