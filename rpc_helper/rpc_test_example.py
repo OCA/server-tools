@@ -4,7 +4,7 @@ from xmlrpc import client
 
 HOST = "127.0.0.1"
 PORT = 8069
-DB_NAME = "ododdb"
+DB_NAME = "odoodb"
 
 url = "http://%s:%d/xmlrpc/2/" % (HOST, PORT)
 xmlrpc_common = client.ServerProxy(url + "common")
