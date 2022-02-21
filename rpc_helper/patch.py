@@ -22,5 +22,9 @@ def protected__execute_cr(cr, uid, obj, method, *args, **kw):
 def _rpc_allowed(recordset, method):
     config = getattr(recordset, "_disable_rpc", None)
     if config is None:
+        config = (
+            recordset.env["ir.model"]._get_rpc_config(recordset._name).get("disable")
+        )
+    if config is None:
         return True
     return "all" not in config and method not in config
