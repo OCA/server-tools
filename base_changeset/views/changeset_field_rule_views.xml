@@ -44,6 +44,7 @@
                             <field name="prevent_self_validation" />
                             <field name="expression" placeholder="True" />
                             <field name="validator_group_ids" widget="many2many_tags" />
+                            <field name="default_value_required_field" />
                         </group>
                     </group>
                 </sheet>

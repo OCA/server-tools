@@ -461,3 +461,29 @@ class TestChangesetFlow(ChangesetTestCommon, TransactionCase):
         self.partner.invalidate_recordset()
         self.assertTrue(self.partner.changeset_ids)
         self.assertEqual(self.partner.street, "street Y")
+
+    def test_rule_default_value_for_required_field(self):
+        """Test if rule default value is stored in required field of new record"""
+
+        rule = self.env["changeset.field.rule"].create(
+            {
+                "field_id": self.env.ref("base.field_res_partner_bank__acc_number").id,
+                "action": "validate",
+            }
+        )
+        account_number = "AT483200000012345864"
+        partner_bank_one = (
+            self.env["res.partner.bank"]
+            .with_context(test_record_changeset=True)
+            .create({"acc_number": account_number, "partner_id": self.partner.id})
+        )
+        self.assertEqual(partner_bank_one.acc_number, "/")
+
+        default_value = "Pending Approval"
+        rule.default_value_required_field = default_value
+        partner_bank_second = (
+            self.env["res.partner.bank"]
+            .with_context(test_record_changeset=True)
+            .create({"acc_number": account_number, "partner_id": self.partner.id})
+        )
+        self.assertEqual(partner_bank_second.acc_number, default_value)
