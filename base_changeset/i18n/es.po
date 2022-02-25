@@ -200,7 +200,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_wizard_module__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_wizard_property__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_wizard_table__changeset_change_ids
-#: model:ir.model.fields,field_description:base_changeset.field_company_country_config_settings__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_crm_activity_report__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_crm_lead2opportunity_partner__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_crm_lead2opportunity_partner_mass__changeset_change_ids
@@ -595,7 +594,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_wizard_module__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_wizard_property__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_wizard_table__changeset_ids
-#: model:ir.model.fields,field_description:base_changeset.field_company_country_config_settings__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_crm_activity_report__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_crm_lead2opportunity_partner__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_crm_lead2opportunity_partner_mass__changeset_ids
@@ -977,7 +975,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_wizard_module__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_wizard_property__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_wizard_table__count_pending_changeset_changes
-#: model:ir.model.fields,field_description:base_changeset.field_company_country_config_settings__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_crm_activity_report__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_crm_lead2opportunity_partner__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_crm_lead2opportunity_partner_mass__count_pending_changeset_changes
@@ -1352,7 +1349,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_wizard_module__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_wizard_property__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_wizard_table__count_pending_changesets
-#: model:ir.model.fields,field_description:base_changeset.field_company_country_config_settings__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_crm_activity_report__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_crm_lead2opportunity_partner__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_crm_lead2opportunity_partner_mass__count_pending_changesets
@@ -2128,7 +2124,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_wizard_module__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_wizard_property__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_cleanup_purge_wizard_table__user_can_see_changeset
-#: model:ir.model.fields,field_description:base_changeset.field_company_country_config_settings__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_crm_activity_report__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_crm_lead2opportunity_partner__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_crm_lead2opportunity_partner_mass__user_can_see_changeset
