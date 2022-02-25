@@ -1,0 +1,49 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* base_generate_code
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-02-24 21:07+0000\n"
+"PO-Revision-Date: 2022-02-24 22:09+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: fr_FR\n"
+"X-Generator: Poedit 3.0\n"
+
+#. module: base_generate_code
+#: model:ir.model.fields,field_description:base_generate_code.field_code_format_mixin__code
+msgid "Code"
+msgstr "Code"
+
+#. module: base_generate_code
+#: model:ir.model,name:base_generate_code.model_code_format_mixin
+msgid "Customizable code format Mixin"
+msgstr ""
+
+#. module: base_generate_code
+#: model:ir.model.fields,field_description:base_generate_code.field_code_format_mixin__display_name
+msgid "Display Name"
+msgstr "Nom"
+
+#. module: base_generate_code
+#: model:ir.model.fields,field_description:base_generate_code.field_code_format_mixin__id
+msgid "ID"
+msgstr "ID"
+
+#. module: base_generate_code
+#: model:ir.model.fields,field_description:base_generate_code.field_code_format_mixin____last_update
+msgid "Last Modified on"
+msgstr "Dernière Modification le"
+
+#. module: base_generate_code
+#: code:addons/base_generate_code/models/code_format_mixin.py:0
+#, python-format
+msgid "Unable to generate a non existing random code."
+msgstr "Impossible de générer un code aléatoire non existant."
