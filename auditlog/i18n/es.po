@@ -5,13 +5,15 @@
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 # enjolras <yo@miguelrevilla.com>, 2018
+# Enric Tobella <etobella@creublanca.es>, 2018
+# Leonardo J. Caballero G. <leonardocaballero@gmail.com>, 2021, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-03 10:08+0000\n"
-"PO-Revision-Date: 2018-07-14 08:45+0000\n"
-"Last-Translator: Enric Tobella <etobella@creublanca.es>\n"
+"PO-Revision-Date: 2022-02-28 12:40-0400\n"
+"Last-Translator: Leonardo J. Caballero G. <leonardocaballero@gmail.com>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -70,7 +72,7 @@ msgstr "Limpiar automáticamente los auditlogs"
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__capture_record
 msgid "Capture Record"
-msgstr ""
+msgstr "Capturar registro"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_http_request__user_context
@@ -352,6 +354,8 @@ msgstr "Seleccione el modelo al que quiere generar un registro."
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule__capture_record
 msgid "Select this if you want to keep track of Unlink Record"
 msgstr ""
+"Seleccione esta opción si desea realizar un seguimiento del registro de "
+"desvinculación"
 
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule__log_create
@@ -368,7 +372,7 @@ msgid ""
 "Select this if you want to keep track of deletion on any record of the model "
 "of this rule"
 msgstr ""
-"Marque esta casilla si desea hacer un seguimiento  del borrado de los "
+"Marque esta casilla si desea hacer un seguimiento del borrado de los "
 "registros del modelo de esta regla"
 
 #. module: auditlog
@@ -486,4 +490,4 @@ msgstr "Ver registros"
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule__user_ids
 msgid "if  User is not added then it will applicable for all users"
 msgstr ""
-"Si el usuario no se agrega entonces será aplicable para todos los usuarios"
+"si  el Usuario no se agrega entonces será aplicable para todos los usuarios"
