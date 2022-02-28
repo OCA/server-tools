@@ -91,6 +91,7 @@ Contributors
 * Eric Lembregts <eric@lembregts.eu>
 * Bhavesh Odedra <bodedra@opensourceintegrators.com>
 * Hardik Suthar <hsuthar@opensourceintegrators.com>
+* Leonardo Caballero <leonardocaballero@gmail.com>
 
 Other credits
 ~~~~~~~~~~~~~
