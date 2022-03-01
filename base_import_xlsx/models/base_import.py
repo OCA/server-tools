@@ -35,8 +35,10 @@ class BaseImport(models.TransientModel):
         """
         # pylint: disable=unused-argument
         buffer = io.BytesIO(self.file or b"")
+        # read_only=False is needed because of a bug in openpyxl, combined with
+        # some providers of excel files not setting the correct dimensions.
         book = openpyxl.load_workbook(
-            buffer, read_only=True, keep_vba=False, data_only=True, keep_links=False
+            buffer, read_only=False, keep_vba=False, data_only=True, keep_links=False
         )
         sheet = book.worksheets[0]
         for row in sheet.rows:
