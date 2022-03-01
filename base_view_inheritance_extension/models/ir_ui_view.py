@@ -2,13 +2,18 @@
 # Copyright 2018 Tecnativa - Sergio Teruel
 # Copyright 2021 Camptocamp SA (https://www.camptocamp.com).
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
-
 import ast
-import astor
+import logging
 
 from lxml import etree
 
 from odoo import api, models
+
+try:
+    import astor
+except ImportError as err:  # pragma: no cover
+    _logger = logging.getLogger(__name__)
+    _logger.debug(err)
 
 
 class IrUiView(models.Model):
