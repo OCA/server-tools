@@ -3,7 +3,6 @@
 # Copyright 2021 Camptocamp SA (https://www.camptocamp.com).
 # Copyright 2023 Tecnativa - Carlos Dauden
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
-
 import ast
 import re
 
