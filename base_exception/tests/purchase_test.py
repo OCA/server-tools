@@ -4,10 +4,24 @@
 from odoo import api, fields, models
 
 
+class ExceptionRule(models.Model):
+    _inherit = "exception.rule"
+    _name = "exception.rule"
+
+    method = fields.Selection(
+        selection_add=[("exception_method_no_zip", "Purchase exception no zip")]
+    )
+    model = fields.Selection(
+        selection_add=[("base.exception.test.purchase", "Purchase Test")],
+        ondelete={"base.exception.test.purchase": "cascade"},
+    )
+    test_purchase_ids = fields.Many2many("base.exception.test.purchase")
+
+
 class PurchaseTest(models.Model):
     _inherit = "base.exception"
     _name = "base.exception.test.purchase"
-    _description = "Base Ecxeption Test Model"
+    _description = "Base Exception Test Model"
 
     name = fields.Char(required=True)
     user_id = fields.Many2one("res.users", string="Responsible")
@@ -57,6 +71,13 @@ class PurchaseTest(models.Model):
 
     def _reverse_field(self):
         return "test_purchase_ids"
+
+    def exception_method_no_zip(self):
+        records_fail = self.env["base.exception.test.purchase"]
+        for rec in self:
+            if not rec.partner_id.zip:
+                records_fail += rec
+        return records_fail
 
 
 class LineTest(models.Model):
