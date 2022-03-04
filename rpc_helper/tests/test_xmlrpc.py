@@ -3,6 +3,7 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 
+import json
 import xmlrpc
 
 from odoo.tests import common
@@ -17,6 +18,12 @@ class TestXMLRPC(common.HttpSavepointCase):
 
     def _set_disable(self, val):
         type(self.env["res.partner"])._disable_rpc = val
+
+    def _set_disable_on_model(self, val):
+        self.env["ir.model"]._get("res.partner").rpc_config_edit = json.dumps(
+            {"disable": val}
+        )
+        self.env["ir.model"].flush()
 
     def tearDown(self):
         klass = type(self.env["res.partner"])
@@ -46,6 +53,23 @@ class TestXMLRPC(common.HttpSavepointCase):
 
     def test_xmlrpc_can_search_create_blocked(self):
         self._set_disable(("create",))
+        self._rpc_call("search")
+
+        msg = "RPC call on res.partner is not allowed"
+        with self.assertRaisesRegex(xmlrpc.client.Fault, msg):
+            self._rpc_call("create", vals=[{"name": "Foo"}])
+
+    def test_xmlrpc_all_blocked__ir_model(self):
+        self._set_disable_on_model(("all",))
+        msg = "RPC call on res.partner is not allowed"
+        with self.assertRaisesRegex(xmlrpc.client.Fault, msg):
+            self._rpc_call("search")
+
+        with self.assertRaisesRegex(xmlrpc.client.Fault, msg):
+            self._rpc_call("create", vals=[{"name": "Foo"}])
+
+    def test_xmlrpc_can_search_create_blocked__ir_model(self):
+        self._set_disable_on_model(("create",))
         self._rpc_call("search")
 
         msg = "RPC call on res.partner is not allowed"
