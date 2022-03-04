@@ -40,6 +40,9 @@ Provide helpers to authorize RPC calls.
 Usage
 =====
 
+Via code
+~~~~~~~~
+
 Decorate an Odoo model class like this::
 
     from odoo.addons.rpc_helper.decorator import disable_rpc
@@ -55,6 +58,12 @@ To selectively disable only some methods::
     @disable_rpc("create", "write", "any_method")
     class AverageModel(models.Model):
         _inherit = "avg.model"
+
+
+Via `ir.model` configuration
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+See "Configuration" section.
 
 Bug Tracker
 ===========
