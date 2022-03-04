@@ -14,6 +14,54 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: rpc_helper
+#: model:ir.model.fields,field_description:rpc_helper.field_ir_model__changeset_change_ids
+msgid "Changeset Changes"
+msgstr ""
+
+#. module: rpc_helper
+#: model:ir.model.fields,field_description:rpc_helper.field_ir_model__changeset_ids
+msgid "Changesets"
+msgstr ""
+
+#. module: rpc_helper
+#: model:ir.model.fields,help:rpc_helper.field_ir_model__rpc_config_edit
+msgid ""
+"Configure RPC config via JSON. Value must be a list of methods to disable "
+"wrapped by a dict with key `disable`. Eg: {'disable': ['search', "
+"'do_this']}To disable all methods, use `{'disable: ['all']}`"
+msgstr ""
+
+#. module: rpc_helper
+#: model:ir.model.fields,field_description:rpc_helper.field_ir_model__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr ""
+
+#. module: rpc_helper
+#: model:ir.model.fields,field_description:rpc_helper.field_ir_model__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr ""
+
+#. module: rpc_helper
+#: model:ir.model.fields,field_description:rpc_helper.field_ir_model__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: rpc_helper
+#: model:ir.model.fields,field_description:rpc_helper.field_ir_model__id
+msgid "ID"
+msgstr ""
+
+#. module: rpc_helper
+#: model:ir.model.fields,field_description:rpc_helper.field_ir_model____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: rpc_helper
+#: model:ir.model,name:rpc_helper.model_ir_model
+msgid "Models"
+msgstr ""
+
+#. module: rpc_helper
 #: code:addons/rpc_helper/patch.py:0
 #, python-format
 msgid "Object %s doesn't exist"
@@ -23,4 +71,29 @@ msgstr ""
 #: code:addons/rpc_helper/patch.py:0
 #, python-format
 msgid "RPC call on %s is not allowed"
+msgstr ""
+
+#. module: rpc_helper
+#: model_terms:ir.ui.view,arch_db:rpc_helper.view_model_form
+msgid "RPC config"
+msgstr ""
+
+#. module: rpc_helper
+#: model:ir.model.fields,field_description:rpc_helper.field_ir_model__rpc_config
+msgid "Rpc Config"
+msgstr ""
+
+#. module: rpc_helper
+#: model:ir.model.fields,field_description:rpc_helper.field_ir_model__rpc_config_edit
+msgid "Rpc Config Edit"
+msgstr ""
+
+#. module: rpc_helper
+#: model:ir.model.fields,field_description:rpc_helper.field_ir_model__smart_search
+msgid "Smart Search"
+msgstr ""
+
+#. module: rpc_helper
+#: model:ir.model.fields,field_description:rpc_helper.field_ir_model__user_can_see_changeset
+msgid "User Can See Changeset"
 msgstr ""
