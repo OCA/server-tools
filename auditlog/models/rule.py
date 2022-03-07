@@ -3,7 +3,7 @@
 
 import copy
 
-from odoo import _, api, fields, models, modules
+from odoo import SUPERUSER_ID, _, api, fields, models, modules
 from odoo.exceptions import UserError
 
 FIELDS_BLACKLIST = [
@@ -141,6 +141,15 @@ class AuditlogRule(models.Model):
     capture_record = fields.Boolean(
         "Capture Record",
         help="Select this if you want to keep track of Unlink Record",
+    )
+    users_to_exclude = fields.Many2many(
+        "res.users", string="Users to Exclude", context={"active_test": False}
+    )
+
+    fields_to_exclude = fields.Many2many(
+        "ir.model.fields",
+        domain="[('model_id', '=', model_id)]",
+        string="Fields to Exclude",
     )
 
     _sql_constraints = [
@@ -286,6 +295,11 @@ class AuditlogRule(models.Model):
                     new_values[new_record.id][fname] = field.convert_to_read(
                         new_record[fname], new_record
                     )
+            rule = rule_model.with_user(SUPERUSER_ID).search(
+                [("model_id.model", "=", self._name)]
+            )
+            if self.env.user in rule.mapped("users_to_exclude"):
+                return new_records
             rule_model.sudo().create_logs(
                 self.env.uid,
                 self._name,
@@ -307,6 +321,11 @@ class AuditlogRule(models.Model):
             new_values = {}
             for vals, new_record in zip(vals_list2, new_records):
                 new_values.setdefault(new_record.id, vals)
+            rule = rule_model.with_user(SUPERUSER_ID).search(
+                [("model_id.model", "=", self._name)]
+            )
+            if self.env.user in rule.mapped("users_to_exclude"):
+                return new_records
             rule_model.sudo().create_logs(
                 self.env.uid,
                 self._name,
@@ -343,6 +362,18 @@ class AuditlogRule(models.Model):
                 return result
             self = self.with_context(auditlog_disabled=True)
             rule_model = self.env["auditlog.rule"]
+            rule = rule_model.with_user(SUPERUSER_ID).search(
+                [("model_id.model", "=", self._name)]
+            )
+            if self.env.user in rule.mapped("users_to_exclude"):
+                return result
+            fields_to_exclude_match = [
+                d in rule.fields_to_exclude.mapped("name") for d in fields
+            ]
+            if (len(fields) == 1 and any(fields_to_exclude_match)) or (
+                all(fields_to_exclude_match)
+            ):
+                return result
             rule_model.sudo().create_logs(
                 self.env.uid,
                 self._name,
@@ -378,6 +409,18 @@ class AuditlogRule(models.Model):
                 .with_context(prefetch_fields=False)
                 .read(fields_list)
             }
+            rule = rule_model.with_user(SUPERUSER_ID).search(
+                [("model_id.model", "=", self._name)]
+            )
+            if self.env.user in rule.mapped("users_to_exclude"):
+                return result
+            fields_to_exclude_match = [
+                d in rule.fields_to_exclude.mapped("name") for d in vals.keys()
+            ]
+            if (len(vals) == 1 and any(fields_to_exclude_match)) or (
+                all(fields_to_exclude_match)
+            ):
+                return result
             rule_model.sudo().create_logs(
                 self.env.uid,
                 self._name,
@@ -400,6 +443,18 @@ class AuditlogRule(models.Model):
             old_values = {id_: old_vals2 for id_ in self.ids}
             new_values = {id_: vals2 for id_ in self.ids}
             result = write_fast.origin(self, vals, **kwargs)
+            rule = rule_model.with_user(SUPERUSER_ID).search(
+                [("model_id.model", "=", self._name)]
+            )
+            if self.env.user in rule.mapped("users_to_exclude"):
+                return result
+            fields_to_exclude_match = [
+                d in rule.fields_to_exclude.mapped("name") for d in vals.keys()
+            ]
+            if (len(vals) == 1 and any(fields_to_exclude_match)) or (
+                all(fields_to_exclude_match)
+            ):
+                return result
             rule_model.sudo().create_logs(
                 self.env.uid,
                 self._name,
@@ -428,6 +483,11 @@ class AuditlogRule(models.Model):
                 .with_context(prefetch_fields=False)
                 .read(fields_list)
             }
+            rule = rule_model.with_user(SUPERUSER_ID).search(
+                [("model_id.model", "=", self._name)]
+            )
+            if self.env.user in rule.mapped("users_to_exclude"):
+                return unlink_full.origin(self, **kwargs)
             rule_model.sudo().create_logs(
                 self.env.uid,
                 self._name,
@@ -442,6 +502,11 @@ class AuditlogRule(models.Model):
         def unlink_fast(self, **kwargs):
             self = self.with_context(auditlog_disabled=True)
             rule_model = self.env["auditlog.rule"]
+            rule = rule_model.with_user(SUPERUSER_ID).search(
+                [("model_id.model", "=", self._name)]
+            )
+            if self.env.user in rule.mapped("users_to_exclude"):
+                return unlink_fast.origin(self, **kwargs)
             rule_model.sudo().create_logs(
                 self.env.uid,
                 self._name,
@@ -537,8 +602,11 @@ class AuditlogRule(models.Model):
     def _create_log_line_on_read(self, log, fields_list, read_values):
         """Log field filled on a 'read' operation."""
         log_line_model = self.env["auditlog.log.line"]
+        rule = self.search([("model_id", "=", log.model_id.id)])
+        fields_to_excluded = rule.fields_to_exclude.mapped("name")
+        fields_to_excluded.extend(FIELDS_BLACKLIST)
         for field_name in fields_list:
-            if field_name in FIELDS_BLACKLIST:
+            if field_name in fields_to_excluded:
                 continue
             field = self._get_field(log.model_id, field_name)
             # not all fields have an ir.models.field entry (ie. related fields)
@@ -568,8 +636,11 @@ class AuditlogRule(models.Model):
     def _create_log_line_on_write(self, log, fields_list, old_values, new_values):
         """Log field updated on a 'write' operation."""
         log_line_model = self.env["auditlog.log.line"]
+        rule = self.search([("model_id", "=", log.model_id.id)])
+        fields_to_excluded = rule.fields_to_exclude.mapped("name")
+        fields_to_excluded.extend(FIELDS_BLACKLIST)
         for field_name in fields_list:
-            if field_name in FIELDS_BLACKLIST:
+            if field_name in fields_to_excluded:
                 continue
             field = self._get_field(log.model_id, field_name)
             # not all fields have an ir.models.field entry (ie. related fields)
@@ -617,8 +688,11 @@ class AuditlogRule(models.Model):
     def _create_log_line_on_create(self, log, fields_list, new_values):
         """Log field filled on a 'create' operation."""
         log_line_model = self.env["auditlog.log.line"]
+        rule = self.search([("model_id", "=", log.model_id.id)])
+        fields_to_excluded = rule.fields_to_exclude.mapped("name")
+        fields_to_excluded.extend(FIELDS_BLACKLIST)
         for field_name in fields_list:
-            if field_name in FIELDS_BLACKLIST:
+            if field_name in fields_to_excluded:
                 continue
             field = self._get_field(log.model_id, field_name)
             # not all fields have an ir.models.field entry (ie. related fields)
