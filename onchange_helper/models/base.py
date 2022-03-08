@@ -1,6 +1,6 @@
 # Copyright 2016-2017 Akretion (http://www.akretion.com)
 # Copyright 2016-2017 Camptocamp (http://www.camptocamp.com/)
-# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+# License LGPL-3 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import api, models
 
@@ -54,8 +54,10 @@ class Base(models.AbstractModel):
                 all_values[field] = record_values.get(field, False)
 
         new_values = {}
-        for field in onchange_fields:
-            onchange_values = self.onchange(all_values, [field], onchange_specs)
+        for field in [
+            field for field in onchange_fields if field in self._onchange_methods
+        ]:
+            onchange_values = self.onchange(all_values, field, onchange_specs)
             new_values.update(self._get_new_values(values, onchange_values))
             all_values.update(new_values)
 
