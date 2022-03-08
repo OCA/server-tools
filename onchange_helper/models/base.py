@@ -54,8 +54,10 @@ class Base(models.AbstractModel):
                 all_values[field] = record_values.get(field, False)
 
         new_values = {}
-        for field in onchange_fields:
-            onchange_values = self.onchange(all_values, [field], onchange_specs)
+        for field in [
+            field for field in onchange_fields if field in self._onchange_methods
+        ]:
+            onchange_values = self.onchange(all_values, field, onchange_specs)
             new_values.update(self._get_new_values(values, onchange_values))
             all_values.update(new_values)
 
