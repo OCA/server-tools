@@ -8,7 +8,8 @@
 for child in model._inherit_children:
     env[child].cron_update_jsonify_stored()
         </field>
-        <field name="active" eval="True" />
+        <!-- It's recommended that you add your own cron for your own model -->
+        <field name="active" eval="False" />
         <field name="user_id" ref="base.user_root" />
         <field name="interval_number">1</field>
         <field name="interval_type">days</field>

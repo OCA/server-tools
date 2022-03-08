@@ -4,7 +4,7 @@
 import json
 from itertools import groupby
 
-from odoo import api, fields, models
+from odoo import api, fields, models, tools
 from odoo.tools.misc import split_every
 
 
@@ -12,6 +12,7 @@ class JsonifyStoredMixin(models.AbstractModel):
     """This mixin aims to provide the ability to store jsonified data on model."""
 
     _name = "jsonify.stored.mixin"
+    _description = __doc__
 
     def _ir_export_id_domain(self):
         return [("resource", "=", self._name)]
@@ -27,6 +28,10 @@ class JsonifyStoredMixin(models.AbstractModel):
         for record in self:
             record.ir_export_id = record._jsonify_get_exporter()
 
+    def _jsonify_get_exporter_cache_keys(self):
+        return ("self._name",)
+
+    @tools.ormcache("self._jsonify_get_exporter_cache_keys()")
     def _jsonify_get_exporter(self):
         """Hook to get the exporter to use."""
         return False
@@ -37,15 +42,8 @@ class JsonifyStoredMixin(models.AbstractModel):
                 record.jsonified_data, sort_keys=True, indent=4
             )
 
-    def _chunk(self, size=1000):
-        for chunk in split_every(size, self.ids):
-            yield self.browse(chunk)
-
-    @api.depends(
-        "ir_export_id", "ir_export_id.export_fields", "ir_export_id.export_fields.name"
-    )
     def _compute_jsonified_data(self):
-        for export, group in self._group_by_export():
+        for export, group in self._compute_jsonified_data_groupby():
             records = self.browse([r.id for r in group])
             # TODO explain : shouldn't happen
             if not export:
@@ -56,17 +54,19 @@ class JsonifyStoredMixin(models.AbstractModel):
             for record, data in zip(records, jsonified_data):
                 record.jsonified_data = data
 
-    def _group_by_export(self):
-        self = self.sorted("ir_export_id")
-        return groupby(self, key=lambda r: r.ir_export_id)
+    def _compute_jsonified_data_groupby(self):
+        return groupby(self.sorted("ir_export_id"), key=lambda r: r.ir_export_id)
 
     def _get_jsonified_data(self, parser):
         return self.jsonify(parser)
 
     @api.model
-    def cron_update_jsonify_stored(self):
+    def cron_update_jsonify_stored(self, chunk_size=10, domain=None):
         # As there could be a lot of records, chunk the recordset before
         # computing the jsonified data
-        records = self.search([])
-        for chunk in records._chunk():
-            chunk.with_delay()._compute_jsonified_data()
+        ids = self.search(domain or []).ids
+        for ids_chunk in split_every(chunk_size, ids):
+            self.browse(ids_chunk).jobify_compute_jsonified_data()
+
+    def jobify_compute_jsonified_data(self):
+        self.with_delay()._compute_jsonified_data()
