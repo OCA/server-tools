@@ -28,7 +28,6 @@ class TrgmIndex(models.Model):
     )
 
     index_name = fields.Char(
-        string="Index Name",
         readonly=True,
         help="The index name is automatically generated like "
         "fieldname_indextype_idx. If the index already exists and the "
@@ -39,7 +38,6 @@ class TrgmIndex(models.Model):
 
     index_type = fields.Selection(
         selection=[("gin", "GIN"), ("gist", "GiST")],
-        string="Index Type",
         default="gin",
         required=True,
         ondelete={"gin": "set default", "gist": "set default"},
