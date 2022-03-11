@@ -38,10 +38,8 @@ class QueryGenerationCase(TransactionCase):
 
     def test_fuzzy_where_generation_translatable(self):
         """Check the generation of the where clause for translatable fields."""
-        ctx = {"lang": "de_DE"}
-
         # create new query with fuzzy search operator
-        query = self.ResPartnerCategory.with_context(ctx)._where_calc(
+        query = self.ResPartnerCategory.with_context(lang="de_DE")._where_calc(
             [("name", "%", "Goschaeftlic")], active_test=False
         )
         from_clause, where_clause, where_clause_params = query.get_sql()
