@@ -4,7 +4,7 @@
         <field name="name">trgm.index.view.form</field>
         <field name="model">trgm.index</field>
         <field name="arch" type="xml">
-            <form string="Trigram Index">
+            <form>
                 <sheet>
                     <group col="4">
                         <field
@@ -22,7 +22,7 @@
         <field name="name">trgm.index.view.tree</field>
         <field name="model">trgm.index</field>
         <field name="arch" type="xml">
-            <tree string="Trigram Index">
+            <tree>
                 <field name="field_id" />
                 <field name="index_name" />
                 <field name="index_type" />
