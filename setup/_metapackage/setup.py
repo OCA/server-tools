@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo-addon-base_cron_exclusion>=15.0dev,<15.1dev',
+        'odoo-addon-base_search_fuzzy>=15.0dev,<15.1dev',
         'odoo-addon-base_view_inheritance_extension>=15.0dev,<15.1dev',
         'odoo-addon-fetchmail_incoming_log>=15.0dev,<15.1dev',
         'odoo-addon-html_text>=15.0dev,<15.1dev',
