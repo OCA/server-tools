@@ -31,10 +31,11 @@ class IrModelAccess(models.Model):
 
     @api.model
     def _test_readonly(self, model):
-        exclude_models = self._readonly_exclude_models()
-        if model not in exclude_models and self.env.user.is_readonly_user:
-            return True
-        return False
+        if not self.env.user.is_readonly_user:
+            return False
+        if model in self._readonly_exclude_models():
+            return False
+        return True
 
     @api.model
     def _test_restrict_update(self, model):
@@ -50,8 +51,11 @@ class IrModelAccess(models.Model):
     def _readonly_exclude_models(self):
         transient_models = self.env["ir.model"].sudo().search(
             [("transient", "=", True)]).mapped("model")
+        skipped_models = self.env["ir.model"].sudo().search([
+            ("skip_check_for_readonly_users", "=", True)
+        ]).mapped("model")
         # Models updtate/create by system, and should be excluded from checking
-        return transient_models + self.sudo().search([
+        return skipped_models + transient_models + self.sudo().search([
             ("group_id", "=", False),
             "|", ("perm_write", "=", True),
             "|", ("perm_create", "=", True), ("perm_unlink", "=", True)
