@@ -4,8 +4,8 @@
 
 from datetime import date, timedelta
 
-from openerp import fields
-from openerp.tests.common import SavepointCase
+from odoo import fields
+from odoo.tests.common import SavepointCase
 
 
 class TestBaseUserRoleHistory(SavepointCase):
