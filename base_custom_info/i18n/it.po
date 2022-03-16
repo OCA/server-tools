@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-30 00:58+0000\n"
-"PO-Revision-Date: 2022-03-16 13:17+0000\n"
+"PO-Revision-Date: 2022-03-16 19:17+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -390,6 +390,8 @@ msgstr "Se necessiti di un campo numerico, non puoi impostarlo a zero."
 #: model:ir.model,name:base_custom_info.model_custom_info
 msgid "Inheritable abstract model to add custom info in any model"
 msgstr ""
+"Modello astratto ereditabile per aggiungere informazioni personalizzate in "
+"qualsiasi modello"
 
 #. module: base_custom_info
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info____last_update
@@ -425,11 +427,13 @@ msgstr "Ultimo aggiornamento il"
 msgid ""
 "Length for %(prop)s is %(val)s, but it should be between %(min)d and %(max)d."
 msgstr ""
+"Lunghezza per %(prop)s è %(val)s, ma dovrebbe essere compresa tra %(min)d e "
+"%(max)d."
 
 #. module: base_custom_info
 #: model:custom.info.option,name:base_custom_info.opt_food
 msgid "Loves junk food"
-msgstr ""
+msgstr "Adora il cibo spazzatura"
 
 #. module: base_custom_info
 #: model:ir.model.fields,field_description:base_custom_info.field_res_config_settings__group_custom_info_manager
@@ -458,7 +462,7 @@ msgstr "Modello"
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_template__model
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value__model
 msgid "Model technical name"
-msgstr ""
+msgstr "Nome tecnico del modello"
 
 #. module: base_custom_info
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_category__name
@@ -472,12 +476,12 @@ msgstr "Nome"
 #. module: base_custom_info
 #: model:custom.info.property,name:base_custom_info.prop_teacher
 msgid "Name of his/her teacher"
-msgstr ""
+msgstr "Nome del suo insegnante"
 
 #. module: base_custom_info
 #: model:custom.info.option,name:base_custom_info.opt_videogames
 msgid "Needs videogames"
-msgstr ""
+msgstr "Necessità dei videogiochi"
 
 #. module: base_custom_info
 #: code:addons/base_custom_info/models/custom_info_value.py:123
@@ -515,12 +519,12 @@ msgstr "Proprietà"
 #. module: base_custom_info
 #: model:ir.model.fields,help:base_custom_info.field_custom_info_category__property_ids
 msgid "Properties in this category."
-msgstr ""
+msgstr "Proprietà in questa categoria."
 
 #. module: base_custom_info
 #: model:ir.model.fields,help:base_custom_info.field_custom_info_option__property_ids
 msgid "Properties where this option is enabled."
-msgstr ""
+msgstr "Proprietà in cui questa opzione è abilitata."
 
 #. module: base_custom_info
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value__property_id
@@ -536,18 +540,18 @@ msgstr "Valori della Proprietà"
 #. module: base_custom_info
 #: model:custom.info.option,name:base_custom_info.opt_rpg
 msgid "RPG"
-msgstr ""
+msgstr "GDR"
 
 #. module: base_custom_info
 #: model:ir.model.fields,help:base_custom_info.field_custom_info_value__owner_id
 msgid "Record that owns this custom value."
-msgstr ""
+msgstr "Il record che possiede questo valore personalizzato."
 
 #. module: base_custom_info
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_property__required
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value__required
 msgid "Required"
-msgstr ""
+msgstr "Necessario"
 
 #. module: base_custom_info
 #: model_terms:ir.ui.view,arch_db:base_custom_info.custom_info_value_search
@@ -565,48 +569,50 @@ msgid ""
 "Select one of the existing options or create a new one clicking on 'Add an "
 "item'"
 msgstr ""
+"Seleziona una delle opzioni esistenti o creane una nuova cliccando su "
+"\"Aggiungi un oggetto\""
 
 #. module: base_custom_info
 #: selection:custom.info.property,field_type:0
 msgid "Selection"
-msgstr ""
+msgstr "Selezione"
 
 #. module: base_custom_info
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value__value_id
 msgid "Selection value"
-msgstr ""
+msgstr "Valore selezione"
 
 #. module: base_custom_info
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_category__sequence
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_property__sequence
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value__property_sequence
 msgid "Sequence"
-msgstr ""
+msgstr "Sequenza"
 
 #. module: base_custom_info
 #: model:custom.info.option,name:base_custom_info.opt_shooter
 msgid "Shooter"
-msgstr ""
+msgstr "Sparatutto"
 
 #. module: base_custom_info
 #: model:custom.info.template,name:base_custom_info.tpl_smart
 msgid "Smart partners"
-msgstr ""
+msgstr "Contatti smart"
 
 #. module: base_custom_info
 #: model:custom.info.category,name:base_custom_info.cat_statics
 msgid "Statistics"
-msgstr ""
+msgstr "Statistiche"
 
 #. module: base_custom_info
 #: model:custom.info.option,name:base_custom_info.opt_strategy
 msgid "Strategy"
-msgstr ""
+msgstr "Strategia"
 
 #. module: base_custom_info
 #: model:ir.model.fields,help:base_custom_info.field_custom_info_value__field_name
 msgid "Technical name of the field where the value is stored."
-msgstr ""
+msgstr "Nome tecnico del campo dove questo valore è registrato."
 
 #. module: base_custom_info
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_property__template_id
@@ -623,28 +629,28 @@ msgstr "Modelli"
 #. module: base_custom_info
 #: selection:custom.info.property,field_type:0
 msgid "Text"
-msgstr ""
+msgstr "Testo"
 
 #. module: base_custom_info
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value__value_str
 msgid "Text value"
-msgstr ""
+msgstr "Valore Testo"
 
 #. module: base_custom_info
 #: model:res.groups,comment:base_custom_info.group_advanced
 msgid "The user will be able to manage advanced custom information."
-msgstr ""
+msgstr "L'utente potrà gestire informazioni personalizzate avanzate."
 
 #. module: base_custom_info
 #: model:res.groups,comment:base_custom_info.group_basic
 msgid "The user will be able to manage basic custom information."
-msgstr ""
+msgstr "L'utente potrà gestire informazioni personalizzate di base."
 
 #. module: base_custom_info
 #: model:ir.model.fields,help:base_custom_info.field_custom_info_property__field_type
 #: model:ir.model.fields,help:base_custom_info.field_custom_info_value__field_type
 msgid "Type of information that can be stored in the property."
-msgstr ""
+msgstr "Tipo di informazione che può essere registrata nella proprietà."
 
 #. module: base_custom_info
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value__value
@@ -657,6 +663,8 @@ msgstr "Valore"
 msgid ""
 "Value for %(prop)s is %(val)s, but it should be between %(min)d and %(max)d."
 msgstr ""
+"Il valore di %(prop)s è %(val)s, ma dovrebbe essere compreso tra %(min)d e "
+"%(max)d."
 
 #. module: base_custom_info
 #: code:addons/base_custom_info/models/custom_info_value.py:161
@@ -664,11 +672,13 @@ msgstr ""
 msgid ""
 "Value for %(prop)s is %(val)s, but it should be between %(min)f and %(max)f."
 msgstr ""
+"Il valore di %(prop)s è %(val)s, ma dovrebbe essere compreso tra %(min)f e "
+"%(max)f."
 
 #. module: base_custom_info
 #: model:ir.model.fields,help:base_custom_info.field_custom_info_value__value
 msgid "Value, always converted to/from the typed field."
-msgstr ""
+msgstr "Il valore, sempre convertito dal/al campo digitato."
 
 #. module: base_custom_info
 #: model:ir.actions.act_window,name:base_custom_info.custom_info_value_action
@@ -680,32 +690,33 @@ msgstr "Valori"
 #. module: base_custom_info
 #: model:ir.model.fields,help:base_custom_info.field_custom_info_option__value_ids
 msgid "Values that have set this option."
-msgstr ""
+msgstr "Valori che hanno quest'opzione impostata."
 
 #. module: base_custom_info
 #: model:custom.info.property,name:base_custom_info.prop_weaknesses
 msgid "What weaknesses does he/she have?"
-msgstr ""
+msgstr "Quale debolezza ha?"
 
 #. module: base_custom_info
 #: model:ir.model.fields,help:base_custom_info.field_custom_info_property__option_ids
 msgid "When the field type is 'selection', choose the available options here."
 msgstr ""
+"Quando il campo è di tipo \"selezione\", scegli qui le opzioni disponibili."
 
 #. module: base_custom_info
 #: selection:custom.info.property,field_type:0
 msgid "Whole number"
-msgstr ""
+msgstr "Numero intero"
 
 #. module: base_custom_info
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value__value_int
 msgid "Whole number value"
-msgstr ""
+msgstr "Valore numero intero"
 
 #. module: base_custom_info
 #: model:res.groups,comment:base_custom_info.group_partner
 msgid "Will be able to edit custom information from partner's form."
-msgstr ""
+msgstr "Potrà modificare le informazioni personalizzate dal form del contatto."
 
 #. module: base_custom_info
 #: model:ir.model.fields,help:base_custom_info.field_custom_info_property__default_value
@@ -714,30 +725,35 @@ msgid ""
 "char field, so you have to enter some value that can be converted to the "
 "field type you choose."
 msgstr ""
+"Sarà applicato di default a tutti i valori personalizzati di questa "
+"proprietà. Questo è un campo char, perciò devi inserire un valore che possa "
+"essere convertito nel tipo di campo che hai scelto."
 
 #. module: base_custom_info
 #: code:addons/base_custom_info/models/custom_info_value.py:123
 #, python-format
 msgid "Yes"
-msgstr ""
+msgstr "Sì"
 
 #. module: base_custom_info
 #: selection:custom.info.property,field_type:0
 msgid "Yes/No"
-msgstr ""
+msgstr "Sì/No"
 
 #. module: base_custom_info
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value__value_bool
 msgid "Yes/No value"
-msgstr ""
+msgstr "Valore Sì/No"
 
 #. module: base_custom_info
 #: code:addons/base_custom_info/models/custom_info_template.py:65
 #, python-format
 msgid "You cannot change the model because it is in use."
-msgstr ""
+msgstr "Non puoi modificare il modello perchè è in uso."
 
 #. module: base_custom_info
 #: model_terms:ir.actions.act_window,help:base_custom_info.custom_info_template_action
 msgid "You must define a custom info template for each properties group."
 msgstr ""
+"Devi definire un template informazioni personalizzate per ogni gruppo di "
+"proprietà."
