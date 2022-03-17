@@ -9,15 +9,16 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-06 02:51+0000\n"
-"PO-Revision-Date: 2017-06-06 02:51+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: Spanish (Argentina) (https://www.transifex.com/oca/"
-"teams/23907/es_AR/)\n"
+"PO-Revision-Date: 2022-03-17 04:17+0000\n"
+"Last-Translator: Ignacio Buioli <ibuioli@gmail.com>\n"
+"Language-Team: Spanish (Argentina) (https://www.transifex.com/oca/teams/"
+"23907/es_AR/)\n"
 "Language: es_AR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: sql_export
 #: model:ir.model,name:sql_export.model_sql_file_wizard
@@ -69,13 +70,13 @@ msgstr "Cancelar"
 #: model:ir.model.fields,field_description:sql_export.field_sql_export__changeset_change_ids
 #: model:ir.model.fields,field_description:sql_export.field_sql_file_wizard__changeset_change_ids
 msgid "Changeset Changes"
-msgstr ""
+msgstr "Cambios en el Conjunto de Cambios"
 
 #. module: sql_export
 #: model:ir.model.fields,field_description:sql_export.field_sql_export__changeset_ids
 #: model:ir.model.fields,field_description:sql_export.field_sql_file_wizard__changeset_ids
 msgid "Changesets"
-msgstr ""
+msgstr "Conjunto de Cambios"
 
 #. module: sql_export
 #: model:ir.model.fields,field_description:sql_export.field_sql_export__copy_options
@@ -86,13 +87,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:sql_export.field_sql_export__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:sql_export.field_sql_file_wizard__count_pending_changeset_changes
 msgid "Count Pending Changeset Changes"
-msgstr ""
+msgstr "Contar los Cambios Pendientes del Conjunto de Cambios"
 
 #. module: sql_export
 #: model:ir.model.fields,field_description:sql_export.field_sql_export__count_pending_changesets
 #: model:ir.model.fields,field_description:sql_export.field_sql_file_wizard__count_pending_changesets
 msgid "Count Pending Changesets"
-msgstr ""
+msgstr "Contar Conjunto de Cambios Pendientes"
 
 #. module: sql_export
 #: model:ir.model.fields,field_description:sql_export.field_sql_export__create_uid
@@ -246,7 +247,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sql_export.field_sql_export__smart_search
 #: model:ir.model.fields,field_description:sql_export.field_sql_file_wizard__smart_search
 msgid "Smart Search"
-msgstr ""
+msgstr "Búsqueda Inteligente"
 
 #. module: sql_export
 #: model:ir.model.fields,field_description:sql_export.field_sql_file_wizard__sql_export_id
@@ -277,7 +278,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sql_export.field_sql_export__user_can_see_changeset
 #: model:ir.model.fields,field_description:sql_export.field_sql_file_wizard__user_can_see_changeset
 msgid "User Can See Changeset"
-msgstr ""
+msgstr "El usuario puede ver el Conjunto de Cambios"
 
 #. module: sql_export
 #: model_terms:ir.ui.view,arch_db:sql_export.sql_export_view_form
