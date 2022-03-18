@@ -21,6 +21,7 @@ setuptools.setup(
         'odoo14-addon-base_kanban_stage_state',
         'odoo14-addon-base_m2m_custom_field',
         'odoo14-addon-base_model_restrict_update',
+        'odoo14-addon-base_multi_image',
         'odoo14-addon-base_name_search_improved',
         'odoo14-addon-base_name_search_multi_lang',
         'odoo14-addon-base_remote',
