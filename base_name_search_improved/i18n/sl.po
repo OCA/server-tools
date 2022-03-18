@@ -206,6 +206,8 @@ msgstr "Polja iskanja po imenu"
 #: model:ir.model.fields,field_description:base_name_search_improved.field_base_module_uninstall__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_base_module_update__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_base_module_upgrade__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_base_multi_image_image__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_base_multi_image_owner__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_base_partner_merge_automatic_wizard__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_base_partner_merge_line__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_base_update_translations__smart_search
