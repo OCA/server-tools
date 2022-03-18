@@ -129,6 +129,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_base_module_uninstall__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_base_module_update__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_base_module_upgrade__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_base_multi_image_image__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_base_multi_image_owner__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_base_partner_merge_automatic_wizard__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_base_partner_merge_line__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_base_update_translations__assigned_attachment_ids
@@ -594,8 +596,8 @@ msgstr ""
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,help:autovacuum_message_attachment.field_vacuum_rule__message_subtype_ids
 msgid ""
-"Message subtypes concerned by the rule. If left empty, the system won't take"
-" the subtype into account to find the messages to delete"
+"Message subtypes concerned by the rule. If left empty, the system won't take "
+"the subtype into account to find the messages to delete"
 msgstr ""
 
 #. module: autovacuum_message_attachment
@@ -679,8 +681,8 @@ msgstr ""
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,help:autovacuum_message_attachment.field_vacuum_rule__model_id
 msgid ""
-"Technical field used to set attributes (invisible/required, domain, "
-"etc...for other fields, like the domain filter"
+"Technical field used to set attributes (invisible/required, domain, etc..."
+"for other fields, like the domain filter"
 msgstr ""
 
 #. module: autovacuum_message_attachment
