@@ -19,6 +19,7 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
+[auditlog](auditlog/) | 15.0.1.0.0 |  | Audit Log
 [base_cron_exclusion](base_cron_exclusion/) | 15.0.1.0.0 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) [![ChrisOForgeFlow](https://github.com/ChrisOForgeFlow.png?size=30px)](https://github.com/ChrisOForgeFlow) | Allow you to select scheduled actions that should not run simultaneously.
 [base_search_fuzzy](base_search_fuzzy/) | 15.0.1.0.0 |  | Fuzzy search with the PostgreSQL trigram extension
 [base_view_inheritance_extension](base_view_inheritance_extension/) | 15.0.1.0.0 |  | Adds more operators for view inheritance
