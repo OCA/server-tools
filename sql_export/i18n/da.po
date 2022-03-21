@@ -164,6 +164,13 @@ msgid "ID"
 msgstr "Id"
 
 #. module: sql_export
+#: model:ir.model.fields,help:sql_export.field_sql_export__use_external_database
+msgid ""
+"If filled, the query will be executed against an external database, "
+"configured in Odoo main configuration file. "
+msgstr ""
+
+#. module: sql_export
 #: model:ir.model.fields,field_description:sql_export.field_sql_export____last_update
 #: model:ir.model.fields,field_description:sql_export.field_sql_file_wizard____last_update
 msgid "Last Modified on"
@@ -270,6 +277,11 @@ msgid ""
 "State of the Request:\n"
 " * 'Draft': Not tested\n"
 " * 'SQL Valid': SQL Request has been checked and is valid"
+msgstr ""
+
+#. module: sql_export
+#: model:ir.model.fields,field_description:sql_export.field_sql_export__use_external_database
+msgid "Use External Database"
 msgstr ""
 
 #. module: sql_export
