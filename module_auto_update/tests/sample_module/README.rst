@@ -1,1 +1,1 @@
-Test data for addon_hash module.
+Sample module for tests addon_hash module.
