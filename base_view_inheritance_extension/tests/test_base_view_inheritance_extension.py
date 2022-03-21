@@ -1,4 +1,4 @@
-# Copyright 2016 Therp BV <http://therp.nl>
+# Copyright 2016 Therp BV <https://therp.nl>
 # Copyright 2021 Camptocamp SA (https://www.camptocamp.com).
 # @author Iván Todorovich <ivan.todorovich@camptocamp.com>
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
