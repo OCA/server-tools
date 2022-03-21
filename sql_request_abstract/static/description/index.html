@@ -397,18 +397,30 @@ them, if they are valid.</li>
 </dd>
 </dl>
 </li>
+<li>The request can be run against an external database (only read queries for now)
+It may be usefull to avoid overloading the production server for example.</li>
 </ul>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><a class="reference internal" href="#usage" id="id1">Usage</a></li>
-<li><a class="reference internal" href="#known-issues-roadmap" id="id2">Known issues / Roadmap</a></li>
-<li><a class="reference internal" href="#bug-tracker" id="id3">Bug Tracker</a></li>
-<li><a class="reference internal" href="#credits" id="id4">Credits</a></li>
+<li><a class="reference internal" href="#configuration" id="id1">Configuration</a></li>
+<li><a class="reference internal" href="#usage" id="id2">Usage</a></li>
+<li><a class="reference internal" href="#known-issues-roadmap" id="id3">Known issues / Roadmap</a></li>
+<li><a class="reference internal" href="#bug-tracker" id="id4">Bug Tracker</a></li>
+<li><a class="reference internal" href="#credits" id="id5">Credits</a></li>
 </ul>
 </div>
+<div class="section" id="configuration">
+<h2><a class="toc-backref" href="#id1">Configuration</a></h2>
+<p>To configure the use of an external database, you need to edit the main configuration file of your instance and add the external database configuration with following keys :
+* external_db_user
+* external_db_password
+* external_db_name
+* external_db_host
+* external_db_port</p>
+</div>
 <div class="section" id="usage">
-<h2><a class="toc-backref" href="#id1">Usage</a></h2>
+<h2><a class="toc-backref" href="#id2">Usage</a></h2>
 <p>Inherit the model:</p>
 <blockquote>
 <p>from odoo import models</p>
@@ -423,13 +435,13 @@ _inherit = [‘sql.request.mixin’]</p>
 </blockquote>
 </div>
 <div class="section" id="known-issues-roadmap">
-<h2><a class="toc-backref" href="#id2">Known issues / Roadmap</a></h2>
+<h2><a class="toc-backref" href="#id3">Known issues / Roadmap</a></h2>
 <ul class="simple">
 <li>Move modules sql_request_abstract and sql_export to oca/reporting-engine for version 15</li>
 </ul>
 </div>
 <div class="section" id="bug-tracker">
-<h2><a class="toc-backref" href="#id3">Bug Tracker</a></h2>
+<h2><a class="toc-backref" href="#id4">Bug Tracker</a></h2>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/server-tools/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
@@ -437,7 +449,7 @@ If you spotted it first, help us smashing it by providing a detailed and welcome
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
-<h2><a class="toc-backref" href="#id4">Credits</a></h2>
+<h2><a class="toc-backref" href="#id5">Credits</a></h2>
 </div>
 </div>
 <div class="section" id="authors">
