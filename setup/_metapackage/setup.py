@@ -16,6 +16,7 @@ setuptools.setup(
         'odoo-addon-fetchmail_notify_error_to_sender>=15.0dev,<15.1dev',
         'odoo-addon-html_text>=15.0dev,<15.1dev',
         'odoo-addon-module_auto_update>=15.0dev,<15.1dev',
+        'odoo-addon-onchange_helper>=15.0dev,<15.1dev',
         'odoo-addon-upgrade_analysis>=15.0dev,<15.1dev',
     ],
     classifiers=[
