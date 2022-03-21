@@ -7,6 +7,7 @@ import base64
 from odoo import fields
 from odoo.exceptions import UserError
 from odoo.tests.common import TransactionCase, tagged
+from odoo.tools import config
 
 
 @tagged("post_install", "-at_install")
@@ -74,3 +75,25 @@ class TestExportSqlQuery(TransactionCase):
         wizard.export_sql()
         export = base64.b64decode(wizard.binary_file)
         self.assertTrue(export)
+
+    def test_sql_query_external_database(self):
+        # since we can't easily test a query on an external database
+        # without mock, we just test that, when the option is checked, the
+        # query is executed on a different cursor. Meaning Odoo did
+        # successfully opened a new database connection.
+        self.sql_report_demo = self.env.ref("sql_export.sql_export_partner")
+        res_sql = self.sql_report_demo._execute_sql_request(mode="fetchall")
+        partner_count = len(res_sql)
+
+        self.env["res.partner"].create({"name": "test"})
+        res_sql = self.sql_report_demo._execute_sql_request(mode="fetchall")
+        # The partner created on original cursor is present in the new result
+        # of the query
+        self.assertEqual(len(res_sql), partner_count + 1)
+
+        config["external_db_name"] = self.env.cr.dbname
+        self.sql_report_demo.write({"use_external_database": True})
+        res_sql = self.sql_report_demo._execute_sql_request(mode="fetchall")
+        # The partner created in original cursor is not present because
+        # a new cursor has been opened.
+        self.assertEqual(len(res_sql), partner_count)
