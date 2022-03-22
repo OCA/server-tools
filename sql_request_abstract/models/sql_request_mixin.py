@@ -296,16 +296,17 @@ class SQLRequestMixin(models.AbstractModel):
         is done after."""
         self.ensure_one()
         query = self._prepare_request_check_execution()
-        rollback_name = self._create_savepoint()
+        query_cr = self._get_cr_for_query()
+        rollback_name = self._create_savepoint(query_cr)
         res = False
         try:
-            self.env.cr.execute(query)
+            query_cr.execute(query)
             res = self._hook_executed_request()
         except ProgrammingError as e:
             logger.exception("Failed query: %s", query)
             raise UserError(_("The SQL query is not valid:\n\n %s") % e)
         finally:
-            self._rollback_savepoint(rollback_name)
+            self._rollback_savepoint(rollback_name, query_cr)
         return res
 
     def _prepare_request_check_execution(self):
