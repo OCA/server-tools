@@ -44,6 +44,14 @@
                                 name="capture_record"
                                 attrs="{'invisible':['|' ,('log_type','!=', 'full'), ('log_unlink','!=', True)]}"
                             />
+                            <field
+                                name="users_to_exclude_ids"
+                                widget="many2many_tags"
+                            />
+                            <field
+                                name="fields_to_exclude_ids"
+                                widget="many2many_tags"
+                            />
                         </group>
                         <group colspan="1">
                             <field name="log_read" />
