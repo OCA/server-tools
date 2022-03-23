@@ -4,9 +4,6 @@
 
 import logging
 
-from odoo_test_helper import FakeModelLoader
-
-from odoo import fields
 from odoo.exceptions import UserError, ValidationError
 from odoo.tests import common
 
@@ -17,29 +14,10 @@ _logger = logging.getLogger(__name__)
 class TestBaseException(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
-        super(TestBaseException, cls).setUpClass()
-        cls.loader = FakeModelLoader(cls.env, cls.__module__)
-        cls.loader.backup_registry()
-
-        # The fake class is imported here !! After the backup_registry
-        from .purchase_test import LineTest, PurchaseTest
-
-        cls.loader.update_registry((LineTest, PurchaseTest))
+        super().setUpClass()
 
         cls.base_exception = cls.env["base.exception"]
         cls.exception_rule = cls.env["exception.rule"]
-        if "test_purchase_ids" not in cls.exception_rule._fields:
-            field = fields.Many2many("base.exception.test.purchase")
-            cls.exception_rule._add_field("test_purchase_ids", field)
-            cls.exception_rule._fields["test_purchase_ids"].depends_context = None
-        cls.exception_confirm = cls.env["exception.rule.confirm"]
-        cls.exception_rule._fields["model"].selection.append(
-            ("base.exception.test.purchase", "Purchase Order")
-        )
-
-        cls.exception_rule._fields["model"].selection.append(
-            ("base.exception.test.purchase.line", "Purchase Order Line")
-        )
 
         cls.exceptionnozip = cls.env["exception.rule"].create(
             {
@@ -84,8 +62,9 @@ class TestBaseException(common.TransactionCase):
         with self.assertRaises(ValidationError):
             potest1.button_confirm()
         # Test that we have linked exceptions
+        potest1.detect_exceptions()
         self.assertTrue(potest1.exception_ids)
-        # Test ignore exeception make possible for the po to validate
+        # Test ignore exception make possible for the po to validate
         potest1.action_ignore_exceptions()
         self.assertTrue(potest1.ignore_exception)
         self.assertFalse(potest1.exceptions_summary)
@@ -109,6 +88,7 @@ class TestBaseException(common.TransactionCase):
         with self.assertRaises(ValidationError):
             potest1.button_confirm()
         # Test that we have linked exceptions
+        potest1.detect_exceptions()
         self.assertTrue(potest1.exception_ids)
         self.assertTrue(potest1.exceptions_summary)
         # Test cannot ignore blocked exception
