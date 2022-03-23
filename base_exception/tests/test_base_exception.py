@@ -4,12 +4,11 @@
 
 import logging
 
+from odoo_test_helper import FakeModelLoader
+
 from odoo import fields
 from odoo.exceptions import UserError, ValidationError
 from odoo.tests import common
-
-from .common import setup_test_model
-from .purchase_test import LineTest, PurchaseTest
 
 _logger = logging.getLogger(__name__)
 
@@ -19,7 +18,13 @@ class TestBaseException(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super(TestBaseException, cls).setUpClass()
-        setup_test_model(cls.env, [PurchaseTest, LineTest])
+        cls.loader = FakeModelLoader(cls.env, cls.__module__)
+        cls.loader.backup_registry()
+
+        # The fake class is imported here !! After the backup_registry
+        from .purchase_test import LineTest, PurchaseTest
+
+        cls.loader.update_registry((LineTest, PurchaseTest))
 
         cls.base_exception = cls.env["base.exception"]
         cls.exception_rule = cls.env["exception.rule"]
