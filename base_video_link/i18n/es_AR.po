@@ -6,94 +6,96 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2022-03-28 01:17+0000\n"
+"Last-Translator: Ignacio Buioli <ibuioli@gmail.com>\n"
 "Language-Team: none\n"
 "Language: es_AR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: base_video_link
 #: model:ir.model.fields,field_description:base_video_link.field_video_provider__code
 msgid "Code"
-msgstr ""
+msgstr "Código"
 
 #. module: base_video_link
 #: model:ir.model.fields,field_description:base_video_link.field_video_provider__create_uid
 #: model:ir.model.fields,field_description:base_video_link.field_video_video__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creado por"
 
 #. module: base_video_link
 #: model:ir.model.fields,field_description:base_video_link.field_video_provider__create_date
 #: model:ir.model.fields,field_description:base_video_link.field_video_video__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creado en"
 
 #. module: base_video_link
 #: model:ir.model.fields,field_description:base_video_link.field_video_link_mixin__display_name
 #: model:ir.model.fields,field_description:base_video_link.field_video_provider__display_name
 #: model:ir.model.fields,field_description:base_video_link.field_video_video__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Mostrar Nombre"
 
 #. module: base_video_link
 #: model_terms:ir.ui.view,arch_db:base_video_link.video_video_view_search
 msgid "Group By"
-msgstr ""
+msgstr "Agrupar Por"
 
 #. module: base_video_link
 #: model:ir.model.fields,field_description:base_video_link.field_video_link_mixin__id
 #: model:ir.model.fields,field_description:base_video_link.field_video_provider__id
 #: model:ir.model.fields,field_description:base_video_link.field_video_video__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: base_video_link
 #: model:ir.model.fields,field_description:base_video_link.field_video_video__identifier
 msgid "Identifier"
-msgstr ""
+msgstr "Identificador"
 
 #. module: base_video_link
 #: model:ir.model.fields,field_description:base_video_link.field_video_link_mixin____last_update
 #: model:ir.model.fields,field_description:base_video_link.field_video_provider____last_update
 #: model:ir.model.fields,field_description:base_video_link.field_video_video____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última modificación en"
 
 #. module: base_video_link
 #: model:ir.model.fields,field_description:base_video_link.field_video_provider__write_uid
 #: model:ir.model.fields,field_description:base_video_link.field_video_video__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Última actualización realizada por"
 
 #. module: base_video_link
 #: model:ir.model.fields,field_description:base_video_link.field_video_provider__write_date
 #: model:ir.model.fields,field_description:base_video_link.field_video_video__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Última actualización el"
 
 #. module: base_video_link
 #: model:ir.model.fields,field_description:base_video_link.field_video_provider__name
 #: model:ir.model.fields,field_description:base_video_link.field_video_video__name
 msgid "Name"
-msgstr ""
+msgstr "Nombre"
 
 #. module: base_video_link
 #: model_terms:ir.ui.view,arch_db:base_video_link.video_video_view
 msgid "Open"
-msgstr ""
+msgstr "Abierto"
 
 #. module: base_video_link
 #: model:ir.model.fields,field_description:base_video_link.field_video_provider__pattern_thumbnail_url
 msgid "Pattern Thumbnail Url"
-msgstr ""
+msgstr "Patrón de URL de la Miniatura"
 
 #. module: base_video_link
 #: model:ir.model.fields,field_description:base_video_link.field_video_provider__pattern_video_url
 msgid "Pattern Video Url"
-msgstr ""
+msgstr "Patrón de URL de Video"
 
 #. module: base_video_link
 #: model:ir.model.fields,help:base_video_link.field_video_provider__pattern_video_url
@@ -101,6 +103,8 @@ msgid ""
 "Pattern to generate the video's URL. `record` variable represents the video "
 "record."
 msgstr ""
+"Patrón para generar la URL del video. La variable `record` representa el "
+"registro de video."
 
 #. module: base_video_link
 #: model:ir.model.fields,help:base_video_link.field_video_provider__pattern_thumbnail_url
@@ -108,34 +112,36 @@ msgid ""
 "Pattern to generate the video's thumb URL. `record` variable represents the "
 "video record."
 msgstr ""
+"Patrón para generar la URL de la miniatura del video. La variable `record` "
+"representa el registro de video."
 
 #. module: base_video_link
 #: model:ir.model.fields,field_description:base_video_link.field_video_video__provider_id
 #: model_terms:ir.ui.view,arch_db:base_video_link.video_video_view_search
 msgid "Provider"
-msgstr ""
+msgstr "Proveedor"
 
 #. module: base_video_link
 #: model:ir.model.fields,field_description:base_video_link.field_video_video__sequence
 msgid "Sequence"
-msgstr ""
+msgstr "Secuencia"
 
 #. module: base_video_link
 #: model:ir.model.fields,field_description:base_video_link.field_video_link_mixin__smart_search
 #: model:ir.model.fields,field_description:base_video_link.field_video_provider__smart_search
 #: model:ir.model.fields,field_description:base_video_link.field_video_video__smart_search
 msgid "Smart Search"
-msgstr ""
+msgstr "Búsqueda Inteligente"
 
 #. module: base_video_link
 #: model:ir.model.fields,field_description:base_video_link.field_video_video__thumbnail_url
 msgid "Thumbnail Url"
-msgstr ""
+msgstr "Url de la Miniatura"
 
 #. module: base_video_link
 #: model:ir.model.fields,field_description:base_video_link.field_video_video__url
 msgid "Url"
-msgstr ""
+msgstr "Url"
 
 #. module: base_video_link
 #: model:ir.actions.act_window,name:base_video_link.video_video_action
@@ -147,12 +153,12 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:base_video_link.video_video_view_search
 #: model_terms:ir.ui.view,arch_db:base_video_link.video_video_view_tree
 msgid "Video"
-msgstr ""
+msgstr "Video"
 
 #. module: base_video_link
 #: model:ir.model,name:base_video_link.model_video_link_mixin
 msgid "Video Link Mixin"
-msgstr ""
+msgstr "Video Link Mixin"
 
 #. module: base_video_link
 #: model:ir.actions.act_window,name:base_video_link.video_provider_action
@@ -162,4 +168,4 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:base_video_link.video_provider_view_search
 #: model_terms:ir.ui.view,arch_db:base_video_link.video_provider_view_tree
 msgid "Video Provider"
-msgstr ""
+msgstr "Proveedor de Video"
