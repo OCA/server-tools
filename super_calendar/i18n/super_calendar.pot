@@ -1,22 +1,17 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * super_calendar
+#	* super_calendar
 #
-# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: server-tools (8.0)\n"
+"Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-10 03:03+0000\n"
-"PO-Revision-Date: 2015-09-18 13:56+0000\n"
 "Last-Translator: <>\n"
-"Language-Team: Portuguese (Portugal) (http://www.transifex.com/oca/OCA-"
-"server-tools-8-0/language/pt_PT/)\n"
-"Language: pt_PT\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: \n"
 
 #. module: super_calendar
 #: model:ir.ui.menu,name:super_calendar.super_calendar_calendar
@@ -60,14 +55,14 @@ msgstr ""
 #: model:ir.model.fields,field_description:super_calendar.field_super_calendar_configurator_line_create_uid
 #: model:ir.model.fields,field_description:super_calendar.field_super_calendar_create_uid
 msgid "Created by"
-msgstr "Criado por"
+msgstr ""
 
 #. module: super_calendar
 #: model:ir.model.fields,field_description:super_calendar.field_super_calendar_configurator_create_date
 #: model:ir.model.fields,field_description:super_calendar.field_super_calendar_configurator_line_create_date
 #: model:ir.model.fields,field_description:super_calendar.field_super_calendar_create_date
 msgid "Created on"
-msgstr "Criado em"
+msgstr ""
 
 #. module: super_calendar
 #: model:ir.ui.view,arch_db:super_calendar.super_calendar_search
@@ -88,7 +83,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:super_calendar.field_super_calendar_name
 #: model:ir.ui.view,arch_db:super_calendar.super_calendar_configurator_form
 msgid "Description"
-msgstr "Descrição"
+msgstr ""
 
 #. module: super_calendar
 #: model:ir.model.fields,field_description:super_calendar.field_super_calendar_configurator_line_description_type
@@ -106,7 +101,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:super_calendar.field_super_calendar_configurator_line_display_name
 #: model:ir.model.fields,field_description:super_calendar.field_super_calendar_display_name
 msgid "Display Name"
-msgstr "Nome a Apresentar"
+msgstr ""
 
 #. module: super_calendar
 #: model:ir.ui.view,arch_db:super_calendar.super_calendar_search
@@ -136,7 +131,7 @@ msgstr ""
 #. module: super_calendar
 #: model:ir.model.fields,field_description:super_calendar.field_super_calendar_duration
 msgid "Duration"
-msgstr "Duração"
+msgstr ""
 
 #. module: super_calendar
 #: model:ir.model.fields,field_description:super_calendar.field_super_calendar_configurator_line_duration_field_id
@@ -198,28 +193,28 @@ msgstr ""
 #: model:ir.model.fields,field_description:super_calendar.field_super_calendar_configurator_line_id
 #: model:ir.model.fields,field_description:super_calendar.field_super_calendar_id
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: super_calendar
 #: model:ir.model.fields,field_description:super_calendar.field_super_calendar___last_update
 #: model:ir.model.fields,field_description:super_calendar.field_super_calendar_configurator___last_update
 #: model:ir.model.fields,field_description:super_calendar.field_super_calendar_configurator_line___last_update
 msgid "Last Modified on"
-msgstr "Última Modificação Em"
+msgstr ""
 
 #. module: super_calendar
 #: model:ir.model.fields,field_description:super_calendar.field_super_calendar_configurator_line_write_uid
 #: model:ir.model.fields,field_description:super_calendar.field_super_calendar_configurator_write_uid
 #: model:ir.model.fields,field_description:super_calendar.field_super_calendar_write_uid
 msgid "Last Updated by"
-msgstr "Última Atualização Por"
+msgstr ""
 
 #. module: super_calendar
 #: model:ir.model.fields,field_description:super_calendar.field_super_calendar_configurator_line_write_date
 #: model:ir.model.fields,field_description:super_calendar.field_super_calendar_configurator_write_date
 #: model:ir.model.fields,field_description:super_calendar.field_super_calendar_write_date
 msgid "Last Updated on"
-msgstr "Última Atualização Em"
+msgstr ""
 
 #. module: super_calendar
 #: model:ir.ui.view,arch_db:super_calendar.super_calendar_configurator_form
@@ -236,7 +231,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:super_calendar.field_super_calendar_configurator_line_name
 #: model:ir.model.fields,field_description:super_calendar.field_super_calendar_model_id
 msgid "Model"
-msgstr "Modelo"
+msgstr ""
 
 #. module: super_calendar
 #: model:ir.ui.view,arch_db:super_calendar.super_calendar_search
@@ -251,7 +246,7 @@ msgstr ""
 #. module: super_calendar
 #: model:ir.model.fields,field_description:super_calendar.field_super_calendar_configurator_name
 msgid "Name"
-msgstr "Nome"
+msgstr ""
 
 #. module: super_calendar
 #: model:ir.ui.view,arch_db:super_calendar.super_calendar_search
@@ -286,7 +281,7 @@ msgstr ""
 #. module: super_calendar
 #: model:ir.model.fields,field_description:super_calendar.field_super_calendar_date_start
 msgid "Start date"
-msgstr "Data de início"
+msgstr ""
 
 #. module: super_calendar
 #: model:ir.model.fields,field_description:super_calendar.field_super_calendar_configurator_line_date_start_field_id
@@ -307,15 +302,13 @@ msgstr ""
 
 #. module: super_calendar
 #: model:ir.model.fields,help:super_calendar.field_super_calendar_configurator_line_description_code
-msgid ""
-"Use '${o}' to refer to the involved object.\n"
+msgid "Use '${o}' to refer to the involved object.\n"
 "E.g.: '${o.project_id.name}'"
 msgstr ""
 
 #. module: super_calendar
 #: model:ir.ui.view,arch_db:super_calendar.super_calendar_configurator_form
-msgid ""
-"Use '${o}' to refer to the involved object. E.g.: '${o.project_id.name}'"
+msgid "Use '${o}' to refer to the involved object. E.g.: '${o.project_id.name}'"
 msgstr ""
 
 #. module: super_calendar
@@ -352,3 +345,4 @@ msgstr ""
 #: model:ir.model,name:super_calendar.model_super_calendar_configurator_line
 msgid "super.calendar.configurator.line"
 msgstr ""
+
