@@ -63,13 +63,19 @@ class CleanupPurgeLineTable(models.TransientModel):
                         constraint[0],
                         constraint[3],
                     )
-                    self.env.cr.execute(
-                        "ALTER TABLE %s DROP CONSTRAINT %s",
-                        (
-                            IdentifierAdapter(constraint[3]),
-                            IdentifierAdapter(constraint[0]),
-                        ),
+                else:
+                    self.logger.info(
+                        "Dropping constraint %s on table %s (not to be dropped)",
+                        constraint[0],
+                        constraint[3],
                     )
+                self.env.cr.execute(
+                    "ALTER TABLE %s DROP CONSTRAINT %s",
+                    (
+                        IdentifierAdapter(constraint[3]),
+                        IdentifierAdapter(constraint[0]),
+                    ),
+                )
 
             self.logger.info("Dropping table %s", line.name)
             self.env.cr.execute("DROP TABLE %s", (IdentifierAdapter(line.name),))
