@@ -9,7 +9,7 @@
             <field name="doall" eval="False"></field>
             <field eval="'super.calendar.configurator'" name="model"/>
             <field eval="'generate_calendar_records'" name="function"/>
-            <field eval="'[[],{}]'" name="args"/>
+            <field eval="'[]'" name="args"/>
         </record>
     </data>
 </openerp>

@@ -23,13 +23,15 @@ phone calls, you can create the following lines
 
 Meetings:
 
-.. image:: super_calendar/static/description/meetings.png
-   :width: 400 px
+.. figure:: static/description/meetings.png
+   :alt: meetings
+   :width: 600 px
 
 Phonecalls:
 
-.. image:: super_calendar/static/description/phone_calls.png
-   :width: 400 px
+.. figure:: static/description/phone_calls.png
+   :alt: phone calls
+   :width: 600 px
 
 Then, you can use the 'Generate Calendar' button or wait for the scheduled
 action (‘Generate Calendar Records’) to be run.
@@ -38,13 +40,15 @@ When the calendar is generated, you can visualize it by the 'super calendar' mai
 
 Here is a sample monthly calendar:
 
-.. image:: super_calendar/static/description/month_calendar.png
-   :width: 400 px
+.. figure:: static/description/month_calendar.png
+   :alt: monthly calendar
+   :width: 600 px
 
 And here is the weekly one:
 
-.. image:: super_calendar/static/description/week_calendar.png
-   :width: 400 px
+.. figure:: static/description/week_calendar.png
+   :alt: weekly calendar
+   :width: 600 px
 
 As you can see, several filters are available. A typical usage consists in
 filtering by 'Configurator' (if you have several configurators,

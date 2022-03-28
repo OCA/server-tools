@@ -30,8 +30,8 @@ import logging
 from datetime import datetime
 from pytz import timezone, utc
 from mako.template import Template
-from openerp import _, api, exceptions, fields, models, tools
-from openerp.tools.safe_eval import safe_eval
+from odoo import _, api, exceptions, fields, models, tools
+from odoo.tools.safe_eval import safe_eval
 
 
 _logger = logging.getLogger(__name__)
@@ -107,7 +107,7 @@ class SuperCalendarConfigurator(models.Model):
 
             # Check if f_user refer to a res.users
             if (f_user and cur_rec[f_user] and
-                    cur_rec[f_user]._model._name != 'res.users'):
+                    cur_rec[f_user]._name != 'res.users'):
                 raise exceptions.ValidationError(
                     _("The 'User' field of record %s (%s) "
                       "does not refer to res.users")
@@ -152,9 +152,9 @@ class SuperCalendarConfigurator(models.Model):
                 # Convert date_start to UTC timezone if it is a date field
                 # in order to be stored in UTC in the database
                 if line.date_start_field_id.ttype == 'date':
-                    tz = timezone(self._context.get('tz')
-                                  or self.env.user.tz
-                                  or 'UTC')
+                    tz = timezone(self._context.get('tz') or
+                                  self.env.user.tz or
+                                  'UTC')
                     local_date_start = tz.localize(date_start)
                     utc_date_start = local_date_start.astimezone(utc)
                     date_start = utc_date_start
@@ -163,13 +163,19 @@ class SuperCalendarConfigurator(models.Model):
                     tools.DEFAULT_SERVER_DATETIME_FORMAT
                 )
 
+                # Recurrent events have an string id like '14-20151110120000'
+                # We need to split that to get the first part (id)
+                if isinstance(cur_rec['id'], basestring):
+                    rec_id = cur_rec['id'].split('-')[0]
+                else:
+                    rec_id = cur_rec['id']
                 super_calendar_values = {
                     'name': name,
                     'date_start': date_start,
                     'duration': duration,
                     'user_id': (f_user and cur_rec[f_user].id),
                     'configurator_id': self.id,
-                    'res_id': line.name.model + ',' + str(cur_rec['id']),
+                    'res_id': line.name.model + ',' + str(rec_id),
                     'model_id': line.name.id,
                 }
                 res[cur_rec] = super_calendar_values

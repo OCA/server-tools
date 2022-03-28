@@ -26,7 +26,7 @@
 ##############################################################################
 {
     'name': 'Super Calendar',
-    'version': '8.0.0.2.0',
+    'version': '10.0.1.0.0',
     'category': 'Generic Modules/Others',
     'summary': 'This module allows to create configurable calendars.',
     'author': ('Agile Business Group, '
@@ -46,7 +46,7 @@
     ],
     'demo': [],
     'test': [],
-    'installable': False,
+    'installable': True,
     'application': True,
     'auto_install': False,
 }

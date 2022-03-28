@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<openerp>
+<odoo>
     <data>
 
         <!-- Configurator -->
@@ -19,44 +19,52 @@
             <field name="model">super.calendar.configurator</field>
             <field name="arch" type="xml">
                 <form string="Configurator">
-                    <field name="name" select="1" colspan="2"/>
-                    <newline/>
-                    <field name="line_ids" nolabel="1" colspan="4">
-                        <tree string="Lines">
+                    <header>
+                        <button name="generate_calendar_records"
+                                string="Generate Calendar" type="object" icon="fa-calendar-plus-o" colspan="2"/>
+                    </header>
+                    <sheet>
+                    <group>
+                        <group>
                             <field name="name"/>
-                            <field name="domain"/>
-                        </tree>
-                        <form string="Line">
-                            <group>
+                        </group>
+                        <group colspan="8">
+                            <field name="line_ids" nolabel="1" colspan="8">
+                            <tree string="Lines">
+                                <field name="name"/>
+                                <field name="domain"/>
+                            </tree>
+                            <form string="Line">
                                 <group>
-                                    <field name="name"/>
-                                    <field name="domain"/>
-                                    <field name="user_field_id"/>
+                                    <group>
+                                        <field name="name"/>
+                                        <field name="domain"/>
+                                        <field name="user_field_id"/>
+                                    </group>
+                                    <group>
+                                        <field name="date_start_field_id"/>
+                                        <field name="duration_field_id"/>
+                                        <field name="date_stop_field_id"
+                                               attrs="{'readonly':[('duration_field_id','!=',False)], 'visible': [('duration_field_id','!=',False)]}"/>
+                                    </group>
                                 </group>
-                                <group>
-                                    <field name="date_start_field_id"/>
-                                    <field name="duration_field_id"/>
-                                    <field name="date_stop_field_id"
-                                           attrs="{'readonly':[('duration_field_id','!=',False)], 'visible': [('duration_field_id','!=',False)]}"/>
+                                <group string="Description">
+                                    <field name="description_type"/>
+                                    <newline/>
+                                    <field name="description_field_id"
+                                           attrs="{'required':[('description_type','!=','code')], 'invisible':[('description_type','==','code')]}"/>
+                                    <group colspan="4" col="1" attrs="{'invisible':[('description_type','!=','code')]}">
+                                        <label string="Use '${o}' to refer to the involved object. E.g.: '${o.project_id.name}'" />
+                                        <field name="description_code" nolabel="1"
+                                               attrs="{'required':[('description_type','==','code')]}"/>
+                                    </group>
                                 </group>
-                            </group>
-                            <group string="Description">
-                                <field name="description_type"/>
-                                <newline/>
-                                <field name="description_field_id"
-                                       attrs="{'required':[('description_type','!=','code')], 'invisible':[('description_type','==','code')]}"/>
-                                <group colspan="4" col="1" attrs="{'invisible':[('description_type','!=','code')]}">
-                                    <label string="Use '${o}' to refer to the involved object. E.g.: '${o.project_id.name}'" />
-                                    <field name="description_code" nolabel="1"
-                                           attrs="{'required':[('description_type','==','code')]}"/>
-                                </group>
-                            </group>
 
-                        </form>
-                    </field>
-                    <newline/>
-                    <button name="generate_calendar_records"
-                            string="Generate Calendar" type="object" icon="gtk-go-forward" colspan="2"/>
+                            </form>
+                        </field>
+                        </group>
+                    </group>
+                    </sheet>
                 </form>
             </field>
         </record>
@@ -202,4 +210,4 @@
         <menuitem id="super_calendar_configurators" name="Configurators"
                   parent="super_calendar_configuration" action="super_calendar_configurator"/>
     </data>
-</openerp>
+</odoo>

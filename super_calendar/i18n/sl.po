@@ -1,21 +1,30 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* super_calendar
-#
+# * super_calendar
+# 
+# Translators:
+# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2015
+# Antonio Trueba, 2016
+# Bole <bole@dajmi5.com>, 2015
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012,2014
+# Giacomo <giacomo.spettoli@gmail.com>, 2015
+# Hotellook, 2014
+# Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>, 2016
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2016
+# Rudolf Schnapka <rs@techno-flex.de>, 2016
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 8.0\n"
+"Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Matjaz Mozetic <m.mozetic@matmoz.si>\n"
-"POT-Creation-Date: 2015-07-29 20:39+0000\n"
-"PO-Revision-Date: 2015-08-30 08:00+0200\n"
-"Language-Team: \n"
+"POT-Creation-Date: 2016-05-06 02:42+0000\n"
+"PO-Revision-Date: 2016-05-05 05:57+0000\n"
+"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: \n"
+"Content-Transfer-Encoding: \n"
 "Language: sl\n"
-"X-Generator: Poedit 1.8.4\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 
 #. module: super_calendar
 #: model:ir.ui.menu,name:super_calendar.super_calendar_calendar
@@ -99,6 +108,13 @@ msgstr "Tip opisa"
 #: field:super.calendar.configurator.line,description_field_id:0
 msgid "Description field"
 msgstr "Polje opisa"
+
+#. module: super_calendar
+#: field:super.calendar,display_name:0
+#: field:super.calendar.configurator,display_name:0
+#: field:super.calendar.configurator.line,display_name:0
+msgid "Display Name"
+msgstr "Prikazni naziv"
 
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
@@ -190,6 +206,13 @@ msgstr "Združi vse elemente istega leta."
 #: field:super.calendar.configurator.line,id:0
 msgid "ID"
 msgstr "ID"
+
+#. module: super_calendar
+#: field:super.calendar,__last_update:0
+#: field:super.calendar.configurator,__last_update:0
+#: field:super.calendar.configurator.line,__last_update:0
+msgid "Last Modified on"
+msgstr "Zadnjič spremenjeno"
 
 #. module: super_calendar
 #: field:super.calendar,write_uid:0
@@ -294,13 +317,12 @@ msgstr "Polje 'uporabnik' zapisa %s (%s) se ne sklicuje na res.users"
 msgid ""
 "Use '${o}' to refer to the involved object.\n"
 "E.g.: '${o.project_id.name}'"
-msgstr ""
-"Uporabi '${o}' za sklicevanje na vpleteni objekt.\n"
-"Npr.: '${o.project_id.name}'"
+msgstr "Uporabi '${o}' za sklicevanje na vpleteni objekt.\nNpr.: '${o.project_id.name}'"
 
 #. module: super_calendar
 #: view:super.calendar.configurator:super_calendar.super_calendar_configurator_form
-msgid "Use '${o}' to refer to the involved object. E.g.: '${o.project_id.name}'"
+msgid ""
+"Use '${o}' to refer to the involved object. E.g.: '${o.project_id.name}'"
 msgstr "Uporabi '${o}' za sklicevanje na vpleteni objekt. Npr.: '${o.project_id.name}'"
 
 #. module: super_calendar
