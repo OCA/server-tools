@@ -90,6 +90,7 @@ setuptools.setup(
         'odoo10-addon-sql_export',
         'odoo10-addon-sql_request_abstract',
         'odoo10-addon-subscription_action',
+        'odoo10-addon-super_calendar',
         'odoo10-addon-test_onchange_helper',
         'odoo10-addon-user_immutable',
         'odoo10-addon-user_threshold',
