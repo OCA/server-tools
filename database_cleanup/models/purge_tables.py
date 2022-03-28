@@ -72,7 +72,7 @@ class CleanupPurgeLineTable(models.TransientModel):
                     )
 
             self.logger.info("Dropping table %s", line.name)
-            self.env.cr.execute("DROP TABLE %s", (IdentifierAdapter(line.name),))
+            self.env.cr.execute("DROP TABLE %s CASCADE", (IdentifierAdapter(line.name),))
             line.write({"purged": True})
         return True
 
