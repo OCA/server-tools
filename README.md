@@ -101,6 +101,7 @@ addon | version | maintainers | summary
 [sql_export](sql_export/) | 10.0.1.0.0 |  | Export data in csv file with SQL requests
 [sql_request_abstract](sql_request_abstract/) | 10.0.1.0.1 |  | Abstract Model to manage SQL Requests
 [subscription_action](subscription_action/) | 10.0.1.0.0 |  | Run a server action on a newly created document
+[super_calendar](super_calendar/) | 10.0.1.0.0 |  | This module allows to create configurable calendars.
 [test_onchange_helper](test_onchange_helper/) | 10.0.2.1.0 |  | Test addon for the onchange_helper addon
 [user_immutable](user_immutable/) | 10.0.1.0.0 |  | Add Immutable User Support
 [user_threshold](user_threshold/) | 10.0.1.0.1 |  | Add Configurable User Threshold Support
@@ -125,7 +126,6 @@ addon | version | maintainers | summary
 [menu_technical_info](menu_technical_info/) | 9.0.1.0.0 (unported) |  | Fast way to look up technical info about menu item.
 [security_protector](security_protector/) | 0.1 (unported) |  | Security protector
 [server_env_base_external_referentials](server_env_base_external_referentials/) | 1.0 (unported) |  | Server environment for base_external_referential
-[super_calendar](super_calendar/) | 8.0.0.2.0 (unported) |  | This module allows to create configurable calendars.
 [test_configuration_helper](test_configuration_helper/) | 9.0.1.0.0 (unported) |  | Configuration Helper - Tests
 
 [//]: # (end addons)
