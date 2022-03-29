@@ -13,8 +13,9 @@ class TestModule(TransactionCase):
         self.IrModuleModule = self.env["ir.module.module"]
 
     def test_installed_modules(self):
+        self.IrModuleModule.cron_analyse_code()
         installed_modules = self.IrModuleModule.search(
-            [("state", "=", "installed"), ("name", "not like", "_test")]
+            [("state", "=", "installed"), ("name", "in", ("base",))]
         )
         for module in installed_modules:
             self.assertTrue(
