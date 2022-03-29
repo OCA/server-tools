@@ -15,6 +15,7 @@ class TestModule(TransactionCase):
         self.IrModuleModule = self.env['ir.module.module']
 
     def test_installed_modules(self):
+        self.IrModuleModule.cron_analyse_code()
         installed_modules = self.IrModuleModule.search(
             [('state', '=', 'installed')])
         for module in installed_modules:
