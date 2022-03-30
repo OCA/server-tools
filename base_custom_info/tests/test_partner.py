@@ -171,8 +171,8 @@ class PartnerCase(TransactionCase):
         )
         with self.assertRaises(ValidationError):
             val.value_str = (
-                u"Don Walter Antonio José de la Cruz Hëisenberg "
-                u"de Borbón Westley Jordy López Manuélez"
+                "Don Walter Antonio José de la Cruz Hëisenberg "
+                "de Borbón Westley Jordy López Manuélez"
             )
 
     def test_low_average_note(self):
