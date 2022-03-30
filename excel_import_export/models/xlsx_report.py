@@ -6,7 +6,7 @@ from odoo.exceptions import ValidationError
 
 
 class XLSXReport(models.AbstractModel):
-    """ Common class for xlsx reporting wizard """
+    """Common class for xlsx reporting wizard"""
 
     _name = "xlsx.report"
     _description = "Excel Report AbstractModel"
