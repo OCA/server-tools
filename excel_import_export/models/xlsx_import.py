@@ -43,7 +43,7 @@ class XLSXImport(models.AbstractModel):
 
     @api.model
     def get_external_id(self, record):
-        """ Get external ID of the record, if not already exists create one """
+        """Get external ID of the record, if not already exists create one"""
         ModelData = self.env["ir.model.data"]
         xml_id = record.get_external_id()
         if not xml_id or (record.id in xml_id and xml_id[record.id] == ""):
@@ -75,7 +75,7 @@ class XLSXImport(models.AbstractModel):
 
     @api.model
     def _delete_record_data(self, record, data_dict):
-        """ If no _NODEL_, delete existing lines before importing """
+        """If no _NODEL_, delete existing lines before importing"""
         if not record or not data_dict:
             return
         try:
@@ -97,7 +97,7 @@ class XLSXImport(models.AbstractModel):
 
     @api.model
     def _get_end_row(self, st, worksheet, line_field):
-        """ Get max row or next empty row as the ending row """
+        """Get max row or next empty row as the ending row"""
         _x, max_row = co.get_line_max(line_field)
         test_rows = {}
         max_end_row = 0
@@ -118,7 +118,7 @@ class XLSXImport(models.AbstractModel):
 
     @api.model
     def _get_line_vals(self, st, worksheet, model, line_field):
-        """ Get values of this field from excel sheet """
+        """Get values of this field from excel sheet"""
         vals = {}
         end_row = self._get_end_row(st, worksheet, line_field)
         for rc, columns in worksheet.get(line_field, {}).items():
@@ -193,7 +193,7 @@ class XLSXImport(models.AbstractModel):
 
     @api.model
     def _import_record_data(self, import_file, record, data_dict):
-        """ From complex excel, create temp simple excel and do import """
+        """From complex excel, create temp simple excel and do import"""
         if not data_dict:
             return
         try:
@@ -263,7 +263,7 @@ class XLSXImport(models.AbstractModel):
 
     @api.model
     def _post_import_operation(self, record, operation):
-        """ Run python code after import """
+        """Run python code after import"""
         if not record or not operation:
             return
         try:

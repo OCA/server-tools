@@ -24,7 +24,7 @@ except ImportError:
 
 
 def adjust_cell_formula(value, k):
-    """ Cell formula, i.e., if i=5, val=?(A11)+?(B12) -> val=A16+B17  """
+    """Cell formula, i.e., if i=5, val=?(A11)+?(B12) -> val=A16+B17"""
     if isinstance(value, str):
         for i in range(value.count("?(")):
             if value and "?(" in value and ")" in value:
@@ -38,7 +38,7 @@ def adjust_cell_formula(value, k):
 
 
 def get_field_aggregation(field):
-    """ i..e, 'field@{sum}' """
+    """i..e, 'field@{sum}'"""
     if field and "@{" in field and "}" in field:
         i = field.index("@{")
         j = field.index("}", i)
@@ -52,7 +52,7 @@ def get_field_aggregation(field):
 
 
 def get_field_condition(field):
-    """ i..e, 'field${value > 0 and value or False}' """
+    """i..e, 'field${value > 0 and value or False}'"""
     if field and "${" in field and "}" in field:
         i = field.index("${")
         j = field.index("}", i)
@@ -87,7 +87,7 @@ def get_field_style(field):
 
 
 def get_field_style_cond(field):
-    """ i..e, 'field#?object.partner_id and #{font=bold} or #{}?' """
+    """i..e, 'field#?object.partner_id and #{font=bold} or #{}?'"""
     if field and "#?" in field and "?" in field:
         i = field.index("#?")
         j = field.index("?", i + 2)
@@ -128,7 +128,7 @@ def fill_cell_style(field, field_style, styles):
 
 
 def get_line_max(line_field):
-    """ i.e., line_field = line_ids[100], max = 100 else 0 """
+    """i.e., line_field = line_ids[100], max = 100 else 0"""
     if line_field and "[" in line_field and "]" in line_field:
         i = line_field.index("[")
         j = line_field.index("]")
@@ -162,7 +162,7 @@ def split_row_col(pos):
 
 
 def openpyxl_get_sheet_by_name(book, name):
-    """ Get sheet by name for openpyxl """
+    """Get sheet by name for openpyxl"""
     i = 0
     for sheetname in book.sheetnames:
         if sheetname == name:
