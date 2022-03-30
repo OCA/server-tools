@@ -363,7 +363,7 @@ self['{}'] = self.env['{}'].search(self.safe_domain(self.domain))
             rec.post_import_hook = input_dict.get("__POST_IMPORT__")
 
     def _compute_output_instruction(self):
-        """ From database, compute back to dictionary """
+        """From database, compute back to dictionary"""
         for rec in self:
             inst_dict = {}
             prev_sheet = False
