@@ -15,7 +15,7 @@ class ExtractorCase(TransactionCase):
 
     def test_excerpts(self):
         """Text gets correctly extracted."""
-        html = u"""
+        html = """
             <html>
                 <body>
                     <div class="this should not appear">
@@ -28,17 +28,17 @@ class ExtractorCase(TransactionCase):
             """
         self.assertEqual(
             self.text_from_html(html),
-            u"I'm a title I'm a paragraph ¡Pues yo soy español!",
+            "I'm a title I'm a paragraph ¡Pues yo soy español!",
         )
         self.assertEqual(
-            self.text_from_html(html, 8), u"I'm a title I'm a paragraph ¡Pues yo…"
+            self.text_from_html(html, 8), "I'm a title I'm a paragraph ¡Pues yo…"
         )
         self.assertEqual(
-            self.text_from_html(html, 8, 31), u"I'm a title I'm a paragraph ¡P…"
+            self.text_from_html(html, 8, 31), "I'm a title I'm a paragraph ¡P…"
         )
         self.assertEqual(
             self.text_from_html(html, 7, ellipsis=""),
-            u"I'm a title I'm a paragraph ¡Pues",
+            "I'm a title I'm a paragraph ¡Pues",
         )
 
     @mute_logger("odoo.addons.html_text.models.ir_fields_converter")
