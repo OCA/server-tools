@@ -11,7 +11,7 @@ class TestXLSXImportExport(TestExcelImportExport):
         super(TestExcelImportExport, cls).setUpClass()
 
     def test_xlsx_export_import(self):
-        """ Test Export Excel from Sales Order """
+        """Test Export Excel from Sales Order"""
         # Create Sales Order
         self.setUpSaleOrder()
         # ----------- EXPORT ---------------
@@ -62,7 +62,7 @@ class TestXLSXImportExport(TestExcelImportExport):
         import_wizard.action_import()
 
     def test_add_remove_export_import_action(self):
-        """ On the template itself, test add / remove action """
+        """On the template itself, test add / remove action"""
         template = self.env.ref("excel_import_export_demo.sale_order_xlsx_template")
         self.assertTrue(template.import_action_id)
         self.assertTrue(template.export_action_id)

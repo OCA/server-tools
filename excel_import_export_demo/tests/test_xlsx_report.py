@@ -11,7 +11,7 @@ class TestXLSXReport(TestExcelImportExport):
         super(TestXLSXReport, cls).setUpClass()
 
     def test_xlsx_report(self):
-        """ Test Report from Sales Order """
+        """Test Report from Sales Order"""
         # Create Many Sales Orders
         self.setUpManySaleOrder()
         ctx = {
