@@ -16,7 +16,7 @@ class IrFieldsConverter(models.AbstractModel):
 
     @api.model
     def text_from_html(
-        self, html_content, max_words=None, max_chars=None, ellipsis=u"…", fail=False
+        self, html_content, max_words=None, max_chars=None, ellipsis="…", fail=False
     ):
         """Extract text from an HTML field in a generator.
 
@@ -52,7 +52,7 @@ class IrFieldsConverter(models.AbstractModel):
                 return ""
 
         # Get words
-        words = u"".join(doc.xpath("//text()")).split()
+        words = "".join(doc.xpath("//text()")).split()
 
         # Truncate words
         suffix = max_words and len(words) > max_words
@@ -60,7 +60,7 @@ class IrFieldsConverter(models.AbstractModel):
             words = words[:max_words]
 
         # Get text
-        text = u" ".join(words)
+        text = " ".join(words)
 
         # Truncate text
         suffix = suffix or max_chars and len(text) > max_chars
