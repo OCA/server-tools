@@ -9,7 +9,7 @@ class IrModelConstraintPatch(OdooPatch):
     method_names = ["_reflect_model"]
 
     def _reflect_model(self, model):
-        """ Reflect the _sql_constraints of the given model. """
+        """Reflect the _sql_constraints of the given model."""
 
         def cons_text(txt):
             return txt.lower().replace(", ", ",").replace(" (", "(")

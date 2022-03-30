@@ -62,7 +62,7 @@ license under which it is distributed along with the program.
 
 
 def get_license_text(license):
-    """ Get the python license header for a license """
+    """Get the python license header for a license"""
     if license in GPL_LICENSES:
         name, version = GPL_LICENSES[license]
         return BASE_GPL.format(name=name, version=version).splitlines()

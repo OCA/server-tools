@@ -49,7 +49,7 @@ class IrModelAccess(models.Model):
 
     @api.model
     def _readonly_exclude_models(self):
-        """ Models updtate/create by system, and should be excluded from checking """
+        """Models updtate/create by system, and should be excluded from checking"""
         return (
             self.sudo()
             .search(

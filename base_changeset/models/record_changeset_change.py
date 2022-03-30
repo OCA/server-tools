@@ -192,7 +192,7 @@ class RecordChangesetChange(models.Model):
         return self[field_name]
 
     def set_old_value(self):
-        """ Copy the value of the record to the 'old' field """
+        """Copy the value of the record to the 'old' field"""
         for change in self:
             # copy the existing record's value for the history
             old_value_for_write = self._value_for_changeset(
@@ -261,7 +261,7 @@ class RecordChangesetChange(models.Model):
                 )
 
     def cancel(self):
-        """ Reject the change """
+        """Reject the change"""
         for change in self:
             if not change.user_can_validate_changeset:
                 raise UserError(_("You don't have the rights to reject the changes."))

@@ -12,14 +12,14 @@ class NameSearchCase(TransactionCase):
         self.env.ref("base.module_base")._update_translations()
 
     def test_name_search_normal(self):
-        """ Search for a model name in other language, not found """
+        """Search for a model name in other language, not found"""
         res = self.env["ir.model"].name_search("Module dependency")
         self.assertTrue(res)
         res = self.env["ir.model"].name_search("การพึ่งพาของโมดูล")
         self.assertFalse(res)  # Not found in other language
 
     def test_name_search_multi_lang(self):
-        """ Search for a model name in other language, found it """
+        """Search for a model name in other language, found it"""
         self.env.ref("base.model_ir_model").name_search_multi_lang = True
         res = self.env["ir.model"].name_search("Module dependency")
         self.assertTrue(res)

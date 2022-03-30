@@ -467,7 +467,7 @@ class ModulePrototyper(models.Model):
 
     @api.model
     def generate_data_files(self):
-        """ Generate data and demo files """
+        """Generate data and demo files"""
         data, demo = {}, {}
         filters = [(data, ir_filter) for ir_filter in self.data_ids] + [
             (demo, ir_filter) for ir_filter in self.demo_ids
@@ -516,7 +516,7 @@ class ModulePrototyper(models.Model):
 
     @classmethod
     def fixup_domain(cls, domain):
-        """ Fix a domain according to unprefixing of fields """
+        """Fix a domain according to unprefixing of fields"""
         res = []
         for elem in domain:
             if len(elem) == 3:
