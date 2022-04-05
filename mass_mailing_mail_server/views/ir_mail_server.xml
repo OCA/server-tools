@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2022 ACSONE SA/NV
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record model="ir.ui.view" id="ir_mail_server_form_view">
+        <field
+            name="name"
+        >ir.mail_server.form (in mozaik_mass_mailing_mail_server)</field>
+        <field name="model">ir.mail_server</field>
+        <field name="inherit_id" ref="base.ir_mail_server_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//group[3]" position="after">
+                <group name="number_of_recipients" string="Number of recipients">
+                    <field name="recipients_min" />
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="ir_mail_server_list_view">
+        <field
+            name="name"
+        >ir.mail_server.list (in mozaik_mass_mailing_mail_server)</field>
+        <field name="model">ir.mail_server</field>
+        <field name="inherit_id" ref="base.ir_mail_server_list" />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="recipients_min" />
+            </field>
+        </field>
+    </record>
+
+
+</odoo>
