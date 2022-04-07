@@ -26,7 +26,7 @@ addon | version | maintainers | summary
 [auth_session_timeout](auth_session_timeout/) | 10.0.1.0.3 |  | This module disable all inactive sessions since a given delay
 [auth_signup_verify_email](auth_signup_verify_email/) | 10.0.2.0.0 |  | Force uninvited users to use a good email for signup
 [auth_supplier](auth_supplier/) | 10.0.1.0.0 |  | Auth Supplier
-[auth_totp](auth_totp/) | 10.0.2.0.0 |  | Allows users to enable MFA and add optional trusted devices
+[auth_totp](auth_totp/) | 10.0.2.0.1 |  | Allows users to enable MFA and add optional trusted devices
 [auth_totp_password_security](auth_totp_password_security/) | 10.0.1.0.0 |  | auth_totp and password_security compatibility
 [auth_user_case_insensitive](auth_user_case_insensitive/) | 10.0.1.0.1 |  | Makes the user login field case insensitive
 [auto_backup](auto_backup/) | 10.0.1.0.2 |  | Backups database
@@ -77,9 +77,9 @@ addon | version | maintainers | summary
 [fetchmail_attach_from_folder](fetchmail_attach_from_folder/) | 10.0.1.1.0 |  | Attach mails in an IMAP folder to existing objects
 [fetchmail_notify_error_to_sender](fetchmail_notify_error_to_sender/) | 10.0.1.0.0 |  | If fetching mails gives error, send an email to sender
 [html_image_url_extractor](html_image_url_extractor/) | 10.0.1.0.0 |  | Extract images found in any HTML field
-[html_text](html_text/) | 10.0.1.0.0 |  | Generate excerpts from any HTML field
+[html_text](html_text/) | 10.0.1.0.1 |  | Generate excerpts from any HTML field
 [keychain](keychain/) | 10.0.2.0.2 |  | Store accounts and credentials
-[letsencrypt](letsencrypt/) | 10.0.2.0.0 |  | Request SSL certificates from letsencrypt.org
+[letsencrypt](letsencrypt/) | 10.0.2.0.1 |  | Request SSL certificates from letsencrypt.org
 [mail_environment](mail_environment/) | 10.0.1.0.0 |  | Configure mail servers with server_environment_files
 [mail_log_message_to_process](mail_log_message_to_process/) | 10.0.1.0.0 |  | Log all messages received, before they start to be processed.
 [mass_editing](mass_editing/) | 10.0.2.1.0 |  | Mass Editing
