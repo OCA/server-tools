@@ -9,6 +9,6 @@
     "category": "Hidden/Dependency",
     "summary": "Adds more operators for view inheritance",
     "depends": ["base"],
-    "external_dependencies": {"python": ["pyyaml"]},
+    "external_dependencies": {"python": ["astor"]},
     "demo": ["demo/ir_ui_view.xml"],
 }
