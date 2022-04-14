@@ -1,18 +1,18 @@
-# Copyright 2022 Camptocamp SA
+# Copyright 2022 Camptocamp SA (http://www.camptocamp.com).
+# @author Simone Orsi <simone.orsi@camptocamp.com>
+# @author Matthieu Méquignon <matthieu.mequignon@camptocamp.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
 {
-    "name": "Jsonify Stored",
-    "summary": "Store Jsonified data based on an ir.export",
+    "name": "JSONify Stored",
+    "summary": "Base module to store JSON data based on any model",
     "version": "14.0.1.0.0",
     "category": "Uncategorized",
     "website": "https://github.com/OCA/server-tools",
-    "author": ("ACSONE SA/NV, " "Camptocamp SA, " "Odoo Community Association (OCA)"),
-    "maintainers": ["mmequignon"],
+    "author": ("Camptocamp, " "Odoo Community Association (OCA)"),
+    "maintainers": ["simahawk", "mmequignon"],
     "license": "AGPL-3",
     "installable": True,
-    "auto_install": False,
     "depends": ["base_jsonify", "base_sparse_field", "queue_job"],
     "data": ["data/ir_cron.xml", "data/queue_job.xml"],
-    "demo": ["demo/tests.xml"],
 }

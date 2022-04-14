@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo noupdate="1">
-    <record id="recompute_all_jsonified" model="ir.cron">
-        <field name="name">Recompute Stored Json data (all models)</field>
+    <record id="cron_recompute_all" model="ir.cron">
+        <field name="name">JSONify stored - Recompute data for all models</field>
         <field name="model_id" ref="jsonify_stored.model_jsonify_stored_mixin" />
         <field name="state">code</field>
         <field name="code">
-for child in model._inherit_children:
-    env[child].cron_update_jsonify_stored()
+for child_model in model._inherit_children:
+    model.cron_update_json_data_for(child_model)
         </field>
         <!-- It's recommended that you add your own cron for your own model -->
         <field name="active" eval="False" />

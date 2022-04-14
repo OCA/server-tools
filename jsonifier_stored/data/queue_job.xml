@@ -3,15 +3,15 @@
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
 
-    <record id="channel_jsonify_stored" model="queue.job.channel">
+    <record id="channel_jsonify_stored_root" model="queue.job.channel">
         <field name="name">jsonify_stored</field>
         <field name="parent_id" ref="queue_job.channel_root" />
     </record>
 
-    <record id="job_function_compute_jsonify_stored" model="queue.job.function">
+    <record id="job_function_jobify_json_data_compute_for" model="queue.job.function">
         <field name="model_id" ref="jsonify_stored.model_jsonify_stored_mixin" />
-        <field name="method">_compute_jsonified_data</field>
-        <field name="channel_id" ref="channel_jsonify_stored" />
+        <field name="method">jsonify_compute_data_for</field>
+        <field name="channel_id" ref="channel_jsonify_stored_root" />
     </record>
 
 
