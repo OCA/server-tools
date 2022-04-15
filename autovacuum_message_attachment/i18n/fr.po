@@ -94,6 +94,7 @@ msgstr "Tous"
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_account_tour_upload_bill__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_account_tour_upload_bill_email_confirm__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_account_unreconcile__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_attachment_queue__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_auditlog_autovacuum__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_auditlog_http_request__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_auditlog_http_session__assigned_attachment_ids
@@ -149,6 +150,8 @@ msgstr "Tous"
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_change_password_user__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_change_password_wizard__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_changeset_field_rule__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_collection_base__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_component_builder__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_crm_activity_report__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_crm_iap_lead_helpers__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_crm_iap_lead_industry__assigned_attachment_ids
@@ -395,6 +398,7 @@ msgstr "Tous"
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_sql_export__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_sql_file_wizard__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_sql_request_mixin__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_storage_backend__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_tax_adjustments_wizard__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_test_partner_time_window__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_time_weekday__assigned_attachment_ids
