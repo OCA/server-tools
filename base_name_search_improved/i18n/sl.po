@@ -223,6 +223,8 @@ msgstr "Polja iskanja po imenu"
 #: model:ir.model.fields,field_description:base_name_search_improved.field_cash_box_out__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_change_password_user__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_change_password_wizard__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_collection_base__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_component_builder__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_crm_activity_report__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_crm_iap_lead_helpers__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_crm_iap_lead_industry__smart_search
@@ -450,6 +452,7 @@ msgstr "Polja iskanja po imenu"
 #: model:ir.model.fields,field_description:base_name_search_improved.field_snailmail_letter_format_error__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_snailmail_letter_missing_required_fields__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_sparse_fields_test__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_storage_backend__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_tax_adjustments_wizard__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_uom_category__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_uom_uom__smart_search
