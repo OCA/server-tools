@@ -46,7 +46,7 @@ addon | version | maintainers | summary
 [base_technical_user](base_technical_user/) | 14.0.1.0.0 |  | Add a technical user parameter on the company
 [base_time_window](base_time_window/) | 14.0.1.0.1 |  | Base model to handle time windows
 [base_video_link](base_video_link/) | 14.0.1.1.1 |  | Add the possibility to link video on record
-[base_view_inheritance_extension](base_view_inheritance_extension/) | 14.0.1.1.0 |  | Adds more operators for view inheritance
+[base_view_inheritance_extension](base_view_inheritance_extension/) | 14.0.1.1.1 |  | Adds more operators for view inheritance
 [bus_alt_connection](bus_alt_connection/) | 14.0.1.0.0 |  | Needed when using PgBouncer as a connection pooler
 [configuration_helper](configuration_helper/) | 14.0.1.0.0 |  | Configuration Helper
 [datetime_formatter](datetime_formatter/) | 14.0.1.0.0 |  | Helper functions to give correct format to date[time] fields
