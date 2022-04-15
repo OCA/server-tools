@@ -197,6 +197,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_change_password_user__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_change_password_wizard__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_changeset_field_rule__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_collection_base__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_component_builder__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_crm_activity_report__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_crm_iap_lead_helpers__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_crm_iap_lead_industry__changeset_change_ids
@@ -430,6 +432,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_snailmail_letter_missing_required_fields__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_sparse_fields_test__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_sql_request_mixin__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_storage_backend__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_tax_adjustments_wizard__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_time_weekday__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_time_window_mixin__changeset_change_ids
@@ -599,6 +602,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_change_password_user__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_change_password_wizard__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_changeset_field_rule__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_collection_base__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_component_builder__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_crm_activity_report__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_crm_iap_lead_helpers__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_crm_iap_lead_industry__changeset_ids
@@ -832,6 +837,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_snailmail_letter_missing_required_fields__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_sparse_fields_test__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_sql_request_mixin__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_storage_backend__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_tax_adjustments_wizard__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_time_weekday__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_time_window_mixin__changeset_ids
@@ -988,6 +994,8 @@ msgstr "Azienda"
 #: model:ir.model.fields,field_description:base_changeset.field_change_password_user__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_change_password_wizard__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_changeset_field_rule__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_collection_base__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_component_builder__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_crm_activity_report__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_crm_iap_lead_helpers__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_crm_iap_lead_industry__count_pending_changeset_changes
@@ -1221,6 +1229,7 @@ msgstr "Azienda"
 #: model:ir.model.fields,field_description:base_changeset.field_snailmail_letter_missing_required_fields__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_sparse_fields_test__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_sql_request_mixin__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_storage_backend__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_tax_adjustments_wizard__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_time_weekday__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_time_window_mixin__count_pending_changeset_changes
@@ -1370,6 +1379,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_change_password_user__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_change_password_wizard__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_changeset_field_rule__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_collection_base__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_component_builder__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_crm_activity_report__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_crm_iap_lead_helpers__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_crm_iap_lead_industry__count_pending_changesets
@@ -1603,6 +1614,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_snailmail_letter_missing_required_fields__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_sparse_fields_test__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_sql_request_mixin__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_storage_backend__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_tax_adjustments_wizard__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_time_weekday__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_time_window_mixin__count_pending_changesets
@@ -2158,6 +2170,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_change_password_user__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_change_password_wizard__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_changeset_field_rule__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_collection_base__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_component_builder__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_crm_activity_report__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_crm_iap_lead_helpers__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_crm_iap_lead_industry__user_can_see_changeset
@@ -2391,6 +2405,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_snailmail_letter_missing_required_fields__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_sparse_fields_test__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_sql_request_mixin__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_storage_backend__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_tax_adjustments_wizard__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_time_weekday__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_time_window_mixin__user_can_see_changeset
