@@ -115,13 +115,13 @@ class TestParser(SavepointCase):
             "comment",
         ]
 
-        exporter = self.env.ref("base_jsonify.ir_exp_partner")
+        exporter = self.env.ref("jsonifier.ir_exp_partner")
         parser = exporter.get_json_parser()
         expected_full_parser = convert_simple_to_full_parser(expected_parser)
         self.assertEqual(parser, expected_full_parser)
 
         # modify an ir.exports_line to put a target for a field
-        self.env.ref("base_jsonify.category_id_name").write(
+        self.env.ref("jsonifier.category_id_name").write(
             {"target": "category_id:category/name"}
         )
         expected_parser[4] = ("category_id:category", ["name"])
@@ -329,7 +329,7 @@ class TestParser(SavepointCase):
     def test_bad_parsers_fail_gracefully(self):
         rec = self.category
 
-        logger_patch_path = "odoo.addons.base_jsonify.models.models._logger.error"
+        logger_patch_path = "odoo.addons.jsonifier.models.models._logger.error"
 
         # logging is disabled when testing as it's useless and makes build fail.
         tools.config["test_enable"] = False
