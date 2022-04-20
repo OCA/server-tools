@@ -2,3 +2,5 @@
 * Raphaël Reverdy <raphael.reverdy@akretion.com>
 * Laurent Mignon <laurent.mignon@acsone.eu>
 * Nans Lefebvre <nans.lefebvre@acsone.eu>
+* Simone Orsi <simone.orsi@camptocamp.com>
+* Iván Todorovich <ivan.todorovich@camptocamp.com>

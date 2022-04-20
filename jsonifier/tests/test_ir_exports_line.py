@@ -9,7 +9,7 @@ class TestIrExportsLine(SavepointCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.ir_export = cls.env.ref("base_jsonify.ir_exp_partner")
+        cls.ir_export = cls.env.ref("jsonifier.ir_exp_partner")
 
     def test_target_constrains(self):
         ir_export_lines_model = self.env["ir.exports.line"]
