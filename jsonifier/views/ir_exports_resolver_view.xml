@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="view_ir_exports_resolver">
+        <field name="model">ir.exports.resolver</field>
+        <field name="priority">50</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="name" />
+                    <field name="type" />
+                    <field name="python_code" />
+                </group>
+            </form>
+        </field>
+    </record>
+    <record id="act_ui_exports_resolver_view" model="ir.actions.act_window">
+        <field name="name">Custom Export Resolvers</field>
+        <field name="res_model">ir.exports.resolver</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem
+        id="ui_exports_resolvers"
+        action="act_ui_exports_resolver_view"
+        parent="base.next_id_2"
+    />
+</odoo>
