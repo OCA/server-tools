@@ -23,8 +23,8 @@ _logger = logging.getLogger(__file__)
 class JsonifyStoredMixin(models.AbstractModel):
     """This mixin aims to provide the ability to store jsonified data on model."""
 
-    _name = "jsonify.stored.mixin"
-    _description = "JSONify stored mixin"
+    _name = "jsonifier.stored.mixin"
+    _description = "JSONifier stored mixin"
 
     # TODO: writeable, stored, compute default value, filter by current model?
     ir_export_id = fields.Many2one("ir.exports", compute="_compute_ir_export_id")

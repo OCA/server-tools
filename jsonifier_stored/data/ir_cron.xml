@@ -2,7 +2,7 @@
 <odoo noupdate="1">
     <record id="cron_recompute_all" model="ir.cron">
         <field name="name">JSONify stored - Recompute data for all models</field>
-        <field name="model_id" ref="jsonify_stored.model_jsonify_stored_mixin" />
+        <field name="model_id" ref="jsonifier_stored.model_jsonifier_stored_mixin" />
         <field name="state">code</field>
         <field name="code">
 for child_model in model._inherit_children:

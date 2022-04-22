@@ -5,14 +5,14 @@
 
 {
     "name": "JSONify Stored",
-    "summary": "Base module to store JSON data based on any model",
+    "summary": "Pre-compute and store JSON data on any model",
     "version": "14.0.1.0.0",
     "category": "Uncategorized",
     "website": "https://github.com/OCA/server-tools",
-    "author": ("Camptocamp, " "Odoo Community Association (OCA)"),
+    "author": "Camptocamp, " "Odoo Community Association (OCA)",
     "maintainers": ["simahawk", "mmequignon"],
     "license": "AGPL-3",
     "installable": True,
-    "depends": ["base_jsonify", "base_sparse_field", "queue_job"],
+    "depends": ["jsonifier", "base_sparse_field", "queue_job"],
     "data": ["data/ir_cron.xml", "data/queue_job.xml"],
 }

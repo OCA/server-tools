@@ -43,7 +43,7 @@ class TestCaseBase(SavepointCase):
         )
 
     @classmethod
-    def _load_fixture(cls, fixture, module="jsonify_stored"):
+    def _load_fixture(cls, fixture, module="jsonifier_stored"):
         load_xml(cls.env, module, "tests/fixtures/%s" % fixture)
 
 
@@ -57,12 +57,12 @@ class TestJsonifyStoredCase(TestCaseBase, FakeModelLoader):
         from .fake_models import FakeTestModel, FakeTestModelMultiLang
 
         cls.loader.update_registry((FakeTestModel, FakeTestModelMultiLang))
-        cls.jstored_mixin_model = cls.env["jsonify.stored.mixin"]
+        cls.jstored_mixin_model = cls.env["jsonifier.stored.mixin"]
         cls.fake_model = cls.env[FakeTestModel._name]
         cls.fake_model_multilang = cls.env[FakeTestModelMultiLang._name]
         # ->/ Load fake models
         cls._load_fixture("ir_exports_test.xml")
-        cls.cron = cls.env.ref("jsonify_stored.cron_recompute_all")
+        cls.cron = cls.env.ref("jsonifier_stored.cron_recompute_all")
 
     @classmethod
     def tearDownClass(cls):

@@ -1,5 +1,5 @@
 This is a technical module,
-hence you should take care of extending your models w/ `jsonify.stored.mixin`.
+hence you should take care of extending your models w/ `jsonifier.stored.mixin`.
 
 Your module should also provide a `base_jsonify` compatible exporter
 by overriding `_jsonify_get_exporter`.
@@ -14,5 +14,5 @@ If your model has a lang field, before jobs are created,
 records will be grouped by language.
 
 NOTE: if the model is already existing in your DB is recommended to use
-`jsonify_stored.hooks.add_jsonify_column` function
+`jsonifier_stored.hooks.add_jsonifier_column` function
 to prevent Odoo to compute all data when you update your module.

@@ -8,20 +8,20 @@ from odoo import fields, models
 class FakeTestModel(models.Model):
 
     _name = "json.stored.fake.model"
-    _inherit = "jsonify.stored.mixin"
+    _inherit = "jsonifier.stored.mixin"
     _description = _name
 
     name = fields.Char()
     description = fields.Text()
 
     def _jsonify_get_exporter(self):
-        return self.env.ref("jsonify_stored.ir_exp_test")
+        return self.env.ref("jsonifier_stored.ir_exp_test")
 
 
 class FakeTestModelMultiLang(models.Model):
 
     _name = "json.stored.fake.model.multilang"
-    _inherit = "jsonify.stored.mixin"
+    _inherit = "jsonifier.stored.mixin"
     _description = _name
 
     name = fields.Char(translate=True)
@@ -30,4 +30,4 @@ class FakeTestModelMultiLang(models.Model):
     title_id = fields.Many2one("res.partner.title")
 
     def _jsonify_get_exporter(self):
-        return self.env.ref("jsonify_stored.ir_exp_test_multilang")
+        return self.env.ref("jsonifier_stored.ir_exp_test_multilang")
