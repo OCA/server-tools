@@ -8,14 +8,12 @@ import logging
 from collections import namedtuple
 from itertools import groupby
 
-from psycopg2.extensions import AsIs
-
 from odoo import api, fields, models
 from odoo.tools.misc import get_lang, split_every
 
 from odoo.addons.base_sparse_field.models.fields import Serialized
 
-GrouperAndSorter = namedtuple("GrouperAndSorter", "exporter_id lang_code")
+GrouperAndSorter = namedtuple("GrouperAndSorter", "exporter_id lang")
 
 _logger = logging.getLogger(__file__)
 
@@ -61,7 +59,7 @@ class JsonifyStoredMixin(models.AbstractModel):
                 records.jsonified_data = False
                 _logger.error("%s have no exporter", str(records._name))
                 continue
-            lang_code = grouper.lang_code or default_lang
+            lang_code = (grouper.lang or default_lang).code
             # `get_json_parser` is cached
             parser = exporter.get_json_parser()
             self._update_jsonified_data(records.with_context(lang=lang_code), parser)
@@ -73,13 +71,22 @@ class JsonifyStoredMixin(models.AbstractModel):
     def _get_default_lang(self):
         return get_lang(self.env)
 
+    @property
+    def _jsonify_lang_field_name(self):
+        """Field providing specific language per record."""
+        return "lang_id"
+
+    @property
+    def _jsonify_lang_field_exists(self):
+        return self._jsonify_lang_field_name in self._fields
+
     @staticmethod
     def _jsonify_data_grouper_and_sorter(rec):
-        lang_code = None
-        if "lang_id" in rec._fields:
+        lang = None
+        if rec._jsonify_lang_field_exists:
             # Support translated records.
-            lang_code = rec.lang_id.code
-        return GrouperAndSorter(rec.ir_export_id, lang_code)
+            lang = rec[rec._jsonify_lang_field_name]
+        return GrouperAndSorter(rec.ir_export_id, lang)
 
     def _update_jsonified_data(self, records, parser):
         json_vals = records._get_jsonified_data(parser)
@@ -96,7 +103,7 @@ class JsonifyStoredMixin(models.AbstractModel):
         model_name,
         chunk_size=5,
         domain=None,
-        langs=None,
+        lang_domains=None,
         job_params=None,
     ):
         """Generate jobs to compute JSON data for given model.
@@ -106,18 +113,22 @@ class JsonifyStoredMixin(models.AbstractModel):
         _logger.info("cron_update_json_data_for: %s", model_name)
         model = self.env[model_name]
         domain = domain or []
-        if "lang_id" in model._fields and not langs:
-            langs = model._json_data_compute_get_all_langs()
-        if langs:
-            for lang in langs:
-                self.jobify_json_data_compute_for(
-                    model,
-                    chunk_size=chunk_size,
-                    domain=domain + [("lang_id.code", "=", lang)],
-                    lang=lang,
-                    job_params=job_params,
-                )
-        else:
+        lang_domains = lang_domains or []
+        if model._jsonify_lang_field_exists and not lang_domains:
+            lang_domains = model._json_data_compute_get_lang_domains()
+        for lang_domain in lang_domains:
+            lang_code = lang_domain[0][-1]
+            if isinstance(lang_code, int):
+                # got an ID
+                lang_code = self.env["res.lang"].browse(lang_code).code
+            self.jobify_json_data_compute_for(
+                model,
+                chunk_size=chunk_size,
+                domain=domain + lang_domain,
+                lang=lang_code,
+                job_params=job_params,
+            )
+        if not lang_domains:
             self.jobify_json_data_compute_for(
                 model,
                 chunk_size=chunk_size,
@@ -162,18 +173,22 @@ class JsonifyStoredMixin(models.AbstractModel):
 
     @api.model
     def _jobify_json_data_compute_default_channel(self):
-        return self.env.ref("jsonify_stored.channel_jsonify_stored_root").complete_name
+        return self.env.ref(
+            "jsonifier_stored.channel_jsonifier_stored_root"
+        ).complete_name
 
     @api.model
-    def _json_data_compute_get_all_langs(self, table=None):
-        # Some models might get tha lang_id fields from an inherits model.
-        # If that's the case, allow to override this to pass the right table.
-        table = table or self._table
-        # get them all
-        query = """
-        SELECT DISTINCT lang.code
-        FROM %s model, res_lang lang
-        WHERE model.lang_id = lang.id
-        """
-        self.env.cr.execute(query, (AsIs(table),))
-        return [x[0] for x in self.env.cr.fetchall()]
+    def _json_data_compute_get_lang_domains(self):
+        """Retrieve all domain leaves by language."""
+        # Using read_group we support in the same way lang fields as m2o and string
+        # as well as fields coming from models inherited w/ `inherits`.
+        # For instance:
+        # >>> env["res.partner"].read_group([], ["id"], ["lang"])
+        # [{'lang_count': 620, 'lang': 'de_DE', '__domain': [('lang', '=', 'de_DE')]},
+        #  {'lang_count': 3, 'lang': 'en_US', '__domain': [('lang', '=', 'en_US')]}]
+        # >>> env["model.with.m2o"].read_group([], ["id"], ["lang_id"])
+        # [{'lang_id_count': 1579,
+        # 'lang_id': (30, <odoo.tools.func.lazy object at 0x7f2a976a4798>),
+        # '__domain': [('lang_id', '=', 30)]}]
+        by_lang = self.read_group([], ["id"], [self._jsonify_lang_field_name])
+        return [x["__domain"] for x in by_lang]
