@@ -4,17 +4,14 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2019-08-31 04:35+0000\n"
-"Last-Translator: 黎伟杰 <674416404@qq.com>\n"
-"Language-Team: none\n"
-"Language: zh_CN\n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.8\n"
+"Plural-Forms: \n"
 
 #. module: jsonifier
 #: model:ir.model.fields,help:jsonifier.field_ir_exports_line__instance_method_name
@@ -29,7 +26,7 @@ msgstr ""
 #. module: jsonifier
 #: model:ir.model,name:jsonifier.model_base
 msgid "Base"
-msgstr "基础"
+msgstr ""
 
 #. module: jsonifier
 #: model:ir.model.fields,help:jsonifier.field_ir_exports_resolver__python_code
@@ -47,7 +44,7 @@ msgstr ""
 #. module: jsonifier
 #: model_terms:ir.ui.view,arch_db:jsonifier.view_ir_exports
 msgid "Configuration"
-msgstr "配置"
+msgstr ""
 
 #. module: jsonifier
 #: model:ir.model.fields,field_description:jsonifier.field_ir_exports_resolver__create_uid
@@ -92,7 +89,7 @@ msgstr ""
 #: model:ir.actions.act_window,name:jsonifier.act_ui_exports_view
 #: model:ir.ui.menu,name:jsonifier.ui_exports
 msgid "Export Fields"
-msgstr "导出字段"
+msgstr ""
 
 #. module: jsonifier
 #: model:ir.model,name:jsonifier.model_ir_exports_resolver
@@ -102,12 +99,12 @@ msgstr ""
 #. module: jsonifier
 #: model:ir.model,name:jsonifier.model_ir_exports
 msgid "Exports"
-msgstr "导出"
+msgstr ""
 
 #. module: jsonifier
 #: model:ir.model,name:jsonifier.model_ir_exports_line
 msgid "Exports Line"
-msgstr "导出行"
+msgstr ""
 
 #. module: jsonifier
 #: model:ir.model.fields.selection,name:jsonifier.selection__ir_exports_resolver__type__field
@@ -156,7 +153,7 @@ msgstr ""
 #. module: jsonifier
 #: model_terms:ir.ui.view,arch_db:jsonifier.view_ir_exports
 msgid "Index"
-msgstr "索引"
+msgstr ""
 
 #. module: jsonifier
 #: model:ir.model.fields,field_description:jsonifier.field_ir_exports_line__lang_id
@@ -194,7 +191,7 @@ msgstr ""
 #: code:addons/jsonifier/models/ir_exports_line.py:0
 #, python-format
 msgid "Name and Target must have the same hierarchy depth"
-msgstr "名称和别名必须具有相同的层次结构深度"
+msgstr ""
 
 #. module: jsonifier
 #: model:ir.model.fields,field_description:jsonifier.field_ir_exports_resolver__python_code
@@ -211,20 +208,20 @@ msgstr ""
 #. module: jsonifier
 #: model:ir.model.fields,field_description:jsonifier.field_ir_exports_line__target
 msgid "Target"
-msgstr "别名"
+msgstr ""
 
 #. module: jsonifier
 #: model:ir.model.fields,help:jsonifier.field_ir_exports_line__target
 msgid ""
-"The complete path to the field where you can specify a target on the step as "
-"field:target"
-msgstr "字段的完整路径，您可以在其中指定步骤作为字段的别名：别名"
+"The complete path to the field where you can specify a target on the step as"
+" field:target"
+msgstr ""
 
 #. module: jsonifier
 #: code:addons/jsonifier/models/ir_exports_line.py:0
 #, python-format
 msgid "The target must reference the same field as in name '%s' not in '%s'"
-msgstr "别名必须引用与名称相同的字段'%s'不在'%s'"
+msgstr ""
 
 #. module: jsonifier
 #: model:ir.model.fields,field_description:jsonifier.field_ir_exports_resolver__type
@@ -233,6 +230,6 @@ msgstr ""
 
 #. module: jsonifier
 #: code:addons/jsonifier/models/models.py:0
-#, fuzzy, python-format
+#, python-format
 msgid "Wrong parser configuration for field: `%s`"
-msgstr "错误的解析器配置"
+msgstr ""
