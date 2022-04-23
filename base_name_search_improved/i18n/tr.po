@@ -271,7 +271,6 @@ msgstr "İsim Arama Alanları"
 #: model:ir.model.fields,field_description:base_name_search_improved.field_ir_demo_failure_wizard__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_ir_exports__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_ir_exports_line__smart_search
-#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_exports_resolver__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_ir_fields_converter__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_ir_filters__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_ir_http__smart_search
