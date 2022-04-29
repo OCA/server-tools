@@ -1,8 +1,12 @@
 # Copyright 2019 Ecosoft Co., Ltd (http://ecosoft.co.th/)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
 
+import logging
+
 from odoo import _, api, fields, models
 from odoo.exceptions import RedirectWarning, ValidationError
+
+_logger = logging.getLogger(__name__)
 
 
 class ImportXLSXWizard(models.TransientModel):
@@ -98,8 +102,8 @@ class ImportXLSXWizard(models.TransientModel):
             if not template.datas:
                 act = self.env.ref("excel_import_export.action_xlsx_template")
                 raise RedirectWarning(
-                    _('File "%s" not found in template, %s.')
-                    % (template.fname, template.name),
+                    _('File "%(fname)s" not found in template, %(name)s.')
+                    % {"fname": template.fname, "name": template.name},
                     act.id,
                     _("Set Templates"),
                 )
