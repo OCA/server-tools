@@ -129,7 +129,7 @@ class XLSXExport(models.AbstractModel):
                 self._fill_head(ws, st, record)
                 self._fill_lines(ws, st, record)
         except KeyError as e:
-            raise ValidationError(_("Key Error\n%s") % e)
+            raise ValidationError(_("Key Error\n%s") % e) from e
         except IllegalCharacterError as e:
             raise ValidationError(
                 _(
@@ -137,9 +137,11 @@ class XLSXExport(models.AbstractModel):
                     "Some exporting data contain special character\n%s"
                 )
                 % e
-            )
+            ) from e
         except Exception as e:
-            raise ValidationError(_("Error filling data into Excel sheets\n%s") % e)
+            raise ValidationError(
+                _("Error filling data into Excel sheets\n%s") % e
+            ) from e
 
     @api.model
     def _get_field_data(self, _field, _line):
@@ -235,7 +237,7 @@ class XLSXExport(models.AbstractModel):
             out_file = template.datas
             return (out_file, out_name)
         # Prepare temp file (from now, only xlsx file works for openpyxl)
-        decoded_data = base64.decodestring(template.datas)
+        decoded_data = base64.decodebytes(template.datas)
         ConfParam = self.env["ir.config_parameter"].sudo()
         ptemp = ConfParam.get_param("path_temp_file") or "/tmp"
         stamp = dt.utcnow().strftime("%H%M%S%f")[:-3]
