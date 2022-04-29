@@ -3,11 +3,23 @@
 
 import base64
 import json
+import logging
 
-from odoo.http import content_disposition, request, route
-from odoo.tools.safe_eval import safe_eval
+from werkzeug.urls import url_decode
+
+from odoo import http
+from odoo.http import (
+    content_disposition,
+    request,
+    route,
+    serialize_exception as _serialize_exception,
+)
+from odoo.tools import html_escape
+from odoo.tools.safe_eval import safe_eval, time
 
 from odoo.addons.web.controllers import main as report
+
+_logger = logging.getLogger(__name__)
 
 
 class ReportController(report.ReportController):
@@ -28,15 +40,20 @@ class ReportController(report.ReportController):
                 if data["context"].get("lang"):
                     del data["context"]["lang"]
                 context.update(data["context"])
-            excel, report_name = report.with_context(context).render_excel(
+
+            excel, report_name = report.with_context(**context)._render_excel(
                 docids, data=data
             )
             excel = base64.decodestring(excel)
-            if report.print_report_name and not len(docids) > 1:
-                obj = request.env[report.model].browse(docids[0])
-                file_ext = report_name.split(".")[-1:].pop()
-                report_name = safe_eval(report.print_report_name, {"object": obj})
-                report_name = "{}.{}".format(report_name, file_ext)
+            if docids:
+                records = request.env[report.model].browse(docids)
+                if report.print_report_name and not len(records) > 1:
+                    report_name = safe_eval(
+                        report.print_report_name, {"object": records, "time": time}
+                    )
+                    # this is a bad idea, this sould only be .xlsx
+                    extension = report_name.split(".")[-1:].pop()
+                    report_name = f"{report_name}.{extension}"
             excelhttpheaders = [
                 (
                     "Content-Type",
@@ -47,6 +64,36 @@ class ReportController(report.ReportController):
                 ("Content-Disposition", content_disposition(report_name)),
             ]
             return request.make_response(excel, headers=excelhttpheaders)
-        return super(ReportController, self).report_routes(
-            reportname, docids, converter, **data
-        )
+        return super().report_routes(reportname, docids, converter, **data)
+
+    @http.route()
+    def report_download(self, data, context=None):
+        requestcontent = json.loads(data)
+        url, report_type = requestcontent[0], requestcontent[1]
+        if report_type != "excel":
+            return super().report_download(data, context)
+        reportname = "???"
+        try:
+            pattern = "/report/excel/"
+            reportname = url.split(pattern)[1].split("?")[0]
+            docids = None
+            if "/" in reportname:
+                reportname, docids = reportname.split("/")
+            if docids:
+                return self.report_routes(
+                    reportname, docids=docids, converter="excel", context=context
+                )
+            data = dict(url_decode(url.split("?")[1]).items())
+            if "context" in data:
+                context, data_context = json.loads(context or "{}"), json.loads(
+                    data.pop("context")
+                )
+                context = json.dumps({**context, **data_context})
+            return self.report_routes(
+                reportname, converter="excel", context=context, **data
+            )
+        except Exception as e:
+            _logger.exception("Error while generating report %s", reportname)
+            se = _serialize_exception(e)
+            error = {"code": 200, "message": "Odoo Server Error", "data": se}
+            return request.make_response(html_escape(json.dumps(error)))

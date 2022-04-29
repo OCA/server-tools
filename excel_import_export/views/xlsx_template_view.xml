@@ -6,7 +6,7 @@
     <record id="view_xlsx_template_tree" model="ir.ui.view">
         <field name="model">xlsx.template</field>
         <field name="arch" type="xml">
-            <tree string="XLSX Template">
+            <tree>
                 <field name="name" />
             </tree>
         </field>
