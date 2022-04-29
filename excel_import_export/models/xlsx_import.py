@@ -68,10 +68,10 @@ class XLSXImport(models.AbstractModel):
                     record = record[f]
                 else:
                     return field_type
-        except Exception:
+        except Exception as exc:
             raise ValidationError(
                 _("Invalid declaration, %s has no valid field type") % field
-            )
+            ) from exc
 
     @api.model
     def _delete_record_data(self, record, data_dict):
@@ -93,7 +93,7 @@ class XLSXImport(models.AbstractModel):
                         new_fv = data_dict[s].pop(f)
                         data_dict[s][f.replace("_NODEL_", "")] = new_fv
         except Exception as e:
-            raise ValidationError(_("Error deleting data\n%s") % e)
+            raise ValidationError(_("Error deleting data\n%s") % e) from e
 
     @api.model
     def _get_end_row(self, st, worksheet, line_field):
@@ -161,12 +161,11 @@ class XLSXImport(models.AbstractModel):
                 rc, key_eval_cond = co.get_field_condition(rc)
                 field, val_eval_cond = co.get_field_condition(field)
                 field_type = self._get_field_type(model, field)
-                value = False
                 try:
                     row, col = co.pos2idx(rc)
                     value = co._get_cell_value(st.cell(row, col), field_type=field_type)
                 except Exception:
-                    pass
+                    value = False
                 eval_context = self.get_eval_context(model=model, value=value)
                 if key_eval_cond:
                     value = str(safe_eval(key_eval_cond, eval_context))
@@ -228,11 +227,11 @@ class XLSXImport(models.AbstractModel):
                     "file_name": "temp.xls",
                 }
             )
-            errors = imp.do(
+            errors = imp.execute_import(
                 header_fields,
                 header_fields,
                 {
-                    "headers": True,
+                    "has_headers": True,
                     "advanced": True,
                     "keep_matches": False,
                     "encoding": "",
@@ -254,10 +253,10 @@ class XLSXImport(models.AbstractModel):
                     message = ", ".join([x["message"] for x in messages])
                 raise ValidationError(message.encode("utf-8"))
             return self.env.ref(xml_id)
-        except xlrd.XLRDError:
+        except xlrd.XLRDError as exc:
             raise ValidationError(
                 _("Invalid file style, only .xls or .xlsx file allowed")
-            )
+            ) from exc
         except Exception as e:
             raise e
 
@@ -272,7 +271,7 @@ class XLSXImport(models.AbstractModel):
                 eval_context = {"object": record}
                 safe_eval(code, eval_context)
         except Exception as e:
-            raise ValidationError(_("Post import operation error\n%s") % e)
+            raise ValidationError(_("Post import operation error\n%s") % e) from e
 
     @api.model
     def import_xlsx(self, import_file, template, res_model=False, res_id=False):
