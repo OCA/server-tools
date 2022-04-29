@@ -105,10 +105,11 @@ def fill_cell_style(field, field_style, styles):
     for f in field_styles:
         (key, value) = f.split("=")
         if key not in styles.keys():
-            raise ValidationError(_("Invalid style type %s" % key))
+            raise ValidationError(_("Invalid style type %s") % key)
         if value.lower() not in styles[key].keys():
             raise ValidationError(
-                _("Invalid value {} for style type {}".format(value, key))
+                _("Invalid value %(value)s for style type %(key)s")
+                % {"value": value, "key": key}
             )
         cell_style = styles[key][value]
         if key == "font":
@@ -177,8 +178,8 @@ def xlrd_get_sheet_by_name(book, name):
             sheet = book.sheet_by_index(idx)
             if sheet.name == name:
                 return sheet
-    except IndexError:
-        raise ValidationError(_("'%s' sheet not found") % (name,))
+    except IndexError as exc:
+        raise ValidationError(_("'%s' sheet not found") % (name,)) from exc
 
 
 def isfloat(input_val):

@@ -11,7 +11,6 @@ class ReportPartnerList(models.TransientModel):
     partner_ids = fields.Many2many(comodel_name="res.partner")
     results = fields.Many2many(
         "res.partner",
-        string="Results",
         compute="_compute_results",
         help="Use compute fields, so there is nothing store in database",
     )

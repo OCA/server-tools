@@ -9,4 +9,3 @@ pysftp
 sentry_sdk
 xlrd
 xlwt
-

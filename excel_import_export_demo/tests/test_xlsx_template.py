@@ -84,7 +84,7 @@ class TestXLSXTemplate(TestExcelImportExport):
         self.assertTrue(template.report_menu_id)
         res = template.report_menu_id.action.read()[0]
         ctx = literal_eval(res["context"])
-        f = Form(self.env[res["res_model"]].with_context(ctx))
+        f = Form(self.env[res["res_model"]].with_context(**ctx))
         report_wizard = f.save()
         res = report_wizard.action_report()
         # Finally reture the report action
