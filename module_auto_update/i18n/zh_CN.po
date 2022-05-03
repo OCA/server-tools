@@ -1,0 +1,48 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* module_auto_update
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2019-08-31 06:18+0000\n"
+"Last-Translator: 黎伟杰 <674416404@qq.com>\n"
+"Language-Team: none\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 3.8\n"
+
+#. module: module_auto_update
+#: model:ir.actions.server,name:module_auto_update.ir_module_module_upgrade_changed_checksum
+#: model:ir.ui.menu,name:module_auto_update.menu_ir_module_module_upgrade_changed_checksum
+msgid "Auto-Upgrade Modules"
+msgstr "自动升级模块"
+
+#. module: module_auto_update
+#: model:ir.model.fields,field_description:module_auto_update.field_ir_module_module__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: module_auto_update
+#: model:ir.model.fields,field_description:module_auto_update.field_ir_module_module__id
+msgid "ID"
+msgstr ""
+
+#. module: module_auto_update
+#: model:ir.model.fields,field_description:module_auto_update.field_ir_module_module____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: module_auto_update
+#: model:ir.model,name:module_auto_update.model_ir_module_module
+msgid "Module"
+msgstr "模块"
+
+#. module: module_auto_update
+#: model:ir.model.fields,field_description:module_auto_update.field_ir_module_module__smart_search
+msgid "Smart Search"
+msgstr ""
