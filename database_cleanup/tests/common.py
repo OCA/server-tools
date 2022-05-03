@@ -3,8 +3,8 @@
 from contextlib import contextmanager
 
 import odoo
-from odoo.modules.registry import Registry
-from odoo.tests.common import tagged, TransactionCase
+from odoo.tests import common
+from odoo.tests.common import TransactionCase, tagged
 
 
 @contextmanager
@@ -13,11 +13,10 @@ def new_rollbacked_env():
     uid = odoo.SUPERUSER_ID
     cr = registry.cursor()
     try:
-        yield api.Environment(cr, uid, {})
+        yield odoo.api.Environment(cr, uid, {})
     finally:
         cr.rollback()  # we shouldn't have to commit anything
         cr.close()
-
 
 
 # Use post_install to get all models loaded more info: odoo/odoo#13458
