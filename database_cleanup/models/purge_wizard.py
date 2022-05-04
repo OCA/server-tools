@@ -9,7 +9,7 @@ from odoo.exceptions import AccessDenied
 
 
 class CleanupPurgeLine(models.AbstractModel):
-    """ Abstract base class for the purge wizard lines """
+    """Abstract base class for the purge wizard lines"""
 
     _name = "cleanup.purge.line"
     _order = "name"
@@ -33,7 +33,7 @@ class CleanupPurgeLine(models.AbstractModel):
 
 
 class PurgeWizard(models.AbstractModel):
-    """ Abstract base class for the purge wizards """
+    """Abstract base class for the purge wizards"""
 
     _name = "cleanup.purge.wizard"
     _description = "Purge stuff"
