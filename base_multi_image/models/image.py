@@ -75,7 +75,7 @@ class Image(models.Model):
         "image, with aspect ratio preserved. Use this field anywhere a "
         "small image is required.",
     )
-    comments = fields.Text("Comments", translate=True)
+    comments = fields.Text(translate=True)
     sequence = fields.Integer(default=10)
     show_technical = fields.Boolean(compute="_compute_show_technical")
 
