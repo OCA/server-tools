@@ -83,7 +83,7 @@
     <field name="name">Multi image tree</field>
     <field name="model">base_multi_image.image</field>
     <field name="arch" type="xml">
-        <tree string="Images">
+        <tree>
             <field name="name" />
             <field name="storage" />
             <field name="owner_model" />
