@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="Docutils 0.15.1: http://docutils.sourceforge.net/" />
+<meta name="generator" content="Docutils: http://docutils.sourceforge.net/" />
 <title>Audit Log</title>
 <style type="text/css">
 
@@ -401,6 +401,9 @@ To activate it and/or change the delay, go to the
 <cite>Configuration / Technical / Automation / Scheduled Actions</cite> menu and edit the
 <cite>Auto-vacuum audit logs</cite> entry:</p>
 <img alt="https://raw.githubusercontent.com/OCA/server-tools/16.0/auditlog/static/description/autovacuum.png" src="https://raw.githubusercontent.com/OCA/server-tools/16.0/auditlog/static/description/autovacuum.png" />
+<p>In case you’re having trouble with the amount of records to delete per run,
+you can pass the amount of records to delete for one model per run as the second
+parameter, the default is to delete all records in one go.</p>
 <p>There are two possible groups configured to which one may belong. The first
 is the Auditlog User group. This group has read-only access to the auditlogs of
 individual records through the <cite>View Logs</cite> action. The second group is the
