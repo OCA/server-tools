@@ -16,7 +16,7 @@ class IrMailServer(models.Model):
     _sql_constraints = [
         (
             "number_of_recipients_min_positive_check",
-            "CHECK(recipients_min >= 0)",
-            "The minimum number of recipients has to be non negative.",
+            "CHECK(recipients_min > 0)",
+            "The minimum number of recipients has to be positive.",
         )
     ]
