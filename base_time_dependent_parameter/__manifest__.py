@@ -8,12 +8,15 @@
     'summary': 'Time dependent parameters adds the feature to define parameters with time based versions which can be consumed by another modules like Payroll.',
     'author': 'Nimarosa, OCA',
     'website': 'www.nimarosa.dev',
+    "maintainers": ["appstogrow"],
     'license': 'LGPL-3',
     'category': 'Technical',
     'depends': [
         'base',
     ],
     'data': [
+        'security/security.xml',
+        'security/ir.model.access.csv',
         'views/base_time_parameter_views.xml',
     ],
     'installable': True,

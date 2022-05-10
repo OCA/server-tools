@@ -7,5 +7,7 @@ class Base(models.AbstractModel):
     _inherit = 'base'
 
     # This will make the parameters accessible from any Odoo model.
-    def get_time_dependent_parameter(self, code):
-        return self.env["base.time.dependent.parameter"]._get_parameter_from_code(code, self.dict.date_to)
+    def get_time_dependent_parameter(self, code, date_field_name=None):
+        # TODO: set date_field based on date_field_name
+        date_field = self.dict.date_to
+        return self.env["base.time_parameter"]._get_parameter_from_code(code, date_field)
