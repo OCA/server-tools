@@ -34,6 +34,11 @@ This module is just a tool, a continuation of the old openupgrade_records in Ope
 .. contents::
    :local:
 
+Usage
+=====
+
+`Usage instructions <https://oca.github.io/OpenUpgrade/analyse.html>`_
+
 Known issues / Roadmap
 ======================
 
