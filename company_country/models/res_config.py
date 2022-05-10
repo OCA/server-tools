@@ -35,10 +35,12 @@ class CompanyCountryConfigSettings(models.AbstractModel):
                 ('state', '=', 'to install'),
                 ('name', '=like', 'l10n_%')], limit=1)
             if not l10n_to_install:
-                raise ValidationError(_(
+                _logger.error(_(
                     'COUNTRY environment variable with country code is not '
                     'set and no localization module is marked to be '
-                    'installed.'))
+                    'installed.'
+                ))
+                return
             country_code = l10n_to_install.name.split('l10n_')[1][:2].upper()
 
         country = self.env['res.country'].search([
