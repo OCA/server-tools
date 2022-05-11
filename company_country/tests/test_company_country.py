@@ -38,8 +38,11 @@ class TestCompanyCountry(TransactionCase):
         self.wizard.load_company_country()
         self.assertEqual(self.main_company.country_id.id, False)
 
-        # COUNTRY environment variable not set, should raise
-        with self.assertRaises(ValidationError):
+        # COUNTRY environment variable not set, should log error
+        with self.assertLogs(
+                'odoo.addons.company_country.models.res_config',
+                level='ERROR',
+        ):
             l10n_to_install = self.env['ir.module.module'].search([
                 ('state', '=', 'to install'),
                 ('name', '=like', 'l10n_%')])
