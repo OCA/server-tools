@@ -10,5 +10,7 @@ class ResUsers(models.Model):
     delete_attachment_model_ids = fields.Many2many(
         "ir.model",
         string="Attachment Deletion Models",
-        help="The user can delete the attachments related to the models assigned here.",
+        help="The user can delete the attachments related to the "
+        "models assigned here. In general settings, 'Restrict Delete "
+        "Attachment' must be set as 'custom' to activate this setting.",
     )
