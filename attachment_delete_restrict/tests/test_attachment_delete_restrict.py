@@ -10,35 +10,87 @@ class TestAttachmentDeleteRestrict(SavepointCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.env["ir.config_parameter"].sudo().set_param(
+            "restrict_delete_attachment", "custom"
+        )
         cls.partner_model = cls.env["ir.model"].search([("model", "=", "res.partner")])
         cls.test_group = cls.env["res.groups"].create({"name": "test group"})
         cls.test_user = cls.env["res.users"].create(
-            {"name": "test user", "login": "test@example.com"}
+            {
+                "name": "test user",
+                "login": "test@example.com",
+                "groups_id": [(6, 0, cls.env.ref("base.group_user").ids)],
+            }
+        )
+        cls.test_user2 = cls.env["res.users"].create(
+            {
+                "name": "test user2",
+                "login": "test2@example.com",
+                "groups_id": [(6, 0, cls.env.ref("base.group_user").ids)],
+            }
+        )
+        cls.test_admin = cls.env["res.users"].create(
+            {
+                "name": "User admin",
+                "login": "admin@example.com",
+                "groups_id": [(6, 0, cls.env.ref("base.group_system").ids)],
+            }
         )
         cls.test_attachment = cls.env["ir.attachment"].create(
             {"name": "test attachment", "type": "binary", "res_model": "res.partner"}
         )
 
-    def test_01_delete_attachment_unrestricted(self):
-        self.test_attachment.sudo(self.test_user).unlink()
+    def test_01_custom_delete_attachment_unrestricted(self):
+        self.test_attachment.with_user(self.test_user).unlink()
 
-    def test_02_delete_attachment_restricted_user_permitted(self):
-        self.partner_model.write({"restrict_delete_attachment": True})
+    def test_02_custom_delete_attachment_restricted_user_permitted(self):
+        self.partner_model.write({"is_restrict_delete_attachment": True})
         with self.assertRaises(ValidationError):
-            self.test_attachment.sudo(self.test_user).unlink()
+            self.test_attachment.with_user(self.test_user).unlink()
         self.partner_model.write(
             {"delete_attachment_user_ids": [(4, self.test_user.id)]}
         )
-        self.test_attachment.sudo(self.test_user).unlink()
+        self.test_attachment.with_user(self.test_user).unlink()
 
-    def test_03_delete_attachment_restricted_group_permitted(self):
-        self.partner_model.write({"restrict_delete_attachment": True})
+    def test_03_custom_delete_attachment_restricted_group_permitted(self):
+        self.partner_model.write({"is_restrict_delete_attachment": True})
         with self.assertRaises(ValidationError):
-            self.test_attachment.sudo(self.test_user).unlink()
+            self.test_attachment.with_user(self.test_user).unlink()
         self.partner_model.write(
             {"delete_attachment_group_ids": [(4, self.test_group.id)]}
         )
         with self.assertRaises(ValidationError):
-            self.test_attachment.sudo(self.test_user).unlink()
+            self.test_attachment.with_user(self.test_user).unlink()
         self.test_user.write({"groups_id": [(4, self.test_group.id)]})
-        self.test_attachment.sudo(self.test_user).unlink()
+        self.test_attachment.with_user(self.test_user).unlink()
+
+    def test_04_strict_owner_can_delete_attachment(self):
+        self.env["ir.config_parameter"].sudo().set_param(
+            "restrict_delete_attachment", "strict"
+        )
+        test_attachment_2 = (
+            self.env["ir.attachment"]
+            .with_user(self.test_user)
+            .create(
+                {
+                    "name": "test attachment 2",
+                    "type": "binary",
+                    "res_model": "res.partner",
+                }
+            )
+        )
+        with self.assertRaises(ValidationError):
+            test_attachment_2.with_user(self.test_user2).unlink()
+        test_attachment_2.with_user(self.test_user).unlink()
+
+    def test_05_strict_admin_can_delete_attachment(self):
+        self.env["ir.config_parameter"].sudo().set_param(
+            "restrict_delete_attachment", "strict"
+        )
+        self.test_attachment.with_user(self.test_admin).unlink()
+
+    def test_06_none_no_restriction(self):
+        self.env["ir.config_parameter"].sudo().set_param(
+            "restrict_delete_attachment", "none"
+        )
+        self.test_attachment.with_user(self.test_user2).unlink()
