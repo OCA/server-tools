@@ -6,7 +6,8 @@ when you define a "from_date" and a value.
 Then you can access current parameter value like this:
 .. code-block:: python
 
-    value = company.get_time_dependent_parameter('vat_high_rate') # Note that "company" can be any other object in Odoo.
+    value = record.get_time_dependent_parameter('my_parameter_name') # using today's date, any record or model will work
+    value = payslip.get_time_dependent_parameter('my_parameter_name', 'date_to') # date or datetime field of the record
 
 Finally i recomend that if you use this parameters in another modules, you create a view which filter by module_name so
 you can have a view for each module that needs to change this parameters and the user can only view the parameters
