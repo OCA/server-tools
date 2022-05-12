@@ -3,15 +3,21 @@
 {
     "name": "Restrict Deletion of Attachments",
     "version": "14.0.1.0.0",
-    "depends": ["base"],
+    "depends": [
+        "base",
+        "base_setup",
+    ],
     "website": "https://github.com/OCA/server-tools",
-    "author": "Quartile Limited, Odoo Community Association (OCA)",
+    "author": "Quartile Limited, Akretion, Odoo Community Association (OCA)",
     "category": "Tools",
     "license": "AGPL-3",
+    "maintainers": ["Kev-Roche", "yostashiro"],
     "data": [
         "views/ir_model_views.xml",
         "views/res_groups_views.xml",
         "views/res_users_views.xml",
+        "views/res_config_view.xml",
     ],
     "installable": True,
+    "post_init_hook": "post_init_hook",
 }

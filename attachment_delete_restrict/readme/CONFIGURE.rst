@@ -1,3 +1,18 @@
+Select level:
+=============
+#. Go to *Settings > General Settings> Permission section*.
+#. Choose the level of *Restrict Delete Attachment* (strict by default).
+
+Three levels:
+=============
+* Strict : Owner and admins only (by default)
+* Custom : Certain groups or users per related model.
+* None : all users can delete them
+
+Only Custom needs specific configuration.
+
+For Custom level:
+=================
 #. Go to *Settings > Techinical > Database Structure > Models*.
 #. Open a model for which attachment deletion should be restricted.
 #. Select 'Restrict Attachment Deletion', and assign 'Attachment Deletion Groups' and/or
