@@ -6,18 +6,11 @@ from odoo import api, fields, models
 
 
 class IapAccount(models.Model):
-    _inherit = ["iap.account", "server.env.mixin"]
+    _inherit = "iap.account"
     _name = "iap.account"
 
     name = fields.Char()
     provider = fields.Selection([("odoo", "Odoo IAP")], required=True, default="odoo")
-
-    @property
-    def _server_env_fields(self):
-        return {
-            "provider": {},
-            "account_token": {},
-        }
 
     def _get_service_from_provider(self):
         """In case that the provider only propose one service you can
