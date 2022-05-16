@@ -17,7 +17,7 @@ IAP Alternative Provider
     :target: https://github.com/OCA/server-tools/tree/15.0/iap_alternative_provider
     :alt: OCA/server-tools
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/server-tools-14-0/server-tools-14-0-iap_alternative_provider
+    :target: https://translation.odoo-community.org/projects/server-tools-15-0/server-tools-15-0-iap_alternative_provider
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
     :target: https://runbot.odoo-community.org/runbot/149/15.0
@@ -25,9 +25,9 @@ IAP Alternative Provider
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
-Abstract module that provide base fonctionnality for implementing alternative provider for the IAP application.
+Abstract module that provide base functionality for implementing alternative provider for the IAP application.
 
-An example of alternative provider can be found in the repository "connnector-telephony", with the module **sms_ovh_http** (sending sms with ovh instead of odoo iap)
+An example of alternative provider can be found in [the `connector-telephony` repository](https://github.com/OCA/connector-telephony), with the module **sms_ovh_http** (sending sms with ovh instead of odoo iap)
 
 **Table of contents**
 
