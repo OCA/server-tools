@@ -15,7 +15,7 @@
     "application": False,
     "installable": True,
     "external_dependencies": {"python": [], "bin": []},
-    "depends": ["iap", "server_environment"],
+    "depends": ["iap"],
     "data": ["views/iap_account_view.xml"],
     "demo": [],
 }
