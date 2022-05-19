@@ -3,7 +3,7 @@
 {
     "name": "Company Country",
     "summary": "Set country to main company",
-    "version": "12.0.1.1.0",
+    "version": "12.0.1.2.0",
     "category": "base",
     "website": "https://github.com/OCA/server-tools/tree/12.0/company_country",
     "maintainers": ['moylop260', 'luisg123v'],
