@@ -13,7 +13,7 @@
                     <group>
                         <field
                             name="delete_attachment_model_ids"
-                            domain="[('is_restrict_delete_attachment', '=', True)]"
+                            domain="[('restrict_delete_attachment', '=', 'none')]"
                             nolabel="1"
                         />
                     </group>
