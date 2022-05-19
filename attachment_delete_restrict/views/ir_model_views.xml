@@ -11,9 +11,8 @@
                         <field name="restrict_delete_attachment" />
                     </group>
                     <group
-                        attrs="{'invisible': [('restrict_delete_attachment','!=','custom')]}"
+                        attrs="{'invisible': [('restrict_delete_attachment','not in',['custom', 'restrict_custom'])]}"
                     >
-                        <field name="is_restrict_delete_attachment" />
                         <field
                             name="delete_attachment_group_ids"
                             widget="many2many_tags"
