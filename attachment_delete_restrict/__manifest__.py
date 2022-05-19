@@ -11,7 +11,7 @@
     "author": "Quartile Limited, Akretion, Odoo Community Association (OCA)",
     "category": "Tools",
     "license": "AGPL-3",
-    "maintainers": ["Kev-Roche", "yostashiro"],
+    "maintainers": ["yostashiro", "Kev-Roche"],
     "data": [
         "views/ir_model_views.xml",
         "views/res_groups_views.xml",
@@ -19,5 +19,4 @@
         "views/res_config_view.xml",
     ],
     "installable": True,
-    "post_init_hook": "post_init_hook",
 }
