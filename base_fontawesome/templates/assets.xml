@@ -17,12 +17,12 @@ License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
             <link
                 rel="stylesheet"
                 type="text/css"
-                href="/base_fontawesome/static/lib/fontawesome-5.13.0/css/all.css"
+                href="/base_fontawesome/static/lib/fontawesome-5.15.4/css/all.css"
             />
             <link
                 rel="stylesheet"
                 type="text/css"
-                href="/base_fontawesome/static/lib/fontawesome-5.13.0/css/v4-shims.css"
+                href="/base_fontawesome/static/lib/fontawesome-5.15.4/css/v4-shims.css"
             />
         </xpath>
         <xpath expr="." position="inside">
@@ -44,12 +44,12 @@ License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
             <link
                 rel="stylesheet"
                 type="text/css"
-                href="/base_fontawesome/static/lib/fontawesome-5.13.0/css/all.css"
+                href="/base_fontawesome/static/lib/fontawesome-5.15.4/css/all.css"
             />
             <link
                 rel="stylesheet"
                 type="text/css"
-                href="/base_fontawesome/static/lib/fontawesome-5.13.0/css/v4-shims.css"
+                href="/base_fontawesome/static/lib/fontawesome-5.15.4/css/v4-shims.css"
             />
         </xpath>
     </template>

@@ -23,11 +23,11 @@ Base Fontawesome
     :target: https://runbot.odoo-community.org/runbot/149/13.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 Provide up to date `Fontawesome <http://fontawesome.io/>`_ resources.
 
-Current version: 5.13.0 (the version of this module matches it).
+Current version: 5.15.4 (the version of this module matches it).
 
 **Table of contents**
 
