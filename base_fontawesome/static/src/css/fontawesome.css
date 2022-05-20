@@ -1,15 +1,19 @@
 @font-face {
     font-family: "FontAwesome";
-    src: url("../../lib/fontawesome-5.13.0/webfonts/fa-solid-900.eot");
-    src: url("../../lib/fontawesome-5.13.0/webfonts/fa-solid-900.eot?#iefix")
+    src: url("../../lib/fontawesome-5.15.4/webfonts/fa-solid-900.eot");
+    src: url("../../lib/fontawesome-5.15.4/webfonts/fa-solid-900.eot?#iefix&v=5.15.4")
             format("embedded-opentype"),
-        url("../../lib/fontawesome-5.13.0/webfonts/fa-solid-900.woff2") format("woff2"),
-        url("../../lib/fontawesome-5.13.0/webfonts/fa-solid-900.woff") format("woff"),
-        url("../../lib/fontawesome-5.13.0/webfonts/fa-solid-900.ttf") format("truetype"),
-        url("../../lib/fontawesome-5.13.0/webfonts/fa-solid-900.svg#fontawesome")
+        url("../../lib/fontawesome-5.15.4/webfonts/fa-solid-900.woff2?v=5.15.4")
+            format("woff2"),
+        url("../../lib/fontawesome-5.15.4/webfonts/fa-solid-900.woff?v=5.15.4")
+            format("woff"),
+        url("../../lib/fontawesome-5.15.4/webfonts/fa-solid-900.ttf?v=5.15.4")
+            format("truetype"),
+        url("../../lib/fontawesome-5.15.4/webfonts/fa-solid-900.svg#fontawesome?v=5.15.4&fontawesomeregular")
             format("svg");
-    ont-weight: normal;
+    font-weight: normal;
     font-style: normal;
+    font-display: block;
 }
 
 .btn.fa,
