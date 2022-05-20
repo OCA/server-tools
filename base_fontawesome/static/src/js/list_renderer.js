@@ -1,10 +1,10 @@
-odoo.define("base_fontawesome5.ListRenderer", function(require) {
+odoo.define("base_fontawesome5.ListRenderer", function (require) {
     "use strict";
 
     var ListRenderer = require("web.ListRenderer");
 
     ListRenderer.include({
-        _renderButton: function(record, node) {
+        _renderButton: function (record, node) {
             var $button = this._super.apply(this, arguments);
 
             if (node.attrs.brand_icon) {
