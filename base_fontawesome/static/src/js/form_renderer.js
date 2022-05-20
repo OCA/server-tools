@@ -1,10 +1,10 @@
-odoo.define("base_fontawesome5.FormRenderer", function(require) {
+odoo.define("base_fontawesome5.FormRenderer", function (require) {
     "use strict";
 
     var FormRenderer = require("web.FormRenderer");
 
     FormRenderer.include({
-        _renderStatButton: function(node) {
+        _renderStatButton: function (node) {
             var $button = this._super.apply(this, arguments);
             if (node.attrs.brand_icon) {
                 $("<div>")
@@ -26,7 +26,7 @@ odoo.define("base_fontawesome5.FormRenderer", function(require) {
             }
             return $button;
         },
-        _renderTagButton: function(node) {
+        _renderTagButton: function (node) {
             var $button = this._super.apply(this, arguments);
 
             if (node.attrs.brand_icon) {
