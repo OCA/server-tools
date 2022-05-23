@@ -10,15 +10,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-03 10:08+0000\n"
-"PO-Revision-Date: 2018-07-14 08:45+0000\n"
-"Last-Translator: Enric Tobella <etobella@creublanca.es>\n"
+"PO-Revision-Date: 2022-05-23 19:05+0000\n"
+"Last-Translator: Leonardo J. Caballero G. <leonardocaballero@gmail.com>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.0.1\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__action_id
@@ -70,7 +70,7 @@ msgstr "Limpiar automáticamente los auditlogs"
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__capture_record
 msgid "Capture Record"
-msgstr ""
+msgstr "Capturar registro"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_http_request__user_context
@@ -352,6 +352,8 @@ msgstr "Seleccione el modelo al que quiere generar un registro."
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule__capture_record
 msgid "Select this if you want to keep track of Unlink Record"
 msgstr ""
+"Seleccione esta opción si desea realizar un seguimiento del registro de "
+"desvinculación"
 
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule__log_create
@@ -368,7 +370,7 @@ msgid ""
 "Select this if you want to keep track of deletion on any record of the model "
 "of this rule"
 msgstr ""
-"Marque esta casilla si desea hacer un seguimiento  del borrado de los "
+"Marque esta casilla si desea hacer un seguimiento del borrado de los "
 "registros del modelo de esta regla"
 
 #. module: auditlog
