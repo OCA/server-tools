@@ -5,11 +5,14 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 import html
+import logging
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError, ValidationError
 from odoo.osv import expression
 from odoo.tools.safe_eval import safe_eval
+
+_logger = logging.getLogger(__name__)
 
 
 class ExceptionRule(models.Model):
@@ -157,9 +160,13 @@ class BaseExceptionMethod(models.AbstractModel):
                 expr, space, mode="exec", nocopy=True
             )  # nocopy allows to return 'result'
         except Exception as e:
+            _logger.exception(e)
             raise UserError(
-                _("Error when evaluating the exception.rule rule:\n %s \n(%s)")
-                % (rule.name, e)
+                _(
+                    "Error when evaluating the exception.rule rule:\n %s \n(%s)",
+                    rule.name,
+                    e,
+                )
             )
         return space.get("failed", False)
 
