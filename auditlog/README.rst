@@ -55,6 +55,10 @@ To activate it and/or change the delay, go to the
 
 .. image:: https://raw.githubusercontent.com/OCA/server-tools/12.0/auditlog/static/description/autovacuum.png
 
+In case you're having trouble with the amount of records to delete per run,
+you can pass the amount of records to delete for one model per run as the second
+parameter, the default is to delete all records in one go.
+
 Usage
 =====
 
