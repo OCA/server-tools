@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-02-18 02:29+0000\n"
-"PO-Revision-Date: 2022-05-24 19:05+0000\n"
+"PO-Revision-Date: 2022-05-26 17:05+0000\n"
 "Last-Translator: Leonardo J. Caballero G. <leonardocaballero@gmail.com>\n"
 "Language-Team: Spanish (Chile) (https://www.transifex.com/oca/teams/23907/"
 "es_CL/)\n"
@@ -152,7 +152,7 @@ msgstr "Creado por"
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__create_date
 msgid "Created on"
-msgstr "Creado en"
+msgstr "Creado el"
 
 #. module: auto_backup
 #: model:ir.model,name:auto_backup.model_db_backup
