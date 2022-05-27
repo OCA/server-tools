@@ -10,7 +10,7 @@
     "website": "https://github.com/OCA/server-tools",
     "category": "Tools",
     "depends": ["mail"],
-    "external_dependencies": {"python": ["xlrd", "xlwt", "openpyxl"]},
+    "external_dependencies": {"python": ["openpyxl"]},
     "data": [
         "security/ir.model.access.csv",
         "wizard/export_xlsx_wizard.xml",
