@@ -12,5 +12,3 @@ pysftp
 pyyaml
 raven
 unidecode
-xlrd
-xlwt
