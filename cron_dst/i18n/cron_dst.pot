@@ -1,0 +1,33 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#   * cron_dst
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-04-13 13:05+0000\n"
+"PO-Revision-Date: 2022-04-13 13:05+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: cron_dst
+#: model:ir.model.fields,field_description:cron_dst.field_ir_cron__dst_offset
+msgid "Dst Offset"
+msgstr ""
+
+#. module: cron_dst
+#: model:ir.model.fields,field_description:cron_dst.field_ir_cron__tz
+msgid "Timezone"
+msgstr ""
+
+#. module: cron_dst
+#: model:ir.model.fields,help:cron_dst.field_ir_cron__tz
+msgid ""
+"Timezone used for this cron job. Setting this will ensure a fixed time for "
+"execution despite Daylight Saving Time changes"
+msgstr ""
