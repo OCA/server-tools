@@ -4,8 +4,8 @@ dataclasses
 mako
 odoorpc
 openpyxl
-xlrd
-xlwt
 openupgradelib
 pysftp
-sentry_sdk
+pyyaml
+raven
+unidecode
