@@ -12,5 +12,3 @@ openupgradelib
 pysftp
 raven
 unidecode
-xlrd
-xlwt
