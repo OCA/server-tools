@@ -6,7 +6,7 @@ except ImportError:  # pragma: no cover
 
 
 def string_types():
-    """ Taken from https://git.io/JIv5J """
+    """Taken from https://git.io/JIv5J"""
 
     return (str,)
 
