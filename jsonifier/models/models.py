@@ -156,6 +156,11 @@ class Base(models.AbstractModel):
     def _jsonify_record_handle_resolver(self, rec, field, resolver, json_key):
         value = rec._jsonify_value(field, rec[field.name])
         value = resolver.resolve(field, rec)[0] if resolver else value
+        if isinstance(value, dict) and "_json_key" in value and "_value" in value:
+            # Allow override of json_key.
+            # In this case,
+            # the final value must be encapsulated into _value key
+            value, json_key = value["_value"], value["_json_key"]
         return value, json_key
 
     def jsonify(self, parser, one=False):

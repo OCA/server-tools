@@ -1,4 +1,6 @@
 # Copyright 2017 ACSONE SA/NV
+# Copyright 2022 Camptocamp SA (http://www.camptocamp.com)
+# Simone Orsi <simahawk@gmail.com>
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 from unittest import mock
@@ -221,6 +223,16 @@ class TestParser(TransactionCase):
         )  # starting from different languages should not change anything
         self.assertEqual(json[self.translated_target], self.translated_target)
         self.assertEqual(json["name_resolved"], "name_pidgin")  # field resolver
+        self.assertEqual(json["X"], "X")  # added by global resolver
+
+    def test_full_parser_resolver_json_key_override(self):
+        self.resolver.write(
+            {"python_code": """result = {"_json_key": "foo", "_value": record.id}"""}
+        )
+        parser = self.category_export.get_json_parser()
+        json = self.category.jsonify(parser)[0]
+        self.assertNotIn("name_resolved", json)
+        self.assertEqual(json["foo"], self.category.id)  # field resolver
         self.assertEqual(json["X"], "X")  # added by global resolver
 
     def test_simple_parser_translations(self):
