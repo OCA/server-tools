@@ -12,6 +12,7 @@ from odoo.exceptions import UserError
 from odoo.tools.misc import format_duration
 from odoo.tools.translate import _
 
+from ..exceptions import SwallableException
 from .utils import convert_simple_to_full_parser
 
 _logger = logging.getLogger(__name__)
@@ -72,56 +73,90 @@ class Base(models.AbstractModel):
         strict = self.env.context.get("jsonify_record_strict", False)
         for field in parser:
             field_dict, subparser = rec.__parse_field(field)
-            field_name = field_dict["name"]
-            if field_name not in rec._fields:
-                if strict:
-                    # let it fail
-                    rec._fields[field_name]  # pylint: disable=pointless-statement
-                if not tools.config["test_enable"]:
-                    # If running live, log proper error
-                    # so that techies can track it down
-                    _logger.error(
-                        "%(model)s.%(fname)s not available",
-                        {"model": self._name, "fname": field_name},
-                    )
+            try:
+                self._jsonify_record_validate_field(rec, field_dict, strict)
+            except SwallableException:
                 continue
-            json_key = field_dict.get("target", field_name)
-            field = rec._fields[field_name]
+            json_key = field_dict.get("target", field_dict["name"])
             if field_dict.get("function"):
-                function = field_dict["function"]
                 try:
-                    value = self._function_value(rec, function, field_name)
-                except UserError:
-                    if strict:
-                        raise
-                    if not tools.config["test_enable"]:
-                        _logger.error(
-                            "%(model)s.%(func)s not available",
-                            {"model": self._name, "func": str(function)},
-                        )
+                    value = self._jsonify_record_handle_function(
+                        rec, field_dict, strict
+                    )
+                except SwallableException:
                     continue
             elif subparser:
-                if not (field.relational or field.type == "reference"):
-                    if strict:
-                        self._jsonify_bad_parser_error(field_name)
-                    if not tools.config["test_enable"]:
-                        _logger.error(
-                            "%(model)s.%(fname)s not relational",
-                            {"model": self._name, "fname": field_name},
-                        )
+                try:
+                    value = self._jsonify_record_handle_subparser(
+                        rec, field_dict, strict, subparser
+                    )
+                except SwallableException:
                     continue
-                value = [
-                    self._jsonify_record(subparser, r, {}) for r in rec[field_name]
-                ]
-                if field.type in ("many2one", "reference"):
-                    value = value[0] if value else None
             else:
-                resolver = field_dict.get("resolver")
+                field = rec._fields[field_dict["name"]]
                 value = rec._jsonify_value(field, rec[field.name])
-                value = resolver.resolve(field, rec)[0] if resolver else value
-
+                resolver = field_dict.get("resolver")
+                if resolver:
+                    value, json_key = self._jsonify_record_handle_resolver(
+                        rec, field, resolver, json_key
+                    )
             self._add_json_key(root, json_key, value)
         return root
+
+    def _jsonify_record_validate_field(self, rec, field_dict, strict):
+        field_name = field_dict["name"]
+        if field_name not in rec._fields:
+            if strict:
+                # let it fail
+                rec._fields[field_name]  # pylint: disable=pointless-statement
+            if not tools.config["test_enable"]:
+                # If running live, log proper error
+                # so that techies can track it down
+                _logger.error(
+                    "%(model)s.%(fname)s not available",
+                    {"model": self._name, "fname": field_name},
+                )
+                raise SwallableException()
+
+        return True
+
+    def _jsonify_record_handle_function(self, rec, field_dict, strict):
+        field_name = field_dict["name"]
+        function = field_dict["function"]
+        try:
+            return self._function_value(rec, function, field_name)
+        except UserError:
+            if strict:
+                raise
+            if not tools.config["test_enable"]:
+                _logger.error(
+                    "%(model)s.%(func)s not available",
+                    {"model": self._name, "func": str(function)},
+                )
+                raise SwallableException()
+
+    def _jsonify_record_handle_subparser(self, rec, field_dict, strict, subparser):
+        field_name = field_dict["name"]
+        field = rec._fields[field_name]
+        if not (field.relational or field.type == "reference"):
+            if strict:
+                self._jsonify_bad_parser_error(field_name)
+            if not tools.config["test_enable"]:
+                _logger.error(
+                    "%(model)s.%(fname)s not relational",
+                    {"model": self._name, "fname": field_name},
+                )
+                raise SwallableException()
+
+        value = [self._jsonify_record(subparser, r, {}) for r in rec[field_name]]
+        if field.type in ("many2one", "reference"):
+            value = value[0] if value else None
+        return value
+
+    def _jsonify_record_handle_resolver(self, rec, field, resolver, json_key):
+        value = rec._jsonify_value(field, rec[field.name])
+        value = resolver.resolve(field, rec)[0] if resolver else value
+        return value, json_key
 
     def jsonify(self, parser, one=False):
         """Convert the record according to the given parser.
