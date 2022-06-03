@@ -19,9 +19,6 @@ Import Processor
 
 |badge1| |badge2| |badge3| 
 
-Import Processor
-~~~~~~~~~~~~~~~~~~~~
-
 This module does provide a framework for creating custom data import configurations.
 
 **Table of contents**
