@@ -90,7 +90,7 @@ class IrUiView(models.Model):
             )
             # Update or create the key
             value = ast.parse(attribute_node.text.strip(), mode="eval").body
-            if key_idx:
+            if isinstance(key_idx, int):
                 ast_dict.values[key_idx] = value
             else:
                 ast_dict.keys.append(ast.Str(attr_key))
