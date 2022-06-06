@@ -235,6 +235,38 @@ class TestBaseViewInheritanceExtension(SavepointCase):
             "'required': [('state', '!=', 'draft')]}",
         )
 
+    def test_python_dict_inheritance_attrs_update_dictionary_0th_key(self):
+        """Test that we can replace the first key of the dictionary (there was a bug that preventied this)"""
+        inherit_id = self.env.ref("base.view_partner_form").id
+        source = etree.fromstring(
+            """
+            <form>
+                <field
+                    name="ref"
+                    attrs="{
+                        'required': [('state', '=', False)],
+                    }"
+                />
+            </form>
+            """
+        )
+        specs = etree.fromstring(
+            """
+            <field name="ref" position="attributes">
+                <attribute name="attrs" operation="python_dict" key="required">
+                    [('state', '!=', 'draft')]
+                </attribute>
+            </field>
+            """
+        )
+        res = self.ViewModel.inheritance_handler_attributes_python_dict(
+            source, specs, inherit_id
+        )
+        self.assertEqual(
+            res.xpath('//field[@name="ref"]')[0].attrib["attrs"],
+            "{'required': [('state', '!=', 'draft')]}",
+        )
+
     def test_python_dict_inheritance_attrs_new(self):
         """Test that we can add new keys by creating the dict if it's missing"""
         inherit_id = self.env.ref("base.view_partner_form").id
