@@ -5,8 +5,8 @@
     "name": "Daylight Saving Time resilient Cron Jobs",
     "version": "14.0.1.0.0",
     "category": "Hidden",
-    "author": "initOS GmbH",
-    "website": "https://www.initos.com",
+    "author": "initOS GmbH, Odoo Community Association (OCA)",
+    "website": "https://github.com/OCA/server-tools",
     "license": "AGPL-3",
     "summary": "This modules allows to make Cron Jobs resilient to Daylight Saving "
     "Time by flagging them and with an cronjobs which adjusts them",
