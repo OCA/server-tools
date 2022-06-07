@@ -3,4 +3,3 @@ It allows planning weekly, monthly and yearly with an interval. For weekly sched
 Notice: This technical module does not directly allow automation. Rather it is destined to aid the development of other modules.
 
 For configuring the schedules, navigate to Settings --> Technical --> Automation --> Schedules in the Odoo backend.
-
