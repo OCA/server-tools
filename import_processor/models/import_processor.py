@@ -261,7 +261,7 @@ class ImportProcessor(models.Model):
 
         localdict.pop("reader", None)
         # The next line is the CSV field header. Afterwards parse every line
-        for x in range(self.csv_row_offset):
+        for _x in range(self.csv_row_offset):
             next(backup)
 
         header = localdict.pop("header", None)
@@ -379,7 +379,7 @@ class ImportProcessor(models.Model):
         localdict.pop("workbook", None)
 
         reader = sheet.rows
-        for x in range(self.tabular_row_offset):
+        for _x in range(self.tabular_row_offset):
             next(reader)
 
         def prepare_line(line):
