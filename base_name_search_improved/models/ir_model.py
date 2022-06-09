@@ -58,13 +58,11 @@ def _get_name_search_domain(self):
 def _extend_name_results(self, domain, results, limit, name_get_uid):
     result_count = len(results)
     if result_count < limit:
-        domain += [("id", "not in", [x[0] for x in results])]
+        domain += [("id", "not in", results)]
         rec_ids = self._search(
             domain, limit=limit - result_count, access_rights_uid=name_get_uid
         )
-        results.extend(
-            models.lazy_name_get(self.browse(rec_ids).with_user(name_get_uid))
-        )
+        results.extend(rec_ids)
     return results
 
 
@@ -83,6 +81,8 @@ def patch_name_search():
             name_get_uid=name_get_uid,
         )
         if name and _get_use_smart_name_search(self.sudo()) and operator in ALLOWED_OPS:
+            # _name_search.origin is a query, we need to convert it to a list
+            res = self.browse(res).ids
             limit = limit or 0
 
             # we add domain
@@ -260,4 +260,4 @@ class IrModel(models.Model):
             if Model is not None:
                 Model._patch_method("_name_search", patch_name_search())
 
-        return super(IrModel, self)._register_hook()
+        return super()._register_hook()
