@@ -159,7 +159,8 @@ class Base(models.AbstractModel):
 
     # TODO perhaps better to create only the field when enabled on the model
     smart_search = fields.Char(
-        compute="_compute_smart_search", search="_search_smart_search",
+        compute="_compute_smart_search",
+        search="_search_smart_search",
     )
 
     def _compute_smart_search(self):
@@ -194,7 +195,9 @@ class Base(models.AbstractModel):
 class IrModel(models.Model):
     _inherit = "ir.model"
 
-    add_smart_search = fields.Boolean(help="Add Smart Search on search views",)
+    add_smart_search = fields.Boolean(
+        help="Add Smart Search on search views",
+    )
     use_smart_name_search = fields.Boolean(
         string="Smart Name Search Enabled?",
         help="Use Smart Search for 'name_search', this will affect when "
