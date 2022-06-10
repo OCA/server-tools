@@ -13,3 +13,4 @@ openpyxl
 openupgradelib
 pysftp
 sentry_sdk
+pygount
