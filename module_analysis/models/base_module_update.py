@@ -8,9 +8,7 @@ from odoo import fields, models
 class BaseModuleUpdate(models.TransientModel):
     _inherit = "base.module.update"
 
-    analyse_installed_modules = fields.Boolean(
-        string="Analyse Installed Modules", default=True
-    )
+    analyse_installed_modules = fields.Boolean(default=True)
 
     def update_module(self):
         return super(
