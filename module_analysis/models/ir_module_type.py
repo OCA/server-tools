@@ -10,9 +10,9 @@ class IrModuleType(models.Model):
     _description = "Modules Types"
     _order = "sequence"
 
-    name = fields.Char(string="Name", required=True)
+    name = fields.Char(required=True)
 
-    sequence = fields.Integer(string="Sequence")
+    sequence = fields.Integer()
 
     installed_module_ids = fields.One2many(
         string="Installed Modules",
