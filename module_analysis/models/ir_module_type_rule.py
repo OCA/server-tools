@@ -11,9 +11,9 @@ class IrModuleType(models.Model):
     _description = "Modules Types Rules"
     _order = "sequence"
 
-    sequence = fields.Integer(string="Sequence")
+    sequence = fields.Integer()
 
-    module_domain = fields.Char(string="Module Domain", required=True, default="[]")
+    module_domain = fields.Char(required=True, default="[]")
 
     module_type_id = fields.Many2one(
         string="Module type", comodel_name="ir.module.type", required=True
