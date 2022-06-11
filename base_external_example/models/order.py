@@ -3,13 +3,9 @@
 from odoo import models, fields
 from odoo.addons.base_external_odoo.models.models import ExternalOdooClient
 
-# import logging
-# _logger = logging.getLogger()
 
-
-# Comment if (_.IsNumber(resId)) { in addons/web/static/js/views/basic/basic_model.js
-# in _readUngroupedList to avoid problem with our UUIDs
-
+# Initializing Odoo client,
+# connected to the same Odoo instance by through XML-RPC
 odoo_client = ExternalOdooClient(
     url="http://localhost:8069",
     db="test",
@@ -22,11 +18,17 @@ class ExternalSaleOrder(models.Model):
 
     _name = 'external.sale.order'
 
-    _inherit = ['web_external.model']
+    # Inherit base_external abstract model
+    _inherit = ['base_external.model']
 
+    # Specify the client you want to use for this model
     _external_client = odoo_client
+
+    # Specify the external name of the model you are connecting with
     _external_name = "sale.order"
 
+    # Create fields as you would do any other field in Odoo
+    # by specify external=True and the name of the field in external API
     name = fields.Char(
         "Number", readonly=True,
         external=True, external_name="name")
@@ -61,7 +63,7 @@ class ExternalSaleOrderLine(models.Model):
 
     _name = 'external.sale.order.line'
 
-    _inherit = ['web_external.model']
+    _inherit = ['base_external.model']
 
     _external_client = odoo_client
     _external_name = "sale.order.line"
