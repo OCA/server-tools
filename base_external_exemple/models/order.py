@@ -1,7 +1,7 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 from odoo import models, fields
-from odoo.addons.web_external_odoo.models.models import ExternalOdooClient
+from odoo.addons.base_external_odoo.models.models import ExternalOdooClient
 
 # import logging
 # _logger = logging.getLogger()

@@ -16,11 +16,11 @@
         'base',
         'mail',
         'sale',
-        'web_external_odoo'
+        'base_external_odoo'
     ],
     'data': [
         'security/ir.model.access.csv',
-        'views/orders.xml',
+        'views/order_views.xml',
         'views/templates.xml',
     ],
     'installable': True,

@@ -13,7 +13,7 @@
     'category': 'Hidden/Dependency',
     'depends': [
         'base',
-        'web_external'
+        'base_external'
     ],
     'installable': True,
 }
