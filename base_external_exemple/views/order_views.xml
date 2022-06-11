@@ -1,0 +1,117 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    
+
+    <record model="ir.ui.view" id="external_sale_order_form">
+      <field name="name">external_sale_order form</field>
+      <field name="model">external.sale.order</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <field name="name"/>     
+              <field name="partner_id"/>     
+              <field name="date_order"/>   
+              <field name="origin"/>     
+              <field name="order_line">
+                <tree editable="top">
+                  <field name="product_id"/>
+                  <field name="name"/>
+                  <field name="product_uom_qty"/>
+                  <field name="price_unit"/>
+                  <field name="tax_id" widget="many2many_tags"/>
+                  <field name="price_subtotal"/>
+                </tree>
+                <form>
+                  <group>
+                    <field name="product_id"/>
+                    <field name="name"/>
+                    <field name="product_uom_qty"/>
+                    <field name="price_unit"/>
+                    <field name="tax_id"/>
+                    <field name="price_subtotal"/>
+                  </group>
+                </form>
+              </field>
+              <field name="amount_untaxed"/>
+              <field name="amount_tax"/>
+              <field name="amount_total"/>
+              <field name="state"/>
+            </group>
+            <!-- <field name="message_test_ids">
+                <tree>
+                  <field name="name"/>
+                  <field name="body"/>
+                </tree>
+            </field> -->
+          </sheet>
+          <!-- <div class="oe_chatter">
+              <field name="message_follower_ids" widget="mail_followers"/>
+              <field name="activity_ids" widget="mail_activity"/>
+              <field name="message_ids" widget="mail_thread"/>
+          </div> -->
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="external_sale_order_list">
+      <field name="name">external_sale_order list</field>
+      <field name="model">external.sale.order</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="partner_id"/>
+          <field name="date_order"/>
+          <field name="origin"/>
+          <field name="amount_total"/>
+          <field name="state"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="external_sale_order_search">
+      <field name="name">external_sale_order search</field>
+      <field name="model">external.sale.order</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="partner_id"/>
+        </search>
+      </field>
+    </record>
+   
+
+    <!-- actions opening views on models -->
+    
+    <record model="ir.actions.act_window" id="external_sale_order_action_window">
+      <field name="name">external.sale.order window</field>
+      <field name="res_model">external.sale.order</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+   
+
+    <!-- server action to the one above -->
+    <!--
+    <record model="ir.actions.server" id="odoo-admin.action_server">
+      <field name="name">odoo-admin server</field>
+      <field name="model_id" ref="model_odoo-admin_odoo-admin"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    -->
+   
+    <!-- actions -->
+    
+    <menuitem name="External Orders" id="orders_menu_list" parent="sale.sale_menu_root"
+              action="external_sale_order_action_window" sequence="4"/>
+    <!-- <menuitem name="Server to list" id="example" parent="example.menu_2"
+              action="example.action_server"/> -->
+   
+  </data>
+</odoo>
