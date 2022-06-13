@@ -168,7 +168,7 @@ class RecordChangeset(models.Model):
     def _prepare_changeset_vals(self, changes, record, source):
         has_company = "company_id" in self.env[record._name]._fields
         has_company = has_company and record.company_id
-        company = record.company_id if has_company else self.env.user.company_id
+        company = record.company_id if has_company else self.env.company
         return {
             # newly created records are passed as newid records with the id in ref
             "res_id": record.id or record.id.ref,

@@ -150,6 +150,27 @@ class TestChangesetFlow(ChangesetTestCommon, TransactionCase):
         # All computed fields are assigned
         changeset.change_ids.read()
 
+    def test_multicompany(self):
+        """Company is applied correctly from self.env.company, if not from record"""
+        self.env['changeset.field.rule'].search([]).write({"company_id": False})
+        company2 = self.env["res.company"].create({"name": "company2"})
+        user = self.env.ref("base.user_demo")
+        user.write({
+            "company_ids": [(4, company2.id)],
+        })
+        model = self.partner.with_user(user).with_company(company2)
+        self.assertNotEqual(model.env.user.company_id, model.env.company)
+        partner = model.create({
+            "name": __name__,
+            "street": __name__,
+            "company_id": False,
+        })
+        partner._compute_changeset_ids()
+        self.assertEqual(
+            partner.changeset_ids.mapped("company_id"),
+            company2,
+        )
+
     def test_apply_change_with_prevent_self_validation(self):
         """ Don't apply a changeset change and prevent self validation """
         self.partner.write({"street": "street Z"})
