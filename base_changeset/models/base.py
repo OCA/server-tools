@@ -80,23 +80,7 @@ class Base(models.AbstractModel):
             return result
         for this, vals in zip(result, vals_list):
             local_vals = self.env["record.changeset"].add_changeset(
-                # create a record-like object with empty values,
-                # but pass required many2one fields as those are
-                # most likely to be used in rule conditions
-                self.new(
-                    {
-                        field_name: value
-                        for field_name, value in vals.items()
-                        if field_name in self._fields
-                        and self._fields[field_name].required
-                        and isinstance(
-                            self._fields[field_name],
-                            fields.Many2one,
-                        )
-                    },
-                    this,
-                ),
-                vals,
+                this, vals, create=True
             )
             local_vals = {
                 key: value for key, value in local_vals.items() if vals[key] != value

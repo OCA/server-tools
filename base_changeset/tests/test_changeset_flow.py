@@ -79,9 +79,7 @@ class TestChangesetFlow(ChangesetTestCommon, TransactionCase):
         """Create a new partner with a changeset"""
         new = (
             self.env["res.partner"]
-            .with_context(
-                test_record_changeset=True,
-            )
+            .with_context(test_record_changeset=True)
             .create(
                 {
                     "name": "partner",
@@ -90,6 +88,8 @@ class TestChangesetFlow(ChangesetTestCommon, TransactionCase):
                 }
             )
         )
+        new._compute_changeset_ids()
+        new._compute_count_pending_changesets()
         self.assertEqual(new.count_pending_changesets, 1)
         self.assert_changeset(
             new,
