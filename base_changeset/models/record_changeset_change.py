@@ -338,7 +338,7 @@ class RecordChangesetChange(models.Model):
             return value
 
     @api.model
-    def _prepare_changeset_change(self, record, rule, field_name, value):
+    def _prepare_changeset_change(self, record, rule, field_name, value, create=False):
         """Prepare data for a changeset change
 
         It returns a dict of the values to write on the changeset change
@@ -364,7 +364,7 @@ class RecordChangesetChange(models.Model):
             change["state"] = "cancel"
             pop_value = True  # change never applied
 
-        if change["state"] in ("cancel", "done"):
+        if create or change["state"] in ("cancel", "done"):
             # Normally the 'old' value is set when we use the 'apply'
             # button, but since we short circuit the 'apply', we
             # directly set the 'old' value here
@@ -372,7 +372,9 @@ class RecordChangesetChange(models.Model):
             # get values ready to write as expected by the changeset
             # (for instance, a many2one is written in a reference
             # field)
-            origin_value = self._value_for_changeset(record, field_name)
+            origin_value = self._value_for_changeset(
+                record, field_name, value=False if create else _NO_VALUE
+            )
             change[old_field_name] = origin_value
 
         return change, pop_value
