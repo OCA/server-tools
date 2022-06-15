@@ -80,7 +80,7 @@ class CustomInfoTemplate(models.Model):
     def check_access_rule(self, operation):
         """You access a template if you access its model."""
         for record in self:
-            model = self.env[record.model_id.model or record.model]
+            model = self.env[record.model_id.sudo().model or record.model]
             model.check_access_rights(operation)
             model.check_access_rule(operation)
         return super().check_access_rule(operation)
