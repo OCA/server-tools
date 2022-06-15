@@ -7,7 +7,7 @@
         <field name="model">custom.info.property</field>
         <field name="priority" eval="999" />
         <field name="arch" type="xml">
-            <tree string="Custom Info Properties">
+            <tree>
                 <field name="sequence" widget="handle" />
                 <field name="name" />
                 <field name="field_type" />

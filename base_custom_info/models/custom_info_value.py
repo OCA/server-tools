@@ -98,6 +98,7 @@ class CustomInfoValue(models.Model):
         """You can choose among models linked to a template."""
         models = (
             self.env["ir.model.fields"]
+            .sudo()
             .search(
                 [
                     ("ttype", "=", "many2one"),

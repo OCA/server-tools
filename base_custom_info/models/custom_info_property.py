@@ -126,14 +126,19 @@ class CustomInfoProperty(models.Model):
                 self.env["custom.info.value"]._transform_value(
                     self.default_value, self.field_type, self
                 )
-            except ValueError:
+            except ValueError as ve:
                 selection = dict(
                     self._fields["field_type"].get_description(self.env)["selection"]
                 )
                 raise ValidationError(
-                    _("Default value %s cannot be converted to type %s.")
-                    % (self.default_value, selection[self.field_type])
-                )
+                    _(
+                        "Default value %(d_value)s cannot be converted to type %(f_type)s."
+                    )
+                    % {
+                        "d_value": self.default_value,
+                        "f_type": selection[self.field_type],
+                    }
+                ) from ve
 
     @api.constrains("default_value", "field_type")
     def _check_default_value(self):
