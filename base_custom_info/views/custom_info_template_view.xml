@@ -6,7 +6,7 @@
     <record id="custom_info_template_tree" model="ir.ui.view">
         <field name="model">custom.info.template</field>
         <field name="arch" type="xml">
-            <tree string="Custom Info Templates">
+            <tree>
                 <field name="name" />
                 <field name="model" />
                 <field name="model_id" />

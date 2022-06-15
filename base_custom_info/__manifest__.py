@@ -7,10 +7,9 @@
     "name": "Base Custom Info",
     "summary": "Add custom field in models",
     "category": "Tools",
-    "version": "14.0.1.0.1",
+    "version": "15.0.1.0.0",
     "depends": ["base_setup"],
     "data": [
-        "views/webclient_templates.xml",
         "security/ir.model.access.csv",
         "security/res_groups_security.xml",
         "views/custom_info_category_view.xml",
@@ -22,7 +21,15 @@
         "views/res_partner_view.xml",
         "wizard/res_config_settings_view.xml",
     ],
-    "qweb": ["static/src/xml/custom_info_item.xml"],
+    "assets": {
+        "web.assets_qweb": ["base_custom_info/static/src/xml/custom_info_item.xml"],
+        "web.assets_backend": [
+            "base_custom_info/static/src/js/custom_info_renderer.js",
+            "base_custom_info/static/src/js/custom_info_view.js",
+            "base_custom_info/static/src/js/relational_fields.js",
+            "base_custom_info/static/src/scss/custom_info.scss",
+        ],
+    },
     "demo": [
         "demo/custom.info.category.csv",
         "demo/custom.info.template.csv",

@@ -5,7 +5,7 @@
     <record id="custom_info_category_tree" model="ir.ui.view">
         <field name="model">custom.info.category</field>
         <field name="arch" type="xml">
-            <tree string="Custom Info Categories">
+            <tree>
                 <field name="sequence" widget="handle" />
                 <field name="name" />
                 <field name="property_ids" />
