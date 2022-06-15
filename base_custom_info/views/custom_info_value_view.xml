@@ -6,7 +6,7 @@
     <record id="custom_info_value_tree" model="ir.ui.view">
         <field name="model">custom.info.value</field>
         <field name="arch" type="xml">
-            <tree string="Custom Property Values" create="0" delete="0">
+            <tree create="0" delete="0">
                 <field name="owner_id" />
                 <field name="property_id" force_save="1" />
                 <field name="category_id" force_save="1" />
