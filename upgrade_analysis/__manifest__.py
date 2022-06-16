@@ -8,6 +8,7 @@
     "version": "15.0.1.0.3",
     "category": "Migration",
     "author": "Therp BV, Opener B.V., GRAP, Odoo Community Association (OCA)",
+    "maintainers": ["StefanRijnhart", "legalsylvain"],
     "website": "https://github.com/OCA/server-tools",
     "data": [
         "security/ir.model.access.csv",
