@@ -15,6 +15,7 @@ setuptools.setup(
         'odoo14-addon-auto_backup',
         'odoo14-addon-autovacuum_message_attachment',
         'odoo14-addon-base_changeset',
+        'odoo14-addon-base_conditional_image',
         'odoo14-addon-base_cron_exclusion',
         'odoo14-addon-base_custom_info',
         'odoo14-addon-base_exception',
