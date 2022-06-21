@@ -127,8 +127,15 @@ msgstr "İsim Arama Alanları"
 #: model:ir.model.fields,field_description:base_name_search_improved.field_account_chart_template__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_account_common_journal_report__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_account_common_report__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_edi_common__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_account_edi_document__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_account_edi_format__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_edi_xml_cii__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_edi_xml_ubl_20__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_edi_xml_ubl_21__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_edi_xml_ubl_bis3__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_edi_xml_ubl_de__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_edi_xml_ubl_efff__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_account_financial_year_op__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_account_fiscal_position__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_account_fiscal_position_account__smart_search
