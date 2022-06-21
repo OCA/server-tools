@@ -1,12 +1,12 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* base_conditional_image
+# 	* base_conditional_image
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: <>\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,7 +19,7 @@ msgid "Abstract image"
 msgstr ""
 
 #. module: base_conditional_image
-#: code:addons/base_conditional_image/models/image.py:53
+#: code:addons/base_conditional_image/models/image.py:0
 #, python-format
 msgid "At least one image type must be specified"
 msgstr ""
@@ -31,7 +31,10 @@ msgstr ""
 
 #. module: base_conditional_image
 #: model:ir.model.fields,help:base_conditional_image.field_image__company_id
-msgid "Company related check. If inherited object does not have a `company_id` field, it will be ignored. The check will first take the records with a company then, if no match is found, the ones without a company."
+msgid ""
+"Company related check. If inherited object does not have a `company_id` "
+"field, it will be ignored. The check will first take the records with a "
+"company then, if no match is found, the ones without a company."
 msgstr ""
 
 #. module: base_conditional_image
@@ -93,7 +96,9 @@ msgstr ""
 
 #. module: base_conditional_image
 #: model:ir.model.fields,help:base_conditional_image.field_image__image_medium
-msgid "Medium-sized image. It is automatically resized as a 128x128px image, with aspect ratio preserved. Use this field in form views or some kanban views."
+msgid ""
+"Medium-sized image. It is automatically resized as a 128x128px image, with "
+"aspect ratio preserved. Use this field in form views or some kanban views."
 msgstr ""
 
 #. module: base_conditional_image
@@ -108,7 +113,10 @@ msgstr ""
 
 #. module: base_conditional_image
 #: model:ir.model.fields,help:base_conditional_image.field_image__selector
-msgid "Python expression used as selector when multiple images are usedfor the same object. The variable `object` refers to the actual record on which the expression will be executed. An empty expression will always return `True`."
+msgid ""
+"Python expression used as selector when multiple images are usedfor the same"
+" object. The variable `object` refers to the actual record on which the "
+"expression will be executed. An empty expression will always return `True`."
 msgstr ""
 
 #. module: base_conditional_image
@@ -125,11 +133,12 @@ msgstr ""
 
 #. module: base_conditional_image
 #: model:ir.model.fields,help:base_conditional_image.field_image__image_small
-msgid "Small-sized image. It is automatically resized as a 64x64px image, with aspect ratio preserved. Use this field anywhere a small image is required."
+msgid ""
+"Small-sized image. It is automatically resized as a 64x64px image, with "
+"aspect ratio preserved. Use this field anywhere a small image is required."
 msgstr ""
 
 #. module: base_conditional_image
 #: model:ir.model.fields,help:base_conditional_image.field_image__image
 msgid "This field holds the standard image, limited to 1024x1024px"
 msgstr ""
-
