@@ -107,6 +107,7 @@ msgstr "Campos de búsqueda de nombres"
 
 #. module: base_name_search_improved
 #: model:ir.model.fields,field_description:base_name_search_improved.field__unknown__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_abstract_conditional_image__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_account_account__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_account_account_tag__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_account_account_template__smart_search
@@ -258,6 +259,7 @@ msgstr "Campos de búsqueda de nombres"
 #: model:ir.model.fields,field_description:base_name_search_improved.field_format_address_mixin__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_iap_account__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_iap_enrich_api__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_image__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_image_mixin__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_ir_actions_act_url__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_ir_actions_act_window__smart_search
