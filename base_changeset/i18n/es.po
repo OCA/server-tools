@@ -77,6 +77,7 @@ msgstr ""
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field__unknown__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_abstract_conditional_image__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_abstract_config_settings__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_account_account__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_account_account_tag__changeset_change_ids
@@ -230,6 +231,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_format_address_mixin__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_iap_account__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_iap_enrich_api__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_image__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_image_mixin__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_ir_actions_act_url__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_ir_actions_act_window__changeset_change_ids
@@ -489,6 +491,7 @@ msgstr ""
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field__unknown__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_abstract_conditional_image__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_abstract_config_settings__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_account_account__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_account_account_tag__changeset_ids
@@ -642,6 +645,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_format_address_mixin__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_iap_account__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_iap_enrich_api__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_image__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_image_mixin__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_ir_actions_act_url__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_ir_actions_act_window__changeset_ids
@@ -888,6 +892,7 @@ msgstr ""
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field__unknown__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_abstract_conditional_image__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_abstract_config_settings__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_account_account__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_account_account_tag__count_pending_changeset_changes
@@ -1041,6 +1046,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_format_address_mixin__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_iap_account__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_iap_enrich_api__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_image__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_image_mixin__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_ir_actions_act_url__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_ir_actions_act_window__count_pending_changeset_changes
@@ -1280,6 +1286,7 @@ msgstr ""
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field__unknown__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_abstract_conditional_image__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_abstract_config_settings__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_account_account__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_account_account_tag__count_pending_changesets
@@ -1433,6 +1440,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_format_address_mixin__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_iap_account__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_iap_enrich_api__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_image__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_image_mixin__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_ir_actions_act_url__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_ir_actions_act_window__count_pending_changesets
@@ -2078,6 +2086,7 @@ msgstr ""
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field__unknown__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_abstract_conditional_image__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_abstract_config_settings__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_account_account__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_account_account_tag__user_can_see_changeset
@@ -2231,6 +2240,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_format_address_mixin__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_iap_account__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_iap_enrich_api__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_image__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_image_mixin__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_ir_actions_act_url__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_ir_actions_act_window__user_can_see_changeset
