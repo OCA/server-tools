@@ -4,7 +4,7 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
 {
-    "name": "Base JSONify",
+    "name": "JSONifier",
     "summary": "Base module that provide the jsonify method on all models",
     "version": "15.0.1.0.0",
     "category": "Uncategorized",
