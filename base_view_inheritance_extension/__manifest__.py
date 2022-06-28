@@ -4,6 +4,7 @@
 {
     "name": "Extended view inheritance",
     "version": "15.0.1.0.0",
+    "development_status": "Mature",
     "author": "Therp BV,Odoo Community Association (OCA)",
     "license": "LGPL-3",
     "category": "Hidden/Dependency",
