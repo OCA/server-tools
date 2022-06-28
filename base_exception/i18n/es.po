@@ -1,23 +1,19 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * base_exception
+# 	* base_exception
 #
-# Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2017
-# enjolras <yo@miguelrevilla.com>, 2018
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 11.0\n"
+"Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-03 10:08+0000\n"
-"PO-Revision-Date: 2018-03-03 10:08+0000\n"
-"Last-Translator: enjolras <yo@miguelrevilla.com>, 2018\n"
-"Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
-"Language: es\n"
+"POT-Creation-Date: 2022-06-28 22:06+0000\n"
+"PO-Revision-Date: 2022-06-28 22:06+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: \n"
 
 #. module: base_exception
 #: code:addons/base_exception/models/base_exception.py:0
@@ -62,7 +58,6 @@ msgstr ""
 
 #. module: base_exception
 #: model:ir.model.fields.selection,name:base_exception.selection__exception_rule__exception_type__by_py_code
-#, fuzzy
 msgid "By python code"
 msgstr "Código python"
 
@@ -71,41 +66,8 @@ msgstr "Código python"
 msgid ""
 "By python code: allow to define any arbitrary check\n"
 "By domain: limited to a selection by an odoo domain:\n"
-"           performance can be better when exceptions           are evaluated "
-"with several records\n"
+"           performance can be better when exceptions           are evaluated with several records\n"
 "By method: allow to select an existing check method"
-msgstr ""
-
-#. module: base_exception
-#: model:ir.model.fields,field_description:base_exception.field_base_exception__changeset_change_ids
-#: model:ir.model.fields,field_description:base_exception.field_base_exception_method__changeset_change_ids
-#: model:ir.model.fields,field_description:base_exception.field_exception_rule__changeset_change_ids
-#: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm__changeset_change_ids
-msgid "Changeset Changes"
-msgstr ""
-
-#. module: base_exception
-#: model:ir.model.fields,field_description:base_exception.field_base_exception__changeset_ids
-#: model:ir.model.fields,field_description:base_exception.field_base_exception_method__changeset_ids
-#: model:ir.model.fields,field_description:base_exception.field_exception_rule__changeset_ids
-#: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm__changeset_ids
-msgid "Changesets"
-msgstr ""
-
-#. module: base_exception
-#: model:ir.model.fields,field_description:base_exception.field_base_exception__count_pending_changeset_changes
-#: model:ir.model.fields,field_description:base_exception.field_base_exception_method__count_pending_changeset_changes
-#: model:ir.model.fields,field_description:base_exception.field_exception_rule__count_pending_changeset_changes
-#: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm__count_pending_changeset_changes
-msgid "Count Pending Changeset Changes"
-msgstr ""
-
-#. module: base_exception
-#: model:ir.model.fields,field_description:base_exception.field_base_exception__count_pending_changesets
-#: model:ir.model.fields,field_description:base_exception.field_base_exception_method__count_pending_changesets
-#: model:ir.model.fields,field_description:base_exception.field_exception_rule__count_pending_changesets
-#: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm__count_pending_changesets
-msgid "Count Pending Changesets"
 msgstr ""
 
 #. module: base_exception
@@ -124,10 +86,7 @@ msgid "Description"
 msgstr "Descripción"
 
 #. module: base_exception
-#: model:ir.model.fields,field_description:base_exception.field_base_exception__display_name
-#: model:ir.model.fields,field_description:base_exception.field_base_exception_method__display_name
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule__display_name
-#: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm__display_name
 msgid "Display Name"
 msgstr "Nombre a mostrar"
 
@@ -145,19 +104,15 @@ msgstr ""
 
 #. module: base_exception
 #: code:addons/base_exception/models/base_exception.py:0
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Error when evaluating the exception.rule rule:\n"
-" %s \n"
-"(%s)"
+" %(rule_name)s \n"
+"(%(error)s)"
 msgstr ""
-"Error al evaluar la regla exception.rule:\n"
-"%s\n"
-"(%s)"
 
 #. module: base_exception
 #: model:ir.model,name:base_exception.model_base_exception
-#, fuzzy
 msgid "Exception"
 msgstr "Excepciones"
 
@@ -168,19 +123,16 @@ msgstr "Nombre de la excepción"
 
 #. module: base_exception
 #: model:ir.model,name:base_exception.model_exception_rule
-#: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_tree
 msgid "Exception Rule"
 msgstr "Regla de excepción"
 
 #. module: base_exception
 #: model:ir.model,name:base_exception.model_exception_rule_confirm
-#, fuzzy
 msgid "Exception Rule Confirm Wizard"
 msgstr "exception.rule.confirm"
 
 #. module: base_exception
 #: model:ir.model,name:base_exception.model_base_exception_method
-#, fuzzy
 msgid "Exception Rule Methods"
 msgstr "Reglas de excepción"
 
@@ -197,7 +149,6 @@ msgstr "Reglas de excepción"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule__exception_type
-#, fuzzy
 msgid "Exception Type"
 msgstr "Nombre de la excepción"
 
@@ -212,13 +163,7 @@ msgid "Exceptions"
 msgstr "Excepciones"
 
 #. module: base_exception
-#: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_confirm
-msgid "Exceptions Rules"
-msgstr "Reglas de excepción"
-
-#. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_base_exception__exceptions_summary
-#, fuzzy
 msgid "Exceptions Summary"
 msgstr "Administrador de excepciones"
 
@@ -243,12 +188,9 @@ msgid "Help with Python expressions"
 msgstr ""
 
 #. module: base_exception
-#: model:ir.model.fields,field_description:base_exception.field_base_exception__id
-#: model:ir.model.fields,field_description:base_exception.field_base_exception_method__id
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule__id
-#: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm__id
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_base_exception__ignore_exception
@@ -258,14 +200,11 @@ msgstr "Ignorar excepciones"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule__is_blocking
-msgid "Is blocking"
+msgid "Is Blocking"
 msgstr ""
 
 #. module: base_exception
-#: model:ir.model.fields,field_description:base_exception.field_base_exception____last_update
-#: model:ir.model.fields,field_description:base_exception.field_base_exception_method____last_update
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule____last_update
-#: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm____last_update
 msgid "Last Modified on"
 msgstr "Última actualización por"
 
@@ -287,7 +226,7 @@ msgstr "Excepción principal"
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule__method
 msgid "Method"
-msgstr ""
+msgstr "Método"
 
 #. module: base_exception
 #: code:addons/base_exception/wizard/base_exception_confirm.py:0
@@ -298,12 +237,12 @@ msgstr ""
 #. module: base_exception
 #: model:ir.actions.act_window,name:base_exception.action_exception_rule_confirm
 msgid "Outstanding exceptions to manage"
-msgstr ""
+msgstr "Excepciones pendientes de administrar"
 
 #. module: base_exception
 #: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_confirm
 msgid "Outstanding exceptions to manager"
-msgstr ""
+msgstr "Excepciones pendientes al gestor"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule__code
@@ -321,7 +260,7 @@ msgstr ""
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm__related_model_id
 msgid "Related Model"
-msgstr ""
+msgstr "Modelo relacionado"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule__sequence
@@ -329,18 +268,10 @@ msgid "Sequence"
 msgstr "Secuencia"
 
 #. module: base_exception
-#: model:ir.model.fields,field_description:base_exception.field_base_exception__smart_search
-#: model:ir.model.fields,field_description:base_exception.field_base_exception_method__smart_search
-#: model:ir.model.fields,field_description:base_exception.field_exception_rule__smart_search
-#: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm__smart_search
-msgid "Smart Search"
-msgstr ""
-
-#. module: base_exception
 #: code:addons/base_exception/models/base_exception.py:0
 #, python-format
 msgid "The exceptions can not be ignored, because some of them are blocking."
-msgstr ""
+msgstr "Las excepciones no se pueden ignorar, porque algunas de ellas están bloqueando."
 
 #. module: base_exception
 #: code:addons/base_exception/models/base_exception.py:0
@@ -348,43 +279,26 @@ msgstr ""
 msgid ""
 "There is a problem of configuration, python code, domain or method is "
 "missing to match the exception type."
-msgstr ""
+msgstr "Hay un problema de configuración, código python, match exception type"
 
 #. module: base_exception
 #: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_form
 msgid "To block the exception use: <code>failed = True</code>"
-msgstr ""
-
-#. module: base_exception
-#: model:ir.model.fields,field_description:base_exception.field_base_exception__user_can_see_changeset
-#: model:ir.model.fields,field_description:base_exception.field_base_exception_method__user_can_see_changeset
-#: model:ir.model.fields,field_description:base_exception.field_exception_rule__user_can_see_changeset
-#: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm__user_can_see_changeset
-msgid "User Can See Changeset"
-msgstr ""
+msgstr "Para bloquear el uso de excepción: <code>failed = True</code>"
 
 #. module: base_exception
 #: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_form
 msgid ""
 "Various fields may use Python code or Python expressions. The following "
 "variables can be used:"
-msgstr ""
+msgstr "Varios campos pueden usar código de Python o expresiones de Python. A continuación se muestran las variables que pueden ser usadas."
 
 #. module: base_exception
 #: model:ir.model.fields,help:base_exception.field_exception_rule__is_blocking
 msgid "When checked the exception can not be ignored"
-msgstr ""
+msgstr "Cuando está marcada, la excepción no se puede ignorar"
 
 #. module: base_exception
 #: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_confirm
 msgid "_Close"
-msgstr ""
-
-#~ msgid "Next state"
-#~ msgstr "Estado siguiente"
-
-#~ msgid "Rule Group"
-#~ msgstr "Grupo de reglas"
-
-#~ msgid "base.exception"
-#~ msgstr "base.exception"
+msgstr "_Cerrar"
