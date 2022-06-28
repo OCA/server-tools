@@ -4,7 +4,7 @@
         <field name="name">exception.rule.tree</field>
         <field name="model">exception.rule</field>
         <field name="arch" type="xml">
-            <tree string="Exception Rule">
+            <tree>
                 <field name="sequence" widget="handle" />
                 <field name="name" />
                 <field name="description" />

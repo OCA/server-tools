@@ -19,12 +19,10 @@ class TestBaseException(SavepointCase):
         from .purchase_test import ExceptionRule, LineTest, PurchaseTest
 
         cls.loader.update_registry((ExceptionRule, LineTest, PurchaseTest))
-
-        cls.partner = cls.env["res.partner"].create({"name": "Foo"})
         cls.po = cls.env["base.exception.test.purchase"].create(
             {
                 "name": "Test base exception to basic purchase",
-                "partner_id": cls.partner.id,
+                "partner_id": cls.env["res.partner"].create({"name": "Foo"}).id,
                 "line_ids": [
                     (0, 0, {"name": "line test", "amount": 120.0, "qty": 1.5})
                 ],
@@ -39,16 +37,28 @@ class TestBaseException(SavepointCase):
                 "exception_type": "by_py_code",
             }
         )
+        cls.exception_rule_confirm_obj = cls.env["exception.rule.confirm"]
+        cls.exception_rule_confirm = cls.exception_rule_confirm.create(
+            {
+                "related_model_id": cls.po.id,
+                "exception_ids": [(4, cls.exception_rule.id)],
+                "ignore": False,
+            }
+        )
 
     @classmethod
     def tearDownClass(cls):
         cls.loader.restore_registry()
-        super().tearDownClass()
+        return super().tearDownClass()
 
     def test_valid(self):
         self.exception_rule.active = False
         self.po.button_confirm()
         self.assertFalse(self.po.exception_ids)
+
+    def test_exception_rule_confirm(self):
+        self.exception_rule_confirm.action_confirm()
+        self.assertFalse(self.exception_rule_confirm.exception_ids)
 
     def test_fail_by_py(self):
         with self.assertRaises(ValidationError):
@@ -89,6 +99,28 @@ class TestBaseException(SavepointCase):
         self.assertFalse(self.po.exceptions_summary)
         self.po.button_confirm()
         self.assertEqual(self.po.state, "purchase")
+
+    def test_purchase_check_exception(self):
+        self.po.test_purchase_check_exception()
+
+    def test_purchase_check_button_approve(self):
+        self.po.button_approve()
+        self.assertEqual(self.po.state, "to approve")
+
+    def test_purchase_check_button_draft(self):
+        self.po.button_draft()
+        self.assertEqual(self.po.state, "draft")
+
+    def test_purchase_check_button_confirm(self):
+        self.po.button_confirm()
+        self.assertEqual(self.po.state, "purchase")
+
+    def test_purchase_check_button_cancel(self):
+        self.po.button_cancel()
+        self.assertEqual(self.po.state, "cancel")
+
+    def test_detect_exceptions(self):
+        self.po.detect_exceptions()
 
     def test_blocking_exception(self):
         self.exception_rule.is_blocking = True
