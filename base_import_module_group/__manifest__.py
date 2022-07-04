@@ -10,7 +10,6 @@
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "auto-install": True,
     "depends": [
         "base_import_module",
     ],
