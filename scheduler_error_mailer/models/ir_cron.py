@@ -25,7 +25,7 @@ class IrCron(models.Model):
     def _handle_callback_exception(
         self, cron_name, server_action_id, job_id, job_exception
     ):
-        super()._handle_callback_exception(
+        res = super()._handle_callback_exception(
             cron_name, server_action_id, job_id, job_exception
         )
         my_cron = self.browse(job_id)
@@ -41,8 +41,9 @@ class IrCron(models.Model):
             _logger.debug("Sending scheduler error email with context=%s", context)
 
             self.env["mail.template"].browse(my_cron.email_template_id.id).with_context(
-                context
+                **context
             ).sudo().send_mail(my_cron.id, force_send=True)
+            return res
 
     @api.model
     def _test_scheduler_failure(self):
