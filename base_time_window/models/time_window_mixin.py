@@ -12,7 +12,6 @@ from odoo.tools.misc import format_time
 
 
 class TimeWindowMixin(models.AbstractModel):
-
     _name = "time.window.mixin"
     _description = "Time Window"
     _order = "time_window_start"
@@ -32,10 +31,14 @@ class TimeWindowMixin(models.AbstractModel):
         for record in self:
             if record.time_window_start > record.time_window_end:
                 raise ValidationError(
-                    _("%s must be > %s")
+                    _("%(end_time)s must be > %(start_time)s")
                     % (
-                        self.float_to_time_repr(record.time_window_end),
-                        self.float_to_time_repr(record.time_window_start),
+                        {
+                            "end_time": self.float_to_time_repr(record.time_window_end),
+                            "start_time": self.float_to_time_repr(
+                                record.time_window_start
+                            ),
+                        }
                     )
                 )
             if not record.time_window_weekday_ids:
@@ -76,7 +79,13 @@ class TimeWindowMixin(models.AbstractModel):
             if res:
                 other = self.browse(res[0][0])
                 raise ValidationError(
-                    _("%s overlaps %s") % (record.display_name, other.display_name)
+                    _("%(record_name)s overlaps %(other_name)s")
+                    % (
+                        {
+                            "record_name": record.display_name,
+                            "other_name": other.display_name,
+                        }
+                    )
                 )
 
     @api.depends("time_window_start", "time_window_end", "time_window_weekday_ids")
