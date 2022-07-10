@@ -11,7 +11,7 @@ class ResConfigSettings(models.TransientModel):
     _inherit = "res.config.settings"
 
     global_restrict_delete_attachment = fields.Selection(
-        selection=RESTRICT_DELETE_ATTACH,
+        selection=RESTRICT_DELETE_ATTACH[1:],
         config_parameter="attachment_delete_restrict.global_restrict_delete_attachment",
         readonly=False,
         required=True,
@@ -23,21 +23,19 @@ class ResConfigSettings(models.TransientModel):
     global_delete_attachment_group_ids = fields.Many2many(
         "res.groups",
         string="Attachment Deletion Groups",
-        relation="global_delete_attachment_group_rel",
         help="The users in the groups selected here can delete all the attachments.",
         readonly=False,
         compute="_compute_global_delete_attachment_group_ids",
         inverse="_inverse_global_delete_attachment_group_ids",
     )
     global_delete_attachment_group_ids_str = fields.Char(
-        string="",
+        string="Attachment Deletion Groups (Technical storage field)",
         config_parameter="attachment_delete_restrict.global_delete_attachment_group_ids",
     )
 
     global_delete_attachment_user_ids = fields.Many2many(
         "res.users",
         string="Attachment Deletion Users",
-        relation="global_delete_attachment_user_rel",
         help="The users selected here can delete all the attachments",
         readonly=False,
         compute="_compute_global_delete_attachment_user_ids",
@@ -45,7 +43,7 @@ class ResConfigSettings(models.TransientModel):
     )
 
     global_delete_attachment_user_ids_str = fields.Char(
-        string="",
+        string="Attachment Deletion Users (Technical storage field)",
         config_parameter="attachment_delete_restrict.global_delete_attachment_user_ids",
     )
 

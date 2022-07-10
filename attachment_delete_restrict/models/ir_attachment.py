@@ -11,14 +11,14 @@ class IrAttachment(models.Model):
     _inherit = "ir.attachment"
 
     def _check_delete_attachment(self, model, restrict, mode):
-        if restrict == "restrict":
+        if restrict == "owner":
             if self._check_restrict_delete_attachment():
                 return
             else:
                 self._raise_restrict_validation_error()
         elif restrict == "custom":
             self._check_custom_delete_attachment(model, mode)
-        elif restrict == "restrict_custom":
+        elif restrict == "owner_custom":
             if self._check_restrict_delete_attachment():
                 return
             self._check_custom_delete_attachment(model, mode)
