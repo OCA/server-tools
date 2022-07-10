@@ -5,11 +5,11 @@ from odoo import fields, models
 
 RESTRICT_DELETE_ATTACH = [
     ("default", "Use global configuration"),
-    ("restrict", "Restrict: Only creator and admin can delete them"),
+    ("owner", "Owner: Only creator and admin can delete them"),
     ("custom", "Custom: For each model, selected groups and users can " "delete them"),
     (
-        "restrict_custom",
-        "Restrict + Custom: Creator and admin can delete them + for "
+        "owner_custom",
+        "Owner + Custom: Creator and admin can delete them + for "
         "each model, selected groups and users can delete them",
     ),
     ("none", "No restriction: All users / groups can delete them"),
