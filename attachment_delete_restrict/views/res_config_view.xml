@@ -25,7 +25,7 @@
                     </div>
                     <div
                         class="o_setting_right_pane"
-                        attrs="{'invisible': [('global_restrict_delete_attachment','not in',['custom', 'restrict_custom'])]}"
+                        attrs="{'invisible': [('global_restrict_delete_attachment','not in',['custom', 'owner_custom'])]}"
                     >
                         <div>
                             Authorized Groups:

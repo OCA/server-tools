@@ -5,32 +5,89 @@ from odoo.exceptions import ValidationError
 from odoo.tests import SavepointCase, tagged
 
 
+class AbstractCase:
+    def test_restrict_none(self):
+        self._set_restrict_mode("none")
+        self.attachment.with_user(self.user).unlink()
+
+    def test_restrict_custom_user(self):
+        self._set_restrict_mode("custom")
+        with self.assertRaises(ValidationError):
+            self.attachment.with_user(self.user).unlink()
+        self._allow_user()
+        self.attachment.with_user(self.user).unlink()
+
+    def test_restrict_custom_group(self):
+        self._set_restrict_mode("custom")
+        with self.assertRaises(ValidationError):
+            self.attachment.with_user(self.user).unlink()
+        self._allow_group()
+        self.attachment.with_user(self.user).unlink()
+
+    def test_restrict_owner(self):
+        self._set_restrict_mode("owner")
+        with self.assertRaises(ValidationError):
+            self.attachment.with_user(self.user).unlink()
+        self.attachment.with_user(self.user_owner).unlink()
+
+    def test_restrict_owner_admin(self):
+        self._set_restrict_mode("owner")
+        self.attachment.with_user(self.user_admin).unlink()
+
+    def test_restrict_owner_and_custom_user_forbiden(self):
+        self._set_restrict_mode("owner_custom")
+        with self.assertRaises(ValidationError):
+            self.attachment.with_user(self.user).unlink()
+
+    def test_restrict_owner_and_custom_user_owner(self):
+        self._set_restrict_mode("owner_custom")
+        self.attachment.with_user(self.user_owner).unlink()
+
+    def test_restrict_owner_and_custom_user_admin(self):
+        self._set_restrict_mode("owner_custom")
+        self.attachment.with_user(self.user_admin).unlink()
+
+    def test_restrict_owner_and_custom_user(self):
+        self._set_restrict_mode("owner_custom")
+        with self.assertRaises(ValidationError):
+            self.attachment.with_user(self.user).unlink()
+        self._allow_user()
+        self.attachment.with_user(self.user).unlink()
+
+    def test_restrict_owner_and_custom_user_group(self):
+        self._set_restrict_mode("owner_custom")
+        with self.assertRaises(ValidationError):
+            self.attachment.with_user(self.user).unlink()
+        self._allow_group()
+        self.attachment.with_user(self.user).unlink()
+
+
 @tagged("post_install", "-at_install")
-class TestAttachmentDeleteRestrict(SavepointCase):
+class TestAttachmentDeleteAbstract(SavepointCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.param = cls.env["ir.config_parameter"].sudo()
+        cls.param = cls.env["ir.config_parameter"]
         cls.param.set_param(
             "attachment_delete_restrict.global_restrict_delete_attachment", "none"
         )
         cls.partner_model = cls.env["ir.model"].search([("model", "=", "res.partner")])
-        cls.test_group = cls.env["res.groups"].create({"name": "test group"})
-        cls.test_user = cls.env["res.users"].create(
+        cls.group = cls.env.ref("base.group_user")
+        cls.user_owner = cls.env["res.users"].create(
             {
-                "name": "test user",
-                "login": "test@example.com",
+                "name": "test owner user",
+                "login": "test-owner@example.com",
                 "groups_id": [(6, 0, cls.env.ref("base.group_user").ids)],
             }
         )
-        cls.test_user2 = cls.env["res.users"].create(
+        cls.user = cls.env["res.users"].create(
             {
-                "name": "test user2",
+                "name": "test user",
                 "login": "test2@example.com",
                 "groups_id": [(6, 0, cls.env.ref("base.group_user").ids)],
             }
         )
-        cls.test_admin = cls.env["res.users"].create(
+        cls.user_admin = cls.env["res.users"].create(
             {
                 "name": "User admin",
                 "login": "admin@example.com",
@@ -46,12 +103,9 @@ class TestAttachmentDeleteRestrict(SavepointCase):
                 ],
             }
         )
-        cls.test_attachment = cls.env["ir.attachment"].create(
-            {"name": "test attachment", "type": "binary", "res_model": "res.partner"}
-        )
-        cls.test_attachment_2 = (
+        cls.attachment = (
             cls.env["ir.attachment"]
-            .with_user(cls.test_user)
+            .with_user(cls.user_owner)
             .create(
                 {
                     "name": "test attachment 2",
@@ -61,134 +115,42 @@ class TestAttachmentDeleteRestrict(SavepointCase):
             )
         )
 
-    def test_01_delete_attachment_unrestricted(self):
-        self.test_attachment.with_user(self.test_user).unlink()
+    def _set_restrict_mode(self, restrict_mode):
+        raise NotImplementedError
 
-    def test_01_bis_delete_attachment_unrestricted(self):
-        self.partner_model.write({"restrict_delete_attachment": "none"})
-        self.test_attachment.with_user(self.test_user2).unlink()
+    def _allow_user(self):
+        raise NotImplementedError
 
-    def test_02_custom_delete_attachment_restricted_user_permitted(self):
-        self.partner_model.write({"restrict_delete_attachment": "custom"})
-        with self.assertRaises(ValidationError):
-            self.test_attachment.with_user(self.test_user).unlink()
-        self.partner_model.write(
-            {"delete_attachment_user_ids": [(4, self.test_user.id)]}
-        )
-        self.test_attachment.with_user(self.test_user).unlink()
+    def _allow_group(self):
+        raise NotImplementedError
 
-    def test_03_custom_delete_attachment_restricted_group_permitted(self):
-        self.partner_model.write({"restrict_delete_attachment": "custom"})
-        with self.assertRaises(ValidationError):
-            self.test_attachment.with_user(self.test_user).unlink()
-        self.partner_model.write(
-            {"delete_attachment_group_ids": [(4, self.test_group.id)]}
-        )
-        with self.assertRaises(ValidationError):
-            self.test_attachment.with_user(self.test_user).unlink()
-        self.test_user.write({"groups_id": [(4, self.test_group.id)]})
-        self.test_attachment.with_user(self.test_user).unlink()
 
-    def test_04_restrict_owner_can_delete_attachment(self):
-        self.partner_model.write({"restrict_delete_attachment": "restrict"})
-        test_attachment_2 = (
-            self.env["ir.attachment"]
-            .with_user(self.test_user)
-            .create(
-                {
-                    "name": "test attachment 2",
-                    "type": "binary",
-                    "res_model": "res.partner",
-                }
-            )
-        )
-        with self.assertRaises(ValidationError):
-            test_attachment_2.with_user(self.test_user2).unlink()
-        test_attachment_2.with_user(self.test_user).unlink()
-
-    def test_05_restrict_admin_can_delete_attachment(self):
-        self.partner_model.write({"restrict_delete_attachment": "restrict"})
-        self.test_attachment.with_user(self.test_admin).unlink()
-
-    def test_06_global_restrict_restriction(self):
-        self.param.set_param(
-            "attachment_delete_restrict.global_restrict_delete_attachment", "restrict"
-        )
-        with self.assertRaises(ValidationError):
-            self.test_attachment_2.with_user(self.test_user2).unlink()
-        self.test_attachment_2.with_user(self.test_user).unlink()
-
-    def test_07_global_custom_restriction_for_users(self):
-        self.param.set_param(
-            "attachment_delete_restrict.global_restrict_delete_attachment", "custom"
-        )
-        self.param.set_param(
-            "attachment_delete_restrict.global_delete_attachment_user_ids",
-            self.test_user2.ids,
-        )
-        with self.assertRaises(ValidationError):
-            self.test_attachment.with_user(self.test_user).unlink()
-        self.test_attachment.with_user(self.test_user2).unlink()
-
-    def test_08_global_custom_restriction_for_groups(self):
-        self.param.set_param(
-            "attachment_delete_restrict.global_restrict_delete_attachment", "custom"
-        )
-        with self.assertRaises(ValidationError):
-            self.test_attachment.with_user(self.test_user).unlink()
-        self.param.set_param(
-            "attachment_delete_restrict.global_delete_attachment_group_ids",
-            self.test_group.ids,
-        )
-        with self.assertRaises(ValidationError):
-            self.test_attachment.with_user(self.test_user).unlink()
-        self.test_user.write({"groups_id": [(4, self.test_group.id)]})
-        self.test_attachment.with_user(self.test_user).unlink()
-
-    def test_09_global_none_restriction(self):
-        global_restrict = self.param.get_param(
-            "attachment_delete_restrict.global_restrict_delete_attachment"
-        )
-        self.assertEqual(global_restrict, "none")
-        self.test_attachment.with_user(self.test_user).unlink()
-
-    def test_10_restrict_and_custom_delete_user(self):
-        self.partner_model.write({"restrict_delete_attachment": "restrict_custom"})
-        with self.assertRaises(ValidationError):
-            self.test_attachment.with_user(self.test_user2).unlink()
-        self.partner_model.write(
-            {"delete_attachment_user_ids": [(4, self.test_user2.id)]}
-        )
-        self.test_attachment.with_user(self.test_user2).unlink()
-
-        self.test_attachment_2.with_user(self.test_admin).unlink()
-
-    def test_11_restrict_and_custom_delete_group(self):
+class TestAttachmentDeleteGlobal(TestAttachmentDeleteAbstract, AbstractCase):
+    def _set_restrict_mode(self, restrict_mode):
         self.param.set_param(
             "attachment_delete_restrict.global_restrict_delete_attachment",
-            "restrict_custom",
+            restrict_mode,
         )
-        with self.assertRaises(ValidationError):
-            self.test_attachment.with_user(self.test_user).unlink()
-        self.test_user.write({"groups_id": [(4, self.test_group.id)]})
+
+    def _allow_user(self):
+        self.param.set_param(
+            "attachment_delete_restrict.global_delete_attachment_user_ids",
+            self.user.ids,
+        )
+
+    def _allow_group(self):
         self.param.set_param(
             "attachment_delete_restrict.global_delete_attachment_group_ids",
-            self.test_group.ids,
+            self.group.ids,
         )
-        self.test_attachment.with_user(self.test_user).unlink()
-        self.test_attachment_2.with_user(self.test_admin).unlink()
 
-    def test_12_default_model_restriction(self):
-        self.param.set_param(
-            "attachment_delete_restrict.global_restrict_delete_attachment", "custom"
-        )
-        self.param.set_param(
-            "attachment_delete_restrict.global_delete_attachment_group_ids",
-            self.test_group.ids,
-        )
-        self.partner_model.write({"restrict_delete_attachment": "default"})
-        with self.assertRaises(ValidationError):
-            self.test_attachment.with_user(self.test_user).unlink()
 
-        self.test_user.write({"groups_id": [(4, self.test_group.id)]})
-        self.test_attachment.with_user(self.test_user).unlink()
+class TestAttachmentDeleteModel(TestAttachmentDeleteAbstract, AbstractCase):
+    def _set_restrict_mode(self, restrict_mode):
+        self.partner_model.write({"restrict_delete_attachment": restrict_mode})
+
+    def _allow_user(self):
+        self.partner_model.write({"delete_attachment_user_ids": [(4, self.user.id)]})
+
+    def _allow_group(self):
+        self.partner_model.write({"delete_attachment_group_ids": [(4, self.group.id)]})
