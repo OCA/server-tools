@@ -38,11 +38,6 @@
                                 widget="many2many_tags"
                                 options="{'no_create': True}"
                             />
-                             <field
-                                name="global_delete_attachment_group_ids_str"
-                                invisible="1"
-                            />
-
                         </div>
                         <div>
                             Authorized Users:
@@ -54,12 +49,7 @@
                                 widget="many2many_tags"
                                 options="{'no_create': True}"
                             />
-                             <field
-                                name="global_delete_attachment_user_ids_str"
-                                invisible="1"
-                            />
                         </div>
-
                     </div>
                 </div>
             </xpath>

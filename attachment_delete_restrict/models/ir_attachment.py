@@ -1,7 +1,6 @@
 # Copyright 2021 Quartile Limited
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from ast import literal_eval
 
 from odoo import _, models
 from odoo.exceptions import ValidationError
@@ -10,86 +9,70 @@ from odoo.exceptions import ValidationError
 class IrAttachment(models.Model):
     _inherit = "ir.attachment"
 
-    def _check_delete_attachment(self, model, restrict, mode):
-        if restrict == "owner":
-            if self._check_restrict_delete_attachment():
-                return
-            else:
-                self._raise_restrict_validation_error()
-        elif restrict == "custom":
-            self._check_custom_delete_attachment(model, mode)
-        elif restrict == "owner_custom":
-            if self._check_restrict_delete_attachment():
-                return
-            self._check_custom_delete_attachment(model, mode)
-
-    def _check_restrict_delete_attachment(self):
-        if self.create_uid == self.env.user or self.user_has_groups(
-            "base.group_system"
-        ):
-            return True
+    def _check_delete_attachment(self, model=None):
+        if model:
+            restrict = model.restrict_delete_attachment
         else:
-            return False
-
-    def _check_custom_delete_attachment(self, model, mode):
-        if not model and mode != "global":
-            return
-        groups = model.delete_attachment_group_ids
-        users = model.delete_attachment_user_ids
-        param = self.env["ir.config_parameter"].sudo()
-        groups_ids = param.get_param(
-            "attachment_delete_restrict.global_delete_attachment_group_ids"
-        )
-        users_ids = param.get_param(
-            "attachment_delete_restrict.global_delete_attachment_user_ids"
-        )
-        if mode == "global":
-            if groups_ids:
-                groups = self.env["res.groups"].search(
-                    [("id", "in", literal_eval(groups_ids))]
-                )
-            if users_ids:
-                users = self.env["res.users"].search(
-                    [("id", "in", literal_eval(users_ids))]
-                )
-        if groups and self.env.user in groups.mapped("users"):
-            return
-        if users and self.env.user in users:
-            return
-        list_group = "\n".join(list(set(groups.mapped("users").mapped("name"))))
-        list_user = "\n".join(list(set(users.mapped("name"))))
-        user_names = list_group + list_user
-        raise ValidationError(
-            _(
-                "You are not allowed to delete this attachment.\n\nUsers with "
-                "the delete permission:\n%s"
-            )
-            % (user_names or "None")
-        )
-
-    def _raise_restrict_validation_error(self):
-        raise ValidationError(
-            _(
-                "You are not allowed to delete this attachment.\n"
-                "Only the owner and administrators can delete it."
-            )
-        )
-
-    def unlink(self):
-        for rec in self:
-            if not rec.res_model:
-                continue
-            model = self.env["ir.model"].search([("model", "=", rec.res_model)])
-            model_restrict = model.restrict_delete_attachment
-            global_restrict = (
+            restrict = (
                 self.env["ir.config_parameter"]
                 .sudo()
                 .get_param(
                     "attachment_delete_restrict.global_restrict_delete_attachment"
                 )
             )
-            if model_restrict == "default":
-                rec._check_delete_attachment(model, global_restrict, "global")
-            elif model_restrict not in ["default", "none"]:
-                rec._check_delete_attachment(model, model_restrict, "model")
+        if restrict == "owner":
+            self._check_owner_delete_attachment()
+        elif restrict == "custom":
+            self._check_custom_delete_attachment(model)
+        elif restrict == "owner_custom":
+            self._check_custom_delete_attachment(model, allow_owner_and_admin=True)
+
+    def _raise_delete_attachment_error(self, allowed_users):
+        raise ValidationError(
+            _(
+                "You are not allowed to delete this attachment.\n\nUsers with "
+                "the delete permission:\n%s"
+            )
+            % ("\n".join(allowed_users.mapped("name")) or "None")
+        )
+
+    def _check_owner_delete_attachment(self):
+        if not (
+            self.create_uid == self.env.user
+            or self.user_has_groups("base.group_system")
+        ):
+            return self._raise_delete_attachment_error(
+                self.create_uid + self.env.ref("base.group_system").users
+            )
+
+    def _check_custom_delete_attachment(self, model=None, allow_owner_and_admin=False):
+        if model:
+            groups = model.delete_attachment_group_ids
+            users = model.delete_attachment_user_ids
+        else:
+            groups = self.env[
+                "res.config.settings"
+            ]._get_global_delete_attachment_groups()
+            users = self.env[
+                "res.config.settings"
+            ]._get_global_delete_attachment_users()
+        if allow_owner_and_admin:
+            users += self.create_uid
+            groups += self.env.ref("base.group_system")
+        allowed_users = groups.users + users
+        if self.env.user not in allowed_users:
+            return self._raise_delete_attachment_error(allowed_users)
+
+    def unlink(self):
+        res_models = list(set(self.filtered("res_model").mapped("res_model")))
+        if res_models:
+            models = self.env["ir.model"].search([("model", "in", res_models)])
+            name2models = {m.model: m for m in models}
+            for rec in self:
+                if rec.res_model:
+                    model = name2models[rec.res_model]
+                    if model.restrict_delete_attachment == "default":
+                        rec.sudo()._check_delete_attachment()
+                    else:
+                        rec.sudo()._check_delete_attachment(model)
         return super().unlink()

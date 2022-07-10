@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-19 07:58+0000\n"
-"PO-Revision-Date: 2022-05-19 10:07+0200\n"
+"POT-Creation-Date: 2022-07-11 14:14+0000\n"
+"PO-Revision-Date: 2022-07-11 16:16+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.1.1\n"
 
 #. module: attachment_delete_restrict
 #: model:ir.model,name:attachment_delete_restrict.model_res_groups
@@ -29,7 +29,6 @@ msgstr "Pièce jointe"
 
 #. module: attachment_delete_restrict
 #: model:ir.model.fields,field_description:attachment_delete_restrict.field_ir_model__delete_attachment_group_ids
-#: model:ir.model.fields,field_description:attachment_delete_restrict.field_ir_model__global_delete_attachment_group_ids
 #: model:ir.model.fields,field_description:attachment_delete_restrict.field_res_config_settings__global_delete_attachment_group_ids
 msgid "Attachment Deletion Groups"
 msgstr "Groupe avec droit de suppression de PJ"
@@ -44,7 +43,6 @@ msgstr "Modèle avec restrictions de suppression de PJ"
 
 #. module: attachment_delete_restrict
 #: model:ir.model.fields,field_description:attachment_delete_restrict.field_ir_model__delete_attachment_user_ids
-#: model:ir.model.fields,field_description:attachment_delete_restrict.field_ir_model__global_delete_attachment_user_ids
 #: model:ir.model.fields,field_description:attachment_delete_restrict.field_res_config_settings__global_delete_attachment_user_ids
 msgid "Attachment Deletion Users"
 msgstr "Utilisateurs avec droit de suppression de PJ"
@@ -75,7 +73,7 @@ msgstr ""
 #. module: attachment_delete_restrict
 #: model:ir.model.fields,help:attachment_delete_restrict.field_res_config_settings__global_restrict_delete_attachment
 msgid "Define a default value for Attachments Deletion"
-msgstr ""
+msgstr "Définir une valeur par défaut pour la suppression des pièces jointes"
 
 #. module: attachment_delete_restrict
 #: model:ir.model.fields,field_description:attachment_delete_restrict.field_ir_attachment__display_name
@@ -85,16 +83,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:attachment_delete_restrict.field_res_users__display_name
 msgid "Display Name"
 msgstr "Nom affiché"
-
-#. module: attachment_delete_restrict
-#: model:ir.model.fields,field_description:attachment_delete_restrict.field_res_config_settings__global_delete_attachment_group_ids_str
-msgid "Global Delete Attachment Group Ids Str"
-msgstr "Groupe avec droit de suppression de toutes les PJs"
-
-#. module: attachment_delete_restrict
-#: model:ir.model.fields,field_description:attachment_delete_restrict.field_res_config_settings__global_delete_attachment_user_ids_str
-msgid "Global Delete Attachment User Ids Str"
-msgstr "Utilisateurs avec droit de suppression de toutes les PJs"
 
 #. module: attachment_delete_restrict
 #: model:ir.model.fields,field_description:attachment_delete_restrict.field_ir_attachment__id
@@ -127,14 +115,22 @@ msgstr ""
 "Aucune restrictions: Tous les utilisateurs / groupes peuvent supprimer"
 
 #. module: attachment_delete_restrict
-#: model:ir.model.fields.selection,name:attachment_delete_restrict.selection__ir_model__restrict_delete_attachment__restrict_custom
-#: model:ir.model.fields.selection,name:attachment_delete_restrict.selection__res_config_settings__global_restrict_delete_attachment__restrict_custom
+#: model:ir.model.fields.selection,name:attachment_delete_restrict.selection__ir_model__restrict_delete_attachment__owner_custom
+#: model:ir.model.fields.selection,name:attachment_delete_restrict.selection__res_config_settings__global_restrict_delete_attachment__owner_custom
 msgid ""
-"Restrict + Custom: Creator and admin can delete them + for each model, "
+"Owner + Custom: Creator and admin can delete them + for each model, "
 "selected groups and users can delete them"
 msgstr ""
-"Limité + personnalisé : Le propriétaire, les administrateurs et les "
-"utilisateurs de certains groupes peuvent supprimer"
+"Propriétaire + Personnalisé : Le créateur et l'administrateur peuvent les "
+"supprimer + pour chaque modèle, les groupes et utilisateurs sélectionnés "
+"peuvent les supprimer"
+
+#. module: attachment_delete_restrict
+#: model:ir.model.fields.selection,name:attachment_delete_restrict.selection__ir_model__restrict_delete_attachment__owner
+#: model:ir.model.fields.selection,name:attachment_delete_restrict.selection__res_config_settings__global_restrict_delete_attachment__owner
+msgid "Owner: Only creator and admin can delete them"
+msgstr ""
+"Propriétaire : Seuls le créateur et l'administrateur peuvent les supprimer"
 
 #. module: attachment_delete_restrict
 #: model:ir.model.fields,field_description:attachment_delete_restrict.field_ir_model__restrict_delete_attachment
@@ -150,13 +146,6 @@ msgstr "Suppression de PJs Limitée"
 #: model_terms:ir.ui.view,arch_db:attachment_delete_restrict.res_config_settings_view_form
 msgid "Restrict Deletion on attachment"
 msgstr "Restreindre la suppression de PJs"
-
-#. module: attachment_delete_restrict
-#: model:ir.model.fields.selection,name:attachment_delete_restrict.selection__ir_model__restrict_delete_attachment__restrict
-#: model:ir.model.fields.selection,name:attachment_delete_restrict.selection__res_config_settings__global_restrict_delete_attachment__restrict
-msgid "Restrict: Only creator and admin can delete them"
-msgstr ""
-"Limité : Seuls le propriétaire et les administrateurs peuvent supprimer"
 
 #. module: attachment_delete_restrict
 #: model_terms:ir.ui.view,arch_db:attachment_delete_restrict.res_config_settings_view_form
@@ -175,7 +164,6 @@ msgstr ""
 "doit être à \"Personnalisé\" pour que cela s'active."
 
 #. module: attachment_delete_restrict
-#: model:ir.model.fields,help:attachment_delete_restrict.field_ir_model__global_delete_attachment_group_ids
 #: model:ir.model.fields,help:attachment_delete_restrict.field_res_config_settings__global_delete_attachment_group_ids
 msgid "The users in the groups selected here can delete all the attachments."
 msgstr ""
@@ -202,7 +190,6 @@ msgstr ""
 "suppression de PJs\" doit être à \"Personnalisé\" pour que cela s'active."
 
 #. module: attachment_delete_restrict
-#: model:ir.model.fields,help:attachment_delete_restrict.field_ir_model__global_delete_attachment_user_ids
 #: model:ir.model.fields,help:attachment_delete_restrict.field_res_config_settings__global_delete_attachment_user_ids
 msgid "The users selected here can delete all the attachments"
 msgstr "Ces utilisateurs peuvent supprimer toutes les pièces jointes"
@@ -212,6 +199,11 @@ msgstr "Ces utilisateurs peuvent supprimer toutes les pièces jointes"
 msgid ""
 "The users selected here can delete the attachments related to this model."
 msgstr "Ces utilisateurs peuvent supprimer les pièces jointes de ce modèle."
+
+#. module: attachment_delete_restrict
+#: model:ir.model.fields.selection,name:attachment_delete_restrict.selection__ir_model__restrict_delete_attachment__default
+msgid "Use global configuration"
+msgstr ""
 
 #. module: attachment_delete_restrict
 #: model:ir.model,name:attachment_delete_restrict.model_res_users
@@ -240,13 +232,3 @@ msgstr ""
 "\n"
 "Utilisateurs ayant la permission:\n"
 "%s"
-
-#. module: attachment_delete_restrict
-#: code:addons/attachment_delete_restrict/models/ir_attachment.py:0
-#, python-format
-msgid ""
-"You are not allowed to delete this attachment.\n"
-"Only the owner and administrators can delete it."
-msgstr ""
-"Vous n'êtes pas autorisé à supprimer cette pièce jointe.\n"
-"Seulement son créateur et les administrateurs ont le droit."
