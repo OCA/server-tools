@@ -10,6 +10,7 @@ setuptools.setup(
     install_requires=[
         'odoo-addon-auditlog>=15.0dev,<15.1dev',
         'odoo-addon-base_cron_exclusion>=15.0dev,<15.1dev',
+        'odoo-addon-base_exception>=15.0dev,<15.1dev',
         'odoo-addon-base_fontawesome>=15.0dev,<15.1dev',
         'odoo-addon-base_search_fuzzy>=15.0dev,<15.1dev',
         'odoo-addon-base_view_inheritance_extension>=15.0dev,<15.1dev',
