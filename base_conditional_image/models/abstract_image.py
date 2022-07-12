@@ -9,9 +9,7 @@ class AbstractConditionalImage(models.AbstractModel):
     _name = "abstract.conditional.image"
     _description = "Abstract image"
 
-    image = fields.Binary(
-        compute="_compute_image", string="Image", store=False, readonly=True
-    )
+    image = fields.Binary(compute="_compute_image", store=False, readonly=True)
     image_medium = fields.Binary(
         compute="_compute_image",
         string="Medium-sized image",
