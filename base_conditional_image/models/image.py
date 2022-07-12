@@ -9,10 +9,9 @@ class Image(models.Model):
     _name = "image"
     _description = "Image"
 
-    name = fields.Char("Name", required=True)
-    model_name = fields.Char("Model Name", required=True)
+    name = fields.Char(required=True)
+    model_name = fields.Char(required=True)
     selector = fields.Text(
-        "Selector",
         help="Python expression used as selector when multiple images are used"
         "for the same object. The variable `object` refers "
         "to the actual record on which the expression will be executed. "
@@ -29,7 +28,6 @@ class Image(models.Model):
 
     # image: all image fields are base64 encoded and PIL-supported
     image = fields.Binary(
-        "Image",
         attachment=True,
         help="This field holds the standard image, limited to 1024x1024px",
     )
