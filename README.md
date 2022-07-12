@@ -23,6 +23,7 @@ addon | version | maintainers | summary
 --- | --- | --- | ---
 [auditlog](auditlog/) | 15.0.1.0.0 |  | Audit Log
 [base_cron_exclusion](base_cron_exclusion/) | 15.0.1.0.0 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) [![ChrisOForgeFlow](https://github.com/ChrisOForgeFlow.png?size=30px)](https://github.com/ChrisOForgeFlow) | Allow you to select scheduled actions that should not run simultaneously.
+[base_exception](base_exception/) | 15.0.1.0.0 | [![hparfr](https://github.com/hparfr.png?size=30px)](https://github.com/hparfr) [![sebastienbeau](https://github.com/sebastienbeau.png?size=30px)](https://github.com/sebastienbeau) | This module provide an abstract model to manage customizable exceptions to be applied on different models (sale order, invoice, ...)
 [base_fontawesome](base_fontawesome/) | 15.0.5.15.4 |  | Up to date Fontawesome resources.
 [base_search_fuzzy](base_search_fuzzy/) | 15.0.1.0.0 |  | Fuzzy search with the PostgreSQL trigram extension
 [base_view_inheritance_extension](base_view_inheritance_extension/) | 15.0.1.0.1 |  | Adds more operators for view inheritance
