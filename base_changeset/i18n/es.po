@@ -189,6 +189,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_base_multi_image_owner__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_base_partner_merge_automatic_wizard__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_base_partner_merge_line__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_base_time_parameter__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_base_time_parameter_value__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_base_update_translations__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_bus_bus__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_bus_presence__changeset_change_ids
@@ -603,6 +605,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_base_multi_image_owner__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_base_partner_merge_automatic_wizard__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_base_partner_merge_line__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_base_time_parameter__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_base_time_parameter_value__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_base_update_translations__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_bus_bus__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_bus_presence__changeset_ids
@@ -1004,6 +1008,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_base_multi_image_owner__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_base_partner_merge_automatic_wizard__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_base_partner_merge_line__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_base_time_parameter__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_base_time_parameter_value__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_base_update_translations__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_bus_bus__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_bus_presence__count_pending_changeset_changes
@@ -1398,6 +1404,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_base_multi_image_owner__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_base_partner_merge_automatic_wizard__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_base_partner_merge_line__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_base_time_parameter__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_base_time_parameter_value__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_base_update_translations__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_bus_bus__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_bus_presence__count_pending_changesets
@@ -2198,6 +2206,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_base_multi_image_owner__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_base_partner_merge_automatic_wizard__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_base_partner_merge_line__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_base_time_parameter__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_base_time_parameter_value__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_base_update_translations__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_bus_bus__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_bus_presence__user_can_see_changeset
