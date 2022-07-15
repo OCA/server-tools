@@ -265,6 +265,27 @@ class BaseExceptionModel(models.AbstractModel):
             else:
                 rec.exceptions_summary = False
 
+    def _popup_exceptions(self):
+        """This method is used to show the popup action view.
+        Used in several dependent modules."""
+        record = self._get_popup_action()
+        action = record.sudo().read()[0]
+        action = {
+            field: value
+            for field, value in action.items()
+            if field in record._get_readable_fields()
+        }
+        action.update(
+            {
+                "context": {
+                    "active_id": self.ids[0],
+                    "active_ids": self.ids,
+                    "active_model": self._name,
+                }
+            }
+        )
+        return action
+
     @api.model
     def _get_popup_action(self):
         return self.env.ref("base_exception.action_exception_rule_confirm")
