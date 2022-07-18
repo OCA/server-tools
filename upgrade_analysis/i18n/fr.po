@@ -106,7 +106,7 @@ msgstr ""
 #. module: upgrade_analysis
 #: code:addons/upgrade_analysis/models/upgrade_comparison_config.py:0
 #, python-format
-msgid "Could not connect the Odoo server at %s:%s"
+msgid "Could not connect the Odoo server at %(server)s:%(port)s"
 msgstr ""
 
 #. module: upgrade_analysis
@@ -145,7 +145,11 @@ msgid "Database"
 msgstr ""
 
 #. module: upgrade_analysis
-#: model:ir.model.fields,field_description:upgrade_analysis.field_ir_module_module__display_name
+#: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_record__definition
+msgid "Definition"
+msgstr ""
+
+#. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_analysis__display_name
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_attribute__display_name
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_comparison_config__display_name
@@ -186,7 +190,6 @@ msgid "Generate Records Wizard"
 msgstr ""
 
 #. module: upgrade_analysis
-#: model:ir.model.fields,field_description:upgrade_analysis.field_ir_module_module__id
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_analysis__id
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_attribute__id
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_comparison_config__id
@@ -218,7 +221,6 @@ msgid "Is Odoo Module"
 msgstr ""
 
 #. module: upgrade_analysis
-#: model:ir.model.fields,field_description:upgrade_analysis.field_ir_module_module____last_update
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_analysis____last_update
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_attribute____last_update
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_comparison_config____last_update
@@ -317,7 +319,7 @@ msgstr ""
 #. module: upgrade_analysis
 #: code:addons/upgrade_analysis/models/upgrade_record.py:0
 #, python-format
-msgid "No manifest found in %s"
+msgid "No manifest found in %(addon_dir)s"
 msgstr ""
 
 #. module: upgrade_analysis
@@ -365,17 +367,6 @@ msgstr ""
 msgid ""
 "Set to Create if a field is newly created in this module. If this module "
 "modifies an attribute of an existing field, set to Modify."
-msgstr ""
-
-#. module: upgrade_analysis
-#: model:ir.model.fields,field_description:upgrade_analysis.field_ir_module_module__smart_search
-#: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_analysis__smart_search
-#: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_attribute__smart_search
-#: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_comparison_config__smart_search
-#: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_generate_record_wizard__smart_search
-#: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_install_wizard__smart_search
-#: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_record__smart_search
-msgid "Smart Search"
 msgstr ""
 
 #. module: upgrade_analysis
@@ -430,7 +421,7 @@ msgstr ""
 #. module: upgrade_analysis
 #: code:addons/upgrade_analysis/models/upgrade_analysis.py:0
 #, python-format
-msgid "Unexpected root Element: %s in file: %s"
+msgid "Unexpected root Element: %(root)s in file: %(file)s"
 msgstr ""
 
 #. module: upgrade_analysis
