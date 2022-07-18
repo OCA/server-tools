@@ -34,7 +34,7 @@ addon | version | maintainers | summary
 [html_text](html_text/) | 15.0.1.0.0 |  | Generate excerpts from any HTML field
 [module_auto_update](module_auto_update/) | 15.0.1.0.0 |  | Automatically update Odoo modules
 [onchange_helper](onchange_helper/) | 15.0.1.0.0 |  | Technical module that ease execution of onchange in Python code
-[upgrade_analysis](upgrade_analysis/) | 15.0.1.0.4 | [![StefanRijnhart](https://github.com/StefanRijnhart.png?size=30px)](https://github.com/StefanRijnhart) [![legalsylvain](https://github.com/legalsylvain.png?size=30px)](https://github.com/legalsylvain) | Performs a difference analysis between modules installed on two different Odoo instances
+[upgrade_analysis](upgrade_analysis/) | 15.0.2.0.0 | [![StefanRijnhart](https://github.com/StefanRijnhart.png?size=30px)](https://github.com/StefanRijnhart) [![legalsylvain](https://github.com/legalsylvain.png?size=30px)](https://github.com/legalsylvain) | Performs a difference analysis between modules installed on two different Odoo instances
 
 [//]: # (end addons)
 
