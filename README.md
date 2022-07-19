@@ -69,7 +69,7 @@ addon | version | maintainers | summary
 [module_auto_update](module_auto_update/) | 14.0.1.0.1 |  | Automatically update Odoo modules
 [module_change_auto_install](module_change_auto_install/) | 14.0.1.0.3 | [![legalsylvain](https://github.com/legalsylvain.png?size=30px)](https://github.com/legalsylvain) | Customize auto installables modules by configuration
 [module_prototyper](module_prototyper/) | 14.0.1.0.0 |  | Prototype your module.
-[onchange_helper](onchange_helper/) | 14.0.1.0.1 |  | Technical module that ease execution of onchange in Python code
+[onchange_helper](onchange_helper/) | 14.0.1.0.2 |  | Technical module that ease execution of onchange in Python code
 [rpc_helper](rpc_helper/) | 14.0.1.1.0 | [![simahawk](https://github.com/simahawk.png?size=30px)](https://github.com/simahawk) | Helpers for disabling RPC calls
 [scheduler_error_mailer](scheduler_error_mailer/) | 14.0.1.0.0 |  | Scheduler Error Mailer
 [sentry](sentry/) | 14.0.1.0.2 |  | Report Odoo errors to Sentry
