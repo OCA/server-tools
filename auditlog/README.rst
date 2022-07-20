@@ -59,6 +59,15 @@ In case you're having trouble with the amount of records to delete per run,
 you can pass the amount of records to delete for one model per run as the second
 parameter, the default is to delete all records in one go.
 
+Security / Policy
+~~~~~~~~~~~~~~~~~
+
+You need to be aware that logging can contain sensitive data. With raw HTTP logs,
+there not much to do about that, but for ORM logging, the module blacklists all
+fields called `password`. If you really need to audit that (having plain passwords
+laying around is a policy violation basically everywhere), rename your field or
+create a related field used for input.
+
 Usage
 =====
 
