@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo.tests.common import TransactionCase
+from . import common, models
 
 
 class TestOnchangeHelper(TransactionCase):
@@ -34,3 +35,32 @@ class TestOnchangeHelper(TransactionCase):
             {'company_type': 'company'}, ['company_type']
         )
         self.assertEqual(result['is_company'], True)
+
+    def test_specific_onchange(self):
+        common.setup_test_model(self.env, (
+            models.OnchangeHelperTestModel,
+            models.OnchangeHelperTestModelLine,
+        ))
+        record = self.env['onchange.helper.test.model'].create({
+            'name': 'test',
+            'line_ids': [
+                (0, 0, {
+                    'name': 'line 1',
+                }),
+                (0, 0, {
+                    'name': 'line 2',
+                }),
+            ],
+        })
+        self.assertEqual(
+            ', '.join(record.mapped('line_ids.name')),
+            'line 1, line 2',
+        )
+        onchange_vals = record.play_onchanges(
+            {'name': 'test2', 'line_ids': []}, ['name'],
+        )
+        self.assertEqual(onchange_vals['output'], 'test2: line 1, line 2')
+        common.cleanup_test_model(self.env, (
+            models.OnchangeHelperTestModel,
+            models.OnchangeHelperTestModelLine,
+        ))
