@@ -7,7 +7,7 @@ from odoo import models, fields, api, modules, _
 
 FIELDS_BLACKLIST = [
     'id', 'create_uid', 'create_date', 'write_uid', 'write_date',
-    'display_name', '__last_update',
+    'display_name', '__last_update', 'password',
 ]
 # Used for performance, to avoid a dictionary instanciation when we need an
 # empty dict to simplify algorithms
