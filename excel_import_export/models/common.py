@@ -215,6 +215,8 @@ def isdatetime(input_val):
 
 def str_to_number(input_val):
     if isinstance(input_val, str):
+        if len(input_val) > 0 and input_val[0] == "'":
+            return input_val.lstrip("'")
         if ' ' not in input_val:
             if isdatetime(input_val):
                 return parse(input_val)
@@ -224,9 +226,6 @@ def str_to_number(input_val):
             elif isfloat(input_val):
                 if not (input_val.find(".") > 2 and input_val[:1] == '0'):
                     return float(input_val)
-
-    if len(input_val) > 0 and input_val[0] == "'":
-        return input_val.lstrip("'")
 
     return input_val
 
