@@ -223,7 +223,7 @@ def str_to_number(input_val):
                     return int(input_val)
             elif isfloat(input_val):
                 if not (input_val.find(".") > 2 and input_val[:1] == '0'):
-                    return input_val
+                    return float(input_val)
     return input_val
 
 
