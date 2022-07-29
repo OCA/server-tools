@@ -4,7 +4,7 @@
 
 {
     "name": "Track record changesets",
-    "version": "14.0.2.0.1",
+    "version": "15.0.1.0.0",
     "development_status": "Alpha",
     "author": "Onestein, Camptocamp, Odoo Community Association (OCA)",
     "maintainers": ["astirpe"],
@@ -16,13 +16,18 @@
         "security/groups.xml",
         "security/ir.model.access.csv",
         "security/rules.xml",
-        "templates/assets.xml",
         "views/record_changeset_views.xml",
         "views/record_changeset_change_views.xml",
         "views/changeset_field_rule_views.xml",
         "views/menu.xml",
     ],
+    "assets": {
+        "web.assets_backend": [
+            "base_changeset/static/src/js/backend.js",
+            "base_changeset/static/src/scss/backend.scss",
+        ],
+        "web.assets_qweb": ["base_changeset/static/src/xml/backend.xml"],
+    },
     "demo": ["demo/changeset_field_rule.xml"],
-    "qweb": ["static/src/xml/backend.xml"],
     "installable": True,
 }
