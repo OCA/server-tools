@@ -140,7 +140,7 @@ class RecordChangesetChange(models.Model):
         "float": ("float",),
         "monetary": ("monetary",),
         "integer": ("integer",),
-        "text": ("text",),
+        "text": ("text", "html"),
         "boolean": ("boolean",),
         "reference": ("many2one",),
     }

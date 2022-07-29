@@ -2,6 +2,8 @@
 # Copyright 2020 Onestein (<https://www.onestein.eu>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+from markupsafe import Markup
+
 from odoo import fields
 from odoo.tests.common import TransactionCase
 
@@ -203,7 +205,9 @@ class TestChangesetFieldType(ChangesetTestCommon, TransactionCase):
         changes = [(self.field_text, "New comment\non 2 lines", "draft")]
         changeset = self._create_changeset(self.partner, changes)
         changeset.change_ids.apply()
-        self.assertEqual(self.partner[self.field_text.name], "New comment\non 2 lines")
+        self.assertEqual(
+            self.partner[self.field_text.name], Markup("<p>New comment\non 2 lines</p>")
+        )
 
     def test_apply_boolean(self):
         """Apply a change on a Boolean field"""

@@ -6,3 +6,5 @@ access_view_record_changeset_user,changeset for changeset users,model_record_cha
 access_view_record_changeset_change_user,changeset change for changeset users,model_record_changeset_change,group_changeset_user,1,1,1,0
 access_view_record_changeset_manager,changeset for changeset managers,model_record_changeset,group_changeset_manager,1,1,1,1
 access_view_record_changeset_change_manager,changeset change for changeset managers,model_record_changeset_change,group_changeset_manager,1,1,1,1
+access_ir_model_fields_changeset,ir_model_fields changeset,base.model_ir_model_fields,group_changeset_user,1,0,0,0
+access_ir_model_changeset,ir_model_changeset,base.model_ir_model,group_changeset_user,1,0,0,0
