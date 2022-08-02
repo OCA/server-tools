@@ -1,12 +1,11 @@
-# -*- coding: utf-8 -*-
 # Copyright 2011 Daniel Reis
 # Copyright 2016 LasLabs Inc.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
 import logging
-import psycopg2
-
 from contextlib import contextmanager
+
+import psycopg2
 
 from odoo import _, api, fields, models, tools
 
@@ -16,7 +15,7 @@ _logger = logging.getLogger(__name__)
 
 
 class BaseExternalDbsource(models.Model):
-    """ It provides logic for connection to an external data source
+    """It provides logic for connection to an external data source
 
     Classes implementing this interface must provide the following methods
     suffixed with the adapter type. See the method definitions and examples
@@ -34,18 +33,20 @@ class BaseExternalDbsource(models.Model):
     """
 
     _name = "base.external.dbsource"
-    _description = 'External Database Sources'
+    _description = "External Database Sources"
 
     CONNECTORS = [
-        ('postgresql', 'PostgreSQL'),
+        ("postgresql", "PostgreSQL"),
     ]
     # This is appended to the conn string if pass declared but not detected.
     # Children should declare PWD_STRING_CONNECTOR (such as PWD_STRING_FBD)
     #   to allow for override.
-    PWD_STRING = 'PWD=%s;'
+    PWD_STRING = "PWD=%s;"
 
-    name = fields.Char('Datasource name', required=True, size=64)
-    conn_string = fields.Text('Connection string', help="""
+    name = fields.Char("Datasource name", required=True, size=64)
+    conn_string = fields.Text(
+        "Connection string",
+        help="""
     Sample connection strings:
     - Microsoft SQL Server:
       mssql+pymssql://username:%s@server:port/dbname?charset=utf8
@@ -57,34 +58,35 @@ class BaseExternalDbsource(models.Model):
         password=%s
     - SQLite: sqlite:///test.db
     - Elasticsearch: https://user:%s@localhost:9200
-    """)
+    """,
+    )
     conn_string_full = fields.Text(
         readonly=True,
-        compute='_compute_conn_string_full',
+        compute="_compute_conn_string_full",
     )
-    password = fields.Char('Password', size=40)
+    password = fields.Char()
     client_cert = fields.Text()
     client_key = fields.Text()
     ca_certs = fields.Char(
-        help='Path to CA Certs file on server.',
+        help="Path to CA Certs file on server.",
     )
     connector = fields.Selection(
-        CONNECTORS, 'Connector', required=True,
+        CONNECTORS,
+        required=True,
         help="If a connector is missing from the list, check the server "
-             "log to confirm that the required components were detected.",
+        "log to confirm that the required components were detected.",
     )
 
     current_table = None
 
-    @api.multi
-    @api.depends('conn_string', 'password')
+    @api.depends("conn_string", "password")
     def _compute_conn_string_full(self):
         for record in self:
             if record.password:
-                if '%s' not in record.conn_string:
+                if "%s" not in record.conn_string:
                     pwd_string = getattr(
                         record,
-                        'PWD_STRING_%s' % record.connector.upper(),
+                        "PWD_STRING_%s" % record.connector.upper(),
                         record.PWD_STRING,
                     )
                     record.conn_string += pwd_string
@@ -94,87 +96,80 @@ class BaseExternalDbsource(models.Model):
 
     # Interface
 
-    @api.multi
     def change_table(self, name):
-        """ Change the table that is used for CRUD operations """
+        """Change the table that is used for CRUD operations"""
         self.current_table = name
 
-    @api.multi
     def connection_close(self, connection):
-        """ It closes the connection to the data source.
+        """It closes the connection to the data source.
 
         This method calls adapter method of this same name, suffixed with
         the adapter type.
         """
 
-        method = self._get_adapter_method('connection_close')
+        method = self._get_adapter_method("connection_close")
         return method(connection)
 
-    @api.multi
     @contextmanager
     def connection_open(self):
-        """ It provides a context manager for the data source.
+        """It provides a context manager for the data source.
 
         This method calls adapter method of this same name, suffixed with
         the adapter type.
         """
 
-        method = self._get_adapter_method('connection_open')
+        method = self._get_adapter_method("connection_open")
         try:
             connection = method()
             yield connection
         finally:
             try:
                 self.connection_close(connection)
-            except:
-                _logger.exception('Connection close failure.')
+            except Exception:
+                _logger.exception("Connection close failure.")
 
-    @api.multi
-    def execute(
-        self, query=None, execute_params=None, metadata=False, **kwargs
-    ):
-        """ Executes a query and returns a list of rows.
+    def execute(self, query=None, execute_params=None, metadata=False, **kwargs):
+        """Executes a query and returns a list of rows.
 
-            "execute_params" can be a dict of values, that can be referenced
-            in the SQL statement using "%(key)s" or, in the case of Oracle,
-            ":key".
-            Example:
-                query = "SELECT * FROM mytable WHERE city = %(city)s AND
-                            date > %(dt)s"
-                execute_params   = {
-                    'city': 'Lisbon',
-                    'dt': datetime.datetime(2000, 12, 31),
-                }
+        "execute_params" can be a dict of values, that can be referenced
+        in the SQL statement using "%(key)s" or, in the case of Oracle,
+        ":key".
+        Example:
+            query = "SELECT * FROM mytable WHERE city = %(city)s AND
+                        date > %(dt)s"
+            execute_params   = {
+                'city': 'Lisbon',
+                'dt': datetime.datetime(2000, 12, 31),
+            }
 
-            If metadata=True, it will instead return a dict containing the
-            rows list and the columns list, in the format:
-                { 'cols': [ 'col_a', 'col_b', ...]
-                , 'rows': [ (a0, b0, ...), (a1, b1, ...), ...] }
+        If metadata=True, it will instead return a dict containing the
+        rows list and the columns list, in the format:
+            { 'cols': [ 'col_a', 'col_b', ...]
+            , 'rows': [ (a0, b0, ...), (a1, b1, ...), ...] }
         """
 
         # Old API compatibility
         if not query:
             try:
-                query = kwargs['sqlquery']
-            except KeyError:
-                raise TypeError(_('query is a required argument'))
+                query = kwargs["sqlquery"]
+            except KeyError as e:
+                raise TypeError(_("query is a required argument")) from e
         if not execute_params:
             try:
-                execute_params = kwargs['sqlparams']
-            except KeyError:
-                pass
+                execute_params = kwargs["sqlparams"]
+            except KeyError as e:
+                _logger.exception("Error in query:\n%s") % tools.ustr(e)
 
-        method = self._get_adapter_method('execute')
+        method = self._get_adapter_method("execute")
         rows, cols = method(query, execute_params, metadata)
 
         if metadata:
-            return {'cols': cols, 'rows': rows}
+            return {"cols": cols, "rows": rows}
         else:
             return rows
 
-    @api.multi
     def connection_test(self):
-        """ It tests the connection
+        """It tests the connection
 
         Raises:
             ConnectionSuccessError: On connection success
@@ -183,21 +178,21 @@ class BaseExternalDbsource(models.Model):
 
         for obj in self:
             try:
-                with self.connection_open():
+                with obj.connection_open():
                     pass
             except Exception as e:
-                raise ConnectionFailedError(_(
-                    "Connection test failed:\n"
-                    "Here is what we got instead:\n%s"
-                ) % tools.ustr(e))
-        raise ConnectionSuccessError(_(
-            "Connection test succeeded:\n"
-            "Everything seems properly set up!",
-        ))
+                raise ConnectionFailedError(
+                    _("Connection test failed:\n" "Here is what we got instead:\n%s")
+                    % tools.ustr(e)
+                ) from e
+        raise ConnectionSuccessError(
+            _(
+                "Connection test succeeded:\n" "Everything seems properly set up!",
+            )
+        )
 
-    @api.multi
     def remote_browse(self, record_ids, *args, **kwargs):
-        """ It browses for and returns the records from remote by ID
+        """It browses for and returns the records from remote by ID
 
         This method calls adapter method of this same name, suffixed with
         the adapter type.
@@ -211,12 +206,11 @@ class BaseExternalDbsource(models.Model):
         """
 
         assert self.current_table
-        method = self._get_adapter_method('remote_browse')
+        method = self._get_adapter_method("remote_browse")
         return method(record_ids, *args, **kwargs)
 
-    @api.multi
     def remote_create(self, vals, *args, **kwargs):
-        """ It creates a record on the remote data source.
+        """It creates a record on the remote data source.
 
         This method calls adapter method of this same name, suffixed with
         the adapter type.
@@ -230,12 +224,11 @@ class BaseExternalDbsource(models.Model):
         """
 
         assert self.current_table
-        method = self._get_adapter_method('remote_create')
+        method = self._get_adapter_method("remote_create")
         return method(vals, *args, **kwargs)
 
-    @api.multi
     def remote_delete(self, record_ids, *args, **kwargs):
-        """ It deletes records by ID on remote
+        """It deletes records by ID on remote
 
         This method calls adapter method of this same name, suffixed with
         the adapter type.
@@ -249,12 +242,11 @@ class BaseExternalDbsource(models.Model):
         """
 
         assert self.current_table
-        method = self._get_adapter_method('remote_delete')
+        method = self._get_adapter_method("remote_delete")
         return method(record_ids, *args, **kwargs)
 
-    @api.multi
     def remote_search(self, query, *args, **kwargs):
-        """ It searches the remote for the query.
+        """It searches the remote for the query.
 
         This method calls adapter method of this same name, suffixed with
         the adapter type.
@@ -268,12 +260,11 @@ class BaseExternalDbsource(models.Model):
         """
 
         assert self.current_table
-        method = self._get_adapter_method('remote_search')
+        method = self._get_adapter_method("remote_search")
         return method(query, *args, **kwargs)
 
-    @api.multi
     def remote_update(self, record_ids, vals, *args, **kwargs):
-        """ It updates the remote records with the vals
+        """It updates the remote records with the vals
 
         This method calls adapter method of this same name, suffixed with
         the adapter type.
@@ -287,7 +278,7 @@ class BaseExternalDbsource(models.Model):
         """
 
         assert self.current_table
-        method = self._get_adapter_method('remote_update')
+        method = self._get_adapter_method("remote_update")
         return method(record_ids, vals, *args, **kwargs)
 
     # Adapters
@@ -313,9 +304,8 @@ class BaseExternalDbsource(models.Model):
 
     # Compatibility & Private
 
-    @api.multi
     def conn_open(self):
-        """ It opens and returns a connection to the remote data source.
+        """It opens and returns a connection to the remote data source.
 
         This method calls adapter method of this same name, suffixed with
         the adapter type.
@@ -328,7 +318,7 @@ class BaseExternalDbsource(models.Model):
             return connection
 
     def _get_adapter_method(self, method_prefix):
-        """ It returns the connector adapter method for ``method_prefix``.
+        """It returns the connector adapter method for ``method_prefix``.
 
         Args:
             method_prefix: (str) Prefix of adapter method (such as
@@ -340,14 +330,17 @@ class BaseExternalDbsource(models.Model):
         """
 
         self.ensure_one()
-        method = '%s_%s' % (method_prefix, self.connector)
+        method = "%s_%s" % (method_prefix, self.connector)
 
         try:
             return getattr(self, method)
-        except AttributeError:
-            raise NotImplementedError(_(
-                '"%s" method not found, check that all assets are installed '
-                'for the %s connector type.'
-            )) % (
-                method, self.connector,
-            )
+        except AttributeError as e:
+            raise NotImplementedError(
+                _(
+                    '"{}" method not found, check that all assets are installed '
+                    "for the {} connector type."
+                )
+            ).format(
+                method,
+                self.connector,
+            ) from e

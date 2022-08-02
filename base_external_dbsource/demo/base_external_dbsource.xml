@@ -1,6 +1,5 @@
-<?xml version="1.0"?>
-<openerp>
-    <data>
+<?xml version="1.0" ?>
+<odoo>
 
         <record model="base.external.dbsource" id="demo_postgre">
             <field name="name">PostgreSQL local</field>
@@ -8,8 +7,6 @@
             <field name="password">postgresql</field>
             <field name="connector">postgresql</field>
         </record>
-        
-    </data>
-</openerp>
 
 
+</odoo>
