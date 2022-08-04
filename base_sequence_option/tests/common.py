@@ -9,7 +9,7 @@ from odoo.tests import common
 class CommonBaseSequenceOption(common.SavepointCase):
     @classmethod
     def setUpClass(cls):
-        super(CommonBaseSequenceOption, cls).setUpClass()
+        res = super(CommonBaseSequenceOption, cls).setUpClass()
 
         cls.loader = FakeModelLoader(cls.env, cls.__module__)
         cls.loader.backup_registry()
@@ -86,8 +86,9 @@ class CommonBaseSequenceOption(common.SavepointCase):
                 "sequence_id": seq_b.id,
             }
         )
+        return res
 
     @classmethod
     def tearDownClass(cls):
         cls.loader.restore_registry()
-        super(CommonBaseSequenceOption, cls).tearDownClass()
+        return super(CommonBaseSequenceOption, cls).tearDownClass()
