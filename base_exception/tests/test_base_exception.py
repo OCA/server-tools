@@ -6,23 +6,24 @@
 from odoo_test_helper import FakeModelLoader
 
 from odoo.exceptions import UserError, ValidationError
-from odoo.tests import SavepointCase
+from odoo.tests import TransactionCase
 
 
-class TestBaseException(SavepointCase):
+class TestBaseException(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
 
         cls.loader = FakeModelLoader(cls.env, cls.__module__)
         cls.loader.backup_registry()
-        from .purchase_test import ExceptionRule, LineTest, PurchaseTest
+        from .purchase_test import ExceptionRule, LineTest, PurchaseTest, WizardTest
 
-        cls.loader.update_registry((ExceptionRule, LineTest, PurchaseTest))
+        cls.loader.update_registry((ExceptionRule, LineTest, PurchaseTest, WizardTest))
+        cls.partner = cls.env["res.partner"].create({"name": "Foo"})
         cls.po = cls.env["base.exception.test.purchase"].create(
             {
                 "name": "Test base exception to basic purchase",
-                "partner_id": cls.env["res.partner"].create({"name": "Foo"}).id,
+                "partner_id": cls.partner.id,
                 "line_ids": [
                     (0, 0, {"name": "line test", "amount": 120.0, "qty": 1.5})
                 ],
@@ -37,11 +38,12 @@ class TestBaseException(SavepointCase):
                 "exception_type": "by_py_code",
             }
         )
-        cls.exception_rule_confirm_obj = cls.env["exception.rule.confirm"]
-        cls.exception_rule_confirm = cls.exception_rule_confirm.create(
+        exception_rule_confirm_obj = cls.env["exception.rule.confirm.test.purchase"]
+        cls.exception_rule_confirm = exception_rule_confirm_obj.with_context(
+            active_model="base.exception.test.purchase", active_ids=cls.po.ids
+        ).create(
             {
                 "related_model_id": cls.po.id,
-                "exception_ids": [(4, cls.exception_rule.id)],
                 "ignore": False,
             }
         )
@@ -52,6 +54,7 @@ class TestBaseException(SavepointCase):
         return super().tearDownClass()
 
     def test_valid(self):
+        self.partner.write({"zip": "00000"})
         self.exception_rule.active = False
         self.po.button_confirm()
         self.assertFalse(self.po.exception_ids)
@@ -63,6 +66,7 @@ class TestBaseException(SavepointCase):
     def test_fail_by_py(self):
         with self.assertRaises(ValidationError):
             self.po.button_confirm()
+        self.po.with_context(raise_exception=False).button_confirm()
         self.assertTrue(self.po.exception_ids)
 
     def test_fail_by_domain(self):
@@ -74,6 +78,7 @@ class TestBaseException(SavepointCase):
         )
         with self.assertRaises(ValidationError):
             self.po.button_confirm()
+        self.po.with_context(raise_exception=False).button_confirm()
         self.assertTrue(self.po.exception_ids)
 
     def test_fail_by_method(self):
@@ -85,12 +90,14 @@ class TestBaseException(SavepointCase):
         )
         with self.assertRaises(ValidationError):
             self.po.button_confirm()
+        self.po.with_context(raise_exception=False).button_confirm()
         self.assertTrue(self.po.exception_ids)
 
     def test_ignorable_exception(self):
         # Block because of exception during validation
         with self.assertRaises(ValidationError):
             self.po.button_confirm()
+        self.po.with_context(raise_exception=False).button_confirm()
         # Test that we have linked exceptions
         self.assertTrue(self.po.exception_ids)
         # Test ignore exeception make possible for the po to validate
@@ -112,6 +119,7 @@ class TestBaseException(SavepointCase):
         self.assertEqual(self.po.state, "draft")
 
     def test_purchase_check_button_confirm(self):
+        self.partner.write({"zip": "00000"})
         self.po.button_confirm()
         self.assertEqual(self.po.state, "purchase")
 
@@ -128,6 +136,7 @@ class TestBaseException(SavepointCase):
         with self.assertRaises(ValidationError):
             self.po.button_confirm()
         # Test that we have linked exceptions
+        self.po.with_context(raise_exception=False).button_confirm()
         self.assertTrue(self.po.exception_ids)
         self.assertTrue(self.po.exceptions_summary)
         # Test cannot ignore blocked exception
@@ -136,5 +145,6 @@ class TestBaseException(SavepointCase):
         self.assertFalse(self.po.ignore_exception)
         with self.assertRaises(ValidationError):
             self.po.button_confirm()
+        self.po.with_context(raise_exception=False).button_confirm()
         self.assertTrue(self.po.exception_ids)
         self.assertTrue(self.po.exceptions_summary)
