@@ -1,14 +1,17 @@
 # Copyright 2016-2017 Versada <https://versada.eu/>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-import unittest
-
 import mock
+
+from odoo.tests import common
 
 from ..logutils import SanitizeOdooCookiesProcessor
 
 
-class TestOdooCookieSanitizer(unittest.TestCase):
+# Inherit BaseCase as Odoo's test suite no longer works with base unittest
+# classes, but we don't need any transactions provided by inheritors like
+# TransactionCase.
+class TestOdooCookieSanitizer(common.BaseCase):
     def test_cookie_as_string(self):
         data = {
             "request": {

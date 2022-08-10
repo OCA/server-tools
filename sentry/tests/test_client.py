@@ -3,12 +3,12 @@
 
 import logging
 import sys
-import unittest
 
 import raven
 from mock import patch
 
 from odoo import exceptions
+from odoo.tests import common
 
 from .. import initialize_raven
 from ..logutils import OdooSentryHandler
@@ -61,7 +61,10 @@ class InMemoryClient(raven.Client):
         return False
 
 
-class TestClientSetup(unittest.TestCase):
+# Inherit BaseCase as Odoo's test suite no longer works with base unittest
+# classes, but we don't need any transactions provided by inheritors like
+# TransactionCase.
+class TestClientSetup(common.BaseCase):
     def setUp(self):
         super(TestClientSetup, self).setUp()
         self.logger = logging.getLogger(__name__)
