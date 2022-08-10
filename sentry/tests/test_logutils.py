@@ -36,7 +36,11 @@ class TestOdooCookieSanitizer(common.BaseCase):
         )
 
     def test_cookie_as_string_with_partials(self):
-        data = {"request": {"cookies": "website_lang=en_us;session_id;foo=bar"}}
+        data = {
+            "request": {
+                "cookies": "website_lang=en_us;session_id=super_secret_session;foo=bar"
+            }
+        }
 
         proc = SanitizeOdooCookiesProcessor(mock.Mock())
         result = proc.process(data)
