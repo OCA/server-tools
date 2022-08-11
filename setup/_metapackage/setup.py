@@ -50,6 +50,7 @@ setuptools.setup(
         'odoo12-addon-mail_cleanup',
         'odoo12-addon-module_analysis',
         'odoo12-addon-module_auto_update',
+        'odoo12-addon-module_change_auto_install',
         'odoo12-addon-onchange_helper',
         'odoo12-addon-scheduler_error_mailer',
         'odoo12-addon-sentry',
