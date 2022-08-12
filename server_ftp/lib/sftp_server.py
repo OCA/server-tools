@@ -6,12 +6,18 @@ from .abstract_ftp_server import AbstractFTPServer
 
 
 class SFTPServer(AbstractFTPServer):
-    def connect(self, host, port, user, password):
+    def connect(self, host, port, username, password):
         """ Connect to object """
         # TODO: make this secure
         cnopts = pysftp.CnOpts()
         cnopts.hostkeys = None
-        self.server = pysftp.Connection(host, port, user, password, cnopts=cnopts)
+        self.server = pysftp.Connection(
+            host=host,
+            port=port,
+            username=username,
+            password=password,
+            cnopts=cnopts,
+        )
         return self
 
     def close(self):
