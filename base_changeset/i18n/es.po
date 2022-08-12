@@ -321,6 +321,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_mail_test_multi_company__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_mail_test_simple__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_mail_test_track__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_mail_test_track_selection__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_mail_thread__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_mail_thread_blacklist__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_mail_thread_cc__changeset_change_ids
@@ -716,6 +717,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_mail_test_multi_company__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_mail_test_simple__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_mail_test_track__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_mail_test_track_selection__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_mail_thread__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_mail_thread_blacklist__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_mail_thread_cc__changeset_ids
@@ -1098,6 +1100,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_mail_test_multi_company__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_mail_test_simple__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_mail_test_track__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_mail_test_track_selection__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_mail_thread__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_mail_thread_blacklist__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_mail_thread_cc__count_pending_changeset_changes
@@ -1473,6 +1476,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_mail_test_multi_company__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_mail_test_simple__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_mail_test_track__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_mail_test_track_selection__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_mail_thread__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_mail_thread_blacklist__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_mail_thread_cc__count_pending_changesets
@@ -2249,6 +2253,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_mail_test_multi_company__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_mail_test_simple__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_mail_test_track__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_mail_test_track_selection__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_mail_thread__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_mail_thread_blacklist__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_mail_thread_cc__user_can_see_changeset
