@@ -74,7 +74,6 @@ class ProfilerProfileRequestLine(models.Model):
         string="pStats file",
     )
 
-    @api.multi
     def _compute_attachment_id(self):
         attachments = self.env["ir.attachment"].search(
             [("res_model", "=", self._name), ("res_id", "in", self.ids)]
@@ -93,18 +92,18 @@ class ProfilerProfileRequestLine(models.Model):
             tz_create_date = fields.Datetime.context_timestamp(
                 httprequest, httprequest.create_date
             )
-            httprequest.display_name = u"{} ({})".format(
+            httprequest.display_name = "{} ({})".format(
                 httprequest.name or "?",
                 fields.Datetime.to_string(tz_create_date),
             )
 
     def _get_attachment_name(self):
-        """ This is called in 'request' mode only """
+        """This is called in 'request' mode only"""
         return "py_stats_{}_".format(datetime.now().strftime(DATETIME_FORMAT_FILE))
 
     @api.model
     def dump_stats(self, profile):
-        """ This is called in 'request' mode only """
+        """This is called in 'request' mode only"""
         cprofile_fname = self._get_attachment_name()
         tf, cprofile_path = tempfile.mkstemp(suffix=".cprofile", prefix=cprofile_fname)
         os.close(tf)
@@ -112,9 +111,8 @@ class ProfilerProfileRequestLine(models.Model):
         profile.dump_stats(cprofile_path)
         return cprofile_fname, cprofile_path
 
-    @api.multi
     def dump_stats_db(self, cprofile_fname, cprofile_path):
-        """ This is called in 'request' mode only """
+        """This is called in 'request' mode only"""
         self.ensure_one()
         with open(cprofile_path, "rb") as f_cprofile:
             datas = f_cprofile.read()
@@ -129,7 +127,7 @@ class ProfilerProfileRequestLine(models.Model):
                 "res_id": self.id,
                 "res_model": self._name,
                 "datas": base64.b64encode(datas),
-                "datas_fname": cprofile_fname,
+                "store_fname": cprofile_fname,
                 "description": "cProfile dump stats",
             }
         )
@@ -150,12 +148,11 @@ class ProfilerProfilePythonLine(models.Model):
     cprof_ctpercall = fields.Float("CT per call")
     cprof_fname = fields.Char("Filename:lineno(method)")
 
-    @api.multi
     def unlink(self):
         self.env["ir.attachment"].search(
-            [("res_model", "=", self._name), ("res_id", "in", self.ids),]
+            [("res_model", "=", self._name), ("res_id", "in", self.ids)]
         ).unlink()
-        return super(ProfilerProfilePythonLine, self).unlink()
+        return super().unlink()
 
 
 class ProfilerProfile(models.Model):
@@ -167,7 +164,6 @@ class ProfilerProfile(models.Model):
         ("request", "Per HTTP request"),
     ]
 
-    @api.multi
     def create_request_line(self):
         """Create a record corresponding to the current HTTP request and return
         it. If no HTTP request is available, return None."""
@@ -221,7 +217,7 @@ class ProfilerProfile(models.Model):
     date_started = fields.Char(readonly=True)
     date_finished = fields.Char(readonly=True)
     state = fields.Selection(
-        [("enabled", "Enabled"), ("disabled", "Disabled"),],
+        [("enabled", "Enabled"), ("disabled", "Disabled")],
         default="disabled",
         readonly=True,
         required=True,
@@ -246,19 +242,17 @@ class ProfilerProfile(models.Model):
         "profiler.profile.request.line", "profile_id", "HTTP requests"
     )
 
-    @api.multi
     def _compute_attachment_count(self):
         for record in self:
             self.attachment_count = self.env["ir.attachment"].search_count(
                 [("res_model", "=", self._name), ("res_id", "=", record.id)]
             )
 
-    @api.multi
     def unlink(self):
         self.env["ir.attachment"].search(
-            [("res_model", "=", self._name), ("res_id", "in", self.ids),]
+            [("res_model", "=", self._name), ("res_id", "in", self.ids)]
         ).unlink()
-        return super(ProfilerProfile, self).unlink()
+        return super().unlink()
 
     @api.onchange("enable_postgresql")
     def onchange_enable_postgresql(self):
@@ -350,7 +344,6 @@ export PGOPTIONS="-c log_min_duration_statement=0 \\
         now = self.env.cr.fetchall()[0][0]
         return now
 
-    @api.multi
     def enable(self):
         self.ensure_one()
         if (
@@ -380,7 +373,6 @@ export PGOPTIONS="-c log_min_duration_statement=0 \\
             )
         return True
 
-    @api.multi
     def _reset_postgresql(self):
         if not self.enable_postgresql:
             return
@@ -419,7 +411,6 @@ export PGOPTIONS="-c log_min_duration_statement=0 \\
         pstats_stream = None
         return stats_string
 
-    @api.multi
     def dump_postgresql_logs(self, indexed=None):
         self.ensure_one()
         self.description = ""
@@ -440,7 +431,7 @@ export PGOPTIONS="-c log_min_duration_statement=0 \\
                 "res_id": self.id,
                 "res_model": self._name,
                 "datas": base64.b64encode(datas),
-                "datas_fname": fname,
+                "store_fname": fname,
                 "description": "pgbadger html output",
             }
         )
@@ -465,21 +456,20 @@ export PGOPTIONS="-c log_min_duration_statement=0 \\
             result.append(tools.html_sanitize(lxml.html.tostring(this_result[0])))
         return result
 
-    @api.multi
     def _get_pgbadger_command(self):
         self.ensure_one()
         # TODO: Catch early the following errors.
         try:
             pgbadger_bin = tools.find_in_path("pgbadger")
-        except IOError:
+        except OSError:
             self.description += "\nInstall 'apt-get install pgbadger'"
             return
         try:
             if not self.pg_log_path:
-                raise IOError
-            with open(self.pg_log_path, "r"):
+                raise OSError
+            with open(self.pg_log_path):
                 pass
-        except IOError:
+        except OSError:
             self.description += (
                 "\nCheck if exists and has permission to read the log file."
                 "\nMaybe running: chmod 604 '%s'"
@@ -518,9 +508,8 @@ export PGOPTIONS="-c log_min_duration_statement=0 \\
         fname = "%s_%d_%s_to_%s%s" % (prefix, self.id, started, finished, suffix)
         return fname
 
-    @api.multi
     def dump_stats(self):
-        """ This is used in 'full' mode only """
+        """This is used in 'full' mode only"""
         self.ensure_one()
         attachment = None
         with tools.osutil.tempdir() as dump_dir:
@@ -538,7 +527,7 @@ export PGOPTIONS="-c log_min_duration_statement=0 \\
                         "res_id": self.id,
                         "res_model": self._name,
                         "datas": base64.b64encode(datas),
-                        "datas_fname": cprofile_fname,
+                        "store_fname": cprofile_fname,
                         "description": "cProfile dump stats",
                     }
                 )
@@ -580,14 +569,13 @@ export PGOPTIONS="-c log_min_duration_statement=0 \\
                                 }
                             )
                         attachment.index_content = py_stats
-                except IOError:
+                except OSError:
                     # Fancy feature but not stop process if fails
                     _logger.info(
                         "There was an error while getting the stats "
                         "from the cprofile_path"
                     )
                     # pylint: disable=unnecessary-pass
-                    pass
                 self.dump_postgresql_logs()
                 _logger.info("cProfile stats stored.")
             else:
@@ -595,7 +583,6 @@ export PGOPTIONS="-c log_min_duration_statement=0 \\
 
         return attachment
 
-    @api.multi
     def clear(self, reset_date=True):
         self.ensure_one()
         _logger.info("Clear profiler")
@@ -604,7 +591,6 @@ export PGOPTIONS="-c log_min_duration_statement=0 \\
         ProfilerProfile.profile.clear()
         return True
 
-    @api.multi
     def disable(self):
         self.ensure_one()
         _logger.info("Disabling profiler")
@@ -664,7 +650,6 @@ export PGOPTIONS="-c log_min_duration_statement=0 \\
         else:
             yield
 
-    @api.multi
     def action_view_attachment(self):
         attachments = self.env["ir.attachment"].search(
             [("res_model", "=", self._name), ("res_id", "=", self.id)]
@@ -713,4 +698,4 @@ export PGOPTIONS="-c log_min_duration_statement=0 \\
     @api.model
     def _setup_complete(self):
         self.set_pgoptions_enabled()
-        return super(ProfilerProfile, self)._setup_complete()
+        return super()._setup_complete()

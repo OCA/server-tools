@@ -1,7 +1,7 @@
 # Copyright 2018 Vauxoo (https://www.vauxoo.com) <info@vauxoo.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from mock import MagicMock, patch
+from unittest.mock import MagicMock, patch
 
 import odoo.http
 from odoo.tests.common import HttpCase, at_install, get_db_name, post_install
@@ -14,7 +14,7 @@ class TestProfiling(HttpCase):
         """We are testing the creation of a profile."""
         prof_obj = self.env["profiler.profile"]
         profile = prof_obj.create(
-            {"name": "this_profiler", "enable_python": True, "python_method": "full",}
+            {"name": "this_profiler", "enable_python": True, "python_method": "full"}
         )
         self.assertEqual(0, profile.attachment_count)
         profile.enable()
@@ -85,7 +85,7 @@ class TestProfiling(HttpCase):
                 }
             )
             profile.enable()
-            self.assertEquals(profile.session, session_id)
+            self.assertEqual(profile.session, session_id)
             profiler_id = profile.id
             odoo.http.dispatch_rpc(
                 "object",
@@ -93,4 +93,4 @@ class TestProfiling(HttpCase):
                 (db, uid, password, "profiler.profile", "read", [profiler_id]),
             )
             profile.disable()
-            self.assertEquals(len(profile.py_request_lines), 1)
+            self.assertEqual(len(profile.sudo().py_request_lines), 1)
