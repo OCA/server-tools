@@ -56,7 +56,6 @@
     <record id="action_view_profiling_lines" model="ir.actions.act_window">
         <field name="name">Profiling lines</field>
         <field name="res_model">profiler.profile.python.line</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field eval="False" name="view_id" />
         <field name="domain">[]</field>
