@@ -1,11 +1,11 @@
 {
     "name": "profiler",
     "author": "Vauxoo, Sunflower IT, Odoo Community Association (OCA)",
-    "website": "https://github.com/OCA/server-tools/tree/12.0/profiler",
+    "website": "https://github.com/OCA/server-tools",
     "category": "Tests",
-    "version": "12.0.1.0.0",
+    "version": "13.0.1.0.0",
     "license": "AGPL-3",
-    "depends": ["document", "web_tour"],
+    "depends": ["web_tour"],
     "data": [
         "security/ir.model.access.csv",
         "views/profiler_profile_view.xml",
