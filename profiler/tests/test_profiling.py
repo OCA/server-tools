@@ -2,9 +2,14 @@
 # Copyright 2018 Vauxoo (https://www.vauxoo.com) <info@vauxoo.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo.tests.common import HttpCase
+from mock import MagicMock, patch
+
+import odoo.http
+from odoo.tests.common import at_install, get_db_name, HttpCase, post_install
 
 
+@at_install(False)
+@post_install(True)
 class TestProfiling(HttpCase):
 
     def test_profile_creation(self):
@@ -50,3 +55,35 @@ class TestProfiling(HttpCase):
             self.env.cr.dbname, 'this is not a user',
             'this is not a password', {}))
         profile.disable()
+
+    def test_profile_creation_http(self):
+        """We are testing the creation of a profile based on HTTP calls."""
+        db = get_db_name()
+        login = 'admin'
+        password = 'admin'
+        session_id = '1234567890'
+        admin_user = self.env['res.users'].search([('login', '=', login)])
+        with patch('odoo.http.request') as request:
+            uid = self.xmlrpc_common.authenticate(db, login, password, {})
+            self.assertEquals(uid, admin_user.id)
+            request.uid = uid
+            request.httprequest = MagicMock()
+            request.httprequest.session.sid = session_id
+            request.httprequest.url_root = 'http://localhost:8069'
+            request.httprequest.path = '/test_url'
+            request.env = self.env
+            request.context = self.env.context
+            prof_obj = self.env['profiler.profile']
+            profile = prof_obj.create({
+                'name': 'this_http_profiler',
+                'enable_python': True,
+                'python_method': 'request'
+            })
+            profile.enable()
+            self.assertEquals(profile.session, session_id)
+            profiler_id = profile.id
+            odoo.http.dispatch_rpc("object", "execute_kw", (
+                db, uid, password, 'profiler.profile', 'read', [profiler_id]
+            ))
+            profile.disable()
+            self.assertEquals(len(profile.py_request_lines), 1)
