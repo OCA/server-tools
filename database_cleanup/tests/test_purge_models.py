@@ -1,9 +1,13 @@
 # Copyright 2021 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
+from odoo.tests.common import tagged
+
 from .common import Common
 
 
+# Use post_install to get all models loaded more info: odoo/odoo#13458
+@tagged("post_install", "-at_install")
 class TestCleanupPurgeLineColumn(Common):
     def setUp(self):
         super(TestCleanupPurgeLineColumn, self).setUp()
@@ -22,7 +26,7 @@ class TestCleanupPurgeLineColumn(Common):
         self.env.registry.models.pop(self.model_name)
 
     def tearDown(self):
-        """ We recreate the model to avoid registry Exception at loading """
+        """We recreate the model to avoid registry Exception at loading"""
         super(TestCleanupPurgeLineColumn, self).tearDown()
         # FIXME: issue origin is not clear but it must be addressed.
         self.model = self.env["ir.model"].create(self.model_values)
