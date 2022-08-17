@@ -1,9 +1,13 @@
 # Copyright 2021 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
+from odoo.tests.common import tagged
+
 from .common import Common
 
 
+# Use post_install to get all models loaded more info: odoo/odoo#13458
+@tagged("post_install", "-at_install")
 class TestCleanupPurgeLineProperty(Common):
     def setUp(self):
         super(TestCleanupPurgeLineProperty, self).setUp()
