@@ -3,11 +3,8 @@
 
 from odoo.modules.registry import Registry
 from odoo.tests import TransactionCase
-from odoo.tests.common import tagged
 
 
-# Use post_install to get all models loaded more info: odoo/odoo#13458
-@tagged("post_install", "-at_install")
 class Common(TransactionCase):
     def setUp(self):
         super(Common, self).setUp()
