@@ -77,7 +77,7 @@ class CleanupPurgeWizardModule(models.TransientModel):
                     {
                         "name": module.name,
                     }
-                ).purge()
+                )
                 continue
             res.append((0, 0, {"name": module.name}))
 
