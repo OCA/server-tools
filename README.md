@@ -30,6 +30,7 @@ addon | version | maintainers | summary
 [base_time_window](base_time_window/) | 15.0.1.0.0 |  | Base model to handle time windows
 [base_view_inheritance_extension](base_view_inheritance_extension/) | 15.0.1.0.1 |  | Adds more operators for view inheritance
 [datetime_formatter](datetime_formatter/) | 15.0.1.0.0 |  | Helper functions to give correct format to date[time] fields
+[dbfilter_from_header](dbfilter_from_header/) | 15.0.1.0.0 |  | Filter databases with HTTP headers
 [fetchmail_incoming_log](fetchmail_incoming_log/) | 15.0.1.0.0 |  | Log all messages received, before they start to be processed.
 [fetchmail_notify_error_to_sender](fetchmail_notify_error_to_sender/) | 15.0.1.0.0 |  | If fetching mails gives error, send an email to sender
 [html_text](html_text/) | 15.0.1.0.0 |  | Generate excerpts from any HTML field
