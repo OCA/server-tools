@@ -17,6 +17,7 @@ setuptools.setup(
         'odoo-addon-base_time_window>=15.0dev,<15.1dev',
         'odoo-addon-base_view_inheritance_extension>=15.0dev,<15.1dev',
         'odoo-addon-datetime_formatter>=15.0dev,<15.1dev',
+        'odoo-addon-dbfilter_from_header>=15.0dev,<15.1dev',
         'odoo-addon-fetchmail_incoming_log>=15.0dev,<15.1dev',
         'odoo-addon-fetchmail_notify_error_to_sender>=15.0dev,<15.1dev',
         'odoo-addon-html_text>=15.0dev,<15.1dev',
