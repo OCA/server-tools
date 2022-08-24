@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-10 02:52+0000\n"
-"PO-Revision-Date: 2022-08-23 16:07+0000\n"
+"PO-Revision-Date: 2022-08-24 15:07+0000\n"
 "Last-Translator: Pedro Castro Silva <pedrocs@exo.pt>\n"
 "Language-Team: Portuguese (https://www.transifex.com/oca/teams/23907/pt/)\n"
 "Language: pt\n"
@@ -513,7 +513,7 @@ msgstr "Plataformas"
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_template__property_ids
 #: model:ir.ui.menu,name:base_custom_info.menu_property
 msgid "Properties"
-msgstr "Imóveis"
+msgstr "Propriedades"
 
 #. module: base_custom_info
 #: model:ir.model.fields,help:base_custom_info.field_custom_info_category__property_ids
@@ -529,7 +529,7 @@ msgstr "Propriedades onde esta opção está ativada."
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value__property_id
 #: model_terms:ir.ui.view,arch_db:base_custom_info.custom_info_value_search
 msgid "Property"
-msgstr "Imóvel"
+msgstr "Propriedade"
 
 #. module: base_custom_info
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_property__info_value_ids
