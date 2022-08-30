@@ -41,6 +41,7 @@ setuptools.setup(
         'odoo14-addon-base_view_inheritance_extension',
         'odoo14-addon-bus_alt_connection',
         'odoo14-addon-configuration_helper',
+        'odoo14-addon-database_cleanup',
         'odoo14-addon-datetime_formatter',
         'odoo14-addon-dbfilter_from_header',
         'odoo14-addon-excel_import_export',
