@@ -478,7 +478,7 @@ msgid "Values"
 msgstr "Werte"
 
 #. module: auditlog
-#: code:addons/auditlog/models/rule.py:568
+#: code:addons/auditlog/models/rule.py:578
 #, python-format
 msgid "View logs"
 msgstr "Protokolle sichten"
