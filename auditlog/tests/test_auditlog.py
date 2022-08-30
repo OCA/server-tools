@@ -1,6 +1,7 @@
 # Copyright 2015 Therp BV <https://therp.nl>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo.tests.common import TransactionCase
+from odoo.tools import mute_logger, sql
 
 
 class AuditlogCommon(object):
@@ -158,6 +159,27 @@ class AuditlogCommon(object):
         self.assertTrue(log_record)
         if self.groups_rule.capture_record:
             self.assertTrue(len(log_record.line_ids) > 0)
+
+    def test_LogDuringUpdate(self):
+        """Seventh test, check that no exception comes when we log data
+        and the auditlog rule model is not up to date"""
+        Rule = self.env["auditlog.rule"]
+        field_name = "capture_record"
+        temp_name = "temp_hidden_" + field_name
+        sql.rename_column(self.env.cr, Rule._table, field_name, temp_name)
+
+        with mute_logger('odoo.sql_db', 'odoo.addons.auditlog.models.rule'):
+            self.groups_rule.subscribe()
+            testgroup7 = self.env['res.groups'].create({
+                'name': 'testgroup7',
+            })
+
+        self.assertFalse(self.env['auditlog.log'].search([
+            ('model_id', '=', self.groups_model_id),
+            ('method', '=', 'create'),
+            ('res_id', '=', testgroup7.id),
+        ]))
+        sql.rename_column(self.env.cr, Rule._table, temp_name, field_name)
 
 
 class TestAuditlogFull(TransactionCase, AuditlogCommon):
