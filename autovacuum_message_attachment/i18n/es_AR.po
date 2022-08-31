@@ -6,23 +6,25 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2022-08-31 19:07+0000\n"
+"Last-Translator: Ignacio Buioli <ibuioli@gmail.com>\n"
 "Language-Team: none\n"
 "Language: es_AR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_vacuum_rule__active
 msgid "Active"
-msgstr ""
+msgstr "Activo"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields.selection,name:autovacuum_message_attachment.selection__vacuum_rule__message_type__all
 msgid "All"
-msgstr ""
+msgstr "Todos"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field__unknown__assigned_attachment_ids
@@ -455,32 +457,32 @@ msgstr ""
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_web_tour_tour__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_wizard_ir_model_menu_create__assigned_attachment_ids
 msgid "Assigned Attachments"
-msgstr ""
+msgstr "Adjuntos Asignados"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model,name:autovacuum_message_attachment.model_ir_attachment
 #: model:ir.model.fields.selection,name:autovacuum_message_attachment.selection__vacuum_rule__ttype__attachment
 msgid "Attachment"
-msgstr ""
+msgstr "Adjunto"
 
 #. module: autovacuum_message_attachment
 #: model:ir.actions.server,name:autovacuum_message_attachment.ir_cron_vacuum_attachment_ir_actions_server
 #: model:ir.cron,cron_name:autovacuum_message_attachment.ir_cron_vacuum_attachment
 #: model:ir.cron,name:autovacuum_message_attachment.ir_cron_vacuum_attachment
 msgid "AutoVacuum Attachments"
-msgstr ""
+msgstr "AutoLimpiar Adjuntos"
 
 #. module: autovacuum_message_attachment
 #: model:ir.actions.server,name:autovacuum_message_attachment.ir_cron_vacuum_message_ir_actions_server
 #: model:ir.cron,cron_name:autovacuum_message_attachment.ir_cron_vacuum_message
 #: model:ir.cron,name:autovacuum_message_attachment.ir_cron_vacuum_message
 msgid "AutoVacuum Mails and Messages"
-msgstr ""
+msgstr "AutoLimpiar Mails y Mensajes"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model,name:autovacuum_message_attachment.model_base
 msgid "Base"
-msgstr ""
+msgstr "Base"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_autovacuum_mixin__changeset_change_ids
@@ -488,7 +490,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_message__changeset_change_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_vacuum_rule__changeset_change_ids
 msgid "Changeset Changes"
-msgstr ""
+msgstr "Cambios en el Conjunto de Cambios"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_autovacuum_mixin__changeset_ids
@@ -496,17 +498,17 @@ msgstr ""
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_message__changeset_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_vacuum_rule__changeset_ids
 msgid "Changesets"
-msgstr ""
+msgstr "Conjunto de Cambios"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields.selection,name:autovacuum_message_attachment.selection__vacuum_rule__message_type__comment
 msgid "Comment"
-msgstr ""
+msgstr "Comentario"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_vacuum_rule__company_id
 msgid "Company"
-msgstr ""
+msgstr "Compañía"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_autovacuum_mixin__count_pending_changeset_changes
@@ -514,7 +516,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_message__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_vacuum_rule__count_pending_changeset_changes
 msgid "Count Pending Changeset Changes"
-msgstr ""
+msgstr "Contar los Cambios Pendientes del Conjunto de Cambios"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_autovacuum_mixin__count_pending_changesets
@@ -522,23 +524,23 @@ msgstr ""
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_message__count_pending_changesets
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_vacuum_rule__count_pending_changesets
 msgid "Count Pending Changesets"
-msgstr ""
+msgstr "Contar Conjunto de Cambios Pendientes"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_vacuum_rule__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creado por"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_vacuum_rule__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creado en"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_vacuum_rule__description
 #: model_terms:ir.ui.view,arch_db:autovacuum_message_attachment.vacuum_rule_form_view
 msgid "Description"
-msgstr ""
+msgstr "Descripción"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_autovacuum_mixin__display_name
@@ -546,22 +548,22 @@ msgstr ""
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_message__display_name
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_vacuum_rule__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Mostrar Nombre"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields.selection,name:autovacuum_message_attachment.selection__vacuum_rule__message_type__email
 msgid "Email"
-msgstr ""
+msgstr "Email"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_vacuum_rule__empty_subtype
 msgid "Empty Subtype"
-msgstr ""
+msgstr "Subtipo Vacío"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_vacuum_rule__filename_pattern
 msgid "Filename Pattern"
-msgstr ""
+msgstr "Patrón del Nombre del Archivo"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_autovacuum_mixin__id
@@ -569,12 +571,14 @@ msgstr ""
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_message__id
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_vacuum_rule__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,help:autovacuum_message_attachment.field_vacuum_rule__filename_pattern
 msgid "If set, only attachments containing this pattern will be deleted."
 msgstr ""
+"Si se establece, solo se eliminarán los archivos adjuntos que contengan este "
+"patrón."
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_autovacuum_mixin____last_update
@@ -582,49 +586,49 @@ msgstr ""
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_message____last_update
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_vacuum_rule____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última modificación en"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_vacuum_rule__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Última actualización realizada por"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_vacuum_rule__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Última actualización el"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model,name:autovacuum_message_attachment.model_mail_message
 #: model:ir.model.fields.selection,name:autovacuum_message_attachment.selection__vacuum_rule__ttype__message
 msgid "Message"
-msgstr ""
+msgstr "Mensaje"
 
 #. module: autovacuum_message_attachment
 #: model_terms:ir.ui.view,arch_db:autovacuum_message_attachment.vacuum_rule_form_view
 msgid "Message Models"
-msgstr ""
+msgstr "Modelos de Mensaje"
 
 #. module: autovacuum_message_attachment
 #: model_terms:ir.ui.view,arch_db:autovacuum_message_attachment.vacuum_rule_form_view
 msgid "Message Subtypes"
-msgstr ""
+msgstr "Subtipos de Mensaje"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_vacuum_rule__message_type
 msgid "Message Type"
-msgstr ""
+msgstr "Tipo de Mensaje"
 
 #. module: autovacuum_message_attachment
 #: model_terms:ir.ui.view,arch_db:autovacuum_message_attachment.vacuum_rule_form_view
 msgid "Message Vacuum Rule"
-msgstr ""
+msgstr "Regla de Limpieza de Mensaje"
 
 #. module: autovacuum_message_attachment
 #: model:ir.actions.act_window,name:autovacuum_message_attachment.action_vacuum_rule
 #: model:ir.ui.menu,name:autovacuum_message_attachment.menu_action_vacuum_rule
 msgid "Message and Attachment Vacuum Rule"
-msgstr ""
+msgstr "Regla de Limpieza de Mensajes y Adjuntos"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,help:autovacuum_message_attachment.field_vacuum_rule__message_subtype_ids
@@ -632,31 +636,33 @@ msgid ""
 "Message subtypes concerned by the rule. If left empty, the system won't take"
 " the subtype into account to find the messages to delete"
 msgstr ""
+"Subtipos de mensajes afectados por la regla. Si se deja vacío, el sistema no "
+"tendrá en cuenta el subtipo para buscar los mensajes a eliminar"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model,name:autovacuum_message_attachment.model_autovacuum_mixin
 msgid "Mixin used to delete messages or attachments"
-msgstr ""
+msgstr "Mixin utilizado para eliminar mensajes o archivos adjuntos"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_vacuum_rule__model_id
 msgid "Model"
-msgstr ""
+msgstr "Modelo"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_vacuum_rule__model_filter_domain
 msgid "Model Filter Domain"
-msgstr ""
+msgstr "Dominio de Filtro de Modelo"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_vacuum_rule__model
 msgid "Model code"
-msgstr ""
+msgstr "Código del modelo"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_vacuum_rule__model_ids
 msgid "Models"
-msgstr ""
+msgstr "Modelos"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,help:autovacuum_message_attachment.field_vacuum_rule__model_ids
@@ -664,11 +670,13 @@ msgid ""
 "Models concerned by the rule. If left empty, it will take all models into "
 "account"
 msgstr ""
+"Modelos afectados por la regla. Si se deja vacío, tendrá en cuenta todos los "
+"modelos"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_vacuum_rule__name
 msgid "Name"
-msgstr ""
+msgstr "Nombre"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,help:autovacuum_message_attachment.field_vacuum_rule__retention_time
@@ -677,16 +685,19 @@ msgid ""
 "database after creation. Once the delay is passed, they will be "
 "automatically deleted."
 msgstr ""
+"Número de días que los mensajes afectados por esta regla se mantendrán en la "
+"base de datos después de su creación. Una vez superado el retraso, se "
+"eliminarán automáticamente."
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_vacuum_rule__retention_time
 msgid "Retention Time"
-msgstr ""
+msgstr "Tiempo de Retención"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model,name:autovacuum_message_attachment.model_vacuum_rule
 msgid "Rules Used to delete message historic"
-msgstr ""
+msgstr "Reglas utilizadas para eliminar el histórico de mensajes"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_autovacuum_mixin__smart_search
@@ -694,22 +705,22 @@ msgstr ""
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_message__smart_search
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_vacuum_rule__smart_search
 msgid "Smart Search"
-msgstr ""
+msgstr "Búsqueda Inteligente"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_vacuum_rule__message_subtype_ids
 msgid "Subtypes"
-msgstr ""
+msgstr "Subtipos"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields.selection,name:autovacuum_message_attachment.selection__vacuum_rule__message_type__notification
 msgid "System notification"
-msgstr ""
+msgstr "Notificación del sistema"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,help:autovacuum_message_attachment.field_vacuum_rule__empty_subtype
 msgid "Take also into account messages with no subtypes"
-msgstr ""
+msgstr "Tenga en cuenta también los mensajes sin subtipos"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,help:autovacuum_message_attachment.field_vacuum_rule__model_id
@@ -717,17 +728,19 @@ msgid ""
 "Technical field used to set attributes (invisible/required, domain, "
 "etc...for other fields, like the domain filter"
 msgstr ""
+"Campo técnico utilizado para establecer atributos (invisible/requerido, "
+"dominio, etc...) para otros campos, como el filtro de dominio"
 
 #. module: autovacuum_message_attachment
 #: code:addons/autovacuum_message_attachment/models/vacuum_rule.py:0
 #, python-format
 msgid "The Retention Time can't be 0 days"
-msgstr ""
+msgstr "La Retención de Tiempo no puede ser 0 días"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_vacuum_rule__ttype
 msgid "Type"
-msgstr ""
+msgstr "Tipo"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_autovacuum_mixin__user_can_see_changeset
@@ -735,4 +748,4 @@ msgstr ""
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_message__user_can_see_changeset
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_vacuum_rule__user_can_see_changeset
 msgid "User Can See Changeset"
-msgstr ""
+msgstr "El usuario puede ver el Conjunto de Cambios"
