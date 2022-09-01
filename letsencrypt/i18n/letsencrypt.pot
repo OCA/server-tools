@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -22,18 +22,6 @@ msgstr ""
 #. module: letsencrypt
 #: model:ir.model,name:letsencrypt.model_letsencrypt
 msgid "Abstract model providing functions for letsencrypt"
-msgstr ""
-
-#. module: letsencrypt
-#: model:ir.model.fields,field_description:letsencrypt.field_letsencrypt__changeset_change_ids
-#: model:ir.model.fields,field_description:letsencrypt.field_res_config_settings__changeset_change_ids
-msgid "Changeset Changes"
-msgstr ""
-
-#. module: letsencrypt
-#: model:ir.model.fields,field_description:letsencrypt.field_letsencrypt__changeset_ids
-#: model:ir.model.fields,field_description:letsencrypt.field_res_config_settings__changeset_ids
-msgid "Changesets"
 msgstr ""
 
 #. module: letsencrypt
@@ -55,18 +43,6 @@ msgid "Could not respond to letsencrypt challenges."
 msgstr ""
 
 #. module: letsencrypt
-#: model:ir.model.fields,field_description:letsencrypt.field_letsencrypt__count_pending_changeset_changes
-#: model:ir.model.fields,field_description:letsencrypt.field_res_config_settings__count_pending_changeset_changes
-msgid "Count Pending Changeset Changes"
-msgstr ""
-
-#. module: letsencrypt
-#: model:ir.model.fields,field_description:letsencrypt.field_letsencrypt__count_pending_changesets
-#: model:ir.model.fields,field_description:letsencrypt.field_res_config_settings__count_pending_changesets
-msgid "Count Pending Changesets"
-msgstr ""
-
-#. module: letsencrypt
 #: model:ir.model.fields,field_description:letsencrypt.field_res_config_settings__letsencrypt_dns_provider
 msgid "DNS provider"
 msgstr ""
@@ -74,12 +50,6 @@ msgstr ""
 #. module: letsencrypt
 #: model:ir.model.fields,field_description:letsencrypt.field_res_config_settings__letsencrypt_dns_shell_script
 msgid "DNS update script"
-msgstr ""
-
-#. module: letsencrypt
-#: model:ir.model.fields,field_description:letsencrypt.field_letsencrypt__display_name
-#: model:ir.model.fields,field_description:letsencrypt.field_res_config_settings__display_name
-msgid "Display Name"
 msgstr ""
 
 #. module: letsencrypt
@@ -107,7 +77,19 @@ msgstr ""
 #. module: letsencrypt
 #: code:addons/letsencrypt/models/letsencrypt.py:0
 #, python-format
-msgid "Error calling %s: %d"
+msgid "Error calling %(cmdline)s: %(returncode)d"
+msgstr ""
+
+#. module: letsencrypt
+#: code:addons/letsencrypt/controllers/main.py:0
+#, python-format
+msgid "Error opening file %s"
+msgstr ""
+
+#. module: letsencrypt
+#: code:addons/letsencrypt/models/letsencrypt.py:0
+#, python-format
+msgid "Error updating name"
 msgstr ""
 
 #. module: letsencrypt
@@ -121,18 +103,6 @@ msgid ""
 "For wildcard certificates we need to add a TXT record on your DNS. If you "
 "set this to \"Shell script\" you can enter a shell script. Other options can"
 " be added by installing additional modules."
-msgstr ""
-
-#. module: letsencrypt
-#: model:ir.model.fields,field_description:letsencrypt.field_letsencrypt__id
-#: model:ir.model.fields,field_description:letsencrypt.field_res_config_settings__id
-msgid "ID"
-msgstr ""
-
-#. module: letsencrypt
-#: model:ir.model.fields,field_description:letsencrypt.field_letsencrypt____last_update
-#: model:ir.model.fields,field_description:letsencrypt.field_res_config_settings____last_update
-msgid "Last Modified on"
 msgstr ""
 
 #. module: letsencrypt
@@ -183,12 +153,6 @@ msgid "Shell script"
 msgstr ""
 
 #. module: letsencrypt
-#: model:ir.model.fields,field_description:letsencrypt.field_letsencrypt__smart_search
-#: model:ir.model.fields,field_description:letsencrypt.field_res_config_settings__smart_search
-msgid "Smart Search"
-msgstr ""
-
-#. module: letsencrypt
 #: model:ir.model.fields,field_description:letsencrypt.field_res_config_settings__letsencrypt_testing_mode
 msgid "Use testing server"
 msgstr ""
@@ -205,12 +169,6 @@ msgstr ""
 msgid ""
 "Use the testing server, which has higher rate limits but creates invalid "
 "certificates."
-msgstr ""
-
-#. module: letsencrypt
-#: model:ir.model.fields,field_description:letsencrypt.field_letsencrypt__user_can_see_changeset
-#: model:ir.model.fields,field_description:letsencrypt.field_res_config_settings__user_can_see_changeset
-msgid "User Can See Changeset"
 msgstr ""
 
 #. module: letsencrypt
