@@ -50,6 +50,7 @@ msgstr ""
 
 #. module: scheduler_error_mailer
 #: model:ir.model.fields,field_description:scheduler_error_mailer.field_ir_cron__email_template_id
+#: model:ir.model.fields,field_description:scheduler_error_mailer.field_nsca_check__email_template_id
 msgid "Error E-mail Template"
 msgstr ""
 
@@ -60,6 +61,7 @@ msgstr ""
 
 #. module: scheduler_error_mailer
 #: model:ir.model.fields,help:scheduler_error_mailer.field_ir_cron__email_template_id
+#: model:ir.model.fields,help:scheduler_error_mailer.field_nsca_check__email_template_id
 msgid "Select the email template that will be sent when this scheduler fails."
 msgstr ""
 
