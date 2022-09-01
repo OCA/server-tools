@@ -137,7 +137,7 @@
     <menuitem
         id="sql_export_menu"
         name="Sql Export"
-        parent="base.menu_reporting_dashboard"
+        parent="base.menu_board_root"
         sequence="80"
     />
 
