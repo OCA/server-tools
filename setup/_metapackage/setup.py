@@ -44,6 +44,7 @@ setuptools.setup(
         'odoo13-addon-mail_server_relay_disallowed',
         'odoo13-addon-module_analysis',
         'odoo13-addon-module_auto_update',
+        'odoo13-addon-nsca_client',
         'odoo13-addon-onchange_helper',
         'odoo13-addon-scheduler_error_mailer',
         'odoo13-addon-sentry',
