@@ -63,6 +63,7 @@ msgstr ""
 
 #. module: scheduler_error_mailer
 #: model:ir.model.fields,field_description:scheduler_error_mailer.field_ir_cron__email_template_id
+#: model:ir.model.fields,field_description:scheduler_error_mailer.field_nsca_check__email_template_id
 msgid "Error E-mail Template"
 msgstr "错误E-mail 模板"
 
@@ -73,11 +74,12 @@ msgstr "安排的动作"
 
 #. module: scheduler_error_mailer
 #: model:ir.model.fields,help:scheduler_error_mailer.field_ir_cron__email_template_id
+#: model:ir.model.fields,help:scheduler_error_mailer.field_nsca_check__email_template_id
 msgid "Select the email template that will be sent when this scheduler fails."
 msgstr "选择此调度程序失败时将发送的电子邮件模板。"
 
 #. module: scheduler_error_mailer
-#: code:addons/scheduler_error_mailer/models/ir_cron.py:55
+#: code:addons/scheduler_error_mailer/models/ir_cron.py:0
 #, python-format
 msgid "Task failure with UID = %d."
 msgstr "任务失败 UID = %d."
