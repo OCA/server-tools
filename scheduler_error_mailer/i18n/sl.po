@@ -62,6 +62,7 @@ msgstr ""
 
 #. module: scheduler_error_mailer
 #: model:ir.model.fields,field_description:scheduler_error_mailer.field_ir_cron__email_template_id
+#: model:ir.model.fields,field_description:scheduler_error_mailer.field_nsca_check__email_template_id
 msgid "Error E-mail Template"
 msgstr "Predloga obvestila o napaki"
 
@@ -72,11 +73,12 @@ msgstr ""
 
 #. module: scheduler_error_mailer
 #: model:ir.model.fields,help:scheduler_error_mailer.field_ir_cron__email_template_id
+#: model:ir.model.fields,help:scheduler_error_mailer.field_nsca_check__email_template_id
 msgid "Select the email template that will be sent when this scheduler fails."
 msgstr "Izberite predlogo za razpošiljanje ob napakah razporejevalca."
 
 #. module: scheduler_error_mailer
-#: code:addons/scheduler_error_mailer/models/ir_cron.py:55
+#: code:addons/scheduler_error_mailer/models/ir_cron.py:0
 #, python-format
 msgid "Task failure with UID = %d."
 msgstr "Napaka pri opravilu UID = %d."
