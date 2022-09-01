@@ -8,6 +8,7 @@ setuptools.setup(
     description="Meta package for oca-server-tools Odoo addons",
     version=version,
     install_requires=[
+        'odoo14-addon-attachment_delete_restrict',
         'odoo14-addon-attachment_queue',
         'odoo14-addon-attachment_synchronize',
         'odoo14-addon-attachment_unindex_content',
