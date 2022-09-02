@@ -25,7 +25,7 @@ msgid "Company Country Configuration Settings"
 msgstr ""
 
 #. module: company_country
-#: code:addons/company_country/models/res_config.py:47
+#: code:addons/company_country/models/res_config.py:49
 #, python-format
 msgid "Country code %s was not found. Please use a valid two-letter ISO 3166 code."
 msgstr ""
