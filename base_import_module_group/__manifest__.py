@@ -3,14 +3,13 @@
 {
     "name": "Import Module Group",
     "summary": "Restrict module importation to specific group",
-    "version": "12.0.1.0.0",
+    "version": "12.0.1.0.1",
     "category": "Uncategorized",
     "website": "https://github.com/OCA/server-tools",
     "author": "Camptocamp, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "auto-install": True,
     "depends": [
         "base_import_module",
     ],

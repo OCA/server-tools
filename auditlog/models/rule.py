@@ -2,12 +2,14 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import copy
+import logging
+from psycopg2 import ProgrammingError
 
 from odoo import models, fields, api, modules, _
 
 FIELDS_BLACKLIST = [
     'id', 'create_uid', 'create_date', 'write_uid', 'write_date',
-    'display_name', '__last_update',
+    'display_name', '__last_update', 'password',
 ]
 # Used for performance, to avoid a dictionary instanciation when we need an
 # empty dict to simplify algorithms
@@ -132,6 +134,14 @@ class AuditlogRule(models.Model):
         """Patch ORM methods of models defined in rules to log their calls."""
         updated = False
         model_cache = self.pool._auditlog_model_cache
+        try:
+            with self.env.cr.savepoint():
+                self.read()
+        except ProgrammingError:
+            logging.getLogger(__name__).error(
+                "Error reading auditlog rules. Logs will not be created. "
+                "Do you need to upgrade the auditlog module?", exc_info=True)
+            return False
         for rule in self:
             if rule.state != 'subscribed':
                 continue
