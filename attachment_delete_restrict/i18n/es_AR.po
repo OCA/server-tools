@@ -6,29 +6,31 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2022-09-04 06:07+0000\n"
+"Last-Translator: Ignacio Buioli <ibuioli@gmail.com>\n"
 "Language-Team: none\n"
 "Language: es_AR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: attachment_delete_restrict
 #: model:ir.model,name:attachment_delete_restrict.model_res_groups
 msgid "Access Groups"
-msgstr ""
+msgstr "Grupos de Acceso"
 
 #. module: attachment_delete_restrict
 #: model:ir.model,name:attachment_delete_restrict.model_ir_attachment
 msgid "Attachment"
-msgstr ""
+msgstr "Adjunto"
 
 #. module: attachment_delete_restrict
 #: model:ir.model.fields,field_description:attachment_delete_restrict.field_ir_model__delete_attachment_group_ids
 #: model:ir.model.fields,field_description:attachment_delete_restrict.field_res_config_settings__global_delete_attachment_group_ids
 msgid "Attachment Deletion Groups"
-msgstr ""
+msgstr "Grupos de Eliminación de Adjuntos"
 
 #. module: attachment_delete_restrict
 #: model:ir.model.fields,field_description:attachment_delete_restrict.field_res_groups__delete_attachment_model_ids
@@ -36,23 +38,23 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:attachment_delete_restrict.view_groups_form
 #: model_terms:ir.ui.view,arch_db:attachment_delete_restrict.view_users_form
 msgid "Attachment Deletion Models"
-msgstr ""
+msgstr "Modelo de Eliminación de Adjuntos"
 
 #. module: attachment_delete_restrict
 #: model:ir.model.fields,field_description:attachment_delete_restrict.field_ir_model__delete_attachment_user_ids
 #: model:ir.model.fields,field_description:attachment_delete_restrict.field_res_config_settings__global_delete_attachment_user_ids
 msgid "Attachment Deletion Users"
-msgstr ""
+msgstr "Usuarios de Eliminación de Adjuntos"
 
 #. module: attachment_delete_restrict
 #: model_terms:ir.ui.view,arch_db:attachment_delete_restrict.res_config_settings_view_form
 msgid "Authorized Groups:"
-msgstr ""
+msgstr "Grupos Autorizados:"
 
 #. module: attachment_delete_restrict
 #: model_terms:ir.ui.view,arch_db:attachment_delete_restrict.res_config_settings_view_form
 msgid "Authorized Users:"
-msgstr ""
+msgstr "Usuarios Autorizados:"
 
 #. module: attachment_delete_restrict
 #: model:ir.model.fields,field_description:attachment_delete_restrict.field_ir_attachment__changeset_change_ids
@@ -61,7 +63,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:attachment_delete_restrict.field_res_groups__changeset_change_ids
 #: model:ir.model.fields,field_description:attachment_delete_restrict.field_res_users__changeset_change_ids
 msgid "Changeset Changes"
-msgstr ""
+msgstr "Cambios del Conjunto de Cambios"
 
 #. module: attachment_delete_restrict
 #: model:ir.model.fields,field_description:attachment_delete_restrict.field_ir_attachment__changeset_ids
@@ -70,12 +72,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:attachment_delete_restrict.field_res_groups__changeset_ids
 #: model:ir.model.fields,field_description:attachment_delete_restrict.field_res_users__changeset_ids
 msgid "Changesets"
-msgstr ""
+msgstr "Conjunto de Cambios"
 
 #. module: attachment_delete_restrict
 #: model:ir.model,name:attachment_delete_restrict.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Ajustes Configuración"
 
 #. module: attachment_delete_restrict
 #: model:ir.model.fields,field_description:attachment_delete_restrict.field_ir_attachment__count_pending_changeset_changes
@@ -84,7 +86,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:attachment_delete_restrict.field_res_groups__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:attachment_delete_restrict.field_res_users__count_pending_changeset_changes
 msgid "Count Pending Changeset Changes"
-msgstr ""
+msgstr "Cuenta de los Cambios Pendientes de los Conjuntos de Cambios"
 
 #. module: attachment_delete_restrict
 #: model:ir.model.fields,field_description:attachment_delete_restrict.field_ir_attachment__count_pending_changesets
@@ -93,18 +95,20 @@ msgstr ""
 #: model:ir.model.fields,field_description:attachment_delete_restrict.field_res_groups__count_pending_changesets
 #: model:ir.model.fields,field_description:attachment_delete_restrict.field_res_users__count_pending_changesets
 msgid "Count Pending Changesets"
-msgstr ""
+msgstr "Cuenta de los Conjuntos de Cambios Pendientes"
 
 #. module: attachment_delete_restrict
 #: model:ir.model.fields.selection,name:attachment_delete_restrict.selection__ir_model__restrict_delete_attachment__custom
 #: model:ir.model.fields.selection,name:attachment_delete_restrict.selection__res_config_settings__global_restrict_delete_attachment__custom
 msgid "Custom: For each model, selected groups and users can delete them"
 msgstr ""
+"Personalizado: Para cada modelo, los grupos y usuarios seleccionados pueden "
+"eliminarlos"
 
 #. module: attachment_delete_restrict
 #: model:ir.model.fields,help:attachment_delete_restrict.field_res_config_settings__global_restrict_delete_attachment
 msgid "Define a default value for Attachments Deletion"
-msgstr ""
+msgstr "Define un valor preterminado para la Eliminación de Adjuntos"
 
 #. module: attachment_delete_restrict
 #: model:ir.model.fields,field_description:attachment_delete_restrict.field_ir_attachment__display_name
@@ -113,7 +117,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:attachment_delete_restrict.field_res_groups__display_name
 #: model:ir.model.fields,field_description:attachment_delete_restrict.field_res_users__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Mostrar Nombre"
 
 #. module: attachment_delete_restrict
 #: model:ir.model.fields,field_description:attachment_delete_restrict.field_ir_attachment__id
@@ -122,7 +126,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:attachment_delete_restrict.field_res_groups__id
 #: model:ir.model.fields,field_description:attachment_delete_restrict.field_res_users__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: attachment_delete_restrict
 #: model:ir.model.fields,field_description:attachment_delete_restrict.field_ir_attachment____last_update
@@ -131,18 +135,18 @@ msgstr ""
 #: model:ir.model.fields,field_description:attachment_delete_restrict.field_res_groups____last_update
 #: model:ir.model.fields,field_description:attachment_delete_restrict.field_res_users____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última modificación en"
 
 #. module: attachment_delete_restrict
 #: model:ir.model,name:attachment_delete_restrict.model_ir_model
 msgid "Models"
-msgstr ""
+msgstr "Modelos"
 
 #. module: attachment_delete_restrict
 #: model:ir.model.fields.selection,name:attachment_delete_restrict.selection__ir_model__restrict_delete_attachment__none
 #: model:ir.model.fields.selection,name:attachment_delete_restrict.selection__res_config_settings__global_restrict_delete_attachment__none
 msgid "No restriction: All users / groups can delete them"
-msgstr ""
+msgstr "No hay resitricción: Todos los usuarios / grupos pueden eliminarlos"
 
 #. module: attachment_delete_restrict
 #: model:ir.model.fields.selection,name:attachment_delete_restrict.selection__ir_model__restrict_delete_attachment__owner_custom
@@ -151,32 +155,36 @@ msgid ""
 "Owner + Custom: Creator and admin can delete them + for each model, selected"
 " groups and users can delete them"
 msgstr ""
+"Propietario + Personalizado: El creador y administrador puede eliminarlos + "
+"para cada modelo, los grupos y usuarios seleccionados pueden eliminarlos"
 
 #. module: attachment_delete_restrict
 #: model:ir.model.fields.selection,name:attachment_delete_restrict.selection__ir_model__restrict_delete_attachment__owner
 #: model:ir.model.fields.selection,name:attachment_delete_restrict.selection__res_config_settings__global_restrict_delete_attachment__owner
 msgid "Owner: Only creator and admin can delete them"
-msgstr ""
+msgstr "Propietario: Solo el creador y el administrador puede eliminarlos"
 
 #. module: attachment_delete_restrict
 #: model:ir.model.fields,field_description:attachment_delete_restrict.field_ir_model__restrict_delete_attachment
 msgid "Restrict Attachment Deletion"
-msgstr ""
+msgstr "Restringir Eliminación de Adjuntos"
 
 #. module: attachment_delete_restrict
 #: model:ir.model.fields,field_description:attachment_delete_restrict.field_res_config_settings__global_restrict_delete_attachment
 msgid "Restrict Delete Attachments"
-msgstr ""
+msgstr "Restringir Eliminar Adjuntos"
 
 #. module: attachment_delete_restrict
 #: model_terms:ir.ui.view,arch_db:attachment_delete_restrict.res_config_settings_view_form
 msgid "Restrict Deletion on attachment"
-msgstr ""
+msgstr "Restringir la Eliminación en adjunto"
 
 #. module: attachment_delete_restrict
 #: model_terms:ir.ui.view,arch_db:attachment_delete_restrict.res_config_settings_view_form
 msgid "Select default level of delete restriction on attachments"
 msgstr ""
+"Seleccione el nivel predeterminado de restricción de eliminación de archivos "
+"adjuntos"
 
 #. module: attachment_delete_restrict
 #: model:ir.model.fields,field_description:attachment_delete_restrict.field_ir_attachment__smart_search
@@ -185,7 +193,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:attachment_delete_restrict.field_res_groups__smart_search
 #: model:ir.model.fields,field_description:attachment_delete_restrict.field_res_users__smart_search
 msgid "Smart Search"
-msgstr ""
+msgstr "Búsqueda Inteligente"
 
 #. module: attachment_delete_restrict
 #: model:ir.model.fields,help:attachment_delete_restrict.field_res_users__delete_attachment_model_ids
@@ -194,11 +202,16 @@ msgid ""
 "general settings, 'Restrict Delete Attachment' must be set as 'custom' to "
 "activate this setting."
 msgstr ""
+"El usuario puede eliminar los archivos adjuntos relacionados con los modelos "
+"asignados aquí. En la configuración general, 'Restringir eliminar adjunto' "
+"debe configurarse como 'Personalizado' para activar esta configuración."
 
 #. module: attachment_delete_restrict
 #: model:ir.model.fields,help:attachment_delete_restrict.field_res_config_settings__global_delete_attachment_group_ids
 msgid "The users in the groups selected here can delete all the attachments."
 msgstr ""
+"Los usuarios en los grupos seleccionados acá pueden eliminar todos los "
+"adjuntos."
 
 #. module: attachment_delete_restrict
 #: model:ir.model.fields,help:attachment_delete_restrict.field_ir_model__delete_attachment_group_ids
@@ -206,6 +219,8 @@ msgid ""
 "The users in the groups selected here can delete the attachments related to "
 "this model."
 msgstr ""
+"Los usuarios en los grupos seleccionados acá pueden eliminar los adjuntos "
+"relacionados a este modelo."
 
 #. module: attachment_delete_restrict
 #: model:ir.model.fields,help:attachment_delete_restrict.field_res_groups__delete_attachment_model_ids
@@ -214,22 +229,28 @@ msgid ""
 "assigned here. In general settings, 'Restrict Delete Attachment' must be set"
 " as 'custom' to activate this setting."
 msgstr ""
+"Los usuarios del grupo pueden eliminar los archivos adjuntos relacionados "
+"con los modelos asignados acá. En la configuración general, 'Restringir "
+"eliminar adjuntos' debe configurarse como 'Personalizado' para activar esta "
+"configuración."
 
 #. module: attachment_delete_restrict
 #: model:ir.model.fields,help:attachment_delete_restrict.field_res_config_settings__global_delete_attachment_user_ids
 msgid "The users selected here can delete all the attachments"
-msgstr ""
+msgstr "Los usuarios seleccionados acá pueden eliminar todos los adjuntos"
 
 #. module: attachment_delete_restrict
 #: model:ir.model.fields,help:attachment_delete_restrict.field_ir_model__delete_attachment_user_ids
 msgid ""
 "The users selected here can delete the attachments related to this model."
 msgstr ""
+"Los usuarios seleccionados acá pueden eliminar los adjuntos relacionados a "
+"este modelo."
 
 #. module: attachment_delete_restrict
 #: model:ir.model.fields.selection,name:attachment_delete_restrict.selection__ir_model__restrict_delete_attachment__default
 msgid "Use global configuration"
-msgstr ""
+msgstr "Usar configuración global"
 
 #. module: attachment_delete_restrict
 #: model:ir.model.fields,field_description:attachment_delete_restrict.field_ir_attachment__user_can_see_changeset
@@ -238,12 +259,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:attachment_delete_restrict.field_res_groups__user_can_see_changeset
 #: model:ir.model.fields,field_description:attachment_delete_restrict.field_res_users__user_can_see_changeset
 msgid "User Can See Changeset"
-msgstr ""
+msgstr "El Usuario Puede ver Conjuntos de Cambios"
 
 #. module: attachment_delete_restrict
 #: model:ir.model,name:attachment_delete_restrict.model_res_users
 msgid "Users"
-msgstr ""
+msgstr "Usuarios"
 
 #. module: attachment_delete_restrict
 #: model:ir.model.fields,help:attachment_delete_restrict.field_ir_model__restrict_delete_attachment
@@ -251,6 +272,8 @@ msgid ""
 "When selected, the deletion of the attachments related to this model is "
 "restricted to certain users."
 msgstr ""
+"Cuando se selecciona, la eliminación de los archivos adjuntos relacionados "
+"con este modelo está restringida a ciertos usuarios."
 
 #. module: attachment_delete_restrict
 #: code:addons/attachment_delete_restrict/models/ir_attachment.py:0
@@ -261,3 +284,7 @@ msgid ""
 "Users with the delete permission:\n"
 "%s"
 msgstr ""
+"No tiene permitido eliminar este archivo adjunto\n"
+"\n"
+"Usuarios con permisos de eliminación:\n"
+"%s"
