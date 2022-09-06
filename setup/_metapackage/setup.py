@@ -47,6 +47,7 @@ setuptools.setup(
         'odoo12-addon-html_text',
         'odoo12-addon-iap_alternative_provider',
         'odoo12-addon-ir_sequence_standard_default',
+        'odoo12-addon-letsencrypt',
         'odoo12-addon-mail_cleanup',
         'odoo12-addon-module_analysis',
         'odoo12-addon-module_auto_update',
