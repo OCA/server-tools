@@ -23,7 +23,7 @@ Conditional Images
     :target: https://runbot.odoo-community.org/runbot/149/15.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5|
+|badge1| |badge2| |badge3| |badge4| |badge5| 
 
 This module extends the functionality of any model to support conditional images
 (based on the record attributes) and to manage them either globally or by company.
