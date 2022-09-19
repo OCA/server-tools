@@ -5,10 +5,10 @@
 
 from odoo import SUPERUSER_ID
 from odoo.exceptions import UserError
-from odoo.tests import SavepointCase
+from odoo.tests import TransactionCase
 
 
-class SudoTechCase(SavepointCase):
+class SudoTechCase(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super(SudoTechCase, cls).setUpClass()
