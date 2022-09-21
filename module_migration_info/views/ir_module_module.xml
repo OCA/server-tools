@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="ir_module_module_inherit" model="ir.ui.view">
+        <field name="name">ir.module.module.inherit</field>
+        <field name="model">ir.module.module</field>
+        <field name="inherit_id" ref="base.module_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='exclusion_ids']" position="after">
+                <group string="Migration Info"/>
+                <field name="mig_info_ids">
+                    <tree string="Migration Info">
+                        <field name="module_name"/>
+                        <field name="mig_version"/>
+                        <field name="mig_title"/>
+                        <field name="mig_url"/>
+
+                        <field name="mig_status"/>
+                        <field name="mig_opened"/>
+
+                        <field name="mig_merged"/>
+                        <field name="mig_no_of_reviewers"/>
+                        <field name="mig_no_of_comments"/>
+                    </tree>
+                </field>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_update_module_info" model="ir.actions.server">
+        <field name="name">Update Migration Info</field>
+        <field name="type">ir.actions.server</field>
+        <field name="state">code</field>
+        <field name="model_id" ref="model_ir_module_module"/>
+        <field name="binding_model_id" ref="model_ir_module_module"/>
+        <field name="binding_view_types">list</field>
+        <field name="code">
+            action = model.action_update_selected_module_info(records)
+        </field>
+    </record>
+
+</odoo>

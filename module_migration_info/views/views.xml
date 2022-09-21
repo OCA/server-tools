@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+<!--
+    <record model="ir.ui.view" id="module_migration_info.list">
+      <field name="name">module_migration_info list</field>
+      <field name="model">module_migration_info.module_migration_info</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+-->
+
+    <!-- actions opening views on models -->
+<!--
+    <record model="ir.actions.act_window" id="module_migration_info.action_window">
+      <field name="name">module_migration_info window</field>
+      <field name="res_model">module_migration_info.module_migration_info</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="module_migration_info.action_server">
+      <field name="name">module_migration_info server</field>
+      <field name="model_id" ref="model_base_module_migration_info_base_module_migration_info"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="module_migration_info" id="module_migration_info.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="module_migration_info.menu_1" parent="module_migration_info.menu_root"/>
+    <menuitem name="Menu 2" id="module_migration_info.menu_2" parent="module_migration_info.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="module_migration_info.menu_1_list" parent="module_migration_info.menu_1"
+              action="module_migration_info.action_window"/>
+    <menuitem name="Server to list" id="module_migration_info" parent="module_migration_info.menu_2"
+              action="module_migration_info.action_server"/>
+-->
+  </data>
+</odoo>
