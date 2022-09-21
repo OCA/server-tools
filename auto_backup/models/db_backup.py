@@ -139,9 +139,9 @@ class DbBackup(models.Model):
             pysftp.CredentialException,
             pysftp.ConnectionException,
             pysftp.SSHException,
-        ):
+        ) as exc:
             _logger.info("Connection Test Failed!", exc_info=True)
-            raise UserError(_("Connection Test Failed!"))
+            raise UserError(_("Connection Test Failed!")) from exc
 
     def action_backup(self):
         """Run selected backups."""
@@ -155,8 +155,8 @@ class DbBackup(models.Model):
                 # Directory must exist
                 try:
                     os.makedirs(rec.folder)
-                except OSError:
-                    pass
+                except OSError as exc:
+                    _logger.exception("Action backup - OSError: %s" % exc)
 
                 with open(os.path.join(rec.folder, filename), "wb") as destiny:
                     # Copy the cached backup
@@ -187,8 +187,10 @@ class DbBackup(models.Model):
                             # Directory must exist
                             try:
                                 remote.makedirs(rec.folder)
-                            except pysftp.ConnectionException:
-                                pass
+                            except pysftp.ConnectionException as exc:
+                                _logger.exception(
+                                    "pysftp ConnectionException: %s" % exc
+                                )
 
                             # Copy cached backup to remote server
                             with remote.open(

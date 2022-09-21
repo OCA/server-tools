@@ -4,6 +4,7 @@
 # Copyright 2016 LasLabs Inc.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
+import logging
 import os
 from contextlib import contextmanager
 from datetime import datetime, timedelta
@@ -13,10 +14,11 @@ from odoo import tools
 from odoo.exceptions import UserError
 from odoo.tests import common
 
+_logger = logging.getLogger(__name__)
 try:
     import pysftp
-except ImportError:
-    pass
+except ImportError:  # pragma: no cover
+    _logger.debug("Cannot import pysftp")
 
 
 model = "odoo.addons.auto_backup.models.db_backup"
@@ -230,13 +232,13 @@ class TestDbBackup(common.TransactionCase):
         self.assertTrue(res.endswith(".dump.zip"))
 
     def test_filename_zip(self):
-        """It should return a dump.zip filename"""
+        """It should return a dump.zip filenam"""
         now = datetime.now()
         res = self.Model.filename(now, ext="zip")
         self.assertTrue(res.endswith(".dump.zip"))
 
     def test_filename_dump(self):
-        """It should return a dump filename"""
+        """It should return a dump filenam"""
         now = datetime.now()
         res = self.Model.filename(now, ext="dump")
         self.assertTrue(res.endswith(".dump"))
