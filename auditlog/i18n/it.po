@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-26 01:45+0000\n"
-"PO-Revision-Date: 2022-09-15 16:07+0000\n"
+"PO-Revision-Date: 2022-09-22 10:07+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -409,6 +409,8 @@ msgid ""
 "Select this if you want to keep track of creation on any record of the model "
 "of this rule"
 msgstr ""
+"Seleziona se vuoi tenere traccia della creazione di qualsiasi record del "
+"modello di questa regola"
 
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule__log_unlink
@@ -416,6 +418,8 @@ msgid ""
 "Select this if you want to keep track of deletion on any record of the model "
 "of this rule"
 msgstr ""
+"Seleziona se vuoi tenere traccia dell'eliminazione di qualsiasi record del "
+"modello di questa regola"
 
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule__log_write
@@ -423,6 +427,8 @@ msgid ""
 "Select this if you want to keep track of modification on any record of the "
 "model of this rule"
 msgstr ""
+"Seleziona se vuoi tenere traccia della modifica di qualsiasi record del "
+"modello di questa regola"
 
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule__log_read
@@ -430,6 +436,8 @@ msgid ""
 "Select this if you want to keep track of read/open on any record of the "
 "model of this rule"
 msgstr ""
+"Seleziona se vuoi tenere traccia della lettura/apertura di qualsiasi record "
+"del modello di questa regola"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_http_request__http_session_id
@@ -476,13 +484,13 @@ msgstr "Nome tecnico"
 #: code:addons/auditlog/models/log.py:0
 #, python-format
 msgid "The field 'field_id' cannot be empty."
-msgstr ""
+msgstr "Il campo 'field_id' non può essere vuoto."
 
 #. module: auditlog
 #: code:addons/auditlog/models/log.py:0
 #, python-format
 msgid "The field 'model_id' cannot be empty."
-msgstr ""
+msgstr "Il campo 'model_id' non può essere vuoto."
 
 #. module: auditlog
 #: model:ir.model.constraint,message:auditlog.constraint_auditlog_rule_model_uniq
@@ -490,6 +498,8 @@ msgid ""
 "There is already a rule defined on this model\n"
 "You cannot define another: please edit the existing one."
 msgstr ""
+"Esiste già una regola definita per questo modello\n"
+"Non puoi definirne un'altra; modifica quella esistente."
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log__log_type
@@ -501,7 +511,7 @@ msgstr "Tipo"
 #. module: auditlog
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_rule_form
 msgid "Unsubscribe"
-msgstr ""
+msgstr "Non seguire"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_http_request__user_id
@@ -521,14 +531,14 @@ msgstr "Utente"
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_line_search
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_log_search
 msgid "User session"
-msgstr ""
+msgstr "Sessione utente"
 
 #. module: auditlog
 #: model:ir.actions.act_window,name:auditlog.action_auditlog_http_session_tree
 #: model:ir.ui.menu,name:auditlog.menu_action_auditlog_http_session_tree
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_http_session_search
 msgid "User sessions"
-msgstr ""
+msgstr "Sessioni utente"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__user_ids
@@ -544,9 +554,9 @@ msgstr "Valori"
 #: code:addons/auditlog/models/rule.py:0
 #, python-format
 msgid "View logs"
-msgstr ""
+msgstr "Vedi logs"
 
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule__user_ids
 msgid "if  User is not added then it will applicable for all users"
-msgstr ""
+msgstr "se l'Utente non è aggiunto, sarà applicabile per tutti gli utenti"
