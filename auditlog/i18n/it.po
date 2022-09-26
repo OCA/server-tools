@@ -143,6 +143,11 @@ msgid "Field 'model_id' cannot be empty."
 msgstr "Il campo \"model_id\" non può essere vuoto."
 
 #. module: auditlog
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__fields_to_exclude_ids
+msgid "Fields to Exclude"
+msgstr ""
+
+#. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log__line_ids
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_log_form
 msgid "Fields updated"
@@ -162,8 +167,8 @@ msgid ""
 "Fast log: only log the changes made through the create and write operations "
 "(less information, but it is faster)"
 msgstr ""
-"Log completo: verifica differenze tra i dati prima e dopo l'operazione ("
-"registra più info come campi calcolati che sono stati aggiornati, ma è più "
+"Log completo: verifica differenze tra i dati prima e dopo l'operazione "
+"(registra più info come campi calcolati che sono stati aggiornati, ma è più "
 "lento)\n"
 "Log rapido: registra solo le modifiche fatte tramite le operazioni crea e "
 "scrivi (meno info, ma più veloce)"
@@ -544,6 +549,11 @@ msgstr "Sessioni utente"
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__user_ids
 msgid "Users"
 msgstr "Utenti"
+
+#. module: auditlog
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__users_to_exclude_ids
+msgid "Users to Exclude"
+msgstr ""
 
 #. module: auditlog
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_log_form
