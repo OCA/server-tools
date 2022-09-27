@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-26 01:45+0000\n"
-"PO-Revision-Date: 2022-09-22 10:07+0000\n"
+"PO-Revision-Date: 2022-09-27 11:07+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -145,7 +145,7 @@ msgstr "Il campo \"model_id\" non può essere vuoto."
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__fields_to_exclude_ids
 msgid "Fields to Exclude"
-msgstr ""
+msgstr "Campi da escludere"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log__line_ids
@@ -553,7 +553,7 @@ msgstr "Utenti"
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__users_to_exclude_ids
 msgid "Users to Exclude"
-msgstr ""
+msgstr "Utenti da escludere"
 
 #. module: auditlog
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_log_form
