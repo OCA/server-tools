@@ -9,5 +9,5 @@ class IrAttachment(models.Model):
     _inherit = "ir.attachment"
 
     @api.model
-    def _index(self, bin_data, mimetype):
+    def _index(self, *args, **kwargs):
         return False
