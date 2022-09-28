@@ -7,8 +7,9 @@ from odoo import _, api, fields, models
 from odoo.tools import config
 
 
-class Base(models.AbstractModel):
-    _inherit = "base"
+class BaseChangeset(models.AbstractModel):
+    _name = "base.changeset"
+    _description = "Base Changeset (abstract)"
 
     changeset_ids = fields.One2many(
         comodel_name="record.changeset",
@@ -63,11 +64,7 @@ class Base(models.AbstractModel):
         :args:
         :returns: list of models
         """
-        models = self.env["changeset.field.rule"].search([]).mapped("model_id.model")
-        if config["test_enable"] and self.env.context.get("test_record_changeset"):
-            if "res.partner" not in models:
-                models += ["res.partner"]  # Used in tests
-        return models
+        return self.env["changeset.field.rule"].search([]).mapped("model_id.model")
 
     def write(self, values):
         if self.env.context.get("__no_changeset"):
@@ -82,8 +79,17 @@ class Base(models.AbstractModel):
 
         for record in self:
             local_values = self.env["record.changeset"].add_changeset(record, values)
-            super(Base, record).write(local_values)
+            super(BaseChangeset, record).write(local_values)
         return self
+
+    def unlink(self):
+        """Clean created changesets before unlinking."""
+        model_name = self._name
+        for record in self:
+            self.env["record.changeset"].search(
+                [("model", "=", model_name), ("res_id", "=", record.id)]
+            ).unlink()
+        return super().unlink()
 
     def action_record_changeset_change_view(self):
         self.ensure_one()
