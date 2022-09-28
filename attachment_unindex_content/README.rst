@@ -110,10 +110,13 @@ promote its widespread use.
 .. |maintainer-ebirbe| image:: https://github.com/ebirbe.png?size=40px
     :target: https://github.com/ebirbe
     :alt: ebirbe
+.. |maintainer-luisg123v| image:: https://github.com/luisg123v.png?size=40px
+    :target: https://github.com/luisg123v
+    :alt: luisg123v
 
 Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-moylop260| |maintainer-ebirbe| 
+|maintainer-moylop260| |maintainer-ebirbe| |maintainer-luisg123v| 
 
 This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/14.0/attachment_unindex_content>`_ project on GitHub.
 
