@@ -9,3 +9,4 @@ lxml
 mako
 odoorpc
 openupgradelib
+pysftp
