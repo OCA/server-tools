@@ -60,6 +60,7 @@ Authors
 ~~~~~~~
 
 * Akretion
+* GRAP
 
 Contributors
 ~~~~~~~~~~~~
@@ -78,6 +79,17 @@ This module is maintained by the OCA.
 OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
+
+.. |maintainer-legalsylvain| image:: https://github.com/legalsylvain.png?size=40px
+    :target: https://github.com/legalsylvain
+    :alt: legalsylvain
+.. |maintainer-florian-dacosta| image:: https://github.com/florian-dacosta.png?size=40px
+    :target: https://github.com/florian-dacosta
+    :alt: florian-dacosta
+
+Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
+
+|maintainer-legalsylvain| |maintainer-florian-dacosta| 
 
 This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/12.0/sql_export_mail>`_ project on GitHub.
 
