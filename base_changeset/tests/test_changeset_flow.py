@@ -115,6 +115,8 @@ class TestChangesetFlow(ChangesetTestCommon, TransactionCase):
         self.assertEqual(self.partner.count_pending_changesets, 0)
         self.assertEqual(self.partner.name, "Y")
         self.assertEqual(changeset.change_ids.state, "done")
+        # All computed fields are assigned
+        changeset.change_ids.read()
 
     def test_apply_change_with_prevent_self_validation(self):
         """Don't apply a changeset change and prevent self validation"""
