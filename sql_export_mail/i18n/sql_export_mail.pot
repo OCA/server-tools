@@ -1,13 +1,11 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#   * sql_export_mail
+#	* sql_export_mail
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-17 14:32+0000\n"
-"PO-Revision-Date: 2021-12-17 14:32+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
