@@ -20,6 +20,35 @@ msgstr ""
 "%100==4 ? 2 : 3);\n"
 
 #. module: base_name_search_improved
+#: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_form_new
+msgid ""
+"<b>IMPORTANT:</b> Please note that enabling smart search may affect the "
+"performance of searches and the system in general."
+msgstr ""
+
+#. module: base_name_search_improved
+#: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_form_new
+msgid ""
+"<b>Smart Name Search</b>: when searching for a record from another record "
+"through the m2o/m2m widgets, for example when adding a Product in a Sales "
+"Order Line or when selecting a Contact in an Invoice."
+msgstr ""
+
+#. module: base_name_search_improved
+#: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_form_new
+msgid ""
+"<b>Smart Search Fields</b>. You can define a set of fields by which we want "
+"to search"
+msgstr ""
+
+#. module: base_name_search_improved
+#: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_form_new
+msgid ""
+"<b>Smart Search</b>: when searching in list, kanban and other views, the "
+"first option will be to search using \"Smart Search\""
+msgstr ""
+
+#. module: base_name_search_improved
 #: model:ir.model.fields,field_description:base_name_search_improved.field_ir_model__add_smart_search
 msgid "Add Smart Search"
 msgstr ""
@@ -46,11 +75,11 @@ msgid "Custom Search"
 msgstr ""
 
 #. module: base_name_search_improved
-#: model:ir.actions.act_window,name:base_name_search_improved.action_improved_name_search
-#: model:ir.ui.menu,name:base_name_search_improved.menu_improved_name_search
-#, fuzzy
-msgid "Custom Searches"
-msgstr "Polja iskanja po imenu"
+#: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_form_new
+msgid ""
+"Define a <b>Smart Search Domain</b> (for example, only show internal users "
+"and not portal users)"
+msgstr ""
 
 #. module: base_name_search_improved
 #: model:ir.model.fields,field_description:base_name_search_improved.field_ir_model__display_name
@@ -63,13 +92,26 @@ msgid "Domain"
 msgstr ""
 
 #. module: base_name_search_improved
-#: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_form_new
-msgid "Fields"
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_model__id
+msgid "ID"
 msgstr ""
 
 #. module: base_name_search_improved
-#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_model__id
-msgid "ID"
+#: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_form_new
+msgid ""
+"If \"Smart Search\" has been activated, searches will have a more \"relaxed"
+"\" behaviour. Odoo natively searches for records that include the phrases "
+"entered as they are entered. When activating this option it will search for "
+"records that contain entered words regardless of the order in which they are "
+"entered. For example if we search for a Contact \"Fred Flinstone\", Odoo "
+"would by default only return those records that contain exactly that phrase. "
+"With Smart Search active any record containing the words \"Fred\" and "
+"\"Flinstone\" will be returned.\n"
+"                        <br/>\n"
+"                        <br/>\n"
+"\n"
+"                        By enabling Smart Search you can also add configure "
+"these two optional behaviours:"
 msgstr ""
 
 #. module: base_name_search_improved
@@ -83,27 +125,28 @@ msgid "Models"
 msgstr "Modeli"
 
 #. module: base_name_search_improved
-#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_model__name_search_domain
-#, fuzzy
-msgid "Name Search Domain"
-msgstr "Polja iskanja po imenu"
-
-#. module: base_name_search_improved
 #: code:addons/base_name_search_improved/models/ir_model.py:0
 #, python-format
 msgid "Name Search Domain must be a list of tuples"
 msgstr ""
 
 #. module: base_name_search_improved
-#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_model__name_search_ids
-msgid "Name Search Fields"
-msgstr "Polja iskanja po imenu"
-
-#. module: base_name_search_improved
 #: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_tree
 #, fuzzy
 msgid "Search Fields"
 msgstr "Polja iskanja po imenu"
+
+#. module: base_name_search_improved
+#: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_form_new
+#: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_search
+#: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_tree
+msgid "Smart Name Search"
+msgstr ""
+
+#. module: base_name_search_improved
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_model__use_smart_name_search
+msgid "Smart Name Search Enabled?"
+msgstr ""
 
 #. module: base_name_search_improved
 #: model:ir.model.fields,field_description:base_name_search_improved.field__unknown__smart_search
@@ -481,6 +524,51 @@ msgid "Smart Search"
 msgstr ""
 
 #. module: base_name_search_improved
-#: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_search
-msgid "With Custom Search"
+#: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_form_new
+msgid "Smart Search (search view)"
 msgstr ""
+
+#. module: base_name_search_improved
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_model__name_search_domain
+msgid "Smart Search Domain"
+msgstr ""
+
+#. module: base_name_search_improved
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_model__name_search_ids
+#: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_form_new
+msgid "Smart Search Fields"
+msgstr ""
+
+#. module: base_name_search_improved
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_model__smart_search_warning
+msgid "Smart Search Warning"
+msgstr ""
+
+#. module: base_name_search_improved
+#: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_form_new
+msgid "Smart Search can be activated in two complementary ways:"
+msgstr ""
+
+#. module: base_name_search_improved
+#: model:ir.actions.act_window,name:base_name_search_improved.action_improved_name_search
+#: model:ir.ui.menu,name:base_name_search_improved.menu_improved_name_search
+msgid "Smart Searches"
+msgstr ""
+
+#. module: base_name_search_improved
+#: model:ir.model.fields,help:base_name_search_improved.field_ir_model__use_smart_name_search
+msgid ""
+"Use Smart Search for 'name_search', this will affect when searching from "
+"other records (for eg. from m2o fields"
+msgstr ""
+
+#, fuzzy
+#~ msgid "Custom Searches"
+#~ msgstr "Polja iskanja po imenu"
+
+#, fuzzy
+#~ msgid "Name Search Domain"
+#~ msgstr "Polja iskanja po imenu"
+
+#~ msgid "Name Search Fields"
+#~ msgstr "Polja iskanja po imenu"
