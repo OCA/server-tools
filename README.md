@@ -38,6 +38,7 @@ addon | version | maintainers | summary
 [html_text](html_text/) | 15.0.1.0.0 |  | Generate excerpts from any HTML field
 [letsencrypt](letsencrypt/) | 15.0.1.0.0 |  | Request SSL certificates from letsencrypt.org
 [module_auto_update](module_auto_update/) | 15.0.1.0.0 |  | Automatically update Odoo modules
+[module_change_auto_install](module_change_auto_install/) | 15.0.1.0.0 | [![legalsylvain](https://github.com/legalsylvain.png?size=30px)](https://github.com/legalsylvain) | Customize auto installables modules by configuration
 [onchange_helper](onchange_helper/) | 15.0.1.0.1 |  | Technical module that ease execution of onchange in Python code
 [upgrade_analysis](upgrade_analysis/) | 15.0.2.0.0 | [![StefanRijnhart](https://github.com/StefanRijnhart.png?size=30px)](https://github.com/StefanRijnhart) [![legalsylvain](https://github.com/legalsylvain.png?size=30px)](https://github.com/legalsylvain) | Performs a difference analysis between modules installed on two different Odoo instances
 
