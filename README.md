@@ -74,7 +74,7 @@ addon | version | maintainers | summary
 [module_prototyper](module_prototyper/) | 14.0.1.0.0 |  | Prototype your module.
 [onchange_helper](onchange_helper/) | 14.0.1.0.2 |  | Technical module that ease execution of onchange in Python code
 [rpc_helper](rpc_helper/) | 14.0.1.1.0 | [![simahawk](https://github.com/simahawk.png?size=30px)](https://github.com/simahawk) | Helpers for disabling RPC calls
-[scheduler_error_mailer](scheduler_error_mailer/) | 14.0.1.0.0 |  | Scheduler Error Mailer
+[scheduler_error_mailer](scheduler_error_mailer/) | 14.0.1.2.0 |  | Scheduler Error Mailer
 [sentry](sentry/) | 14.0.1.1.1 | [![barsi](https://github.com/barsi.png?size=30px)](https://github.com/barsi) [![naglis](https://github.com/naglis.png?size=30px)](https://github.com/naglis) [![versada](https://github.com/versada.png?size=30px)](https://github.com/versada) [![moylop260](https://github.com/moylop260.png?size=30px)](https://github.com/moylop260) [![fernandahf](https://github.com/fernandahf.png?size=30px)](https://github.com/fernandahf) | Report Odoo errors to Sentry
 [sequence_python](sequence_python/) | 14.0.1.0.0 |  | Calculate a sequence number from a Python expression
 [slow_statement_logger](slow_statement_logger/) | 14.0.1.0.1 |  | Log slow SQL statements
