@@ -4,7 +4,7 @@
 from lxml import etree
 
 from odoo import _, api, fields, models
-from odoo.tools import config
+from odoo.tools import config, ormcache
 
 
 class Base(models.AbstractModel):
@@ -58,6 +58,7 @@ class Base(models.AbstractModel):
                 rec.count_pending_changeset_changes = 0.0
 
     @api.model
+    @ormcache(skiparg=1)
     def models_to_track_changeset(self):
         """Models to be tracked for changes
         :args:
