@@ -42,9 +42,15 @@ class UpgradeInstallWizard(models.TransientModel):
         modules = self.env["ir.module.module"].search(domain)
 
         for start_pattern in BLACKLIST_MODULES_STARTS_WITH:
-            modules = modules.filtered(lambda x: not x.name.startswith(start_pattern))
+            modules = modules.filtered(
+                lambda x, start_pattern=start_pattern: not x.name.startswith(
+                    start_pattern
+                )
+            )
         for end_pattern in BLACKLIST_MODULES_ENDS_WITH:
-            modules = modules.filtered(lambda x: not x.name.endswith(end_pattern))
+            modules = modules.filtered(
+                lambda x, end_pattern=end_pattern: not x.name.endswith(end_pattern)
+            )
         return [("id", "in", modules.ids)]
 
     @api.depends("module_ids")
