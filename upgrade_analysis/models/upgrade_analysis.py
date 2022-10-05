@@ -315,6 +315,13 @@ class UpgradeAnalysis(models.Model):
             if remote_record is None and not module_xmlid:
                 continue
 
+            if local_record.tag == "template":
+                old_tmpl = etree.tostring(remote_record, encoding="utf-8")
+                new_tmpl = etree.tostring(local_record, encoding="utf-8")
+                if old_tmpl != new_tmpl:
+                    odoo.append(local_record)
+                continue
+
             element = etree.Element(
                 "record", id=xml_id, model=local_record.attrib["model"]
             )
@@ -380,7 +387,7 @@ class UpgradeAnalysis(models.Model):
         self, data_node, records_update, records_noupdate, module_name
     ):
         noupdate = nodeattr2bool(data_node, "noupdate", False)
-        for record in data_node.xpath("./record"):
+        for record in data_node.xpath("./record") + data_node.xpath("./template"):
             self._process_record_node(
                 record, noupdate, records_update, records_noupdate, module_name
             )
