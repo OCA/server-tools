@@ -1,38 +1,19 @@
 # Copyright 2016 Therp BV <https://therp.nl>
 # Copyright 2018 Tecnativa - Sergio Teruel
+# Copyright 2021 Camptocamp SA (https://www.camptocamp.com).
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
+import ast
+import logging
+
 from lxml import etree
-from yaml import safe_load
 
-from odoo import api, models, tools
+from odoo import api, models
 
-
-class UnquoteObject(str):
-    def __getattr__(self, name):
-        return UnquoteObject("{}.{}".format(self, name))
-
-    def __repr__(self):
-        return self
-
-    def __call__(self, *args, **kwargs):
-        return UnquoteObject(
-            "%s(%s)"
-            % (
-                self,
-                ",".join(
-                    [
-                        UnquoteObject(a if not isinstance(a, str) else "'%s'" % a)
-                        for a in args
-                    ]
-                    + ["{}={}".format(UnquoteObject(k), v) for (k, v) in kwargs.items()]
-                ),
-            )
-        )
-
-
-class UnquoteEvalObjectContext(tools.misc.UnquoteEvalContext):
-    def __missing__(self, key):
-        return UnquoteObject(key)
+try:
+    import astor
+except ImportError as err:  # pragma: no cover
+    _logger = logging.getLogger(__name__)
+    _logger.debug(err)
 
 
 class IrUiView(models.Model):
@@ -80,24 +61,6 @@ class IrUiView(models.Model):
             )
         return handler
 
-    def _is_variable(self, value):
-        return not ("'" in value or '"' in value) and True or False
-
-    def _list_variables(self, str_dict):
-        """
-        Store non literal dictionary values into a list to post-process
-        operations.
-        """
-        variables = []
-        items = str_dict.replace("{", "").replace("}", "").split(",")
-        for item in items:
-            key_value = item.split(":")
-            if len(key_value) == 2:
-                value = key_value[1]
-                if self._is_variable(value):
-                    variables.append(value.strip())
-        return variables
-
     @api.model
     def inheritance_handler_attributes_python_dict(self, source, specs, inherit_id):
         """Implement
@@ -108,15 +71,35 @@ class IrUiView(models.Model):
         </$node>"""
         node = self.locate_node(source, specs)
         for attribute_node in specs:
-            str_dict = node.get(attribute_node.get("name")) or "{}"
-            variables = self._list_variables(str_dict)
-            if self._is_variable(attribute_node.text):
-                variables.append(attribute_node.text)
-            my_dict = safe_load(str_dict)
-            my_dict[attribute_node.get("key")] = attribute_node.text
-            for k, v in my_dict.items():
-                my_dict[k] = UnquoteObject(v) if v in variables else v
-            node.attrib[attribute_node.get("name")] = str(my_dict)
+            attr_name = attribute_node.get("name")
+            attr_key = attribute_node.get("key")
+            str_dict = node.get(attr_name) or "{}"
+            ast_dict = ast.parse(str_dict, mode="eval").body
+            assert isinstance(ast_dict, ast.Dict), f"'{attr_name}' is not a dict"
+            assert attr_key, "No key specified for 'python_dict' operation"
+            # Find the ast dict key
+            # python < 3.8 uses ast.Str; python >= 3.8 uses ast.Constant
+            key_idx = next(
+                (
+                    i
+                    for i, k in enumerate(ast_dict.keys)
+                    if (isinstance(k, ast.Str) and k.s == attr_key)
+                    or (isinstance(k, ast.Constant) and k.value == attr_key)
+                ),
+                None,
+            )
+            # Update or create the key
+            value = ast.parse(attribute_node.text.strip(), mode="eval").body
+            if key_idx:
+                ast_dict.values[key_idx] = value
+            else:
+                ast_dict.keys.append(ast.Str(attr_key))
+                ast_dict.values.append(value)
+            # Dump the ast back to source
+            # TODO: once odoo requires python >= 3.9; use `ast.unparse` instead
+            node.attrib[attribute_node.get("name")] = astor.to_source(
+                ast_dict, pretty_source=lambda s: "".join(s).strip()
+            )
         return source
 
     @api.model
