@@ -1,11 +1,11 @@
 # Copyright 2017 ACSONE SA/NV
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
-import mock
+from unittest import mock
 
 from odoo import fields, tools
 from odoo.exceptions import UserError
-from odoo.tests.common import SavepointCase
+from odoo.tests.common import TransactionCase
 
 from ..models.utils import convert_simple_to_full_parser
 
@@ -14,7 +14,7 @@ def jsonify_custom(self, field_name):
     return "yeah!"
 
 
-class TestParser(SavepointCase):
+class TestParser(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -43,20 +43,9 @@ class TestParser(SavepointCase):
         Langs = cls.env["res.lang"].with_context(active_test=False)
         cls.lang = Langs.search([("code", "=", "fr_FR")])
         cls.lang.active = True
-        cls.env["ir.translation"]._load_module_terms(["base"], [cls.lang.code])
         category = cls.env["res.partner.category"].create({"name": "name"})
         cls.translated_target = "name_{}".format(cls.lang.code)
-        cls.env["ir.translation"].create(
-            {
-                "type": "model",
-                "name": "res.partner.category,name",
-                "module": "base",
-                "lang": cls.lang.code,
-                "res_id": category.id,
-                "value": cls.translated_target,
-                "state": "translated",
-            }
-        )
+        category.with_context(lang=cls.lang.code).write({"name": cls.translated_target})
         cls.global_resolver = cls.env["ir.exports.resolver"].create(
             {"python_code": "value['X'] = 'X'; result = value", "type": "global"}
         )
@@ -97,7 +86,7 @@ class TestParser(SavepointCase):
         expected_parser = [
             "name",
             "active",
-            "credit_limit",
+            "partner_latitude",
             "color",
             ("category_id", ["name"]),
             ("country_id", ["name", "code"]),
@@ -134,7 +123,7 @@ class TestParser(SavepointCase):
         parser = [
             "lang",
             "comment",
-            "credit_limit",
+            "partner_latitude",
             "name",
             "color",
             (
@@ -161,7 +150,7 @@ class TestParser(SavepointCase):
         expected_json = {
             "lang": "en_US",
             "comment": None,
-            "credit_limit": 0.0,
+            "partner_latitude": 0.0,
             "name": "Akretion",
             "color": 0,
             "country": {"code": "FR", "name": "France"},
