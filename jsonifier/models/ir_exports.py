@@ -77,7 +77,6 @@ class IrExports(models.Model):
 
     language_agnostic = fields.Boolean(
         default=False,
-        string="Language Agnostic",
         help="If set, will set the lang to False when exporting lines without lang,"
         " otherwise it uses the lang in the given context to export these fields",
     )

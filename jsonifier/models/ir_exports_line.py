@@ -9,11 +9,10 @@ class IrExportsLine(models.Model):
     _inherit = "ir.exports.line"
 
     target = fields.Char(
-        "Target",
         help="The complete path to the field where you can specify a "
         "target on the step as field:target",
     )
-    active = fields.Boolean(string="Active", default=True)
+    active = fields.Boolean(default=True)
     lang_id = fields.Many2one(
         comodel_name="res.lang",
         string="Language",
@@ -53,7 +52,7 @@ class IrExportsLine(models.Model):
                     raise ValidationError(
                         _(
                             "The target must reference the same field as in "
-                            "name '%s' not in '%s'"
+                            "name '%(name)s' not in '%(name_with_target)s'"
                         )
-                        % (name, name_with_target)
+                        % dict(name=name, name_with_target=name_with_target)
                     )
