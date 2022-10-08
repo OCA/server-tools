@@ -90,8 +90,8 @@ class TestParser(SavepointCase):
                 ],
             }
         )
-        cls.category = category.with_context({})
-        cls.category_lang = category.with_context({"lang": cls.lang.code})
+        cls.category = category.with_context(lang=None)
+        cls.category_lang = category.with_context(lang=cls.lang.code)
 
     def test_getting_parser(self):
         expected_parser = [

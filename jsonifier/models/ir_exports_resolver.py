@@ -25,7 +25,6 @@ class FieldResolver(models.Model):
     name = fields.Char()
     type = fields.Selection([("field", "Field"), ("global", "Global")])
     python_code = fields.Text(
-        string="Python Code",
         default="\n".join(["# " + h for h in help_message] + ["result = value"]),
         help="\n".join(help_message),
     )
