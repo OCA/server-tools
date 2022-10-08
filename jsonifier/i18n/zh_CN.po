@@ -235,4 +235,4 @@ msgstr ""
 #: code:addons/jsonifier/models/models.py:0
 #, fuzzy, python-format
 msgid "Wrong parser configuration for field: `%s`"
-msgstr "错误的解析器配置"
+msgstr "错误的解析器配置 %s"
