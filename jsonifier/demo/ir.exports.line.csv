@@ -1,7 +1,7 @@
 id,export_id/id,name
 name,ir_exp_partner,name
 active,ir_exp_partner,active
-credit_limit,ir_exp_partner,credit_limit
+partner_latitude,ir_exp_partner,partner_latitude
 color,ir_exp_partner,color
 category_id_name,ir_exp_partner,category_id/name
 country_id_name,ir_exp_partner,country_id/name
