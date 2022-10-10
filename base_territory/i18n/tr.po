@@ -30,7 +30,6 @@ msgstr "Şube Müdürü"
 #. module: base_territory
 #: model:ir.actions.act_window,name:base_territory.action_res_branch
 #: model:ir.ui.menu,name:base_territory.menu_res_branch
-#: model_terms:ir.ui.view,arch_db:base_territory.res_branch_tree_view
 msgid "Branches"
 msgstr "Şubeler"
 
@@ -76,7 +75,6 @@ msgstr "Açıklama"
 
 #. module: base_territory
 #: model:ir.model.fields,field_description:base_territory.field_res_branch__display_name
-#: model:ir.model.fields,field_description:base_territory.field_res_country__display_name
 #: model:ir.model.fields,field_description:base_territory.field_res_district__display_name
 #: model:ir.model.fields,field_description:base_territory.field_res_region__display_name
 #: model:ir.model.fields,field_description:base_territory.field_res_territory__display_name
@@ -99,13 +97,11 @@ msgstr "İlçe Müdürü"
 #. module: base_territory
 #: model:ir.actions.act_window,name:base_territory.action_res_district
 #: model:ir.ui.menu,name:base_territory.menu_res_district
-#: model_terms:ir.ui.view,arch_db:base_territory.res_district_tree_view
 msgid "Districts"
 msgstr "İlçeler"
 
 #. module: base_territory
 #: model:ir.model.fields,field_description:base_territory.field_res_branch__id
-#: model:ir.model.fields,field_description:base_territory.field_res_country__id
 #: model:ir.model.fields,field_description:base_territory.field_res_district__id
 #: model:ir.model.fields,field_description:base_territory.field_res_region__id
 #: model:ir.model.fields,field_description:base_territory.field_res_territory__id
@@ -114,7 +110,6 @@ msgstr "ID"
 
 #. module: base_territory
 #: model:ir.model.fields,field_description:base_territory.field_res_branch____last_update
-#: model:ir.model.fields,field_description:base_territory.field_res_country____last_update
 #: model:ir.model.fields,field_description:base_territory.field_res_district____last_update
 #: model:ir.model.fields,field_description:base_territory.field_res_region____last_update
 #: model:ir.model.fields,field_description:base_territory.field_res_territory____last_update
@@ -162,7 +157,6 @@ msgstr "Bölge Müdürü"
 #: model:ir.actions.act_window,name:base_territory.action_res_region
 #: model:ir.model.fields,field_description:base_territory.field_res_country__region_ids
 #: model:ir.ui.menu,name:base_territory.menu_res_region
-#: model_terms:ir.ui.view,arch_db:base_territory.res_region_tree_view
 msgid "Regions"
 msgstr "Bölgeler"
 
@@ -174,7 +168,6 @@ msgstr "İl"
 #. module: base_territory
 #: model:ir.actions.act_window,name:base_territory.action_res_territory
 #: model:ir.ui.menu,name:base_territory.menu_res_territory
-#: model_terms:ir.ui.view,arch_db:base_territory.res_territory_tree_view
 msgid "Territories"
 msgstr "Sahalar"
 
