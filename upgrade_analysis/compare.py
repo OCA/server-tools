@@ -134,8 +134,6 @@ def report_generic(new, old, attrs, reprs):
         if attr == "required":
             if old[attr] != new["required"] and new["required"]:
                 text = "now required"
-                if new["req_default"]:
-                    text += ", req_default: %s" % new["req_default"]
                 fieldprint(old, new, "", text, reprs)
         elif attr == "stored":
             if old[attr] != new[attr]:
@@ -284,14 +282,18 @@ def compare_sets(old_records, new_records):
         ],
     )
 
-    printkeys = [
+    # Info that is displayed for deleted fields
+    printkeys_old = [
         "relation",
         "required",
         "selection_keys",
-        "req_default",
         "_inherits",
         "mode",
         "attachment",
+    ]
+    # Info that is displayed for new fields
+    printkeys_new = printkeys_old + [
+        "hasdefault",
     ]
     for column in old_records:
         if column["field"] == "_order":
@@ -304,7 +306,7 @@ def compare_sets(old_records, new_records):
         extra_message = ", ".join(
             [
                 k + ": " + str(column[k]) if k != str(column[k]) else k
-                for k in printkeys
+                for k in printkeys_old
                 if column[k]
             ]
         )
@@ -312,11 +314,6 @@ def compare_sets(old_records, new_records):
             extra_message = " " + extra_message
         fieldprint(column, "", "", "DEL" + extra_message, reprs)
 
-    printkeys.extend(
-        [
-            "hasdefault",
-        ]
-    )
     for column in new_records:
         if column["field"] == "_order":
             continue
@@ -325,13 +322,13 @@ def compare_sets(old_records, new_records):
             continue
         if column["mode"] == "create":
             column["mode"] = ""
-        printkeys_plus = printkeys.copy()
+        printkeys = printkeys_new.copy()
         if column["isfunction"] or column["isrelated"]:
-            printkeys_plus.extend(["isfunction", "isrelated", "stored"])
+            printkeys.extend(["isfunction", "isrelated", "stored"])
         extra_message = ", ".join(
             [
                 k + ": " + str(column[k]) if k != str(column[k]) else k
-                for k in printkeys_plus
+                for k in printkeys
                 if column[k]
             ]
         )

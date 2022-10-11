@@ -104,7 +104,6 @@ class UpgradeRecord(models.Model):
             "required",
             "stored",
             "selection_keys",
-            "req_default",
             "hasdefault",
             "table",
             "_inherits",
