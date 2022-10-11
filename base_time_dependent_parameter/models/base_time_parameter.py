@@ -1,7 +1,7 @@
 # Author Copyright (C) 2022 Nimarosa (Nicolas Rodriguez) (<nicolasrsande@gmail.com>).
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-import ast
+from ast import literal_eval
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
@@ -42,7 +42,7 @@ class BaseTimeParameter(models.Model):
             limit=1,
         )
         if parameter:
-            return ast.literal_eval(parameter.parameter_value)
+            return literal_eval('"{}"'.format(parameter.parameter_value))
         else:
             raise UserError(
                 _("No rule parameter with code '%s' was found for date %s")
