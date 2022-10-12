@@ -13,6 +13,6 @@ class Base(models.AbstractModel):
     # This will make the parameters accessible from any Odoo model.
     def get_time_dependent_parameter(self, code, date_field_name="date_to"):
         date = getattr(self, date_field_name)
-        if type(date) is datetime.datetime:
+        if type(date) is datetime:
             date = date.date()
         return self.env["base.time_parameter"]._get_parameter_from_code(code, date)
