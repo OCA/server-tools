@@ -8,56 +8,84 @@ from odoo import modules
 from odoo.tools import config
 
 _logger = logging.getLogger(__name__)
-_original_load_information_from_description_file = (
-    modules.module.load_information_from_description_file
-)
+_original_load_manifest = modules.module.load_manifest
 
 
-def split_strip(s):
-    """Split string and strip each component sep by comma
+def _get_modules_dict_auto_install_config(config_value):
+    """Given a configuration parameter name, return a dict of
+    {module_name: modules_list or False}
 
-    >>> split_strip("foo, bar,")
-    ['foo', 'bar']
+    if the odoo.cfg file contains
 
-    >>> split_strip("")
-    []
+        modules_auto_install_enabled =
+            web_responsive:web,
+            base_technical_features:,
+            point_of_sale:sale/purchase,
+            account_usability
 
-    >>> split_strip(None)
-    []
+    >>> split_strip('modules_auto_install_enabled')
+    {
+        'web_responsive': ['web'],
+        'base_technical_features': [],
+        'point_of_sale': ['sale', 'purchase'],
+        'account_usability': False,
+    }
+
+
     """
-    s = (s or "").strip(" ,")
-    if not s:
-        return []
-    return [x.strip() for x in s.split(",")]
+    res = {}
+    config_value = (config_value or "").strip(" ,")
+    config_list = [x.strip() for x in config_value.split(",")]
+    for item in config_list:
+        if ":" in item:
+            res[item.split(":")[0]] = (
+                item.split(":")[1] and item.split(":")[1].split("/") or []
+            )
+        else:
+            res[item] = True
+    return res
 
 
-def _overload_load_information_from_description_file(module, mod_path=None):
-    res = _original_load_information_from_description_file(module, mod_path=None)
+def _overload_load_manifest(module, mod_path=None):
+
+    res = _original_load_manifest(module, mod_path=None)
     auto_install = res.get("auto_install", False)
 
-    modules_auto_install_enabled = split_strip(
+    modules_auto_install_enabled_dict = _get_modules_dict_auto_install_config(
         config.get("modules_auto_install_enabled")
     )
-    modules_auto_install_disabled = split_strip(
+    modules_auto_install_disabled_dict = _get_modules_dict_auto_install_config(
         config.get("modules_auto_install_disabled")
     )
 
-    if auto_install and module in modules_auto_install_disabled:
-        _logger.info("Module '%s' has been marked as not auto installable." % module)
+    if auto_install and module in modules_auto_install_disabled_dict.keys():
+        _logger.info("Module '%s' has been marked as NOT auto installable." % module)
         res["auto_install"] = False
 
-    if not auto_install and module in modules_auto_install_enabled:
-        _logger.info("Module '%s' has been marked as auto installable." % module)
-        res["auto_install"] = set(res["depends"])
+    if not auto_install and module in modules_auto_install_enabled_dict.keys():
+        specific_dependencies = modules_auto_install_enabled_dict.get(module)
+        if type(specific_dependencies) is bool:
+            # Classical case
+            _logger.info("Module '%s' has been marked as auto installable." % module)
+            res["auto_install"] = set(res["depends"])
+        else:
+            if specific_dependencies:
+                _logger.info(
+                    "Module '%s' has been marked as auto installable if '%s' are installed"
+                    % (module, ",".join(specific_dependencies))
+                )
+            else:
+                _logger.info(
+                    "Module '%s' has been marked as auto installable in ALL CASES."
+                    % module
+                )
+
+            res["auto_install"] = set(specific_dependencies)
 
     return res
 
 
 def post_load():
-    _logger.info("Applying patch module_change_auto_intall")
-    modules.module.load_information_from_description_file = (
-        _overload_load_information_from_description_file
-    )
-    modules.load_information_from_description_file = (
-        _overload_load_information_from_description_file
-    )
+    _logger.info("Aplying patch module_change_auto_intall ...")
+    modules.module.load_manifest = _overload_load_manifest
+    modules.load_manifest = _overload_load_manifest
