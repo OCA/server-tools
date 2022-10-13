@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+SPDX-FileCopyrightText: 2022 Coop IT Easy SC
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+<odoo>
+    <record id="compute_today" model="ir.cron">
+        <field name="name">Set today's date on the company</field>
+        <field name="model_id" ref="model_res_company" />
+        <field name="code">model.cron_update_today</field>
+        <field name="active" eval="True" />
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field
+            name="nextcall"
+            eval="(datetime.now() + timedelta(days=1))
+            .replace(hour=0, minute=0, second=0)"
+        />
+        <field name="numbercall">-1</field>
+        <field name="doall">1</field>
+    </record>
+</odoo>
