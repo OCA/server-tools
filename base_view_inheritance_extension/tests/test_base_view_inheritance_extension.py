@@ -236,7 +236,7 @@ class TestBaseViewInheritanceExtension(SavepointCase):
         )
 
     def test_python_dict_inheritance_attrs_update_dictionary_0th_key(self):
-        """Test that we can replace the first key of the dictionary (there was a bug that preventied this)"""
+        """Test that we can replace the first key of the dictionary (there was a bug that prevented this)"""
         inherit_id = self.env.ref("base.view_partner_form").id
         source = etree.fromstring(
             """
