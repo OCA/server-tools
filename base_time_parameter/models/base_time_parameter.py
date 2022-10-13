@@ -8,7 +8,7 @@ from odoo.exceptions import UserError
 
 
 class BaseTimeParameter(models.Model):
-    _name = "base.time_parameter"
+    _name = "base.time.parameter"
     _description = "Time Parameter"
 
     name = fields.Char(required=True, string="Parameter Name")
@@ -20,7 +20,7 @@ class BaseTimeParameter(models.Model):
         default=lambda self: self.env.company.country_id,
     )
     parameter_version_ids = fields.One2many(
-        "base.time_parameter.value", "time_parameter_id", string=("Versions")
+        "base.time.parameter.value", "time_parameter_id", string=("Versions")
     )
     company_id = fields.Many2one(
         "res.company",
@@ -33,7 +33,7 @@ class BaseTimeParameter(models.Model):
     def _get_parameter_from_code(self, code, date=None):
         if not date:
             date = fields.Date.today()
-        parameter = self.env["base.time_parameter.value"].search(
+        parameter = self.env["base.time.parameter.value"].search(
             [
                 ("code", "=", code),
                 ("date_from", "<=", date),

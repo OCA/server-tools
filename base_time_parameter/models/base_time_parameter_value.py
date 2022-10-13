@@ -5,12 +5,12 @@ from odoo import fields, models
 
 
 class HrSalaryRuleParameterValue(models.Model):
-    _name = "base.time_parameter.value"
+    _name = "base.time.parameter.value"
     _description = "Time Parameter Value"
     _order = "date_from desc"
 
     time_parameter_id = fields.Many2one(
-        "base.time_parameter",
+        "base.time.parameter",
         required=True,
         ondelete="cascade",
         string="Time Parameter",

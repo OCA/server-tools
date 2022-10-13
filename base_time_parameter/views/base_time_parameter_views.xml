@@ -2,10 +2,10 @@
 <odoo>
     <!-- Form View -->
     <record id="base_time_parameter_view_form" model="ir.ui.view">
-        <field name="name">base.time_parameter.form</field>
-        <field name="model">base.time_parameter</field>
+        <field name="name">base.time.parameter.form</field>
+        <field name="model">base.time.parameter</field>
         <field name="arch" type="xml">
-            <form string="Time Dependent Parameter">
+            <form string="Time Parameter">
                 <sheet>
                     <group>
                         <field name="name" />
@@ -31,8 +31,8 @@
 
     <!-- Tree View -->
     <record id="base_time_parameter_view_tree" model="ir.ui.view">
-        <field name="name">base.time_parameter.tree</field>
-        <field name="model">base.time_parameter</field>
+        <field name="name">base.time.parameter.tree</field>
+        <field name="model">base.time.parameter</field>
         <field name="arch" type="xml">
             <tree>
                 <field name="code" widget="badge" />
@@ -49,8 +49,8 @@
 
     <!-- Search View -->
     <record id="base_time_parameter_view_search" model="ir.ui.view">
-        <field name="name">base.time_parameter.search</field>
-        <field name="model">base.time_parameter</field>
+        <field name="name">base.time.parameter.search</field>
+        <field name="model">base.time.parameter</field>
         <field name="arch" type="xml">
             <search>
                 <field
@@ -63,8 +63,8 @@
 
     <!-- Actions -->
     <record id="base_time_parameter_action" model="ir.actions.act_window">
-        <field name="name">Time Dependent Parameters</field>
-        <field name="res_model">base.time_parameter</field>
+        <field name="name">Time Parameters</field>
+        <field name="res_model">base.time.parameter</field>
         <field name="view_mode">tree,form</field>
     </record>
 
@@ -72,7 +72,7 @@
     <menuitem
         id="menu_action_base_time_parameter"
         action="base_time_parameter_action"
-        name="Time Dependent Parameters"
+        name="Time Parameters"
         parent="base.menu_ir_property"
         sequence="35"
     />

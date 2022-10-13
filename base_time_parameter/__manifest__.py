@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
-    "name": "Time Dependent Parameter",
+    "name": "Time Parameter",
     "version": "15.0.1.0.0",
     "summary": """
         Time dependent parameters
