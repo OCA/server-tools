@@ -45,7 +45,7 @@ class BaseTimeParameter(models.Model):
             return literal_eval('"{}"'.format(parameter.parameter_value))
         else:
             raise UserError(
-                _("No rule parameter with code '%s' was found for date %s")
+                _("No rule parameter with code '%(code)s' was found for date %(date)s")
                 % (code, date)
             )
 
