@@ -74,33 +74,56 @@ def compare_registries(cr, module, registry, local_registry):
                     old_field[key] = value
 
 
-def isfunction(model, k):
+def hasdefault(field):
+    """Return a representation of the field's default method.
+
+    The default method is only meaningful if the field is a regular read/write
+    field with a `default` method or a `compute` method.
+
+    Note that Odoo fields accept a literal value as a `default` attribute
+    this value is wrapped in a lambda expression in odoo/fields.py:
+    https://github.com/odoo/odoo/blob/7eeba9d/odoo/fields.py#L484-L487
+    """
     if (
-        model._fields[k].compute
-        and not model._fields[k].related
-        and not model._fields[k].company_dependent
+        not field.readonly  # It's not a proper computed field
+        and not field.inverse  # It's not a field that delegates their data
+        and not isrelated(field)  # It's not an (unstored) related field.
+    ):
+        if field.default:
+            return "default"
+        if field.compute:
+            return "compute"
+    return ""
+
+
+def isfunction(field):
+    if (
+        field.compute
+        and (field.readonly or field.inverse)
+        and not field.related
+        and not field.company_dependent
     ):
         return "function"
     return ""
 
 
-def isproperty(model, k):
-    if model._fields[k].company_dependent:
+def isproperty(field):
+    if field.company_dependent:
         return "property"
     return ""
 
 
-def isrelated(model, k):
-    if model._fields[k].related:
+def isrelated(field):
+    if field.related:
         return "related"
     return ""
 
 
-def _get_relation(v):
-    if v.type in ("many2many", "many2one", "one2many"):
-        return v.comodel_name
-    elif v.type == "many2one_reference":
-        return v.model_field
+def _get_relation(field):
+    if field.type in ("many2many", "many2one", "one2many"):
+        return field.comodel_name
+    elif field.type == "many2one_reference":
+        return field.model_field
     else:
         return ""
 
@@ -125,41 +148,31 @@ def log_model(model, local_registry):
     if model._inherits:
         model_registry["_inherits"] = {"_inherits": str(model._inherits)}
     model_registry["_order"] = {"_order": model._order}
-    for k, v in model._fields.items():
+    for fieldname, field in model._fields.items():
         properties = {
-            "type": typemap.get(v.type, v.type),
-            "isfunction": isfunction(model, k),
-            "isproperty": isproperty(model, k),
-            "isrelated": isrelated(model, k),
-            "relation": _get_relation(v),
-            "table": v.relation if v.type == "many2many" else "",
-            "required": v.required and "required" or "",
-            "stored": v.store and "stored" or "",
+            "type": typemap.get(field.type, field.type),
+            "isfunction": isfunction(field),
+            "isproperty": isproperty(field),
+            "isrelated": isrelated(field),
+            "relation": _get_relation(field),
+            "table": field.relation if field.type == "many2many" else "",
+            "required": field.required and "required" or "",
+            "stored": field.store and "stored" or "",
             "selection_keys": "",
-            "req_default": "",
-            "hasdefault": model._fields[k].default and "hasdefault" or "",
+            "hasdefault": hasdefault(field),
         }
-        if v.type == "selection":
-            if isinstance(v.selection, (tuple, list)):
-                properties["selection_keys"] = str(sorted([x[0] for x in v.selection]))
+        if field.type == "selection":
+            if isinstance(field.selection, (tuple, list)):
+                properties["selection_keys"] = str(
+                    sorted([x[0] for x in field.selection])
+                )
             else:
                 properties["selection_keys"] = "function"
-        elif v.type == "binary":
-            properties["attachment"] = str(getattr(v, "attachment", False))
-        default = model._fields[k].default
-        if v.required and default:
-            if (
-                callable(default)
-                or isinstance(default, str)
-                and getattr(model._fields[k], default, False)
-                and callable(getattr(model._fields[k], default))
-            ):
-                properties["req_default"] = "function"
-            else:
-                properties["req_default"] = str(default)
+        elif field.type == "binary":
+            properties["attachment"] = str(getattr(field, "attachment", False))
         for key, value in properties.items():
             if value:
-                model_registry.setdefault(k, {})[key] = value
+                model_registry.setdefault(fieldname, {})[key] = value
 
 
 def log_xml_id(cr, module, xml_id):
