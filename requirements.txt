@@ -1,0 +1,5 @@
+# generated from manifests external_dependencies
+dataclasses
+mako
+odoorpc
+openupgradelib
