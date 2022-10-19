@@ -63,6 +63,7 @@ msgid "Attributes"
 msgstr "Atributos"
 
 #. module: upgrade_analysis
+#. odoo-python
 #: code:addons/upgrade_analysis/wizards/upgrade_generate_record_wizard.py:0
 #, python-format
 msgid "Cannot seem to install or upgrade modules %s"
@@ -90,6 +91,7 @@ msgid "Comparison Configurations"
 msgstr "Configuraciones de Comparación"
 
 #. module: upgrade_analysis
+#. odoo-python
 #: code:addons/upgrade_analysis/models/upgrade_comparison_config.py:0
 #, python-format
 msgid ""
@@ -107,6 +109,7 @@ msgid "Continue"
 msgstr "Continuar"
 
 #. module: upgrade_analysis
+#. odoo-python
 #: code:addons/upgrade_analysis/models/upgrade_comparison_config.py:0
 #, python-format
 msgid "Could not connect the Odoo server at %(server)s:%(port)s"
@@ -320,6 +323,7 @@ msgid "New Analysis"
 msgstr "Nuevo Análisis"
 
 #. module: upgrade_analysis
+#. odoo-python
 #: code:addons/upgrade_analysis/models/upgrade_record.py:0
 #, python-format
 msgid "No manifest found in %(addon_dir)s"
@@ -432,6 +436,7 @@ msgid "Type"
 msgstr "Tipo"
 
 #. module: upgrade_analysis
+#. odoo-python
 #: code:addons/upgrade_analysis/models/upgrade_analysis.py:0
 #, python-format
 msgid "Unexpected root Element: %(root)s in file: %(file)s"
@@ -510,6 +515,7 @@ msgid "XML ID"
 msgstr "XML ID"
 
 #. module: upgrade_analysis
+#. odoo-python
 #: code:addons/upgrade_analysis/models/upgrade_comparison_config.py:0
 #, python-format
 msgid ""
