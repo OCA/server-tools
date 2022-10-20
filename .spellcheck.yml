@@ -6,7 +6,7 @@ matrix:
   pipeline:
   - pyspelling.filters.javascript
   sources:
-  - **/*.js
+  - '**/*.js'
 - name: Markdown
   aspell:
     lang: en
@@ -14,7 +14,8 @@ matrix:
   pipeline:
   - pyspelling.filters.markdown
   sources:
-  - **/readme/*.md **/README.md
+  - '**/readme/*.md'
+  - '**/README.md'
   default_encoding: utf-8
 - name: Python
   aspell:
@@ -23,7 +24,7 @@ matrix:
   pipeline:
   - pyspelling.filters.python
   sources:
-  - **/*.py
+  - '**/*.py'
 - name: Xml
   aspell:
     lang: en
@@ -31,4 +32,4 @@ matrix:
   pipeline:
   - pyspelling.filters.xml
   sources:
-  - **/*.xml
+  - '**/*.xml'
