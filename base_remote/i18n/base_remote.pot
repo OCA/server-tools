@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -19,30 +19,6 @@ msgid "Base"
 msgstr ""
 
 #. module: base_remote
-#: model:ir.model.fields,field_description:base_remote.field_res_remote__changeset_change_ids
-#: model:ir.model.fields,field_description:base_remote.field_res_users__changeset_change_ids
-msgid "Changeset Changes"
-msgstr ""
-
-#. module: base_remote
-#: model:ir.model.fields,field_description:base_remote.field_res_remote__changeset_ids
-#: model:ir.model.fields,field_description:base_remote.field_res_users__changeset_ids
-msgid "Changesets"
-msgstr ""
-
-#. module: base_remote
-#: model:ir.model.fields,field_description:base_remote.field_res_remote__count_pending_changeset_changes
-#: model:ir.model.fields,field_description:base_remote.field_res_users__count_pending_changeset_changes
-msgid "Count Pending Changeset Changes"
-msgstr ""
-
-#. module: base_remote
-#: model:ir.model.fields,field_description:base_remote.field_res_remote__count_pending_changesets
-#: model:ir.model.fields,field_description:base_remote.field_res_users__count_pending_changesets
-msgid "Count Pending Changesets"
-msgstr ""
-
-#. module: base_remote
 #: model:ir.model.fields,field_description:base_remote.field_res_remote__create_uid
 msgid "Created by"
 msgstr ""
@@ -54,7 +30,6 @@ msgstr ""
 
 #. module: base_remote
 #: model:ir.model.fields,field_description:base_remote.field_res_remote__display_name
-#: model:ir.model.fields,field_description:base_remote.field_res_users__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -70,7 +45,6 @@ msgstr ""
 
 #. module: base_remote
 #: model:ir.model.fields,field_description:base_remote.field_res_remote__id
-#: model:ir.model.fields,field_description:base_remote.field_res_users__id
 msgid "ID"
 msgstr ""
 
@@ -86,7 +60,6 @@ msgstr ""
 
 #. module: base_remote
 #: model:ir.model.fields,field_description:base_remote.field_res_remote____last_update
-#: model:ir.model.fields,field_description:base_remote.field_res_users____last_update
 msgid "Last Modified on"
 msgstr ""
 
@@ -109,25 +82,12 @@ msgstr ""
 #: model:ir.actions.act_window,name:base_remote.res_remote_action
 #: model:ir.model,name:base_remote.model_res_remote
 #: model:ir.ui.menu,name:base_remote.res_remote_menu
-#: model_terms:ir.ui.view,arch_db:base_remote.res_remote_tree
 msgid "Remotes"
 msgstr ""
 
 #. module: base_remote
 #: model:ir.model.fields,help:base_remote.field_res_remote__in_network
 msgid "Shows if the remote can be found through the socket"
-msgstr ""
-
-#. module: base_remote
-#: model:ir.model.fields,field_description:base_remote.field_res_remote__smart_search
-#: model:ir.model.fields,field_description:base_remote.field_res_users__smart_search
-msgid "Smart Search"
-msgstr ""
-
-#. module: base_remote
-#: model:ir.model.fields,field_description:base_remote.field_res_remote__user_can_see_changeset
-#: model:ir.model.fields,field_description:base_remote.field_res_users__user_can_see_changeset
-msgid "User Can See Changeset"
 msgstr ""
 
 #. module: base_remote
