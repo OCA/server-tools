@@ -1,0 +1,34 @@
+matrix:
+- name: Javascript
+  aspell:
+    lang: en
+    d: en_US
+  pipeline:
+  - pyspelling.filters.javascript
+  sources:
+  - **/*.js
+- name: Markdown
+  aspell:
+    lang: en
+    d: en_US
+  pipeline:
+  - pyspelling.filters.markdown
+  sources:
+  - **/readme/*.md **/README.md
+  default_encoding: utf-8
+- name: Python
+  aspell:
+    lang: en
+    d: en_US
+  pipeline:
+  - pyspelling.filters.python
+  sources:
+  - **/*.py
+- name: Xml
+  aspell:
+    lang: en
+    d: en_US
+  pipeline:
+  - pyspelling.filters.xml
+  sources:
+  - **/*.xml
