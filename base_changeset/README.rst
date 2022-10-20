@@ -168,6 +168,15 @@ The source is used for the application of the rules, allowing to have a
 different rule for a different source. It is also stored on the changeset for
 information.
 
+Notes on security
+-----------------
+
+Note that by default, changeset users see all changes on all configured
+rules. This circumvents read restrictions on the original records, so if you
+have restrictions on models with changeset rules, changeset users will still
+see all changes of all records, and applying a change on an inaccessible record
+will fail.
+
 Known issues / Roadmap
 ======================
 
@@ -201,6 +210,7 @@ Contributors
 * Yannick Vaucher <yannick.vaucher@camptocamp.com>
 * Dennis Sluijk <d.sluijk@onestein.nl>
 * Andrea Stirpe <a.stirpe@onestein.nl>
+* Holger Brunn <mail@hunki-enterprises.com>
 
 Maintainers
 ~~~~~~~~~~~

@@ -497,6 +497,14 @@ same that is passed in <tt class="docutils literal">__changeset_rules_source_mod
 <p>The source is used for the application of the rules, allowing to have a
 different rule for a different source. It is also stored on the changeset for
 information.</p>
+</div>
+<div class="section" id="notes-on-security">
+<h1>Notes on security</h1>
+<p>Note that by default, changeset users see all changes on all configured
+rules. This circumvents read restrictions on the original records, so if you
+have restrictions on models with changeset rules, changeset users will still
+see all changes of all records, and applying a change on an inaccessible record
+will fail.</p>
 <div class="section" id="known-issues-roadmap">
 <h2>Known issues / Roadmap</h2>
 <ul class="simple">
@@ -529,6 +537,7 @@ If you spotted it first, help us smashing it by providing a detailed and welcome
 <li>Yannick Vaucher &lt;<a class="reference external" href="mailto:yannick.vaucher&#64;camptocamp.com">yannick.vaucher&#64;camptocamp.com</a>&gt;</li>
 <li>Dennis Sluijk &lt;<a class="reference external" href="mailto:d.sluijk&#64;onestein.nl">d.sluijk&#64;onestein.nl</a>&gt;</li>
 <li>Andrea Stirpe &lt;<a class="reference external" href="mailto:a.stirpe&#64;onestein.nl">a.stirpe&#64;onestein.nl</a>&gt;</li>
+<li>Holger Brunn &lt;<a class="reference external" href="mailto:mail&#64;hunki-enterprises.com">mail&#64;hunki-enterprises.com</a>&gt;</li>
 </ul>
 </div>
 <div class="section" id="maintainers">
