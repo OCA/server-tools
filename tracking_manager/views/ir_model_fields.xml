@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright (C) 2022 Akretion (<http://www.akretion.com>).
+     @author Kévin Roche <kevin.roche@akretion.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="custom_tracking_field_view_tree" model="ir.ui.view">
+        <field name="model">tracking.model.field</field>
+        <field name="name">tracking.model.field.tree</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom" create="false">
+                <field name="name" readonly="True" />
+                <field name="custom_tracking" widget="boolean_toggle" />
+                <field name="native_tracking_field" readonly="True" />
+                <field name="type_field" readonly="True" />
+                <field name="model_id" readonly="True" />
+            </tree>
+        </field>
+    </record>
+</odoo>
