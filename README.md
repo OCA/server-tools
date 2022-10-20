@@ -28,6 +28,7 @@ addon | version | maintainers | summary
 [base_exception](base_exception/) | 15.0.1.0.2 | [![hparfr](https://github.com/hparfr.png?size=30px)](https://github.com/hparfr) [![sebastienbeau](https://github.com/sebastienbeau.png?size=30px)](https://github.com/sebastienbeau) | This module provide an abstract model to manage customizable exceptions to be applied on different models (sale order, invoice, ...)
 [base_fontawesome](base_fontawesome/) | 15.0.5.15.4 |  | Up to date Fontawesome resources.
 [base_multi_image](base_multi_image/) | 15.0.1.0.0 |  | Allow multiple images for database objects
+[base_remote](base_remote/) | 15.0.1.0.0 |  | Remote Base
 [base_search_fuzzy](base_search_fuzzy/) | 15.0.1.0.0 |  | Fuzzy search with the PostgreSQL trigram extension
 [base_time_window](base_time_window/) | 15.0.1.0.0 |  | Base model to handle time windows
 [base_view_inheritance_extension](base_view_inheritance_extension/) | 15.0.1.0.1 |  | Adds more operators for view inheritance
