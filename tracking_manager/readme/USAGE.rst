@@ -1,0 +1,4 @@
+- In setting > models: select a model
+- Check "Apply custom tracking on fields", all the non readonly, related, computed fields will be tracked.
+- Button or smart button "Tracked Fields" allow to activate / deactivate custom_tracking on each field
+- By default, all sub fields of a one2many field are tracked if they changed. To manage the sub fields, you need to activate "Apply custom tracking on fields" on the one2many model. Button "One2many related models" is a shortcut for these models.
