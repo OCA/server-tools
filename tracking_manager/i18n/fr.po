@@ -1,0 +1,184 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* tracking_manager
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-10-20 16:02+0000\n"
+"PO-Revision-Date: 2022-10-20 18:03+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 3.1.1\n"
+
+#. module: tracking_manager
+#: model_terms:ir.ui.view,arch_db:tracking_manager.track_o2m_m2m_template
+msgid "<b>Change :</b>"
+msgstr "<b>Modifié :</b>"
+
+#. module: tracking_manager
+#: model_terms:ir.ui.view,arch_db:tracking_manager.track_o2m_m2m_template
+msgid "<b>Delete :</b>"
+msgstr "<b>Supprimé :</b>"
+
+#. module: tracking_manager
+#: model_terms:ir.ui.view,arch_db:tracking_manager.track_o2m_m2m_template
+msgid "<b>New :</b>"
+msgstr "<b>Nouveau :</b>"
+
+#. module: tracking_manager
+#: model:ir.model.fields,help:tracking_manager.field_ir_model__apply_custom_tracking
+msgid ""
+"Add tracking on all this model fields if they are not readonly True, "
+"neither computed."
+msgstr ""
+"Active le suivi des champs de ce modèles qui ne sont pas en lecture seule, "
+"ni reliés, ni calculés."
+
+#. module: tracking_manager
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model__apply_custom_tracking
+msgid "Apply custom tracking on fields"
+msgstr "Active le suivi personnalisé des champs"
+
+#. module: tracking_manager
+#: model_terms:ir.ui.view,arch_db:tracking_manager.track_o2m_m2m_template
+msgid "Changed"
+msgstr "Modifié"
+
+#. module: tracking_manager
+#: model:ir.model.fields,field_description:tracking_manager.field_tracking_model_field__create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: tracking_manager
+#: model:ir.model.fields,field_description:tracking_manager.field_tracking_model_field__create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: tracking_manager
+#: model_terms:ir.ui.view,arch_db:tracking_manager.view_model_form
+msgid "Custom Tracked fields"
+msgstr "Champs Suivis"
+
+#. module: tracking_manager
+#: model:ir.model.fields,field_description:tracking_manager.field_tracking_model_field__custom_tracking
+msgid "Custom Tracking"
+msgstr "Suivi personnalisé"
+
+#. module: tracking_manager
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model__display_name
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model_fields__display_name
+#: model:ir.model.fields,field_description:tracking_manager.field_mail_thread__display_name
+#: model:ir.model.fields,field_description:tracking_manager.field_tracking_model_field__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: tracking_manager
+#: model:ir.model,name:tracking_manager.model_mail_thread
+msgid "Email Thread"
+msgstr "Discussion par email"
+
+#. module: tracking_manager
+#: model:ir.model.fields,field_description:tracking_manager.field_tracking_model_field__tracking_field_id
+msgid "Field"
+msgstr "Champ"
+
+#. module: tracking_manager
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model__field_count
+msgid "Field Count"
+msgstr "Nb de champs"
+
+#. module: tracking_manager
+#: model:ir.model.fields,field_description:tracking_manager.field_tracking_model_field__name
+msgid "Field Name"
+msgstr "Nom du champs"
+
+#. module: tracking_manager
+#: model:ir.model,name:tracking_manager.model_ir_model_fields
+msgid "Fields"
+msgstr "Champs"
+
+#. module: tracking_manager
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model__id
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model_fields__id
+#: model:ir.model.fields,field_description:tracking_manager.field_mail_thread__id
+#: model:ir.model.fields,field_description:tracking_manager.field_tracking_model_field__id
+msgid "ID"
+msgstr ""
+
+#. module: tracking_manager
+#: model:ir.model.fields,help:tracking_manager.field_tracking_model_field__native_tracking_field
+msgid ""
+"If set every modification done to this field is tracked in the chatter. "
+"Value is used to order tracking values."
+msgstr ""
+
+#. module: tracking_manager
+#: model:ir.model.fields,field_description:tracking_manager.field_tracking_model_field__type_field
+msgid "Kind Field"
+msgstr "Type de champs"
+
+#. module: tracking_manager
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model____last_update
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model_fields____last_update
+#: model:ir.model.fields,field_description:tracking_manager.field_mail_thread____last_update
+#: model:ir.model.fields,field_description:tracking_manager.field_tracking_model_field____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: tracking_manager
+#: model:ir.model.fields,field_description:tracking_manager.field_tracking_model_field__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: tracking_manager
+#: model:ir.model.fields,field_description:tracking_manager.field_tracking_model_field__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: tracking_manager
+#: model:ir.model,name:tracking_manager.model_ir_model
+msgid "Models"
+msgstr "Modèles"
+
+#. module: tracking_manager
+#: model:ir.model.fields,field_description:tracking_manager.field_tracking_model_field__native_tracking_field
+msgid "Native Tracking"
+msgstr "Suivi natif"
+
+#. module: tracking_manager
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model__o2m_model_ids
+msgid "One2many Models"
+msgstr "Modèles One2many"
+
+#. module: tracking_manager
+#: model_terms:ir.ui.view,arch_db:tracking_manager.view_model_form
+msgid "One2many related models"
+msgstr "Modèles One2many présents"
+
+#. module: tracking_manager
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model_fields__custom_tracking_id
+msgid "Technical Custom Tracking Field"
+msgstr ""
+
+#. module: tracking_manager
+#: model_terms:ir.ui.view,arch_db:tracking_manager.view_model_form
+msgid "Tracked Fields"
+msgstr "Champs avec suivi personnalisé"
+
+#. module: tracking_manager
+#: model_terms:ir.ui.view,arch_db:tracking_manager.view_model_form
+msgid "Tracking"
+msgstr "Suivi"
+
+#. module: tracking_manager
+#: model:ir.model,name:tracking_manager.model_tracking_model_field
+#: model:ir.model.fields,field_description:tracking_manager.field_tracking_model_field__model_id
+msgid "Tracking Model Field"
+msgstr "Model suivi"
