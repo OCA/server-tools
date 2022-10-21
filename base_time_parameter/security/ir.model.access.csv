@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_base_time_parameter,Time Parameter,model_base_time_parameter,group_time_parameter,1,1,1,1
+access_base_time_parameter_value,Time Parameter Value,model_base_time_parameter_value,group_time_parameter,1,1,1,1
