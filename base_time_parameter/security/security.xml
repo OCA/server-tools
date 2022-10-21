@@ -1,0 +1,22 @@
+<odoo noupdate="1">
+    <record id="group_time_parameter" model="res.groups">
+        <field name="name">Manage Time Parameters</field>
+        <field name="category_id" ref="base.module_category_hidden" />
+    </record>
+    <record id="base_time_parameter_multi_company_rule" model="ir.rule">
+        <field name="name">Time Parameter: multi-company</field>
+        <field name="model_id" ref="model_base_time_parameter" />
+        <field name="global" eval="True" />
+        <field name="domain_force">
+            [('company_id', 'in', company_ids)]
+        </field>
+    </record>
+    <record id="base_time_parameter_value_multi_company_rule" model="ir.rule">
+        <field name="name">Time Parameter Value: multi-company</field>
+        <field name="model_id" ref="model_base_time_parameter_value" />
+        <field name="global" eval="True" />
+        <field name="domain_force">
+            [('company_id', 'in', company_ids)]
+        </field>
+    </record>
+</odoo>
