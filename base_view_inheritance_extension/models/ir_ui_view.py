@@ -112,7 +112,8 @@ class IrUiView(models.Model):
         for spec in specs:
             attr_name = spec.get("name")
             # Parse ast from both node and spec
-            source_ast = ast.parse(node.get(attr_name) or "{}", mode="eval").body
+            node_attr = (node.get(attr_name) or "{}").strip()
+            source_ast = ast.parse(node_attr, mode="eval").body
             update_ast = ast.parse(spec.text.strip(), mode="eval").body
             if not isinstance(source_ast, ast.Dict):
                 raise TypeError(f"Attribute `{attr_name}` is not a dict")
