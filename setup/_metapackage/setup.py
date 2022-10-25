@@ -37,7 +37,7 @@ setuptools.setup(
         'odoo14-addon-base_sequence_option',
         'odoo14-addon-base_sparse_field_list_support',
         'odoo14-addon-base_technical_user',
-        'odoo14-addon-base_time_dependent_parameter',
+        'odoo14-addon-base_time_parameter',
         'odoo14-addon-base_time_window',
         'odoo14-addon-base_video_link',
         'odoo14-addon-base_view_inheritance_extension',
