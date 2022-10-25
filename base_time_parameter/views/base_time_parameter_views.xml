@@ -2,24 +2,34 @@
 <odoo>
     <!-- Form View -->
     <record id="base_time_parameter_view_form" model="ir.ui.view">
-        <field name="name">base.time_parameter.form</field>
-        <field name="model">base.time_parameter</field>
+        <field name="name">base.time.parameter.form</field>
+        <field name="model">base.time.parameter</field>
         <field name="arch" type="xml">
-            <form string="Time Dependent Parameter">
+            <form string="Time Parameter">
                 <sheet>
                     <group>
                         <field name="name" />
                         <field name="code" />
+                        <field name="model_id" />
+                        <field name="type" />
                     </group>
                     <group string="Versions">
                         <field
-                            name="parameter_version_ids"
+                            name="value_ids"
                             nolabel="1"
-                            context="{'default_rule_parameter_id': active_id}"
+                            context="{'default_parameter_id': active_id}"
                         >
                             <tree editable="bottom">
                                 <field name="date_from" />
-                                <field name="parameter_value" />
+                                <field name="type" invisible="1" />
+                                <field
+                                    name="value_text"
+                                    attrs="{'invisible': [('type', '!=', 'text')]}"
+                                />
+                                <field
+                                    name="value_reference"
+                                    attrs="{'invisible': [('type', '!=', 'reference')]}"
+                                />
                             </tree>
                         </field>
                     </group>
@@ -31,13 +41,14 @@
 
     <!-- Tree View -->
     <record id="base_time_parameter_view_tree" model="ir.ui.view">
-        <field name="name">base.time_parameter.tree</field>
-        <field name="model">base.time_parameter</field>
+        <field name="name">base.time.parameter.tree</field>
+        <field name="model">base.time.parameter</field>
         <field name="arch" type="xml">
             <tree>
                 <field name="code" widget="badge" />
                 <field name="name" />
-                <field name="parameter_version_ids" />
+                <field name="model_id" />
+                <field name="value_ids" />
                 <field
                     name="company_id"
                     required="1"
@@ -49,22 +60,23 @@
 
     <!-- Search View -->
     <record id="base_time_parameter_view_search" model="ir.ui.view">
-        <field name="name">base.time_parameter.search</field>
-        <field name="model">base.time_parameter</field>
+        <field name="name">base.time.parameter.search</field>
+        <field name="model">base.time.parameter</field>
         <field name="arch" type="xml">
             <search>
                 <field
                     name="name"
                     filter_domain="['|', ('name', 'ilike', self), ('code', 'ilike', self)]"
                 />
+                <field name="model_id" />
             </search>
         </field>
     </record>
 
     <!-- Actions -->
     <record id="base_time_parameter_action" model="ir.actions.act_window">
-        <field name="name">Time Dependent Parameters</field>
-        <field name="res_model">base.time_parameter</field>
+        <field name="name">Time Parameters</field>
+        <field name="res_model">base.time.parameter</field>
         <field name="view_mode">tree,form</field>
     </record>
 
@@ -72,7 +84,7 @@
     <menuitem
         id="menu_action_base_time_parameter"
         action="base_time_parameter_action"
-        name="Time Dependent Parameters"
+        name="Time Parameters"
         parent="base.menu_ir_property"
         sequence="35"
     />
