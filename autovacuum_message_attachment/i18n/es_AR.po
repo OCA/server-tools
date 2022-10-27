@@ -145,7 +145,7 @@ msgstr "Todos"
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_base_partner_merge_automatic_wizard__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_base_partner_merge_line__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_base_time_parameter__assigned_attachment_ids
-#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_base_time_parameter_value__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_base_time_parameter_version__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_base_update_translations__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_bus_bus__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_bus_presence__assigned_attachment_ids
@@ -633,8 +633,8 @@ msgstr "Regla de Limpieza de Mensajes y Adjuntos"
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,help:autovacuum_message_attachment.field_vacuum_rule__message_subtype_ids
 msgid ""
-"Message subtypes concerned by the rule. If left empty, the system won't take"
-" the subtype into account to find the messages to delete"
+"Message subtypes concerned by the rule. If left empty, the system won't take "
+"the subtype into account to find the messages to delete"
 msgstr ""
 "Subtipos de mensajes afectados por la regla. Si se deja vacío, el sistema no "
 "tendrá en cuenta el subtipo para buscar los mensajes a eliminar"
@@ -725,8 +725,8 @@ msgstr "Tenga en cuenta también los mensajes sin subtipos"
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,help:autovacuum_message_attachment.field_vacuum_rule__model_id
 msgid ""
-"Technical field used to set attributes (invisible/required, domain, "
-"etc...for other fields, like the domain filter"
+"Technical field used to set attributes (invisible/required, domain, etc..."
+"for other fields, like the domain filter"
 msgstr ""
 "Campo técnico utilizado para establecer atributos (invisible/requerido, "
 "dominio, etc...) para otros campos, como el filtro de dominio"
