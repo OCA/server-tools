@@ -10,7 +10,7 @@
         with time based versions.
     """,
     "license": "AGPL-3",
-    "author": "Nimarosa, Odoo Community Association (OCA)",
+    "author": "Nimarosa, appstogrow, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/server-tools",
     "maintainers": ["appstogrow", "nimarosa"],
     "category": "Technical",

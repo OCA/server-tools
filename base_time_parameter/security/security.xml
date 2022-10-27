@@ -11,9 +11,9 @@
             [('company_id', 'in', company_ids)]
         </field>
     </record>
-    <record id="base_time_parameter_value_multi_company_rule" model="ir.rule">
-        <field name="name">Time Parameter Value: multi-company</field>
-        <field name="model_id" ref="model_base_time_parameter_value" />
+    <record id="base_time_parameter_version_multi_company_rule" model="ir.rule">
+        <field name="name">Time Parameter Version: multi-company</field>
+        <field name="model_id" ref="model_base_time_parameter_version" />
         <field name="global" eval="True" />
         <field name="domain_force">
             [('company_id', 'in', company_ids)]

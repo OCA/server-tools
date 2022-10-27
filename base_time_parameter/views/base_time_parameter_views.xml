@@ -15,7 +15,7 @@
                     </group>
                     <group string="Versions">
                         <field
-                            name="value_ids"
+                            name="version_ids"
                             nolabel="1"
                             context="{'default_parameter_id': active_id}"
                         >
@@ -48,7 +48,7 @@
                 <field name="code" widget="badge" />
                 <field name="name" />
                 <field name="model_id" />
-                <field name="value_ids" />
+                <field name="version_ids" />
                 <field
                     name="company_id"
                     required="1"

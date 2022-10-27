@@ -38,8 +38,8 @@ class TimeParameter(models.Model):
         default="text",
         index=True,
     )
-    value_ids = fields.One2many(
-        "base.time.parameter.value", "parameter_id", string=("Versions")
+    version_ids = fields.One2many(
+        "base.time.parameter.version", "parameter_id", string=("Versions")
     )
 
     @api.model
