@@ -22,6 +22,6 @@
         "security/ir.model.access.csv",
         "views/base_time_parameter_views.xml",
     ],
-    "development_status": "Alpha",
+    "development_status": "Beta",
     "installable": True,
 }
