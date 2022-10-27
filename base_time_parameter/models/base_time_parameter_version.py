@@ -4,9 +4,9 @@
 from odoo import api, fields, models
 
 
-class TimeParameterValue(models.Model):
-    _name = "base.time.parameter.value"
-    _description = "Time Parameter Value"
+class TimeParameterVersion(models.Model):
+    _name = "base.time.parameter.version"
+    _description = "Time Parameter Version"
     _order = "date_from desc"
 
     parameter_id = fields.Many2one(
@@ -35,7 +35,7 @@ class TimeParameterValue(models.Model):
     _sql_constraints = [
         (
             "_unique",
-            "unique (parameter_id, date_from, company_id)",
-            "Two values of the same parameter cannot start the same day",
+            "unique (parameter_id, date_from)",
+            "A parameter cannot have two versions starting the same day.",
         ),
     ]
