@@ -9,8 +9,8 @@
         Adds the feature to define parameters
         with time based versions.
     """,
-    "license": "AGPL-3",
-    "author": "Nimarosa, Odoo Community Association (OCA)",
+    "license": "LGPL-3",
+    "author": "Nimarosa, appstogrow, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/server-tools",
     "maintainers": ["appstogrow", "nimarosa"],
     "category": "Technical",
