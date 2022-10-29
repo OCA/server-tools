@@ -106,7 +106,8 @@ class PGSessionStore(sessions.SessionStore):
     def vacuum(self):
         self._cr.execute(
             "DELETE FROM http_sessions "
-            "WHERE now() at time zone 'UTC' - write_date > '7 days'"
+            "WHERE now() at time zone 'UTC' - write_date > %s",
+            (f"{http.SESSION_LIFETIME} seconds",),
         )
 
 
