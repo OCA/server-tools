@@ -10,3 +10,4 @@ mako
 odoorpc
 openupgradelib
 pysftp
+sentry_sdk
