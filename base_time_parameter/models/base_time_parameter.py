@@ -43,7 +43,9 @@ class TimeParameter(models.Model):
     )
 
     @api.model
-    def _get_value_from_model_code_date(self, model_name, code, date=None):
+    def _get_value_from_model_code_date(
+        self, model_name, code, date=None, raise_if_not_found=True
+    ):
         # Filter on company, model, code/name
         model = self.env["ir.model"].search([("model", "=", model_name)])
         domain = [
@@ -62,8 +64,10 @@ class TimeParameter(models.Model):
             value = parameter._get_value(date)
             if value:
                 return value
-
-        # No value, raise error
+        # No value
+        if not raise_if_not_found:
+            return
+        # Raise error
         model_name = model.name
         # payroll FIXME: Payslip (Compute Sheet) returns another error ...
         raise UserError(
@@ -75,14 +79,16 @@ class TimeParameter(models.Model):
         self.ensure_one()
         if not date:
             date = fields.Date.today()
-        value_records = self.value_ids.filtered(lambda v: v.date_from <= date)
-        if not value_records:
+        versions = self.version_ids.filtered(lambda v: v.date_from <= date).sorted(
+            key=lambda v: v.date_from, reverse=True
+        )
+        if not versions:
             return
-        value_record = value_records[0]
+        version = versions[0]
         if self.type == "text":
-            return literal_eval('"{}"'.format(value_record.value_text))
+            return literal_eval('"{}"'.format(version.value_text))
         elif self.type == "reference":
-            return value_record.value_reference
+            return version.value_reference
 
     _sql_constraints = [
         (
