@@ -28,7 +28,7 @@ class TimeParameterVersion(models.Model):
 
     @api.model
     def _value_reference_selection(self):
-        model_names = ["account.account"]
+        model_names = self.env.context.get("selection_models", [])
         models = self.env["ir.model"].search([("model", "in", model_names)])
         return [(m.model, m.name) for m in models]
 
