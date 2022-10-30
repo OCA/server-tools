@@ -86,12 +86,6 @@ class PGSessionStore(werkzeug.contrib.sessions.SessionStore):
 
     @with_cursor
     def get(self, sid):
-        self._cr.execute(
-            "UPDATE http_sessions "
-            "SET write_date = now() at time zone 'UTC' "
-            "WHERE sid=%s",
-            (sid,),
-        )
         self._cr.execute("SELECT payload FROM http_sessions WHERE sid=%s", (sid,))
         try:
             data = json.loads(self._cr.fetchone()[0])
