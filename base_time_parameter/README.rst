@@ -30,8 +30,6 @@ It doesn't provide any additional functionality when installed alone. You should
 It allows you to get time dependent parameters from any model in Odoo.
 The functionality is useful for cases when you have static parameters values which changes depending of the date of the record or todays date.
 
-TODO:  Write tests.
-
 **Table of contents**
 
 .. contents::
@@ -41,26 +39,46 @@ Usage
 =====
 
 First give your user the access right "Manage Time Parameters".
-Then you can create new parameters in "Settings/Technical/Time Parameters".
-
-The parameters need a code and a description (which is optional). Then you can create new versions of this parameters
-when you define a "from_date" and a value.
+Then in "Settings/Technical/Time Parameters" you can create a new parameter
+with different versions (start date and value).
 
 Then you can access current parameter value like this:
 .. code-block:: python
-# using today's date when no date is passed
-value = model.get_time_parameter('my_parameter_name')
-# hr.payslip: use payslip.date_to
-value = payslip.get_time_parameter('my_parameter_name', payslip.date_to)
-# account.tax: use tax_date (https://github.com/apps2grow/apps/tree/14.0/account_tax_python_with_date)
-tax_rate = float(company.get_time_parameter('tax_high_rate', tax_date))
 
-Finally i recomend that if you use this parameters in another modules, you create a view which filter by module_name so
-you can have a view for each module that needs to change this parameters and the user can only view the parameters
-of the module that he is looking to change.
+    # using today's date when no date is passed
+    value = model.get_time_parameter('my_parameter_name')
+    # hr.payslip: use payslip.date_to
+    value = payslip.get_time_parameter('my_parameter_name', payslip.date_to)
+    # account.tax: use tax_date (https://github.com/apps2grow/apps/tree/14.0/account_tax_python_with_date)
+    tax_rate = float(company.get_time_parameter('tax_high_rate', tax_date))
 
-Note: You can see a usage case of this module in OCA Payroll Module.
-More information in this PR: https://github.com/OCA/payroll/pull/31
+Payroll implementation:
+* Payroll configuration only shows payslip parameters.
+* By default, the model_id field is hidden in the form.
+* Only payslip model/record may call time_parameter(code).
+
+.. code-block:: XML
+
+    <record id="base_time_parameter_action" model="ir.actions.act_window">
+        <field name="name">Time Parameters</field>
+        <field name="res_model">base.time.parameter</field>
+        <field name="view_mode">tree,form</field>
+        <field
+            name="domain"
+            eval="[('model_id', '=', ref('payroll.model_hr_payslip'))]"
+        />
+        <field
+            name="context"
+            eval="{'default_model_id': ref('payroll.model_hr_payslip')}"
+        />
+    </record>
+    <menuitem
+        id="menu_action_base_time_parameter"
+        action="base_time_parameter_action"
+        name="Time Parameters"
+        parent="payroll_menu_configuration"
+        sequence="35"
+    />
 
 Bug Tracker
 ===========
