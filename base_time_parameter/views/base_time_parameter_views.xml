@@ -4,6 +4,7 @@
     <record id="base_time_parameter_view_form" model="ir.ui.view">
         <field name="name">base.time.parameter.form</field>
         <field name="model">base.time.parameter</field>
+        <field name="priority">20</field>
         <field name="arch" type="xml">
             <form string="Time Parameter">
                 <sheet>
@@ -36,6 +37,18 @@
                     <field name="description" placeholder="Description" />
                 </sheet>
             </form>
+        </field>
+    </record>
+    <record id="base_time_parameter_hide_model_view_form" model="ir.ui.view">
+        <field name="name">base.time.parameter.form hide model</field>
+        <field name="model">base.time.parameter</field>
+        <field name="inherit_id" ref="base_time_parameter_view_form" />
+        <field name="mode">primary</field>
+        <field name="priority">10</field>
+        <field name="arch" type="xml">
+            <field name="model_id" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
         </field>
     </record>
 
@@ -78,6 +91,7 @@
         <field name="name">Time Parameters</field>
         <field name="res_model">base.time.parameter</field>
         <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="base_time_parameter_view_form" />
     </record>
 
     <!-- Menus -->
