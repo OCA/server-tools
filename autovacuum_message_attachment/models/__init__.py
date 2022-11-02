@@ -1,5 +1,7 @@
-from . import autovacuum_mixin
-from . import ir_attachment
-from . import mail_message
-from . import vacuum_rule
-from . import base
+from . import (  # noqa: F401
+    autovacuum_mixin,
+    base,
+    ir_attachment,
+    mail_message,
+    vacuum_rule,
+)
