@@ -21,7 +21,7 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
-[auditlog](auditlog/) | 15.0.1.1.0 |  | Audit Log
+[auditlog](auditlog/) | 15.0.1.1.1 |  | Audit Log
 [auto_backup](auto_backup/) | 15.0.1.0.0 |  | Backups database
 [base_conditional_image](base_conditional_image/) | 15.0.1.0.0 |  | This module extends the functionality to support conditional images
 [base_cron_exclusion](base_cron_exclusion/) | 15.0.1.0.0 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) [![ChrisOForgeFlow](https://github.com/ChrisOForgeFlow.png?size=30px)](https://github.com/ChrisOForgeFlow) | Allow you to select scheduled actions that should not run simultaneously.
