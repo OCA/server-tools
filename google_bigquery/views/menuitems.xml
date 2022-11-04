@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <menuitem
+        id="top_menu"
+        name="BigQuery"
+        web_icon="google_bigquery,static/description/icon.png"
+        groups="base.group_erp_manager"
+    />
+
+    <menuitem
+        id="ir_model_bigquery_menu"
+        name="Models"
+        action="ir_model_bigquery_action"
+        sequence="10"
+        parent="top_menu"
+    />
+
+    <menuitem
+        id="google_bigquery_location_menu"
+        name="Locations"
+        action="google_bigquery_location_action"
+        sequence="20"
+        parent="top_menu"
+    />
+</odoo>

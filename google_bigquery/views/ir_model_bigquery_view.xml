@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="ir_model_bigquery_tree" model="ir.ui.view">
+        <field name="model">ir.model.bigquery</field>
+        <field name="arch" type="xml">
+            <tree banner_route="/google_bigquery/onboarding_panel">
+                <field name="model_id" />
+                <field name="enabled" invisible="1" />
+                <button
+                    name="toggle_enabled"
+                    string="Disabled"
+                    type="object"
+                    class="float-right"
+                    attrs="{'invisible': [('enabled', '=', True)]}"
+                />
+                <button
+                    name="toggle_enabled"
+                    string="Enabled"
+                    type="object"
+                    class="float-right btn-success"
+                    attrs="{'invisible': [('enabled', '=', False)]}"
+                />
+            </tree>
+        </field>
+    </record>
+
+    <record id="ir_model_bigquery_form" model="ir.ui.view">
+        <field name="model">ir.model.bigquery</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="model_id" />
+                        <field name="model_name" invisible="1" />
+                        <field name="enabled" />
+                        <field name="batch_size" />
+                    </group>
+                    <notebook>
+                        <page name="fields_page" string="Fields">
+                            <field name="all_fields_enabled" invisible="1" />
+                            <button
+                                name="toggle_enabled_fields"
+                                string="Disable All"
+                                type="object"
+                                class="float-right"
+                                attrs="{'invisible': [('all_fields_enabled', '=', False)]}"
+                            />
+                            <button
+                                name="toggle_enabled_fields"
+                                string="Enable All"
+                                type="object"
+                                class="float-right btn-success"
+                                attrs="{'invisible': [('all_fields_enabled', '=', True)]}"
+                            />
+                            <field name="field_bigquery_ids" />
+                        </page>
+                        <page name="domain_page" string="Domain">
+                            <field
+                                name="domain"
+                                widget="domain"
+                                options="{'model': 'model_name'}"
+                                string="Domain"
+                            />
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" />
+                    <field name="message_ids" widget="mail_thread" />
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="ir_model_bigquery_search" model="ir.ui.view">
+        <field name="model">ir.model.bigquery</field>
+        <field name="arch" type="xml">
+            <search>
+                <filter
+                    string="Synchronize to BigQuery"
+                    name="enabled"
+                    domain="[('enabled', '=', True)]"
+                />
+            </search>
+        </field>
+    </record>
+
+    <record id="ir_model_bigquery_action" model="ir.actions.act_window">
+        <field name="name">Models</field>
+        <field name="res_model">ir.model.bigquery</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

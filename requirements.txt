@@ -4,6 +4,7 @@ astor
 cryptography
 dataclasses
 dnspython
+google-cloud-bigquery
 josepy
 lxml
 mako

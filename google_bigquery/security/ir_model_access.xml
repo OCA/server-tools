@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="ir_model_bigquery_access" model="ir.model.access">
+        <field name="name">ir_model_bigquery_access</field>
+        <field name="model_id" ref="model_ir_model_bigquery" />
+        <field name="group_id" ref="base.group_erp_manager" />
+        <field name="perm_create" eval="1" />
+        <field name="perm_read" eval="1" />
+        <field name="perm_write" eval="1" />
+        <field name="perm_unlink" eval="1" />
+    </record>
+
+    <record id="ir_model_fields_bigquery_access" model="ir.model.access">
+        <field name="name">ir_model_fields_bigquery_access</field>
+        <field name="model_id" ref="model_ir_model_fields_bigquery" />
+        <field name="group_id" ref="base.group_erp_manager" />
+        <field name="perm_create" eval="1" />
+        <field name="perm_read" eval="1" />
+        <field name="perm_write" eval="1" />
+        <field name="perm_unlink" eval="1" />
+    </record>
+
+    <record id="google_bigquery_location_access" model="ir.model.access">
+        <field name="name">google_bigquery_location_access</field>
+        <field name="model_id" ref="model_google_bigquery_location" />
+        <field name="group_id" ref="base.group_erp_manager" />
+        <field name="perm_create" eval="1" />
+        <field name="perm_read" eval="1" />
+        <field name="perm_write" eval="1" />
+        <field name="perm_unlink" eval="1" />
+    </record>
+</odoo>
