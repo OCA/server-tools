@@ -42,8 +42,8 @@ class NscaCheck(models.Model):
 
     def _force_values(self):
         """Force some values:
-            - Compute the name of the NSCA check to be readable
-              among the others 'ir.cron' records.
+        - Compute the name of the NSCA check to be readable
+          among the others 'ir.cron' records.
         """
         model = self.env["ir.model"].search([("model", "=", self._name)])
         for check in self:
