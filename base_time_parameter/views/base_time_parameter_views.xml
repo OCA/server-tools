@@ -82,6 +82,12 @@
                     filter_domain="['|', ('name', 'ilike', self), ('code', 'ilike', self)]"
                 />
                 <field name="model_id" />
+                <filter
+                    name="model_id"
+                    string="Model"
+                    domain="[]"
+                    context="{'group_by': 'model_id'}"
+                />
             </search>
         </field>
     </record>
@@ -91,6 +97,16 @@
         <field name="name">Time Parameters</field>
         <field name="res_model">base.time.parameter</field>
         <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="base_time_parameter_view_search" />
+    </record>
+    <record id="base_time_parameter_action_tree" model="ir.actions.act_window.view">
+        <field name="act_window_id" ref="base_time_parameter_action" />
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="base_time_parameter_view_tree" />
+    </record>
+    <record id="base_time_parameter_action_form" model="ir.actions.act_window.view">
+        <field name="act_window_id" ref="base_time_parameter_action" />
+        <field name="view_mode">form</field>
         <field name="view_id" ref="base_time_parameter_view_form" />
     </record>
 
