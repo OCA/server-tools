@@ -10,14 +10,14 @@ from odoo import models
 class Base(models.AbstractModel):
     _inherit = "base"
 
-    # This will make the parameters accessible from any Odoo model.
-    def get_time_parameter(self, code, date_field_name=None, raise_if_not_found=True):
-        if date_field_name and hasattr(self, date_field_name):
-            date = getattr(self, date_field_name)
-        else:
-            date = None
+    def get_time_parameter(self, code, date=None, raise_if_not_found=True):
+        if type(date) is str:
+            # Get the date/datetime from a field on the record
+            date = getattr(self, date)
         if type(date) is datetime.datetime:
             date = date.date()
+        assert type(date) is datetime.date or date is None, "Wrong date"
+
         return self.env["base.time.parameter"]._get_value_from_model_code_date(
             self._name, code, date, raise_if_not_found=False
         )
