@@ -106,6 +106,7 @@ msgstr ""
 
 #. module: base_time_parameter
 #: model:ir.model.fields,field_description:base_time_parameter.field_base_time_parameter__model_id
+#: model_terms:ir.ui.view,arch_db:base_time_parameter.base_time_parameter_view_search
 msgid "Model"
 msgstr ""
 
