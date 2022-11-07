@@ -25,37 +25,49 @@ Time Parameter
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
-This module adds support for time dependent parameters.
-It doesn't provide any additional functionality when installed alone. You should use it in the developing of other modules which might favor of the functionality provided.
-It allows you to get time dependent parameters from any model in Odoo.
-The functionality is useful for cases when you have static parameters values which changes depending of the date of the record or todays date.
+A value may change over time.
+With this module you may set starting dates and values.
 
 **Table of contents**
 
 .. contents::
    :local:
 
+Configuration
+=============
+
+The user needs the access right "Manage Time Parameters".
+
 Usage
 =====
 
-First give your user the access right "Manage Time Parameters".
-Then in "Settings/Technical/Time Parameters" you can create a new parameter
-with different versions (start date and value).
+Menu: "Settings/Technical/Time Parameters"
 
-Then you can access current parameter value like this:
+Create a parameter with different versions (start date and value).
+
+If model_id is empty, any model/record may get the time parameter.
+
+The value may be a text or reference.
+
+Get the value like this:
+
 .. code-block:: python
 
-    # using today's date when no date is passed
-    value = model.get_time_parameter('my_parameter_name')
-    # hr.payslip: use payslip.date_to
-    value = payslip.get_time_parameter('my_parameter_name', payslip.date_to)
-    # account.tax: use tax_date (https://github.com/apps2grow/apps/tree/14.0/account_tax_python_with_date)
-    tax_rate = float(company.get_time_parameter('tax_high_rate', tax_date))
+    # Pass no date: using today's date
+    value = model.get_time_parameter("parameter_code_or_name")
+    # Pass a date or datetime
+    value = model.get_time_parameter("parameter_code_or_name", date=datetime.datetime.now()))
+    # Pass the name of a date/datetime field of the record
+    value = record.get_time_parameter("parameter_code_or_name", "date")
+
+Example of implementation in another module
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Payroll implementation:
-* Payroll configuration only shows payslip parameters.
+
+* Menu "Payroll/Configuration/Time Parameters" only shows payslip parameters.
+* New parameters will get "model_id = payslip model".
 * By default, the model_id field is hidden in the form.
-* Only payslip model/record may call time_parameter(code).
 
 .. code-block:: XML
 
