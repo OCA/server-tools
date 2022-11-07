@@ -1,8 +1,9 @@
-from datetime import date
+from datetime import date, datetime
 
 from odoo.tests.common import TransactionCase
 
 WRONG_MODEL = "Value is None because of wrong model"
+DONALD_TRUMP = "The value is partner 'Donald Trump'"
 JOE_BIDEN = "The value is partner 'Joe Biden'"
 
 
@@ -69,7 +70,24 @@ class TestTimeParameter(TransactionCase):
         )
         self.assertIsNone(value, WRONG_MODEL)
 
+        # no date
         value = self.env["res.country"].get_time_parameter(
             "US President", raise_if_not_found=False
+        )
+        self.assertEqual(value, self.partner2021, JOE_BIDEN)
+        # date
+        value = self.env["res.country"].get_time_parameter(
+            "US President", date(2018, 1, 1), raise_if_not_found=False
+        )
+        self.assertEqual(value, self.partner2017, DONALD_TRUMP)
+        # datetime
+        value = self.env["res.country"].get_time_parameter(
+            "US President", datetime.now(), raise_if_not_found=False
+        )
+        self.assertEqual(value, self.partner2021, JOE_BIDEN)
+        # string
+        self.env.ref("base.us").name = "UNITED STATES"
+        value = self.env.ref("base.us").get_time_parameter(
+            "US President", "write_date", raise_if_not_found=False
         )
         self.assertEqual(value, self.partner2021, JOE_BIDEN)
