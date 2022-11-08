@@ -1787,6 +1787,11 @@ msgid "Done"
 msgstr ""
 
 #. module: base_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_changeset_field_rule__expression
+msgid "Expression"
+msgstr ""
+
+#. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_changeset_field_rule__field_id
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset_change__field_id
 msgid "Field"
@@ -2162,6 +2167,18 @@ msgstr ""
 #: code:addons/base_changeset/models/record_changeset_change.py:0
 #, python-format
 msgid "This change has already be applied."
+msgstr ""
+
+#. module: base_changeset
+#: model_terms:ir.ui.view,arch_db:base_changeset.view_changeset_field_rule_form
+msgid "True"
+msgstr ""
+
+#. module: base_changeset
+#: model:ir.model.fields,help:base_changeset.field_changeset_field_rule__expression
+msgid ""
+"Use this rule only on records where this is true. Available variables: "
+"object, user"
 msgstr ""
 
 #. module: base_changeset
@@ -2581,6 +2598,11 @@ msgstr ""
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset_change__user_can_validate_changeset
 msgid "User Can Validate Changeset"
+msgstr ""
+
+#. module: base_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_changeset_field_rule__validator_group_ids
+msgid "Validator Groups"
 msgstr ""
 
 #. module: base_changeset
