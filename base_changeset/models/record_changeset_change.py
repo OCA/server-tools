@@ -8,6 +8,8 @@ from operator import attrgetter
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
+from .base import disable_changeset
+
 # sentinel object to be sure that no empty value was passed to
 # RecordChangesetChange._value_for_changeset
 _NO_VALUE = object()
@@ -223,7 +225,7 @@ class RecordChangesetChange(models.Model):
         changes_ok = self.browse()
         key = attrgetter("changeset_id")
         for changeset, changes in groupby(
-            self.with_context(__no_changeset=True).sorted(key=key), key=key
+            self.with_context(__no_changeset=disable_changeset).sorted(key=key), key=key
         ):
             values = {}
             for change in changes:
@@ -244,7 +246,9 @@ class RecordChangesetChange(models.Model):
 
             self._check_previous_changesets(changeset)
 
-            changeset.record_id.with_context(__no_changeset=True).write(values)
+            changeset.record_id.with_context(__no_changeset=disable_changeset).write(
+                values
+            )
 
         changes_ok._finalize_change_approval()
 
@@ -334,7 +338,7 @@ class RecordChangesetChange(models.Model):
             return value
 
     @api.model
-    def _prepare_changeset_change(self, record, rule, field_name, value):
+    def _prepare_changeset_change(self, record, rule, field_name, value, create=False):
         """Prepare data for a changeset change
 
         It returns a dict of the values to write on the changeset change
@@ -360,7 +364,7 @@ class RecordChangesetChange(models.Model):
             change["state"] = "cancel"
             pop_value = True  # change never applied
 
-        if change["state"] in ("cancel", "done"):
+        if create or change["state"] in ("cancel", "done"):
             # Normally the 'old' value is set when we use the 'apply'
             # button, but since we short circuit the 'apply', we
             # directly set the 'old' value here
@@ -368,7 +372,9 @@ class RecordChangesetChange(models.Model):
             # get values ready to write as expected by the changeset
             # (for instance, a many2one is written in a reference
             # field)
-            origin_value = self._value_for_changeset(record, field_name)
+            origin_value = self._value_for_changeset(
+                record, field_name, value=False if create else _NO_VALUE
+            )
             change[old_field_name] = origin_value
 
         return change, pop_value
@@ -392,8 +398,13 @@ class RecordChangesetChange(models.Model):
     def _compute_user_can_validate_changeset(self):
         is_superuser = self.env.is_superuser()
         has_group = self.user_has_groups("base_changeset.group_changeset_user")
+        user_groups = self.env.user.groups_id
         for rec in self:
-            can_validate = rec._is_change_pending() and (is_superuser or has_group)
+            can_validate = rec._is_change_pending() and (
+                is_superuser
+                or rec.rule_id.validator_group_ids & user_groups
+                or has_group
+            )
             if rec.rule_id.prevent_self_validation:
                 can_validate = can_validate and rec.modified_by_id != self.env.user
             rec.user_can_validate_changeset = can_validate

@@ -5,6 +5,7 @@
 from odoo import fields
 from odoo.tests.common import TransactionCase
 
+from ..models.base import disable_changeset
 from .common import ChangesetTestCommon
 
 
@@ -84,7 +85,7 @@ class TestChangesetFieldType(ChangesetTestCommon, TransactionCase):
     def test_new_changeset_boolean(self):
         """Add a new changeset on a Boolean field"""
         # ensure the changeset has to change the value
-        self.partner.with_context(__no_changeset=True).write(
+        self.partner.with_context(__no_changeset=disable_changeset).write(
             {self.field_boolean.name: False}
         )
 
@@ -154,7 +155,7 @@ class TestChangesetFieldType(ChangesetTestCommon, TransactionCase):
 
     def test_new_changeset_many2one(self):
         """Add a new changeset on a Many2one field"""
-        self.partner.with_context(__no_changeset=True).write(
+        self.partner.with_context(__no_changeset=disable_changeset).write(
             {self.field_many2one.name: self.env.ref("base.fr").id}
         )
         self.partner.write({self.field_many2one.name: self.env.ref("base.ch").id})
@@ -253,7 +254,7 @@ class TestChangesetFieldType(ChangesetTestCommon, TransactionCase):
 
     def test_apply_many2one(self):
         """Apply a change on a Many2one field"""
-        self.partner.with_context(__no_changeset=True).write(
+        self.partner.with_context(__no_changeset=disable_changeset).write(
             {self.field_many2one.name: self.env.ref("base.fr").id}
         )
         changes = [

@@ -8,6 +8,7 @@ from odoo import fields
 from odoo.exceptions import UserError
 from odoo.tests.common import TransactionCase
 
+from ..models.base import disable_changeset
 from .common import ChangesetTestCommon
 
 
@@ -74,6 +75,63 @@ class TestChangesetFlow(ChangesetTestCommon, TransactionCase):
         self.assertEqual(self.partner.street, "street X")
         self.assertEqual(self.partner.street2, "street2 X")
 
+    def test_create_new_changeset(self):
+        """Create a new partner with a changeset"""
+        new = (
+            self.env["res.partner"]
+            .with_context(test_record_changeset=True)
+            .create(
+                {
+                    "name": "partner",
+                    "street": "street",
+                    "street2": "street2",
+                }
+            )
+        )
+        new._compute_changeset_ids()
+        new._compute_count_pending_changesets()
+        self.assertEqual(new.count_pending_changesets, 1)
+        self.assert_changeset(
+            new,
+            self.env.user,
+            [
+                (self.field_name, False, "partner", "done"),
+                (self.field_street, False, "street", "draft"),
+                (self.field_street2, False, "street2", "cancel"),
+            ],
+        )
+        self.assertEqual(new.name, "partner")
+        self.assertFalse(new.street)
+        self.assertFalse(new.street2)
+
+    def test_create_new_changeset_empty_value(self):
+        """No change is created for empty values on create"""
+        new = (
+            self.env["res.partner"]
+            .with_context(test_record_changeset=True)
+            .create(
+                {
+                    "name": "partner",
+                    "street": "street",
+                    "street2": False,
+                }
+            )
+        )
+        new._compute_changeset_ids()
+        new._compute_count_pending_changesets()
+        self.assertEqual(new.count_pending_changesets, 1)
+        self.assert_changeset(
+            new,
+            self.env.user,
+            [
+                (self.field_name, False, "partner", "done"),
+                (self.field_street, False, "street", "draft"),
+            ],
+        )
+        self.assertEqual(new.name, "partner")
+        self.assertFalse(new.street)
+        self.assertFalse(new.street2)
+
     def test_new_changeset_empty_value(self):
         """Create a changeset change that empty a value"""
         self.partner.write({"street": False})
@@ -90,7 +148,9 @@ class TestChangesetFlow(ChangesetTestCommon, TransactionCase):
         """No changeset created when both sides have an empty value"""
         # we have to ensure that even if we write '' to a False field, we won't
         # write a changeset
-        self.partner.with_context(__no_changeset=True).write({"street": False})
+        self.partner.with_context(__no_changeset=disable_changeset).write(
+            {"street": False}
+        )
         self.partner._compute_changeset_ids()
         self.partner._compute_count_pending_changesets()
         self.assertEqual(self.partner.count_pending_changesets, 0)
@@ -375,3 +435,19 @@ class TestChangesetFlow(ChangesetTestCommon, TransactionCase):
         bank.active = False
         self.assertTrue(bank.changeset_ids)
         self.assertIn(bank.acc_number, bank.changeset_ids.name_get()[0][1])
+
+    def test_new_changeset_expression(self):
+        """Test that rules can be conditional"""
+        self.env["changeset.field.rule"].search(
+            [
+                ("field_id", "=", self.field_street.id),
+            ]
+        ).expression = "object.street != 'street X'"
+        self.partner.street = "street Y"
+        self.partner.refresh()
+        self.assertEqual(self.partner.street, "street Y")
+        self.assertFalse(self.partner.changeset_ids)
+        self.partner.street = "street Z"
+        self.partner.refresh()
+        self.assertTrue(self.partner.changeset_ids)
+        self.assertEqual(self.partner.street, "street Y")

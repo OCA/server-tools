@@ -78,7 +78,7 @@ class RecordChangeset(models.Model):
         self.with_context(skip_pending_status_check=True).mapped("change_ids").cancel()
 
     @api.model
-    def add_changeset(self, record, values):
+    def add_changeset(self, record, values, create=False):
         """Add a changeset on a record
 
         By default, when a record is modified by a user or by the
@@ -102,6 +102,9 @@ class RecordChangeset(models.Model):
 
         :param values: the values being written on the record
         :type values: dict
+        :param create: in create mode, no check is made to see if the field
+        value consitutes a change.
+        :type creatie: boolean
 
         :returns: dict of values that should be wrote on the record
         (fields with a 'Validate' or 'Never' rule are excluded)
@@ -130,16 +133,35 @@ class RecordChangeset(models.Model):
         )
         for field in values:
             rule = rules.get(field)
-            if not rule:
+            if (
+                not rule
+                or not rule._evaluate_expression(record)
+                or (create and not values[field])
+            ):
                 continue
             if field in values:
-                if not change_model._has_field_changed(record, field, values[field]):
+                if not create and not change_model._has_field_changed(
+                    record, field, values[field]
+                ):
                     continue
             change, pop_value = change_model._prepare_changeset_change(
-                record, rule, field, values[field]
+                record,
+                rule,
+                field,
+                values[field],
+                create=create,
             )
             if pop_value:
                 write_values.pop(field)
+                if create:
+                    # overwrite with null value for new records
+                    write_values[field] = (
+                        # but create some default for required text fields
+                        record._fields[field].required
+                        and record._fields[field].type in ("char", "text")
+                        and "/"
+                        or record._fields[field].null(record)
+                    )
             changes.append(change)
         if changes:
             changeset_vals = self._prepare_changeset_vals(changes, record, source)
@@ -152,7 +174,8 @@ class RecordChangeset(models.Model):
         has_company = has_company and record.company_id
         company = record.company_id if has_company else self.env.company
         return {
-            "res_id": record.id,
+            # newly created records are passed as newid records with the id in ref
+            "res_id": record.id or record.id.ref,
             "model": record._name,
             "company_id": company.id,
             "change_ids": [(0, 0, vals) for vals in changes],

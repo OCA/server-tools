@@ -2,7 +2,7 @@
 # Copyright 2020 Onestein (<https://www.onestein.eu>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import api, fields, models, tools
 from odoo.tools.cache import ormcache
 
 
@@ -39,6 +39,20 @@ class ChangesetFieldRule(models.Model):
     company_id = fields.Many2one("res.company", default=lambda self: self.env.company)
     active = fields.Boolean(default=True)
     prevent_self_validation = fields.Boolean(default=False)
+    expression = fields.Text(
+        help="Use this rule only on records where this is true. "
+        "Available variables: object, user",
+    )
+    validator_group_ids = fields.Many2many(
+        "res.groups",
+        "changeset_field_rule_validator_group_rel",
+        string="Validator Groups",
+        default=lambda self: self.env.ref(
+            "base_changeset.group_changeset_user",
+            raise_if_not_found=False,
+        )
+        or self.env["res.groups"],
+    )
 
     def init(self):
         """Ensure there is at most one rule with source_model_id NULL."""
@@ -77,6 +91,11 @@ class ChangesetFieldRule(models.Model):
     @api.model
     def _selection_action(self):
         return [("auto", "Auto"), ("validate", "Validate"), ("never", "Never")]
+
+    @api.constrains("expression")
+    def _check_expression(self):
+        for this in self:
+            this._evaluate_expression(self.env[this.model_id.model].new({}))
 
     @ormcache(skiparg=1)
     @api.model
@@ -138,6 +157,13 @@ class ChangesetFieldRule(models.Model):
         for field, rule_id in cached_rules.items():
             rules[field] = self.browse(rule_id)
         return rules
+
+    def _evaluate_expression(self, record):
+        """Evaluate expression if set"""
+        self.ensure_one()
+        return not self.expression or tools.safe_eval.safe_eval(
+            self.expression, {"object": record, "user": self.env.user}
+        )
 
     @api.model
     def create(self, vals):
