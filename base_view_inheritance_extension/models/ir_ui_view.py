@@ -73,7 +73,7 @@ class IrUiView(models.Model):
             attr_name = attribute_node.get("name")
             attr_key = attribute_node.get("key")
             str_dict = node.get(attr_name) or "{}"
-            ast_dict = ast.parse(str_dict, mode="eval").body
+            ast_dict = ast.parse(str_dict.strip(), mode="eval").body
             assert isinstance(ast_dict, ast.Dict), f"'{attr_name}' is not a dict"
             assert attr_key, "No key specified for 'python_dict' operation"
             # Find the ast dict key
