@@ -133,4 +133,3 @@ repos:
         args:
           - --rcfile=.pylintrc-mandatory
         additional_dependencies: *pylint_deps
-

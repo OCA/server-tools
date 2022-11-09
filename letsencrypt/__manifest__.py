@@ -5,6 +5,7 @@
     "version": "13.0.1.0.0",
     "author": "Therp BV," "Tecnativa," "Acysos S.L," "Odoo Community Association (OCA)",
     "license": "AGPL-3",
+    "website": "https://github.com/OCA/server-tools",
     "category": "Hidden/Dependency",
     "summary": "Request SSL certificates from letsencrypt.org",
     "depends": ["base_setup"],

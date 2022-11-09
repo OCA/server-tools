@@ -178,7 +178,7 @@ class Letsencrypt(models.AbstractModel):
         return False
 
     @api.model
-    def _cron(self):
+    def _cron(self):  # noqa: C901 (too complex)
         ir_config_parameter = self.env["ir.config_parameter"]
         domains = self._get_altnames()
         domain = domains[0]
