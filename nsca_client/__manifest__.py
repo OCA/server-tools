@@ -11,6 +11,7 @@
     "application": False,
     "installable": True,
     "depends": ["base"],
+    "external_dependencies": {"deb": ["nsca-client"]},
     "data": [
         "security/ir.model.access.csv",
         "views/nsca_menu.xml",
