@@ -39,6 +39,7 @@
                             <field name="description" />
                         </group>
                     </group>
+                    <field name="exception_type" invisible="1" />
                     <group>
                         <group colspan="4" groups="base.group_system">
                             <field name="model" />
