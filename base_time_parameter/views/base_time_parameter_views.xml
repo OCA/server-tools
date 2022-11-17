@@ -24,8 +24,8 @@
                                 <field name="date_from" />
                                 <field name="type" invisible="1" />
                                 <field
-                                    name="value_text"
-                                    attrs="{'invisible': [('type', '!=', 'text')]}"
+                                    name="value"
+                                    attrs="{'invisible': [('type', '=', 'reference')]}"
                                 />
                                 <field
                                     name="value_reference"
