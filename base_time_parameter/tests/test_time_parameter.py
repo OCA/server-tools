@@ -11,17 +11,46 @@ class TestTimeParameter(TransactionCase):
     def setUp(self):
         super(TestTimeParameter, self).setUp()
 
-        self.partner2017 = self.env["res.partner"].create({"name": "Donald Trump"})
-        self.partner2021 = self.env["res.partner"].create({"name": "Joe Biden"})
-        self.code_text_parameter = self.env["base.time.parameter"].create(
+        self.boolean_parameter = self.env["base.time.parameter"].create(
             {
-                "code": "TEST_CODE",
-                "type": "text",
+                "code": "TEST_BOOLEAN",
+                "type": "boolean",
                 "version_ids": [
-                    (0, 0, {"date_from": date(2022, 1, 1), "value_text": "TEST_VALUE"})
+                    (0, 0, {"date_from": date(2022, 1, 1), "value": "True"}),
+                    (0, 0, {"date_from": date(2023, 1, 1), "value": "False"}),
                 ],
             }
         )
+        self.date_parameter = self.env["base.time.parameter"].create(
+            {
+                "code": "TEST_DATE",
+                "type": "date",
+                "version_ids": [
+                    (0, 0, {"date_from": date(2022, 1, 1), "value": "2022-12-31"}),
+                ],
+            }
+        )
+        self.float_parameter = self.env["base.time.parameter"].create(
+            {
+                "code": "TEST_FLOAT",
+                "type": "float",
+                "version_ids": [
+                    (0, 0, {"date_from": date(2022, 1, 1), "value": "-12.5"}),
+                ],
+            }
+        )
+        self.integer_parameter = self.env["base.time.parameter"].create(
+            {
+                "code": "TEST_INTEGER",
+                "type": "integer",
+                "version_ids": [
+                    (0, 0, {"date_from": date(2022, 1, 1), "value": "123"}),
+                ],
+            }
+        )
+        # testing "code" and "name" together with "reference" and "string"
+        self.partner2017 = self.env["res.partner"].create({"name": "Donald Trump"})
+        self.partner2021 = self.env["res.partner"].create({"name": "Joe Biden"})
         version2017 = {
             "date_from": date(2017, 1, 20),
             "value_reference": "res.partner,{}".format(self.partner2017.id),
@@ -42,16 +71,39 @@ class TestTimeParameter(TransactionCase):
                 }
             )
         )
+        self.code_string_parameter = self.env["base.time.parameter"].create(
+            {
+                "code": "TEST_CODE_STRING",
+                "type": "string",
+                "version_ids": [
+                    (0, 0, {"date_from": date(2022, 1, 1), "value": "TEST_STRING"})
+                ],
+            }
+        )
 
     def test_00_get_value(self):
-        value = self.code_text_parameter._get_value(date(1999, 1, 1))
+        value = self.boolean_parameter._get_value(date(1999, 1, 1))
         self.assertIsNone(value, "The value is None")
 
-        value = self.code_text_parameter._get_value()  # date=now()
-        self.assertEqual(value, "TEST_VALUE", "The value is 'TEST_VALUE'")
+        value = self.boolean_parameter._get_value(date(2022, 12, 1))
+        self.assertEqual(value, True, "Value is boolean True")
+        value = self.boolean_parameter._get_value(date(2023, 12, 1))
+        self.assertEqual(value, False, "Value is boolean False")
+
+        value = self.date_parameter._get_value(date(2023, 1, 1))
+        self.assertEqual(value, date(2022, 12, 31), "Value is the date Dec. 31, 2022")
+
+        value = self.float_parameter._get_value(date(2023, 1, 1))
+        self.assertEqual(value, -12.5, "Value is float -12.5")
+
+        value = self.integer_parameter._get_value(date(2023, 1, 1))
+        self.assertEqual(value, 123, "Value is integer 123")
 
         value = self.name_reference_parameter._get_value(date(2023, 1, 1))
         self.assertEqual(value, self.partner2021, JOE_BIDEN)
+
+        value = self.code_string_parameter._get_value()  # date=now()
+        self.assertEqual(value, "TEST_STRING", "The value is 'TEST_STRING'")
 
     def test_01_get_value_from_model_code_date(self):
         value = self.env["base.time.parameter"]._get_value_from_model_code_date(
