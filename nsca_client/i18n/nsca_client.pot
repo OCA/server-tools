@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 13.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -161,11 +161,6 @@ msgid "Configuration file"
 msgstr ""
 
 #. module: nsca_client
-#: model:ir.model.fields,field_description:nsca_client.field_nsca_check__crud_model_id
-msgid "Create/Write Target Model"
-msgstr ""
-
-#. module: nsca_client
 #: model:ir.model.fields,field_description:nsca_client.field_nsca_check__create_uid
 #: model:ir.model.fields,field_description:nsca_client.field_nsca_server__create_uid
 msgid "Created by"
@@ -288,12 +283,12 @@ msgstr ""
 
 #. module: nsca_client
 #: model:ir.model.fields,field_description:nsca_client.field_nsca_check__link_field_id
-msgid "Link using field"
+msgid "Link Field"
 msgstr ""
 
 #. module: nsca_client
 #: model:ir.model.fields,field_description:nsca_client.field_nsca_check__sms_mass_keep_log
-msgid "Log a note"
+msgid "Log as Note"
 msgstr ""
 
 #. module: nsca_client
@@ -432,8 +427,8 @@ msgstr ""
 #. module: nsca_client
 #: model:ir.model.fields,help:nsca_client.field_nsca_check__link_field_id
 msgid ""
-"Provide the field used to link the newly created record on the record on "
-"used by the server action."
+"Provide the field used to link the newly created record on the record used "
+"by the server action."
 msgstr ""
 
 #. module: nsca_client
@@ -522,8 +517,13 @@ msgid "Summary"
 msgstr ""
 
 #. module: nsca_client
-#: model:ir.model.fields,field_description:nsca_client.field_nsca_check__crud_model_name
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check__crud_model_id
 msgid "Target Model"
+msgstr ""
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check__crud_model_name
+msgid "Target Model Name"
 msgstr ""
 
 #. module: nsca_client
