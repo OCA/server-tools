@@ -92,6 +92,30 @@ Payroll implementation:
         sequence="35"
     />
 
+Reference field implementatiton:
+
+.. code-block:: python
+
+    from odoo import api, fields, models
+
+    """ Add account.account to the model selection of the reference field """
+
+    class TimeParameterVersion(models.Model):
+        _inherit = "base.time.parameter.version"
+
+        value_reference = fields.Reference(
+            selection="_value_reference_selection",
+        )
+
+        @api.model
+        def _value_reference_selection(self):
+            selection_models = self.env.context.get("selection_models", [])
+            selection_models.append("account.account")
+            return super(
+                TimeParameterVersion,
+                self.with_context(selection_models=selection_models)
+            )._value_reference_selection()
+
 Bug Tracker
 ===========
 
