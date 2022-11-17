@@ -317,6 +317,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_module_prototyper__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_module_prototyper_api_version__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_module_prototyper_module_export__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_nsca_check__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_nsca_server__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_payment_acquirer__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_payment_acquirer_onboarding_wizard__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_payment_icon__assigned_attachment_ids
