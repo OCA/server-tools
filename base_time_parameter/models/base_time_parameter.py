@@ -1,7 +1,7 @@
 # Author Copyright (C) 2022 Nimarosa (Nicolas Rodriguez) (<nicolasrsande@gmail.com>).
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from ast import literal_eval
+from datetime import datetime
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
@@ -31,11 +31,15 @@ class TimeParameter(models.Model):
     )
     type = fields.Selection(
         [
-            ("text", "Text"),
+            ("boolean", "Boolean (True/False)"),
+            ("date", "Date"),
+            ("float", "Floating point number"),
+            ("integer", "Integer number"),
             ("reference", "Reference"),
+            ("string", "Text"),
         ],
         required=True,
-        default="text",
+        default="float",
         index=True,
     )
     version_ids = fields.One2many(
@@ -85,10 +89,24 @@ class TimeParameter(models.Model):
         if not versions:
             return
         version = versions[0]
-        if self.type == "text":
-            return literal_eval('"{}"'.format(version.value_text))
+        if self.type == "boolean":
+            if version.value == "True":
+                return True
+            elif version.value == "False":
+                return False
+            else:
+                raise UserError("{} should be True or False.").format(version.value)
+            return bool(version.value)
+        elif self.type == "date":
+            return datetime.strptime(version.value, "%Y-%m-%d").date()
+        elif self.type == "float":
+            return float(version.value)
+        elif self.type == "integer":
+            return int(version.value)
         elif self.type == "reference":
             return version.value_reference
+        elif self.type == "string":
+            return version.value
 
     _sql_constraints = [
         (
