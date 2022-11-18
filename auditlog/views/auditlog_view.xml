@@ -159,7 +159,7 @@
                         <field name="http_request_id" />
                     </group>
                     <group string="Fields updated">
-                        <field name="line_ids" readonly="1" nolabel="1">
+                        <field name="line_ids" readonly="1" nolabel="1" colspan="2">
                             <form string="Log - Field updated">
                                 <group>
                                     <field name="field_id" readonly="1" />
