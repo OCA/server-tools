@@ -58,6 +58,12 @@ To activate it and/or change the delay, go to the
 
 .. image:: https://raw.githubusercontent.com/OCA/server-tools/15.0/auditlog/static/description/autovacuum.png
 
+There are two possible groups configured to which one may belong. The first
+is the Auditlog User group. This group has read-only access to the auditlogs of
+individual records through the `View Logs` action. The second group is the
+Auditlog Manager group. This group additionally has the right to configure the
+auditlog configuration rules.
+
 Known issues / Roadmap
 ======================
 
