@@ -60,6 +60,21 @@ msgid "Auditlog - Rule"
 msgstr "Auditlog - Règle"
 
 #. module: auditlog
+#: model:res.groups,name:auditlog.group_auditlog_manager
+msgid "Auditlog Manager"
+msgstr ""
+
+#. module: auditlog
+#: model:ir.module.category,name:auditlog.security_auditlog_groups
+msgid "Auditlog Rights"
+msgstr ""
+
+#. module: auditlog
+#: model:res.groups,name:auditlog.group_auditlog_user
+msgid "Auditlog User"
+msgstr ""
+
+#. module: auditlog
 #: model:ir.actions.server,name:auditlog.ir_cron_auditlog_autovacuum_ir_actions_server
 #: model:ir.cron,cron_name:auditlog.ir_cron_auditlog_autovacuum
 #: model:ir.cron,name:auditlog.ir_cron_auditlog_autovacuum
