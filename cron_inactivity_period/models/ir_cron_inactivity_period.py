@@ -10,6 +10,7 @@ from odoo.exceptions import UserError
 
 class IrCronInactivityPeriod(models.Model):
     _name = "ir.cron.inactivity.period"
+    _description = "Cron Inactivity Period"
 
     cron_id = fields.Many2one(comodel_name="ir.cron", ondelete="cascade", required=True)
     type = fields.Selection(
@@ -29,14 +30,12 @@ class IrCronInactivityPeriod(models.Model):
             if period.inactivity_hour_begin >= period.inactivity_hour_end:
                 raise UserError(_("The End Hour should be greater than the Begin Hour"))
 
-    @api.multi
     def _check_inactivity_period(self):
         res = []
         for period in self:
             res.append(period._check_inactivity_period_one())
         return res
 
-    @api.multi
     def _check_inactivity_period_one(self):
         self.ensure_one()
         now = fields.Datetime.context_timestamp(self, datetime.now())
@@ -51,8 +50,8 @@ class IrCronInactivityPeriod(models.Model):
                 minute=int((self.inactivity_hour_end % 1) * 60),
                 second=0,
             )
-            return now >= begin_inactivity and now < end_inactivity
+            return begin_inactivity <= now < end_inactivity
         else:
             raise UserError(
-                _("Unimplemented Feature: Inactivity Period type '%s'") % (self.type)
+                _("Unimplemented Feature: Inactivity Period type '%s'") % self.type
             )

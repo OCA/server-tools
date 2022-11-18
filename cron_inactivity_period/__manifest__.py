@@ -4,10 +4,11 @@
 
 {
     "name": "Inactivity Periods for Cron Jobs",
-    "version": "12.0.1.0.0",
+    "version": "14.0.1.0.0",
     "author": "GRAP,Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "category": "Tools",
+    "website": "https://github.com/OCA/server-tools",
     "depends": ["base"],
     "data": ["security/ir.model.access.csv", "views/ir_cron.xml"],
     "demo": ["demo/res_groups.xml"],
