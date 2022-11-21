@@ -48,7 +48,7 @@ class TimeParameter(models.Model):
 
     @api.model
     def _get_value_from_model_code_date(
-        self, model_name, code, date=None, raise_if_not_found=True
+        self, model_name, code, date=None, raise_if_not_found=True, data_type="value"
     ):
         # Filter on company, model, code/name
         model = self.env["ir.model"].search([("model", "=", model_name)])
@@ -65,7 +65,7 @@ class TimeParameter(models.Model):
         ]
         parameter = self.env["base.time.parameter"].search(domain)
         if parameter:
-            value = parameter._get_value(date)
+            value = parameter._get_value(date, data=data_type)
             if value:
                 return value
         # No value
@@ -73,13 +73,12 @@ class TimeParameter(models.Model):
             return
         # Raise error
         model_name = model.name
-        # payroll FIXME: Payslip (Compute Sheet) returns another error ...
         raise UserError(
             _("No parameter for model '%(model_name)s', code '%(code)s', date %(date)s")
             % (model_name, code, date)
         )
 
-    def _get_value(self, date=None):
+    def _get_value(self, date=None, data="value"):
         self.ensure_one()
         if not date:
             date = fields.Date.today()
@@ -87,26 +86,23 @@ class TimeParameter(models.Model):
             key=lambda v: v.date_from, reverse=True
         )
         if not versions:
-            return
+            return False
         version = versions[0]
-        if self.type == "boolean":
-            if version.value == "True":
-                return True
-            elif version.value == "False":
-                return False
-            else:
-                raise UserError("{} should be True or False.").format(version.value)
-            return bool(version.value)
-        elif self.type == "date":
-            return datetime.strptime(version.value, "%Y-%m-%d").date()
-        elif self.type == "float":
-            return float(version.value)
-        elif self.type == "integer":
-            return int(version.value)
-        elif self.type == "reference":
-            return version.value_reference
-        elif self.type == "string":
-            return version.value
+        if data == "value":
+            if self.type == "boolean":
+                return version.value == "True" and True or False
+            elif self.type == "date":
+                return datetime.strptime(version.value, "%Y-%m-%d").date()
+            elif self.type == "float":
+                return float(version.value)
+            elif self.type == "integer":
+                return int(version.value)
+            elif self.type == "reference":
+                return version.value_reference
+            elif self.type == "string":
+                return version.value
+        elif data == "date":
+            return version.date_from
 
     _sql_constraints = [
         (
