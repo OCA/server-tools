@@ -83,7 +83,7 @@ class TestTimeParameter(TransactionCase):
 
     def test_00_get_value(self):
         value = self.boolean_parameter._get_value(date(1999, 1, 1))
-        self.assertIsNone(value, "The value is None")
+        self.assertEqual(value, False, "The value is False")
 
         value = self.boolean_parameter._get_value(date(2022, 12, 1))
         self.assertEqual(value, True, "Value is boolean True")
