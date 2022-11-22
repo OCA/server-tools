@@ -48,7 +48,7 @@ class TimeParameter(models.Model):
 
     @api.model
     def _get_value_from_model_code_date(
-        self, model_name, code, date=None, raise_if_not_found=True, data_type="value"
+        self, model_name, code, date=None, raise_if_not_found=True, get="value"
     ):
         # Filter on company, model, code/name
         model = self.env["ir.model"].search([("model", "=", model_name)])
@@ -65,7 +65,7 @@ class TimeParameter(models.Model):
         ]
         parameter = self.env["base.time.parameter"].search(domain)
         if parameter:
-            value = parameter._get_value(date, data=data_type)
+            value = parameter._get_value(date, get=get)
             if value:
                 return value
         # No value
@@ -78,7 +78,7 @@ class TimeParameter(models.Model):
             % (model_name, code, date)
         )
 
-    def _get_value(self, date=None, data="value"):
+    def _get_value(self, date=None, get="value"):
         self.ensure_one()
         if not date:
             date = fields.Date.today()
@@ -88,7 +88,7 @@ class TimeParameter(models.Model):
         if not versions:
             return False
         version = versions[0]
-        if data == "value":
+        if get == "value":
             if self.type == "boolean":
                 return version.value == "True" and True or False
             elif self.type == "date":
@@ -101,7 +101,7 @@ class TimeParameter(models.Model):
                 return version.value_reference
             elif self.type == "string":
                 return version.value
-        elif data == "date":
+        elif get == "date":
             return version.date_from
 
     _sql_constraints = [
