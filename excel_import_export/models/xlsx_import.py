@@ -50,7 +50,7 @@ class XLSXImport(models.AbstractModel):
             ModelData.create(
                 {
                     "name": "{}_{}".format(record._table, record.id),
-                    "module": "excel_import_export",
+                    "module": "__excel_import_export__",
                     "model": record._name,
                     "res_id": record.id,
                 }
@@ -205,7 +205,7 @@ class XLSXImport(models.AbstractModel):
             xml_id = (
                 record
                 and self.get_external_id(record)
-                or "{}.{}".format("xls", uuid.uuid4())
+                or "{}.{}".format("__excel_import_export__", uuid.uuid4())
             )
             out_st.write(0, 0, "id")  # id and xml_id on first column
             out_st.write(1, 0, xml_id)
