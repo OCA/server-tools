@@ -42,7 +42,7 @@
     <record id="tree_purge_line" model="ir.ui.view">
         <field name="model">cleanup.purge.line</field>
         <field name="arch" type="xml">
-            <tree string="Purge models" delete="false" create="false">
+            <tree delete="false" create="false">
                 <field name="name" />
                 <field name="purged" />
                 <button
