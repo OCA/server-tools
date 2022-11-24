@@ -28,7 +28,7 @@ class IrModelData(models.Model):
                     continue
             if this.model not in self.env:
                 this.unlink()
-        return super(IrModelData, self)._module_data_uninstall(modules_to_remove)
+        return super()._module_data_uninstall(modules_to_remove)
 
 
 class CleanupPurgeLineModule(models.TransientModel):
@@ -53,7 +53,7 @@ class CleanupPurgeLineModule(models.TransientModel):
         modules.filtered(
             lambda x: x.state not in ("uninstallable", "uninstalled")
         ).button_immediate_uninstall()
-        modules.refresh()
+        modules.env.invalidate_all()
         modules.unlink()
         return self.write({"purged": True})
 
