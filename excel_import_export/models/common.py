@@ -334,7 +334,7 @@ def _add_id_column(file_txt):
         if line and i == 0:
             line = '"id",' + line
         elif line:
-            line = "{}.{}".format("xls", uuid.uuid4()) + "," + line
+            line = f"__excel_import_export__.{uuid.uuid4()},{line}"
         txt_lines.append(line)
         i += 1
     file_txt = "\n".join(txt_lines)
