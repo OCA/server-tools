@@ -232,9 +232,10 @@ class AuditlogRule(models.Model):
             model = self.env["ir.model"].sudo().browse(vals["model_id"])
             vals.update({"model_name": model.name, "model_model": model.model})
         new_records = super().create(vals_list)
-        updated = [record._register_hook() for record in new_records]
-        if any(updated):
-            modules.registry.Registry(self.env.cr.dbname).signal_changes()
+        if not self.env.context.get("install_module"):
+            updated = [record._register_hook() for record in new_records]
+            if any(updated):
+                modules.registry.Registry(self.env.cr.dbname).signal_changes()
         return new_records
 
     def write(self, vals):
@@ -245,7 +246,7 @@ class AuditlogRule(models.Model):
             model = self.env["ir.model"].sudo().browse(vals["model_id"])
             vals.update({"model_name": model.name, "model_model": model.model})
         res = super().write(vals)
-        if self._register_hook():
+        if not self.env.context.get("install_module") and self._register_hook():
             modules.registry.Registry(self.env.cr.dbname).signal_changes()
         return res
 
