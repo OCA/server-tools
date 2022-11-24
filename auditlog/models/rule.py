@@ -240,7 +240,7 @@ class AuditlogRule(models.Model):
         model = self.env["ir.model"].browse(vals["model_id"])
         vals.update({"model_name": model.name, "model_model": model.model})
         new_record = super().create(vals)
-        if new_record._register_hook():
+        if not self.env.context.get("install_module") and new_record._register_hook():
             modules.registry.Registry(self.env.cr.dbname).signal_changes()
         return new_record
 
@@ -252,7 +252,7 @@ class AuditlogRule(models.Model):
             model = self.env["ir.model"].browse(vals["model_id"])
             vals.update({"model_name": model.name, "model_model": model.model})
         res = super().write(vals)
-        if self._register_hook():
+        if not self.env.context.get("install_module") and self._register_hook():
             modules.registry.Registry(self.env.cr.dbname).signal_changes()
         return res
 
