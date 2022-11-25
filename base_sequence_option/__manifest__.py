@@ -11,7 +11,6 @@
     "website": "https://github.com/OCA/server-tools",
     "category": "Tools",
     "depends": ["base"],
-    "external_dependencies": {"python": ["odoo_test_helper"]},
     "data": [
         "security/ir.model.access.csv",
         "security/sequence_option_security.xml",
