@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Copyright (c) Odoo SA 2017
 # @author Nicolas Seinlet
 # Copyright (c) ACSONE SA 2022
@@ -36,7 +37,7 @@ def with_cursor(func):
 
 class PGSessionStore(werkzeug.contrib.sessions.SessionStore):
     def __init__(self, uri, session_class=None):
-        super().__init__(session_class)
+        super(PGSessionStore, self).__init__(session_class)
         self._uri = uri
         self._cr = None
         # FIXME This class is NOT thread-safe. Only use in worker mode
@@ -89,6 +90,11 @@ class PGSessionStore(werkzeug.contrib.sessions.SessionStore):
         self._cr.execute("SELECT payload FROM http_sessions WHERE sid=%s", (sid,))
         try:
             data = json.loads(self._cr.fetchone()[0])
+            # Convert some unicode values to str to meet Odoo expectations.
+            for k in ("session_token",):
+                v = data.get(k)
+                if isinstance(v, unicode):
+                    data[k] = str(v)
         except Exception:
             return self.new()
 
