@@ -234,7 +234,10 @@ class AuditlogRule(models.Model):
 
     @api.model
     def create(self, vals):
-        """Update the registry when a new rule is created."""
+        """Update the registry when a new rule is created.  Where relevant the
+        subscribe() method is called as this also creates a shortcut to the view
+        of the results of the rule.
+        """
         if "model_id" not in vals or not vals["model_id"]:
             raise UserError(_("No model defined to create line."))
         model = self.env["ir.model"].browse(vals["model_id"])
@@ -242,6 +245,8 @@ class AuditlogRule(models.Model):
         new_record = super().create(vals)
         if not self.env.context.get("install_module") and new_record._register_hook():
             modules.registry.Registry(self.env.cr.dbname).signal_changes()
+        if "state" in vals and vals["state"] == "subscribed":
+            new_record.subscribe()
         return new_record
 
     def write(self, vals):
@@ -698,6 +703,8 @@ class AuditlogRule(models.Model):
         """
         act_window_model = self.env["ir.actions.act_window"]
         for rule in self:
+            if rule.state == "subscribed" and rule.action_id:
+                continue
             # Create a shortcut to view logs
             domain = "[('model_id', '=', %s), ('res_id', '=', active_id)]" % (
                 rule.model_id.id
