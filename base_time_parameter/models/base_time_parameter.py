@@ -47,7 +47,7 @@ class TimeParameter(models.Model):
     )
 
     @api.model
-    def _get_value_from_model_code_date(
+    def _get_from_model_code_date(
         self, model_name, code, date=None, raise_if_not_found=True, get="value"
     ):
         # Filter on company, model, code/name
@@ -65,7 +65,7 @@ class TimeParameter(models.Model):
         ]
         parameter = self.env["base.time.parameter"].search(domain)
         if parameter:
-            value = parameter._get_value(date, get=get)
+            value = parameter._get(date, get=get)
             if value:
                 return value
         # No value
@@ -78,7 +78,7 @@ class TimeParameter(models.Model):
             % (model_name, code, date)
         )
 
-    def _get_value(self, date=None, get="value"):
+    def _get(self, date=None, get="value"):
         self.ensure_one()
         if not date:
             date = fields.Date.today()
