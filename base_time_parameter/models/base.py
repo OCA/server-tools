@@ -10,9 +10,7 @@ from odoo import models
 class Base(models.AbstractModel):
     _inherit = "base"
 
-    def get_time_parameter(
-        self, code, date=None, raise_if_not_found=True, get="value"
-    ):
+    def get_time_parameter(self, code, date=None, raise_if_not_found=True, get="value"):
         if type(date) is str:
             # Get the date/datetime from a field on the record
             date = getattr(self, date)
