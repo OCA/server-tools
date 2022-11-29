@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Copyright (c) Odoo SA 2017
 # @author Nicolas Seinlet
 # Copyright (c) ACSONE SA 2022
@@ -36,7 +37,7 @@ def with_cursor(func):
 
 class PGSessionStore(werkzeug.contrib.sessions.SessionStore):
     def __init__(self, uri, session_class=None):
-        super().__init__(session_class)
+        super(PGSessionStore, self).__init__(session_class)
         self._uri = uri
         self._cr = None
         # FIXME This class is NOT thread-safe. Only use in worker mode
@@ -88,7 +89,15 @@ class PGSessionStore(werkzeug.contrib.sessions.SessionStore):
     def get(self, sid):
         self._cr.execute("SELECT payload FROM http_sessions WHERE sid=%s", (sid,))
         try:
-            data = json.loads(self._cr.fetchone()[0])
+            payload, = self._cr.fetchone()
+            data = json.loads(payload)
+            session_token = data.get('session_token')
+            if session_token:
+                # the session token is compared to the one in the session cookie
+                # the one into the cookie is encoded into utf-8. To avoid
+                # encoding issues in the call to odoo.tools.misc.consteq, we
+                # encode the one from the database into utf-8 too.
+                data["session_token"] = session_token.encode('utf-8')
         except Exception:
             return self.new()
 
@@ -131,7 +140,7 @@ def session_store(self):
     if session_db_uri:
         _logger.debug("HTTP sessions stored in: db")
         return PGSessionStore(session_db_uri, session_class=http.OpenERPSession)
-    return _original_session_store.__get__(self, self.__class__)
+    return _original_session_store
 
 
 # Monkey patch of standard methods
