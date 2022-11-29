@@ -82,36 +82,36 @@ class TestTimeParameter(TransactionCase):
         )
 
     def test_00_get_value(self):
-        value = self.boolean_parameter._get_value(date(1999, 1, 1))
+        value = self.boolean_parameter._get(date(1999, 1, 1))
         self.assertEqual(value, False, "The value is False")
 
-        value = self.boolean_parameter._get_value(date(2022, 12, 1))
+        value = self.boolean_parameter._get(date(2022, 12, 1))
         self.assertEqual(value, True, "Value is boolean True")
-        value = self.boolean_parameter._get_value(date(2023, 12, 1))
+        value = self.boolean_parameter._get(date(2023, 12, 1))
         self.assertEqual(value, False, "Value is boolean False")
 
-        value = self.date_parameter._get_value(date(2023, 1, 1))
+        value = self.date_parameter._get(date(2023, 1, 1))
         self.assertEqual(value, date(2022, 12, 31), "Value is the date Dec. 31, 2022")
 
-        value = self.float_parameter._get_value(date(2023, 1, 1))
+        value = self.float_parameter._get(date(2023, 1, 1))
         self.assertEqual(value, -12.5, "Value is float -12.5")
 
-        value = self.integer_parameter._get_value(date(2023, 1, 1))
+        value = self.integer_parameter._get(date(2023, 1, 1))
         self.assertEqual(value, 123, "Value is integer 123")
 
-        value = self.name_reference_parameter._get_value(date(2023, 1, 1))
+        value = self.name_reference_parameter._get(date(2023, 1, 1))
         self.assertEqual(value, self.partner2021, JOE_BIDEN)
 
-        value = self.code_string_parameter._get_value()  # date=now()
+        value = self.code_string_parameter._get()  # date=now()
         self.assertEqual(value, "TEST_STRING", "The value is 'TEST_STRING'")
 
     def test_01_get_value_from_model_code_date(self):
-        value = self.env["base.time.parameter"]._get_value_from_model_code_date(
+        value = self.env["base.time.parameter"]._get_from_model_code_date(
             "res.partner", "US President", raise_if_not_found=False
         )
         self.assertIsNone(value, WRONG_MODEL)
 
-        value = self.env["base.time.parameter"]._get_value_from_model_code_date(
+        value = self.env["base.time.parameter"]._get_from_model_code_date(
             "res.country", "US President", raise_if_not_found=False
         )
         self.assertEqual(value, self.partner2021, JOE_BIDEN)
