@@ -81,6 +81,8 @@ def patch_name_search():
             name_get_uid=name_get_uid,
         )
         if name and _get_use_smart_name_search(self.sudo()) and operator in ALLOWED_OPS:
+            # _name_search.origin is a query, we need to convert it to a list
+            res = self.browse(res).ids
             limit = limit or 0
 
             # we add domain
@@ -123,34 +125,6 @@ def patch_name_search():
     return _name_search
 
 
-def patch_fields_view_get():
-    @api.model
-    def fields_view_get(
-        self, view_id=None, view_type="form", toolbar=False, submenu=False
-    ):
-        res = fields_view_get.origin(
-            self,
-            view_id=view_id,
-            view_type=view_type,
-            toolbar=toolbar,
-            submenu=submenu,
-        )
-        if view_type == "search" and _get_add_smart_search(self):
-            eview = etree.fromstring(res["arch"])
-            placeholders = eview.xpath("//search/field")
-            if placeholders:
-                placeholder = placeholders[0]
-            else:
-                placeholder = eview.xpath("//search")[0]
-            placeholder.addnext(etree.Element("field", {"name": "smart_search"}))
-            eview.remove(placeholder)
-            res["arch"] = etree.tostring(eview)
-            res["fields"].update(self.fields_get(["smart_search"]))
-        return res
-
-    return fields_view_get
-
-
 class Base(models.AbstractModel):
 
     _inherit = "base"
@@ -188,6 +162,19 @@ class Base(models.AbstractModel):
                 domain = (domain and ["&"] + domain or domain) + word_domain
             return domain
         return []
+
+    @api.model
+    def _get_view(self, view_id=None, view_type="form", **options):
+        arch, view = super()._get_view(view_id=view_id, view_type=view_type, **options)
+        if view_type == "search" and _get_add_smart_search(self.sudo()):
+            placeholders = arch.xpath("//search/field")
+            if placeholders:
+                placeholder = placeholders[0]
+            else:
+                placeholder = arch.xpath("//search")[0]
+            placeholder.addnext(etree.Element("field", {"name": "smart_search"}))
+            arch.remove(placeholder)
+        return arch, view
 
 
 class IrModel(models.Model):
@@ -236,21 +223,26 @@ class IrModel(models.Model):
             name_search_domain = False
             try:
                 name_search_domain = literal_eval(rec.name_search_domain)
-            except Exception as error:
+            except (
+                ValueError,
+                TypeError,
+                SyntaxError,
+                MemoryError,
+                RecursionError,
+            ) as e:
                 raise ValidationError(
-                    _("Couldn't eval Name Search Domain (%s)") % error
-                )
+                    _("Couldn't eval Name Search Domain (%s)") % e
+                ) from e
             if not isinstance(name_search_domain, list):
                 raise ValidationError(_("Name Search Domain must be a list of tuples"))
 
     def _register_hook(self):
 
         _logger.info("Patching BaseModel for Smart Search")
-        models.BaseModel._patch_method("fields_view_get", patch_fields_view_get())
 
         for model in self.sudo().search(self.ids or []):
             Model = self.env.get(model.model)
             if Model is not None:
                 Model._patch_method("_name_search", patch_name_search())
 
-        return super(IrModel, self)._register_hook()
+        return super()._register_hook()
