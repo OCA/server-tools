@@ -18,6 +18,6 @@ class Base(models.AbstractModel):
             date = date.date()
         assert type(date) is datetime.date or date is None, "Wrong date"
 
-        return self.env["base.time.parameter"]._get_value_from_model_code_date(
+        return self.env["base.time.parameter"]._get_from_model_code_date(
             self._name, code, date, raise_if_not_found=False, get=get
         )
