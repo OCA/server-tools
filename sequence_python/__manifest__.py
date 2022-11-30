@@ -5,7 +5,7 @@
     "summary": """Calculate a sequence number from a Python expression""",
     "author": "Sunflower IT,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/server-tools",
-    "version": "14.0.1.0.0",
+    "version": "15.0.1.0.0",
     "license": "AGPL-3",
     "category": "Generic Modules",
     "depends": ["base"],
