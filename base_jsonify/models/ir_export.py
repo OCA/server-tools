@@ -89,11 +89,6 @@ class IrExport(models.Model):
         help="If set, will apply the global resolver to the result",
     )
 
-    @ormcache(
-        "self.language_agnostic",
-        "self.global_resolver_id.id",
-        "tuple(self.export_fields.mapped('write_date'))",
-    )
     def get_json_parser(self):
         """Creates a parser from ir.exports record and return it.
 
