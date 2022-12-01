@@ -48,6 +48,15 @@ class TestTimeParameter(TransactionCase):
                 ],
             }
         )
+        self.json_parameter = self.env["base.time.parameter"].create(
+            {
+                "code": "TEST_JSON",
+                "type": "json",
+                "version_ids": [
+                    (0, 0, {"date_from": date(2022, 1, 1), "value": '{"key": "val"}'}),
+                ],
+            }
+        )
         # testing "code" and "name" together with "reference" and "string"
         self.partner2017 = self.env["res.partner"].create({"name": "Donald Trump"})
         self.partner2021 = self.env["res.partner"].create({"name": "Joe Biden"})
@@ -81,7 +90,7 @@ class TestTimeParameter(TransactionCase):
             }
         )
 
-    def test_00_get_value(self):
+    def test_00_get(self):
         value = self.boolean_parameter._get(date(1999, 1, 1))
         self.assertEqual(value, False, "The value is False")
 
@@ -99,13 +108,16 @@ class TestTimeParameter(TransactionCase):
         value = self.integer_parameter._get(date(2023, 1, 1))
         self.assertEqual(value, 123, "Value is integer 123")
 
+        value = self.json_parameter._get(date(2023, 1, 1))
+        self.assertEqual(value, {"key": "val"}, 'Value is json {"key": "val"}')
+
         value = self.name_reference_parameter._get(date(2023, 1, 1))
         self.assertEqual(value, self.partner2021, JOE_BIDEN)
 
         value = self.code_string_parameter._get()  # date=now()
         self.assertEqual(value, "TEST_STRING", "The value is 'TEST_STRING'")
 
-    def test_01_get_value_from_model_code_date(self):
+    def test_01_get_from_model_code_date(self):
         value = self.env["base.time.parameter"]._get_from_model_code_date(
             "res.partner", "US President", raise_if_not_found=False
         )
@@ -117,10 +129,15 @@ class TestTimeParameter(TransactionCase):
         self.assertEqual(value, self.partner2021, JOE_BIDEN)
 
     def test_02_base_get_time_parameter(self):
+
+        # TEST MODEL
+
         value = self.env["res.partner"].get_time_parameter(
             "US President", raise_if_not_found=False
         )
         self.assertIsNone(value, WRONG_MODEL)
+
+        # TEST DATE
 
         # no date
         value = self.env["res.country"].get_time_parameter(
@@ -143,3 +160,16 @@ class TestTimeParameter(TransactionCase):
             "US President", "write_date", raise_if_not_found=False
         )
         self.assertEqual(value, self.partner2021, JOE_BIDEN)
+
+        # TEST GET
+
+        # get="date"
+        date1 = self.env["res.country"].get_time_parameter(
+            "TEST_JSON", date(2022, 12, 1), raise_if_not_found=False, get="date"
+        )
+        self.assertEqual(date1, date(2022, 1, 1), "Start date is Jan. 1, 2022")
+        # get="value"
+        value = self.env["res.country"].get_time_parameter(
+            "TEST_JSON", date(2022, 12, 1), raise_if_not_found=False, get="value"
+        )
+        self.assertEqual(value, {"key": "val"}, 'Value is json {"key": "val"}')
