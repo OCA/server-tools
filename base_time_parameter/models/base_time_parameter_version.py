@@ -1,6 +1,6 @@
 # Author Copyright (C) 2022 Nimarosa (Nicolas Rodriguez) (<nicolasrsande@gmail.com>).
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-
+import json
 from datetime import datetime
 
 from odoo import api, fields, models
@@ -44,6 +44,13 @@ def _validate(value, data_type, date_format=None):
     elif data_type == "integer":
         try:
             new_value = str(int(round(float(value), 0)))
+        except ValueError:
+            pass
+
+    elif data_type == "json":
+        try:
+            json.loads(value)
+            new_value = value
         except ValueError:
             pass
 
