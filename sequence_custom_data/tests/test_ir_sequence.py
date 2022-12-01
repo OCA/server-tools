@@ -44,7 +44,7 @@ class TestIrSequence(SavepointCase):
         prefix, _suffix = self.sequence._get_prefix_suffix()
         year = fields.Date.today().year
         expected_result = "{year}{code}".format(year=year, code=self.test_code)
-        self.assertEquals(expected_result, prefix)
+        self.assertEqual(expected_result, prefix)
 
     def test_get_prefix_suffix2(self):
         """
@@ -56,7 +56,7 @@ class TestIrSequence(SavepointCase):
         prefix, _suffix = self.sequence._get_prefix_suffix()
         year = fields.Date.today().year
         expected_result = "{year}".format(year=year)
-        self.assertEquals(expected_result, prefix)
+        self.assertEqual(expected_result, prefix)
 
     def test_get_prefix_suffix3(self):
         """
@@ -67,7 +67,7 @@ class TestIrSequence(SavepointCase):
         self.sequence.write({"prefix": "{test_code}"})
         prefix, _suffix = self.sequence._get_prefix_suffix()
         expected_result = "{code}".format(code=self.test_code)
-        self.assertEquals(expected_result, prefix)
+        self.assertEqual(expected_result, prefix)
 
     def test_get_prefix_suffix4(self):
         """
@@ -77,7 +77,7 @@ class TestIrSequence(SavepointCase):
         self.sequence.write({"prefix": ""})
         prefix, _suffix = self.sequence._get_prefix_suffix()
         expected_result = ""
-        self.assertEquals(expected_result, prefix)
+        self.assertEqual(expected_result, prefix)
 
     def test_get_prefix_suffix5(self):
         """
@@ -89,7 +89,7 @@ class TestIrSequence(SavepointCase):
         prefix, _suffix = self.sequence._get_prefix_suffix()
         year = fields.Date.today().year
         expected_result = "E{year}d{code}AB".format(year=year, code=self.test_code)
-        self.assertEquals(expected_result, prefix)
+        self.assertEqual(expected_result, prefix)
 
     @mute_logger("odoo.addons.sequence_custom_data.models.ir_sequence")
     def test_get_prefix_suffix6(self):
