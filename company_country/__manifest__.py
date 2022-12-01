@@ -5,7 +5,7 @@
     "summary": "Set country to main company - DEPRECATED",
     "version": "13.0.2.0.0",  # Note: module shouldn't be migrated, see README
     "category": "base",
-    "website": "https://github.com/OCA/server-tools/tree/13.0/company_country",
+    "website": "https://github.com/OCA/server-tools",
     "maintainers": ["moylop260", "luisg123v"],
     "author": "Vauxoo, Odoo Community Association (OCA)",
     "license": "AGPL-3",

@@ -34,7 +34,7 @@ class NscaCheck(models.Model):
         """Set some default values on the fly, without overriding fields (which
         has the side effect to re-create the fields on the current model).
         """
-        res = super(NscaCheck, self).default_get(fields_list)
+        res = super().default_get(fields_list)
         res["name"] = "TEMP"  # Required on 'ir.cron', replaced later
         res["interval_number"] = 10
         res["interval_type"] = "minutes"
@@ -42,8 +42,8 @@ class NscaCheck(models.Model):
 
     def _force_values(self):
         """Force some values:
-            - Compute the name of the NSCA check to be readable
-              among the others 'ir.cron' records.
+        - Compute the name of the NSCA check to be readable
+          among the others 'ir.cron' records.
         """
         model = self.env["ir.model"].search([("model", "=", self._name)])
         for check in self:
@@ -65,12 +65,12 @@ class NscaCheck(models.Model):
             )
         if not vals.get("state", False):
             vals["state"] = "code"
-        check = super(NscaCheck, self).create(vals)
+        check = super().create(vals)
         check._force_values()
         return check
 
     def write(self, vals):
-        res = super(NscaCheck, self).write(vals)
+        res = super().write(vals)
         if "service" in vals:
             self._force_values()
         return res

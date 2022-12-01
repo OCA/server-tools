@@ -107,7 +107,7 @@ class IrMailServer(models.Model):
                 smtp_debug,
             )
 
-            from email.utils import parseaddr, formataddr
+            from email.utils import formataddr, parseaddr
 
             # exact name and address
             (oldname, oldemail) = parseaddr(message["From"])

@@ -1,9 +1,13 @@
+# generated from manifests external_dependencies
 acme
 astor
 cryptography
 dnspython
 josepy
-openpyxl==3.0.4
+lxml
+openpyxl
 pygount
 pysftp
 raven
+xlrd
+xlwt

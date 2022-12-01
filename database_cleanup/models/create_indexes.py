@@ -39,7 +39,10 @@ class CreateIndexesWizard(models.TransientModel):
     _name = "cleanup.create_indexes.wizard"
     _description = "Create indexes"
 
-    purge_line_ids = fields.One2many("cleanup.create_indexes.line", "wizard_id",)
+    purge_line_ids = fields.One2many(
+        "cleanup.create_indexes.line",
+        "wizard_id",
+    )
 
     def find(self):
         res = list()
@@ -62,7 +65,10 @@ class CreateIndexesWizard(models.TransientModel):
                 "join pg_class c on a.attrelid=c.oid "
                 "join pg_tables t on t.tablename=c.relname "
                 "where attname=%s and c.relname=%s",
-                (field.name, model._table,),
+                (
+                    field.name,
+                    model._table,
+                ),
             )
             if not self.env.cr.rowcount:
                 continue

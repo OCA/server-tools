@@ -2,8 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import unittest
-
-import mock
+from unittest import mock
 
 from ..logutils import SanitizeOdooCookiesProcessor
 
@@ -40,9 +39,7 @@ class TestOdooCookieSanitizer(unittest.TestCase):
 
         self.assertTrue("request" in result)
         http = result["request"]
-        self.assertEqual(
-            http["cookies"], "website_lang=en_us;session_id;foo=bar".format(m=proc.MASK)
-        )
+        self.assertEqual(http["cookies"], "website_lang=en_us;session_id;foo=bar")
 
     def test_cookie_header(self):
         data = {

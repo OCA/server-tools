@@ -5,7 +5,7 @@
     "summary": "Friendlier search when typing in relation fields",
     "version": "13.0.1.1.0",
     "category": "Uncategorized",
-    "website": "https://odoo-community.org/",
+    "website": "https://github.com/OCA/server-tools",
     "author": "Daniel Reis, Odoo Community Association (OCA), ADHOC SA",
     "license": "AGPL-3",
     "data": ["views/ir_model_views.xml"],

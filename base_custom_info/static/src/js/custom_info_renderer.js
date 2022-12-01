@@ -1,3 +1,5 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-inline-comments */
 odoo.define("base_custom_info.CustomInfoRenderer", function(require) {
     "use strict";
 

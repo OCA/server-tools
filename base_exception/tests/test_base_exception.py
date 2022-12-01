@@ -22,7 +22,7 @@ class TestBaseException(common.SavepointCase):
         cls.addClassCleanup(cls.loader.restore_registry)
 
         # Must be lazy-imported
-        from ._purchase_test_models import PurchaseTest, LineTest
+        from ._purchase_test_models import LineTest, PurchaseTest
 
         cls.loader.update_registry((PurchaseTest, LineTest))
 

@@ -7,7 +7,7 @@ from odoo.tests.common import TransactionCase
 
 class TestIrExportsLine(TransactionCase):
     def setUp(self):
-        super(TestIrExportsLine, self).setUp()
+        super().setUp()
         self.ir_export = self.env.ref("base_jsonify.ir_exp_partner")
 
     def test_target_contrains(self):
