@@ -5,8 +5,7 @@
 from odoo import fields
 from odoo.tests.common import TransactionCase
 
-from ..models.base import disable_changeset
-from .common import ChangesetTestCommon
+from .common import ChangesetTestCommon, disable_changeset
 
 
 class TestChangesetFieldType(ChangesetTestCommon, TransactionCase):

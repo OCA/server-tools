@@ -8,7 +8,7 @@ from operator import attrgetter
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
-from .base import disable_changeset
+from ..common import disable_changeset
 
 # sentinel object to be sure that no empty value was passed to
 # RecordChangesetChange._value_for_changeset
