@@ -79,8 +79,8 @@ class TestChangesetFlow(ChangesetTestCommon, TransactionCase):
         """Create a new partner with a changeset"""
         new = (
             self.env["res.partner"]
-                .with_context(test_record_changeset=True)
-                .create(
+            .with_context(test_record_changeset=True)
+            .create(
                 {
                     "name": "partner",
                     "street": "street",
@@ -108,8 +108,8 @@ class TestChangesetFlow(ChangesetTestCommon, TransactionCase):
         """No change is created for empty values on create"""
         new = (
             self.env["res.partner"]
-                .with_context(test_record_changeset=True)
-                .create(
+            .with_context(test_record_changeset=True)
+            .create(
                 {
                     "name": "partner",
                     "street": "street",
@@ -489,8 +489,8 @@ class TestChangesetFlow(ChangesetTestCommon, TransactionCase):
         account_number = "AT483200000012345864"
         partner_bank_one = (
             self.env["res.partner.bank"]
-                .with_context(test_record_changeset=True)
-                .create({"acc_number": account_number, "partner_id": self.partner.id})
+            .with_context(test_record_changeset=True)
+            .create({"acc_number": account_number, "partner_id": self.partner.id})
         )
         self.assertEqual(partner_bank_one.acc_number, "/")
 
@@ -498,7 +498,7 @@ class TestChangesetFlow(ChangesetTestCommon, TransactionCase):
         rule.default_value_required_field = default_value
         partner_bank_second = (
             self.env["res.partner.bank"]
-                .with_context(test_record_changeset=True)
-                .create({"acc_number": account_number, "partner_id": self.partner.id})
+            .with_context(test_record_changeset=True)
+            .create({"acc_number": account_number, "partner_id": self.partner.id})
         )
         self.assertEqual(partner_bank_second.acc_number, default_value)
