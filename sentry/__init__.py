@@ -53,7 +53,7 @@ def initialize_raven(config, client_cls=None):
     }
     for option in const.get_sentry_options():
         value = config.get("sentry_%s" % option.key, option.default)
-        if isinstance(option.converter, collections.Callable):
+        if isinstance(option.converter, collections.abc.Callable):
             value = option.converter(value)
         options[option.key] = value
 

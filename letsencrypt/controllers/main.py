@@ -16,6 +16,6 @@ class Letsencrypt(http.Controller):
         try:
             with open(os.path.join(_get_challenge_dir(), filename)) as key:
                 return key.read()
-        except IOError:
+        except OSError:
             pass
         return request.not_found()

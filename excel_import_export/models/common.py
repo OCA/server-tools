@@ -25,7 +25,7 @@ except ImportError:
 
 
 def adjust_cell_formula(value, k):
-    """ Cell formula, i.e., if i=5, val=?(A11)+?(B12) -> val=A16+B17  """
+    """Cell formula, i.e., if i=5, val=?(A11)+?(B12) -> val=A16+B17"""
     if isinstance(value, str):
         for i in range(value.count("?(")):
             if value and "?(" in value and ")" in value:
@@ -39,7 +39,7 @@ def adjust_cell_formula(value, k):
 
 
 def get_field_aggregation(field):
-    """ i..e, 'field@{sum}' """
+    """i..e, 'field@{sum}'"""
     if field and "@{" in field and "}" in field:
         i = field.index("@{")
         j = field.index("}", i)
@@ -53,7 +53,7 @@ def get_field_aggregation(field):
 
 
 def get_field_condition(field):
-    """ i..e, 'field${value > 0 and value or False}' """
+    """i..e, 'field${value > 0 and value or False}'"""
     if field and "${" in field and "}" in field:
         i = field.index("${")
         j = field.index("}", i)
@@ -68,12 +68,12 @@ def get_field_condition(field):
 
 def get_field_style(field):
     """
-        Available styles
-        - font = bold, bold_red
-        - fill = red, blue, yellow, green, grey
-        - align = left, center, right
-        - number = true, false
-        i.e., 'field#{font=bold;fill=red;align=center;style=number}'
+    Available styles
+    - font = bold, bold_red
+    - fill = red, blue, yellow, green, grey
+    - align = left, center, right
+    - number = true, false
+    i.e., 'field#{font=bold;fill=red;align=center;style=number}'
     """
     if field and "#{" in field and "}" in field:
         i = field.index("#{")
@@ -88,7 +88,7 @@ def get_field_style(field):
 
 
 def get_field_style_cond(field):
-    """ i..e, 'field#?object.partner_id and #{font=bold} or #{}?' """
+    """i..e, 'field#?object.partner_id and #{font=bold} or #{}?'"""
     if field and "#?" in field and "?" in field:
         i = field.index("#?")
         j = field.index("?", i + 2)
@@ -129,7 +129,7 @@ def fill_cell_style(field, field_style, styles):
 
 
 def get_line_max(line_field):
-    """ i.e., line_field = line_ids[100], max = 100 else 0 """
+    """i.e., line_field = line_ids[100], max = 100 else 0"""
     if line_field and "[" in line_field and "]" in line_field:
         i = line_field.index("[")
         j = line_field.index("]")
@@ -163,7 +163,7 @@ def split_row_col(pos):
 
 
 def openpyxl_get_sheet_by_name(book, name):
-    """ Get sheet by name for openpyxl """
+    """Get sheet by name for openpyxl"""
     i = 0
     for sheetname in book.sheetnames:
         if sheetname == name:
@@ -267,8 +267,8 @@ def pos2idx(pos):
 
 
 def _get_cell_value(cell, field_type=False):
-    """ If Odoo's field type is known, convert to valid string for import,
-    if not know, just get value  as is """
+    """If Odoo's field type is known, convert to valid string for import,
+    if not know, just get value  as is"""
     value = False
     datemode = 0  # From book.datemode, but we fix it for simplicity
     if field_type in ["date", "datetime"]:

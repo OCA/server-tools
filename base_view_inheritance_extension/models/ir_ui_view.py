@@ -47,14 +47,14 @@ class IrUiView(models.Model):
 
     @api.model
     def _get_inheritance_handler(self, node):
-        handler = super(IrUiView, self).apply_inheritance_specs
+        handler = super().apply_inheritance_specs
         if hasattr(self, "inheritance_handler_%s" % node.tag):
             handler = getattr(self, "inheritance_handler_%s" % node.tag)
         return handler
 
     @api.model
     def _get_inheritance_handler_attributes(self, node):
-        handler = super(IrUiView, self).apply_inheritance_specs
+        handler = super().apply_inheritance_specs
         if hasattr(self, "inheritance_handler_attributes_%s" % node.get("operation")):
             handler = getattr(
                 self, "inheritance_handler_attributes_%s" % node.get("operation")

@@ -37,7 +37,7 @@ class MailThread(models.AbstractModel):
             msg_dict.get("message_id"),
         )
 
-        return super(MailThread, self).message_process(
+        return super().message_process(
             model,
             message_copy,
             custom_values=custom_values,

@@ -24,10 +24,10 @@ class TestVacuumRule(common.TransactionCase):
 
     def tearDown(self):
         self.registry.leave_test_mode()
-        super(TestVacuumRule, self).tearDown()
+        super().tearDown()
 
     def setUp(self):
-        super(TestVacuumRule, self).setUp()
+        super().setUp()
         self.registry.enter_test_mode(self.env.cr)
         self.env = api.Environment(
             self.registry.test_cr, self.env.uid, self.env.context

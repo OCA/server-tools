@@ -14,7 +14,7 @@ _NO_VALUE = object()
 
 
 class RecordChangesetChange(models.Model):
-    """ Store the change of one field for one changeset on one record
+    """Store the change of one field for one changeset on one record
 
     This model is composed of 3 sets of fields:
 
@@ -189,7 +189,7 @@ class RecordChangesetChange(models.Model):
         return self[field_name]
 
     def set_old_value(self):
-        """ Copy the value of the record to the 'old' field """
+        """Copy the value of the record to the 'old' field"""
         for change in self:
             # copy the existing record's value for the history
             old_value_for_write = self._value_for_changeset(
@@ -199,7 +199,7 @@ class RecordChangesetChange(models.Model):
             change.write({old_field_name: old_value_for_write})
 
     def apply(self):
-        """ Apply the change on the changeset's record
+        """Apply the change on the changeset's record
 
         It is optimized thus that it makes only one write on the record
         per changeset if many changes are applied at once.
@@ -258,7 +258,7 @@ class RecordChangesetChange(models.Model):
                 )
 
     def cancel(self):
-        """ Reject the change """
+        """Reject the change"""
         for change in self:
             if not change.user_can_validate_changeset:
                 raise UserError(_("You don't have the rights to reject the changes."))
@@ -302,7 +302,7 @@ class RecordChangesetChange(models.Model):
 
     @api.model
     def _value_for_changeset(self, record, field_name, value=_NO_VALUE):
-        """ Return a value from the record ready to write in a changeset field
+        """Return a value from the record ready to write in a changeset field
 
         :param record: modified record
         :param field_name: name of the modified field
@@ -322,7 +322,7 @@ class RecordChangesetChange(models.Model):
 
     @api.model
     def _prepare_changeset_change(self, record, rule, field_name, value):
-        """ Prepare data for a changeset change
+        """Prepare data for a changeset change
 
         It returns a dict of the values to write on the changeset change
         and a boolean that indicates if the value should be popped out

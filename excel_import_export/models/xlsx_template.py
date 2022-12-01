@@ -14,7 +14,7 @@ from . import common as co
 
 
 class XLSXTemplate(models.Model):
-    """ Master Data for XLSX Templates
+    """Master Data for XLSX Templates
     - Excel Template
     - Import/Export Meta Data (dict text)
     - Default values, etc.
@@ -95,10 +95,12 @@ class XLSXTemplate(models.Model):
     )
     # Utilities
     export_action_id = fields.Many2one(
-        comodel_name="ir.actions.act_window", ondelete="set null",
+        comodel_name="ir.actions.act_window",
+        ondelete="set null",
     )
     import_action_id = fields.Many2one(
-        comodel_name="ir.actions.act_window", ondelete="set null",
+        comodel_name="ir.actions.act_window",
+        ondelete="set null",
     )
     use_report_wizard = fields.Boolean(
         string="Easy Reporting",
@@ -109,12 +111,17 @@ class XLSXTemplate(models.Model):
         string="Report Model",
         help="When use commone wizard, choose the result model",
     )
-    result_field = fields.Char(compute="_compute_result_field",)
+    result_field = fields.Char(
+        compute="_compute_result_field",
+    )
     report_menu_id = fields.Many2one(
-        comodel_name="ir.ui.menu", string="Report Menu", readonly=True,
+        comodel_name="ir.ui.menu",
+        string="Report Menu",
+        readonly=True,
     )
     report_action_id = fields.Many2one(
-        comodel_name="ir.actions.report", string="Report Action",
+        comodel_name="ir.actions.report",
+        string="Report Action",
     )
 
     def _compute_result_field(self):
@@ -210,7 +217,8 @@ class XLSXTemplate(models.Model):
         _field.compute = """
 self['{}'] = self.env['{}'].search(self.safe_domain(self.domain))
         """.format(
-            self.result_field, self.result_model_id.model,
+            self.result_field,
+            self.result_model_id.model,
         )
 
     def _update_result_export_ids(self):
@@ -355,7 +363,7 @@ self['{}'] = self.env['{}'].search(self.safe_domain(self.domain))
             rec.post_import_hook = input_dict.get("__POST_IMPORT__")
 
     def _compute_output_instruction(self):
-        """ From database, compute back to dictionary """
+        """From database, compute back to dictionary"""
         for rec in self:
             inst_dict = {}
             prev_sheet = False

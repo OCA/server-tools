@@ -75,4 +75,4 @@ class IrSequence(models.Model):
                 + interpolated_suffix
             )
         else:
-            return super(IrSequence, self).get_next_char(number_next)
+            return super().get_next_char(number_next)

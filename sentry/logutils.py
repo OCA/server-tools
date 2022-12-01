@@ -62,7 +62,7 @@ class LoggerNameFilter(logging.Filter):
     """
 
     def __init__(self, loggers, name=""):
-        super(LoggerNameFilter, self).__init__(name=name)
+        super().__init__(name=name)
         self._exclude_loggers = set(loggers)
 
     def filter(self, event):
@@ -78,13 +78,13 @@ class OdooSentryHandler(SentryHandler):
     """
 
     def __init__(self, include_extra_context, *args, **kwargs):
-        super(OdooSentryHandler, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.include_extra_context = include_extra_context
 
     def emit(self, record):
         if self.include_extra_context:
             self.client.context.merge(get_extra_context())
-        return super(OdooSentryHandler, self).emit(record)
+        return super().emit(record)
 
 
 class SanitizeOdooCookiesProcessor(SanitizePasswordsProcessor):

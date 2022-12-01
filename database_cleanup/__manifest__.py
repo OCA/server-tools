@@ -5,6 +5,7 @@
     "version": "13.0.1.0.0",
     "author": "Therp BV,Odoo Community Association (OCA)",
     "depends": ["base"],
+    "website": "https://github.com/OCA/server-tools",
     "license": "AGPL-3",
     "category": "Tools",
     "data": [
