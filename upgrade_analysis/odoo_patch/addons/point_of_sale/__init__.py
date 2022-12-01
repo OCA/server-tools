@@ -10,4 +10,4 @@ class PreInitHookPatch(OdooPatch):
 
     @api.model
     def post_install_pos_localisation(cr):
-        """ Do not configure twice pos_localisation"""
+        """Do not configure twice pos_localisation"""

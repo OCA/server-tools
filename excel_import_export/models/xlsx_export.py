@@ -110,7 +110,7 @@ class XLSXExport(models.AbstractModel):
 
     @api.model
     def _fill_workbook_data(self, workbook, record, data_dict):
-        """ Fill data from record with style in data_dict to workbook """
+        """Fill data from record with style in data_dict to workbook"""
         if not record or not data_dict:
             return
         try:
@@ -143,7 +143,7 @@ class XLSXExport(models.AbstractModel):
 
     @api.model
     def _get_field_data(self, _field, _line):
-        """ Get field data, and convert data type if needed """
+        """Get field data, and convert data type if needed"""
         if not _field:
             return None
         line_copy = _line

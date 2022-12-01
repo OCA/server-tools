@@ -215,3 +215,33 @@ class TestTimeWindow(SavepointCase):
         self.assertTrue(self.partner_2.time_window_ids)
         with self.assertRaises(ValidationError):
             p1_timewindow.partner_id = self.partner_2
+
+    def test_07(self):
+        """
+        Data:
+            A partner without time window
+        Test Case:
+            1 Add a time window with stop hour > 23:59
+            2 Add a time window with start hour > 23:59
+        Expected result:
+            ValidationError is raised
+        """
+        exception_regex = "Hour should be between 00 and 23"
+        with self.assertRaisesRegex(ValidationError, exception_regex):
+            self.TimeWindow.create(
+                {
+                    "partner_id": self.partner_1.id,
+                    "time_window_start": 0.0,
+                    "time_window_end": 27.0,
+                    "time_window_weekday_ids": [(4, self.monday.id)],
+                }
+            )
+        with self.assertRaisesRegex(ValidationError, exception_regex):
+            self.TimeWindow.create(
+                {
+                    "partner_id": self.partner_1.id,
+                    "time_window_start": 25.0,
+                    "time_window_end": 27.0,
+                    "time_window_weekday_ids": [(4, self.monday.id)],
+                }
+            )

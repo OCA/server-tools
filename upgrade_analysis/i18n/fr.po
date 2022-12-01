@@ -145,6 +145,11 @@ msgid "Database"
 msgstr ""
 
 #. module: upgrade_analysis
+#: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_record__definition
+msgid "Definition"
+msgstr ""
+
+#. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_ir_module_module__display_name
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_analysis__display_name
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_attribute__display_name

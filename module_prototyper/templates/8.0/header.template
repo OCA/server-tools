@@ -1,0 +1,5 @@
+# -*- coding: utf-8 -*-
+# Copyright {{ export_year }} {% if author %}{{ author }}{% endif %} ({% if website %}({{ website }}).{% endif %})
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+{% block body %}
+{% endblock %}

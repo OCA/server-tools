@@ -4,7 +4,7 @@
 
 from odoo.tests.common import Form, TransactionCase
 
-from ..common import disable_changeset
+from ..models.base import disable_changeset
 from .common import ChangesetTestCommon
 
 
@@ -93,7 +93,7 @@ class TestChangesetOrigin(ChangesetTestCommon, TransactionCase):
         self.assertEqual(self.partner.count_pending_changesets, 0)
 
     def test_old_field_of_change_with_apply(self):
-        """ Old field is stored when the change is applied """
+        """Old field is stored when the change is applied"""
         with Form(self.partner) as partner_form:
             partner_form.name = "Y"
         self.assertEqual(self.partner.count_pending_changesets, 1)
@@ -116,7 +116,7 @@ class TestChangesetOrigin(ChangesetTestCommon, TransactionCase):
         self.assertEqual(self.partner.count_pending_changesets, 0)
 
     def test_old_field_of_change_with_cancel(self):
-        """ Old field is stored when the change is canceled """
+        """Old field is stored when the change is canceled"""
         with Form(self.partner) as partner_form:
             partner_form.name = "Y"
         self.assertEqual(self.partner.count_pending_changesets, 1)

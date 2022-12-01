@@ -3,16 +3,25 @@
 {
     "name": "Sentry",
     "summary": "Report Odoo errors to Sentry",
-    "version": "14.0.1.0.2",
+    "version": "14.0.1.1.1",
     "category": "Extra Tools",
     "website": "https://github.com/OCA/server-tools",
     "author": "Mohammed Barsi,"
     "Versada,"
     "Nicolas JEUDY,"
-    "Odoo Community Association (OCA)",
+    "Odoo Community Association (OCA),"
+    "Vauxoo",
+    "maintainers": ["barsi", "naglis", "versada", "moylop260", "fernandahf"],
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "external_dependencies": {"python": ["raven"]},
-    "depends": ["base"],
+    "external_dependencies": {
+        "python": [
+            "sentry_sdk",
+        ]
+    },
+    "depends": [
+        "base",
+    ],
+    "post_load": "post_load",
 }

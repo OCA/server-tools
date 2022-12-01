@@ -38,6 +38,7 @@ class ChangesetFieldRule(models.Model):
     )
     company_id = fields.Many2one("res.company", default=lambda self: self.env.company)
     active = fields.Boolean(default=True)
+    prevent_self_validation = fields.Boolean(default=False)
     expression = fields.Text(
         help="Use this rule only on records where this is true. "
         "Available variables: object, user",
@@ -52,7 +53,6 @@ class ChangesetFieldRule(models.Model):
         )
         or self.env["res.groups"],
     )
-    prevent_self_validation = fields.Boolean(default=False)
     default_value_required_field = fields.Char(
         string="Default value of required field",
         default="/",
@@ -165,7 +165,7 @@ class ChangesetFieldRule(models.Model):
         return rules
 
     def _evaluate_expression(self, record):
-        """ Evaluate expression if set """
+        """Evaluate expression if set"""
         self.ensure_one()
         return not self.expression or tools.safe_eval.safe_eval(
             self.expression, {"object": record, "user": self.env.user}

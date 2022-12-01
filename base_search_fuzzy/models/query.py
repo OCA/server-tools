@@ -31,7 +31,7 @@ Oridinal_Query_obj.where_clause = where_clause_new
 
 
 def get_sql_new(self):
-    """ Returns (query_from, query_where, query_params). """
+    """Returns (query_from, query_where, query_params)."""
     tables = [query._from_table(table, alias) for alias, table in self._tables.items()]
     joins = []
     params = []

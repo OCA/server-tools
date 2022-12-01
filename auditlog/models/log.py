@@ -19,15 +19,19 @@ class AuditlogLog(models.Model):
     user_id = fields.Many2one("res.users", string="User")
     method = fields.Char(size=64)
     line_ids = fields.One2many("auditlog.log.line", "log_id", string="Fields updated")
-    http_session_id = fields.Many2one("auditlog.http.session", string="Session")
-    http_request_id = fields.Many2one("auditlog.http.request", string="HTTP Request")
+    http_session_id = fields.Many2one(
+        "auditlog.http.session", string="Session", index=True
+    )
+    http_request_id = fields.Many2one(
+        "auditlog.http.request", string="HTTP Request", index=True
+    )
     log_type = fields.Selection(
         [("full", "Full log"), ("fast", "Fast log")], string="Type"
     )
 
     @api.model_create_multi
     def create(self, vals_list):
-        """ Insert model_name and model_model field values upon creation. """
+        """Insert model_name and model_model field values upon creation."""
         for vals in vals_list:
             if not vals.get("model_id"):
                 raise UserError(_("No model defined to create log."))
@@ -70,8 +74,12 @@ class AuditlogLogLine(models.Model):
     res_id = fields.Integer(related="log_id.res_id", store=True)
     user_id = fields.Many2one(related="log_id.user_id", store=True)
     method = fields.Char(related="log_id.method", store=True)
-    http_session_id = fields.Many2one(related="log_id.http_session_id", store=True)
-    http_request_id = fields.Many2one(related="log_id.http_request_id", store=True)
+    http_session_id = fields.Many2one(
+        related="log_id.http_session_id", store=True, index=True
+    )
+    http_request_id = fields.Many2one(
+        related="log_id.http_request_id", store=True, index=True
+    )
     log_type = fields.Selection(related="log_id.log_type", store=True)
 
     @api.model_create_multi

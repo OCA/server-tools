@@ -4,7 +4,11 @@
 from lxml import etree
 
 from odoo import _, api, fields, models
-from odoo.tools import config
+from odoo.tools import config, ormcache
+
+# put this object into context key '__no_changeset' to disable changeset
+# functionality
+disable_changeset = object()
 
 # put this object into context key '__no_changeset' to disable changeset
 # functionality
@@ -62,6 +66,7 @@ class Base(models.AbstractModel):
                 rec.count_pending_changeset_changes = 0.0
 
     @api.model
+    @ormcache(skiparg=1)
     def models_to_track_changeset(self):
         """Models to be tracked for changes
         :args:

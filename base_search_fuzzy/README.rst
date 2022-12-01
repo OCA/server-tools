@@ -59,7 +59,7 @@ Usage
 #. You can create an index for the `name` field of `res.partner`.
 #. In the search you can use:
 
-   ``self.env['res.partner'].search([('name', '%', 'Jon Miller)])``
+   ``self.env['res.partner'].search([('name', '%', 'Jon Miller')])``
 
 #. In this example the function will return positive result for `John Miller`
    or `John Mill`.

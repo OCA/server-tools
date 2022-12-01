@@ -5,7 +5,7 @@
     "name": "Fuzzy Search",
     "summary": "Fuzzy search with the PostgreSQL trigram extension",
     "category": "Uncategorized",
-    "version": "14.0.1.0.1",
+    "version": "14.0.1.0.2",
     "website": "https://github.com/OCA/server-tools",
     "author": "bloopark systems GmbH & Co. KG, "
     "ForgeFlow, "

@@ -1,0 +1,35 @@
+{% extends "header.template" %}
+{% block body %}
+
+from openerp import models, fields
+from openerp.tools.translate import _
+
+
+class {{ unprefix(name) }}(models.Model):
+    {% if model.state == 'base' %}
+    _name = "{{ model.model }}"
+    {% else %}
+    _inherit = "{{ model.model }}"
+    {% endif %}
+    {% if description %}
+    _description = "{{ description }}"
+    {% endif %}
+
+    {% for field in fields %}
+        {% for line in wrap(field.notes, replace_whitespace=False) %}
+    # {{line}}
+        {% endfor %}
+    {{ unprefix(field.name) }} = fields.{{ field.ttype|capitalize }}(
+        string=_("{{ field.field_description }}"),
+        required={{ field.required }},
+        translate={{ field.translate }},
+        readonly={{ field.readonly }}
+        {% if field.size %}
+        size={{ field.size }},
+        {% endif %}
+        {% if field.helper %}
+        help=_("{{ field.helper }}"),
+        {% endif %}
+    )
+    {% endfor %}
+{% endblock %}

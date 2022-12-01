@@ -134,8 +134,6 @@ def report_generic(new, old, attrs, reprs):
         if attr == "required":
             if old[attr] != new["required"] and new["required"]:
                 text = "now required"
-                if new["req_default"]:
-                    text += ", req_default: %s" % new["req_default"]
                 fieldprint(old, new, "", text, reprs)
         elif attr == "stored":
             if old[attr] != new[attr]:
@@ -284,14 +282,18 @@ def compare_sets(old_records, new_records):
         ],
     )
 
-    printkeys = [
+    # Info that is displayed for deleted fields
+    printkeys_old = [
         "relation",
         "required",
         "selection_keys",
-        "req_default",
         "_inherits",
         "mode",
         "attachment",
+    ]
+    # Info that is displayed for new fields
+    printkeys_new = printkeys_old + [
+        "hasdefault",
     ]
     for column in old_records:
         if column["field"] == "_order":
@@ -304,7 +306,7 @@ def compare_sets(old_records, new_records):
         extra_message = ", ".join(
             [
                 k + ": " + str(column[k]) if k != str(column[k]) else k
-                for k in printkeys
+                for k in printkeys_old
                 if column[k]
             ]
         )
@@ -312,11 +314,6 @@ def compare_sets(old_records, new_records):
             extra_message = " " + extra_message
         fieldprint(column, "", "", "DEL" + extra_message, reprs)
 
-    printkeys.extend(
-        [
-            "hasdefault",
-        ]
-    )
     for column in new_records:
         if column["field"] == "_order":
             continue
@@ -325,13 +322,13 @@ def compare_sets(old_records, new_records):
             continue
         if column["mode"] == "create":
             column["mode"] = ""
-        printkeys_plus = printkeys.copy()
+        printkeys = printkeys_new.copy()
         if column["isfunction"] or column["isrelated"]:
-            printkeys_plus.extend(["isfunction", "isrelated", "stored"])
+            printkeys.extend(["isfunction", "isrelated", "stored"])
         extra_message = ", ".join(
             [
                 k + ": " + str(column[k]) if k != str(column[k]) else k
-                for k in printkeys_plus
+                for k in printkeys
                 if column[k]
             ]
         )
@@ -387,14 +384,22 @@ def compare_xml_sets(old_records, new_records):
                     and found["domain"] is False
                 )
                 column["domain"] = False
+                found["definition"] = (
+                    column["definition"]
+                    and column["definition"] != found["definition"]
+                    and "is now '{}' ('{}')".format(
+                        found["definition"], column["definition"]
+                    )
+                )
+                column["definition"] = False
                 column["noupdate_switched"] = False
                 found["noupdate_switched"] = column["noupdate"] != found["noupdate"]
                 if match_type != "direct":
                     matched_records.append(column)
                     matched_records.append(found)
-                elif (match_type == "direct" and found["domain"]) or found[
-                    "noupdate_switched"
-                ]:
+                elif (
+                    match_type == "direct" and (found["domain"] or found["definition"])
+                ) or found["noupdate_switched"]:
                     matched_records.append(found)
         return matched_records
 
@@ -413,10 +418,12 @@ def compare_xml_sets(old_records, new_records):
     for record in old_records:
         record["old"] = True
         record["domain"] = False
+        record["definition"] = False
         record["noupdate_switched"] = False
     for record in new_records:
         record["new"] = True
         record["domain"] = False
+        record["definition"] = False
         record["noupdate_switched"] = False
 
     sorted_records = sorted(
@@ -441,6 +448,8 @@ def compare_xml_sets(old_records, new_records):
             content = "%(model)s: %(name)s" % entry
         if entry["domain"]:
             content += " (deleted domain)"
+        if entry["definition"]:
+            content += " (changed definition: %(definition)s)" % entry
         if entry["noupdate"]:
             content += " (noupdate)"
         if entry["noupdate_switched"]:

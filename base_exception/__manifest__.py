@@ -5,7 +5,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 {
     "name": "Exception Rule",
-    "version": "14.0.1.1.0",
+    "version": "14.0.2.1.0",
     "category": "Generic Modules",
     "summary": """
     This module provide an abstract model to manage customizable
@@ -13,6 +13,7 @@
     "author": "Akretion, Sodexis, Camptocamp, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/server-tools",
     "depends": ["base_setup"],
+    "maintainers": ["hparfr", "sebastienbeau"],
     "license": "AGPL-3",
     "data": [
         "security/base_exception_security.xml",

@@ -41,7 +41,7 @@ class ImportXLSXWizard(models.TransientModel):
 
     @api.model
     def view_init(self, fields_list):
-        """ This template only works on some context of active record """
+        """This template only works on some context of active record"""
         res = super(ImportXLSXWizard, self).view_init(fields_list)
         res_model = self._context.get("active_model", False)
         res_id = self._context.get("active_id", False)
