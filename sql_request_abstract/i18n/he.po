@@ -44,6 +44,13 @@ msgid "ID"
 msgstr "מזהה"
 
 #. module: sql_request_abstract
+#: model:ir.model.fields,help:sql_request_abstract.field_sql_request_mixin__use_external_database
+msgid ""
+"If filled, the query will be executed against an external database, "
+"configured in Odoo main configuration file. "
+msgstr ""
+
+#. module: sql_request_abstract
 #: code:addons/sql_request_abstract/models/sql_request_mixin.py:0
 #, python-format
 msgid "It is not allowed to execute a not checked request."
@@ -132,8 +139,21 @@ msgid "Unimplemented mode : '%s'"
 msgstr ""
 
 #. module: sql_request_abstract
+#: model:ir.model.fields,field_description:sql_request_abstract.field_sql_request_mixin__use_external_database
+msgid "Use External Database"
+msgstr ""
+
+#. module: sql_request_abstract
 #: model:res.groups,name:sql_request_abstract.group_sql_request_user
 msgid "User"
+msgstr ""
+
+#. module: sql_request_abstract
+#: code:addons/sql_request_abstract/models/sql_request_mixin.py:0
+#, python-format
+msgid ""
+"You can't use an external database as there are no such configuration about "
+"this. Please contact your Odoo administrator to solve this issue."
 msgstr ""
 
 #. module: sql_request_abstract

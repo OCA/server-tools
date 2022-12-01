@@ -1,0 +1,83 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* base_generate_code
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2022-09-04 06:07+0000\n"
+"Last-Translator: Ignacio Buioli <ibuioli@gmail.com>\n"
+"Language-Team: none\n"
+"Language: es_AR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
+
+#. module: base_generate_code
+#: model:ir.model.fields,field_description:base_generate_code.field_code_format_mixin__assigned_attachment_ids
+msgid "Assigned Attachments"
+msgstr "Adjuntos Asignados"
+
+#. module: base_generate_code
+#: model:ir.model.fields,field_description:base_generate_code.field_code_format_mixin__changeset_change_ids
+msgid "Changeset Changes"
+msgstr "Cambios del Conjunto de Cambios"
+
+#. module: base_generate_code
+#: model:ir.model.fields,field_description:base_generate_code.field_code_format_mixin__changeset_ids
+msgid "Changesets"
+msgstr "Conjunto de Cambios"
+
+#. module: base_generate_code
+#: model:ir.model.fields,field_description:base_generate_code.field_code_format_mixin__code
+msgid "Code"
+msgstr "Código"
+
+#. module: base_generate_code
+#: model:ir.model.fields,field_description:base_generate_code.field_code_format_mixin__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr "Cuenta de los Cambios Pendientes de los Conjuntos de Cambios"
+
+#. module: base_generate_code
+#: model:ir.model.fields,field_description:base_generate_code.field_code_format_mixin__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr "Cuenta de los Conjuntos de Cambios Pendientes"
+
+#. module: base_generate_code
+#: model:ir.model,name:base_generate_code.model_code_format_mixin
+msgid "Customizable code format Mixin"
+msgstr "Formato de Código personalizable Mixin"
+
+#. module: base_generate_code
+#: model:ir.model.fields,field_description:base_generate_code.field_code_format_mixin__display_name
+msgid "Display Name"
+msgstr "Mostrar Nombre"
+
+#. module: base_generate_code
+#: model:ir.model.fields,field_description:base_generate_code.field_code_format_mixin__id
+msgid "ID"
+msgstr "ID"
+
+#. module: base_generate_code
+#: model:ir.model.fields,field_description:base_generate_code.field_code_format_mixin____last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: base_generate_code
+#: model:ir.model.fields,field_description:base_generate_code.field_code_format_mixin__smart_search
+msgid "Smart Search"
+msgstr "Búsqueda Inteligente"
+
+#. module: base_generate_code
+#: code:addons/base_generate_code/models/code_format_mixin.py:0
+#, python-format
+msgid "Unable to generate a non existing random code."
+msgstr "No se puede generar un código aleatorio no existente."
+
+#. module: base_generate_code
+#: model:ir.model.fields,field_description:base_generate_code.field_code_format_mixin__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr "El Usuario Puede ver Conjuntos de Cambios"

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.menu" id="menu_database_cleanup">
+        <field name="name">Database cleanup</field>
+        <field name="sequence" eval="10" />
+        <!-- attach to Settings -> Technical -->
+        <field name="parent_id" ref="base.menu_custom" />
+        <field name="groups_id" eval="[(6,0, [ref('base.group_erp_manager')])]" />
+    </record>
+
+    <record model="ir.ui.menu" id="menu_purge_modules">
+        <field name="name">Purge obsolete modules</field>
+        <field name="sequence" eval="10" />
+        <field name="action" ref="action_purge_modules" />
+        <field name="parent_id" ref="menu_database_cleanup" />
+    </record>
+
+    <record model="ir.ui.menu" id="menu_purge_models">
+        <field name="name">Purge obsolete models</field>
+        <field name="sequence" eval="20" />
+        <field name="action" ref="action_purge_models" />
+        <field name="parent_id" ref="menu_database_cleanup" />
+    </record>
+
+    <record model="ir.ui.menu" id="menu_purge_columns">
+        <field name="name">Purge obsolete columns</field>
+        <field name="sequence" eval="30" />
+        <field name="action" ref="action_purge_columns" />
+        <field name="parent_id" ref="menu_database_cleanup" />
+    </record>
+
+    <record model="ir.ui.menu" id="menu_purge_tables">
+        <field name="name">Purge obsolete tables</field>
+        <field name="sequence" eval="40" />
+        <field name="action" ref="action_purge_tables" />
+        <field name="parent_id" ref="menu_database_cleanup" />
+    </record>
+
+    <record model="ir.ui.menu" id="menu_purge_data">
+        <field name="name">Purge obsolete data entries</field>
+        <field name="sequence" eval="50" />
+        <field name="action" ref="action_purge_data" />
+        <field name="parent_id" ref="menu_database_cleanup" />
+    </record>
+
+    <record model="ir.ui.menu" id="menu_purge_menus">
+        <field name="name">Purge obsolete menu entries</field>
+        <field name="sequence" eval="60" />
+        <field name="action" ref="action_purge_menus" />
+        <field name="parent_id" ref="menu_database_cleanup" />
+    </record>
+
+    <record model="ir.ui.menu" id="menu_create_indexes">
+        <field name="name">Create missing indexes</field>
+        <field name="sequence" eval="70" />
+        <field name="action" ref="cleanup_create_indexes_wizard_action" />
+        <field name="parent_id" ref="menu_database_cleanup" />
+    </record>
+
+    <record model="ir.ui.menu" id="menu_purge_property">
+        <field name="name">Purge obsolete properties</field>
+        <field name="sequence" eval="80" />
+        <field name="action" ref="action_purge_property" />
+        <field name="parent_id" ref="menu_database_cleanup" />
+    </record>
+</odoo>

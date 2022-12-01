@@ -406,7 +406,7 @@ with the group <tt class="docutils literal">Changesets Validations</tt></p>
 Record Changesets &gt; Fields Rules</tt>.</p>
 <ul>
 <li><p class="first">Configuration of rules</p>
-<img alt="https://raw.githubusercontent.com/OCA/server-tools/14.0/base_changeset/base_changeset/static/src/img/rules.png" src="https://raw.githubusercontent.com/OCA/server-tools/14.0/base_changeset/base_changeset/static/src/img/rules.png" />
+<img alt="https://raw.githubusercontent.com/OCA/server-tools/14.0/base_changeset/static/src/img/rules.png" src="https://raw.githubusercontent.com/OCA/server-tools/14.0/base_changeset/static/src/img/rules.png" />
 </li>
 </ul>
 <p>For each record field, an action can be defined:</p>
@@ -452,7 +452,7 @@ Changesets &gt; Changesets</tt>.</p>
 Remove the “Pending” filter to show all the changesets.</p>
 <ul>
 <li><p class="first">Changeset waiting for validation</p>
-<img alt="https://raw.githubusercontent.com/OCA/server-tools/14.0/base_changeset/base_changeset/static/src/img/changeset.png" src="https://raw.githubusercontent.com/OCA/server-tools/14.0/base_changeset/base_changeset/static/src/img/changeset.png" />
+<img alt="https://raw.githubusercontent.com/OCA/server-tools/14.0/base_changeset/static/src/img/changeset.png" src="https://raw.githubusercontent.com/OCA/server-tools/14.0/base_changeset/static/src/img/changeset.png" />
 </li>
 </ul>
 <p>The changes view shows the name of the record’s field, the Origin value
@@ -470,13 +470,13 @@ records. When there is a pending change for a field you get a badge with the
 number of pending changes next to it like this:</p>
 <ul>
 <li><p class="first">Badge with the number of pending changes</p>
-<img alt="https://raw.githubusercontent.com/OCA/server-tools/14.0/base_changeset/base_changeset/static/src/img/badge.png" src="https://raw.githubusercontent.com/OCA/server-tools/14.0/base_changeset/base_changeset/static/src/img/badge.png" />
+<img alt="https://raw.githubusercontent.com/OCA/server-tools/14.0/base_changeset/static/src/img/badge.png" src="https://raw.githubusercontent.com/OCA/server-tools/14.0/base_changeset/static/src/img/badge.png" />
 </li>
 </ul>
 <p>When you click on it:</p>
 <ul>
 <li><p class="first">Clicking the badge: red button to reject, green one to apply</p>
-<img alt="https://raw.githubusercontent.com/OCA/server-tools/14.0/base_changeset/base_changeset/static/src/img/badge_click.png" src="https://raw.githubusercontent.com/OCA/server-tools/14.0/base_changeset/base_changeset/static/src/img/badge_click.png" />
+<img alt="https://raw.githubusercontent.com/OCA/server-tools/14.0/base_changeset/static/src/img/badge_click.png" src="https://raw.githubusercontent.com/OCA/server-tools/14.0/base_changeset/static/src/img/badge_click.png" />
 </li>
 </ul>
 <p>Click the red button to reject the change, click the green one to apply it.</p>
@@ -497,6 +497,14 @@ same that is passed in <tt class="docutils literal">__changeset_rules_source_mod
 <p>The source is used for the application of the rules, allowing to have a
 different rule for a different source. It is also stored on the changeset for
 information.</p>
+</div>
+<div class="section" id="notes-on-security">
+<h1>Notes on security</h1>
+<p>Note that by default, changeset users see all changes on all configured
+rules. This circumvents read restrictions on the original records, so if you
+have restrictions on models with changeset rules, changeset users will still
+see all changes of all records, and applying a change on an inaccessible record
+will fail.</p>
 <div class="section" id="known-issues-roadmap">
 <h2>Known issues / Roadmap</h2>
 <ul class="simple">
@@ -529,6 +537,7 @@ If you spotted it first, help us smashing it by providing a detailed and welcome
 <li>Yannick Vaucher &lt;<a class="reference external" href="mailto:yannick.vaucher&#64;camptocamp.com">yannick.vaucher&#64;camptocamp.com</a>&gt;</li>
 <li>Dennis Sluijk &lt;<a class="reference external" href="mailto:d.sluijk&#64;onestein.nl">d.sluijk&#64;onestein.nl</a>&gt;</li>
 <li>Andrea Stirpe &lt;<a class="reference external" href="mailto:a.stirpe&#64;onestein.nl">a.stirpe&#64;onestein.nl</a>&gt;</li>
+<li>Holger Brunn &lt;<a class="reference external" href="mailto:mail&#64;hunki-enterprises.com">mail&#64;hunki-enterprises.com</a>&gt;</li>
 </ul>
 </div>
 <div class="section" id="maintainers">

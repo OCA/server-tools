@@ -1,0 +1,583 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* module_prototyper
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: module_prototyper
+#: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_module_export__api_version
+msgid "API version"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper__right_ids
+msgid "Access Rights"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields.selection,name:module_prototyper.selection__module_prototyper__license__agpl-3
+msgid "Affero GPL-3"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper__application
+msgid "Application"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper__author
+msgid "Author"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper__auto_install
+msgid "Auto Install"
+msgstr ""
+
+#. module: module_prototyper
+#: model_terms:ir.ui.view,arch_db:module_prototyper.view_module_export_wizard
+msgid "Cancel"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper__category_id
+msgid "Category"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,help:module_prototyper.field_module_prototyper__application
+msgid "Check if the module is an Odoo application."
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,help:module_prototyper.field_module_prototyper__auto_install
+msgid "Check if the module should be install by default."
+msgstr ""
+
+#. module: module_prototyper
+#: model_terms:ir.ui.view,arch_db:module_prototyper.view_module_export_wizard
+msgid "Close"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,field_description:module_prototyper.field_ir_model_fields__column1
+msgid "Column1"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,field_description:module_prototyper.field_ir_model_fields__column2
+msgid "Column2"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,field_description:module_prototyper.field_ir_model_fields__client_context
+msgid "Context"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,help:module_prototyper.field_ir_model_fields__client_context
+msgid ""
+"Context to use on the client side when handling the field (python "
+"dictionary)"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper__create_uid
+#: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_api_version__create_uid
+#: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_module_export__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper__create_date
+#: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_api_version__create_date
+#: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_module_export__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: module_prototyper
+#: model_terms:ir.ui.view,arch_db:module_prototyper.module_prototyper_base_form_view
+msgid "Data & Demo"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper__data_ids
+msgid "Data filters"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper__demo_ids
+msgid "Demo filters"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper__dependency_ids
+#: model_terms:ir.ui.view,arch_db:module_prototyper.module_prototyper_base_form_view
+msgid "Dependencies"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper__description
+#: model_terms:ir.ui.view,arch_db:module_prototyper.module_prototyper_base_form_view
+msgid "Description"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,field_description:module_prototyper.field_ir_model_fields__display_name
+#: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper__display_name
+#: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_api_version__display_name
+#: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_module_export__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,help:module_prototyper.field_module_prototyper__summary
+msgid "Enter a summary of your module"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,help:module_prototyper.field_module_prototyper__website
+msgid "Enter the URL of your website"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,help:module_prototyper.field_module_prototyper__description
+msgid ""
+"Enter the description of your module, what it does, how to install, "
+"configure and use it, the roadmap or known issues. The description will be "
+"exported in README.rst"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,help:module_prototyper.field_module_prototyper__right_ids
+msgid ""
+"Enter the list of access rights that you have created and want to export in "
+"this module."
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,help:module_prototyper.field_module_prototyper__field_ids
+msgid ""
+"Enter the list of fields that you have created or modified and want to "
+"export in this module. New models will be exported as long as you choose one"
+" of his fields."
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,help:module_prototyper.field_module_prototyper__group_ids
+msgid ""
+"Enter the list of groups that you have created and want to export in this "
+"module."
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,help:module_prototyper.field_module_prototyper__menu_ids
+msgid ""
+"Enter the list of menu items that you have created and want to export in "
+"this module. Related windows actions will be exported as well."
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,help:module_prototyper.field_module_prototyper__rule_ids
+msgid ""
+"Enter the list of record rules that you have created and want to export in "
+"this module."
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,help:module_prototyper.field_module_prototyper__report_ids
+msgid ""
+"Enter the list of reports that you have created and want to export in this "
+"module."
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,help:module_prototyper.field_module_prototyper__dependency_ids
+msgid ""
+"Enter the list of required modules that need to be installed for your module"
+" to work properly"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,help:module_prototyper.field_module_prototyper__view_ids
+msgid ""
+"Enter the list of views that you have created and want to export in this "
+"module."
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,help:module_prototyper.field_module_prototyper__maintainer
+msgid ""
+"Enter the name of the person or organization who will maintain this module"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,help:module_prototyper.field_module_prototyper__version
+msgid "Enter the version of your module with 5 digits"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,help:module_prototyper.field_module_prototyper__author
+msgid "Enter your name"
+msgstr ""
+
+#. module: module_prototyper
+#: model_terms:ir.ui.view,arch_db:module_prototyper.module_prototyper_base_form_view
+#: model_terms:ir.ui.view,arch_db:module_prototyper.view_module_export_wizard
+msgid "Export"
+msgstr ""
+
+#. module: module_prototyper
+#: model_terms:ir.ui.view,arch_db:module_prototyper.view_module_export_wizard
+msgid "Export Complete"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.actions.act_window,name:module_prototyper.button_module_export_action
+#: model_terms:ir.ui.view,arch_db:module_prototyper.view_module_export_wizard
+msgid "Export Module"
+msgstr ""
+
+#. module: module_prototyper
+#: model_terms:ir.ui.view,arch_db:module_prototyper.view_module_export_wizard
+msgid "Export Settings"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model,name:module_prototyper.model_ir_model_fields
+#: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper__field_ids
+#: model:ir.ui.menu,name:module_prototyper.ir_model_model_fields
+#: model_terms:ir.ui.view,arch_db:module_prototyper.module_prototyper_base_form_view
+msgid "Fields"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_module_export__data
+msgid "File"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_module_export__name
+msgid "File Name"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields.selection,name:module_prototyper.selection__module_prototyper__license__gpl-3
+msgid "GPL Version 3"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields.selection,name:module_prototyper.selection__module_prototyper__license__gpl-3_or_any_later_version
+msgid "GPL-3 or later version"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper__group_ids
+msgid "Groups"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,field_description:module_prototyper.field_ir_model_fields__helper
+msgid "Helper"
+msgstr ""
+
+#. module: module_prototyper
+#: model_terms:ir.ui.view,arch_db:module_prototyper.view_module_export_wizard
+msgid "Here is the exported module:"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,field_description:module_prototyper.field_ir_model_fields__id
+#: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper__id
+#: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_api_version__id
+#: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_module_export__id
+msgid "ID"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper__icon_image
+msgid "Icon"
+msgstr ""
+
+#. module: module_prototyper
+#: model_terms:ir.ui.view,arch_db:module_prototyper.module_prototyper_base_form_view
+msgid "Interface"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields.selection,name:module_prototyper.selection__module_prototyper__license__lgpl-3
+msgid "LGPL-3"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields.selection,name:module_prototyper.selection__module_prototyper__license__lgpl-3_or_any_later_version
+msgid "LGPL-3 or later version"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,field_description:module_prototyper.field_ir_model_fields____last_update
+#: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper____last_update
+#: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_api_version____last_update
+#: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_module_export____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper__write_uid
+#: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_api_version__write_uid
+#: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_module_export__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper__write_date
+#: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_api_version__write_date
+#: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_module_export__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper__license
+msgid "License"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper__maintainer
+msgid "Maintainer"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_api_version__manifest_file_name
+msgid "Manifest File Name"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper__menu_ids
+#: model:ir.ui.menu,name:module_prototyper.menu_grant_menu_access
+msgid "Menu Items"
+msgstr ""
+
+#. module: module_prototyper
+#: model_terms:ir.ui.view,arch_db:module_prototyper.module_prototyper_base_form_view
+msgid "Module"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper__human_name
+msgid "Module Name"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model,name:module_prototyper.model_module_prototyper_api_version
+msgid "Module Prototype Api version"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model,name:module_prototyper.model_module_prototyper_module_export
+msgid "Module Prototype module export"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model,name:module_prototyper.model_module_prototyper
+msgid "Module Prototyper"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.ui.menu,name:module_prototyper.menu_module_prototyper
+msgid "Module Prototypes"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_api_version__name
+msgid "Name"
+msgstr ""
+
+#. module: module_prototyper
+#: model_terms:ir.ui.view,arch_db:module_prototyper.view_ir_model_form
+msgid "Notes"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,field_description:module_prototyper.field_ir_model_fields__notes
+msgid "Notes to developers."
+msgstr ""
+
+#. module: module_prototyper
+#: model_terms:ir.ui.view,arch_db:module_prototyper.view_ir_model_fields_form
+msgid ""
+"Notes to help developers to understand the work or advanced features that "
+"should be added, ie: onchange, etc."
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields.selection,name:module_prototyper.selection__module_prototyper__license__other_osi_approved_license
+msgid "Other OSI Approved Licence"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields.selection,name:module_prototyper.selection__module_prototyper__license__other_proprietary
+msgid "Other Proprietary"
+msgstr ""
+
+#. module: module_prototyper
+#: model_terms:ir.ui.view,arch_db:module_prototyper.module_prototyper_base_tree_view
+msgid "Prototype"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.actions.act_window,name:module_prototyper.open_module_prototyper_list
+#: model:ir.ui.menu,name:module_prototyper.menu_open_module_prototyper
+msgid "Prototypes"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,field_description:module_prototyper.field_ir_model_fields__limit
+#: model:ir.model.fields,help:module_prototyper.field_ir_model_fields__limit
+msgid "Read limit"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper__rule_ids
+msgid "Record Rules"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper__report_ids
+#: model_terms:ir.ui.view,arch_db:module_prototyper.module_prototyper_base_form_view
+msgid "Reports"
+msgstr ""
+
+#. module: module_prototyper
+#: model_terms:ir.ui.view,arch_db:module_prototyper.module_prototyper_base_form_view
+msgid "Security"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_module_export__state
+msgid "State"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper__summary
+msgid "Summary"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper__name
+msgid "Technical Name"
+msgstr ""
+
+#. module: module_prototyper
+#: model_terms:ir.ui.view,arch_db:module_prototyper.view_ir_model_fields_form
+msgid "Text that will be set as the helper of the field..."
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,help:module_prototyper.field_module_prototyper__human_name
+msgid ""
+"The Module Name will be used as the displayed name of the exported module."
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,help:module_prototyper.field_module_prototyper__icon_image
+msgid ""
+"The icon set up here will be used as the icon for the exported module also"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,help:module_prototyper.field_module_prototyper__data_ids
+msgid "The records matching the filters will be added as data."
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,help:module_prototyper.field_module_prototyper__demo_ids
+msgid "The records matching the filters will be added as demo data."
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,help:module_prototyper.field_module_prototyper__name
+msgid ""
+"The technical name will be used to define the name of the exported module, "
+"the name of the model."
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper__version
+msgid "Version"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper__view_ids
+#: model:ir.ui.menu,name:module_prototyper.menu_action_ui_view
+msgid "Views"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper__website
+#: model_terms:ir.ui.view,arch_db:module_prototyper.module_prototyper_base_form_view
+msgid "Website"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields.selection,name:module_prototyper.selection__module_prototyper_module_export__state__choose
+msgid "choose"
+msgstr ""
+
+#. module: module_prototyper
+#: model_terms:ir.ui.view,arch_db:module_prototyper.module_prototyper_base_form_view
+msgid "ex: Module Prototyper"
+msgstr ""
+
+#. module: module_prototyper
+#: model_terms:ir.ui.view,arch_db:module_prototyper.module_prototyper_base_form_view
+msgid "ex: Odoo Community Association"
+msgstr ""
+
+#. module: module_prototyper
+#: model_terms:ir.ui.view,arch_db:module_prototyper.module_prototyper_base_form_view
+msgid "ex: Others, Sales, Website"
+msgstr ""
+
+#. module: module_prototyper
+#: model_terms:ir.ui.view,arch_db:module_prototyper.module_prototyper_base_form_view
+msgid "ex: Prototype your module."
+msgstr ""
+
+#. module: module_prototyper
+#: model_terms:ir.ui.view,arch_db:module_prototyper.module_prototyper_base_form_view
+msgid "ex: http://odoo-community.org/"
+msgstr ""
+
+#. module: module_prototyper
+#: model_terms:ir.ui.view,arch_db:module_prototyper.module_prototyper_base_form_view
+msgid "ex: module_prototyper"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields.selection,name:module_prototyper.selection__module_prototyper_module_export__state__get
+msgid "get"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,help:module_prototyper.field_ir_model_fields__column1
+msgid "name of the column referring to 'these' records in the relation table"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,help:module_prototyper.field_ir_model_fields__column2
+msgid "name of the column referring to 'those' records in the relation table"
+msgstr ""
+
+#. module: module_prototyper
+#: model_terms:ir.ui.view,arch_db:module_prototyper.view_module_export_wizard
+msgid "or"
+msgstr ""

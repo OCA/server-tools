@@ -67,7 +67,7 @@ Record Changesets > Fields Rules``.
 
 * Configuration of rules
 
-  .. image:: https://raw.githubusercontent.com/OCA/server-tools/14.0/base_changeset/base_changeset/static/src/img/rules.png
+  .. image:: https://raw.githubusercontent.com/OCA/server-tools/14.0/base_changeset/static/src/img/rules.png
 
 For each record field, an action can be defined:
 
@@ -118,7 +118,7 @@ Remove the "Pending" filter to show all the changesets.
 
 * Changeset waiting for validation
 
-  .. image:: https://raw.githubusercontent.com/OCA/server-tools/14.0/base_changeset/base_changeset/static/src/img/changeset.png
+  .. image:: https://raw.githubusercontent.com/OCA/server-tools/14.0/base_changeset/static/src/img/changeset.png
 
 The changes view shows the name of the record's field, the Origin value
 and the New value alongside the state of the change. By clicking on the
@@ -138,13 +138,13 @@ number of pending changes next to it like this:
 
 * Badge with the number of pending changes
 
-  .. image:: https://raw.githubusercontent.com/OCA/server-tools/14.0/base_changeset/base_changeset/static/src/img/badge.png
+  .. image:: https://raw.githubusercontent.com/OCA/server-tools/14.0/base_changeset/static/src/img/badge.png
 
 When you click on it:
 
 * Clicking the badge: red button to reject, green one to apply
 
-  .. image:: https://raw.githubusercontent.com/OCA/server-tools/14.0/base_changeset/base_changeset/static/src/img/badge_click.png
+  .. image:: https://raw.githubusercontent.com/OCA/server-tools/14.0/base_changeset/static/src/img/badge_click.png
 
 Click the red button to reject the change, click the green one to apply it.
 
@@ -167,6 +167,15 @@ same that is passed in ``__changeset_rules_source_model``).
 The source is used for the application of the rules, allowing to have a
 different rule for a different source. It is also stored on the changeset for
 information.
+
+Notes on security
+-----------------
+
+Note that by default, changeset users see all changes on all configured
+rules. This circumvents read restrictions on the original records, so if you
+have restrictions on models with changeset rules, changeset users will still
+see all changes of all records, and applying a change on an inaccessible record
+will fail.
 
 Known issues / Roadmap
 ======================
@@ -201,6 +210,7 @@ Contributors
 * Yannick Vaucher <yannick.vaucher@camptocamp.com>
 * Dennis Sluijk <d.sluijk@onestein.nl>
 * Andrea Stirpe <a.stirpe@onestein.nl>
+* Holger Brunn <mail@hunki-enterprises.com>
 
 Maintainers
 ~~~~~~~~~~~

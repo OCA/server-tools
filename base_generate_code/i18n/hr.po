@@ -1,0 +1,82 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* base_generate_code
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: hr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+
+#. module: base_generate_code
+#: model:ir.model.fields,field_description:base_generate_code.field_code_format_mixin__assigned_attachment_ids
+msgid "Assigned Attachments"
+msgstr ""
+
+#. module: base_generate_code
+#: model:ir.model.fields,field_description:base_generate_code.field_code_format_mixin__changeset_change_ids
+msgid "Changeset Changes"
+msgstr ""
+
+#. module: base_generate_code
+#: model:ir.model.fields,field_description:base_generate_code.field_code_format_mixin__changeset_ids
+msgid "Changesets"
+msgstr ""
+
+#. module: base_generate_code
+#: model:ir.model.fields,field_description:base_generate_code.field_code_format_mixin__code
+msgid "Code"
+msgstr ""
+
+#. module: base_generate_code
+#: model:ir.model.fields,field_description:base_generate_code.field_code_format_mixin__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr ""
+
+#. module: base_generate_code
+#: model:ir.model.fields,field_description:base_generate_code.field_code_format_mixin__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr ""
+
+#. module: base_generate_code
+#: model:ir.model,name:base_generate_code.model_code_format_mixin
+msgid "Customizable code format Mixin"
+msgstr ""
+
+#. module: base_generate_code
+#: model:ir.model.fields,field_description:base_generate_code.field_code_format_mixin__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: base_generate_code
+#: model:ir.model.fields,field_description:base_generate_code.field_code_format_mixin__id
+msgid "ID"
+msgstr ""
+
+#. module: base_generate_code
+#: model:ir.model.fields,field_description:base_generate_code.field_code_format_mixin____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: base_generate_code
+#: model:ir.model.fields,field_description:base_generate_code.field_code_format_mixin__smart_search
+msgid "Smart Search"
+msgstr ""
+
+#. module: base_generate_code
+#: code:addons/base_generate_code/models/code_format_mixin.py:0
+#, python-format
+msgid "Unable to generate a non existing random code."
+msgstr ""
+
+#. module: base_generate_code
+#: model:ir.model.fields,field_description:base_generate_code.field_code_format_mixin__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr ""

@@ -65,6 +65,10 @@
                             name="encoding"
                             attrs="{'readonly': [('state', '!=', 'draft')]}"
                         />
+                        <field
+                            name="use_external_database"
+                            attrs="{'readonly': [('state', '!=', 'draft')]}"
+                        />
                     </group>
                     <group
                         name="request"
@@ -133,7 +137,7 @@
     <menuitem
         id="sql_export_menu"
         name="Sql Export"
-        parent="base.menu_reporting_dashboard"
+        parent="base.menu_board_root"
         sequence="80"
     />
 

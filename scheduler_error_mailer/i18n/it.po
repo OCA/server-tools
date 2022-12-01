@@ -1,0 +1,222 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* scheduler_error_mailer
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2022-09-26 16:07+0000\n"
+"Last-Translator: Alessandro Uffreduzzi <alessandro.uffreduzzi@pytech.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
+
+#. module: scheduler_error_mailer
+#: model:mail.template,body_html:scheduler_error_mailer.scheduler_error_mailer
+msgid ""
+"\n"
+"                \n"
+"<div style=\"font-family: 'Lucida Grande', Ubuntu, Arial, Verdana, sans-"
+"serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n"
+"\n"
+"<p>Odoo tried to run the scheduler <em>${object.name or ''}</em> in the "
+"database <em>${ctx.get('dbname')}</em> but it failed. Here is the error "
+"message :</p>\n"
+"\n"
+"<strong>\n"
+"${ctx.get('job_exception') or 'Failed to get the error message from the "
+"context.'}\n"
+"</strong>\n"
+"\n"
+"<p>You may check the logs of the Odoo server to get more information about "
+"this failure.</p>\n"
+"\n"
+"<p>Properties of the scheduler <em>${object.name or ''}</em> :</p>\n"
+"<ul>\n"
+"<li>Model : ${object.model_id.name or ''}</li>\n"
+"<li>Python code : <code>${object.code or ''}</code></li>\n"
+"<li>Interval : ${object.interval_number or '0'} ${object.interval_type or ''}"
+"</li>\n"
+"<li>Number of calls : ${object.numbercall or '0'}</li>\n"
+"<li>Repeat missed : ${object.doall}</li>\n"
+"<li>User : ${object.user_id.name or ''}</li>\n"
+"</ul>\n"
+"\n"
+"<p>\n"
+"-- <br/>\n"
+"Automatic e-mail sent by Odoo. Do not reply.<br/>\n"
+"Database : ${ctx.get('dbname')}\n"
+"</p>\n"
+"</div>\n"
+"    \n"
+"            "
+msgstr ""
+
+#. module: scheduler_error_mailer
+#: model:ir.model.fields,field_description:scheduler_error_mailer.field_ir_cron__assigned_attachment_ids
+msgid "Assigned Attachments"
+msgstr ""
+
+#. module: scheduler_error_mailer
+#: model:ir.model.fields,field_description:scheduler_error_mailer.field_ir_cron__changeset_change_ids
+msgid "Changeset Changes"
+msgstr ""
+
+#. module: scheduler_error_mailer
+#: model:ir.model.fields,field_description:scheduler_error_mailer.field_ir_cron__changeset_ids
+msgid "Changesets"
+msgstr ""
+
+#. module: scheduler_error_mailer
+#: model:ir.model.fields,field_description:scheduler_error_mailer.field_ir_cron__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr ""
+
+#. module: scheduler_error_mailer
+#: model:ir.model.fields,field_description:scheduler_error_mailer.field_ir_cron__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr ""
+
+#. module: scheduler_error_mailer
+#: model:ir.model.fields,field_description:scheduler_error_mailer.field_ir_cron__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: scheduler_error_mailer
+#: model:ir.model.fields,field_description:scheduler_error_mailer.field_ir_cron__email_template_id
+#: model:ir.model.fields,field_description:scheduler_error_mailer.field_nsca_check__email_template_id
+msgid "Error E-mail Template"
+msgstr ""
+
+#. module: scheduler_error_mailer
+#: model:ir.model.fields,field_description:scheduler_error_mailer.field_ir_cron__id
+msgid "ID"
+msgstr ""
+
+#. module: scheduler_error_mailer
+#: model:ir.model.fields,field_description:scheduler_error_mailer.field_ir_cron____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: scheduler_error_mailer
+#: model:ir.model,name:scheduler_error_mailer.model_ir_cron
+msgid "Scheduled Actions"
+msgstr ""
+
+#. module: scheduler_error_mailer
+#: model:ir.model.fields,help:scheduler_error_mailer.field_ir_cron__email_template_id
+#: model:ir.model.fields,help:scheduler_error_mailer.field_nsca_check__email_template_id
+msgid "Select the email template that will be sent when this scheduler fails."
+msgstr ""
+
+#. module: scheduler_error_mailer
+#: model:ir.model.fields,field_description:scheduler_error_mailer.field_ir_cron__smart_search
+msgid "Smart Search"
+msgstr ""
+
+#. module: scheduler_error_mailer
+#: code:addons/scheduler_error_mailer/models/ir_cron.py:0
+#, python-format
+msgid "Task failure with UID = %d."
+msgstr ""
+
+#. module: scheduler_error_mailer
+#: model:ir.actions.server,name:scheduler_error_mailer.test_scheduler_error_mailer_ir_actions_server
+#: model:ir.cron,cron_name:scheduler_error_mailer.test_scheduler_error_mailer
+#: model:ir.cron,name:scheduler_error_mailer.test_scheduler_error_mailer
+msgid "Test Scheduler Error Mailer"
+msgstr ""
+
+#. module: scheduler_error_mailer
+#: model:ir.model.fields,field_description:scheduler_error_mailer.field_ir_cron__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr ""
+
+#. module: scheduler_error_mailer
+#: model:mail.template,subject:scheduler_error_mailer.scheduler_error_mailer
+msgid "[DB ${ctx.get('dbname')}] Scheduler '${object.name or ''}' FAILED"
+msgstr ""
+
+#~ msgid ""
+#~ "\n"
+#~ "                \n"
+#~ "<div style=\"font-family: 'Lucida Grande', Ubuntu, Arial, Verdana, sans-"
+#~ "serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; "
+#~ "\">\n"
+#~ "\n"
+#~ "<p>Odoo tried to run the scheduler <em>${object.name or ''}</em> in the "
+#~ "database <em>${ctx.get('dbname')}</em> but it failed. Here is the error "
+#~ "message :</p>\n"
+#~ "\n"
+#~ "<strong>\n"
+#~ "${ctx.get('job_exception') and ctx.get('job_exception').value or 'Failed "
+#~ "to get the error message from the context.'}\n"
+#~ "</strong>\n"
+#~ "\n"
+#~ "<p>You may check the logs of the Odoo server to get more information "
+#~ "about this failure.</p>\n"
+#~ "\n"
+#~ "<p>Properties of the scheduler <em>${object.name or ''}</em> :</p>\n"
+#~ "<ul>\n"
+#~ "<li>Model : ${object.model or ''}</li>\n"
+#~ "<li>Method : ${object.function or ''}</li>\n"
+#~ "<li>Arguments : ${object.args or ''}</li>\n"
+#~ "<li>Interval : ${object.interval_number or '0'} ${object.interval_type or "
+#~ "''}</li>\n"
+#~ "<li>Number of calls : ${object.numbercall or '0'}</li>\n"
+#~ "<li>Repeat missed : ${object.doall}</li>\n"
+#~ "<li>User : ${object.user_id.name or ''}</li>\n"
+#~ "</ul>\n"
+#~ "\n"
+#~ "<p>\n"
+#~ "-- <br/>\n"
+#~ "Automatic e-mail sent by Odoo. Do not reply.<br/>\n"
+#~ "Database : ${ctx.get('dbname')}\n"
+#~ "</p>\n"
+#~ "</div>\n"
+#~ "    \n"
+#~ "            "
+#~ msgstr ""
+#~ "\n"
+#~ "                \n"
+#~ "<div style=\"font-family: 'Lucida Grande', Ubuntu, Arial, Verdana, sans-"
+#~ "serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; "
+#~ "\">\n"
+#~ "\n"
+#~ "<p>Odoo ha provato a eseguire il pianificatore <em>${object.name or ''}</"
+#~ "em> sul database <em>${ctx.get('dbname')}</em> ma ha fallito. Ecco il "
+#~ "messaggio d'errore:</p>\n"
+#~ "\n"
+#~ "<strong>\n"
+#~ "${ctx.get('job_exception') and ctx.get('job_exception').value or "
+#~ "'Recupero del messaggio d'errore dal contesto fallito.'}\n"
+#~ "</strong>\n"
+#~ "\n"
+#~ "<p>Controlla il registro del server di Odoo per avere più informazione su "
+#~ "questo errore.</p>\n"
+#~ "\n"
+#~ "<p>Proprietà del pianificatore <em>${object.name or ''}</em> :</p>\n"
+#~ "<ul>\n"
+#~ "<li>Modello : ${object.model or ''}</li>\n"
+#~ "<li>Metodo : ${object.function or ''}</li>\n"
+#~ "<li>Argomenti : ${object.args or ''}</li>\n"
+#~ "<li>Intervallo : ${object.interval_number or '0'} ${object.interval_type "
+#~ "or ''}</li>\n"
+#~ "<li>Numero di chiamate : ${object.numbercall or '0'}</li>\n"
+#~ "<li>Ripeti mancato : ${object.doall}</li>\n"
+#~ "<li>Utente : ${object.user_id.name or ''}</li>\n"
+#~ "</ul>\n"
+#~ "\n"
+#~ "<p>\n"
+#~ "-- <br/>\n"
+#~ "E-mail automatica inviata da Odoo. Non rispondere.<br/>\n"
+#~ "Database : ${ctx.get('dbname')}\n"
+#~ "</p>\n"
+#~ "</div>\n"
+#~ "    \n"
+#~ "            "

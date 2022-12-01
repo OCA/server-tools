@@ -14,6 +14,35 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: base_name_search_improved
+#: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_form_new
+msgid ""
+"<b>IMPORTANT:</b> Please note that enabling smart search may affect the "
+"performance of searches and the system in general."
+msgstr ""
+
+#. module: base_name_search_improved
+#: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_form_new
+msgid ""
+"<b>Smart Name Search</b>: when searching for a record from another record "
+"through the m2o/m2m widgets, for example when adding a Product in a Sales "
+"Order Line or when selecting a Contact in an Invoice."
+msgstr ""
+
+#. module: base_name_search_improved
+#: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_form_new
+msgid ""
+"<b>Smart Search Fields</b>. You can define a set of fields by which we want "
+"to search"
+msgstr ""
+
+#. module: base_name_search_improved
+#: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_form_new
+msgid ""
+"<b>Smart Search</b>: when searching in list, kanban and other views, the "
+"first option will be to search using \"Smart Search\""
+msgstr ""
+
+#. module: base_name_search_improved
 #: model:ir.model.fields,field_description:base_name_search_improved.field_ir_model__add_smart_search
 msgid "Add Smart Search"
 msgstr ""
@@ -40,9 +69,10 @@ msgid "Custom Search"
 msgstr ""
 
 #. module: base_name_search_improved
-#: model:ir.actions.act_window,name:base_name_search_improved.action_improved_name_search
-#: model:ir.ui.menu,name:base_name_search_improved.menu_improved_name_search
-msgid "Custom Searches"
+#: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_form_new
+msgid ""
+"Define a <b>Smart Search Domain</b> (for example, only show internal users "
+"and not portal users)"
 msgstr ""
 
 #. module: base_name_search_improved
@@ -56,13 +86,18 @@ msgid "Domain"
 msgstr ""
 
 #. module: base_name_search_improved
-#: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_form_new
-msgid "Fields"
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_model__id
+msgid "ID"
 msgstr ""
 
 #. module: base_name_search_improved
-#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_model__id
-msgid "ID"
+#: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_form_new
+msgid ""
+"If \"Smart Search\" has been activated, searches will have a more \"relaxed\" behaviour. Odoo natively searches for records that include the phrases entered as they are entered. When activating this option it will search for records that contain entered words regardless of the order in which they are entered. For example if we search for a Contact \"Fred Flinstone\", Odoo would by default only return those records that contain exactly that phrase. With Smart Search active any record containing the words \"Fred\" and \"Flinstone\" will be returned.\n"
+"                        <br/>\n"
+"                        <br/>\n"
+"\n"
+"                        By enabling Smart Search you can also add configure these two optional behaviours:"
 msgstr ""
 
 #. module: base_name_search_improved
@@ -76,19 +111,9 @@ msgid "Models"
 msgstr ""
 
 #. module: base_name_search_improved
-#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_model__name_search_domain
-msgid "Name Search Domain"
-msgstr ""
-
-#. module: base_name_search_improved
 #: code:addons/base_name_search_improved/models/ir_model.py:0
 #, python-format
 msgid "Name Search Domain must be a list of tuples"
-msgstr ""
-
-#. module: base_name_search_improved
-#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_model__name_search_ids
-msgid "Name Search Fields"
 msgstr ""
 
 #. module: base_name_search_improved
@@ -97,7 +122,20 @@ msgid "Search Fields"
 msgstr ""
 
 #. module: base_name_search_improved
+#: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_form_new
+#: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_search
+#: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_tree
+msgid "Smart Name Search"
+msgstr ""
+
+#. module: base_name_search_improved
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_model__use_smart_name_search
+msgid "Smart Name Search Enabled?"
+msgstr ""
+
+#. module: base_name_search_improved
 #: model:ir.model.fields,field_description:base_name_search_improved.field__unknown__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_abstract_conditional_image__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_account_account__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_account_account_tag__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_account_account_template__smart_search
@@ -118,8 +156,15 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_name_search_improved.field_account_chart_template__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_account_common_journal_report__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_account_common_report__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_edi_common__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_account_edi_document__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_account_edi_format__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_edi_xml_cii__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_edi_xml_ubl_20__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_edi_xml_ubl_21__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_edi_xml_ubl_bis3__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_edi_xml_ubl_de__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_edi_xml_ubl_efff__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_account_financial_year_op__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_account_fiscal_position__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_account_fiscal_position_account__smart_search
@@ -197,6 +242,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_name_search_improved.field_base_module_uninstall__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_base_module_update__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_base_module_upgrade__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_base_multi_image_image__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_base_multi_image_owner__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_base_partner_merge_automatic_wizard__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_base_partner_merge_line__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_base_update_translations__smart_search
@@ -212,6 +259,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_name_search_improved.field_cash_box_out__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_change_password_user__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_change_password_wizard__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_collection_base__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_component_builder__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_crm_activity_report__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_crm_iap_lead_helpers__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_crm_iap_lead_industry__smart_search
@@ -238,6 +287,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_name_search_improved.field_format_address_mixin__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_iap_account__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_iap_enrich_api__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_image__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_image_mixin__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_ir_actions_act_url__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_ir_actions_act_window__smart_search
@@ -258,7 +308,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_name_search_improved.field_ir_demo_failure_wizard__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_ir_exports__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_ir_exports_line__smart_search
-#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_exports_resolver__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_ir_fields_converter__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_ir_filters__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_ir_http__smart_search
@@ -334,6 +383,9 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_name_search_improved.field_mail_thread_phone__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_mail_tracking_value__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_mail_wizard_invite__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_module_prototyper__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_module_prototyper_api_version__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_module_prototyper_module_export__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_payment_acquirer__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_payment_acquirer_onboarding_wizard__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_payment_icon__smart_search
@@ -436,6 +488,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_name_search_improved.field_snailmail_letter_format_error__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_snailmail_letter_missing_required_fields__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_sparse_fields_test__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_storage_backend__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_tax_adjustments_wizard__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_uom_category__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_uom_uom__smart_search
@@ -456,6 +509,40 @@ msgid "Smart Search"
 msgstr ""
 
 #. module: base_name_search_improved
-#: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_search
-msgid "With Custom Search"
+#: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_form_new
+msgid "Smart Search (search view)"
+msgstr ""
+
+#. module: base_name_search_improved
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_model__name_search_domain
+msgid "Smart Search Domain"
+msgstr ""
+
+#. module: base_name_search_improved
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_model__name_search_ids
+#: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_form_new
+msgid "Smart Search Fields"
+msgstr ""
+
+#. module: base_name_search_improved
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_model__smart_search_warning
+msgid "Smart Search Warning"
+msgstr ""
+
+#. module: base_name_search_improved
+#: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_form_new
+msgid "Smart Search can be activated in two complementary ways:"
+msgstr ""
+
+#. module: base_name_search_improved
+#: model:ir.actions.act_window,name:base_name_search_improved.action_improved_name_search
+#: model:ir.ui.menu,name:base_name_search_improved.menu_improved_name_search
+msgid "Smart Searches"
+msgstr ""
+
+#. module: base_name_search_improved
+#: model:ir.model.fields,help:base_name_search_improved.field_ir_model__use_smart_name_search
+msgid ""
+"Use Smart Search for 'name_search', this will affect when searching from "
+"other records (for eg. from m2o fields"
 msgstr ""

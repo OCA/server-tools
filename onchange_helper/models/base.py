@@ -54,7 +54,9 @@ class Base(models.AbstractModel):
                 all_values[field] = record_values.get(field, False)
 
         new_values = {}
-        for field in onchange_fields:
+        for field in [
+            field for field in onchange_fields if field in self._onchange_methods
+        ]:
             onchange_values = self.onchange(all_values, field, onchange_specs)
             new_values.update(self._get_new_values(values, onchange_values))
             all_values.update(new_values)
@@ -62,6 +64,10 @@ class Base(models.AbstractModel):
         return {
             f: v
             for f, v in all_values.items()
-            if not (self._fields[f].compute and not self._fields[f].inverse)
+            if not (
+                self._fields[f].compute
+                and not self._fields[f].inverse
+                and self._fields[f].readonly
+            )
             and (f in values or f in new_values or f in onchange_fields)
         }

@@ -1,0 +1,1 @@
+This module generate code as readable for humans: not too long, random enough, without some ambiguous char like ( "O" "0", "I", "L"), not memorable, without meaning (no words), acceptable as a barcode (like code123, 123CoDe, 1code-23, ...).

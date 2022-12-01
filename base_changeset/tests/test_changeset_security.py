@@ -7,7 +7,7 @@ from .common import ChangesetTestCommon
 
 
 class TestChangesetFlow(ChangesetTestCommon, TransactionCase):
-    """ Check that changesets don't leak information """
+    """Check that changesets don't leak information"""
 
     def setUp(self):
         super().setUp()
