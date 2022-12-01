@@ -5,11 +5,6 @@ from lxml import etree
 
 from odoo import _, api, fields, models
 from odoo.tools import config, ormcache
-
-# put this object into context key '__no_changeset' to disable changeset
-# functionality
-disable_changeset = object()
-
 # put this object into context key '__no_changeset' to disable changeset
 # functionality
 from ..common import disable_changeset
