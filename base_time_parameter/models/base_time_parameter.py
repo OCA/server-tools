@@ -1,6 +1,7 @@
 # Author Copyright (C) 2022 Nimarosa (Nicolas Rodriguez) (<nicolasrsande@gmail.com>).
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+import json
 from datetime import datetime
 
 from odoo import _, api, fields, models
@@ -35,6 +36,7 @@ class TimeParameter(models.Model):
             ("date", "Date"),
             ("float", "Floating point number"),
             ("integer", "Integer number"),
+            ("json", "JSON"),
             ("reference", "Reference"),
             ("string", "Text"),
         ],
@@ -97,6 +99,8 @@ class TimeParameter(models.Model):
                 return float(version.value)
             elif self.type == "integer":
                 return int(version.value)
+            elif self.type == "json":
+                return json.loads(version.value)
             elif self.type == "reference":
                 return version.value_reference
             elif self.type == "string":
