@@ -26,7 +26,6 @@ jobs:
             There hasn't been any activity on this pull request in the past 4 months, so
             it has been marked as stale and it will be closed automatically if no
             further activity occurs in the next 30 days.
-
             If you want this PR to never become stale, please ask a PSC member to apply
             the "no stale" label.
           # Issues settings.
@@ -40,10 +39,8 @@ jobs:
             There hasn't been any activity on this issue in the past 6 months, so it has
             been marked as stale and it will be closed automatically if no further
             activity occurs in the next 30 days.
-
             If you want this issue to never become stale, please ask a PSC member to
             apply the "no stale" label.
-
       # 15+30 day stale policy for issues pending more information
       # * Issues that are pending more information
       # * Except Issues marked as "no stale"
@@ -64,6 +61,5 @@ jobs:
             This issue needs more information and there hasn't been any activity
             recently, so it has been marked as stale and it will be closed automatically
             if no further activity occurs in the next 30 days.
-
             If you think this is a mistake, please ask a PSC member to remove the "needs
             more information" label.

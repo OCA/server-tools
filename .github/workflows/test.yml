@@ -36,9 +36,18 @@ jobs:
       matrix:
         include:
           - container: ghcr.io/oca/oca-ci/py3.6-odoo13.0:latest
+            include: "fetchmail_incoming_log,fetchmail_notify_error_to_sender_test,fetchmail_notify_error_to_sender"
             makepot: "true"
             name: test with Odoo
           - container: ghcr.io/oca/oca-ci/py3.6-ocb13.0:latest
+            include: "fetchmail_incoming_log,fetchmail_notify_error_to_sender_test,fetchmail_notify_error_to_sender"
+            name: test with OCB
+          - container: ghcr.io/oca/oca-ci/py3.6-odoo13.0:latest
+            exclude: "fetchmail_incoming_log,fetchmail_notify_error_to_sender_test,fetchmail_notify_error_to_sender"
+            makepot: "true"
+            name: test with Odoo
+          - container: ghcr.io/oca/oca-ci/py3.6-ocb13.0:latest
+            exclude: "fetchmail_incoming_log,fetchmail_notify_error_to_sender_test,fetchmail_notify_error_to_sender"
             name: test with OCB
     services:
       postgres:
@@ -49,6 +58,9 @@ jobs:
           POSTGRES_DB: odoo
         ports:
           - 5432:5432
+    env:
+      INCLUDE: "${{ matrix.include }}"
+      EXCLUDE: "${{ matrix.exclude }}"
     steps:
       - uses: actions/checkout@v2
         with:
