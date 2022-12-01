@@ -79,8 +79,8 @@ class TestChangesetFlow(ChangesetTestCommon, TransactionCase):
         """Create a new partner with a changeset"""
         new = (
             self.env["res.partner"]
-            .with_context(test_record_changeset=True)
-            .create(
+                .with_context(test_record_changeset=True)
+                .create(
                 {
                     "name": "partner",
                     "street": "street",
@@ -108,8 +108,8 @@ class TestChangesetFlow(ChangesetTestCommon, TransactionCase):
         """No change is created for empty values on create"""
         new = (
             self.env["res.partner"]
-            .with_context(test_record_changeset=True)
-            .create(
+                .with_context(test_record_changeset=True)
+                .create(
                 {
                     "name": "partner",
                     "street": "street",
@@ -180,19 +180,23 @@ class TestChangesetFlow(ChangesetTestCommon, TransactionCase):
 
     def test_multicompany(self):
         """Company is applied correctly from self.env.company, if not from record"""
-        self.env['changeset.field.rule'].search([]).write({"company_id": False})
+        self.env["changeset.field.rule"].search([]).write({"company_id": False})
         company2 = self.env["res.company"].create({"name": "company2"})
         user = self.env.ref("base.user_demo")
-        user.write({
-            "company_ids": [(4, company2.id)],
-        })
+        user.write(
+            {
+                "company_ids": [(4, company2.id)],
+            }
+        )
         model = self.partner.with_user(user).with_company(company2)
         self.assertNotEqual(model.env.user.company_id, model.env.company)
-        partner = model.create({
-            "name": __name__,
-            "street": __name__,
-            "company_id": False,
-        })
+        partner = model.create(
+            {
+                "name": __name__,
+                "street": __name__,
+                "company_id": False,
+            }
+        )
         partner._compute_changeset_ids()
         self.assertEqual(
             partner.changeset_ids.mapped("company_id"),
@@ -483,14 +487,18 @@ class TestChangesetFlow(ChangesetTestCommon, TransactionCase):
             }
         )
         account_number = "AT483200000012345864"
-        partner_bank_one = self.env["res.partner.bank"].with_context(test_record_changeset=True).create(
-            {"acc_number": account_number, "partner_id": self.partner.id}
+        partner_bank_one = (
+            self.env["res.partner.bank"]
+                .with_context(test_record_changeset=True)
+                .create({"acc_number": account_number, "partner_id": self.partner.id})
         )
         self.assertEqual(partner_bank_one.acc_number, "/")
 
-        default_value = 'Pending Approval'
+        default_value = "Pending Approval"
         rule.default_value_required_field = default_value
-        partner_bank_second = self.env["res.partner.bank"].with_context(test_record_changeset=True).create(
-            {"acc_number": account_number, "partner_id": self.partner.id}
+        partner_bank_second = (
+            self.env["res.partner.bank"]
+                .with_context(test_record_changeset=True)
+                .create({"acc_number": account_number, "partner_id": self.partner.id})
         )
         self.assertEqual(partner_bank_second.acc_number, default_value)
