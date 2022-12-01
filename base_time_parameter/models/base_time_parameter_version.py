@@ -6,58 +6,42 @@ from datetime import datetime
 from odoo import api, fields, models
 
 
-def _validate(value, data_type, date_format=None):
-    """
-    Validate the value according to the data type.
+def _validate_boolean(value):
+    if value in ("True", "true", "TRUE", "1"):
+        return "True"
+    elif value in ("False", "false", "FALSE", "0"):
+        return "False"
 
-    :param value: string
-    :param data_type: string ("boolean"/"date"/"float"/"integer"/"string")
-    :param date_format: string
 
-    :return: Modified value, or None if the value doesn't match the data type.
-    """
-    # All values are strings
-    new_value = ""
-
-    if data_type == "boolean":
-        if value in ("True", "true", "TRUE", "1"):
-            new_value = "True"
-        elif value in ("False", "false", "FALSE", "0"):
-            new_value = "False"
-
-    elif data_type == "date":
-        date_formats = ["%Y-%m-%d", date_format]
-        # _logger.debug("formats: " + str(formats) + ", value = " + str(value))
-        for date_format in date_formats:
-            try:
-                new_value = datetime.strptime(value, date_format).strftime("%Y-%m-%d")
-                break
-            except ValueError:
-                pass
-
-    elif data_type == "float":
+def _validate_date(value, date_format):
+    date_formats = [date_format, "%Y-%m-%d"]
+    for date_format in date_formats:
         try:
-            new_value = str(float(value))
+            return datetime.strptime(value, date_format).strftime("%Y-%m-%d")
         except ValueError:
             pass
 
-    elif data_type == "integer":
-        try:
-            new_value = str(int(round(float(value), 0)))
-        except ValueError:
-            pass
 
-    elif data_type == "json":
-        try:
-            json.loads(value)
-            new_value = value
-        except ValueError:
-            pass
+def _validate_float(value):
+    try:
+        return str(float(value))
+    except ValueError:
+        pass
 
-    elif data_type == "string":
-        new_value = value
 
-    return new_value
+def _validate_integer(value):
+    try:
+        return str(int(round(float(value), 0)))
+    except ValueError:
+        pass
+
+
+def _validate_json(value):
+    try:
+        json.loads(value)
+        return value
+    except ValueError:
+        pass
 
 
 class TimeParameterVersion(models.Model):
@@ -99,7 +83,6 @@ class TimeParameterVersion(models.Model):
     @api.onchange("value")
     def _onchange_value(self):
         if self.value:
-            date_format = None
             if self.type == "date":
                 date_format = (
                     self.env["res.lang"]
@@ -107,4 +90,9 @@ class TimeParameterVersion(models.Model):
                     .ensure_one()
                     .date_format
                 )
-            self.value = _validate(self.value, self.type, date_format)
+                self.value = _validate_date(self.value, date_format)
+            elif self.type == "string":
+                pass
+            else:
+                method = "_validate_{}".format(self.type)
+                self.value = globals()[method](self.value)
