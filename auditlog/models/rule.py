@@ -311,6 +311,7 @@ class AuditlogRule(models.Model):
         def create_fast(self, vals_list, **kwargs):
             self = self.with_context(auditlog_disabled=True)
             rule_model = self.env["auditlog.rule"]
+            vals_list = rule_model._update_vals_list(vals_list)
             vals_list2 = copy.deepcopy(vals_list)
             new_records = create_fast.origin(self, vals_list, **kwargs)
             new_values = {}
@@ -715,3 +716,15 @@ class AuditlogRule(models.Model):
             if act_window:
                 act_window.unlink()
         return self.write({"state": "draft"})
+
+    @api.model
+    def _update_vals_list(self, vals_list):
+        # Odoo supports empty recordset assignment (while it doesn't handle
+        # non-empty recordset ¯\_(ツ)_/¯ ), it could be an Odoo issue, but in
+        # the meanwhile we have to handle this case to avoid errors when using
+        # ``deepcopy`` to log data.
+        for vals in vals_list:
+            for fieldname, fieldvalue in vals.items():
+                if isinstance(fieldvalue, models.BaseModel) and not fieldvalue:
+                    vals[fieldname] = False
+        return vals_list
