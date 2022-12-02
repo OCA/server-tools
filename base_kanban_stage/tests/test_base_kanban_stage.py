@@ -7,7 +7,7 @@ from odoo.tests.common import TransactionCase
 class TestBaseKanbanStage(TransactionCase):
     def test_default_res_model_id_no_params(self):
         """It should return empty ir.model Recordset if no params in context"""
-        test_stage = self.env["base.kanban.stage"].with_context({})
+        test_stage = self.env["base.kanban.stage"].with_context(**{})
         res_model_id = test_stage._default_res_model_id()
 
         self.assertFalse(res_model_id)

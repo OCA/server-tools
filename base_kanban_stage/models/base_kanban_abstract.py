@@ -93,7 +93,6 @@ class BaseKanbanAbstract(models.AbstractModel):
             ("done", "Ready"),
             ("blocked", "Special Handling"),
         ],
-        string="Kanban Status",
         default="normal",
         tracking=True,
         required=True,
