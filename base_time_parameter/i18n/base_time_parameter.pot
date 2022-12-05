@@ -102,6 +102,11 @@ msgid "Integer number"
 msgstr ""
 
 #. module: base_time_parameter
+#: model:ir.model.fields.selection,name:base_time_parameter.selection__base_time_parameter__type__json
+msgid "JSON"
+msgstr ""
+
+#. module: base_time_parameter
 #: model:ir.model.fields,field_description:base_time_parameter.field_base_time_parameter____last_update
 #: model:ir.model.fields,field_description:base_time_parameter.field_base_time_parameter_version____last_update
 msgid "Last Modified on"
