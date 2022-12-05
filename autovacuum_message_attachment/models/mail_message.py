@@ -4,6 +4,7 @@
 from datetime import timedelta
 
 from odoo import fields, models
+from odoo.osv import expression
 
 
 class MailMessage(models.Model):
@@ -15,21 +16,23 @@ class MailMessage(models.Model):
         domain = super()._get_autovacuum_domain(rule)
         today = fields.Datetime.now()
         limit_date = today - timedelta(days=rule.retention_time)
-        domain += [("date", "<", limit_date)]
+        domains = [domain, [("date", "<", limit_date)]]
         if rule.message_type != "all":
-            domain += [("message_type", "=", rule.message_type)]
+            domains.append([("message_type", "=", rule.message_type)])
         if rule.model_ids:
             models = rule.model_ids.mapped("model")
-            domain += [("model", "in", models)]
+            domains.append([("model", "in", models)])
         subtype_ids = rule.message_subtype_ids.ids
         if subtype_ids and rule.empty_subtype:
-            domain = [
-                "|",
-                ("subtype_id", "in", subtype_ids),
-                ("subtype_id", "=", False),
-            ]
+            domains.append(
+                [
+                    "|",
+                    ("subtype_id", "in", subtype_ids),
+                    ("subtype_id", "=", False),
+                ]
+            )
         elif subtype_ids and not rule.empty_subtype:
-            domain += [("subtype_id", "in", subtype_ids)]
+            domains.append([("subtype_id", "in", subtype_ids)])
         elif not subtype_ids and not rule.empty_subtype:
-            domain += [("subtype_id", "!=", False)]
-        return domain
+            domains.append([("subtype_id", "!=", False)])
+        return expression.AND(domains)
