@@ -13,7 +13,7 @@
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "depends": ["sale"],
+    "depends": ["sale", "mail"],
     "data": [
         "security/ir.model.access.csv",
     ],
