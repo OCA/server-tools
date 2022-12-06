@@ -27,6 +27,10 @@ class VacuumRule(models.Model):
     filename_pattern = fields.Char(
         help=("If set, only attachments containing this pattern will be" " deleted.")
     )
+    inheriting_model = fields.Char(
+        help="If set, this model will be searched and only related attachments will "
+        "be deleted.\n\nN.B: model must implement _inherits to link ir.attachment"
+    )
     company_id = fields.Many2one(
         "res.company",
         string="Company",
@@ -81,6 +85,32 @@ class VacuumRule(models.Model):
             if not rule.retention_time:
                 raise exceptions.ValidationError(
                     _("The Retention Time can't be 0 days")
+                )
+
+    @api.constrains("inheriting_model")
+    def _check_inheriting_model(self):
+        for rule in self.filtered(lambda r: r.inheriting_model):
+            if rule.ttype != "attachment":
+                raise exceptions.ValidationError(
+                    _(
+                        "Inheriting model cannot be used on rule where type is not attachment"
+                    )
+                )
+            if (
+                rule.inheriting_model
+                not in self.env["ir.attachment"]._inherits_children
+            ):
+                raise exceptions.ValidationError(
+                    _("No inheritance of ir.attachment was found on model %s")
+                    % rule.inheriting_model
+                )
+            attachment_field = self.env[rule.inheriting_model]._inherits.get(
+                "ir.attachment"
+            )
+            if not attachment_field:
+                raise exceptions.ValidationError(
+                    _("Cannot find relation to ir.attachment on model %s")
+                    % rule.inheriting_model
                 )
 
     def _search_autovacuum_records(self):

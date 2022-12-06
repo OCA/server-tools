@@ -16,7 +16,15 @@ class IrAttachment(models.Model):
         domain = super()._get_autovacuum_domain(rule)
         today = fields.Datetime.now()
         limit_date = today - timedelta(days=rule.retention_time)
-        domains = [domain, [("create_date", "<", limit_date)]]
+        create_date_domain = [("create_date", "<", limit_date)]
+        domains = [domain, create_date_domain]
+        if rule.inheriting_model:
+            inheriting_model = self.env[rule.inheriting_model]
+            attachment_link = inheriting_model._inherits.get("ir.attachment")
+            att_ids = inheriting_model.search(create_date_domain).mapped(
+                attachment_link + ".ids"
+            )
+            domains.append([("id", "in", att_ids)])
         if rule.filename_pattern:
             domains.append([("name", "ilike", rule.filename_pattern)])
         if rule.model_ids:

@@ -38,6 +38,7 @@
                         </group>
                         <group attrs="{'invisible': [('ttype', '!=', 'attachment')]}">
                             <field name="filename_pattern" />
+                            <field name="inheriting_model" />
                         </group>
                         <group string="Message Models">
                             <field name="model_ids" nolabel="1" />
