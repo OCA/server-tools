@@ -69,8 +69,6 @@ class TestAttachmentQueueEmail(TestMailCommon):
             self.fetchmail_server.object_id.model,
             mail,
         )
-        attach_queues = self.env["attachment.queue"].search(
-            [("name", "like", ".gif")]
-        )
+        attach_queues = self.env["attachment.queue"].search([("name", "like", ".gif")])
         self.assertEqual(len(attach_queues), 3)
         self.assertEqual(attach_queues[0].name, "orangée.gif")
