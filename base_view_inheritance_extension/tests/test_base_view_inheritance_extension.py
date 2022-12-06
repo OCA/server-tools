@@ -21,10 +21,11 @@ class TestBaseViewInheritanceExtension(TransactionCase):
         self.assertEqual(arch.xpath("//form")[0].get("string"), "Partner form")
         # Verify our extra context key worked
         self.assertTrue(
-            "default_name" in arch.xpath('//field[@name="parent_id"]')[0].get("context")
+            "'default_email': 'info@odoo-community.org'"
+            in arch.xpath('//field[@name="parent_id"]')[0].get("context")
         )
         self.assertTrue(
-            "context.get('company_id', context.get('company'))"
+            "'default_company_id': allowed_company_ids[0]"
             in arch.xpath('//field[@name="parent_id"]')[0].get("context")
         )
 

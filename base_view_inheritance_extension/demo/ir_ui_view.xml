@@ -10,8 +10,8 @@
             <field name="parent_id" position="attributes">
                 <attribute name="context" operation="update">
                     {
-                        "default_name": "The company name",
-                        "default_company_id": context.get("company_id", context.get("company"))
+                        "default_email": "info@odoo-community.org",
+                        "default_company_id": allowed_company_ids[0]
                     }
                 </attribute>
             </field>
