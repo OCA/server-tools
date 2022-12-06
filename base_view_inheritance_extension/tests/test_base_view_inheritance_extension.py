@@ -16,17 +16,16 @@ class TestBaseViewInheritanceExtension(TransactionCase):
 
     def test_base_view_inheritance_extension(self):
         view_id = self.env.ref("base.view_partner_simple_form").id
-        fields_view_get = self.env["res.partner"].fields_view_get(view_id=view_id)
-        view = etree.fromstring(fields_view_get["arch"])
+        arch, view = self.env["res.partner"]._get_view(view_id=view_id)
         # Verify normal attributes work
-        self.assertEqual(view.xpath("//form")[0].get("string"), "Partner form")
+        self.assertEqual(arch.xpath("//form")[0].get("string"), "Partner form")
         # Verify our extra context key worked
         self.assertTrue(
-            "default_name" in view.xpath('//field[@name="parent_id"]')[0].get("context")
+            "default_name" in arch.xpath('//field[@name="parent_id"]')[0].get("context")
         )
         self.assertTrue(
             "context.get('company_id', context.get('company'))"
-            in view.xpath('//field[@name="parent_id"]')[0].get("context")
+            in arch.xpath('//field[@name="parent_id"]')[0].get("context")
         )
 
     def test_update_context_default(self):
