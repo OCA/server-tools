@@ -40,18 +40,15 @@ class FetchmailAttachmentCondition(models.Model):
         required=True,
     )
     email_from = fields.Char(
-        string="Email From",
         help="If empty, catches the emails from every senders.\n"
         "Otherwise catches the emails where the sender's email contains the given "
         "characters",
     )
     email_subject = fields.Char(
-        string="Email Subject",
         help="If empty, catches the emails with every kind of Subjects.\n"
         "Otherwise catches the emails where the Subject contains the given characters",
     )
     file_extension = fields.Char(
-        string="File Extension",
         help="The extension (or part of the name) of the sought files. "
         "If empty, all the email's attachments will be imported.",
     )

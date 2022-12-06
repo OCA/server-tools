@@ -24,11 +24,16 @@ class AttachmentQueue(models.Model):
 
     @api.model
     def _get_attachment_queue_data(self, condition, msg, att):
+        data = att[1]
+        # seems files are byte when it comes from zip file so we manage
+        # both case
+        if isinstance(data, str):
+            data = data.encode()
         values = {
             "fetchmail_attachment_condition_id": condition.id,
             "file_type": condition.file_type,
-            "name": att.fname,
-            "datas": base64.b64encode(att.content),
+            "name": att[0],
+            "datas": base64.b64encode(data),
             "state": "pending",
         }
         return values
@@ -44,7 +49,7 @@ class AttachmentQueue(models.Model):
 
         if match_from and match_subj:
             for att in msg["attachments"]:
-                if cond.file_extension in att.fname or not cond.file_extension:
+                if cond.file_extension in att[0] or not cond.file_extension:
                     vals_list.append(self._get_attachment_queue_data(cond, msg, att))
         return vals_list
 

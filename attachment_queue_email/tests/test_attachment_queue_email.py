@@ -51,7 +51,7 @@ class TestAttachmentQueueEmail(TestMailCommon):
             self.env["attachment.queue"].search([("name", "=", "thetruth.pdf")])
         )
 
-        self.env["mail.thread"].with_context(self.context_server).message_process(
+        self.env["mail.thread"].with_context(**self.context_server).message_process(
             self.fetchmail_server.object_id.model,
             MAIL_SINGLE_BINARY,
         )
@@ -65,7 +65,7 @@ class TestAttachmentQueueEmail(TestMailCommon):
     def test_message_multi_image(self):
         mail = MAIL_MULTIPART_IMAGE.format(subject="Wonderful pictures", to="")
 
-        self.env["mail.thread"].with_context(self.context_server).message_process(
+        self.env["mail.thread"].with_context(**self.context_server).message_process(
             self.fetchmail_server.object_id.model,
             mail,
         )

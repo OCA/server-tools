@@ -5,13 +5,13 @@
 
 {
     "name": "File Email",
-    "version": "14.0.1.0.0",
+    "version": "16.0.1.0.0",
     "author": "Akretion,Odoo Community Association (OCA)",
     "category": "Generic Modules",
     "license": "AGPL-3",
     "website": "https://github.com/OCA/server-tools",
     "maintainers": ["florian-dacosta", "sebastienbeau", "bealdav"],
-    "depends": ["attachment_queue", "fetchmail"],
+    "depends": ["attachment_queue", "mail"],
     "demo": [],
     "data": ["security/ir.model.access.csv", "views/fetchmail_views.xml"],
     "installable": True,
