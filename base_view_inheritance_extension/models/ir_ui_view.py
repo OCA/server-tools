@@ -50,7 +50,7 @@ def ast_dict_update(source, update):
     return source
 
 
-class IrUiView(models.Model):
+class View(models.Model):
     _inherit = "ir.ui.view"
 
     @api.model
