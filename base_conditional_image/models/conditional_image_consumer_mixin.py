@@ -8,7 +8,6 @@ from odoo.tools.safe_eval import safe_eval
 class ConditionalImageConsumerMixin(models.AbstractModel):
     _name = "conditional.image.consumer.mixin"
     _description = "Mixin for conditional images consumers"
-    _inherit = "image.mixin"
 
     image_1920 = fields.Image(compute="_compute_images", store=False, readonly=True)
     image_1024 = fields.Image(compute="_compute_images", store=False, readonly=True)
