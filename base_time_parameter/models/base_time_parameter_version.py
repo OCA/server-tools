@@ -61,16 +61,7 @@ class TimeParameterVersion(models.Model):
     date_from = fields.Date(string="Date From", required=True)
     type = fields.Selection(related="parameter_id.type")
     value = fields.Char(string="Value")
-    value_reference = fields.Reference(
-        string="Reference Value",
-        selection="_value_reference_selection",
-    )
-
-    @api.model
-    def _value_reference_selection(self):
-        model_names = self.env.context.get("selection_models", [])
-        models = self.env["ir.model"].search([("model", "in", model_names)])
-        return [(m.model, m.name) for m in models]
+    value_reference = fields.Reference(string="Reference Value", selection=[])
 
     _sql_constraints = [
         (
