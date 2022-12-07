@@ -18,6 +18,7 @@
     },
     "depends": [
         "sentry",
+        "queue_job",
     ],
     "data": [
         "security/ir.model.access.csv",

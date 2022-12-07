@@ -27,3 +27,9 @@ class WizardTestSentry(models.Model):
 
     def test_crash(self):
         self._divide_by_zero()
+
+    def test_queue_job(self):
+        self.with_delay().test_http_delay()
+        self.with_delay().test_db_delay()
+        self.with_delay().test_all()
+        self.with_delay().test_crash()

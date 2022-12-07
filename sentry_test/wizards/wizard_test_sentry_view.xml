@@ -14,6 +14,13 @@
                 <group string="Test Error" name="test_crash">
                     <button name="test_crash" type="object" string="Test Crash" />
                 </group>
+                <group string="Test Job" name="test_job">
+                    <button
+                            name="test_queue_job"
+                            type="object"
+                            string="Test job Queue"
+                        />
+                </group>
             </group>
         </form>
     </field>
