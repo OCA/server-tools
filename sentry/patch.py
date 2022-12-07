@@ -19,6 +19,7 @@ _logger = logging.getLogger(__name__)
 HAS_SENTRY_SDK = True
 
 try:
+    from sentry_sdk import start_transaction
     from sentry_sdk.hub import Hub
     from sentry_sdk.tracing_utils import record_sql_queries
 except ImportError:  # pragma: no cover
@@ -61,3 +62,15 @@ if HAS_SENTRY_SDK:
             )
 
     Cursor.execute = execute
+
+    _ori_process_job = ir_cron._process_job
+
+    @classmethod
+    def _process_job(cls, job_cr, job, cron_cr):
+        with start_transaction(
+            op="cron", name=f"Cron {job['cron_name']}".replace(" ", "_")
+        ) as transaction:
+            transaction.set_tag("odoo.db", job_cr.dbname)
+            return _ori_process_job(job_cr, job, cron_cr)
+
+    ir_cron._process_job = _process_job

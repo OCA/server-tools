@@ -22,6 +22,7 @@
     "data": [
         "security/ir.model.access.csv",
         "wizards/wizard_test_sentry_view.xml",
+        "data/ir_cron.xml",
     ],
     "demo": [],
 }
