@@ -8,13 +8,19 @@
 
 import logging
 
+import psycopg2
+
 import odoo.http
+from odoo.sql_db import Cursor
+
+from odoo.addons.base.models.ir_cron import ir_cron
 
 _logger = logging.getLogger(__name__)
 HAS_SENTRY_SDK = True
 
 try:
     from sentry_sdk.hub import Hub
+    from sentry_sdk.tracing_utils import record_sql_queries
 except ImportError:  # pragma: no cover
     HAS_SENTRY_SDK = False  # pragma: no cover
     _logger.debug(
@@ -43,3 +49,15 @@ if HAS_SENTRY_SDK:
         return request
 
     odoo.http.Root.get_request = get_request
+
+    _ori_execute = Cursor.execute
+
+    def execute(self, query, params=None, log_exceptions=None):
+        with record_sql_queries(
+            Hub.current, self, query, params, psycopg2.paramstyle, executemany=False
+        ):
+            return _ori_execute(
+                self, query, params=params, log_exceptions=log_exceptions
+            )
+
+    Cursor.execute = execute
