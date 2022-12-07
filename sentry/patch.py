@@ -74,3 +74,20 @@ if HAS_SENTRY_SDK:
             return _ori_process_job(job_cr, job, cron_cr)
 
     ir_cron._process_job = _process_job
+
+    try:
+        from odoo.addons.queue_job.controllers.main import RunJobController
+
+        _ori_try_perform_job = RunJobController._try_perform_job
+
+        def _try_perform_job(self, env, job):
+            hub = Hub.current
+            with hub.configure_scope() as scope:
+                scope.set_tag("odoo.job.model", job.model_name)
+                scope.set_tag("odoo.job.method", job.method_name)
+
+            return _ori_try_perform_job(self, env, job)
+
+        RunJobController._try_perform_job = _try_perform_job
+    except ImportError:  # pragma: no cover
+        _logger.debug("Queue Job not install skip instrumentation")  # pragma: no cover
