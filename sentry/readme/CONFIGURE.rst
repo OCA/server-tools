@@ -60,6 +60,30 @@ send_default_pii, http_proxy, https_proxy, request_bodies, debug,
 attach_stacktrace, ca_certs, propagate_traces, traces_sample_rate,
 auto_enabling_integrations``.
 
+
+Tracing configuration
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Activating tracing can be done by
+
+Defining a global tracing_rate::
+
+    sentry_traces_sample_rate=0.1
+
+
+Defining a specific tracing_rate::
+
+    sentry_traces_sample_rate_http=0.2
+    sentry_traces_sample_rate_cron=0.1
+    sentry_traces_sample_rate_job=0.05
+
+
+Note: In order to avoid to consum too many transaction
+it's recommended to define all specific tracing rate
+in this case you do not need to define a global rate
+as all case have a specific rate.
+
+
 Example Odoo configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
