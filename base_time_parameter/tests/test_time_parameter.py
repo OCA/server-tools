@@ -3,8 +3,8 @@ from datetime import date, datetime
 from odoo.tests.common import TransactionCase
 
 WRONG_MODEL = "Value is None because of wrong model"
-DONALD_TRUMP = "The value is partner 'Donald Trump'"
-JOE_BIDEN = "The value is partner 'Joe Biden'"
+DONALD_TRUMP = "The value is 'Donald Trump'"
+JOE_BIDEN = "The value is 'Joe Biden'"
 
 
 class TestTimeParameter(TransactionCase):
@@ -57,35 +57,24 @@ class TestTimeParameter(TransactionCase):
                 ],
             }
         )
-        # testing "code" and "name" together with "reference" and "string"
-        self.partner2017 = self.env["res.partner"].create({"name": "Donald Trump"})
-        self.partner2021 = self.env["res.partner"].create({"name": "Joe Biden"})
-        version2017 = {
-            "date_from": date(2017, 1, 20),
-            "value_reference": "res.partner,{}".format(self.partner2017.id),
-        }
-        version2021 = {
-            "date_from": date(2021, 1, 20),
-            "value_reference": "res.partner,{}".format(self.partner2021.id),
-        }
-        self.name_reference_parameter = (
-            self.env["base.time.parameter"]
-            .with_context(selection_models=["res.partner"])
-            .create(
-                {
-                    "name": "US President",
-                    "type": "reference",
-                    "model_id": self.env.ref("base.model_res_country").id,
-                    "version_ids": [(0, 0, version2017), (0, 0, version2021)],
-                }
-            )
-        )
+        # testing parameter "code" and "name" together with "string" value
         self.code_string_parameter = self.env["base.time.parameter"].create(
             {
                 "code": "TEST_CODE_STRING",
                 "type": "string",
                 "version_ids": [
-                    (0, 0, {"date_from": date(2022, 1, 1), "value": "TEST_STRING"})
+                    (0, 0, {"date_from": date(2022, 1, 1), "value": "CODE_STRING"})
+                ],
+            }
+        )
+        self.name_string_us_parameter = self.env["base.time.parameter"].create(
+            {
+                "name": "US President",
+                "type": "string",
+                "model_id": self.env.ref("base.model_res_country").id,
+                "version_ids": [
+                    (0, 0, {"date_from": date(2017, 1, 20), "value": "Donald Trump"}),
+                    (0, 0, {"date_from": date(2021, 1, 20), "value": "Joe Biden"}),
                 ],
             }
         )
@@ -111,11 +100,14 @@ class TestTimeParameter(TransactionCase):
         value = self.json_parameter._get(date(2023, 1, 1))
         self.assertEqual(value, {"key": "val"}, 'Value is json {"key": "val"}')
 
-        value = self.name_reference_parameter._get(date(2023, 1, 1))
-        self.assertEqual(value, self.partner2021, JOE_BIDEN)
+        # Cannot test reference here, since the selection is an empty list.
+        # Reference is tested in account_time_parameter.
 
         value = self.code_string_parameter._get()  # date=now()
-        self.assertEqual(value, "TEST_STRING", "The value is 'TEST_STRING'")
+        self.assertEqual(value, "CODE_STRING", "The value is 'CODE_STRING'")
+
+        value = self.name_string_us_parameter._get()  # date=now()
+        self.assertEqual(value, "Joe Biden", JOE_BIDEN)
 
     def test_01_get_from_model_code_date(self):
         value = self.env["base.time.parameter"]._get_from_model_code_date(
@@ -126,7 +118,7 @@ class TestTimeParameter(TransactionCase):
         value = self.env["base.time.parameter"]._get_from_model_code_date(
             "res.country", "US President", raise_if_not_found=False
         )
-        self.assertEqual(value, self.partner2021, JOE_BIDEN)
+        self.assertEqual(value, "Joe Biden", JOE_BIDEN)
 
     def test_02_base_get_time_parameter(self):
 
@@ -143,23 +135,23 @@ class TestTimeParameter(TransactionCase):
         value = self.env["res.country"].get_time_parameter(
             "US President", raise_if_not_found=False
         )
-        self.assertEqual(value, self.partner2021, JOE_BIDEN)
+        self.assertEqual(value, "Joe Biden", JOE_BIDEN)
         # date
         value = self.env["res.country"].get_time_parameter(
             "US President", date(2018, 1, 1), raise_if_not_found=False
         )
-        self.assertEqual(value, self.partner2017, DONALD_TRUMP)
+        self.assertEqual(value, "Donald Trump", DONALD_TRUMP)
         # datetime
         value = self.env["res.country"].get_time_parameter(
             "US President", datetime.now(), raise_if_not_found=False
         )
-        self.assertEqual(value, self.partner2021, JOE_BIDEN)
+        self.assertEqual(value, "Joe Biden", JOE_BIDEN)
         # string
         self.env.ref("base.us").name = "UNITED STATES"
         value = self.env.ref("base.us").get_time_parameter(
             "US President", "write_date", raise_if_not_found=False
         )
-        self.assertEqual(value, self.partner2021, JOE_BIDEN)
+        self.assertEqual(value, "Joe Biden", JOE_BIDEN)
 
         # TEST GET
 
