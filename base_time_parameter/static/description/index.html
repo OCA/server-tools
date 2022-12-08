@@ -410,8 +410,8 @@ With this module you may set starting dates and values.</p>
 <h2><a class="toc-backref" href="#id3">Example of implementation in another module</a></h2>
 <p>Payroll implementation:</p>
 <ul class="simple">
-<li>Menu “Payroll/Configuration/Time Parameters” only shows payslip parameters.</li>
-<li>New parameters will get “model_id = payslip model”.</li>
+<li>Menu “Payroll/Configuration/Time Parameters” only shows hr.payslip parameters.</li>
+<li>New parameters will be hr.payslip parameters.</li>
 <li>By default, the model_id field is hidden in the form.</li>
 </ul>
 <pre class="code XML literal-block">
@@ -438,25 +438,15 @@ With this module you may set starting dates and values.</p>
 </pre>
 <p>Reference field implementatiton:</p>
 <pre class="code python literal-block">
-<span class="kn">from</span> <span class="nn">odoo</span> <span class="kn">import</span> <span class="n">api</span><span class="p">,</span> <span class="n">fields</span><span class="p">,</span> <span class="n">models</span>
+<span class="kn">from</span> <span class="nn">odoo</span> <span class="kn">import</span> <span class="n">fields</span><span class="p">,</span> <span class="n">models</span>
 
-<span class="sd">&quot;&quot;&quot; Add account.account to the model selection of the reference field &quot;&quot;&quot;</span>
 
 <span class="k">class</span> <span class="nc">TimeParameterVersion</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
     <span class="n">_inherit</span> <span class="o">=</span> <span class="s2">&quot;base.time.parameter.version&quot;</span>
 
     <span class="n">value_reference</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">Reference</span><span class="p">(</span>
-        <span class="n">selection</span><span class="o">=</span><span class="s2">&quot;_value_reference_selection&quot;</span><span class="p">,</span>
+        <span class="n">selection_add</span><span class="o">=</span><span class="p">[(</span><span class="s2">&quot;account.account&quot;</span><span class="p">,</span> <span class="s2">&quot;Account&quot;</span><span class="p">)],</span>
     <span class="p">)</span>
-
-    <span class="nd">&#64;api</span><span class="o">.</span><span class="n">model</span>
-    <span class="k">def</span> <span class="nf">_value_reference_selection</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">selection_models</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;selection_models&quot;</span><span class="p">,</span> <span class="p">[])</span>
-        <span class="n">selection_models</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;account.account&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span>
-            <span class="n">TimeParameterVersion</span><span class="p">,</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">with_context</span><span class="p">(</span><span class="n">selection_models</span><span class="o">=</span><span class="n">selection_models</span><span class="p">)</span>
-        <span class="p">)</span><span class="o">.</span><span class="n">_value_reference_selection</span><span class="p">()</span>
 </pre>
 </div>
 </div>
