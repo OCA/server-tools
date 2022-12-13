@@ -82,6 +82,7 @@ class Sampler:
         op = sampling_context.get("transaction_context", {}).get("op")
         if path and path.startswith("longpolling"):
             # we never trace longpolling as it's useless
+            # TODO v16+ : remove longpolling
             return 0
         elif path and path.startswith("/queue_job"):
             return self.traces_sample_rate_job
