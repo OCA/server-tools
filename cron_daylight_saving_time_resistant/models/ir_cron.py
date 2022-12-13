@@ -37,15 +37,15 @@ class IrCron(models.Model):
         return diff_offset
 
     @classmethod
-    def _process_job(cls, job_cr, job, cron_cr):
+    def _process_job(cls, db, cron_cr, job):
         """Add or remove the Daylight saving offset when needed."""
-        super()._process_job(job_cr, job, cron_cr)
+        res = super()._process_job(db, cron_cr, job)
         # changing the date has to be after the super, else, e may add a hour
         # to next call, and the super will no run the cron, (because now will
         # be 1 hour too soon) and the date will just be incremented of 1
         # hour, each hour...until the changes time really occurs...
         if job["daylight_saving_time_resistant"]:
-            with api.Environment.manage():
+            with cls.pool.cursor() as job_cr:
                 try:
                     cron = api.Environment(
                         job_cr,
@@ -80,8 +80,6 @@ class IrCron(models.Model):
                             "UPDATE ir_cron SET nextcall=%s WHERE id=%s",
                             (modified_next_call, job["id"]),
                         )
-                        cron.flush()
-                        cron.invalidate_cache()
                 finally:
-                    job_cr.commit()
                     cron_cr.commit()
+        return res

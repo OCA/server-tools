@@ -2,7 +2,7 @@
 {
     "name": "Cron daylight saving time resistant",
     "summary": "Run cron on fixed hours",
-    "version": "14.0.1.0.0",
+    "version": "16.0.1.0.0",
     "category": "Tools",
     "website": "https://github.com/OCA/server-tools",
     "author": "akretion, Odoo Community Association (OCA)",

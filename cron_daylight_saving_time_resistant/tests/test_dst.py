@@ -28,13 +28,19 @@ class TestDST(TransactionCase):
             cron.write(
                 {"nextcall": datetime_str, "daylight_saving_time_resistant": True}
             )
-            cron.flush()
+            cron.flush_recordset()
             self.env.cr.execute("SELECT * FROM ir_cron WHERE id = %s", (cron.id,))
             job = self.env.cr.dictfetchall()[0]
             timezone_date_orig = fields.Datetime.context_timestamp(cron, cron.nextcall)
+            # ensure Paris time zone is taken into account. If we only work in UTC
+            # there is not change of hour and the test will be green even if it does
+            # nothing at all...
+            self.assertEqual(timezone_date_orig.tzinfo.zone, "Europe/Paris")
             with odoo.registry(self.env.cr.dbname).cursor() as new_cr:
                 registry = odoo.registry(new_cr.dbname)
-                registry["ir.cron"]._process_job(new_cr, job, new_cr)
+                registry["ir.cron"]._process_job(new_cr.dbname, new_cr, job)
+                # since it is updated as a sql query in module
+                cron.invalidate_recordset()
                 day_after_date_orig = (timezone_date_orig + timedelta(days=1)).day
             timezone_date_after = fields.Datetime.context_timestamp(cron, cron.nextcall)
             # check the cron is really planned the next day (which mean it has run
@@ -44,6 +50,9 @@ class TestDST(TransactionCase):
             self.assertEqual(timezone_date_orig.hour, timezone_date_after.hour)
 
     def test_cron(self):
+        user = self.env.ref("base.user_root")
+        user.write({"tz": "Europe/Paris"})
+        user.invalidate_recordset()
         cron = self.env["ir.cron"].create(
             {
                 "name": "TestCron",
