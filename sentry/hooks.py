@@ -151,7 +151,7 @@ def initialize_sentry(config):
     }
     if "traces_sample_rate" in options:
         # use traces_sample_rate as default rate
-        sampler_params["default_rate"] = option.pop("traces_sample_rate")
+        sampler_params["default_rate"] = options.pop("traces_sample_rate")
 
     if sampler_params:
         # We always use traces_sampler even if only the traces_sample_rate
