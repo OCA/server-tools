@@ -21,6 +21,18 @@
                             string="Test job Queue"
                         />
                 </group>
+                <group string="Test Logger" name="test_logger">
+                    <button
+                            name="test_log_error"
+                            type="object"
+                            string="Test Log Error"
+                        />
+                    <button
+                            name="test_log_warning"
+                            type="object"
+                            string="Test Log Warning"
+                        />
+                </group>
             </group>
         </form>
     </field>

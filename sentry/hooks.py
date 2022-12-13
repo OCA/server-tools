@@ -139,11 +139,9 @@ def initialize_sentry(config):
     options["before_send"] = before_send
 
     options["integrations"] = [
-        options["logging_level"],
+        const.get_sentry_logging(config),
         ThreadingIntegration(propagate_hub=True),
     ]
-    # Remove logging_level, since in sentry_sdk is include in 'integrations'
-    del options["logging_level"]
 
     sampler_params = {
         key: config[f"sentry_{key}"]
