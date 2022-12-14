@@ -38,6 +38,7 @@ class TimeParameter(models.Model):
             ("integer", "Integer number"),
             ("json", "JSON"),
             ("reference", "Reference"),
+            ("reference_id", "Reference ID"),
             ("string", "Text"),
         ],
         required=True,
@@ -103,6 +104,8 @@ class TimeParameter(models.Model):
                 return json.loads(version.value)
             elif self.type == "reference":
                 return version.value_reference
+            elif self.type == "reference_id":
+                return version.value_reference and version.value_reference.id or 0
             elif self.type == "string":
                 return version.value
         elif get == "date":
