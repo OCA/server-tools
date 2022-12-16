@@ -25,6 +25,7 @@ setuptools.setup(
         'odoo-addon-fetchmail_incoming_log>=15.0dev,<15.1dev',
         'odoo-addon-fetchmail_notify_error_to_sender>=15.0dev,<15.1dev',
         'odoo-addon-html_text>=15.0dev,<15.1dev',
+        'odoo-addon-iap_alternative_provider>=15.0dev,<15.1dev',
         'odoo-addon-letsencrypt>=15.0dev,<15.1dev',
         'odoo-addon-module_auto_update>=15.0dev,<15.1dev',
         'odoo-addon-module_change_auto_install>=15.0dev,<15.1dev',
