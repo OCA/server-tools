@@ -1,5 +1,5 @@
 # generated from manifests external_dependencies
-acme
+acme<2.0.0
 astor
 cryptography
 dataclasses
