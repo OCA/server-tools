@@ -6,6 +6,4 @@ odoorpc
 openpyxl
 openupgradelib
 pysftp
-pyyaml
-raven
-unidecode
+sentry_sdk
