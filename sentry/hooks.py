@@ -80,7 +80,7 @@ class Sampler:
     def traces_sampler(self, sampling_context):
         path = sampling_context.get("wsgi_environ", {}).get("PATH_INFO")
         op = sampling_context.get("transaction_context", {}).get("op")
-        if path and path.startswith("longpolling"):
+        if path and path.startswith("/longpolling"):
             # we never trace longpolling as it's useless
             # TODO v16+ : remove longpolling
             return 0
