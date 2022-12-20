@@ -8,16 +8,11 @@ import logging
 from werkzeug.urls import url_decode
 
 from odoo import http
-from odoo.http import (
-    content_disposition,
-    request,
-    route,
-    serialize_exception as _serialize_exception,
-)
+from odoo.http import content_disposition, request, route, serialize_exception
 from odoo.tools import html_escape
 from odoo.tools.safe_eval import safe_eval, time
 
-from odoo.addons.web.controllers import main as report
+from odoo.addons.web.controllers import report
 
 _logger = logging.getLogger(__name__)
 
@@ -44,7 +39,7 @@ class ReportController(report.ReportController):
             excel, report_name = report.with_context(**context)._render_excel(
                 docids, data=data
             )
-            excel = base64.decodestring(excel)
+            excel = base64.decodebytes(excel)
             if docids:
                 records = request.env[report.model].browse(docids)
                 if report.print_report_name and not len(records) > 1:
@@ -94,6 +89,6 @@ class ReportController(report.ReportController):
             )
         except Exception as e:
             _logger.exception("Error while generating report %s", reportname)
-            se = _serialize_exception(e)
+            se = serialize_exception(e)
             error = {"code": 200, "message": "Odoo Server Error", "data": se}
             return request.make_response(html_escape(json.dumps(error)))

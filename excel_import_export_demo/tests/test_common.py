@@ -101,12 +101,11 @@ class TestExcelImportExport(SingleTransactionCase):
             {"name": "Test Partner", "category_id": [(6, 0, categ_ids)]}
         )
         # Create a Product
-        user_type_income = cls.env.ref("account.data_account_type_direct_costs")
         cls.account_income_product = cls.env["account.account"].create(
             {
-                "code": "INCOME_PROD111",
+                "code": "PROD111",
                 "name": "Income - Test Account",
-                "user_type_id": user_type_income.id,
+                "account_type": "expense_direct_cost",
             }
         )
         # Create category

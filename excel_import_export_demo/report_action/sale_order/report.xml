@@ -13,4 +13,5 @@
             name="print_report_name"
         >(object.state in ('draft', 'sent') and 'Quotation - %s' % (object.name)) or 'Order - %s' % (object.name)</field>
     </record>
+
 </odoo>
