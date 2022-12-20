@@ -5,5 +5,3 @@ mako
 odoorpc
 openpyxl
 openupgradelib
-pysftp
-sentry_sdk
