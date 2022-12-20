@@ -3,7 +3,6 @@
 
 import csv
 import itertools
-import logging
 import re
 import string
 import uuid
@@ -11,16 +10,11 @@ from ast import literal_eval
 from datetime import datetime as dt
 from io import StringIO
 
+import xlrd
 from dateutil.parser import parse
 
 from odoo import _
 from odoo.exceptions import ValidationError
-
-_logger = logging.getLogger(__name__)
-try:
-    import xlrd
-except ImportError:
-    _logger.debug('Cannot import "xlrd". Please make sure it is installed.')
 
 
 def adjust_cell_formula(value, k):
