@@ -197,9 +197,11 @@
                                     <li><b
                                         >Field</b>: Field of the record, e.g., product_id.uom_id.name. They are orm compliant.</li>
                                     <li><b>Field Cond.</b>: Python code in <code
-                                        >${...}</code> to manipulate field value, e.g., if field = product_id, <code
+                                        >$</code><code
+                                        >{...}</code> to manipulate field value, e.g., if field = product_id, <code
                                         >value</code> will represent product object, e.g., <code
-                                        >${value and value.uom_id.name or ""}</code></li>
+                                        >$</code><code
+                                        >{value and value.uom_id.name or ""}</code></li>
                                     <li><b>Sum</b>: Add sum value on last row, <code
                                         >@{sum}</code></li>
                                     <li><b>Style</b>: Default style in <code
@@ -214,7 +216,8 @@
                                 <p>
                                     <b>Note:</b>
                                 </p>
-                                For code block <code>${...}</code> and <code
+                                For code block <code>$</code><code
+                                >{...}</code> and <code
                                 >#?...?</code>, following object are available,
                                 <ul>
                                     <li><code>value</code>: value from <b>Field</b></li>
@@ -336,15 +339,17 @@
                                     <li><b
                                         >Field</b>: Field of the record to be imported to, e.g., product_id</li>
                                     <li><b>Field Cond.</b>: Python code in <code
-                                        >${...}</code> value will represent data from excel cell, e.g., if A1 = 'ABC', <code
+                                        >$</code><code
+                                        >{...}</code> value will represent data from excel cell, e.g., if A1 = 'ABC', <code
                                         >value</code> will represent 'ABC', e.g., <code
-                                        >${value == "ABC" and "X" or "Y"}</code> thus can change from cell value to other value for import.</li>
+                                        >$</code><code
+                                        >{value == "ABC" and "X" or "Y"}</code> thus can change from cell value to other value for import.</li>
                                 </ul>
                                 <p>
                                     <b>Note:</b>
                                 </p>
-                                For code block <code
-                                >${...}</code>, following object are available,
+                                For code block <code>$</code><code
+                                >{...}</code>, following object are available,
                                 <ul>
                                     <li><code>value</code>: value from <b>Cell</b></li>
                                     <li><code
@@ -375,14 +380,15 @@
     '__EXPORT__': {
         'sale_order': {  # sheet can be name (string) or index (integer)
             '_HEAD_': {
-                'B2': 'partner_id.display_name${value or ""}#{align=left;style=text}',
-                'B3': 'name${value or ""}#{align=left;style=text}',
+                'B2': 'partner_id.display_name<span
+                                        >$</span>{value or ""}#{align=left;style=text}',
+                'B3': 'name<span>$</span>{value or ""}#{align=left;style=text}',
             },
             'line_ids': {  # prefix with _CONT_ to continue rows from previous row field
-                'A6': 'product_id.display_name${value or ""}#{style=text}',
-                'C6': 'product_uom_qty${value or 0}#{style=number}',
-                'E6': 'price_unit${value or 0}#{style=number}',
-                'G6': 'price_subtotal${value or 0}#{style=number}',
+                'A6': 'product_id.display_name<span>$</span>{value or ""}#{style=text}',
+                'C6': 'product_uom_qty<span>$</span>{value or 0}#{style=number}',
+                'E6': 'price_unit<span>$</span>{value or 0}#{style=number}',
+                'G6': 'price_subtotal<span>$</span>{value or 0}#{style=number}',
             },
         },
     },
@@ -391,11 +397,11 @@
             'order_line': {  # prefix with _NODEL_ to not delete rows before import
                 'A6': 'product_id',
                 'C6': 'product_uom_qty',
-                'E6': 'price_unit${value > 0 and value or 0}',
+                'E6': 'price_unit<span>$</span>{value > 0 and value or 0}',
             },
         },
     },
-    '__POST_IMPORT__': '${object.post_import_do_something()}',
+    '__POST_IMPORT__': '<span>$</span>{object.post_import_do_something()}',
 }
 
                                 </code>

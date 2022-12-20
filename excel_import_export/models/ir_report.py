@@ -38,4 +38,5 @@ class ReportAction(models.Model):
             ("report_type", "in", qwebtypes),
             ("report_name", "=", report_name),
         ]
-        return report_obj.search(conditions, limit=1)
+        context = self.env["res.users"].context_get()
+        return report_obj.with_context(**context).search(conditions, limit=1)
