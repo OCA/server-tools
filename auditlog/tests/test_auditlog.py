@@ -2,7 +2,6 @@
 # © 2018 Pieter Paulussen <pieter_paulussen@me.com>
 # © 2021 Stefan Rijnhart <stefan@opener.amsterdam>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo.modules.migration import load_script
 from odoo.tests.common import Form, TransactionCase
 
 from odoo.addons.base.models.ir_model import MODULE_UNINSTALL_FLAG
@@ -329,34 +328,6 @@ class TestFieldRemoval(TransactionCase):
         self.assertFalse(self.logs.mapped("model_id"))
         # Assert rule values
         self.assertFalse(self.auditlog_rule.model_id)
-
-    def test_02_migration(self):
-        """Test the migration of the data model related to this feature"""
-        # Drop the data model
-        self.env.cr.execute(
-            """ALTER TABLE auditlog_log
-            DROP COLUMN model_name, DROP COLUMN model_model"""
-        )
-        self.env.cr.execute(
-            """ALTER TABLE auditlog_rule
-            DROP COLUMN model_name, DROP COLUMN model_model"""
-        )
-        self.env.cr.execute(
-            """ALTER TABLE auditlog_log_line
-            DROP COLUMN field_name, DROP COLUMN field_description"""
-        )
-
-        # Recreate the data model
-        mod = load_script(
-            "auditlog/migrations/14.0.1.1.0/pre-migration.py", "pre-migration"
-        )
-        mod.migrate(self.env.cr, "14.0.1.0.2")
-
-        # Values are restored
-        self.assert_values()
-
-        # The migration script is tolerant if the data model is already in place
-        mod.migrate(self.env.cr, "14.0.1.0.2")
 
 
 class TestAuditlogFullCaptureRecord(TransactionCase, AuditlogCommon):
