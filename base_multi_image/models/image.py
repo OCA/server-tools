@@ -107,9 +107,9 @@ class Image(models.Model):
     @api.depends("owner_id", "owner_model")
     def _show_technical(self):
         """Know if you need to show the technical fields."""
-        self.show_technical = all(
-            "default_owner_%s" % f not in self.env.context
-            for f in ("id", "model"))
+        for img in self:
+            img.show_technical = all(
+                "default_owner_%s" % f not in self.env.context for f in ("id", "model"))
 
     @api.multi
     def _get_image_from_filestore(self):
