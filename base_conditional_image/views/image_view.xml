@@ -18,29 +18,35 @@
         <field name="model">conditional.image</field>
         <field name="arch" type="xml">
             <form string="Conditional Image">
-                <group>
+                <sheet>
                     <group>
-                        <field name="name" />
-                        <field name="model_name" />
-                        <field name="company_id" />
+                        <group>
+                            <field name="name" />
+                            <field name="model_name" />
+                            <field name="company_id" />
+                        </group>
+                        <group>
+                            <field
+                                name="image_1920"
+                                widget='image'
+                                class="oe_avatar"
+                                options='{"preview_image": "image_1920"}'
+                            />
+                        </group>
+                        <group string="Selector">
+                            <field
+                                name="selector"
+                                nolabel="True"
+                                widget="ace"
+                                options="{'mode': 'python'}"
+                            />
+                        </group>
                     </group>
-                    <group>
-                        <field
-                            name="image_1920"
-                            widget='image'
-                            class="oe_avatar"
-                            options='{"preview_image": "image_1920"}'
-                        />
-                    </group>
-                    <group string="Selector">
-                        <field
-                            name="selector"
-                            nolabel="True"
-                            widget="ace"
-                            options="{'mode': 'python'}"
-                        />
-                    </group>
-                </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" />
+                    <field name="message_ids" />
+                </div>
             </form>
         </field>
     </record>

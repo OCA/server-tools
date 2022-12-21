@@ -9,7 +9,7 @@
     "license": "AGPL-3",
     "category": "Misc",
     "depends": [
-        "base",
+        "mail",
     ],
     "website": "https://github.com/OCA/server-tools",
     "data": [

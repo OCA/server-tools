@@ -7,7 +7,7 @@ from odoo import fields, models
 class ConditionalImage(models.Model):
     _name = "conditional.image"
     _description = "Conditional Image"
-    _inherit = ["image.mixin"]
+    _inherit = ["image.mixin", "mail.thread"]
 
     name = fields.Char(required=True)
     model_name = fields.Char(required=True)
