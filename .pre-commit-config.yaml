@@ -25,7 +25,9 @@ exclude: |
   # Repos using Sphinx to generate docs don't need prettying
   ^docs/_templates/.*\.html$|
   # You don't usually want a bot to modify your legal texts
-  (LICENSE.*|COPYING.*)
+  (LICENSE.*|COPYING.*)|
+  # This Python file in the sample module is just a placeholder
+  ^module_auto_update/tests/sample_module/models/stuff.py$
 default_language_version:
   python: python3
 repos:
