@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+
+    <record id="resize_conditional_images" model="ir.cron">
+        <field name="name">Resize conditional images</field>
+        <field name="active" eval="True" />
+        <field name="user_id" ref="base.user_root" />
+        <field name="interval_number">1</field>
+        <field name="interval_type">hours</field>
+        <field name="numbercall">1</field>
+        <field name="doall" eval="False" />
+        <field name="model_id" ref="base_conditional_image.model_conditional_image" />
+        <field name="state">code</field>
+        <field name="code">
+# image_128 must have been handled by openupgrade script
+fnames = ["image_1024", "image_512", "image_256"]
+# Only select conditional images where image_1920 is defined
+attachments = env["ir.attachment"].search([("res_model", "=", "conditional.image"), ("res_field", "=", "image_1920")])
+conditionals = model.search([("id", "in", attachments.mapped("res_id"))])
+for fname in fnames:
+  field = model._fields[fname]
+  for conditional in conditionals:
+    if conditional.with_context(bin_size=True)[fname]:
+      continue
+    env.add_to_compute(field, conditional.id)
+model.recompute(fnames=fnames)
+        </field>
+    </record>
+
+</odoo>
