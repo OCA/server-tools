@@ -9,6 +9,6 @@
     "author": "ForgeFlow, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "website": "https://github.com/OCA/server-tools",
-    "depends": ["mail", "test_mail"],
+    "depends": ["mail"],
     "installable": True,
 }
