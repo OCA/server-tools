@@ -25,7 +25,6 @@ msgstr ""
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field__unknown__assigned_attachment_ids
-#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_abstract_conditional_image__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_abstract_config_settings__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_account_account__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_account_account_tag__assigned_attachment_ids
@@ -212,7 +211,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_format_address_mixin__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_iap_account__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_iap_enrich_api__assigned_attachment_ids
-#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_image__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_image_mixin__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_ir_actions_act_url__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_ir_actions_act_window__assigned_attachment_ids
