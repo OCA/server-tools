@@ -393,14 +393,16 @@ With this module properly set up, it will be stored only one time and you can ch
 <h1><a class="toc-backref" href="#id1">Installation</a></h1>
 <p>The sole purpose of this module is to add an abstract model to be inherited.
 So, you will not notice any changes on install.</p>
-<p>To develop using this module, you have to inherit the abstract model <cite>abstract.conditional.image</cite>
+<p>To develop using this module, you have to inherit the abstract model <cite>conditional.image.consumer.mixin</cite>
 to the model that needs the conditional images:</p>
 <pre class="literal-block">
 class ResPartner(models.Model):
-    _inherit = ['res.partner', 'abstract.conditional.image']
+    _inherit = ['res.partner', 'conditional.image.consumer.mixin']
     _name = 'res.partner'
 </pre>
 <p>Then, configure how the images will be selected for each record.</p>
+<p>Note: When migrating from 14.0.1.0.0 to 14.0.2.0.0, please run the ‘Resize conditional images’
+scheduled actions to regenerate the different sizes of the image.</p>
 </div>
 <div class="section" id="usage">
 <h1><a class="toc-backref" href="#id2">Usage</a></h1>
@@ -433,6 +435,8 @@ If you spotted it first, help us smashing it by providing a detailed and welcome
 <dt><a class="reference external" href="https://camptocamp.com/">Camptocamp</a>:</dt>
 <dd><ul class="first last">
 <li>Patrick Tombez &lt;<a class="reference external" href="mailto:patrick.tombez&#64;camptocamp.com">patrick.tombez&#64;camptocamp.com</a>&gt;</li>
+<li>Denis Leemann &lt;<a class="reference external" href="mailto:denis.leemann&#64;camptocamp.com">denis.leemann&#64;camptocamp.com</a>&gt;</li>
+<li>Akim Juillerat &lt;<a class="reference external" href="mailto:akim.juillerat&#64;camptocamp.com">akim.juillerat&#64;camptocamp.com</a>&gt;</li>
 </ul>
 </dd>
 </dl>
