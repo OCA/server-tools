@@ -268,7 +268,7 @@
     <!-- auditlog.log.line -->
     <record model="ir.ui.view" id="view_auditlog_line_tree">
         <field name="name">view.auditlog.line.tree</field>
-        <field name="model">auditlog.log.line</field>
+        <field name="model">auditlog.log.line.view</field>
         <field name="arch" type="xml">
             <tree create="0">
                 <field name="create_date" optional="show" />
@@ -292,7 +292,7 @@
     </record>
     <record id="view_auditlog_line_search" model="ir.ui.view">
         <field name="name">auditlog.line.search</field>
-        <field name="model">auditlog.log.line</field>
+        <field name="model">auditlog.log.line.view</field>
         <field name="arch" type="xml">
             <search string="Log Lines">
                 <field name="name" />
@@ -348,7 +348,7 @@
     </record>
     <record id="action_auditlog_line" model="ir.actions.act_window">
         <field name="name">Log Lines</field>
-        <field name="res_model">auditlog.log.line</field>
+        <field name="res_model">auditlog.log.line.view</field>
         <field name="view_mode">tree</field>
         <field name="search_view_id" ref="view_auditlog_line_search" />
         <field name="context">{'search_default_group_by_model_id': 1}</field>
