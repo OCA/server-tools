@@ -21,6 +21,7 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
+[auditlog](auditlog/) | 16.0.1.0.0 |  | Audit Log
 [base_fontawesome](base_fontawesome/) | 16.0.5.15.4 |  | Up to date Fontawesome resources.
 [base_m2m_custom_field](base_m2m_custom_field/) | 16.0.1.0.0 |  | Customizations of Many2many
 [base_view_inheritance_extension](base_view_inheritance_extension/) | 16.0.1.0.0 |  | Adds more operators for view inheritance
