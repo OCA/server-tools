@@ -8,6 +8,7 @@ setuptools.setup(
     description="Meta package for oca-server-tools Odoo addons",
     version=version,
     install_requires=[
+        'odoo-addon-auditlog>=16.0dev,<16.1dev',
         'odoo-addon-base_fontawesome>=16.0dev,<16.1dev',
         'odoo-addon-base_m2m_custom_field>=16.0dev,<16.1dev',
         'odoo-addon-base_view_inheritance_extension>=16.0dev,<16.1dev',
