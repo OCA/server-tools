@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.0\n"
+"Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -54,9 +54,23 @@ msgid "Auditlog - Rule"
 msgstr ""
 
 #. module: auditlog
+#: model:res.groups,name:auditlog.group_auditlog_manager
+msgid "Auditlog Manager"
+msgstr ""
+
+#. module: auditlog
+#: model:ir.module.category,name:auditlog.security_auditlog_groups
+msgid "Auditlog Rights"
+msgstr ""
+
+#. module: auditlog
+#: model:res.groups,name:auditlog.group_auditlog_user
+msgid "Auditlog User"
+msgstr ""
+
+#. module: auditlog
 #: model:ir.actions.server,name:auditlog.ir_cron_auditlog_autovacuum_ir_actions_server
 #: model:ir.cron,cron_name:auditlog.ir_cron_auditlog_autovacuum
-#: model:ir.cron,name:auditlog.ir_cron_auditlog_autovacuum
 msgid "Auto-vacuum audit logs"
 msgstr ""
 
@@ -130,6 +144,7 @@ msgid "Field"
 msgstr ""
 
 #. module: auditlog
+#. odoo-python
 #: code:addons/auditlog/models/rule.py:0
 #, python-format
 msgid "Field 'model_id' cannot be empty."
@@ -318,18 +333,21 @@ msgid "New value Text"
 msgstr ""
 
 #. module: auditlog
+#. odoo-python
 #: code:addons/auditlog/models/log.py:0
 #, python-format
 msgid "No field defined to create line."
 msgstr ""
 
 #. module: auditlog
+#. odoo-python
 #: code:addons/auditlog/models/rule.py:0
 #, python-format
 msgid "No model defined to create line."
 msgstr ""
 
 #. module: auditlog
+#. odoo-python
 #: code:addons/auditlog/models/log.py:0
 #, python-format
 msgid "No model defined to create log."
@@ -463,12 +481,14 @@ msgid "Technical name"
 msgstr ""
 
 #. module: auditlog
+#. odoo-python
 #: code:addons/auditlog/models/log.py:0
 #, python-format
 msgid "The field 'field_id' cannot be empty."
 msgstr ""
 
 #. module: auditlog
+#. odoo-python
 #: code:addons/auditlog/models/log.py:0
 #, python-format
 msgid "The field 'model_id' cannot be empty."
@@ -536,6 +556,7 @@ msgid "Values"
 msgstr ""
 
 #. module: auditlog
+#. odoo-python
 #: code:addons/auditlog/models/rule.py:0
 #, python-format
 msgid "View logs"
