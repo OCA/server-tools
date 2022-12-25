@@ -25,12 +25,11 @@
                                 <field name="type" invisible="1" />
                                 <field
                                     name="value"
-                                    attrs="{'column_invisible':[('parent.type', '=', 'reference')]}"
+                                    attrs="{'column_invisible':[('parent.type', 'in', ['reference', 'reference_id'])]}"
                                 />
                                 <field
                                     name="value_reference"
-                                    attrs="{'column_invisible':[('parent.type', '!=', 'reference')]}"
-                                    optional="hide"
+                                    attrs="{'column_invisible':[('parent.type', 'not in', ['reference', 'reference_id'])]}"
                                 />
                             </tree>
                         </field>
