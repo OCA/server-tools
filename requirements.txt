@@ -4,3 +4,4 @@ dataclasses
 mako
 odoorpc
 openupgradelib
+pysftp

@@ -6,13 +6,14 @@
 {
     "name": "Database Auto-Backup",
     "summary": "Backups database",
-    "version": "15.0.1.0.0",
+    "version": "16.0.1.0.0",
     "author": "Yenthe Van Ginneken, "
     "Agile Business Group, "
     "Grupo ESOC Ingenieria de Servicios, "
     "LasLabs, "
     "AdaptiveCity, "
-    "Odoo Community Association (OCA)",
+    "Odoo Community Association (OCA),"
+    "Daniel Domínguez (https://xtendoo.es)",
     "license": "AGPL-3",
     "website": "https://github.com/OCA/server-tools",
     "category": "Tools",
