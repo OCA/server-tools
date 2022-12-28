@@ -157,6 +157,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_auditlog_http_session__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_auditlog_log__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_auditlog_log_line__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_auditlog_log_line_view__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_auditlog_rule__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_auth_totp_wizard__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_base__changeset_change_ids
@@ -591,6 +592,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_auditlog_http_session__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_auditlog_log__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_auditlog_log_line__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_auditlog_log_line_view__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_auditlog_rule__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_auth_totp_wizard__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_base__changeset_ids
@@ -1012,6 +1014,7 @@ msgstr "Azienda"
 #: model:ir.model.fields,field_description:base_changeset.field_auditlog_http_session__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_auditlog_log__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_auditlog_log_line__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_auditlog_log_line_view__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_auditlog_rule__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_auth_totp_wizard__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_base__count_pending_changeset_changes
@@ -1426,6 +1429,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_auditlog_http_session__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_auditlog_log__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_auditlog_log_line__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_auditlog_log_line_view__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_auditlog_rule__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_auth_totp_wizard__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_base__count_pending_changesets
@@ -2263,6 +2267,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_auditlog_http_session__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_auditlog_log__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_auditlog_log_line__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_auditlog_log_line_view__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_auditlog_rule__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_auth_totp_wizard__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_base__user_can_see_changeset
