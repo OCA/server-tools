@@ -386,6 +386,7 @@ class TestFieldRemoval(SavepointCase):
 
     def test_02_migration(self):
         """Test the migration of the data model related to this feature"""
+        self.env.cr.execute("""DROP VIEW auditlog_log_line_view""")
         # Drop the data model
         self.env.cr.execute(
             """ALTER TABLE auditlog_log
