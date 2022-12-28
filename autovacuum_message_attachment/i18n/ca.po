@@ -105,6 +105,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_auditlog_http_session__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_auditlog_log__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_auditlog_log_line__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_auditlog_log_line_view__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_auditlog_rule__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_auth_totp_wizard__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_autovacuum_mixin__assigned_attachment_ids
