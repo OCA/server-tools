@@ -98,8 +98,11 @@ class ImportXLSXWizard(models.TransientModel):
             if not template.datas:
                 act = self.env.ref("excel_import_export.action_xlsx_template")
                 raise RedirectWarning(
-                    _('File "%s" not found in template, %s.')
-                    % (template.fname, template.name),
+                    _(
+                        'File "%(fname)s" not found in template, %(name)s.',
+                        fname=template.fname,
+                        name=template.name,
+                    ),
                     act.id,
                     _("Set Templates"),
                 )

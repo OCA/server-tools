@@ -24,7 +24,7 @@ class TestXLSXImportExport(TestExcelImportExport):
                 ("gname", "=", False),
             ],
         }
-        f = Form(self.env["export.xlsx.wizard"].with_context(ctx))
+        f = Form(self.env["export.xlsx.wizard"].with_context(**ctx))
         export_wizard = f.save()
         # Test whether it loads correct template
         self.assertEqual(
@@ -47,7 +47,7 @@ class TestXLSXImportExport(TestExcelImportExport):
             ],
             "template_context": {"state": "draft"},
         }
-        with Form(self.env["import.xlsx.wizard"].with_context(ctx)) as f:
+        with Form(self.env["import.xlsx.wizard"].with_context(**ctx)) as f:
             f.import_file = self.export_file
         import_wizard = f.save()
         # Test sample template

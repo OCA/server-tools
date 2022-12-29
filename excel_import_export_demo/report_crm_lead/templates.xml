@@ -19,20 +19,20 @@
                             'D4': 'activity_date_deadline${value or ""}#{style=date}',
                             'E4': 'activity_summary',
                             'F4': 'stage_id.name',
-                            'G4': 'planned_revenue${value or 0}#{style=number}',
+                            'G4': 'expected_revenue${value or 0}#{style=number}',
                             'H4': 'team_id.name',
                         },
                     },
                     'revenue_by_country': {
                         'revenue_by_country': {
                             'A3': 'country_id.name',
-                            'B3': 'planned_revenue${value or 0}#{style=number}'
+                            'B3': 'expected_revenue${value or 0}#{style=number}'
                         },
                     },
                     'revenue_by_team': {
                         'revenue_by_team': {
                             'A3': 'team_id.name',
-                            'B3': 'planned_revenue${value or 0}#{style=number}'
+                            'B3': 'expected_revenue${value or 0}#{style=number}'
                         },
                     },
                 },

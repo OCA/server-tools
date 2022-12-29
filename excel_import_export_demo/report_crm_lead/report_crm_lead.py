@@ -39,7 +39,7 @@ class ReportCRMLead(models.TransientModel):
             domain += [("team_id", "=", self.team_id.id)]
         results = self.env["crm.lead"].read_group(
             domain,
-            ["country_id", "planned_revenue"],
+            ["country_id", "expected_revenue"],
             ["country_id"],
             orderby="country_id",
         )
@@ -47,7 +47,7 @@ class ReportCRMLead(models.TransientModel):
             self.revenue_by_country += self.env["crm.lead"].new(
                 {
                     "country_id": row["country_id"],
-                    "planned_revenue": row["planned_revenue"],
+                    "expected_revenue": row["expected_revenue"],
                 }
             )
 
@@ -57,9 +57,9 @@ class ReportCRMLead(models.TransientModel):
         if self.team_id:
             domain += [("team_id", "=", self.team_id.id)]
         results = self.env["crm.lead"].read_group(
-            domain, ["team_id", "planned_revenue"], ["team_id"], orderby="team_id"
+            domain, ["team_id", "expected_revenue"], ["team_id"], orderby="team_id"
         )
         for row in results:
             self.revenue_by_team += self.env["crm.lead"].new(
-                {"team_id": row["team_id"], "planned_revenue": row["planned_revenue"]}
+                {"team_id": row["team_id"], "expected_revenue": row["expected_revenue"]}
             )

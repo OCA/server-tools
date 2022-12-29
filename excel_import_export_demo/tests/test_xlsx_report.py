@@ -21,7 +21,7 @@ class TestXLSXReport(TestExcelImportExport):
                 ("gname", "=", False),
             ]
         }
-        with Form(self.env["report.sale.order"].with_context(ctx)) as f:
+        with Form(self.env["report.sale.order"].with_context(**ctx)) as f:
             f.partner_id = self.partner
         report_wizard = f.save()
         # Test whether it loads correct template

@@ -35,13 +35,12 @@ class XLSXTemplate(models.Model):
         help="Multiple template of same model, can belong to same group,\n"
         "result in multiple template selection",
     )
-    description = fields.Char(string="Description")
+    description = fields.Char()
     input_instruction = fields.Text(
         string="Instruction (Input)",
         help="This is used to construct instruction in tab Import/Export",
     )
     instruction = fields.Text(
-        string="Instruction",
         compute="_compute_output_instruction",
         help="Instruction on how to import/export, prepared by system.",
     )
@@ -538,18 +537,14 @@ class XLSXTemplateImport(models.Model):
         ondelete="cascade",
         readonly=True,
     )
-    sequence = fields.Integer(string="Sequence", default=10)
-    sheet = fields.Char(string="Sheet")
+    sequence = fields.Integer(default=10)
+    sheet = fields.Char()
     section_type = fields.Selection(
         [("sheet", "Sheet"), ("head", "Head"), ("row", "Row"), ("data", "Data")],
-        string="Section Type",
         required=True,
     )
-    row_field = fields.Char(
-        string="Row Field", help="If section type is row, this field is required"
-    )
+    row_field = fields.Char(help="If section type is row, this field is required")
     no_delete = fields.Boolean(
-        string="No Delete",
         default=False,
         help="By default, all rows will be deleted before import.\n"
         "Select No Delete, otherwise",
@@ -584,16 +579,13 @@ class XLSXTemplateExport(models.Model):
         ondelete="cascade",
         readonly=True,
     )
-    sequence = fields.Integer(string="Sequence", default=10)
-    sheet = fields.Char(string="Sheet")
+    sequence = fields.Integer(default=10)
+    sheet = fields.Char()
     section_type = fields.Selection(
         [("sheet", "Sheet"), ("head", "Head"), ("row", "Row"), ("data", "Data")],
-        string="Section Type",
         required=True,
     )
-    row_field = fields.Char(
-        string="Row Field", help="If section type is row, this field is required"
-    )
+    row_field = fields.Char(help="If section type is row, this field is required")
     is_cont = fields.Boolean(
         string="Continue", default=False, help="Continue data rows after last data row"
     )

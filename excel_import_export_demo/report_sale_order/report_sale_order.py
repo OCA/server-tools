@@ -14,7 +14,6 @@ class ReportSaleOrder(models.TransientModel):
     # Report Result, sale.order
     results = fields.Many2many(
         "sale.order",
-        string="Results",
         compute="_compute_results",
         help="Use compute fields, so there is nothing stored in database",
     )

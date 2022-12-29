@@ -7,9 +7,10 @@
         <field name="report_type">excel</field>
         <field name="report_name">sale_order_form.xlsx</field>
         <field name="report_file">sale_order</field>
+        <field name="binding_model_id" ref="sale.model_sale_order" />
+        <field name="binding_type">report</field>
         <field
             name="print_report_name"
         >(object.state in ('draft', 'sent') and 'Quotation - %s' % (object.name)) or 'Order - %s' % (object.name)</field>
     </record>
-
 </odoo>
