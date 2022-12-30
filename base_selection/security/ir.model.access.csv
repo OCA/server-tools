@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+base_selection.access_base_selection,access_base_selection,base_selection.model_base_selection,base.group_user,1,0,0,0
+base_selection.access_base_selection.group_system,access_base_selection.group_system,base_selection.model_base_selection,base.group_system,1,1,1,1
