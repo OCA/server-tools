@@ -411,6 +411,16 @@ msgid "Warning:"
 msgstr ""
 
 #. module: auto_backup
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: auto_backup
+#: model:ir.model.fields,help:auto_backup.field_db_backup__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: auto_backup
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "john"
 msgstr ""
