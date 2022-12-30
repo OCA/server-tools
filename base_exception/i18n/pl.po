@@ -21,6 +21,7 @@ msgstr ""
 "%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
 #. module: base_exception
+#. odoo-python
 #: code:addons/base_exception/models/base_exception.py:0
 #, python-format
 msgid "(Blocking exception)"
@@ -77,38 +78,6 @@ msgid ""
 msgstr ""
 
 #. module: base_exception
-#: model:ir.model.fields,field_description:base_exception.field_base_exception__changeset_change_ids
-#: model:ir.model.fields,field_description:base_exception.field_base_exception_method__changeset_change_ids
-#: model:ir.model.fields,field_description:base_exception.field_exception_rule__changeset_change_ids
-#: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm__changeset_change_ids
-msgid "Changeset Changes"
-msgstr ""
-
-#. module: base_exception
-#: model:ir.model.fields,field_description:base_exception.field_base_exception__changeset_ids
-#: model:ir.model.fields,field_description:base_exception.field_base_exception_method__changeset_ids
-#: model:ir.model.fields,field_description:base_exception.field_exception_rule__changeset_ids
-#: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm__changeset_ids
-msgid "Changesets"
-msgstr ""
-
-#. module: base_exception
-#: model:ir.model.fields,field_description:base_exception.field_base_exception__count_pending_changeset_changes
-#: model:ir.model.fields,field_description:base_exception.field_base_exception_method__count_pending_changeset_changes
-#: model:ir.model.fields,field_description:base_exception.field_exception_rule__count_pending_changeset_changes
-#: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm__count_pending_changeset_changes
-msgid "Count Pending Changeset Changes"
-msgstr ""
-
-#. module: base_exception
-#: model:ir.model.fields,field_description:base_exception.field_base_exception__count_pending_changesets
-#: model:ir.model.fields,field_description:base_exception.field_base_exception_method__count_pending_changesets
-#: model:ir.model.fields,field_description:base_exception.field_exception_rule__count_pending_changesets
-#: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm__count_pending_changesets
-msgid "Count Pending Changesets"
-msgstr ""
-
-#. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule__create_uid
 msgid "Created by"
 msgstr "Utworzone przez"
@@ -124,10 +93,7 @@ msgid "Description"
 msgstr "Opis"
 
 #. module: base_exception
-#: model:ir.model.fields,field_description:base_exception.field_base_exception__display_name
-#: model:ir.model.fields,field_description:base_exception.field_base_exception_method__display_name
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule__display_name
-#: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm__display_name
 msgid "Display Name"
 msgstr "Wyświetlana nazwa "
 
@@ -144,12 +110,13 @@ msgid ""
 msgstr ""
 
 #. module: base_exception
+#. odoo-python
 #: code:addons/base_exception/models/base_exception.py:0
 #, python-format
 msgid ""
 "Error when evaluating the exception.rule rule:\n"
-" %s \n"
-"(%s)"
+" %(rule_name)s \n"
+"(%(error)s)"
 msgstr ""
 
 #. module: base_exception
@@ -165,7 +132,6 @@ msgstr ""
 
 #. module: base_exception
 #: model:ir.model,name:base_exception.model_exception_rule
-#: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_tree
 msgid "Exception Rule"
 msgstr ""
 
@@ -206,11 +172,6 @@ msgid "Exceptions"
 msgstr ""
 
 #. module: base_exception
-#: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_confirm
-msgid "Exceptions Rules"
-msgstr ""
-
-#. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_base_exception__exceptions_summary
 #, fuzzy
 msgid "Exceptions Summary"
@@ -237,10 +198,7 @@ msgid "Help with Python expressions"
 msgstr ""
 
 #. module: base_exception
-#: model:ir.model.fields,field_description:base_exception.field_base_exception__id
-#: model:ir.model.fields,field_description:base_exception.field_base_exception_method__id
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule__id
-#: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm__id
 msgid "ID"
 msgstr "ID"
 
@@ -252,14 +210,11 @@ msgstr ""
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule__is_blocking
-msgid "Is blocking"
+msgid "Is Blocking"
 msgstr ""
 
 #. module: base_exception
-#: model:ir.model.fields,field_description:base_exception.field_base_exception____last_update
-#: model:ir.model.fields,field_description:base_exception.field_base_exception_method____last_update
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule____last_update
-#: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm____last_update
 msgid "Last Modified on"
 msgstr "Ostatnio modyfikowano"
 
@@ -284,6 +239,7 @@ msgid "Method"
 msgstr ""
 
 #. module: base_exception
+#. odoo-python
 #: code:addons/base_exception/wizard/base_exception_confirm.py:0
 #, python-format
 msgid "Only 1 ID accepted, got %r."
@@ -324,20 +280,14 @@ msgid "Sequence"
 msgstr ""
 
 #. module: base_exception
-#: model:ir.model.fields,field_description:base_exception.field_base_exception__smart_search
-#: model:ir.model.fields,field_description:base_exception.field_base_exception_method__smart_search
-#: model:ir.model.fields,field_description:base_exception.field_exception_rule__smart_search
-#: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm__smart_search
-msgid "Smart Search"
-msgstr ""
-
-#. module: base_exception
+#. odoo-python
 #: code:addons/base_exception/models/base_exception.py:0
 #, python-format
 msgid "The exceptions can not be ignored, because some of them are blocking."
 msgstr ""
 
 #. module: base_exception
+#. odoo-python
 #: code:addons/base_exception/models/base_exception.py:0
 #, python-format
 msgid ""
@@ -348,14 +298,6 @@ msgstr ""
 #. module: base_exception
 #: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_form
 msgid "To block the exception use: <code>failed = True</code>"
-msgstr ""
-
-#. module: base_exception
-#: model:ir.model.fields,field_description:base_exception.field_base_exception__user_can_see_changeset
-#: model:ir.model.fields,field_description:base_exception.field_base_exception_method__user_can_see_changeset
-#: model:ir.model.fields,field_description:base_exception.field_exception_rule__user_can_see_changeset
-#: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm__user_can_see_changeset
-msgid "User Can See Changeset"
 msgstr ""
 
 #. module: base_exception
