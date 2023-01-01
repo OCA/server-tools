@@ -9,14 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-03 10:08+0000\n"
-"PO-Revision-Date: 2018-03-03 10:08+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2018\n"
+"PO-Revision-Date: 2023-01-01 13:45+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: auto_backup
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
@@ -26,7 +27,7 @@ msgstr "/home/odoo/.ssh/id_rsa"
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__folder
 msgid "Absolute path for storing the backups"
-msgstr "Percorso assoluto per il salvataggio del DB"
+msgstr "Percorso assoluto per il salvataggio del DiBa"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__message_needaction
@@ -47,7 +48,7 @@ msgstr "Backup automatici"
 #. module: auto_backup
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "Automatic backups of the database can be scheduled as follows:"
-msgstr "Il backup automatico del DB è pianificato come segue:"
+msgstr "Il backup automatico del DiBa è pianificato come segue:"
 
 #. module: auto_backup
 #: model:mail.message.subtype,name:auto_backup.mail_message_subtype_failure
