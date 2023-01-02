@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-01 02:43+0000\n"
-"PO-Revision-Date: 2022-03-16 13:17+0000\n"
+"PO-Revision-Date: 2023-01-02 12:01+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: base_exception
 #. odoo-python
@@ -84,7 +84,7 @@ msgstr "Created by"
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule__create_date
 msgid "Created on"
-msgstr "Created on"
+msgstr "Creato il"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule__description
