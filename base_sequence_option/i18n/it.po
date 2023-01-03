@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-11-04 14:44+0000\n"
-"Last-Translator: Riccardo Bellanova <bellanova@webmonks.it>\n"
+"PO-Revision-Date: 2023-01-03 12:49+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -113,7 +113,7 @@ msgstr "Ultima modifica il"
 #: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option__write_uid
 #: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option_line__write_uid
 msgid "Last Updated by"
-msgstr "Ultima modifica da"
+msgstr "Ultimo aggiornamento di"
 
 #. module: base_sequence_option
 #: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option__write_date
