@@ -3,8 +3,8 @@
 
 import logging
 import sys
+from unittest.mock import patch
 
-from mock import patch
 from sentry_sdk.integrations.logging import _IGNORED_LOGGERS
 from sentry_sdk.transport import HttpTransport
 
