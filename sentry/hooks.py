@@ -6,7 +6,6 @@ import warnings
 from collections import abc
 
 import odoo.http
-from odoo.service import wsgi_server
 from odoo.service.server import server
 from odoo.tools import config as odoo_config
 
@@ -123,7 +122,7 @@ def initialize_sentry(config):
         server.app = SentryWsgiMiddleware(server.app)
 
     # Patch the wsgi server in case of further registration
-    wsgi_server.application = SentryWsgiMiddleware(wsgi_server.application)
+    odoo.http.Application = SentryWsgiMiddleware(odoo.http.Application)
 
     with sentry_sdk.push_scope() as scope:
         scope.set_extra("debug", False)
