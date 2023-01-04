@@ -21,6 +21,7 @@ class CustomInfoProperty(models.Model):
     ]
 
     name = fields.Char(required=True, translate=True)
+    code = fields.Char()
     sequence = fields.Integer(index=True)
     category_id = fields.Many2one(
         comodel_name="custom.info.category",

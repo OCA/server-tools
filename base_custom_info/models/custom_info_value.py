@@ -57,6 +57,7 @@ class CustomInfoValue(models.Model):
     )
     category_id = fields.Many2one(related="property_id.category_id", store=True)
     name = fields.Char(related="property_id.name")
+    code = fields.Char(related="property_id.code")
     field_type = fields.Selection(related="property_id.field_type")
     widget = fields.Selection(
         related="property_id.widget",
@@ -141,6 +142,7 @@ class CustomInfoValue(models.Model):
         "value_int",
         "value_float",
         "value_bool",
+        "value_date",
         "value_id",
     )
     def _compute_value(self):

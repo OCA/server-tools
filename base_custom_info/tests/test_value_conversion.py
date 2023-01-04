@@ -134,3 +134,21 @@ class ValueConversionCase(TransactionCase):
         )
         self.creation_found("Needs videogames")
         self.assertEqual(self.value.value, self.value.value_id.name)
+
+    def test_get_custom_info(self):
+        """Test get value with properties argument and with code argument"""
+        self.prop_id.code = "WEAKNESSES"
+        self.fill_value(self.prop_id, "Needs videogames")
+        self.env.ref("base_custom_info.opt_videogames").code = "GAMES"
+        # Test property
+        value = self.agrolait.get_custom_info(property=self.prop_id)
+        self.assertEqual(value, "Needs videogames")
+        value = self.agrolait.get_custom_info(
+            property=self.prop_id, option_field="code"
+        )
+        self.assertEqual(value, "GAMES")
+        # Test code
+        value = self.agrolait.get_custom_info(code="WEAKNESSES")
+        self.assertEqual(value, "Needs videogames")
+        value = self.agrolait.get_custom_info(code="WEAKNESSES", option_field="code")
+        self.assertEqual(value, "GAMES")

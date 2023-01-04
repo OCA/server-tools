@@ -2,9 +2,11 @@
 # Copyright 2015 Carlos Dauden <carlos.dauden@tecnativa.com>
 # Copyright 2016 Jairo Llopis <jairo.llopis@tecnativa.com>
 # Copyright 2017 Pedro M. Baeza <pedro.baeza@tecnativa.com>
+# Copyright 2023 Henrik Norlin <henrik@appstogrow.co>
 # License LGPL-3 - See http://www.gnu.org/licenses/lgpl-3.0.html
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
 
 
 class CustomInfo(models.AbstractModel):
@@ -92,6 +94,30 @@ class CustomInfo(models.AbstractModel):
         if res:
             info_values.unlink()
         return res
+
+    def get_custom_info(self, property=None, code=None, option_field="display_name"):
+        """Get the value of the given property or code."""
+        self.ensure_one()
+        if not property:
+            if not code:
+                raise ValidationError(_("get_custom_info: No property or code!"))
+            property = self.get_custom_info_property_by_code(code)
+        if property:
+            record = self.get_custom_info_value(property)
+            if record:
+                if property.field_type == "id":
+                    return getattr(record.value_id, option_field)
+                else:
+                    return getattr(record, "value_{}".format(property.field_type))
+
+    def get_custom_info_property_by_code(self, code):
+        self.ensure_one()
+        return self.env["custom.info.property"].search(
+            [
+                ("template_id", "=", self.custom_info_template_id.id),
+                ("code", "=", code),
+            ]
+        )
 
     @api.returns("custom.info.value")
     def get_custom_info_value(self, properties):
