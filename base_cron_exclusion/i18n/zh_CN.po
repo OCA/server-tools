@@ -28,6 +28,7 @@ msgid "Scheduled Actions"
 msgstr "安排的动作"
 
 #. module: base_cron_exclusion
+#. odoo-python
 #: code:addons/base_cron_exclusion/models/ir_cron.py:0
 #, python-format
 msgid "You can not mutually exclude a scheduled actions with itself."
