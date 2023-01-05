@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo-addon-auditlog>=16.0dev,<16.1dev',
+        'odoo-addon-base_cron_exclusion>=16.0dev,<16.1dev',
         'odoo-addon-base_exception>=16.0dev,<16.1dev',
         'odoo-addon-base_fontawesome>=16.0dev,<16.1dev',
         'odoo-addon-base_m2m_custom_field>=16.0dev,<16.1dev',
