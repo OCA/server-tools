@@ -44,10 +44,10 @@ class XLSXExport(models.AbstractModel):
 
     @api.model
     def _get_line_vals(self, record, line_field, fields):
-        """ Get values of this field from record set and return as dict of vals
-            - record: main object
-            - line_field: rows object, i.e., line_ids
-            - fields: fields in line_ids, i.e., partner_id.display_name
+        """Get values of this field from record set and return as dict of vals
+        - record: main object
+        - line_field: rows object, i.e., line_ids
+        - fields: fields in line_ids, i.e., partner_id.display_name
         """
         line_field, max_row = co.get_line_max(line_field)
         line_field = line_field.replace("_CONT_", "")  # Remove _CONT_ if any
@@ -111,7 +111,7 @@ class XLSXExport(models.AbstractModel):
 
     @api.model
     def _fill_workbook_data(self, workbook, record, data_dict):
-        """ Fill data from record with style in data_dict to workbook """
+        """Fill data from record with style in data_dict to workbook"""
         if not record or not data_dict:
             return
         try:
@@ -144,7 +144,7 @@ class XLSXExport(models.AbstractModel):
 
     @api.model
     def _get_field_data(self, _field, _line):
-        """ Get field data, and convert data type if needed """
+        """Get field data, and convert data type if needed"""
         if not _field:
             return None
         line_copy = _line

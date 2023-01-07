@@ -6,7 +6,7 @@ from odoo.tests.common import SingleTransactionCase
 class TestExcelImportExport(SingleTransactionCase):
     @classmethod
     def setUpClass(cls):
-        super(TestExcelImportExport, cls).setUpClass()
+        super().setUpClass()
 
     @classmethod
     def setUpXLSXTemplate(cls):

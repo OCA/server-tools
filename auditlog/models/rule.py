@@ -19,7 +19,7 @@ FIELDS_BLACKLIST = [
 EMPTY_DICT = {}
 
 
-class DictDiffer(object):
+class DictDiffer:
     """Calculate the difference between two dictionaries as:
     (1) items added
     (2) items removed
@@ -135,7 +135,8 @@ class AuditlogRule(models.Model):
         states={"subscribed": [("readonly", True)]},
     )
     capture_record = fields.Boolean(
-        "Capture Record", help="Select this if you want to keep track of Unlink Record",
+        "Capture Record",
+        help="Select this if you want to keep track of Unlink Record",
     )
 
     _sql_constraints = [
@@ -151,7 +152,7 @@ class AuditlogRule(models.Model):
 
     def _register_hook(self):
         """Get all rules and apply them to log method calls."""
-        super(AuditlogRule, self)._register_hook()
+        super()._register_hook()
         if not hasattr(self.pool, "_auditlog_field_cache"):
             self.pool._auditlog_field_cache = {}
         if not hasattr(self.pool, "_auditlog_model_cache"):
@@ -217,14 +218,14 @@ class AuditlogRule(models.Model):
     @api.model
     def create(self, vals):
         """Update the registry when a new rule is created."""
-        new_record = super(AuditlogRule, self).create(vals)
+        new_record = super().create(vals)
         if new_record._register_hook():
             modules.registry.Registry(self.env.cr.dbname).signal_changes()
         return new_record
 
     def write(self, vals):
         """Update the registry when existing rules are updated."""
-        super(AuditlogRule, self).write(vals)
+        super().write(vals)
         if self._register_hook():
             modules.registry.Registry(self.env.cr.dbname).signal_changes()
         return True
@@ -232,7 +233,7 @@ class AuditlogRule(models.Model):
     def unlink(self):
         """Unsubscribe rules before removing them."""
         self.unsubscribe()
-        return super(AuditlogRule, self).unlink()
+        return super().unlink()
 
     @api.model
     def get_auditlog_fields(self, model):
@@ -452,7 +453,7 @@ class AuditlogRule(models.Model):
         additional_log_values=None,
     ):
         """Create logs. `old_values` and `new_values` are dictionaries, e.g:
-            {RES_ID: {'FIELD': VALUE, ...}}
+        {RES_ID: {'FIELD': VALUE, ...}}
         """
         if old_values is None:
             old_values = EMPTY_DICT

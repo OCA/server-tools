@@ -3,7 +3,7 @@
 from odoo.tests.common import TransactionCase
 
 
-class AuditlogCommon(object):
+class AuditlogCommon:
     def test_LogCreation(self):
         """First test, caching some data."""
 
@@ -192,7 +192,7 @@ class AuditlogCommon(object):
 
 class TestAuditlogFull(TransactionCase, AuditlogCommon):
     def setUp(self):
-        super(TestAuditlogFull, self).setUp()
+        super().setUp()
         self.groups_model_id = self.env.ref("base.model_res_groups").id
         self.groups_rule = self.env["auditlog.rule"].create(
             {
@@ -208,12 +208,12 @@ class TestAuditlogFull(TransactionCase, AuditlogCommon):
 
     def tearDown(self):
         self.groups_rule.unlink()
-        super(TestAuditlogFull, self).tearDown()
+        super().tearDown()
 
 
 class TestAuditlogFast(TransactionCase, AuditlogCommon):
     def setUp(self):
-        super(TestAuditlogFast, self).setUp()
+        super().setUp()
         self.groups_model_id = self.env.ref("base.model_res_groups").id
         self.groups_rule = self.env["auditlog.rule"].create(
             {
@@ -229,12 +229,12 @@ class TestAuditlogFast(TransactionCase, AuditlogCommon):
 
     def tearDown(self):
         self.groups_rule.unlink()
-        super(TestAuditlogFast, self).tearDown()
+        super().tearDown()
 
 
 class TestAuditlogFullCaptureRecord(TransactionCase, AuditlogCommon):
     def setUp(self):
-        super(TestAuditlogFullCaptureRecord, self).setUp()
+        super().setUp()
         self.groups_model_id = self.env.ref("base.model_res_groups").id
         self.groups_rule = self.env["auditlog.rule"].create(
             {
@@ -251,4 +251,4 @@ class TestAuditlogFullCaptureRecord(TransactionCase, AuditlogCommon):
 
     def tearDown(self):
         self.groups_rule.unlink()
-        super(TestAuditlogFullCaptureRecord, self).tearDown()
+        super().tearDown()

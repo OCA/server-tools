@@ -14,7 +14,7 @@ class TestXLSXTemplate(TestExcelImportExport):
         super(TestExcelImportExport, cls).setUpClass()
 
     def test_xlsx_template(self):
-        """ Test XLSX Template input and output instruction """
+        """Test XLSX Template input and output instruction"""
         self.setUpXLSXTemplate()
         instruction_dict = literal_eval(self.sample_template.instruction)
         self.assertDictEqual(
@@ -63,7 +63,7 @@ class TestXLSXTemplate(TestExcelImportExport):
         self.assertTrue(self.sample_template.datas)  # Loaded successfully
 
     def test_xlsx_template_easy_reporting(self):
-        """ Test XLSX template using easy reporting option """
+        """Test XLSX template using easy reporting option"""
         sale_model = self.env["ir.model"].search([("model", "=", "sale.order")])
         # Create the template
         with Form(self.env["xlsx.template"]) as f:

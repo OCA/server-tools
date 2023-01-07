@@ -41,7 +41,8 @@ class ResUsers(models.Model):
     @classmethod
     def _login(cls, db, login, password):
         return cls._auth_check_remote(
-            login, lambda: super(ResUsers, cls)._login(db, login, password),
+            login,
+            lambda: super(ResUsers, cls)._login(db, login, password),
         )
 
     @classmethod

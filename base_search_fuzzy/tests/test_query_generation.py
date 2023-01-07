@@ -7,7 +7,7 @@ from odoo.tests.common import TransactionCase
 
 class QueryGenerationCase(TransactionCase):
     def setUp(self):
-        super(QueryGenerationCase, self).setUp()
+        super().setUp()
         self.ResPartner = self.env["res.partner"]
         self.TrgmIndex = self.env["trgm.index"]
         self.ResPartnerCategory = self.env["res.partner.category"]

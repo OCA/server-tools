@@ -14,7 +14,7 @@ def _fnmatch(filename, patterns):
 
 
 def _walk(top, exclude_patterns, keep_langs):
-    keep_langs = {l.split("_")[0] for l in keep_langs}
+    keep_langs = {lang.split("_")[0] for lang in keep_langs}
     for dirpath, dirnames, filenames in os.walk(top):
         dirnames.sort()
         reldir = os.path.relpath(dirpath, top)

@@ -4,8 +4,7 @@
 
 import os
 import tempfile
-
-import mock
+from unittest import mock
 
 import odoo
 from odoo.modules import get_module_path
@@ -19,7 +18,7 @@ MODULE_NAME = "module_auto_update"
 
 class TestModule(TransactionCase):
     def setUp(self):
-        super(TestModule, self).setUp()
+        super().setUp()
         self.own_module = self.env["ir.module.module"].search(
             [("name", "=", MODULE_NAME)]
         )
@@ -84,7 +83,7 @@ class TestModule(TransactionCase):
 @odoo.tests.tagged("post_install", "-at_install")
 class TestModuleAfterInstall(TransactionCase):
     def setUp(self):
-        super(TestModuleAfterInstall, self).setUp()
+        super().setUp()
         Imm = self.env["ir.module.module"]
         self.own_module = Imm.search([("name", "=", MODULE_NAME)])
         self.base_module = Imm.search([("name", "=", "base")])

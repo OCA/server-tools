@@ -50,6 +50,4 @@ class ReportController(report.ReportController):
                 ("Content-Disposition", content_disposition(report_name)),
             ]
             return request.make_response(excel, headers=excelhttpheaders)
-        return super(ReportController, self).report_routes(
-            reportname, docids, converter, **data
-        )
+        return super().report_routes(reportname, docids, converter, **data)

@@ -7,7 +7,7 @@ from odoo.tests.common import Form, TransactionCase
 
 class PartnerCase(TransactionCase):
     def setUp(self, *args, **kwargs):
-        super(PartnerCase, self).setUp(*args, **kwargs)
+        super().setUp(*args, **kwargs)
         self.agrolait = self.env.ref("base.res_partner_2")
         self.template = self.env["custom.info.template"].create(
             {

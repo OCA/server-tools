@@ -3,9 +3,9 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 
-class ChangesetTestCommon(object):
+class ChangesetTestCommon:
     def assert_changeset(self, record, expected_source, expected_changes):
-        """ Check if a changeset has been created according to expected values
+        """Check if a changeset has been created according to expected values
 
         The record should have no prior changeset than the one created in the
         test (so it has exactly 1 changeset).
@@ -60,7 +60,7 @@ class ChangesetTestCommon(object):
             raise AssertionError("Changes do not match\n\n:%s" % message)
 
     def _create_changeset(self, record, changes):
-        """ Create a changeset and its associated changes
+        """Create a changeset and its associated changes
 
         :param record: 'record' record
         :param changes: list of changes [(field, new value, state)]

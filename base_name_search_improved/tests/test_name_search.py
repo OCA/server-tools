@@ -8,7 +8,7 @@ from odoo.tests.common import TransactionCase, at_install, post_install
 @post_install(True)
 class NameSearchCase(TransactionCase):
     def setUp(self):
-        super(NameSearchCase, self).setUp()
+        super().setUp()
         phone_field = self.env.ref("base.field_res_partner__phone")
         model_partner = self.env.ref("base.model_res_partner")
         model_partner.name_search_ids = phone_field

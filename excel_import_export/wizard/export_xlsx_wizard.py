@@ -6,8 +6,8 @@ from odoo.exceptions import ValidationError
 
 
 class ExportXLSXWizard(models.TransientModel):
-    """ This wizard is used with the template (xlsx.template) to export
-    xlsx template filled with data form the active record """
+    """This wizard is used with the template (xlsx.template) to export
+    xlsx template filled with data form the active record"""
 
     _name = "export.xlsx.wizard"
     _description = "Wizard for exporting excel"
@@ -40,7 +40,7 @@ class ExportXLSXWizard(models.TransientModel):
         templates = self.env["xlsx.template"].search(template_domain)
         if not templates:
             raise ValidationError(_("No template found"))
-        defaults = super(ExportXLSXWizard, self).default_get(fields)
+        defaults = super().default_get(fields)
         for template in templates:
             if not template.datas:
                 raise ValidationError(_("No file in %s") % (template.name,))

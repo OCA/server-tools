@@ -6,7 +6,7 @@ from odoo.exceptions import ValidationError
 
 
 class XLSXReport(models.AbstractModel):
-    """ Common class for xlsx reporting wizard """
+    """Common class for xlsx reporting wizard"""
 
     _name = "xlsx.report"
     _description = "Excel Report AbstractModel"
@@ -34,7 +34,7 @@ class XLSXReport(models.AbstractModel):
         templates = self.env["xlsx.template"].search(template_domain)
         if not templates:
             raise ValidationError(_("No template found"))
-        defaults = super(XLSXReport, self).default_get(fields)
+        defaults = super().default_get(fields)
         for template in templates:
             if not template.datas:
                 raise ValidationError(_("No file in %s") % (template.name,))
