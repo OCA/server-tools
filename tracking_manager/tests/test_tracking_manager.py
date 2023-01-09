@@ -28,35 +28,40 @@ class TestTrackingManager(SavepointCase):
             }
         )
 
-    def test_1_ir_model_config(self):
-        self.partner_model.apply_custom_tracking = True
-        # custom_tracking_field_ids
-        self.assertEqual(
-            len(self.partner_model.field_id),
-            len(self.partner_model.custom_tracking_field_ids),
-        )
-        # o2m_model_ids
-        self.assertEqual(
-            len(self.partner_model.o2m_model_ids),
-            len(self.partner_model.field_id.filtered(lambda x: x.ttype == "one2many")),
+    def _active_tracking(self, fields_list):
+        self.partner_model.active_custom_tracking = True
+        for field in self._get_fields(fields_list):
+            field.custom_tracking = True
+
+    def _get_fields(self, fields_list):
+        return self.env["ir.model.fields"].search(
+            [
+                ("model_id.model", "=", "res.partner"),
+                ("name", "in", fields_list),
+            ]
         )
 
-    def test_2_tracking_model_field_config(self):
-        self.partner_2 = self.env.ref("base.res_partner_2")
-        self.partner_1_w_parent = self.env.ref("base.res_partner_address_1")
-        self.partner_model.apply_custom_tracking = True
-        # Readonly, related are not tracked
-        parent_name = self.partner_model.custom_tracking_field_ids.filtered(
-            lambda x: x.name == "parent_name"
-        )
-        self.assertFalse(parent_name.custom_tracking)
-        # Other fields are tracked
-        street = self.partner_model.custom_tracking_field_ids.filtered(
-            lambda x: x.name == "street"
-        )
-        self.assertTrue(street.custom_tracking)
+    def test_not_tracked(self):
+        self.partner_model.active_custom_tracking = True
+        field = self._get_fields(["category_id"])[0]
+        self.assertFalse(field.native_tracking)
+        self.assertFalse(field.custom_tracking)
 
-    def test_3_m2m_add_line(self):
+    def test_native_tracked(self):
+        self.partner_model.active_custom_tracking = True
+        field = self._get_fields(["email"])[0]
+        self.assertTrue(field.native_tracking)
+        self.assertTrue(field.custom_tracking)
+
+    def test_update_tracked(self):
+        self.partner_model.active_custom_tracking = True
+        field = self._get_fields(["category_id"])[0]
+        self.assertFalse(field.native_tracking)
+        self.partner_model.automatic_custom_tracking = True
+        self.partner_model.update_custom_tracking()
+        self.assertTrue(field.custom_tracking)
+
+    def test_m2m_add_line(self):
         initial_msg = self.partner_1.message_ids
         self.partner_1.category_id = [
             (4, self.env.ref("base.res_partner_category_3").id)
@@ -64,7 +69,7 @@ class TestTrackingManager(SavepointCase):
         after_msg = self.partner_1.message_ids
         self.assertEqual(len(initial_msg), len(after_msg))
 
-        self.partner_model.apply_custom_tracking = True
+        self._active_tracking(["category_id"])
         self.partner_1.category_id = [
             (4, self.env.ref("base.res_partner_category_8").id)
         ]
@@ -72,21 +77,21 @@ class TestTrackingManager(SavepointCase):
         self.assertEqual(len(initial_msg) + 1, len(after_msg))
         self.assertTrue("New" in after_msg[0].body)
 
-    def test_4_m2m_delete_line(self):
+    def test_m2m_delete_line(self):
         initial_msg = self.partner_1.message_ids
         self.partner_1.category_id = [(3, self.partner_1.category_id[0].id)]
         after_msg = self.partner_1.message_ids
         self.assertEqual(len(initial_msg), len(after_msg))
 
-        self.partner_model.apply_custom_tracking = True
+        self._active_tracking(["category_id"])
         self.partner_1.category_id = [(3, self.partner_1.category_id[0].id)]
         after_msg = self.partner_1.message_ids
         self.assertEqual(len(initial_msg) + 1, len(after_msg))
         self.assertTrue("Delete" in after_msg[0].body)
 
-    def test_5_m2m_multi_line(self):
+    def test_m2m_multi_line(self):
         initial_msg = self.partner_1.message_ids
-        self.partner_model.apply_custom_tracking = True
+        self._active_tracking(["category_id"])
         self.partner_1.category_id = [
             (3, self.partner_1.category_id[0].id),
             (4, self.env.ref("base.res_partner_category_8").id),
@@ -97,26 +102,26 @@ class TestTrackingManager(SavepointCase):
         self.assertEqual(after_msg[0].body.count("New"), 2)
         self.assertEqual(after_msg[0].body.count("Delete"), 1)
 
-    def test_6_o2m_add(self):
+    def test_o2m_add(self):
         initial_msg = self.partner_1.message_ids
-        self.partner_model.apply_custom_tracking = True
+        self._active_tracking(["bank_ids"])
         self.partner_1.bank_ids = [(4, self.bank_partner_2.id)]
         after_msg = self.partner_1.message_ids
         self.assertEqual(len(initial_msg) + 1, len(after_msg))
         self.assertTrue("New" in after_msg[0].body)
 
-    def test_7_o2m_delete(self):
-        self.partner_model.apply_custom_tracking = True
+    def test_o2m_delete(self):
+        self._active_tracking(["bank_ids"])
         initial_msg = self.partner_1.message_ids
         self.partner_1.write({"bank_ids": [(3, self.partner_1.bank_ids[0].id)]})
         after_msg = self.partner_1.message_ids
         self.assertEqual(len(initial_msg) + 1, len(after_msg))
         self.assertTrue("Delete" in after_msg[0].body)
 
-    def test_8_o2m_change_in_line(self):
+    def test_o2m_change_in_line(self):
         self.partner_1.bank_ids = [(6, 0, self.bank_partner_2.id)]
         initial_msg = self.partner_1.message_ids
-        self.partner_model.apply_custom_tracking = True
+        self._active_tracking(["bank_ids"])
         self.partner_1.write(
             {
                 "bank_ids": [(1, self.partner_1.bank_ids.id, {"acc_number": "123"})],
@@ -129,10 +134,8 @@ class TestTrackingManager(SavepointCase):
         bank_model = self.env["ir.model"].search(
             [("model", "=", self.bank_partner_2._name)], limit=1
         )
-        bank_model.apply_custom_tracking = True
-        acc_number = bank_model.custom_tracking_field_ids.filtered(
-            lambda x: x.name == "acc_number"
-        )
+        bank_model.active_custom_tracking = True
+        acc_number = bank_model.field_id.filtered(lambda x: x.name == "acc_number")
         acc_number.custom_tracking = False
         self.partner_1.write(
             {
@@ -142,9 +145,9 @@ class TestTrackingManager(SavepointCase):
         after_msg_2 = self.partner_1.message_ids
         self.assertEqual(len(after_msg), len(after_msg_2))
 
-    def test_9_o2m_multi_line(self):
+    def test_o2m_multi_line(self):
         initial_msg = self.partner_1.message_ids
-        self.partner_model.apply_custom_tracking = True
+        self._active_tracking(["bank_ids"])
         self.partner_1.bank_ids = [
             (3, self.partner_1.bank_ids[0].id),
             (4, self.bank_partner_2.id),
