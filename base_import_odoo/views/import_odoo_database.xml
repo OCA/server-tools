@@ -96,14 +96,13 @@
                         method: 'search_read',
                         fields: ['res_id'],
                         domain: [
-                            ['module', '=', 'base_import_odoo'],
+                            ['module', '=', '__base_import_odoo__'],
                             ['model', '=', model],
                             ['import_database_id', '=', database_id],
                         ],
                     })
                     .then(function(data)
                     {
-                        debugger;
                         return require('web.web_client').action_manager.do_action({
                             'name': model_name,
                             'type': 'ir.actions.act_window',
