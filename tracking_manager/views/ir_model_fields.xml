@@ -3,17 +3,37 @@
      @author Kévin Roche <kevin.roche@akretion.com>
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
-    <record id="custom_tracking_field_view_tree" model="ir.ui.view">
-        <field name="model">tracking.model.field</field>
-        <field name="name">tracking.model.field.tree</field>
+
+    <record model="ir.actions.act_window" id="ir_model_fields_action">
+        <field name="name">Trackable Fields</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">ir.model.fields</field>
+        <field name="view_mode">tree,form</field>
+        <field
+            name="domain"
+        >[("trackable", "=", True), ("model_id", "=", context['active_id'])]</field>
+        <field name="context">{}</field>
+        <field name="target">current</field>
+    </record>
+
+    <record id="ir_model_fields_view_tree_custom_tracking" model="ir.ui.view">
+        <field name="model">ir.model.fields</field>
         <field name="arch" type="xml">
-            <tree editable="bottom" create="false">
+            <tree editable="bottom" create="0" delete="0" duplicate="0">
                 <field name="name" readonly="True" />
+                <field name="field_description" readonly="True" />
+                <field name="ttype" readonly="True" />
+                <field name="native_tracking" readonly="True" />
                 <field name="custom_tracking" widget="boolean_toggle" />
-                <field name="native_tracking_field" readonly="True" />
-                <field name="type_field" readonly="True" />
-                <field name="model_id" readonly="True" />
             </tree>
         </field>
     </record>
+
+    <record id="ir_model_fields_action_view" model="ir.actions.act_window.view">
+        <field name="sequence" eval="2" />
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="ir_model_fields_view_tree_custom_tracking" />
+        <field name="act_window_id" ref="ir_model_fields_action" />
+    </record>
+
 </odoo>
