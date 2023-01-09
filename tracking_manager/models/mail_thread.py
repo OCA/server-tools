@@ -8,6 +8,7 @@ from odoo import models, tools
 class MailThread(models.AbstractModel):
     _inherit = "mail.thread"
 
+    # TODO invalidate ormcache
     @tools.ormcache("self.env.uid", "self.env.su")
     def _get_tracked_fields(self):
         res = super()._get_tracked_fields()
@@ -21,12 +22,12 @@ class MailThread(models.AbstractModel):
             self.env["ir.model"]
             .sudo()
             .search(
-                [("model", "=", self._name), ("apply_custom_tracking", "=", True)],
+                [("model", "=", self._name), ("active_custom_tracking", "=", True)],
                 limit=1,
             )
         )
         if tracking_model:
-            track_fields = tracking_model.custom_tracking_field_ids.filtered(
+            track_fields = tracking_model.field_id.filtered(
                 lambda f: f.custom_tracking
             ).mapped("name")
             return track_fields and set(self.fields_get(track_fields))
@@ -112,8 +113,8 @@ class MailThread(models.AbstractModel):
                     # tracking (apply_custom_tracking = True), we track
                     # the changes only for fields with custom_tracking.
                     if (
-                        line_model_id.apply_custom_tracking
-                        and not line_field_id.custom_tracking_id.custom_tracking
+                        line_model_id.active_custom_tracking
+                        and not line_field_id.custom_tracking
                     ):
                         old = new = False
                     elif line_field_id.ttype in ["one2many", "many2one", "many2many"]:
