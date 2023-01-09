@@ -243,7 +243,7 @@ class ImportOdooDatabase(models.Model):
                 },
                 mode="exec",
             )
-        new = self.env.ref("base_import_odoo.%s" % xmlid, False)
+        new = self.env.ref("__base_import_odoo__.%s" % xmlid, False)
         if new and new.exists():
             if self.duplicates == "overwrite_empty":
                 record = {key: value for key, value in record.items() if not new[key]}
@@ -260,13 +260,13 @@ class ImportOdooDatabase(models.Model):
 
     def _create_record_xmlid(self, model, local_id, remote_id):
         xmlid = "%d-%s-%d" % (self.id, model._name.replace(".", "_"), remote_id or 0)
-        if self.env.ref("base_import_odoo.%s" % xmlid, False):
+        if self.env.ref("__base_import_odoo__.%s" % xmlid, False):
             return
         return self.env["ir.model.data"].create(
             {
                 "name": xmlid,
                 "model": model._name,
-                "module": "base_import_odoo",
+                "module": "__base_import_odoo__",
                 "res_id": local_id,
                 "noupdate": True,
                 "import_database_id": self.id,
