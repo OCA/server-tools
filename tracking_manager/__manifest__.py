@@ -10,7 +10,7 @@
     "category": "Tools",
     "website": "https://github.com/OCA/server-tools",
     "author": "Akretion, Odoo Community Association (OCA)",
-    "maintainers": ["Kev-Roche"],
+    "maintainers": ["Kev-Roche", "sebastienbeau"],
     "license": "AGPL-3",
     "application": False,
     "installable": True,
@@ -19,9 +19,8 @@
         "mail",
     ],
     "data": [
-        "views/ir_model.xml",
         "views/ir_model_fields.xml",
+        "views/ir_model.xml",
         "views/message_template.xml",
-        "security/ir.model.access.csv",
     ],
 }
