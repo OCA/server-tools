@@ -132,9 +132,10 @@ class Base(models.AbstractModel):
     def create(self, list_vals):
         self = self._tm_init_tracker()
         records = super().create(list_vals)
-        records._tm_notify_owner("create")
+        for record in records:
+            record._tm_notify_owner("create")
         self._tm_post_message()
-        return records
+        return records.with_context(tm_tracker=None)
 
     def unlink(self):
         self = self._tm_init_tracker()
