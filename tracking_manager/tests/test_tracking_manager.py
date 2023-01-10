@@ -9,67 +9,59 @@ class TestTrackingManager(SavepointCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        # Using the model res.partner for testing :
-        #     - street field as regular field
-        #     - parent_name as related field
-        #     - category_id as many2many field
-        #     - bank_ids as one2many field with acc_number field to test
-        #     changes.
-
-        cls.partner_1 = cls.env.ref("base.res_partner_1")
-        cls.partner_2 = cls.env.ref("base.res_partner_2")
-        cls.partner_1.bank_ids = [(6, 0, cls.env.ref("base.bank_partner_demo").ids)]
-        cls.partner_model = cls.env["ir.model"].search(
-            [("model", "=", cls.partner_1._name)], limit=1
-        )
-        cls.bank_partner_2 = cls.env["res.partner.bank"].create(
-            {
-                "acc_number": "1234567890",
-                "partner_id": cls.partner_1.id,
-            }
-        )
-        cls.partner_categ_1 = cls.env["res.partner.category"].create({"name": "FOO"})
-        cls.partner_categ_2 = cls.env["res.partner.category"].create({"name": "BAR"})
-        cls.partner_categ_3 = cls.env["res.partner.category"].create({"name": "TOOH"})
-        cls.partner_1.category_id = cls.partner_categ_1
-
-    def _active_tracking(self, fields_list, model="res.partner"):
-        self.partner_model.active_custom_tracking = True
-        for field in self._get_fields(fields_list, model=model):
-            field.custom_tracking = True
-
-    def _get_fields(self, fields_list, model="res.partner"):
-        return self.env["ir.model.fields"].search(
+        cls.partner_categ_1, cls.partner_categ_2, cls.partner_categ_3 = cls.env[
+            "res.partner.category"
+        ].create(
             [
-                ("model_id.model", "=", model),
-                ("name", "in", fields_list),
+                {"name": "FOO"},
+                {"name": "BAR"},
+                {"name": "TOOH"},
             ]
         )
+        cls.partner = cls.env["res.partner"].create(
+            {
+                "name": "Foo",
+                "bank_ids": [(0, 0, {"acc_number": "007"})],
+                "category_id": [(6, 0, [cls.partner_categ_1.id])],
+            }
+        )
+        cls.partner.message_ids.unlink()
+        cls.partner_model = cls.env.ref("base.model_res_partner")
+        cls._active_tracking(["bank_ids", "category_id"])
+
+    @classmethod
+    def _active_tracking(cls, fields_list):
+        cls.partner_model.active_custom_tracking = True
+        for field in cls._get_fields(fields_list):
+            field.custom_tracking = True
+
+    @classmethod
+    def _get_fields(cls, fields_list):
+        return cls.partner_model.field_id.filtered(lambda s: s.name in fields_list)
 
     def test_not_tracked(self):
-        self.partner_model.active_custom_tracking = True
-        field = self._get_fields(["category_id"])[0]
+        field = self._get_fields(["name"])[0]
         self.assertFalse(field.native_tracking)
         self.assertFalse(field.custom_tracking)
 
     def test_native_tracked(self):
-        self.partner_model.active_custom_tracking = True
         field = self._get_fields(["email"])[0]
         self.assertTrue(field.native_tracking)
         self.assertTrue(field.custom_tracking)
 
     def test_update_tracked(self):
-        self.partner_model.active_custom_tracking = True
-        field = self._get_fields(["category_id"])[0]
+        field = self._get_fields(["name"])[0]
         self.assertFalse(field.native_tracking)
         self.partner_model.automatic_custom_tracking = True
         self.partner_model.update_custom_tracking()
         self.assertTrue(field.custom_tracking)
 
+    @property
+    def messages(self):
+        return self.partner.message_ids
+
     def test_m2m_add_line(self):
-        initial_msg = self.partner_1.message_ids
-        self._active_tracking(["category_id"])
-        self.partner_1.write(
+        self.partner.write(
             {
                 "category_id": [
                     (
@@ -83,22 +75,16 @@ class TestTrackingManager(SavepointCase):
                 ]
             }
         )
-        after_msg = self.partner_1.message_ids
-        self.assertEqual(len(initial_msg) + 1, len(after_msg))
-        self.assertTrue("New" in after_msg[0].body)
+        self.assertEqual(len(self.messages), 1)
+        self.assertIn("New", self.messages.body)
 
     def test_m2m_delete_line(self):
-        initial_msg = self.partner_1.message_ids
-        self._active_tracking(["category_id"])
-        self.partner_1.write({"category_id": [(6, 0, [])]})
-        after_msg = self.partner_1.message_ids
-        self.assertEqual(len(initial_msg) + 1, len(after_msg))
-        self.assertTrue("Delete" in after_msg[0].body)
+        self.partner.write({"category_id": [(6, 0, [])]})
+        self.assertEqual(len(self.messages), 1)
+        self.assertIn("Delete", self.messages.body)
 
     def test_m2m_multi_line(self):
-        initial_msg = self.partner_1.message_ids
-        self._active_tracking(["category_id"])
-        self.partner_1.write(
+        self.partner.write(
             {
                 "category_id": [
                     (
@@ -112,94 +98,71 @@ class TestTrackingManager(SavepointCase):
                 ]
             }
         )
-        after_msg = self.partner_1.message_ids
-        self.assertEqual(len(initial_msg) + 1, len(after_msg))
-        self.assertEqual(after_msg[0].body.count("New"), 2)
-        self.assertEqual(after_msg[0].body.count("Delete"), 1)
+        self.assertEqual(len(self.messages), 1)
+        self.assertEqual(self.messages.body.count("New"), 2)
+        self.assertEqual(self.messages.body.count("Delete"), 1)
 
-    def test_o2m_add(self):
-        initial_msg = self.partner_1.message_ids
-        self._active_tracking(["bank_ids"])
-        self.partner_1.write({"bank_ids": [(0, 0, {"acc_number": "1234567890"})]})
-        after_msg = self.partner_1.message_ids
-        self.assertEqual(len(initial_msg) + 1, len(after_msg))
-        self.assertTrue("New" in after_msg[0].body)
+    def test_o2m_create_indirectly(self):
+        self.partner.write({"bank_ids": [(0, 0, {"acc_number": "1234567890"})]})
+        self.assertEqual(len(self.messages), 1)
+        self.assertEqual(self.messages.body.count("New"), 1)
 
-    def test_o2m_delete(self):
-        self._active_tracking(["bank_ids"])
-        initial_msg = self.partner_1.message_ids
-        self.partner_1.write({"bank_ids": [(3, self.partner_1.bank_ids[0].id)]})
-        after_msg = self.partner_1.message_ids
-        self.assertEqual(len(initial_msg) + 1, len(after_msg))
-        self.assertTrue("Delete" in after_msg[0].body)
+    def test_o2m_unlink_indirectly(self):
+        self.partner.write({"bank_ids": [(3, self.partner.bank_ids[0].id)]})
+        self.assertEqual(len(self.messages), 1)
+        self.assertIn("Delete", self.messages.body)
 
-    def test_o2m_change_in_line(self):
-        initial_msg = self.partner_1.message_ids
-        self._active_tracking(["bank_ids"])
-        self.partner_1.write(
+    def test_o2m_write_indirectly(self):
+        self.partner.write(
             {
-                "bank_ids": [(1, self.partner_1.bank_ids[0].id, {"acc_number": "123"})],
+                "bank_ids": [(1, self.partner.bank_ids[0].id, {"acc_number": "123"})],
             }
         )
-        after_msg = self.partner_1.message_ids
-        self.assertEqual(len(initial_msg) + 1, len(after_msg))
-        self.assertTrue("Change" in after_msg[0].body)
+        self.assertEqual(len(self.messages), 1)
+        self.assertIn("Change", self.messages.body)
 
-    def test_o2m_change_in_line_not_tracked(self):
-        initial_msg = self.partner_1.message_ids
-        self._active_tracking(["bank_ids"])
+    def test_o2m_write_indirectly_on_not_tracked_fields(self):
         # Active custom tracking on res.partner.bank and remove tracking on acc_number
-        bank_model = self.env["ir.model"].search(
-            [("model", "=", self.bank_partner_2._name)], limit=1
-        )
+        bank_model = self.env["ir.model"].search([("model", "=", "res.partner.bank")])
         bank_model.active_custom_tracking = True
         acc_number = bank_model.field_id.filtered(lambda x: x.name == "acc_number")
         acc_number.custom_tracking = False
-        self.partner_1.write(
+        self.partner.write(
             {
-                "bank_ids": [(1, self.partner_1.bank_ids[0].id, {"acc_number": "456"})],
+                "bank_ids": [(1, self.partner.bank_ids[0].id, {"acc_number": "123"})],
             }
         )
-        after_msg = self.partner_1.message_ids
-        self.assertEqual(len(initial_msg), len(after_msg))
+        self.assertEqual(len(self.messages), 0)
 
-    def test_o2m_multi_line(self):
-        initial_msg = self.partner_1.message_ids
-        self._active_tracking(["bank_ids"])
-        self.partner_1.bank_ids = [
-            (3, self.partner_1.bank_ids[0].id),
-            (0, 0, {"acc_number": "1234567890"}),
-        ]
-        after_msg = self.partner_1.message_ids
-        self.assertEqual(len(initial_msg) + 1, len(after_msg))
-        self.assertEqual(after_msg[0].body.count("New"), 1)
-        self.assertEqual(after_msg[0].body.count("Delete"), 1)
+    def test_o2m_create_and_unlink_indirectly(self):
+        self.partner.write(
+            {
+                "bank_ids": [
+                    (3, self.partner.bank_ids[0].id),
+                    (0, 0, {"acc_number": "1234567890"}),
+                ]
+            }
+        )
+        self.assertEqual(len(self.messages), 1)
+        self.assertEqual(self.messages.body.count("New"), 1)
+        self.assertEqual(self.messages.body.count("Delete"), 1)
 
-    def test_create_o2m_directly(self):
-        initial_msg = self.partner_1.message_ids
-        self._active_tracking(["bank_ids"])
+    def test_o2m_create_directly(self):
         self.env["res.partner.bank"].create(
             {
                 "acc_number": "1234567890",
-                "partner_id": self.partner_1.id,
+                "partner_id": self.partner.id,
             }
         )
-        after_msg = self.partner_1.message_ids
-        self.assertEqual(len(initial_msg) + 1, len(after_msg))
-        self.assertEqual(after_msg[0].body.count("New"), 1)
+        self.assertEqual(len(self.messages), 1)
+        self.assertEqual(self.messages.body.count("New"), 1)
 
-    def test_unlink_o2m_directly(self):
-        initial_msg = self.partner_1.message_ids
-        self._active_tracking(["bank_ids"])
-        self.bank_partner_2.unlink()
-        after_msg = self.partner_1.message_ids
-        self.assertEqual(len(initial_msg) + 1, len(after_msg))
-        self.assertEqual(after_msg[0].body.count("Delete"), 1)
+    def test_o2m_unlink_directly(self):
+        self.partner.bank_ids.unlink()
+        self.assertEqual(len(self.messages), 1)
+        self.assertEqual(self.messages.body.count("Delete"), 1)
 
-    def test_update_o2m_directly(self):
-        initial_msg = self.partner_1.message_ids
-        self._active_tracking(["bank_ids"])
-        self.bank_partner_2.write({"acc_number": "0987654321"})
-        after_msg = self.partner_1.message_ids
-        self.assertEqual(len(initial_msg) + 1, len(after_msg))
-        self.assertEqual(after_msg[0].body.count("Change :"), 1)
+    def test_o2m_update_directly(self):
+        self.partner.bank_ids.write({"acc_number": "0987654321"})
+        self.assertEqual(len(self.messages), 1)
+        self.assertEqual(self.messages.body.count("Change :"), 1)
