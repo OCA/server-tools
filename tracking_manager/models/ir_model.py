@@ -4,7 +4,7 @@
 
 from ast import literal_eval
 
-from odoo import api, fields, models
+from odoo import api, fields, models, tools
 
 
 class IrModel(models.Model):
@@ -25,6 +25,62 @@ class IrModel(models.Model):
         readonly=False,
     )
 
+    @tools.ormcache()
+    def _get_custom_tracked_fields_per_model(self):
+        models = self.sudo().search([("active_custom_tracking", "=", True)])
+        return {
+            model.model: model.field_id.filtered(lambda f: f.custom_tracking).mapped(
+                "name"
+            )
+            for model in models
+        }
+
+    @tools.ormcache()
+    def _get_o2m_trackable_model(self):
+        """For each model tracked due to a o2m relation
+        compute the information of
+        - the fields to track
+        - the 'notify" field to found the related record to post the message
+        return example
+        {
+            "res.partner.bank": {
+                "fields": ["acc_holder_name", "acc_number", ...],
+                "notify": [["partner_id", "bank_ids"]],
+            }
+        }
+        """
+        fields = self.env["ir.model.fields"].search(
+            [
+                ("custom_tracking", "=", True),
+                ("model_id.active_custom_tracking", "=", True),
+                ("ttype", "=", "one2many"),
+            ]
+        )
+        related_models = self.env["ir.model"].search(
+            [
+                ("model", "in", fields.mapped("relation")),
+            ]
+        )
+        custom_tracked_fields = self._get_custom_tracked_fields_per_model()
+        res = {}
+        for model in related_models:
+            if model.model in custom_tracked_fields:
+                tracked_fields = custom_tracked_fields[model.model]
+            else:
+                tracked_fields = model.field_id.filtered(
+                    lambda s: not s.readonly and not s.related
+                ).mapped("name")
+            res[model.model] = {"fields": tracked_fields, "notify": []}
+
+        for field in fields:
+            res[field.relation]["notify"].append(
+                [
+                    self.env[field.model_id.model]._fields[field.name].inverse_name,
+                    field.name,
+                ]
+            )
+        return res
+
     @api.depends("active_custom_tracking")
     def _compute_automatic_custom_tracking(self):
         for record in self:
@@ -40,7 +96,7 @@ class IrModel(models.Model):
             "sale.order": [
                 "|",
                 ("ttype", "!=", "one2many"),
-                ("name", "in", ["line_ids"]),
+                ("name", "in", ["order_line"]),
             ],
             "account.move": [
                 "|",
@@ -71,6 +127,11 @@ class IrModel(models.Model):
     def _compute_tracked_field_count(self):
         for rec in self:
             rec.tracked_field_count = len(rec.field_id.filtered("custom_tracking"))
+
+    def write(self, vals):
+        if "active_custom_tracking" in vals:
+            self.clear_caches()
+        return super().write(vals)
 
 
 class IrModelFields(models.Model):
@@ -123,6 +184,7 @@ class IrModelFields(models.Model):
     def write(self, vals):
         custom_tracking = None
         if "custom_tracking" in vals:
+            self.clear_caches()
             self.check_access_rights("write")
             custom_tracking = vals.pop("custom_tracking")
             self._write({"custom_tracking": custom_tracking})
