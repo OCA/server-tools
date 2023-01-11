@@ -29,14 +29,16 @@ class IrModel(models.Model):
     def _get_custom_tracked_fields_per_model(self):
         models = self.sudo().search([("active_custom_tracking", "=", True)])
         return {
-            model.model: model.field_id.filtered(lambda f: f.custom_tracking).mapped(
-                "name"
-            )
+            model.model: model.field_id.filtered(
+                lambda f: f.custom_tracking
+                and self.env[model.model]._fields.get(f.name)
+            ).mapped("name")
             for model in models
+            if model.model in self.env
         }
 
     @tools.ormcache()
-    def _get_o2m_trackable_model(self):
+    def _get_model_tracked_by_o2m(self):
         """For each model tracked due to a o2m relation
         compute the information of
         - the fields to track
@@ -73,12 +75,11 @@ class IrModel(models.Model):
             res[model.model] = {"fields": tracked_fields, "notify": []}
 
         for field in fields:
-            res[field.relation]["notify"].append(
-                [
-                    self.env[field.model_id.model]._fields[field.name].inverse_name,
-                    field.name,
-                ]
-            )
+            model_name = field.model_id.model
+            if model_name in self.env and self.env[model_name]._fields.get(field.name):
+                res[field.relation]["notify"].append(
+                    [self.env[model_name]._fields[field.name].inverse_name, field.name]
+                )
         return res
 
     @api.depends("active_custom_tracking")
