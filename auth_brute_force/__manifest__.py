@@ -10,7 +10,8 @@
     'author': "GRAP, "
               "Tecnativa, "
               "Odoo Community Association (OCA)",
-    'website': 'https://github.com/OCA/server-tools',
+    'website': 'https://github.com/OCA/server-tools'
+               '/tree/10.0/auth_brute_force',
     'license': 'AGPL-3',
     'depends': [
         # If we don't depend on it, it would inhibit this addon

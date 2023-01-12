@@ -7,6 +7,8 @@
     "author": "Therp BV,"
               "Tecnativa,"
               "Odoo Community Association (OCA)",
+    "website": "https://github.com/OCA/server-tools"
+               "/tree/10.0/letsencrypt",
     "license": "AGPL-3",
     "category": "Hidden/Dependency",
     "summary": "Request SSL certificates from letsencrypt.org",

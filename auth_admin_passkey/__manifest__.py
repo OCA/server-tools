@@ -8,7 +8,8 @@
     'version': '10.0.1.0.3',
     'category': 'base',
     'author': "GRAP,Odoo Community Association (OCA)",
-    'website': 'http://www.grap.coop',
+    'website': 'https://github.com/OCA/server-tools'
+               '/tree/10.0/auth_admin_passkey',
     'license': 'AGPL-3',
     'depends': [
         'mail',

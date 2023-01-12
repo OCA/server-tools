@@ -24,7 +24,7 @@
     'category': 'Tools',
     'author': "Acsone SA/NV,Odoo Community Association (OCA)",
     'maintainer': 'ACSONE SA/NV',
-    'website': 'http://www.acsone.eu',
+    'website': 'https://github.com/OCA/server-tools',
     'depends': ['base', 'web', 'base_setup'],
     "license": "AGPL-3",
     'data': [],

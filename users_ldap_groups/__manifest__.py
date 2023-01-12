@@ -6,6 +6,8 @@
     "version": "10.0.0.0.1",
     "depends": ["auth_ldap"],
     "author": "Therp BV, Odoo Community Association (OCA)",
+    "website": "https://github.com/OCA/server-tools"
+               "/tree/10.0/users_ldap_groups",
     "license": "AGPL-3",
     "summary": "Adds user accounts to groups based on rules defined "
     "by the administrator.",

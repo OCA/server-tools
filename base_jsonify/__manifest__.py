@@ -9,7 +9,8 @@
     "summary": "Base module that provide the jsonify method on all models",
     "version": "10.0.1.1.0",
     "category": "Uncategorized",
-    "website": "https://github.com/OCA/server-tools",
+    "website": "https://github.com/OCA/server-tools"
+               "/tree/10.0/base_jsonify",
     "author": "Akretion, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "application": False,

@@ -7,7 +7,8 @@
     'summary': 'Allows users to enable MFA and add optional trusted devices',
     'version': '10.0.2.0.1',
     'category': 'Extra Tools',
-    'website': 'https://github.com/OCA/server-tools',
+    'website': 'https://github.com/OCA/server-tools'
+               '/tree/10.0/auth_totp',
     'author': 'LasLabs, Odoo Community Association (OCA)',
     'license': 'LGPL-3',
     'application': False,

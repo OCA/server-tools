@@ -6,7 +6,8 @@
     "summary": "Manage all kind of date range",
     "version": "10.0.3.0.1",
     "category": "Uncategorized",
-    "website": "https://odoo-community.org/",
+    "website": "https://github.com/OCA/server-tools"
+               "/tree/10.0/date_range",
     "author": "ACSONE SA/NV, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "application": False,

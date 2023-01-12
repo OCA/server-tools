@@ -9,7 +9,8 @@
     'summary': 'Configure mail servers with server_environment_files',
     'author': "Camptocamp,Odoo Community Association (OCA)",
     'license': 'AGPL-3',
-    'website': 'http://odoo-community.org',
+    'website': 'https://github.com/OCA/server-tools'
+               '/tree/10.0/mail_environment',
     'preloadable': False,
     'depends': ['fetchmail',
                 'server_environment',

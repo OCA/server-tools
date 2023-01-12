@@ -7,6 +7,8 @@
     'depends': ["auth_ldap"],
     'author': "Daniel Reis (https://launchpad.com/~dreis-pt),"
               "Odoo Community Association (OCA)",
+    "website": "https://github.com/OCA/server-tools"
+               "/tree/10.0/users_ldap_mail",
     'license': 'AGPL-3',
     'category': "Tools",
     'data': [

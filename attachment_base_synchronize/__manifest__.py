@@ -6,7 +6,8 @@
     'name': 'Attachment Base Synchronize',
     'version': '10.0.1.0.0',
     'author': 'Akretion,Odoo Community Association (OCA)',
-    'website': 'https://www.akretion.com',
+    'website': 'https://github.com/OCA/server-tools'
+               '/tree/10.0/attachment_base_synchronize',
     'license': 'AGPL-3',
     'category': 'Generic Modules',
     'depends': [

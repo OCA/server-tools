@@ -11,7 +11,8 @@
     'depends': [
         'base',
     ],
-    'website': 'https://github.com/OCA/server-tools',
+    'website': 'https://github.com/OCA/server-tools'
+               '/tree/10.0/base_kanban_stage',
     'license': 'LGPL-3',
     'data': [
         'security/ir.model.access.csv',

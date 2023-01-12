@@ -77,7 +77,7 @@ Contributors
 * Maxime Chambreuil <maxime.chambreuil@savoirfairelinux.com>
     """,
     'author': "Daniel Reis,Odoo Community Association (OCA)",
-    'website': 'http://launchpad.net/addons-tko',
+    'website': 'https://github.com/OCA/server-tools',
     'license': 'AGPL-3',
     'images': [
         'images/snapshot1.png',

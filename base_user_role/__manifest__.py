@@ -10,7 +10,8 @@
     'author': 'ABF OSIELL, Odoo Community Association (OCA)',
     'license': 'LGPL-3',
     'maintainer': 'ABF OSIELL',
-    'website': 'http://www.osiell.com',
+    'website': 'https://github.com/OCA/server-tools'
+               '/tree/10.0/base_user_role',
     'depends': [
         'base',
     ],

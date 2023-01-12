@@ -8,7 +8,8 @@
  'category': 'server',
  'complexity': 'normal',
  'depends': ['base'],
- 'website': 'http://www.akretion.com/',
+ 'website': 'https://github.com/OCA/server-tools'
+            '/tree/10.0/configuration_helper',
  'data': [],
  'tests': [],
  'installable': True,

@@ -8,7 +8,7 @@
  'category': 'Tests',
  'complexity': 'normal',
  'depends': ['configuration_helper'],
- 'website': 'http://www.akretion.com/',
+ 'website': 'https://github.com/OCA/server-tools',
  'data': [],
  'tests': [],
  'installable': False,

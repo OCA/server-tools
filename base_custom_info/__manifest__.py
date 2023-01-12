@@ -40,7 +40,8 @@
     ],
     'author': 'Tecnativa, '
               'Odoo Community Association (OCA)',
-    'website': 'https://github.com/OCA/server-tools',
+    'website': 'https://github.com/OCA/server-tools'
+               '/tree/10.0/base_custom_info',
     'license': 'LGPL-3',
     'application': True,
     'installable': True,

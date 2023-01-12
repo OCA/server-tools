@@ -14,7 +14,7 @@
     you can deactivate this behavior in ir.config_parameter by chanching the protect_security? key to 0
  """,
  'author': "Camptocamp,Odoo Community Association (OCA)",
- 'website': 'http://openerp.camptocamp.com',
+ 'website': 'https://github.com/OCA/server-tools',
  'license': 'AGPL-3',
  'depends': ['base'],
  'init_xml': ['data.xml'],

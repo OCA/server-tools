@@ -22,6 +22,7 @@
     "name": "Authenticate via HTTP basic authentication",
     "version": "1.0",
     "author": "Therp BV,Odoo Community Association (OCA)",
+    "website": "https://github.com/OCA/server-tools",
     "license": "AGPL-3",
     "complexity": "expert",
     "description": """

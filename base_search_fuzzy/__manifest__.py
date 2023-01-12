@@ -7,7 +7,8 @@
     'summary': "Fuzzy search with the PostgreSQL trigram extension",
     'category': 'Uncategorized',
     'version': '10.0.1.1.0',
-    'website': 'https://odoo-community.org/',
+    'website': 'https://github.com/OCA/server-tools'
+               '/tree/10.0/base_search_fuzzy',
     'author': 'bloopark systems GmbH & Co. KG, '
               'Eficent, '
               'Serpent CS, '

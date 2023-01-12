@@ -6,7 +6,8 @@
 {
     'name': 'Module Manifest - Extra Options',
     'version': '10.0.1.0.0',
-    'website': 'https://github.com/OCA/server-tools',
+    'website': 'https://github.com/OCA/server-tools'
+               '/tree/10.0/base_manifest_extension',
     'author': 'Therp BV, LasLabs, Odoo Community Association (OCA)',
     'license': 'LGPL-3',
     'category': 'Hidden/Dependency',
