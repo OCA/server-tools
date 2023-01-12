@@ -93,14 +93,30 @@ jobs:
       - uses: actions/checkout@v2
         with:
           persist-credentials: false
+      - name: Install required deb packages
+        # expect-dev: provides unbuffer utility
+        # postfix: some tests want a local mail server
+        # unixodbc-dev: Oracle client
+        # default-libmysqlclient-dev: MySQL client
+        run: |
+          apt-get update
+          DEBIAN_FRONTEND=noninteractive apt-get install -qq \
+            expect-dev \
+            unixodbc-dev \
+            postfix
       - name: Install addons and dependencies
         run: oca_install_addons
+      - name: Link server environment samples
+        run: ln -s ${ADDONS_DIR}/server_environment_files_sample ${ADDONS_DIR}/server_environment_files
       - name: Check licenses
         run: manifestoo -d . check-licenses
       - name: Check development status
         run: manifestoo -d . check-dev-status --default-dev-status=Beta
       - name: Initialize test db
-        run: oca_init_test_database
+        run: |
+          oca_init_test_database
+          printf '\nrunning_env = dev\n' >> ${ODOO_RC}
+          cat ${ODOO_RC}
       - name: Run tests
         run: oca_run_tests
       - uses: codecov/codecov-action@v1
