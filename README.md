@@ -69,6 +69,7 @@ addon | version | maintainers | summary
 [iap_alternative_provider](iap_alternative_provider/) | 14.0.1.0.0 | [![sebastienbeau](https://github.com/sebastienbeau.png?size=30px)](https://github.com/sebastienbeau) | Base module for providing alternative provider for iap apps
 [jsonifier](jsonifier/) | 14.0.1.0.1 |  | JSON-ify data for all models
 [letsencrypt](letsencrypt/) | 14.0.1.0.1 |  | Request SSL certificates from letsencrypt.org
+[mail_cleanup](mail_cleanup/) | 14.0.1.0.0 |  | Mark as read or delete mails after a set time
 [module_auto_update](module_auto_update/) | 14.0.1.0.1 |  | Automatically update Odoo modules
 [module_change_auto_install](module_change_auto_install/) | 14.0.1.0.3 | [![legalsylvain](https://github.com/legalsylvain.png?size=30px)](https://github.com/legalsylvain) | Customize auto installables modules by configuration
 [module_prototyper](module_prototyper/) | 14.0.1.0.0 |  | Prototype your module.
