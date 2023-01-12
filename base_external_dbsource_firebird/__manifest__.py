@@ -15,12 +15,11 @@
     'depends': [
         'base_external_dbsource',
     ],
-    # Uncomment this for v11
-    # 'external_dependencies': {
-    #     'python': [
-    #         'fdb',
-    #     ]
-    # },
+    'external_dependencies': {
+        'python': [
+            'fdb',
+        ]
+    },
     'demo': [
         'demo/base_external_dbsource.xml',
     ],
