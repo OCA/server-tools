@@ -2,7 +2,7 @@
 acme
 cryptography
 dnspython
-email_validator
+email_validator<=1.2.1
 ipaddress
 josepy
 lxml
