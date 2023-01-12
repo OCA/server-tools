@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2017-02-18 02:29+0000\n"
 "PO-Revision-Date: 2022-10-09 22:35+0000\n"
 "Last-Translator: Ignacio Buioli <ibuioli@gmail.com>\n"
-"Language-Team: Spanish (Argentina) (https://www.transifex.com/oca/teams/"
-"23907/es_AR/)\n"
+"Language-Team: Spanish (Argentina) (https://www.transifex.com/oca/"
+"teams/23907/es_AR/)\n"
 "Language: es_AR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -95,16 +95,6 @@ msgid "Cannot duplicate a configuration."
 msgstr "No se puede duplicar una configuración."
 
 #. module: auto_backup
-#: model:ir.model.fields,field_description:auto_backup.field_db_backup__changeset_change_ids
-msgid "Changeset Changes"
-msgstr "Cambios en el Conjunto de Cambios"
-
-#. module: auto_backup
-#: model:ir.model.fields,field_description:auto_backup.field_db_backup__changeset_ids
-msgid "Changesets"
-msgstr "Conjunto de Cambios"
-
-#. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__backup_format
 msgid "Choose the format for this backup."
 msgstr "Elija el formato para esta copia de seguridad."
@@ -131,16 +121,6 @@ msgstr "¡La Prueba de Conexión Falló!"
 #, python-format
 msgid "Connection Test Succeeded!"
 msgstr "¡Prueba de Conexión Exitosa!"
-
-#. module: auto_backup
-#: model:ir.model.fields,field_description:auto_backup.field_db_backup__count_pending_changeset_changes
-msgid "Count Pending Changeset Changes"
-msgstr "Contar los Cambios Pendientes del Conjunto de Cambios"
-
-#. module: auto_backup
-#: model:ir.model.fields,field_description:auto_backup.field_db_backup__count_pending_changesets
-msgid "Count Pending Changesets"
-msgstr "Contar Conjunto de Cambios Pendientes"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__create_uid
@@ -210,11 +190,6 @@ msgid "Followers"
 msgstr "Seguidores"
 
 #. module: auto_backup
-#: model:ir.model.fields,field_description:auto_backup.field_db_backup__message_channel_ids
-msgid "Followers (Channels)"
-msgstr "Seguidores (Canales)"
-
-#. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__message_partner_ids
 msgid "Followers (Partners)"
 msgstr "Seguidores (Contactos)"
@@ -223,6 +198,11 @@ msgstr "Seguidores (Contactos)"
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "Go to Settings / Technical / Automation / Scheduled Actions."
 msgstr "Ir a Ajustes / Técnico / Automatización / Acciones planificadas."
+
+#. module: auto_backup
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__has_message
+msgid "Has Message"
+msgstr ""
 
 #. module: auto_backup
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
@@ -386,11 +366,6 @@ msgstr ""
 "generar las copias de seguridad."
 
 #. module: auto_backup
-#: model:ir.model.fields,field_description:auto_backup.field_db_backup__smart_search
-msgid "Smart Search"
-msgstr "Búsqueda Inteligente"
-
-#. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__name
 msgid "Summary of this backup process"
 msgstr "Resumen del proceso de esta copia de seguridad"
@@ -405,8 +380,8 @@ msgstr "Probar Conexión SFTP"
 msgid ""
 "The host name or IP address from your remote server. For example 192.168.0.1"
 msgstr ""
-"El nombre del host o la dirección IP de su servidor remoto. Por ejemplo 192."
-"168.0.1"
+"El nombre del host o la dirección IP de su servidor remoto. Por ejemplo "
+"192.168.0.1"
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__sftp_password
@@ -451,11 +426,6 @@ msgstr ""
 "ruta que especifique."
 
 #. module: auto_backup
-#: model:ir.model.fields,field_description:auto_backup.field_db_backup__user_can_see_changeset
-msgid "User Can See Changeset"
-msgstr "El usuario puede ver el Conjunto de Cambios"
-
-#. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__sftp_user
 msgid "Username in the SFTP Server"
 msgstr "Nombre de Usuario en el Servidor SFTP"
@@ -494,3 +464,24 @@ msgstr "sftp.ejemplo.com"
 #: model:ir.model.fields.selection,name:auto_backup.selection__db_backup__backup_format__zip
 msgid "zip (includes filestore)"
 msgstr "zip (incluye filestore)"
+
+#~ msgid "Changeset Changes"
+#~ msgstr "Cambios en el Conjunto de Cambios"
+
+#~ msgid "Changesets"
+#~ msgstr "Conjunto de Cambios"
+
+#~ msgid "Count Pending Changeset Changes"
+#~ msgstr "Contar los Cambios Pendientes del Conjunto de Cambios"
+
+#~ msgid "Count Pending Changesets"
+#~ msgstr "Contar Conjunto de Cambios Pendientes"
+
+#~ msgid "Followers (Channels)"
+#~ msgstr "Seguidores (Canales)"
+
+#~ msgid "Smart Search"
+#~ msgstr "Búsqueda Inteligente"
+
+#~ msgid "User Can See Changeset"
+#~ msgstr "El usuario puede ver el Conjunto de Cambios"

@@ -93,16 +93,6 @@ msgid "Cannot duplicate a configuration."
 msgstr "Impossibile duplicare una configurazione."
 
 #. module: auto_backup
-#: model:ir.model.fields,field_description:auto_backup.field_db_backup__changeset_change_ids
-msgid "Changeset Changes"
-msgstr ""
-
-#. module: auto_backup
-#: model:ir.model.fields,field_description:auto_backup.field_db_backup__changeset_ids
-msgid "Changesets"
-msgstr ""
-
-#. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__backup_format
 #, fuzzy
 msgid "Choose the format for this backup."
@@ -131,16 +121,6 @@ msgstr "Prova di connessione non riuscita."
 #, python-format
 msgid "Connection Test Succeeded!"
 msgstr "Prova di connessione superata."
-
-#. module: auto_backup
-#: model:ir.model.fields,field_description:auto_backup.field_db_backup__count_pending_changeset_changes
-msgid "Count Pending Changeset Changes"
-msgstr ""
-
-#. module: auto_backup
-#: model:ir.model.fields,field_description:auto_backup.field_db_backup__count_pending_changesets
-msgid "Count Pending Changesets"
-msgstr ""
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__create_uid
@@ -211,11 +191,6 @@ msgid "Followers"
 msgstr "Chi sta seguendo"
 
 #. module: auto_backup
-#: model:ir.model.fields,field_description:auto_backup.field_db_backup__message_channel_ids
-msgid "Followers (Channels)"
-msgstr "Chi sta seguendo (canali)"
-
-#. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__message_partner_ids
 msgid "Followers (Partners)"
 msgstr "Chi sta seguendo (partner)"
@@ -227,6 +202,11 @@ msgid "Go to Settings / Technical / Automation / Scheduled Actions."
 msgstr ""
 "Andare in  Configurazione / Funzioni Tecniche / Automazione / Azioni "
 "Programmate."
+
+#. module: auto_backup
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__has_message
+msgid "Has Message"
+msgstr ""
 
 #. module: auto_backup
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
@@ -390,11 +370,6 @@ msgstr ""
 "desidera generare il backup."
 
 #. module: auto_backup
-#: model:ir.model.fields,field_description:auto_backup.field_db_backup__smart_search
-msgid "Smart Search"
-msgstr "Ricerca intelligente"
-
-#. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__name
 msgid "Summary of this backup process"
 msgstr "Riepilogo di questo processo di backup"
@@ -453,11 +428,6 @@ msgstr ""
 "specificato."
 
 #. module: auto_backup
-#: model:ir.model.fields,field_description:auto_backup.field_db_backup__user_can_see_changeset
-msgid "User Can See Changeset"
-msgstr ""
-
-#. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__sftp_user
 msgid "Username in the SFTP Server"
 msgstr "Nome utente nel server SFTP"
@@ -496,3 +466,9 @@ msgstr "sftp.example.com"
 #: model:ir.model.fields.selection,name:auto_backup.selection__db_backup__backup_format__zip
 msgid "zip (includes filestore)"
 msgstr "zip (include filestore)"
+
+#~ msgid "Followers (Channels)"
+#~ msgstr "Chi sta seguendo (canali)"
+
+#~ msgid "Smart Search"
+#~ msgstr "Ricerca intelligente"

@@ -92,16 +92,6 @@ msgid "Cannot duplicate a configuration."
 msgstr "Kan een configuratie niet dupliceren."
 
 #. module: auto_backup
-#: model:ir.model.fields,field_description:auto_backup.field_db_backup__changeset_change_ids
-msgid "Changeset Changes"
-msgstr ""
-
-#. module: auto_backup
-#: model:ir.model.fields,field_description:auto_backup.field_db_backup__changeset_ids
-msgid "Changesets"
-msgstr ""
-
-#. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__backup_format
 #, fuzzy
 msgid "Choose the format for this backup."
@@ -129,16 +119,6 @@ msgstr "Connectie test mislukt!"
 #, python-format
 msgid "Connection Test Succeeded!"
 msgstr "Connectie test geslaagd!"
-
-#. module: auto_backup
-#: model:ir.model.fields,field_description:auto_backup.field_db_backup__count_pending_changeset_changes
-msgid "Count Pending Changeset Changes"
-msgstr ""
-
-#. module: auto_backup
-#: model:ir.model.fields,field_description:auto_backup.field_db_backup__count_pending_changesets
-msgid "Count Pending Changesets"
-msgstr ""
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__create_uid
@@ -207,11 +187,6 @@ msgid "Followers"
 msgstr ""
 
 #. module: auto_backup
-#: model:ir.model.fields,field_description:auto_backup.field_db_backup__message_channel_ids
-msgid "Followers (Channels)"
-msgstr ""
-
-#. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__message_partner_ids
 msgid "Followers (Partners)"
 msgstr ""
@@ -220,6 +195,11 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "Go to Settings / Technical / Automation / Scheduled Actions."
 msgstr "Ga naar Instellingen / Technsich / Automatisering / Geplande acties"
+
+#. module: auto_backup
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__has_message
+msgid "Has Message"
+msgstr ""
 
 #. module: auto_backup
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
@@ -378,11 +358,6 @@ msgstr ""
 "Zet de planner op actief en vul in hoe vaak de backup moet gemaakt worden."
 
 #. module: auto_backup
-#: model:ir.model.fields,field_description:auto_backup.field_db_backup__smart_search
-msgid "Smart Search"
-msgstr ""
-
-#. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__name
 msgid "Summary of this backup process"
 msgstr ""
@@ -439,11 +414,6 @@ msgid ""
 msgstr ""
 "Gebruik SFTP voorzichtig! Dit schrijft bestanden naar externe servers onder "
 "het pad dat u opgeeft."
-
-#. module: auto_backup
-#: model:ir.model.fields,field_description:auto_backup.field_db_backup__user_can_see_changeset
-msgid "User Can See Changeset"
-msgstr ""
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__sftp_user
