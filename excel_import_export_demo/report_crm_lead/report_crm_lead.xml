@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright 2019 Ecosoft Co., Ltd.
+  License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).-->
+<odoo>
+    <record id="report_crm_lead" model="ir.ui.view">
+        <field name="name">report.crm.lead</field>
+        <field name="model">report.crm.lead</field>
+        <field name="inherit_id" ref="excel_import_export.xlsx_report_view" />
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='criteria']" position="inside">
+                <group>
+                    <field name="team_id" />
+                </group>
+                <group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+    <record id="action_report_crm_lead" model="ir.actions.act_window">
+        <field name="name">Sample Lead Report</field>
+        <field name="res_model">report.crm.lead</field>
+        <field name="binding_view_types">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">
+            {'template_domain': [('res_model', '=', 'report.crm.lead'),
+                                 ('fname', '=', 'report_crm_lead.xlsx'),
+                                 ('gname', '=', False)]}
+        </field>
+    </record>
+    <menuitem
+        id="menu_report_crm_lead"
+        parent="excel_import_export.menu_excel_import_export"
+        action="action_report_crm_lead"
+        sequence="20"
+    />
+</odoo>
