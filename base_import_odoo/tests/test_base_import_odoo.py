@@ -37,7 +37,8 @@ class TestBaseImportOdoo(TransactionCase):
     @at_install(False)
     @post_install(True)
     @patch(
-        "odoorpc.ODOO.__init__", side_effect=lambda self, *args, **kwargs: None,
+        "odoorpc.ODOO.__init__",
+        side_effect=lambda self, *args, **kwargs: None,
     )
     @patch("odoorpc.ODOO.login", side_effect=lambda *args: None)
     def test_base_import_odoo(self, mock_client, mock_client_login):
@@ -114,7 +115,10 @@ class TestBaseImportOdoo(TransactionCase):
             field_context(None, None, None),
         )
         dummy_id = demodb._run_import_create_dummy(
-            import_context, self.env["res.partner"], {"id": 424242}, forcecreate=True,
+            import_context,
+            self.env["res.partner"],
+            {"id": 424242},
+            forcecreate=True,
         )
         self.assertTrue(self.env["res.partner"].browse(dummy_id).exists())
 

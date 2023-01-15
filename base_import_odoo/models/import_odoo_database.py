@@ -42,7 +42,8 @@ class ImportContext(import_context_tuple):
 
 
 field_context = namedtuple(
-    "field_context", ["record_model", "field_name", "record_id"],
+    "field_context",
+    ["record_model", "field_name", "record_id"],
 )
 
 
@@ -50,7 +51,8 @@ mapping_key = namedtuple("mapping_key", ["model_name", "remote_id"])
 
 
 dummy_instance = namedtuple(
-    "dummy_instance", ["model_name", "field_name", "remote_id", "dummy_id"],
+    "dummy_instance",
+    ["model_name", "field_name", "remote_id", "dummy_id"],
 )
 
 
@@ -63,18 +65,27 @@ class ImportOdooDatabase(models.Model):
     user = fields.Char(default="admin", required=True)
     password = fields.Char(default="admin")
     import_line_ids = fields.One2many(
-        "import.odoo.database.model", "database_id", string="Import models",
+        "import.odoo.database.model",
+        "database_id",
+        string="Import models",
     )
     import_field_mappings = fields.One2many(
-        "import.odoo.database.field", "database_id", string="Field mappings",
+        "import.odoo.database.field",
+        "database_id",
+        string="Field mappings",
     )
     cronjob_id = fields.Many2one(
-        "ir.cron", string="Import job", readonly=True, copy=False,
+        "ir.cron",
+        string="Import job",
+        readonly=True,
+        copy=False,
     )
     cronjob_running = fields.Boolean(compute="_compute_cronjob_running")
     status_data = fields.Serialized("Status", readonly=True, copy=False)
     status_html = fields.Html(
-        compute="_compute_status_html", readonly=True, sanitize=False,
+        compute="_compute_status_html",
+        readonly=True,
+        sanitize=False,
     )
     duplicates = fields.Selection(
         [
@@ -204,7 +215,10 @@ class ImportOdooDatabase(models.Model):
             model._name, "read", context.ids, list(fields.keys())
         ):
             self._run_import_get_record(
-                context, model, data, create_dummy=False,
+                context,
+                model,
+                data,
+                create_dummy=False,
             )
             if (model._name, data["id"]) in context.idmap:
                 # one of our mappings hit, create an xmlid to persist
@@ -219,7 +233,10 @@ class ImportOdooDatabase(models.Model):
             _id = data["id"]
             record = self._create_record(context, model, data)
             self._run_import_model_cleanup_dummies(
-                context, model, _id, record.id,
+                context,
+                model,
+                _id,
+                record.id,
             )
 
     def _create_record(self, context, model, record):
@@ -296,7 +313,11 @@ class ImportOdooDatabase(models.Model):
         return context
 
     def _run_import_get_record(
-        self, context, model, record, create_dummy=True,
+        self,
+        context,
+        model,
+        record,
+        create_dummy=True,
     ):
         """Find the local id of some remote record. Create a dummy if not
         available"""
@@ -311,16 +332,25 @@ class ImportOdooDatabase(models.Model):
         else:
             logged = True
             _logger.debug(
-                "Got %s(%d[%d]) from idmap", model._name, _id, record["id"] or 0,
+                "Got %s(%d[%d]) from idmap",
+                model._name,
+                _id,
+                record["id"] or 0,
             )
         if not _id:
             _id = self._run_import_get_record_mapping(
-                context, model, record, create_dummy=create_dummy,
+                context,
+                model,
+                record,
+                create_dummy=create_dummy,
             )
         elif not logged:
             logged = True
             _logger.debug(
-                "Got %s(%d[%d]) from dummies", model._name, _id, record["id"],
+                "Got %s(%d[%d]) from dummies",
+                model._name,
+                _id,
+                record["id"],
             )
         if not _id:
             xmlid = self.env["ir.model.data"].search(
@@ -337,7 +367,10 @@ class ImportOdooDatabase(models.Model):
         elif not logged:
             logged = True
             _logger.debug(
-                "Got %s(%d[%d]) from mappings", model._name, _id, record["id"],
+                "Got %s(%d[%d]) from mappings",
+                model._name,
+                _id,
+                record["id"],
             )
         if not _id and create_dummy:
             _id = self._run_import_create_dummy(
@@ -349,12 +382,19 @@ class ImportOdooDatabase(models.Model):
             )
         elif _id and not logged:
             _logger.debug(
-                "Got %s(%d[%d]) from xmlid", model._name, _id, record["id"],
+                "Got %s(%d[%d]) from xmlid",
+                model._name,
+                _id,
+                record["id"],
             )
         return _id
 
     def _run_import_get_record_mapping(
-        self, context, model, record, create_dummy=True,
+        self,
+        context,
+        model,
+        record,
+        create_dummy=True,
     ):
         current_field = self.env["ir.model.fields"].search(
             [
@@ -406,7 +446,10 @@ class ImportOdooDatabase(models.Model):
                     # play it save, only use mapping if we really select
                     # something specific
                     continue
-                records = model.with_context(active_test=False).search(domain, limit=1,)
+                records = model.with_context(active_test=False).search(
+                    domain,
+                    limit=1,
+                )
                 if records:
                     _id = records.id
                     context.idmap[(model._name, record["id"])] = _id
@@ -416,7 +459,11 @@ class ImportOdooDatabase(models.Model):
         return _id
 
     def _run_import_create_dummy(
-        self, context, model, record, forcecreate=False,
+        self,
+        context,
+        model,
+        record,
+        forcecreate=False,
     ):
         """Either misuse some existing record or create an empty one to satisfy
         required links"""
