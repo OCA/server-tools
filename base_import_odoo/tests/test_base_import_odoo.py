@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from mock import patch
 
-from odoo.tests.common import TransactionCase, at_install, post_install
+from odoo.tests.common import TransactionCase, tagged
 
 from ..models.import_odoo_database import ImportContext, field_context
 
@@ -34,8 +34,7 @@ class TestBaseImportOdoo(TransactionCase):
                 }
             )
 
-    @at_install(False)
-    @post_install(True)
+    @tagged("post_install", "-at_install")
     @patch(
         "odoorpc.ODOO.__init__",
         side_effect=lambda self, *args, **kwargs: None,
