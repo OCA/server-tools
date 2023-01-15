@@ -88,22 +88,25 @@
     </record>
     <template id="view_import_odoo_database_qweb">
         <script type="text/javascript">
-            odoo.define('base_import_odoo', function(require) {
-                return function base_import_database_open(model, model_name, database_id) {
-                    return require('web.rpc')
-                    .query({
+            odoo.define(null, function(require) {
+                var rpc = require('web.rpc');
+                $("body").on("click", ".base_import_odoo_results a", function() {
+                    var model = $(this).data('model');
+                    var model_name = $(this).data('model-name');
+                    var database_id = $(this).data('database-id');
+                    console.log(model, model_name, database_id);
+                    rpc.query({
                         model: 'ir.model.data',
                         method: 'search_read',
                         fields: ['res_id'],
                         domain: [
-                            ['module', '=', 'base_import_odoo'],
+                            ['module', '=', '__base_import_odoo__'],
                             ['model', '=', model],
                             ['import_database_id', '=', database_id],
                         ],
                     })
                     .then(function(data)
                     {
-                        debugger;
                         return require('web.web_client').action_manager.do_action({
                             'name': model_name,
                             'type': 'ir.actions.act_window',
@@ -112,7 +115,7 @@
                             'domain': [['id', 'in', _.map(data, function(x) {return x.res_id})]]
                         });
                     });
-                }
+                });
             })
         </script>
         <h2 t-if="object.cronjob_running">Import progress</h2>
@@ -122,13 +125,16 @@
                 style="margin-right: .5em"
                 t-foreach="object.import_line_ids"
                 t-as="import_line"
+                class="base_import_odoo_results"
             >
                 <t t-set="model_name" t-value="import_line.model_id.model" />
                 <t t-set="model_display_name" t-value="import_line.model_id.name" />
                 <h3 t-esc="model_display_name" />
                 <a
                     href="#"
-                    t-att-onclick="'odoo.define(function(require) {require(&quot;base_import_odoo&quot;)(&quot;%s&quot;, &quot;%s&quot;, %s)})' % (model_name, model_display_name, object.id)"
+                    t-att-data-model="model_name"
+                    t-att-data-model-name="model_display_name"
+                    t-att-data-database-id="object.id"
                 >
                     <span
                         t-esc="object.status_data.get('done', {}).get(model_name, 0)"
