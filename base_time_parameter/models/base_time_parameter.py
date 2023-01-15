@@ -37,14 +37,14 @@ class TimeParameter(models.Model):
             ("float", "Floating point number"),
             ("integer", "Integer number"),
             ("json", "JSON"),
-            ("reference", "Reference"),
-            ("reference_id", "Reference ID"),
+            ("record", "Record"),
             ("string", "Text"),
         ],
         required=True,
         default="float",
         index=True,
     )
+    record_model = fields.Selection([], string="Record Model")
     version_ids = fields.One2many(
         "base.time.parameter.version", "parameter_id", string=("Versions")
     )
@@ -92,24 +92,25 @@ class TimeParameter(models.Model):
             return False
         version = versions[0]
         if get == "value":
-            if self.type == "boolean":
-                return version.value == "True" and True or False
-            elif self.type == "date":
-                return datetime.strptime(version.value, "%Y-%m-%d").date()
-            elif self.type == "float":
-                return float(version.value)
-            elif self.type == "integer":
-                return int(version.value)
-            elif self.type == "json":
-                return json.loads(version.value)
-            elif self.type == "reference":
-                return version.value_reference
-            elif self.type == "reference_id":
-                return version.value_reference and version.value_reference.id or 0
-            elif self.type == "string":
-                return version.value
+            return self._get_value(version)
         elif get == "date":
             return version.date_from
+
+    def _get_value(self, version):
+        if self.type == "boolean":
+            return version.value == "True" and True or False
+        elif self.type == "date":
+            return datetime.strptime(version.value, "%Y-%m-%d").date()
+        elif self.type == "float":
+            return float(version.value)
+        elif self.type == "integer":
+            return int(version.value)
+        elif self.type == "json":
+            return json.loads(version.value)
+        elif self.type == "record" and not self.record_model:
+            return version.value_reference
+        elif self.type == "string":
+            return version.value
 
     _sql_constraints = [
         (
