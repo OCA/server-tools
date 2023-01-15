@@ -62,8 +62,6 @@ jobs:
       INCLUDE: "${{ matrix.include }}"
       EXCLUDE: "${{ matrix.exclude }}"
     steps:
-      - name: Install nsca-client
-        run: apt install -y nsca-client
       - uses: actions/checkout@v2
         with:
           persist-credentials: false
