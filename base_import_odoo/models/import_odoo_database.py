@@ -716,7 +716,7 @@ class ImportOdooDatabase(models.Model):
                 continue
             this.status_html = (
                 self.env.ref("base_import_odoo.view_import_odoo_database_qweb")
-                .render({"object": this})
+                ._render({"object": this})
                 .decode("utf8")
             )
 
