@@ -3,7 +3,7 @@
 {
     "name": "Test Base Time Window",
     "summary": "Test Base model to handle time windows",
-    "version": "13.0.1.0.1",
+    "version": "13.0.1.0.2",
     "category": "Technical Settings",
     "author": "ACSONE SA/NV, Camptocamp, Odoo Community Association (OCA)",
     "license": "AGPL-3",
