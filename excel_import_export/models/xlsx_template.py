@@ -172,11 +172,16 @@ class XLSXTemplate(models.Model):
                     if '_CONT_' in row_field:
                         is_cont = True
                         row_field = row_field.replace('_CONT_', '')
+                    is_extend = False
+                    if "_EXTEND_" in row_field:
+                        is_extend = True
+                        row_field = row_field.replace("_EXTEND_", "")
                     vals = {'sequence': sequence,
                             'section_type': (row_field == '_HEAD_' and
                                              'head' or 'row'),
                             'row_field': row_field,
                             'is_cont': is_cont,
+                            'is_extend': is_extend,
                             }
                     export_lines.append((0, 0, vals))
                     for excel_cell, field_name in lines.items():
@@ -263,6 +268,8 @@ class XLSXTemplate(models.Model):
                     row_field = line.row_field
                     if line.section_type == 'row' and line.is_cont:
                         row_field = '_CONT_%s' % row_field
+                    if line.section_type == "row" and line.is_extend:
+                        row_field = "_EXTEND_%s" % row_field
                     row_dict = {row_field: {}}
                     inst_dict[itype][prev_sheet].update(row_dict)
                     prev_row = row_field
@@ -409,6 +416,11 @@ class XLSXTemplateExport(models.Model):
         string='Continue',
         default=False,
         help="Continue data rows after last data row",
+    )
+    is_extend = fields.Boolean(
+        string='Extend',
+        default=False,
+        help="Extend a blank row after filling each record, to extend the footer",
     )
     excel_cell = fields.Char(
         string='Cell',
