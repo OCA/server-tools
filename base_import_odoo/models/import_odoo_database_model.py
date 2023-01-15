@@ -10,10 +10,16 @@ class ImportOdooDatabaseModel(models.Model):
 
     sequence = fields.Integer()
     model_id = fields.Many2one(
-        "ir.model", string="Model", required=True, ondelete="cascade",
+        "ir.model",
+        string="Model",
+        required=True,
+        ondelete="cascade",
     )
     database_id = fields.Many2one(
-        "import.odoo.database", string="Database", required=True, ondelete="cascade",
+        "import.odoo.database",
+        string="Database",
+        required=True,
+        ondelete="cascade",
     )
     domain = fields.Char(help="Optional filter to import only a subset")
     defaults = fields.Char(help="Optional defaults dict to avoid empty values")
