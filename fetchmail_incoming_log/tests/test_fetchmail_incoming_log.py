@@ -12,7 +12,7 @@ from odoo.addons.test_mail.tests.test_mail_gateway import TestMailgateway
 class TestFetchmailIncomingLog(TestMailgateway):
     @classmethod
     def setUpClass(cls):
-        super(TestFetchmailIncomingLog, cls).setUpClass()
+        super().setUpClass()
 
         cls.fetchmail_server = cls.env["fetchmail.server"].create(
             {"name": "Test Fetchmail Server", "server_type": "imap"}

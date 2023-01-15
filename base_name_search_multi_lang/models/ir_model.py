@@ -62,4 +62,4 @@ class IrModel(models.Model):
             if Model is not None:
                 Model._patch_method("name_search", make_name_search())
 
-        return super(IrModel, self)._register_hook()
+        return super()._register_hook()

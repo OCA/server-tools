@@ -20,7 +20,7 @@ class ReportSaleOrder(models.TransientModel):
     )
 
     def _compute_results(self):
-        """ On the wizard, result will be computed and added to results line
+        """On the wizard, result will be computed and added to results line
         before export to excel, by using xlsx.export
         """
         self.ensure_one()

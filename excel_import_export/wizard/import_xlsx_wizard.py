@@ -6,8 +6,8 @@ from odoo.exceptions import RedirectWarning, ValidationError
 
 
 class ImportXLSXWizard(models.TransientModel):
-    """ This wizard is used with the template (xlsx.template) to import
-    xlsx template back to active record """
+    """This wizard is used with the template (xlsx.template) to import
+    xlsx template back to active record"""
 
     _name = "import.xlsx.wizard"
     _description = "Wizard for importing excel"
@@ -41,8 +41,8 @@ class ImportXLSXWizard(models.TransientModel):
 
     @api.model
     def view_init(self, fields_list):
-        """ This template only works on some context of active record """
-        res = super(ImportXLSXWizard, self).view_init(fields_list)
+        """This template only works on some context of active record"""
+        res = super().view_init(fields_list)
         res_model = self._context.get("active_model", False)
         res_id = self._context.get("active_id", False)
         if not res_model or not res_id:
@@ -93,7 +93,7 @@ class ImportXLSXWizard(models.TransientModel):
         templates = self.env["xlsx.template"].search(template_domain)
         if not templates:
             raise ValidationError(_("No template found"))
-        defaults = super(ImportXLSXWizard, self).default_get(fields)
+        defaults = super().default_get(fields)
         for template in templates:
             if not template.datas:
                 act = self.env.ref("excel_import_export.action_xlsx_template")

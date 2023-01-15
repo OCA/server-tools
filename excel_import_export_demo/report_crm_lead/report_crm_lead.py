@@ -12,11 +12,18 @@ class ReportCRMLead(models.TransientModel):
     # Search Criteria
     team_id = fields.Many2one("crm.team", string="Sales Team")
     # Report Result, crm.lead
-    results = fields.Many2many("crm.lead", compute="_compute_results",)
-    revenue_by_country = fields.Many2many(
-        "crm.lead", compute="_compute_revenue_by_country",
+    results = fields.Many2many(
+        "crm.lead",
+        compute="_compute_results",
     )
-    revenue_by_team = fields.Many2many("crm.lead", compute="_compute_revenue_by_team",)
+    revenue_by_country = fields.Many2many(
+        "crm.lead",
+        compute="_compute_revenue_by_country",
+    )
+    revenue_by_team = fields.Many2many(
+        "crm.lead",
+        compute="_compute_revenue_by_team",
+    )
 
     def _compute_results(self):
         self.ensure_one()

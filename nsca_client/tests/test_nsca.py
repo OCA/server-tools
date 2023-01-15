@@ -1,11 +1,12 @@
 # Copyright 2018 Creu Blanca
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-import mock
+from unittest import mock
 
 from odoo.tests.common import TransactionCase
 from odoo.tools import mute_logger
 
+# pylint: disable=odoo-addons-relative-import
 from odoo.addons.nsca_client.models.nsca_server import NscaServer
 
 
@@ -17,6 +18,7 @@ class Popen:
         self.stderr = stderr
 
     # flake8: noqa: B902
+    # pylint: disable=redefined-builtin
     def communicate(input):
         return ["test"]
 

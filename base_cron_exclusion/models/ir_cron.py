@@ -65,7 +65,7 @@ class IrCron(models.Model):
         db = sql_db.db_connect(cls.pool._db.dbname)
         locked_crons = cls._lock_mutually_exclusive_cron(db, job["id"])
         try:
-            res = super(IrCron, cls)._process_job(job_cr, job, cron_cr)
+            res = super()._process_job(job_cr, job, cron_cr)
         finally:
             locked_crons.close()
             _logger.debug("released blocks for cron job %s" % job["cron_name"])

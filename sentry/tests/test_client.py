@@ -42,7 +42,7 @@ class InMemoryClient(raven.Client):
 
     def __init__(self, **kwargs):
         self.events = []
-        super(InMemoryClient, self).__init__(**kwargs)
+        super().__init__(**kwargs)
 
     def is_enabled(self):
         return True
@@ -59,7 +59,7 @@ class InMemoryClient(raven.Client):
 
 class TestClientSetup(unittest.TestCase):
     def setUp(self):
-        super(TestClientSetup, self).setUp()
+        super().setUp()
         self.logger = logging.getLogger(__name__)
 
         # Sentry is enabled by default, so the default handler will be added

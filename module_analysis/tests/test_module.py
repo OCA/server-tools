@@ -2,6 +2,7 @@
 # @author: Sylvain LE GAL (https://twitter.com/legalsylvain)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
+from odoo.modules.module import get_module_path
 from odoo.tests.common import TransactionCase, post_install
 
 
@@ -16,6 +17,11 @@ class TestModule(TransactionCase):
             [("state", "=", "installed"), ("name", "not like", "_test")]
         )
         for module in installed_modules:
+            module_path = get_module_path(module.name)
+            if "site-packages" in module_path:
+                # Addon is installed as a Python package.
+                # Individual files may not be available for analysis.
+                continue
             self.assertTrue(
                 module.python_code_qty > 0
                 or module.xml_code_qty > 0

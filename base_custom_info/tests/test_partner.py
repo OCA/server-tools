@@ -10,7 +10,7 @@ from odoo.tools import mute_logger
 
 class PartnerCase(TransactionCase):
     def setUp(self, *args, **kwargs):
-        super(PartnerCase, self).setUp(*args, **kwargs)
+        super().setUp(*args, **kwargs)
         self.agrolait = self.env.ref("base.res_partner_2")
         self.tpl = self.env.ref("base_custom_info.tpl_smart")
         self.demouser = self.env.ref("base.user_demo")
@@ -171,8 +171,8 @@ class PartnerCase(TransactionCase):
         )
         with self.assertRaises(ValidationError):
             val.value_str = (
-                u"Don Walter Antonio José de la Cruz Hëisenberg "
-                u"de Borbón Westley Jordy López Manuélez"
+                "Don Walter Antonio José de la Cruz Hëisenberg "
+                "de Borbón Westley Jordy López Manuélez"
             )
 
     def test_low_average_note(self):

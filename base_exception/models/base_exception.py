@@ -44,7 +44,8 @@ class ExceptionRule(models.Model):
         "not. Use failed = True to block the exception",
     )
     is_blocking = fields.Boolean(
-        string="Is blocking", help="When checked the exception can not be ignored",
+        string="Is blocking",
+        help="When checked the exception can not be ignored",
     )
 
     @api.constrains("exception_type", "domain", "code")
@@ -61,7 +62,7 @@ class ExceptionRule(models.Model):
                 )
 
     def _get_domain(self):
-        """ override me to customize domains according exceptions cases """
+        """override me to customize domains according exceptions cases"""
         self.ensure_one()
         return safe_eval(self.domain)
 
@@ -72,10 +73,10 @@ class BaseExceptionMethod(models.AbstractModel):
 
     def _get_main_records(self):
         """
-            Used in case we check exceptions on a record but write these
-            exceptions on a parent record. Typical example is with
-            sale.order.line. We check exceptions on some sale order lines but
-            write these exceptions on the sale order, so they are visible.
+        Used in case we check exceptions on a record but write these
+        exceptions on a parent record. Typical example is with
+        sale.order.line. We check exceptions on some sale order lines but
+        write these exceptions on the sale order, so they are visible.
         """
         return self
 
@@ -172,7 +173,7 @@ class BaseExceptionMethod(models.AbstractModel):
 
     def _detect_exceptions_by_py_code(self, rule):
         """
-            Find exceptions found on self.
+        Find exceptions found on self.
         """
         domain = self._get_base_domain()
         records = self.search(domain)
@@ -184,7 +185,7 @@ class BaseExceptionMethod(models.AbstractModel):
 
     def _detect_exceptions_by_domain(self, rule):
         """
-            Find exceptions found on self.
+        Find exceptions found on self.
         """
         base_domain = self._get_base_domain()
         rule_domain = rule._get_domain()

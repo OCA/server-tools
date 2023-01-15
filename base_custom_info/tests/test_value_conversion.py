@@ -9,7 +9,7 @@ _logger = logging.getLogger(__name__)
 
 class ValueConversionCase(TransactionCase):
     def setUp(self):
-        super(ValueConversionCase, self).setUp()
+        super().setUp()
         self.agrolait = self.env.ref("base.res_partner_2")
         self.tpl = self.env.ref("base_custom_info.tpl_smart")
         self.prop_str = self.env.ref("base_custom_info.prop_teacher")

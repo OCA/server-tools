@@ -30,7 +30,9 @@ def patch_leaf_trgm(original):
         # Generate correct WHERE clause part
         table_alias = eleaf.generate_alias()
         query = '("{}"."{}" %% {})'.format(
-            table_alias, left, model._fields[left].column_format,
+            table_alias,
+            left,
+            model._fields[left].column_format,
         )
         params = [right]
         return query, params
