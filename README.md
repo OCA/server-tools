@@ -56,7 +56,7 @@ addon | version | maintainers | summary
 [base_view_inheritance_extension](base_view_inheritance_extension/) | 14.0.1.1.2 |  | Adds more operators for view inheritance
 [bus_alt_connection](bus_alt_connection/) | 14.0.1.0.0 |  | Needed when using PgBouncer as a connection pooler
 [configuration_helper](configuration_helper/) | 14.0.1.0.0 |  | Configuration Helper
-[database_cleanup](database_cleanup/) | 14.0.1.0.0 |  | Database cleanup
+[database_cleanup](database_cleanup/) | 14.0.1.0.1 |  | Database cleanup
 [datetime_formatter](datetime_formatter/) | 14.0.1.0.0 |  | Helper functions to give correct format to date[time] fields
 [dbfilter_from_header](dbfilter_from_header/) | 14.0.1.0.0 |  | Filter databases with HTTP headers
 [excel_import_export](excel_import_export/) | 14.0.1.1.0 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Base module for developing Excel import/export/report
@@ -70,7 +70,7 @@ addon | version | maintainers | summary
 [jsonifier](jsonifier/) | 14.0.1.0.1 |  | JSON-ify data for all models
 [letsencrypt](letsencrypt/) | 14.0.1.0.1 |  | Request SSL certificates from letsencrypt.org
 [mail_cleanup](mail_cleanup/) | 14.0.1.0.0 |  | Mark as read or delete mails after a set time
-[module_auto_update](module_auto_update/) | 14.0.1.0.1 |  | Automatically update Odoo modules
+[module_auto_update](module_auto_update/) | 14.0.1.0.2 |  | Automatically update Odoo modules
 [module_change_auto_install](module_change_auto_install/) | 14.0.1.0.3 | [![legalsylvain](https://github.com/legalsylvain.png?size=30px)](https://github.com/legalsylvain) | Customize auto installables modules by configuration
 [module_prototyper](module_prototyper/) | 14.0.1.0.0 |  | Prototype your module.
 [nsca_client](nsca_client/) | 14.0.1.0.0 |  | Send passive alerts to monitor your Odoo application.
