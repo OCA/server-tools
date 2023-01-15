@@ -55,6 +55,11 @@
                                                                     'invisible': [('section_type', 'not in', ('head', 'row'))]}"/>
                                     <field name="is_cont" attrs="{'required': [('section_type', 'in', ('head', 'row'))],
                                                                   'invisible': [('section_type', 'not in', ('head', 'row'))]}"/>
+                                    <field
+                                        name="is_extend"
+                                        attrs="{'required': [('section_type', 'in', ('head', 'row'))],
+                                                                  'invisible': [('section_type', 'not in', ('head', 'row'))]}"
+                                    />
                                     <field name="excel_cell" attrs="{'required': [('section_type', '=', 'data')],
                                                                      'invisible': [('section_type', '!=', 'data')]}"/>
                                     <field name="field_name" attrs="{'invisible': [('section_type', '!=', 'data')]}"/>

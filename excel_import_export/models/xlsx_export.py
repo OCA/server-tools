@@ -50,6 +50,7 @@ class XLSXExport(models.AbstractModel):
         """
         line_field, max_row = co.get_line_max(line_field)
         line_field = line_field.replace('_CONT_', '')  # Remove _CONT_ if any
+        line_field = line_field.replace('_EXTEND_', '')  # Remove _EXTEND_ if any
         lines = record[line_field]
         if max_row > 0 and len(lines) > max_row:
             raise Exception(
@@ -184,6 +185,7 @@ class XLSXExport(models.AbstractModel):
             fields = ws.get(line_field, {}).values()
             vals, func = self._get_line_vals(record, line_field, fields)
             is_cont = '_CONT_' in line_field and True or False  # continue row
+            is_extend = "_EXTEND_" in line_field and True or False  # extend row
             cont_set = 0
             rows_inserted = False  # flag to insert row
             for rc, field in ws.get(line_field, {}).items():
@@ -199,7 +201,7 @@ class XLSXExport(models.AbstractModel):
                 new_rc = False
                 row_count = len(vals[field])
                 # Insert rows to preserve total line
-                if not rows_inserted:
+                if is_extend and not rows_inserted:
                     rows_inserted = True
                     st.insert_rows(row+1, amount=row_count-1)
                 # --
