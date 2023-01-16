@@ -10,6 +10,7 @@
     "license": "AGPL-3",
     "category": "Hidden/Dependency",
     "summary": "Request SSL certificates from letsencrypt.org",
+    "website": "https://github.com/OCA/server-tools",
     "depends": [
         "base_setup",
     ],
