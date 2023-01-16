@@ -8,7 +8,7 @@
                'language level.',
     'version': '12.0.1.0.0',
     'category': 'Extra Tools',
-    'website': 'https://github.com/OCA/server-tools/',
+    'website': 'https://github.com/OCA/server-tools',
     'author': 'LasLabs, '
               'Odoo Community Association (OCA)',
     'license': 'LGPL-3',

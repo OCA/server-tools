@@ -10,7 +10,7 @@
     'depends': [
         'base',
     ],
-    'website': 'http://github.com/OCA/server-tools',
+    'website': 'https://github.com/OCA/server-tools',
     'data': [
         'views/image_view.xml',
         'security/ir.model.access.csv',

@@ -13,7 +13,7 @@
               "LasLabs, "
               "Odoo Community Association (OCA)",
     "license": "AGPL-3",
-    "website": "http://www.antiun.com",
+    "website": "https://github.com/OCA/server-tools",
     "category": "Tools",
     "depends": ['base'],
     'installable': True,
