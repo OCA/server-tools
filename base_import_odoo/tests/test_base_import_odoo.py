@@ -1,7 +1,7 @@
 # Copyright 2017-2018 Therp BV <http://therp.nl>
 # Copyright 2020 Hunki Enterprises BV <https://hunki-enterprises.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-from mock import patch
+from unittest.mock import patch
 
 from odoo.tests.common import TransactionCase, at_install, post_install
 
@@ -10,7 +10,7 @@ from ..models.import_odoo_database import ImportContext, field_context
 
 class TestBaseImportOdoo(TransactionCase):
     def setUp(self):
-        super(TestBaseImportOdoo, self).setUp()
+        super().setUp()
         # if our tests run with an accounting scheme, it will fail on accounts
         # to fix this, if the account model exists, we create mappings for it
         if "account.account" in self.env.registry:
@@ -37,7 +37,8 @@ class TestBaseImportOdoo(TransactionCase):
     @at_install(False)
     @post_install(True)
     @patch(
-        "odoorpc.ODOO.__init__", side_effect=lambda self, *args, **kwargs: None,
+        "odoorpc.ODOO.__init__",
+        side_effect=lambda self, *args, **kwargs: None,
     )
     @patch("odoorpc.ODOO.login", side_effect=lambda *args: None)
     def test_base_import_odoo(self, mock_client, mock_client_login):
@@ -114,7 +115,10 @@ class TestBaseImportOdoo(TransactionCase):
             field_context(None, None, None),
         )
         dummy_id = demodb._run_import_create_dummy(
-            import_context, self.env["res.partner"], {"id": 424242}, forcecreate=True,
+            import_context,
+            self.env["res.partner"],
+            {"id": 424242},
+            forcecreate=True,
         )
         self.assertTrue(self.env["res.partner"].browse(dummy_id).exists())
 

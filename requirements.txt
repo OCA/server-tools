@@ -5,6 +5,7 @@ cryptography
 dnspython
 josepy
 lxml
+odoorpc
 openpyxl
 pygount
 pyOpenSSL<23
@@ -12,4 +13,3 @@ pysftp
 raven
 xlrd
 xlwt
-odoorpc

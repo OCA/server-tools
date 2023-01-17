@@ -11,10 +11,16 @@ class ImportOdooDatabaseField(models.Model):
 
     sequence = fields.Integer()
     database_id = fields.Many2one(
-        "import.odoo.database", string="Database", required=True, ondelete="cascade",
+        "import.odoo.database",
+        string="Database",
+        required=True,
+        ondelete="cascade",
     )
     model_id = fields.Many2one(
-        "ir.model", string="Model", required=True, ondelete="cascade",
+        "ir.model",
+        string="Model",
+        required=True,
+        ondelete="cascade",
     )
     model = fields.Char(string="Model name", related=["model_id", "model"])
     field_ids = fields.Many2many(
