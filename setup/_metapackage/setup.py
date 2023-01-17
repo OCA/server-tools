@@ -25,6 +25,7 @@ setuptools.setup(
         'odoo-addon-excel_import_export>=15.0dev,<15.1dev',
         'odoo-addon-excel_import_export_demo>=15.0dev,<15.1dev',
         'odoo-addon-fetchmail_incoming_log>=15.0dev,<15.1dev',
+        'odoo-addon-fetchmail_incoming_log_test>=15.0dev,<15.1dev',
         'odoo-addon-fetchmail_notify_error_to_sender>=15.0dev,<15.1dev',
         'odoo-addon-html_text>=15.0dev,<15.1dev',
         'odoo-addon-iap_alternative_provider>=15.0dev,<15.1dev',
