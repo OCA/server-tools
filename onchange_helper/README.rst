@@ -23,7 +23,7 @@ Onchange Helper
     :target: https://runbot.odoo-community.org/runbot/149/15.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 This is a technical module. Its goal is to ease the play of onchange method directly called from Python code.
 
@@ -101,6 +101,7 @@ Contributors
 * Florian da Costa <florian.dacosta@akretion.com>
 * Andrea Stirpe <a.stirpe@onestein.nl>
 * Souheil Bejaoui <souheil.bejaoui@acsone.eu>
+* Ángel Tornero Hernández <angel.tornero@braintec.com>
 
 Maintainers
 ~~~~~~~~~~~
