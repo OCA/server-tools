@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-28 09:48+0000\n"
-"PO-Revision-Date: 2023-01-01 13:45+0000\n"
+"PO-Revision-Date: 2023-01-18 18:45+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-server-tools-8-0/"
 "language/it/)\n"
@@ -55,7 +55,7 @@ msgstr "Backup Riuscito"
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_tree
 msgid "Backups"
-msgstr "Backups"
+msgstr "Backup"
 
 #. module: auto_backup
 #: help:db.backup,tempdir:0
@@ -63,6 +63,8 @@ msgid ""
 "Backups first go to a temporary directory. In case you need to put them "
 "somewhere else, fill in the directory here"
 msgstr ""
+"I backup vanno inizialmente in una cartella temporanea. Se si desidera "
+"spostarli da qualche parte, inserire qui la cartella"
 
 #. module: auto_backup
 #: help:db.backup,days_to_keep:0
@@ -86,7 +88,7 @@ msgstr "Impossibile duplicare una configurazione."
 #. module: auto_backup
 #: help:db.backup,method:0
 msgid "Choose the storage method for this backup."
-msgstr "Scegliere il tipo di archiviazione per questo metodo di backup. "
+msgstr "Scegliere il tipo di archiviazione per questo metodo di backup."
 
 #. module: auto_backup
 #: code:addons/auto_backup/models/db_backup.py:268
@@ -172,13 +174,13 @@ msgstr "Cartella"
 #. module: auto_backup
 #: field:db.backup,message_follower_ids:0
 msgid "Followers"
-msgstr "Followers"
+msgstr "Iscritti"
 
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_form
 msgid "Go to Settings / Technical / Automation / Scheduled Actions."
 msgstr ""
-"Andare in  Configurazione / Funzioni Tecniche / Automazione / Azioni "
+"Andare in Impostazioni / Funzioni Tecniche / Automazione / Azioni "
 "Programmate."
 
 #. module: auto_backup
@@ -330,7 +332,7 @@ msgstr "Riepilogo di questo processo di backup"
 #. module: auto_backup
 #: field:db.backup,tempdir:0
 msgid "Temporary directory"
-msgstr ""
+msgstr "Cartella temporanea"
 
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_form
