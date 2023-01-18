@@ -62,7 +62,7 @@ addon | version | maintainers | summary
 [nsca_client](nsca_client/) | 13.0.1.0.2 |  | Send passive alerts to monitor your Odoo application.
 [onchange_helper](onchange_helper/) | 13.0.1.1.0 |  | Technical module that ease execution of onchange in Python code
 [scheduler_error_mailer](scheduler_error_mailer/) | 13.0.1.0.0 |  | Scheduler Error Mailer
-[sentry](sentry/) | 13.0.1.1.1 |  | Report Odoo errors to Sentry
+[sentry](sentry/) | 13.0.1.1.2 |  | Report Odoo errors to Sentry
 [sequence_custom_data](sequence_custom_data/) | 13.0.1.0.1 |  | Technical addon used to add some custom codes into the sequence (used for prefix/suffix).
 [sequence_python](sequence_python/) | 13.0.1.0.1 |  | Calculate a sequence number from a Python expression
 [slow_statement_logger](slow_statement_logger/) | 13.0.1.0.2 |  | Log slow SQL statements
