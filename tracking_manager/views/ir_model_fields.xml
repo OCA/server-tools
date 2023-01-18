@@ -11,7 +11,7 @@
         <field name="view_mode">tree,form</field>
         <field
             name="domain"
-        >[("trackable", "=", True), ("model_id", "=", context['active_id'])]</field>
+        >[("trackable", "=", True), ("model_id", "=", context['active_id']), ("ttype", "!=", "binary")]</field>
         <field name="context">{}</field>
         <field name="target">current</field>
     </record>
@@ -34,6 +34,26 @@
         <field name="view_mode">tree</field>
         <field name="view_id" ref="ir_model_fields_view_tree_custom_tracking" />
         <field name="act_window_id" ref="ir_model_fields_action" />
+    </record>
+
+    <record id="view_model_track_fields_search" model="ir.ui.view">
+        <field name="name">ir.model.fields.search</field>
+        <field name="model">ir.model.fields</field>
+        <field name="inherit_id" ref="base.view_model_fields_search" />
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='translate']" position="after">
+            <filter
+                    name="tracking_on"
+                    string="Custom Tracking ON"
+                    domain="[('custom_tracking','=', True)]"
+                />
+            <filter
+                    name="tracking_off"
+                    string="Custom Tracking OFF"
+                    domain="[('custom_tracking','=', False)]"
+                />
+            </xpath>
+        </field>
     </record>
 
 </odoo>
