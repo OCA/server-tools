@@ -184,6 +184,7 @@ class IrModelFields(models.Model):
             "message_ids",
             "message_last_post",
             "message_main_attachment",
+            "message_main_attachement_id",
         ]
         for rec in self:
             rec.trackable = (
