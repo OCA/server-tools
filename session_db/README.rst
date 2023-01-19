@@ -25,7 +25,9 @@ Store sessions in DB
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
-Store sessions in a database instead of the filesystem.
+Store sessions in a database instead of the filesystem. This simplifies the
+configuration of horizontally scalable deployments, by avoiding the need for a
+distributed filesystem to store the Odoo sessions.
 
 **Table of contents**
 
@@ -79,6 +81,14 @@ This module is maintained by the OCA.
 OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
+
+.. |maintainer-sbidoul| image:: https://github.com/sbidoul.png?size=40px
+    :target: https://github.com/sbidoul
+    :alt: sbidoul
+
+Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
+
+|maintainer-sbidoul| 
 
 This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/16.0/session_db>`_ project on GitHub.
 
