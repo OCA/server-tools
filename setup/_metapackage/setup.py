@@ -8,6 +8,7 @@ setuptools.setup(
     description="Meta package for oca-server-tools Odoo addons",
     version=version,
     install_requires=[
+        'odoo12-addon-attachment_delete_restrict',
         'odoo12-addon-attachment_queue',
         'odoo12-addon-attachment_synchronize',
         'odoo12-addon-attachment_unindex_content',
@@ -47,6 +48,7 @@ setuptools.setup(
         'odoo12-addon-html_text',
         'odoo12-addon-iap_alternative_provider',
         'odoo12-addon-ir_sequence_standard_default',
+        'odoo12-addon-letsencrypt',
         'odoo12-addon-mail_cleanup',
         'odoo12-addon-module_analysis',
         'odoo12-addon-module_auto_update',

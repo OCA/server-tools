@@ -1,0 +1,113 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* attachment_delete_restrict
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-08-29 14:47+0000\n"
+"PO-Revision-Date: 2021-08-29 14:47+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: attachment_delete_restrict
+#: model:ir.model,name:attachment_delete_restrict.model_res_groups
+msgid "Access Groups"
+msgstr "アクセスグループ"
+
+#. module: attachment_delete_restrict
+#: model:ir.model,name:attachment_delete_restrict.model_ir_attachment
+msgid "Attachment"
+msgstr "添付"
+
+#. module: attachment_delete_restrict
+#: model:ir.model.fields,field_description:attachment_delete_restrict.field_ir_model__delete_attachment_group_ids
+msgid "Attachment Deletion Groups"
+msgstr "添付削除グループ"
+
+#. module: attachment_delete_restrict
+#: model:ir.model.fields,field_description:attachment_delete_restrict.field_res_groups__delete_attachment_model_ids
+#: model:ir.model.fields,field_description:attachment_delete_restrict.field_res_users__delete_attachment_model_ids
+#: model_terms:ir.ui.view,arch_db:attachment_delete_restrict.view_groups_form
+#: model_terms:ir.ui.view,arch_db:attachment_delete_restrict.view_users_form
+msgid "Attachment Deletion Models"
+msgstr "添付削除モデル"
+
+#. module: attachment_delete_restrict
+#: model:ir.model.fields,field_description:attachment_delete_restrict.field_ir_model__delete_attachment_user_ids
+msgid "Attachment Deletion Users"
+msgstr "添付削除ユーザ"
+
+#. module: attachment_delete_restrict
+#: model:ir.model,name:attachment_delete_restrict.model_ir_model
+msgid "Models"
+msgstr "モデル"
+
+#. module: attachment_delete_restrict
+#: model:ir.model.fields,field_description:attachment_delete_restrict.field_ir_model__restrict_delete_attachment
+msgid "Restrict Attachment Deletion"
+msgstr "添付削除を制限"
+
+#. module: attachment_delete_restrict
+#: model:ir.model.fields,help:attachment_delete_restrict.field_res_users__delete_attachment_model_ids
+msgid ""
+"The user can delete the attachments related to the models assigned here."
+msgstr "ユーザはここで割り当てられたモデルの添付を削除することができます。"
+
+#. module: attachment_delete_restrict
+#: model:ir.model.fields,help:attachment_delete_restrict.field_ir_model__delete_attachment_group_ids
+msgid ""
+"The users in the groups selected here can delete the attachments related to "
+"this model."
+msgstr ""
+"ここで選択されたグループのユーザはこのモデルに関連する添付を削除することがで"
+"きます。"
+
+#. module: attachment_delete_restrict
+#: model:ir.model.fields,help:attachment_delete_restrict.field_res_groups__delete_attachment_model_ids
+msgid ""
+"The users of the group can delete the attachments related to the models "
+"assigned here."
+msgstr ""
+"グループのユーザはここで割り当てられたモデルの添付を削除することができます。"
+
+#. module: attachment_delete_restrict
+#: model:ir.model.fields,help:attachment_delete_restrict.field_ir_model__delete_attachment_user_ids
+msgid ""
+"The users selected here can delete the attachments related to this model."
+msgstr ""
+"ここで選択されたユーザはこのモデルに関連する添付を削除することができます。"
+
+#. module: attachment_delete_restrict
+#: model:ir.model,name:attachment_delete_restrict.model_res_users
+msgid "Users"
+msgstr "ユーザ"
+
+#. module: attachment_delete_restrict
+#: model:ir.model.fields,help:attachment_delete_restrict.field_ir_model__restrict_delete_attachment
+msgid ""
+"When selected, the deletion of the attachments related to this model is "
+"restricted to certain users."
+msgstr ""
+"選択された場合、このモデルに関連する添付の削除は許可されたユーザのみに制限さ"
+"れます。"
+
+#. module: attachment_delete_restrict
+#: code:addons/attachment_delete_restrict/models/ir_attachment.py:34
+#, python-format
+msgid ""
+"You are not allowed to delete this attachment.\n"
+"\n"
+"Users with the delete permission:\n"
+"%s"
+msgstr ""
+"この添付の削除権限がありません。\n"
+"\n"
+"削除権限を持つユーザ:\n"
+"%s"

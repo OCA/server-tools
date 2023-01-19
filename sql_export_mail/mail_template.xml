@@ -2,21 +2,23 @@
 
 <odoo noupdate="1">
 
-    <!-- Error Email template  -->
     <record id="sql_export_mailer" model="mail.template">
         <field name="name">SQL Export</field>
-        <field name="email_from">admin@example.com</field>
         <field name="email_to">${object.get_email_address_for_template()}</field>
         <field name="subject">${object.name or ''}</field>
         <field name="model_id" ref="sql_export.model_sql_export"/>
         <field name="auto_delete" eval="True"/>
-        <field name="body_html"><![CDATA[
+        <field name="body_html" type="html">
 <div style="font-family: 'Lucida Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
-
 <p>You will find the report ${object.name or ''} as an attachment of the mail.</p>
-
+% if not object.mail_active:
+<p>Mail sending has been muted.
+When you have dealt with the subject, please reactivate the alert
+by clicking on <a href="${object.get_url()}">this link.</a>
+</p>
+% endif
 </div>
-        ]]></field>
+        </field>
     </record>
 
 </odoo>
