@@ -46,7 +46,7 @@ class QueryGenerationCase(TransactionCase):
 
         # the % parameter has to be escaped (%%) for the string replation
         self.assertIn(
-            """COALESCE("res_partner_category__name"."value", "res_partner_category"."name") %% %s""",  # noqa
+            """("res_partner_category"."name"->>'en_US' %% %s)""",
             where_clause,
         )
 
@@ -56,7 +56,7 @@ class QueryGenerationCase(TransactionCase):
         )
 
         self.assertIn(
-            b"""SELECT FROM "res_partner_category" LEFT JOIN "ir_translation" AS "res_partner_category__name" ON ("res_partner_category"."id" = "res_partner_category__name"."res_id" AND "res_partner_category__name"."type" = \'model\' AND "res_partner_category__name"."name" = \'res.partner.category,name\' AND "res_partner_category__name"."lang" = \'de_DE\' AND "res_partner_category__name"."value" != \'\') WHERE COALESCE("res_partner_category__name"."value", "res_partner_category"."name") % \'Goschaeftlic\'""",  # noqa
+            b'SELECT FROM "res_partner_category" WHERE ("res_partner_category"."name"->>\'en_US\' % \'Goschaeftlic\')',  # noqa
             complete_where,
         )
 
@@ -71,9 +71,9 @@ class QueryGenerationCase(TransactionCase):
                 {"field_id": field_partner_name.id, "index_type": "gin"}
             )
 
-        partner1 = self.ResPartner.create({"name": "John Smith"})
-        partner2 = self.ResPartner.create({"name": "John Smizz"})
-        partner3 = self.ResPartner.create({"name": "Linus Torvalds"})
+        partner1, partner2, partner3 = self.ResPartner.create(
+            [{"name": "John Smith"}, {"name": "John Smizz"}, {"name": "Linus Torvalds"}]
+        )
 
         res = self.ResPartner.search([("name", "%", "Jon Smith")])
         self.assertIn(partner1.id, res.ids)

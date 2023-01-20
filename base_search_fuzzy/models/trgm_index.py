@@ -163,11 +163,12 @@ class TrgmIndex(models.Model):
         trgm_index = self.search([("field_id", "=", field.id)], limit=1)
         return bool(trgm_index)
 
-    @api.model
-    def create(self, vals):
-        rec = super().create(vals)
-        rec.index_name = rec.create_index()
-        return rec
+    @api.model_create_multi
+    def create(self, vals_list):
+        recs = super().create(vals_list)
+        for rec in recs:
+            rec.index_name = rec.create_index()
+        return recs
 
     def unlink(self):
         for rec in self:
