@@ -22,6 +22,7 @@ class ImportOdooDatabaseModel(models.Model):
         ondelete="cascade",
     )
     domain = fields.Char(help="Optional filter to import only a subset")
+    extra_fields = fields.Char(help="Comma-separated list of extra fields to query for")
     defaults = fields.Char(help="Optional defaults dict to avoid empty values")
     postprocess = fields.Text(
         help="Optional python code for postprocessing. Your code has access "

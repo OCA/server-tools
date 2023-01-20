@@ -643,7 +643,14 @@ class ImportOdooDatabase(models.Model):
         }
         model_name = context.model_line.model_id.model
         remote_fields = context.remote.execute(model_name, "fields_get")
-        return list(set(local_fields.keys()).intersection(set(remote_fields.keys())))
+        extra = context.model_line.extra_fields
+        extra_fields = (
+            [] if not extra else list(map(lambda a: a.strip(), extra.split(",")))
+        )
+        return list(
+            set(local_fields.keys()).intersection(set(remote_fields.keys()))
+            | set(extra_fields)
+        )
 
     def _run_import_model_cleanup_dummies(self, context, model, remote_id, local_id):
         if not (model._name, remote_id) in context.dummies:

@@ -70,6 +70,7 @@
                             <field name="sequence" widget="handle" />
                             <field name="model_id" />
                             <field name="domain" />
+                            <field name="extra_fields" />
                             <field name="defaults" />
                             <field
                                 name="postprocess"
