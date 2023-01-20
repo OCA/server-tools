@@ -149,6 +149,9 @@ class ImportOdooDatabase(models.Model):
                 model.model,
                 "search",
                 safe_eval(model_line.domain) if model_line.domain else [],
+                None,
+                None,
+                "id asc",
             )
             remote_counts[model.model] = len(remote_ids[model.model])
         self.write(
