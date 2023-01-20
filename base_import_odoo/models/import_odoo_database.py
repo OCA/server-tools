@@ -211,9 +211,7 @@ class ImportOdooDatabase(models.Model):
         """Import records of a configured model"""
         model = self.env[context.model_line.model_id.model]
         fields = self._run_import_model_get_fields(context)
-        for data in context.remote.execute(
-            model._name, "read", context.ids, list(fields.keys())
-        ):
+        for data in context.remote.execute(model._name, "read", context.ids, fields):
             self._run_import_get_record(
                 context,
                 model,
@@ -633,13 +631,16 @@ class ImportOdooDatabase(models.Model):
         return data
 
     def _run_import_model_get_fields(self, context):
-        return {
+        local_fields = {
             name: field
             for name, field in self.env[
                 context.model_line.model_id.model
             ]._fields.items()
             if not field.compute or field.inverse
         }
+        model_name = context.model_line.model_id.model
+        remote_fields = context.remote.execute(model_name, "fields_get")
+        return list(set(local_fields.keys()).intersection(set(remote_fields.keys())))
 
     def _run_import_model_cleanup_dummies(self, context, model, remote_id, local_id):
         if not (model._name, remote_id) in context.dummies:
