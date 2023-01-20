@@ -25,11 +25,11 @@ def patch_leaf_trgm(original):
             raise ValueError(
                 "Invalid field {!r} in domain term {!r}".format(left, leaf)
             )
+
         # Generate correct WHERE clause part
-        query = '("{}"."{}" %% {})'.format(
+        query = '("{}"."{}" %% %s)'.format(
             alias,
             left,
-            model._fields[left].column_format,
         )
         params = [right]
         return query, params
