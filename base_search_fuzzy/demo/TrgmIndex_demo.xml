@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record id="trgm_index_gin_partner_name" model="trgm.index">
         <field name="field_id" ref="base.field_res_partner__name" />

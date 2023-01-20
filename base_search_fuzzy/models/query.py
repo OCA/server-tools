@@ -5,7 +5,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 
-from odoo.osv import query
+from odoo.tools import query
 
 Oridinal_Query_obj = query.Query
 
