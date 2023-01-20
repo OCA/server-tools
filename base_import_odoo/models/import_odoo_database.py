@@ -639,7 +639,7 @@ class ImportOdooDatabase(models.Model):
             for name, field in self.env[
                 context.model_line.model_id.model
             ]._fields.items()
-            if not field.compute or field.inverse
+            if not field.compute or field.inverse or not field.readonly
         }
         model_name = context.model_line.model_id.model
         remote_fields = context.remote.execute(model_name, "fields_get")

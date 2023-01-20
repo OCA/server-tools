@@ -50,6 +50,8 @@ class TestBaseImportOdoo(TransactionCase):
                 return self.env[model].browse(args[0]).read(args[1])
             if method == "search":
                 return self.env[model].search(args[0]).ids
+            if method == "fields_get":
+                return self.env[model].fields_get()
 
         group_count = self.env["res.groups"].search([], count=True)
         user_count = self.env["res.users"].search([], count=True)
