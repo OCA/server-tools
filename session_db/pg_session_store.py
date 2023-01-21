@@ -131,7 +131,7 @@ def session_gc(session_store):
                 pass
 
 
-_original_session_store = http.root.session_store
+_original_session_store = http.root.__class__.session_store
 
 
 @lazy_property
@@ -140,7 +140,7 @@ def session_store(self):
     if session_db_uri:
         _logger.debug("HTTP sessions stored in: db")
         return PGSessionStore(session_db_uri, session_class=http.OpenERPSession)
-    return _original_session_store
+    return _original_session_store.__get__(self, self.__class__)
 
 
 # Monkey patch of standard methods
