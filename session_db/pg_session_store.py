@@ -25,7 +25,7 @@ def with_cursor(func):
             tries += 1
             try:
                 return func(self, *args, **kwargs)
-            except psycopg2.InterfaceError as e:
+            except (psycopg2.InterfaceError, psycopg2.OperationalError) as e:
                 _logger.info("Session in DB connection Retry %s/5" % tries)
                 if tries > 4:
                     raise e
@@ -51,6 +51,13 @@ class PGSessionStore(werkzeug.contrib.sessions.SessionStore):
 
     def _open_connection(self):
         cnx = odoo.sql_db.db_connect(self._uri, allow_uri=True)
+        try:
+            # return cursor to the pool
+            if self._cr is not None:
+                self._cr.close()
+                self._cr = None
+        except Exception:
+            pass
         self._cr = cnx.cursor()
         self._cr.autocommit(True)
 
