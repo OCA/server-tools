@@ -129,7 +129,7 @@ def session_gc(session_store):
                 pass
 
 
-_original_session_store = http.root.session_store
+_original_session_store = http.root.__class__.session_store
 
 
 @lazy_property
