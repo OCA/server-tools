@@ -4,4 +4,5 @@ dataclasses
 mako
 odoorpc
 openupgradelib
-pysftp
+pysftp==0.2.9
+sentry_sdk

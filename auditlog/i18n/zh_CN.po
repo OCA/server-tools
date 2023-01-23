@@ -53,6 +53,7 @@ msgstr "审核日志 - 日志"
 
 #. module: auditlog
 #: model:ir.model,name:auditlog.model_auditlog_log_line
+#: model:ir.model,name:auditlog.model_auditlog_log_line_view
 msgid "Auditlog - Log details (fields updated)"
 msgstr "审计日志 - 日志详细信息（更新的字段）"
 
@@ -98,6 +99,7 @@ msgstr "上下文"
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_http_session__create_uid
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log__create_uid
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line__create_uid
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__create_uid
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__create_uid
 msgid "Created by"
 msgstr "创建者"
@@ -108,6 +110,7 @@ msgstr "创建者"
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_http_session__create_date
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log__create_date
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line__create_date
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__create_date
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__create_date
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_http_request_search
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_http_session_search
@@ -122,6 +125,7 @@ msgstr "日期"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line__field_description
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__field_description
 msgid "Description"
 msgstr "说明"
 
@@ -129,6 +133,7 @@ msgstr "说明"
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_autovacuum__display_name
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log__display_name
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line__display_name
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__display_name
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__display_name
 msgid "Display Name"
 msgstr "显示名称"
@@ -147,6 +152,7 @@ msgstr "快速日志"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line__field_id
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__field_id
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_line_search
 msgid "Field"
 msgstr "字段"
@@ -203,7 +209,7 @@ msgstr "HTTP上下文"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log__http_request_id
-#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line__http_request_id
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__http_request_id
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_http_request_form
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_line_search
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_log_search
@@ -225,6 +231,7 @@ msgstr "HTTP请求"
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_http_session__id
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log__id
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line__id
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__id
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__id
 msgid "ID"
 msgstr "ID"
@@ -235,6 +242,7 @@ msgstr "ID"
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_http_session____last_update
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log____last_update
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line____last_update
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view____last_update
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule____last_update
 msgid "Last Modified on"
 msgstr "最后修改时间"
@@ -245,6 +253,7 @@ msgstr "最后修改时间"
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_http_session__write_uid
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log__write_uid
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line__write_uid
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__write_uid
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__write_uid
 msgid "Last Updated by"
 msgstr "最后更新者"
@@ -255,12 +264,14 @@ msgstr "最后更新者"
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_http_session__write_date
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log__write_date
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line__write_date
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__write_date
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__write_date
 msgid "Last Updated on"
 msgstr "最后更新时间"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line__log_id
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__log_id
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_log_form
 msgid "Log"
 msgstr "日志"
@@ -308,13 +319,13 @@ msgstr "日志"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log__method
-#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line__method
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__method
 msgid "Method"
 msgstr "方法"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log__model_id
-#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line__model_id
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__model_id
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__model_id
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_line_search
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_log_search
@@ -322,8 +333,13 @@ msgid "Model"
 msgstr "模型"
 
 #. module: auditlog
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__model_model
+msgid "Model Model"
+msgstr ""
+
+#. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log__model_name
-#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line__model_name
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__model_name
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__model_name
 msgid "Model Name"
 msgstr ""
@@ -331,17 +347,20 @@ msgstr ""
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_http_request__display_name
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_http_session__display_name
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__name
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__name
 msgid "Name"
 msgstr "名称"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line__new_value
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__new_value
 msgid "New Value"
 msgstr "新值"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line__new_value_text
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__new_value_text
 msgid "New value Text"
 msgstr "新值文本"
 
@@ -368,11 +387,13 @@ msgstr ""
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line__old_value
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__old_value
 msgid "Old Value"
 msgstr "旧值"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line__old_value_text
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__old_value_text
 msgid "Old value Text"
 msgstr "旧值文本"
 
@@ -383,8 +404,12 @@ msgid "Path"
 msgstr "路径"
 
 #. module: auditlog
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__res_id
+msgid "Res"
+msgstr ""
+
+#. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log__res_id
-#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line__res_id
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_line_search
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_log_search
 msgid "Resource ID"
@@ -392,7 +417,6 @@ msgstr "资源ID"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log__name
-#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line__name
 msgid "Resource Name"
 msgstr "资源名称"
 
@@ -455,7 +479,7 @@ msgstr "如果要在此规则的模型的任何记录上跟踪读取/打开，�
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_http_request__http_session_id
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log__http_session_id
-#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line__http_session_id
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__http_session_id
 msgid "Session"
 msgstr "会话"
 
@@ -483,13 +507,13 @@ msgstr "订阅"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log__model_model
-#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line__model_model
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__model_model
 msgid "Technical Model Name"
 msgstr ""
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line__field_name
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__field_name
 msgid "Technical name"
 msgstr "技术名称"
 
@@ -518,7 +542,7 @@ msgstr ""
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log__log_type
-#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line__log_type
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__log_type
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__log_type
 msgid "Type"
 msgstr "类型"
@@ -532,7 +556,7 @@ msgstr "退订"
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_http_request__user_id
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_http_session__user_id
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log__user_id
-#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line__user_id
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__user_id
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_http_request_search
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_http_session_search
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_line_search

@@ -58,6 +58,10 @@ To activate it and/or change the delay, go to the
 
 .. image:: https://raw.githubusercontent.com/OCA/server-tools/16.0/auditlog/static/description/autovacuum.png
 
+In case you're having trouble with the amount of records to delete per run,
+you can pass the amount of records to delete for one model per run as the second
+parameter, the default is to delete all records in one go.
+
 There are two possible groups configured to which one may belong. The first
 is the Auditlog User group. This group has read-only access to the auditlogs of
 individual records through the `View Logs` action. The second group is the
