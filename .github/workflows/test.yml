@@ -103,6 +103,7 @@ jobs:
           DEBIAN_FRONTEND=noninteractive apt-get install -qq \
             expect-dev \
             unixodbc-dev \
+            default-libmysqlclient-dev \
             postfix
       - name: Install addons and dependencies
         run: oca_install_addons
