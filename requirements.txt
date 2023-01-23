@@ -11,6 +11,7 @@ mysqlclient
 odoorpc
 openupgradelib
 pymssql<=2.1.5
+pyodbc
 pyotp<2.4
 pysftp
 python-ldap

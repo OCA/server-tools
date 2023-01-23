@@ -15,13 +15,12 @@
     'depends': [
         'base_external_dbsource_sqlite',
     ],
-    # Uncomment this for v11
-    # 'external_dependencies': [
-    #     'python': [
-    #         'sqlalchemy',
-    #         'pyodbc',
-    #     ]
-    # ],
+    'external_dependencies': {
+        'python': [
+            'sqlalchemy',
+            'pyodbc',
+        ]
+    },
     'demo': [
         'demo/base_external_dbsource.xml',
     ],
