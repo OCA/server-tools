@@ -2,6 +2,7 @@
 acme<2.0.0
 astor
 cryptography
+cryptography==2.6.1
 dataclasses
 dnspython
 josepy
