@@ -6,7 +6,7 @@
 {
     "name": "Database Auto-Backup",
     "summary": "Backups database",
-    "version": "15.0.1.0.0",
+    "version": "15.0.1.0.1",
     "author": "Yenthe Van Ginneken, "
     "Agile Business Group, "
     "Grupo ESOC Ingenieria de Servicios, "
@@ -24,5 +24,5 @@
         "view/db_backup_view.xml",
     ],
     "installable": True,
-    "external_dependencies": {"python": ["pysftp"]},
+    "external_dependencies": {"python": ["pysftp", "cryptography==2.6.1"]},
 }
