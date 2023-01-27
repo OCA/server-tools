@@ -114,6 +114,16 @@ class IrModuleModule(models.Model):
         exclude_files = [x.strip() for x in val.split(",") if x.strip()]
 
         for module in self:
+            if os.environ.get("CI") and module.name not in (
+                "base",
+                "base_automation",
+                "module_analysis",
+            ):
+                _logger.debug(
+                    "Skipping code analysis of module %s in the CI context."
+                    % (module.name)
+                )
+                continue
             _logger.info("Analysing Code for module %s ..." % (module.name))
 
             # Update Authors, based on manifest key
