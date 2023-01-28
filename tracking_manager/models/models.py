@@ -94,7 +94,8 @@ class Base(models.AbstractModel):
                     }
                     for field_name, messages in messages_by_field.items()
                 ]
-                record.message_post_with_view(
+                # use sudo as user may not have access to mail.message
+                record.sudo().message_post_with_view(
                     "tracking_manager.track_o2m_m2m_template",
                     values={"lines": messages},
                     subtype_id=self.env.ref("mail.mt_note").id,
