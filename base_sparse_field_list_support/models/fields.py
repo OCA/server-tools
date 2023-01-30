@@ -1,6 +1,6 @@
 import json
 
-from odoo import fields
+from odoo.addons.base_sparse_field.models import fields
 
 #
 # Definition and implementation of serialized fields: override
