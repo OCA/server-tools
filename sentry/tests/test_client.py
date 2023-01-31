@@ -101,7 +101,7 @@ class TestClientSetup(TransactionCase):
         level = "warning"
         self.assertEventCaptured(self.client, level, msg)
 
-    def test_ignore_exceptions(self):
+    def test_ignore_exceptions_explicit(self):
         config.options["sentry_ignore_exceptions"] = "odoo.exceptions.UserError"
         client = initialize_sentry(config)._client
         client.transport = InMemoryTransport({"dsn": self.dsn})
@@ -114,6 +114,32 @@ class TestClientSetup(TransactionCase):
         level = "warning"
         self.assertEventNotCaptured(client, level, msg)
 
+    def test_ignore_exceptions_default(self):
+        """Testing the default list of ignore_exceptions"""
+        client = initialize_sentry(config)._client
+        client.transport = InMemoryTransport({"dsn": self.dsn})
+        level, msg = logging.WARNING, "Test exception"
+        try:
+            raise exceptions.UserError(msg)
+        except exceptions.UserError:
+            exc_info = sys.exc_info()
+        self.log(level, msg, exc_info)
+        level = "warning"
+        self.assertEventNotCaptured(client, level, msg)
+
+    def test_capture_exceptions_default(self):
+        """Testing exceptions not in default ignore_exceptions are captured"""
+        client = initialize_sentry(config)._client
+        client.transport = InMemoryTransport({"dsn": self.dsn})
+        level, msg = logging.WARNING, "Test exception"
+        try:
+            raise exceptions.QWebException(msg)
+        except exceptions.QWebException:
+            exc_info = sys.exc_info()
+        self.log(level, msg, exc_info)
+        level = "warning"
+        self.assertEventCaptured(client, level, msg)
+
     def test_exclude_logger(self):
         config.options["sentry_enabled"] = True
         config.options["sentry_exclude_loggers"] = __name__
@@ -124,6 +150,7 @@ class TestClientSetup(TransactionCase):
         level = "warning"
         # Revert ignored logger so it doesn't affect other tests
         remove_handler_ignore(__name__)
+        del config.options["sentry_exclude_loggers"]
         self.assertEventNotCaptured(client, level, msg)
 
     @patch("odoo.addons.sentry.hooks.get_odoo_commit", return_value=GIT_SHA)
