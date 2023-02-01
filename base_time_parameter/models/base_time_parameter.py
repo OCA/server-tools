@@ -68,9 +68,7 @@ class TimeParameter(models.Model):
         ]
         parameter = self.env["base.time.parameter"].search(domain)
         if parameter:
-            value = parameter._get(date, get=get)
-            if value:
-                return value
+            return parameter._get(date, get=get)
         # No value
         if not raise_if_not_found:
             return
