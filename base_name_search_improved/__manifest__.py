@@ -3,7 +3,7 @@
 {
     "name": "Improved Name Search",
     "summary": "Friendlier search when typing in relation fields",
-    "version": "14.0.1.1.0",
+    "version": "16.0.1.0.0",
     "category": "Uncategorized",
     "website": "https://github.com/OCA/server-tools",
     "author": "Daniel Reis, Odoo Community Association (OCA), ADHOC SA",
@@ -11,5 +11,4 @@
     "data": ["views/ir_model_views.xml"],
     "depends": ["base"],
     "installable": True,
-    "uninstall_hook": "uninstall_hook",
 }

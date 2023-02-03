@@ -38,12 +38,12 @@ so "John M. Brown" would be a match.
 It also tolerates words in a different order, so searching
 for "brown john" also works.
 
-.. figure:: https://raw.githubusercontent.com/OCA/server-tools/11.0/base_name_search_improved/images/image0.png
+.. figure:: https://raw.githubusercontent.com/OCA/server-tools/16.0/base_name_search_improved/images/image0.png
 
 Additionally, an Administrator can configure other fields to also lookup into.
 For example, Customers could be additionally searched by City or Phone number.
 
-.. figure:: https://raw.githubusercontent.com/OCA/server-tools/11.0/base_name_search_improved/images/image2.png
+.. figure:: https://raw.githubusercontent.com/OCA/server-tools/16.0/base_name_search_improved/images/image2.png
 
 How it works:
 
@@ -76,7 +76,7 @@ The regular ``search()``, used in the top right search box, is not affected.
 Additional search fields can be configured at Settings > Technical > Database > Models,
 using the "Name Search Fields" field.
 
-.. figure:: https://raw.githubusercontent.com/OCA/server-tools/11.0/base_name_search_improved/images/image1.png
+.. figure:: https://raw.githubusercontent.com/OCA/server-tools/16.0/base_name_search_improved/images/image1.png
    :alt: Name Search Fields
    :width: 600 px
 
@@ -140,6 +140,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/14.0/base_name_search_improved>`_ project on GitHub.
+This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/16.0/base_name_search_improved>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

@@ -5,6 +5,6 @@ The regular ``search()``, used in the top right search box, is not affected.
 Additional search fields can be configured at Settings > Technical > Database > Models,
 using the "Name Search Fields" field.
 
-.. figure:: https://raw.githubusercontent.com/OCA/server-tools/11.0/base_name_search_improved/images/image1.png
+.. figure:: https://raw.githubusercontent.com/OCA/server-tools/16.0/base_name_search_improved/images/image1.png
    :alt: Name Search Fields
    :width: 600 px

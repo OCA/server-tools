@@ -8,6 +8,7 @@ from lxml import etree
 
 from odoo import _, api, fields, models, tools
 from odoo.exceptions import ValidationError
+from odoo.tools import Query
 
 _logger = logging.getLogger(__name__)
 # Extended name search is only used on some operators
@@ -17,7 +18,7 @@ ALLOWED_OPS = {"ilike", "like"}
 @tools.ormcache(skiparg=0)
 def _get_rec_names(self):
     "List of fields to search into"
-    model = self.env["ir.model"].search([("model", "=", str(self._name))])
+    model = self.env["ir.model"].sudo().search([("model", "=", str(self._name))])
     rec_name = [self._rec_name] or []
     other_names = model.name_search_ids.mapped("name")
     return rec_name + other_names
@@ -27,6 +28,7 @@ def _get_rec_names(self):
 def _get_use_smart_name_search(self):
     return (
         self.env["ir.model"]
+        .sudo()
         .search([("model", "=", str(self._name))])
         .use_smart_name_search
     )
@@ -35,7 +37,7 @@ def _get_use_smart_name_search(self):
 @tools.ormcache(skiparg=0)
 def _get_add_smart_search(self):
     "Add Smart Search on search views"
-    model = self.env["ir.model"].search([("model", "=", str(self._name))])
+    model = self.env["ir.model"].sudo().search([("model", "=", str(self._name))])
     # Run only if module is installed
     if hasattr(model, "add_smart_search"):
         return model.add_smart_search
@@ -47,6 +49,7 @@ def _get_name_search_domain(self):
     "Add Smart Search on search views"
     name_search_domain = (
         self.env["ir.model"]
+        .sudo()
         .search([("model", "=", str(self._name))])
         .name_search_domain
     )
@@ -64,91 +67,6 @@ def _extend_name_results(self, domain, results, limit, name_get_uid):
         )
         results.extend(rec_ids)
     return results
-
-
-def patch_name_search():
-    @api.model
-    def _name_search(
-        self, name="", args=None, operator="ilike", limit=100, name_get_uid=None
-    ):
-        # Perform standard name search
-        res = _name_search.origin(
-            self,
-            name=name,
-            args=args,
-            operator=operator,
-            limit=limit,
-            name_get_uid=name_get_uid,
-        )
-        if name and _get_use_smart_name_search(self.sudo()) and operator in ALLOWED_OPS:
-            limit = limit or 0
-
-            # we add domain
-            args = args or [] + _get_name_search_domain(self.sudo())
-
-            # Support a list of fields to search on
-            all_names = _get_rec_names(self.sudo())
-            base_domain = args or []
-            # Try regular search on each additional search field
-            for rec_name in all_names[1:]:
-                domain = [(rec_name, operator, name)]
-                res = _extend_name_results(
-                    self, base_domain + domain, res, limit, name_get_uid
-                )
-            # Try ordered word search on each of the search fields
-            for rec_name in all_names:
-                domain = [(rec_name, operator, name.replace(" ", "%"))]
-                res = _extend_name_results(
-                    self, base_domain + domain, res, limit, name_get_uid
-                )
-            # Try unordered word search on each of the search fields
-            # we only perform this search if we have at least one
-            # separator character
-            # also, if have raise the limit we skeep this iteration
-            if " " in name and len(res) < limit:
-                domain = []
-                for word in name.split():
-                    word_domain = []
-                    for rec_name in all_names:
-                        word_domain = (
-                            word_domain and ["|"] + word_domain or word_domain
-                        ) + [(rec_name, operator, word)]
-                    domain = (domain and ["&"] + domain or domain) + word_domain
-                res = _extend_name_results(
-                    self, base_domain + domain, res, limit, name_get_uid
-                )
-
-        return res
-
-    return _name_search
-
-
-def patch_fields_view_get():
-    @api.model
-    def fields_view_get(
-        self, view_id=None, view_type="form", toolbar=False, submenu=False
-    ):
-        res = fields_view_get.origin(
-            self,
-            view_id=view_id,
-            view_type=view_type,
-            toolbar=toolbar,
-            submenu=submenu,
-        )
-        if view_type == "search" and _get_add_smart_search(self):
-            eview = etree.fromstring(res["arch"])
-            placeholders = eview.xpath("//search/field")
-            if placeholders:
-                placeholder = placeholders[0]
-            else:
-                placeholder = eview.xpath("//search")[0]
-            placeholder.addnext(etree.Element("field", {"name": "smart_search"}))
-            eview.remove(placeholder)
-            res["arch"] = etree.tostring(eview)
-            res["fields"].update(self.fields_get(["smart_search"]))
-        return res
-
-    return fields_view_get
 
 
 class Base(models.AbstractModel):
@@ -188,6 +106,83 @@ class Base(models.AbstractModel):
                 domain = (domain and ["&"] + domain or domain) + word_domain
             return domain
         return []
+
+    @api.model
+    def fields_view_get(
+        self, view_id=None, view_type="form", toolbar=False, submenu=False
+    ):
+        res = super(Base, self).fields_view_get(
+            view_id=view_id,
+            view_type=view_type,
+            toolbar=toolbar,
+            submenu=submenu,
+        )
+        if view_type == "search" and _get_add_smart_search(self):
+            eview = etree.fromstring(res["arch"])
+            placeholders = eview.xpath("//search/field")
+            if placeholders:
+                placeholder = placeholders[0]
+            else:
+                placeholder = eview.xpath("//search")[0]
+            placeholder.addnext(etree.Element("field", {"name": "smart_search"}))
+            eview.remove(placeholder)
+            res["arch"] = etree.tostring(eview)
+            res["fields"].update(self.fields_get(["smart_search"]))
+        return res
+
+    @api.model
+    def _name_search(
+        self, name="", args=None, operator="ilike", limit=100, name_get_uid=None
+    ):
+        # Perform standard name search
+        res = super(Base, self)._name_search(
+            name=name,
+            args=args,
+            operator=operator,
+            limit=limit,
+            name_get_uid=name_get_uid,
+        )
+        if type(res) is Query:
+            res = res._result
+        if name and _get_use_smart_name_search(self.sudo()) and operator in ALLOWED_OPS:
+            limit = limit or 0
+
+            # we add domain
+            args = args or [] + _get_name_search_domain(self.sudo())
+
+            # Support a list of fields to search on
+            all_names = _get_rec_names(self.sudo())
+            base_domain = args or []
+            # Try regular search on each additional search field
+            for rec_name in all_names[1:]:
+                domain = [(rec_name, operator, name)]
+                res = _extend_name_results(
+                    self, base_domain + domain, res, limit, name_get_uid
+                )
+            # Try ordered word search on each of the search fields
+            for rec_name in all_names:
+                domain = [(rec_name, operator, name.replace(" ", "%"))]
+                res = _extend_name_results(
+                    self, base_domain + domain, res, limit, name_get_uid
+                )
+            # Try unordered word search on each of the search fields
+            # we only perform this search if we have at least one
+            # separator character
+            # also, if have raise the limit we skeep this iteration
+            if " " in name and len(res) < limit:
+                domain = []
+                for word in name.split():
+                    word_domain = []
+                    for rec_name in all_names:
+                        word_domain = (
+                            word_domain and ["|"] + word_domain or word_domain
+                        ) + [(rec_name, operator, word)]
+                    domain = (domain and ["&"] + domain or domain) + word_domain
+                res = _extend_name_results(
+                    self, base_domain + domain, res, limit, name_get_uid
+                )
+
+        return res
 
 
 class IrModel(models.Model):
@@ -239,18 +234,6 @@ class IrModel(models.Model):
             except Exception as error:
                 raise ValidationError(
                     _("Couldn't eval Name Search Domain (%s)") % error
-                )
+                ) from error
             if not isinstance(name_search_domain, list):
                 raise ValidationError(_("Name Search Domain must be a list of tuples"))
-
-    def _register_hook(self):
-
-        _logger.info("Patching BaseModel for Smart Search")
-        models.BaseModel._patch_method("fields_view_get", patch_fields_view_get())
-
-        for model in self.sudo().search(self.ids or []):
-            Model = self.env.get(model.model)
-            if Model is not None:
-                Model._patch_method("_name_search", patch_name_search())
-
-        return super(IrModel, self)._register_hook()
