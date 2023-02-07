@@ -80,7 +80,7 @@ class Module(models.Model):
     def _save_checksums(self, checksums):
         Icp = self.env["ir.config_parameter"]
         Icp.set_param(PARAM_INSTALLED_CHECKSUMS, json.dumps(checksums))
-        Icp.flush()
+        Icp.flush_model()
 
     @api.model
     def _save_installed_checksums(self):
