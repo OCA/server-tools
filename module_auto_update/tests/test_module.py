@@ -4,8 +4,7 @@
 
 import os
 import tempfile
-
-import mock
+from unittest import mock
 
 import odoo
 from odoo.modules import get_module_path
