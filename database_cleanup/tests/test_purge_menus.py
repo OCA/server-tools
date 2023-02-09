@@ -3,36 +3,38 @@
 
 from odoo.tests.common import tagged
 
-from .common import Common
+from .common import Common, environment
 
 
 # Use post_install to get all models loaded more info: odoo/odoo#13458
 @tagged("post_install", "-at_install")
 class TestCleanupPurgeLineMenu(Common):
     def setUp(self):
-        super(TestCleanupPurgeLineMenu, self).setUp()
-        # create a new empty menu
-        self.menu = self.env["ir.ui.menu"].create({"name": "database_cleanup_test"})
+        super().setUp()
+        with environment() as env:
+            # create a new empty menu
+            self.menu = env["ir.ui.menu"].create({"name": "database_cleanup_test"})
 
     def test_empty_menu(self):
-        wizard = self.env["cleanup.purge.wizard.menu"].create(
-            {
-                "purge_line_ids": [
-                    (
-                        0,
-                        0,
-                        {
-                            "menu_id": self.menu.id,
-                        },
-                    )
-                ]
-            }
-        )
-        wizard.purge_all()
-        self.assertFalse(
-            self.env["ir.ui.menu"].search(
-                [
-                    ("name", "=", "database_cleanup_test"),
-                ]
+        with environment() as env:
+            wizard = env["cleanup.purge.wizard.menu"].create(
+                {
+                    "purge_line_ids": [
+                        (
+                            0,
+                            0,
+                            {
+                                "menu_id": self.menu.id,
+                            },
+                        )
+                    ]
+                }
             )
-        )
+            wizard.purge_all()
+            self.assertFalse(
+                env["ir.ui.menu"].search(
+                    [
+                        ("name", "=", "database_cleanup_test"),
+                    ]
+                )
+            )
