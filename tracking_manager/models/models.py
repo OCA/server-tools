@@ -121,6 +121,10 @@ class Base(models.AbstractModel):
         )
         for _id, values in initial_values.items():
             record = self.browse(_id)
+            if not record.exists():
+                # if a record have been modify and then deleted
+                # it's not need to track the change so skip it
+                continue
             changes = record._tm_get_changes(values)
             if changes:
                 record._tm_notify_owner("update", changes)

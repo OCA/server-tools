@@ -139,7 +139,7 @@ class TestTrackingManager(SavepointCase):
         self.assertEqual(self.messages.body.count("New"), 1)
 
     def test_o2m_unlink_indirectly(self):
-        self.partner.write({"bank_ids": [(3, self.partner.bank_ids[0].id)]})
+        self.partner.write({"bank_ids": [(2, self.partner.bank_ids[0].id)]})
         self.assertEqual(len(self.messages), 1)
         self.assertIn("Delete", self.messages.body)
 
@@ -169,7 +169,7 @@ class TestTrackingManager(SavepointCase):
         self.partner.write(
             {
                 "bank_ids": [
-                    (3, self.partner.bank_ids[0].id),
+                    (2, self.partner.bank_ids[0].id, 0),
                     (0, 0, {"acc_number": "1234567890"}),
                 ]
             }
@@ -216,6 +216,29 @@ class TestTrackingManager(SavepointCase):
         self.assertEqual(len(self.messages), 1)
         self.assertEqual(self.messages.body.count("Changed"), 1)
 
+    def test_o2m_write_and_unlink_indirectly(self):
+        # when editing a o2m in some special case
+        # like the computed field amount_tax of purchase order line
+        # some write can be done on a line before behind deleted
+        # line._compute_amount() is called manually inside see link behind
+        # https://github.com/odoo/odoo/blob/009f35f3d3659792ef18ac510a6ec323708becec/addons/purchase/models/purchase.py#L28 # noqa
+        # So we are in a case that we do some change and them we delete them
+        # in that case we should only have one message of deletation
+        # and no error
+        self.partner.write(
+            {
+                "bank_ids": [(1, self.partner.bank_ids[0].id, {"acc_number": "123"})],
+            }
+        )
+        self.partner.write(
+            {
+                "bank_ids": [(2, self.partner.bank_ids[0].id, 0)],
+            }
+        )
+        self.assertEqual(len(self.messages), 1)
+        self.assertEqual(self.messages.body.count("Change"), 0)
+        self.assertEqual(self.messages.body.count("Delete"), 1)
+
     def test_o2m_create_directly(self):
         self.env["res.partner.bank"].create(
             {
@@ -235,3 +258,11 @@ class TestTrackingManager(SavepointCase):
         self.partner.bank_ids.write({"acc_number": "0987654321"})
         self.assertEqual(len(self.messages), 1)
         self.assertEqual(self.messages.body.count("Change :"), 1)
+
+    def test_o2m_write_and_unlink_directly(self):
+        # see explanation of test_o2m_write_and_unlink_indirectly
+        self.partner.bank_ids.write({"acc_number": "0987654321"})
+        self.partner.bank_ids.unlink()
+        self.assertEqual(len(self.messages), 1)
+        self.assertEqual(self.messages.body.count("Change"), 0)
+        self.assertEqual(self.messages.body.count("Delete"), 1)
