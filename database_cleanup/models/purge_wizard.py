@@ -16,8 +16,8 @@ class CleanupPurgeLine(models.AbstractModel):
     _order = "name"
     _description = "Purge Column Abstract Wizard"
 
-    name = fields.Char("Name", readonly=True)
-    purged = fields.Boolean("Purged", readonly=True)
+    name = fields.Char(readonly=True)
+    purged = fields.Boolean(readonly=True)
     wizard_id = fields.Many2one("cleanup.purge.wizard")
 
     logger = logging.getLogger("odoo.addons.database_cleanup")
