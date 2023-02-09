@@ -17,7 +17,7 @@ Database cleanup
     :target: https://github.com/OCA/server-tools/tree/14.0/database_cleanup
     :alt: OCA/server-tools
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/server-tools-14-0/server-tools-14-0-database_cleanup
+    :target: https://translation.odoo-community.org/projects/server-tools-15-0/server-tools-15-0-database_cleanup
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
     :target: https://runbot.odoo-community.org/runbot/149/14.0

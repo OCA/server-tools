@@ -9,10 +9,11 @@ from .common import Common
 # Use post_install to get all models loaded more info: odoo/odoo#13458
 @tagged("post_install", "-at_install")
 class TestCreateIndexesLine(Common):
-    def setUp(self):
-        super(TestCreateIndexesLine, self).setUp()
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
         # delete some index and check if our module recreated it
-        self.env.cr.execute("drop index res_partner_name_index")
+        cls.env.cr.execute("drop index res_partner_name_index")
 
     def test_deleted_index(self):
         wizard = self.env["cleanup.create_indexes.wizard"].create({})
