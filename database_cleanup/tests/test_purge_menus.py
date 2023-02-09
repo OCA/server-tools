@@ -9,10 +9,11 @@ from .common import Common
 # Use post_install to get all models loaded more info: odoo/odoo#13458
 @tagged("post_install", "-at_install")
 class TestCleanupPurgeLineMenu(Common):
-    def setUp(self):
-        super(TestCleanupPurgeLineMenu, self).setUp()
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
         # create a new empty menu
-        self.menu = self.env["ir.ui.menu"].create({"name": "database_cleanup_test"})
+        cls.menu = cls.env["ir.ui.menu"].create({"name": "database_cleanup_test"})
 
     def test_empty_menu(self):
         wizard = self.env["cleanup.purge.wizard.menu"].create(

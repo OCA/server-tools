@@ -9,16 +9,17 @@ from .common import Common
 # Use post_install to get all models loaded more info: odoo/odoo#13458
 @tagged("post_install", "-at_install")
 class TestCleanupPurgeLineData(Common):
-    def setUp(self):
-        super(TestCleanupPurgeLineData, self).setUp()
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
         # create a data entry pointing nowhere
-        self.env.cr.execute("select max(id) + 1 from res_users")
-        self.env["ir.model.data"].create(
+        cls.env.cr.execute("select max(id) + 1 from res_users")
+        cls.env["ir.model.data"].create(
             {
                 "module": "database_cleanup",
                 "name": "test_no_data_entry",
                 "model": "res.users",
-                "res_id": self.env.cr.fetchone()[0],
+                "res_id": cls.env.cr.fetchone()[0],
             }
         )
 

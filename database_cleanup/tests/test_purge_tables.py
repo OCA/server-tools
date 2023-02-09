@@ -11,10 +11,11 @@ from .common import Common
 # Use post_install to get all models loaded more info: odoo/odoo#13458
 @tagged("post_install", "-at_install")
 class TestCleanupPurgeLineTable(Common):
-    def setUp(self):
-        super(TestCleanupPurgeLineTable, self).setUp()
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
         # create an orphaned table
-        self.env.cr.execute("create table database_cleanup_test (test int)")
+        cls.env.cr.execute("create table database_cleanup_test (test int)")
 
     def test_empty_table(self):
         wizard = self.env["cleanup.purge.wizard.table"].create({})

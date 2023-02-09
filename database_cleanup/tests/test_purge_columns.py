@@ -11,10 +11,11 @@ from .common import Common
 # Use post_install to get all models loaded more info: odoo/odoo#13458
 @tagged("post_install", "-at_install")
 class TestCleanupPurgeLineColumn(Common):
-    def setUp(self):
-        super(TestCleanupPurgeLineColumn, self).setUp()
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
         # create an orphaned column
-        self.env.cr.execute(
+        cls.env.cr.execute(
             "alter table res_partner add column database_cleanup_test int"
         )
 

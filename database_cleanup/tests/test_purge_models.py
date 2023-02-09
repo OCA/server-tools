@@ -9,27 +9,29 @@ from .common import Common
 # Use post_install to get all models loaded more info: odoo/odoo#13458
 @tagged("post_install", "-at_install")
 class TestCleanupPurgeLineColumn(Common):
-    def setUp(self):
-        super(TestCleanupPurgeLineColumn, self).setUp()
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
         # create a nonexistent model
-        self.model_name = "x_database.cleanup.test.model"
-        self.model_values = {
+        cls.model_name = "x_database.cleanup.test.model"
+        cls.model_values = {
             "name": "Database cleanup test model",
-            "model": self.model_name,
+            "model": cls.model_name,
         }
-        self.model = self.env["ir.model"].create(self.model_values)
-        self.env.cr.execute(
+        cls.model = cls.env["ir.model"].create(cls.model_values)
+        cls.env.cr.execute(
             "insert into ir_attachment (name, res_model, res_id, type) values "
             "('test attachment', %s, 42, 'binary')",
-            [self.model_name],
+            [cls.model_name],
         )
-        self.env.registry.models.pop(self.model_name)
+        cls.env.registry.models.pop(cls.model_name)
 
-    def tearDown(self):
+    @classmethod
+    def tearDownClass(cls):
         """We recreate the model to avoid registry Exception at loading"""
-        super(TestCleanupPurgeLineColumn, self).tearDown()
+        super().tearDownClass()
         # FIXME: issue origin is not clear but it must be addressed.
-        self.model = self.env["ir.model"].create(self.model_values)
+        cls.model = cls.env["ir.model"].create(cls.model_values)
 
     def test_empty_model(self):
         wizard = self.env["cleanup.purge.wizard.model"].create({})

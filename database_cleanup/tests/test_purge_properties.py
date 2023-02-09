@@ -9,10 +9,11 @@ from .common import Common
 # Use post_install to get all models loaded more info: odoo/odoo#13458
 @tagged("post_install", "-at_install")
 class TestCleanupPurgeLineProperty(Common):
-    def setUp(self):
-        super(TestCleanupPurgeLineProperty, self).setUp()
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
         # Create one property for tests
-        self.partner_name_field_id = self.env["ir.model.fields"].search(
+        cls.partner_name_field_id = cls.env["ir.model.fields"].search(
             [("name", "=", "name"), ("model_id.model", "=", "res.partner")], limit=1
         )
 

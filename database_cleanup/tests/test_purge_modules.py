@@ -9,10 +9,11 @@ from .common import Common
 # Use post_install to get all models loaded more info: odoo/odoo#13458
 @tagged("post_install", "-at_install")
 class TestCleanupPurgeLineModule(Common):
-    def setUp(self):
-        super(TestCleanupPurgeLineModule, self).setUp()
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
         # create a nonexistent module
-        self.module = self.env["ir.module.module"].create(
+        cls.module = cls.env["ir.module.module"].create(
             {
                 "name": "database_cleanup_test",
                 "state": "to upgrade",
