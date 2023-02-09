@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="ir_sequence_form_inherit" model="ir.ui.view">
+        <field name="name">sequence_view_inherit</field>
+        <field name="model">ir.sequence</field>
+        <field name="inherit_id" ref="base.sequence_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='number_next_actual']" position="after">
+                <field name="preview" />
+            </xpath>
+            <xpath
+                expr="//field[@name='date_range_ids']/tree/field[last()]"
+                position="after"
+            >
+                <field name="preview" />
+            </xpath>
+            <xpath expr="//page/group[2]/group[2]/span[2]" position="after">
+                <span colspan="2">Quarter of the Year: %%(qoy)s</span>
+            </xpath>
+        </field>
+    </record>
+</odoo>
