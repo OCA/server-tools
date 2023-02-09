@@ -27,8 +27,13 @@ class TestException(exceptions.UserError):
     pass
 
 
+class Worker:
+    def kill(self, *args, **kwargs):
+        pass
+
+
 class InMemoryTransport(HttpTransport):
-    """A :class:`sentry_sdk.Hub.transport` subclass which simply stores events in a list.
+    """A :class:`sentry_sdk.Hub.transport`subclass which simply stores events in a list.
 
     Extended based on the one found in raven-python to avoid additional testing
     dependencies: https://git.io/vyGO3
@@ -36,24 +41,27 @@ class InMemoryTransport(HttpTransport):
 
     def __init__(self, *args, **kwargs):
         self.events = []
+        self.envelopes = []
+        self._worker = Worker()
 
     def capture_event(self, event, *args, **kwargs):
         self.events.append(event)
 
-    def has_event(self, event_level, event_msg):
-        for event in self.events:
-            if (
-                event.get("level") == event_level
-                and event.get("logentry", {}).get("message") == event_msg
-            ):
-                return True
-        return False
+    def capture_envelope(self, envelope):
+        self.envelopes.append(envelope)
 
     def flush(self, *args, **kwargs):
         pass
 
-    def kill(self, *args, **kwargs):
-        pass
+    def has_event(self, event_level, event_msg, *args, **kwargs):
+        for event in self.events:
+            if (
+                event["level"] == event_level
+                and event["logentry"]["message"] == event_msg
+            ):
+                return True
+
+        return False
 
 
 class TestClientSetup(TransactionCase):
