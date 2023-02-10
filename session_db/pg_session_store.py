@@ -71,13 +71,13 @@ class PGSessionStore(werkzeug.contrib.sessions.SessionStore):
 
     @with_lock
     def _open_connection(self):
-        try:
-            # return cursor to the pool
-            if self._cr is not None:
+        # return cursor to the pool
+        if self._cr is not None:
+            try:
                 self._cr.close()
-                self._cr = None
-        except Exception:
-            pass
+            except Exception:
+                pass
+            self._cr = None
         cnx = odoo.sql_db.db_connect(self._uri, allow_uri=True)
         self._cr = cnx.cursor()
         self._cr.autocommit(True)
