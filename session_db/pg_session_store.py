@@ -15,6 +15,29 @@ from odoo.tools.func import lazy_property
 
 _logger = logging.getLogger(__name__)
 
+lock = None
+if odoo.evented:
+    import gevent.lock
+
+    lock = gevent.lock.RLock()
+elif odoo.tools.config["workers"] == 0:
+    import threading
+
+    lock = threading.RLock()
+
+
+def with_lock(func):
+    def wrapper(*args, **kwargs):
+        try:
+            if lock is not None:
+                lock.acquire()
+            return func(*args, **kwargs)
+        finally:
+            if lock is not None:
+                lock.release()
+
+    return wrapper
+
 
 def with_cursor(func):
     def wrapper(self, *args, **kwargs):
@@ -37,9 +60,6 @@ class PGSessionStore(sessions.SessionStore):
         super().__init__(session_class)
         self._uri = uri
         self._cr = None
-        # FIXME This class is NOT thread-safe. Only use in worker mode
-        if odoo.tools.config["workers"] == 0:
-            raise ValueError("session_db requires multiple workers")
         self._open_connection()
         self._setup_db()
 
@@ -47,6 +67,7 @@ class PGSessionStore(sessions.SessionStore):
         if self._cr is not None:
             self._cr.close()
 
+    @with_lock
     def _open_connection(self):
         cnx = odoo.sql_db.db_connect(self._uri, allow_uri=True)
         try:
@@ -59,6 +80,7 @@ class PGSessionStore(sessions.SessionStore):
         self._cr = cnx.cursor()
         self._cr._cnx.autocommit = True
 
+    @with_lock
     @with_cursor
     def _setup_db(self):
         self._cr.execute(
@@ -71,6 +93,7 @@ class PGSessionStore(sessions.SessionStore):
             """
         )
 
+    @with_lock
     @with_cursor
     def save(self, session):
         payload = json.dumps(dict(session))
@@ -85,10 +108,12 @@ class PGSessionStore(sessions.SessionStore):
             dict(sid=session.sid, payload=payload),
         )
 
+    @with_lock
     @with_cursor
     def delete(self, session):
         self._cr.execute("DELETE FROM http_sessions WHERE sid=%s", (session.sid,))
 
+    @with_lock
     @with_cursor
     def get(self, sid):
         self._cr.execute("SELECT payload FROM http_sessions WHERE sid=%s", (sid,))
@@ -103,6 +128,7 @@ class PGSessionStore(sessions.SessionStore):
     # so let's get it from FilesystemSessionStore.
     rotate = http.FilesystemSessionStore.rotate
 
+    @with_lock
     @with_cursor
     def vacuum(self):
         self._cr.execute(
