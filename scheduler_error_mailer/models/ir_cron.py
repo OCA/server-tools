@@ -16,6 +16,7 @@ class IrCron(models.Model):
 
     email_template_id = fields.Many2one(
         comodel_name="mail.template",
+        domain=[("model_id.model", "=", "ir.cron")],
         string="Error E-mail Template",
         help="Select the email template that will be sent when "
         "this scheduler fails.",
@@ -37,7 +38,7 @@ class IrCron(models.Model):
 
             _logger.debug("Sending scheduler error email with context=%s", context)
 
-            template = my_cron.email_template_id.with_context(context).sudo()
+            template = my_cron.email_template_id.with_context(**context).sudo()
             template.send_mail(my_cron.id, force_send=True)
 
         return res
