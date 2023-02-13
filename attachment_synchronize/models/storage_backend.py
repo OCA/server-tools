@@ -32,7 +32,7 @@ class StorageBackend(models.Model):
         self.ensure_one()
 
         act_window_xml_id = "attachment_synchronize.action_attachment_import_task"
-        act_window = self.env.ref(act_window_xml_id).read()[0]
+        act_window = self.env["ir.actions.act_window"]._for_xml_id(act_window_xml_id)
         domain = [
             ("id", "in", self.synchronize_task_ids.ids),
             ("method_type", "=", "import"),
@@ -51,7 +51,7 @@ class StorageBackend(models.Model):
         self.ensure_one()
 
         act_window_xml_id = "attachment_synchronize.action_attachment_export_task"
-        act_window = self.env.ref(act_window_xml_id).read()[0]
+        act_window = self.env["ir.actions.act_window"]._for_xml_id(act_window_xml_id)
         domain = [
             ("id", "in", self.synchronize_task_ids.ids),
             ("method_type", "=", "export"),
