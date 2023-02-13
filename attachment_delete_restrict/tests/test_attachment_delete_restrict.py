@@ -72,19 +72,38 @@ class TestAttachmentDeleteAbstract(SavepointCase):
             "attachment_delete_restrict.global_restrict_delete_attachment", "none"
         )
         cls.partner_model = cls.env["ir.model"].search([("model", "=", "res.partner")])
+        cls.partner_1 = cls.env["res.partner"].create({"name": "partner_1"})
         cls.group = cls.env.ref("base.group_user")
         cls.user_owner = cls.env["res.users"].create(
             {
                 "name": "test owner user",
                 "login": "test-owner@example.com",
-                "groups_id": [(6, 0, cls.env.ref("base.group_user").ids)],
+                "groups_id": [
+                    (
+                        6,
+                        0,
+                        (
+                            cls.env.ref("base.group_user").id,
+                            cls.env.ref("base.group_partner_manager").id,
+                        ),
+                    )
+                ],
             }
         )
         cls.user = cls.env["res.users"].create(
             {
                 "name": "test user",
                 "login": "test2@example.com",
-                "groups_id": [(6, 0, cls.env.ref("base.group_user").ids)],
+                "groups_id": [
+                    (
+                        6,
+                        0,
+                        (
+                            cls.env.ref("base.group_user").id,
+                            cls.env.ref("base.group_partner_manager").id,
+                        ),
+                    )
+                ],
             }
         )
         cls.user_admin = cls.env["res.users"].create(
@@ -98,6 +117,7 @@ class TestAttachmentDeleteAbstract(SavepointCase):
                         (
                             cls.env.ref("base.group_system").id,
                             cls.env.ref("base.group_user").id,
+                            cls.env.ref("base.group_partner_manager").id,
                         ),
                     )
                 ],
@@ -111,6 +131,7 @@ class TestAttachmentDeleteAbstract(SavepointCase):
                     "name": "test attachment 2",
                     "type": "binary",
                     "res_model": "res.partner",
+                    "res_id": cls.partner_1.id,
                 }
             )
         )
