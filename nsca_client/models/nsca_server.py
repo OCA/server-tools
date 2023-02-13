@@ -223,8 +223,9 @@ class NscaServer(models.Model):
 
     def show_checks(self):
         self.ensure_one()
-        action = self.env.ref("nsca_client.action_nsca_check_tree")
-        result = action.read()[0]
+        result = self.env["ir.actions.act_window"]._for_xml_id(
+            "nsca_client.action_nsca_check_tree"
+        )
         context = {"default_server_id": self.id}
         result["context"] = context
         result["domain"] = [("server_id", "=", self.id)]
