@@ -26,42 +26,42 @@ msgid ""
 "<div style=\"font-family: 'Lucida Grande', Ubuntu, Arial, Verdana, sans-"
 "serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n"
 "\n"
-"<p>Odoo tried to run the scheduler <em>${object.name or ''}</em> in the "
-"database <em>${ctx.get('dbname')}</em> but it failed. Here is the error "
-"message :</p>\n"
+"<p>Odoo tried to run the scheduler <em><t t-out=\"object.name or ''\"/></em> "
+"in the database <em><t t-out=\"ctx.get('dbname')\"/></em> but it failed. "
+"Here is the error message :</p>\n"
 "\n"
 "<strong>\n"
-"${ctx.get('job_exception') or 'Failed to get the error message from the "
-"context.'}\n"
+"<t t-out=\"ctx.get('job_exception') or 'Failed to get the error message from "
+"the context.'\"/>\n"
 "</strong>\n"
 "\n"
 "<p>You may check the logs of the Odoo server to get more information about "
 "this failure.</p>\n"
 "\n"
-"<p>Properties of the scheduler <em>${object.name or ''}</em> :</p>\n"
+"<p>Properties of the scheduler <em><t t-out=\"object.name or ''\"/></em> :</"
+"p>\n"
 "<ul>\n"
-"<li>Model : ${object.model_id.name or ''}</li>\n"
-"<li>Python code : <code>${object.code or ''}</code></li>\n"
-"<li>Interval : ${object.interval_number or '0'} ${object.interval_type or ''}"
-"</li>\n"
-"<li>Number of calls : ${object.numbercall or '0'}</li>\n"
-"<li>Repeat missed : ${object.doall}</li>\n"
-"<li>User : ${object.user_id.name or ''}</li>\n"
+"<li>Model : <t t-out=\"object.model_id.name or ''\"/></li>\n"
+"<li>Python code : <code><t t-out=\"object.code or ''\"/></code></li>\n"
+"<li>Interval : <t t-out=\"object.interval_number or '0'\"/> <t t-out="
+"\"object.interval_type or ''\"/></li>\n"
+"<li>Number of calls : <t t-out=\"object.numbercall or '0'\"/></li>\n"
+"<li>Repeat missed : <t t-out=\"object.doall\"/></li>\n"
+"<li>User : <t t-out=\"object.user_id.name or ''\"/></li>\n"
 "</ul>\n"
 "\n"
 "<p>\n"
 "-- <br/>\n"
 "Automatic e-mail sent by Odoo. Do not reply.<br/>\n"
-"Database : ${ctx.get('dbname')}\n"
+"Database : <t t-out=\"ctx.get('dbname')\"/>\n"
 "</p>\n"
 "</div>\n"
 "    \n"
-"            "
+"        "
 msgstr ""
 
 #. module: scheduler_error_mailer
 #: model:ir.model.fields,field_description:scheduler_error_mailer.field_ir_cron__email_template_id
-#: model:ir.model.fields,field_description:scheduler_error_mailer.field_nsca_check__email_template_id
 msgid "Error E-mail Template"
 msgstr "Fehler e-Mail Vorlage"
 
@@ -71,8 +71,12 @@ msgid "Scheduled Actions"
 msgstr ""
 
 #. module: scheduler_error_mailer
+#: model:mail.template,name:scheduler_error_mailer.scheduler_error_mailer
+msgid "Scheduler Error"
+msgstr ""
+
+#. module: scheduler_error_mailer
 #: model:ir.model.fields,help:scheduler_error_mailer.field_ir_cron__email_template_id
-#: model:ir.model.fields,help:scheduler_error_mailer.field_nsca_check__email_template_id
 msgid "Select the email template that will be sent when this scheduler fails."
 msgstr ""
 "Wähle die e-Mail Vorlage welche bei einem Fehler dieses Schedulers gesendet "
@@ -93,8 +97,11 @@ msgstr ""
 
 #. module: scheduler_error_mailer
 #: model:mail.template,subject:scheduler_error_mailer.scheduler_error_mailer
-msgid "[DB ${ctx.get('dbname')}] Scheduler '${object.name or ''}' FAILED"
-msgstr "[DB ${ctx.get('dbname')}] Scheduler '${object.name or ''}' FEHLER"
+msgid "[DB {{ctx.get('dbname')}}] Scheduler '{{object.name or ''}}' FAILED"
+msgstr ""
+
+#~ msgid "[DB ${ctx.get('dbname')}] Scheduler '${object.name or ''}' FAILED"
+#~ msgstr "[DB ${ctx.get('dbname')}] Scheduler '${object.name or ''}' FEHLER"
 
 #, fuzzy
 #~ msgid "Email Template"
