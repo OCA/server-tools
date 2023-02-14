@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-28 09:48+0000\n"
-"PO-Revision-Date: 2023-01-18 18:45+0000\n"
+"PO-Revision-Date: 2023-02-14 15:22+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-server-tools-8-0/"
 "language/it/)\n"
@@ -174,7 +174,7 @@ msgstr "Cartella"
 #. module: auto_backup
 #: field:db.backup,message_follower_ids:0
 msgid "Followers"
-msgstr "Iscritti"
+msgstr "Seguito da"
 
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_form
