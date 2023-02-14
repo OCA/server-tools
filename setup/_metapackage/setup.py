@@ -34,6 +34,7 @@ setuptools.setup(
         'odoo-addon-module_auto_update>=15.0dev,<15.1dev',
         'odoo-addon-module_change_auto_install>=15.0dev,<15.1dev',
         'odoo-addon-onchange_helper>=15.0dev,<15.1dev',
+        'odoo-addon-scheduler_error_mailer>=15.0dev,<15.1dev',
         'odoo-addon-sentry>=15.0dev,<15.1dev',
         'odoo-addon-upgrade_analysis>=15.0dev,<15.1dev',
     ],
