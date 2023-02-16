@@ -9,7 +9,7 @@ from odoo.tools.translate import _
 
 def protected__execute_cr(cr, uid, obj, method, *args, **kw):
     # Same as original func in odoo.service.model.execute_cr
-    odoo.api.Environment.reset()  # clean cache etc if we retry the same transaction
+    cr.reset()
     recs = odoo.api.Environment(cr, uid, {}).get(obj)
     if recs is None:
         raise UserError(_("Object %s doesn't exist", obj))

@@ -10,7 +10,7 @@ from odoo.tests import common
 
 
 @common.tagged("post_install", "-at_install")
-class TestXMLRPC(common.HttpSavepointCase):
+class TestXMLRPC(common.HttpCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -23,7 +23,7 @@ class TestXMLRPC(common.HttpSavepointCase):
         self.env["ir.model"]._get("res.partner").rpc_config_edit = json.dumps(
             {"disable": val}
         )
-        self.env["ir.model"].flush()
+        self.env.flush_all()
 
     def tearDown(self):
         klass = type(self.env["res.partner"])
