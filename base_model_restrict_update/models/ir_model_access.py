@@ -51,21 +51,26 @@ class IrModelAccess(models.Model):
     @api.model
     def _readonly_exclude_models(self):
         """Models updtate/create by system, and should be excluded from checking"""
-        skipped_models = self.env["ir.model"].sudo().search([
-            "|", ("transient", "=", True), ("skip_check_for_readonly_users", "=", True)
-        ]).mapped("model")
-        # Models update/create by system, and should be excluded from checking
-        return (
-            skipped_models + self.sudo()
+        skipped_models = (
+            self.env["ir.model"]
+            .sudo()
             .search(
                 [
-                    ("group_id", "=", False),
                     "|",
-                    ("perm_write", "=", True),
-                    "|",
-                    ("perm_create", "=", True),
-                    ("perm_unlink", "=", True),
+                    ("transient", "=", True),
+                    ("skip_check_for_readonly_users", "=", True),
                 ]
             )
-            .mapped("model_id.model")
+            .mapped("model")
         )
+        # Models update/create by system, and should be excluded from checking
+        return skipped_models + self.sudo().search(
+            [
+                ("group_id", "=", False),
+                "|",
+                ("perm_write", "=", True),
+                "|",
+                ("perm_create", "=", True),
+                ("perm_unlink", "=", True),
+            ]
+        ).mapped("model_id.model")

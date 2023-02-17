@@ -13,4 +13,5 @@ class IrModel(models.Model):
         "user has the special permission.",
     )
     skip_check_for_readonly_users = fields.Boolean(
-        help="Allow readonly users to create/write/delete records of this model")
+        help="Allow readonly users to create/write/delete records of this model"
+    )
