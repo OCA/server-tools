@@ -45,11 +45,11 @@ class TimeWeekday(models.Model):
     def _get_id_by_name(self, name):
         return self.search([("name", "=", name)], limit=1).id
 
-    @api.model
-    def create(self, vals):
-        result = super().create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        records = super().create(vals_list)
         self._get_id_by_name.clear_cache(self)
-        return result
+        return records
 
     def write(self, vals):
         result = super().write(vals)
