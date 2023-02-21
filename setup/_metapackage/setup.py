@@ -66,6 +66,7 @@ setuptools.setup(
         'odoo14-addon-scheduler_error_mailer',
         'odoo14-addon-sentry',
         'odoo14-addon-sequence_python',
+        'odoo14-addon-session_db',
         'odoo14-addon-slow_statement_logger',
         'odoo14-addon-sql_export',
         'odoo14-addon-sql_export_excel',
