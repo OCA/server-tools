@@ -52,6 +52,7 @@ setuptools.setup(
         'odoo13-addon-sentry',
         'odoo13-addon-sequence_custom_data',
         'odoo13-addon-sequence_python',
+        'odoo13-addon-session_db',
         'odoo13-addon-slow_statement_logger',
         'odoo13-addon-sql_request_abstract',
         'odoo13-addon-test_base_time_window',
