@@ -3,21 +3,19 @@
 
 {
     "name": "Attachment Queue",
-    "version": "14.0.1.0.1",
+    "version": "16.0.1.0.1",
     "author": "Akretion,Odoo Community Association (OCA)",
     "summary": "Base module adding the concept of queue for processing files",
     "website": "https://github.com/OCA/server-tools",
     "maintainers": ["florian-dacosta", "sebastienbeau"],
     "license": "AGPL-3",
     "category": "Generic Modules",
-    "depends": ["base", "mail"],
+    "depends": ["base", "mail", "queue_job"],
     "data": [
         "views/attachment_queue_view.xml",
         "security/ir.model.access.csv",
-        "data/cron.xml",
-        "data/ir_config_parameter.xml",
         "data/mail_template.xml",
+        "data/queue_job_channel.xml",
     ],
-    "demo": ["demo/attachment_queue_demo.xml"],
     "installable": True,
 }
