@@ -2,9 +2,18 @@
 
 import logging
 
-from odoo import SUPERUSER_ID, api, fields, models, registry
+from odoo import api, fields, models
+from odoo.exceptions import UserError
+
+from odoo.addons.queue_job.exception import RetryableJobError
 
 _logger = logging.getLogger(__name__)
+
+DEFAULT_ETA_FOR_RETRY = 60 * 60
+STR_ERR_ATTACHMENT_RUNNING = (
+    "The attachment is currently flagged as being in processing"
+)
+STR_ERROR_DURING_PROCESSING = "Error during processing of attachment_queue id {}: \n"
 
 
 class AttachmentQueue(models.Model):
@@ -34,10 +43,38 @@ class AttachmentQueue(models.Model):
     state_message = fields.Text()
     failure_emails = fields.Char(
         compute="_compute_failure_emails",
-        string="Failure Emails",
         help="Comma-separated list of email addresses to be notified in case of"
         "failure",
     )
+    running_lock = fields.Boolean()
+
+    @property
+    def _eta_for_retry(self):
+        return DEFAULT_ETA_FOR_RETRY
+
+    @property
+    def _job_attrs(self):
+        return {"channel": "Attachment queues"}
+
+    def _schedule_jobs(self):
+        for el in self:
+            el.with_delay(**self._job_attrs).run()
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        res = super().create(vals_list)
+        res._schedule_jobs()
+        return res
+
+    def button_reschedule(self):
+        self.state = "pending"
+        self.state_message = ""
+        self._schedule_jobs()
+
+    def button_manual_run(self):
+        if self.running_lock:
+            raise UserError(STR_ERR_ATTACHMENT_RUNNING)
+        self.run()
 
     def _compute_failure_emails(self):
         for attach in self:
@@ -48,51 +85,41 @@ class AttachmentQueue(models.Model):
         self.ensure_one()
         return ""
 
-    @api.model
-    def run_attachment_queue_scheduler(self, domain=None):
-        if domain is None:
-            domain = [("state", "=", "pending")]
-        batch_limit = self.env.ref(
-            "attachment_queue.attachment_queue_cron_batch_limit"
-        ).value
-        if batch_limit and batch_limit.isdigit():
-            limit = int(batch_limit)
-        else:
-            limit = 200
-        attachments = self.search(domain, limit=limit)
-        if attachments:
-            return attachments.run()
-        return True
-
     def run(self):
         """
-        Run the process for each attachment queue
+        Run the process for an individual attachment queue
         """
-        failure_tmpl = self.env.ref("attachment_queue.attachment_failure_notification")
-        for attachment in self:
-            with api.Environment.manage():
-                with registry(self.env.cr.dbname).cursor() as new_cr:
-                    new_env = api.Environment(new_cr, SUPERUSER_ID, self.env.context)
-                    attach = attachment.with_env(new_env)
-                    try:
-                        attach._run()
-                    # pylint: disable=broad-except
-                    except Exception as e:
-                        attach.env.cr.rollback()
-                        _logger.exception(str(e))
-                        attach.write({"state": "failed", "state_message": str(e)})
-                        emails = attach.failure_emails
-                        if emails:
-                            failure_tmpl.send_mail(attach.id)
-                        attach.env.cr.commit()
-                    else:
-                        vals = {
-                            "state": "done",
-                            "date_done": fields.Datetime.now(),
-                        }
-                        attach.write(vals)
-                        attach.env.cr.commit()
-        return True
+        if self.state != "pending":
+            return
+        if self.running_lock is True:
+            raise RetryableJobError(
+                STR_ERR_ATTACHMENT_RUNNING, seconds=self._eta_for_retry
+            )
+        self.running_lock = True
+        self.flush_recordset()
+        try:
+            with self.env.cr.savepoint():
+                self._run()
+        except Exception as e:
+            _logger.warning(STR_ERROR_DURING_PROCESSING.format(self.id) + str(e))
+            self.write(
+                {"state": "failed", "state_message": str(e), "running_lock": False}
+            )
+            emails = self.failure_emails
+            if emails:
+                self.env.ref(
+                    "attachment_queue.attachment_failure_notification"
+                ).send_mail(self.id)
+            return False
+        else:
+            self.write(
+                {
+                    "state": "done",
+                    "date_done": fields.Datetime.now(),
+                    "running_lock": False,
+                }
+            )
+            return True
 
     def _run(self):
         self.ensure_one()
