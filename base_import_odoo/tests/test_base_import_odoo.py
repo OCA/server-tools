@@ -124,7 +124,7 @@ class TestBaseImportOdoo(TransactionCase):
 
     def _get_xmlid(self, remote_xmlid):
         remote_obj = self.env.ref(remote_xmlid)
-        return "base_import_odoo.%d-%s-%s" % (
+        return "__base_import_odoo__.%d-%s-%s" % (
             self.env.ref("base_import_odoo.demodb").id,
             remote_obj._name.replace(".", "_"),
             remote_obj.id,
