@@ -1,9 +1,0 @@
-<?xml version="1.0" ?>
-<odoo noupdate="1">
-
-        <record id="attachment_queue_demo" model="attachment.queue">
-            <field name="datas">bWlncmF0aW9uIHRlc3Q=</field>
-            <field name="name">attachment_queue_demo.doc</field>
-        </record>
-
-</odoo>

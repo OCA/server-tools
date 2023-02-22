@@ -9,9 +9,16 @@
             <xpath expr="/form/*" position="before">
                 <header>
                     <button
-                        name="run"
+                        name="button_manual_run"
                         states="pending,failed"
-                        string="Run"
+                        string="Manual run"
+                        type="object"
+                        class="oe_highlight"
+                    />
+                    <button
+                        name="button_reschedule"
+                        states="done,failed"
+                        string="Reschedule"
                         type="object"
                         class="oe_highlight"
                     />
