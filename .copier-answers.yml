@@ -15,9 +15,9 @@ odoo_test_flavor: Both
 odoo_version: 11.0
 org_name: Odoo Community Association (OCA)
 org_slug: OCA
-rebel_module_groups: []
+rebel_module_groups:
+- database_cleanup
 repo_description: Tools for Odoo Administrators to improve some technical features
-    on Odoo.
 repo_name: Tools for server environment(s)
 repo_slug: server-tools
 repo_website: https://github.com/OCA/server-tools
