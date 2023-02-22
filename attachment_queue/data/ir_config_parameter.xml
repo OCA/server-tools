@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<odoo noupdate="1">
-    <record id="attachment_queue_cron_batch_limit" model="ir.config_parameter">
-        <field name="key">attachment_queue_cron_batch_limit</field>
-        <field name="value">200</field>
-    </record>
-</odoo>
