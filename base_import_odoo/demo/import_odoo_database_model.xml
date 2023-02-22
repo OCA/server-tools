@@ -11,7 +11,7 @@
         <field name="sequence">2</field>
         <field name="model_id" ref="mail.model_mail_alias" />
         <field name="database_id" ref="demodb" />
-        <field name="domain">[(1, '=', 1)]</field>
+        <field name="domain">[('alias_name', '!=', '')]</field>
     </record>
     <record id="model_users" model="import.odoo.database.model">
         <field name="sequence">3</field>
