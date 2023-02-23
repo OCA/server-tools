@@ -4,7 +4,7 @@
 {
     "name": "Attachment Unindex Content",
     "summary": "Disable indexing of attachments",
-    "version": "14.0.1.0.1",
+    "version": "16.0.1.0.0",
     "author": "Vauxoo, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/server-tools",
     "maintainers": [
