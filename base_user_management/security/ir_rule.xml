@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="rule_manage_users_res_users" model="ir.rule">
+        <field name="name">rule_manage_users_res_users</field>
+        <field name="model_id" ref="base.model_res_users" />
+        <field
+            name="groups"
+            eval="[(4, ref('base_user_management.group_access_right_security_manage_users'))]"
+        />
+        <field
+            name="domain_force"
+            eval="str([('groups_id', 'not in', ref('base.group_erp_manager'))])"
+        />
+        <field name="perm_read" eval="1" />
+        <field name="perm_create" eval="0" />
+        <field name="perm_write" eval="0" />
+        <field name="perm_unlink" eval="0" />
+    </record>
+
+    <record id="rule_manage_users_res_users_cud" model="ir.rule">
+        <field name="name">rule_manage_users_res_users_cud</field>
+        <field name="model_id" ref="base.model_res_users" />
+        <field
+            name="groups"
+            eval="[(4, ref('base_user_management.group_access_right_security_manage_users'))]"
+        />
+        <field
+            name="domain_force"
+            eval="str([('groups_id', 'not in', ref('base.group_erp_manager')), ('login', 'not in', ('portaltemplate', 'default', 'public'))])"
+        />
+        <field name="perm_read" eval="0" />
+        <field name="perm_create" eval="1" />
+        <field name="perm_write" eval="1" />
+        <field name="perm_unlink" eval="1" />
+    </record>
+</odoo>
