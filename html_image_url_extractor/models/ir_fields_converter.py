@@ -65,4 +65,4 @@ class IrFieldsConverter(models.AbstractModel):
                             yield (rgx.search(parts[1]).group("url").strip("\"'"))
                     # Malformed CSS or no match for URL
                     except (IndexError, AttributeError):
-                        pass
+                        _logger.info("Malformed CSS or no match for URL")
