@@ -165,7 +165,7 @@ class TestParser(TransactionCase):
                     "email": None,
                 }
             ],
-            "create_date": "2019-10-31T15:39:49+01:00",
+            "create_date": "2019-10-31T14:39:49",
             "date": "2019-10-31",
         }
         json_partner = self.partner.jsonify(parser)
