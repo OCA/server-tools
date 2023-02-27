@@ -24,15 +24,3 @@ msgstr ""
 #: model:ir.model,name:html_image_url_extractor.model_ir_fields_converter
 msgid "Fields Converter"
 msgstr "字段转换器"
-
-#~ msgid "Created by"
-#~ msgstr "创建者"
-
-#~ msgid "Created on"
-#~ msgstr "创建时间"
-
-#~ msgid "Last Updated by"
-#~ msgstr "最后更新者"
-
-#~ msgid "Last Updated on"
-#~ msgstr "上次更新日期"

@@ -23,15 +23,3 @@ msgstr ""
 #: model:ir.model,name:html_image_url_extractor.model_ir_fields_converter
 msgid "Fields Converter"
 msgstr ""
-
-#~ msgid "Created by"
-#~ msgstr "Tạo bởi"
-
-#~ msgid "Created on"
-#~ msgstr "Tạo vào"
-
-#~ msgid "Last Updated by"
-#~ msgstr "Cập nhật lần cuối bởi"
-
-#~ msgid "Last Updated on"
-#~ msgstr "Cập nhật lần cuối vào"

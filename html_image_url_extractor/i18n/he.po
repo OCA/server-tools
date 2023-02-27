@@ -22,15 +22,3 @@ msgstr ""
 #: model:ir.model,name:html_image_url_extractor.model_ir_fields_converter
 msgid "Fields Converter"
 msgstr ""
-
-#~ msgid "Created by"
-#~ msgstr "נוצר על ידי"
-
-#~ msgid "Created on"
-#~ msgstr "נוצר ב-"
-
-#~ msgid "Last Updated by"
-#~ msgstr "עודכן לאחרונה על ידי"
-
-#~ msgid "Last Updated on"
-#~ msgstr "עודכן לאחרונה על"

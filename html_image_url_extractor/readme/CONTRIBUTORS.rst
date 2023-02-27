@@ -5,6 +5,6 @@
   * Jairo Llopis
   * Vicent Cubells
   * Cristina Martin R
-  * Víctor Martínezz
+  * Víctor Martínez
 
 * Helly kapatel <helly.kapatel@initos.com>

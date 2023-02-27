@@ -43,15 +43,3 @@ msgstr ""
 #: model:ir.model.fields,field_description:html_image_url_extractor.field_ir_fields_converter__smart_search
 msgid "Smart Search"
 msgstr ""
-
-#~ msgid "Created by"
-#~ msgstr "أنشئ بواسطة"
-
-#~ msgid "Created on"
-#~ msgstr "أنشئ في"
-
-#~ msgid "Last Updated by"
-#~ msgstr "آخر تحديث بواسطة"
-
-#~ msgid "Last Updated on"
-#~ msgstr "آخر تحديث في"
