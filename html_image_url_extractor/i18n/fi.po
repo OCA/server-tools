@@ -22,15 +22,3 @@ msgstr ""
 #: model:ir.model,name:html_image_url_extractor.model_ir_fields_converter
 msgid "Fields Converter"
 msgstr ""
-
-#~ msgid "Created by"
-#~ msgstr "Luonut"
-
-#~ msgid "Created on"
-#~ msgstr "Luotu"
-
-#~ msgid "Last Updated by"
-#~ msgstr "Viimeksi päivittänyt"
-
-#~ msgid "Last Updated on"
-#~ msgstr "Viimeksi päivitetty"

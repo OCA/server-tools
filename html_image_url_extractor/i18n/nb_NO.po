@@ -23,15 +23,3 @@ msgstr ""
 #: model:ir.model,name:html_image_url_extractor.model_ir_fields_converter
 msgid "Fields Converter"
 msgstr ""
-
-#~ msgid "Created by"
-#~ msgstr "Laget av"
-
-#~ msgid "Created on"
-#~ msgstr "Laget den"
-
-#~ msgid "Last Updated by"
-#~ msgstr "Sist oppdatert av"
-
-#~ msgid "Last Updated on"
-#~ msgstr "Sist oppdatert den"

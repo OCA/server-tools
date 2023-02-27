@@ -22,15 +22,3 @@ msgstr ""
 #: model:ir.model,name:html_image_url_extractor.model_ir_fields_converter
 msgid "Fields Converter"
 msgstr ""
-
-#~ msgid "Created by"
-#~ msgstr "Készítette"
-
-#~ msgid "Created on"
-#~ msgstr "Létrehozás dátuma"
-
-#~ msgid "Last Updated by"
-#~ msgstr "Utoljára frissítve, által"
-
-#~ msgid "Last Updated on"
-#~ msgstr "Utoljára frissítve "

@@ -45,12 +45,12 @@ class ExtractorCase(TransactionCase):
     def test_empty_html(self):
         """Empty HTML handled correctly."""
         self.assertTrue(enumerate(self.imgs_from_html("")))
-        with self.assertRaises(Exception):
+        with self.assertRaisesRegex(Exception, "Document is empty"):
             list(self.imgs_from_html("", fail=True))
 
     @mute_logger("odoo.addons.html_image_url_extractor" + ".models.ir_fields_converter")
     def test_false_html(self):
         """``False`` HTML handled correctly."""
         self.assertTrue(enumerate(self.imgs_from_html(False)))
-        with self.assertRaises(Exception):
+        with self.assertRaisesRegex(Exception, "expected string or bytes-like object"):
             list(self.imgs_from_html(False, fail=True))

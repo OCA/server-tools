@@ -42,15 +42,3 @@ msgstr ""
 #: model:ir.model.fields,field_description:html_image_url_extractor.field_ir_fields_converter__smart_search
 msgid "Smart Search"
 msgstr ""
-
-#~ msgid "Created by"
-#~ msgstr "Creado por"
-
-#~ msgid "Created on"
-#~ msgstr "Creado en"
-
-#~ msgid "Last Updated by"
-#~ msgstr "Última actualización por"
-
-#~ msgid "Last Updated on"
-#~ msgstr "Última actualización en"
