@@ -49,10 +49,6 @@ class Base(models.AbstractModel):
         elif field.type == "datetime":
             # Ensures value is a datetime
             value = fields.Datetime.to_datetime(value)
-            if self.env.context.get("jsonifier__date_user_tz"):
-                # Get the timestamp converted to the client's timezone.
-                # This call also add the tzinfo into the datetime object
-                value = fields.Datetime.context_timestamp(self, value)
             value = value.isoformat()
         elif field.type in ("many2one", "reference"):
             value = value.display_name if value else None
@@ -163,16 +159,9 @@ class Base(models.AbstractModel):
 
         results = [{} for record in self]
         parsers = {False: parser["fields"]} if "fields" in parser else parser["langs"]
-        records = self
-        if "jsonifier__date_user_tz" not in self.env.context:
-            # TODO: backward compat flag for v < 15.0
-            # Dates must always be UTC and the client/consumer of this data
-            # should deal w/ the format as preferred.
-            # Drop this flag for v15!
-            records = records.with_context(jsonifier__date_user_tz=True)
         for lang in parsers:
             translate = lang or parser.get("language_agnostic")
-            records = records.with_context(lang=lang) if translate else records
+            records = self.with_context(lang=lang) if translate else self
             for record, json in zip(records, results):
                 self._jsonify_record(parsers[lang], record, json)
 
