@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.0\n"
+"Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -14,18 +14,21 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: base_time_window
+#. odoo-python
 #: code:addons/base_time_window/models/time_window_mixin.py:0
 #, python-format
 msgid "%(end_time)s must be > %(start_time)s"
 msgstr ""
 
 #. module: base_time_window
+#. odoo-python
 #: code:addons/base_time_window/models/time_window_mixin.py:0
 #, python-format
 msgid "%(record_name)s overlaps %(other_name)s"
 msgstr ""
 
 #. module: base_time_window
+#. odoo-python
 #: code:addons/base_time_window/models/time_window_mixin.py:0
 #, python-format
 msgid "At least one time.weekday is required"
@@ -57,6 +60,7 @@ msgid "From"
 msgstr ""
 
 #. module: base_time_window
+#. odoo-python
 #: code:addons/base_time_window/models/time_window_mixin.py:0
 #, python-format
 msgid "Hour should be between 00 and 23"
@@ -93,6 +97,7 @@ msgid "Name"
 msgstr ""
 
 #. module: base_time_window
+#. odoo-python
 #: code:addons/base_time_window/models/time_weekday.py:0
 #: model:ir.model.constraint,message:base_time_window.constraint_time_weekday_name_uniq
 #, python-format
@@ -145,6 +150,7 @@ msgid "Wednesday"
 msgstr ""
 
 #. module: base_time_window
+#. odoo-python
 #: code:addons/base_time_window/models/time_window_mixin.py:0
 #, python-format
 msgid "{days}: From {start} to {end}"
