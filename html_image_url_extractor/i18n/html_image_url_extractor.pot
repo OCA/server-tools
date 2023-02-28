@@ -1,0 +1,39 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* html_image_url_extractor
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: html_image_url_extractor
+#: model:ir.model.fields,field_description:html_image_url_extractor.field_ir_fields_converter__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: html_image_url_extractor
+#: model:ir.model,name:html_image_url_extractor.model_ir_fields_converter
+msgid "Fields Converter"
+msgstr ""
+
+#. module: html_image_url_extractor
+#: model:ir.model.fields,field_description:html_image_url_extractor.field_ir_fields_converter__id
+msgid "ID"
+msgstr ""
+
+#. module: html_image_url_extractor
+#: model:ir.model.fields,field_description:html_image_url_extractor.field_ir_fields_converter____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: html_image_url_extractor
+#: model:ir.model.fields,field_description:html_image_url_extractor.field_ir_fields_converter__smart_search
+msgid "Smart Search"
+msgstr ""
