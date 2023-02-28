@@ -16,6 +16,7 @@
         <field name="arch" type="xml">
             <field name="doall" position="after">
                 <field name="email_template_id"/>
+                <field name="show_error_trace" attrs="{'invisible': [('email_template_id', '=', False)]}"/>
             </field>
         </field>
     </record>
