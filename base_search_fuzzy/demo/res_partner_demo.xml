@@ -1,0 +1,23 @@
+<odoo>
+    <record id="res_partner_John_Smith" model="res.partner">
+        <field name="name">John Smith</field>
+    </record>
+
+    <record id="res_partner_John_Smizz" model="res.partner">
+        <field name="name">John Smizz</field>
+    </record>
+
+    <record id="res_partner_Linus_Torvalds" model="res.partner">
+        <field name="name">Linus Torvalds</field>
+    </record>
+
+    <record id="view_res_partner_filter" model="ir.ui.view">
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_res_partner_filter" />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="display_name" operator="%" />
+            </field>
+        </field>
+    </record>
+</odoo>
