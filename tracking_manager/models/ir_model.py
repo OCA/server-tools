@@ -10,14 +10,13 @@ from odoo import api, fields, models, tools
 class IrModel(models.Model):
     _inherit = "ir.model"
 
-    active_custom_tracking = fields.Boolean(default=False)
+    active_custom_tracking = fields.Boolean()
     tracked_field_count = fields.Integer(compute="_compute_tracked_field_count")
     automatic_custom_tracking = fields.Boolean(
         compute="_compute_automatic_custom_tracking",
         readonly=False,
         store=True,
-        default=False,
-        help=("If tick new field will be automatically tracked " "if the domain match"),
+        help=("If tick new field will be automatically tracked if the domain match"),
     )
     automatic_custom_tracking_domain = fields.Char(
         compute="_compute_automatic_custom_tracking_domain",
