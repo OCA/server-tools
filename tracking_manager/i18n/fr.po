@@ -33,18 +33,45 @@ msgid "<b>New :</b>"
 msgstr "<b>Nouveau :</b>"
 
 #. module: tracking_manager
-#: model:ir.model.fields,help:tracking_manager.field_ir_model__apply_custom_tracking
-msgid ""
-"Add tracking on all this model fields if they are not readonly True, "
-"neither computed."
+#: model_terms:ir.ui.view,arch_db:tracking_manager.view_model_form
+msgid "Active"
 msgstr ""
-"Active le suivi des champs de ce modèles qui ne sont pas en lecture seule, "
-"ni reliés, ni calculés."
 
 #. module: tracking_manager
-#: model:ir.model.fields,field_description:tracking_manager.field_ir_model__apply_custom_tracking
-msgid "Apply custom tracking on fields"
-msgstr "Active le suivi personnalisé des champs"
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model__active_custom_tracking
+#, fuzzy
+msgid "Active Custom Tracking"
+msgstr "Suivi personnalisé"
+
+#. module: tracking_manager
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model__assigned_attachment_ids
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model_fields__assigned_attachment_ids
+#: model:ir.model.fields,field_description:tracking_manager.field_mail_thread__assigned_attachment_ids
+#: model:ir.model.fields,field_description:tracking_manager.field_mail_tracking_value__assigned_attachment_ids
+msgid "Assigned Attachments"
+msgstr ""
+
+#. module: tracking_manager
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model__automatic_custom_tracking
+#, fuzzy
+msgid "Automatic Custom Tracking"
+msgstr "Suivi personnalisé"
+
+#. module: tracking_manager
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model__automatic_custom_tracking_domain
+#, fuzzy
+msgid "Automatic Custom Tracking Domain"
+msgstr "Suivi personnalisé"
+
+#. module: tracking_manager
+#: model_terms:ir.ui.view,arch_db:tracking_manager.view_model_form
+msgid "Automatic configuration"
+msgstr ""
+
+#. module: tracking_manager
+#: model:ir.model,name:tracking_manager.model_base
+msgid "Base"
+msgstr ""
 
 #. module: tracking_manager
 #: model_terms:ir.ui.view,arch_db:tracking_manager.track_o2m_m2m_template
@@ -52,52 +79,73 @@ msgid "Changed"
 msgstr "Modifié"
 
 #. module: tracking_manager
-#: model:ir.model.fields,field_description:tracking_manager.field_tracking_model_field__create_uid
-msgid "Created by"
-msgstr "Créé par"
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model__changeset_change_ids
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model_fields__changeset_change_ids
+#: model:ir.model.fields,field_description:tracking_manager.field_mail_thread__changeset_change_ids
+#: model:ir.model.fields,field_description:tracking_manager.field_mail_tracking_value__changeset_change_ids
+msgid "Changeset Changes"
+msgstr ""
 
 #. module: tracking_manager
-#: model:ir.model.fields,field_description:tracking_manager.field_tracking_model_field__create_date
-msgid "Created on"
-msgstr "Créé le"
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model__changeset_ids
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model_fields__changeset_ids
+#: model:ir.model.fields,field_description:tracking_manager.field_mail_thread__changeset_ids
+#: model:ir.model.fields,field_description:tracking_manager.field_mail_tracking_value__changeset_ids
+#, fuzzy
+msgid "Changesets"
+msgstr "Modifié"
 
 #. module: tracking_manager
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model_fields__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:tracking_manager.field_mail_thread__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:tracking_manager.field_mail_tracking_value__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr ""
+
+#. module: tracking_manager
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model__count_pending_changesets
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model_fields__count_pending_changesets
+#: model:ir.model.fields,field_description:tracking_manager.field_mail_thread__count_pending_changesets
+#: model:ir.model.fields,field_description:tracking_manager.field_mail_tracking_value__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr ""
+
+#. module: tracking_manager
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model_fields__custom_tracking
 #: model_terms:ir.ui.view,arch_db:tracking_manager.view_model_form
-msgid "Custom Tracked fields"
-msgstr "Champs Suivis"
+msgid "Custom Tracking"
+msgstr "Suivi personnalisé"
 
 #. module: tracking_manager
-#: model:ir.model.fields,field_description:tracking_manager.field_tracking_model_field__custom_tracking
-msgid "Custom Tracking"
+#: model_terms:ir.ui.view,arch_db:tracking_manager.view_model_track_fields_search
+#, fuzzy
+msgid "Custom Tracking OFF"
+msgstr "Suivi personnalisé"
+
+#. module: tracking_manager
+#: model_terms:ir.ui.view,arch_db:tracking_manager.view_model_track_fields_search
+#, fuzzy
+msgid "Custom Tracking ON"
 msgstr "Suivi personnalisé"
 
 #. module: tracking_manager
 #: model:ir.model.fields,field_description:tracking_manager.field_ir_model__display_name
 #: model:ir.model.fields,field_description:tracking_manager.field_ir_model_fields__display_name
 #: model:ir.model.fields,field_description:tracking_manager.field_mail_thread__display_name
-#: model:ir.model.fields,field_description:tracking_manager.field_tracking_model_field__display_name
+#: model:ir.model.fields,field_description:tracking_manager.field_mail_tracking_value__display_name
 msgid "Display Name"
 msgstr "Nom affiché"
+
+#. module: tracking_manager
+#: model_terms:ir.ui.view,arch_db:tracking_manager.view_model_form
+msgid "Domain"
+msgstr ""
 
 #. module: tracking_manager
 #: model:ir.model,name:tracking_manager.model_mail_thread
 msgid "Email Thread"
 msgstr "Discussion par email"
-
-#. module: tracking_manager
-#: model:ir.model.fields,field_description:tracking_manager.field_tracking_model_field__tracking_field_id
-msgid "Field"
-msgstr "Champ"
-
-#. module: tracking_manager
-#: model:ir.model.fields,field_description:tracking_manager.field_ir_model__field_count
-msgid "Field Count"
-msgstr "Nb de champs"
-
-#. module: tracking_manager
-#: model:ir.model.fields,field_description:tracking_manager.field_tracking_model_field__name
-msgid "Field Name"
-msgstr "Nom du champs"
 
 #. module: tracking_manager
 #: model:ir.model,name:tracking_manager.model_ir_model_fields
@@ -108,39 +156,28 @@ msgstr "Champs"
 #: model:ir.model.fields,field_description:tracking_manager.field_ir_model__id
 #: model:ir.model.fields,field_description:tracking_manager.field_ir_model_fields__id
 #: model:ir.model.fields,field_description:tracking_manager.field_mail_thread__id
-#: model:ir.model.fields,field_description:tracking_manager.field_tracking_model_field__id
+#: model:ir.model.fields,field_description:tracking_manager.field_mail_tracking_value__id
 msgid "ID"
 msgstr ""
 
 #. module: tracking_manager
-#: model:ir.model.fields,help:tracking_manager.field_tracking_model_field__native_tracking_field
-msgid ""
-"If set every modification done to this field is tracked in the chatter. "
-"Value is used to order tracking values."
+#: model:ir.model.fields,help:tracking_manager.field_ir_model__automatic_custom_tracking
+msgid "If tick new field will be automatically tracked if the domain match"
 msgstr ""
-
-#. module: tracking_manager
-#: model:ir.model.fields,field_description:tracking_manager.field_tracking_model_field__type_field
-msgid "Kind Field"
-msgstr "Type de champs"
 
 #. module: tracking_manager
 #: model:ir.model.fields,field_description:tracking_manager.field_ir_model____last_update
 #: model:ir.model.fields,field_description:tracking_manager.field_ir_model_fields____last_update
 #: model:ir.model.fields,field_description:tracking_manager.field_mail_thread____last_update
-#: model:ir.model.fields,field_description:tracking_manager.field_tracking_model_field____last_update
+#: model:ir.model.fields,field_description:tracking_manager.field_mail_tracking_value____last_update
 msgid "Last Modified on"
 msgstr "Dernière modification le"
 
 #. module: tracking_manager
-#: model:ir.model.fields,field_description:tracking_manager.field_tracking_model_field__write_uid
-msgid "Last Updated by"
-msgstr ""
-
-#. module: tracking_manager
-#: model:ir.model.fields,field_description:tracking_manager.field_tracking_model_field__write_date
-msgid "Last Updated on"
-msgstr ""
+#: model:ir.model,name:tracking_manager.model_mail_tracking_value
+#, fuzzy
+msgid "Mail Tracking Value"
+msgstr "Suivi natif"
 
 #. module: tracking_manager
 #: model:ir.model,name:tracking_manager.model_ir_model
@@ -148,24 +185,34 @@ msgid "Models"
 msgstr "Modèles"
 
 #. module: tracking_manager
-#: model:ir.model.fields,field_description:tracking_manager.field_tracking_model_field__native_tracking_field
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model_fields__native_tracking
 msgid "Native Tracking"
 msgstr "Suivi natif"
 
 #. module: tracking_manager
-#: model:ir.model.fields,field_description:tracking_manager.field_ir_model__o2m_model_ids
-msgid "One2many Models"
-msgstr "Modèles One2many"
-
-#. module: tracking_manager
-#: model_terms:ir.ui.view,arch_db:tracking_manager.view_model_form
-msgid "One2many related models"
-msgstr "Modèles One2many présents"
-
-#. module: tracking_manager
-#: model:ir.model.fields,field_description:tracking_manager.field_ir_model_fields__custom_tracking_id
-msgid "Technical Custom Tracking Field"
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model__smart_search
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model_fields__smart_search
+#: model:ir.model.fields,field_description:tracking_manager.field_mail_thread__smart_search
+#: model:ir.model.fields,field_description:tracking_manager.field_mail_tracking_value__smart_search
+msgid "Smart Search"
 msgstr ""
+
+#. module: tracking_manager
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model_fields__trackable
+msgid "Trackable"
+msgstr ""
+
+#. module: tracking_manager
+#: model:ir.actions.act_window,name:tracking_manager.ir_model_fields_action
+#, fuzzy
+msgid "Trackable Fields"
+msgstr "Champs avec suivi personnalisé"
+
+#. module: tracking_manager
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model__tracked_field_count
+#, fuzzy
+msgid "Tracked Field Count"
+msgstr "Champs avec suivi personnalisé"
 
 #. module: tracking_manager
 #: model_terms:ir.ui.view,arch_db:tracking_manager.view_model_form
@@ -174,11 +221,61 @@ msgstr "Champs avec suivi personnalisé"
 
 #. module: tracking_manager
 #: model_terms:ir.ui.view,arch_db:tracking_manager.view_model_form
-msgid "Tracking"
-msgstr "Suivi"
+msgid "Update"
+msgstr ""
 
 #. module: tracking_manager
-#: model:ir.model,name:tracking_manager.model_tracking_model_field
-#: model:ir.model.fields,field_description:tracking_manager.field_tracking_model_field__model_id
-msgid "Tracking Model Field"
-msgstr "Model suivi"
+#: model_terms:ir.ui.view,arch_db:tracking_manager.view_model_form
+msgid "Update fields configuration"
+msgstr ""
+
+#. module: tracking_manager
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model__user_can_see_changeset
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model_fields__user_can_see_changeset
+#: model:ir.model.fields,field_description:tracking_manager.field_mail_thread__user_can_see_changeset
+#: model:ir.model.fields,field_description:tracking_manager.field_mail_tracking_value__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr ""
+
+#~ msgid ""
+#~ "Add tracking on all this model fields if they are not readonly True, "
+#~ "neither computed."
+#~ msgstr ""
+#~ "Active le suivi des champs de ce modèles qui ne sont pas en lecture "
+#~ "seule, ni reliés, ni calculés."
+
+#~ msgid "Apply custom tracking on fields"
+#~ msgstr "Active le suivi personnalisé des champs"
+
+#~ msgid "Created by"
+#~ msgstr "Créé par"
+
+#~ msgid "Created on"
+#~ msgstr "Créé le"
+
+#~ msgid "Custom Tracked fields"
+#~ msgstr "Champs Suivis"
+
+#~ msgid "Field"
+#~ msgstr "Champ"
+
+#~ msgid "Field Count"
+#~ msgstr "Nb de champs"
+
+#~ msgid "Field Name"
+#~ msgstr "Nom du champs"
+
+#~ msgid "Kind Field"
+#~ msgstr "Type de champs"
+
+#~ msgid "One2many Models"
+#~ msgstr "Modèles One2many"
+
+#~ msgid "One2many related models"
+#~ msgstr "Modèles One2many présents"
+
+#~ msgid "Tracking"
+#~ msgstr "Suivi"
+
+#~ msgid "Tracking Model Field"
+#~ msgstr "Model suivi"
