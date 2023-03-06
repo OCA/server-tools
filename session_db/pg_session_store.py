@@ -48,6 +48,8 @@ def with_cursor(func):
         while True:
             tries += 1
             try:
+                if self._cr is None:
+                    self._open_connection()
                 return func(self, *args, **kwargs)
             except (psycopg2.InterfaceError, psycopg2.OperationalError) as e:
                 _logger.info("Session in DB connection Retry %s/5" % tries)
