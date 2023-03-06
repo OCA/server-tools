@@ -160,16 +160,13 @@ class Base(models.AbstractModel):
              'field_name:json_key'
         ]
 
-        if parser has 'with_fieldname': True  , key the name of the field will be added
-        to the value. the name of the field will be translated if the 'lang' key
-        is present too. example
+        if with_fieldname=True,the name of the field will be added
+        to the value. the name of the field will be translated.
 
         rec.jsonify(
             parser=['name', 'create_date',
                     'order_line', ['id' , 'product_uom', 'is_expense'])],
             with_fieldname=False)
-
-
 
         returns:
 
@@ -216,7 +213,7 @@ class Base(models.AbstractModel):
                 # fieldname of  field.order_line.product_uom
                 result['order_line']['value']['product_uom']['fieldname']
 
-        I need to use structure{'value':x, 'fieldname': y}  because the json name
+        I need to use structure {'value':x, 'fieldname': y} because the json name
         (order_line) may be duplicated in the various levels of relational fields.
 
         """
