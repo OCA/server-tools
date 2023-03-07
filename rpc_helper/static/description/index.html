@@ -378,24 +378,47 @@ Only for development or testing purpose, do not use in production.
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><a class="reference internal" href="#usage" id="id1">Usage</a><ul>
-<li><a class="reference internal" href="#via-code" id="id2">Via code</a></li>
-<li><a class="reference internal" href="#via-ir-model-configuration" id="id3">Via <cite>ir.model</cite> configuration</a></li>
+<li><a class="reference internal" href="#configuration" id="id1">Configuration</a></li>
+<li><a class="reference internal" href="#usage" id="id2">Usage</a><ul>
+<li><a class="reference internal" href="#via-code" id="id3">Via code</a></li>
+<li><a class="reference internal" href="#via-ir-model-configuration" id="id4">Via <cite>ir.model</cite> configuration</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#bug-tracker" id="id4">Bug Tracker</a></li>
-<li><a class="reference internal" href="#credits" id="id5">Credits</a><ul>
-<li><a class="reference internal" href="#authors" id="id6">Authors</a></li>
-<li><a class="reference internal" href="#contributors" id="id7">Contributors</a></li>
-<li><a class="reference internal" href="#maintainers" id="id8">Maintainers</a></li>
+<li><a class="reference internal" href="#bug-tracker" id="id5">Bug Tracker</a></li>
+<li><a class="reference internal" href="#credits" id="id6">Credits</a><ul>
+<li><a class="reference internal" href="#authors" id="id7">Authors</a></li>
+<li><a class="reference internal" href="#contributors" id="id8">Contributors</a></li>
+<li><a class="reference internal" href="#maintainers" id="id9">Maintainers</a></li>
 </ul>
 </li>
 </ul>
 </div>
+<div class="section" id="configuration">
+<h1><a class="toc-backref" href="#id1">Configuration</a></h1>
+<p>Enable debug mode and go to “Technical -&gt; Database Structure -&gt; Models”.</p>
+<p>Open the model that you like to configure and go to the tab “RPC config”.</p>
+<p>There you see a text field which supports JSON configuration.</p>
+<p>The configuration is the same you can pass via decorator.
+The only difference is that you have to wrap values in a dictionary
+like <cite>{“disable”: […values…]}</cite>.</p>
+<p>To disable all calls:</p>
+<pre class="literal-block">
+{
+    &quot;disable&quot;: [&quot;all&quot;],
+}
+</pre>
+<p>To disable only some methods:</p>
+<pre class="literal-block">
+{
+    &quot;disable&quot;: [&quot;create&quot;, &quot;write&quot;, &quot;another_method&quot;],
+}
+</pre>
+<p>NOTE: on the resulting JSON will be automatically formatted on save for better readability.</p>
+</div>
 <div class="section" id="usage">
-<h1><a class="toc-backref" href="#id1">Usage</a></h1>
+<h1><a class="toc-backref" href="#id2">Usage</a></h1>
 <div class="section" id="via-code">
-<h2><a class="toc-backref" href="#id2">Via code</a></h2>
+<h2><a class="toc-backref" href="#id3">Via code</a></h2>
 <p>Decorate an Odoo model class like this:</p>
 <pre class="literal-block">
 from odoo.addons.rpc_helper.decorator import disable_rpc
@@ -413,12 +436,12 @@ class AverageModel(models.Model):
 </pre>
 </div>
 <div class="section" id="via-ir-model-configuration">
-<h2><a class="toc-backref" href="#id3">Via <cite>ir.model</cite> configuration</a></h2>
+<h2><a class="toc-backref" href="#id4">Via <cite>ir.model</cite> configuration</a></h2>
 <p>See “Configuration” section.</p>
 </div>
 </div>
 <div class="section" id="bug-tracker">
-<h1><a class="toc-backref" href="#id4">Bug Tracker</a></h1>
+<h1><a class="toc-backref" href="#id5">Bug Tracker</a></h1>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/server-tools/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
@@ -426,21 +449,21 @@ If you spotted it first, help us smashing it by providing a detailed and welcome
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
-<h1><a class="toc-backref" href="#id5">Credits</a></h1>
+<h1><a class="toc-backref" href="#id6">Credits</a></h1>
 <div class="section" id="authors">
-<h2><a class="toc-backref" href="#id6">Authors</a></h2>
+<h2><a class="toc-backref" href="#id7">Authors</a></h2>
 <ul class="simple">
 <li>Camptocamp</li>
 </ul>
 </div>
 <div class="section" id="contributors">
-<h2><a class="toc-backref" href="#id7">Contributors</a></h2>
+<h2><a class="toc-backref" href="#id8">Contributors</a></h2>
 <ul class="simple">
 <li>Simone Orsi &lt;<a class="reference external" href="mailto:simone.orsi&#64;camptocamp.com">simone.orsi&#64;camptocamp.com</a>&gt;</li>
 </ul>
 </div>
 <div class="section" id="maintainers">
-<h2><a class="toc-backref" href="#id8">Maintainers</a></h2>
+<h2><a class="toc-backref" href="#id9">Maintainers</a></h2>
 <p>This module is maintained by the OCA.</p>
 <a class="reference external image-reference" href="https://odoo-community.org"><img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" /></a>
 <p>OCA, or the Odoo Community Association, is a nonprofit organization whose
