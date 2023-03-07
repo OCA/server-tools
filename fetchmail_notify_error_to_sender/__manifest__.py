@@ -11,7 +11,7 @@
     "author": "Agile Business Group,ForgeFlow,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/server-tools",
     "license": "AGPL-3",
-    "depends": ["fetchmail"],
+    "depends": ["mail"],
     "data": ["views/fetchmail_view.xml", "data/email_template_data.xml"],
     "qweb": [],
     "installable": True,
