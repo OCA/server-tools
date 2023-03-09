@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo noupdate="1">
+
+        <record id="webhook_test" model="webhook">
+            <field name="name">wehook_test</field>
+            <field name="python_code_get_event">request.httprequest.headers.get("X-Webhook-Test-Event")</field>
+            <field name="python_code_get_ip">request.httprequest.headers.get("X-Webhook-Test-Address")</field>
+        </record>
+
+        <record id="webhook_address_localhost" model="webhook.address">
+            <field name="name">127.0.0.1</field>
+            <field name="webhook_id" ref="webhook_test"/>
+        </record>
+
+        <!--webhook github data-->
+        <record model="webhook" id="webhook_github">
+            <field name="name">github</field>
+            <field name="python_code_get_event">request.httprequest.headers.get('X-Github-Event')</field>
+        </record>
+        <record model="webhook.address" id="webhook_address_github">
+            <field name="name">192.30.252.0/22</field>
+            <field name="webhook_id" ref="webhook_github"/>
+        </record>
+
+</odoo>
