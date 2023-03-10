@@ -51,7 +51,8 @@ Configuration
 =============
 
 The following additional configuration options can be added to your Odoo
-configuration file:
+configuration file or using `server_environment` modules would let you to move that
+in environment variable or `server_environment_files`:
 
 =============================  ====================================================================  ==========================================================
         Option                                          Description                                                         Default

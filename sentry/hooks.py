@@ -133,4 +133,11 @@ def initialize_sentry(config):
 
 
 def post_load():
-    initialize_sentry(odoo_config)
+    config = odoo_config
+    try:
+        from odoo.addons.server_environment.server_env import serv_config
+
+        config = serv_config
+    except ImportError:
+        pass
+    initialize_sentry(config)
