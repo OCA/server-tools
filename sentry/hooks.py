@@ -137,7 +137,7 @@ def post_load():
     try:
         from odoo.addons.server_environment.server_env import serv_config
 
-        config = serv_config
+        config = serv_config["options"]
     except ImportError:
         pass
     initialize_sentry(config)
