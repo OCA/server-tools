@@ -74,6 +74,7 @@ setuptools.setup(
         'odoo14-addon-sql_request_abstract',
         'odoo14-addon-test_base_time_window',
         'odoo14-addon-upgrade_analysis',
+        'odoo14-addon-url_attachment_search_fuzzy',
     ],
     classifiers=[
         'Programming Language :: Python',
