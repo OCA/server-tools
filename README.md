@@ -87,6 +87,7 @@ addon | version | maintainers | summary
 [sql_request_abstract](sql_request_abstract/) | 14.0.1.3.0 | [![legalsylvain](https://github.com/legalsylvain.png?size=30px)](https://github.com/legalsylvain) | Abstract Model to manage SQL Requests
 [test_base_time_window](test_base_time_window/) | 14.0.1.0.1 |  | Test Base model to handle time windows
 [upgrade_analysis](upgrade_analysis/) | 14.0.3.0.0 |  | Performs a difference analysis between modules installed on two different Odoo instances
+[url_attachment_search_fuzzy](url_attachment_search_fuzzy/) | 14.0.1.0.0 | [![mariadforgelow](https://github.com/mariadforgelow.png?size=30px)](https://github.com/mariadforgelow) | Fuzzy Search of URL in Attachments
 
 [//]: # (end addons)
 
