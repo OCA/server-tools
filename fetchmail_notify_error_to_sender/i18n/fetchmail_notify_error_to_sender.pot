@@ -16,14 +16,17 @@ msgstr ""
 #. module: fetchmail_notify_error_to_sender
 #: model:mail.template,body_html:fetchmail_notify_error_to_sender.email_template_error_notice
 msgid ""
-"\n"
-"            <div>\n"
-"            <p>Hello ${ctx.get('sender_message').get('from')},</p>\n"
-"            <p>we got a problem with your email: <i>${ctx.get('sender_message').get('subject')}</i></p>\n"
-"            <p>Maybe you used a wrong recipient address?</p>\n"
-"            <p><br/></p>\n"
-"            <p>Technical details:</p>\n"
-"            <p><i>${ctx.get('route_exception')}</i></p>\n"
+"<div style=\"margin: 0px; padding: 0px;\">\n"
+"                <p style=\"margin: 0px; padding: 0px; font-size: 13px;\">\n"
+"                <div>\n"
+"                <p>Hello <t t-out=\"ctx.get('sender_message').get('from')\"/>,</p>\n"
+"                <p>we got a problem with your email: <i><t t-out=\"ctx.get('sender_message').get('subject')\"/></i></p>\n"
+"                <p>Maybe you used a wrong recipient address?</p>\n"
+"                <p><br/></p>\n"
+"                <p>Technical details:</p>\n"
+"                <p><i><t t-out=\"ctx.get('route_exception')\"/></i></p>\n"
+"                </div>\n"
+"                </p>\n"
 "            </div>\n"
 "        "
 msgstr ""
@@ -50,7 +53,7 @@ msgstr ""
 
 #. module: fetchmail_notify_error_to_sender
 #: model:mail.template,subject:fetchmail_notify_error_to_sender.email_template_error_notice
-msgid "Receiving error with: ${ctx.get('sender_message').get('subject')|safe}"
+msgid "Receiving error with: {{ctx.get('sender_message').get('subject')}}"
 msgstr ""
 
 #. module: fetchmail_notify_error_to_sender
