@@ -7,6 +7,6 @@ lxml
 openpyxl
 pygount
 pysftp
-sentry_sdk
+sentry_sdk>=1.17.0
 xlrd
 xlwt
