@@ -17,7 +17,7 @@
     "installable": True,
     "external_dependencies": {
         "python": [
-            "sentry_sdk",
+            "sentry_sdk>=1.17.0",
         ]
     },
     "depends": [
