@@ -120,7 +120,8 @@ class Base(models.AbstractModel):
             f"tracking.manager.before.{self._name}", {}
         )
         for _id, values in initial_values.items():
-            record = self.browse(_id)
+            # Always use sudo in case that the record have been modified using sudo
+            record = self.sudo().browse(_id)
             if not record.exists():
                 # if a record have been modify and then deleted
                 # it's not need to track the change so skip it
