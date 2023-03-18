@@ -4,4 +4,4 @@ dataclasses
 mako
 odoorpc
 openupgradelib
-sentry_sdk
+sentry_sdk>=1.17.0
