@@ -24,10 +24,7 @@ def inverse_combine(domain, operator):
     """
     if operator not in DOMAIN_OPERATORS:
         raise Exception("Unsupported operator parameter: %s" % operator)
-    operator_func = {
-        AND_OPERATOR: AND,
-        OR_OPERATOR: OR
-    }
+    operator_func = {AND_OPERATOR: AND, OR_OPERATOR: OR}
     other_operator = OR_OPERATOR if operator == AND_OPERATOR else AND_OPERATOR
     result = []
     operator_elements_stack = []
@@ -39,7 +36,9 @@ def inverse_combine(domain, operator):
     # 1. Loop over the domain in reverse order
     for element in reversed(domain):
         if element == NOT_OPERATOR:
-            raise Exception("Inversing domains including NOT operator ('!') is not supported")
+            raise Exception(
+                "Inversing domains including NOT operator ('!') is not supported"
+            )
         if element in DOMAIN_OPERATORS:
             # 3. When we reach an operator:
             # - pop the last item from the element stack to the corresponding operator stack
@@ -48,7 +47,10 @@ def inverse_combine(domain, operator):
             if element != operator:
                 if len(elements_stack) > 0:
                     other_elements_stack.append([elements_stack.pop()])
-                    if len(other_elements_stack) == 1 and last_element not in DOMAIN_OPERATORS:
+                    if (
+                        len(other_elements_stack) == 1
+                        and last_element not in DOMAIN_OPERATORS
+                    ):
                         other_elements_stack.append([elements_stack.pop()])
             else:
                 if len(elements_stack) > 0:
