@@ -7,16 +7,21 @@ from ..inverse_expression import inverse_AND, inverse_OR
 
 
 class TestInverseFunctions(SavepointCase):
-
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
         cls.basic_domain_and = ["&", "&", ("a", "=", 1), ("b", "=", 2), ("c", "=", 3)]
         cls.basic_domain_or = ["|", "|", ("a", "=", 1), ("b", "=", 2), ("c", "=", 3)]
-        cls.complex_domain_and_and_or = ["&"] + cls.basic_domain_and + cls.basic_domain_or
-        cls.complex_domain_or_or_and = ["|"] + cls.basic_domain_or + cls.basic_domain_and
+        cls.complex_domain_and_and_or = (
+            ["&"] + cls.basic_domain_and + cls.basic_domain_or
+        )
+        cls.complex_domain_or_or_and = (
+            ["|"] + cls.basic_domain_or + cls.basic_domain_and
+        )
         cls.complex_domain_and_or_or = ["&"] + cls.basic_domain_or + cls.basic_domain_or
-        cls.complex_domain_or_and_and = ["|"] + cls.basic_domain_and + cls.basic_domain_and
+        cls.complex_domain_or_and_and = (
+            ["|"] + cls.basic_domain_and + cls.basic_domain_and
+        )
 
     def test_neutral_basic_and(self):
         result = AND(inverse_AND(self.basic_domain_and))
@@ -48,10 +53,7 @@ class TestInverseFunctions(SavepointCase):
             [("b", "=", 2)],
             [("c", "=", 3)],
         ]
-        self.assertEqual(
-            inverse_AND(self.basic_domain_and),
-            result
-        )
+        self.assertEqual(inverse_AND(self.basic_domain_and), result)
 
     def test_inverse_basic_or(self):
         result = [
@@ -59,51 +61,36 @@ class TestInverseFunctions(SavepointCase):
             [("b", "=", 2)],
             [("c", "=", 3)],
         ]
-        self.assertEqual(
-            inverse_OR(self.basic_domain_or),
-            result
-        )
+        self.assertEqual(inverse_OR(self.basic_domain_or), result)
 
     def test_inverse_complex_and_and_or(self):
         result = [
             [("a", "=", 1)],
             [("b", "=", 2)],
             [("c", "=", 3)],
-            ["|", "|", ("a", "=", 1), ("b", "=", 2), ("c", "=", 3)]
+            ["|", "|", ("a", "=", 1), ("b", "=", 2), ("c", "=", 3)],
         ]
-        self.assertEqual(
-            inverse_AND(self.complex_domain_and_and_or),
-            result
-        )
+        self.assertEqual(inverse_AND(self.complex_domain_and_and_or), result)
 
     def test_inverse_complex_or_or_and(self):
         result = [
             [("a", "=", 1)],
             [("b", "=", 2)],
             [("c", "=", 3)],
-            ["&", "&", ("a", "=", 1), ("b", "=", 2), ("c", "=", 3)]
+            ["&", "&", ("a", "=", 1), ("b", "=", 2), ("c", "=", 3)],
         ]
-        self.assertEqual(
-            inverse_OR(self.complex_domain_or_or_and),
-            result
-        )
+        self.assertEqual(inverse_OR(self.complex_domain_or_or_and), result)
 
     def test_inverse_complex_and_or_or(self):
         result = [
             ["|", "|", ("a", "=", 1), ("b", "=", 2), ("c", "=", 3)],
             ["|", "|", ("a", "=", 1), ("b", "=", 2), ("c", "=", 3)],
         ]
-        self.assertEqual(
-            inverse_AND(self.complex_domain_and_or_or),
-            result
-        )
+        self.assertEqual(inverse_AND(self.complex_domain_and_or_or), result)
 
     def test_inverse_complex_or_and_and(self):
         result = [
             ["&", "&", ("a", "=", 1), ("b", "=", 2), ("c", "=", 3)],
             ["&", "&", ("a", "=", 1), ("b", "=", 2), ("c", "=", 3)],
         ]
-        self.assertEqual(
-            inverse_OR(self.complex_domain_or_and_and),
-            result
-        )
+        self.assertEqual(inverse_OR(self.complex_domain_or_and_and), result)
