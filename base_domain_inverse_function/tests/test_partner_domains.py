@@ -14,7 +14,7 @@ class TestPartnerDomains(SavepointCase):
         cls.partner_domains = [
             [("name", "ilike", "Deco")],
             [("email", "ilike", "example.com")],
-            [("country_id", "=", cls.env.ref("base.us").id)]
+            [("country_id", "=", cls.env.ref("base.us").id)],
         ]
 
     def test_inverse_partner_domain_and(self):
@@ -25,7 +25,7 @@ class TestPartnerDomains(SavepointCase):
         # Ensure result is same after inverse
         self.assertEqual(
             self.partner_model.search(and_domains),
-            self.partner_model.search(AND(partner_domains))
+            self.partner_model.search(AND(partner_domains)),
         )
 
     def test_inverse_partner_domain_or(self):
@@ -36,14 +36,14 @@ class TestPartnerDomains(SavepointCase):
         # Ensure result is same after inverse
         self.assertEqual(
             self.partner_model.search(or_domains),
-            self.partner_model.search(OR(partner_domains))
+            self.partner_model.search(OR(partner_domains)),
         )
 
     def test_inverse_partner_domain_or_subdomain_and(self):
         partner_domains_2 = [
             [("name", "ilike", "Gemini")],
             [("email", "ilike", "example.com")],
-            [("country_id", "=", self.env.ref("base.us").id)]
+            [("country_id", "=", self.env.ref("base.us").id)],
         ]
         composed_domain = OR([AND(self.partner_domains), AND(partner_domains_2)])
         decomposed_or_domains = inverse_OR(composed_domain)
@@ -56,14 +56,14 @@ class TestPartnerDomains(SavepointCase):
             self.partner_model.search(composed_domain),
             self.partner_model.search(
                 OR([AND(decomposed_and_domains_1), AND(decomposed_and_domains_2)])
-            )
+            ),
         )
 
     def test_inverse_partner_domain_and_subdomain_or(self):
         partner_domains_2 = [
             [("name", "ilike", "Gemini")],
             [("email", "ilike", "example.com")],
-            [("country_id", "=", self.env.ref("base.us").id)]
+            [("country_id", "=", self.env.ref("base.us").id)],
         ]
         composed_domain = AND([OR(self.partner_domains), OR(partner_domains_2)])
         decomposed_and_domains = inverse_AND(composed_domain)
@@ -76,5 +76,5 @@ class TestPartnerDomains(SavepointCase):
             self.partner_model.search(composed_domain),
             self.partner_model.search(
                 OR([AND(decomposed_or_domains_1), AND(decomposed_or_domains_2)])
-            )
+            ),
         )
