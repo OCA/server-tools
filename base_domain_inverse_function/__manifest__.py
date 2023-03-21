@@ -3,7 +3,7 @@
 {
     "name": "Base Domain Inverse Function",
     "summary": "Provide function to inverse domain into parts",
-    "version": "13.0.1.0.0",
+    "version": "16.0.1.0.0",
     "development_status": "Alpha",
     "category": "Others",
     "website": "https://github.com/OCA/server-tools",

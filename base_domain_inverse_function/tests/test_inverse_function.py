@@ -1,12 +1,12 @@
 # Copyright 2022 Camptocamp SA
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
 from odoo.osv.expression import AND, OR
-from odoo.tests import SavepointCase
+from odoo.tests import TransactionCase
 
 from ..inverse_expression import inverse_AND, inverse_OR
 
 
-class TestInverseFunctions(SavepointCase):
+class TestInverseFunctions(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
