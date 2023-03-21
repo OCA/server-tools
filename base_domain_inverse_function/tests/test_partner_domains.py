@@ -1,18 +1,18 @@
 # Copyright 2022 Camptocamp SA
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
 from odoo.osv.expression import AND, OR
-from odoo.tests import SavepointCase
+from odoo.tests import TransactionCase
 
 from ..inverse_expression import inverse_AND, inverse_OR
 
 
-class TestPartnerDomains(SavepointCase):
+class TestPartnerDomains(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
         cls.partner_model = cls.env["res.partner"]
         cls.partner_domains = [
-            [("name", "ilike", "Deco")],
+            [("display_name", "ilike", "Deco")],
             [("email", "ilike", "example.com")],
             [("country_id", "=", cls.env.ref("base.us").id)],
         ]
@@ -41,7 +41,7 @@ class TestPartnerDomains(SavepointCase):
 
     def test_inverse_partner_domain_or_subdomain_and(self):
         partner_domains_2 = [
-            [("name", "ilike", "Gemini")],
+            [("display_name", "ilike", "Gemini")],
             [("email", "ilike", "example.com")],
             [("country_id", "=", self.env.ref("base.us").id)],
         ]
@@ -61,7 +61,7 @@ class TestPartnerDomains(SavepointCase):
 
     def test_inverse_partner_domain_and_subdomain_or(self):
         partner_domains_2 = [
-            [("name", "ilike", "Gemini")],
+            [("display_name", "ilike", "Gemini")],
             [("email", "ilike", "example.com")],
             [("country_id", "=", self.env.ref("base.us").id)],
         ]
@@ -75,6 +75,6 @@ class TestPartnerDomains(SavepointCase):
         self.assertEqual(
             self.partner_model.search(composed_domain),
             self.partner_model.search(
-                OR([AND(decomposed_or_domains_1), AND(decomposed_or_domains_2)])
+                AND([OR(decomposed_or_domains_1), OR(decomposed_or_domains_2)])
             ),
         )
