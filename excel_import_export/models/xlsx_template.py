@@ -157,17 +157,18 @@ class XLSXTemplate(models.Model):
                 template.datas = base64.b64encode(open(file_path, "rb").read())
         return True
 
-    @api.model
-    def create(self, vals):
-        rec = super().create(vals)
-        if vals.get("input_instruction"):
-            rec._compute_input_export_instruction()
-            rec._compute_input_import_instruction()
-            rec._compute_input_post_import_hook()
-        if vals.get("result_model_id"):
-            rec._update_result_field_common_wizard()
-            rec._update_result_export_ids()
-        return rec
+    @api.model_create_multi
+    def create(self, vals_list):
+        res = super().create(vals_list)
+        for rec in res:
+            if rec.input_instruction:
+                rec._compute_input_export_instruction()
+                rec._compute_input_import_instruction()
+                rec._compute_input_post_import_hook()
+            if rec.result_model_id:
+                rec._update_result_field_common_wizard()
+                rec._update_result_export_ids()
+        return res
 
     def write(self, vals):
         res = super().write(vals)
@@ -553,10 +554,11 @@ class XLSXTemplateImport(models.Model):
     field_name = fields.Char(string="Field")
     field_cond = fields.Char(string="Field Cond.")
 
-    @api.model
-    def create(self, vals):
-        new_vals = self._extract_field_name(vals)
-        return super().create(new_vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            vals = self._extract_field_name(vals)
+        return super().create(vals_list)
 
     @api.model
     def _extract_field_name(self, vals):
@@ -601,10 +603,11 @@ class XLSXTemplateExport(models.Model):
     style = fields.Char(string="Default Style")
     style_cond = fields.Char(string="Style w/Cond.")
 
-    @api.model
-    def create(self, vals):
-        new_vals = self._extract_field_name(vals)
-        return super().create(new_vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            vals = self._extract_field_name(vals)
+        return super().create(vals_list)
 
     @api.model
     def _extract_field_name(self, vals):
