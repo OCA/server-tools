@@ -14,7 +14,7 @@ Text from HTML field
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github
-    :target: https://github.com/OCA/server-tools/tree/15.0/html_text
+    :target: https://github.com/OCA/server-tools/tree/16.0/html_text
     :alt: OCA/server-tools
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
     :target: https://translation.odoo-community.org/projects/server-tools-15-0/server-tools-15-0-html_text
@@ -96,6 +96,7 @@ Contributors
 * `Tecnativa <https://www.tecnativa.com>`_:",
 * Helly kapatel <helly.kapatel@initos.com>
 * Mantas Šniukas <mantas@vialaurea.lt>
+* Dhara Solanki <dhara.solanki@initos.com>
 
   * Jairo Llopis
   * Vicent Cubells
@@ -114,6 +115,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/15.0/html_text>`_ project on GitHub.
+This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/16.0/html_text>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
