@@ -43,11 +43,11 @@ class ReportController(report.ReportController):
             if docids:
                 records = request.env[report.model].browse(docids)
                 if report.print_report_name and not len(records) > 1:
+                    # this is a bad idea, this should only be .xlsx
+                    extension = report_name.split(".")[-1:].pop()
                     report_name = safe_eval(
                         report.print_report_name, {"object": records, "time": time}
                     )
-                    # this is a bad idea, this sould only be .xlsx
-                    extension = report_name.split(".")[-1:].pop()
                     report_name = f"{report_name}.{extension}"
             excelhttpheaders = [
                 (
