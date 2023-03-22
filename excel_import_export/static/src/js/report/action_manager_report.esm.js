@@ -46,7 +46,7 @@ async function triggerDownload(action, {onClose}, env) {
 
 registry
     .category("ir.actions.report handlers")
-    .add("xlsx_handler", async function (action, options, env) {
+    .add("excel_handler", async function (action, options, env) {
         if (action.report_type === "excel") {
             await triggerDownload(action, options, env);
             return true;
