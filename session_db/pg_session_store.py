@@ -45,6 +45,7 @@ def with_cursor(func):
         while True:
             tries += 1
             try:
+                self._ensure_connection()
                 return func(self, *args, **kwargs)
             except (psycopg2.InterfaceError, psycopg2.OperationalError) as e:
                 _logger.info("Session in DB connection Retry %s/5" % tries)
@@ -66,6 +67,11 @@ class PGSessionStore(sessions.SessionStore):
     def __del__(self):
         if self._cr is not None:
             self._cr.close()
+
+    @with_lock
+    def _ensure_connection(self):
+        if self._cr is None:
+            self._open_connection()
 
     @with_lock
     def _open_connection(self):
