@@ -49,11 +49,14 @@ def with_cursor(func):
             try:
                 self._ensure_connection()
                 return func(self, *args, **kwargs)
-            except (psycopg2.InterfaceError, psycopg2.OperationalError) as e:
-                _logger.info("Session in DB connection Retry %s/5" % tries)
+            except (psycopg2.InterfaceError, psycopg2.OperationalError):
+                self._close_connection()
                 if tries > 4:
-                    raise e
-                self._open_connection()
+                    _logger.warning(
+                        "session_db operation try %s/5 failed, aborting", tries
+                    )
+                    raise
+                _logger.info("session_db operation try %s/5 failed, retrying", tries)
 
     return wrapper
 
@@ -67,8 +70,7 @@ class PGSessionStore(werkzeug.contrib.sessions.SessionStore):
         self._setup_db()
 
     def __del__(self):
-        if self._cr is not None:
-            self._cr.close()
+        self._close_connection()
 
     @with_lock
     def _ensure_connection(self):
@@ -77,16 +79,20 @@ class PGSessionStore(werkzeug.contrib.sessions.SessionStore):
 
     @with_lock
     def _open_connection(self):
-        # return cursor to the pool
+        self._close_connection()
+        cnx = odoo.sql_db.db_connect(self._uri, allow_uri=True)
+        self._cr = cnx.cursor()
+        self._cr.autocommit(True)
+
+    @with_lock
+    def _close_connection(self):
+        """Return cursor to the pool."""
         if self._cr is not None:
             try:
                 self._cr.close()
             except Exception:
                 pass
             self._cr = None
-        cnx = odoo.sql_db.db_connect(self._uri, allow_uri=True)
-        self._cr = cnx.cursor()
-        self._cr.autocommit(True)
 
     @with_lock
     @with_cursor
