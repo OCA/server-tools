@@ -50,8 +50,14 @@ class TestPGSessionStore(TransactionCase):
         """Test that session operations are retried before failing"""
         with mock.patch("odoo.sql_db.Cursor.execute") as mock_execute:
             mock_execute.side_effect = psycopg2.OperationalError()
-            with self.assertRaises(psycopg2.OperationalError):
+            try:
                 self.session_store.get("abc")
+            except psycopg2.OperationalError:  # pylint: disable=except-pass
+                pass
+            else:
+                # We don't use self.assertRaises because Odoo is overriding
+                # in a way that interferes with the Cursor.execute mock
+                raise AssertionError("expected psycopg2.OperationalError")
             assert mock_execute.call_count == 5
         # when the error is resolved, it works again
         self.session_store.get("abc")
@@ -63,8 +69,14 @@ class TestPGSessionStore(TransactionCase):
             mock_execute.side_effect = psycopg2.OperationalError()
             mock_db_connect.side_effect = RuntimeError("connection failed")
             # get fails, and a RuntimeError is raised when trying to reconnect
-            with self.assertRaises(RuntimeError):
+            try:
                 self.session_store.get("abc")
+            except RuntimeError:  # pylint: disable=except-pass
+                pass
+            else:
+                # We don't use self.assertRaises because Odoo is overriding
+                # in a way that interferes with the Cursor.execute mock
+                raise AssertionError("expected RuntimeError")
             assert mock_execute.call_count == 1
         # when the error is resolved, it works again
         self.session_store.get("abc")
