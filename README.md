@@ -65,7 +65,7 @@ addon | version | maintainers | summary
 [sentry](sentry/) | 13.0.1.1.2 |  | Report Odoo errors to Sentry
 [sequence_custom_data](sequence_custom_data/) | 13.0.1.0.1 |  | Technical addon used to add some custom codes into the sequence (used for prefix/suffix).
 [sequence_python](sequence_python/) | 13.0.1.0.1 |  | Calculate a sequence number from a Python expression
-[session_db](session_db/) | 13.0.1.0.1 | [![sbidoul](https://github.com/sbidoul.png?size=30px)](https://github.com/sbidoul) | Store sessions in DB
+[session_db](session_db/) | 13.0.1.0.2 | [![sbidoul](https://github.com/sbidoul.png?size=30px)](https://github.com/sbidoul) | Store sessions in DB
 [slow_statement_logger](slow_statement_logger/) | 13.0.1.0.2 |  | Log slow SQL statements
 [sql_request_abstract](sql_request_abstract/) | 13.0.1.0.2 |  | Abstract Model to manage SQL Requests
 [test_base_time_window](test_base_time_window/) | 13.0.1.0.2 |  | Test Base model to handle time windows
