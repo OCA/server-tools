@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-03 10:08+0000\n"
-"PO-Revision-Date: 2023-01-01 13:44+0000\n"
+"PO-Revision-Date: 2023-03-30 14:24+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -178,7 +178,7 @@ msgstr ""
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__display_name
 msgid "Display Name"
-msgstr "Nome da visualizzare"
+msgstr "Nome visualizzato"
 
 #. module: auto_backup
 #: code:addons/auto_backup/models/db_backup.py:0
