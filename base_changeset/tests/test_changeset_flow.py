@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from datetime import datetime, timedelta
+from unittest.mock import patch
 
 from odoo import fields
 from odoo.exceptions import UserError
@@ -487,3 +488,25 @@ class TestChangesetFlow(ChangesetTestCommon, TransactionCase):
             .create({"acc_number": account_number, "partner_id": self.partner.id})
         )
         self.assertEqual(partner_bank_second.acc_number, default_value)
+
+    @patch("logging.Logger.warning")
+    def test_comparing_value_both_sides(self, log_warning_method):
+        """
+        Test if it doesn't throw warning "Comparing apples and oranges:"
+        while comparing both sides to prepare values for write
+        """
+        self.env["changeset.field.rule"].create(
+            {
+                "field_id": self.env.ref("base.field_res_partner__parent_id").id,
+                "action": "validate",
+            }
+        )
+        partner = self.env["res.partner"].create(
+            {
+                "name": "partner",
+            }
+        )
+        self.env["res.partner"].with_context(test_record_changeset=True).create(
+            {"name": "partner", "parent_id": partner.id}
+        )
+        self.assertEqual(log_warning_method.call_count, 0)

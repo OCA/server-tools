@@ -82,18 +82,26 @@ class Base(models.AbstractModel):
         if self._changeset_disabled():
             return result
         for this, vals in zip(result, vals_list):
-            local_vals = self.env["record.changeset"].add_changeset(
+            write_values = self.env["record.changeset"].add_changeset(
                 this, vals, create=True
             )
-            local_vals = {
-                key: value for key, value in local_vals.items() if vals[key] != value
-            }
+
+            local_vals = {}
+            for key, value in write_values.items():
+                rec_val = self._convert_for_write(vals[key], this, key)
+                local_val = self._convert_for_write(value, this, key)
+                if rec_val != local_val:
+                    local_vals[key] = local_val
+
             if local_vals:
                 this.with_context(
                     __no_changeset=disable_changeset,
                     tracking_disable=True,
                 ).write(local_vals)
         return result
+
+    def _convert_for_write(self, value, record, field_name):
+        return record._fields[field_name].convert_to_write(value, record)
 
     def write(self, values):
         if self._changeset_disabled():
