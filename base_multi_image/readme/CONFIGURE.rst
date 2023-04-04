@@ -21,7 +21,7 @@ To develop a module based on this one:
 
         # If you need this, you will need ``pre_init_hook_for_submodules`` and
           ``uninstall_hook_for_submodules`` as detailed below.
-        old_image_field = fields.Binary(related="image_main", store=False)
+        old_image_field = fields.Binary(related="image_1920", store=False)
 
 * Somewhere in the owner view, add::
 

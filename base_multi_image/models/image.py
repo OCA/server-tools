@@ -16,7 +16,7 @@ _logger = logging.getLogger(__name__)
 
 class Image(models.Model):
     _name = "base_multi_image.image"
-    # TODO: when migrating to 15.0 use image.mixin
+    _inherit = "image.mixin"
     _order = "sequence, owner_model, owner_id, id"
     _description = """ image model for multiple image functionality """
     _sql_constraints = [
@@ -55,26 +55,7 @@ class Image(models.Model):
     file_db_store = fields.Binary("Image stored in database")
     path = fields.Char("Image path", help="Image path")
     url = fields.Char("Image remote URL")
-    image_main = fields.Image("Full-sized image", compute="_compute_image")
-    image_medium = fields.Image(
-        "Medium-sized image",
-        related="image_main",
-        max_width=128,
-        max_height=128,
-        help="Medium-sized image. It is automatically resized as a "
-        "128 x 128 px image, with aspect ratio preserved, only when the "
-        "image exceeds one of those sizes. Use this field in form views "
-        "or kanban views.",
-    )
-    image_small = fields.Image(
-        "Small-sized image",
-        related="image_main",
-        max_width=64,
-        max_height=64,
-        help="Small-sized image. It is automatically resized as a 64 x 64 px "
-        "image, with aspect ratio preserved. Use this field anywhere a "
-        "small image is required.",
-    )
+    image_1920 = fields.Image(compute="_compute_image")
     comments = fields.Text(translate=True)
     sequence = fields.Integer(default=10)
     show_technical = fields.Boolean(compute="_compute_show_technical")
@@ -96,7 +77,7 @@ class Image(models.Model):
     def _compute_image(self):
         """Get image data from the right storage type."""
         for s in self:
-            s.image_main = getattr(s, "_get_image_from_%s" % s.storage)()
+            s.image_1920 = getattr(s, "_get_image_from_%s" % s.storage)()
 
     @api.depends("owner_id", "owner_model")
     def _compute_show_technical(self):

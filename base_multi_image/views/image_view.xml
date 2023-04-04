@@ -64,7 +64,7 @@
                     </group>
                     <group string="Preview">
                         <field
-                                name="image_medium"
+                                name="image_128"
                                 widget="image"
                                 readonly="True"
                                 nolabel="1"
@@ -116,7 +116,7 @@
                                         t-att-alt="record.name"
                                         t-att-src="kanban_image(
                                       'base_multi_image.image',
-                                      'image_small',
+                                      'image_128',
                                       record.id.raw_value)"
                                         class="oe_kanban_image"
                                     />
