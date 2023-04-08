@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-10-29 17:08+0000\n"
-"Last-Translator: Alessandro Fiorino <alessandro.fiorino@digitaldomus.it>\n"
+"PO-Revision-Date: 2023-04-07 16:33+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.10\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -1108,7 +1108,7 @@ msgstr "Somma"
 #: model:ir.model.fields,field_description:excel_import_export.field_import_xlsx_wizard__template_id
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_report__template_id
 msgid "Template"
-msgstr "Template"
+msgstr "Modello"
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/models/ir_report.py:23
