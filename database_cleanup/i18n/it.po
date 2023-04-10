@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-03 10:08+0000\n"
-"PO-Revision-Date: 2023-03-23 13:27+0000\n"
+"PO-Revision-Date: 2023-04-10 16:35+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -215,7 +215,7 @@ msgstr "Ultima modifica il"
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_property__write_uid
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_table__write_uid
 msgid "Last Updated by"
-msgstr "Last Updated by"
+msgstr "Ultimo aggiornamento di"
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_line__write_date
