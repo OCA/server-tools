@@ -9,7 +9,7 @@
     "category": "Tools",
     "website": "https://github.com/OCA/server-tools",
     "author": "Moduon, Odoo Community Association (OCA)",
-    "maintainers": ["Shide"],
+    "maintainers": ["Shide", "yajo"],
     "license": "AGPL-3",
     "application": False,
     "installable": True,

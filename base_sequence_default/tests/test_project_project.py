@@ -34,6 +34,10 @@ class BaseSequenceDefaultCase(TransactionCase):
 
     def test_partner_default_field(self):
         """Test that new created partner has the correct default field values."""
-        with Form(self.env["res.partner"]) as pp_form:
-            self.assertEqual(pp_form.name, "PN/001")
-            self.assertEqual(pp_form.mobile, "+34 000000001")
+        partner_f = Form(self.env["res.partner"])
+        self.assertEqual(partner_f.name, False)
+        self.assertEqual(partner_f.mobile, False)
+        partner_f.name = "-"
+        partner = partner_f.save()
+        self.assertEqual(partner.name, "PN/001")
+        self.assertEqual(partner.mobile, "+34 000000001")
