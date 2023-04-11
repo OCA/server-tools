@@ -15,9 +15,9 @@ class AbstractConfigSettings(models.AbstractModel):
 
     company_id = fields.Many2one(
         "res.company",
-        "Company",
+        string="Company",
         required=True,
-        default=lambda self: self.env.user.company_id,
+        default=lambda self: self.env.company,
     )
 
     def _filter_field(self, field_key):
@@ -39,9 +39,10 @@ class AbstractConfigSettings(models.AbstractModel):
             kwargs = field.args.copy()
             kwargs["related"] = "company_id." + field_key
             kwargs["readonly"] = False
+            kwargs["_setup_done"] = False
             field_key = re.sub("^" + self._prefix, "", field_key)
-            self._add_field(field_key, field.new(**kwargs))
+            self._add_field(field_key, type(field)(**kwargs))
         cls._proper_fields = set(cls._fields)
 
         self._add_inherited_fields()
-        cls.pool.model_cache[cls.__bases__] = cls
+        return

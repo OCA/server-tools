@@ -2,7 +2,11 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     "name": "Configuration Helper",
-    "version": "14.0.1.0.0",
+    "version": "16.0.1.0.0",
+    "summary": """
+    Providing an abstract Class:
+    Creates automatically related fields in 'res.config.settings'
+    using those defined in 'res.company' """,
     "author": "Akretion,Odoo Community Association (OCA)",
     "maintainer": "Akretion",
     "category": "server",

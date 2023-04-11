@@ -6,3 +6,5 @@
 * Patrick Tombez <patrick.tombez@camptocamp.com>
 * Phuc Tran Thanh <phuc@trobz.com>
 * Helly kapatel <helly.kapatel@initos.com>
+* `Trobz <https://trobz.com>`_:
+    * Jack Le <anlh@trobz.com>
