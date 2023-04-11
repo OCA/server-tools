@@ -26,8 +26,8 @@ class AuditlogAutovacuum(models.TransientModel):
         data_models = ("auditlog.log", "auditlog.http.request", "auditlog.http.session")
         for data_model in data_models:
             records = self.env[data_model].search(
-                [('create_date', '<=', fields.Datetime.to_string(deadline))],
-                limit=chunk_size, order='create_date asc')
+                [("create_date", "<=", fields.Datetime.to_string(deadline))],
+                limit=chunk_size, order="create_date asc")
             nb_records = len(records)
             with self.env.norecompute():
                 records.unlink()
