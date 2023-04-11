@@ -62,6 +62,8 @@ To use this module, it is necessary to:
 
 #. Follow the configuration instructions.
 #. Create a record of the model you configured.
+#. Leave empty the fields where you configured a sequence. If they are required
+   fields, set value to "-" to trigger the automatic sequence on creation.
 #. Check that the field defined in the sequence is set to the next value in the sequence.
 
 Bug Tracker
@@ -105,10 +107,13 @@ promote its widespread use.
 .. |maintainer-Shide| image:: https://github.com/Shide.png?size=40px
     :target: https://github.com/Shide
     :alt: Shide
+.. |maintainer-yajo| image:: https://github.com/yajo.png?size=40px
+    :target: https://github.com/yajo
+    :alt: yajo
 
-Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
+Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-Shide| 
+|maintainer-Shide| |maintainer-yajo| 
 
 This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/14.0/base_sequence_default>`_ project on GitHub.
 
