@@ -3,38 +3,17 @@ from unittest import mock
 import psycopg2
 
 from odoo.http import OpenERPSession
-from odoo.sql_db import connection_info_for
 from odoo.tests.common import TransactionCase
 from odoo.tools import config
 
 from odoo.addons.session_db.pg_session_store import PGSessionStore
 
 
-def _make_postgres_uri(
-    login=None, password=None, host=None, port=None, database=None, **kwargs
-):
-    uri = ["postgres://"]
-    if login:
-        uri.append(login)
-        if password:
-            uri.append(f":{password}")
-        uri.append("@")
-    if host:
-        uri.append(host)
-        if port:
-            uri.append(f":{port}")
-    uri.append("/")
-    if database:
-        uri.append(database)
-    return "".join(uri)
-
-
 class TestPGSessionStore(TransactionCase):
     def setUp(self):
         super().setUp()
-        _, connection_info = connection_info_for(config["db_name"])
         self.session_store = PGSessionStore(
-            _make_postgres_uri(**connection_info), session_class=OpenERPSession
+            config["db_name"], session_class=OpenERPSession
         )
 
     def test_session_crud(self):
