@@ -23,6 +23,7 @@ msgid "Auto-Upgrade Modules"
 msgstr "Módulos Auto-Actualizables"
 
 #. module: module_auto_update
+#. odoo-python
 #: code:addons/module_auto_update/models/module.py:0
 #, python-format
 msgid "Checksum upgrade complete."
@@ -34,6 +35,7 @@ msgid "Module"
 msgstr "Módulo"
 
 #. module: module_auto_update
+#. odoo-python
 #: code:addons/module_auto_update/models/module.py:0
 #, python-format
 msgid ""

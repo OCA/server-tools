@@ -26,19 +26,11 @@ msgid "Auto-Upgrade Modules"
 msgstr "Aggiorna Moduli Automaticamente"
 
 #. module: module_auto_update
-#: model:ir.model.fields,field_description:module_auto_update.field_ir_module_module__display_name
-msgid "Display Name"
-msgstr "Nome da visualizzare"
-
-#. module: module_auto_update
-#: model:ir.model.fields,field_description:module_auto_update.field_ir_module_module__id
-msgid "ID"
-msgstr "ID"
-
-#. module: module_auto_update
-#: model:ir.model.fields,field_description:module_auto_update.field_ir_module_module____last_update
-msgid "Last Modified on"
-msgstr "Ultima modifica il"
+#. odoo-python
+#: code:addons/module_auto_update/models/module.py:0
+#, python-format
+msgid "Checksum upgrade complete."
+msgstr ""
 
 #. module: module_auto_update
 #: model:ir.model,name:module_auto_update.model_ir_module_module
@@ -46,6 +38,22 @@ msgid "Module"
 msgstr "Modulo"
 
 #. module: module_auto_update
-#: model:ir.model.fields,field_description:module_auto_update.field_ir_module_module__smart_search
-msgid "Smart Search"
-msgstr "Ricerca Smart"
+#. odoo-python
+#: code:addons/module_auto_update/models/module.py:0
+#, python-format
+msgid ""
+"No checksum change detected in installed modules and all modules installed, "
+"nothing to do."
+msgstr ""
+
+#~ msgid "Display Name"
+#~ msgstr "Nome da visualizzare"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"
+
+#~ msgid "Smart Search"
+#~ msgstr "Ricerca Smart"
