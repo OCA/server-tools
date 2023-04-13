@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--
+        Copyright 2018 Brainbean Apps (https://brainbeanapps.com)
+        License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
+    -->
+    <record id="ir_module_module_upgrade_changed_checksum" model="ir.actions.server">
+        <field name="name">Auto-Upgrade Modules</field>
+        <field name="type">ir.actions.server</field>
+        <field name="model_id" ref="base.model_ir_module_module" />
+        <field name="state">code</field>
+        <field name="code">
+            action = model.upgrade_changed_checksum()
+        </field>
+    </record>
+    <menuitem
+        name="Auto-Upgrade Modules"
+        action="ir_module_module_upgrade_changed_checksum"
+        id="menu_ir_module_module_upgrade_changed_checksum"
+        groups="base.group_no_one"
+        parent="base.menu_management"
+        sequence="45"
+    />
+</odoo>
