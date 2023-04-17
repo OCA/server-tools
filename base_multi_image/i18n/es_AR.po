@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2017-12-01 02:10+0000\n"
 "PO-Revision-Date: 2022-03-19 20:17+0000\n"
 "Last-Translator: Ignacio Buioli <ibuioli@gmail.com>\n"
-"Language-Team: Spanish (Argentina) (https://www.transifex.com/oca/teams/"
-"23907/es_AR/)\n"
+"Language-Team: Spanish (Argentina) (https://www.transifex.com/oca/"
+"teams/23907/es_AR/)\n"
 "Language: es_AR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,142 +21,148 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 #. module: base_multi_image
-#: code:addons/base_multi_image/models/image.py:22
-#: sql_constraint:base_multi_image.image:0
+#: model:ir.model,name:base_multi_image.model_base_multi_image_owner
+msgid " Wizard for base multi image "
+msgstr ""
+
+#. module: base_multi_image
+#: model:ir.model,name:base_multi_image.model_base_multi_image_image
+msgid " image model for multiple image functionality "
+msgstr ""
+
+#. module: base_multi_image
+#: code:addons/base_multi_image/models/image.py:0
+#: model:ir.model.constraint,message:base_multi_image.constraint_base_multi_image_image_uniq_name_owner
 #, python-format
 msgid "A document can have only one image with the same name."
 msgstr "Un documento puede tener solo una imagen con el mismo nombre."
 
 #. module: base_multi_image
-#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_attachment_id
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__attachment_id
 msgid "Attachment"
 msgstr "Adjunto"
 
 #. module: base_multi_image
-#: model:ir.actions.act_window,help:base_multi_image.image_action
+#: model_terms:ir.actions.act_window,help:base_multi_image.image_action
 msgid "Click to add an image attached to an specific record."
 msgstr "Clic para añadir una imagen adjunta a un registro específico."
 
 #. module: base_multi_image
-#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_comments
-#: model:ir.ui.view,arch_db:base_multi_image.image_form_view
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__comments
+#: model_terms:ir.ui.view,arch_db:base_multi_image.image_form_view
 msgid "Comments"
 msgstr "Comentarios"
 
 #. module: base_multi_image
-#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_create_uid
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__create_uid
 msgid "Created by"
 msgstr "Creado por"
 
 #. module: base_multi_image
-#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_create_date
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__create_date
 msgid "Created on"
 msgstr "Creado en"
 
 #. module: base_multi_image
-#: selection:base_multi_image.image,storage:0
+#: model:ir.model.fields.selection,name:base_multi_image.selection__base_multi_image_image__storage__db
 msgid "Database"
 msgstr "Base de Datos"
 
 #. module: base_multi_image
-#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_display_name
-#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_owner_display_name
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__display_name
 msgid "Display Name"
 msgstr "Mostrar Nombre"
 
 #. module: base_multi_image
-#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_extension
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__extension
 msgid "File extension"
 msgstr "Extensión de archivo"
 
 #. module: base_multi_image
-#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_filename
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__filename
 msgid "Filename"
 msgstr "Nombre del archivo"
 
 #. module: base_multi_image
-#: selection:base_multi_image.image,storage:0
+#: model:ir.model.fields.selection,name:base_multi_image.selection__base_multi_image_image__storage__filestore
 msgid "Filestore"
 msgstr "Filestore"
 
 #. module: base_multi_image
-#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_image_main
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__image_main
 msgid "Full-sized image"
 msgstr "Imagen de tamaño completo"
 
 #. module: base_multi_image
-#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_id
-#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_owner_id
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__id
 msgid "ID"
 msgstr "ID"
 
 #. module: base_multi_image
-#: model:ir.ui.view,arch_db:base_multi_image.image_form_view
+#: model_terms:ir.ui.view,arch_db:base_multi_image.image_form_view
 msgid "Image"
 msgstr "Imagen"
 
 #. module: base_multi_image
-#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_path
-#: model:ir.model.fields,help:base_multi_image.field_base_multi_image_image_path
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__path
+#: model:ir.model.fields,help:base_multi_image.field_base_multi_image_image__path
 msgid "Image path"
 msgstr "Ruta de imagen"
 
 #. module: base_multi_image
-#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_url
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__url
 msgid "Image remote URL"
 msgstr "URL de la Imagen remota"
 
 #. module: base_multi_image
-#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_file_db_store
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__file_db_store
 msgid "Image stored in database"
 msgstr "Imagen almacenada en la base de datos"
 
 #. module: base_multi_image
-#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_name
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__name
 msgid "Image title"
 msgstr "Título de la imagen"
 
 #. module: base_multi_image
-#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_owner_image_ids
-#: model:ir.ui.view,arch_db:base_multi_image.image_tree_view
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_owner__image_ids
 msgid "Images"
 msgstr "Imágenes"
 
 #. module: base_multi_image
-#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image___last_update
-#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_owner___last_update
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image____last_update
 msgid "Last Modified on"
 msgstr "Última modificación en"
 
 #. module: base_multi_image
-#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_write_uid
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__write_uid
 msgid "Last Updated by"
 msgstr "Última actualización realizada por"
 
 #. module: base_multi_image
-#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_write_date
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__write_date
 msgid "Last Updated on"
 msgstr "Última actualización el"
 
 #. module: base_multi_image
-#: code:addons/base_multi_image/models/owner.py:73
-#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_owner_image_main
+#: code:addons/base_multi_image/models/owner.py:0
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_owner__image_main
 #, python-format
 msgid "Main image"
 msgstr "Imagen principal"
 
 #. module: base_multi_image
-#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_owner_image_main_medium
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_owner__image_main_medium
 msgid "Medium image"
 msgstr "Imagen mediana"
 
 #. module: base_multi_image
-#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_image_medium
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__image_medium
 msgid "Medium-sized image"
 msgstr "Imagen de tamaño medio"
 
 #. module: base_multi_image
-#: model:ir.model.fields,help:base_multi_image.field_base_multi_image_image_image_medium
+#: model:ir.model.fields,help:base_multi_image.field_base_multi_image_image__image_medium
 msgid ""
 "Medium-sized image. It is automatically resized as a 128 x 128 px image, "
 "with aspect ratio preserved, only when the image exceeds one of those sizes. "
@@ -173,68 +179,68 @@ msgid "Multi images"
 msgstr "Multi imágenes"
 
 #. module: base_multi_image
-#: model:ir.ui.view,arch_db:base_multi_image.image_form_view
+#: model_terms:ir.ui.view,arch_db:base_multi_image.image_form_view
 msgid "Name"
 msgstr "Nombre"
 
 #. module: base_multi_image
-#: selection:base_multi_image.image,storage:0
+#: model:ir.model.fields.selection,name:base_multi_image.selection__base_multi_image_image__storage__file
 msgid "OS file"
 msgstr "Archivo OS"
 
 #. module: base_multi_image
-#: model:ir.ui.view,arch_db:base_multi_image.image_form_view
+#: model_terms:ir.ui.view,arch_db:base_multi_image.image_form_view
 msgid "Options"
 msgstr "Opciones"
 
 #. module: base_multi_image
-#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_owner_id
-#: model:ir.ui.view,arch_db:base_multi_image.image_form_view
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__owner_id
+#: model_terms:ir.ui.view,arch_db:base_multi_image.image_form_view
 msgid "Owner"
 msgstr "Propietario"
 
 #. module: base_multi_image
-#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_owner_model
-msgid "Owner model"
-msgstr "Modelo propietario"
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__owner_model
+msgid "Owner Model"
+msgstr ""
 
 #. module: base_multi_image
-#: model:ir.ui.view,arch_db:base_multi_image.image_form_view
+#: model_terms:ir.ui.view,arch_db:base_multi_image.image_form_view
 msgid "Preview"
 msgstr "Previsualización"
 
 #. module: base_multi_image
-#: model:ir.ui.view,arch_db:base_multi_image.image_kanban_view
+#: model_terms:ir.ui.view,arch_db:base_multi_image.image_kanban_view
 msgid "Product Images"
 msgstr "Imágenes de Producto"
 
 #. module: base_multi_image
-#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_owner_ref_id
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__owner_ref_id
 msgid "Referenced Owner"
 msgstr "Propietario Referenciado"
 
 #. module: base_multi_image
-#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_sequence
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__sequence
 msgid "Sequence"
 msgstr "Secuencia"
 
 #. module: base_multi_image
-#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_show_technical
-msgid "Show technical"
-msgstr "Mostrar técnicos"
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__show_technical
+msgid "Show Technical"
+msgstr ""
 
 #. module: base_multi_image
-#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_owner_image_main_small
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_owner__image_main_small
 msgid "Small image"
 msgstr "Imagen pequeña"
 
 #. module: base_multi_image
-#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_image_small
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__image_small
 msgid "Small-sized image"
 msgstr "Imagen de tamaño pequeño"
 
 #. module: base_multi_image
-#: model:ir.model.fields,help:base_multi_image.field_base_multi_image_image_image_small
+#: model:ir.model.fields,help:base_multi_image.field_base_multi_image_image__image_small
 msgid ""
 "Small-sized image. It is automatically resized as a 64 x 64 px image, with "
 "aspect ratio preserved. Use this field anywhere a small image is required."
@@ -244,45 +250,47 @@ msgstr ""
 "sea que requiera una imagen pequeña."
 
 #. module: base_multi_image
-#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_storage
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__storage
 msgid "Storage"
 msgstr "Almacenamiento"
 
 #. module: base_multi_image
-#: selection:base_multi_image.image,storage:0
+#: model:ir.model.fields.selection,name:base_multi_image.selection__base_multi_image_image__storage__url
 msgid "URL"
 msgstr "URL"
 
 #. module: base_multi_image
-#: code:addons/base_multi_image/models/image.py:205
+#: code:addons/base_multi_image/models/image.py:0
 #, python-format
 msgid "You must provide a file path for the image."
 msgstr "Debe proveer una ruta de archivo para el imagen."
 
 #. module: base_multi_image
-#: code:addons/base_multi_image/models/image.py:199
+#: code:addons/base_multi_image/models/image.py:0
 #, python-format
 msgid "You must provide an URL for the image."
 msgstr "Debe proveer una URL para la imagen."
 
 #. module: base_multi_image
-#: code:addons/base_multi_image/models/image.py:211
+#: code:addons/base_multi_image/models/image.py:0
 #, python-format
 msgid "You must provide an attached file for the image."
 msgstr "Debe proveer un archivo adjunto para la imagen."
 
 #. module: base_multi_image
-#: code:addons/base_multi_image/models/image.py:217
+#: code:addons/base_multi_image/models/image.py:0
 #, python-format
 msgid "You must provide an attachment for the image."
 msgstr "Debe proveer un adjunto para la imagen."
 
-#. module: base_multi_image
-#: model:ir.model,name:base_multi_image.model_base_multi_image_image
-msgid "base_multi_image.image"
-msgstr "base_multi_image.image"
+#~ msgid "Owner model"
+#~ msgstr "Modelo propietario"
 
-#. module: base_multi_image
-#: model:ir.model,name:base_multi_image.model_base_multi_image_owner
-msgid "base_multi_image.owner"
-msgstr "base_multi_image.owner"
+#~ msgid "Show technical"
+#~ msgstr "Mostrar técnicos"
+
+#~ msgid "base_multi_image.image"
+#~ msgstr "base_multi_image.image"
+
+#~ msgid "base_multi_image.owner"
+#~ msgstr "base_multi_image.owner"
