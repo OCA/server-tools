@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright 2019 Ecosoft Co., Ltd.
+  License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).-->
+<odoo>
+    <record id="import_sale_order_xlsx_template" model="xlsx.template">
+        <field name="res_model">sale.order</field>
+        <field name="fname">import_sale_order.xlsx</field>
+        <field name="name">Import Sale Order Template</field>
+        <field name="description">Sample Import Sales Order Tempalte for testing</field>
+        <field name="redirect_action" ref="sale.action_orders" />
+        <field name="input_instruction">
+            {
+                '__IMPORT__': {
+                    'sale_order': {
+                        '_HEAD_': {
+                            'B2': 'partner_id',
+                        },
+                        'order_line': {
+                            'A6': 'product_id',
+                            'B6': 'name',
+                            'C6': 'product_uom_qty',
+                            'D6': 'product_uom',
+                            'E6': 'price_unit',
+                            'F6': 'tax_id',
+                        }
+                    }
+                },
+            }
+        </field>
+    </record>
+    <function model="xlsx.template" name="load_xlsx_template">
+        <value eval="[ref('import_sale_order_xlsx_template')]" />
+    </function>
+</odoo>

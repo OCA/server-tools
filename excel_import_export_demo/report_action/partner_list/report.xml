@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="action_report_partner_excel" model="ir.actions.report">
+        <field name="name">Partner List (.xlsx)</field>
+        <field name="model">report.partner.list</field>
+        <field name="report_type">excel</field>
+        <field name="report_name">partner_list.xlsx</field>
+        <field name="report_file">partner_list</field>
+    </record>
+
+</odoo>
