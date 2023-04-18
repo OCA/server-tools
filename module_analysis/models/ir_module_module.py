@@ -81,14 +81,6 @@ class IrModuleModule(models.Model):
     def _get_module_encoding(self, file_ext):
         return 'utf-8'
 
-    # Overload Section
-    @api.model
-    def update_list(self):
-        res = super().update_list()
-        if self.env.context.get('analyse_installed_modules', False):
-            self.search([('state', '=', 'installed')]).button_analyse_code()
-        return res
-
     @api.multi
     def write(self, vals):
         res = super().write(vals)

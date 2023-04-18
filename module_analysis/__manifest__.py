@@ -17,7 +17,6 @@
     'data': [
         'security/ir.model.access.csv',
         'views/menu.xml',
-        'views/view_base_module_update.xml',
         'views/view_ir_module_author.xml',
         'views/view_ir_module_type.xml',
         'views/view_ir_module_type_rule.xml',
@@ -29,6 +28,5 @@
     'external_dependencies': {
         'python': ['pygount'],
     },
-    'post_init_hook': 'analyse_installed_modules',
     'installable': True,
 }
