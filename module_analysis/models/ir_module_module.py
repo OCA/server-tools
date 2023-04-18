@@ -74,14 +74,6 @@ class IrModuleModule(models.Model):
     def _get_module_encoding(self, file_ext):
         return "utf-8"
 
-    # Overload Section
-    @api.model
-    def update_list(self):
-        res = super().update_list()
-        if self.env.context.get("analyse_installed_modules", False):
-            self.search([("state", "=", "installed")])._analyse_code()
-        return res
-
     def write(self, vals):
         res = super().write(vals)
         if vals.get("state", False) == "uninstalled" and "module_analysis" not in [
