@@ -90,8 +90,10 @@ class IrModuleModule(models.Model):
         self._analyse_code()
 
     @api.model
-    def cron_analyse_code(self):
-        self.search([("state", "=", "installed")])._analyse_code()
+    def cron_analyse_code(self, domain=None):
+        if domain is None:
+            domain = [("state", "=", "installed")]
+        self.search(domain)._analyse_code()
 
     # Custom Section
     def _analyse_code(self):
