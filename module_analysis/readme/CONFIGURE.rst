@@ -16,11 +16,9 @@ developped for exemple,
 
 to update the data manually, you have to :
 
-* Go to 'Apps' / 'Update Apps List'
+* Go to 'Settings' / 'Technical' / 'Scheduled Actions'
 
-* Check the box 'Analyse Installed modules'
-
-    .. image:: ../static/description/base_module_update.png
+* Run manually the action : 'Update Module Analysis'
 
 This will update analysis of your installed modules.
 
@@ -28,7 +26,7 @@ to update the data automatically, you have to :
 
 * Go to 'Settings' / 'Technical' / 'Scheduled Actions'
 
-* Configure the action 'Update Module Analysis'. (By default, the analysis will be done nightly)
+* Configure the action 'Update Module Analysis' and activate it. (By default, the cron is unactive and no analysis is done)
 
 
 Adding Extra data
