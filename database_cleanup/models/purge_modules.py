@@ -53,7 +53,7 @@ class CleanupPurgeLineModule(models.TransientModel):
         modules.filtered(
             lambda x: x.state not in ("uninstallable", "uninstalled")
         ).button_immediate_uninstall()
-        modules.env.invalidate_all()
+        modules.invalidate_cache()
         modules.unlink()
         return self.write({"purged": True})
 
