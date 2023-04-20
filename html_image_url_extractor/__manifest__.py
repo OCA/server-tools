@@ -12,6 +12,5 @@
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "external_dependencies": {"python": ["lxml"]},
     "depends": ["base"],
 }
