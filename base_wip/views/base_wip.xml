@@ -1,7 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <!-- Copyright 2020 KMEE INFORMATICA LTDA
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
-
 <odoo>
 
     <record model="ir.ui.view" id="base_wip_form_view">
@@ -10,31 +9,31 @@
         <field name="arch" type="xml">
             <form noedit="1">
                 <header>
-                    <button name="stop" string="Stop" type="object"/>
-                    <field name="state" widget="statusbar"/>
+                    <button name="stop" string="Stop" type="object" />
+                    <field name="state" widget="statusbar" />
                 </header>
                 <sheet>
                     <group>
-                        <field name="model_id"/>
-                        <field name="res_id"/>
-                        <field name="wip_state"/>
+                        <field name="model_id" />
+                        <field name="res_id" />
+                        <field name="wip_state" />
                     </group>
                     <group>
                         <group>
-                            <field name="date_start"/>
-                            <field name="date_hour_start"/>
+                            <field name="date_start" />
+                            <field name="date_hour_start" />
                         </group>
                         <group>
-                            <field name="date_stop"/>
-                            <field name="date_hour_stop"/>
+                            <field name="date_stop" />
+                            <field name="date_hour_stop" />
                         </group>
                     </group>
                     <group>
-                        <field name="lead_time"/>
-                        <field name="lead_time_seconds"/>
+                        <field name="lead_time" />
+                        <field name="lead_time_seconds" />
                     </group>
                 </sheet>
-                <div class="oe_chatter"></div>
+                <div class="oe_chatter" />
             </form>
         </field>
     </record>
@@ -44,13 +43,25 @@
         <field name="model">base.wip</field>
         <field name="arch" type="xml">
             <search>
-                <field name="model_id"/>
-                <field name="wip_state"/>
-                <field name="state"/>
+                <field name="model_id" />
+                <field name="wip_state" />
+                <field name="state" />
                 <group expand="0" string="Group By">
-                    <filter string="Model" domain="[]" context="{'group_by':'model_id'}"/>
-                    <filter string="Model" domain="[]" context="{'group_by':'model_id'}"/>
-                    <filter string="Resource" domain="[]" context="{'group_by':'res_id'}"/>
+                    <filter
+                        string="Model"
+                        domain="[]"
+                        context="{'group_by':'model_id'}"
+                    />
+                    <filter
+                        string="Model"
+                        domain="[]"
+                        context="{'group_by':'model_id'}"
+                    />
+                    <filter
+                        string="Resource"
+                        domain="[]"
+                        context="{'group_by':'res_id'}"
+                    />
                 </group>
             </search>
         </field>
@@ -61,12 +72,12 @@
         <field name="model">base.wip</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="wip_state"/>
-                <field name="date_hour_start"/>
-                <field name="date_hour_stop"/>
-                <field name="lead_time"/>
-                <field name="state"/>
-                <field name="user_id"/>
+                <field name="wip_state" />
+                <field name="date_hour_start" />
+                <field name="date_hour_stop" />
+                <field name="lead_time" />
+                <field name="state" />
+                <field name="user_id" />
             </tree>
         </field>
     </record>
@@ -76,9 +87,9 @@
         <field name="model">base.wip</field>
         <field name="arch" type="xml">
             <pivot string="Wip" display_quantity="true">
-                <field name="model_id"/>
-                <field name="lead_time" type="measure"/>
-                <field name="lead_time_seconds" type="measure"/>
+                <field name="model_id" />
+                <field name="lead_time" type="measure" />
+                <field name="lead_time_seconds" type="measure" />
             </pivot>
         </field>
     </record>
@@ -88,9 +99,9 @@
         <field name="model">base.wip</field>
         <field name="arch" type="xml">
             <graph string="Wip">
-                <field name="model_id"/>
-                <field name="lead_time" type="measure"/>
-                <field name="lead_time_seconds" type="measure"/>
+                <field name="model_id" />
+                <field name="lead_time" type="measure" />
+                <field name="lead_time_seconds" type="measure" />
             </graph>
         </field>
     </record>
@@ -105,9 +116,9 @@
 
     <record model="ir.ui.menu" id="base_wip_menu">
         <field name="name">Wip</field>
-        <field name="parent_id" ref="base.menu_board_root"/>
-        <field name="action" ref="base_wip_act_window"/>
-        <field name="sequence" eval="16"/>
+        <field name="parent_id" ref="base.menu_board_root" />
+        <field name="action" ref="base_wip_act_window" />
+        <field name="sequence" eval="16" />
     </record>
 
 </odoo>

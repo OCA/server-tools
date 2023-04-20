@@ -5,11 +5,11 @@ import datetime
 from odoo import api, fields, models
 
 intervals = (
-    ('w', 604800),  # 60 * 60 * 24 * 7
-    ('days', 86400),  # 60 * 60 * 24
-    ('hours', 3600),  # 60 * 60
-    ('min', 60),
-    ('sec', 1),
+    ("w", 604800),  # 60 * 60 * 24 * 7
+    ("days", 86400),  # 60 * 60 * 24
+    ("hours", 3600),  # 60 * 60
+    ("min", 60),
+    ("sec", 1),
 )
 
 
@@ -21,26 +21,28 @@ def display_time(seconds, granularity=2):
         if value:
             seconds -= value * count
             if value == 1:
-                name = name.rstrip('s')
+                name = name.rstrip("s")
             result.append("{} {}".format(int(value), name))
-    return ', '.join(result[:granularity])
+    return ", ".join(result[:granularity])
 
 
 class BaseWip(models.Model):
-    _name = 'base.wip'
-    _description = 'Base Wip'
+    _name = "base.wip"
+    _description = "Base Wip"
 
     @api.model
     def _get_states(self):
-        return [('draft', 'New'),
-                ('open', 'In Progress'),
-                ('pending', 'Pending'),
-                ('done', 'Done'),
-                ('cancelled', 'Cancelled'),
-                ('exception', 'Exception')]
+        return [
+            ("draft", "New"),
+            ("open", "In Progress"),
+            ("pending", "Pending"),
+            ("done", "Done"),
+            ("cancelled", "Cancelled"),
+            ("exception", "Exception"),
+        ]
 
     model_id = fields.Many2one(
-        comodel_name='ir.model',
+        comodel_name="ir.model",
         string="Model",
         index=True,
     )
@@ -53,10 +55,10 @@ class BaseWip(models.Model):
     state = fields.Selection(
         string="State",
         selection=[
-            ('running', 'Running'),
-            ('closed', 'Closed'),
+            ("running", "Running"),
+            ("closed", "Closed"),
         ],
-        default='running',
+        default="running",
         required=True,
         index=True,
     )
@@ -88,18 +90,18 @@ class BaseWip(models.Model):
     )
 
     lead_time_seconds = fields.Float(
-        string='Lead Time Float',
-        compute='_compute_lead_time',
+        string="Lead Time Float",
+        compute="_compute_lead_time",
     )
 
     lead_time = fields.Char(
-        string='Lead Time',
-        compute='_compute_lead_time',
+        string="Lead Time",
+        compute="_compute_lead_time",
     )
 
     wip_state = fields.Selection(
         selection=_get_states,
-        string='State',
+        string="State",
         index=True,
     )
 
@@ -111,17 +113,13 @@ class BaseWip(models.Model):
         index=True,
     )
 
-    @api.depends('date_hour_stop', 'date_hour_start')
+    @api.depends("date_hour_stop", "date_hour_start")
     def _compute_lead_time(self):
         for blocktime in self:
 
-            d1 = fields.Datetime.from_string(
-                blocktime.date_hour_start
-            )
+            d1 = fields.Datetime.from_string(blocktime.date_hour_start)
             if blocktime.date_hour_stop:
-                d2 = fields.Datetime.from_string(
-                    blocktime.date_hour_stop
-                )
+                d2 = fields.Datetime.from_string(blocktime.date_hour_stop)
             else:
                 d2 = datetime.datetime.now()
             diff = d2 - d1
@@ -130,17 +128,23 @@ class BaseWip(models.Model):
             blocktime.lead_time_seconds = diff.total_seconds()
 
     def stop(self):
-        for record in self.filtered(lambda o: o.state == 'running'):
-            record.write({
-                'state': 'closed',
-                'date_hour_stop': fields.Datetime.now(),
-                'date_stop': fields.Date.context_today(self),
-            })
+        for record in self.filtered(lambda o: o.state == "running"):
+            record.write(
+                {
+                    "state": "closed",
+                    "date_hour_stop": fields.Datetime.now(),
+                    "date_stop": fields.Date.context_today(self),
+                }
+            )
 
-    def start(self, model_id, res_id, wip_state='draft'):
-        if wip_state != 'cancelled':
-            self.env['base.wip'].create({
-                'model_id': self.env['ir.model'].search([('model', '=', model_id)]).id,
-                'res_id': res_id,
-                'wip_state': wip_state,
-            })
+    def start(self, model_id, res_id, wip_state="draft"):
+        if wip_state != "cancelled":
+            self.env["base.wip"].create(
+                {
+                    "model_id": self.env["ir.model"]
+                    .search([("model", "=", model_id)])
+                    .id,
+                    "res_id": res_id,
+                    "wip_state": wip_state,
+                }
+            )
