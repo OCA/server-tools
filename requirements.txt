@@ -6,7 +6,6 @@ cryptography==2.6.1
 dataclasses
 dnspython
 josepy
-lxml
 mako
 odoorpc
 openpyxl
