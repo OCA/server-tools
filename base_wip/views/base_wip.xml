@@ -51,16 +51,19 @@
                         string="Model"
                         domain="[]"
                         context="{'group_by':'model_id'}"
+                        name=""
                     />
                     <filter
                         string="Model"
                         domain="[]"
                         context="{'group_by':'model_id'}"
+                        name=""
                     />
                     <filter
                         string="Resource"
                         domain="[]"
                         context="{'group_by':'res_id'}"
+                        name=""
                     />
                 </group>
             </search>

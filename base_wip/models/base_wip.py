@@ -53,7 +53,6 @@ class BaseWip(models.Model):
     )
 
     state = fields.Selection(
-        string="State",
         selection=[
             ("running", "Running"),
             ("closed", "Closed"),
@@ -71,7 +70,6 @@ class BaseWip(models.Model):
     )
 
     date_start = fields.Date(
-        string="Date Start",
         default=fields.Date.context_today,
         required=False,
         index=True,
@@ -84,7 +82,6 @@ class BaseWip(models.Model):
     )
 
     date_stop = fields.Date(
-        string="Date Stop",
         required=False,
         index=True,
     )
@@ -95,7 +92,6 @@ class BaseWip(models.Model):
     )
 
     lead_time = fields.Char(
-        string="Lead Time",
         compute="_compute_lead_time",
     )
 
@@ -117,9 +113,9 @@ class BaseWip(models.Model):
     def _compute_lead_time(self):
         for blocktime in self:
 
-            d1 = fields.Datetime.from_string(blocktime.date_hour_start)
+            d1 = fields.Datetime.to_datetime(blocktime.date_hour_start)
             if blocktime.date_hour_stop:
-                d2 = fields.Datetime.from_string(blocktime.date_hour_stop)
+                d2 = fields.Datetime.to_datetime(blocktime.date_hour_stop)
             else:
                 d2 = datetime.datetime.now()
             diff = d2 - d1

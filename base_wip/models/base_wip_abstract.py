@@ -247,7 +247,6 @@ class BaseWipReport(models.Model):
             "target": "current",
         }
 
-    @api.model_cr
     def init(self):
         """
         CRM Lead Report
