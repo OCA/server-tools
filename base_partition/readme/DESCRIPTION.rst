@@ -7,6 +7,3 @@ and with values that are recordsets
 
 So if we have a recordset (x | y | z ) such that x.f == True, y.f == z.f == False,
 then (x | y | z ).partition("f") == {True: x, False: (y | z)}.
-
-It also provides a backport of `filtered_domain`,
-which filters a recordset in place with a provided domain.
