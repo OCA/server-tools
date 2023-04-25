@@ -7,7 +7,7 @@
     "version": "14.0.1.0.0",
     "author": "Ecosoft, Odoo Community Association (OCA)",
     "maintainers": ["kittiu"],
-    "development_status": "Alpha",
+    "development_status": "Beta",
     "website": "https://github.com/OCA/server-tools",
     "category": "Tools",
     "depends": ["base"],
