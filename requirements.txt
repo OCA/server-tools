@@ -1,5 +1,5 @@
 checksumdir
-raven
+sentry-sdk
 pysftp
 pyopenssl
 acme
