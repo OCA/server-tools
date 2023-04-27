@@ -6,156 +6,158 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2023-04-27 17:33+0000\n"
+"Last-Translator: Noèlia Cañas <gestio@batista10.com>\n"
 "Language-Team: none\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: base_time_window
 #: code:addons/base_time_window/models/time_window_mixin.py:0
 #, python-format
 msgid "%s must be > %s"
-msgstr ""
+msgstr "%s ha de ser > %s"
 
 #. module: base_time_window
 #: code:addons/base_time_window/models/time_window_mixin.py:0
 #, python-format
 msgid "%s overlaps %s"
-msgstr ""
+msgstr "%s es sobreposa %s"
 
 #. module: base_time_window
 #: code:addons/base_time_window/models/time_window_mixin.py:0
 #, python-format
 msgid "At least one time.weekday is required"
-msgstr ""
+msgstr "Es requereix almenys un time.weekday"
 
 #. module: base_time_window
 #: model:ir.model.fields,field_description:base_time_window.field_time_weekday__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creat per"
 
 #. module: base_time_window
 #: model:ir.model.fields,field_description:base_time_window.field_time_weekday__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creat el"
 
 #. module: base_time_window
 #: model:ir.model.fields,field_description:base_time_window.field_time_weekday__display_name
 #: model:ir.model.fields,field_description:base_time_window.field_time_window_mixin__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nom a mostrar"
 
 #. module: base_time_window
 #: model:ir.model.fields.selection,name:base_time_window.selection__time_weekday__name__4
 msgid "Friday"
-msgstr ""
+msgstr "Divendres"
 
 #. module: base_time_window
 #: model:ir.model.fields,field_description:base_time_window.field_time_window_mixin__time_window_start
 msgid "From"
-msgstr ""
+msgstr "Des de"
 
 #. module: base_time_window
 #: code:addons/base_time_window/models/time_window_mixin.py:0
 #, python-format
 msgid "Hour should be between 00 and 23"
-msgstr ""
+msgstr "L'hora ha d'estar entre les 00 i les 23"
 
 #. module: base_time_window
 #: model:ir.model.fields,field_description:base_time_window.field_time_weekday__id
 #: model:ir.model.fields,field_description:base_time_window.field_time_window_mixin__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: base_time_window
 #: model:ir.model.fields,field_description:base_time_window.field_time_weekday____last_update
 #: model:ir.model.fields,field_description:base_time_window.field_time_window_mixin____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última modificació el"
 
 #. module: base_time_window
 #: model:ir.model.fields,field_description:base_time_window.field_time_weekday__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Última actualització per"
 
 #. module: base_time_window
 #: model:ir.model.fields,field_description:base_time_window.field_time_weekday__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Última actualització el"
 
 #. module: base_time_window
 #: model:ir.model.fields.selection,name:base_time_window.selection__time_weekday__name__0
 msgid "Monday"
-msgstr ""
+msgstr "Dilluns"
 
 #. module: base_time_window
 #: model:ir.model.fields,field_description:base_time_window.field_time_weekday__name
 msgid "Name"
-msgstr ""
+msgstr "Nom"
 
 #. module: base_time_window
 #: code:addons/base_time_window/models/time_weekday.py:0
 #: model:ir.model.constraint,message:base_time_window.constraint_time_weekday_name_uniq
 #, python-format
 msgid "Name must be unique"
-msgstr ""
+msgstr "El nom ha de ser únic"
 
 #. module: base_time_window
 #: model:ir.model.fields.selection,name:base_time_window.selection__time_weekday__name__5
 msgid "Saturday"
-msgstr ""
+msgstr "Dissabte"
 
 #. module: base_time_window
 #: model:ir.model.fields,field_description:base_time_window.field_time_weekday__smart_search
 #: model:ir.model.fields,field_description:base_time_window.field_time_window_mixin__smart_search
 msgid "Smart Search"
-msgstr ""
+msgstr "Cerca intel·ligent"
 
 #. module: base_time_window
 #: model:ir.model.fields.selection,name:base_time_window.selection__time_weekday__name__6
 msgid "Sunday"
-msgstr ""
+msgstr "Diumenge"
 
 #. module: base_time_window
 #: model:ir.model.fields.selection,name:base_time_window.selection__time_weekday__name__3
 msgid "Thursday"
-msgstr ""
+msgstr "Dijous"
 
 #. module: base_time_window
 #: model:ir.model,name:base_time_window.model_time_weekday
 msgid "Time Week Day"
-msgstr ""
+msgstr "Hora Setmana Dia"
 
 #. module: base_time_window
 #: model:ir.model,name:base_time_window.model_time_window_mixin
 msgid "Time Window"
-msgstr ""
+msgstr "Finestra de temps"
 
 #. module: base_time_window
 #: model:ir.model.fields,field_description:base_time_window.field_time_window_mixin__time_window_weekday_ids
 msgid "Time Window Weekday"
-msgstr ""
+msgstr "Finestra d'hora dia de la setmana"
 
 #. module: base_time_window
 #: model:ir.model.fields,field_description:base_time_window.field_time_window_mixin__time_window_end
 msgid "To"
-msgstr ""
+msgstr "A"
 
 #. module: base_time_window
 #: model:ir.model.fields.selection,name:base_time_window.selection__time_weekday__name__1
 msgid "Tuesday"
-msgstr ""
+msgstr "Dimarts"
 
 #. module: base_time_window
 #: model:ir.model.fields.selection,name:base_time_window.selection__time_weekday__name__2
 msgid "Wednesday"
-msgstr ""
+msgstr "Dimecres"
 
 #. module: base_time_window
 #: code:addons/base_time_window/models/time_window_mixin.py:0
 #, python-format
 msgid "{days}: From {start} to {end}"
-msgstr ""
+msgstr "{days}: De {start} a {end}"
