@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-04-27 15:15+0000\n"
+"PO-Revision-Date: 2023-04-27 15:16+0000\n"
 "Last-Translator: Dept. Técnico <tecnico@extrememicro.es>\n"
 "Language-Team: none\n"
 "Language: ca\n"
@@ -107,7 +107,7 @@ msgstr "Finestra d'hora del soci de prova"
 #. module: test_base_time_window
 #: model:ir.model.fields,field_description:test_base_time_window.field_test_partner_time_window__time_window_weekday_ids
 msgid "Time Window Weekday"
-msgstr ""
+msgstr "Finestra horària dia laborable"
 
 #. module: test_base_time_window
 #: model:ir.model.fields,field_description:test_base_time_window.field_res_partner__time_window_ids
