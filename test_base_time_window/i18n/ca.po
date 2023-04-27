@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-04-27 15:14+0000\n"
-"Last-Translator: Noèlia Cañas <gestio@batista10.com>\n"
+"PO-Revision-Date: 2023-04-27 15:15+0000\n"
+"Last-Translator: Dept. Técnico <tecnico@extrememicro.es>\n"
 "Language-Team: none\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
@@ -31,73 +31,73 @@ msgstr "Conjunts de canvis"
 #. module: test_base_time_window
 #: model:ir.model,name:test_base_time_window.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Contacte"
 
 #. module: test_base_time_window
 #: model:ir.model.fields,field_description:test_base_time_window.field_res_partner__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:test_base_time_window.field_test_partner_time_window__count_pending_changeset_changes
 msgid "Count Pending Changeset Changes"
-msgstr ""
+msgstr "Recompte de canvis pendents del conjunt de canvis"
 
 #. module: test_base_time_window
 #: model:ir.model.fields,field_description:test_base_time_window.field_res_partner__count_pending_changesets
 #: model:ir.model.fields,field_description:test_base_time_window.field_test_partner_time_window__count_pending_changesets
 msgid "Count Pending Changesets"
-msgstr ""
+msgstr "Recompte de conjunts de canvis pendents"
 
 #. module: test_base_time_window
 #: model:ir.model.fields,field_description:test_base_time_window.field_test_partner_time_window__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creat per"
 
 #. module: test_base_time_window
 #: model:ir.model.fields,field_description:test_base_time_window.field_test_partner_time_window__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creat el"
 
 #. module: test_base_time_window
 #: model:ir.model.fields,field_description:test_base_time_window.field_res_partner__display_name
 #: model:ir.model.fields,field_description:test_base_time_window.field_test_partner_time_window__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nom a mostrar"
 
 #. module: test_base_time_window
 #: model:ir.model.fields,field_description:test_base_time_window.field_test_partner_time_window__time_window_start
 msgid "From"
-msgstr ""
+msgstr "De"
 
 #. module: test_base_time_window
 #: model:ir.model.fields,field_description:test_base_time_window.field_res_partner__id
 #: model:ir.model.fields,field_description:test_base_time_window.field_test_partner_time_window__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: test_base_time_window
 #: model:ir.model.fields,field_description:test_base_time_window.field_res_partner____last_update
 #: model:ir.model.fields,field_description:test_base_time_window.field_test_partner_time_window____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última modificació el"
 
 #. module: test_base_time_window
 #: model:ir.model.fields,field_description:test_base_time_window.field_test_partner_time_window__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Última actualització per"
 
 #. module: test_base_time_window
 #: model:ir.model.fields,field_description:test_base_time_window.field_test_partner_time_window__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Última actualització el"
 
 #. module: test_base_time_window
 #: model:ir.model.fields,field_description:test_base_time_window.field_test_partner_time_window__partner_id
 msgid "Partner"
-msgstr ""
+msgstr "Empresa"
 
 #. module: test_base_time_window
 #: model:ir.model.fields,field_description:test_base_time_window.field_res_partner__smart_search
 #: model:ir.model.fields,field_description:test_base_time_window.field_test_partner_time_window__smart_search
 msgid "Smart Search"
-msgstr ""
+msgstr "Cerca intel·lient"
 
 #. module: test_base_time_window
 #: model:ir.model,name:test_base_time_window.model_test_partner_time_window
