@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-04-27 15:16+0000\n"
-"Last-Translator: Noèlia Cañas <gestio@batista10.com>\n"
+"PO-Revision-Date: 2023-04-27 17:33+0000\n"
+"Last-Translator: Dept. Técnico <tecnico@extrememicro.es>\n"
 "Language-Team: none\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
@@ -113,15 +113,15 @@ msgstr "Finestra horària dia laborable"
 #: model:ir.model.fields,field_description:test_base_time_window.field_res_partner__time_window_ids
 #: model:ir.model.fields,field_description:test_base_time_window.field_res_users__time_window_ids
 msgid "Time windows"
-msgstr ""
+msgstr "Finestres de temps"
 
 #. module: test_base_time_window
 #: model:ir.model.fields,field_description:test_base_time_window.field_test_partner_time_window__time_window_end
 msgid "To"
-msgstr ""
+msgstr "A"
 
 #. module: test_base_time_window
 #: model:ir.model.fields,field_description:test_base_time_window.field_res_partner__user_can_see_changeset
 #: model:ir.model.fields,field_description:test_base_time_window.field_test_partner_time_window__user_can_see_changeset
 msgid "User Can See Changeset"
-msgstr ""
+msgstr "L'usuari pot veure el conjunt de canvis"
