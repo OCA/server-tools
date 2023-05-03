@@ -50,9 +50,11 @@ class CleanupPurgeLineModule(models.TransientModel):
         if not modules:
             return True
         self.logger.info("Purging modules %s", ", ".join(module_names))
-        modules.filtered(
-            lambda x: x.state not in ("uninstallable", "uninstalled")
-        ).button_immediate_uninstall()
+        installed = modules.filtered(lambda x: x.state in ("installed", "to upgrade"))
+        ((modules - installed) + (modules - installed).downstream_dependencies()).write(
+            {"state": "to remove"}
+        )
+        installed.button_immediate_uninstall()
         modules.env.invalidate_all()
         modules.unlink()
         return self.write({"purged": True})
@@ -71,13 +73,6 @@ class CleanupPurgeWizardModule(models.TransientModel):
             [("to_buy", "=", False), ("name", "!=", "studio_customization")]
         ):
             if get_module_path(module.name, display_warning=False):
-                continue
-            if module.state == "uninstalled":
-                self.env["cleanup.purge.line.module"].create(
-                    {
-                        "name": module.name,
-                    }
-                )
                 continue
             res.append((0, 0, {"name": module.name}))
 
