@@ -65,8 +65,8 @@ addon | version | maintainers | summary
 [fetchmail_incoming_log](fetchmail_incoming_log/) | 14.0.1.0.0 |  | Log all messages received, before they start to be processed.
 [fetchmail_notify_error_to_sender](fetchmail_notify_error_to_sender/) | 14.0.1.0.0 |  | If fetching mails gives error, send an email to sender
 [fetchmail_notify_error_to_sender_test](fetchmail_notify_error_to_sender_test/) | 14.0.1.0.0 |  | Test for Fetchmail Notify Error to Sender
-[html_image_url_extractor](html_image_url_extractor/) | 14.0.1.0.0 |  | Extract images found in any HTML field
-[html_text](html_text/) | 14.0.1.0.0 |  | Generate excerpts from any HTML field
+[html_image_url_extractor](html_image_url_extractor/) | 14.0.1.0.1 |  | Extract images found in any HTML field
+[html_text](html_text/) | 14.0.1.0.1 |  | Generate excerpts from any HTML field
 [iap_alternative_provider](iap_alternative_provider/) | 14.0.1.0.0 | [![sebastienbeau](https://github.com/sebastienbeau.png?size=30px)](https://github.com/sebastienbeau) | Base module for providing alternative provider for iap apps
 [jsonifier](jsonifier/) | 14.0.1.1.0 |  | JSON-ify data for all models
 [letsencrypt](letsencrypt/) | 14.0.1.0.1 |  | Request SSL certificates from letsencrypt.org
