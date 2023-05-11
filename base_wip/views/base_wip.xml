@@ -33,7 +33,6 @@
                         <field name="lead_time_seconds" />
                     </group>
                 </sheet>
-                <div class="oe_chatter" />
             </form>
         </field>
     </record>
