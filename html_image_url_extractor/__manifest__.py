@@ -5,7 +5,7 @@
 {
     "name": "Image URLs from HTML field",
     "summary": "Extract images found in any HTML field",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.0.1",
     "category": "Tools",
     "website": "https://github.com/OCA/server-tools",
     "author": "Tecnativa, Onestein, Odoo Community Association (OCA)",
