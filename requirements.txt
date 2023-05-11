@@ -5,7 +5,6 @@ cryptography
 dataclasses
 dnspython
 josepy
-lxml
 odoorpc
 openpyxl
 openupgradelib
