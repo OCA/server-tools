@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="ir_exp_test" model="ir.exports">
+        <field name="name">Test Fake Export</field>
+        <field name="resource">json.stored.fake.model</field>
+    </record>
+    <record id="ir_exp_test_line_test1" model="ir.exports.line">
+        <field name="export_id" ref="ir_exp_test" />
+        <field name="name">id</field>
+    </record>
+    <record id="ir_exp_test_line_test2" model="ir.exports.line">
+        <field name="export_id" ref="ir_exp_test" />
+        <field name="name">name</field>
+    </record>
+    <record id="ir_exp_test_line_test3" model="ir.exports.line">
+        <field name="export_id" ref="ir_exp_test" />
+        <field name="name">description</field>
+    </record>
+
+    <record id="ir_exp_test_multilang" model="ir.exports">
+        <field name="name">Test Fake Export multilang</field>
+        <field name="resource">json.stored.fake.model.multilang</field>
+    </record>
+    <record id="ir_exp_test_multilang_line_test1" model="ir.exports.line">
+        <field name="export_id" ref="ir_exp_test_multilang" />
+        <field name="name">id</field>
+    </record>
+    <record id="ir_exp_test_multilang_line_test2" model="ir.exports.line">
+        <field name="export_id" ref="ir_exp_test_multilang" />
+        <field name="name">name</field>
+    </record>
+    <record id="ir_exp_test_multilang_line_test3" model="ir.exports.line">
+        <field name="export_id" ref="ir_exp_test_multilang" />
+        <field name="name">description</field>
+    </record>
+    <record id="ir_exp_test_multilang_line_test4" model="ir.exports.line">
+        <field name="export_id" ref="ir_exp_test_multilang" />
+        <field name="name">title_id</field>
+        <field name="target">title_id:title</field>
+    </record>
+</odoo>

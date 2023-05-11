@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2022 Camptocamp SA
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record id="channel_jsonifier_stored_root" model="queue.job.channel">
+        <field name="name">jsonifier_stored</field>
+        <field name="parent_id" ref="queue_job.channel_root" />
+    </record>
+
+    <record id="job_function_jobify_json_data_compute_for" model="queue.job.function">
+        <field name="model_id" ref="jsonifier_stored.model_jsonifier_stored_mixin" />
+        <field name="method">jsonify_compute_data_for</field>
+        <field name="channel_id" ref="channel_jsonifier_stored_root" />
+    </record>
+
+
+</odoo>
