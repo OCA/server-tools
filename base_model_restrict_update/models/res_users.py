@@ -9,7 +9,6 @@ class ResUsers(models.Model):
     _inherit = "res.users"
 
     unrestrict_model_update = fields.Boolean(
-        "Unrestrict Model Update",
         help="Set to true and the user can update restricted model.",
     )
     is_readonly_user = fields.Boolean(
