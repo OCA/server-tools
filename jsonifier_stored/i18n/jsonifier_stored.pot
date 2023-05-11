@@ -1,0 +1,91 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* jsonifier_stored
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: jsonifier_stored
+#: model:ir.model.fields,field_description:jsonifier_stored.field_jsonifier_stored_mixin__assigned_attachment_ids
+msgid "Assigned Attachments"
+msgstr ""
+
+#. module: jsonifier_stored
+#: model:ir.model.fields,field_description:jsonifier_stored.field_jsonifier_stored_mixin__changeset_change_ids
+msgid "Changeset Changes"
+msgstr ""
+
+#. module: jsonifier_stored
+#: model:ir.model.fields,field_description:jsonifier_stored.field_jsonifier_stored_mixin__changeset_ids
+msgid "Changesets"
+msgstr ""
+
+#. module: jsonifier_stored
+#: model:ir.model.fields,field_description:jsonifier_stored.field_jsonifier_stored_mixin__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr ""
+
+#. module: jsonifier_stored
+#: model:ir.model.fields,field_description:jsonifier_stored.field_jsonifier_stored_mixin__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr ""
+
+#. module: jsonifier_stored
+#: model:ir.model.fields,field_description:jsonifier_stored.field_jsonifier_stored_mixin__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: jsonifier_stored
+#: model:ir.model.fields,field_description:jsonifier_stored.field_jsonifier_stored_mixin__id
+msgid "ID"
+msgstr ""
+
+#. module: jsonifier_stored
+#: model:ir.model.fields,field_description:jsonifier_stored.field_jsonifier_stored_mixin__ir_export_id
+msgid "Ir Export"
+msgstr ""
+
+#. module: jsonifier_stored
+#: model:ir.model,name:jsonifier_stored.model_jsonifier_stored_mixin
+msgid "JSONifier stored mixin"
+msgstr ""
+
+#. module: jsonifier_stored
+#: model:ir.actions.server,name:jsonifier_stored.cron_recompute_all_ir_actions_server
+#: model:ir.cron,cron_name:jsonifier_stored.cron_recompute_all
+#: model:ir.cron,name:jsonifier_stored.cron_recompute_all
+msgid "JSONify stored - Recompute data for all models"
+msgstr ""
+
+#. module: jsonifier_stored
+#: model:ir.model.fields,field_description:jsonifier_stored.field_jsonifier_stored_mixin__jsonified_data
+msgid "Jsonified Data"
+msgstr ""
+
+#. module: jsonifier_stored
+#: model:ir.model.fields,field_description:jsonifier_stored.field_jsonifier_stored_mixin__jsonified_display
+msgid "Jsonified Display"
+msgstr ""
+
+#. module: jsonifier_stored
+#: model:ir.model.fields,field_description:jsonifier_stored.field_jsonifier_stored_mixin____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: jsonifier_stored
+#: model:ir.model.fields,field_description:jsonifier_stored.field_jsonifier_stored_mixin__smart_search
+msgid "Smart Search"
+msgstr ""
+
+#. module: jsonifier_stored
+#: model:ir.model.fields,field_description:jsonifier_stored.field_jsonifier_stored_mixin__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr ""
