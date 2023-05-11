@@ -6,7 +6,7 @@
     "name": "Disable RPC",
     "summary": """Helpers for disabling RPC calls""",
     "version": "14.0.1.1.1",
-    "development_status": "Alpha",
+    "development_status": "Beta",
     "license": "LGPL-3",
     "website": "https://github.com/OCA/server-tools",
     "author": "Camptocamp, Odoo Community Association (OCA)",
