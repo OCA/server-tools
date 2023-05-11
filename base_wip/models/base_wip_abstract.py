@@ -1,12 +1,12 @@
 # Copyright 2020 KMEE INFORMATICA LTDA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from lxml import etree
 
 from odoo import api, fields, models, tools
-from odoo.osv.orm import setup_modifiers
 
 from .base_wip import display_time
+
+# from odoo.osv.orm import setup_modifiers
 
 
 class BaseWipAbstract(models.AbstractModel):
@@ -21,24 +21,24 @@ class BaseWipAbstract(models.AbstractModel):
             view_id, view_type, toolbar, submenu
         )
 
-        if view_type == "form":
-            try:
-                wip_view = self.env.ref("base_wip.base_wip_abstract_form_view")
-                wip_arch = etree.fromstring(wip_view["arch"])
+        # if view_type == "form":
+        #     try:
+        #         wip_view = self.env.ref("base_wip.base_wip_abstract_form_view")
+        #         wip_arch = etree.fromstring(wip_view["arch"])
 
-                page_node = wip_arch.xpath("//page[@name='wip_page']")[0]
+        #         page_node = wip_arch.xpath("//page[@name='wip_page']")[0]
 
-                doc = etree.fromstring(model_view.get("arch"))
+        #         doc = etree.fromstring(model_view.get("arch"))
 
-                # Replace page
-                doc_page_node = doc.xpath("//notebook")[0]
-                for n in page_node.getiterator():
-                    setup_modifiers(n)
+        #         # Replace page
+        #         doc_page_node = doc.xpath("//notebook")[0]
+        #         for n in page_node.getiterator():
+        #             setup_modifiers(n)
 
-                doc_page_node.append(page_node)
-                model_view["arch"] = etree.tostring(doc, encoding="unicode")
-            except Exception:
-                return model_view
+        #         doc_page_node.append(page_node)
+        #         model_view["arch"] = etree.tostring(doc, encoding="unicode")
+        #     except Exception:
+        #         return model_view
 
         return model_view
 
