@@ -16,6 +16,7 @@ setuptools.setup(
         'odoo13-addon-base_cron_exclusion',
         'odoo13-addon-base_custom_info',
         'odoo13-addon-base_deterministic_session_gc',
+        'odoo13-addon-base_domain_inverse_function',
         'odoo13-addon-base_exception',
         'odoo13-addon-base_fontawesome',
         'odoo13-addon-base_jsonify',
