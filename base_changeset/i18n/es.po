@@ -6,28 +6,30 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2023-05-17 03:02+0000\n"
+"Last-Translator: Víctor Martínez <victor.martinez@tecnativa.com>\n"
 "Language-Team: none\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: base_changeset
 #: model:ir.model.constraint,message:base_changeset.constraint_changeset_field_rule_model_field_uniq
 msgid "A rule already exists for this field."
-msgstr ""
+msgstr "Ya existe una regla para este campo."
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_changeset_field_rule__action
 msgid "Action"
-msgstr ""
+msgstr "Acción"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_changeset_field_rule__active
 msgid "Active"
-msgstr ""
+msgstr "Activo"
 
 #. module: base_changeset
 #: model_terms:ir.ui.view,arch_db:base_changeset.view_record_changeset_change_form
@@ -35,17 +37,17 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:base_changeset.view_record_changeset_form
 #: model_terms:ir.ui.view,arch_db:base_changeset.view_record_changeset_tree
 msgid "Apply"
-msgstr ""
+msgstr "Aplicar"
 
 #. module: base_changeset
 #: model_terms:ir.ui.view,arch_db:base_changeset.view_record_changeset_form
 msgid "Apply pending changes"
-msgstr ""
+msgstr "Aplicar cambios pendientes"
 
 #. module: base_changeset
 #: model:ir.model.fields.selection,name:base_changeset.selection__record_changeset_change__state__done
 msgid "Approved"
-msgstr ""
+msgstr "Aprobado"
 
 #. module: base_changeset
 #: model:ir.model.fields,help:base_changeset.field_changeset_field_rule__action
@@ -54,11 +56,14 @@ msgid ""
 "Validate: manually applied by an administrator.\n"
 "Never: change never applied."
 msgstr ""
+"Automático: siempre aplica un cambio.\n"
+"Validar: aplicado manualmente por un administrador.\n"
+"Nunca: cambio nunca aplicado."
 
 #. module: base_changeset
 #: model:ir.model,name:base_changeset.model_base
 msgid "Base"
-msgstr ""
+msgstr "Base"
 
 #. module: base_changeset
 #: code:addons/base_changeset/models/base.py:0
@@ -68,12 +73,12 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:base_changeset.view_record_changeset_form
 #, python-format
 msgid "Changes"
-msgstr ""
+msgstr "Cambios"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset_change__changeset_id
 msgid "Changeset"
-msgstr ""
+msgstr "Conjunto de cambios"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field__unknown__changeset_change_ids
@@ -494,27 +499,27 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_web_tour_tour__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_wizard_ir_model_menu_create__changeset_change_ids
 msgid "Changeset Changes"
-msgstr ""
+msgstr "Cambios del conjunto de cambios"
 
 #. module: base_changeset
 #: model:res.groups,name:base_changeset.group_changeset_manager
 msgid "Changeset Configuration"
-msgstr ""
+msgstr "Configuración del conjunto de cambios"
 
 #. module: base_changeset
 #: model:ir.model,name:base_changeset.model_changeset_field_rule
 msgid "Changeset Field Rules"
-msgstr ""
+msgstr "Reglas de campo del conjunto de cambios"
 
 #. module: base_changeset
 #: model:ir.actions.act_window,name:base_changeset.action_changeset_field_rule_view
 msgid "Changeset Fields Rules"
-msgstr ""
+msgstr "Reglas de campos del conjunto de cambios"
 
 #. module: base_changeset
 #: model:res.groups,name:base_changeset.group_changeset_user
 msgid "Changeset Validations"
-msgstr ""
+msgstr "Validaciones del conjunto de cambios"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field__unknown__changeset_ids
@@ -936,13 +941,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_wizard_ir_model_menu_create__changeset_ids
 #: model:ir.ui.menu,name:base_changeset.menu_record_changeset
 msgid "Changesets"
-msgstr ""
+msgstr "Conjuntos de cambios"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_changeset_field_rule__company_id
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset__company_id
 msgid "Company"
-msgstr ""
+msgstr "Compañía"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field__unknown__count_pending_changeset_changes
@@ -1363,7 +1368,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_web_tour_tour__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_wizard_ir_model_menu_create__count_pending_changeset_changes
 msgid "Count Pending Changeset Changes"
-msgstr ""
+msgstr "Total de cambios pendientes del conjunto de cambios"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field__unknown__count_pending_changesets
@@ -1784,75 +1789,75 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_web_tour_tour__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_wizard_ir_model_menu_create__count_pending_changesets
 msgid "Count Pending Changesets"
-msgstr ""
+msgstr "Total de conjunto de cambios pendientes"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_changeset_field_rule__create_uid
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset__create_uid
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset_change__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creado por"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_changeset_field_rule__create_date
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset__create_date
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset_change__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creado el"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_changeset_field_rule__display_name
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset__display_name
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset_change__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nombre mostrado"
 
 #. module: base_changeset
 #: model:ir.model.fields.selection,name:base_changeset.selection__record_changeset__state__done
 #: model_terms:ir.ui.view,arch_db:base_changeset.view_record_changeset_change_search
 #: model_terms:ir.ui.view,arch_db:base_changeset.view_record_changeset_search
 msgid "Done"
-msgstr ""
+msgstr "Hecho"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_changeset_field_rule__expression
 msgid "Expression"
-msgstr ""
+msgstr "Expresión"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_changeset_field_rule__field_id
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset_change__field_id
 msgid "Field"
-msgstr ""
+msgstr "Campo"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset_change__field_name
 msgid "Field Name"
-msgstr ""
+msgstr "Nombre del campo"
 
 #. module: base_changeset
 #: model:ir.ui.menu,name:base_changeset.menu_changeset_field_rule
 msgid "Field Rules"
-msgstr ""
+msgstr "Reglas del campo"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset_change__field_type
 msgid "Field Type"
-msgstr ""
+msgstr "Tipo de campo"
 
 #. module: base_changeset
 #: model_terms:ir.ui.view,arch_db:base_changeset.view_changeset_field_rule_search
 #: model_terms:ir.ui.view,arch_db:base_changeset.view_record_changeset_change_search
 #: model_terms:ir.ui.view,arch_db:base_changeset.view_record_changeset_search
 msgid "Group By"
-msgstr ""
+msgstr "Agrupar por"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_changeset_field_rule__id
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset__id
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset_change__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: base_changeset
 #: model:ir.model.fields,help:base_changeset.field_changeset_field_rule__source_model_id
@@ -1863,196 +1868,202 @@ msgid ""
 "Rules with a source model have precedence over global rules, but if a field "
 "has no rule with a source model, the global rule is used."
 msgstr ""
+"Si se define un modelo de origen, la regla se aplicará solo cuando el cambio "
+"se realice desde este origen. Las reglas sin modelo de origen son globales y "
+"se aplican a todos los backends.\n"
+"Las reglas con un modelo de origen tienen prioridad sobre las reglas "
+"globales, pero si un campo no tiene una regla con un modelo de origen, se "
+"utiliza la regla global."
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_changeset_field_rule____last_update
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset____last_update
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset_change____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última modificación el"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_changeset_field_rule__write_uid
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset__write_uid
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset_change__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Última actualización por"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_changeset_field_rule__write_date
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset__write_date
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset_change__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Última actualización el"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_changeset_field_rule__model_id
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset__model
 #: model_terms:ir.ui.view,arch_db:base_changeset.view_changeset_field_rule_search
 msgid "Model"
-msgstr ""
+msgstr "Modelo"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset_change__model
 msgid "Model Name"
-msgstr ""
+msgstr "Nombre del modelo"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset__modified_by_id
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset_change__modified_by_id
 msgid "Modified By"
-msgstr ""
+msgstr "Modificado por"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset__date
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset_change__date
 msgid "Modified on"
-msgstr ""
+msgstr "Modificado el"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset_change__new_value_display
 msgid "New"
-msgstr ""
+msgstr "Nuevo"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset_change__new_value_boolean
 msgid "New Value Boolean"
-msgstr ""
+msgstr "Nuevo valor booleano"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset_change__new_value_char
 msgid "New Value Char"
-msgstr ""
+msgstr "Nuevo valor carácter"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset_change__new_value_date
 msgid "New Value Date"
-msgstr ""
+msgstr "Nuevo valor fecha"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset_change__new_value_datetime
 msgid "New Value Datetime"
-msgstr ""
+msgstr "Nuevo valor fecha y hora"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset_change__new_value_float
 msgid "New Value Float"
-msgstr ""
+msgstr "Nuevo valor número flotante"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset_change__new_value_integer
 msgid "New Value Integer"
-msgstr ""
+msgstr "Nuevo valor entero"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset_change__new_value_monetary
 msgid "New Value Monetary"
-msgstr ""
+msgstr "Nuevo valor monetario"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset_change__new_value_reference
 msgid "New Value Reference"
-msgstr ""
+msgstr "Nuevo valor referencia"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset_change__new_value_text
 msgid "New Value Text"
-msgstr ""
+msgstr "Nuevo valor texto"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset__note
 msgid "Note"
-msgstr ""
+msgstr "Nota"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset_change__old_value_boolean
 msgid "Old Value Boolean"
-msgstr ""
+msgstr "Antiguo valor booleano"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset_change__old_value_char
 msgid "Old Value Char"
-msgstr ""
+msgstr "Antiguo valor carácter"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset_change__old_value_date
 msgid "Old Value Date"
-msgstr ""
+msgstr "Antiguo valor fecha"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset_change__old_value_datetime
 msgid "Old Value Datetime"
-msgstr ""
+msgstr "Antiguo valor fecha y hora"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset_change__old_value_float
 msgid "Old Value Float"
-msgstr ""
+msgstr "Antiguo valor número flotante"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset_change__old_value_integer
 msgid "Old Value Integer"
-msgstr ""
+msgstr "Antiguo valor entero"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset_change__old_value_monetary
 msgid "Old Value Monetary"
-msgstr ""
+msgstr "Antiguo valor monetario"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset_change__old_value_reference
 msgid "Old Value Reference"
-msgstr ""
+msgstr "Antiguo valor referencia"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset_change__old_value_text
 msgid "Old Value Text"
-msgstr ""
+msgstr "Antiguo valor texto"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset_change__origin_value_boolean
 msgid "Origin Value Boolean"
-msgstr ""
+msgstr "Origen valor booleano"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset_change__origin_value_char
 msgid "Origin Value Char"
-msgstr ""
+msgstr "Origen valor carácter"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset_change__origin_value_date
 msgid "Origin Value Date"
-msgstr ""
+msgstr "Origen valor fecha"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset_change__origin_value_datetime
 msgid "Origin Value Datetime"
-msgstr ""
+msgstr "Origen valor fecha y hora"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset_change__origin_value_float
 msgid "Origin Value Float"
-msgstr ""
+msgstr "Origen valor número flotante"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset_change__origin_value_integer
 msgid "Origin Value Integer"
-msgstr ""
+msgstr "Origen valor entero"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset_change__origin_value_monetary
 msgid "Origin Value Monetary"
-msgstr ""
+msgstr "Origen valor monetario"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset_change__origin_value_reference
 msgid "Origin Value Reference"
-msgstr ""
+msgstr "Origen valor referencia"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset_change__origin_value_text
 msgid "Origin Value Text"
-msgstr ""
+msgstr "Origen valor texto"
 
 #. module: base_changeset
 #: model:ir.model.fields.selection,name:base_changeset.selection__record_changeset__state__draft
@@ -2060,58 +2071,58 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:base_changeset.view_record_changeset_change_search
 #: model_terms:ir.ui.view,arch_db:base_changeset.view_record_changeset_search
 msgid "Pending"
-msgstr ""
+msgstr "Pendiente"
 
 #. module: base_changeset
 #. openerp-web
 #: code:addons/base_changeset/static/src/xml/backend.xml:0
 #, python-format
 msgid "Pending Changes"
-msgstr ""
+msgstr "Cambios pendientes"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_changeset_field_rule__prevent_self_validation
 msgid "Prevent Self Validation"
-msgstr ""
+msgstr "Evitar la autovalidación"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset_change__origin_value_display
 #: model_terms:ir.ui.view,arch_db:base_changeset.view_record_changeset_form
 msgid "Previous"
-msgstr ""
+msgstr "Anterior"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset__record_id
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset_change__record_id
 msgid "Record"
-msgstr ""
+msgstr "Registro"
 
 #. module: base_changeset
 #: code:addons/base_changeset/models/base.py:0
 #, python-format
 msgid "Record Changes"
-msgstr ""
+msgstr "Cambios del registro"
 
 #. module: base_changeset
 #: model:ir.actions.act_window,name:base_changeset.action_record_changeset_view
 #: model:ir.model,name:base_changeset.model_record_changeset
 msgid "Record Changeset"
-msgstr ""
+msgstr "Conjunto de cambios del registro"
 
 #. module: base_changeset
 #: model:ir.model,name:base_changeset.model_record_changeset_change
 msgid "Record Changeset Change"
-msgstr ""
+msgstr "Cambio del conjunto de cambios del registro"
 
 #. module: base_changeset
 #: model:ir.ui.menu,name:base_changeset.menu_changeset
 msgid "Record Changesets"
-msgstr ""
+msgstr "Conjuntos de cambios del registro"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset__res_id
 msgid "Record ID"
-msgstr ""
+msgstr "ID registro"
 
 #. module: base_changeset
 #: model_terms:ir.ui.view,arch_db:base_changeset.view_record_changeset_change_form
@@ -2119,39 +2130,39 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:base_changeset.view_record_changeset_form
 #: model_terms:ir.ui.view,arch_db:base_changeset.view_record_changeset_tree
 msgid "Reject"
-msgstr ""
+msgstr "Rechazar"
 
 #. module: base_changeset
 #: model_terms:ir.ui.view,arch_db:base_changeset.view_record_changeset_form
 msgid "Reject pending changes"
-msgstr ""
+msgstr "Rechazar cambios pendientes"
 
 #. module: base_changeset
 #: model:ir.model.fields.selection,name:base_changeset.selection__record_changeset_change__state__cancel
 msgid "Rejected"
-msgstr ""
+msgstr "Rechazado"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset_change__rule_id
 msgid "Rule"
-msgstr ""
+msgstr "Regla"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_changeset_field_rule__smart_search
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset__smart_search
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset_change__smart_search
 msgid "Smart Search"
-msgstr ""
+msgstr "Búsqueda inteligente"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_changeset_field_rule__source_model_id
 msgid "Source Model"
-msgstr ""
+msgstr "Modelo origen"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset__source
 msgid "Source of the change"
-msgstr ""
+msgstr "Origen del cambio"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset__state
@@ -2159,28 +2170,30 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:base_changeset.view_record_changeset_change_search
 #: model_terms:ir.ui.view,arch_db:base_changeset.view_record_changeset_search
 msgid "State"
-msgstr ""
+msgstr "Estado"
 
 #. module: base_changeset
 #: model:ir.model.fields,help:base_changeset.field_changeset_field_rule__model_id
 msgid "The model this field belongs to"
-msgstr ""
+msgstr "El modelo al que pertenece este campo"
 
 #. module: base_changeset
 #: model:ir.model.fields,help:base_changeset.field_record_changeset_change__model
 msgid "The technical name of the model this field belongs to"
-msgstr ""
+msgstr "El nombre técnico del modelo al que pertenece este campo"
 
 #. module: base_changeset
 #: model:res.groups,comment:base_changeset.group_changeset_user
 msgid "The user will be able to apply or reject changes."
-msgstr ""
+msgstr "El usuario podrá aplicar o rechazar cambios."
 
 #. module: base_changeset
 #: model:res.groups,comment:base_changeset.group_changeset_manager
 msgid ""
 "The user will have an access to the configuration of the changeset rules."
 msgstr ""
+"El usuario tendrá acceso a la configuración de las reglas del conjunto de "
+"cambios."
 
 #. module: base_changeset
 #: code:addons/base_changeset/models/record_changeset_change.py:0
@@ -2190,17 +2203,20 @@ msgid ""
 "record is pending.\n"
 "Apply all the anterior changesets before applying this one."
 msgstr ""
+"Este cambio no se puede aplicar porque está pendiente un conjunto de cambios "
+"anterior para el mismo registro.\n"
+"Aplique todos los conjuntos de cambios anteriores antes de aplicar este."
 
 #. module: base_changeset
 #: code:addons/base_changeset/models/record_changeset_change.py:0
 #, python-format
 msgid "This change has already be applied."
-msgstr ""
+msgstr "Este cambio ya se ha aplicado."
 
 #. module: base_changeset
 #: model_terms:ir.ui.view,arch_db:base_changeset.view_changeset_field_rule_form
 msgid "True"
-msgstr ""
+msgstr "True"
 
 #. module: base_changeset
 #: model:ir.model.fields,help:base_changeset.field_changeset_field_rule__expression
@@ -2208,6 +2224,8 @@ msgid ""
 "Use this rule only on records where this is true. Available variables: "
 "object, user"
 msgstr ""
+"Utilice esta regla solo en los registros en los que esto sea verdadero. "
+"Variables disponibles: object, user"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field__unknown__user_can_see_changeset
@@ -2628,36 +2646,36 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_web_tour_tour__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_wizard_ir_model_menu_create__user_can_see_changeset
 msgid "User Can See Changeset"
-msgstr ""
+msgstr "El usuario puede ver el conjunto de cambios"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset_change__user_can_validate_changeset
 msgid "User Can Validate Changeset"
-msgstr ""
+msgstr "El usuario puede validar el conjunto de cambios"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_changeset_field_rule__validator_group_ids
 msgid "Validator Groups"
-msgstr ""
+msgstr "Grupos de validadores"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset_change__verified_by_id
 msgid "Verified By"
-msgstr ""
+msgstr "Verificado por"
 
 #. module: base_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_record_changeset_change__verified_on_date
 msgid "Verified on"
-msgstr ""
+msgstr "Verificado el"
 
 #. module: base_changeset
 #: code:addons/base_changeset/models/record_changeset_change.py:0
 #, python-format
 msgid "You don't have the rights to apply the changes."
-msgstr ""
+msgstr "No tiene los permisos para aplicar los cambios."
 
 #. module: base_changeset
 #: code:addons/base_changeset/models/record_changeset_change.py:0
 #, python-format
 msgid "You don't have the rights to reject the changes."
-msgstr ""
+msgstr "No tiene los permisos para rechazar los cambios."
