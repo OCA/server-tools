@@ -29,6 +29,7 @@ addon | version | maintainers | summary
 [base_cron_exclusion](base_cron_exclusion/) | 13.0.1.0.1 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | Allow you to select scheduled actions that should not run simultaneously.
 [base_custom_info](base_custom_info/) | 13.0.1.0.2 |  | Add custom field in models
 [base_deterministic_session_gc](base_deterministic_session_gc/) | 13.0.1.0.0 |  | Provide a deterministic session garbage collection instead of the default random one
+[base_domain_inverse_function](base_domain_inverse_function/) | 13.0.1.0.0 | [![grindtildeath](https://github.com/grindtildeath.png?size=30px)](https://github.com/grindtildeath) | Provide function to inverse domain into parts
 [base_exception](base_exception/) | 13.0.1.1.3 |  | This module provide an abstract model to manage customizable exceptions to be applied on different models (sale order, invoice, ...)
 [base_fontawesome](base_fontawesome/) | 13.0.5.13.0 |  | Up to date Fontawesome resources.
 [base_jsonify](base_jsonify/) | 13.0.3.2.1 |  | Base module that provide the jsonify method on all models
