@@ -68,7 +68,9 @@ class Base(models.AbstractModel):
         :args:
         :returns: list of models
         """
-        models = self.env["changeset.field.rule"].search([]).mapped("model_id.model")
+        models = (
+            self.env["changeset.field.rule"].sudo().search([]).mapped("model_id.model")
+        )
         if config["test_enable"] and self.env.context.get("test_record_changeset"):
             if "res.partner" not in models:
                 models += ["res.partner"]  # Used in tests

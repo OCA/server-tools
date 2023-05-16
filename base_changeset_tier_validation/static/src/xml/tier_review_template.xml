@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates>
+    <t t-extend="tier.review.ReviewsTable">
+        <t t-jquery="th[name='th_comment']" t-operation="before">
+            <th name="th_summary" class="text-left">Summary</th>
+        </t>
+        <t t-jquery="td[name='td_comment']" t-operation="before">
+            <td name="td_summary" class="text-left">
+                <t t-if="review.summary">
+                    <span t-esc="review.summary" />
+                </t>
+            </td>
+        </t>
+    </t>
+</templates>

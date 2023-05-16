@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="tier_validation_buttons_changeset"
+        inherit_id="base_tier_validation.tier_validation_buttons"
+    >
+        <!-- Add more conditions to hide the buttons when a revision is pending. !-->
+        <button name="request_validation" position="attributes">
+            <attribute
+                name="t-attf-attrs"
+            >{'invisible': ['|','|','|', ('need_validation', '!=', True),('rejected','=',True),('total_pending_reviews', '>', 0),('#{state_field}', '#{state_operator}', #{state_value})]}</attribute>
+        </button>
+        <button name="restart_validation" position="attributes">
+            <attribute
+                name="t-attf-attrs"
+            >{'invisible': ['|','|',('total_pending_reviews', '>', 0), ('review_ids', '=', []),('#{state_field}', '#{state_operator}', #{state_value})]}</attribute>
+        </button>
+    </template>
+    <template
+        id="tier_validation_label_changeset"
+        inherit_id="base_tier_validation.tier_validation_label"
+    >
+        <field name="rejected" position="after">
+            <field name="count_pending_changesets" invisible="1" />
+            <field name="total_pending_reviews" invisible="1" />
+        </field>
+        <field name="can_review" position="before">
+            <field
+                name="last_pending_changeset_review_ref"
+                groups="base_changeset.group_changeset_user"
+            />
+            <t t-attf-attrs="{'invisible': [('count_pending_changesets', '=', 0)]}">
+                <br />
+                <span>
+                    This Record has changeset to be
+                    validated.
+                </span>
+            </t>
+        </field>
+    </template>
+</odoo>
