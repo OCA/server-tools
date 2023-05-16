@@ -20,6 +20,9 @@ class IrCron(models.Model):
         string="Error E-mail Template",
         help="Select the email template that will be sent when "
         "this scheduler fails.",
+        default=lambda self: self.env.ref(
+            "scheduler_error_mailer.scheduler_error_mailer", False
+        ),
     )
 
     @api.model
