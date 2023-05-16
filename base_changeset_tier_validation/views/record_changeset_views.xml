@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_record_changeset_form" model="ir.ui.view">
+        <field name="name">record.changeset.form</field>
+        <field name="model">record.changeset</field>
+        <field name="inherit_id" ref="base_changeset.view_record_changeset_form" />
+        <field name="arch" type="xml">
+            <group name="note_group" position="after">
+                <group name="reviews_group" string="Reviews">
+                    <field name="review_ids" nolabel="1" />
+                </group>
+            </group>
+        </field>
+    </record>
+</odoo>
