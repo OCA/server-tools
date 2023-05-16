@@ -84,6 +84,12 @@ msgstr ""
 "Selecione o modelo de email que será enviado quando o agendador falhar."
 
 #. module: scheduler_error_mailer
+#: model:ir.model.fields,field_description:scheduler_error_mailer.field_ir_cron__smart_search
+msgid "Smart Search"
+msgstr ""
+
+#. module: scheduler_error_mailer
+#. odoo-python
 #: code:addons/scheduler_error_mailer/models/ir_cron.py:0
 #, python-format
 msgid "Task failure with UID = %d."
@@ -92,7 +98,6 @@ msgstr "Tarefa falhou com UID = %d."
 #. module: scheduler_error_mailer
 #: model:ir.actions.server,name:scheduler_error_mailer.test_scheduler_error_mailer_ir_actions_server
 #: model:ir.cron,cron_name:scheduler_error_mailer.test_scheduler_error_mailer
-#: model:ir.cron,name:scheduler_error_mailer.test_scheduler_error_mailer
 msgid "Test Scheduler Error Mailer"
 msgstr "Teste Agendado de Erro do Remetente"
 
