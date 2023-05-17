@@ -17,11 +17,6 @@ msgstr ""
 "X-Generator: Weblate 3.8\n"
 
 #. module: module_analysis
-#: model:ir.model.fields,field_description:module_analysis.field_base_module_update__analyse_installed_modules
-msgid "Analyse Installed Modules"
-msgstr "分析已安装的模块"
-
-#. module: module_analysis
 #: model:ir.ui.menu,name:module_analysis.menu_module_analysis
 msgid "Analysis"
 msgstr "分析"
@@ -184,6 +179,11 @@ msgid "Reporting"
 msgstr "报告"
 
 #. module: module_analysis
+#: model:ir.model.fields,field_description:module_analysis.field_ir_module_module__scss_code_qty
+msgid "SCSS Code Quantity"
+msgstr ""
+
+#. module: module_analysis
 #: model:ir.model.fields,field_description:module_analysis.field_ir_module_type__sequence
 #: model:ir.model.fields,field_description:module_analysis.field_ir_module_type_rule__sequence
 msgid "Sequence"
@@ -193,13 +193,6 @@ msgstr "序列"
 #: model:ir.ui.menu,name:module_analysis.menu_module_analysis_settings
 msgid "Settings"
 msgstr "设置"
-
-#. module: module_analysis
-#: model:ir.model.fields,field_description:module_analysis.field_ir_module_author__smart_search
-#: model:ir.model.fields,field_description:module_analysis.field_ir_module_type__smart_search
-#: model:ir.model.fields,field_description:module_analysis.field_ir_module_type_rule__smart_search
-msgid "Smart Search"
-msgstr ""
 
 #. module: module_analysis
 #: model:ir.model.constraint,message:module_analysis.constraint_ir_module_author_name_uniq
@@ -212,11 +205,18 @@ msgid "Type and Authors"
 msgstr "类型和作者"
 
 #. module: module_analysis
-#: model:ir.model,name:module_analysis.model_base_module_update
-msgid "Update Module"
-msgstr "更新模块"
+#: model:ir.actions.server,name:module_analysis.cron_module_analysis_ir_actions_server
+#: model:ir.cron,cron_name:module_analysis.cron_module_analysis
+msgid "Update Module Analysis"
+msgstr ""
 
 #. module: module_analysis
 #: model:ir.model.fields,field_description:module_analysis.field_ir_module_module__xml_code_qty
 msgid "XML Code Quantity"
 msgstr "XML代码数量"
+
+#~ msgid "Analyse Installed Modules"
+#~ msgstr "分析已安装的模块"
+
+#~ msgid "Update Module"
+#~ msgstr "更新模块"
