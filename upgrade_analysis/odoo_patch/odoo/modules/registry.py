@@ -15,18 +15,19 @@ class RegistryPatch(OdooPatch):
     method_names = ["init_models"]
 
     def init_models(self, cr, model_names, context, install=True):
-        module_name = context["module"]
-        _logger.debug("Logging models of module %s", module_name)
-        upg_registry = current_thread()._upgrade_registry
-        local_registry = {}
-        env = api.Environment(cr, SUPERUSER_ID, {})
-        for model in env.values():
-            if not model._auto:
-                continue
-            upgrade_log.log_model(model, local_registry)
-        upgrade_log.compare_registries(
-            cr, context["module"], upg_registry, local_registry
-        )
+        if "module" in context:
+            module_name = context["module"]
+            _logger.debug("Logging models of module %s", module_name)
+            upg_registry = current_thread()._upgrade_registry
+            local_registry = {}
+            env = api.Environment(cr, SUPERUSER_ID, {})
+            for model in env.values():
+                if not model._auto:
+                    continue
+                upgrade_log.log_model(model, local_registry)
+            upgrade_log.compare_registries(
+                cr, context["module"], upg_registry, local_registry
+            )
 
         return RegistryPatch.init_models._original_method(
             self, cr, model_names, context, install=install
