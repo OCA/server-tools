@@ -6,12 +6,18 @@ from odoo.tests.common import TransactionCase
 
 
 class TestModule(TransactionCase):
-    def setUp(self):
-        super().setUp()
-        self.IrModuleModule = self.env["ir.module.module"]
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.IrModuleModule = cls.env["ir.module.module"]
+        # Remove lib because it breaks tests in case of installation of modules with
+        # pip
+        cls.env["ir.config_parameter"].set_param(
+            "module_analysis.exclude_directories", "demo,test,tests,doc,description"
+        )
+        cls.IrModuleModule.cron_analyse_code()
 
     def test_installed_modules(self):
-        self.IrModuleModule.cron_analyse_code()
         installed_modules = self.IrModuleModule.search(
             [("state", "=", "installed"), ("name", "not like", "_test")]
         )
