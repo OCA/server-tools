@@ -16,6 +16,7 @@
         "security/ir.model.access.csv",
         "data/mail_template.xml",
         "data/queue_job_channel.xml",
+        "wizards/attachement_queue_reschedule.xml",
     ],
     "demo": ["demo/attachment_queue.xml"],
     "installable": True,

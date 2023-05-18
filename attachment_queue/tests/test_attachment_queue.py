@@ -134,3 +134,14 @@ class TestAttachmentBaseQueue(TransactionCase):
         self.assertEqual(attachment.state, "pending")
         attachment.set_done()
         self.assertEqual(attachment.state, "done")
+
+    def test_reschedule_wizard(self):
+        attachment = self.env.ref("attachment_queue.dummy_attachment_queue")
+        attachment.write({"state": "failed"})
+        wizard = (
+            self.env["attachment.queue.reschedule"]
+            .with_context(active_model="attachment.queue", active_ids=attachment.ids)
+            .create({})
+        )
+        wizard.reschedule()
+        self.assertEqual(attachment.state, "pending")
