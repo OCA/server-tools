@@ -17,5 +17,6 @@
         "data/mail_template.xml",
         "data/queue_job_channel.xml",
     ],
+    "demo": ["demo/attachment_queue.xml"],
     "installable": True,
 }
