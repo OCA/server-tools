@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_reschedule_attachment" model="ir.ui.view">
+        <field name="name">Reschedule Attachments</field>
+        <field name="model">attachment.queue.reschedule</field>
+        <field name="arch" type="xml">
+            <form string="Requeue Attachments">
+                <group string="The selected attachments will be rescheduled.">
+                    <field name="attachment_ids" nolabel="1" colspan="2" />
+                </group>
+                <footer>
+                    <button
+                        name="reschedule"
+                        string="Reschedule"
+                        type="object"
+                        class="oe_highlight"
+                    />
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_reschedule_attachment" model="ir.actions.act_window">
+        <field name="name">Reschedule Attachment</field>
+        <field name="res_model">attachment.queue.reschedule</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_reschedule_attachment" />
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="attachment_queue.model_attachment_queue" />
+    </record>
+
+</odoo>
