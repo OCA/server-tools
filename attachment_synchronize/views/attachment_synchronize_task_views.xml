@@ -130,7 +130,7 @@
     <record id="view_attachment_task_tree" model="ir.ui.view">
         <field name="model">attachment.synchronize.task</field>
         <field name="arch" type="xml">
-            <tree string="Tasks" decoration-muted="active == False">
+            <tree decoration-muted="active == False">
                 <field name="name" select="1" />
                 <field name="backend_id" />
                 <field name="filepath" />

@@ -21,11 +21,12 @@ class AttachmentQueue(models.Model):
         selection_add=[("export", "Export File (External location)")]
     )
 
+    # pylint: disable=missing-return
     def _run(self):
         super()._run()
         if self.file_type == "export":
             path = os.path.join(self.task_id.filepath, self.name)
-            self.storage_backend_id._add_b64_data(path, self.datas)
+            self.storage_backend_id.add(path, self.datas, binary=False)
 
     def _get_failure_emails(self):
         res = super()._get_failure_emails()

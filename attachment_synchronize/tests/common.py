@@ -4,8 +4,6 @@
 
 import os
 
-import mock
-
 from odoo.addons.storage_backend.tests.common import CommonCase
 
 
@@ -20,16 +18,15 @@ class SyncCommon(CommonCase):
                 self.backend.delete(os.path.join(test_dir, filename))
 
     def _create_test_file(self):
-        self.backend._add_b64_data(
+        self.backend.add(
             os.path.join(self.directory_input, "bar.txt"),
             self.filedata,
             mimetype="text/plain",
+            binary=False,
         )
 
     def setUp(self):
         super().setUp()
-        self.env.cr.commit = mock.Mock()
-        self.registry.enter_test_mode(self.env.cr)
         self.directory_input = "test_import"
         self.directory_output = "test_export"
         self.directory_archived = "test_archived"
@@ -38,6 +35,5 @@ class SyncCommon(CommonCase):
         self.task = self.env.ref("attachment_synchronize.import_from_filestore")
 
     def tearDown(self):
-        self.registry.leave_test_mode()
         self._clean_testing_directory()
         super().tearDown()

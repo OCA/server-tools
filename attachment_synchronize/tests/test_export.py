@@ -28,14 +28,14 @@ class TestExport(SyncCommon):
 
     def test_export(self):
         self.attachment.run()
-        result = self.backend._list("test_export")
+        result = self.backend.list_files("test_export")
         self.assertEqual(result, ["foo.txt"])
 
     @mute_logger("odoo.addons.attachment_queue.models.attachment_queue")
     def test_failing_export(self):
         with mock.patch.object(
             type(self.backend),
-            "_add_b64_data",
+            "add",
             side_effect=raising_side_effect,
         ):
             self.attachment.run()

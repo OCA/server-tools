@@ -8,11 +8,11 @@ from .common import SyncCommon
 class TestImport(SyncCommon):
     @property
     def archived_files(self):
-        return self.backend._list(self.directory_archived)
+        return self.backend.list_files(self.directory_archived)
 
     @property
     def input_files(self):
-        return self.backend._list(self.directory_input)
+        return self.backend.list_files(self.directory_input)
 
     def _check_attachment_created(self, count=1):
         attachment = self.env["attachment.queue"].search([("name", "=", "bar.txt")])
