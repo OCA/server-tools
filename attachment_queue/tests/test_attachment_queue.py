@@ -4,6 +4,7 @@ from unittest import mock
 
 from odoo_test_helper import FakeModelLoader
 
+from odoo import registry
 from odoo.exceptions import UserError
 from odoo.tests.common import TransactionCase
 
@@ -53,21 +54,41 @@ class TestAttachmentBaseQueue(TransactionCase):
         with trap_jobs() as trap:
             self._create_dummy_attachment()
             trap.assert_enqueued_job(
-                self.env["attachment.queue"].run,
+                self.env["attachment.queue"].run_as_job,
             )
 
     def test_aq_locked_job(self):
         """If an attachment is already running, and a job tries to run it, retry later"""
-        with self.assertRaises(RetryableJobError):
-            self._create_dummy_attachment({"running_lock": True}, no_job=True)
+        attachment = self.env.ref("attachment_queue.dummy_attachment_queue")
+        with registry(self.env.cr.dbname).cursor() as new_cr:
+            new_cr.execute(
+                """
+                SELECT id
+                FROM attachment_queue
+                WHERE id  = %s
+                FOR UPDATE NOWAIT
+            """,
+                (attachment.id,),
+            )
+            with self.assertRaises(RetryableJobError):
+                attachment.run_as_job()
 
     def test_aq_locked_button(self):
         """If an attachment is already running, and a user tries to run it manually,
         raise error window"""
-        attachment = self._create_dummy_attachment(no_job=True)
-        attachment.running_lock = True
-        with self.assertRaises(UserError):
-            attachment.button_manual_run()
+        attachment = self.env.ref("attachment_queue.dummy_attachment_queue")
+        with registry(self.env.cr.dbname).cursor() as new_cr:
+            new_cr.execute(
+                """
+                SELECT id
+                FROM attachment_queue
+                WHERE id  = %s
+                FOR UPDATE NOWAIT
+            """,
+                (attachment.id,),
+            )
+            with self.assertRaises(UserError):
+                attachment.button_manual_run()
 
     def test_run_ok(self):
         """Attachment queue should have correct state and result"""
@@ -102,6 +123,10 @@ class TestAttachmentBaseQueue(TransactionCase):
             self._create_dummy_attachment(no_job=True)
             partners_after = len(self.env["res.partner"].search([]))
             self.assertEqual(partners_after, partners_initial)
+            failure_email = self.env["mail.mail"].search(
+                [("subject", "ilike", "dummy_aq.doc")]
+            )
+            self.assertEqual(failure_email.email_to, "test@test.com")
 
     def test_set_done(self):
         """Test set_done manually"""

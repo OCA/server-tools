@@ -47,6 +47,7 @@
         <field name="model">attachment.queue</field>
         <field name="arch" type="xml">
             <tree default_order='create_date desc'>
+                <field name="create_date" />
                 <field name="name" />
                 <field name="file_type" />
                 <field name="type" />
@@ -152,7 +153,7 @@
 
     <menuitem
         id="menu_attachment_queue"
-        parent="base.next_id_9"
+        parent="queue_job.menu_queue_job_root"
         sequence="20"
         action="action_attachment_queue"
     />

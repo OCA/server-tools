@@ -2,7 +2,9 @@
 
 import logging
 
-from odoo import api, fields, models
+import psycopg2
+
+from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
 from odoo.addons.queue_job.exception import RetryableJobError
@@ -10,9 +12,7 @@ from odoo.addons.queue_job.exception import RetryableJobError
 _logger = logging.getLogger(__name__)
 
 DEFAULT_ETA_FOR_RETRY = 60 * 60
-STR_ERR_ATTACHMENT_RUNNING = (
-    "The attachment is currently flagged as being in processing"
-)
+STR_ERR_ATTACHMENT_RUNNING = "The attachment is currently being in processing"
 STR_ERROR_DURING_PROCESSING = "Error during processing of attachment_queue id {}: \n"
 
 
@@ -46,19 +46,16 @@ class AttachmentQueue(models.Model):
         help="Comma-separated list of email addresses to be notified in case of"
         "failure",
     )
-    running_lock = fields.Boolean()
 
-    @property
-    def _eta_for_retry(self):
-        return DEFAULT_ETA_FOR_RETRY
-
-    @property
     def _job_attrs(self):
-        return {"channel": "Attachment queues"}
+        # Override this method to have file type specific job attributes
+        self.ensure_one()
+        return {"channel": "attachment_queue"}
 
     def _schedule_jobs(self):
         for el in self:
-            el.with_delay(**self._job_attrs).run()
+            kwargs = el._job_attrs()
+            el.with_delay(**kwargs).run_as_job()
 
     @api.model_create_multi
     def create(self, vals_list):
@@ -67,14 +64,8 @@ class AttachmentQueue(models.Model):
         return res
 
     def button_reschedule(self):
-        self.state = "pending"
-        self.state_message = ""
+        self.write({"state": "pending", "state_message": ""})
         self._schedule_jobs()
-
-    def button_manual_run(self):
-        if self.running_lock:
-            raise UserError(STR_ERR_ATTACHMENT_RUNNING)
-        self.run()
 
     def _compute_failure_emails(self):
         for attach in self:
@@ -85,41 +76,70 @@ class AttachmentQueue(models.Model):
         self.ensure_one()
         return ""
 
+    def button_manual_run(self):
+        """
+        Run the process for an individual attachment queue from a dedicated button
+        """
+        try:
+            self._cr.execute(
+                """
+                SELECT id
+                FROM attachment_queue
+                WHERE id  = %s
+                FOR UPDATE NOWAIT
+            """,
+                (self.id,),
+            )
+        except psycopg2.OperationalError as exc:
+            raise UserError(_(STR_ERR_ATTACHMENT_RUNNING)) from exc
+        if self.state != "done":
+            self.run()
+
+    def run_as_job(self):
+        """
+        Run the process for an individual attachment queue from a async job
+        """
+        try:
+            self._cr.execute(
+                """
+                SELECT id
+                FROM attachment_queue
+                WHERE id  = %s
+                FOR UPDATE NOWAIT
+            """,
+                (self.id,),
+            )
+        except psycopg2.OperationalError as exc:
+            raise RetryableJobError(
+                STR_ERR_ATTACHMENT_RUNNING,
+                seconds=DEFAULT_ETA_FOR_RETRY,
+                ignore_retry=True,
+            ) from exc
+        if self.state == "pending":
+            try:
+                with self.env.cr.savepoint():
+                    self.run()
+            except Exception as e:
+                _logger.warning(STR_ERROR_DURING_PROCESSING.format(self.id) + str(e))
+                self.write({"state": "failed", "state_message": str(e)})
+                emails = self.failure_emails
+                if emails:
+                    self.env.ref(
+                        "attachment_queue.attachment_failure_notification"
+                    ).send_mail(self.id)
+
     def run(self):
         """
         Run the process for an individual attachment queue
         """
-        if self.state != "pending":
-            return
-        if self.running_lock is True:
-            raise RetryableJobError(
-                STR_ERR_ATTACHMENT_RUNNING, seconds=self._eta_for_retry
-            )
-        self.running_lock = True
-        self.flush_recordset()
-        try:
-            with self.env.cr.savepoint():
-                self._run()
-        except Exception as e:
-            _logger.warning(STR_ERROR_DURING_PROCESSING.format(self.id) + str(e))
-            self.write(
-                {"state": "failed", "state_message": str(e), "running_lock": False}
-            )
-            emails = self.failure_emails
-            if emails:
-                self.env.ref(
-                    "attachment_queue.attachment_failure_notification"
-                ).send_mail(self.id)
-            return False
-        else:
-            self.write(
-                {
-                    "state": "done",
-                    "date_done": fields.Datetime.now(),
-                    "running_lock": False,
-                }
-            )
-            return True
+        self._run()
+        self.write(
+            {
+                "state": "done",
+                "date_done": fields.Datetime.now(),
+            }
+        )
+        return True
 
     def _run(self):
         self.ensure_one()

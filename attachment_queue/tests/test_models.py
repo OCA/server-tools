@@ -18,3 +18,6 @@ class AttachmentQueue(models.Model):
     def mock_run_create_partners_and_fail(self):
         self.mock_run_create_partners()
         raise UserError(_("boom"))
+
+    def _get_failure_emails(self):
+        return "test@test.com"
