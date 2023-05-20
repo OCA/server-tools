@@ -17,25 +17,14 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 #. module: base_model_restrict_update
-#: model:ir.model.fields,field_description:base_model_restrict_update.field_ir_model__display_name
-#: model:ir.model.fields,field_description:base_model_restrict_update.field_ir_model_access__display_name
-#: model:ir.model.fields,field_description:base_model_restrict_update.field_res_users__display_name
-msgid "Display Name"
-msgstr "Mostrar Nombre"
+#: model_terms:ir.ui.view,arch_db:base_model_restrict_update.view_users_form
+msgid "<span style=\"padding: 0 10px;\">Read-only</span>"
+msgstr ""
 
 #. module: base_model_restrict_update
-#: model:ir.model.fields,field_description:base_model_restrict_update.field_ir_model__id
-#: model:ir.model.fields,field_description:base_model_restrict_update.field_ir_model_access__id
-#: model:ir.model.fields,field_description:base_model_restrict_update.field_res_users__id
-msgid "ID"
-msgstr "ID"
-
-#. module: base_model_restrict_update
-#: model:ir.model.fields,field_description:base_model_restrict_update.field_ir_model____last_update
-#: model:ir.model.fields,field_description:base_model_restrict_update.field_ir_model_access____last_update
-#: model:ir.model.fields,field_description:base_model_restrict_update.field_res_users____last_update
-msgid "Last Modified on"
-msgstr "Última modificación en"
+#: model_terms:ir.ui.view,arch_db:base_model_restrict_update.view_users_form
+msgid "<span style=\"padding: 0 10px;\">Unrestrict Update</span>"
+msgstr ""
 
 #. module: base_model_restrict_update
 #: model:ir.model,name:base_model_restrict_update.model_ir_model_access
@@ -93,8 +82,8 @@ msgstr ""
 #. module: base_model_restrict_update
 #: code:addons/base_model_restrict_update/models/ir_model_access.py:0
 #, python-format
-msgid "You are only allowed to read this record. (%s - %s)"
-msgstr "No está permitido para leer este registro. (%s - %s)"
+msgid "You are only allowed to read this record. ({} - {})"
+msgstr ""
 
 #. module: base_model_restrict_update
 #: code:addons/base_model_restrict_update/models/res_users.py:0
@@ -102,3 +91,16 @@ msgstr "No está permitido para leer este registro. (%s - %s)"
 msgid "You cannot set admin user as a readonly user."
 msgstr ""
 "No puede configurar al usuario administrador como un usuario de sólo lectura."
+
+#~ msgid "Display Name"
+#~ msgstr "Mostrar Nombre"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última modificación en"
+
+#, python-format
+#~ msgid "You are only allowed to read this record. (%s - %s)"
+#~ msgstr "No está permitido para leer este registro. (%s - %s)"
