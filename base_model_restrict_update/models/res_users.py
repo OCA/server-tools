@@ -22,11 +22,3 @@ class ResUsers(models.Model):
         for user in self:
             if self.env.ref("base.group_system") in user.groups_id:
                 raise UserError(_("You cannot set admin user as a readonly user."))
-
-    def toggle_unrestrict_model_update(self):
-        for record in self:
-            record.unrestrict_model_update = not record.unrestrict_model_update
-
-    def toggle_is_readonly_user(self):
-        for record in self:
-            record.is_readonly_user = not record.is_readonly_user

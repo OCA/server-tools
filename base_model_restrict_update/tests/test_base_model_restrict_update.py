@@ -56,8 +56,7 @@ class TestBaseModelRestrictUpdate(SavepointCase):
         test_partner.with_user(self.permit_test_user.id).unlink()
 
     def test_04_readonly_user_update_partner(self):
-        self.permit_test_user.toggle_is_readonly_user()
-        self.assertTrue(self.permit_test_user.is_readonly_user)
+        self.permit_test_user.write({"is_readonly_user": True})
         with self.assertRaises(AccessError):
             self.test_partner.with_user(self.permit_test_user.id).update(
                 {"name": "Test Partner 2"}
