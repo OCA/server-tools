@@ -42,19 +42,6 @@ msgid "Changesets"
 msgstr ""
 
 #. module: base_conditional_image
-#: model:ir.model.fields,field_description:base_conditional_image.field_conditional_image__company_id
-msgid "Company"
-msgstr ""
-
-#. module: base_conditional_image
-#: model:ir.model.fields,help:base_conditional_image.field_conditional_image__company_id
-msgid ""
-"Company related check. If inherited object does not have a `company_id` "
-"field, it will be ignored. The check will first take the records with a "
-"company then, if no match is found, the ones without a company."
-msgstr ""
-
-#. module: base_conditional_image
 #: model:ir.model,name:base_conditional_image.model_conditional_image
 #: model_terms:ir.ui.view,arch_db:base_conditional_image.view_conditional_image_form
 msgid "Conditional Image"
