@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-06 02:24+0000\n"
-"PO-Revision-Date: 2023-01-01 13:45+0000\n"
+"PO-Revision-Date: 2023-05-24 12:08+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: auto_backup
 #: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
@@ -130,7 +130,7 @@ msgstr "Giorni da conservare"
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup_display_name
 msgid "Display Name"
-msgstr "Nome da visualizzare"
+msgstr "Nome visualizzato"
 
 #. module: auto_backup
 #: code:addons/auto_backup/models/db_backup.py:119
