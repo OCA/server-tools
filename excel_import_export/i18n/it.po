@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-03-16 13:17+0000\n"
+"PO-Revision-Date: 2023-05-24 19:10+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -1029,7 +1029,7 @@ msgstr "Rimuove Menù Report"
 #: model:ir.model,name:excel_import_export.model_ir_actions_report
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__report_action_id
 msgid "Report Action"
-msgstr "Azione Report"
+msgstr "Azione resoconto"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__report_menu_id
