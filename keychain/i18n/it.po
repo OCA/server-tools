@@ -11,15 +11,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-02-16 10:39+0000\n"
-"PO-Revision-Date: 2023-03-07 19:30+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2023-05-24 10:12+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: keychain
 #: code:addons/keychain/models/keychain.py:76
@@ -82,7 +82,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:keychain.field_keychain_account_display_name
 #: model:ir.model.fields,field_description:keychain.field_keychain_backend_display_name
 msgid "Display Name"
-msgstr "Nome da visualizzare"
+msgstr "Nome visualizzato"
 
 #. module: keychain
 #: model:ir.model.fields,field_description:keychain.field_keychain_account_environment
