@@ -13,7 +13,7 @@
                     domain="[('method_type', '!=', 'import')]"
                     attrs="{'required': [('file_type', '=', 'export')], 'readonly': [('method_type', '=', 'import')]}"
                 />
-                <field name="storage_backend_id" />
+                <field name="fs_storage_id" />
             </xpath>
         </field>
     </record>
@@ -27,7 +27,7 @@
           </xpath>
           <xpath expr="//field[@name='file_type']" position="after">
               <field name="task_id" />
-              <field name="storage_backend_id" />
+              <field name="fs_storage_id" />
           </xpath>
         </field>
     </record>

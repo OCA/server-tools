@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
 
-    <record id="view_storage_backend_form" model="ir.ui.view">
-        <field name="model">storage.backend</field>
-        <field name="inherit_id" ref="storage_backend.storage_backend_view_form" />
+    <record id="view_fs_storage_form" model="ir.ui.view">
+        <field name="model">fs.storage</field>
+        <field name="inherit_id" ref="fs_storage.fs_storage_form_view" />
         <field name="priority" eval="250" />
         <field name="arch" type="xml">
             <xpath expr="//div[hasclass('oe_title')]" position="before">

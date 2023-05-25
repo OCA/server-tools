@@ -28,6 +28,7 @@
                             type="action"
                             class="oe_stat_button"
                             icon="fa-thumbs-o-down"
+                            title="Failed attachments"
                             context="{'search_default_failed': 1}"
                         >
                             <div class="o_field_widget o_stat_info">
@@ -46,6 +47,7 @@
                             type="action"
                             class="oe_stat_button"
                             icon="fa-spinner"
+                            title="Pending attachments"
                             context="{'search_default_pending': 1}"
                         >
                             <div class="o_field_widget o_stat_info">
@@ -64,6 +66,7 @@
                             type="action"
                             class="oe_stat_button"
                             icon="fa-thumbs-o-up"
+                            title="Done attachments"
                             context="{'search_default_done': 1}"
                         >
                             <div class="o_field_widget o_stat_info">
@@ -109,13 +112,11 @@
                         <field name="after_import" />
                         <field
                             name="move_path"
-                            colspan="4"
-                            attrs="{'invisible':[('after_import','!=','move'), ('after_import','!=','move_rename')]}"
+                            attrs="{'invisible':[('after_import','not in',('move', 'move_rename'))], 'required': [('after_import', 'in', ('move', 'move_rename'))]}"
                         />
                         <field
                             name="new_name"
-                            colspan="4"
-                            attrs="{'invisible': [('after_import','!=','rename'), ('after_import','!=','move_rename')]}"
+                            attrs="{'invisible': [('after_import','not in',('rename', 'move_rename'))], 'required': [('after_import', 'in', ('rename', 'move_rename'))]}"
                         />
                         <field name="file_type" />
                     </group>
@@ -130,7 +131,7 @@
     <record id="view_attachment_task_tree" model="ir.ui.view">
         <field name="model">attachment.synchronize.task</field>
         <field name="arch" type="xml">
-            <tree string="Tasks" decoration-muted="active == False">
+            <tree decoration-muted="active == False">
                 <field name="name" select="1" />
                 <field name="backend_id" />
                 <field name="filepath" />
@@ -140,6 +141,7 @@
                     name="%(action_attachment_queue_related)d"
                     type="action"
                     icon="fa-thumbs-o-down"
+                    title="Failed attachments"
                     context="{'search_default_failed': 1}"
                 />
                 <field name="count_attachment_pending" string=" " />
@@ -147,6 +149,7 @@
                     name="%(action_attachment_queue_related)d"
                     type="action"
                     icon="fa-spinner"
+                    title="Pending attachments"
                     context="{'search_default_pending': 1}"
                 />
                 <field name="count_attachment_done" string=" " />
@@ -154,6 +157,7 @@
                     name="%(action_attachment_queue_related)d"
                     type="action"
                     icon="fa-thumbs-o-up"
+                    title="Done attachments"
                     context="{'search_default_done': 1}"
                 />
                 <field name="active" widget="boolean_toggle" />
@@ -161,7 +165,12 @@
                      show it if it's embeded in an other view
                      But it's seem that invisible do not work on button
                 -->
-                <button name="button_duplicate_record" type="object" icon="fa-clone" />
+                <button
+                    name="button_duplicate_record"
+                    type="object"
+                    icon="fa-clone"
+                    title="Duplicate"
+                />
             </tree>
         </field>
     </record>
@@ -202,7 +211,7 @@
 
     <menuitem
         id="menu_attachment_import_task"
-        parent="base.next_id_9"
+        parent="fs_storage.menu_storage"
         sequence="21"
         action="action_attachment_import_task"
     />
@@ -223,7 +232,7 @@
 
     <menuitem
         id="menu_attachment_export_task"
-        parent="base.next_id_9"
+        parent="fs_storage.menu_storage"
         sequence="22"
         action="action_attachment_export_task"
     />
