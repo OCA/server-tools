@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2017-08-01 02:44+0000\n"
 "PO-Revision-Date: 2022-09-02 16:07+0000\n"
 "Last-Translator: Ignacio Buioli <ibuioli@gmail.com>\n"
-"Language-Team: Spanish (Argentina) (https://www.transifex.com/oca/teams/"
-"23907/es_AR/)\n"
+"Language-Team: Spanish (Argentina) (https://www.transifex.com/oca/"
+"teams/23907/es_AR/)\n"
 "Language: es_AR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -84,12 +84,6 @@ msgid "DNS update script"
 msgstr "Script de actualización de DNS"
 
 #. module: letsencrypt
-#: model:ir.model.fields,field_description:letsencrypt.field_letsencrypt__display_name
-#: model:ir.model.fields,field_description:letsencrypt.field_res_config_settings__display_name
-msgid "Display Name"
-msgstr "Mostrar Nombre"
-
-#. module: letsencrypt
 #: code:addons/letsencrypt/models/letsencrypt.py:0
 #, python-format
 msgid "Domain %s: Let's Encrypt doesn't support IP addresses!"
@@ -115,8 +109,20 @@ msgstr ""
 #. module: letsencrypt
 #: code:addons/letsencrypt/models/letsencrypt.py:0
 #, python-format
-msgid "Error calling %s: %d"
-msgstr "Error en el llamado %s: %d"
+msgid "Error calling %(cmdline)s: %(returncode)d"
+msgstr ""
+
+#. module: letsencrypt
+#: code:addons/letsencrypt/controllers/main.py:0
+#, python-format
+msgid "Error opening file %s"
+msgstr ""
+
+#. module: letsencrypt
+#: code:addons/letsencrypt/models/letsencrypt.py:0
+#, python-format
+msgid "Error updating name"
+msgstr ""
 
 #. module: letsencrypt
 #: model:ir.model.fields,help:letsencrypt.field_res_config_settings__letsencrypt_reload_command
@@ -133,18 +139,6 @@ msgstr ""
 "Para los certificados comodín, debemos agregar un registro TXT en su DNS. Si "
 "configura esto en \"Shell Script\", puede ingresar un Shell Script. Se "
 "pueden agregar otras opciones instalando módulos adicionales."
-
-#. module: letsencrypt
-#: model:ir.model.fields,field_description:letsencrypt.field_letsencrypt__id
-#: model:ir.model.fields,field_description:letsencrypt.field_res_config_settings__id
-msgid "ID"
-msgstr "ID"
-
-#. module: letsencrypt
-#: model:ir.model.fields,field_description:letsencrypt.field_letsencrypt____last_update
-#: model:ir.model.fields,field_description:letsencrypt.field_res_config_settings____last_update
-msgid "Last Modified on"
-msgstr "Última modificación en"
 
 #. module: letsencrypt
 #: model_terms:ir.ui.view,arch_db:letsencrypt.res_config_settings_view_form
@@ -194,12 +188,6 @@ msgstr "Configure un proveedor DNS si requiere certificados comodín"
 #: model:ir.model.fields.selection,name:letsencrypt.selection__res_config_settings__letsencrypt_dns_provider__shell
 msgid "Shell script"
 msgstr "Shell script"
-
-#. module: letsencrypt
-#: model:ir.model.fields,field_description:letsencrypt.field_letsencrypt__smart_search
-#: model:ir.model.fields,field_description:letsencrypt.field_res_config_settings__smart_search
-msgid "Smart Search"
-msgstr "Búsqueda Inteligente"
 
 #. module: letsencrypt
 #: model:ir.model.fields,field_description:letsencrypt.field_res_config_settings__letsencrypt_testing_mode
@@ -264,3 +252,19 @@ msgstr "Escriba un shell script para actualizar sus registros DNS"
 #, python-format
 msgid "You didn't write a DNS update script!"
 msgstr "¡No escribió un script para actualizar DNS!"
+
+#~ msgid "Display Name"
+#~ msgstr "Mostrar Nombre"
+
+#, python-format
+#~ msgid "Error calling %s: %d"
+#~ msgstr "Error en el llamado %s: %d"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última modificación en"
+
+#~ msgid "Smart Search"
+#~ msgstr "Búsqueda Inteligente"
