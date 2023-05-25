@@ -2,7 +2,7 @@
 # @author Sébastien BEAU <sebastien.beau@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-import mock
+from unittest import mock
 
 from odoo.tools import mute_logger
 
@@ -28,16 +28,16 @@ class TestExport(SyncCommon):
 
     def test_export(self):
         self.attachment.run()
-        result = self.backend._list("test_export")
-        self.assertEqual(result, ["foo.txt"])
+        result = self.backend.fs.ls("test_export", detail=False)
+        self.assertEqual(result, ["test_export/foo.txt"])
 
     @mute_logger("odoo.addons.attachment_queue.models.attachment_queue")
     def test_failing_export(self):
         with mock.patch.object(
-            type(self.backend),
-            "_add_b64_data",
+            type(self.backend.fs),
+            "open",
             side_effect=raising_side_effect,
         ):
-            self.attachment.run()
+            self.attachment.with_context(queue_job__no_delay=True).run_as_job()
         self.assertEqual(self.attachment.state, "failed")
         self.assertEqual(self.attachment.state_message, "Boom")
