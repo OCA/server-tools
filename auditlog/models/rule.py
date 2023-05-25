@@ -386,7 +386,7 @@ class AuditlogRule(models.Model):
                 .with_context(prefetch_fields=False)
                 .read(fields_list)
             }
-            # self.invalidate_recordset()
+            self.invalidate_recordset()
             result = write_full.origin(self, vals, **kwargs)
             new_values = {
                 d["id"]: d
