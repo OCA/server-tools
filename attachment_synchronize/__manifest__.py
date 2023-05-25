@@ -5,7 +5,7 @@
 
 {
     "name": "Attachment Synchronize",
-    "version": "14.0.1.0.2",
+    "version": "16.0.1.0.0",
     "author": "Akretion,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/server-tools",
     "maintainers": ["florian-dacosta", "sebastienbeau", "GSLabIt", "bealdav"],
@@ -13,7 +13,7 @@
     "category": "Generic Modules",
     "depends": [
         "attachment_queue",
-        "storage_backend",  # https://github.com/OCA/storage
+        "fs_storage",  # https://github.com/OCA/storage
     ],
     "data": [
         "views/attachment_queue_views.xml",
