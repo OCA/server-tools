@@ -82,12 +82,6 @@ msgid "DNS update script"
 msgstr ""
 
 #. module: letsencrypt
-#: model:ir.model.fields,field_description:letsencrypt.field_letsencrypt__display_name
-#: model:ir.model.fields,field_description:letsencrypt.field_res_config_settings__display_name
-msgid "Display Name"
-msgstr "Zobraziť meno"
-
-#. module: letsencrypt
 #: code:addons/letsencrypt/models/letsencrypt.py:0
 #, python-format
 msgid "Domain %s: Let's Encrypt doesn't support IP addresses!"
@@ -112,7 +106,19 @@ msgstr ""
 #. module: letsencrypt
 #: code:addons/letsencrypt/models/letsencrypt.py:0
 #, python-format
-msgid "Error calling %s: %d"
+msgid "Error calling %(cmdline)s: %(returncode)d"
+msgstr ""
+
+#. module: letsencrypt
+#: code:addons/letsencrypt/controllers/main.py:0
+#, python-format
+msgid "Error opening file %s"
+msgstr ""
+
+#. module: letsencrypt
+#: code:addons/letsencrypt/models/letsencrypt.py:0
+#, python-format
+msgid "Error updating name"
 msgstr ""
 
 #. module: letsencrypt
@@ -127,18 +133,6 @@ msgid ""
 "set this to \"Shell script\" you can enter a shell script. Other options can "
 "be added by installing additional modules."
 msgstr ""
-
-#. module: letsencrypt
-#: model:ir.model.fields,field_description:letsencrypt.field_letsencrypt__id
-#: model:ir.model.fields,field_description:letsencrypt.field_res_config_settings__id
-msgid "ID"
-msgstr "ID"
-
-#. module: letsencrypt
-#: model:ir.model.fields,field_description:letsencrypt.field_letsencrypt____last_update
-#: model:ir.model.fields,field_description:letsencrypt.field_res_config_settings____last_update
-msgid "Last Modified on"
-msgstr "Posledná modifikácia"
 
 #. module: letsencrypt
 #: model_terms:ir.ui.view,arch_db:letsencrypt.res_config_settings_view_form
@@ -185,12 +179,6 @@ msgstr ""
 #. module: letsencrypt
 #: model:ir.model.fields.selection,name:letsencrypt.selection__res_config_settings__letsencrypt_dns_provider__shell
 msgid "Shell script"
-msgstr ""
-
-#. module: letsencrypt
-#: model:ir.model.fields,field_description:letsencrypt.field_letsencrypt__smart_search
-#: model:ir.model.fields,field_description:letsencrypt.field_res_config_settings__smart_search
-msgid "Smart Search"
 msgstr ""
 
 #. module: letsencrypt
@@ -248,3 +236,12 @@ msgstr ""
 #, python-format
 msgid "You didn't write a DNS update script!"
 msgstr ""
+
+#~ msgid "Display Name"
+#~ msgstr "Zobraziť meno"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Posledná modifikácia"
