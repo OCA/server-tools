@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2017-02-18 02:29+0000\n"
 "PO-Revision-Date: 2023-01-16 03:09+0000\n"
 "Last-Translator: Ignacio Buioli <ibuioli@gmail.com>\n"
-"Language-Team: Spanish (Argentina) (https://www.transifex.com/oca/teams/"
-"23907/es_AR/)\n"
+"Language-Team: Spanish (Argentina) (https://www.transifex.com/oca/"
+"teams/23907/es_AR/)\n"
 "Language: es_AR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -95,6 +95,16 @@ msgid "Cannot duplicate a configuration."
 msgstr "No se puede duplicar una configuración."
 
 #. module: auto_backup
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__changeset_change_ids
+msgid "Changeset Changes"
+msgstr "Cambios en el Conjunto de Cambios"
+
+#. module: auto_backup
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__changeset_ids
+msgid "Changesets"
+msgstr "Conjunto de Cambios"
+
+#. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__backup_format
 msgid "Choose the format for this backup."
 msgstr "Elija el formato para esta copia de seguridad."
@@ -121,6 +131,16 @@ msgstr "¡La Prueba de Conexión Falló!"
 #, python-format
 msgid "Connection Test Succeeded!"
 msgstr "¡Prueba de Conexión Exitosa!"
+
+#. module: auto_backup
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr "Contar los Cambios Pendientes del Conjunto de Cambios"
+
+#. module: auto_backup
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr "Contar Conjunto de Cambios Pendientes"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__create_uid
@@ -426,6 +446,11 @@ msgstr ""
 "ruta que especifique."
 
 #. module: auto_backup
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr "El usuario puede ver el Conjunto de Cambios"
+
+#. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__sftp_user
 msgid "Username in the SFTP Server"
 msgstr "Nombre de Usuario en el Servidor SFTP"
@@ -465,23 +490,8 @@ msgstr "sftp.ejemplo.com"
 msgid "zip (includes filestore)"
 msgstr "zip (incluye filestore)"
 
-#~ msgid "Changeset Changes"
-#~ msgstr "Cambios en el Conjunto de Cambios"
-
-#~ msgid "Changesets"
-#~ msgstr "Conjunto de Cambios"
-
-#~ msgid "Count Pending Changeset Changes"
-#~ msgstr "Contar los Cambios Pendientes del Conjunto de Cambios"
-
-#~ msgid "Count Pending Changesets"
-#~ msgstr "Contar Conjunto de Cambios Pendientes"
-
 #~ msgid "Followers (Channels)"
 #~ msgstr "Seguidores (Canales)"
 
 #~ msgid "Smart Search"
 #~ msgstr "Búsqueda Inteligente"
-
-#~ msgid "User Can See Changeset"
-#~ msgstr "El usuario puede ver el Conjunto de Cambios"
