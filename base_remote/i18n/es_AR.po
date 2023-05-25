@@ -22,6 +22,30 @@ msgid "Base"
 msgstr "Base"
 
 #. module: base_remote
+#: model:ir.model.fields,field_description:base_remote.field_res_remote__changeset_change_ids
+#: model:ir.model.fields,field_description:base_remote.field_res_users__changeset_change_ids
+msgid "Changeset Changes"
+msgstr "Cambios en el Conjunto de Cambios"
+
+#. module: base_remote
+#: model:ir.model.fields,field_description:base_remote.field_res_remote__changeset_ids
+#: model:ir.model.fields,field_description:base_remote.field_res_users__changeset_ids
+msgid "Changesets"
+msgstr "Conjunto de Cambios"
+
+#. module: base_remote
+#: model:ir.model.fields,field_description:base_remote.field_res_remote__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_remote.field_res_users__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr "Contar los Cambios Pendientes del Conjunto de Cambios"
+
+#. module: base_remote
+#: model:ir.model.fields,field_description:base_remote.field_res_remote__count_pending_changesets
+#: model:ir.model.fields,field_description:base_remote.field_res_users__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr "Contar Conjunto de Cambios Pendientes"
+
+#. module: base_remote
 #: model:ir.model.fields,field_description:base_remote.field_res_remote__create_uid
 msgid "Created by"
 msgstr "Creado por"
@@ -94,24 +118,15 @@ msgid "Shows if the remote can be found through the socket"
 msgstr "Muestro si el remoto se puede encontrar a través del socket"
 
 #. module: base_remote
+#: model:ir.model.fields,field_description:base_remote.field_res_remote__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_remote.field_res_users__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr "El usuario puede ver el Conjunto de Cambios"
+
+#. module: base_remote
 #: model:ir.model,name:base_remote.model_res_users
 msgid "Users"
 msgstr "Usuarios"
 
-#~ msgid "Changeset Changes"
-#~ msgstr "Cambios en el Conjunto de Cambios"
-
-#~ msgid "Changesets"
-#~ msgstr "Conjunto de Cambios"
-
-#~ msgid "Count Pending Changeset Changes"
-#~ msgstr "Contar los Cambios Pendientes del Conjunto de Cambios"
-
-#~ msgid "Count Pending Changesets"
-#~ msgstr "Contar Conjunto de Cambios Pendientes"
-
 #~ msgid "Smart Search"
 #~ msgstr "Búsqueda Inteligente"
-
-#~ msgid "User Can See Changeset"
-#~ msgstr "El usuario puede ver el Conjunto de Cambios"
