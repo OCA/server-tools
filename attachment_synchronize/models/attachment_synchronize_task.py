@@ -1,10 +1,9 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
+import base64
 import datetime
 import logging
-import os
 
-import odoo
 from odoo import api, fields, models, tools
 from odoo.osv import expression
 
@@ -62,13 +61,10 @@ class AttachmentSynchronizeTask(models.Model):
     filepath = fields.Char(
         string="File Path", help="Path to imported/exported files in the Backend"
     )
-    backend_id = fields.Many2one("storage.backend", string="Backend")
+    backend_id = fields.Many2one("fs.storage", string="Backend")
     attachment_ids = fields.One2many("attachment.queue", "task_id", string="Attachment")
-    move_path = fields.Char(
-        string="Move Path", help="Imported File will be moved to this path"
-    )
+    move_path = fields.Char(help="Imported File will be moved to this path")
     new_name = fields.Char(
-        string="New Name",
         help="Imported File will be renamed to this name.\n"
         "New Name can use 'mako' template where 'obj' is the original file's name.\n"
         "For instance : ${obj.name}-${obj.create_date}.csv",
@@ -84,7 +80,6 @@ class AttachmentSynchronizeTask(models.Model):
     )
     file_type = fields.Selection(
         selection=[],
-        string="File Type",
         help="Used to fill the 'File Type' field in the imported 'Attachments Queues'."
         "\nFurther operations will be realized on these Attachments Queues depending "
         "on their 'File Type' value.",
@@ -96,7 +91,6 @@ class AttachmentSynchronizeTask(models.Model):
         "same name already exists.",
     )
     failure_emails = fields.Char(
-        string="Failure Emails",
         help="Used to fill the 'Failure Emails' field in the 'Attachments Queues' "
         "related to this task.\nAn alert will be sent to these emails if any operation "
         "on these Attachment Queue's file type fails.",
@@ -159,61 +153,78 @@ class AttachmentSynchronizeTask(models.Model):
             else:
                 getattr(record, method)()
 
+    def _get_files(self):
+        self.ensure_one()
+        fs = self.backend_id.fs
+        filepath = self.filepath or ""
+        if filepath and not fs.exists(filepath):
+            return []
+        if self.pattern:
+            path = filepath and fs.sep.join([filepath, self.pattern]) or self.pattern
+            file_path_names = fs.glob(path)
+        else:
+            file_path_names = fs.ls(filepath, detail=False)
+        if self.avoid_duplicated_files:
+            file_path_names = self._filter_duplicates(file_path_names)
+        return file_path_names
+
+    def _manage_file_after_import(self, file_name, fullpath, attachment):
+        self.ensure_one()
+        fs = self.backend_id.fs
+        new_full_path = False
+        if self.after_import == "rename":
+            new_name = self._template_render(self.new_name, attachment)
+            new_full_path = fs.sep.join([self.filepath, new_name])
+        elif self.after_import == "move":
+            new_full_path = fs.sep.join([self.move_path, file_name])
+        elif self.after_import == "move_rename":
+            new_name = self._template_render(self.new_name, attachment)
+            new_full_path = fs.sep.join([self.move_path, new_name])
+        if new_full_path:
+            fs.move(fullpath, new_full_path)
+        if self.after_import == "delete":
+            fs.rm(fullpath)
+
     def run_import(self):
         self.ensure_one()
         attach_obj = self.env["attachment.queue"]
-        backend = self.backend_id
-        filepath = self.filepath or ""
-        filenames = backend._list(relative_path=filepath, pattern=self.pattern)
-        if self.avoid_duplicated_files:
-            filenames = self._file_to_import(filenames)
+        file_path_names = self._get_files()
         total_import = 0
-        for file_name in filenames:
-            with api.Environment.manage():
-                with odoo.registry(self.env.cr.dbname).cursor() as new_cr:
-                    new_env = api.Environment(new_cr, self.env.uid, self.env.context)
-                    try:
-                        full_absolute_path = os.path.join(filepath, file_name)
-                        data = backend._get_b64_data(full_absolute_path)
-                        attach_vals = self._prepare_attachment_vals(data, file_name)
-                        attachment = attach_obj.with_env(new_env).create(attach_vals)
-                        new_full_path = False
-                        if self.after_import == "rename":
-                            new_name = self._template_render(self.new_name, attachment)
-                            new_full_path = os.path.join(filepath, new_name)
-                        elif self.after_import == "move":
-                            new_full_path = os.path.join(self.move_path, file_name)
-                        elif self.after_import == "move_rename":
-                            new_name = self._template_render(self.new_name, attachment)
-                            new_full_path = os.path.join(self.move_path, new_name)
-                        if new_full_path:
-                            backend._add_b64_data(new_full_path, data)
-                        if self.after_import in (
-                            "delete",
-                            "rename",
-                            "move",
-                            "move_rename",
-                        ):
-                            backend._delete(full_absolute_path)
-                        total_import += 1
-                    except Exception as e:
-                        new_env.cr.rollback()
-                        raise e
-                    else:
-                        new_env.cr.commit()
+        fs = self.backend_id.fs
+        for file_path in file_path_names:
+            if fs.isdir(file_path):
+                continue
+            with self.env.cr.savepoint():
+                file_name = file_path.split(fs.sep)[-1]
+                data = fs.read_bytes(file_path)
+                data = base64.b64encode(data)
+                attach_vals = self._prepare_attachment_vals(data, file_name)
+                attachment = attach_obj.create(attach_vals)
+                self._manage_file_after_import(file_name, file_path, attachment)
+                total_import += 1
         _logger.info("Run import complete! Imported {} files".format(total_import))
 
-    def _file_to_import(self, filenames):
+    def _filter_duplicates(self, file_path_names):
+        fs = self.backend_id.fs
+        self.ensure_one()
+        if self.filepath:
+            filenames = [x.split(fs.sep)[-1] for x in file_path_names]
+        else:
+            filenames = file_path_names
         imported = (
             self.env["attachment.queue"]
             .search([("name", "in", filenames)])
             .mapped("name")
         )
-        return list(set(filenames) - set(imported))
+        file_path_names_no_duplicate = [
+            x for x in file_path_names if x.split(fs.sep)[-1] not in imported
+        ]
+        return file_path_names_no_duplicate
 
     def run_export(self):
         for task in self:
-            task.attachment_ids.filtered(lambda a: a.state == "pending").run()
+            for att in task.attachment_ids.filtered(lambda a: a.state == "pending"):
+                att.run_as_job()
 
     def button_duplicate_record(self):
         # due to orm limitation method call from ui should not have params

@@ -8,21 +8,21 @@ from .common import SyncCommon
 class TestImport(SyncCommon):
     @property
     def archived_files(self):
-        return self.backend._list(self.directory_archived)
+        return self.backend.fs.ls(self.directory_archived, detail=False)
 
     @property
     def input_files(self):
-        return self.backend._list(self.directory_input)
+        return self.backend.fs.ls(self.directory_input, detail=False)
 
     def _check_attachment_created(self, count=1):
         attachment = self.env["attachment.queue"].search([("name", "=", "bar.txt")])
         self.assertEqual(len(attachment), count)
 
     def test_import_with_rename(self):
-        self.task.write({"after_import": "rename", "new_name": "foo.txt"})
+        self.task.write({"after_import": "rename", "new_name": "test-${obj.name}"})
         self.task.run_import()
         self._check_attachment_created()
-        self.assertEqual(self.input_files, ["foo.txt"])
+        self.assertEqual(self.input_files, ["test_import/test-bar.txt"])
         self.assertEqual(self.archived_files, [])
 
     def test_import_with_move(self):
@@ -30,7 +30,7 @@ class TestImport(SyncCommon):
         self.task.run_import()
         self._check_attachment_created()
         self.assertEqual(self.input_files, [])
-        self.assertEqual(self.archived_files, ["bar.txt"])
+        self.assertEqual(self.archived_files, ["test_archived/bar.txt"])
 
     def test_import_with_move_and_rename(self):
         self.task.write(
@@ -43,7 +43,7 @@ class TestImport(SyncCommon):
         self.task.run_import()
         self._check_attachment_created()
         self.assertEqual(self.input_files, [])
-        self.assertEqual(self.archived_files, ["foo.txt"])
+        self.assertEqual(self.archived_files, ["test_archived/foo.txt"])
 
     def test_import_with_delete(self):
         self.task.write({"after_import": "delete"})

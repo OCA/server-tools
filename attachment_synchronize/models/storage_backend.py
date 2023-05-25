@@ -3,8 +3,8 @@
 from odoo import fields, models
 
 
-class StorageBackend(models.Model):
-    _inherit = "storage.backend"
+class FsStorage(models.Model):
+    _inherit = "fs.storage"
 
     synchronize_task_ids = fields.One2many(
         "attachment.synchronize.task", "backend_id", string="Tasks"
