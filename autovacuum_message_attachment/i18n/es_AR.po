@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-08-31 19:07+0000\n"
+"PO-Revision-Date: 2023-05-25 23:09+0000\n"
 "Last-Translator: Ignacio Buioli <ibuioli@gmail.com>\n"
 "Language-Team: none\n"
 "Language: es_AR\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_vacuum_rule__active
@@ -249,10 +249,13 @@ msgstr "Todos"
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_ir_model_fields__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_ir_model_fields_selection__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_ir_model_relation__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_ir_module_author__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_ir_module_category__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_ir_module_module__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_ir_module_module_dependency__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_ir_module_module_exclusion__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_ir_module_type__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_ir_module_type_rule__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_ir_property__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_ir_qweb__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_ir_qweb_field__assigned_attachment_ids
@@ -315,6 +318,7 @@ msgstr "Todos"
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_thread_phone__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_tracking_value__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_wizard_invite__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_module_auto_update__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_module_prototyper__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_module_prototyper_api_version__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_module_prototyper_module_export__assigned_attachment_ids
@@ -383,7 +387,6 @@ msgstr "Todos"
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_res_groups__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_res_lang__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_res_partner__assigned_attachment_ids
-#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_res_partner_autocomplete_sync__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_res_partner_bank__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_res_partner_category__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_res_partner_industry__assigned_attachment_ids
@@ -416,20 +419,6 @@ msgstr "Todos"
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_server_config__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_server_env_mixin__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_server_env_techname_mixin__assigned_attachment_ids
-#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_sms_api__assigned_attachment_ids
-#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_sms_cancel__assigned_attachment_ids
-#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_sms_composer__assigned_attachment_ids
-#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_sms_resend__assigned_attachment_ids
-#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_sms_resend_recipient__assigned_attachment_ids
-#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_sms_sms__assigned_attachment_ids
-#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_sms_template__assigned_attachment_ids
-#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_sms_template_preview__assigned_attachment_ids
-#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_snailmail_confirm__assigned_attachment_ids
-#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_snailmail_confirm_invoice__assigned_attachment_ids
-#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_snailmail_letter__assigned_attachment_ids
-#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_snailmail_letter_cancel__assigned_attachment_ids
-#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_snailmail_letter_format_error__assigned_attachment_ids
-#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_snailmail_letter_missing_required_fields__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_sparse_fields_test__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_sql_export__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_sql_file_wizard__assigned_attachment_ids
@@ -495,7 +484,7 @@ msgstr "Base"
 #: code:addons/autovacuum_message_attachment/models/vacuum_rule.py:0
 #, python-format
 msgid "Cannot find relation to ir.attachment on model %s"
-msgstr ""
+msgstr "No se puede encontrar la relaci{on a ir.attachment en el modelo %s"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_autovacuum_mixin__changeset_change_ids
@@ -601,17 +590,23 @@ msgid ""
 "\n"
 "N.B: model must implement _inherits to link ir.attachment"
 msgstr ""
+"Si se establece, se buscará este modelo y solo se eliminarán los archivos "
+"adjuntos relacionados.\n"
+"\n"
+"N.B: el modelo debe implementar _inherits para vincular ir.attachment"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_vacuum_rule__inheriting_model
 msgid "Inheriting Model"
-msgstr ""
+msgstr "Modelo Heredado"
 
 #. module: autovacuum_message_attachment
 #: code:addons/autovacuum_message_attachment/models/vacuum_rule.py:0
 #, python-format
 msgid "Inheriting model cannot be used on rule where type is not attachment"
 msgstr ""
+"El modelo heredado no puede ser usado en la regla donde el tipo no es un "
+"adjunto"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_autovacuum_mixin____last_update
@@ -715,7 +710,7 @@ msgstr "Nombre"
 #: code:addons/autovacuum_message_attachment/models/vacuum_rule.py:0
 #, python-format
 msgid "No inheritance of ir.attachment was found on model %s"
-msgstr ""
+msgstr "No se ha encontrado una herencia de ir.attachment en el modelo %s"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,help:autovacuum_message_attachment.field_vacuum_rule__retention_time
