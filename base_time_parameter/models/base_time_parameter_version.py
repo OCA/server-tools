@@ -1,9 +1,12 @@
 # Author Copyright (C) 2022 Nimarosa (Nicolas Rodriguez) (<nicolasrsande@gmail.com>).
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 import json
+import logging
 from datetime import datetime
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
+
+_logger = logging.getLogger(__name__)
 
 
 def _validate_boolean(value):
@@ -18,30 +21,30 @@ def _validate_date(value, date_format):
     for date_format in date_formats:
         try:
             return datetime.strptime(value, date_format).strftime("%Y-%m-%d")
-        except ValueError:
-            pass
+        except ValueError as e:
+            _logger.debug(_("Error occurred while validating date: %s", str(e)))
 
 
 def _validate_float(value):
     try:
         return str(float(value))
-    except ValueError:
-        pass
+    except ValueError as e:
+        _logger.debug(_("Error occurred while validating float: %s", str(e)))
 
 
 def _validate_integer(value):
     try:
         return str(int(round(float(value), 0)))
-    except ValueError:
-        pass
+    except ValueError as e:
+        _logger.debug(_("Error occurred while validating integer: %s", str(e)))
 
 
 def _validate_json(value):
     try:
         json.loads(value)
         return value
-    except ValueError:
-        pass
+    except ValueError as e:
+        _logger.debug(_("Error occurred while validating json: %s", str(e)))
 
 
 class TimeParameterVersion(models.Model):
@@ -58,9 +61,9 @@ class TimeParameterVersion(models.Model):
     country_id = fields.Many2one(related="parameter_id.country_id")
     company_id = fields.Many2one(related="parameter_id.company_id", store=True)
     code = fields.Char(related="parameter_id.code", store=True, readonly=True)
-    date_from = fields.Date(string="Date From", required=True)
+    date_from = fields.Date(required=True)
     type = fields.Selection(related="parameter_id.type")
-    value = fields.Char(string="Value")
+    value = fields.Char()
     value_reference = fields.Reference(string="Reference Value", selection=[])
 
     _sql_constraints = [
