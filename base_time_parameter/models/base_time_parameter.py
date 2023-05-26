@@ -13,8 +13,8 @@ class TimeParameter(models.Model):
     _description = "Time Parameter"
 
     name = fields.Char(string="Parameter Name")
-    code = fields.Char(string="Code")
-    description = fields.Text("Description")
+    code = fields.Char()
+    description = fields.Text()
     company_id = fields.Many2one(
         "res.company",
         string="Company",
