@@ -74,19 +74,19 @@ class XLSXImport(models.AbstractModel):
         try:
             for sheet_name in data_dict:
                 worksheet = data_dict[sheet_name]
-                line_fields = filter(lambda x: x != '_HEAD_', worksheet)
+                line_fields = filter(lambda x: x != "_HEAD_", worksheet)
                 for line_field in line_fields:
-                    if '_NODEL_' not in line_field:
+                    if "_NODEL_" not in line_field:
                         if line_field in record and record[line_field]:
                             record[line_field].unlink()
             # Remove _NODEL_ from dict
-            for s, sv in data_dict.items():
-                for f, fv in data_dict[s].items():
-                    if '_NODEL_' in f:
+            for s, _sv in data_dict.copy().items():
+                for f, _fv in data_dict[s].copy().items():
+                    if "_NODEL_" in f:
                         new_fv = data_dict[s].pop(f)
-                        data_dict[s][f.replace('_NODEL_', '')] = new_fv
+                        data_dict[s][f.replace("_NODEL_", "")] = new_fv
         except Exception as e:
-            raise ValidationError(_('Error deleting data\n%s') % e)
+            raise ValidationError(_("Error deleting data\n%s") % e) from e
 
     @api.model
     def _get_line_vals(self, st, worksheet, model, line_field):

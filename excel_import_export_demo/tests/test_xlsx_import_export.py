@@ -16,7 +16,7 @@ class TestXLSXImportExport(TestExcelImportExport):
         self.setUpSaleOrder()
         # ----------- EXPORT ---------------
         ctx = {'active_model': 'sale.order',
-               'active_id': self.sale_order.id,
+               'active_ids': [self.sale_order.id],
                'template_domain': [('res_model', '=', 'sale.order'),
                                    ('fname', '=', 'sale_order.xlsx'),
                                    ('gname', '=', False)], }

@@ -4,17 +4,19 @@
   License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).-->
 <odoo>
 
-    <act_window id="action_sale_oder_export_xlsx"
+    <act_window id="action_sale_order_export_xlsx"
         name="Export Excel"
         res_model="export.xlsx.wizard"
         src_model="sale.order"
         view_mode="form"
         target="new"
+        key2="client_action_multi"
         context="{
           'template_domain': [('res_model', '=', 'sale.order'),
                               ('fname', '=', 'sale_order.xlsx'),
                               ('gname', '=', False)],
         }"/>
+
     <act_window id="action_sale_oder_import_xlsx"
         name="Import Excel"
         res_model="import.xlsx.wizard"

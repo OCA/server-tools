@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
 
 import os
+import zipfile
 import logging
 import base64
 from io import BytesIO
@@ -223,7 +224,7 @@ class XLSXExport(models.AbstractModel):
         return
 
     @api.model
-    def export_xlsx(self, template, res_model, res_id):
+    def export_xlsx(self, template, res_model, res_ids):
         if template.res_model != res_model:
             raise ValidationError(_("Template's model mismatch"))
         data_dict = co.literal_eval(template.instruction.strip())
@@ -234,39 +235,55 @@ class XLSXExport(models.AbstractModel):
             out_file = template.datas
             return (out_file, out_name)
         # Prepare temp file (from now, only xlsx file works for openpyxl)
-        decoded_data = base64.decodestring(template.datas)
+        decoded_data = base64.decodebytes(template.datas)
         ConfParam = self.env['ir.config_parameter'].sudo()
         ptemp = ConfParam.get_param('path_temp_file') or '/tmp'
         stamp = dt.utcnow().strftime('%H%M%S%f')[:-3]
-        ftemp = '%s/temp%s.xlsx' % (ptemp, stamp)
-        f = open(ftemp, 'wb')
-        f.write(decoded_data)
-        f.seek(0)
-        f.close()
-        # Workbook created, temp file removed
-        wb = load_workbook(ftemp)
-        os.remove(ftemp)
+        ftemp = "{}/temp{}.xlsx".format(ptemp, stamp)
         # Start working with workbook
-        record = res_model and self.env[res_model].browse(res_id) or False
-        self._fill_workbook_data(wb, record, export_dict)
-        # Return file as .xlsx
-        content = BytesIO()
-        wb.save(content)
-        content.seek(0)  # Set index to 0, and start reading
-        out_file = base64.encodestring(content.read())
-        if record and 'name' in record and record.name:
-            out_name = record.name.replace(' ', '').replace('/', '')
+        records = res_model and self.env[res_model].browse(res_ids) or False
+        outputs = []
+        for record in records:
+            f = open(ftemp, "wb")
+            f.write(decoded_data)
+            f.seek(0)
+            f.close()
+            # Workbook created, temp file removed
+            wb = load_workbook(ftemp)
+            os.remove(ftemp)
+            self._fill_workbook_data(wb, record, export_dict)
+            # Return file as .xlsx
+            content = BytesIO()
+            wb.save(content)
+            content.seek(0)  # Set index to 0, and start reading
+            out_file = content.read()
+            if record and "name" in record and record.name:
+                out_name = record.name.replace(" ", "").replace("/", "")
+            else:
+                fname = out_name.replace(" ", "").replace("/", "")
+                ts = fields.Datetime.context_timestamp(self, dt.now())
+                out_name = "{}_{}".format(fname, ts.strftime("%Y%m%d_%H%M%S"))
+            if not out_name or len(out_name) == 0:
+                out_name = "noname"
+            out_ext = "xlsx"
+            # CSV (convert only on 1st sheet)
+            if template.to_csv:
+                delimiter = template.csv_delimiter
+                out_file = co.csv_from_excel(out_file, delimiter, template.csv_quote)
+                out_ext = template.csv_extension
+            outputs.append((out_file, "{}.{}".format(out_name, out_ext)))
+        # If outputs > 1 files, zip it
+        if len(outputs) > 1:
+            zip_buffer = BytesIO()
+            with zipfile.ZipFile(
+                zip_buffer, "a", zipfile.ZIP_DEFLATED, False
+            ) as zip_file:
+                for data, file_name in outputs:
+                    zip_file.writestr(file_name, data)
+            zip_buffer.seek(0)
+            out_file = base64.encodebytes(zip_buffer.read())
+            out_name = "files.zip"
+            return (out_file, out_name)
         else:
-            fname = out_name.replace(' ', '').replace('/', '')
-            ts = fields.Datetime.context_timestamp(self, dt.now())
-            out_name = '%s_%s' % (fname, ts.strftime('%Y%m%d_%H%M%S'))
-        if not out_name or len(out_name) == 0:
-            out_name = 'noname'
-        out_ext = 'xlsx'
-        # CSV (convert only on 1st sheet)
-        if template.to_csv:
-            delimiter = template.csv_delimiter
-            out_file = co.csv_from_excel(out_file, delimiter,
-                                         template.csv_quote)
-            out_ext = template.csv_extension
-        return (out_file, '%s.%s' % (out_name, out_ext))
+            (out_file, out_name) = outputs[0]
+            return (base64.encodebytes(out_file), out_name)
