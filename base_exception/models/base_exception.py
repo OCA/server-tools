@@ -242,7 +242,7 @@ class BaseExceptionModel(models.AbstractModel):
                                 html.escape,
                                 (
                                     e.name,
-                                    e.description,
+                                    e.description if e.description else "",
                                     _("(Blocking exception)") if e.is_blocking else "",
                                 ),
                             )
