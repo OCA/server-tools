@@ -53,6 +53,23 @@ Usage
 Note that views are subject to evaluation of xmlids anyways, so if you need
 to refer to some xmlid, say ``%(xmlid)s``.
 
+**Add text after and/or before than original**
+
+.. code-block:: xml
+
+    <attribute name="$attribute" operation="text_add">
+        $text_before {old_value} $text_after
+    </attribute>
+
+**Add domain with AND/OR join operator (AND if missed) allowing conditional changes**
+
+.. code-block:: xml
+
+    <attribute name="$attribute" operation="domain_add"
+               condition="$field_condition" join_operator="OR">
+        $domain_to_add
+    </attribute>
+
 Known issues / Roadmap
 ======================
 
@@ -81,7 +98,11 @@ Contributors
 
 * Holger Brunn <hbrunn@therp.nl>
 * Ronald Portier <rportier@therp.nl>
-* Sergio Teruel <sergio.teruel@tecnativa.com>
+* `Tecnativa <https://www.tecnativa.com>`_:
+
+  * Sergio Teruel
+  * Carlos Dauden
+
 * Iván Todorovich <ivan.todorovich@camptocamp.com>
 
 Maintainers
