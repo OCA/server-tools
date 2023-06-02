@@ -40,7 +40,7 @@ class AbstractConfigSettings(models.AbstractModel):
             kwargs["related"] = "company_id." + field_key
             kwargs["readonly"] = False
             field_key = re.sub("^" + self._prefix, "", field_key)
-            self._add_field(field_key, field.new(**kwargs))
+            self._add_field(field_key, type(field)(**kwargs))
         cls._proper_fields = set(cls._fields)
 
         self._add_inherited_fields()
