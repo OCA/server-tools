@@ -77,9 +77,7 @@ def get_sentry_options():
         SentryOption("dsn", "", str.strip),
         SentryOption("transport", DEFAULT_OPTIONS["transport"], select_transport),
         SentryOption("logging_level", DEFAULT_LOG_LEVEL, get_sentry_logging),
-        SentryOption(
-            "include_local_variables", DEFAULT_OPTIONS["include_local_variables"], None
-        ),
+        SentryOption("with_locals", DEFAULT_OPTIONS["with_locals"], None),
         SentryOption(
             "max_breadcrumbs", DEFAULT_OPTIONS["max_breadcrumbs"], to_int_if_defined
         ),
