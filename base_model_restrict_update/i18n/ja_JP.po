@@ -17,6 +17,37 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: base_model_restrict_update
+#: model_terms:ir.ui.view,arch_db:base_model_restrict_update.view_users_form
+msgid "<span style=\"padding: 0 10px;\">Read-only</span>"
+msgstr ""
+
+#. module: base_model_restrict_update
+#: model_terms:ir.ui.view,arch_db:base_model_restrict_update.view_users_form
+msgid "<span style=\"padding: 0 10px;\">Unrestrict Update</span>"
+msgstr ""
+
+#. module: base_model_restrict_update
+#: model:ir.model.fields,field_description:base_model_restrict_update.field_ir_model__display_name
+#: model:ir.model.fields,field_description:base_model_restrict_update.field_ir_model_access__display_name
+#: model:ir.model.fields,field_description:base_model_restrict_update.field_res_users__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: base_model_restrict_update
+#: model:ir.model.fields,field_description:base_model_restrict_update.field_ir_model__id
+#: model:ir.model.fields,field_description:base_model_restrict_update.field_ir_model_access__id
+#: model:ir.model.fields,field_description:base_model_restrict_update.field_res_users__id
+msgid "ID"
+msgstr ""
+
+#. module: base_model_restrict_update
+#: model:ir.model.fields,field_description:base_model_restrict_update.field_ir_model____last_update
+#: model:ir.model.fields,field_description:base_model_restrict_update.field_ir_model_access____last_update
+#: model:ir.model.fields,field_description:base_model_restrict_update.field_res_users____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: base_model_restrict_update
 #: model:ir.model,name:base_model_restrict_update.model_ir_model_access
 msgid "Model Access"
 msgstr "モデルアクセス"
@@ -25,6 +56,16 @@ msgstr "モデルアクセス"
 #: model:ir.model,name:base_model_restrict_update.model_ir_model
 msgid "Models"
 msgstr "モデル"
+
+#. module: base_model_restrict_update
+#: model:ir.model.fields,field_description:base_model_restrict_update.field_res_users__is_readonly_user
+msgid "Ready User"
+msgstr ""
+
+#. module: base_model_restrict_update
+#: model:ir.model.fields,help:base_model_restrict_update.field_res_users__is_readonly_user
+msgid "Set to true and the user are readonly user on all models"
+msgstr ""
 
 #. module: base_model_restrict_update
 #: model:ir.model.fields,help:base_model_restrict_update.field_res_users__unrestrict_model_update
@@ -56,7 +97,13 @@ msgstr ""
 "きます。"
 
 #. module: base_model_restrict_update
-#: code:addons/base_model_restrict_update/models/ir_model_access.py:31
+#: code:addons/base_model_restrict_update/models/ir_model_access.py:0
 #, python-format
 msgid "You are only allowed to read this record. (%s - %s)"
 msgstr "レコードを更新することはできません。(%s - %s)"
+
+#. module: base_model_restrict_update
+#: code:addons/base_model_restrict_update/models/res_users.py:0
+#, python-format
+msgid "You cannot set admin user as a readonly user."
+msgstr ""

@@ -17,6 +17,16 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 #. module: base_model_restrict_update
+#: model_terms:ir.ui.view,arch_db:base_model_restrict_update.view_users_form
+msgid "<span style=\"padding: 0 10px;\">Read-only</span>"
+msgstr ""
+
+#. module: base_model_restrict_update
+#: model_terms:ir.ui.view,arch_db:base_model_restrict_update.view_users_form
+msgid "<span style=\"padding: 0 10px;\">Unrestrict Update</span>"
+msgstr ""
+
+#. module: base_model_restrict_update
 #: model:ir.model.fields,field_description:base_model_restrict_update.field_ir_model__display_name
 #: model:ir.model.fields,field_description:base_model_restrict_update.field_ir_model_access__display_name
 #: model:ir.model.fields,field_description:base_model_restrict_update.field_res_users__display_name
