@@ -1,6 +1,6 @@
 # generated from manifests external_dependencies
 acme
-cryptography
+cryptography<23.2.0
 dnspython==1.16.0
 josepy
 lxml

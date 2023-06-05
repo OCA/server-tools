@@ -6,7 +6,7 @@ setuptools.setup(
         'external_dependencies_override': {
             'python': {
                 'acme': 'acme',
-                'cryptography': 'cryptography',
+                'cryptography': 'cryptography<23.2.0',
                 'dns': 'dnspython==1.16.0',
                 'josepy': 'josepy',
             }
