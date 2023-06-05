@@ -18,6 +18,6 @@
     "post_init_hook": "post_init_hook",
     "installable": True,
     "external_dependencies": {
-        "python": ["acme", "cryptography", "dnspython", "josepy"]
+        "python": ["acme", "cryptography<23.2.0", "dnspython", "josepy"]
     },
 }
