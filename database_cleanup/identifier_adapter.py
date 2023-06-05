@@ -14,7 +14,7 @@ class IdentifierAdapter(ISQLQuote):
 
     def getquoted(self):
         def is_identifier_char(c):
-            return c.isalnum() or c in ["_", "$"]
+            return c.isalnum() or c in (["_", "$", " "] if self.quote else ["_", "$"])
 
         format_string = '"%s"'
         if not self.quote:
