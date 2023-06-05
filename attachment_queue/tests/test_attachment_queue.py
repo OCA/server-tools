@@ -52,9 +52,9 @@ class TestAttachmentBaseQueue(TransactionCase):
 
     def test_job_created(self):
         with trap_jobs() as trap:
-            self._create_dummy_attachment()
+            attachment = self._create_dummy_attachment()
             trap.assert_enqueued_job(
-                self.env["attachment.queue"].run_as_job,
+                attachment.run_as_job,
             )
 
     def test_aq_locked_job(self):
