@@ -396,6 +396,12 @@ msgid "Set to Done"
 msgstr ""
 
 #. module: attachment_queue
+#: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__smart_search
+#: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue_reschedule__smart_search
+msgid "Smart Search"
+msgstr ""
+
+#. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__state
 #: model_terms:ir.ui.view,arch_db:attachment_queue.view_attachment_queue_search
 msgid "State"
