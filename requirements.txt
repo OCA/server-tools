@@ -1,9 +1,11 @@
 # generated from manifests external_dependencies
 astor
+cryptography==2.6.1
 dataclasses
 mako
 odoorpc
 openpyxl
 openupgradelib
 pygount
+pysftp
 sentry_sdk>=1.17.0
