@@ -30,7 +30,7 @@ addon | version | maintainers | summary
 [base_custom_info](base_custom_info/) | 13.0.1.0.2 |  | Add custom field in models
 [base_deterministic_session_gc](base_deterministic_session_gc/) | 13.0.1.0.0 |  | Provide a deterministic session garbage collection instead of the default random one
 [base_domain_inverse_function](base_domain_inverse_function/) | 13.0.1.0.0 | [![grindtildeath](https://github.com/grindtildeath.png?size=30px)](https://github.com/grindtildeath) | Provide function to inverse domain into parts
-[base_exception](base_exception/) | 13.0.1.1.3 |  | This module provide an abstract model to manage customizable exceptions to be applied on different models (sale order, invoice, ...)
+[base_exception](base_exception/) | 13.0.1.2.0 |  | This module provide an abstract model to manage customizable exceptions to be applied on different models (sale order, invoice, ...)
 [base_fontawesome](base_fontawesome/) | 13.0.5.13.0 |  | Up to date Fontawesome resources.
 [base_jsonify](base_jsonify/) | 13.0.3.2.1 |  | Base module that provide the jsonify method on all models
 [base_m2m_custom_field](base_m2m_custom_field/) | 13.0.1.0.1 |  | Customizations of Many2many
@@ -56,7 +56,7 @@ addon | version | maintainers | summary
 [html_image_url_extractor](html_image_url_extractor/) | 13.0.1.0.1 |  | Extract images found in any HTML field
 [html_text](html_text/) | 13.0.1.0.1 |  | Generate excerpts from any HTML field
 [iap_alternative_provider](iap_alternative_provider/) | 13.0.1.0.1 | [![sebastienbeau](https://github.com/sebastienbeau.png?size=30px)](https://github.com/sebastienbeau) | Base module for providing alternative provider for iap apps
-[letsencrypt](letsencrypt/) | 13.0.1.0.1 |  | Request SSL certificates from letsencrypt.org
+[letsencrypt](letsencrypt/) | 13.0.1.1.0 |  | Request SSL certificates from letsencrypt.org
 [mail_server_relay_disallowed](mail_server_relay_disallowed/) | 13.0.1.0.1 |  | Mail Server Relay Disallowed
 [module_analysis](module_analysis/) | 13.0.1.1.1 |  | Add analysis tools regarding installed modules to know which installed modules comes from Odoo Core, OCA, or are custom modules
 [module_auto_update](module_auto_update/) | 13.0.1.0.1 |  | Automatically update Odoo modules
