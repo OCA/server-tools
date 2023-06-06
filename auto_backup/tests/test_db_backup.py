@@ -160,7 +160,7 @@ class TestDbBackup(common.TransactionCase):
             with self.patch_filtered_sftp(rec_id):
                 with patch("%s.cleanup" % class_name, new_callable=PropertyMock):
                     conn = rec_id.sftp_connection().__enter__()
-                    conn.makedirs.side_effect = TestConnectionException
+                    conn.side_effect = TestConnectionException
                     rec_id.action_backup()
                     # No error was raised, test pass
                     self.assertTrue(True)

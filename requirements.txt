@@ -1,6 +1,6 @@
 # generated from manifests external_dependencies
 astor
-cryptography==2.6.1
+cryptography
 dataclasses
 mako
 odoorpc
