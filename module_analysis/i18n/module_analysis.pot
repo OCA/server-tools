@@ -192,6 +192,14 @@ msgid "Settings"
 msgstr ""
 
 #. module: module_analysis
+#: model:ir.model.fields,field_description:module_analysis.field_ir_module_author__smart_search
+#: model:ir.model.fields,field_description:module_analysis.field_ir_module_module__smart_search
+#: model:ir.model.fields,field_description:module_analysis.field_ir_module_type__smart_search
+#: model:ir.model.fields,field_description:module_analysis.field_ir_module_type_rule__smart_search
+msgid "Smart Search"
+msgstr ""
+
+#. module: module_analysis
 #: model:ir.model.constraint,message:module_analysis.constraint_ir_module_author_name_uniq
 msgid "The name of the modules author should be unique per database!"
 msgstr ""
