@@ -39,3 +39,8 @@ msgid ""
 "No checksum change detected in installed modules and all modules installed, "
 "nothing to do."
 msgstr ""
+
+#. module: module_auto_update
+#: model:ir.model.fields,field_description:module_auto_update.field_ir_module_module__smart_search
+msgid "Smart Search"
+msgstr ""
