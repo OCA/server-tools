@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-17 03:34+0000\n"
-"PO-Revision-Date: 2023-05-25 12:09+0000\n"
+"PO-Revision-Date: 2023-06-07 17:09+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-server-tools-8-0/"
 "language/it/)\n"
@@ -236,7 +236,7 @@ msgstr "Ultima modifica il"
 #: field:auditlog.log.line,write_uid:0 field:auditlog.methods,write_uid:0
 #: field:auditlog.rule,write_uid:0
 msgid "Last Updated by"
-msgstr "Ultimo aggiornamento da"
+msgstr "Ultimo aggiornamento di"
 
 #. module: auditlog
 #: field:auditlog.autovacuum,write_date:0
