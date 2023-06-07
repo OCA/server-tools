@@ -7,6 +7,7 @@ from odoo_test_helper import FakeModelLoader
 from odoo import registry
 from odoo.exceptions import UserError
 from odoo.tests.common import TransactionCase
+from odoo.tools import mute_logger
 
 from odoo.addons.queue_job.exception import RetryableJobError
 from odoo.addons.queue_job.tests.common import trap_jobs
@@ -52,9 +53,9 @@ class TestAttachmentBaseQueue(TransactionCase):
 
     def test_job_created(self):
         with trap_jobs() as trap:
-            self._create_dummy_attachment()
+            attachment = self._create_dummy_attachment()
             trap.assert_enqueued_job(
-                self.env["attachment.queue"].run_as_job,
+                attachment.run_as_job,
             )
 
     def test_aq_locked_job(self):
@@ -70,7 +71,7 @@ class TestAttachmentBaseQueue(TransactionCase):
             """,
                 (attachment.id,),
             )
-            with self.assertRaises(RetryableJobError):
+            with self.assertRaises(RetryableJobError), mute_logger("odoo.sql_db"):
                 attachment.run_as_job()
 
     def test_aq_locked_button(self):
@@ -87,7 +88,7 @@ class TestAttachmentBaseQueue(TransactionCase):
             """,
                 (attachment.id,),
             )
-            with self.assertRaises(UserError):
+            with self.assertRaises(UserError), mute_logger("odoo.sql_db"):
                 attachment.button_manual_run()
 
     def test_run_ok(self):
