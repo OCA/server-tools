@@ -62,6 +62,11 @@ msgstr "Configuración Rpc"
 msgid "Rpc Config Edit"
 msgstr "Editar la Configuración Rpc"
 
+#. module: rpc_helper
+#: model:ir.model.fields,field_description:rpc_helper.field_ir_model__smart_search
+msgid "Smart Search"
+msgstr "Búsqueda Inteligente"
+
 #~ msgid "Changeset Changes"
 #~ msgstr "Cambios del Conjunto de Cambios"
 
@@ -82,9 +87,6 @@ msgstr "Editar la Configuración Rpc"
 
 #~ msgid "Last Modified on"
 #~ msgstr "Última modificación en"
-
-#~ msgid "Smart Search"
-#~ msgstr "Búsqueda Inteligente"
 
 #~ msgid "User Can See Changeset"
 #~ msgstr "El Usuario Puede ver Conjuntos de Cambios"
