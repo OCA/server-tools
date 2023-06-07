@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-03-03 03:48+0000\n"
-"PO-Revision-Date: 2023-05-24 13:08+0000\n"
+"PO-Revision-Date: 2023-06-07 17:09+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -128,7 +128,7 @@ msgstr "Ultima modifica il"
 #: model:ir.model.fields,field_description:auth_totp.field_res_users_authenticator_write_uid
 #: model:ir.model.fields,field_description:auth_totp.field_res_users_device_write_uid
 msgid "Last Updated by"
-msgstr "Last Updated by"
+msgstr "Ultimo aggiornamento di"
 
 #. module: auth_totp
 #: model:ir.model.fields,field_description:auth_totp.field_res_users_authenticator_create_write_date
