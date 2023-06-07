@@ -46,6 +46,11 @@ msgid ""
 "nothing to do."
 msgstr ""
 
+#. module: module_auto_update
+#: model:ir.model.fields,field_description:module_auto_update.field_ir_module_module__smart_search
+msgid "Smart Search"
+msgstr ""
+
 #~ msgid "Checksum Dir"
 #~ msgstr "Kontrolní součet Dir"
 
