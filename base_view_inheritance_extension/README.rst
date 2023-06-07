@@ -19,9 +19,9 @@ Extended view inheritance
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
     :target: https://translation.odoo-community.org/projects/server-tools-13-0/server-tools-13-0-base_view_inheritance_extension
     :alt: Translate me on Weblate
-.. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
-    :target: https://runbot.odoo-community.org/runbot/149/13.0
-    :alt: Try me on Runbot
+.. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
+    :target: https://runboat.odoo-community.org/webui/builds.html?repo=OCA/server-tools&target_branch=13.0
+    :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
@@ -64,6 +64,23 @@ to refer to some xmlid, say ``%(xmlid)s``.
         $remove_value(s)
     </attribute>
 
+**Add text after and/or before than original**
+
+.. code-block:: xml
+
+    <attribute name="$attribute" operation="text_add">
+        $text_before {old_value} $text_after
+    </attribute>
+
+**Add domain with AND/OR join operator (AND if missed) allowing conditional changes**
+
+.. code-block:: xml
+
+    <attribute name="$attribute" operation="domain_add"
+               condition="$field_condition" join_operator="OR">
+        $domain_to_add
+    </attribute>
+
 **Move an element in the view**
 
 This feature is now native, cf the `official Odoo documentation <https://www.odoo.com/documentation/12.0/reference/views.html#inheritance-specs>`_.
@@ -98,7 +115,12 @@ Contributors
 
 * Holger Brunn <hbrunn@therp.nl>
 * Ronald Portier <rportier@therp.nl>
-* Sergio Teruel <sergio.teruel@tecnativa.com>
+* `Tecnativa <https://www.tecnativa.com>`_:
+
+  * Sergio Teruel
+  * Carlos Dauden
+  * Stefan ungureanu
+
 * Iván Todorovich <ivan.todorovich@camptocamp.com>
 
 Maintainers

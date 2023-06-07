@@ -89,11 +89,11 @@ class IrUiView(models.Model):
                     if (isinstance(k, ast.Str) and k.s == attr_key)
                     or (isinstance(k, ast.Constant) and k.value == attr_key)
                 ),
-                None,
+                -1,
             )
             # Update or create the key
             value = ast.parse(attribute_node.text.strip(), mode="eval").body
-            if key_idx:
+            if key_idx >= 0:
                 ast_dict.values[key_idx] = value
             else:
                 ast_dict.keys.append(ast.Str(attr_key))
@@ -117,7 +117,10 @@ class IrUiView(models.Model):
         for attribute_node in specs:
             attribute_name = attribute_node.get("name")
             old_value = node.get(attribute_name) or ""
-            new_value = old_value + "," + attribute_node.text
+            new_value = "%s%s" % (
+                old_value + "," if old_value else "",
+                attribute_node.text,
+            )
             node.attrib[attribute_name] = new_value
         return source
 

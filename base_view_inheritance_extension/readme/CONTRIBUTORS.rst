@@ -4,5 +4,6 @@
 
   * Sergio Teruel
   * Carlos Dauden
+  * Stefan ungureanu
 
 * Iván Todorovich <ivan.todorovich@camptocamp.com>
