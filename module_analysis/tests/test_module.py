@@ -31,5 +31,5 @@ class TestModule(SavepointCase):
             mock_get_module_path.assert_called_once()
             self.assertEqual(self.module.python_code_qty, 13)
             self.assertEqual(self.module.xml_code_qty, 24)
-            self.assertEqual(self.module.css_code_qty, 3)
+            self.assertEqual(self.module.css_code_qty, 6)
             self.assertEqual(self.module.js_code_qty, 7)

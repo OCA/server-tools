@@ -56,6 +56,7 @@ class IrModuleModule(models.Model):
             ".xml": {"code": "xml_code_qty"},
             ".js": {"code": "js_code_qty"},
             ".css": {"code": "css_code_qty"},
+            ".scss": {"code": "css_code_qty"},
         }
 
     @api.model
@@ -153,7 +154,8 @@ class IrModuleModule(models.Model):
             values = {}
             for analyses in analysed_datas.values():
                 for v in analyses.values():
-                    values[v["field"]] = v["value"]
+                    values.setdefault(v["field"], 0)
+                    values[v["field"]] += v["value"]
             module.write(values)
 
     @api.model
