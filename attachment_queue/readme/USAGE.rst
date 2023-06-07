@@ -6,6 +6,7 @@ Configure the batch limit for attachments that can be sync by the cron task at a
 
 Settings > Technical > System parameters > attachment_queue_cron_batch_limit
 
+Try
 
 image:: ../static/description/tree.png
 
