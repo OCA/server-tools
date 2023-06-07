@@ -110,6 +110,12 @@ msgid "Saturday"
 msgstr ""
 
 #. module: base_time_window
+#: model:ir.model.fields,field_description:base_time_window.field_time_weekday__smart_search
+#: model:ir.model.fields,field_description:base_time_window.field_time_window_mixin__smart_search
+msgid "Smart Search"
+msgstr ""
+
+#. module: base_time_window
 #: model:ir.model.fields.selection,name:base_time_window.selection__time_weekday__name__6
 msgid "Sunday"
 msgstr ""
