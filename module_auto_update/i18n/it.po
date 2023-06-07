@@ -46,6 +46,11 @@ msgid ""
 "nothing to do."
 msgstr ""
 
+#. module: module_auto_update
+#: model:ir.model.fields,field_description:module_auto_update.field_ir_module_module__smart_search
+msgid "Smart Search"
+msgstr "Ricerca Smart"
+
 #~ msgid "Display Name"
 #~ msgstr "Nome da visualizzare"
 
@@ -54,6 +59,3 @@ msgstr ""
 
 #~ msgid "Last Modified on"
 #~ msgstr "Ultima modifica il"
-
-#~ msgid "Smart Search"
-#~ msgstr "Ricerca Smart"
