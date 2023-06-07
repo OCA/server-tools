@@ -9,7 +9,7 @@ class IrModuleAuthor(models.Model):
     _name = "ir.module.author"
     _description = "Modules Authors"
 
-    name = fields.Char(string="Name", required=True)
+    name = fields.Char(required=True)
 
     installed_module_ids = fields.Many2many(
         string="Modules",

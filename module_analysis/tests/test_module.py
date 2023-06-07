@@ -3,10 +3,11 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo.modules.module import get_module_path
-from odoo.tests.common import TransactionCase, post_install
+from odoo.tests import tagged
+from odoo.tests.common import TransactionCase
 
 
-@post_install(True)
+@tagged("post_install", "-at_install")
 class TestModule(TransactionCase):
     def setUp(self):
         super().setUp()
