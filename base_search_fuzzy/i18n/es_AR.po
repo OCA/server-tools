@@ -92,6 +92,11 @@ msgid "Last Updated on"
 msgstr "Última actualización el"
 
 #. module: base_search_fuzzy
+#: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index__smart_search
+msgid "Smart Search"
+msgstr "Búsqueda Inteligente"
+
+#. module: base_search_fuzzy
 #: model:ir.model.fields,help:base_search_fuzzy.field_trgm_index__index_name
 msgid ""
 "The index name is automatically generated like fieldname_indextype_idx. If "
@@ -122,6 +127,3 @@ msgstr "Índice de Trigramas"
 #: model:ir.model.fields,help:base_search_fuzzy.field_trgm_index__field_id
 msgid "You can either select a field of type \"text\" or \"char\"."
 msgstr "Puede seleccionar un campo de tipo \"text\" o \"char\"."
-
-#~ msgid "Smart Search"
-#~ msgstr "Búsqueda Inteligente"
