@@ -38,3 +38,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:iap_alternative_provider.field_iap_account__provider
 msgid "Provider"
 msgstr ""
+
+#. module: iap_alternative_provider
+#: model:ir.model.fields,field_description:iap_alternative_provider.field_iap_account__smart_search
+msgid "Smart Search"
+msgstr ""
