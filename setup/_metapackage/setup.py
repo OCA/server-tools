@@ -15,6 +15,7 @@ setuptools.setup(
         'odoo-addon-base_exception>=16.0dev,<16.1dev',
         'odoo-addon-base_fontawesome>=16.0dev,<16.1dev',
         'odoo-addon-base_m2m_custom_field>=16.0dev,<16.1dev',
+        'odoo-addon-base_name_search_improved>=16.0dev,<16.1dev',
         'odoo-addon-base_search_fuzzy>=16.0dev,<16.1dev',
         'odoo-addon-base_technical_user>=16.0dev,<16.1dev',
         'odoo-addon-base_time_window>=16.0dev,<16.1dev',
