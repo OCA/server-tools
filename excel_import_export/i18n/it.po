@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-05-24 19:10+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2023-06-14 14:12+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -442,7 +442,7 @@ msgstr "Dettaglio di come i dati excel saranno importati"
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__display_name
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_import__display_name
 msgid "Display Name"
-msgstr "Nome Visualizzato"
+msgstr "Nome visualizzato"
 
 #. module: excel_import_export
 #. odoo-python
@@ -879,7 +879,7 @@ msgstr "Ultima Modifica il"
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__write_uid
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_import__write_uid
 msgid "Last Updated by"
-msgstr "Ultima Modifica di"
+msgstr "Ultimo aggiornamento di"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_export_xlsx_wizard__write_date
@@ -1109,7 +1109,7 @@ msgstr "Criteri di Ricerca"
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__section_type
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_import__section_type
 msgid "Section Type"
-msgstr "Tipo Sezione"
+msgstr "Tipo sezione"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__sequence
@@ -1144,6 +1144,21 @@ msgstr "Il foglio %s non trovato"
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__show_instruction
 msgid "Show Output"
 msgstr "Mostra Output"
+
+#. module: excel_import_export
+#: model:ir.model.fields,field_description:excel_import_export.field_export_xlsx_wizard__smart_search
+#: model:ir.model.fields,field_description:excel_import_export.field_import_xlsx_wizard__smart_search
+#: model:ir.model.fields,field_description:excel_import_export.field_ir_actions_report__smart_search
+#: model:ir.model.fields,field_description:excel_import_export.field_report_xlsx_wizard__smart_search
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_export__smart_search
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_import__smart_search
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_report__smart_search
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_styles__smart_search
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__smart_search
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__smart_search
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_import__smart_search
+msgid "Smart Search"
+msgstr "Ricerca Intelligente"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_export_xlsx_wizard__state
@@ -1395,9 +1410,6 @@ msgstr ""
 #, python-format
 #~ msgid "Invalid value {} for style type {}"
 #~ msgstr "Valore non valido {} per il tipo stile {}"
-
-#~ msgid "Smart Search"
-#~ msgstr "Ricerca Intelligente"
 
 #, python-format
 #~ msgid "Template %s on model %s is not unique!"

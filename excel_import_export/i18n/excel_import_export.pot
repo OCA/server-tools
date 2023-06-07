@@ -301,6 +301,8 @@ msgstr ""
 #. module: excel_import_export
 #: model:ir.model.fields.selection,name:excel_import_export.selection__export_xlsx_wizard__state__choose
 #: model:ir.model.fields.selection,name:excel_import_export.selection__import_xlsx_wizard__state__choose
+#: model:ir.model.fields.selection,name:excel_import_export.selection__report_crm_lead__state__choose
+#: model:ir.model.fields.selection,name:excel_import_export.selection__report_sale_order__state__choose
 #: model:ir.model.fields.selection,name:excel_import_export.selection__xlsx_report__state__choose
 msgid "Choose"
 msgstr ""
@@ -599,6 +601,8 @@ msgstr ""
 #. module: excel_import_export
 #: model:ir.model.fields.selection,name:excel_import_export.selection__export_xlsx_wizard__state__get
 #: model:ir.model.fields.selection,name:excel_import_export.selection__import_xlsx_wizard__state__get
+#: model:ir.model.fields.selection,name:excel_import_export.selection__report_crm_lead__state__get
+#: model:ir.model.fields.selection,name:excel_import_export.selection__report_sale_order__state__get
 #: model:ir.model.fields.selection,name:excel_import_export.selection__xlsx_report__state__get
 msgid "Get"
 msgstr ""
@@ -1081,6 +1085,21 @@ msgstr ""
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__show_instruction
 msgid "Show Output"
+msgstr ""
+
+#. module: excel_import_export
+#: model:ir.model.fields,field_description:excel_import_export.field_export_xlsx_wizard__smart_search
+#: model:ir.model.fields,field_description:excel_import_export.field_import_xlsx_wizard__smart_search
+#: model:ir.model.fields,field_description:excel_import_export.field_ir_actions_report__smart_search
+#: model:ir.model.fields,field_description:excel_import_export.field_report_xlsx_wizard__smart_search
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_export__smart_search
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_import__smart_search
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_report__smart_search
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_styles__smart_search
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__smart_search
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__smart_search
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_import__smart_search
+msgid "Smart Search"
 msgstr ""
 
 #. module: excel_import_export
