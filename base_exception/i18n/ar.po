@@ -282,6 +282,14 @@ msgid "Sequence"
 msgstr ""
 
 #. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_base_exception__smart_search
+#: model:ir.model.fields,field_description:base_exception.field_base_exception_method__smart_search
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule__smart_search
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm__smart_search
+msgid "Smart Search"
+msgstr ""
+
+#. module: base_exception
 #. odoo-python
 #: code:addons/base_exception/models/base_exception.py:0
 #, python-format
