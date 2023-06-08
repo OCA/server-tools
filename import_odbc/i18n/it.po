@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-03-07 03:47+0000\n"
-"PO-Revision-Date: 2023-05-24 10:09+0000\n"
+"PO-Revision-Date: 2023-06-08 09:12+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -120,7 +120,7 @@ msgstr "Ultimo aggiornamento di"
 #. module: import_odbc
 #: field:import.odbc.dbtable,write_date:0
 msgid "Last Updated on"
-msgstr "Last Updated on"
+msgstr "Ultimo aggiornamento il"
 
 #. module: import_odbc
 #: field:import.odbc.dbtable,last_error_count:0
