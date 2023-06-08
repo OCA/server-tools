@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-28 21:28+0000\n"
-"PO-Revision-Date: 2023-06-07 17:09+0000\n"
+"PO-Revision-Date: 2023-06-08 09:12+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -74,7 +74,7 @@ msgstr "Ultimo aggiornamento di"
 #: field:ir.model.fields.regex,write_date:0
 #: field:ir.model.validator.line,write_date:0
 msgid "Last Updated on"
-msgstr "Last Updated on"
+msgstr "Ultimo aggiornamento il"
 
 #. module: base_field_validator
 #: field:ir.model.validator.line,model_id:0
