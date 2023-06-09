@@ -148,13 +148,13 @@ msgid "Parameter Name"
 msgstr ""
 
 #. module: base_time_parameter
-#: model:ir.model.fields.selection,name:base_time_parameter.selection__base_time_parameter__type__reference
-msgid "Reference"
+#: model:ir.model.fields.selection,name:base_time_parameter.selection__base_time_parameter__type__record
+msgid "Record"
 msgstr ""
 
 #. module: base_time_parameter
-#: model:ir.model.fields.selection,name:base_time_parameter.selection__base_time_parameter__type__reference_id
-msgid "Reference ID"
+#: model:ir.model.fields,field_description:base_time_parameter.field_base_time_parameter__record_model
+msgid "Record Model"
 msgstr ""
 
 #. module: base_time_parameter
@@ -187,7 +187,7 @@ msgstr ""
 
 #. module: base_time_parameter
 #: model:ir.actions.act_window,name:base_time_parameter.base_time_parameter_action
-#: model:ir.ui.menu,name:base_time_parameter.menu_action_base_time_parameter
+#: model:ir.ui.menu,name:base_time_parameter.base_time_parameter_menu
 msgid "Time Parameters"
 msgstr ""
 
@@ -208,6 +208,7 @@ msgid "Value"
 msgstr ""
 
 #. module: base_time_parameter
+#: model:ir.actions.act_window,name:base_time_parameter.base_time_parameter_version_action
 #: model:ir.model.fields,field_description:base_time_parameter.field_base_time_parameter__version_ids
 #: model_terms:ir.ui.view,arch_db:base_time_parameter.base_time_parameter_view_form
 msgid "Versions"
