@@ -1,33 +1,73 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <record id="view_partner_simple_form" model="ir.ui.view">
+     <record id="view_partner_simple_form_2" model="ir.ui.view">
         <field name="model">res.partner</field>
-        <field name="inherit_id" ref="base.view_partner_simple_form" />
+        <field name="inherit_id" ref="base.view_partner_form" />
+         <field name="active">False</field>
         <field name="arch" type="xml">
-            <xpath expr="." position="attributes">
-                <attribute name="string">Partner form</attribute>
-            </xpath>
-            <field name="parent_id" position="attributes">
+            <field name="country_id" position="attributes">
                 <attribute
-                    name="context"
-                    operation="python_dict"
-                    key="default_name"
-                >'The company name'</attribute>
+                    name="domain"
+                    operation="domain_add"
+                    condition=""
+                >[('code', '=', 'es')]</attribute>
+            </field>
+            <field name="mobile" position="attributes">
+                <attribute name="string" operation="text_add">Pre-</attribute>
+                 <attribute name="attrs" operation="python_dict" key="invisible">
+                     [('is_company', '=', False)]
+                 </attribute>
+            </field>
+            <field name="parent_id" position="attributes">
                 <attribute
                     name="context"
                     operation="python_dict"
                     key="default_company_id"
-                >context.get('company_id', context.get('company'))</attribute>
+                >
+                    company_id
+                </attribute>
             </field>
-            <!-- without operations, the standard handler should be called /-->
-            <field name="parent_id" position="attributes">
-                <attribute name="name">parent_id</attribute>
+            <field name="function" position="attributes">
+                <attribute name="attrs" operation="python_dict" key="required">
+                    [('is_company', '=', False)]
+                </attribute>
             </field>
-            <form position="inside">
-                <notebook>
-                    <page string="Phone numbers" name="phone_book" />
-                </notebook>
-            </form>
+            <field name="email" position="attributes">
+                <attribute name="attrs" operation="python_dict" key="required">
+                    [('is_company','=', False)]
+                </attribute>
+            </field>
+            <field name="state_id" position="attributes">
+                <attribute name='context'>{
+                'default_name': 'test_state',
+                'default_code': context.get('code')
+                }</attribute>
+                <attribute
+                    name="context"
+                    operation="python_dict"
+                    key="default_country_id"
+                >
+                    context.get('force_country_id') and country_id or False
+                </attribute>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_user_simple_form" model="ir.ui.view">
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form" />
+        <field name="active">False</field>
+        <field name="arch" type="xml">
+            <button name="action_show_groups" position="attributes">
+                <attribute name="state" operation="list_add">new</attribute>
+            </button>
+            <button name="action_show_accesses" position="attributes">
+                <attribute name="state" operation="list_add">new,active</attribute>
+            </button>
+            <button name="action_show_rules" position="attributes">
+                <attribute name="state">new,active</attribute>
+                <attribute name="state" operation="list_remove">active,new</attribute>
+            </button>
         </field>
     </record>
 </odoo>
