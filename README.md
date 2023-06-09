@@ -22,7 +22,7 @@ Available addons
 addon | version | maintainers | summary
 --- | --- | --- | ---
 [attachment_unindex_content](attachment_unindex_content/) | 13.0.1.0.0 | [![moylop260](https://github.com/moylop260.png?size=30px)](https://github.com/moylop260) [![ebirbe](https://github.com/ebirbe.png?size=30px)](https://github.com/ebirbe) | Disable indexing of attachments
-[auditlog](auditlog/) | 13.0.1.1.0 |  | Audit Log
+[auditlog](auditlog/) | 13.0.1.2.0 |  | Audit Log
 [auto_backup](auto_backup/) | 13.0.1.0.1 |  | Backups database
 [autovacuum_message_attachment](autovacuum_message_attachment/) | 13.0.1.0.1 |  | Automatically delete old mail messages and attachments
 [base_changeset](base_changeset/) | 13.0.1.0.1 | [![astirpe](https://github.com/astirpe.png?size=30px)](https://github.com/astirpe) | Track record changesets
