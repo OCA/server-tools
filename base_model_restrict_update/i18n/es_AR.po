@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-09-04 06:07+0000\n"
+"PO-Revision-Date: 2023-06-09 16:09+0000\n"
 "Last-Translator: Ignacio Buioli <ibuioli@gmail.com>\n"
 "Language-Team: none\n"
 "Language: es_AR\n"
@@ -14,17 +14,17 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: base_model_restrict_update
 #: model_terms:ir.ui.view,arch_db:base_model_restrict_update.view_users_form
 msgid "<span style=\"padding: 0 10px;\">Read-only</span>"
-msgstr ""
+msgstr "<span style=\"padding: 0 10px;\">Sólo lectura</span>"
 
 #. module: base_model_restrict_update
 #: model_terms:ir.ui.view,arch_db:base_model_restrict_update.view_users_form
 msgid "<span style=\"padding: 0 10px;\">Unrestrict Update</span>"
-msgstr ""
+msgstr "<span style=\"padding: 0 10px;\">Actualización Sin restricciones</span>"
 
 #. module: base_model_restrict_update
 #: model:ir.model.fields,field_description:base_model_restrict_update.field_ir_model__display_name
