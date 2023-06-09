@@ -20,19 +20,20 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 #. module: base_view_inheritance_extension
-#: model_terms:ir.ui.view,arch_db:base_view_inheritance_extension.view_partner_simple_form
-msgid "Partner form"
-msgstr "Formulario Empresa"
-
-#. module: base_view_inheritance_extension
-#: model_terms:ir.ui.view,arch_db:base_view_inheritance_extension.view_partner_simple_form
-msgid "Phone numbers"
-msgstr "Números de teléfono"
+#: model_terms:ir.ui.view,arch_db:base_view_inheritance_extension.view_partner_simple_form_2
+msgid "Pre-"
+msgstr ""
 
 #. module: base_view_inheritance_extension
 #: model:ir.model,name:base_view_inheritance_extension.model_ir_ui_view
 msgid "View"
 msgstr "Vista"
+
+#~ msgid "Partner form"
+#~ msgstr "Formulario Empresa"
+
+#~ msgid "Phone numbers"
+#~ msgstr "Números de teléfono"
 
 #~ msgid "ir.ui.view"
 #~ msgstr "ir.ui.view"
