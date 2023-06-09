@@ -141,8 +141,7 @@ msgstr "Modelo"
 #. module: base_time_parameter
 #: code:addons/base_time_parameter/models/base_time_parameter.py:0
 #, python-format
-msgid ""
-"No parameter for model '%(model_name)s', code '%(code)s', date %(date)s"
+msgid "No parameter for model '%(model_name)s', code '%(code)s', date %(date)s"
 msgstr ""
 "Nenhum parâmetro para o modelo '%(model_name)s', código '%(code)s', data "
 "%(date)s"
@@ -153,14 +152,14 @@ msgid "Parameter Name"
 msgstr "Nome do Parâmetro"
 
 #. module: base_time_parameter
-#: model:ir.model.fields.selection,name:base_time_parameter.selection__base_time_parameter__type__reference
-msgid "Reference"
-msgstr "Referência"
+#: model:ir.model.fields.selection,name:base_time_parameter.selection__base_time_parameter__type__record
+msgid "Record"
+msgstr ""
 
 #. module: base_time_parameter
-#: model:ir.model.fields.selection,name:base_time_parameter.selection__base_time_parameter__type__reference_id
-msgid "Reference ID"
-msgstr "ID Referência"
+#: model:ir.model.fields,field_description:base_time_parameter.field_base_time_parameter__record_model
+msgid "Record Model"
+msgstr ""
 
 #. module: base_time_parameter
 #: model:ir.model.fields,field_description:base_time_parameter.field_base_time_parameter_version__value_reference
@@ -192,7 +191,7 @@ msgstr "Versão do Parâmetro Temporal"
 
 #. module: base_time_parameter
 #: model:ir.actions.act_window,name:base_time_parameter.base_time_parameter_action
-#: model:ir.ui.menu,name:base_time_parameter.menu_action_base_time_parameter
+#: model:ir.ui.menu,name:base_time_parameter.base_time_parameter_menu
 msgid "Time Parameters"
 msgstr "Parâmetros Temporais"
 
@@ -213,7 +212,14 @@ msgid "Value"
 msgstr "Valor"
 
 #. module: base_time_parameter
+#: model:ir.actions.act_window,name:base_time_parameter.base_time_parameter_version_action
 #: model:ir.model.fields,field_description:base_time_parameter.field_base_time_parameter__version_ids
 #: model_terms:ir.ui.view,arch_db:base_time_parameter.base_time_parameter_view_form
 msgid "Versions"
 msgstr "Versões"
+
+#~ msgid "Reference"
+#~ msgstr "Referência"
+
+#~ msgid "Reference ID"
+#~ msgstr "ID Referência"
