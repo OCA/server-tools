@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-06-08 09:14+0000\n"
+"PO-Revision-Date: 2023-06-13 16:08+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -1200,7 +1200,7 @@ msgstr ""
 #: code:addons/excel_import_export/static/src/js/report/action_manager_report.js:52
 #, python-format
 msgid "Warning"
-msgstr "Avviso"
+msgstr "Attenzione"
 
 #. module: excel_import_export
 #: model:ir.model,name:excel_import_export.model_export_xlsx_wizard
