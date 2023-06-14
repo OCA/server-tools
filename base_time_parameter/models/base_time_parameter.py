@@ -111,21 +111,6 @@ class TimeParameter(models.Model):
         elif get == "date":
             return version.date_from
 
-    def _get_value(self, version):
-        if self.type == "boolean":
-            return version.value == "True" and True or False
-        elif self.type == "date":
-            return datetime.strptime(version.value, "%Y-%m-%d").date()
-        elif self.type == "float":
-            return float(version.value)
-        elif self.type == "integer":
-            return int(version.value)
-        elif self.type == "json":
-            return json.loads(version.value)
-        elif self.type == "record" and not self.record_model:
-            return version.value_reference
-        elif self.type == "string":
-            return version.value
 
     _sql_constraints = [
         (
