@@ -44,7 +44,7 @@ class TimeParameter(models.Model):
         default="float",
         index=True,
     )
-    record_model = fields.Selection([], string="Record Model")
+    record_model = fields.Selection([])
     version_ids = fields.One2many(
         "base.time.parameter.version", "parameter_id", string=("Versions")
     )
