@@ -111,7 +111,6 @@ class TimeParameter(models.Model):
         elif get == "date":
             return version.date_from
 
-
     _sql_constraints = [
         (
             "_unique",
