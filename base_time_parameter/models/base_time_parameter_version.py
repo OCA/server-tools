@@ -15,6 +15,7 @@ def _validate_boolean(value):
     elif value.lower() in ("false", "0"):
         return "False"
 
+
 def _validate_date(value, date_format):
     date_formats = [date_format, "%Y-%m-%d"]
     for date_format in date_formats:
