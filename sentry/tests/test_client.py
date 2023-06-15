@@ -42,9 +42,9 @@ class InMemoryTransport(HttpTransport):
 
     def has_event(self, event_level, event_msg):
         for event in self.events:
-            if (
-                event.get("level") == event_level
-                and event.get("logentry", {}).get("message") == event_msg
+            if event.get("level") == event_level and (
+                event.get("logentry", {}).get("message") == event_msg
+                or event.get("message", None) == event_msg
             ):
                 return True
         return False
@@ -62,8 +62,10 @@ class TestClientSetup(TransactionCase):
         self.dsn = "http://public:secret@example.com/1"
         config.options["sentry_enabled"] = True
         config.options["sentry_dsn"] = self.dsn
-        self.client = initialize_sentry(config)._client
-        self.client.transport = InMemoryTransport({"dsn": self.dsn})
+        with patch(
+            "odoo.addons.sentry.const.select_transport", return_value=InMemoryTransport
+        ):
+            self.client = initialize_sentry(config)._client
         self.handler = self.client.integrations["logging"]._handler
 
     def log(self, level, msg, exc_info=None):
@@ -81,6 +83,19 @@ class TestClientSetup(TransactionCase):
             client.transport.has_event(event_level, event_msg),
             msg='Event: "%s" was captured' % event_msg,
         )
+
+    def test_startup_event(self):
+        self.assertEventCaptured(self.client, "info", "Starting Odoo Server")
+
+    def test_startup_event_disabled(self):
+        config.options["sentry_enabled"] = True
+        config.options["sentry_dsn"] = self.dsn
+        config.options["sentry_ignore_startup_event"] = True
+        with patch(
+            "odoo.addons.sentry.const.select_transport", return_value=InMemoryTransport
+        ):
+            self.client = initialize_sentry(config)._client
+        self.assertEventNotCaptured(self.client, "info", "Starting Odoo Server")
 
     def test_initialize_raven_sets_dsn(self):
         self.assertEqual(self.client.dsn, self.dsn)
