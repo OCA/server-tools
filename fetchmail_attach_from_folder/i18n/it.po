@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-28 21:29+0000\n"
-"PO-Revision-Date: 2023-06-07 17:09+0000\n"
+"PO-Revision-Date: 2023-06-15 09:10+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-server-tools-8-0/"
 "language/it/)\n"
@@ -110,7 +110,7 @@ msgstr "Domain"
 #. module: fetchmail_attach_from_folder
 #: field:fetchmail.attach.mail.manually,mail_ids:0
 msgid "Emails"
-msgstr "Email"
+msgstr "E-mail"
 
 #. module: fetchmail_attach_from_folder
 #: field:fetchmail.server.folder,mail_field:0
