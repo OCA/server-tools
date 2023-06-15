@@ -9,19 +9,20 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-01 02:10+0000\n"
-"PO-Revision-Date: 2017-12-01 02:10+0000\n"
-"Last-Translator: Pedro M. Baeza <pedro.baeza@gmail.com>, 2017\n"
+"PO-Revision-Date: 2023-06-15 17:09+0000\n"
+"Last-Translator: kikopeiro <francisco.peiro@factorlibre.com>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: base_technical_user
 #: model:ir.model,name:base_technical_user.model_base
 msgid "Base"
-msgstr ""
+msgstr "Base"
 
 #. module: base_technical_user
 #: model:ir.model,name:base_technical_user.model_res_company
@@ -31,31 +32,31 @@ msgstr "Compañías"
 #. module: base_technical_user
 #: model_terms:ir.ui.view,arch_db:base_technical_user.res_company_view_form_inherit_base_technical_user
 msgid "Configuration"
-msgstr ""
+msgstr "Configuración"
 
 #. module: base_technical_user
 #: model:ir.model.fields,field_description:base_technical_user.field_res_company__smart_search
 msgid "Smart Search"
-msgstr ""
+msgstr "Búsqueda inteligente"
 
 #. module: base_technical_user
 #: model_terms:ir.ui.view,arch_db:base_technical_user.res_company_view_form_inherit_base_technical_user
 msgid "Technical Parameters"
-msgstr ""
+msgstr "Parámetros técnicos"
 
 #. module: base_technical_user
 #: model:ir.model.fields,field_description:base_technical_user.field_res_company__user_tech_id
 msgid "Technical User"
-msgstr ""
+msgstr "Usuario técnico"
 
 #. module: base_technical_user
 #. odoo-python
 #: code:addons/base_technical_user/models/models.py:0
 #, python-format
 msgid "The technical user is missing in the company {}"
-msgstr ""
+msgstr "En la compañia {} no se encuentra el usuario técnico"
 
 #. module: base_technical_user
 #: model:ir.model.fields,help:base_technical_user.field_res_company__user_tech_id
 msgid "This user can be used by process for technical purpose"
-msgstr ""
+msgstr "Este usuario debe usarse para procesos con propósitos técnicos"
