@@ -76,6 +76,8 @@ msgid "Custom resolver"
 msgstr ""
 
 #. module: jsonifier
+#: model:ir.model.fields,field_description:jsonifier.field_ir_exports__display_name
+#: model:ir.model.fields,field_description:jsonifier.field_ir_exports_line__display_name
 #: model:ir.model.fields,field_description:jsonifier.field_ir_exports_resolver__display_name
 msgid "Display Name"
 msgstr ""
@@ -123,6 +125,8 @@ msgid "Global"
 msgstr ""
 
 #. module: jsonifier
+#: model:ir.model.fields,field_description:jsonifier.field_ir_exports__id
+#: model:ir.model.fields,field_description:jsonifier.field_ir_exports_line__id
 #: model:ir.model.fields,field_description:jsonifier.field_ir_exports_resolver__id
 msgid "ID"
 msgstr ""
@@ -165,6 +169,8 @@ msgid "Language Agnostic"
 msgstr ""
 
 #. module: jsonifier
+#: model:ir.model.fields,field_description:jsonifier.field_ir_exports____last_update
+#: model:ir.model.fields,field_description:jsonifier.field_ir_exports_line____last_update
 #: model:ir.model.fields,field_description:jsonifier.field_ir_exports_resolver____last_update
 msgid "Last Modified on"
 msgstr ""
@@ -210,10 +216,8 @@ msgstr "字段的完整路径，您可以在其中指定步骤作为字段的别
 #. module: jsonifier
 #: code:addons/jsonifier/models/ir_exports_line.py:0
 #, python-format
-msgid ""
-"The target must reference the same field as in name '%(name)s' not in "
-"'%(name_with_target)s'"
-msgstr ""
+msgid "The target must reference the same field as in name '%s' not in '%s'"
+msgstr "别名必须引用与名称相同的字段'%s'不在'%s'"
 
 #. module: jsonifier
 #: model:ir.model.fields,field_description:jsonifier.field_ir_exports_resolver__type
@@ -225,7 +229,3 @@ msgstr ""
 #, fuzzy, python-format
 msgid "Wrong parser configuration for field: `%s`"
 msgstr "错误的解析器配置: `%s`"
-
-#, python-format
-#~ msgid "The target must reference the same field as in name '%s' not in '%s'"
-#~ msgstr "别名必须引用与名称相同的字段'%s'不在'%s'"

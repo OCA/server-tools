@@ -6,44 +6,44 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-10-12 09:39+0000\n"
-"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+"PO-Revision-Date: 2018-07-13 08:36+0000\n"
+"Last-Translator: Enric Tobella <etobella@creublanca.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 3.0.1\n"
 
 #. module: base_remote
 #: model:ir.model,name:base_remote.model_base
 msgid "Base"
-msgstr "Base"
+msgstr ""
 
 #. module: base_remote
 #: model:ir.model.fields,field_description:base_remote.field_res_remote__changeset_change_ids
 #: model:ir.model.fields,field_description:base_remote.field_res_users__changeset_change_ids
 msgid "Changeset Changes"
-msgstr "Cambios en el conjunto de modificaciones"
+msgstr ""
 
 #. module: base_remote
 #: model:ir.model.fields,field_description:base_remote.field_res_remote__changeset_ids
 #: model:ir.model.fields,field_description:base_remote.field_res_users__changeset_ids
 msgid "Changesets"
-msgstr "Conjuntos de cambios"
+msgstr ""
 
 #. module: base_remote
 #: model:ir.model.fields,field_description:base_remote.field_res_remote__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_remote.field_res_users__count_pending_changeset_changes
 msgid "Count Pending Changeset Changes"
-msgstr "Contar los cambios del conjunto de cambios pendientes"
+msgstr ""
 
 #. module: base_remote
 #: model:ir.model.fields,field_description:base_remote.field_res_remote__count_pending_changesets
 #: model:ir.model.fields,field_description:base_remote.field_res_users__count_pending_changesets
 msgid "Count Pending Changesets"
-msgstr "Contar conjuntos de cambios pendientes"
+msgstr ""
 
 #. module: base_remote
 #: model:ir.model.fields,field_description:base_remote.field_res_remote__create_uid
@@ -121,7 +121,7 @@ msgstr "Muestra si el remoto se pudo encontrar a través del socket"
 #: model:ir.model.fields,field_description:base_remote.field_res_remote__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_remote.field_res_users__user_can_see_changeset
 msgid "User Can See Changeset"
-msgstr "Usuario puede ver conjunto de cambios"
+msgstr ""
 
 #. module: base_remote
 #: model:ir.model,name:base_remote.model_res_users

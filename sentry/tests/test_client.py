@@ -47,9 +47,9 @@ class InMemoryTransport(HttpTransport):
 
     def has_event(self, event_level, event_msg):
         for event in self.events:
-            if (
-                event.get("level") == event_level
-                and event.get("logentry", {}).get("message") == event_msg
+            if event.get("level") == event_level and (
+                event.get("logentry", {}).get("message") == event_msg
+                or event.get("message", None) == event_msg
             ):
                 return True
         return False
@@ -85,8 +85,10 @@ class TestClientSetup(TransactionCase):
                 "sentry_logging_level": "error",
             }
         )
-        self.client = initialize_sentry(config)._client
-        self.client.transport = InMemoryTransport({"dsn": self.dsn})
+        with patch(
+            "odoo.addons.sentry.const.select_transport", return_value=InMemoryTransport
+        ):
+            self.client = initialize_sentry(config)._client
 
         # Setup our own logger so we don't flood stderr with error logs
         self.logger = logging.getLogger("odoo.sentry.test.logger")
@@ -123,6 +125,22 @@ class TestClientSetup(TransactionCase):
             client.transport.has_event(event_level, event_msg),
             msg='Event: "%s" was captured' % event_msg,
         )
+
+    def test_startup_event(self):
+        self.assertEventCaptured(self.client, "info", "Starting Odoo Server")
+
+    def test_startup_event_disabled(self):
+        self.patch_config(
+            {
+                "sentry_enabled": True,
+                "sentry_dsn": self.dsn,
+                "sentry_ignore_startup_event": True,
+                "sentry_logging_level": "info",
+            }
+        )
+        client = initialize_sentry(config)._client
+        client.transport = InMemoryTransport({"dsn": self.dsn})
+        self.assertEventNotCaptured(client, "info", "Starting Odoo Server")
 
     def test_initialize_raven_sets_dsn(self):
         self.assertEqual(self.client.dsn, self.dsn)

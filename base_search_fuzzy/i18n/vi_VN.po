@@ -88,6 +88,11 @@ msgid "Last Updated on"
 msgstr "Cập nhật lần cuối vào"
 
 #. module: base_search_fuzzy
+#: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index__smart_search
+msgid "Smart Search"
+msgstr ""
+
+#. module: base_search_fuzzy
 #: model:ir.model.fields,help:base_search_fuzzy.field_trgm_index__index_name
 msgid ""
 "The index name is automatically generated like fieldname_indextype_idx. If "
@@ -106,6 +111,8 @@ msgstr ""
 #: model:ir.actions.act_window,name:base_search_fuzzy.trgm_index_action
 #: model:ir.model,name:base_search_fuzzy.model_trgm_index
 #: model:ir.ui.menu,name:base_search_fuzzy.trgm_index_menu
+#: model_terms:ir.ui.view,arch_db:base_search_fuzzy.trgm_index_view_form
+#: model_terms:ir.ui.view,arch_db:base_search_fuzzy.trgm_index_view_tree
 msgid "Trigram Index"
 msgstr ""
 
