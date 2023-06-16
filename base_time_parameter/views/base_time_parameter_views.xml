@@ -13,6 +13,10 @@
                         <field name="code" />
                         <field name="model_id" />
                         <field name="type" />
+                        <field
+                            name="record_model"
+                            attrs="{'invisible': [('type', '!=', 'record')]}"
+                        />
                     </group>
                     <group string="Versions">
                         <field
@@ -25,11 +29,15 @@
                                 <field name="type" invisible="1" />
                                 <field
                                     name="value"
-                                    attrs="{'column_invisible':[('parent.type', 'in', ['reference', 'reference_id'])]}"
+                                    attrs="{'column_invisible':[('parent.type', '=', 'record')]}"
                                 />
                                 <field
                                     name="value_reference"
-                                    attrs="{'column_invisible':[('parent.type', 'not in', ['reference', 'reference_id'])]}"
+                                    attrs="{'column_invisible':[
+                                        '|',
+                                        ('parent.type', '!=', 'record'),
+                                        ('parent.record_model', '!=', False),
+                                    ]}"
                                 />
                             </tree>
                         </field>
@@ -39,7 +47,7 @@
             </form>
         </field>
     </record>
-    <record id="base_time_parameter_hide_model_view_form" model="ir.ui.view">
+    <record id="base_time_parameter_view_form_hide_model" model="ir.ui.view">
         <field name="name">base.time.parameter.form hide model</field>
         <field name="model">base.time.parameter</field>
         <field name="inherit_id" ref="base_time_parameter_view_form" />
@@ -112,7 +120,7 @@
 
     <!-- Menus -->
     <menuitem
-        id="menu_action_base_time_parameter"
+        id="base_time_parameter_menu"
         action="base_time_parameter_action"
         name="Time Parameters"
         parent="base.menu_ir_property"

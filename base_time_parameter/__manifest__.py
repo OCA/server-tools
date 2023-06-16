@@ -3,7 +3,7 @@
 
 {
     "name": "Time Parameter",
-    "version": "15.0.3.0.5",
+    "version": "15.0.1.0.0",
     "summary": """
         Time dependent parameters
         Adds the feature to define parameters
@@ -21,6 +21,7 @@
         "security/security.xml",
         "security/ir.model.access.csv",
         "views/base_time_parameter_views.xml",
+        "views/base_time_parameter_version_views.xml",
     ],
     "development_status": "Beta",
     "installable": True,
