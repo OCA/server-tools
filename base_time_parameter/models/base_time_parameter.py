@@ -37,14 +37,14 @@ class TimeParameter(models.Model):
             ("float", "Floating point number"),
             ("integer", "Integer number"),
             ("json", "JSON"),
-            ("reference", "Reference"),
-            ("reference_id", "Reference ID"),
+            ("record", "Record"),
             ("string", "Text"),
         ],
         required=True,
         default="float",
         index=True,
     )
+    record_model = fields.Selection([])
     version_ids = fields.One2many(
         "base.time.parameter.version", "parameter_id", string=("Versions")
     )
