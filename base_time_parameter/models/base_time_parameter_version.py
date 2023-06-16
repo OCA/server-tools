@@ -10,9 +10,9 @@ _logger = logging.getLogger(__name__)
 
 
 def _validate_boolean(value):
-    if value in ("True", "true", "TRUE", "1"):
+    if value.lower() in ("true", "1"):
         return "True"
-    elif value in ("False", "false", "FALSE", "0"):
+    elif value.lower() in ("false", "0"):
         return "False"
 
 
@@ -34,7 +34,7 @@ def _validate_float(value):
 
 def _validate_integer(value):
     try:
-        return str(int(round(float(value), 0)))
+        return str(int(round(float(value))))
     except ValueError as e:
         _logger.debug(_("Error occurred while validating integer: %s", str(e)))
 
