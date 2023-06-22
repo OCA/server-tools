@@ -409,8 +409,8 @@ pip install sentry-sdk
 configuration file:</p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="19%" />
-<col width="44%" />
+<col width="20%" />
+<col width="43%" />
 <col width="37%" />
 </colgroup>
 <thead valign="bottom">
@@ -429,6 +429,13 @@ This is the only required option in order to use the module.</td>
 </tr>
 <tr><td><tt class="docutils literal">sentry_enabled</tt></td>
 <td>Whether or not Sentry logging is enabled.</td>
+<td><tt class="docutils literal">False</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">sentry_ignore_startup_event</tt></td>
+<td>This is used to not send the <cite>Starting Odoo Server</cite> to Sentry.
+While this messages is usefull to ensure we have properly setup
+sentry. We can’t use <cite>sentry_ignored_exceptions</cite> to ignore that
+event.</td>
 <td><tt class="docutils literal">False</tt></td>
 </tr>
 <tr><td><tt class="docutils literal">sentry_logging_level</tt></td>
