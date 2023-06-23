@@ -37,7 +37,7 @@ class AbstractUrl(models.AbstractModel):
         compute="_compute_redirect_url_url_ids", comodel_name="url.url"
     )
     lang_id = fields.Many2one("res.lang", string="Lang", required=True)
-    active = fields.Boolean(string="Active", default=True)
+    active = fields.Boolean(default=True)
 
     @api.constrains("url_builder", "manual_url_key")
     def _check_manual_url_key(self):
@@ -183,14 +183,14 @@ class AbstractUrl(models.AbstractModel):
                     raise UserError(
                         _(
                             "Url_key already exist in other model"
-                            "\n- name: %s\n - id: %s\n"
-                            "- url_key: %s\n - url_key_id %s"
+                            "\n- name: %(model_name)s\n - id: %(model_id)s\n"
+                            "- url_key: %(url_key)s\n - url_key_id %(url_id)s"
                         )
-                        % (
-                            existing_url.model_id.name,
-                            existing_url.model_id.id,
-                            existing_url.url_key,
-                            existing_url.id,
+                        % dict(
+                            model_name=existing_url.model_id.name,
+                            model_id=existing_url.model_id.id,
+                            url_key=existing_url.url_key,
+                            url_id=existing_url.id,
                         )
                     )
             else:
