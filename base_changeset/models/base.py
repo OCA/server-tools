@@ -103,6 +103,12 @@ class Base(models.AbstractModel):
         return True
 
     def _changeset_disabled(self):
+        if (
+            self.env.su
+            and not config["test_enable"]
+            and not self.env.context.get("test_record_changeset")
+        ):
+            return True
         if self.env.context.get("__no_changeset") == disable_changeset:
             return True
         # To avoid conflicts with tests of other modules
