@@ -4,64 +4,70 @@
 
 import logging
 
-from odoo import api, fields, models
-
-from .abstract_url import get_model_ref
+from odoo import api, fields, models, tools
 
 _logger = logging.getLogger(__name__)
 
 
 class UrlUrl(models.Model):
-
     _name = "url.url"
     _description = "Url"
+    _order = "res_model,res_id,redirect desc"
 
-    url_key = fields.Char(required=True)
-    model_id = fields.Reference(
-        selection="_selection_target_model",
-        help="The id of content linked to the url.",
+    manual = fields.Boolean(default=True, readonly=True)
+    key = fields.Char(required=True, index=True)
+    res_id = fields.Many2oneReference(
+        string="Record ID",
+        help="ID of the target record in the database",
+        model_field="res_model",
         readonly=True,
-        string="Model",
-        required=True,
         index=True,
     )
+    res_model = fields.Selection(
+        selection=lambda s: s._get_model_with_url_selection(), readonly=True, index=True
+    )
     redirect = fields.Boolean(help="If tick this url is a redirection to the new url")
-    backend_id = fields.Reference(
-        selection="_selection_target_model",
-        compute="_compute_related_fields",
-        store=True,
-        help="Backend linked to this URL",
-        string="Backend",
+    referential = fields.Selection(
+        selection=lambda s: s._get_all_referential(),
+        index=True,
+        default="global",
+        required=True,
     )
-    lang_id = fields.Many2one(
-        "res.lang", "Lang", compute="_compute_related_fields", store=True
-    )
+    lang_id = fields.Many2one("res.lang", "Lang", index=True, required=True)
+    need_refresh = fields.Boolean()
 
     _sql_constraints = [
         (
-            "unique_key_per_backend_per_lang",
-            "unique(url_key, backend_id, lang_id)",
+            "unique_key_per_referential_per_lang",
+            "unique(key, referential, lang_id)",
             "Already exists in database",
         )
     ]
 
+    def init(self):
+        self.env.cr.execute(
+            f"""CREATE UNIQUE INDEX IF NOT EXISTS main_url_uniq
+            ON {self._table} (referential, lang_id, res_id, res_model)
+            WHERE redirect = False"""
+        )
+        return super().init()
+
+    @tools.ormcache()
     @api.model
-    def _selection_target_model(self):
-        models = self.env["ir.model"].search([])
-        return [(model.model, model.name) for model in models]
+    def _get_model_with_url_selection(self):
+        return [
+            (model, self.env[model]._description)
+            for model in self.env
+            if (
+                hasattr(self.env[model], "_have_url")
+                and not self.env[model]._abstract
+                and not self.env[model]._transient
+            )
+        ]
 
-    @api.depends("model_id")
-    def _compute_related_fields(self):
-        for record in self:
-            record.backend_id = get_model_ref(record.model_id.backend_id)
-            record.lang_id = record.model_id.lang_id
-
-    @api.model
-    def _reference_models(self):
-        return []
-
-    def _get_object(self, url):
+    def _get_all_referential(self):
+        """Return the list of referential for your url, by default it's global
+        but you can do your own implementation to have url per search engine
+        index for example
         """
-        :return: return object attach to the url
-        """
-        return self.search([("url_key", "=", url)]).model_id
+        return [("global", "Global")]

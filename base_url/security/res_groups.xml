@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record model="res.groups" id="group_edit_url">
+        <field name="name">Edit url</field>
+        <field
+            name="users"
+            eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
+        />
+    </record>
+
+</odoo>

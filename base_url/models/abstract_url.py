@@ -3,10 +3,13 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import logging
-from collections import defaultdict
+
+from lxml import etree
 
 from odoo import _, api, fields, models
-from odoo.exceptions import UserError, ValidationError
+from odoo.exceptions import UserError
+
+DEFAULT_LANG = "en_US"
 
 _logger = logging.getLogger(__name__)
 
@@ -16,215 +19,212 @@ except ImportError:
     _logger.debug("Cannot `import slugify`.")
 
 
-def get_model_ref(record):
-    return "{},{}".format(record._name, record.id)
+SMART_BUTTON = """
+<button class="oe_stat_button"
+       name="open_url"
+       icon="fa-list-ul"
+       type="object">
+       <div class="o_field_widget o_stat_info">
+            <span class="o_stat_value"><field name="count_url"/></span>
+            <span>URL</span>
+       </div>
+</button>"""
 
 
 class AbstractUrl(models.AbstractModel):
     _name = "abstract.url"
     _description = "Abstract Url"
+    _have_url = True
 
-    url_builder = fields.Selection(
-        selection=[("auto", "Automatic"), ("manual", "Manual")], default="auto"
+    url_ids = fields.One2many("url.url", "res_id")
+    url_need_refresh = fields.Boolean(
+        compute="_compute_url_need_refresh", store=True, readonly=False
     )
-    automatic_url_key = fields.Char(compute="_compute_automatic_url_key", store=True)
-    manual_url_key = fields.Char()
-    url_key = fields.Char(string="Url key", compute="_compute_url_key", store=True)
-    url_url_ids = fields.One2many(
-        compute="_compute_url_url_ids", comodel_name="url.url"
-    )
-    redirect_url_url_ids = fields.One2many(
-        compute="_compute_redirect_url_url_ids", comodel_name="url.url"
-    )
-    lang_id = fields.Many2one("res.lang", string="Lang", required=True)
-    active = fields.Boolean(default=True)
+    count_url = fields.Integer(compute="_compute_count_url")
 
-    @api.constrains("url_builder", "manual_url_key")
-    def _check_manual_url_key(self):
-        for rec in self:
-            if rec.url_builder == "manual" and not rec.manual_url_key:
-                raise ValidationError(
-                    _("Manual url key is required if builder is set to manual")
-                )
+    def _compute_count_url(self):
+        res = self.env["url.url"].read_group(
+            domain=[
+                ("res_id", "in", self.ids),
+                ("res_model", "=", self._name),
+            ],
+            fields=["res_id"],
+            groupby=["res_id"],
+        )
+        id2count = {item["res_id"]: item["res_id_count"] for item in res}
+        for record in self:
+            record.count_url = id2count.get(record.id, 0)
 
-    @api.onchange("manual_url_key")
-    def on_url_key_change(self):
-        self.ensure_one()
-        if self.manual_url_key:
-            url = slugify(self.manual_url_key)
-            if url != self.manual_url_key:
-                self.manual_url_key = url
-                return {
-                    "warning": {
-                        "title": "Adapt text rules",
-                        "message": "it will be adapted to %s" % url,
-                    }
-                }
+    def _compute_url_need_refresh_depends(self):
+        return self._get_keyword_fields()
 
-    def _get_url_keywords(self):
-        """This method return a list of keyword that will be concatenated
+    @api.depends(lambda self: self._compute_url_need_refresh_depends())
+    def _compute_url_need_refresh(self):
+        for record in self:
+            record.url_need_refresh = True
+
+    def _get_keyword_fields(self):
+        """This method return a list of field that will be concatenated
         with '-' to generate the url
-        Ex: if you return ['foo', '42'] the url will be foo-42
+        Ex: if you return ['name', 'code'] the url will be f"{record.name}-{record.code}"
 
-        Note the self already include in the context the lang of the record
+        Note: the self already include in the context the lang of the record
+        Note: you can return key like in depends ex: ["categ_id.name", "code"]
         """
-        self.ensure_one()
         # TODO: IMO we should add the ID here by default
         # to make sure the URL is always unique
-        return [self.name]
+        # seb.beau: not sure, most of site do not have id in url
+        # the url have an seo impact so it's better to only put meaning information
+        # moreover for unicity you can put the default code of the product or ean13
+        return ["name"]
 
-    def _post_process_url_key(self, key):
-        """This method allow you to customized the url key.
-        you can use it to build full path be adding the url of parent record
-        Ex: key is 42 you can prefix it with "foo" and so return "foo/42"
+    def _generate_url_key(self, referential, lang):
+        def get(self, key_path):
+            value = self
+            for key_field in key_path.split("."):
+                value = value[key_field]
+            return value
 
-        Note: the self do not include in the context the lang of the record
-        """
         self.ensure_one()
-        return key
-
-    def _generic_compute_automatic_url_key(self):
-        records_by_lang = defaultdict(self.browse)
-        for record in self:
-            records_by_lang[record.lang_id] |= record
-
-        key_by_id = {}
-        for lang_id, records in records_by_lang.items():
-            for record in records.with_context(lang=lang_id.code):
-                if not isinstance(record.id, models.NewId):
-                    key_by_id[record.id] = slugify("-".join(record._get_url_keywords()))
-
-        for record in self:
-            if not isinstance(record.id, models.NewId):
-                record.automatic_url_key = record._post_process_url_key(
-                    key_by_id[record.id]
-                )
-            else:
-                record.automatic_url_key = False
-
-    def _compute_automatic_url_key_depends(self):
-        return ["lang_id", "record_id.name"]
-
-    @api.depends(lambda self: self._compute_automatic_url_key_depends())
-    def _compute_automatic_url_key(self):
-        raise NotImplementedError(
-            "Automatic url key must be computed in concrete model"
+        return slugify(
+            "-".join([get(self, k) for k in self._get_keyword_fields() if get(self, k)])
         )
 
-    @api.depends("manual_url_key", "automatic_url_key", "url_builder", "active")
-    def _compute_url_key(self):
-        for record in self:
-            if not record.active:
-                record.url_key = ""
-                record._redirect_existing_url()
-            else:
-                if record.url_builder == "manual":
-                    new_url = record.manual_url_key
-                else:
-                    new_url = record.automatic_url_key
-                if record.url_key != new_url:
-                    record.url_key = new_url
-                    record.set_url(record.url_key)
-
-    @api.depends("url_key")
-    def _compute_redirect_url_url_ids(self):
-        self.flush()
-        for record in self:
-            record.redirect_url_url_ids = record.env["url.url"].search(
-                [
-                    ("model_id", "=", get_model_ref(record)),
-                    ("redirect", "=", True),
-                ]
+    def _get_redirect_urls(self, referential, lang):
+        self.ensure_one()
+        return self.url_ids.filtered(
+            lambda s: (
+                s.lang_id.code == lang and s.referential == referential and s.redirect
             )
+        )
 
-    @api.depends("url_key")
-    def _compute_url_url_ids(self):
-        self.flush()
-        for record in self:
-            record.url_url_ids = record.env["url.url"].search(
-                [("model_id", "=", get_model_ref(record))]
+    def _get_main_url(self, referential, lang):
+        self.ensure_one()
+        return self.url_ids.filtered(
+            lambda s: (
+                s.lang_id.code == lang
+                and s.referential == referential
+                and not s.redirect
             )
+        )
 
     @api.model
-    def _prepare_url(self, url_key):
+    def _prepare_url(self, referential, lang, url_key):
         return {
-            "url_key": url_key,
+            "key": url_key,
             "redirect": False,
-            "model_id": get_model_ref(self),
+            "res_model": self._name,
+            "res_id": self.id,
+            "referential": referential,
+            "lang_id": self.env["res.lang"]._lang_get_id(lang),
+            "manual": False,
         }
 
     def _reuse_url(self, existing_url):
         # TODO add user notification in the futur SEO dashboard
-        existing_url.write({"model_id": get_model_ref(self), "redirect": False})
+        existing_url.write(
+            {
+                "res_model": self._name,
+                "res_id": self.id,
+                "redirect": False,
+            }
+        )
 
-    def set_url(self, url_key):
-        """Se a new url
-        backup old url
+    def _update_url_key(self, referential="global", lang=DEFAULT_LANG):
+        for record in self.with_context(lang=lang):
+            # TODO maybe we should have a computed field that flag the
+            # current url if the key used for building the url have changed
+            # so we can skip this check if nothing have changed
+            current_url = record._get_main_url(referential, lang)
+            if not current_url.manual:
+                # Updating an url is done for a specific context
+                # a lang and a referential
+                # if something have changed on the record the url_need_refresh
+                # is flagged.
+                # Before updating one specific url (referential + lang)
+                # the flag is propagated on all valid url
+                if record.url_need_refresh:
+                    record.url_ids.filtered(
+                        lambda s: not s.redirect and not s.manual
+                    ).write({"need_refresh": True})
+                if not current_url or current_url.need_refresh:
+                    current_url.need_refresh = False
+                    url_key = record._generate_url_key(referential, lang)
+                    # maybe some change have been done but the url is the same
+                    # so check it
+                    if current_url.key != url_key:
+                        current_url.redirect = True
+                        record._add_url(referential, lang, url_key)
+            record.url_need_refresh = False
 
-        1 find url redirect true and same model_id
-        if other model id refuse
-        2 if exists set to False
-
-        3 write the new one
-        """
+    def _add_url(self, referential, lang, url_key):
         self.ensure_one()
         existing_url = self.env["url.url"].search(
             [
-                ("url_key", "=", url_key),
-                ("backend_id", "=", get_model_ref(self.backend_id)),
-                ("lang_id", "=", self.lang_id.id),
+                ("referential", "=", referential),
+                ("lang_id.code", "=", lang),
+                ("key", "=", url_key),
             ]
         )
         if existing_url:
-            if self != existing_url.model_id:
-                if existing_url.redirect:
-                    self._reuse_url(existing_url)
-                else:
-                    raise UserError(
-                        _(
-                            "Url_key already exist in other model"
-                            "\n- name: %(model_name)s\n - id: %(model_id)s\n"
-                            "- url_key: %(url_key)s\n - url_key_id %(url_id)s"
-                        )
-                        % dict(
-                            model_name=existing_url.model_id.name,
-                            model_id=existing_url.model_id.id,
-                            url_key=existing_url.url_key,
-                            url_id=existing_url.id,
-                        )
-                    )
+            if existing_url.redirect:
+                self._reuse_url(existing_url)
             else:
-                existing_url.write({"redirect": False})
-        else:
-            # no existing key creating one if not empty
-            self.env["url.url"].create(self._prepare_url(url_key))
-        # other url of object set redirect to True
-        redirect_urls = self.env["url.url"].search(
-            [
-                ("model_id", "=", get_model_ref(self)),
-                ("url_key", "!=", url_key),
-                ("redirect", "=", False),
-            ]
-        )
-        redirect_urls.write({"redirect": True})
-        # we must explicitly invalidate the cache since there is no depends
-        # defined on this computed fields and this field could have already
-        # been loaded into the cache
-        self.invalidate_cache(fnames=["url_url_ids"], ids=self.ids)
+                raise UserError(
+                    _(
+                        "Url_key already exist in other model"
+                        "\n- name: %(model_name)s\n - id: %(model_id)s\n"
+                        "- url_key: %(url_key)s\n - url_key_id %(url_id)s"
+                    )
+                    % dict(
+                        model_name=existing_url.model_id.name,
+                        model_id=existing_url.model_id.id,
+                        url_key=existing_url.url_key,
+                        url_id=existing_url.id,
+                    )
+                )
 
-    def _redirect_existing_url(self):
+        else:
+            vals = self._prepare_url(referential, lang, url_key)
+            self.env["url.url"].create(vals)
+
+    def _redirect_existing_url(self, action):
         """
         This method is called when the record is deactivated to give a chance
         to the concrete model to implement a redirect strategy
+        action can be "archived" or "unlink"
         """
         return True
 
     def unlink(self):
         for record in self:
-            # TODO we should propose to redirect the old url
-            urls = record.env["url.url"].search(
-                [("model_id", "=", get_model_ref(record))]
-            )
-            urls.unlink()
-        self.flush()
-        return super(AbstractUrl, self).unlink()
+            record._redirect_existing_url("unlink")
+            # Remove dead url that have been not redirected
+            record.url_ids.unlink()
+        return super().unlink()
+
+    def write(self, vals):
+        res = super().write(vals)
+        if "active" in vals and not vals["active"]:
+            self._redirect_existing_url("archived")
+        return res
+
+    @api.model
+    def _get_view(self, view_id=None, view_type="form", **options):
+        arch, view = super()._get_view(view_id=view_id, view_type=view_type, **options)
+        button_box = arch.xpath("//div[@name='button_box']")
+        if button_box:
+            button_box[0].append(etree.fromstring(SMART_BUTTON))
+        return arch, view
+
+    def open_url(self):
+        self.ensure_one()
+        action = self.env.ref("shopinvader_base_url.base_url_action_view").read()[0]
+        action["domain"] = [("res_model", "=", self._name), ("res_id", "in", self.ids)]
+        action["context"] = {
+            "hide_res_model": True,
+            "hide_res_id": True,
+            "default_res_model": self._name,
+            "default_res_id": self.id,
+        }
+        return action

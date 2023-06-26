@@ -7,10 +7,15 @@
             <form string="Url rewriting edit form">
                 <sheet>
                     <group>
-                        <field name="backend_id" />
+                        <field name="referential" />
                         <field name="lang_id" />
-                        <field name="url_key" />
-                        <field name="model_id" />
+                        <field
+                            name="res_model"
+                            invisible="context.get('hide_res_model')"
+                        />
+                        <field name="key" />
+                        <field name="res_id" invisible="context.get('hide_res_id')" />
+                        <field name="manual" />
                         <field name="redirect" />
                     </group>
                 </sheet>
@@ -22,8 +27,12 @@
         <field name="model">url.url</field>
         <field name="arch" type="xml">
         <tree>
-            <field name="url_key" />
-            <field name="model_id" />
+            <field name="referential" />
+            <field name="lang_id" />
+            <field name="res_model" invisible="context.get('hide_res_model')" />
+            <field name="key" />
+            <field name="res_id" invisible="context.get('hide_res_id')" />
+            <field name="manual" />
             <field name="redirect" />
         </tree>
         </field>

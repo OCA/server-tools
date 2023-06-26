@@ -1,123 +1,123 @@
 # Copyright 2019 ACSONE SA/NV
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-import mock
+from unittest import mock
+
 from odoo_test_helper import FakeModelLoader
 
-from odoo.exceptions import ValidationError
-from odoo.tests import SavepointCase
+from odoo.tests import TransactionCase
 
 
-class TestAbstractUrl(SavepointCase, FakeModelLoader):
+class TestAbstractUrl(TransactionCase, FakeModelLoader):
     @classmethod
     def setUpClass(cls):
-        super(TestAbstractUrl, cls).setUpClass()
+        super().setUpClass()
         cls.loader = FakeModelLoader(cls.env, cls.__module__)
         cls.loader.backup_registry()
-        from .models import ResPartner, ResPartnerAddressableFake, UrlBackendFake
+        from .models import FakeCateg, FakeProduct
 
-        cls.loader.update_registry(
-            (UrlBackendFake, ResPartner, ResPartnerAddressableFake)
+        cls.loader.update_registry([FakeProduct, FakeCateg])
+
+        cls.lang_en = cls.env.ref("base.lang_en")
+        cls.lang_fr = cls.env.ref("base.lang_fr")
+        cls.lang_fr.active = True
+        cls.product = (
+            cls.env["fake.product"]
+            .with_context(lang="en_US")
+            .create({"name": "My Product"})
         )
+        cls.product.with_context(lang="fr_FR").name = "Mon Produit"
 
-        cls.lang = cls.env.ref("base.lang_en")
-        cls.UrlUrl = cls.env["url.url"]
-        cls.ResPartnerAddressable = cls.env["res.partner.addressable.fake"]
-        cls.url_backend = cls.env["url.backend.fake"].create({"name": "fake backend"})
-        cls.name = "partner name"
-        cls.auto_key = "partner-name"
+    def _expect_url_for_lang(self, lang, url_key):
+        self.assertEqual(self.product._get_main_url("global", lang).key, url_key)
 
     @classmethod
     def tearDownClass(cls):
         cls.loader.restore_registry()
-        super(TestAbstractUrl, cls).tearDownClass()
+        super().tearDownClass()
 
-    def _get_default_partner_value(self):
-        return {
-            "name": self.name,
-            "lang_id": self.lang.id,
-            "url_builder": "auto",
-            "backend_id": self.url_backend.id,
-        }
+    def test_update_url_key(self):
+        self.product._update_url_key("global", "en_US")
+        self._expect_url_for_lang("en_US", "my-product")
+        url = self.product.url_ids.filtered(lambda s: s.lang_id == self.lang_en)
+        self.assertEqual(len(url), 1)
+        self.assertFalse(url.manual)
+        self.assertFalse(url.redirect)
 
-    def _create_auto(self):
-        return self.ResPartnerAddressable.create(self._get_default_partner_value())
+    def test_update_url_2_lang(self):
+        self.product._update_url_key("global", "en_US")
+        self.product._update_url_key("global", "fr_FR")
+        self._expect_url_for_lang("en_US", "my-product")
+        self._expect_url_for_lang("fr_FR", "mon-produit")
+        self.assertEqual(len(self.product.url_ids), 2)
 
-    def _check_url_key(self, partner_addressable, key_name):
-        self.assertEqual(partner_addressable.url_key, key_name)
-        self.assertEqual(len(partner_addressable.url_url_ids), 1)
-        url_url = partner_addressable.url_url_ids
-        self.assertEqual(url_url.url_key, key_name)
-        self.assertEqual(url_url.lang_id, self.lang)
-        self.assertEqual(url_url.model_id, partner_addressable)
+        url = self.product.url_ids.filtered(lambda s: s.lang_id == self.lang_fr)
+        self.assertEqual(len(url), 1)
+        self.assertFalse(url.manual)
+        self.assertFalse(url.redirect)
 
-    def test_create_auto_url(self):
-        my_partner = self.ResPartnerAddressable.create(
-            self._get_default_partner_value()
-        )
-        self._check_url_key(my_partner, self.auto_key)
+    def test_update_no_translatable_field(self):
+        self.product._update_url_key("global", "en_US")
+        self.product._update_url_key("global", "fr_FR")
+        self.product.write({"code": "1234"})
+        self.product._update_url_key("global", "en_US")
+        self.product._update_url_key("global", "fr_FR")
+        self.assertEqual(len(self.product.url_ids), 4)
+        redirects = self.product._get_redirect_urls("global", "en_US")
+        self._expect_url_for_lang("en_US", "my-product-1234")
+        self.assertEqual(len(redirects), 1)
+        redirects = self.product._get_redirect_urls("global", "fr_FR")
+        self.assertEqual(len(redirects), 1)
+        self._expect_url_for_lang("fr_FR", "mon-produit-1234")
 
-    def test_create_manual_url_contrains(self):
-        value = self._get_default_partner_value()
-        value["url_builder"] = "manual"
-        with self.assertRaises(ValidationError):
-            self.ResPartnerAddressable.create(value)
-        value["manual_url_key"] = "my url key"
-        res = self.ResPartnerAddressable.create(value)
-        self.assertTrue(res)
+    def test_update_translatable_field(self):
+        self.product._update_url_key("global", "en_US")
+        self.product._update_url_key("global", "fr_FR")
+        self.product.name = "My Product With Redirect"
+        self.product._update_url_key("global", "en_US")
+        self.product._update_url_key("global", "fr_FR")
+        self.assertEqual(len(self.product.url_ids), 3)
+        redirects = self.product._get_redirect_urls("global", "en_US")
+        self._expect_url_for_lang("en_US", "my-product-with-redirect")
+        self.assertEqual(len(redirects), 1)
+
+    def test_update_product_never_generated(self):
+        self.product.name = "My product never had url generated"
+        self.product._update_url_key("global", "en_US")
+        self._expect_url_for_lang("en_US", "my-product-never-had-url-generated")
+        self.assertEqual(len(self.product.url_ids), 1)
+
+    def test_update_with_relation(self):
+        self.product._update_url_key("global", "en_US")
+        categ = self.env["fake.categ"].create({"name": "Foo"})
+        self.product.write({"categ_id": categ.id})
+        self.product._update_url_key("global", "en_US")
+        self.assertEqual(len(self.product.url_ids), 2)
+        redirects = self.product._get_redirect_urls("global", "en_US")
+        self.assertEqual(len(redirects), 1)
+        self._expect_url_for_lang("en_US", "foo-my-product")
 
     def test_create_manual_url(self):
-        value = self._get_default_partner_value()
-        manual_url_key = "manual-url key"
-        value.update({"url_builder": "manual", "manual_url_key": manual_url_key})
-        my_partner = self.ResPartnerAddressable.create(value)
-        self.assertTrue(my_partner)
-        self._check_url_key(my_partner, manual_url_key)
+        self.env["url.url"].create(
+            {
+                "manual": True,
+                "key": "my-custom-key",
+                "lang_id": self.lang_en.id,
+                "res_id": self.product.id,
+                "res_model": "fake.product",
+                "referential": "global",
+            }
+        )
+        self._expect_url_for_lang("en_US", "my-custom-key")
+        self.assertEqual(len(self.product.url_ids), 1)
 
-    def test_write_url_builder_constrains(self):
-        my_partner = self._create_auto()
-        with self.assertRaises(ValidationError):
-            my_partner.url_builder = "manual"
-        my_partner.write({"url_builder": "manual", "manual_url_key": "manual url key"})
-
-    def test_write_url_builder(self):
-        # tests that a new url is created we update the url builder
-        my_partner = self._create_auto()
-        self._check_url_key(my_partner, "partner-name")
-        manual_url_key = "manual-url key"
-        my_partner.write({"url_builder": "manual", "manual_url_key": manual_url_key})
-        url_keys = set(my_partner.mapped("url_url_ids.url_key"))
-        self.assertSetEqual(url_keys, {manual_url_key, self.auto_key})
-        # if we reset the auto key, no new url.url should be created
-        my_partner.write({"url_builder": "auto"})
-        self.assertEqual(2, len(my_partner.url_url_ids))
-        url_keys = set(my_partner.mapped("url_url_ids.url_key"))
-        self.assertSetEqual(url_keys, {manual_url_key, self.auto_key})
-
-    def test_write_launching_automatic_url_key(self):
-        my_partner = self._create_auto()
-        # call flush to force to apply the recompute
-        my_partner.flush()
-        my_partner.name = "my new name"
-        self.assertEqual(2, len(my_partner.url_url_ids))
-        url_keys = set(my_partner.mapped("url_url_ids.url_key"))
-        self.assertSetEqual(url_keys, {"my-new-name", self.auto_key})
-
-    def test_write_on_related_record_launching_automatic_url_key(self):
-        my_partner = self._create_auto()
-        # call flush to force to apply the recompute
-        my_partner.flush()
-        my_partner.record_id.name = "my new name"
-        self.assertEqual(2, len(my_partner.url_url_ids))
-        url_keys = set(my_partner.mapped("url_url_ids.url_key"))
-        self.assertSetEqual(url_keys, {"my-new-name", self.auto_key})
+        self.product.name = "My name have change but my url is the same"
+        self.product._update_url_key("global", "en_US")
+        self._expect_url_for_lang("en_US", "my-custom-key")
 
     def test_write_inactive(self):
-        my_partner = self._create_auto()
         # when we deactivate a record, the redirect method should be called
         with mock.patch.object(
-            self.ResPartnerAddressable.__class__, "_redirect_existing_url"
+            self.product.__class__, "_redirect_existing_url"
         ) as mocked_redirect:
-            my_partner.active = False
-            # call flush to force to apply the recompute
-            my_partner.flush()
+            self.product.active = False
             mocked_redirect.assert_called_once()

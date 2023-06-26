@@ -14,7 +14,11 @@
     # any module necessary for this one to work correctly
     "depends": ["base"],
     "external_dependencies": {"python": ["python-slugify"]},
-    "data": ["views/url_view.xml", "security/ir.model.access.csv"],
+    "data": [
+        "views/url_view.xml",
+        "security/res_groups.xml",
+        "security/ir.model.access.csv",
+    ],
     "url": "",
     "installable": True,
 }

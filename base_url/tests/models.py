@@ -1,34 +1,23 @@
 # Copyright 2019 ACSONE SA/NV
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-import logging
 
-from odoo import api, fields, models
-
-_logger = logging.getLogger(__name__)
+from odoo import fields, models
 
 
-class UrlBackendFake(models.Model):
-    _name = "url.backend.fake"
-    _description = "Url Backend"
+class FakeProduct(models.Model):
+    _inherit = ["abstract.url"]
+    _name = "fake.product"
 
-    name = fields.Char(required=True)
+    code = fields.Char()
+    name = fields.Char(translate=True)
+    active = fields.Boolean(default=True)
+    categ_id = fields.Many2one("fake.categ")
+
+    def _get_keyword_fields(self):
+        return ["categ_id.name"] + super()._get_keyword_fields() + ["code"]
 
 
-class ResPartner(models.Model):
-    _inherit = "res.partner"
+class FakeCateg(models.Model):
+    _name = "fake.categ"
 
-    binding_ids = fields.One2many("res.partner.addressable.fake", "record_id")
-
-
-class ResPartnerAddressableFake(models.Model):
-    _name = "res.partner.addressable.fake"
-    _inherit = "abstract.url"
-    _inherits = {"res.partner": "record_id"}
-    _description = "Fake partner addressable"
-
-    backend_id = fields.Many2one(comodel_name="url.backend.fake")
-    special_code = fields.Char()
-
-    @api.depends("lang_id", "special_code", "record_id.name")
-    def _compute_automatic_url_key(self):
-        self._generic_compute_automatic_url_key()
+    name = fields.Char()
