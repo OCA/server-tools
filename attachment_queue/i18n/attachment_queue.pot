@@ -325,7 +325,7 @@ msgstr ""
 
 #. module: attachment_queue
 #: model:ir.model.fields,help:attachment_queue.field_attachment_queue__message_needaction_counter
-msgid "Number of messages which requires an action"
+msgid "Number of messages requiring action"
 msgstr ""
 
 #. module: attachment_queue
