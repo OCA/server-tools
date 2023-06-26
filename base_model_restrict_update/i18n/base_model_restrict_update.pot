@@ -1,0 +1,94 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* base_model_restrict_update
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: base_model_restrict_update
+#: model:ir.model.fields,field_description:base_model_restrict_update.field_ir_model__display_name
+#: model:ir.model.fields,field_description:base_model_restrict_update.field_ir_model_access__display_name
+#: model:ir.model.fields,field_description:base_model_restrict_update.field_res_users__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: base_model_restrict_update
+#: model:ir.model.fields,field_description:base_model_restrict_update.field_ir_model__id
+#: model:ir.model.fields,field_description:base_model_restrict_update.field_ir_model_access__id
+#: model:ir.model.fields,field_description:base_model_restrict_update.field_res_users__id
+msgid "ID"
+msgstr ""
+
+#. module: base_model_restrict_update
+#: model:ir.model.fields,field_description:base_model_restrict_update.field_ir_model____last_update
+#: model:ir.model.fields,field_description:base_model_restrict_update.field_ir_model_access____last_update
+#: model:ir.model.fields,field_description:base_model_restrict_update.field_res_users____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: base_model_restrict_update
+#: model:ir.model,name:base_model_restrict_update.model_ir_model_access
+msgid "Model Access"
+msgstr ""
+
+#. module: base_model_restrict_update
+#: model:ir.model,name:base_model_restrict_update.model_ir_model
+msgid "Models"
+msgstr ""
+
+#. module: base_model_restrict_update
+#: model:ir.model.fields,field_description:base_model_restrict_update.field_res_users__is_readonly_user
+msgid "Ready User"
+msgstr ""
+
+#. module: base_model_restrict_update
+#: model:ir.model.fields,help:base_model_restrict_update.field_res_users__is_readonly_user
+msgid "Set to true and the user are readonly user on all models"
+msgstr ""
+
+#. module: base_model_restrict_update
+#: model:ir.model.fields,help:base_model_restrict_update.field_res_users__unrestrict_model_update
+msgid "Set to true and the user can update restricted model."
+msgstr ""
+
+#. module: base_model_restrict_update
+#: model:ir.model.fields,field_description:base_model_restrict_update.field_res_users__unrestrict_model_update
+msgid "Unrestrict Model Update"
+msgstr ""
+
+#. module: base_model_restrict_update
+#: model:ir.model.fields,field_description:base_model_restrict_update.field_ir_model__restrict_update
+msgid "Update Restrict Model"
+msgstr ""
+
+#. module: base_model_restrict_update
+#: model:ir.model,name:base_model_restrict_update.model_res_users
+msgid "Users"
+msgstr ""
+
+#. module: base_model_restrict_update
+#: model:ir.model.fields,help:base_model_restrict_update.field_ir_model__restrict_update
+msgid ""
+"When selected, the model is restricted to read-only unless the user has the "
+"special permission."
+msgstr ""
+
+#. module: base_model_restrict_update
+#: code:addons/base_model_restrict_update/models/ir_model_access.py:0
+#, python-format
+msgid "You are only allowed to read this record. (%s - %s)"
+msgstr ""
+
+#. module: base_model_restrict_update
+#: code:addons/base_model_restrict_update/models/res_users.py:0
+#, python-format
+msgid "You cannot set admin user as a readonly user."
+msgstr ""
