@@ -49,16 +49,15 @@ class FutureResponse:
         )
 
 
-_original_get_request = http.root.__class__.get_request
+_original_WebRequest_init = http.WebRequest.__init__
 
 
-def get_request(self, httprequest):
-    request = _original_get_request(self, httprequest)
-    request.future_response = FutureResponse()
-    return request
+def WebRequest_init(self, httprequest):
+    _original_WebRequest_init(self, httprequest)
+    self.future_response = FutureResponse()
 
 
-http.root.__class__.get_request = get_request
+http.WebRequest.__init__ = WebRequest_init
 
 
 _original_get_response = http.root.__class__.get_response
