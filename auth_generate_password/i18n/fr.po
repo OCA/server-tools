@@ -18,7 +18,7 @@ msgstr ""
 #. module: auth_generate_password
 #: model:email.template,body_html:auth_generate_password.generate_password_template
 msgid "\n"
-"Your OpenERP credentials has been changed:\n"
+"Your Odoo credentials has been changed:\n"
 "<ul>\n"
 "<li>Login : ${object.login}</li>\n"
 "<li>New Password : ${object.password}</li>\n"
@@ -30,7 +30,7 @@ msgid "\n"
 "</ul>\n"
 "            "
 msgstr "\n"
-"Vos identifiants OpenERP ont changés :\n"
+"Vos identifiants Odoo ont changés :\n"
 "<ul>\n"
 "<li>Login : ${object.login}</li>\n"
 "<li>Nouveau Mot de passe : ${object.password}</li>\n"
@@ -55,8 +55,8 @@ msgstr "Générer un mot de passe et envoyer un email"
 
 #. module: auth_generate_password
 #: model:email.template,subject:auth_generate_password.generate_password_template
-msgid "OpenERP - Password Changed"
-msgstr "OpenERP - Mot de passe changé"
+msgid "Odoo - Password Changed"
+msgstr "Odoo - Mot de passe changé"
 
 #. module: auth_generate_password
 #: code:_description:0
