@@ -164,9 +164,9 @@ class ChangesetFieldRule(models.Model):
             self.expression, {"object": record, "user": self.env.user}
         )
 
-    @api.model
-    def create(self, vals):
-        record = super().create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        record = super().create(vals_list)
         self.clear_caches()
         return record
 

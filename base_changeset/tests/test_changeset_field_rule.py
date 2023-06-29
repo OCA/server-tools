@@ -6,11 +6,12 @@ from odoo.tests import common
 
 
 class TestChangesetFieldRule(common.TransactionCase):
-    def setUp(self):
-        super().setUp()
-        self.company_model_id = self.env.ref("base.model_res_company").id
-        self.field_name = self.env.ref("base.field_res_partner__name")
-        self.field_street = self.env.ref("base.field_res_partner__street")
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.company_model_id = cls.env.ref("base.model_res_company").id
+        cls.field_name = cls.env.ref("base.field_res_partner__name")
+        cls.field_street = cls.env.ref("base.field_res_partner__street")
 
     def test_get_rules(self):
         ChangesetFieldRule = self.env["changeset.field.rule"]

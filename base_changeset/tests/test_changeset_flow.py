@@ -29,28 +29,30 @@ class TestChangesetFlow(ChangesetTestCommon, TransactionCase):
       becomes 'done'
     """
 
-    def _setup_rules(self):
-        ChangesetFieldRule = self.env["changeset.field.rule"]
+    @classmethod
+    def _setup_rules(cls):
+        ChangesetFieldRule = cls.env["changeset.field.rule"]
         ChangesetFieldRule.search([]).unlink()
-        self.field_name = self.env.ref("base.field_res_partner__name")
-        self.field_street = self.env.ref("base.field_res_partner__street")
-        self.field_street2 = self.env.ref("base.field_res_partner__street2")
-        ChangesetFieldRule.create({"field_id": self.field_name.id, "action": "auto"})
+        cls.field_name = cls.env.ref("base.field_res_partner__name")
+        cls.field_street = cls.env.ref("base.field_res_partner__street")
+        cls.field_street2 = cls.env.ref("base.field_res_partner__street2")
+        ChangesetFieldRule.create({"field_id": cls.field_name.id, "action": "auto"})
         ChangesetFieldRule.create(
-            {"field_id": self.field_street.id, "action": "validate"}
+            {"field_id": cls.field_street.id, "action": "validate"}
         )
         ChangesetFieldRule.create(
-            {"field_id": self.field_street2.id, "action": "never"}
+            {"field_id": cls.field_street2.id, "action": "never"}
         )
 
-    def setUp(self):
-        super().setUp()
-        self._setup_rules()
-        self.partner = self.env["res.partner"].create(
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls._setup_rules()
+        cls.partner = cls.env["res.partner"].create(
             {"name": "X", "street": "street X", "street2": "street2 X"}
         )
         # Add context for this test for compatibility with other modules' tests
-        self.partner = self.partner.with_context(test_record_changeset=True)
+        cls.partner = cls.partner.with_context(test_record_changeset=True)
 
     def test_new_changeset(self):
         """Add a new changeset on a partner
@@ -444,10 +446,10 @@ class TestChangesetFlow(ChangesetTestCommon, TransactionCase):
             ]
         ).expression = "object.street != 'street X'"
         self.partner.street = "street Y"
-        self.partner.refresh()
+        self.partner.invalidate_recordset()
         self.assertEqual(self.partner.street, "street Y")
         self.assertFalse(self.partner.changeset_ids)
         self.partner.street = "street Z"
-        self.partner.refresh()
+        self.partner.invalidate_recordset()
         self.assertTrue(self.partner.changeset_ids)
         self.assertEqual(self.partner.street, "street Y")

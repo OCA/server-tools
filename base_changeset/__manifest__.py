@@ -25,8 +25,8 @@
         "web.assets_backend": [
             "base_changeset/static/src/js/backend.js",
             "base_changeset/static/src/scss/backend.scss",
+            "base_changeset/static/src/xml/backend.xml",
         ],
-        "web.assets_qweb": ["base_changeset/static/src/xml/backend.xml"],
     },
     "demo": ["demo/changeset_field_rule.xml"],
     "installable": True,
