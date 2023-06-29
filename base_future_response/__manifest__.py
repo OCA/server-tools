@@ -5,7 +5,7 @@
     "name": "Future Response",
     "summary": """
         Backport Odoo 16 FutureReponse mechanism.""",
-    "version": "14.0.1.0.1",
+    "version": "14.0.1.0.2",
     "license": "LGPL-3",
     "author": "ACSONE SA/NV,Odoo Community Association (OCA)",
     "maintainers": ["sbidoul"],
