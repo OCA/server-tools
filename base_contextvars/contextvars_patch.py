@@ -16,7 +16,7 @@ _odoo_environments_ctx = ContextVar("odoo.environments", default=())
 @classproperty
 def contextvars_envs(_cls):
     # Look in _local in case we use this while the non patched context manager is active
-    return getattr(_cls._local, "environments", ()) or _odoo_environments_ctx.get()
+    return _odoo_environments_ctx.get() or getattr(_cls._local, "environments", ())
 
 
 @classmethod  # type: ignore
@@ -44,10 +44,11 @@ def contextvars_reset(_cls):
     """Clear the set of environments.
     This may be useful when recreating a registry inside a transaction.
     """
-    if hasattr(_cls._local, "environments"):
-        _cls._local.environments = Environments()
-    if _odoo_environments_ctx.get():
-        _odoo_environments_ctx.set(Environments())
+    envs = Environments()
+    if getattr(_cls._local, "environments", ()):
+        # In case the non patched context manager is active.
+        _cls._local.environments = envs
+    _odoo_environments_ctx.set(envs)
 
 
 Environment.envs = contextvars_envs
