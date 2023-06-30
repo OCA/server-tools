@@ -5,7 +5,7 @@
     "name": "Contextvars Patch",
     "summary": """
         Patch Odoo threadlocals to use contextvars instead.""",
-    "version": "14.0.1.0.3",
+    "version": "14.0.1.0.4",
     "license": "LGPL-3",
     "author": "ACSONE SA/NV,Odoo Community Association (OCA)",
     "maintainers": ["sbidoul"],
