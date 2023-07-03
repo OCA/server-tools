@@ -46,8 +46,11 @@ class TestChangesetFlow(ChangesetTestCommon, TransactionCase):
     def setUp(self):
         super().setUp()
         self._setup_rules()
-        self.partner = self.env["res.partner"].create(
-            {"name": "X", "street": "street X", "street2": "street2 X"}
+        self.demo_user = self.env.ref("base.user_demo")
+        self.partner = (
+            self.env["res.partner"]
+            .with_user(self.demo_user)
+            .create({"name": "X", "street": "street X", "street2": "street2 X"})
         )
         # Add context for this test for compatibility with other modules' tests
         self.partner = self.partner.with_context(test_record_changeset=True)
@@ -64,7 +67,7 @@ class TestChangesetFlow(ChangesetTestCommon, TransactionCase):
         self.assertEqual(self.partner.count_pending_changeset_changes, 1)
         self.assert_changeset(
             self.partner,
-            self.env.user,
+            self.demo_user,
             [
                 (self.field_name, "X", "Y", "done"),
                 (self.field_street, "street X", "street Y", "draft"),
@@ -140,7 +143,7 @@ class TestChangesetFlow(ChangesetTestCommon, TransactionCase):
         self.assertEqual(self.partner.count_pending_changesets, 1)
         self.assert_changeset(
             self.partner,
-            self.env.user,
+            self.demo_user,
             [(self.field_street, "street X", False, "draft")],
         )
 
@@ -197,9 +200,9 @@ class TestChangesetFlow(ChangesetTestCommon, TransactionCase):
         self.assertEqual(self.partner.street, "street X")
         self.assertEqual(self.partner.changeset_ids.change_ids.state, "draft")
 
-        user = self.env.ref("base.user_demo")
-        user.groups_id += self.env.ref("base_changeset.group_changeset_user")
-        self.partner.changeset_ids.change_ids.with_user(user).apply()
+        other_demo_user = self.demo_user.copy()
+        other_demo_user.groups_id += self.env.ref("base_changeset.group_changeset_user")
+        self.partner.changeset_ids.change_ids.with_user(other_demo_user).apply()
         self.partner._compute_changeset_ids()
         self.partner._compute_count_pending_changesets()
         self.assertEqual(self.partner.count_pending_changesets, 0)
@@ -406,7 +409,7 @@ class TestChangesetFlow(ChangesetTestCommon, TransactionCase):
         self.partner.write({"street": False})
         self.partner._compute_changeset_ids()
         changeset = self.partner.changeset_ids
-        self.assertEqual(changeset.source, self.env.user)
+        self.assertEqual(changeset.source, self.demo_user)
 
     def test_new_changeset_source_other_model(self):
         """Define source from another model"""
