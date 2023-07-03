@@ -77,6 +77,11 @@ class TestChangesetFlow(ChangesetTestCommon, TransactionCase):
         self.assertEqual(self.partner.name, "Y")
         self.assertEqual(self.partner.street, "street X")
         self.assertEqual(self.partner.street2, "street2 X")
+        # Pending Changes widget can be rendered for the unprivileged user
+        self.env["record.changeset.change"].invalidate_cache()
+        self.env["record.changeset.change"].with_user(
+            self.demo_user
+        ).get_fields_changeset_changes(self.partner._name, self.partner.id)
 
     def test_create_new_changeset(self):
         """Create a new partner with a changeset"""

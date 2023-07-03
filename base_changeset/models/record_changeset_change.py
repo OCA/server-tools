@@ -188,7 +188,7 @@ class RecordChangesetChange(models.Model):
     @api.model
     def get_field_for_type(self, field, prefix):
         assert prefix in ("origin", "old", "new")
-        field_type = self._type_to_suffix.get(field.ttype)
+        field_type = self._type_to_suffix.get(field.sudo().ttype)
         if not field_type:
             raise NotImplementedError("field type %s is not supported" % field_type)
         return "{}_value_{}".format(prefix, field_type)
