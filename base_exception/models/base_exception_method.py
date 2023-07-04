@@ -39,27 +39,31 @@ class BaseExceptionMethod(models.AbstractModel):
         """List all exception_ids applied on self
         Exception ids are also written on records
         """
-        rules = self.env["exception.rule"].sudo().search(self._rule_domain())
+        rules_info = (
+            self.env["exception.rule"]
+            .sudo()
+            ._get_rules_info_for_domain(self._rule_domain())
+        )
         all_exception_ids = []
         rules_to_remove = {}
         rules_to_add = {}
-        for rule in rules:
+        for rule_info in rules_info:
             main_records = self._get_main_records()
             records_with_rule_in_exceptions = main_records.filtered(
-                lambda r, rule_id=rule.id: rule_id in r.exception_ids.ids
+                lambda r, rule_id=rule_info.id: rule_id in r.exception_ids.ids
             )
-            records_with_exception = self._detect_exceptions(rule)
+            records_with_exception = self._detect_exceptions(rule_info)
             to_remove = records_with_rule_in_exceptions - records_with_exception
             to_add = records_with_exception - records_with_rule_in_exceptions
             # we expect to always work on the same model type
-            if rule.id not in rules_to_remove:
-                rules_to_remove[rule.id] = main_records.browse()
-            rules_to_remove[rule.id] |= to_remove
-            if rule.id not in rules_to_add:
-                rules_to_add[rule.id] = main_records.browse()
-            rules_to_add[rule.id] |= to_add
+            if rule_info.id not in rules_to_remove:
+                rules_to_remove[rule_info.id] = main_records.browse()
+            rules_to_remove[rule_info.id] |= to_remove
+            if rule_info.id not in rules_to_add:
+                rules_to_add[rule_info.id] = main_records.browse()
+            rules_to_add[rule_info.id] |= to_add
             if records_with_exception:
-                all_exception_ids.append(rule.id)
+                all_exception_ids.append(rule_info.id)
         # Cumulate all the records to attach to the rule
         # before linking. We don't want to call "rule.write()"
         # which would:
@@ -88,8 +92,8 @@ class BaseExceptionMethod(models.AbstractModel):
         }
 
     @api.model
-    def _rule_eval(self, rule, rec):
-        expr = rule.code
+    def _rule_eval(self, rule_info, rec):
+        expr = rule_info.code
         space = self._exception_rule_eval_context(rec)
         try:
             safe_eval(
@@ -102,22 +106,22 @@ class BaseExceptionMethod(models.AbstractModel):
                     "Error when evaluating the exception.rule"
                     " rule:\n %(rule_name)s \n(%(error)s)"
                 )
-                % {"rule_name": rule.name, "error": e}
+                % {"rule_name": rule_info.name, "error": e}
             ) from e
         return space.get("failed", False)
 
-    def _detect_exceptions(self, rule):
-        if rule.exception_type == "by_py_code":
-            return self._detect_exceptions_by_py_code(rule)
-        elif rule.exception_type == "by_domain":
-            return self._detect_exceptions_by_domain(rule)
-        elif rule.exception_type == "by_method":
-            return self._detect_exceptions_by_method(rule)
+    def _detect_exceptions(self, rule_info):
+        if rule_info.exception_type == "by_py_code":
+            return self._detect_exceptions_by_py_code(rule_info)
+        elif rule_info.exception_type == "by_domain":
+            return self._detect_exceptions_by_domain(rule_info)
+        elif rule_info.exception_type == "by_method":
+            return self._detect_exceptions_by_method(rule_info)
 
     def _get_base_domain(self):
         return [("ignore_exception", "=", False), ("id", "in", self.ids)]
 
-    def _detect_exceptions_by_py_code(self, rule):
+    def _detect_exceptions_by_py_code(self, rule_info):
         """
         Find exceptions found on self.
         """
@@ -125,23 +129,23 @@ class BaseExceptionMethod(models.AbstractModel):
         records = self.search(domain)
         records_with_exception = self.env[self._name]
         for record in records:
-            if self._rule_eval(rule, record):
+            if self._rule_eval(rule_info, record):
                 records_with_exception |= record
         return records_with_exception
 
-    def _detect_exceptions_by_domain(self, rule):
+    def _detect_exceptions_by_domain(self, rule_info):
         """
         Find exceptions found on self.
         """
         base_domain = self._get_base_domain()
-        rule_domain = rule._get_domain()
+        rule_domain = rule_info.domain
         domain = expression.AND([base_domain, rule_domain])
         return self.search(domain)
 
-    def _detect_exceptions_by_method(self, rule):
+    def _detect_exceptions_by_method(self, rule_info):
         """
         Find exceptions found on self.
         """
         base_domain = self._get_base_domain()
         records = self.search(base_domain)
-        return getattr(records, rule.method)()
+        return getattr(records, rule_info.method)()
