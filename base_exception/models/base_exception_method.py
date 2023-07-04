@@ -28,9 +28,6 @@ class BaseExceptionMethod(models.AbstractModel):
         """
         return self
 
-    def _reverse_field(self):
-        raise NotImplementedError()
-
     def _rule_domain(self):
         """Filter exception.rules.
         By default, only the rules with the correct model
@@ -47,12 +44,13 @@ class BaseExceptionMethod(models.AbstractModel):
         rules_to_remove = {}
         rules_to_add = {}
         for rule in rules:
-            records_with_exception = self._detect_exceptions(rule)
-            reverse_field = self._reverse_field()
             main_records = self._get_main_records()
-            commons = main_records & rule[reverse_field]
-            to_remove = commons - records_with_exception
-            to_add = records_with_exception - commons
+            records_with_rule_in_exceptions = main_records.filtered(
+                lambda r, rule_id=rule.id: rule_id in r.exception_ids.ids
+            )
+            records_with_exception = self._detect_exceptions(rule)
+            to_remove = records_with_rule_in_exceptions - records_with_exception
+            to_add = records_with_exception - records_with_rule_in_exceptions
             # we expect to always work on the same model type
             if rule.id not in rules_to_remove:
                 rules_to_remove[rule.id] = main_records.browse()

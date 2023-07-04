@@ -69,9 +69,6 @@ class PurchaseTest(models.Model):
     def button_cancel(self):
         self.write({"state": "cancel"})
 
-    def _reverse_field(self):
-        return "test_purchase_ids"
-
     def exception_method_no_zip(self):
         records_fail = self.env["base.exception.test.purchase"]
         for rec in self:
