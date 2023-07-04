@@ -7,7 +7,7 @@
 
 import logging
 
-from odoo import _, api, fields, models
+from odoo import _, api, fields, models, tools
 from odoo.exceptions import ValidationError
 from odoo.tools.safe_eval import safe_eval
 
@@ -70,3 +70,69 @@ class ExceptionRule(models.Model):
         """override me to customize domains according exceptions cases"""
         self.ensure_one()
         return safe_eval(self.domain)
+
+    def _get_rules_info_for_domain(self, domain):
+        """returns the rules that match the domain
+
+        This method will call _get_cached_rules_for_domain to get the rules
+        that match the domain. This is required to transform the domain
+        into a tuple to be used as a key in the cache.
+        """
+        return self._get_cached_rules_for_domain(tuple(domain))
+
+    @api.model
+    @tools.ormcache_context("domain", keys=("lang",))
+    def _get_cached_rules_for_domain(self, domain):
+        """This method is used to get the rules that match the domain.
+
+        The result is cached to avoid to have to loockup the database every
+        time the method is called for rules that never change.
+
+        Recordset are transformed into a dict and then into an object that have
+        the same attributes as the exception.rule model. If you need to add
+        new attributes to the exception.rule model, you need to add them to
+        the dict returned by _to_cache_entry method.
+        """
+        return [
+            type("RuleInfo", (), r._to_cache_entry()) for r in self.search(list(domain))
+        ]
+
+    def _to_cache_entry(self):
+        """
+        This method is used to extract information from the rule to be put
+        in cache. It's used by _get_cached_rules_for_domain to avoid to put
+        the recordset in cache. The goal is to avoid to have to loockup
+        the database to get the information required to apply the rule
+        each time the rule is applied.
+        """
+        self.ensure_one()
+        return {
+            "id": self.id,
+            "name": self.name,
+            "description": self.description,
+            "sequence": self.sequence,
+            "model": self.model,
+            "exception_type": self.exception_type,
+            "domain": self._get_domain()
+            if self.exception_type == "by_domain"
+            else None,
+            "method": self.method,
+            "code": self.code,
+            "is_blocking": self.is_blocking,
+        }
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        res = super().create(vals_list)
+        self._get_cached_rules_for_domain.clear_cache(self)
+        return res
+
+    def write(self, vals):
+        res = super().write(vals)
+        self._get_cached_rules_for_domain.clear_cache(self)
+        return res
+
+    def unlink(self):
+        res = super().unlink()
+        self._get_cached_rules_for_domain.clear_cache(self)
+        return res
