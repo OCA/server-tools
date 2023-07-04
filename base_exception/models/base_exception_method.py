@@ -119,14 +119,14 @@ class BaseExceptionMethod(models.AbstractModel):
             return self._detect_exceptions_by_method(rule_info)
 
     def _get_base_domain(self):
-        return [("ignore_exception", "=", False), ("id", "in", self.ids)]
+        return [("ignore_exception", "=", False)]
 
     def _detect_exceptions_by_py_code(self, rule_info):
         """
         Find exceptions found on self.
         """
         domain = self._get_base_domain()
-        records = self.search(domain)
+        records = self.filtered_domain(domain)
         records_with_exception = self.env[self._name]
         for record in records:
             if self._rule_eval(rule_info, record):
@@ -140,12 +140,12 @@ class BaseExceptionMethod(models.AbstractModel):
         base_domain = self._get_base_domain()
         rule_domain = rule_info.domain
         domain = expression.AND([base_domain, rule_domain])
-        return self.search(domain)
+        return self.filtered_domain(domain)
 
     def _detect_exceptions_by_method(self, rule_info):
         """
         Find exceptions found on self.
         """
         base_domain = self._get_base_domain()
-        records = self.search(base_domain)
+        records = self.filtered_domain(base_domain)
         return getattr(records, rule_info.method)()
