@@ -23,7 +23,7 @@ JSONifier
     :target: https://runbot.odoo-community.org/runbot/149/16.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 This module adds a 'jsonify' method to every model of the ORM.
 It works on the current recordset and requires a single argument 'parser'
