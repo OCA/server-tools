@@ -1,0 +1,34 @@
+{
+  "contact": [
+    {
+      "phone": "(870)-931-0505",
+      "email": "max.ryne@example.com",
+      "city": "Finton",
+      "country_id": 223,
+      "name": "Max Ryne",
+      "street": "4311 Owagner Lane",
+      "street2": "Redmond",
+      "zip": "98052"
+    },
+    {
+      "phone": "(870)-935-0505",
+      "email": "emanuel@example.com",
+      "city": "Miami",
+      "country_id": 223,
+      "name": "Emanuel Nguyen",
+      "street": "3853 Rinehart Road",
+      "street2": "",
+      "zip": "33128"
+    },
+    {
+      "phone": "(870)-856-4586",
+      "email": "emanuel@example.com",
+      "city": "Miami",
+      "country_id": 223,
+      "name": "Emanuel Nguyen",
+      "street": "3853 Rinehart Road",
+      "street2": "",
+      "zip": "33128"
+    }
+  ]
+}
