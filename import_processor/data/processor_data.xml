@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+      <record id="import_processor_chunk_csv_type" model="import.processor">
+          <field name="name">Import Res Partner (CSV with chunk size)</field>
+          <field name="model_id" ref="base.model_res_partner" />
+          <field name="active" eval="1" />
+          <field name="file_type">csv</field>
+          <field name="chunk_size">2</field>
+          <field name="preprocessor">
+# Regex Email Validation
+regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@][a-zA-Z]+[.][a-zA-Z]{2,3}$'
+          </field>
+          <field name="processor">
+if entry:
+  for record in entry:
+    check_email = record.get("email")
+    if re.search(regex,check_email):
+      search_record = model.search([('email','=',check_email)])
+      fields_list = ["name","email","phone","street","street2", "zip", "city"]
+      if search_record:
+        search_record.update({key: value for key, value in record.items() if key in fields_list})
+      else:
+        rec = model.create({key: value for key, value in record.items() if key in fields_list})
+        records |= rec
+          </field>
+          <field name="postprocessor">
+for record in records:
+  if not record.function:
+    record.update({"function":"Sales Executive"})
+          </field>
+      </record>
+      <record id="import_processor_xml_type" model="import.processor">
+          <field name="name">Import Res Partner (XML)</field>
+          <field name="model_id" ref="base.model_res_partner" />
+          <field name="active" eval="1" />
+          <field name="file_type">xml</field>
+          <field name="xml_path_entry">//Customer</field>
+          <field name="preprocessor">
+# Regex Email Validation
+regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@][a-zA-Z]+[.][a-zA-Z]{2,3}$'
+          </field>
+          <field name="processor">
+# Converts XML file to Dictionary
+def xml_to_dict(xml_element):
+  result = {}
+  for child in xml_element:
+    if len(child) == 0:
+      result[child.tag] = child.text
+    else:
+      result[child.tag] = xml_to_dict(child)
+  return result
+
+if entry:
+  entry = xml_to_dict(entry)
+  check_email = entry.get("email")
+  if re.search(regex,check_email):
+    search_record = model.search([('email','=',check_email)])
+    fields_list = ["name","email","phone","street","street2", "zip", "city"]
+    if search_record:
+      search_record.update({key: value for key, value in entry.items() if key in fields_list})
+    else:
+      rec = model.create({key: value for key, value in entry.items() if key in fields_list})
+      records |= rec
+          </field>
+          <field name="postprocessor">
+for record in records:
+  if not record.function:
+    record.update({"function":"Sales Executive"})
+          </field>
+      </record>
+      <record id="import_processor_json_type" model="import.processor">
+          <field name="name">Import Res Partner (JSON)</field>
+          <field name="model_id" ref="base.model_res_partner" />
+          <field name="active" eval="1" />
+          <field name="file_type">json</field>
+          <field name="json_path_entry">'contact'</field>
+          <field name="preprocessor">
+# Regex Email Validation
+regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@][a-zA-Z]+[.][a-zA-Z]{2,3}$'
+          </field>
+          <field name="processor">
+if entry:
+  for contacts in entry:
+    check_email = contacts.get("email")
+    if re.search(regex,check_email):
+      search_record = model.search([('email','=',check_email)])
+      fields_list = ["name","email","phone","street","street2", "zip", "city"]
+      if search_record:
+        search_record.update({key: value for key, value in contacts.items() if key in fields_list})
+      else:
+        rec = model.create({key: value for key, value in contacts.items() if key in fields_list})
+        records |= rec
+          </field>
+          <field name="postprocessor">
+for record in records:
+  if not record.function:
+    record.update({"function":"Sales Executive"})
+          </field>
+      </record>
+</odoo>

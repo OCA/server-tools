@@ -6,7 +6,7 @@
     "summary": "Generic import processor",
     "license": "AGPL-3",
     "version": "15.0.1.0.0",
-    "website": "https://www.initos.com",
+    "website": "https://github.com/OCA/server-tools",
     "application": True,
     "author": "initOS GmbH",
     "category": "Tools",
@@ -18,6 +18,9 @@
         "security/ir.model.access.csv",
         "views/import_processor_views.xml",
         "wizards/import_processor_wizard_views.xml",
+    ],
+    "demo": [
+        "data/processor_data.xml",
     ],
     "assets": {
         "web.assets_backend": [
