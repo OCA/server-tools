@@ -66,7 +66,7 @@ class IrAttachment(models.Model):
     def unlink(self):
         res_models = list(set(self.filtered("res_model").mapped("res_model")))
         if res_models:
-            models = self.env["ir.model"].search([("model", "in", res_models)])
+            models = self.env["ir.model"].sudo().search([("model", "in", res_models)])
             name2models = {m.model: m for m in models}
             for rec in self:
                 if rec.res_model:
