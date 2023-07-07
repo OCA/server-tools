@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     "name": "Restrict Deletion of Attachments",
-    "version": "14.0.1.0.1",
+    "version": "16.0.1.0.0",
     "depends": [
         "base",
         "base_setup",
@@ -16,7 +16,7 @@
         "views/ir_model_views.xml",
         "views/res_groups_views.xml",
         "views/res_users_views.xml",
-        "views/res_config_view.xml",
+        "views/res_config_setting_views.xml",
     ],
     "installable": True,
 }
