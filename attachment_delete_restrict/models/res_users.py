@@ -9,8 +9,9 @@ class ResUsers(models.Model):
 
     delete_attachment_model_ids = fields.Many2many(
         "ir.model",
+        relation="delete_attachment_user_rel",
         string="Attachment Deletion Models",
         help="The user can delete the attachments related to the models "
-        "assigned here. In general settings, 'Restrict Delete "
-        "Attachment' must be set as 'custom' to activate this setting.",
+        "assigned here. Restrict Attachment Deletion must be"
+        "'Custom' or 'Owner + Custom' for the model to be selected here.",
     )
