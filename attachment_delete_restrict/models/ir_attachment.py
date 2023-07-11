@@ -42,7 +42,7 @@ class IrAttachment(models.Model):
             or self.user_has_groups("base.group_system")
         ):
             return self._raise_delete_attachment_error(
-                self.create_uid + self.env.ref("base.group_system").users
+                self.create_uid | self.env.ref("base.group_system").users
             )
 
     def _check_custom_delete_attachment(self, model=None, allow_owner_and_admin=False):
@@ -59,7 +59,7 @@ class IrAttachment(models.Model):
         if allow_owner_and_admin:
             users += self.create_uid
             groups += self.env.ref("base.group_system")
-        allowed_users = groups.users + users
+        allowed_users = groups.users | users
         if self.env.user not in allowed_users:
             return self._raise_delete_attachment_error(allowed_users)
 

@@ -13,8 +13,8 @@
                     <group>
                         <field
                             name="delete_attachment_model_ids"
-                            domain="[('restrict_delete_attachment', '=', 'none')]"
-                            nolabel="1"
+                            domain="[('restrict_delete_attachment', 'in', ['custom', 'owner_custom'])]"
+                            widget="many2many_tags"
                         />
                     </group>
                 </page>
