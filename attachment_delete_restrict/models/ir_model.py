@@ -42,3 +42,8 @@ class IrModel(models.Model):
         help="The users selected here can delete the attachments related to this "
         "model.",
     )
+
+    def _onchange_restrict_delete_attachment(self):
+        if self.restrict_delete_attachment not in ["custom", "owner_custom"]:
+            self.delete_attachment_group_ids = False
+            self.delete_attachment_user_ids = False
