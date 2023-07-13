@@ -6,51 +6,53 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2023-07-13 10:10+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: model_read_only
 #: model:ir.model,name:model_read_only.model_base
 msgid "Base"
-msgstr ""
+msgstr "Base"
 
 #. module: model_read_only
 #: model:ir.model.fields,field_description:model_read_only.field_ir_model__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: model_read_only
 #: model:ir.model.fields,field_description:model_read_only.field_ir_model__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: model_read_only
 #: model:ir.model.fields,field_description:model_read_only.field_ir_model____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: model_read_only
 #: model:ir.model,name:model_read_only.model_ir_model
 msgid "Models"
-msgstr ""
+msgstr "Modelli"
 
 #. module: model_read_only
 #: model:ir.model.fields,field_description:model_read_only.field_ir_model__readonly_group_ids
 msgid "Readonly Group"
-msgstr ""
+msgstr "Gruppi sola lettura"
 
 #. module: model_read_only
 #: model:ir.model.fields,field_description:model_read_only.field_ir_model__smart_search
 msgid "Smart Search"
-msgstr ""
+msgstr "Ricerca intelligente"
 
 #. module: model_read_only
 #: code:addons/model_read_only/models/models.py:0
 #, python-format
 msgid "You are not allowed to modify this record."
-msgstr ""
+msgstr "Non hai i permessi per modificare questo record."
