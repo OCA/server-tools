@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_translation_tree" model="ir.ui.view">
+        <field name="name">ir.translation.tree - base_translation_field_label</field>
+        <field name="model">ir.translation</field>
+        <field name="inherit_id" ref="base.view_translation_tree" />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="field_label" />
+            </field>
+            <field name="name" position="attributes">
+                <attribute name="optional">hide</attribute>
+            </field>
+        </field>
+    </record>
+</odoo>
