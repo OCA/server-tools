@@ -22,13 +22,6 @@
             "base_fontawesome/static/src/js/form_renderer.js",
             "base_fontawesome/static/src/js/list_renderer.js",
         ],
-        "web.assets_frontend": [
-            (
-                "replace",
-                "web/static/src/libs/fontawesome/css/font-awesome.css",
-                "base_fontawesome/static/src/css/fontawesome.css",
-            ),
-        ],
         "web.report_assets_common": [
             (
                 "replace",
