@@ -81,6 +81,8 @@ def patch_name_search():
             name_get_uid=name_get_uid,
         )
         if name and _get_use_smart_name_search(self.sudo()) and operator in ALLOWED_OPS:
+            # _name_search.origin is a query, we need to convert it to a list
+            res = self.browse(res).ids
             limit = limit or 0
 
             # we add domain
@@ -104,7 +106,7 @@ def patch_name_search():
             # Try unordered word search on each of the search fields
             # we only perform this search if we have at least one
             # separator character
-            # also, if have raise the limit we skeep this iteration
+            # also, if we have raised the limit we skip this iteration
             if " " in name and len(res) < limit:
                 domain = []
                 for word in name.split():
@@ -210,7 +212,7 @@ class IrModel(models.Model):
             if len(rec.name_search_ids) > 4:
                 msgs.append(
                     "You have selected more than 4 fields for smart search, "
-                    "fewerer fields is recommended"
+                    "fewer fields is recommended"
                 )
             if any(x.translate for x in rec.name_search_ids):
                 msgs.append(
@@ -233,13 +235,18 @@ class IrModel(models.Model):
     @api.constrains("name_search_domain")
     def check_name_search_domain(self):
         for rec in self.filtered("name_search_domain"):
-            name_search_domain = False
             try:
                 name_search_domain = literal_eval(rec.name_search_domain)
-            except Exception as error:
+            except (
+                ValueError,
+                TypeError,
+                SyntaxError,
+                MemoryError,
+                RecursionError,
+            ) as e:
                 raise ValidationError(
-                    _("Couldn't eval Name Search Domain (%s)") % error
-                )
+                    _("Couldn't eval Name Search Domain (%s)") % e
+                ) from e
             if not isinstance(name_search_domain, list):
                 raise ValidationError(_("Name Search Domain must be a list of tuples"))
 
