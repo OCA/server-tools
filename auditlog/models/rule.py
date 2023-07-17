@@ -225,16 +225,22 @@ class AuditlogRule(models.Model):
 
     @api.model_create_multi
     def create(self, vals_list):
-        """Update the registry when a new rule is created."""
+        """Update the registry when a new rule is created.  Where relevant the
+        subscribe() method is called as this also creates a shortcut to the view
+        of the results of the rule.
+        """
         for vals in vals_list:
             if "model_id" not in vals or not vals["model_id"]:
                 raise UserError(_("No model defined to create line."))
             model = self.env["ir.model"].sudo().browse(vals["model_id"])
             vals.update({"model_name": model.name, "model_model": model.model})
         new_records = super().create(vals_list)
-        updated = [record._register_hook() for record in new_records]
-        if any(updated):
-            modules.registry.Registry(self.env.cr.dbname).signal_changes()
+        if not self.env.context.get("install_module"):
+            updated = [record._register_hook() for record in new_records]
+            if any(updated):
+                modules.registry.Registry(self.env.cr.dbname).signal_changes()
+        for new_record in new_records.filtered(lambda rec: rec.state == "subscribed"):
+            new_record.subscribe()
         return new_records
 
     def write(self, vals):
@@ -245,7 +251,7 @@ class AuditlogRule(models.Model):
             model = self.env["ir.model"].sudo().browse(vals["model_id"])
             vals.update({"model_name": model.name, "model_model": model.model})
         res = super().write(vals)
-        if self._register_hook():
+        if not self.env.context.get("install_module") and self._register_hook():
             modules.registry.Registry(self.env.cr.dbname).signal_changes()
         return res
 
@@ -691,6 +697,8 @@ class AuditlogRule(models.Model):
         """
         act_window_model = self.env["ir.actions.act_window"]
         for rule in self:
+            if rule.state == "subscribed" and rule.action_id:
+                continue
             # Create a shortcut to view logs
             domain = "[('model_id', '=', %s), ('res_id', '=', active_id)]" % (
                 rule.model_id.id
