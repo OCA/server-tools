@@ -32,4 +32,4 @@ class ImportProcessor(models.Model):
 
     def _post_process(self, process_uuid, localdict):
         if not self.async_processing:
-            super()._post_process(process_uuid, localdict)
+            return super()._post_process(process_uuid, localdict)

@@ -8,7 +8,7 @@
     "version": "15.0.1.0.0",
     "website": "https://github.com/OCA/server-tools",
     "application": True,
-    "author": "initOS GmbH",
+    "author": "initOS GmbH, Odoo Community Association (OCA)",
     "category": "Tools",
     "depends": [
         "base",

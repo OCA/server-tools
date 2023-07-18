@@ -9,8 +9,8 @@ class ImportProcessorTest(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.import_processor_csv_chunk = cls.env.ref(
-            "import_processor.import_processor_chunk_csv_type"
+        cls.import_processor_csv = cls.env.ref(
+            "import_processor.import_processor_csv_type"
         )
         cls.import_processor_xml = cls.env.ref(
             "import_processor.import_processor_xml_type"
@@ -27,7 +27,12 @@ class ImportProcessorTest(TransactionCase):
 
     def test_check_import_processor_csv_is_active(self):
         """Test whether a Import Processor record is active or not"""
-        self.assertTrue(self.import_processor_csv_chunk.active)
+        self.assertTrue(self.import_processor_csv.active)
+
+    def test_misc(self):
+        """Test functions to check if there are error raising"""
+        self.import_processor_xml._get_default_code()
+        self.import_processor_xml._compute_help_text()
 
     def test_import_xml(self):
         """Test the import of data from a XML file.
@@ -59,7 +64,7 @@ class ImportProcessorTest(TransactionCase):
         """
 
         file = self.get_file_binary_data("contacts.csv")
-        record = self.import_processor_csv_chunk.process(file)
+        record = self.import_processor_csv.process(file)
         # Verifies the imported record
         self.assertEqual(len(record), 2)
 
@@ -68,9 +73,9 @@ class ImportProcessorTest(TransactionCase):
         a single CSV file with one res.partner record"""
 
         # Compression method "Zipped File"
-        self.import_processor_csv_chunk.compression = "zip_one"
+        self.import_processor_csv.compression = "zip_one"
         file = self.get_file_binary_data("zip_one.zip")
-        record = self.import_processor_csv_chunk.process(file)
+        record = self.import_processor_csv.process(file)
 
         # Verifies the imported record
         self.assertEqual(len(record), 1)
@@ -80,10 +85,10 @@ class ImportProcessorTest(TransactionCase):
         two CSV files, each of which has one 'res.partner' record."""
 
         # Compression method "Multiple Zipped Files"
-        self.import_processor_csv_chunk.compression = "zip_all"
+        self.import_processor_csv.compression = "zip_all"
 
         file = self.get_file_binary_data("zip_all.zip")
-        record = self.import_processor_csv_chunk.process(file)
+        record = self.import_processor_csv.process(file)
         # Verifies the imported record
         self.assertEqual(len(record), 2)
 
@@ -93,7 +98,7 @@ class ImportProcessorTest(TransactionCase):
         outcome is that the compression process raises a Usererror exception."""
 
         # Compression method "Zipped File"
-        self.import_processor_csv_chunk.compression = "zip_one"
+        self.import_processor_csv.compression = "zip_one"
         file = self.get_file_binary_data("zip_all.zip")
         with self.assertRaisesRegex(UserError, "Expected only 1 file."):
-            self.import_processor_csv_chunk.process(file)
+            self.import_processor_csv.process(file)
