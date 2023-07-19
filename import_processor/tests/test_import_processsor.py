@@ -10,16 +10,16 @@ class ImportProcessorTest(TransactionCase):
     def setUpClass(cls):
         super().setUpClass()
         cls.import_processor_csv = cls.env.ref(
-            "import_processor.import_processor_csv_type"
+            "import_processor.demo_import_processor_csv"
         )
         cls.import_processor_xml = cls.env.ref(
-            "import_processor.import_processor_xml_type"
+            "import_processor.demo_import_processor_xml"
         )
         cls.import_processor_json = cls.env.ref(
-            "import_processor.import_processor_json_type"
+            "import_processor.demo_import_processor_json"
         )
 
-    def get_file_binary_data(self, file_name):
+    def _get_file_binary_data(self, file_name):
         file_path = get_module_resource("import_processor", "tests", file_name)
         with file_open(file_path, "rb") as file:
             file_contents = file.read()
@@ -30,7 +30,7 @@ class ImportProcessorTest(TransactionCase):
         self.assertTrue(self.import_processor_csv.active)
 
     def test_misc(self):
-        """Test functions to check if there are error raising"""
+        """Test functions to check if there are errors raising"""
         self.import_processor_xml._get_default_code()
         self.import_processor_xml._compute_help_text()
 
@@ -42,14 +42,14 @@ class ImportProcessorTest(TransactionCase):
                 and update record if duplicate email found.
         Postprocess: Update the "Job Description" field if it is empty.
         """
-        file = self.get_file_binary_data("contacts.xml")
+        file = self._get_file_binary_data("contacts.xml")
         record = self.import_processor_xml.process(file)
         self.assertEqual(len(record), 2)
 
     def test_import_json(self):
         # Test the import of data from a JSON file.
 
-        file = self.get_file_binary_data("contacts.json")
+        file = self._get_file_binary_data("contacts.json")
         record = self.import_processor_json.process(file)
         self.assertEqual(len(record), 2)
 
@@ -63,7 +63,7 @@ class ImportProcessorTest(TransactionCase):
 
         """
 
-        file = self.get_file_binary_data("contacts.csv")
+        file = self._get_file_binary_data("contacts.csv")
         record = self.import_processor_csv.process(file)
         # Verifies the imported record
         self.assertEqual(len(record), 2)
@@ -74,7 +74,7 @@ class ImportProcessorTest(TransactionCase):
 
         # Compression method "Zipped File"
         self.import_processor_csv.compression = "zip_one"
-        file = self.get_file_binary_data("zip_one.zip")
+        file = self._get_file_binary_data("zip_one.zip")
         record = self.import_processor_csv.process(file)
 
         # Verifies the imported record
@@ -87,7 +87,7 @@ class ImportProcessorTest(TransactionCase):
         # Compression method "Multiple Zipped Files"
         self.import_processor_csv.compression = "zip_all"
 
-        file = self.get_file_binary_data("zip_all.zip")
+        file = self._get_file_binary_data("zip_all.zip")
         record = self.import_processor_csv.process(file)
         # Verifies the imported record
         self.assertEqual(len(record), 2)
@@ -99,6 +99,6 @@ class ImportProcessorTest(TransactionCase):
 
         # Compression method "Zipped File"
         self.import_processor_csv.compression = "zip_one"
-        file = self.get_file_binary_data("zip_all.zip")
+        file = self._get_file_binary_data("zip_all.zip")
         with self.assertRaisesRegex(UserError, "Expected only 1 file."):
             self.import_processor_csv.process(file)
