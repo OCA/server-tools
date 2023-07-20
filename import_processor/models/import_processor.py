@@ -13,7 +13,7 @@ import chardet
 from lxml import etree
 from pytz import timezone
 
-from odoo import _, fields, models
+from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools import safe_eval
 
@@ -115,7 +115,7 @@ class ImportProcessor(models.Model):
         ondelete="cascade",
         required=True,
     )
-    model_name = fields.Char(related="model_id.model")
+    model_name = fields.Char(related="model_id.model", related_sudo=True)
     file_type = fields.Selection(_get_file_types, default="csv", required=True)
     processor = fields.Text(default=lambda self: self._get_default_code(True))
     preprocessor = fields.Text(default=_get_default_code)
@@ -147,6 +147,18 @@ class ImportProcessor(models.Model):
     tabular_sheet_index = fields.Integer("Sheet Index", default=0)
     tabular_col_offset = fields.Integer("Sheet Col Offset", default=0)
     tabular_row_offset = fields.Integer("Sheet Row Offset", default=0)
+
+    @api.model
+    def _name_search(
+        self, name="", args=None, operator="ilike", limit=100, name_get_uid=None
+    ):
+        return super(ImportProcessor, self.sudo())._name_search(
+            name=name,
+            args=args,
+            operator=operator,
+            limit=limit,
+            name_get_uid=name_get_uid,
+        )
 
     def _compute_help_text(self):
         variables = self.default_variables()
@@ -192,7 +204,7 @@ class ImportProcessor(models.Model):
 
     def _get_model(self):
         self.ensure_one()
-        return self.env[self.model_id.model]
+        return self.env[self.sudo().model_id.model]
 
     def default_variables(self):
         """Informations about the available variables in the python code"""
@@ -242,8 +254,8 @@ class ImportProcessor(models.Model):
 
     def _process_csv(self, process_uuid, file):
         if isinstance(file, bytes):
-            encoding = self.file_encoding or chardet.detect(file)["encoding"].lower()
-            file = io.TextIOWrapper(io.BytesIO(file), encoding=encoding)
+            encoding = self.file_encoding or chardet.detect(file)["encoding"] or "utf-8"
+            file = io.TextIOWrapper(io.BytesIO(file), encoding=encoding.lower())
         elif isinstance(file, str):
             encoding = self.file_encoding or "utf-8"
             file = io.TextIOWrapper(io.StringIO(file), encoding=encoding)
@@ -280,8 +292,8 @@ class ImportProcessor(models.Model):
 
     def _process_json(self, process_uuid, file):
         if isinstance(file, bytes):
-            encoding = self.file_encoding or chardet.detect(file)["encoding"].lower()
-            file = io.TextIOWrapper(io.BytesIO(file), encoding=encoding)
+            encoding = self.file_encoding or chardet.detect(file)["encoding"] or "utf-8"
+            file = io.TextIOWrapper(io.BytesIO(file), encoding=encoding.lower())
         elif isinstance(file, str):
             encoding = self.file_encoding or "utf-8"
             file = io.TextIOWrapper(io.StringIO(file), encoding=encoding)

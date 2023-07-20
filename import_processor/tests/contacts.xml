@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Root>
+  <Customers>
+    <Customer>
+      <name>Great Lakes Food Market</name>
+      <phone>(503) 555-7555</phone>
+      <email>max.ryne@example.com</email>
+      <street>2732 Baker Blvd.</street>
+      <City>Eugene</City>
+      <Region>OR</Region>
+      <zip>97403</zip>
+      <code>USA</code>
+    </Customer>
+    <Customer>
+      <name>Annalise Barclay</name>
+      <phone>862-397-1266</phone>
+      <email>max@example.com</email>
+      <street>4069 Jadewood Farms</street>
+      <City>Dover</City>
+      <Region>New Jersey</Region>
+      <zip>07801</zip>
+      <code>USA</code>
+    </Customer>
+    <Customer>
+      <name>Annalise Barclay</name>
+      <phone>862-397-1266</phone>
+      <email>max@example.com</email>
+      <street>4569 Jadewood Farms</street>
+      <City>Cambridge</City>
+      <Region>Massachusetts</Region>
+      <zip>02138</zip>
+      <code>USA</code>
+    </Customer>
+  <Customer>
+      <name>Tony McCallum</name>
+      <phone>617-909-1330</phone>
+      <email>tony@123.com</email>
+      <street>4684 Gerald L. Bates Drive</street>
+      <City>Cambridge</City>
+      <Region>Massachusetts</Region>
+      <zip>02138</zip>
+      <code>USA</code>
+    </Customer>
+  </Customers>
+</Root>

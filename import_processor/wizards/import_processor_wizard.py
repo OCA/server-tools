@@ -20,8 +20,10 @@ class ImporterProcessorWizard(models.TransientModel):
 
     @api.onchange("model")
     def onchange_model(self):
-        processor = self.env["import.processor"].search(
-            [("model_name", "=", self.model)]
+        processor = (
+            self.env["import.processor"]
+            .sudo()
+            .search([("model_name", "=", self.model)])
         )
 
         if len(processor) == 1:

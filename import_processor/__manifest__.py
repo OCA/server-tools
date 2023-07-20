@@ -23,4 +23,7 @@
     "qweb": [
         "static/src/xml/import_processor.xml",
     ],
+    "demo": [
+        "data/processor_data.xml",
+    ],
 }
