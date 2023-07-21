@@ -221,6 +221,18 @@ class Image(models.Model):
                 raise exceptions.ValidationError(
                     _('You must provide an attachment for the image.'))
 
+    @api.model
+    def create(self, vals):
+        """
+        Override create to convert DB images into filestore to save space.
+        :param vals:
+        :return:
+        """
+        res = super(Image, self).create(vals)
+        for record in res.filtered(lambda r: r.storage == 'db'):
+            record._convert_to_filestore()
+        return res
+
     @api.multi
     def action_move_images_to_filestore(self):
         """
@@ -229,51 +241,62 @@ class Image(models.Model):
         We are using search_read instead of search to avoid prefetching the image data.
          """
         db_images = self.search([('storage', '=', 'db')])
-        Attachment = self.env['ir.attachment']
         for image in db_images:
-            image_dict = image.search_read([("id", "=", image.id)], ['file_db_store', 'name'], limit=1)[0]
-            image_data = image_dict.get('file_db_store')
-            image_name = image_dict.get('name') or image.owner_ref_id.display_name
-            if not image_data:
-                _logger.warning(
-                    "Convert DB images to filestore: Image %s has no data",
-                    image_name,
-                )
-                continue
+            image._convert_to_filestore()
+        return True
 
-            if not image_name:
-                _logger.warning(
-                    "Convert DB images to filestore: Image %s has no name",
-                    image_name,
-                )
-                continue
+    def _convert_to_filestore(self):
+        """
+        Single method that automatically converts DB images into filestore to save space.
+        :return: 
+        """
+        self.ensure_one()
+        Attachment = self.env['ir.attachment']
+        image_dict = self.search_read([("id", "=", self.id)],
+                                      ['file_db_store', 'name'], limit=1)[0]
+        image_data = image_dict.get('file_db_store')
+        image_name = image_dict.get('name') or self.owner_ref_id.display_name
+        if not image_data:
+            _logger.warning(
+                "Convert DB images to filestore: Image %s has no data",
+                image_name,
+            )
+            return False
 
-            # Create the attachment
-            attachment = Attachment.create(
-                {
-                    "type": "binary",
-                    "name": image_name,
-                    "datas": image_data,
-                    "datas_fname": image.filename,
-                    ## Adding reference to the image owner is not necessary,
-                    ## it also causes name change on the image
-                    # "res_model": image.owner_model,
-                    # "res_id": image.owner_id,
-                    "index_content": "image",
+        if not image_name:
+            _logger.warning(
+                "Convert DB images to filestore: Image %s has no name",
+                image_name,
+            )
+            return False
 
-                }
-            )
-            # Update the image
-            image.write(
-                {
-                    "filename": False,
-                    "storage": "filestore",
-                    "attachment_id": attachment.id,
-                    "file_db_store": False,
-                }
-            )
-            image._onchange_attachmend_id()
-            _logger.info(
-                "Convert DB images to filestore: Image %s converted", image_name
-            )
+        # Create the attachment
+        attachment = Attachment.create(
+            {
+                "type": "binary",
+                "name": image_name,
+                "datas": image_data,
+                "datas_fname": self.filename,
+                ## Adding reference to the image owner is not necessary,
+                ## it also causes name change on the image
+                # "res_model": image.owner_model,
+                # "res_id": image.owner_id,
+                "index_content": "image",
+
+            }
+        )
+        # Update the image
+        self.write(
+            {
+                "attachment_id": attachment.id,
+                "filename": False,
+                "storage": "filestore",
+                "file_db_store": False,
+            }
+        )
+        self._onchange_attachmend_id()
+        _logger.info(
+            "Convert DB images to filestore: Image %s converted", image_name
+        )
+
         return True
