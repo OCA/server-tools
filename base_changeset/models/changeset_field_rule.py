@@ -110,7 +110,7 @@ class ChangesetFieldRule(models.Model):
 
         """
         domain = self._get_rules_search_domain(record_model_name, source_model_name)
-        model_rules = self.search(
+        model_rules = self.sudo().search(
             domain,
             # using 'ASC' means that 'NULLS LAST' is the default
             order="source_model_id ASC",
@@ -164,9 +164,9 @@ class ChangesetFieldRule(models.Model):
             self.expression, {"object": record, "user": self.env.user}
         )
 
-    @api.model
-    def create(self, vals):
-        record = super().create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        record = super().create(vals_list)
         self.clear_caches()
         return record
 

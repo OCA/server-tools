@@ -9,13 +9,14 @@ from .common import ChangesetTestCommon
 class TestChangesetFlow(ChangesetTestCommon, TransactionCase):
     """Check that changesets don't leak information"""
 
-    def setUp(self):
-        super().setUp()
-        self.env["changeset.field.rule"].search([]).unlink()
-        self.rule = self.env["changeset.field.rule"].create(
+    @classmethod
+    def setUp(cls):
+        super().setUpClass()
+        cls.env["changeset.field.rule"].search([]).unlink()
+        cls.rule = cls.env["changeset.field.rule"].create(
             {
-                "model_id": self.env.ref("base.model_ir_config_parameter").id,
-                "field_id": self.env.ref("base.field_ir_config_parameter__key").id,
+                "model_id": cls.env.ref("base.model_ir_config_parameter").id,
+                "field_id": cls.env.ref("base.field_ir_config_parameter__key").id,
                 "action": "auto",
             }
         )

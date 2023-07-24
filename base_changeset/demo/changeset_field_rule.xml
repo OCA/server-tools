@@ -32,8 +32,8 @@
         <field name="field_id" ref="base.field_res_partner__country_id" />
         <field name="action">auto</field>
     </record>
-    <record model="changeset.field.rule" id="changeset_field_rule_credit_limit">
-        <field name="field_id" ref="base.field_res_partner__credit_limit" />
+    <record model="changeset.field.rule" id="changeset_field_rule_partner_latitude">
+        <field name="field_id" ref="base.field_res_partner__partner_latitude" />
         <field name="action">auto</field>
     </record>
 </odoo>
