@@ -16,8 +16,14 @@
     </data>
     <data noupdate="1">
         <record id="group_changeset_manager" model="res.groups">
-            <field name="users" eval="[(4, ref('base.user_root'))]" />
-            <field name="implied_ids" eval="[(4, ref('group_changeset_user'))]" />
+            <field
+                name="users"
+                eval="[Command.link(ref('base.user_root')), Command.link(ref('base.user_admin'))]"
+            />
+            <field
+                name="implied_ids"
+                eval="[Command.link(ref('group_changeset_user'))]"
+            />
         </record>
     </data>
 </odoo>

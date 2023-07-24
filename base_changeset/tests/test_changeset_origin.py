@@ -17,20 +17,20 @@ class TestChangesetOrigin(ChangesetTestCommon, TransactionCase):
     displays the 'old' value.
     """
 
-    def _setup_rules(self):
-        ChangesetFieldRule = self.env["changeset.field.rule"]
+    @classmethod
+    def _setup_rules(cls):
+        ChangesetFieldRule = cls.env["changeset.field.rule"]
         ChangesetFieldRule.search([]).unlink()
-        self.field_name = self.env.ref("base.field_res_partner__name")
-        ChangesetFieldRule.create(
-            {"field_id": self.field_name.id, "action": "validate"}
-        )
+        cls.field_name = cls.env.ref("base.field_res_partner__name")
+        ChangesetFieldRule.create({"field_id": cls.field_name.id, "action": "validate"})
 
-    def setUp(self):
-        super().setUp()
-        self._setup_rules()
-        self.partner = self.env["res.partner"].create({"name": "X"})
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls._setup_rules()
+        cls.partner = cls.env["res.partner"].create({"name": "X"})
         # Add context for this test for compatibility with other modules' tests
-        self.partner = self.partner.with_context(test_record_changeset=True)
+        cls.partner = cls.partner.with_context(test_record_changeset=True)
 
     def test_origin_value_of_change_with_apply(self):
         """Origin field is read from the parter or 'old' - with apply

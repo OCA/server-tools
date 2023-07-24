@@ -68,7 +68,9 @@ class Base(models.AbstractModel):
         :args:
         :returns: list of models
         """
-        models = self.env["changeset.field.rule"].search([]).mapped("model_id.model")
+        models = (
+            self.env["changeset.field.rule"].sudo().search([]).mapped("model_id.model")
+        )
         if config["test_enable"] and self.env.context.get("test_record_changeset"):
             if "res.partner" not in models:
                 models += ["res.partner"]  # Used in tests
@@ -144,16 +146,15 @@ class Base(models.AbstractModel):
         return res
 
     @api.model
-    def _fields_view_get(
-        self, view_id=None, view_type="form", toolbar=False, submenu=False
-    ):
-        res = super()._fields_view_get(
-            view_id=view_id, view_type=view_type, toolbar=toolbar, submenu=submenu
-        )
-        to_track_changeset = self._name in self.models_to_track_changeset()
-        can_see = len(self) == 1 and self.user_can_see_changeset
-        button_label = _("Changes")
-        if to_track_changeset and can_see and view_type == "form":
+    def get_view(self, view_id=None, view_type="form", **options):
+        """Insert the pending changes smart button in the form view of tracked models."""
+        res = super().get_view(view_id=view_id, view_type=view_type, **options)
+        if (
+            view_type == "form"
+            and self._name in self.models_to_track_changeset()
+            and self._user_can_see_changeset()
+        ):
+            button_label = _("Changes")
             doc = etree.XML(res["arch"])
             for node in doc.xpath("//div[@name='button_box']"):
                 xml_field = etree.Element(
@@ -179,10 +180,14 @@ class Base(models.AbstractModel):
             res["arch"] = etree.tostring(doc, encoding="unicode")
         return res
 
-    def _compute_user_can_see_changeset(self):
-        is_superuser = self.env.is_superuser()
-        has_changeset_group = self.user_has_groups(
+    @api.model
+    def _user_can_see_changeset(self):
+        """Return if the current user has changeset access"""
+        return self.env.is_superuser() or self.user_has_groups(
             "base_changeset.group_changeset_user"
         )
+
+    def _compute_user_can_see_changeset(self):
+        user_can_see_changeset = self._user_can_see_changeset()
         for rec in self:
-            rec.user_can_see_changeset = is_superuser or has_changeset_group
+            rec.user_can_see_changeset = user_can_see_changeset

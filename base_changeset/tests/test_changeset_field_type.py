@@ -14,8 +14,9 @@ from .common import ChangesetTestCommon
 class TestChangesetFieldType(ChangesetTestCommon, TransactionCase):
     """Check that changeset changes are stored expectingly to their types"""
 
-    def _setup_rules(self):
-        ChangesetFieldRule = self.env["changeset.field.rule"]
+    @classmethod
+    def _setup_rules(cls):
+        ChangesetFieldRule = cls.env["changeset.field.rule"]
         ChangesetFieldRule.search([]).unlink()
         fields = (
             ("char", "ref"),
@@ -23,7 +24,7 @@ class TestChangesetFieldType(ChangesetTestCommon, TransactionCase):
             ("boolean", "is_company"),
             ("date", "date"),
             ("integer", "color"),
-            ("float", "credit_limit"),
+            ("float", "partner_latitude"),
             ("selection", "type"),
             ("many2one", "country_id"),
             ("many2many", "category_id"),
@@ -32,25 +33,26 @@ class TestChangesetFieldType(ChangesetTestCommon, TransactionCase):
         )
         for field_type, field in fields:
             attr_name = "field_%s" % field_type
-            field_record = self.env["ir.model.fields"].search(
+            field_record = cls.env["ir.model.fields"].search(
                 [("model", "=", "res.partner"), ("name", "=", field)]
             )
-            self.assertTrue(field_record, "Field %s not available" % field)
+            cls.assertTrue(field_record, "Field %s not available" % field)
             # set attribute such as 'self.field_char' is a
             # ir.model.fields record of the field res_partner.ref
-            setattr(self, attr_name, field_record)
+            setattr(cls, attr_name, field_record)
             ChangesetFieldRule.create(
                 {"field_id": field_record.id, "action": "validate"}
             )
 
-    def setUp(self):
-        super().setUp()
-        self._setup_rules()
-        self.partner = self.env["res.partner"].create(
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls._setup_rules()
+        cls.partner = cls.env["res.partner"].create(
             {"name": "Original Name", "street": "Original Street"}
         )
         # Add context for this test for compatibility with other modules' tests
-        self.partner = self.partner.with_context(test_record_changeset=True)
+        cls.partner = cls.partner.with_context(test_record_changeset=True)
 
     def test_new_changeset_char(self):
         """Add a new changeset on a Char field"""

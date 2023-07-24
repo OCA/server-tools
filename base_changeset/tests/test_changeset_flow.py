@@ -4,6 +4,8 @@
 
 from datetime import datetime, timedelta
 
+from lxml import etree
+
 from odoo import fields
 from odoo.exceptions import UserError
 from odoo.tests.common import TransactionCase
@@ -29,28 +31,51 @@ class TestChangesetFlow(ChangesetTestCommon, TransactionCase):
       becomes 'done'
     """
 
-    def _setup_rules(self):
-        ChangesetFieldRule = self.env["changeset.field.rule"]
+    @classmethod
+    def _setup_rules(cls):
+        ChangesetFieldRule = cls.env["changeset.field.rule"]
         ChangesetFieldRule.search([]).unlink()
-        self.field_name = self.env.ref("base.field_res_partner__name")
-        self.field_street = self.env.ref("base.field_res_partner__street")
-        self.field_street2 = self.env.ref("base.field_res_partner__street2")
-        ChangesetFieldRule.create({"field_id": self.field_name.id, "action": "auto"})
+        cls.field_name = cls.env.ref("base.field_res_partner__name")
+        cls.field_street = cls.env.ref("base.field_res_partner__street")
+        cls.field_street2 = cls.env.ref("base.field_res_partner__street2")
+        ChangesetFieldRule.create({"field_id": cls.field_name.id, "action": "auto"})
         ChangesetFieldRule.create(
-            {"field_id": self.field_street.id, "action": "validate"}
+            {"field_id": cls.field_street.id, "action": "validate"}
         )
-        ChangesetFieldRule.create(
-            {"field_id": self.field_street2.id, "action": "never"}
-        )
+        ChangesetFieldRule.create({"field_id": cls.field_street2.id, "action": "never"})
 
-    def setUp(self):
-        super().setUp()
-        self._setup_rules()
-        self.partner = self.env["res.partner"].create(
-            {"name": "X", "street": "street X", "street2": "street2 X"}
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls._setup_rules()
+        cls.demo_user = cls.env.ref("base.user_demo")
+        cls.partner = (
+            cls.env["res.partner"]
+            .with_user(cls.demo_user)
+            .create({"name": "X", "street": "street X", "street2": "street2 X"})
         )
         # Add context for this test for compatibility with other modules' tests
-        self.partner = self.partner.with_context(test_record_changeset=True)
+        cls.partner = cls.partner.with_context(test_record_changeset=True)
+
+    def test_get_view(self):
+        """For privileged users, the smart button is present on the form"""
+        view = self.env.ref("base.view_partner_form")
+
+        def get_nodes(user):
+            arch = etree.XML(
+                self.env["res.partner"]
+                .with_user(user)
+                .get_view(view_id=view.id)["arch"]
+            )
+            return len(
+                arch.xpath(
+                    "//div[@name='button_box']"
+                    "/button[@name='action_record_changeset_change_view']"
+                )
+            )
+
+        self.assertTrue(get_nodes(self.env.ref("base.user_admin")))
+        self.assertFalse(get_nodes(self.env.ref("base.user_demo")))
 
     def test_new_changeset(self):
         """Add a new changeset on a partner
@@ -64,7 +89,7 @@ class TestChangesetFlow(ChangesetTestCommon, TransactionCase):
         self.assertEqual(self.partner.count_pending_changeset_changes, 1)
         self.assert_changeset(
             self.partner,
-            self.env.user,
+            self.demo_user,
             [
                 (self.field_name, "X", "Y", "done"),
                 (self.field_street, "street X", "street Y", "draft"),
@@ -74,6 +99,11 @@ class TestChangesetFlow(ChangesetTestCommon, TransactionCase):
         self.assertEqual(self.partner.name, "Y")
         self.assertEqual(self.partner.street, "street X")
         self.assertEqual(self.partner.street2, "street2 X")
+        # Pending Changes widget can be rendered for the unprivileged user
+        self.env.invalidate_all()
+        self.env["record.changeset.change"].with_user(
+            self.demo_user
+        ).get_changeset_changes_by_field(self.partner._name, self.partner.id)
 
     def test_create_new_changeset(self):
         """Create a new partner with a changeset"""
@@ -140,7 +170,7 @@ class TestChangesetFlow(ChangesetTestCommon, TransactionCase):
         self.assertEqual(self.partner.count_pending_changesets, 1)
         self.assert_changeset(
             self.partner,
-            self.env.user,
+            self.demo_user,
             [(self.field_street, "street X", False, "draft")],
         )
 
@@ -168,7 +198,7 @@ class TestChangesetFlow(ChangesetTestCommon, TransactionCase):
         self.partner._compute_count_pending_changesets()
         self.assertEqual(self.partner.count_pending_changesets, 1)
         for change in changeset.change_ids:
-            change.get_fields_changeset_changes(changeset.model, changeset.res_id)
+            change.get_changeset_changes_by_field(changeset.model, changeset.res_id)
         changeset.change_ids.apply()
         self.partner._compute_changeset_ids()
         self.partner._compute_count_pending_changesets()
@@ -197,9 +227,11 @@ class TestChangesetFlow(ChangesetTestCommon, TransactionCase):
         self.assertEqual(self.partner.street, "street X")
         self.assertEqual(self.partner.changeset_ids.change_ids.state, "draft")
 
-        user = self.env.ref("base.user_demo")
-        user.groups_id += self.env.ref("base_changeset.group_changeset_user")
-        self.partner.changeset_ids.change_ids.with_user(user).apply()
+        # Copy the user to have another user with similar rights, so that
+        # self validation prevention doesn't kick in.
+        other_demo_user = self.demo_user.copy()
+        other_demo_user.groups_id += self.env.ref("base_changeset.group_changeset_user")
+        self.partner.changeset_ids.change_ids.with_user(other_demo_user).apply()
         self.partner._compute_changeset_ids()
         self.partner._compute_count_pending_changesets()
         self.assertEqual(self.partner.count_pending_changesets, 0)
@@ -253,7 +285,7 @@ class TestChangesetFlow(ChangesetTestCommon, TransactionCase):
         self.partner._compute_count_pending_changesets()
         self.assertEqual(self.partner.count_pending_changesets, 1)
         for change in changeset.change_ids:
-            change.get_fields_changeset_changes(changeset.model, changeset.res_id)
+            change.get_changeset_changes_by_field(changeset.model, changeset.res_id)
         changeset.change_ids.apply()
         self.partner._compute_changeset_ids()
         self.partner._compute_count_pending_changesets()
@@ -272,7 +304,7 @@ class TestChangesetFlow(ChangesetTestCommon, TransactionCase):
         self.partner._compute_count_pending_changesets()
         self.assertEqual(self.partner.count_pending_changesets, 1)
         for change in changeset.change_ids:
-            change.get_fields_changeset_changes(changeset.model, changeset.res_id)
+            change.get_changeset_changes_by_field(changeset.model, changeset.res_id)
         changeset.change_ids.apply()
         self.partner._compute_changeset_ids()
         self.partner._compute_count_pending_changesets()
@@ -294,7 +326,7 @@ class TestChangesetFlow(ChangesetTestCommon, TransactionCase):
         self.assertEqual(self.partner.count_pending_changesets, 1)
         self.assertEqual(self.partner.count_pending_changeset_changes, 3)
         for change in changeset.change_ids:
-            change.get_fields_changeset_changes(changeset.model, changeset.res_id)
+            change.get_changeset_changes_by_field(changeset.model, changeset.res_id)
         changeset.apply()
         self.partner._compute_changeset_ids()
         self.partner._compute_count_pending_changesets()
@@ -381,7 +413,7 @@ class TestChangesetFlow(ChangesetTestCommon, TransactionCase):
         self.assertEqual(self.partner.count_pending_changesets, 1)
         self.assertEqual(self.partner.count_pending_changeset_changes, 3)
         for change in changeset.change_ids:
-            change.get_fields_changeset_changes(changeset.model, changeset.res_id)
+            change.get_changeset_changes_by_field(changeset.model, changeset.res_id)
         changeset2 = self._create_changeset(partner2, changes)
         partner2._compute_changeset_ids()
         partner2._compute_count_pending_changesets()
@@ -390,7 +422,7 @@ class TestChangesetFlow(ChangesetTestCommon, TransactionCase):
         self.assertEqual(partner2.count_pending_changesets, 1)
         self.assertEqual(partner2.count_pending_changeset_changes, 3)
         for change in changeset2.change_ids:
-            change.get_fields_changeset_changes(changeset2.model, changeset2.res_id)
+            change.get_changeset_changes_by_field(changeset2.model, changeset2.res_id)
         (changeset + changeset2).apply()
         self.assertEqual(self.partner.name, "Y")
         self.assertEqual(self.partner.street, "street Y")
@@ -406,7 +438,7 @@ class TestChangesetFlow(ChangesetTestCommon, TransactionCase):
         self.partner.write({"street": False})
         self.partner._compute_changeset_ids()
         changeset = self.partner.changeset_ids
-        self.assertEqual(changeset.source, self.env.user)
+        self.assertEqual(changeset.source, self.demo_user)
 
     def test_new_changeset_source_other_model(self):
         """Define source from another model"""
@@ -444,10 +476,10 @@ class TestChangesetFlow(ChangesetTestCommon, TransactionCase):
             ]
         ).expression = "object.street != 'street X'"
         self.partner.street = "street Y"
-        self.partner.refresh()
+        self.partner.invalidate_recordset()
         self.assertEqual(self.partner.street, "street Y")
         self.assertFalse(self.partner.changeset_ids)
         self.partner.street = "street Z"
-        self.partner.refresh()
+        self.partner.invalidate_recordset()
         self.assertTrue(self.partner.changeset_ids)
         self.assertEqual(self.partner.street, "street Y")

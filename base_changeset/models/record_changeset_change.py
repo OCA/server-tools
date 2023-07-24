@@ -130,7 +130,11 @@ class RecordChangesetChange(models.Model):
 
     @api.model
     def _reference_models(self):
-        models = self.env["ir.model"].search([])
+        """Get all model names from ir.model.
+
+        Requires sudo, as ir.model is only readable for ERP managers.
+        """
+        models = self.sudo().env["ir.model"].search([])
         return [(model.model, model.name) for model in models]
 
     _suffix_to_types = {
@@ -188,7 +192,7 @@ class RecordChangesetChange(models.Model):
     @api.model
     def get_field_for_type(self, field, prefix):
         assert prefix in ("origin", "old", "new")
-        field_type = self._type_to_suffix.get(field.ttype)
+        field_type = self._type_to_suffix.get(field.sudo().ttype)
         if not field_type:
             raise NotImplementedError("field type %s is not supported" % field_type)
         return "{}_value_{}".format(prefix, field_type)
@@ -347,11 +351,12 @@ class RecordChangesetChange(models.Model):
 
         :returns: dict of values, boolean
         """
-        new_field_name = self.get_field_for_type(rule.field_id, "new")
+        field = rule.sudo().field_id
+        new_field_name = self.get_field_for_type(field, "new")
         new_value = self._value_for_changeset(record, field_name, value=value)
         change = {
             new_field_name: new_value,
-            "field_id": rule.field_id.id,
+            "field_id": field.id,
             "rule_id": rule.id,
         }
         if rule.action == "auto":
@@ -368,7 +373,7 @@ class RecordChangesetChange(models.Model):
             # Normally the 'old' value is set when we use the 'apply'
             # button, but since we short circuit the 'apply', we
             # directly set the 'old' value here
-            old_field_name = self.get_field_for_type(rule.field_id, "old")
+            old_field_name = self.get_field_for_type(field, "old")
             # get values ready to write as expected by the changeset
             # (for instance, a many2one is written in a reference
             # field)
@@ -380,7 +385,13 @@ class RecordChangesetChange(models.Model):
         return change, pop_value
 
     @api.model
-    def get_fields_changeset_changes(self, model, res_id):
+    def get_changeset_changes_by_field(self, model, res_id):
+        """Return changes grouped by field.
+
+        :returns: dictionary with field names as keys and lists of dictionaries
+        describing changes as keys.
+        :rtype: dict
+        """
         fields = [
             "new_value_display",
             "origin_value_display",
@@ -393,8 +404,14 @@ class RecordChangesetChange(models.Model):
             ("changeset_id.res_id", "=", res_id),
             ("state", "in", states),
         ]
-        return self.search_read(domain, fields)
+        return {
+            field_name: list(changes)
+            for (field_name, changes) in groupby(
+                self.search_read(domain, fields), lambda vals: vals["field_name"]
+            )
+        }
 
+    @api.depends_context("user")
     def _compute_user_can_validate_changeset(self):
         is_superuser = self.env.is_superuser()
         has_group = self.user_has_groups("base_changeset.group_changeset_user")
