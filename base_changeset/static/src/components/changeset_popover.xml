@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="base_changeset.ChangesetPopoverWrapper" owl="1">
+        <!--
+            The popover button has to be set to inline display using a wrapper around
+            the inherited Popover template. Otherwise, if instead we modify the top
+            level div element of the Popover template, the component loses its `el`.
+        -->
+        <span class="o_changeset_popover_wrapper">
+            <BaseChangesetPopover
+                record="props.record"
+                fieldName="props.fieldName"
+                title="'Pending Changes'"
+                popoverClass="'o_changeset_popover'"
+                t-if="props.record.changesetChanges ? props.record.changesetChanges[props.fieldName] : 0"
+            />
+        </span>
+    </t>
+    <t
+        t-name="base_changeset.ChangesetPopover"
+        owl="1"
+        t-inherit="web.Popover"
+        t-inherit-mode="primary"
+    >
+        <t t-portal="'body'" position="before">
+            <a
+                class="o_ChangesetPopoverView badge rounded-pill text-bg-warning mx-3 align-self-center"
+                t-esc="props.record.changesetChanges[props.fieldName].length"
+                role="button"
+            />
+        </t>
+        <t t-slot="opened" position="replace">
+            <table class="pb-4">
+                <tr
+                    t-foreach="props.record.changesetChanges[props.fieldName]"
+                    t-as="change"
+                    t-key="change.id"
+                >
+                    <td>
+                        <t t-esc="change.origin_value_display" />
+                    </td>
+                    <td class="pl-2 pr-2">
+                        <i class="fa fa-arrow-right" />
+                    </td>
+                    <td>
+                        <t t-esc="change.new_value_display" />
+                    </td>
+                    <td class="pl-4" t-if="change.user_can_validate_changeset">
+                        <div class="btn-group">
+                            <button
+                                class="btn btn-danger base_changeset_reject btn-sm"
+                                t-attf-data-id="#{change.id}"
+                                t-on-click.synthetic="() => this.rejectChange(change.id)"
+                            >
+                                <i class="fa fa-times" />
+                            </button>
+                            <button
+                                class="btn btn-success base_changeset_apply btn-sm"
+                                t-attf-data-id="#{change.id}"
+                                t-on-click.synthetic="() => this.applyChange(change.id)"
+                            >
+                                <i class="fa fa-check" />
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </t>
+    </t>
+</templates>
