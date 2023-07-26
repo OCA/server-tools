@@ -4,7 +4,7 @@
     "author": "Onestein,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/server-tools",
     "category": "Localization",
-    "version": "11.0.1.0.0",
+    "version": "16.0.1.0.0",
     "license": "AGPL-3",
     "depends": ["mail"],
     "data": ["views/mail_template_view.xml", "security/ir.model.access.csv"],

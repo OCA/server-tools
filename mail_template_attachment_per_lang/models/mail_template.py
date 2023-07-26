@@ -1,7 +1,7 @@
 # Copyright 2018 Onestein
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class MailTemplate(models.Model):
@@ -13,7 +13,6 @@ class MailTemplate(models.Model):
         inverse_name="mail_template_id",
     )
 
-    @api.multi
     def generate_email(self, res_ids, fields=None):
         self.ensure_one()
         multi = True
