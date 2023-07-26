@@ -5,24 +5,24 @@ from odoo import fields, models
 
 
 class IrAttachmentLanguage(models.Model):
-    _name = 'ir.attachment.language'
+    _name = "ir.attachment.language"
 
     mail_template_id = fields.Many2one(
-        comodel_name='mail.template',
-        string='Template',
+        comodel_name="mail.template",
+        string="Template",
         required=True,
-        ondelete='cascade',
+        ondelete="cascade",
     )
 
     lang = fields.Selection(
-        selection=lambda self: self.env['res.lang'].get_installed(),
-        string='Language',
+        selection=lambda self: self.env["res.lang"].get_installed(),
+        string="Language",
         required=True,
     )
 
     attachment_id = fields.Many2one(
-        comodel_name='ir.attachment',
-        string='Attachment',
+        comodel_name="ir.attachment",
+        string="Attachment",
         required=True,
-        ondelete='cascade',
+        ondelete="cascade",
     )
