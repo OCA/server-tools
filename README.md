@@ -41,6 +41,7 @@ addon | version | maintainers | summary
 [base_sparse_field_list_support](base_sparse_field_list_support/) | 13.0.1.0.2 |  | add list support to convert_to_cache()
 [base_technical_user](base_technical_user/) | 13.0.1.0.1 |  | Add a technical user parameter on the company
 [base_time_window](base_time_window/) | 13.0.1.0.1 |  | Base model to handle time windows
+[base_translation_field_label](base_translation_field_label/) | 13.0.1.0.0 | [![GuillemCForgeFlow](https://github.com/GuillemCForgeFlow.png?size=30px)](https://github.com/GuillemCForgeFlow) | Shows the field label and optionally hides the Translated field value.
 [base_view_inheritance_extension](base_view_inheritance_extension/) | 13.0.2.0.0 |  | Adds more operators for view inheritance
 [bus_alt_connection](bus_alt_connection/) | 13.0.1.0.1 |  | Needed when using PgBouncer as a connection pooler
 [company_country](company_country/) | 13.0.2.0.1 | [![moylop260](https://github.com/moylop260.png?size=30px)](https://github.com/moylop260) [![luisg123v](https://github.com/luisg123v.png?size=30px)](https://github.com/luisg123v) | Set country to main company - DEPRECATED
