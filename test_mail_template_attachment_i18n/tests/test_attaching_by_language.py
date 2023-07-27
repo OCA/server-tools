@@ -1,33 +1,35 @@
 # Copyright 2018 Onestein
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+from odoo.tests import Form
 from odoo.tests.common import TransactionCase
 
 
 class TestAttachingByLanguage(TransactionCase):
-    def setUp(self):
-        super().setUp()
-        self.english_partner = self.env["res.partner"].create(
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.english_partner = cls.env["res.partner"].create(
             {"name": "English Partner", "email": "test@english.nl", "lang": "en_US"}
         )
-        self.dutch_partner = self.env["res.partner"].create(
+        cls.dutch_partner = cls.env["res.partner"].create(
             {"name": "Dutch Partner", "email": "test@dutch.nl", "lang": False}
         )
-        self.attachment = self.env["ir.attachment"].create(
+        cls.attachment = cls.env["ir.attachment"].create(
             {"name": "File", "type": "binary"}
         )
-        self.template = self.env["mail.template"].create(
+        cls.template = cls.env["mail.template"].create(
             {
                 "name": "Test",
-                "model_id": self.env["ir.model"]
+                "model_id": cls.env["ir.model"]
                 .search([("model", "=", "sale.order")])
                 .id,
                 "ir_attachment_language_ids": [
-                    (0, False, {"attachment_id": self.attachment.id, "lang": "en_US"})
+                    (0, False, {"attachment_id": cls.attachment.id, "lang": "en_US"})
                 ],
                 "attachment_ids": [(0, False, {"name": "File 2", "type": "binary"})],
-                "lang": "${object.partner_id.lang}",
-                "email_to": "${object.partner_id.email}",
+                "lang": "{{ object.partner_id.lang }}",
+                "partner_to": "{{ object.partner_id.id }}",
                 "body_html": "Test",
             }
         )
@@ -38,17 +40,20 @@ class TestAttachingByLanguage(TransactionCase):
                 "partner_id": self.english_partner.id,
             }
         )
-        res = self.env["mail.compose.message"].create(
-            {
-                "model": "sale.order",
-                "res_id": sale_order.id,
-                "email_to": ["test@english.nl"],
-                "use_template": True,
-                "template_id": self.template.id,
-            }
+        composer_form = Form(
+            self.env["mail.compose.message"].with_context(
+                **{
+                    "default_composition_mode": "comment",
+                    "default_model": sale_order._name,
+                    "default_res_id": sale_order.id,
+                }
+            )
         )
-        res.onchange_template_id_wrapper()
-        self.assertEqual(len(res.attachment_ids), 2)
+        composer_form.body = "<p>Test Body</p>"
+        composer_form.partner_ids.add(sale_order.partner_id)
+        composer_form.template_id = self.template
+        composer = composer_form.save()
+        self.assertEqual(len(composer.attachment_ids), 2)
 
     def test_not_attaching(self):
         sale_order = self.env["sale.order"].create(
@@ -56,14 +61,17 @@ class TestAttachingByLanguage(TransactionCase):
                 "partner_id": self.dutch_partner.id,
             }
         )
-        res = self.env["mail.compose.message"].create(
-            {
-                "model": "sale.order",
-                "res_id": sale_order.id,
-                "email_to": ["test@dutch.nl"],
-                "use_template": True,
-                "template_id": self.template.id,
-            }
+        composer_form = Form(
+            self.env["mail.compose.message"].with_context(
+                **{
+                    "default_composition_mode": "comment",
+                    "default_model": sale_order._name,
+                    "default_res_id": sale_order.id,
+                }
+            )
         )
-        res.onchange_template_id_wrapper()
-        self.assertEqual(len(res.attachment_ids), 1)
+        composer_form.body = "<p>Test Body</p>"
+        composer_form.partner_ids.add(sale_order.partner_id)
+        composer_form.template_id = self.template
+        composer = composer_form.save()
+        self.assertEqual(len(composer.attachment_ids), 1)
