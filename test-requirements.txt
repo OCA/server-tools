@@ -1,1 +1,2 @@
 odoo_test_helper
+odoo-addon-mail_template_attachment_i18n @ git+https://github.com/OCA/server-tools.git@refs/pull/2686/head#subdirectory=setup/mail_template_attachment_i18n
