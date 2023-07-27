@@ -28,6 +28,7 @@ setuptools.setup(
         'odoo13-addon-base_sparse_field_list_support',
         'odoo13-addon-base_technical_user',
         'odoo13-addon-base_time_window',
+        'odoo13-addon-base_translation_field_label',
         'odoo13-addon-base_view_inheritance_extension',
         'odoo13-addon-bus_alt_connection',
         'odoo13-addon-company_country',
