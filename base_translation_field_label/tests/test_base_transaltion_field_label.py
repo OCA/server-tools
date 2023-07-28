@@ -9,7 +9,7 @@ class TestBaseTranslationFieldLabel(TransactionCase):
         # Models
         self.translation_model = self.env["ir.translation"]
         self.partner_model = self.env["res.partner"]
-
+        self.env.ref("base.lang_ca_ES").active = True
         # Set up
         self.translation_model._load_module_terms(["base"], ["ca_ES"])
 
