@@ -6,8 +6,6 @@
     "version": "16.0.1.0.1",
     "summary": "Save & Discard Buttons",
     "license": "AGPL-3",
-    "description": """ Save & Discard Buttons
-     """,
     "category": "Tools",
     "author": "Synconics Technologies Pvt. Ltd., Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/server-tools",
