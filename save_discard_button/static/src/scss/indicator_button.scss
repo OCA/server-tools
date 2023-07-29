@@ -1,6 +1,7 @@
 .o_form_status_indicator_buttons {
     margin-left: 10px;
-    .o_form_button_save, .o_form_button_cancel {
+    .o_form_button_save,
+    .o_form_button_cancel {
         width: 100%;
         &.o_form_button_save {
             background-color: $primary;
@@ -12,7 +13,7 @@
             margin-left: 5px;
             &:hover {
                 background-color: #f6f7fa;
-                border-color: #E0E2E6;
+                border-color: #e0e2e6;
             }
         }
         .fa-cloud-upload {
@@ -34,7 +35,7 @@
                 transition: none;
                 width: 100%;
                 text-transform: uppercase;
-                font-family: 'ubuntu';
+                font-family: "ubuntu";
             }
         }
         .fa-undo {
@@ -56,7 +57,7 @@
                 transition: none;
                 width: 100%;
                 text-transform: uppercase;
-                font-family: 'ubuntu';
+                font-family: "ubuntu";
             }
         }
     }
