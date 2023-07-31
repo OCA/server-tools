@@ -181,6 +181,8 @@ Contributors
 * Naglis Jonaitis <naglis@versada.eu>
 * Atte Isopuro <atte.isopuro@avoin.systems>
 * Florian Mounier <florian.mounier@akretion.com>
+* Jon Ashton <jon@monkeyinferno.com>
+* Mark Schuit <mark@gig.solutions>
 
 Other credits
 ~~~~~~~~~~~~~
