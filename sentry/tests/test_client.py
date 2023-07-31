@@ -17,6 +17,8 @@ from ..hooks import initialize_sentry
 GIT_SHA = "d670460b4b4aece5915caf5c68d12f560a9fe3e4"
 RELEASE = "test@1.2.3"
 
+_logger = logging.getLogger(__name__)
+
 
 def remove_handler_ignore(handler_name):
     """Removes handlers of handlers ignored list."""
@@ -118,6 +120,33 @@ class TestClientSetup(TransactionCase):
         level = "warning"
         self.assertEventNotCaptured(client, level, msg)
 
+    def test_capture_exceptions_with_no_exc_info(self):
+        """A UserError that isn't in the DEFAULT_IGNORED_EXCEPTIONS list is captured
+        (there is no exc_info in the ValidationError exception)."""
+        client = initialize_sentry(config)._client
+        client.transport = InMemoryTransport({"dsn": self.dsn})
+        level, msg = logging.WARNING, "Test exception"
+
+        # Odoo handles UserErrors by logging the exception
+        with patch("odoo.addons.sentry.const.DEFAULT_IGNORED_EXCEPTIONS", new=[]):
+            _logger.warning(exceptions.ValidationError(msg))
+
+        level = "warning"
+        self.assertEventCaptured(client, level, msg)
+
+    def test_ignore_exceptions_with_no_exc_info(self):
+        """A UserError that is in the DEFAULT_IGNORED_EXCEPTIONS is not captured
+        (there is no exc_info in the ValidationError exception)."""
+        client = initialize_sentry(config)._client
+        client.transport = InMemoryTransport({"dsn": self.dsn})
+        level, msg = logging.WARNING, "Test exception"
+
+        # Odoo handles UserErrors by logging the exception
+        _logger.warning(exceptions.ValidationError(msg))
+
+        level = "warning"
+        self.assertEventNotCaptured(client, level, msg)
+
     def test_exclude_logger(self):
         config.options["sentry_enabled"] = True
         config.options["sentry_exclude_loggers"] = __name__
@@ -128,6 +157,7 @@ class TestClientSetup(TransactionCase):
         level = "warning"
         # Revert ignored logger so it doesn't affect other tests
         remove_handler_ignore(__name__)
+        del config.options["sentry_exclude_loggers"]
         self.assertEventNotCaptured(client, level, msg)
 
     @patch("odoo.addons.sentry.hooks.get_odoo_commit", return_value=GIT_SHA)

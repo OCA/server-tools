@@ -33,8 +33,26 @@ except ImportError:  # pragma: no cover
 
 
 def before_send(event, hint):
-    """Add context to event if include_context is True
+    """Prevent the capture of any exceptions in
+    the DEFAULT_IGNORED_EXCEPTIONS list
+        -- or --
+    Add context to event if include_context is True
     and sanitize sensitive data"""
+
+    exc_info = hint.get("exc_info")
+    if exc_info is None and "log_record" in hint:
+        # Odoo handles UserErrors by logging the raw exception rather
+        # than a message string in odoo/http.py
+        try:
+            module_name = hint["log_record"].msg.__module__
+            class_name = hint["log_record"].msg.__class__.__name__
+            qualified_name = module_name + "." + class_name
+        except AttributeError:
+            qualified_name = "not found"
+
+        if qualified_name in const.DEFAULT_IGNORED_EXCEPTIONS:
+            return None
+
     if event.setdefault("tags", {})["include_context"]:
         cxtest = get_extra_context(odoo.http.request)
         info_request = ["tags", "user", "extra", "request"]
