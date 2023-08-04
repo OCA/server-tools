@@ -18,4 +18,4 @@ class BaseKanbanStage(models.Model):
             ("exception", "Exception"),
         ]
 
-    state = fields.Selection(_get_states, string="State")
+    state = fields.Selection(_get_states)
