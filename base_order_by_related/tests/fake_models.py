@@ -9,7 +9,7 @@ class FakeCustomer(models.Model):
     _name = "fake.customer"
     _description = "fake model for customers"
 
-    _order_by_related = ["country_name", "country_code"]
+    _order_by_related = ["country_name", "country_code", "fake_sortkey3"]
 
     name = fields.Char(required=True)
     sortkey1 = fields.Integer()
@@ -18,3 +18,4 @@ class FakeCustomer(models.Model):
     country_id = fields.Many2one("res.country")
     country_name = fields.Char(related="country_id.name")
     country_code = fields.Char(related="country_id.code")
+    fake_sortkey3 = fields.Integer(related="sortkey3")
