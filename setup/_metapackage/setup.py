@@ -22,6 +22,7 @@ setuptools.setup(
         'odoo-addon-base_search_fuzzy>=15.0dev,<15.1dev',
         'odoo-addon-base_technical_user>=15.0dev,<15.1dev',
         'odoo-addon-base_time_window>=15.0dev,<15.1dev',
+        'odoo-addon-base_translation_field_label>=15.0dev,<15.1dev',
         'odoo-addon-base_view_inheritance_extension>=15.0dev,<15.1dev',
         'odoo-addon-database_cleanup>=15.0dev,<15.1dev',
         'odoo-addon-datetime_formatter>=15.0dev,<15.1dev',
