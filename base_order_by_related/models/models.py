@@ -22,8 +22,12 @@ class BaseModel(models.AbstractModel):
             if field.related_field.model_name not in self.env:
                 continue
             related_model = self.env[field.related_field.model_name]
-            related_fname = field.related[0]
-            related_fname2 = field.related[1]
+            if len(field.related) == 1:
+                related_fname = "id"
+                related_fname2 = field.related[0]
+            else:
+                related_fname = field.related[0]
+                related_fname2 = field.related[1]
 
             # JOIN related_model._table AS related_alias ON
             # alias.related_fname = related_alias.id

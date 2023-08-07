@@ -62,6 +62,9 @@ class TestOrderByRelated(SavepointCase):
         self.assertEqual(result[8:15].mapped("country_id"), self.countries[1])
         result = self.env["fake.customer"].search([], order="country_name desc")
         self.assertEqual(result[8:15].mapped("country_id"), self.countries[0])
+        # same-model related field
+        result = self.env["fake.customer"].search([], order="fake_sortkey3 asc")
+        self.assertEqual(result[0], self.customers[13])
 
     def test_2_sortable(self):
         """Test if the fields show as sortable"""
