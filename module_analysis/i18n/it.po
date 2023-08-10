@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-06-07 13:15+0000\n"
+"PO-Revision-Date: 2023-08-10 11:12+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -176,7 +176,7 @@ msgstr "Aggiorna Analisi Codice"
 #. module: module_analysis
 #: model:ir.ui.menu,name:module_analysis.menu_module_analysis_reporting
 msgid "Reporting"
-msgstr "Resoconti"
+msgstr "Rendicontazione"
 
 #. module: module_analysis
 #: model:ir.model.fields,field_description:module_analysis.field_ir_module_module__scss_code_qty
