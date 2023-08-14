@@ -50,6 +50,7 @@ setuptools.setup(
         'odoo13-addon-module_auto_update',
         'odoo13-addon-nsca_client',
         'odoo13-addon-onchange_helper',
+        'odoo13-addon-profiler',
         'odoo13-addon-scheduler_error_mailer',
         'odoo13-addon-sentry',
         'odoo13-addon-sequence_custom_data',
