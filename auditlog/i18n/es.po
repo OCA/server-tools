@@ -10,15 +10,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-03 10:08+0000\n"
-"PO-Revision-Date: 2018-07-14 08:45+0000\n"
-"Last-Translator: Enric Tobella <etobella@creublanca.es>\n"
+"PO-Revision-Date: 2023-09-03 00:14+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.0.1\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__action_id
@@ -64,17 +64,17 @@ msgstr "Auditlog - Regla"
 #. module: auditlog
 #: model:res.groups,name:auditlog.group_auditlog_manager
 msgid "Auditlog Manager"
-msgstr ""
+msgstr "Gerente de registros de auditoría"
 
 #. module: auditlog
 #: model:ir.module.category,name:auditlog.security_auditlog_groups
 msgid "Auditlog Rights"
-msgstr ""
+msgstr "Derechos de auditoría"
 
 #. module: auditlog
 #: model:res.groups,name:auditlog.group_auditlog_user
 msgid "Auditlog User"
-msgstr ""
+msgstr "Usuario de registro de auditoría"
 
 #. module: auditlog
 #: model:ir.actions.server,name:auditlog.ir_cron_auditlog_autovacuum_ir_actions_server
@@ -85,7 +85,7 @@ msgstr "Limpiar automáticamente los auditlogs"
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__capture_record
 msgid "Capture Record"
-msgstr ""
+msgstr "Capturar registro"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_http_request__user_context
@@ -161,12 +161,12 @@ msgstr "Campo"
 #: code:addons/auditlog/models/rule.py:0
 #, python-format
 msgid "Field 'model_id' cannot be empty."
-msgstr ""
+msgstr "El campo 'model_id' no puede estar vacío."
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__fields_to_exclude_ids
 msgid "Fields to Exclude"
-msgstr ""
+msgstr "Campos a excluir"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log__line_ids
@@ -297,7 +297,7 @@ msgstr "Borrar registros"
 #: model:ir.ui.menu,name:auditlog.menu_auditlog_line
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_line_search
 msgid "Log Lines"
-msgstr ""
+msgstr "Líneas de registro"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__log_read
@@ -336,14 +336,14 @@ msgstr "Modelo"
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__model_model
 msgid "Model Model"
-msgstr ""
+msgstr "Modelo Modelo"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log__model_name
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__model_name
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__model_name
 msgid "Model Name"
-msgstr ""
+msgstr "Nombre del modelo"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_http_request__display_name
@@ -370,21 +370,21 @@ msgstr "Texto del valor nuevo"
 #: code:addons/auditlog/models/log.py:0
 #, python-format
 msgid "No field defined to create line."
-msgstr ""
+msgstr "No se ha definido ningún campo para crear la línea."
 
 #. module: auditlog
 #. odoo-python
 #: code:addons/auditlog/models/rule.py:0
 #, python-format
 msgid "No model defined to create line."
-msgstr ""
+msgstr "No hay modelo definido para crear la línea."
 
 #. module: auditlog
 #. odoo-python
 #: code:addons/auditlog/models/log.py:0
 #, python-format
 msgid "No model defined to create log."
-msgstr ""
+msgstr "No se ha definido ningún modelo para crear el registro."
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line__old_value
@@ -407,7 +407,7 @@ msgstr "Ruta"
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__res_id
 msgid "Res"
-msgstr ""
+msgstr "Resolución"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log__res_id
@@ -448,6 +448,8 @@ msgstr "Seleccione el modelo al que quiere generar un registro."
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule__capture_record
 msgid "Select this if you want to keep track of Unlink Record"
 msgstr ""
+"Seleccione esta opción si desea realizar un seguimiento del registro de "
+"desvinculación"
 
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule__log_create
@@ -464,7 +466,7 @@ msgid ""
 "Select this if you want to keep track of deletion on any record of the model "
 "of this rule"
 msgstr ""
-"Marque esta casilla si desea hacer un seguimiento  del borrado de los "
+"Marque esta casilla si desea hacer un seguimiento del borrado de los "
 "registros del modelo de esta regla"
 
 #. module: auditlog
@@ -518,7 +520,7 @@ msgstr "Suscrito"
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log__model_model
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__model_model
 msgid "Technical Model Name"
-msgstr ""
+msgstr "Nombre técnico del modelo"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line__field_name
@@ -531,14 +533,14 @@ msgstr "Nombre técnico"
 #: code:addons/auditlog/models/log.py:0
 #, python-format
 msgid "The field 'field_id' cannot be empty."
-msgstr ""
+msgstr "El campo 'field_id' no puede estar vacío."
 
 #. module: auditlog
 #. odoo-python
 #: code:addons/auditlog/models/log.py:0
 #, python-format
 msgid "The field 'model_id' cannot be empty."
-msgstr ""
+msgstr "El campo 'model_id' no puede estar vacío."
 
 #. module: auditlog
 #: model:ir.model.constraint,message:auditlog.constraint_auditlog_rule_model_uniq
@@ -596,7 +598,7 @@ msgstr "Usuarios"
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__users_to_exclude_ids
 msgid "Users to Exclude"
-msgstr ""
+msgstr "Usuarios a excluir"
 
 #. module: auditlog
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_log_form
