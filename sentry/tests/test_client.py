@@ -12,6 +12,7 @@ from odoo import exceptions
 from odoo.tests import TransactionCase
 from odoo.tools import config
 
+from ..const import to_int_if_defined
 from ..hooks import initialize_sentry
 
 GIT_SHA = "d670460b4b4aece5915caf5c68d12f560a9fe3e4"
@@ -159,6 +160,22 @@ class TestClientSetup(TransactionCase):
         remove_handler_ignore(__name__)
         del config.options["sentry_exclude_loggers"]
         self.assertEventNotCaptured(client, level, msg)
+
+    def test_invalid_logging_level(self):
+        self.patch_config(
+            {
+                "sentry_logging_level": "foo_bar",
+            }
+        )
+        client = initialize_sentry(config)._client
+        client.transport = InMemoryTransport({"dsn": self.dsn})
+        level, msg = logging.WARNING, "Test we use the default"
+        self.log(level, msg)
+        level = "warning"
+        self.assertEventCaptured(client, level, msg)
+
+    def test_undefined_to_int(self):
+        self.assertIsNone(to_int_if_defined(""))
 
     @patch("odoo.addons.sentry.hooks.get_odoo_commit", return_value=GIT_SHA)
     def test_config_odoo_dir(self, get_odoo_commit):
