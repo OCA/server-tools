@@ -29,6 +29,7 @@ addon | version | maintainers | summary
 [base_cron_exclusion](base_cron_exclusion/) | 15.0.1.0.0 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) [![ChrisOForgeFlow](https://github.com/ChrisOForgeFlow.png?size=30px)](https://github.com/ChrisOForgeFlow) | Allow you to select scheduled actions that should not run simultaneously.
 [base_exception](base_exception/) | 15.0.1.0.2 | [![hparfr](https://github.com/hparfr.png?size=30px)](https://github.com/hparfr) [![sebastienbeau](https://github.com/sebastienbeau.png?size=30px)](https://github.com/sebastienbeau) | This module provide an abstract model to manage customizable exceptions to be applied on different models (sale order, invoice, ...)
 [base_fontawesome](base_fontawesome/) | 15.0.5.15.4 |  | Up to date Fontawesome resources.
+[base_kanban_stage](base_kanban_stage/) | 15.0.1.0.0 |  | Provides stage model and abstract logic for inheritance
 [base_model_restrict_update](base_model_restrict_update/) | 15.0.1.0.0 |  | Update Restrict Model
 [base_multi_image](base_multi_image/) | 15.0.1.0.0 |  | Allow multiple images for database objects
 [base_remote](base_remote/) | 15.0.1.0.0 |  | Remote Base
