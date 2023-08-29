@@ -83,7 +83,6 @@ msgid "Determines whether this stage will be collapsed down in Kanban views"
 msgstr ""
 
 #. module: base_kanban_stage
-#: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_abstract__display_name
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_stage__display_name
 msgid "Display Name"
 msgstr "Display Name"
@@ -160,18 +159,17 @@ msgid ""
 msgstr ""
 
 #. module: base_kanban_stage
-#: code:addons/base_kanban_stage/models/ir_model.py:23
+#: code:addons/base_kanban_stage/models/ir_model.py:0
 #, python-format
 msgid "Field \"Kanban\" cannot be changed to \"False\"."
 msgstr ""
 
 #. module: base_kanban_stage
-#: selection:base.kanban.abstract,kanban_priority:0
+#: model:ir.model.fields.selection,name:base_kanban_stage.selection__base_kanban_abstract__kanban_priority__2
 msgid "High"
 msgstr ""
 
 #. module: base_kanban_stage
-#: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_abstract__id
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_stage__id
 msgid "ID"
 msgstr "ID"
@@ -201,7 +199,6 @@ msgstr ""
 #. module: base_kanban_stage
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_abstract__kanban_sequence
 #, fuzzy
-#| msgid "Sequence"
 msgid "Kanban Sequence"
 msgstr "Sequence"
 
@@ -215,7 +212,6 @@ msgstr ""
 #. module: base_kanban_stage
 #: model:ir.actions.act_window,name:base_kanban_stage.base_kanban_stage_action
 #: model_terms:ir.ui.view,arch_db:base_kanban_stage.base_kanban_stage_view_search
-#: model_terms:ir.ui.view,arch_db:base_kanban_stage.base_kanban_stage_view_tree
 msgid "Kanban Stages"
 msgstr ""
 
@@ -225,7 +221,6 @@ msgid "Kanban Status"
 msgstr ""
 
 #. module: base_kanban_stage
-#: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_abstract____last_update
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_stage____last_update
 msgid "Last Modified on"
 msgstr "Last Modified on"
@@ -241,7 +236,8 @@ msgid "Last Updated on"
 msgstr "Last Updated on"
 
 #. module: base_kanban_stage
-#: selection:base.kanban.abstract,kanban_priority:0
+#: model:ir.model.fields.selection,name:base_kanban_stage.selection__base_kanban_abstract__kanban_priority__1
+#: model:ir.model.fields.selection,name:base_kanban_stage.selection__base_kanban_abstract_tester__kanban_priority__1
 msgid "Medium"
 msgstr ""
 
@@ -251,12 +247,13 @@ msgid "Models"
 msgstr ""
 
 #. module: base_kanban_stage
-#: selection:base.kanban.abstract,kanban_priority:0
+#: model:ir.model.fields.selection,name:base_kanban_stage.selection__base_kanban_abstract__kanban_priority__0
+#: model:ir.model.fields.selection,name:base_kanban_stage.selection__base_kanban_abstract_tester__kanban_priority__0
 msgid "Normal"
 msgstr ""
 
 #. module: base_kanban_stage
-#: selection:base.kanban.abstract,kanban_status:0
+#: model:ir.model.fields.selection,name:base_kanban_stage.selection__base_kanban_abstract__kanban_status__normal
 msgid "Normal Handling"
 msgstr ""
 
@@ -267,7 +264,7 @@ msgid "Normal Handling Explanation"
 msgstr ""
 
 #. module: base_kanban_stage
-#: code:addons/base_kanban_stage/models/ir_model.py:20
+#: code:addons/base_kanban_stage/models/ir_model.py:0
 #, python-format
 msgid "Only custom models can be modified."
 msgstr ""
@@ -296,7 +293,8 @@ msgid "Priority and Statuses"
 msgstr ""
 
 #. module: base_kanban_stage
-#: selection:base.kanban.abstract,kanban_status:0
+#: model:ir.model.fields.selection,name:base_kanban_stage.selection__base_kanban_abstract__kanban_status__done
+#: model:ir.model.fields.selection,name:base_kanban_stage.selection__base_kanban_abstract_tester__kanban_status__done
 msgid "Ready"
 msgstr ""
 
@@ -317,7 +315,8 @@ msgid "Short description of the stage's meaning/purpose"
 msgstr ""
 
 #. module: base_kanban_stage
-#: selection:base.kanban.abstract,kanban_status:0
+#: model:ir.model.fields.selection,name:base_kanban_stage.selection__base_kanban_abstract__kanban_status__blocked
+#: model:ir.model.fields.selection,name:base_kanban_stage.selection__base_kanban_abstract_tester__kanban_status__blocked
 msgid "Special Handling"
 msgstr ""
 
