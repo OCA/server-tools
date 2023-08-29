@@ -35,6 +35,8 @@ class TestBaseKanbanAbstract(TransactionCase):
         while self.registry._post_init_queue:
             func = self.registry._post_init_queue.popleft()
             func()
+        del self.registry._post_init_queue
+        del self.registry._foreign_keys
         return model
 
     def setUp(self):
