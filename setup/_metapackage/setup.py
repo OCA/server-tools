@@ -16,6 +16,7 @@ setuptools.setup(
         'odoo-addon-base_cron_exclusion>=15.0dev,<15.1dev',
         'odoo-addon-base_exception>=15.0dev,<15.1dev',
         'odoo-addon-base_fontawesome>=15.0dev,<15.1dev',
+        'odoo-addon-base_kanban_stage>=15.0dev,<15.1dev',
         'odoo-addon-base_model_restrict_update>=15.0dev,<15.1dev',
         'odoo-addon-base_multi_image>=15.0dev,<15.1dev',
         'odoo-addon-base_remote>=15.0dev,<15.1dev',
