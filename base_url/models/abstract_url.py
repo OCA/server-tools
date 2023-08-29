@@ -41,6 +41,10 @@ class AbstractUrl(models.AbstractModel):
         compute="_compute_url_need_refresh", store=True, readonly=False
     )
     count_url = fields.Integer(compute="_compute_count_url")
+    url_key = fields.Char(compute="_compute_url_key")
+    redirect_url_key = fields.Serialized(
+        compute="_compute_url_key", string="Redirect Url Keys"
+    )
 
     def _compute_count_url(self):
         res = self.env["url.url"].read_group(
@@ -62,6 +66,17 @@ class AbstractUrl(models.AbstractModel):
     def _compute_url_need_refresh(self):
         for record in self:
             record.url_need_refresh = True
+
+    @api.depends("url_ids")
+    @api.depends_context("lang", "referential")
+    def _compute_url_key(self):
+        referential = self._context.get("referential", "global")
+        lang = self._context.get("lang", "en_US")
+        for record in self:
+            record.url_key = record._get_main_url(referential, lang).key
+            record.redirect_url_key = record._get_redirect_urls(
+                referential, lang
+            ).mapped("key")
 
     def _get_keyword_fields(self):
         """This method return a list of field that will be concatenated
