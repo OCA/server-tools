@@ -281,6 +281,8 @@ class BaseExceptionModel(models.AbstractModel):
             ...
             self._check_exception
         """
+        if self.env.context.get("ignore_check_exception", False):
+            return True
         exception_ids = self.detect_exceptions()
         if exception_ids:
             exceptions = self.env["exception.rule"].browse(exception_ids)
