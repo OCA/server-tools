@@ -86,6 +86,7 @@ msgstr ""
 #. module: base_kanban_stage
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_abstract__display_name
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_stage__display_name
+#: model:ir.model.fields,field_description:base_kanban_stage.field_ir_model__display_name
 msgid "Display Name"
 msgstr "Naziv "
 
@@ -161,19 +162,20 @@ msgid ""
 msgstr ""
 
 #. module: base_kanban_stage
-#: code:addons/base_kanban_stage/models/ir_model.py:23
+#: code:addons/base_kanban_stage/models/ir_model.py:0
 #, python-format
 msgid "Field \"Kanban\" cannot be changed to \"False\"."
 msgstr ""
 
 #. module: base_kanban_stage
-#: selection:base.kanban.abstract,kanban_priority:0
+#: model:ir.model.fields.selection,name:base_kanban_stage.selection__base_kanban_abstract__kanban_priority__2
 msgid "High"
 msgstr "Visoko"
 
 #. module: base_kanban_stage
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_abstract__id
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_stage__id
+#: model:ir.model.fields,field_description:base_kanban_stage.field_ir_model__id
 msgid "ID"
 msgstr "ID"
 
@@ -187,14 +189,12 @@ msgstr "Kanban"
 #. module: base_kanban_stage
 #: model:ir.model,name:base_kanban_stage.model_base_kanban_abstract
 #, fuzzy
-#| msgid "base.kanban.abstract"
 msgid "Kanban Abstract"
 msgstr "base.kanban.abstract"
 
 #. module: base_kanban_stage
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_abstract__kanban_color
 #, fuzzy
-#| msgid "Color Index"
 msgid "Kanban Color Index"
 msgstr "Index boje"
 
@@ -206,7 +206,6 @@ msgstr ""
 #. module: base_kanban_stage
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_abstract__kanban_sequence
 #, fuzzy
-#| msgid "Sequence"
 msgid "Kanban Sequence"
 msgstr "Sekvenca"
 
@@ -232,6 +231,7 @@ msgstr ""
 #. module: base_kanban_stage
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_abstract____last_update
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_stage____last_update
+#: model:ir.model.fields,field_description:base_kanban_stage.field_ir_model____last_update
 msgid "Last Modified on"
 msgstr "Zadnje modificirano"
 
@@ -246,7 +246,8 @@ msgid "Last Updated on"
 msgstr "Zadnje ažuriranje"
 
 #. module: base_kanban_stage
-#: selection:base.kanban.abstract,kanban_priority:0
+#: model:ir.model.fields.selection,name:base_kanban_stage.selection__base_kanban_abstract__kanban_priority__1
+#: model:ir.model.fields.selection,name:base_kanban_stage.selection__base_kanban_abstract_tester__kanban_priority__1
 msgid "Medium"
 msgstr ""
 
@@ -256,12 +257,13 @@ msgid "Models"
 msgstr ""
 
 #. module: base_kanban_stage
-#: selection:base.kanban.abstract,kanban_priority:0
+#: model:ir.model.fields.selection,name:base_kanban_stage.selection__base_kanban_abstract__kanban_priority__0
+#: model:ir.model.fields.selection,name:base_kanban_stage.selection__base_kanban_abstract_tester__kanban_priority__0
 msgid "Normal"
 msgstr ""
 
 #. module: base_kanban_stage
-#: selection:base.kanban.abstract,kanban_status:0
+#: model:ir.model.fields.selection,name:base_kanban_stage.selection__base_kanban_abstract__kanban_status__normal
 msgid "Normal Handling"
 msgstr ""
 
@@ -272,7 +274,7 @@ msgid "Normal Handling Explanation"
 msgstr ""
 
 #. module: base_kanban_stage
-#: code:addons/base_kanban_stage/models/ir_model.py:20
+#: code:addons/base_kanban_stage/models/ir_model.py:0
 #, python-format
 msgid "Only custom models can be modified."
 msgstr ""
@@ -301,7 +303,8 @@ msgid "Priority and Statuses"
 msgstr ""
 
 #. module: base_kanban_stage
-#: selection:base.kanban.abstract,kanban_status:0
+#: model:ir.model.fields.selection,name:base_kanban_stage.selection__base_kanban_abstract__kanban_status__done
+#: model:ir.model.fields.selection,name:base_kanban_stage.selection__base_kanban_abstract_tester__kanban_status__done
 msgid "Ready"
 msgstr ""
 
@@ -322,7 +325,8 @@ msgid "Short description of the stage's meaning/purpose"
 msgstr ""
 
 #. module: base_kanban_stage
-#: selection:base.kanban.abstract,kanban_status:0
+#: model:ir.model.fields.selection,name:base_kanban_stage.selection__base_kanban_abstract__kanban_status__blocked
+#: model:ir.model.fields.selection,name:base_kanban_stage.selection__base_kanban_abstract_tester__kanban_status__blocked
 msgid "Special Handling"
 msgstr ""
 

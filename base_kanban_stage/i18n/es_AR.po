@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2017-12-01 02:10+0000\n"
 "PO-Revision-Date: 2022-03-27 21:17+0000\n"
 "Last-Translator: Ignacio Buioli <ibuioli@gmail.com>\n"
-"Language-Team: Spanish (Argentina) (https://www.transifex.com/oca/teams/"
-"23907/es_AR/)\n"
+"Language-Team: Spanish (Argentina) (https://www.transifex.com/oca/"
+"teams/23907/es_AR/)\n"
 "Language: es_AR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -94,6 +94,7 @@ msgstr "Determina si esta etapa será colapsada en las vistas Kanban"
 #. module: base_kanban_stage
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_abstract__display_name
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_stage__display_name
+#: model:ir.model.fields,field_description:base_kanban_stage.field_ir_model__display_name
 msgid "Display Name"
 msgstr "Mostrar Nombre"
 
@@ -185,19 +186,20 @@ msgstr ""
 "estado de manejo especial a esta etapa"
 
 #. module: base_kanban_stage
-#: code:addons/base_kanban_stage/models/ir_model.py:23
+#: code:addons/base_kanban_stage/models/ir_model.py:0
 #, python-format
 msgid "Field \"Kanban\" cannot be changed to \"False\"."
 msgstr "El campo \"Kanban\" no se puede cambiar a \"False\"."
 
 #. module: base_kanban_stage
-#: selection:base.kanban.abstract,kanban_priority:0
+#: model:ir.model.fields.selection,name:base_kanban_stage.selection__base_kanban_abstract__kanban_priority__2
 msgid "High"
 msgstr "Alto"
 
 #. module: base_kanban_stage
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_abstract__id
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_stage__id
+#: model:ir.model.fields,field_description:base_kanban_stage.field_ir_model__id
 msgid "ID"
 msgstr "ID"
 
@@ -250,6 +252,7 @@ msgstr "Estado del Kanban"
 #. module: base_kanban_stage
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_abstract____last_update
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_stage____last_update
+#: model:ir.model.fields,field_description:base_kanban_stage.field_ir_model____last_update
 msgid "Last Modified on"
 msgstr "Última modificación en"
 
@@ -264,7 +267,8 @@ msgid "Last Updated on"
 msgstr "Última actualización el"
 
 #. module: base_kanban_stage
-#: selection:base.kanban.abstract,kanban_priority:0
+#: model:ir.model.fields.selection,name:base_kanban_stage.selection__base_kanban_abstract__kanban_priority__1
+#: model:ir.model.fields.selection,name:base_kanban_stage.selection__base_kanban_abstract_tester__kanban_priority__1
 msgid "Medium"
 msgstr "Medio"
 
@@ -274,12 +278,13 @@ msgid "Models"
 msgstr "Modelos"
 
 #. module: base_kanban_stage
-#: selection:base.kanban.abstract,kanban_priority:0
+#: model:ir.model.fields.selection,name:base_kanban_stage.selection__base_kanban_abstract__kanban_priority__0
+#: model:ir.model.fields.selection,name:base_kanban_stage.selection__base_kanban_abstract_tester__kanban_priority__0
 msgid "Normal"
 msgstr "Normal"
 
 #. module: base_kanban_stage
-#: selection:base.kanban.abstract,kanban_status:0
+#: model:ir.model.fields.selection,name:base_kanban_stage.selection__base_kanban_abstract__kanban_status__normal
 msgid "Normal Handling"
 msgstr "Manejo normal"
 
@@ -290,7 +295,7 @@ msgid "Normal Handling Explanation"
 msgstr "Explicación del Manejo normal"
 
 #. module: base_kanban_stage
-#: code:addons/base_kanban_stage/models/ir_model.py:20
+#: code:addons/base_kanban_stage/models/ir_model.py:0
 #, python-format
 msgid "Only custom models can be modified."
 msgstr "Solo los modelos personalizados se pueden modificar."
@@ -322,7 +327,8 @@ msgid "Priority and Statuses"
 msgstr "Prioridad y Estados"
 
 #. module: base_kanban_stage
-#: selection:base.kanban.abstract,kanban_status:0
+#: model:ir.model.fields.selection,name:base_kanban_stage.selection__base_kanban_abstract__kanban_status__done
+#: model:ir.model.fields.selection,name:base_kanban_stage.selection__base_kanban_abstract_tester__kanban_status__done
 msgid "Ready"
 msgstr "Listo"
 
@@ -343,7 +349,8 @@ msgid "Short description of the stage's meaning/purpose"
 msgstr "Explicación corta del significado/propósito de la etapa"
 
 #. module: base_kanban_stage
-#: selection:base.kanban.abstract,kanban_status:0
+#: model:ir.model.fields.selection,name:base_kanban_stage.selection__base_kanban_abstract__kanban_status__blocked
+#: model:ir.model.fields.selection,name:base_kanban_stage.selection__base_kanban_abstract_tester__kanban_status__blocked
 msgid "Special Handling"
 msgstr "Manejo especial"
 
