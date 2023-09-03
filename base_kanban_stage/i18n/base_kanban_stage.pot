@@ -233,6 +233,7 @@ msgstr ""
 
 #. module: base_kanban_stage
 #: model:ir.model.fields.selection,name:base_kanban_stage.selection__base_kanban_abstract__kanban_priority__1
+#: model:ir.model.fields.selection,name:base_kanban_stage.selection__base_kanban_abstract_tester__kanban_priority__1
 msgid "Medium"
 msgstr ""
 
@@ -243,6 +244,7 @@ msgstr ""
 
 #. module: base_kanban_stage
 #: model:ir.model.fields.selection,name:base_kanban_stage.selection__base_kanban_abstract__kanban_priority__0
+#: model:ir.model.fields.selection,name:base_kanban_stage.selection__base_kanban_abstract_tester__kanban_priority__0
 msgid "Normal"
 msgstr ""
 
@@ -289,6 +291,7 @@ msgstr ""
 
 #. module: base_kanban_stage
 #: model:ir.model.fields.selection,name:base_kanban_stage.selection__base_kanban_abstract__kanban_status__done
+#: model:ir.model.fields.selection,name:base_kanban_stage.selection__base_kanban_abstract_tester__kanban_status__done
 msgid "Ready"
 msgstr ""
 
@@ -310,6 +313,7 @@ msgstr ""
 
 #. module: base_kanban_stage
 #: model:ir.model.fields.selection,name:base_kanban_stage.selection__base_kanban_abstract__kanban_status__blocked
+#: model:ir.model.fields.selection,name:base_kanban_stage.selection__base_kanban_abstract_tester__kanban_status__blocked
 msgid "Special Handling"
 msgstr ""
 
