@@ -24,7 +24,6 @@ msgstr "${object.post_import_do_something()}"
 #. module: excel_import_export
 #. odoo-python
 #: code:addons/excel_import_export/models/common.py:0
-#: code:addons/excel_import_export/models/common.py:0
 #, python-format
 msgid "'%s' sheet not found"
 msgstr "Hoja '%s' no encontrada"
@@ -44,8 +43,8 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "<b>Cell</b>: Location of data in excel sheet (e.g., A1, B1, ...)"
 msgstr ""
-"<b>Cell</b>: Ubicación de los datos en la hoja excel (por ejemplo, A1, B1, "
-"...)"
+"<b>Cell</b>: Ubicación de los datos en la hoja excel (por ejemplo, A1, "
+"B1, ...)"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -70,28 +69,28 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid ""
 "<b>Field Cond.</b>: Python code in <code>$</code><code>{...}</code> to "
-"manipulate field value, e.g., if field = product_id, <code>value</code> will"
-" represent product object, e.g., <code>$</code><code>{value and "
-"value.uom_id.name or \"\"}</code>"
+"manipulate field value, e.g., if field = product_id, <code>value</code> will "
+"represent product object, e.g., <code>$</code><code>{value and value.uom_id."
+"name or \"\"}</code>"
 msgstr ""
 "<b>Cond. de campo</b>: código Python en <code>$</code><code>{...}</code> "
 "para manipular el valor del campo, por ejemplo, si campo = product_id, "
-"<code>valor </code> representará el objeto del producto, por ejemplo, "
-"<code>$</code><code>{value y value.uom_id.name o \"\"}</code>"
+"<code>valor </code> representará el objeto del producto, por ejemplo, <code>"
+"$</code><code>{value y value.uom_id.name o \"\"}</code>"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid ""
 "<b>Field Cond.</b>: Python code in <code>$</code><code>{...}</code> value "
-"will represent data from excel cell, e.g., if A1 = 'ABC', <code>value</code>"
-" will represent 'ABC', e.g., <code>$</code><code>{value == \"ABC\" and \"X\""
-" or \"Y\"}</code> thus can change from cell value to other value for import."
+"will represent data from excel cell, e.g., if A1 = 'ABC', <code>value</code> "
+"will represent 'ABC', e.g., <code>$</code><code>{value == \"ABC\" and \"X\" "
+"or \"Y\"}</code> thus can change from cell value to other value for import."
 msgstr ""
-"<b>Cond. de campo</b>: el código Python en el valor "
-"<code>$</code><code>{...}</code> representará datos de la celda de Excel, "
-"por ejemplo, si A1 = 'ABC' , <code>value</code> representará 'ABC', por "
-"ejemplo, <code>$</code><code>{value == \"ABC\" y \"X\" o \"Y\"}</code>, por "
-"lo que puede cambie del valor de celda a otro valor para importar."
+"<b>Cond. de campo</b>: el código Python en el valor <code>$</code><code>{...}"
+"</code> representará datos de la celda de Excel, por ejemplo, si A1 = "
+"'ABC' , <code>value</code> representará 'ABC', por ejemplo, <code>$</"
+"code><code>{value == \"ABC\" y \"X\" o \"Y\"}</code>, por lo que puede "
+"cambie del valor de celda a otro valor para importar."
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -126,11 +125,11 @@ msgstr "<b>Nota:</b>"
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid ""
-"<b>Row Field</b>: Use _HEAD_ for the record itself, and one2many field "
-"(e.g., line_ids) for row data"
+"<b>Row Field</b>: Use _HEAD_ for the record itself, and one2many field (e."
+"g., line_ids) for row data"
 msgstr ""
-"<b>Campo de fila</b>: use _HEAD_ para el registro en sí y un campo one2many ("
-"por ejemplo, line_ids) para los datos de la fila"
+"<b>Campo de fila</b>: use _HEAD_ para el registro en sí y un campo one2many "
+"(por ejemplo, line_ids) para los datos de la fila"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -162,14 +161,13 @@ msgstr ""
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid ""
-"<b>Style w/Cond.</b>: Conditional style by python code in "
-"<code>#?...?</code>, e.g., apply style for specific product, "
-"<code>#?value.name == \"ABC\" and #{font=bold;fill=red} or None?</code>"
+"<b>Style w/Cond.</b>: Conditional style by python code in <code>#?...?</"
+"code>, e.g., apply style for specific product, <code>#?value.name == \"ABC\" "
+"and #{font=bold;fill=red} or None?</code>"
 msgstr ""
-"<b>Estilo con Cond.</b>: Estilo condicional por código Python en "
-"<code>#?...?</code>, por ejemplo, aplicar estilo para un producto "
-"específico, <code>#?value.name = = \"ABC\" y #{font=bold;fill=red} o "
-"¿Ninguno?</code>"
+"<b>Estilo con Cond.</b>: Estilo condicional por código Python en <code>#?...?"
+"</code>, por ejemplo, aplicar estilo para un producto específico, <code>#?"
+"value.name = = \"ABC\" y #{font=bold;fill=red} o ¿Ninguno?</code>"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -186,8 +184,8 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "<b>Sum</b>: Add sum value on last row, <code>@{sum}</code>"
 msgstr ""
-"<b>Suma</b>: agregue el valor de la suma en la última fila, "
-"<code>@{sum}</code>"
+"<b>Suma</b>: agregue el valor de la suma en la última fila, <code>@{sum}</"
+"code>"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -197,23 +195,32 @@ msgid ""
 "    '__EXPORT__': {\n"
 "        'sale_order': {  # sheet can be name (string) or index (integer)\n"
 "            '_HEAD_': {\n"
-"                'B2': 'partner_id.display_name<span>$</span>{value or \"\"}#{align=left;style=text}',\n"
-"                'B3': 'name<span>$</span>{value or \"\"}#{align=left;style=text}',\n"
+"                'B2': 'partner_id.display_name<span>$</span>{value or \"\"}"
+"#{align=left;style=text}',\n"
+"                'B3': 'name<span>$</span>{value or \"\"}#{align=left;"
+"style=text}',\n"
 "            },\n"
-"            'line_ids': {  # prefix with _CONT_ to continue rows from previous row field\n"
-"                'A6': 'product_id.display_name<span>$</span>{value or \"\"}#{style=text}',\n"
-"                'C6': 'product_uom_qty<span>$</span>{value or 0}#{style=number}',\n"
-"                'E6': 'price_unit<span>$</span>{value or 0}#{style=number}',\n"
-"                'G6': 'price_subtotal<span>$</span>{value or 0}#{style=number}',\n"
+"            'line_ids': {  # prefix with _CONT_ to continue rows from "
+"previous row field\n"
+"                'A6': 'product_id.display_name<span>$</span>{value or \"\"}"
+"#{style=text}',\n"
+"                'C6': 'product_uom_qty<span>$</span>{value or 0}"
+"#{style=number}',\n"
+"                'E6': 'price_unit<span>$</span>{value or 0}"
+"#{style=number}',\n"
+"                'G6': 'price_subtotal<span>$</span>{value or 0}"
+"#{style=number}',\n"
 "            },\n"
 "        },\n"
 "    },\n"
 "    '__IMPORT__': {\n"
 "        'sale_order': {  # sheet can be name (string) or index (integer)\n"
-"            'order_line': {  # prefix with _NODEL_ to not delete rows before import\n"
+"            'order_line': {  # prefix with _NODEL_ to not delete rows before "
+"import\n"
 "                'A6': 'product_id',\n"
 "                'C6': 'product_uom_qty',\n"
-"                'E6': 'price_unit<span>$</span>{value &gt; 0 and value or 0}',\n"
+"                'E6': 'price_unit<span>$</span>{value &gt; 0 and value or "
+"0}',\n"
 "            },\n"
 "        },\n"
 "    },\n"
@@ -227,21 +234,21 @@ msgstr ""
 "    '__EXPORTAR__': {\n"
 "        'sale_order': {# hoja puede ser nombre (cadena) o índice (entero)\n"
 "            '_CABEZA_': {\n"
-"                'B2': 'partner_id.display_name<span>$</span>{valor o \"\""
-"}#{align=left;style=text}',\n"
-"                'B3': 'nombre<span>$</span>{valor o \"\""
-"}#{align=left;style=text}',\n"
+"                'B2': 'partner_id.display_name<span>$</span>{valor o \"\"}"
+"#{align=left;style=text}',\n"
+"                'B3': 'nombre<span>$</span>{valor o \"\"}#{align=left;"
+"style=text}',\n"
 "            },\n"
 "            'line_ids': { # prefijo con _CONT_ para continuar filas del "
 "campo de fila anterior\n"
-"                'A6': 'product_id.display_name<span>$</span>{valor o \"\""
-"}#{style=text}',\n"
-"                'C6': 'product_uom_qty<span>$</span>{valor o "
-"0}#{estilo=número}',\n"
-"                'E6': 'precio_unidad<span>$</span>{valor o "
-"0}#{estilo=número}',\n"
-"                'G6': 'precio_subtotal<span>$</span>{valor o "
-"0}#{estilo=número}',\n"
+"                'A6': 'product_id.display_name<span>$</span>{valor o \"\"}"
+"#{style=text}',\n"
+"                'C6': 'product_uom_qty<span>$</span>{valor o 0}"
+"#{estilo=número}',\n"
+"                'E6': 'precio_unidad<span>$</span>{valor o 0}"
+"#{estilo=número}',\n"
+"                'G6': 'precio_subtotal<span>$</span>{valor o 0}"
+"#{estilo=número}',\n"
 "            },\n"
 "        },\n"
 "    },\n"
@@ -274,8 +281,7 @@ msgstr "<code>modelo</code>: modelo activo, por ejemplo, self.env['my.model']"
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid ""
-"<code>object</code>: record object or line object depends on <b>Row "
-"Field</b>"
+"<code>object</code>: record object or line object depends on <b>Row Field</b>"
 msgstr ""
 "<code>objeto</code>: objeto de registro u objeto de línea depende del "
 "<b>campo de fila</b>"
@@ -390,6 +396,8 @@ msgstr "Celda"
 #. module: excel_import_export
 #: model:ir.model.fields.selection,name:excel_import_export.selection__export_xlsx_wizard__state__choose
 #: model:ir.model.fields.selection,name:excel_import_export.selection__import_xlsx_wizard__state__choose
+#: model:ir.model.fields.selection,name:excel_import_export.selection__report_crm_lead__state__choose
+#: model:ir.model.fields.selection,name:excel_import_export.selection__report_sale_order__state__choose
 #: model:ir.model.fields.selection,name:excel_import_export.selection__xlsx_report__state__choose
 msgid "Choose"
 msgstr "Elegir"
@@ -605,10 +613,16 @@ msgstr "Acción de exportación"
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid ""
-"Export Instruction is how to write data from an active data record to specified cells in excel sheet.\n"
-"                                  For example, an active record can be a sale order that user want to export.\n"
-"                                  The record itself will be mapped to the header part of excel sheet. The record can contain multiple one2many fields, which will be written as data lines.\n"
-"                                  You can look at following instruction as Excel Sheet(s), each with 1 header section (_HEAD_) and multiple row sections (one2many fields)."
+"Export Instruction is how to write data from an active data record to "
+"specified cells in excel sheet.\n"
+"                                  For example, an active record can be a "
+"sale order that user want to export.\n"
+"                                  The record itself will be mapped to the "
+"header part of excel sheet. The record can contain multiple one2many fields, "
+"which will be written as data lines.\n"
+"                                  You can look at following instruction as "
+"Excel Sheet(s), each with 1 header section (_HEAD_) and multiple row "
+"sections (one2many fields)."
 msgstr ""
 "Instrucción de Exportación es como escribir datos de un registro de datos "
 "activo a celdas especificadas en una hoja de Excel.\n"
@@ -679,7 +693,8 @@ msgstr "A continuación encontrará más explicaciones sobre cada columna:"
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid ""
 "Following show very simple example of the dictionary construct.\n"
-"                                    Normally, this will be within templates.xml file within addons."
+"                                    Normally, this will be within templates."
+"xml file within addons."
 msgstr ""
 "A continuación se muestra un ejemplo muy simple de la construcción del "
 "diccionario.\n"
@@ -714,6 +729,8 @@ msgstr ""
 #. module: excel_import_export
 #: model:ir.model.fields.selection,name:excel_import_export.selection__export_xlsx_wizard__state__get
 #: model:ir.model.fields.selection,name:excel_import_export.selection__import_xlsx_wizard__state__get
+#: model:ir.model.fields.selection,name:excel_import_export.selection__report_crm_lead__state__get
+#: model:ir.model.fields.selection,name:excel_import_export.selection__report_sale_order__state__get
 #: model:ir.model.fields.selection,name:excel_import_export.selection__xlsx_report__state__get
 msgid "Get"
 msgstr "Obtener"
@@ -820,10 +837,15 @@ msgstr "Importar archivos (*.xlsx)"
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid ""
-"Import Instruction is how to get data from excel sheet and write them to an active record.\n"
-"                                  For example, user create a sales order document, and want to import order lines from excel.\n"
-"                                  In reverse direction to exporting, data from excel's cells will be mapped to record fields during import.\n"
-"                                  Cells can be mapped to record in header section (_HEAD_) and data table can be mapped to row section (one2many field, begins from specifed cells."
+"Import Instruction is how to get data from excel sheet and write them to an "
+"active record.\n"
+"                                  For example, user create a sales order "
+"document, and want to import order lines from excel.\n"
+"                                  In reverse direction to exporting, data "
+"from excel's cells will be mapped to record fields during import.\n"
+"                                  Cells can be mapped to record in header "
+"section (_HEAD_) and data table can be mapped to row section (one2many "
+"field, begins from specifed cells."
 msgstr ""
 "La instrucción de importación es cómo obtener datos de una hoja de Excel y "
 "escribirlos en un registro activo.\n"
@@ -845,8 +867,8 @@ msgstr "¡Importación exitosa!"
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid ""
-"In header section part, map data fields (e.g., number, partner_id.name) into"
-" cells (e.g., B1, B2)."
+"In header section part, map data fields (e.g., number, partner_id.name) into "
+"cells (e.g., B1, B2)."
 msgstr ""
 "En la parte de la sección del encabezado, asigne los campos de datos (por "
 "ejemplo, número, socio_id.nombre) a celdas (por ejemplo, B1, B2)."
@@ -1062,7 +1084,6 @@ msgstr "Seleccione el archivo Excel para importar"
 
 #. module: excel_import_export
 #. odoo-python
-#: code:addons/excel_import_export/models/common.py:0
 #: code:addons/excel_import_export/models/common.py:0
 #, python-format
 msgid "Position %s is not valid"
