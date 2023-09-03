@@ -35,6 +35,7 @@ msgid "Display Name"
 msgstr "Nombre mostrado"
 
 #. module: sql_request_abstract
+#: model:ir.model.fields.selection,name:sql_request_abstract.selection__sql_export__state__draft
 #: model:ir.model.fields.selection,name:sql_request_abstract.selection__sql_request_mixin__state__draft
 msgid "Draft"
 msgstr "Borrador"
@@ -96,6 +97,7 @@ msgid "SQL Request Mixin"
 msgstr ""
 
 #. module: sql_request_abstract
+#: model:ir.model.fields.selection,name:sql_request_abstract.selection__sql_export__state__sql_valid
 #: model:ir.model.fields.selection,name:sql_request_abstract.selection__sql_request_mixin__state__sql_valid
 msgid "SQL Valid"
 msgstr ""

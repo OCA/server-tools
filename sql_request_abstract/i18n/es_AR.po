@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2017-06-06 02:51+0000\n"
 "PO-Revision-Date: 2022-03-24 22:17+0000\n"
 "Last-Translator: Ignacio Buioli <ibuioli@gmail.com>\n"
-"Language-Team: Spanish (Argentina) (https://www.transifex.com/oca/teams/"
-"23907/es_AR/)\n"
+"Language-Team: Spanish (Argentina) (https://www.transifex.com/oca/"
+"teams/23907/es_AR/)\n"
 "Language: es_AR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -36,6 +36,7 @@ msgid "Display Name"
 msgstr "Mostrar Nombre"
 
 #. module: sql_request_abstract
+#: model:ir.model.fields.selection,name:sql_request_abstract.selection__sql_export__state__draft
 #: model:ir.model.fields.selection,name:sql_request_abstract.selection__sql_request_mixin__state__draft
 msgid "Draft"
 msgstr "Borrador"
@@ -101,6 +102,7 @@ msgid "SQL Request Mixin"
 msgstr "Solicitud Mixin SQL"
 
 #. module: sql_request_abstract
+#: model:ir.model.fields.selection,name:sql_request_abstract.selection__sql_export__state__sql_valid
 #: model:ir.model.fields.selection,name:sql_request_abstract.selection__sql_request_mixin__state__sql_valid
 msgid "SQL Valid"
 msgstr "SQL Válido"
