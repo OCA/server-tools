@@ -115,7 +115,7 @@ msgstr ""
 
 #. module: base_exception
 #. odoo-python
-#: code:addons/base_exception/models/base_exception.py:0
+#: code:addons/base_exception/models/base_exception_method.py:0
 #, python-format
 msgid ""
 "Error when evaluating the exception.rule rule:\n"
@@ -304,7 +304,7 @@ msgstr ""
 
 #. module: base_exception
 #. odoo-python
-#: code:addons/base_exception/models/base_exception.py:0
+#: code:addons/base_exception/models/exception_rule.py:0
 #, python-format
 msgid ""
 "There is a problem of configuration, python code, domain or method is "
