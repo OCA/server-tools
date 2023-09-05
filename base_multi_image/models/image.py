@@ -230,7 +230,7 @@ class Image(models.Model):
         """
         res = super(Image, self).create(vals)
         for record in res.filtered(lambda r: r.storage == 'db'):
-            record._convert_to_filestore()
+            record.sudo()._convert_to_filestore()
         return res
 
     @api.multi
@@ -242,7 +242,7 @@ class Image(models.Model):
          """
         db_images = self.search([('storage', '=', 'db')])
         for image in db_images:
-            image._convert_to_filestore()
+            image.sudo()._convert_to_filestore()
         return True
 
     def _convert_to_filestore(self):
