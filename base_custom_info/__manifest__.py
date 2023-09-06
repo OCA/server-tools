@@ -7,7 +7,7 @@
     "name": "Base Custom Info",
     "summary": "Add custom field in models",
     "category": "Tools",
-    "version": "14.0.1.0.1",
+    "version": "14.0.1.0.2",
     "depends": ["base_setup"],
     "data": [
         "views/webclient_templates.xml",
