@@ -32,7 +32,7 @@ addon | version | maintainers | summary
 [base_conditional_image](base_conditional_image/) | 14.0.2.0.0 |  | This module extends the functionality to support conditional images
 [base_contextvars](base_contextvars/) | 14.0.1.0.4 | [![sbidoul](https://github.com/sbidoul.png?size=30px)](https://github.com/sbidoul) | Patch Odoo threadlocals to use contextvars instead.
 [base_cron_exclusion](base_cron_exclusion/) | 14.0.1.0.0 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | Allow you to select scheduled actions that should not run simultaneously.
-[base_custom_info](base_custom_info/) | 14.0.1.0.1 |  | Add custom field in models
+[base_custom_info](base_custom_info/) | 14.0.1.0.2 |  | Add custom field in models
 [base_deterministic_session_gc](base_deterministic_session_gc/) | 14.0.1.0.0 |  | Provide a deterministic session garbage collection instead of the default random one
 [base_exception](base_exception/) | 14.0.2.1.0 | [![hparfr](https://github.com/hparfr.png?size=30px)](https://github.com/hparfr) [![sebastienbeau](https://github.com/sebastienbeau.png?size=30px)](https://github.com/sebastienbeau) | This module provide an abstract model to manage customizable exceptions to be applied on different models (sale order, invoice, ...)
 [base_fontawesome](base_fontawesome/) | 14.0.5.15.4 |  | Up to date Fontawesome resources.
