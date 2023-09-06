@@ -34,7 +34,12 @@ odoo.define("base_custom_info.relational_fields", function (require) {
             });
         },
         commitChanges: function () {
-            if (this.renderer && this.renderer.viewType === "custom_info") {
+            if (
+                this._isDirty &&
+                this.mode === "edit" &&
+                this.renderer &&
+                this.renderer.viewType === "custom_info"
+            ) {
                 var self = this;
                 this.renderer.commitChanges().then(function () {
                     return self._saveCustomInfo();
