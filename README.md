@@ -27,7 +27,7 @@ addon | version | maintainers | summary
 [autovacuum_message_attachment](autovacuum_message_attachment/) | 13.0.1.0.1 |  | Automatically delete old mail messages and attachments
 [base_changeset](base_changeset/) | 13.0.1.0.1 | [![astirpe](https://github.com/astirpe.png?size=30px)](https://github.com/astirpe) | Track record changesets
 [base_cron_exclusion](base_cron_exclusion/) | 13.0.1.0.1 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | Allow you to select scheduled actions that should not run simultaneously.
-[base_custom_info](base_custom_info/) | 13.0.1.0.2 |  | Add custom field in models
+[base_custom_info](base_custom_info/) | 13.0.1.0.3 |  | Add custom field in models
 [base_deterministic_session_gc](base_deterministic_session_gc/) | 13.0.1.0.0 |  | Provide a deterministic session garbage collection instead of the default random one
 [base_domain_inverse_function](base_domain_inverse_function/) | 13.0.1.0.0 | [![grindtildeath](https://github.com/grindtildeath.png?size=30px)](https://github.com/grindtildeath) | Provide function to inverse domain into parts
 [base_exception](base_exception/) | 13.0.1.2.0 |  | This module provide an abstract model to manage customizable exceptions to be applied on different models (sale order, invoice, ...)
