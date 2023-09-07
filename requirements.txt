@@ -6,4 +6,4 @@ odoorpc
 openpyxl
 openupgradelib
 pygount
-sentry_sdk>=1.17.0
+sentry_sdk==1.17.0

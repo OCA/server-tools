@@ -30,4 +30,5 @@
     },
     "demo": ["demo/changeset_field_rule.xml"],
     "installable": True,
+    "post_load": "post_load",
 }

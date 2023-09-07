@@ -159,7 +159,7 @@ class RecordChangeset(models.Model):
                         # but create some default for required text fields
                         record._fields[field].required
                         and record._fields[field].type in ("char", "text")
-                        and "/"
+                        and rule.default_value_required_field
                         or record._fields[field].null(record)
                     )
             changes.append(change)

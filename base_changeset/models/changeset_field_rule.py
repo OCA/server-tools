@@ -52,6 +52,12 @@ class ChangesetFieldRule(models.Model):
         )
         or self.env["res.groups"],
     )
+    default_value_required_field = fields.Char(
+        string="Default value of required field",
+        default="/",
+        help="This default value will be stored temporarily "
+        "if rule is applied to required field",
+    )
 
     def init(self):
         """Ensure there is at most one rule with source_model_id NULL."""

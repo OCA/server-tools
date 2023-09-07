@@ -3,12 +3,13 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from datetime import datetime, timedelta
+from unittest.mock import patch
 
 from odoo import fields
 from odoo.exceptions import UserError
 from odoo.tests.common import TransactionCase
 
-from ..models.base import disable_changeset
+from ..common import disable_changeset
 from .common import ChangesetTestCommon
 
 
@@ -461,3 +462,51 @@ class TestChangesetFlow(ChangesetTestCommon, TransactionCase):
         self.partner.invalidate_recordset()
         self.assertTrue(self.partner.changeset_ids)
         self.assertEqual(self.partner.street, "street Y")
+
+    def test_rule_default_value_for_required_field(self):
+        """Test if rule default value is stored in required field of new record"""
+
+        rule = self.env["changeset.field.rule"].create(
+            {
+                "field_id": self.env.ref("base.field_res_partner_bank__acc_number").id,
+                "action": "validate",
+            }
+        )
+        account_number = "AT483200000012345864"
+        partner_bank_one = (
+            self.env["res.partner.bank"]
+            .with_context(test_record_changeset=True)
+            .create({"acc_number": account_number, "partner_id": self.partner.id})
+        )
+        self.assertEqual(partner_bank_one.acc_number, "/")
+
+        default_value = "Pending Approval"
+        rule.default_value_required_field = default_value
+        partner_bank_second = (
+            self.env["res.partner.bank"]
+            .with_context(test_record_changeset=True)
+            .create({"acc_number": account_number, "partner_id": self.partner.id})
+        )
+        self.assertEqual(partner_bank_second.acc_number, default_value)
+
+    @patch("logging.Logger.warning")
+    def test_comparing_value_both_sides(self, log_warning_method):
+        """
+        Test if it doesn't throw warning "Comparing apples and oranges:"
+        while comparing both sides to prepare values for write
+        """
+        self.env["changeset.field.rule"].create(
+            {
+                "field_id": self.env.ref("base.field_res_partner__parent_id").id,
+                "action": "validate",
+            }
+        )
+        partner = self.env["res.partner"].create(
+            {
+                "name": "partner",
+            }
+        )
+        self.env["res.partner"].with_context(test_record_changeset=True).create(
+            {"name": "partner", "parent_id": partner.id}
+        )
+        self.assertEqual(log_warning_method.call_count, 0)
