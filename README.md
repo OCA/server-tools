@@ -37,7 +37,7 @@ addon | version | maintainers | summary
 [base_technical_user](base_technical_user/) | 15.0.1.0.0 |  | Add a technical user parameter on the company
 [base_time_window](base_time_window/) | 15.0.1.0.0 |  | Base model to handle time windows
 [base_translation_field_label](base_translation_field_label/) | 15.0.1.0.0 | [![GuillemCForgeFlow](https://github.com/GuillemCForgeFlow.png?size=30px)](https://github.com/GuillemCForgeFlow) | Shows the field label and optionally hides the Translated field value.
-[base_view_inheritance_extension](base_view_inheritance_extension/) | 15.0.2.0.0 |  | Adds more operators for view inheritance
+[base_view_inheritance_extension](base_view_inheritance_extension/) | 15.0.2.0.1 |  | Adds more operators for view inheritance
 [database_cleanup](database_cleanup/) | 15.0.1.0.2 |  | Database cleanup
 [datetime_formatter](datetime_formatter/) | 15.0.1.0.0 |  | Helper functions to give correct format to date[time] fields
 [dbfilter_from_header](dbfilter_from_header/) | 15.0.1.0.0 |  | Filter databases with HTTP headers
