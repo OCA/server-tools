@@ -96,7 +96,7 @@ class Webhook(models.Model):
             _logger.debug(
                 'python_code "%s" with dict [%s] error [%s]',
                 python_code, eval_dict, error)
-        if isinstance(res, basestring):
+        if isinstance(res, str):
             res = tools.ustr(res)
         return res
 
