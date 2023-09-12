@@ -50,6 +50,7 @@ addon | version | maintainers | summary
 [html_image_url_extractor](html_image_url_extractor/) | 15.0.1.0.1 |  | Extract images found in any HTML field
 [html_text](html_text/) | 15.0.1.0.1 |  | Generate excerpts from any HTML field
 [iap_alternative_provider](iap_alternative_provider/) | 15.0.1.0.0 | [![sebastienbeau](https://github.com/sebastienbeau.png?size=30px)](https://github.com/sebastienbeau) | Base module for providing alternative provider for iap apps
+[jsonifier](jsonifier/) | 15.0.1.0.0 |  | Base module that provide the jsonify method on all models
 [letsencrypt](letsencrypt/) | 15.0.1.0.3 |  | Request SSL certificates from letsencrypt.org
 [module_analysis](module_analysis/) | 15.0.1.1.1 |  | Add analysis tools regarding installed modules to know which installed modules comes from Odoo Core, OCA, or are custom modules
 [module_auto_update](module_auto_update/) | 15.0.1.0.1 |  | Automatically update Odoo modules
