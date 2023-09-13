@@ -35,6 +35,7 @@ addon | version | maintainers | summary
 [base_multi_image](base_multi_image/) | 15.0.1.0.0 |  | Allow multiple images for database objects
 [base_remote](base_remote/) | 15.0.1.0.0 |  | Remote Base
 [base_search_fuzzy](base_search_fuzzy/) | 15.0.1.0.0 |  | Fuzzy search with the PostgreSQL trigram extension
+[base_sparse_field_list_support](base_sparse_field_list_support/) | 15.0.1.0.0 |  | add list support to convert_to_cache()
 [base_technical_user](base_technical_user/) | 15.0.1.0.0 |  | Add a technical user parameter on the company
 [base_time_window](base_time_window/) | 15.0.1.0.0 |  | Base model to handle time windows
 [base_translation_field_label](base_translation_field_label/) | 15.0.1.0.0 | [![GuillemCForgeFlow](https://github.com/GuillemCForgeFlow.png?size=30px)](https://github.com/GuillemCForgeFlow) | Shows the field label and optionally hides the Translated field value.
