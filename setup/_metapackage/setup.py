@@ -22,6 +22,7 @@ setuptools.setup(
         'odoo-addon-base_multi_image>=15.0dev,<15.1dev',
         'odoo-addon-base_remote>=15.0dev,<15.1dev',
         'odoo-addon-base_search_fuzzy>=15.0dev,<15.1dev',
+        'odoo-addon-base_sparse_field_list_support>=15.0dev,<15.1dev',
         'odoo-addon-base_technical_user>=15.0dev,<15.1dev',
         'odoo-addon-base_time_window>=15.0dev,<15.1dev',
         'odoo-addon-base_translation_field_label>=15.0dev,<15.1dev',
