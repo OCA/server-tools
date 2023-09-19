@@ -190,23 +190,6 @@ Note that the export values with the simple parser depends on the
 record's lang; this is in contrast with full parsers which are designed
 to be language agnostic.
 
-default_function parameter
-==========================
-
-In order to facilitate the usage of the many options jsonifier has, there is the 
-default_function=True options we can pass to rec.jsonify()
-this will impose as function  for all fields default_function, in order to shorten
-parser expression.
-
-default function currently retuns field: {fieldname: string_of_field, value: value} instead of
-the standard  field: value.
-
-It can be overwritten per-model or globally directly on models.py
-
-
-
-
-
 
 NOTE: this module was named base_jsonify till version 14.0.1.5.0.
 
