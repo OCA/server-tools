@@ -121,6 +121,8 @@ class TestParser(TransactionCase):
         self.assertEqual(parser, expected_full_parser)
 
     def test_json_export(self):
+        # will allow to view large dict diff in case of regression
+        self.maxDiff = None
         # Enforces TZ to validate the serialization result of a Datetime
         parser = [
             "lang",
@@ -170,10 +172,61 @@ class TestParser(TransactionCase):
             "create_date": "2019-10-31T14:39:49",
             "date": "2019-10-31",
         }
+        expected_json_with_fieldname = {
+            "fieldname_lang": "Language",
+            "lang": "en_US",
+            "fieldname_comment": "Notes",
+            "comment": None,
+            "fieldname_credit_limit": "Credit Limit",
+            "credit_limit": 0.0,
+            "fieldname_name": "Name",
+            "name": "Akretion",
+            "fieldname_color": "Color Index",
+            "color": 0,
+            "fieldname_children": "Contact",
+            "children": [
+                {
+                    "fieldname_children": "Contact",
+                    "children": [],
+                    "fieldname_email": "Email",
+                    "email": None,
+                    "fieldname_country": "Country",
+                    "country": {
+                        "fieldname_code": "Country Code",
+                        "code": "FR",
+                        "fieldname_name": "Country Name",
+                        "name": "France",
+                    },
+                    "fieldname_name": "Name",
+                    "name": "Sebatien Beau",
+                    "fieldname_id": "ID",
+                    "id": self.partner.child_ids.id,
+                }
+            ],
+            "fieldname_country": "Country",
+            "country": {
+                "fieldname_code": "Country Code",
+                "code": "FR",
+                "fieldname_name": "Country Name",
+                "name": "France",
+            },
+            "fieldname_active": "Active",
+            "active": True,
+            "fieldname_category_id": "Tags",
+            "category_id": [{"fieldname_name": "Tag Name", "name": "Inovator"}],
+            "fieldname_create_date": "Created on",
+            "create_date": "2019-10-31T15:39:49+01:00",
+            "fieldname_date": "Date",
+            "date": "2019-10-31",
+        }
         json_partner = self.partner.jsonify(parser)
-
         self.assertDictEqual(json_partner[0], expected_json)
-
+        json_partner_with_fieldname = self.partner.jsonify(
+            parser=parser, with_fieldname=True
+        )
+        self.assertDictEqual(
+            json_partner_with_fieldname[0], expected_json_with_fieldname
+        )
         # Check that only boolean fields have boolean values into json
         # By default if a field is not set into Odoo, the value is always False
         # This value is not the expected one into the json
