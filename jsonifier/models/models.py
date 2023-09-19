@@ -213,11 +213,13 @@ class Base(models.AbstractModel):
         parsers = {False: parser["fields"]} if "fields" in parser else parser["langs"]
         for lang in parsers:
             translate = lang or parser.get("language_agnostic")
-            records = self.with_context(lang=lang) if translate else self
-            records = (
-                records.with_context(with_fieldname=True) if with_fieldname else records
-            )
-            for record, json in zip(records, results, strict=True):
+            new_ctx = {}
+            if translate:
+                new_ctx["lang"] = lang
+            if with_fieldname:
+                new_ctx["with_fieldname"] = True
+            records = self.with_context(**new_ctx) if new_ctx else self
+            for record, json in zip(records, results, strict=False):
                 self._jsonify_record(parsers[lang], record, json)
 
         if resolver:

@@ -214,6 +214,53 @@ class TestParser(TransactionCase):
             "_fieldname_partner_latitude": "Geo Latitude",
             "create_date": "2019-10-31T14:39:49",
         }
+        expected_json_with_fieldname = {
+            "_fieldname_lang": "Language",
+            "lang": "en_US",
+            "_fieldname_comment": "Notes",
+            "comment": None,
+            "_fieldname_credit_limit": "Credit Limit",
+            "credit_limit": 0.0,
+            "_fieldname_name": "Name",
+            "name": "Akretion",
+            "_fieldname_color": "Color Index",
+            "color": 0,
+            "_fieldname_children": "Contact",
+            "children": [
+                {
+                    "_fieldname_children": "Contact",
+                    "children": [],
+                    "_fieldname_email": "Email",
+                    "email": None,
+                    "_fieldname_country": "Country",
+                    "country": {
+                        "_fieldname_code": "Country Code",
+                        "code": "FR",
+                        "_fieldname_name": "Country Name",
+                        "name": "France",
+                    },
+                    "_fieldname_name": "Name",
+                    "name": "Sebatien Beau",
+                    "_fieldname_id": "ID",
+                    "id": self.partner.child_ids.id,
+                }
+            ],
+            "_fieldname_country": "Country",
+            "country": {
+                "_fieldname_code": "Country Code",
+                "code": "FR",
+                "_fieldname_name": "Country Name",
+                "name": "France",
+            },
+            "_fieldname_active": "Active",
+            "active": True,
+            "_fieldname_category_id": "Tags",
+            "category_id": [{"_fieldname_name": "Tag Name", "name": "Inovator"}],
+            "_fieldname_create_date": "Created on",
+            "create_date": "2019-10-31T15:39:49+01:00",
+            "_fieldname_date": "Date",
+            "date": "2019-10-31",
+        }
         json_partner = self.partner.jsonify(parser)
         self.assertDictEqual(json_partner[0], expected_json)
         json_partner_with_fieldname = self.partner.jsonify(
