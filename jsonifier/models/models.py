@@ -78,6 +78,12 @@ class Base(models.AbstractModel):
             except SwallableException:
                 continue
             json_key = field_dict.get("target", field_dict["name"])
+                if rec.env.context.get("default_function") and not field_dict.get('function'):
+                    # after all processing we post-process the parser to impose a function.
+                    field_dict['function'] = "default_function" 
+
+
+
             if field_dict.get("function"):
                 try:
                     value = self._jsonify_record_handle_function(
@@ -163,7 +169,7 @@ class Base(models.AbstractModel):
             value, json_key = value["_value"], value["_json_key"]
         return value, json_key
 
-    def jsonify(self, parser, one=False):
+    def jsonify(self, parser, one=False, default_function=False):
         """Convert the record according to the given parser.
 
         Example of (simple) parser:
@@ -201,6 +207,9 @@ class Base(models.AbstractModel):
         for lang in parsers:
             translate = lang or parser.get("language_agnostic")
             records = self.with_context(lang=lang) if translate else self
+            records = (
+                records.with_context(default_function=True) if default_function else records
+            )
             for record, json in zip(records, results, strict=True):
                 self._jsonify_record(parsers[lang], record, json)
 
@@ -243,4 +252,9 @@ class Base(models.AbstractModel):
             <field name="instance_method_name">_jsonify_format_duration</field>
 
         """
-        return format_duration(self[fname])
+        return format_duration(self[fname]) 
+
+
+     def default_function(self, field):
+         # returns a list
+         return {'fieldname': self._fields[field].string , 'value': self[field]}
