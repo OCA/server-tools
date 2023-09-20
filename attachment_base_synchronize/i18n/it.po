@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-23 21:53+0000\n"
-"PO-Revision-Date: 2023-06-23 13:09+0000\n"
+"PO-Revision-Date: 2023-09-20 20:03+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -323,7 +323,7 @@ msgstr "ID Risorsa"
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_res_model
 msgid "Resource Model"
-msgstr "Modello Risorsa"
+msgstr "Modello risorsa"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_res_name
