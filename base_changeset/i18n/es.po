@@ -263,6 +263,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_ir_demo_failure_wizard__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_ir_exports__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_ir_exports_line__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_ir_exports_resolver__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_ir_fields_converter__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_ir_filters__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_ir_http__changeset_change_ids
@@ -469,6 +470,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_snailmail_letter_cancel__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_snailmail_letter_format_error__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_snailmail_letter_missing_required_fields__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_sparse_fields_test__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_tax_adjustments_wizard__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_test_performance_bacon__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_test_performance_base__changeset_change_ids
@@ -708,6 +710,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_ir_demo_failure_wizard__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_ir_exports__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_ir_exports_line__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_ir_exports_resolver__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_ir_fields_converter__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_ir_filters__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_ir_http__changeset_ids
@@ -914,6 +917,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_snailmail_letter_cancel__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_snailmail_letter_format_error__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_snailmail_letter_missing_required_fields__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_sparse_fields_test__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_tax_adjustments_wizard__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_test_performance_bacon__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_test_performance_base__changeset_ids
@@ -1140,6 +1144,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_ir_demo_failure_wizard__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_ir_exports__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_ir_exports_line__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_ir_exports_resolver__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_ir_fields_converter__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_ir_filters__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_ir_http__count_pending_changeset_changes
@@ -1346,6 +1351,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_snailmail_letter_cancel__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_snailmail_letter_format_error__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_snailmail_letter_missing_required_fields__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_sparse_fields_test__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_tax_adjustments_wizard__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_test_performance_bacon__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_test_performance_base__count_pending_changeset_changes
@@ -1565,6 +1571,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_ir_demo_failure_wizard__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_ir_exports__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_ir_exports_line__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_ir_exports_resolver__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_ir_fields_converter__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_ir_filters__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_ir_http__count_pending_changesets
@@ -1771,6 +1778,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_snailmail_letter_cancel__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_snailmail_letter_format_error__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_snailmail_letter_missing_required_fields__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_sparse_fields_test__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_tax_adjustments_wizard__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_test_performance_bacon__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_test_performance_base__count_pending_changesets
@@ -2406,6 +2414,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_ir_demo_failure_wizard__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_ir_exports__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_ir_exports_line__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_ir_exports_resolver__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_ir_fields_converter__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_ir_filters__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_ir_http__user_can_see_changeset
@@ -2612,6 +2621,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_snailmail_letter_cancel__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_snailmail_letter_format_error__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_snailmail_letter_missing_required_fields__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_sparse_fields_test__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_tax_adjustments_wizard__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_test_performance_bacon__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_test_performance_base__user_can_see_changeset
