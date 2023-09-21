@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-28 09:48+0000\n"
-"PO-Revision-Date: 2023-06-13 16:10+0000\n"
+"PO-Revision-Date: 2023-09-21 15:37+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-server-tools-8-0/"
 "language/it/)\n"
@@ -159,7 +159,7 @@ msgstr ""
 #. module: auto_backup
 #: model:ir.model,name:auto_backup.model_db_backup
 msgid "Email Thread"
-msgstr "Discussione Email"
+msgstr "Discussione e-mail"
 
 #. module: auto_backup
 #: model:ir.actions.server,name:auto_backup.action_server_backup
