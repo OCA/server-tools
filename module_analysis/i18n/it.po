@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-08-10 11:10+0000\n"
+"PO-Revision-Date: 2023-09-21 15:40+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -199,7 +199,7 @@ msgstr "Impostazioni"
 #: model:ir.model.fields,field_description:module_analysis.field_ir_module_type__smart_search
 #: model:ir.model.fields,field_description:module_analysis.field_ir_module_type_rule__smart_search
 msgid "Smart Search"
-msgstr ""
+msgstr "Ricerca intelligente"
 
 #. module: module_analysis
 #: model:ir.model.constraint,message:module_analysis.constraint_ir_module_author_name_uniq
