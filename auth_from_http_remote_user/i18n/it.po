@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-28 00:59+0000\n"
-"PO-Revision-Date: 2023-05-24 10:08+0000\n"
+"PO-Revision-Date: 2023-09-21 15:37+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-server-tools-8-0/"
 "language/it/)\n"
@@ -46,7 +46,7 @@ msgstr "Ultima modifica il"
 #. module: auth_from_http_remote_user
 #: field:res.users,sso_key:0
 msgid "SSO Key"
-msgstr ""
+msgstr "Chiave SSO"
 
 #. module: auth_from_http_remote_user
 #: model:ir.model,name:auth_from_http_remote_user.model_res_users
