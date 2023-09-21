@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-28 00:59+0000\n"
-"PO-Revision-Date: 2023-05-24 10:09+0000\n"
+"PO-Revision-Date: 2023-09-21 15:37+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-server-tools-8-0/"
 "language/it/)\n"
@@ -30,7 +30,7 @@ msgstr ""
 #. module: dead_mans_switch_client
 #: model:ir.actions.act_window,name:dead_mans_switch_client.action_setup
 msgid "Configure the dead man's switch server"
-msgstr ""
+msgstr "Configura il server dead man's switch"
 
 #. module: dead_mans_switch_client
 #: field:dead.mans.switch.client,display_name:0
