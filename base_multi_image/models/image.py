@@ -223,7 +223,7 @@ class Image(models.Model):
     @api.constrains("filename")
     def _check_filename(self):
         image_extensions = (".png", ".jpg", ".jpeg", ".webp")
-        for record in self:
+        for record in self.filtered(lambda b: b.storage == "db"):
             if not record.filename:
                 raise exceptions.ValidationError(
                     _("You must provide a filename for the image.")
