@@ -1,11 +1,9 @@
 with_fieldname parameter
 ==========================
 
-The with_fieldname option of jjsonify() method, hen true,  will inject on
-the same level of the data fieldname_$field keys that will
-give us the field name , in current user language of the field itself.
-This will add keys for translated front-end labels, without disrupting the access
-to existing code.
+The with_fieldname option of jsonify() method, when true,  will inject on
+the same level of the data "_fieldname_$field" keys that will
+contain the field name, in the language of the current user.
 
 
    Examples of with_fieldname usage:
