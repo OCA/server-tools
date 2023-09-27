@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-19 17:59+0000\n"
-"PO-Revision-Date: 2023-09-21 13:37+0000\n"
+"PO-Revision-Date: 2023-10-09 09:11+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -169,7 +169,7 @@ msgstr "Cartella"
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup_message_follower_ids
 msgid "Followers"
-msgstr "Followers"
+msgstr "Seguito da"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup_message_channel_ids
