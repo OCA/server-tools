@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-16 02:17+0000\n"
-"PO-Revision-Date: 2023-05-24 12:08+0000\n"
+"PO-Revision-Date: 2023-10-09 08:10+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -22,7 +22,7 @@ msgstr ""
 #. module: dead_mans_switch_client
 #: model:ir.actions.act_window,name:dead_mans_switch_client.action_setup
 msgid "Configure the dead man's switch server"
-msgstr ""
+msgstr "Configura il server dead man's switch"
 
 #. module: dead_mans_switch_client
 #: model:ir.model.fields,field_description:dead_mans_switch_client.field_dead_mans_switch_client_display_name
@@ -42,4 +42,4 @@ msgstr "Ultima modifica il"
 #. module: dead_mans_switch_client
 #: model:ir.model,name:dead_mans_switch_client.model_dead_mans_switch_client
 msgid "dead.mans.switch.client"
-msgstr ""
+msgstr "dead.mans.switch.client"
