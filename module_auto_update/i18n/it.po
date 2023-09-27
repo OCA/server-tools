@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-07-21 02:43+0000\n"
-"PO-Revision-Date: 2023-09-21 16:40+0000\n"
+"PO-Revision-Date: 2023-10-09 09:09+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -30,7 +30,7 @@ msgstr "Aggiorna Moduli Automaticamente"
 #: code:addons/module_auto_update/models/module.py:0
 #, python-format
 msgid "Checksum upgrade complete."
-msgstr ""
+msgstr "Aggiornamento checksum completo."
 
 #. module: module_auto_update
 #: model:ir.model,name:module_auto_update.model_ir_module_module
@@ -45,6 +45,8 @@ msgid ""
 "No checksum change detected in installed modules and all modules installed, "
 "nothing to do."
 msgstr ""
+"Nessuna modifica del checksum rilevata nei moduli installati e tutti i "
+"moduli installati, niente da fare."
 
 #. module: module_auto_update
 #: model:ir.model.fields,field_description:module_auto_update.field_ir_module_module__smart_search
