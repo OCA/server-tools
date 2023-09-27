@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-10-26 03:04+0000\n"
-"PO-Revision-Date: 2023-06-13 13:11+0000\n"
+"PO-Revision-Date: 2023-10-09 07:58+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -27,7 +27,7 @@ msgstr "Nome visualizzato"
 #. module: base_mixin_restrict_field_access
 #: field:restrict.field.access.mixin,restrict_field_access:0
 msgid "Field access restricted"
-msgstr ""
+msgstr "Accesso al campo limitato"
 
 #. module: base_mixin_restrict_field_access
 #: field:restrict.field.access.mixin,id:0
@@ -49,4 +49,4 @@ msgstr "Attenzione"
 #: code:addons/base_mixin_restrict_field_access/models/restrict_field_access_mixin.py:31
 #, python-format
 msgid "You will lose access to fields if you save now!"
-msgstr ""
+msgstr "Si perderà l'accesso ai campi se si salva adesso!"
