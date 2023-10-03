@@ -200,5 +200,5 @@ class IrModelFields(models.Model):
             self.check_access_rights("write")
             custom_tracking = vals.pop("custom_tracking")
             self._write({"custom_tracking": custom_tracking})
-            self.invalidate_cache(["custom_tracking"])
+            self._invalidate_cache(["custom_tracking"])
         return super().write(vals)

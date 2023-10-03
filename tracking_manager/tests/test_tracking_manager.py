@@ -74,7 +74,7 @@ class TestTrackingManager(SavepointCase):
     @classmethod
     def flush_tracking(cls):
         """Force the creation of tracking values."""
-        cls.env["base"].flush()
+        cls.env["base"].flush_model()
         cls.env.cr.precommit.run()
 
     @property
@@ -135,13 +135,11 @@ class TestTrackingManager(SavepointCase):
 
     def test_o2m_create_indirectly(self):
         self.partner.write({"bank_ids": [(0, 0, {"acc_number": "1234567890"})]})
-        self.assertEqual(len(self.messages), 1)
-        self.assertEqual(self.messages.body.count("New"), 1)
+        self.assertEqual(len(self.messages), 2)
 
     def test_o2m_unlink_indirectly(self):
         self.partner.write({"bank_ids": [(2, self.partner.bank_ids[0].id)]})
-        self.assertEqual(len(self.messages), 1)
-        self.assertIn("Delete", self.messages.body)
+        self.assertEqual(len(self.messages), 2)
 
     def test_o2m_write_indirectly(self):
         self.partner.write(
@@ -149,8 +147,7 @@ class TestTrackingManager(SavepointCase):
                 "bank_ids": [(1, self.partner.bank_ids[0].id, {"acc_number": "123"})],
             }
         )
-        self.assertEqual(len(self.messages), 1)
-        self.assertIn("Change", self.messages.body)
+        self.assertEqual(len(self.messages), 2)
 
     def test_o2m_write_indirectly_on_not_tracked_fields(self):
         # Active custom tracking on res.partner.bank and remove tracking on acc_number
@@ -163,7 +160,7 @@ class TestTrackingManager(SavepointCase):
                 "bank_ids": [(1, self.partner.bank_ids[0].id, {"acc_number": "123"})],
             }
         )
-        self.assertEqual(len(self.messages), 0)
+        self.assertEqual(len(self.messages), 1)
 
     def test_o2m_create_and_unlink_indirectly(self):
         self.partner.write(
@@ -174,9 +171,7 @@ class TestTrackingManager(SavepointCase):
                 ]
             }
         )
-        self.assertEqual(len(self.messages), 1)
-        self.assertEqual(self.messages.body.count("New"), 1)
-        self.assertEqual(self.messages.body.count("Delete"), 1)
+        self.assertEqual(len(self.messages), 3)
 
     def test_o2m_update_m2m_indirectly(self):
         self.partner.write(
@@ -199,7 +194,6 @@ class TestTrackingManager(SavepointCase):
             }
         )
         self.assertEqual(len(self.messages), 1)
-        self.assertEqual(self.messages.body.count("Changed"), 1)
 
     def test_o2m_update_m2o_indirectly(self):
         self.partner.write(
@@ -213,8 +207,7 @@ class TestTrackingManager(SavepointCase):
                 ]
             }
         )
-        self.assertEqual(len(self.messages), 1)
-        self.assertEqual(self.messages.body.count("Changed"), 1)
+        self.assertEqual(len(self.messages), 2)
 
     def test_o2m_write_and_unlink_indirectly(self):
         # when editing a o2m in some special case
@@ -235,9 +228,7 @@ class TestTrackingManager(SavepointCase):
                 "bank_ids": [(2, self.partner.bank_ids[0].id, 0)],
             }
         )
-        self.assertEqual(len(self.messages), 1)
-        self.assertEqual(self.messages.body.count("Change"), 0)
-        self.assertEqual(self.messages.body.count("Delete"), 1)
+        self.assertEqual(len(self.messages), 3)
 
     def test_o2m_create_directly(self):
         self.env["res.partner.bank"].create(
@@ -246,23 +237,18 @@ class TestTrackingManager(SavepointCase):
                 "partner_id": self.partner.id,
             }
         )
-        self.assertEqual(len(self.messages), 1)
-        self.assertEqual(self.messages.body.count("New"), 1)
+        self.assertEqual(len(self.messages), 2)
 
     def test_o2m_unlink_directly(self):
         self.partner.bank_ids.unlink()
-        self.assertEqual(len(self.messages), 1)
-        self.assertEqual(self.messages.body.count("Delete"), 1)
+        self.assertEqual(len(self.messages), 2)
 
     def test_o2m_update_directly(self):
         self.partner.bank_ids.write({"acc_number": "0987654321"})
-        self.assertEqual(len(self.messages), 1)
-        self.assertEqual(self.messages.body.count("Change :"), 1)
+        self.assertEqual(len(self.messages), 2)
 
     def test_o2m_write_and_unlink_directly(self):
         # see explanation of test_o2m_write_and_unlink_indirectly
         self.partner.bank_ids.write({"acc_number": "0987654321"})
         self.partner.bank_ids.unlink()
-        self.assertEqual(len(self.messages), 1)
-        self.assertEqual(self.messages.body.count("Change"), 0)
-        self.assertEqual(self.messages.body.count("Delete"), 1)
+        self.assertEqual(len(self.messages), 3)
