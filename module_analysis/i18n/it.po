@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-08-10 11:12+0000\n"
+"PO-Revision-Date: 2024-05-24 12:37+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -90,7 +90,7 @@ msgstr "Quantità Codice JS"
 #: model:ir.model.fields,field_description:module_analysis.field_ir_module_type____last_update
 #: model:ir.model.fields,field_description:module_analysis.field_ir_module_type_rule____last_update
 msgid "Last Modified on"
-msgstr "Ultima Modifica il"
+msgstr "Ultima modifica il"
 
 #. module: module_analysis
 #: model:ir.model.fields,field_description:module_analysis.field_ir_module_author__write_uid
@@ -114,7 +114,7 @@ msgstr "Modulo"
 #. module: module_analysis
 #: model:ir.model.fields,field_description:module_analysis.field_ir_module_type_rule__module_domain
 msgid "Module Domain"
-msgstr "Dominio Modulo"
+msgstr "Dominio modulo"
 
 #. module: module_analysis
 #: model:ir.model.fields,field_description:module_analysis.field_ir_module_module__module_type_id
@@ -141,7 +141,7 @@ msgstr "Autori Moduli"
 #. module: module_analysis
 #: model:ir.model.fields,field_description:module_analysis.field_ir_module_type__installed_module_qty
 msgid "Modules Quantity"
-msgstr "Quantità Moduli"
+msgstr "Quantità moduli"
 
 #. module: module_analysis
 #: model:ir.actions.act_window,name:module_analysis.action_ir_module_type
@@ -181,7 +181,7 @@ msgstr "Rendicontazione"
 #. module: module_analysis
 #: model:ir.model.fields,field_description:module_analysis.field_ir_module_module__scss_code_qty
 msgid "SCSS Code Quantity"
-msgstr ""
+msgstr "SCSS Quantità codice"
 
 #. module: module_analysis
 #: model:ir.model.fields,field_description:module_analysis.field_ir_module_type__sequence
@@ -200,7 +200,7 @@ msgstr "Impostazioni"
 #: model:ir.model.fields,field_description:module_analysis.field_ir_module_type__smart_search
 #: model:ir.model.fields,field_description:module_analysis.field_ir_module_type_rule__smart_search
 msgid "Smart Search"
-msgstr ""
+msgstr "Ricerca intelligente"
 
 #. module: module_analysis
 #: model:ir.model.constraint,message:module_analysis.constraint_ir_module_author_name_uniq
@@ -216,7 +216,7 @@ msgstr "Tipologia e Autori"
 #: model:ir.actions.server,name:module_analysis.cron_module_analysis_ir_actions_server
 #: model:ir.cron,cron_name:module_analysis.cron_module_analysis
 msgid "Update Module Analysis"
-msgstr ""
+msgstr "Aggiorna analisi modulo"
 
 #. module: module_analysis
 #: model:ir.model.fields,field_description:module_analysis.field_ir_module_module__xml_code_qty
