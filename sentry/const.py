@@ -103,7 +103,7 @@ def get_sentry_options():
         SentryOption("http_proxy", DEFAULT_OPTIONS["http_proxy"], None),
         SentryOption("https_proxy", DEFAULT_OPTIONS["https_proxy"], None),
         SentryOption("ignore_exceptions", DEFAULT_IGNORED_EXCEPTIONS, split_multiple),
-        SentryOption("request_bodies", DEFAULT_OPTIONS["request_bodies"], None),
+        SentryOption("max_request_body_size", DEFAULT_OPTIONS["max_request_body_size"], None),
         SentryOption("attach_stacktrace", DEFAULT_OPTIONS["attach_stacktrace"], None),
         SentryOption("ca_certs", DEFAULT_OPTIONS["ca_certs"], None),
         SentryOption("propagate_traces", DEFAULT_OPTIONS["propagate_traces"], None),
