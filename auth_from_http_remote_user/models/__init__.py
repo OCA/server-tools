@@ -4,3 +4,4 @@
 
 from . import res_users
 from . import auth_from_http_remote_user
+from . import ir_http
