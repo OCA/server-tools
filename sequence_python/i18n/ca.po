@@ -28,8 +28,8 @@ msgstr ""
 #. module: sequence_python
 #: model_terms:ir.ui.view,arch_db:sequence_python.sequence_view
 msgid ""
-"<code>random</code>: The Python random module, eg. to use "
-"<code>random.randint(0, 9)</code>"
+"<code>random</code>: The Python random module, eg. to use <code>random."
+"randint(0, 9)</code>"
 msgstr ""
 
 #. module: sequence_python
@@ -40,15 +40,15 @@ msgstr ""
 #. module: sequence_python
 #: model_terms:ir.ui.view,arch_db:sequence_python.sequence_view
 msgid ""
-"<code>string</code>: The Python string module, eg. to use "
-"<code>random.choices(string.ascii_letters + string.digits, k=4)</code>"
+"<code>string</code>: The Python string module, eg. to use <code>random."
+"choices(string.ascii_letters + string.digits, k=4)</code>"
 msgstr ""
 
 #. module: sequence_python
 #: model_terms:ir.ui.view,arch_db:sequence_python.sequence_view
 msgid ""
-"<code>uuid</code>: The Python uuid module, eg. to use "
-"<code>uuid.uuid4()</code>"
+"<code>uuid</code>: The Python uuid module, eg. to use <code>uuid.uuid4()</"
+"code>"
 msgstr ""
 
 #. module: sequence_python
