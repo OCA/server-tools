@@ -25,18 +25,9 @@ msgid "Auto-Upgrade Modules"
 msgstr ""
 
 #. module: module_auto_update
-#: model:ir.model.fields,field_description:module_auto_update.field_ir_module_module__display_name
-msgid "Display Name"
-msgstr ""
-
-#. module: module_auto_update
-#: model:ir.model.fields,field_description:module_auto_update.field_ir_module_module__id
-msgid "ID"
-msgstr ""
-
-#. module: module_auto_update
-#: model:ir.model.fields,field_description:module_auto_update.field_ir_module_module____last_update
-msgid "Last Modified on"
+#: code:addons/module_auto_update/models/module.py:0
+#, python-format
+msgid "Checksum upgrade complete."
 msgstr ""
 
 #. module: module_auto_update
@@ -45,8 +36,11 @@ msgid "Module"
 msgstr "Modul"
 
 #. module: module_auto_update
-#: model:ir.model.fields,field_description:module_auto_update.field_ir_module_module__smart_search
-msgid "Smart Search"
+#: code:addons/module_auto_update/models/module.py:0
+#, python-format
+msgid ""
+"No checksum change detected in installed modules and all modules installed, "
+"nothing to do."
 msgstr ""
 
 #~ msgid "Module Upgrade"
