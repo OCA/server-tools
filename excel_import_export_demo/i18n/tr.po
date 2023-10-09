@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* excel_import_export_demo
+# 	* excel_import_export_demo
 #
 msgid ""
 msgstr ""
@@ -18,7 +18,8 @@ msgstr ""
 
 #. module: excel_import_export_demo
 #: model:ir.model.fields,help:excel_import_export_demo.field_report_sale_order__state
-msgid "* Choose: wizard show in user selection mode\n"
+msgid ""
+"* Choose: wizard show in user selection mode\n"
 "* Get: wizard show results from user action"
 msgstr ""
 "* Seç: Sihirbaz kullanıcı seçimi modunda gözükür\n"
