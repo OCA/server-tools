@@ -21,17 +21,11 @@ msgstr ""
 msgid "Attachment"
 msgstr "Adjunto"
 
-#. module: attachment_unindex_content
-#: model:ir.model.fields,field_description:attachment_unindex_content.field_ir_attachment__display_name
-msgid "Display Name"
-msgstr "Mostrar Nombre"
+#~ msgid "Display Name"
+#~ msgstr "Mostrar Nombre"
 
-#. module: attachment_unindex_content
-#: model:ir.model.fields,field_description:attachment_unindex_content.field_ir_attachment__id
-msgid "ID"
-msgstr "ID"
+#~ msgid "ID"
+#~ msgstr "ID"
 
-#. module: attachment_unindex_content
-#: model:ir.model.fields,field_description:attachment_unindex_content.field_ir_attachment____last_update
-msgid "Last Modified on"
-msgstr "Última modificación en"
+#~ msgid "Last Modified on"
+#~ msgstr "Última modificación en"
