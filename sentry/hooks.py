@@ -10,6 +10,7 @@ from odoo.service.server import server
 from odoo.tools import config as odoo_config
 
 from . import const
+from . import CustomSentryWsgiMiddleware
 from .logutils import (
     InvalidGitRepository,
     SanitizeOdooCookiesProcessor,
@@ -77,7 +78,7 @@ def get_odoo_commit(odoo_dir):
         _logger.debug("Odoo directory: '%s' not a valid git repository", odoo_dir)
 
 
-def initialize_sentry(config):
+def initialize_sentry(config, session_store=None):
     """Setup an instance of :class:`sentry_sdk.Client`.
     :param config: Sentry configuration
     :param client: class used to instantiate the sentry_sdk client.
@@ -137,10 +138,10 @@ def initialize_sentry(config):
 
     # The server app is already registered so patch it here
     if server:
-        server.app = SentryWsgiMiddleware(server.app)
+        server.app = CustomSentryWsgiMiddleware(server.app, session_store=session_store)
 
     # Patch the wsgi server in case of further registration
-    odoo.http.Application = SentryWsgiMiddleware(odoo.http.Application)
+    odoo.http.Application = CustomSentryWsgiMiddleware(odoo.http.Application, session_store=session_store)
 
     with sentry_sdk.push_scope() as scope:
         scope.set_extra("debug", False)
