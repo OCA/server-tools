@@ -24,7 +24,8 @@ msgstr "<span style=\"padding: 0 10px;\">Sólo lectura</span>"
 #. module: base_model_restrict_update
 #: model_terms:ir.ui.view,arch_db:base_model_restrict_update.view_users_form
 msgid "<span style=\"padding: 0 10px;\">Unrestrict Update</span>"
-msgstr "<span style=\"padding: 0 10px;\">Actualización Sin restricciones</span>"
+msgstr ""
+"<span style=\"padding: 0 10px;\">Actualización Sin restricciones</span>"
 
 #. module: base_model_restrict_update
 #: model:ir.model.fields,field_description:base_model_restrict_update.field_ir_model__display_name
