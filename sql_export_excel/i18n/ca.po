@@ -72,7 +72,8 @@ msgstr ""
 #. module: sql_export_excel
 #: model:ir.model.fields,help:sql_export_excel.field_sql_export__attachment_id
 msgid ""
-"If you configure an excel file (in xlsx format) here, the result of the query will be injected in it.\n"
+"If you configure an excel file (in xlsx format) here, the result of the "
+"query will be injected in it.\n"
 "It is usefull to feed data in a excel file pre-configured with calculation"
 msgstr ""
 
