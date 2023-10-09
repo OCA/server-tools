@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* datetime_formatter
+# 	* datetime_formatter
 #
 msgid ""
 msgstr ""
@@ -17,7 +17,7 @@ msgstr ""
 "X-Generator: Weblate 3.7.1\n"
 
 #. module: datetime_formatter
-#: code:addons/datetime_formatter/models/res_lang.py:59
+#: code:addons/datetime_formatter/models/res_lang.py:0
 #, python-format
 msgid "Best matched language (%s) not found."
 msgstr "O idioma com maior afinidade (%s) não foi encontrado."
