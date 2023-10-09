@@ -20,12 +20,12 @@ msgstr ""
 #: model:ir.model.fields,help:rpc_helper.field_ir_model__rpc_config_edit
 msgid ""
 "Configure RPC config via JSON. Value must be a list of methods to disable "
-"wrapped by a dict with key `disable`. Eg: {'disable': ['search', "
-"'do_this']}To disable all methods, use `{'disable: ['all']}`"
+"wrapped by a dict with key `disable`. Eg: {'disable': ['search', 'do_this']}"
+"To disable all methods, use `{'disable: ['all']}`"
 msgstr ""
 "Configurar RPC vía JSON. El valor debe ser una lista de métodos a "
-"deshabilitar envueltos por un dict con la clave `disable`. Ej: {'disable': ["
-"'search', 'do_this']}Para deshabilitar todos los métodos, usa `{'disable: "
+"deshabilitar envueltos por un dict con la clave `disable`. Ej: {'disable': "
+"['search', 'do_this']}Para deshabilitar todos los métodos, usa `{'disable: "
 "['all']}`"
 
 #. module: rpc_helper
