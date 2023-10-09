@@ -195,13 +195,6 @@ msgid "Settings"
 msgstr "Impostazioni"
 
 #. module: module_analysis
-#: model:ir.model.fields,field_description:module_analysis.field_ir_module_author__smart_search
-#: model:ir.model.fields,field_description:module_analysis.field_ir_module_type__smart_search
-#: model:ir.model.fields,field_description:module_analysis.field_ir_module_type_rule__smart_search
-msgid "Smart Search"
-msgstr "Ricerca intelligente"
-
-#. module: module_analysis
 #: model:ir.model.constraint,message:module_analysis.constraint_ir_module_author_name_uniq
 msgid "The name of the modules author should be unique per database!"
 msgstr "Il nome dell'autore del modulo deve essere unico nel database!"
@@ -217,6 +210,16 @@ msgid "Update Module"
 msgstr "Aggiorna Modulo"
 
 #. module: module_analysis
+#: model:ir.actions.server,name:module_analysis.cron_module_analysis_ir_actions_server
+#: model:ir.cron,cron_name:module_analysis.cron_module_analysis
+#: model:ir.cron,name:module_analysis.cron_module_analysis
+msgid "Update Module Analysis"
+msgstr ""
+
+#. module: module_analysis
 #: model:ir.model.fields,field_description:module_analysis.field_ir_module_module__xml_code_qty
 msgid "XML Code Quantity"
 msgstr "Quantità Codice XML"
+
+#~ msgid "Smart Search"
+#~ msgstr "Ricerca intelligente"
