@@ -19,6 +19,21 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: base_cron_exclusion
+#: model:ir.model.fields,field_description:base_cron_exclusion.field_ir_cron__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: base_cron_exclusion
+#: model:ir.model.fields,field_description:base_cron_exclusion.field_ir_cron__id
+msgid "ID"
+msgstr ""
+
+#. module: base_cron_exclusion
+#: model:ir.model.fields,field_description:base_cron_exclusion.field_ir_cron____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: base_cron_exclusion
 #: model:ir.model.fields,field_description:base_cron_exclusion.field_ir_cron__mutually_exclusive_cron_ids
 #: model_terms:ir.ui.view,arch_db:base_cron_exclusion.ir_cron_view_form
 msgid "Mutually Exclusive Scheduled Actions"
