@@ -56,14 +56,18 @@ msgid "Created on"
 msgstr "创建时间"
 
 #. module: module_analysis
+#: model:ir.model.fields,field_description:module_analysis.field_base_module_update__display_name
 #: model:ir.model.fields,field_description:module_analysis.field_ir_module_author__display_name
+#: model:ir.model.fields,field_description:module_analysis.field_ir_module_module__display_name
 #: model:ir.model.fields,field_description:module_analysis.field_ir_module_type__display_name
 #: model:ir.model.fields,field_description:module_analysis.field_ir_module_type_rule__display_name
 msgid "Display Name"
 msgstr "显示名称"
 
 #. module: module_analysis
+#: model:ir.model.fields,field_description:module_analysis.field_base_module_update__id
 #: model:ir.model.fields,field_description:module_analysis.field_ir_module_author__id
+#: model:ir.model.fields,field_description:module_analysis.field_ir_module_module__id
 #: model:ir.model.fields,field_description:module_analysis.field_ir_module_type__id
 #: model:ir.model.fields,field_description:module_analysis.field_ir_module_type_rule__id
 msgid "ID"
@@ -91,7 +95,9 @@ msgid "JS Code Quantity"
 msgstr "JS代码数量"
 
 #. module: module_analysis
+#: model:ir.model.fields,field_description:module_analysis.field_base_module_update____last_update
 #: model:ir.model.fields,field_description:module_analysis.field_ir_module_author____last_update
+#: model:ir.model.fields,field_description:module_analysis.field_ir_module_module____last_update
 #: model:ir.model.fields,field_description:module_analysis.field_ir_module_type____last_update
 #: model:ir.model.fields,field_description:module_analysis.field_ir_module_type_rule____last_update
 msgid "Last Modified on"
@@ -195,7 +201,9 @@ msgid "Settings"
 msgstr "设置"
 
 #. module: module_analysis
+#: model:ir.model.fields,field_description:module_analysis.field_base_module_update__smart_search
 #: model:ir.model.fields,field_description:module_analysis.field_ir_module_author__smart_search
+#: model:ir.model.fields,field_description:module_analysis.field_ir_module_module__smart_search
 #: model:ir.model.fields,field_description:module_analysis.field_ir_module_type__smart_search
 #: model:ir.model.fields,field_description:module_analysis.field_ir_module_type_rule__smart_search
 msgid "Smart Search"
@@ -215,6 +223,13 @@ msgstr "类型和作者"
 #: model:ir.model,name:module_analysis.model_base_module_update
 msgid "Update Module"
 msgstr "更新模块"
+
+#. module: module_analysis
+#: model:ir.actions.server,name:module_analysis.cron_module_analysis_ir_actions_server
+#: model:ir.cron,cron_name:module_analysis.cron_module_analysis
+#: model:ir.cron,name:module_analysis.cron_module_analysis
+msgid "Update Module Analysis"
+msgstr ""
 
 #. module: module_analysis
 #: model:ir.model.fields,field_description:module_analysis.field_ir_module_module__xml_code_qty
