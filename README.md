@@ -72,6 +72,7 @@ addon | version | maintainers | summary
 [slow_statement_logger](slow_statement_logger/) | 13.0.1.0.2 |  | Log slow SQL statements
 [sql_request_abstract](sql_request_abstract/) | 13.0.1.0.2 |  | Abstract Model to manage SQL Requests
 [test_base_time_window](test_base_time_window/) | 13.0.1.0.2 |  | Test Base model to handle time windows
+[url_attachment_search_fuzzy](url_attachment_search_fuzzy/) | 13.0.1.0.0 | [![mariadforgelow](https://github.com/mariadforgelow.png?size=30px)](https://github.com/mariadforgelow) | Fuzzy Search of URL in Attachments
 
 [//]: # (end addons)
 

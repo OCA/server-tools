@@ -59,6 +59,7 @@ setuptools.setup(
         'odoo13-addon-slow_statement_logger',
         'odoo13-addon-sql_request_abstract',
         'odoo13-addon-test_base_time_window',
+        'odoo13-addon-url_attachment_search_fuzzy',
     ],
     classifiers=[
         'Programming Language :: Python',
