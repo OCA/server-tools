@@ -10,7 +10,7 @@ from odoo.service.server import server
 from odoo.tools import config as odoo_config
 
 from . import const
-from . import CustomSentryWsgiMiddleware
+from .session_store import CustomSentryWsgiMiddleware
 from .logutils import (
     InvalidGitRepository,
     SanitizeOdooCookiesProcessor,
