@@ -98,9 +98,7 @@ class AttachmentQueue(models.Model):
             self.run()
 
     def run_as_job(self):
-        """
-        Run the process for an individual attachment queue from a async job
-        """
+        """Run the process for an individual attachment queue from a async job"""
         try:
             self._cr.execute(
                 """
