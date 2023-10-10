@@ -12,7 +12,7 @@
     "author": "Akretion, ACSONE SA/NV",
     "website": "https://github.com/shopinvader/odoo-shopinvader",
     # any module necessary for this one to work correctly
-    "depends": ["base"],
+    "depends": ["base", "base_sparse_field_list_support"],
     "external_dependencies": {"python": ["python-slugify"]},
     "data": [
         "views/url_view.xml",
