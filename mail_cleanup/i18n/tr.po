@@ -19,36 +19,89 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: mail_cleanup
-#: model:ir.model.fields,field_description:mail_cleanup.field_fetchmail_server_purge_days
+#: model:ir.model.fields,field_description:mail_cleanup.field_fetchmail_server__assigned_attachment_ids
+msgid "Assigned Attachments"
+msgstr ""
+
+#. module: mail_cleanup
+#: model:ir.model.fields,field_description:mail_cleanup.field_fetchmail_server__changeset_change_ids
+msgid "Changeset Changes"
+msgstr ""
+
+#. module: mail_cleanup
+#: model:ir.model.fields,field_description:mail_cleanup.field_fetchmail_server__changeset_ids
+msgid "Changesets"
+msgstr ""
+
+#. module: mail_cleanup
+#: model:ir.model.fields,field_description:mail_cleanup.field_fetchmail_server__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr ""
+
+#. module: mail_cleanup
+#: model:ir.model.fields,field_description:mail_cleanup.field_fetchmail_server__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr ""
+
+#. module: mail_cleanup
+#: model:ir.model.fields,field_description:mail_cleanup.field_fetchmail_server__purge_days
 msgid "Deletion days"
 msgstr ""
 
 #. module: mail_cleanup
-#: model:ir.model.fields,field_description:mail_cleanup.field_fetchmail_server_cleanup_days
+#: model:ir.model.fields,field_description:mail_cleanup.field_fetchmail_server__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: mail_cleanup
+#: model:ir.model.fields,field_description:mail_cleanup.field_fetchmail_server__cleanup_days
 msgid "Expiration days"
 msgstr ""
 
 #. module: mail_cleanup
-#: model:ir.model.fields,field_description:mail_cleanup.field_fetchmail_server_cleanup_folder
+#: model:ir.model.fields,field_description:mail_cleanup.field_fetchmail_server__cleanup_folder
 msgid "Expiration folder"
 msgstr ""
 
 #. module: mail_cleanup
-#: model:ir.model.fields,help:mail_cleanup.field_fetchmail_server_cleanup_folder
+#: model:ir.model.fields,help:mail_cleanup.field_fetchmail_server__cleanup_folder
 msgid "Folder where an e-mail marked as read will be moved."
 msgstr ""
 
 #. module: mail_cleanup
-#: model:ir.model.fields,help:mail_cleanup.field_fetchmail_server_cleanup_days
-msgid "Number of days before marking an e-mail as read"
-msgstr ""
-
-#. module: mail_cleanup
-#: model:ir.model.fields,help:mail_cleanup.field_fetchmail_server_purge_days
-msgid "Number of days before removing an e-mail"
+#: model:ir.model.fields,field_description:mail_cleanup.field_fetchmail_server__id
+msgid "ID"
 msgstr ""
 
 #. module: mail_cleanup
 #: model:ir.model,name:mail_cleanup.model_fetchmail_server
-msgid "POP/IMAP Server"
-msgstr "POP/IMAP sunucu"
+msgid "Incoming Mail Server"
+msgstr ""
+
+#. module: mail_cleanup
+#: model:ir.model.fields,field_description:mail_cleanup.field_fetchmail_server____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: mail_cleanup
+#: model:ir.model.fields,help:mail_cleanup.field_fetchmail_server__cleanup_days
+msgid "Number of days before marking an e-mail as read"
+msgstr ""
+
+#. module: mail_cleanup
+#: model:ir.model.fields,help:mail_cleanup.field_fetchmail_server__purge_days
+msgid "Number of days before removing an e-mail"
+msgstr ""
+
+#. module: mail_cleanup
+#: model:ir.model.fields,field_description:mail_cleanup.field_fetchmail_server__smart_search
+msgid "Smart Search"
+msgstr ""
+
+#. module: mail_cleanup
+#: model:ir.model.fields,field_description:mail_cleanup.field_fetchmail_server__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr ""
+
+#~ msgid "POP/IMAP Server"
+#~ msgstr "POP/IMAP sunucu"
