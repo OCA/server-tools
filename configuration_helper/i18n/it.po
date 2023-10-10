@@ -44,3 +44,8 @@ msgstr "ID"
 #: model:ir.model.fields,field_description:configuration_helper.field_abstract_config_settings____last_update
 msgid "Last Modified on"
 msgstr "Ultima modifica il"
+
+#. module: configuration_helper
+#: model:ir.model.fields,field_description:configuration_helper.field_abstract_config_settings__smart_search
+msgid "Smart Search"
+msgstr ""
