@@ -10,13 +10,13 @@ from odoo.service.server import server
 from odoo.tools import config as odoo_config
 
 from . import const
-from .session_store import CustomSentryWsgiMiddleware
 from .logutils import (
     InvalidGitRepository,
     SanitizeOdooCookiesProcessor,
     fetch_git_sha,
     get_extra_context,
 )
+from .session_store import CustomSentryWsgiMiddleware
 
 _logger = logging.getLogger(__name__)
 HAS_SENTRY_SDK = True
@@ -141,7 +141,9 @@ def initialize_sentry(config, session_store=None):
         server.app = CustomSentryWsgiMiddleware(server.app, session_store=session_store)
 
     # Patch the wsgi server in case of further registration
-    odoo.http.Application = CustomSentryWsgiMiddleware(odoo.http.Application, session_store=session_store)
+    odoo.http.Application = CustomSentryWsgiMiddleware(
+        odoo.http.Application, session_store=session_store
+    )
 
     with sentry_sdk.push_scope() as scope:
         scope.set_extra("debug", False)

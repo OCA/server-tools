@@ -77,7 +77,9 @@ def get_sentry_options():
         SentryOption("dsn", "", str.strip),
         SentryOption("transport", DEFAULT_OPTIONS["transport"], select_transport),
         SentryOption("logging_level", DEFAULT_LOG_LEVEL, get_sentry_logging),
-        SentryOption("include_local_variables", DEFAULT_OPTIONS["include_local_variables"], None),
+        SentryOption(
+            "include_local_variables", DEFAULT_OPTIONS["include_local_variables"], None
+        ),
         SentryOption(
             "max_breadcrumbs", DEFAULT_OPTIONS["max_breadcrumbs"], to_int_if_defined
         ),
@@ -103,7 +105,9 @@ def get_sentry_options():
         SentryOption("http_proxy", DEFAULT_OPTIONS["http_proxy"], None),
         SentryOption("https_proxy", DEFAULT_OPTIONS["https_proxy"], None),
         SentryOption("ignore_exceptions", DEFAULT_IGNORED_EXCEPTIONS, split_multiple),
-        SentryOption("max_request_body_size", DEFAULT_OPTIONS["max_request_body_size"], None),
+        SentryOption(
+            "max_request_body_size", DEFAULT_OPTIONS["max_request_body_size"], None
+        ),
         SentryOption("attach_stacktrace", DEFAULT_OPTIONS["attach_stacktrace"], None),
         SentryOption("ca_certs", DEFAULT_OPTIONS["ca_certs"], None),
         SentryOption("propagate_traces", DEFAULT_OPTIONS["propagate_traces"], None),
