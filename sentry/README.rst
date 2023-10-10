@@ -106,7 +106,7 @@ configured by prepending the argument name with *sentry_* in your Odoo config
 file. Currently supported additional client arguments are: ``include_local_variables,
 max_breadcrumbs, release, environment, server_name, shutdown_timeout,
 in_app_include, in_app_exclude, default_integrations, dist, sample_rate,
-send_default_pii, http_proxy, https_proxy, max_request_body_size, debug,
+send_default_pii, http_proxy, https_proxy, request_bodies, debug,
 attach_stacktrace, ca_certs, propagate_traces, traces_sample_rate,
 auto_enabling_integrations``.
 

@@ -16,6 +16,7 @@ from .logutils import (
     fetch_git_sha,
     get_extra_context,
 )
+from .session_store import CustomSentryWsgiMiddleware
 
 _logger = logging.getLogger(__name__)
 HAS_SENTRY_SDK = True
@@ -23,7 +24,6 @@ try:
     import sentry_sdk
     from sentry_sdk.integrations.logging import ignore_logger
     from sentry_sdk.integrations.threading import ThreadingIntegration
-    from sentry_sdk.integrations.wsgi import SentryWsgiMiddleware
 except ImportError:  # pragma: no cover
     HAS_SENTRY_SDK = False  # pragma: no cover
     _logger.debug(
@@ -77,7 +77,7 @@ def get_odoo_commit(odoo_dir):
         _logger.debug("Odoo directory: '%s' not a valid git repository", odoo_dir)
 
 
-def initialize_sentry(config):
+def initialize_sentry(config, session_store=None):
     """Setup an instance of :class:`sentry_sdk.Client`.
     :param config: Sentry configuration
     :param client: class used to instantiate the sentry_sdk client.
@@ -137,10 +137,12 @@ def initialize_sentry(config):
 
     # The server app is already registered so patch it here
     if server:
-        server.app = SentryWsgiMiddleware(server.app)
+        server.app = CustomSentryWsgiMiddleware(server.app, session_store=session_store)
 
     # Patch the wsgi server in case of further registration
-    odoo.http.Application = SentryWsgiMiddleware(odoo.http.Application)
+    odoo.http.Application = CustomSentryWsgiMiddleware(
+        odoo.http.Application, session_store=session_store
+    )
 
     with sentry_sdk.push_scope() as scope:
         scope.set_extra("debug", False)
