@@ -9,6 +9,8 @@ from lxml import etree
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
+from odoo.addons.base_sparse_field.models.fields import Serialized
+
 DEFAULT_LANG = "en_US"
 
 _logger = logging.getLogger(__name__)
@@ -42,7 +44,7 @@ class AbstractUrl(models.AbstractModel):
     )
     count_url = fields.Integer(compute="_compute_count_url")
     url_key = fields.Char(compute="_compute_url_key")
-    redirect_url_key = fields.Serialized(
+    redirect_url_key = Serialized(
         compute="_compute_url_key", string="Redirect Url Keys"
     )
 
@@ -145,7 +147,8 @@ class AbstractUrl(models.AbstractModel):
             }
         )
 
-    def _update_url_key(self, referential="global", lang=DEFAULT_LANG):
+    def _update_url_key(self, referential="global", lang=None):
+        lang = lang or self.env.context.get("lang", DEFAULT_LANG)
         for record in self.with_context(lang=lang):
             # TODO maybe we should have a computed field that flag the
             # current url if the key used for building the url have changed
