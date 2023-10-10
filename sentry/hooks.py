@@ -24,7 +24,6 @@ try:
     import sentry_sdk
     from sentry_sdk.integrations.logging import ignore_logger
     from sentry_sdk.integrations.threading import ThreadingIntegration
-    from sentry_sdk.integrations.wsgi import SentryWsgiMiddleware
 except ImportError:  # pragma: no cover
     HAS_SENTRY_SDK = False  # pragma: no cover
     _logger.debug(
