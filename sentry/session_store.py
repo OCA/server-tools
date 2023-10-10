@@ -10,6 +10,7 @@ except ImportError:
                         Please make sure it is installed."
     )
 
+
 class CustomSentryWsgiMiddleware(SentryWsgiMiddleware):
     def __init__(self, application, session_store=None):
         super().__init__(application)
