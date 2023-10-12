@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-02-13 00:39+0000\n"
-"PO-Revision-Date: 2021-03-19 17:46+0000\n"
-"Last-Translator: Ana Suárez <ana.suarez@qubiq.es>\n"
+"PO-Revision-Date: 2023-10-12 09:39+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: base_custom_info
 #: model_terms:ir.ui.view,arch_db:base_custom_info.custom_info_value_form
@@ -31,7 +31,7 @@ msgstr ""
 #. module: base_custom_info
 #: model:ir.model,name:base_custom_info.model_ir_actions_act_window_view
 msgid "Action Window View"
-msgstr ""
+msgstr "Vista de la ventana de acción"
 
 #. module: base_custom_info
 #: model:ir.model.fields,help:base_custom_info.field_res_config_settings__group_custom_info_partner
@@ -112,7 +112,7 @@ msgstr "Gestión básica"
 #. module: base_custom_info
 #: model:ir.model.fields.selection,name:base_custom_info.selection__custom_info_property__widget__boolean
 msgid "Boolean"
-msgstr ""
+msgstr "Booleano"
 
 #. module: base_custom_info
 #: model:custom.info.option,name:base_custom_info.opt_cars
@@ -156,7 +156,7 @@ msgstr "Secuencia de Categoría"
 #: model:ir.model.fields,field_description:base_custom_info.field_res_config_settings__changeset_change_ids
 #: model:ir.model.fields,field_description:base_custom_info.field_res_partner__changeset_change_ids
 msgid "Changeset Changes"
-msgstr ""
+msgstr "Cambios en el conjunto de modificaciones"
 
 #. module: base_custom_info
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info__changeset_ids
@@ -170,12 +170,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_custom_info.field_res_config_settings__changeset_ids
 #: model:ir.model.fields,field_description:base_custom_info.field_res_partner__changeset_ids
 msgid "Changesets"
-msgstr ""
+msgstr "Conjuntos de cambios"
 
 #. module: base_custom_info
 #: model:ir.model.fields.selection,name:base_custom_info.selection__custom_info_property__widget__many2one
 msgid "Choice"
-msgstr ""
+msgstr "Elección"
 
 #. module: base_custom_info
 #: model_terms:ir.actions.act_window,help:base_custom_info.custom_info_template_action
@@ -185,7 +185,7 @@ msgstr "Pulse para definir una nueva plantilla de inf. personalizada."
 #. module: base_custom_info
 #: model:ir.model.fields.selection,name:base_custom_info.selection__custom_info_property__widget__html
 msgid "Complex text"
-msgstr ""
+msgstr "Texto complejo"
 
 #. module: base_custom_info
 #: model:ir.model,name:base_custom_info.model_res_config_settings
@@ -209,7 +209,7 @@ msgstr "Contacto"
 #: model:ir.model.fields,field_description:base_custom_info.field_res_config_settings__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_custom_info.field_res_partner__count_pending_changeset_changes
 msgid "Count Pending Changeset Changes"
-msgstr ""
+msgstr "Contar los cambios del conjunto de cambios pendientes"
 
 #. module: base_custom_info
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info__count_pending_changesets
@@ -223,7 +223,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_custom_info.field_res_config_settings__count_pending_changesets
 #: model:ir.model.fields,field_description:base_custom_info.field_res_partner__count_pending_changesets
 msgid "Count Pending Changesets"
-msgstr ""
+msgstr "Contar conjuntos de cambios pendientes"
 
 #. module: base_custom_info
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_category__create_uid
@@ -310,17 +310,17 @@ msgstr "Valor de inf. personalizada"
 #: model:ir.model.fields.selection,name:base_custom_info.selection__custom_info_property__field_type__date
 #: model:ir.model.fields.selection,name:base_custom_info.selection__custom_info_property__widget__date
 msgid "Date"
-msgstr ""
+msgstr "Fecha"
 
 #. module: base_custom_info
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value__value_date
 msgid "Date value"
-msgstr ""
+msgstr "Valor de la fecha"
 
 #. module: base_custom_info
 #: model:ir.model.fields.selection,name:base_custom_info.selection__custom_info_property__widget__float
 msgid "Decimal"
-msgstr ""
+msgstr "Decimal"
 
 #. module: base_custom_info
 #: model:ir.model.fields.selection,name:base_custom_info.selection__custom_info_property__field_type__float
@@ -342,6 +342,7 @@ msgstr "Valor por defecto"
 #, python-format
 msgid "Default value %(d_value)s cannot be converted to type %(f_type)s."
 msgstr ""
+"El valor por defecto %(d_value)s no se puede convertir al tipo %(f_type)s."
 
 #. module: base_custom_info
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_category__display_name
@@ -469,7 +470,7 @@ msgstr ""
 #. module: base_custom_info
 #: model:ir.model.fields.selection,name:base_custom_info.selection__custom_info_property__widget__integer
 msgid "Integer"
-msgstr ""
+msgstr "Entero"
 
 #. module: base_custom_info
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_category____last_update
@@ -544,7 +545,7 @@ msgstr "Nombre técnico del modelo"
 #. module: base_custom_info
 #: model:ir.model.fields.selection,name:base_custom_info.selection__custom_info_property__widget__text
 msgid "Multi line Text"
-msgstr ""
+msgstr "Texto multilínea"
 
 #. module: base_custom_info
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_category__name
@@ -672,14 +673,13 @@ msgstr "Secuencia"
 
 #. module: base_custom_info
 #: model:custom.info.option,name:base_custom_info.opt_shooter
-#, fuzzy
 msgid "Shooter"
-msgstr "Shooter"
+msgstr "Tirador"
 
 #. module: base_custom_info
 #: model:ir.model.fields.selection,name:base_custom_info.selection__custom_info_property__widget__char
 msgid "Single line text"
-msgstr ""
+msgstr "Texto de una línea"
 
 #. module: base_custom_info
 #: model:custom.info.template,name:base_custom_info.tpl_smart
@@ -690,7 +690,7 @@ msgstr "Gente lista"
 #: code:addons/base_custom_info/models/custom_info_value.py:0
 #, python-format
 msgid "Some required elements have not been fulfilled"
-msgstr ""
+msgstr "No se han cumplido algunos de los requisitos"
 
 #. module: base_custom_info
 #: model:custom.info.category,name:base_custom_info.cat_statics
@@ -759,7 +759,7 @@ msgstr "Tipo de información que se puede almacenar en esta propiedad."
 #: model:ir.model.fields,field_description:base_custom_info.field_res_config_settings__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_custom_info.field_res_partner__user_can_see_changeset
 msgid "User Can See Changeset"
-msgstr ""
+msgstr "El usuario puede ver el conjunto de cambios"
 
 #. module: base_custom_info
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value__value
@@ -802,13 +802,13 @@ msgstr "Valores que han escogido esta opción."
 #. module: base_custom_info
 #: model:ir.model,name:base_custom_info.model_ir_ui_view
 msgid "View"
-msgstr ""
+msgstr "Ver"
 
 #. module: base_custom_info
 #: model:ir.model.fields,field_description:base_custom_info.field_ir_actions_act_window_view__view_mode
 #: model:ir.model.fields,field_description:base_custom_info.field_ir_ui_view__type
 msgid "View Type"
-msgstr ""
+msgstr "Tipo de Vista"
 
 #. module: base_custom_info
 #: model:custom.info.property,name:base_custom_info.prop_weaknesses
@@ -818,7 +818,7 @@ msgstr "¿Qué debilidades tiene?"
 #. module: base_custom_info
 #: model:custom.info.property,name:base_custom_info.prop_buy_fav_game
 msgid "When Favourite videogame was bought?"
-msgstr ""
+msgstr "¿Cuándo se compró su videojuego favorito?"
 
 #. module: base_custom_info
 #: model:ir.model.fields,help:base_custom_info.field_custom_info_property__option_ids
@@ -840,7 +840,7 @@ msgstr "Valor del número entero"
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_property__widget
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value__widget
 msgid "Widget"
-msgstr ""
+msgstr "Widget"
 
 #. module: base_custom_info
 #: model:res.groups,comment:base_custom_info.group_partner
@@ -891,7 +891,7 @@ msgstr ""
 #: code:addons/base_custom_info/models/custom_info_template.py:0
 #, python-format
 msgid "You must set a existing model."
-msgstr ""
+msgstr "Debe establecer un modelo existente."
 
 #~ msgid "Custom Info Categories"
 #~ msgstr "Categorías de inf. personalizada"
