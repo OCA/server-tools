@@ -63,13 +63,13 @@ class TestIrModel(SavepointCase):
         # group_manager have access to all operations by default
         self.assertNotIn(
             self.group_manager,
-            self.partner_model.readonly_group_ids,
-            msg="Group Manager should not be in readonly_group_ids",
+            self.partner_model.readonly_restriction_ids.group_ids,
+            msg="Group Manager should not be in readonly_restriction_ids",
         )
         self.assertNotIn(
             self.group_partner_manager,
-            self.partner_model.readonly_group_ids,
-            msg="Group Partner Manager should not be in readonly_group_ids",
+            self.partner_model.readonly_restriction_ids.group_ids,
+            msg="Group Partner Manager should not be in readonly_restriction_ids",
         )
         self.assertTrue(
             test_record.check_access_rights("read", False),
@@ -88,12 +88,17 @@ class TestIrModel(SavepointCase):
             msg="Unlink access right should be True",
         )
 
-        # Add group_manager to readonly_group_ids
-        self.partner_model.write({"readonly_group_ids": [(4, self.group_manager.id)]})
+        # Add group_manager to readonly_restriction_ids
+        self.env["model.readonly.restriction"].create(
+            {
+                "model_id": self.partner_model.id,
+                "group_ids": [(4, self.group_manager.id)],
+            }
+        )
         self.assertIn(
             self.group_manager,
-            self.partner_model.readonly_group_ids,
-            msg="Group Manager must be in readonly_group_ids",
+            self.partner_model.readonly_restriction_ids.group_ids,
+            msg="Group Manager must be in readonly_restriction_ids",
         )
         self.assertTrue(
             test_record.check_access_rights("read", False),
@@ -121,3 +126,28 @@ class TestIrModel(SavepointCase):
             test_record.check_access_rights("create", raise_exception=True)
         with self.assertRaises(AccessError, msg="Must Raise Access Error"):
             test_record.check_access_rights("unlink", raise_exception=True)
+
+        self.env["model.readonly.restriction"].search([]).unlink()
+
+        self.env["model.readonly.restriction"].create(
+            {
+                "model_id": self.partner_model.id,
+                "group_ids": [(4, self.group_manager.id)],
+                "restriction_domain": [("name", "=", "Babaika")],
+            }
+        )
+        self.assertTrue(
+            test_record.check_access_rights("write", False),
+            msg="Write access right should be allowed",
+        )
+        self.env["model.readonly.restriction"].create(
+            {
+                "model_id": self.partner_model.id,
+                "group_ids": [(4, self.group_manager.id)],
+                "restriction_domain": [("name", "=", test_record.name)],
+            }
+        )
+        self.assertFalse(
+            test_record.check_access_rights("write", False),
+            msg="Write access right should be prevented",
+        )

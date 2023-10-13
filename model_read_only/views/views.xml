@@ -5,9 +5,38 @@
         <field name="model">ir.model</field>
         <field name="inherit_id" ref="base.view_model_form" />
         <field name="arch" type="xml">
-            <field name="state" position="after">
-                <field name="readonly_group_ids" widget="many2many_tags" />
-            </field>
+            <page name="record_rules" position="after">
+                <page name="readonly_restrictions" string="Readonly Restrictions">
+                    <field name="readonly_restriction_ids">
+                        <tree>
+                            <field name="restriction_domain" />
+                            <field name="model_id" invisible="1" />
+                            <field name="model_name" invisible="1" />
+                            <field name="group_ids" widget="many2many_tags" />
+                        </tree>
+                        <form>
+                            <sheet>
+                                <group>
+                                    <group>
+                                        <field name="model_id" invisible="1" />
+                                        <field name="model_name" invisible="1" />
+                                        <field
+                                            name="restriction_domain"
+                                            widget="domain"
+                                            options="{'model': 'model_name', 'in_dialog': True}"
+                                        />
+                                        <field
+                                            name="group_ids"
+                                            widget="many2many_tags"
+                                        />
+
+                                    </group>
+                                </group>
+                            </sheet>
+                        </form>
+                    </field>
+                </page>
+            </page>
         </field>
     </record>
 
