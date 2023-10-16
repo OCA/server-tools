@@ -10,39 +10,17 @@ from odoo.addons.base.models.ir_model import MODULE_UNINSTALL_FLAG
 class AuditlogCommon(object):
     def test_LogCreation(self):
         """First test, caching some data."""
-
         self.groups_rule.subscribe()
-
-        auditlog_log = self.env["auditlog.log"]
         group = self.env["res.groups"].create({"name": "testgroup1"})
-        self.assertTrue(
-            auditlog_log.search(
+        self.assertEqual(
+            self.env["auditlog.log"].search_count(
                 [
                     ("model_id", "=", self.groups_model_id),
                     ("method", "=", "create"),
                     ("res_id", "=", group.id),
                 ]
-            ).ensure_one()
-        )
-        group.write({"name": "Testgroup1"})
-        self.assertTrue(
-            auditlog_log.search(
-                [
-                    ("model_id", "=", self.groups_model_id),
-                    ("method", "=", "write"),
-                    ("res_id", "=", group.id),
-                ]
-            ).ensure_one()
-        )
-        group.unlink()
-        self.assertTrue(
-            auditlog_log.search(
-                [
-                    ("model_id", "=", self.groups_model_id),
-                    ("method", "=", "unlink"),
-                    ("res_id", "=", group.id),
-                ]
-            ).ensure_one()
+            ),
+            1,
         )
 
     def test_LogCreation2(self):
@@ -192,6 +170,93 @@ class AuditlogCommon(object):
         self.assertTrue(log_record)
         if self.groups_rule.capture_record:
             self.assertTrue(len(log_record.line_ids) > 0)
+
+    def test_LogCreation7(self):
+        """Seventh test: multi-create with different M2O values.
+
+        Check that creation goes as planned (no error coming from ``deepcopy``)
+        """
+        self.groups_rule.subscribe()
+
+        auditlog_log = self.env["auditlog.log"]
+        cat = self.env["ir.module.category"].create({"name": "Test Category"})
+        groups_vals = [
+            {"name": "testgroup1"},
+            {"name": "testgroup3", "category_id": cat.browse()},
+            {"name": "testgroup2", "category_id": False},
+            {"name": "testgroup4", "category_id": cat.id},
+        ]
+        groups = self.env["res.groups"].create(groups_vals)
+
+        # Ensure ``category_id`` field has the correct values
+        expected_ids = [False, False, False, cat.id]
+        self.assertEqual([g.category_id.id for g in groups], expected_ids)
+
+        # Ensure the correct number of logs have been created
+        logs = auditlog_log.search(
+            [
+                ("model_id", "=", self.groups_model_id),
+                ("method", "=", "create"),
+                ("res_id", "in", groups.ids),
+            ]
+        )
+        self.assertEqual(len(logs), len(groups))
+
+    def test_LogUpdate(self):
+        """Tests write results with different M2O values."""
+        self.groups_rule.subscribe()
+        group = self.env["res.groups"].create({"name": "testgroup1"})
+        cat = self.env["ir.module.category"].create({"name": "Test Category"})
+        group.write(
+            {
+                "name": "Testgroup1",
+                "category_id": cat.browse(),
+            }
+        )
+        log1 = self.env["auditlog.log"].search(
+            [
+                ("model_id", "=", self.groups_model_id),
+                ("method", "=", "write"),
+                ("res_id", "=", group.id),
+            ]
+        )
+        self.assertEqual(len(log1), 1)
+        group.write({"name": "Testgroup2", "category_id": cat.id})
+        log2 = self.env["auditlog.log"].search(
+            [
+                ("model_id", "=", self.groups_model_id),
+                ("method", "=", "write"),
+                ("res_id", "=", group.id),
+                ("id", "not in", log1.ids),
+            ]
+        )
+        self.assertEqual(len(log2), 1)
+        group.write({"name": "Testgroup3", "category_id": False})
+        log3 = self.env["auditlog.log"].search(
+            [
+                ("model_id", "=", self.groups_model_id),
+                ("method", "=", "write"),
+                ("res_id", "=", group.id),
+                ("id", "not in", (log1 + log2).ids),
+            ]
+        )
+        self.assertEqual(len(log3), 1)
+
+    def test_LogDelete(self):
+        """Tests unlink results"""
+        self.groups_rule.subscribe()
+        group = self.env["res.groups"].create({"name": "testgroup1"})
+        group.unlink()
+        self.assertEqual(
+            self.env["auditlog.log"].search_count(
+                [
+                    ("model_id", "=", self.groups_model_id),
+                    ("method", "=", "unlink"),
+                    ("res_id", "=", group.id),
+                ]
+            ),
+            1,
+        )
 
 
 class TestAuditlogFull(TransactionCase, AuditlogCommon):
