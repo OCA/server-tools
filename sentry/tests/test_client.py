@@ -121,14 +121,14 @@ class TestClientSetup(TransactionCase):
         self.assertEventNotCaptured(client, level, msg)
 
     def test_capture_exceptions_with_no_exc_info(self):
-        """Testing that OverflowError which isn't in the default
+        """Testing that QWebException which isn't in the default
         ignore_exceptions list is captured"""
         client = initialize_sentry(config)._client
         client.transport = InMemoryTransport({"dsn": self.dsn})
         level, msg = logging.WARNING, "Test exception"
         try:
-            raise OverflowError(msg)
-        except OverflowError as exception:
+            raise exceptions.QWebException(msg)
+        except exceptions.QWebException as exception:
             # Odoo handles UserErrors by logging the exception
             _logger.warning(exception)
         level = "warning"
