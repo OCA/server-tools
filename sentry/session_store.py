@@ -21,5 +21,5 @@ class CustomSentryWsgiMiddleware(SentryWsgiMiddleware):
             _logger.info("SENTRY::session_store")
             _logger.info(session_store)
         else:
-            _logger.warning("SENTRY::session_store is not available on http.Application")
+            _logger.warning("SENTRY:: redis session_store is not available on http.Application")
         return super().__call__(environ, start_response)

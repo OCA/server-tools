@@ -77,7 +77,7 @@ def get_odoo_commit(odoo_dir):
         _logger.debug("Odoo directory: '%s' not a valid git repository", odoo_dir)
 
 
-def initialize_sentry(config, session_store=None):
+def initialize_sentry(config):
     """Setup an instance of :class:`sentry_sdk.Client`.
     :param config: Sentry configuration
     :param client: class used to instantiate the sentry_sdk client.
