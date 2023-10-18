@@ -137,12 +137,10 @@ def initialize_sentry(config, session_store=None):
 
     # The server app is already registered so patch it here
     if server:
-        server.app = CustomSentryWsgiMiddleware(server.app, session_store=session_store)
+        server.app = CustomSentryWsgiMiddleware(server.app)
 
     # Patch the wsgi server in case of further registration
-    odoo.http.Application = CustomSentryWsgiMiddleware(
-        odoo.http.Application, session_store=session_store
-    )
+    odoo.http.Application = CustomSentryWsgiMiddleware(odoo.http.Application)
 
     with sentry_sdk.push_scope() as scope:
         scope.set_extra("debug", False)
