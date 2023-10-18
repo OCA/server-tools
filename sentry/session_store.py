@@ -4,7 +4,8 @@ import os
 from odoo import http
 from odoo.tools.func import lazy_property
 
-from '../session_redis/session' import RedisSessionStore
+from ..session_redis.session import RedisSessionStore
+
 
 _logger = logging.getLogger(__name__)
 
