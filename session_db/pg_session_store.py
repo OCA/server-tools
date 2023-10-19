@@ -142,11 +142,11 @@ class PGSessionStore(sessions.SessionStore):
 
     @with_lock
     @with_cursor
-    def vacuum(self):
+    def vacuum(self, max_lifetime=http.SESSION_LIFETIME):
         self._cr.execute(
             "DELETE FROM http_sessions "
             "WHERE now() at time zone 'UTC' - write_date > %s",
-            (f"{http.SESSION_LIFETIME} seconds",),
+            (f"{max_lifetime} seconds",),
         )
 
 

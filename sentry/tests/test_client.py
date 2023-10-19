@@ -121,31 +121,29 @@ class TestClientSetup(TransactionCase):
         self.assertEventNotCaptured(client, level, msg)
 
     def test_capture_exceptions_with_no_exc_info(self):
-        """Testing that OverflowError which isn't in the default
-        ignore_exceptions list is captured"""
+        """A UserError that isn't in the DEFAULT_IGNORED_EXCEPTIONS list is captured
+        (there is no exc_info in the ValidationError exception)."""
         client = initialize_sentry(config)._client
         client.transport = InMemoryTransport({"dsn": self.dsn})
         level, msg = logging.WARNING, "Test exception"
-        try:
-            raise OverflowError(msg)
-        except OverflowError as exception:
-            # Odoo handles UserErrors by logging the exception
-            _logger.warning(exception)
+
+        # Odoo handles UserErrors by logging the exception
+        with patch("odoo.addons.sentry.const.DEFAULT_IGNORED_EXCEPTIONS", new=[]):
+            _logger.warning(exceptions.ValidationError(msg))
+
         level = "warning"
         self.assertEventCaptured(client, level, msg)
 
     def test_ignore_exceptions_with_no_exc_info(self):
-        """Testing ValidationError which is in the default list of
-        ignore_exceptions is not captured (there is no exc_info in the
-        ValidationError exception)"""
+        """A UserError that is in the DEFAULT_IGNORED_EXCEPTIONS is not captured
+        (there is no exc_info in the ValidationError exception)."""
         client = initialize_sentry(config)._client
         client.transport = InMemoryTransport({"dsn": self.dsn})
         level, msg = logging.WARNING, "Test exception"
-        try:
-            raise exceptions.ValidationError(msg)
-        except exceptions.ValidationError as exception:
-            # Odoo handles UserErrors by logging the exception
-            _logger.warning(exception)
+
+        # Odoo handles UserErrors by logging the exception
+        _logger.warning(exceptions.ValidationError(msg))
+
         level = "warning"
         self.assertEventNotCaptured(client, level, msg)
 

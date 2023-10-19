@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-06-14 14:12+0000\n"
+"PO-Revision-Date: 2023-10-12 09:40+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -337,6 +337,8 @@ msgstr "Cella"
 #. module: excel_import_export
 #: model:ir.model.fields.selection,name:excel_import_export.selection__export_xlsx_wizard__state__choose
 #: model:ir.model.fields.selection,name:excel_import_export.selection__import_xlsx_wizard__state__choose
+#: model:ir.model.fields.selection,name:excel_import_export.selection__report_crm_lead__state__choose
+#: model:ir.model.fields.selection,name:excel_import_export.selection__report_sale_order__state__choose
 #: model:ir.model.fields.selection,name:excel_import_export.selection__xlsx_report__state__choose
 msgid "Choose"
 msgstr "Selezione"
@@ -648,6 +650,8 @@ msgstr "Wizard Report Generico, usato con l'opzione dei modelli di report"
 #. module: excel_import_export
 #: model:ir.model.fields.selection,name:excel_import_export.selection__export_xlsx_wizard__state__get
 #: model:ir.model.fields.selection,name:excel_import_export.selection__import_xlsx_wizard__state__get
+#: model:ir.model.fields.selection,name:excel_import_export.selection__report_crm_lead__state__get
+#: model:ir.model.fields.selection,name:excel_import_export.selection__report_sale_order__state__get
 #: model:ir.model.fields.selection,name:excel_import_export.selection__xlsx_report__state__get
 msgid "Get"
 msgstr ""
@@ -660,7 +664,7 @@ msgstr ""
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__gname
 msgid "Group Name"
-msgstr "Nome Gruppo"
+msgstr "Nome gruppo"
 
 #. module: excel_import_export
 #: model:ir.model.fields.selection,name:excel_import_export.selection__xlsx_template_export__section_type__head
@@ -1066,7 +1070,7 @@ msgstr "ID Risorse"
 #: model:ir.model.fields,field_description:excel_import_export.field_import_xlsx_wizard__res_model
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__res_model
 msgid "Resource Model"
-msgstr "Modello Risorse"
+msgstr "Modello risorsa"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__result_field
@@ -1158,7 +1162,7 @@ msgstr "Mostra Output"
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__smart_search
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_import__smart_search
 msgid "Smart Search"
-msgstr "Ricerca Intelligente"
+msgstr "Ricerca intelligente"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_export_xlsx_wizard__state
