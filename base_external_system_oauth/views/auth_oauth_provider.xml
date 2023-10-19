@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_oauth_provider_form" model="ir.ui.view">
+        <field name="name">auth.oauth.provider form - tenant and secret fields</field>
+        <field name="model">auth.oauth.provider</field>
+        <field name="inherit_id" ref="auth_oauth.view_oauth_provider_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="before">
+                <header>
+                    <button
+                        type="object"
+                        name="action_test_get_token"
+                        string="Test Get Token"
+                    />
+                </header>
+            </xpath>
+            <field name="client_id" position="after">
+                <field name="tenant_id" />
+                <field name="client_secret" />
+                <field name="provider_type" />
+            </field>
+        </field>
+    </record>
+</odoo>
