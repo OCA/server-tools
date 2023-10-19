@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="external_system_view_form" model="ir.ui.view">
+        <field name="name">external.system form - oauth fields</field>
+        <field name="model">external.system</field>
+        <field name="inherit_id" ref="base_external_system.external_system_view_form" />
+        <field name="arch" type="xml">
+            <field name="system_type" position="after">
+                <field name="oauth_definition_id" />
+            </field>
+        </field>
+    </record>
+</odoo>
