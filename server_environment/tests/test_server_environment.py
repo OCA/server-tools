@@ -1,48 +1,48 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Author: Nicolas Bessi
-#    Copyright 2014 Camptocamp SA
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
-from odoo.tests import common
-from odoo.addons.server_environment import serv_config
+# Copyright 2018 Camptocamp (https://www.camptocamp.com).
+# License GPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+from mock import patch
+
+from odoo.tools.config import config as odoo_config
+
+from .. import server_env
+from . import common
 
 
-class TestEnv(common.TransactionCase):
+class TestEnv(common.ServerEnvironmentCase):
 
     def test_view(self):
         model = self.env['server.config']
         view = model.fields_view_get()
         self.assertTrue(view)
 
-    def test_default(self):
-        model = self.env['server.config']
+    def _test_default(self, hidden_pwd=False):
+        model = self.env["server.config"]
         rec = model.create({})
         defaults = rec.default_get([])
         self.assertTrue(defaults)
         self.assertIsInstance(defaults, dict)
         pass_checked = False
         for default in defaults:
-            if 'passw' in default:
-                self.assertNotEqual(defaults[default],
-                                    '**********')
+            if "passw" in default:
+                check = self.assertEqual if hidden_pwd else self.assertNotEqual
+                check(defaults[default], "**********")
                 pass_checked = True
         self.assertTrue(pass_checked)
 
+    @patch.dict(odoo_config.options, {"running_env": "dev"})
+    def test_default_dev(self):
+        self._test_default()
+
+    @patch.dict(odoo_config.options, {"running_env": "whatever"})
+    def test_default_non_dev_env(self):
+        self._test_default(hidden_pwd=True)
+
+    @patch.dict(odoo_config.options, {"running_env": "testing"})
     def test_value_retrival(self):
-        val = serv_config.get('external_service.ftp', 'user')
-        self.assertEqual(val, 'toto')
+        with self.set_config_dir('testfiles'):
+            parser = server_env._load_config()
+            val = parser.get('external_service.ftp', 'user')
+            self.assertEqual(val, 'testing')
+            val = parser.get('external_service.ftp', 'host')
+            self.assertEqual(val, 'sftp.example.com')

@@ -24,6 +24,7 @@ import os
 import ConfigParser
 from lxml import etree
 from itertools import chain
+from StringIO import StringIO
 
 from odoo import api, models, fields
 from odoo.tools.config import config as system_base_config
@@ -40,18 +41,35 @@ except ImportError:
                  ' no directory found')
     _dir = None
 
-# Same dict as RawConfigParser._boolean_states
-_boolean_states = {'1': True, 'yes': True, 'true': True, 'on': True,
-                   '0': False, 'no': False, 'false': False, 'off': False}
 
-if not system_base_config.get('running_env', False):
-    raise Exception(
-        "The parameter 'running_env' has not be set neither in base config "
-        "file option -c or in openerprc.\n"
-        "We strongly recommend against using the rc file but instead use an "
-        "explicit config file with this content:\n"
-        "[options]\nrunning_env = dev"
-    )
+ENV_VAR_NAMES = ('SERVER_ENV_CONFIG', 'SERVER_ENV_CONFIG_SECRET')
+
+# Same dict as RawConfigParser._boolean_states
+_boolean_states = {
+    "1": True,
+    "yes": True,
+    "true": True,
+    "on": True,
+    "0": False,
+    "no": False,
+    "false": False,
+    "off": False,
+}
+
+
+def _load_running_env():
+    if not system_base_config.get("running_env"):
+        _logger.info("`running_env` not found. Using default = `test`.")
+        _logger.info(
+            "We strongly recommend against using the rc file but instead use an "
+            "explicit config file or env variable."
+        )
+        # safe default
+        system_base_config["running_env"] = "test"
+
+
+_load_running_env()
+
 
 ck_path = None
 if _dir:
@@ -111,14 +129,29 @@ def _load_config_from_rcfile(config_p):
     config_p.remove_section('options')
 
 
+def _load_config_from_env(config_p):
+    for varname in ENV_VAR_NAMES:
+        env_config = os.getenv(varname)
+        if env_config:
+            try:
+                config_p.readfp(StringIO(env_config))
+            except ConfigParser.Error as err:
+                raise Exception(
+                    '%s content could not be parsed: %s'
+                    % (varname, err,)
+                )
+
+
 def _load_config():
     """Load the configuration and return a ConfigParser instance."""
     config_p = ConfigParser.SafeConfigParser()
     # options are case-sensitive
     config_p.optionxform = str
+
     if _dir:
         _load_config_from_server_env_files(config_p)
     _load_config_from_rcfile(config_p)
+    _load_config_from_env(config_p)
     return config_p
 
 
@@ -137,7 +170,10 @@ class _Defaults(dict):
 class ServerConfiguration(models.TransientModel):
     """Display server configuration."""
     _name = 'server.config'
+    _description = 'Display server configuration'
     _conf_defaults = _Defaults()
+
+    config = fields.Serialized()
 
     @classmethod
     def _build_model(cls, pool, cr):
@@ -147,16 +183,21 @@ class ServerConfiguration(models.TransientModel):
         """
         ModelClass = super(ServerConfiguration, cls)._build_model(pool, cr)
         ModelClass._add_columns()
-        ModelClass.running_env = system_base_config['running_env']
-        # Only show passwords in development
-        ModelClass.show_passwords = ModelClass.running_env in ('dev',)
         ModelClass._arch = None
         ModelClass._build_osv()
         return ModelClass
 
     @classmethod
     def _format_key(cls, section, key):
-        return '%s | %s' % (section, key)
+        return '%s_I_%s' % (section, key)
+
+    @property
+    def show_passwords(self):
+        return system_base_config["running_env"] in ("dev",)
+
+    @classmethod
+    def _format_key_display_name(cls, key_name):
+        return key_name.replace('_I_', ' | ')
 
     @classmethod
     def _add_columns(cls):
@@ -167,10 +208,16 @@ class ServerConfiguration(models.TransientModel):
             cls._get_system_cols().items()
         )
         for col, value in cols:
-            col_name = col.replace('.', '_')
-            setattr(ServerConfiguration,
-                    col_name,
-                    fields.Char(string=col, readonly=True))
+            col_name = col.replace(".", "_")
+            setattr(
+                ServerConfiguration,
+                col_name,
+                fields.Char(
+                    string=cls._format_key_display_name(col_name),
+                    sparse="config",
+                    readonly=True,
+                ),
+            )
             cls._conf_defaults[col_name] = value
 
     @classmethod
@@ -271,11 +318,11 @@ class ServerConfiguration(models.TransientModel):
         secret_keys = ['passw', 'key', 'secret', 'token']
         return any(secret_key in key for secret_key in secret_keys)
 
+    # pylint: disable=method-required-super
     @api.model
     def default_get(self, fields_list):
         res = {}
-        current_user = self.env.user
-        if not current_user.has_group(
+        if not self.env.user.has_group(
                 'server_environment.has_server_configuration_access'):
             return res
         for key in self._conf_defaults:

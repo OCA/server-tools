@@ -43,7 +43,7 @@ def get_server_environment():
         try:
             rev_id = 'bzr: %s' % _get_output('bzr revision-info')
         except Exception:
-            rev_id = 'Can not retrive revison from git or bzr'
+            rev_id = 'Can not retrieve revison from git or bzr'
 
     os_lang = '.'.join([x for x in locale.getdefaultlocale() if x])
     if not os_lang:
