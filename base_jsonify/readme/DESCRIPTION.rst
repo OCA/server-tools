@@ -39,5 +39,15 @@ can define your mapping as follow into the parser definition:
         ('line_id:lines', ['id', ('product_id', ['name']), 'price_unit'])
     ]
 
+If you need to parse the value of a field in a custom way,
+you can pass a callable or the name of a method on the model:
+
+.. code-block:: python
+
+    parser = [
+        ('name', "jsonify_name")  # method name
+        ('number', lambda rec, field_name: rec[field_name] * 2))  # callable
+    ]
+
 Also the module provide a method "get_json_parser" on the ir.exports object
 that generate a parser from an ir.exports configuration
