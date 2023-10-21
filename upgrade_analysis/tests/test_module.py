@@ -21,19 +21,11 @@ class TestUpgradeAnalysis(common.TransactionCase):
             self.website_module.id in wizard.module_ids.ids,
             "Select Odoo module should select 'product' module",
         )
-        # New patch avoids to reinstall already installed modules, so this will fail
-        # wizard.select_oca_modules()
-        # self.assertTrue(
-        #     self.upgrade_analysis.id in wizard.module_ids.ids,
-        #     "Select OCA module should select 'upgrade_analysis' module",
-        # )
-
         wizard.select_other_modules()
         self.assertFalse(
             self.website_module.id in wizard.module_ids.ids,
             "Select Other module should not select 'product' module",
         )
-
         wizard.unselect_modules()
         self.assertEqual(
             wizard.module_ids.ids, [], "Unselect module should clear the selection"
