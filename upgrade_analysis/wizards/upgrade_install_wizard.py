@@ -34,7 +34,7 @@ class UpgradeInstallWizard(models.TransientModel):
     def _module_ids_domain(self, extra_domain=None):
         domain = [
             "&",
-            ("state", "not in", ["uninstallable", "unknown"]),
+            ("state", "not in", ["installed", "uninstallable", "unknown"]),
             ("name", "not in", BLACKLIST_MODULES),
         ]
         if extra_domain:
