@@ -24,6 +24,7 @@ class UpgradeInstallWizard(models.TransientModel):
     module_ids = fields.Many2many(
         comodel_name="ir.module.module",
         domain=lambda x: x._module_ids_domain(),
+        string="Modules",
     )
 
     module_qty = fields.Integer(
