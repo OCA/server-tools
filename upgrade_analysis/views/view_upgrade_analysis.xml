@@ -27,7 +27,7 @@
                     />
                 </header>
                 <sheet>
-                    <group col="4" colspan="4">
+                    <group>
                         <field name="config_id" readonly="state == 'done'" />
                         <field name="write_files" readonly="state == 'done'" />
                         <field name="upgrade_path" invisible="not write_files" />
@@ -39,6 +39,7 @@
                             nolabel="1"
                             widget="ace"
                             options="{'mode': 'txt'}"
+                            colspan="2"
                         />
                     </group>
 

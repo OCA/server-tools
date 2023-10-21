@@ -8,12 +8,14 @@
                 <header>
                   <field name="state" widget="statusbar" />
                 </header>
-                <group invisible="state != 'draft'" colspan="4">
+                <group invisible="state != 'draft'">
                     <p
+                        colspan="2"
                     >This will reinitialize all the modules installed on this database. Do not continue if you use this database in production.</p>
                 </group>
-                <group invisible="state != 'done'" colspan="4">
+                <group invisible="state != 'done'">
                     <p>Modules initialized and record created</p>
+                    <p colspan="2">Modules initialized and record created</p>
                 </group>
                 <footer>
                     <button
