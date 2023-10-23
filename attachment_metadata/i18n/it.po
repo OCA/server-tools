@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-24 04:14+0000\n"
-"PO-Revision-Date: 2023-06-23 13:12+0000\n"
+"PO-Revision-Date: 2023-10-29 08:30+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-server-tools-8-0/"
 "language/it/)\n"
@@ -117,7 +117,7 @@ msgstr "Nome del campo"
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,file_size:0
 msgid "File Size"
-msgstr "Dimensione File"
+msgstr "Dimensione file"
 
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,file_type_icon:0
@@ -233,7 +233,7 @@ msgstr ""
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,res_name:0
 msgid "Resource Name"
-msgstr "Nome della Risorsa"
+msgstr "Nome risorsa"
 
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,store_fname:0
