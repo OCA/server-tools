@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-23 21:53+0000\n"
-"PO-Revision-Date: 2023-10-09 09:11+0000\n"
+"PO-Revision-Date: 2023-10-29 08:33+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -147,7 +147,7 @@ msgstr "Nome del campo"
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_file_size
 msgid "File Size"
-msgstr "Dimensione File"
+msgstr "Dimensione file"
 
 #. module: attachment_base_synchronize
 #: code:addons/attachment_base_synchronize/models/attachment.py:53
@@ -221,7 +221,7 @@ msgstr "Se selezionata, nuovi messaggi richiedono attenzione."
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_index_content
 msgid "Indexed Content"
-msgstr "Contenuto Indicizzato"
+msgstr "Contenuto indicizzato"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_internal_hash
@@ -328,7 +328,7 @@ msgstr "Modello risorsa"
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_res_name
 msgid "Resource Name"
-msgstr "Nome della Risorsa"
+msgstr "Nome risorsa"
 
 #. module: attachment_base_synchronize
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_attachment_improved_form
@@ -354,7 +354,7 @@ msgstr ""
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_store_fname
 msgid "Stored Filename"
-msgstr "Nome memorizzato del File"
+msgstr "Nome file memorizzato"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_sync_date
