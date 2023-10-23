@@ -7,13 +7,14 @@
 from random import choice
 from string import ascii_lowercase, ascii_uppercase, digits
 
-from odoo import _, fields, models
+from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
 
 class CodeFormatMixin(models.AbstractModel):
     _name = "code.format.mixin"
     _description = "Customizable code format Mixin"
+    _inherit = ["mail.thread"]
 
     #  1/ _code_mask must be added in the related model
     # e.g. in "gift.card":
@@ -50,7 +51,14 @@ class CodeFormatMixin(models.AbstractModel):
                     )
             return code
 
-    code = fields.Char(compute=_generate_code, readonly=True, store=True)
+    code = fields.Char(tracking=True)
+
+    @api.model
+    def create(self, vals):
+        res = super().create(vals)
+        if not res.code:
+            res.code = res._generate_code()
+        return res
 
     def _get_mask(self):
         return self[self._code_mask["template"]][self._code_mask["mask"]]
