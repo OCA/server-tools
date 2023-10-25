@@ -28,19 +28,19 @@ addon | version | maintainers | summary
 [base_conditional_image](base_conditional_image/) | 15.0.1.0.0 |  | This module extends the functionality to support conditional images
 [base_cron_exclusion](base_cron_exclusion/) | 15.0.1.0.0 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) [![ChrisOForgeFlow](https://github.com/ChrisOForgeFlow.png?size=30px)](https://github.com/ChrisOForgeFlow) | Allow you to select scheduled actions that should not run simultaneously.
 [base_custom_info](base_custom_info/) | 15.0.1.0.0 |  | Add custom field in models
-[base_exception](base_exception/) | 15.0.1.0.2 | [![hparfr](https://github.com/hparfr.png?size=30px)](https://github.com/hparfr) [![sebastienbeau](https://github.com/sebastienbeau.png?size=30px)](https://github.com/sebastienbeau) | This module provide an abstract model to manage customizable exceptions to be applied on different models (sale order, invoice, ...)
+[base_exception](base_exception/) | 15.0.1.0.3 | [![hparfr](https://github.com/hparfr.png?size=30px)](https://github.com/hparfr) [![sebastienbeau](https://github.com/sebastienbeau.png?size=30px)](https://github.com/sebastienbeau) | This module provide an abstract model to manage customizable exceptions to be applied on different models (sale order, invoice, ...)
 [base_fontawesome](base_fontawesome/) | 15.0.5.15.4 |  | Up to date Fontawesome resources.
 [base_kanban_stage](base_kanban_stage/) | 15.0.1.0.2 |  | Provides stage model and abstract logic for inheritance
 [base_kanban_stage_state](base_kanban_stage_state/) | 15.0.1.0.0 |  | Maps stages from base_kanban_stage to states
 [base_model_restrict_update](base_model_restrict_update/) | 15.0.1.0.0 |  | Update Restrict Model
 [base_multi_image](base_multi_image/) | 15.0.1.0.0 |  | Allow multiple images for database objects
 [base_remote](base_remote/) | 15.0.1.0.0 |  | Remote Base
-[base_search_fuzzy](base_search_fuzzy/) | 15.0.1.0.0 |  | Fuzzy search with the PostgreSQL trigram extension
+[base_search_fuzzy](base_search_fuzzy/) | 15.0.1.0.1 |  | Fuzzy search with the PostgreSQL trigram extension
 [base_sparse_field_list_support](base_sparse_field_list_support/) | 15.0.1.0.0 |  | add list support to convert_to_cache()
 [base_technical_user](base_technical_user/) | 15.0.1.0.0 |  | Add a technical user parameter on the company
 [base_time_window](base_time_window/) | 15.0.1.0.0 |  | Base model to handle time windows
 [base_translation_field_label](base_translation_field_label/) | 15.0.1.0.0 | [![GuillemCForgeFlow](https://github.com/GuillemCForgeFlow.png?size=30px)](https://github.com/GuillemCForgeFlow) | Shows the field label and optionally hides the Translated field value.
-[base_view_inheritance_extension](base_view_inheritance_extension/) | 15.0.2.0.1 |  | Adds more operators for view inheritance
+[base_view_inheritance_extension](base_view_inheritance_extension/) | 15.0.2.0.2 |  | Adds more operators for view inheritance
 [database_cleanup](database_cleanup/) | 15.0.1.0.2 |  | Database cleanup
 [datetime_formatter](datetime_formatter/) | 15.0.1.0.0 |  | Helper functions to give correct format to date[time] fields
 [dbfilter_from_header](dbfilter_from_header/) | 15.0.1.0.0 |  | Filter databases with HTTP headers
