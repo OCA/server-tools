@@ -15,6 +15,23 @@
     font-style: normal;
     font-display: block;
 }
+@font-face {
+    font-family: "FontAwesomeBrands";
+    src: url("../../lib/fontawesome-5.15.4/webfonts/fa-brands-400.eot");
+    src: url("../../lib/fontawesome-5.15.4/webfonts/fa-brands-400.eot?#iefix&v=5.15.4")
+            format("embedded-opentype"),
+        url("../../lib/fontawesome-5.15.4/webfonts/fa-brands-400.woff2?v=5.15.4")
+            format("woff2"),
+        url("../../lib/fontawesome-5.15.4/webfonts/fa-brands-400.woff?v=5.15.4")
+            format("woff"),
+        url("../../lib/fontawesome-5.15.4/webfonts/fa-brands-400.ttf?v=5.15.4")
+            format("truetype"),
+        url("../../lib/fontawesome-5.15.4/webfonts/fa-brands-400.svg#fontawesome?v=5.15.4&fontawesomeregular")
+            format("svg");
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
 
 .btn.fa,
 .btn.fas,

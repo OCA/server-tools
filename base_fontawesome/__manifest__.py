@@ -5,7 +5,7 @@
 {
     "name": "Base Fontawesome",
     "summary": """Up to date Fontawesome resources.""",
-    "version": "16.0.5.15.4",
+    "version": "16.0.5.16.0",
     "license": "LGPL-3",
     "website": "https://github.com/OCA/server-tools",
     "author": "Camptocamp,Creu Blanca,Odoo Community Association (OCA)",
