@@ -28,6 +28,10 @@
                 "web/static/src/libs/fontawesome/css/font-awesome.css",
                 "base_fontawesome/static/src/css/fontawesome.css",
             ),
+            "base_fontawesome/static/lib/fontawesome-5.15.4/css/all.css",
+            "base_fontawesome/static/lib/fontawesome-5.15.4/css/v4-shims.css",
+            "base_fontawesome/static/src/js/form_renderer.js",
+            "base_fontawesome/static/src/js/list_renderer.js",
         ],
         "web.report_assets_common": [
             (
