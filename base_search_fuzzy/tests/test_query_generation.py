@@ -6,11 +6,22 @@ from odoo.tests.common import TransactionCase
 
 
 class QueryGenerationCase(TransactionCase):
-    def setUp(self):
-        super(QueryGenerationCase, self).setUp()
-        self.ResPartner = self.env["res.partner"]
-        self.TrgmIndex = self.env["trgm.index"]
-        self.ResPartnerCategory = self.env["res.partner.category"]
+    @classmethod
+    def setUpClass(cls):
+        super(QueryGenerationCase, cls).setUpClass()
+        # Remove this variable in v16 and put instead:
+        # from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
+        DISABLED_MAIL_CONTEXT = {
+            "tracking_disable": True,
+            "mail_create_nolog": True,
+            "mail_create_nosubscribe": True,
+            "mail_notrack": True,
+            "no_reset_password": True,
+        }
+        cls.env = cls.env(context=dict(cls.env.context, **DISABLED_MAIL_CONTEXT))
+        cls.ResPartner = cls.env["res.partner"]
+        cls.TrgmIndex = cls.env["trgm.index"]
+        cls.ResPartnerCategory = cls.env["res.partner.category"]
 
     def test_fuzzy_where_generation(self):
         """Check the generation of the where clause."""
