@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright 2017 LasLabs Inc.
+# Copyright 2023 Therp BV.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
 from contextlib import contextmanager
@@ -63,12 +64,6 @@ class ExternalSystem(models.Model):
         selection='_get_system_types',
         required=True,
     )
-    interface = fields.Reference(
-        selection='_get_system_types',
-        readonly=True,
-        help='This is the interface that this system represents. It is '
-             'created automatically upon creation of the external system.',
-    )
 
     _sql_constraints = [
         ('name_uniq', 'UNIQUE(name)', 'Connection name must be unique.'),
@@ -88,10 +83,12 @@ class ExternalSystem(models.Model):
         """Do not allow a blank fingerprint if not set to ignore."""
         for record in self:
             if not record.ignore_fingerprint and not record.fingerprint:
-                raise ValidationError(_(
-                    'Fingerprint cannot be empty when Ignore Fingerprint is '
-                    'not checked.',
-                ))
+                raise ValidationError(
+                    _(
+                        'Fingerprint cannot be empty when Ignore Fingerprint is'
+                        ' not checked.',
+                    )
+                )
 
     @api.multi
     @contextmanager
@@ -105,21 +102,26 @@ class ExternalSystem(models.Model):
             mixed: An object representing the client connection to the remote
              system.
         """
-        with self.interface.client() as client:
+        adapter = None
+        client = None
+        try:
+            adapter = self._get_adapter()
+            client = adapter.external_get_client()
             yield client
-
-    @api.model
-    def create(self, vals):
-        """Create the interface for the record and assign to ``interface``."""
-        record = super(ExternalSystem, self).create(vals)
-        interface = self.env[vals['system_type']].create({
-            'system_id': record.id,
-        })
-        record.interface = interface
-        return record
+        finally:
+            if client:
+                adapter.external_destroy_client(client)
 
     @api.multi
     def action_test_connection(self):
         """Test the connection to the external system."""
         self.ensure_one()
-        self.interface.external_test_connection()
+        with self.client() as client:
+            if not client:
+                raise ValidationError(
+                    _("Client connection failed for system %s") % self.name
+                )
+    
+    def _get_adapter(self):
+        """Trivial method to get adapter from system type."""
+        return self.with_context(system=self).env[self.system_type]

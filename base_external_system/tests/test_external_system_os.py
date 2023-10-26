@@ -4,10 +4,10 @@
 
 import os
 
-from .common import Common
+from odoo.tests.common import TransactionCase
 
 
-class TestExternalSystemOs(Common):
+class TestExternalSystemOs(TransactionCase):
 
     @classmethod
     def setUpClass(cls):
@@ -23,18 +23,11 @@ class TestExternalSystemOs(Common):
 
     def setUp(self):
         super(TestExternalSystemOs, self).setUp()
-        self.record = self.env.ref('base_external_system.external_system_os')
+        self.record = self.env.ref('base_external_system.external_system_os_demo')
 
-    def test_external_get_client_returns_os(self):
-        """It should return the Pyhton OS module."""
-        self.assertEqual(self.record.external_get_client(), os)
-
-    def test_external_get_client_changes_directories(self):
-        """It should change to the proper directory."""
-        self.record.external_get_client()
-        self.assertEqual(os.getcwd(), self.record.remote_path)
-
-    def test_external_destroy_client_changes_directory(self):
-        """It should change back to the previous working directory."""
-        self.record.external_destroy_client(None)
+    def test_external_system_os(self):
+        """Client should be os, change directory and on destroy restore directory."""
+        with self.record.client() as client:
+            self.assertEqual(client, os)
+            self.assertEqual(os.getcwd(), self.record.remote_path)
         self.assertEqual(os.getcwd(), self.working_dir)
