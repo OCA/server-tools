@@ -58,6 +58,14 @@ Configure external systems in Settings => Technical => External Systems
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
    :target: https://runbot.odoo-community.org/runbot/149/10.0
+ 
+History
+=======
+
+Version 10.0.2.0.0
+------------------
+Model base.external.system will be the only regular model, containing all the data
+
 
 Bug Tracker
 ===========
@@ -79,6 +87,7 @@ Contributors
 ------------
 
 * Dave Lasley <dave@laslabs.com>
+* Ronald Portier <ronald@therp.nl>
 
 Maintainer
 ----------

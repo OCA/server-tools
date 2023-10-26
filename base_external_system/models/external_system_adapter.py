@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 # Copyright 2017 LasLabs Inc.
+# Copyright 2023 Therp BV.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+"""Define the interface for external system adapters.""" 
 
 from contextlib import contextmanager
 
@@ -16,39 +18,19 @@ class ExternalSystemAdapter(models.AbstractModel):
 
     _name = 'external.system.adapter'
     _description = 'External System Adapter'
-    _inherits = {'external.system': 'system_id'}
 
-    system_id = fields.Many2one(
-        string='System',
-        comodel_name='external.system',
-        required=True,
-        ondelete='cascade',
-    )
+    def get_system(self):
+        """Get system from environment."""
+        return self.env.context.get("system", None)
 
-    @api.multi
-    @contextmanager
-    def client(self):
-        """Client object usable as a context manager to include destruction.
+    system_id = property(get_system)
 
-        Yields the result from ``external_get_client``, then calls
-        ``external_destroy_client`` to cleanup the client.
-
-        Yields:
-            mixed: An object representing the client connection to the remote
-             system.
-        """
-        client = self.external_get_client()
-        try:
-            yield client
-        finally:
-            self.external_destroy_client(client)
-
-    @api.multi
+    @api.model
     def external_get_client(self):
         """Return a usable client representing the remote system."""
-        self.ensure_one()
+        self._raise_not_implemented()
 
-    @api.multi
+    @api.model
     def external_destroy_client(self, client):
         """Perform any logic necessary to destroy the client connection.
 
@@ -56,16 +38,13 @@ class ExternalSystemAdapter(models.AbstractModel):
             client (mixed): The client that was returned by
              ``external_get_client``.
         """
-        self.ensure_one()
+        self._raise_not_implemented()
 
-    @api.multi
+    @api.model
     def external_test_connection(self):
-        """Adapters should override this method, then call super if valid.
-
-        If the connection is invalid, adapters should raise an instance of
-        ``odoo.ValidationError``.
-
-        Raises:
-            odoo.exceptions.UserError: In the event of a good connection.
-        """
-        raise UserError(_('The connection was a success.'))
+        """Adapters should override this method for testing conection."""
+        self._raise_not_implemented()
+    
+    def _raise_not_implemented(self):
+        """Raise errors for methods that should be implemented in subclass."""
+        raise UserError(_('Method not implemented in base adapter class.'))

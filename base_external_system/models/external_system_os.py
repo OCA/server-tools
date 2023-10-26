@@ -7,7 +7,7 @@ import os
 from odoo import api, models
 
 
-class ExternalSystemOs(models.Model):
+class ExternalSystemOs(models.AbstractModel):
     """This is an Interface implementing the OS module.
 
     For the most part, this is just a sample of how to implement an external
@@ -20,16 +20,15 @@ class ExternalSystemOs(models.Model):
 
     previous_dir = None
 
-    @api.multi
+    @api.model
     def external_get_client(self):
         """Return a usable client representing the remote system."""
-        super(ExternalSystemOs, self).external_get_client()
         if self.system_id.remote_path:
             self.previous_dir = os.getcwd()
             os.chdir(self.system_id.remote_path)
         return os
 
-    @api.multi
+    @api.model
     def external_destroy_client(self, client):
         """Perform any logic necessary to destroy the client connection.
 
@@ -37,7 +36,6 @@ class ExternalSystemOs(models.Model):
             client (mixed): The client that was returned by
              ``external_get_client``.
         """
-        super(ExternalSystemOs, self).external_destroy_client(client)
         if self.previous_dir:
             os.chdir(self.previous_dir)
             self.previous_dir = None
