@@ -51,9 +51,9 @@ class CleanupPurgeLineModule(models.TransientModel):
             return True
         self.logger.info("Purging modules %s", ", ".join(module_names))
         installed = modules.filtered(lambda x: x.state in ("installed", "to upgrade"))
-        ((modules - installed) + (modules - installed).downstream_dependencies()).write(
-            {"state": "to remove"}
-        )
+        to_remove = modules - installed
+        to_remove += to_remove.downstream_dependencies()
+        to_remove.write({"state": "to remove"})
         installed.button_immediate_uninstall()
         modules.env.invalidate_all()
         modules.unlink()
