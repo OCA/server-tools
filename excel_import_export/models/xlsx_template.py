@@ -362,6 +362,15 @@ self['{}'] = self.env['{}'].search(self.safe_domain(self.domain))
             input_dict = literal_eval(rec.input_instruction.strip())
             rec.post_import_hook = input_dict.get("__POST_IMPORT__")
 
+    def _compose_field_name(self, line):
+        field_name = line.field_name or ""
+        field_name += line.field_cond or ""
+        field_name += line.style or ""
+        field_name += line.style_cond or ""
+        if line.is_sum:
+            field_name += "@{sum}"
+        return field_name
+
     def _compute_output_instruction(self):
         """From database, compute back to dictionary"""
         for rec in self:
@@ -390,12 +399,7 @@ self['{}'] = self.env['{}'].search(self.safe_domain(self.domain))
                     continue
                 if line.section_type == "data":
                     excel_cell = line.excel_cell
-                    field_name = line.field_name or ""
-                    field_name += line.field_cond or ""
-                    field_name += line.style or ""
-                    field_name += line.style_cond or ""
-                    if line.is_sum:
-                        field_name += "@{sum}"
+                    field_name = self._compose_field_name(line)
                     cell_dict = {excel_cell: field_name}
                     inst_dict[itype][prev_sheet][prev_row].update(cell_dict)
                     continue
