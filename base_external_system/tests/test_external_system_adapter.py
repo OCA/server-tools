@@ -9,7 +9,6 @@ from odoo.tests.common import TransactionCase
 
 
 class TestExternalSystemAdapter(TransactionCase):
-
     def setUp(self):
         super(TestExternalSystemAdapter, self).setUp()
         self.abstract_adapter = self.env["external.system.adapter"]
@@ -28,4 +27,3 @@ class TestExternalSystemAdapter(TransactionCase):
         """It should raise a UserError."""
         with self.assertRaises(UserError):
             self.abstract_adapter.external_test_connection()
-
