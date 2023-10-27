@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-09-04 06:07+0000\n"
+"PO-Revision-Date: 2023-10-29 08:28+0000\n"
 "Last-Translator: Ignacio Buioli <ibuioli@gmail.com>\n"
 "Language-Team: none\n"
 "Language: es_AR\n"
@@ -14,17 +14,17 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: base_model_restrict_update
 #: model_terms:ir.ui.view,arch_db:base_model_restrict_update.view_users_form
 msgid "<span style=\"padding: 0 10px;\">Read-only</span>"
-msgstr ""
+msgstr "<span style=\"padding: 0 10px;\">Solo lectura</span>"
 
 #. module: base_model_restrict_update
 #: model_terms:ir.ui.view,arch_db:base_model_restrict_update.view_users_form
 msgid "<span style=\"padding: 0 10px;\">Unrestrict Update</span>"
-msgstr ""
+msgstr "<span style=\"padding: 0 10px;\">Actualización Irrestricta</span>"
 
 #. module: base_model_restrict_update
 #: model:ir.model,name:base_model_restrict_update.model_ir_model_access
@@ -83,7 +83,7 @@ msgstr ""
 #: code:addons/base_model_restrict_update/models/ir_model_access.py:0
 #, python-format
 msgid "You are only allowed to read this record. ({} - {})"
-msgstr ""
+msgstr "Solo le está permitido leer este registro. ({} - {})"
 
 #. module: base_model_restrict_update
 #: code:addons/base_model_restrict_update/models/res_users.py:0
