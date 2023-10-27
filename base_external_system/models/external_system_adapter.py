@@ -2,7 +2,7 @@
 # Copyright 2017 LasLabs Inc.
 # Copyright 2023 Therp BV.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
-"""Define the interface for external system adapters.""" 
+"""Define the interface for external system adapters."""
 
 from contextlib import contextmanager
 
@@ -16,8 +16,8 @@ class ExternalSystemAdapter(models.AbstractModel):
     Methods provided are prefixed with ``external_`` in order to keep from
     """
 
-    _name = 'external.system.adapter'
-    _description = 'External System Adapter'
+    _name = "external.system.adapter"
+    _description = "External System Adapter"
 
     def get_system(self):
         """Get system from environment."""
@@ -44,7 +44,7 @@ class ExternalSystemAdapter(models.AbstractModel):
     def external_test_connection(self):
         """Adapters should override this method for testing conection."""
         self._raise_not_implemented()
-    
+
     def _raise_not_implemented(self):
         """Raise errors for methods that should be implemented in subclass."""
-        raise UserError(_('Method not implemented in base adapter class.'))
+        raise UserError(_("Method not implemented in base adapter class."))

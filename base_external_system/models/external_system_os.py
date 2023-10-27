@@ -14,9 +14,9 @@ class ExternalSystemOs(models.AbstractModel):
     system interface. This is still a fully usable implementation, however.
     """
 
-    _name = 'external.system.os'
-    _inherit = 'external.system.adapter'
-    _description = 'External System OS'
+    _name = "external.system.os"
+    _inherit = "external.system.adapter"
+    _description = "External System OS"
 
     previous_dir = None
 

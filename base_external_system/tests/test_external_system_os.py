@@ -9,7 +9,6 @@ from odoo.exceptions import ValidationError
 
 
 class TestExternalSystemOs(TransactionCase):
-
     @classmethod
     def setUpClass(cls):
         """Remember the working dir, just in case."""
@@ -24,7 +23,7 @@ class TestExternalSystemOs(TransactionCase):
 
     def setUp(self):
         super(TestExternalSystemOs, self).setUp()
-        self.record = self.env.ref('base_external_system.external_system_os_demo')
+        self.record = self.env.ref("base_external_system.external_system_os_demo")
 
     def test_external_system_os(self):
         """Client should be os, change directory and on destroy restore directory."""

@@ -9,33 +9,26 @@ from odoo.tests.common import TransactionCase
 
 
 class TestExternalSystem(TransactionCase):
-
     def setUp(self):
         super(TestExternalSystem, self).setUp()
-        self.record = self.env.ref('base_external_system.external_system_os_demo')
+        self.record = self.env.ref("base_external_system.external_system_os_demo")
 
     def test_get_system_types(self):
         """It should return at least the test record's interface."""
         system_type_os = self.env["external.system.os"]
         self.assertIn(
             (system_type_os._name, system_type_os._description),
-            self.env['external.system']._get_system_types(),
+            self.env["external.system"]._get_system_types(),
         )
 
     def test_check_fingerprint_blank(self):
         """It should not allow blank fingerprints when checking enabled."""
         with self.assertRaises(ValidationError):
-            self.record.write({
-                'ignore_fingerprint': False,
-                'fingerprint': False,
-            })
+            self.record.write({"ignore_fingerprint": False, "fingerprint": False})
 
     def test_check_fingerprint_allowed(self):
         """It should not raise a validation error if there is a fingerprint."""
-        self.record.write({
-            'ignore_fingerprint': False,
-            'fingerprint': 'Data',
-        })
+        self.record.write({"ignore_fingerprint": False, "fingerprint": "Data"})
         self.assertTrue(True)
 
     def test_client(self):
