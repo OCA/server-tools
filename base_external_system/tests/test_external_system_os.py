@@ -5,6 +5,7 @@
 import os
 
 from odoo.tests.common import TransactionCase
+from odoo.exceptions import ValidationError
 
 
 class TestExternalSystemOs(TransactionCase):
@@ -31,3 +32,16 @@ class TestExternalSystemOs(TransactionCase):
             self.assertEqual(client, os)
             self.assertEqual(os.getcwd(), self.record.remote_path)
         self.assertEqual(os.getcwd(), self.working_dir)
+
+    def test_external_system_os_test_connection(self):
+        """Test testing connections.
+
+        Connecting to existing generally available directory should work.
+
+        Connection to non-existing (or non authorized) directory should
+        result in ValidationError.
+        """
+        self.assertEqual(True, self.record.action_test_connection())
+        self.record.remote_path = "/does_not_exist_never_heard_from_666"
+        with self.assertRaises(ValidationError):
+            self.record.action_test_connection()
