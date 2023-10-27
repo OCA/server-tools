@@ -114,14 +114,33 @@ class ExternalSystem(models.Model):
 
     @api.multi
     def action_test_connection(self):
-        """Test the connection to the external system."""
+        """Test the connection to the external system.
+
+        Any unexpected exception will be transformed into a
+        ValidationError. A ValidationError will also be raised
+        if no client is returned.
+        """
         self.ensure_one()
-        with self.client() as client:
-            if not client:
-                raise ValidationError(
-                    _("Client connection failed for system %s") % self.name
-                )
+        try:
+            with self.client() as client:
+                if not client:
+                    raise ValidationError(
+                        _("Client connection failed for system %s") % self.name
+                    )
+            return True
+        except Exception as exc:
+            raise ValidationError(
+                _("Unexpected error %s when connecting to %s") % (exc, self.name)
+            )
     
     def _get_adapter(self):
-        """Trivial method to get adapter from system type."""
+        """Trivial method to get adapter from system type.
+
+        Adding the system to the context allows the AbstractModel for the adapter,
+        that can not be instantiated, to still hold information, through a class
+        property, that can be accessed by all methods in derived classes.
+
+        An alternative would be to use standard python classes, but that would take
+        away the possibility to extend them in the Odoo way.
+        """
         return self.with_context(system=self).env[self.system_type]
