@@ -41,6 +41,31 @@ class XLSXExport(models.AbstractModel):
         }
         return eval_context
 
+    def _get_conditions_dict(self):
+        return {
+            "field_cond_dict": {},
+            "field_style_dict": {},
+            "style_cond_dict": {},
+            "aggre_func_dict": {},
+        }
+
+    def run_field_cond_dict(self, field):
+        temp_field, eval_cond = co.get_field_condition(field)
+        eval_cond = eval_cond or 'value or ""'
+        return temp_field, eval_cond
+
+    def run_field_style_dict(self, field):
+        return co.get_field_style(field)
+
+    def run_style_cond_dict(self, field):
+        return co.get_field_style_cond(field)
+
+    def run_aggre_func_dict(self, field):
+        return co.get_field_aggregation(field)
+
+    def apply_extra_conditions_to_value(self, field, value, conditions_dict):
+        return value
+
     @api.model
     def _get_line_vals(self, record, line_field, fields):
         """Get values of this field from record set and return as dict of vals
@@ -56,40 +81,37 @@ class XLSXExport(models.AbstractModel):
             raise Exception(_("Records in %s exceed max records allowed") % line_field)
         vals = {field: [] for field in fields}  # value and do_style
         # Get field condition & aggre function
-        field_cond_dict = {}
-        aggre_func_dict = {}
-        field_style_dict = {}
-        style_cond_dict = {}
+        conditions_dict = self._get_conditions_dict()
+
         pair_fields = []  # I.e., ('debit${value and . or .}@{sum}', 'debit')
         for field in fields:
-            temp_field, eval_cond = co.get_field_condition(field)
-            eval_cond = eval_cond or 'value or ""'
-            temp_field, field_style = co.get_field_style(temp_field)
-            temp_field, style_cond = co.get_field_style_cond(temp_field)
-            raw_field, aggre_func = co.get_field_aggregation(temp_field)
-            # Dict of all special conditions
-            field_cond_dict.update({field: eval_cond})
-            aggre_func_dict.update({field: aggre_func})
-            field_style_dict.update({field: field_style})
-            style_cond_dict.update({field: style_cond})
-            # --
+            raw_field = field
+            for key, condition_dict in conditions_dict.items():
+                run_func_name = "run_" + key
+                raw_field, get_result = getattr(self, run_func_name, None)(raw_field)
+                condition_dict.update({field: get_result})
             pair_fields.append((field, raw_field))
         for line in lines:
             for field in pair_fields:  # (field, raw_field)
                 value = self._get_field_data(field[1], line)
-                eval_cond = field_cond_dict[field[0]]
+                eval_cond = conditions_dict["field_cond_dict"][field[0]]
                 eval_context = self.get_eval_context(line._name, line, value)
                 if eval_cond:
                     value = safe_eval(eval_cond, eval_context)
+                value = self.apply_extra_conditions_to_value(
+                    field, value, conditions_dict
+                )
                 # style w/Cond takes priority
-                style_cond = style_cond_dict[field[0]]
+                style_cond = conditions_dict["style_cond_dict"][field[0]]
                 style = self._eval_style_cond(line._name, line, value, style_cond)
                 if style is None:
                     style = False  # No style
                 elif style is False:
-                    style = field_style_dict[field[0]]  # Use default style
+                    style = conditions_dict["field_style_dict"][
+                        field[0]
+                    ]  # Use default style
                 vals[field[0]].append((value, style))
-        return (vals, aggre_func_dict)
+        return (vals, conditions_dict["aggre_func_dict"])
 
     @api.model
     def _eval_style_cond(self, model, record, value, style_cond):
