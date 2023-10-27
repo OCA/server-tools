@@ -227,7 +227,6 @@ msgstr ""
 
 #. module: attachment_queue
 #: model:ir.model.fields,help:attachment_queue.field_attachment_queue__message_has_error
-#: model:ir.model.fields,help:attachment_queue.field_attachment_queue__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
 
@@ -382,11 +381,6 @@ msgstr ""
 #: model:ir.cron,cron_name:attachment_queue.cronjob_run_attachment_queue
 #: model:ir.cron,name:attachment_queue.cronjob_run_attachment_queue
 msgid "Run Attachments Queue"
-msgstr ""
-
-#. module: attachment_queue
-#: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__message_has_sms_error
-msgid "SMS Delivery error"
 msgstr ""
 
 #. module: attachment_queue
