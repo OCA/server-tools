@@ -25,9 +25,10 @@ class IrModelAccess(models.Model):
         if mode != "read" and raise_exception:
             if self._test_readonly(model) or self._test_restrict_update(model):
                 raise AccessError(
-                    _("You are only allowed to read this record. ({} - {})").format(
-                        model, mode
+                    _(
+                        "You are only allowed to read this record. (%(model)s - %(mode)s)"
                     )
+                    % {"model": model, "mode": mode}
                 )
         return res
 
