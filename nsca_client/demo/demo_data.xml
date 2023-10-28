@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<odoo>
-    <data noupdate="1">
+<odoo noupdate="1">
         <record id="nsca_server_default" model="nsca.server">
             <field name="name">nagios.example.net</field>
             <field name="port">5667</field>
@@ -15,5 +14,4 @@
             <field name="nsca_function">nsca_check_mails</field>
             <field name="nsca_args" />
         </record>
-    </data>
 </odoo>
