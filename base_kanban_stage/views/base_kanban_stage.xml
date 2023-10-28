@@ -32,7 +32,7 @@
         <field name="name">Kanban Stages - Tree View</field>
         <field name="model">base.kanban.stage</field>
         <field name="arch" type="xml">
-            <tree string="Kanban Stages">
+            <tree>
                 <field name="name" />
                 <field name="res_model_id" />
                 <field name="sequence" />

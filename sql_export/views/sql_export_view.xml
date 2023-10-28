@@ -113,7 +113,7 @@
         <field name="name">Sql_export_tree_view</field>
         <field name="model">sql.export</field>
         <field name="arch" type="xml">
-            <tree string="SQL Export" decoration-info="state=='draft'">
+            <tree decoration-info="state=='draft'">
                 <field name="name" />
                 <field name="state" />
                 <button
@@ -176,7 +176,7 @@
         <field name="model">ir.model.fields</field>
         <field name="priority">150</field>
         <field name="arch" type="xml">
-            <tree string="SQL Parameter">
+            <tree>
                 <field name="name" />
                 <field name="field_description" />
                 <field name="ttype" />

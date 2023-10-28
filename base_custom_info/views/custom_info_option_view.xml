@@ -7,7 +7,7 @@
         <field name="model">custom.info.option</field>
         <field name="priority" eval="999" />
         <field name="arch" type="xml">
-            <tree string="Custom Info Options" editable="bottom">
+            <tree editable="bottom">
                 <field name="name" />
                 <!-- Hidden for now from backend UI -->
                 <field name="template_id" invisible="1" />

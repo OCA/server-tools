@@ -2,7 +2,6 @@
 <!-- © 2015 ABF OSIELL <http://osiell.com>
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
 <odoo>
-    <data>
         <record id="view_nsca_check_form" model="ir.ui.view">
             <field name="name">nsca.check.form</field>
             <field name="model">nsca.check</field>
@@ -25,10 +24,10 @@
                                 <field name="nsca_model" />
                                 <field name="nsca_function" />
                                 <field
-                                    name="nsca_args"
-                                    widget="ace"
-                                    options="{'mode': 'python'}"
-                                />
+                                name="nsca_args"
+                                widget="ace"
+                                options="{'mode': 'python'}"
+                            />
                                 <field name="allow_void_result" />
                                 <div colspan="2">
                                     <p>The method must return a tuple (RC,
@@ -59,7 +58,7 @@
             <field name="name">nsca.check.tree</field>
             <field name="model">nsca.check</field>
             <field name="arch" type="xml">
-                <tree string="NSCA Checks" decoration-muted="active==False">
+                <tree decoration-muted="active==False">
                     <field name="service" />
                     <field name="server_id" />
                     <field name="nextcall" />
@@ -79,9 +78,8 @@
             </field>
         </record>
         <menuitem
-            id="menu_action_nsca_check_tree"
-            parent="menu_nsca_client"
-            action="action_nsca_check_tree"
-        />
-    </data>
+        id="menu_action_nsca_check_tree"
+        parent="menu_nsca_client"
+        action="action_nsca_check_tree"
+    />
 </odoo>
