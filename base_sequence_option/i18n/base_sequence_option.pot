@@ -67,7 +67,6 @@ msgstr ""
 
 #. module: base_sequence_option
 #: model_terms:ir.ui.view,arch_db:base_sequence_option.view_ir_sequence_option_form
-#: model_terms:ir.ui.view,arch_db:base_sequence_option.view_ir_sequence_option_line_tree
 msgid "Doctype Sequence"
 msgstr ""
 
@@ -118,7 +117,6 @@ msgstr ""
 #. module: base_sequence_option
 #: model:ir.actions.act_window,name:base_sequence_option.action_ir_sequence_option
 #: model:ir.ui.menu,name:base_sequence_option.menu_ir_sequence_option
-#: model_terms:ir.ui.view,arch_db:base_sequence_option.view_ir_sequence_option_tree
 msgid "Manage Sequence Options"
 msgstr ""
 
