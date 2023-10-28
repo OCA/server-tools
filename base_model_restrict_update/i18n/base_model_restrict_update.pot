@@ -73,7 +73,7 @@ msgstr ""
 #. module: base_model_restrict_update
 #: code:addons/base_model_restrict_update/models/ir_model_access.py:0
 #, python-format
-msgid "You are only allowed to read this record. ({} - {})"
+msgid "You are only allowed to read this record. (%(model)s - %(mode)s)"
 msgstr ""
 
 #. module: base_model_restrict_update
