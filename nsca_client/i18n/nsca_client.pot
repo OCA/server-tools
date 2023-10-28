@@ -335,11 +335,6 @@ msgid "NSCA Check - Odoo Mail Queue"
 msgstr ""
 
 #. module: nsca_client
-#: model_terms:ir.ui.view,arch_db:nsca_client.view_nsca_check_tree
-msgid "NSCA Checks"
-msgstr ""
-
-#. module: nsca_client
 #: model:ir.ui.menu,name:nsca_client.menu_nsca_client
 msgid "NSCA Client"
 msgstr ""
@@ -353,11 +348,6 @@ msgstr ""
 #: model:ir.model,name:nsca_client.model_nsca_server
 #: model_terms:ir.ui.view,arch_db:nsca_client.view_nsca_server_form
 msgid "NSCA Server"
-msgstr ""
-
-#. module: nsca_client
-#: model_terms:ir.ui.view,arch_db:nsca_client.view_nsca_server_tree
-msgid "NSCA Servers"
 msgstr ""
 
 #. module: nsca_client
