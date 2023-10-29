@@ -433,11 +433,6 @@ msgid "Other Proprietary"
 msgstr ""
 
 #. module: module_prototyper
-#: model_terms:ir.ui.view,arch_db:module_prototyper.module_prototyper_base_tree_view
-msgid "Prototype"
-msgstr ""
-
-#. module: module_prototyper
 #: model:ir.actions.act_window,name:module_prototyper.open_module_prototyper_list
 #: model:ir.ui.menu,name:module_prototyper.menu_open_module_prototyper
 msgid "Prototypes"

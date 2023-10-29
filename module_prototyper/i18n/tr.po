@@ -433,11 +433,6 @@ msgid "Other Proprietary"
 msgstr "Diğer mücessel lisans"
 
 #. module: module_prototyper
-#: model_terms:ir.ui.view,arch_db:module_prototyper.module_prototyper_base_tree_view
-msgid "Prototype"
-msgstr "Prototip"
-
-#. module: module_prototyper
 #: model:ir.actions.act_window,name:module_prototyper.open_module_prototyper_list
 #: model:ir.ui.menu,name:module_prototyper.menu_open_module_prototyper
 msgid "Prototypes"
@@ -585,6 +580,9 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:module_prototyper.view_module_export_wizard
 msgid "or"
 msgstr "ya da"
+
+#~ msgid "Prototype"
+#~ msgstr "Prototip"
 
 #~ msgid "Activities"
 #~ msgstr "Aktiviteler"

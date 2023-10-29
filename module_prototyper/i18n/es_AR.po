@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2017-02-22 00:55+0000\n"
 "PO-Revision-Date: 2023-10-28 20:14+0000\n"
 "Last-Translator: Ignacio Buioli <ibuioli@gmail.com>\n"
-"Language-Team: Spanish (Argentina) (https://www.transifex.com/oca/teams/"
-"23907/es_AR/)\n"
+"Language-Team: Spanish (Argentina) (https://www.transifex.com/oca/"
+"teams/23907/es_AR/)\n"
 "Language: es_AR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -457,11 +457,6 @@ msgid "Other Proprietary"
 msgstr "Otro Propietario"
 
 #. module: module_prototyper
-#: model_terms:ir.ui.view,arch_db:module_prototyper.module_prototyper_base_tree_view
-msgid "Prototype"
-msgstr "Prototipo"
-
-#. module: module_prototyper
 #: model:ir.actions.act_window,name:module_prototyper.open_module_prototyper_list
 #: model:ir.ui.menu,name:module_prototyper.menu_open_module_prototyper
 msgid "Prototypes"
@@ -620,6 +615,9 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:module_prototyper.view_module_export_wizard
 msgid "or"
 msgstr "o"
+
+#~ msgid "Prototype"
+#~ msgstr "Prototipo"
 
 #~ msgid "Activities"
 #~ msgstr "Actividades"
