@@ -249,22 +249,6 @@ msgid "Custom Info"
 msgstr ""
 
 #. module: base_custom_info
-#: model_terms:ir.ui.view,arch_db:base_custom_info.custom_info_category_tree
-msgid "Custom Info Categories"
-msgstr ""
-
-#. module: base_custom_info
-#: model_terms:ir.ui.view,arch_db:base_custom_info.custom_info_option_tree
-msgid "Custom Info Options"
-msgstr ""
-
-#. module: base_custom_info
-#: model_terms:ir.ui.view,arch_db:base_custom_info.custom_info_property_tree
-#, fuzzy
-msgid "Custom Info Properties"
-msgstr "Eigenschappen"
-
-#. module: base_custom_info
 #: model_terms:ir.ui.view,arch_db:base_custom_info.custom_info_template_form
 msgid "Custom Info Template"
 msgstr ""
@@ -274,11 +258,6 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:base_custom_info.custom_info_option_form
 #: model_terms:ir.ui.view,arch_db:base_custom_info.custom_info_property_form
 msgid "Custom Info Template Properties"
-msgstr ""
-
-#. module: base_custom_info
-#: model_terms:ir.ui.view,arch_db:base_custom_info.custom_info_template_tree
-msgid "Custom Info Templates"
 msgstr ""
 
 #. module: base_custom_info
@@ -304,7 +283,6 @@ msgstr ""
 
 #. module: base_custom_info
 #: model_terms:ir.ui.view,arch_db:base_custom_info.custom_info_value_editable
-#: model_terms:ir.ui.view,arch_db:base_custom_info.custom_info_value_tree
 msgid "Custom Property Values"
 msgstr ""
 
@@ -916,3 +894,7 @@ msgstr ""
 #, python-format
 msgid "You must set a existing model."
 msgstr ""
+
+#, fuzzy
+#~ msgid "Custom Info Properties"
+#~ msgstr "Eigenschappen"

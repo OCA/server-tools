@@ -254,21 +254,6 @@ msgid "Custom Info"
 msgstr "Inf. personalizada"
 
 #. module: base_custom_info
-#: model_terms:ir.ui.view,arch_db:base_custom_info.custom_info_category_tree
-msgid "Custom Info Categories"
-msgstr "Categorías de inf. personalizada"
-
-#. module: base_custom_info
-#: model_terms:ir.ui.view,arch_db:base_custom_info.custom_info_option_tree
-msgid "Custom Info Options"
-msgstr "Opciones de inf. personalizada"
-
-#. module: base_custom_info
-#: model_terms:ir.ui.view,arch_db:base_custom_info.custom_info_property_tree
-msgid "Custom Info Properties"
-msgstr "Propiedades de inf. personalizada"
-
-#. module: base_custom_info
 #: model_terms:ir.ui.view,arch_db:base_custom_info.custom_info_template_form
 msgid "Custom Info Template"
 msgstr "Plantilla de inf. personalizada"
@@ -279,11 +264,6 @@ msgstr "Plantilla de inf. personalizada"
 #: model_terms:ir.ui.view,arch_db:base_custom_info.custom_info_property_form
 msgid "Custom Info Template Properties"
 msgstr "Propiedades de la plantilla de inf. personalizada"
-
-#. module: base_custom_info
-#: model_terms:ir.ui.view,arch_db:base_custom_info.custom_info_template_tree
-msgid "Custom Info Templates"
-msgstr "Plantillas de inf. personalizada"
 
 #. module: base_custom_info
 #: model:ir.module.category,name:base_custom_info.category
@@ -308,7 +288,6 @@ msgstr "Propiedades personalizadas"
 
 #. module: base_custom_info
 #: model_terms:ir.ui.view,arch_db:base_custom_info.custom_info_value_editable
-#: model_terms:ir.ui.view,arch_db:base_custom_info.custom_info_value_tree
 msgid "Custom Property Values"
 msgstr "Valores de las propiedades personalizadas"
 
@@ -942,6 +921,18 @@ msgstr ""
 #, python-format
 msgid "You must set a existing model."
 msgstr ""
+
+#~ msgid "Custom Info Categories"
+#~ msgstr "Categorías de inf. personalizada"
+
+#~ msgid "Custom Info Options"
+#~ msgstr "Opciones de inf. personalizada"
+
+#~ msgid "Custom Info Properties"
+#~ msgstr "Propiedades de inf. personalizada"
+
+#~ msgid "Custom Info Templates"
+#~ msgstr "Plantillas de inf. personalizada"
 
 #~ msgid "Partner"
 #~ msgstr "Empresa"

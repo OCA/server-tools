@@ -257,21 +257,6 @@ msgid "Custom Info"
 msgstr "Informazioni personalizzate"
 
 #. module: base_custom_info
-#: model_terms:ir.ui.view,arch_db:base_custom_info.custom_info_category_tree
-msgid "Custom Info Categories"
-msgstr "Categorie Informazioni personalizzate"
-
-#. module: base_custom_info
-#: model_terms:ir.ui.view,arch_db:base_custom_info.custom_info_option_tree
-msgid "Custom Info Options"
-msgstr "Opzioni Informazioni personalizzate"
-
-#. module: base_custom_info
-#: model_terms:ir.ui.view,arch_db:base_custom_info.custom_info_property_tree
-msgid "Custom Info Properties"
-msgstr "Proprietà informazioni personalizzate"
-
-#. module: base_custom_info
 #: model_terms:ir.ui.view,arch_db:base_custom_info.custom_info_template_form
 msgid "Custom Info Template"
 msgstr "Template informazioni personalizzate"
@@ -282,11 +267,6 @@ msgstr "Template informazioni personalizzate"
 #: model_terms:ir.ui.view,arch_db:base_custom_info.custom_info_property_form
 msgid "Custom Info Template Properties"
 msgstr "Proprietà Template informazioni personalizzate"
-
-#. module: base_custom_info
-#: model_terms:ir.ui.view,arch_db:base_custom_info.custom_info_template_tree
-msgid "Custom Info Templates"
-msgstr "Templates informazioni personalizzate"
 
 #. module: base_custom_info
 #: model:ir.module.category,name:base_custom_info.category
@@ -311,7 +291,6 @@ msgstr "Proprietà personalizzate"
 
 #. module: base_custom_info
 #: model_terms:ir.ui.view,arch_db:base_custom_info.custom_info_value_editable
-#: model_terms:ir.ui.view,arch_db:base_custom_info.custom_info_value_tree
 msgid "Custom Property Values"
 msgstr "Valori della Proprietà personalizzata"
 
@@ -944,3 +923,15 @@ msgstr ""
 #, python-format
 msgid "You must set a existing model."
 msgstr ""
+
+#~ msgid "Custom Info Categories"
+#~ msgstr "Categorie Informazioni personalizzate"
+
+#~ msgid "Custom Info Options"
+#~ msgstr "Opzioni Informazioni personalizzate"
+
+#~ msgid "Custom Info Properties"
+#~ msgstr "Proprietà informazioni personalizzate"
+
+#~ msgid "Custom Info Templates"
+#~ msgstr "Templates informazioni personalizzate"

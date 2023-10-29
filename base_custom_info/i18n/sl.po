@@ -253,24 +253,6 @@ msgid "Custom Info"
 msgstr "Informacije po meri"
 
 #. module: base_custom_info
-#: model_terms:ir.ui.view,arch_db:base_custom_info.custom_info_category_tree
-#, fuzzy
-msgid "Custom Info Categories"
-msgstr "Lastnosti predloge informacij po meri"
-
-#. module: base_custom_info
-#: model_terms:ir.ui.view,arch_db:base_custom_info.custom_info_option_tree
-#, fuzzy
-msgid "Custom Info Options"
-msgstr "Predloge informacij po meri"
-
-#. module: base_custom_info
-#: model_terms:ir.ui.view,arch_db:base_custom_info.custom_info_property_tree
-#, fuzzy
-msgid "Custom Info Properties"
-msgstr "Lastnosti po meri"
-
-#. module: base_custom_info
 #: model_terms:ir.ui.view,arch_db:base_custom_info.custom_info_template_form
 msgid "Custom Info Template"
 msgstr "Predloga informacij po meri"
@@ -281,11 +263,6 @@ msgstr "Predloga informacij po meri"
 #: model_terms:ir.ui.view,arch_db:base_custom_info.custom_info_property_form
 msgid "Custom Info Template Properties"
 msgstr "Lastnosti predloge informacij po meri"
-
-#. module: base_custom_info
-#: model_terms:ir.ui.view,arch_db:base_custom_info.custom_info_template_tree
-msgid "Custom Info Templates"
-msgstr "Predloge informacij po meri"
 
 #. module: base_custom_info
 #: model:ir.module.category,name:base_custom_info.category
@@ -311,7 +288,6 @@ msgstr "Lastnosti po meri"
 
 #. module: base_custom_info
 #: model_terms:ir.ui.view,arch_db:base_custom_info.custom_info_value_editable
-#: model_terms:ir.ui.view,arch_db:base_custom_info.custom_info_value_tree
 msgid "Custom Property Values"
 msgstr "Vrednosti lastnosti po meri"
 
@@ -927,6 +903,21 @@ msgstr ""
 #, python-format
 msgid "You must set a existing model."
 msgstr ""
+
+#, fuzzy
+#~ msgid "Custom Info Categories"
+#~ msgstr "Lastnosti predloge informacij po meri"
+
+#, fuzzy
+#~ msgid "Custom Info Options"
+#~ msgstr "Predloge informacij po meri"
+
+#, fuzzy
+#~ msgid "Custom Info Properties"
+#~ msgstr "Lastnosti po meri"
+
+#~ msgid "Custom Info Templates"
+#~ msgstr "Predloge informacij po meri"
 
 #~ msgid "A model that gets its ``ir.model`` computed"
 #~ msgstr "Model, katerega ``ir.model`` se obdela"

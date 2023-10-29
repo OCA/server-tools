@@ -252,24 +252,6 @@ msgid "Custom Info"
 msgstr "定制信息"
 
 #. module: base_custom_info
-#: model_terms:ir.ui.view,arch_db:base_custom_info.custom_info_category_tree
-#, fuzzy
-msgid "Custom Info Categories"
-msgstr "定制信息模板属性"
-
-#. module: base_custom_info
-#: model_terms:ir.ui.view,arch_db:base_custom_info.custom_info_option_tree
-#, fuzzy
-msgid "Custom Info Options"
-msgstr "定制信息模板"
-
-#. module: base_custom_info
-#: model_terms:ir.ui.view,arch_db:base_custom_info.custom_info_property_tree
-#, fuzzy
-msgid "Custom Info Properties"
-msgstr "定制属性"
-
-#. module: base_custom_info
 #: model_terms:ir.ui.view,arch_db:base_custom_info.custom_info_template_form
 msgid "Custom Info Template"
 msgstr "定制信息模板"
@@ -280,11 +262,6 @@ msgstr "定制信息模板"
 #: model_terms:ir.ui.view,arch_db:base_custom_info.custom_info_property_form
 msgid "Custom Info Template Properties"
 msgstr "定制信息模板属性"
-
-#. module: base_custom_info
-#: model_terms:ir.ui.view,arch_db:base_custom_info.custom_info_template_tree
-msgid "Custom Info Templates"
-msgstr "定制信息模板"
 
 #. module: base_custom_info
 #: model:ir.module.category,name:base_custom_info.category
@@ -310,7 +287,6 @@ msgstr "定制属性"
 
 #. module: base_custom_info
 #: model_terms:ir.ui.view,arch_db:base_custom_info.custom_info_value_editable
-#: model_terms:ir.ui.view,arch_db:base_custom_info.custom_info_value_tree
 msgid "Custom Property Values"
 msgstr "定制属性值"
 
@@ -924,3 +900,18 @@ msgstr ""
 #, python-format
 msgid "You must set a existing model."
 msgstr ""
+
+#, fuzzy
+#~ msgid "Custom Info Categories"
+#~ msgstr "定制信息模板属性"
+
+#, fuzzy
+#~ msgid "Custom Info Options"
+#~ msgstr "定制信息模板"
+
+#, fuzzy
+#~ msgid "Custom Info Properties"
+#~ msgstr "定制属性"
+
+#~ msgid "Custom Info Templates"
+#~ msgstr "定制信息模板"

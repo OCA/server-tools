@@ -256,21 +256,6 @@ msgid "Custom Info"
 msgstr "Informação personalizada"
 
 #. module: base_custom_info
-#: model_terms:ir.ui.view,arch_db:base_custom_info.custom_info_category_tree
-msgid "Custom Info Categories"
-msgstr "Categorias de Informações Personalizadas"
-
-#. module: base_custom_info
-#: model_terms:ir.ui.view,arch_db:base_custom_info.custom_info_option_tree
-msgid "Custom Info Options"
-msgstr "Opções de Informações Personalizadas"
-
-#. module: base_custom_info
-#: model_terms:ir.ui.view,arch_db:base_custom_info.custom_info_property_tree
-msgid "Custom Info Properties"
-msgstr "Propriedades de Informações Personalizadas"
-
-#. module: base_custom_info
 #: model_terms:ir.ui.view,arch_db:base_custom_info.custom_info_template_form
 msgid "Custom Info Template"
 msgstr "Modelo de Informações Personalizadas"
@@ -281,11 +266,6 @@ msgstr "Modelo de Informações Personalizadas"
 #: model_terms:ir.ui.view,arch_db:base_custom_info.custom_info_property_form
 msgid "Custom Info Template Properties"
 msgstr "Propriedades do Modelo de Informação Personalizada"
-
-#. module: base_custom_info
-#: model_terms:ir.ui.view,arch_db:base_custom_info.custom_info_template_tree
-msgid "Custom Info Templates"
-msgstr "Modelos de Informações Personalizadas"
 
 #. module: base_custom_info
 #: model:ir.module.category,name:base_custom_info.category
@@ -310,7 +290,6 @@ msgstr "Propriedades Personalizadas"
 
 #. module: base_custom_info
 #: model_terms:ir.ui.view,arch_db:base_custom_info.custom_info_value_editable
-#: model_terms:ir.ui.view,arch_db:base_custom_info.custom_info_value_tree
 msgid "Custom Property Values"
 msgstr "Valores de Propriedade Personalizados"
 
@@ -941,3 +920,15 @@ msgstr ""
 #, python-format
 msgid "You must set a existing model."
 msgstr ""
+
+#~ msgid "Custom Info Categories"
+#~ msgstr "Categorias de Informações Personalizadas"
+
+#~ msgid "Custom Info Options"
+#~ msgstr "Opções de Informações Personalizadas"
+
+#~ msgid "Custom Info Properties"
+#~ msgstr "Propriedades de Informações Personalizadas"
+
+#~ msgid "Custom Info Templates"
+#~ msgstr "Modelos de Informações Personalizadas"
