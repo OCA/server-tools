@@ -82,8 +82,8 @@ msgstr ""
 #. module: base_model_restrict_update
 #: code:addons/base_model_restrict_update/models/ir_model_access.py:0
 #, python-format
-msgid "You are only allowed to read this record. ({} - {})"
-msgstr "Solo le está permitido leer este registro. ({} - {})"
+msgid "You are only allowed to read this record. (%(model)s - %(mode)s)"
+msgstr ""
 
 #. module: base_model_restrict_update
 #: code:addons/base_model_restrict_update/models/res_users.py:0
@@ -91,6 +91,10 @@ msgstr "Solo le está permitido leer este registro. ({} - {})"
 msgid "You cannot set admin user as a readonly user."
 msgstr ""
 "No puede configurar al usuario administrador como un usuario de sólo lectura."
+
+#, python-format
+#~ msgid "You are only allowed to read this record. ({} - {})"
+#~ msgstr "Solo le está permitido leer este registro. ({} - {})"
 
 #~ msgid "Display Name"
 #~ msgstr "Mostrar Nombre"
