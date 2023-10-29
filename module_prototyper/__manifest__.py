@@ -2,7 +2,7 @@
 # -- coding: utf-8 --
 {
     "name": "Module Prototyper",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.0.1",
     "author": "Pelayo Gómez, " "Odoo Community Association (OCA)",
     "maintainer": "Savoir-faire Linux",
     "website": "https://github.com/OCA/server-tools",

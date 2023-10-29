@@ -4,7 +4,7 @@
 
 {
     "name": "SQL Export",
-    "version": "14.0.1.2.1",
+    "version": "14.0.1.2.2",
     "author": "Akretion,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/server-tools",
     "license": "AGPL-3",
