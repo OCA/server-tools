@@ -112,7 +112,6 @@ msgstr "A extensão pg_trgm não existe ou não pode ser instalada."
 #: model:ir.model,name:base_search_fuzzy.model_trgm_index
 #: model:ir.ui.menu,name:base_search_fuzzy.trgm_index_menu
 #: model_terms:ir.ui.view,arch_db:base_search_fuzzy.trgm_index_view_form
-#: model_terms:ir.ui.view,arch_db:base_search_fuzzy.trgm_index_view_tree
 msgid "Trigram Index"
 msgstr "Índice Trigram"
 
