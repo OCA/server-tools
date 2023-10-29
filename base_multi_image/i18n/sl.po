@@ -128,7 +128,6 @@ msgstr "Naziv slike"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_owner__image_ids
-#: model_terms:ir.ui.view,arch_db:base_multi_image.image_tree_view
 msgid "Images"
 msgstr "Slike"
 
