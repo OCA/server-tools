@@ -32,7 +32,7 @@ addon | version | maintainers | summary
 [base_fontawesome](base_fontawesome/) | 15.0.5.15.4 |  | Up to date Fontawesome resources.
 [base_kanban_stage](base_kanban_stage/) | 15.0.1.0.2 |  | Provides stage model and abstract logic for inheritance
 [base_kanban_stage_state](base_kanban_stage_state/) | 15.0.1.0.0 |  | Maps stages from base_kanban_stage to states
-[base_model_restrict_update](base_model_restrict_update/) | 15.0.1.0.0 |  | Update Restrict Model
+[base_model_restrict_update](base_model_restrict_update/) | 15.0.1.0.1 |  | Update Restrict Model
 [base_multi_image](base_multi_image/) | 15.0.1.0.0 |  | Allow multiple images for database objects
 [base_remote](base_remote/) | 15.0.1.0.0 |  | Remote Base
 [base_search_fuzzy](base_search_fuzzy/) | 15.0.1.0.1 |  | Fuzzy search with the PostgreSQL trigram extension
