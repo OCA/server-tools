@@ -95,7 +95,6 @@ msgstr ""
 
 #. module: base_generate_code
 #: model:ir.model.fields,help:base_generate_code.field_code_format_mixin__message_has_error
-#: model:ir.model.fields,help:base_generate_code.field_code_format_mixin__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
 
@@ -147,11 +146,6 @@ msgstr ""
 #. module: base_generate_code
 #: model:ir.model.fields,help:base_generate_code.field_code_format_mixin__message_unread_counter
 msgid "Number of unread messages"
-msgstr ""
-
-#. module: base_generate_code
-#: model:ir.model.fields,field_description:base_generate_code.field_code_format_mixin__message_has_sms_error
-msgid "SMS Delivery error"
 msgstr ""
 
 #. module: base_generate_code
