@@ -4,7 +4,7 @@
 <record id="video_provider_view_tree" model="ir.ui.view">
     <field name="model">video.provider</field>
     <field name="arch" type="xml">
-        <tree string="Video Provider">
+        <tree>
             <field name="name" />
             <field name="code" />
             <field name="pattern_video_url" />

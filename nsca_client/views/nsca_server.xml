@@ -2,7 +2,6 @@
 <!-- © 2015 ABF OSIELL <http://osiell.com>
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
 <odoo>
-    <data>
         <record id="view_nsca_server_form" model="ir.ui.view">
             <field name="name">nsca.server.form</field>
             <field name="model">nsca.server</field>
@@ -11,16 +10,16 @@
                     <sheet>
                         <div class="oe_button_box" name="button_box">
                             <button
-                                name="show_checks"
-                                type="object"
-                                class="oe_stat_button"
-                                icon="fa-check-square"
-                            >
+                            name="show_checks"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-check-square"
+                        >
                                 <field
-                                    name="check_count"
-                                    widget="statinfo"
-                                    string="Checks"
-                                />
+                                name="check_count"
+                                widget="statinfo"
+                                string="Checks"
+                            />
                                 <field name="check_ids" invisible="1" />
                             </button>
                         </div>
@@ -42,7 +41,7 @@
             <field name="name">nsca.server.tree</field>
             <field name="model">nsca.server</field>
             <field name="arch" type="xml">
-                <tree string="NSCA Servers">
+                <tree>
                     <field name="name" />
                     <field name="port" />
                     <field name="config_file_path" />
@@ -57,9 +56,8 @@
             <field name="view_id" ref="view_nsca_server_tree" />
         </record>
         <menuitem
-            id="menu_action_nsca_server_tree"
-            parent="menu_nsca_client"
-            action="action_nsca_server_tree"
-        />
-    </data>
+        id="menu_action_nsca_server_tree"
+        parent="menu_nsca_client"
+        action="action_nsca_server_tree"
+    />
 </odoo>

@@ -5,7 +5,7 @@
         <field name="name">Base tree View for module prototypes</field>
         <field name="model">module_prototyper</field>
         <field name="arch" type="xml">
-            <tree string="Prototype">
+            <tree>
                 <field name="human_name" />
                 <field name="name" />
                 <field name="summary" />

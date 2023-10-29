@@ -123,7 +123,6 @@ msgstr ""
 
 #. module: base_conditional_image
 #: model:ir.model.fields,help:base_conditional_image.field_conditional_image__message_has_error
-#: model:ir.model.fields,help:base_conditional_image.field_conditional_image__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
 
@@ -250,11 +249,6 @@ msgstr ""
 #: model:ir.cron,cron_name:base_conditional_image.resize_conditional_images
 #: model:ir.cron,name:base_conditional_image.resize_conditional_images
 msgid "Resize conditional images"
-msgstr ""
-
-#. module: base_conditional_image
-#: model:ir.model.fields,field_description:base_conditional_image.field_conditional_image__message_has_sms_error
-msgid "SMS Delivery error"
 msgstr ""
 
 #. module: base_conditional_image

@@ -1,5 +1,7 @@
 # Copyright 2023 Camptocamp SA (https://www.camptocamp.com).
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+# oca-hooks:disable=xml-syntax-erroor
+
 
 {
     "name": "Test Module for module_analysis",

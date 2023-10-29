@@ -287,11 +287,6 @@ msgid "Link Field"
 msgstr ""
 
 #. module: nsca_client
-#: model:ir.model.fields,field_description:nsca_client.field_nsca_check__sms_mass_keep_log
-msgid "Log as Note"
-msgstr ""
-
-#. module: nsca_client
 #: model:ir.model.fields,field_description:nsca_client.field_nsca_check__nsca_function
 msgid "Method"
 msgstr ""
@@ -340,11 +335,6 @@ msgid "NSCA Check - Odoo Mail Queue"
 msgstr ""
 
 #. module: nsca_client
-#: model_terms:ir.ui.view,arch_db:nsca_client.view_nsca_check_tree
-msgid "NSCA Checks"
-msgstr ""
-
-#. module: nsca_client
 #: model:ir.ui.menu,name:nsca_client.menu_nsca_client
 msgid "NSCA Client"
 msgstr ""
@@ -358,11 +348,6 @@ msgstr ""
 #: model:ir.model,name:nsca_client.model_nsca_server
 #: model_terms:ir.ui.view,arch_db:nsca_client.view_nsca_server_form
 msgid "NSCA Server"
-msgstr ""
-
-#. module: nsca_client
-#: model_terms:ir.ui.view,arch_db:nsca_client.view_nsca_server_tree
-msgid "NSCA Servers"
 msgstr ""
 
 #. module: nsca_client
@@ -449,11 +434,6 @@ msgstr ""
 #. module: nsca_client
 #: model:ir.model.fields,field_description:nsca_client.field_nsca_check__activity_user_id
 msgid "Responsible"
-msgstr ""
-
-#. module: nsca_client
-#: model:ir.model.fields,field_description:nsca_client.field_nsca_check__sms_template_id
-msgid "SMS Template"
 msgstr ""
 
 #. module: nsca_client
