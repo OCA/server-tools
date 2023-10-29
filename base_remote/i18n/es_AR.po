@@ -112,7 +112,6 @@ msgstr "Remoto"
 #: model:ir.actions.act_window,name:base_remote.res_remote_action
 #: model:ir.model,name:base_remote.model_res_remote
 #: model:ir.ui.menu,name:base_remote.res_remote_menu
-#: model_terms:ir.ui.view,arch_db:base_remote.res_remote_tree
 msgid "Remotes"
 msgstr "Remotos"
 
