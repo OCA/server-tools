@@ -151,7 +151,6 @@ msgstr "Url"
 #: model:ir.ui.menu,name:base_video_link.video_video_menu
 #: model_terms:ir.ui.view,arch_db:base_video_link.video_video_view_form
 #: model_terms:ir.ui.view,arch_db:base_video_link.video_video_view_search
-#: model_terms:ir.ui.view,arch_db:base_video_link.video_video_view_tree
 msgid "Video"
 msgstr "Video"
 
@@ -166,6 +165,5 @@ msgstr "Video Link Mixin"
 #: model:ir.ui.menu,name:base_video_link.video_provider_menu
 #: model_terms:ir.ui.view,arch_db:base_video_link.video_provider_view_form
 #: model_terms:ir.ui.view,arch_db:base_video_link.video_provider_view_search
-#: model_terms:ir.ui.view,arch_db:base_video_link.video_provider_view_tree
 msgid "Video Provider"
 msgstr "Proveedor de Video"
