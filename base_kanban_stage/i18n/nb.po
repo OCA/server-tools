@@ -216,7 +216,6 @@ msgstr ""
 #. module: base_kanban_stage
 #: model:ir.actions.act_window,name:base_kanban_stage.base_kanban_stage_action
 #: model_terms:ir.ui.view,arch_db:base_kanban_stage.base_kanban_stage_view_search
-#: model_terms:ir.ui.view,arch_db:base_kanban_stage.base_kanban_stage_view_tree
 msgid "Kanban Stages"
 msgstr ""
 
