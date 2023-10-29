@@ -168,7 +168,6 @@ msgstr "Ausnahmebezeichnung"
 
 #. module: base_exception
 #: model:ir.model,name:base_exception.model_exception_rule
-#: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_tree
 msgid "Exception Rule"
 msgstr "Ausnahmeregel"
 
@@ -210,11 +209,6 @@ msgstr "Ausnahmeverwaltung"
 #: model:ir.model.fields,field_description:base_exception.field_base_exception__exception_ids
 msgid "Exceptions"
 msgstr "Ausnahmen"
-
-#. module: base_exception
-#: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_confirm
-msgid "Exceptions Rules"
-msgstr "Ausnahmenregeln"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_base_exception__exceptions_summary
@@ -379,6 +373,9 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_confirm
 msgid "_Close"
 msgstr "_Schliessen"
+
+#~ msgid "Exceptions Rules"
+#~ msgstr "Ausnahmenregeln"
 
 #~ msgid ""
 #~ "If we detect exception we set the state of object (ex purchase) to the "

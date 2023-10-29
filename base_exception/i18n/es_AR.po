@@ -174,7 +174,6 @@ msgstr "Nombre de la Excepción"
 
 #. module: base_exception
 #: model:ir.model,name:base_exception.model_exception_rule
-#: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_tree
 msgid "Exception Rule"
 msgstr "Regla de la Excepción"
 
@@ -213,11 +212,6 @@ msgstr "Gestor de Excepción"
 #: model:ir.model.fields,field_description:base_exception.field_base_exception__exception_ids
 msgid "Exceptions"
 msgstr "Excepciones"
-
-#. module: base_exception
-#: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_confirm
-msgid "Exceptions Rules"
-msgstr "Reglas de Excepciones"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_base_exception__exceptions_summary
@@ -388,3 +382,6 @@ msgstr "Cuando está marcado la excepción no puede ser ignorada"
 #: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_confirm
 msgid "_Close"
 msgstr "_Close"
+
+#~ msgid "Exceptions Rules"
+#~ msgstr "Reglas de Excepciones"

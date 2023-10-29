@@ -170,7 +170,6 @@ msgstr "Nome da exceção"
 
 #. module: base_exception
 #: model:ir.model,name:base_exception.model_exception_rule
-#: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_tree
 msgid "Exception Rule"
 msgstr "Regra de exceção"
 
@@ -209,11 +208,6 @@ msgstr "Gerenciar Exceção"
 #: model:ir.model.fields,field_description:base_exception.field_base_exception__exception_ids
 msgid "Exceptions"
 msgstr "Exceções"
-
-#. module: base_exception
-#: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_confirm
-msgid "Exceptions Rules"
-msgstr "Regras de exceção"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_base_exception__exceptions_summary
@@ -381,6 +375,9 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_confirm
 msgid "_Close"
 msgstr "_Fechar"
+
+#~ msgid "Exceptions Rules"
+#~ msgstr "Regras de exceção"
 
 #~ msgid ""
 #~ "By python code: allow to define any arbitrary check\n"
