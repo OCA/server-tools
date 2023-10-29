@@ -24,7 +24,8 @@ msgstr "<span style=\"padding: 0 10px;\">Solo-Lectura</span>"
 #. module: base_model_restrict_update
 #: model_terms:ir.ui.view,arch_db:base_model_restrict_update.view_users_form
 msgid "<span style=\"padding: 0 10px;\">Unrestrict Update</span>"
-msgstr "<span style=\"padding: 0 10px;\">Actualización sin restricciones</span>"
+msgstr ""
+"<span style=\"padding: 0 10px;\">Actualización sin restricciones</span>"
 
 #. module: base_model_restrict_update
 #: model:ir.model,name:base_model_restrict_update.model_ir_model_access
@@ -44,7 +45,8 @@ msgstr "Usuario listo"
 #. module: base_model_restrict_update
 #: model:ir.model.fields,help:base_model_restrict_update.field_res_users__is_readonly_user
 msgid "Set to true and the user are readonly user on all models"
-msgstr "Establecer a true y el usuario son de sólo lectura en todos los modelos"
+msgstr ""
+"Establecer a true y el usuario son de sólo lectura en todos los modelos"
 
 #. module: base_model_restrict_update
 #: model:ir.model.fields,help:base_model_restrict_update.field_res_users__unrestrict_model_update
@@ -79,11 +81,15 @@ msgstr ""
 #. module: base_model_restrict_update
 #: code:addons/base_model_restrict_update/models/ir_model_access.py:0
 #, python-format
-msgid "You are only allowed to read this record. ({} - {})"
-msgstr "Sólo puede leer este registro. ({} - {})"
+msgid "You are only allowed to read this record. (%(model)s - %(mode)s)"
+msgstr ""
 
 #. module: base_model_restrict_update
 #: code:addons/base_model_restrict_update/models/res_users.py:0
 #, python-format
 msgid "You cannot set admin user as a readonly user."
 msgstr "No se puede establecer el usuario admin como usuario de sólo lectura."
+
+#, python-format
+#~ msgid "You are only allowed to read this record. ({} - {})"
+#~ msgstr "Sólo puede leer este registro. ({} - {})"
