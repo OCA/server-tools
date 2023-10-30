@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright 2023 Therp BV.
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+
+    <record id="external_system_github_server_tools" model="external.system.endpoint">
+        <field name="system_id" ref="external_system_github" />
+        <field name="name">tools</field>
+        <field name="endpoint">/server-tools</field>
+    </record>
+
+</odoo>
