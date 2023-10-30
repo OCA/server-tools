@@ -15,7 +15,7 @@ class TestExternalSystem(TransactionCase):
 
     def test_get_system_types(self):
         """It should return at least the test record's interface."""
-        system_type_os = self.env["external.system.os"]
+        system_type_os = self.env["external.system.adapter.os"]
         self.assertIn(
             (system_type_os._name, system_type_os._description),
             self.env["external.system"]._get_system_types(),

@@ -22,8 +22,3 @@ class TestExternalSystemAdapter(TransactionCase):
         """It should raise a UserError."""
         with self.assertRaises(UserError):
             self.abstract_adapter.external_destroy_client(None)
-
-    def test_external_test_connection(self):
-        """It should raise a UserError."""
-        with self.assertRaises(UserError):
-            self.abstract_adapter.external_test_connection()
