@@ -40,11 +40,6 @@ class ExternalSystemAdapter(models.AbstractModel):
         """
         self._raise_not_implemented()
 
-    @api.model
-    def external_test_connection(self):
-        """Adapters should override this method for testing conection."""
-        self._raise_not_implemented()
-
     def _raise_not_implemented(self):
         """Raise errors for methods that should be implemented in subclass."""
         raise UserError(_("Method not implemented in base adapter class."))

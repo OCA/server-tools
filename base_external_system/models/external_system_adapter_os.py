@@ -7,14 +7,14 @@ import os
 from odoo import api, models
 
 
-class ExternalSystemOs(models.AbstractModel):
+class ExternalSystemAdapterOs(models.AbstractModel):
     """This is an Interface implementing the OS module.
 
     For the most part, this is just a sample of how to implement an external
     system interface. This is still a fully usable implementation, however.
     """
 
-    _name = "external.system.os"
+    _name = "external.system.adapter.os"
     _inherit = "external.system.adapter"
     _description = "External System OS"
 

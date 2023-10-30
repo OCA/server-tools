@@ -10,7 +10,7 @@
 
     <record id="external_system_os_demo" model="external.system">
         <field name="name">Example OS Connection for Testing</field>
-        <field name="system_type">external.system.os</field>
+        <field name="system_type">external.system.adapter.os</field>
         <field name="remote_path">/tmp</field>
         <field name="company_ids" eval="[(5, 0), (4, ref('base.main_company'))]" />
     </record>

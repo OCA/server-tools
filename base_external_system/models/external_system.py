@@ -17,6 +17,9 @@ class ExternalSystem(models.Model):
     name = fields.Char(
         required=True, help="This is the canonical (humanized) name for the system."
     )
+    scheme = fields.Char(
+        help="This is the protocol used to communicate with the system."
+    )
     host = fields.Char(
         help="This is the domain or IP address that the system can be reached at."
     )
@@ -116,7 +119,7 @@ class ExternalSystem(models.Model):
         self.ensure_one()
         try:
             with self.client() as client:
-                if not client:
+                if client is None:
                     raise ValidationError(
                         _("Client connection failed for system %s") % self.name
                     )
