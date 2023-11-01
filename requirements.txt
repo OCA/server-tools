@@ -1,6 +1,7 @@
 # generated from manifests external_dependencies
 astor
 dataclasses
+lxml
 mako
 odoorpc
 openpyxl
