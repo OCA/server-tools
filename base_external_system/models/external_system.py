@@ -61,7 +61,11 @@ class ExternalSystem(models.Model):
         default=lambda s: [(6, 0, s.env.user.company_id.ids)],
         help="Access to this system is restricted to these companies.",
     )
-    system_type = fields.Selection(selection="_get_system_types", required=True)
+    system_type = fields.Selection(
+        # Use lambda selection, otherwise subclasses loaded later will not be found.
+        selection=lambda self: self._get_system_types(),
+        required=True,
+    )
 
     _sql_constraints = [
         ("name_uniq", "UNIQUE(name)", "Connection name must be unique.")
@@ -98,6 +102,7 @@ class ExternalSystem(models.Model):
             mixed: An object representing the client connection to the remote
              system.
         """
+        self.ensure_one()
         adapter = None
         client = None
         try:
