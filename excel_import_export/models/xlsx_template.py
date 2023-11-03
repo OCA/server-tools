@@ -433,7 +433,7 @@ self['{}'] = self.env['{}'].search(self.safe_domain(self.domain))
     def add_export_action(self):
         self.ensure_one()
         vals = {
-            "name": "Export Excel",
+            "name": f"Export Excel, {self.name}",
             "res_model": "export.xlsx.wizard",
             "binding_model_id": self.env["ir.model"]
             .search([("model", "=", self.res_model)])
@@ -459,7 +459,7 @@ self['{}'] = self.env['{}'].search(self.safe_domain(self.domain))
     def add_import_action(self):
         self.ensure_one()
         vals = {
-            "name": "Import Excel",
+            "name": f"Import Excel, {self.name}",
             "res_model": "import.xlsx.wizard",
             "binding_model_id": self.env["ir.model"]
             .search([("model", "=", self.res_model)])
