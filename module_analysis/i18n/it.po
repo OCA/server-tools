@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-10-09 09:09+0000\n"
+"PO-Revision-Date: 2023-11-03 13:39+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -90,7 +90,7 @@ msgstr "Quantità Codice JS"
 #: model:ir.model.fields,field_description:module_analysis.field_ir_module_type____last_update
 #: model:ir.model.fields,field_description:module_analysis.field_ir_module_type_rule____last_update
 msgid "Last Modified on"
-msgstr "Ultima Modifica il"
+msgstr "Ultima modifica il"
 
 #. module: module_analysis
 #: model:ir.model.fields,field_description:module_analysis.field_ir_module_author__write_uid
