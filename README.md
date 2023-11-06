@@ -70,7 +70,7 @@ addon | version | maintainers | summary
 [html_image_url_extractor](html_image_url_extractor/) | 14.0.1.0.1 |  | Extract images found in any HTML field
 [html_text](html_text/) | 14.0.1.0.1 |  | Generate excerpts from any HTML field
 [iap_alternative_provider](iap_alternative_provider/) | 14.0.1.0.0 | [![sebastienbeau](https://github.com/sebastienbeau.png?size=30px)](https://github.com/sebastienbeau) | Base module for providing alternative provider for iap apps
-[jsonifier](jsonifier/) | 14.0.1.1.1 |  | JSON-ify data for all models
+[jsonifier](jsonifier/) | 14.0.1.2.0 |  | JSON-ify data for all models
 [jsonifier_stored](jsonifier_stored/) | 14.0.1.0.0 | [![simahawk](https://github.com/simahawk.png?size=30px)](https://github.com/simahawk) [![mmequignon](https://github.com/mmequignon.png?size=30px)](https://github.com/mmequignon) | Pre-compute and store JSON data on any model
 [letsencrypt](letsencrypt/) | 14.0.1.0.2 |  | Request SSL certificates from letsencrypt.org
 [mail_cleanup](mail_cleanup/) | 14.0.1.0.0 |  | Mark as read or delete mails after a set time
