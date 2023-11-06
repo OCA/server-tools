@@ -105,6 +105,13 @@ class Base(models.AbstractModel):
                     value, json_key = self._jsonify_record_handle_resolver(
                         rec, field, resolver, json_key
                     )
+            # whatever json value we have found in subparser or not ass a sister key
+            # on the same level _fieldname_{json_key}
+            if rec.env.context.get("with_fieldname"):
+                json_key_fieldname = "_fieldname_" + json_key
+                # check if we are in a subparser has already the fieldname sister keys
+                fieldname_value = rec._fields[field_dict["name"]].string
+                self._add_json_key(root, json_key_fieldname, fieldname_value)
             self._add_json_key(root, json_key, value)
         return root
 
@@ -152,10 +159,11 @@ class Base(models.AbstractModel):
                     {"model": self._name, "fname": field_name},
                 )
                 raise SwallableException()
-
         value = [self._jsonify_record(subparser, r, {}) for r in rec[field_name]]
+
         if field.type in ("many2one", "reference"):
             value = value[0] if value else None
+
         return value
 
     def _jsonify_record_handle_resolver(self, rec, field, resolver, json_key):
@@ -168,7 +176,7 @@ class Base(models.AbstractModel):
             value, json_key = value["_value"], value["_json_key"]
         return value, json_key
 
-    def jsonify(self, parser, one=False):
+    def jsonify(self, parser, one=False, with_fieldname=False):
         """Convert the record according to the given parser.
 
         Example of (simple) parser:
@@ -213,6 +221,9 @@ class Base(models.AbstractModel):
         for lang in parsers:
             translate = lang or parser.get("language_agnostic")
             records = records.with_context(lang=lang) if translate else records
+            records = (
+                records.with_context(with_fieldname=True) if with_fieldname else records
+            )
             for record, json in zip(records, results):
                 self._jsonify_record(parsers[lang], record, json)
 
