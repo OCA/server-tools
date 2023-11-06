@@ -101,9 +101,9 @@ class Base(models.AbstractModel):
                         rec, field, resolver, json_key
                     )
             # whatever json value we have found in subparser or not ass a sister key
-            # on the same level {jsoni_key}_fieldname
+            # on the same level _fieldname_{json_key}
             if rec.env.context.get("with_fieldname"):
-                json_key_fieldname = "_".join(["_fieldname", json_key])
+                json_key_fieldname = "_fieldname_" + json_key
                 # check if we are in a subparser has already the fieldname sister keys
                 fieldname_value = rec._fields[field_dict["name"]].string
                 self._add_json_key(root, json_key_fieldname, fieldname_value)
