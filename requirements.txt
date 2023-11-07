@@ -3,6 +3,7 @@ astor
 dataclasses
 lxml
 mako
+odoo_test_helper
 odoorpc
 openpyxl
 openupgradelib
