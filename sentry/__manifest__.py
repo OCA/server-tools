@@ -11,13 +11,20 @@
     "Nicolas JEUDY,"
     "Odoo Community Association (OCA),"
     "Vauxoo",
-    "maintainers": ["barsi", "naglis", "versada", "moylop260", "fernandahf"],
+    "maintainers": [
+        "barsi",
+        "naglis",
+        "versada",
+        "moylop260",
+        "fernandahf",
+        "yhaelopez",
+    ],
     "license": "AGPL-3",
     "application": False,
     "installable": True,
     "external_dependencies": {
         "python": [
-            "sentry_sdk<=1.9.0",
+            "sentry_sdk",
         ]
     },
     "depends": [
