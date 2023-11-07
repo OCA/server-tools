@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2019 ACSONE SA/NV
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+    <record id="ir_values_groups_id_rule" model="ir.rule">
+        <field name="name">User can only see ir.values if he belongs to its group (if defined)</field>
+        <field ref="model_ir_values" name="model_id"/>
+        <field name="domain_force">[
+            '|',
+                ('groups_id', '=', False),
+                ('groups_id', 'in', [g.id for g in user.groups_id])
+        ]</field>
+    </record>
+</odoo>
