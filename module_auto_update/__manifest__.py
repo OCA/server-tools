@@ -17,6 +17,9 @@
     "installable": True,
     "uninstall_hook": "uninstall_hook",
     "depends": ["base"],
-    "data": ["views/ir_module_module.xml"],
+    "data": [
+        "security/ir.model.access.csv",
+        "wizard/module_auto_update_views.xml",
+    ],
     "development_status": "Production/Stable",
 }
