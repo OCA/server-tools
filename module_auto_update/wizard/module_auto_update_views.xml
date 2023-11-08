@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_base_module_upgrade" model="ir.ui.view">
+        <field name="name">Module Upgrade</field>
+        <field name="model">module.auto.update</field>
+        <field name="arch" type="xml">
+            <form string="Auto-Upgrade Modules">
+                <p>Are you sure you want to launch module auto-update?</p>
+                <button
+                    name="action_get_modules_to_update"
+                    string="Show Modules to Update"
+                    type="object"
+                    attrs="{'invisible': [('modules_to_update_ids', '!=', [])]}"
+                />
+                <group
+                    string="Impacted Apps"
+                    attrs="{'invisible': [('modules_to_update_ids', '=', [])]}"
+                >
+                    <field name="modules_to_update_ids" nolabel="1">
+                        <tree limit="10">
+                            <field name="shortdesc" />
+                            <field name="name" />
+                            <field name="installed_version" />
+                        </tree>
+                    </field>
+                </group>
+                <footer>
+                    <button
+                        name="action_upgrade_module"
+                        string="Confirm"
+                        type="object"
+                        class="btn-primary"
+                    />
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="base_module_upgrade_wizard_action" model="ir.actions.act_window">
+        <field name="name">Auto-Upgrade Modules</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">module.auto.update</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem
+        name="Auto-Upgrade Modules"
+        action="base_module_upgrade_wizard_action"
+        id="menu_base_module_upgrade_wizard_action"
+        groups="base.group_no_one"
+        parent="base.menu_management"
+        sequence="45"
+    />
+</odoo>
