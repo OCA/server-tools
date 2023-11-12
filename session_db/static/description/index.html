@@ -369,10 +369,10 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !! source digest: sha256:0e92dd612d4d3860e95f5c06e6b9ea02c10fc402034c328effb4a9ac44b9cb73
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/lgpl-3.0-standalone.html"><img alt="License: LGPL-3" src="https://img.shields.io/badge/licence-LGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/server-tools/tree/16.0/session_db"><img alt="OCA/server-tools" src="https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/server-tools-16-0/server-tools-16-0-session_db"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/server-tools&amp;target_branch=16.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
-<p>Store sessions in a database instead of the filesystem. This simplifies the
-configuration of horizontally scalable deployments, by avoiding the need for a
-distributed filesystem to store the Odoo sessions.</p>
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/lgpl-3.0-standalone.html"><img alt="License: LGPL-3" src="https://img.shields.io/badge/licence-LGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/server-tools/tree/17.0/session_db"><img alt="OCA/server-tools" src="https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/server-tools-17-0/server-tools-17-0-session_db"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/server-tools&amp;target_branch=17.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
+<p>Store sessions in a database instead of the filesystem. This simplifies
+the configuration of horizontally scalable deployments, by avoiding the
+need for a distributed filesystem to store the Odoo sessions.</p>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
@@ -389,21 +389,22 @@ distributed filesystem to store the Odoo sessions.</p>
 <div class="section" id="usage">
 <h1><a class="toc-backref" href="#toc-entry-1">Usage</a></h1>
 <p>Set this module in the server wide modules.</p>
-<p>Set a <tt class="docutils literal">SESSION_DB_URI</tt> environment variable as a full postgresql connection string,
-like <tt class="docutils literal"><span class="pre">postgres://user:passwd&#64;server/db</span></tt> or <tt class="docutils literal">db</tt>.</p>
-<p>It is recommended to use a dedicated database for this module, and possibly a dedicated
-postgres user for additional security.</p>
+<p>Set a <tt class="docutils literal">SESSION_DB_URI</tt> environment variable as a full postgresql
+connection string, like <tt class="docutils literal"><span class="pre">postgres://user:passwd&#64;server/db</span></tt> or <tt class="docutils literal">db</tt>.</p>
+<p>It is recommended to use a dedicated database for this module, and
+possibly a dedicated postgres user for additional security.</p>
 </div>
 <div class="section" id="known-issues-roadmap">
 <h1><a class="toc-backref" href="#toc-entry-2">Known issues / Roadmap</a></h1>
-<p>This module does not work with multi-threaded workers, so it requires workers &gt; 0.</p>
+<p>This module does not work with multi-threaded workers, so it requires
+workers &gt; 0.</p>
 </div>
 <div class="section" id="bug-tracker">
 <h1><a class="toc-backref" href="#toc-entry-3">Bug Tracker</a></h1>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/server-tools/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-<a class="reference external" href="https://github.com/OCA/server-tools/issues/new?body=module:%20session_db%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+<a class="reference external" href="https://github.com/OCA/server-tools/issues/new?body=module:%20session_db%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
@@ -424,7 +425,7 @@ mission is to support the collaborative development of Odoo features and
 promote its widespread use.</p>
 <p>Current <a class="reference external" href="https://odoo-community.org/page/maintainer-role">maintainer</a>:</p>
 <p><a class="reference external image-reference" href="https://github.com/sbidoul"><img alt="sbidoul" src="https://github.com/sbidoul.png?size=40px" /></a></p>
-<p>This module is part of the <a class="reference external" href="https://github.com/OCA/server-tools/tree/16.0/session_db">OCA/server-tools</a> project on GitHub.</p>
+<p>This module is part of the <a class="reference external" href="https://github.com/OCA/server-tools/tree/17.0/session_db">OCA/server-tools</a> project on GitHub.</p>
 <p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
 </div>
 </div>
