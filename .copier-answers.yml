@@ -1,8 +1,9 @@
 # Do NOT update manually; changes here will be overwritten by Copier
-_commit: v1.18
+_commit: v1.19
 _src_path: gh:oca/oca-addons-repo-template
 additional_ruff_rules: []
 ci: GitHub
+convert_readme_fragments_to_markdown: true
 generate_requirements_txt: true
 github_check_license: true
 github_ci_extra_env: {}
@@ -17,7 +18,7 @@ org_name: Odoo Community Association (OCA)
 org_slug: OCA
 rebel_module_groups: []
 repo_description: 'TODO: add repo description.'
-repo_name: server-tools
+repo_name: Server Tools
 repo_slug: server-tools
 repo_website: https://github.com/OCA/server-tools
 use_pyproject_toml: true

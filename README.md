@@ -7,7 +7,7 @@
 
 <!-- /!\ do not modify above this line -->
 
-# server-tools
+# Server Tools
 
 TODO: add repo description.
 
