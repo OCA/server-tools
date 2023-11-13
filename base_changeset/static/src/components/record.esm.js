@@ -21,10 +21,11 @@ patch(Record.prototype, "base_changeset.Record", {
     },
     /* Call the ORM to get this record's changeset changes after the form is modified */
     async save() {
-        await this._super(...arguments);
+        const isSaved = await this._super(...arguments);
         if (this.__viewType === "form" && this.resId) {
             this.changesetChanges = await this.fetchChangesetChanges();
             this.model.notify();
         }
+        return isSaved;
     },
 });
