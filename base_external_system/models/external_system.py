@@ -75,7 +75,16 @@ class ExternalSystem(models.Model):
     def _get_system_types(self):
         """Return the adapter interface models that are installed."""
         adapter = self.env["external.system.adapter"]
-        return [(m, self.env[m]._description) for m in adapter._inherit_children]
+        subclasses = set()
+        work = [adapter]
+        while work:
+            parent = work.pop()
+            for child in parent._inherit_children:
+                subclass = self.env[child]
+                if subclass not in subclasses:
+                    subclasses.add(subclass)
+                    work.append(subclass)
+        return [(m._name, m._description) for m in subclasses]
 
     @api.multi
     @api.constrains("fingerprint", "ignore_fingerprint")
