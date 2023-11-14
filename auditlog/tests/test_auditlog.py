@@ -8,7 +8,7 @@ from odoo.addons.base.models.ir_model import MODULE_UNINSTALL_FLAG
 from odoo.addons.base.models.res_users import name_boolean_group
 
 
-class AuditlogCommon(object):
+class AuditlogCommon:
     def test_LogCreation(self):
         """First test, caching some data."""
         self.groups_rule.subscribe()
