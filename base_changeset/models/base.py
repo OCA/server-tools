@@ -71,9 +71,6 @@ class Base(models.AbstractModel):
         models = (
             self.env["changeset.field.rule"].sudo().search([]).mapped("model_id.model")
         )
-        if config["test_enable"] and self.env.context.get("test_record_changeset"):
-            if "res.partner" not in models:
-                models += ["res.partner"]  # Used in tests
         return models
 
     @api.model_create_multi
