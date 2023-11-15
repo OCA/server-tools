@@ -29,13 +29,10 @@
                         </group>
                     </group>
                     <group>
-                        <field
-                            name="zip_codes"
-                            attrs="{'invisible':[('type', '!=', 'zip')]}"
-                        />
+                        <field name="zip_codes" invisible="type != 'zip'" />
                         <field
                             name="country_ids"
-                            attrs="{'invisible':[('type', '!=', 'country')]}"
+                            invisible="type != 'country'"
                             widget="many2many_tags"
                         />
                     </group>

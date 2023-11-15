@@ -109,14 +109,6 @@ msgid "ID"
 msgstr "ID"
 
 #. module: base_territory
-#: model:ir.model.fields,field_description:base_territory.field_res_branch____last_update
-#: model:ir.model.fields,field_description:base_territory.field_res_district____last_update
-#: model:ir.model.fields,field_description:base_territory.field_res_region____last_update
-#: model:ir.model.fields,field_description:base_territory.field_res_territory____last_update
-msgid "Last Modified on"
-msgstr "Ultima modifica il"
-
-#. module: base_territory
 #: model:ir.model.fields,field_description:base_territory.field_res_branch__write_uid
 #: model:ir.model.fields,field_description:base_territory.field_res_district__write_uid
 #: model:ir.model.fields,field_description:base_territory.field_res_region__write_uid
@@ -197,3 +189,6 @@ msgstr "CAP"
 #: model:ir.model,name:base_territory.model_res_branch
 msgid "branch"
 msgstr "filiale"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"

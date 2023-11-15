@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -103,14 +103,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_territory.field_res_region__id
 #: model:ir.model.fields,field_description:base_territory.field_res_territory__id
 msgid "ID"
-msgstr ""
-
-#. module: base_territory
-#: model:ir.model.fields,field_description:base_territory.field_res_branch____last_update
-#: model:ir.model.fields,field_description:base_territory.field_res_district____last_update
-#: model:ir.model.fields,field_description:base_territory.field_res_region____last_update
-#: model:ir.model.fields,field_description:base_territory.field_res_territory____last_update
-msgid "Last Modified on"
 msgstr ""
 
 #. module: base_territory
