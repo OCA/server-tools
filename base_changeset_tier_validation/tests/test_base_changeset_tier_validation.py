@@ -117,44 +117,32 @@ class TestBaseChangesetTierValidation(common.SavepointCase):
         self.assertEqual(test_record_manager.test_field, 0)
         self.assertEqual(test_record_manager.total_pending_reviews, 1)
         self.assertTrue(test_record_manager.review_ids.summary)  # Test Field: 0.0 > 1.0
-        self.assertTrue(test_record_manager.last_pending_changeset_review)
         # Change user_id
         test_record_user.write({"user_id": self.user.id})
         test_record_manager.invalidate_cache()
         self.assertFalse(test_record_manager.user_id)
         self.assertEqual(test_record_manager.total_pending_reviews, 2)
-        old_last_pending_changeset_review = (
-            test_record_manager.last_pending_changeset_review
-        )
         # validate first review
         test_record_manager._validate_tier()
         self.assertEqual(test_record_manager.test_field, 1)
         self.assertEqual(test_record_manager.total_pending_reviews, 1)
-        self.assertNotEqual(
-            test_record_manager.last_pending_changeset_review,
-            old_last_pending_changeset_review,
-        )
         # validate last review
         test_record_manager._validate_tier()
         self.assertEqual(test_record_manager.user_id, self.user)
         self.assertEqual(test_record_manager.total_pending_reviews, 0)
-        self.assertFalse(test_record_manager.last_pending_changeset_review)
         # Change user_id
         test_record_user.write({"user_id": self.manager.id})
         test_record_manager.invalidate_cache()
         self.assertEqual(test_record_manager.user_id, self.user)
         self.assertEqual(test_record_manager.total_pending_reviews, 1)
-        self.assertTrue(test_record_manager.last_pending_changeset_review)
         # reject new review
         test_record_manager._rejected_tier()
         self.assertEqual(test_record_manager.user_id, self.user)
         self.assertEqual(test_record_manager.total_pending_reviews, 0)
-        self.assertFalse(test_record_manager.last_pending_changeset_review)
         # Change user_id with manager user
         test_record_manager.write({"user_id": self.manager.id})
         self.assertEqual(test_record_manager.user_id, self.manager)
         self.assertEqual(test_record_manager.total_pending_reviews, 0)
-        self.assertFalse(test_record_manager.last_pending_changeset_review)
 
     def test_update_tier_validation_tester_state_change(self):
         test_record_user = self.test_record.with_user(self.user)

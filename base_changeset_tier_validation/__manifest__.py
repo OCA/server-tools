@@ -10,6 +10,7 @@
     "license": "AGPL-3",
     "depends": ["base_changeset", "base_tier_validation"],
     "data": [
+        "views/assets_backend.xml",
         "views/changeset_field_rule_views.xml",
         "views/record_changeset_views.xml",
         "views/record_changeset_views.xml",

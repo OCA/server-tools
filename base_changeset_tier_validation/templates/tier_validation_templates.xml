@@ -24,18 +24,28 @@
             <field name="count_pending_changesets" invisible="1" />
             <field name="total_pending_reviews" invisible="1" />
         </field>
-        <field name="can_review" position="before">
-            <field
-                name="last_pending_changeset_review_ref"
-                groups="base_changeset.group_changeset_user"
-            />
-            <t t-attf-attrs="{'invisible': [('count_pending_changesets', '=', 0)]}">
-                <br />
-                <span>
-                    This Record has changeset to be
-                    validated.
-                </span>
-            </t>
+        <xpath expr="//div[hasclass('alert-warning')]" position="attributes">
+            <attribute name="id">base_tier_validation_warning</attribute>
+        </xpath>
+        <!-- Hide base_tier_validation buttons to show custom pending reviews. -->
+        <button name="validate_tier" position="attributes">
+            <attribute name="invisible">1</attribute>
+        </button>
+        <button name="validate_tier" position="attributes">
+            <attribute name="invisible">1</attribute>
+        </button>
+        <button name="reject_tier" position="attributes">
+            <attribute name="invisible">1</attribute>
+        </button>
+        <field name="next_review" position="attributes">
+            <attribute name="invisible">1</attribute>
         </field>
+        <xpath expr="//div[hasclass('alert-danger')]" position="after">
+            <field
+                name="pending_review_ids"
+                widget="pending_tier_reviews"
+                attrs="{'invisible':[('total_pending_reviews', '=', 0)]}"
+            />
+        </xpath>
     </template>
 </odoo>
