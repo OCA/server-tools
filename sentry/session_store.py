@@ -4,7 +4,6 @@ import os
 from odoo import http
 from odoo.tools.func import lazy_property
 
-from ..session_redis.session import RedisSessionStore
 
 
 _logger = logging.getLogger(__name__)
@@ -12,6 +11,7 @@ _logger = logging.getLogger(__name__)
 try:
     import redis
     from redis.sentinel import Sentinel
+    from ..session_redis.session import RedisSessionStore
 except ImportError:
     redis = None  # noqa
     _logger.debug("Cannot 'import redis'.")

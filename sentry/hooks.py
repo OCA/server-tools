@@ -16,7 +16,11 @@ from .logutils import (
     fetch_git_sha,
     get_extra_context,
 )
-from .session_store import CustomSentryWsgiMiddleware
+
+try:
+    from .session_store import CustomSentryWsgiMiddleware
+except ImportError:
+    from sentry_sdk.integrations.wsgi import SentryWsgiMiddleware as CustomSentryWsgiMiddleware
 
 _logger = logging.getLogger(__name__)
 HAS_SENTRY_SDK = True
