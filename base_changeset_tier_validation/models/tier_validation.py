@@ -6,50 +6,25 @@ from odoo import api, fields, models
 class TierValidation(models.AbstractModel):
     _inherit = "tier.validation"
 
+    pending_review_ids = fields.One2many(
+        comodel_name="tier.review",
+        inverse_name="res_id",
+        string="Validations",
+        compute="_compute_pending_review_ids",
+    )
     total_pending_reviews = fields.Integer(compute="_compute_total_pending_reviews")
-    last_pending_changeset_review = fields.Many2one(
-        comodel_name="record.changeset",
-        compute="_compute_last_pending_changeset_review",
-    )
-    last_pending_changeset_review_ref = fields.Reference(
-        selection=lambda self: [
-            (model.model, model.name) for model in self.env["ir.model"].search([])
-        ],
-        compute="_compute_last_pending_changeset_review_ref",
-    )
 
-    @api.depends("review_ids.status")
+    @api.depends("review_ids", "review_ids.status")
+    def _compute_pending_review_ids(self):
+        for item in self:
+            item.pending_review_ids = item.review_ids.filtered(
+                lambda x: x.status == "pending" and (self.env.user in x.reviewer_ids)
+            )
+
+    @api.depends("pending_review_ids")
     def _compute_total_pending_reviews(self):
         for item in self:
-            item.total_pending_reviews = len(
-                item.review_ids.filtered(
-                    lambda x: x.status == "pending"
-                    and (self.env.user in x.reviewer_ids)
-                )
-            )
-
-    @api.depends("review_ids.status")
-    def _compute_last_pending_changeset_review(self):
-        for item in self:
-            last_review = fields.first(
-                item.review_ids.filtered(
-                    lambda x: x.status == "pending" and x.changeset_id
-                )
-            )
-            item.last_pending_changeset_review = last_review.changeset_id
-
-    @api.depends("last_pending_changeset_review")
-    def _compute_last_pending_changeset_review_ref(self):
-        for item in self:
-            if item.last_pending_changeset_review:
-                item.last_pending_changeset_review_ref = "%s,%s" % (
-                    item.last_pending_changeset_review.model,
-                    item.last_pending_changeset_review.res_id,
-                )
-            else:
-                item.last_pending_changeset_review_ref = (
-                    item.last_pending_changeset_review_ref
-                )
+            item.total_pending_reviews = len(item.pending_review_ids)
 
     @api.depends("total_pending_reviews")
     def _compute_need_validation(self):
@@ -78,33 +53,25 @@ class TierValidation(models.AbstractModel):
         return res
 
     def _validate_tier(self, tiers=False):
-        """If you have a changeset_id defined, we want to validate only first pending
-        revision and the linked changeset, otherwise the default behavior the linked
-        changeset, otherwise the default behavior will be."""
+        """Change the behavior so that only the 1st pending revision is validated
+        with the _tier_process() method, something similar to what
+        base_tier_validation does."""
         self.ensure_one()
         tier_reviews = tiers or self.review_ids
         user_reviews = tier_reviews.filtered(
             lambda r: r.status == "pending" and (self.env.user in r.reviewer_ids)
         )
         user_review = fields.first(user_reviews)
-        if user_review.changeset_id:
-            user_review.changeset_id.apply()
-            user_review._tier_process("approved")
-        else:
-            super()._validate_tier(tiers=tiers)
+        user_review._tier_process("approved")
 
     def _rejected_tier(self, tiers=False):
-        """If you have a changeset_id defined, we want to cancel only first pending
-        revision  and the linked changeset, otherwise the default behavior the linked
-        changeset, otherwise the default behavior will be."""
+        """Change the behavior so that only the 1st pending revision is rejected
+        with the _tier_process() method, something similar to what
+        base_tier_validation does."""
         self.ensure_one()
         tier_reviews = tiers or self.review_ids
         user_reviews = tier_reviews.filtered(
             lambda r: r.status == "pending" and (self.env.user in r.reviewer_ids)
         )
         user_review = fields.first(user_reviews)
-        if user_review.changeset_id:
-            user_review.changeset_id.cancel()
-            user_review._tier_process("rejected")
-        else:
-            super()._rejected_tier(tiers=tiers)
+        user_review._tier_process("rejected")
