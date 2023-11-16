@@ -25,7 +25,9 @@ class RecordChangeset(models.Model):
         """If any change rule should create a revision, it is created and processed."""
         result = super().create(vals_list)
         for item in result:
-            if any(change.rule_id.create_tier_review for change in item.change_ids):
+            if any(change.rule_id.create_tier_review for change in item.change_ids) or (
+                not item.change_ids and item.action in ("create", "unlink")
+            ):
                 item._tier_review_process()
         return result
 
@@ -37,17 +39,20 @@ class RecordChangeset(models.Model):
 
     def _prepare_tier_review_valuess(self):
         # set model
-        res_id = self.res_id
+        res_id = self.parent_id or self.res_id
         change_0 = fields.first(
             self.change_ids.filtered(lambda x: x.rule_id.create_tier_review)
         )
-        model = change_0.rule_id.tier_model or self.model
-        if change_0.rule_id.tier_parent_field_id:
-            record = self.env[self.model].browse(self.res_id)
-            parent_record = record[change_0.rule_id.tier_parent_field_id.name]
+        changeset_rule = (
+            change_0.rule_id if change_0 else self.env.context.get("changeset_rule")
+        )
+        model = changeset_rule.tier_model or self.parent_model or self.model
+        if changeset_rule.tier_parent_field_id:
+            record = self.env[model].browse(res_id)
+            parent_record = record[changeset_rule.tier_parent_field_id.name]
             res_id = parent_record.id
         # search tier definition
-        tier_definition = change_0.rule_id.tier_definition_id
+        tier_definition = changeset_rule.tier_definition_id
         total_reviews = self.env["tier.review"].search_count(
             [
                 ("model", "=", model),
@@ -56,7 +61,7 @@ class RecordChangeset(models.Model):
             ]
         )
         return {
-            "name": "%s,%s" % (self.model, self.res_id),
+            "name": "%s,%s" % (model, res_id),
             "model": model,
             "res_id": res_id,
             "definition_id": tier_definition.id,

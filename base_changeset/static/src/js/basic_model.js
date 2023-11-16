@@ -45,6 +45,20 @@ odoo.define("base_changeset.basic_model", function (require) {
                     });
             });
         },
+        getChangesetsOne2many: function (modelName, resId) {
+            var self = this;
+            return new Promise(function (resolve) {
+                return self
+                    ._rpc({
+                        model: "record.changeset",
+                        method: "get_changeset_changes_one2many",
+                        args: [modelName, resId],
+                    })
+                    .then(function (changesets) {
+                        resolve(changesets);
+                    });
+            });
+        },
     });
 
     BasicRenderer.include({

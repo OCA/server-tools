@@ -5,3 +5,6 @@
 * Andrea Stirpe <a.stirpe@onestein.nl>
 * Holger Brunn <mail@hunki-enterprises.com>
 * Adria Gil Sorribes <adria.gil@forgeflow.com>
+* `Tecnativa <https://www.tecnativa.com>`_:
+
+  * Víctor Martínez

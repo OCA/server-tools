@@ -5,13 +5,11 @@
 
 class ChangesetTestCommon(object):
     def assert_changeset(self, record, expected_source, expected_changes):
-        """Check if a changeset has been created according to expected values
+        """
+        Check if a changeset has been created according to expected values
 
         The record should have no prior changeset than the one created in the
         test (so it has exactly 1 changeset).
-
-        The expected changes are tuples with (field, origin_value,
-        new_value, state)
 
         :param record: record of record having a changeset
         :param expected_changes: contains tuples with the changes
@@ -20,6 +18,38 @@ class ChangesetTestCommon(object):
         changeset = self.env["record.changeset"].search(
             [("model", "=", record._name), ("res_id", "=", record.id)]
         )
+        self._assert_changeset(changeset, expected_source, expected_changes)
+
+    def assert_child_changeset(self, record, expected_source, expected_changes):
+        """
+        Check if a child changeset has been created according to expected values
+
+        The record should have no prior changeset than the one created in the
+        test (so it has exactly 1 changeset).
+
+        :param record: record of record having a changeset
+        :param expected_changes: contains tuples with the changes
+        :type expected_changes: list(tuple))
+        """
+        changeset = self.env["record.changeset"].search(
+            [("parent_model", "=", record._name), ("parent_id", "=", record.id)]
+        )
+        self.assertTrue(changeset.raw_changes)
+        self._assert_changeset(changeset, expected_source, expected_changes)
+
+    def _assert_changeset(self, changeset, expected_source, expected_changes):
+        """Check changeset according to expected values
+
+        The changeset should have no prior changeset than the one created in the
+        test (so it has exactly 1 changeset).
+
+        The expected changes are tuples with (field, origin_value,
+        new_value, state)
+
+        :param changeset: changeset
+        :param expected_changes: contains tuples with the changes
+        :type expected_changes: list(tuple))
+        """
         self.assertEqual(
             len(changeset), 1, "1 changeset expected, got {}".format(changeset)
         )
