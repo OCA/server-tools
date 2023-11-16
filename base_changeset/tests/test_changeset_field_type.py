@@ -4,6 +4,7 @@
 
 from odoo import fields
 from odoo.tests.common import TransactionCase
+from odoo.tools import mute_logger
 
 from ..models.base import disable_changeset
 from .common import ChangesetTestCommon
@@ -12,6 +13,7 @@ from .common import ChangesetTestCommon
 class TestChangesetFieldType(ChangesetTestCommon, TransactionCase):
     """Check that changeset changes are stored expectingly to their types"""
 
+    @mute_logger("odoo.models.unlink")
     def _setup_rules(self):
         ChangesetFieldRule = self.env["changeset.field.rule"]
         ChangesetFieldRule.search([]).unlink()

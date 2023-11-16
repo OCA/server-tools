@@ -26,7 +26,7 @@ odoo.define("base_changeset.form_backend", function (require) {
             var self = this;
             var state = this.model.get(this.handle);
             this.model
-                .getChangeset(state.model, state.data.id)
+                .getChangeset(state.model, [state.data.id])
                 .then(function (changeset) {
                     self.renderer.renderChangesetPopovers(changeset);
                 });

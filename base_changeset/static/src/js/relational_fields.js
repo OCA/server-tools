@@ -22,7 +22,7 @@ odoo.define("base_changeset.relational_fields", function (require) {
                     ._rpc({
                         model: "record.changeset.change",
                         method: "get_fields_changeset_changes",
-                        args: [model, false],
+                        args: [model, this.value.res_ids],
                     })
                     .then(function (changeset) {
                         var res = {};
