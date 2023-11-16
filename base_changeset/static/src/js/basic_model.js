@@ -22,14 +22,14 @@ odoo.define("base_changeset.basic_model", function (require) {
             });
         },
 
-        getChangeset: function (modelName, resId) {
+        getChangeset: function (modelName, resIds) {
             var self = this;
             return new Promise(function (resolve) {
                 return self
                     ._rpc({
                         model: "record.changeset.change",
                         method: "get_fields_changeset_changes",
-                        args: [modelName, resId],
+                        args: [modelName, resIds],
                     })
                     .then(function (changeset) {
                         var res = {};

@@ -2,42 +2,8 @@ odoo.define("base_changeset.list_backend", function (require) {
     "use strict";
 
     var ListRenderer = require("web.ListRenderer");
-    var ListController = require("web.ListController");
     var core = require("web.core");
     var qweb = core.qweb;
-
-    ListController.include({
-        start: function () {
-            return this._super
-                .apply(this, arguments)
-                .then(this._updateChangeset.bind(this));
-        },
-
-        update: function () {
-            var self = this;
-            var res = this._super.apply(this, arguments);
-            res.then(function () {
-                self._updateChangeset();
-            });
-            return res;
-        },
-
-        _updateChangeset: function () {
-            var self = this;
-            var state = this.model.get(this.handle);
-            this.model.getChangeset(state.model, false).then(function (changeset) {
-                self.renderer.renderChangesetPopovers(changeset);
-            });
-        },
-
-        applyChange: function (id) {
-            this.model.applyChange(id).then(this.reload.bind(this));
-        },
-
-        rejectChange: function (id) {
-            this.model.rejectChange(id).then(this.reload.bind(this));
-        },
-    });
 
     ListRenderer.include({
         /* eslint-disable no-unused-vars */
@@ -77,22 +43,22 @@ odoo.define("base_changeset.list_backend", function (require) {
             // Render the popover in the correct row / column position
             _.each(Object.values(changesetById), function (changesById) {
                 _.each(changesById, function (changes, fieldName) {
-                    var resId = changes[0].record_id.split(",")[1];
+                    var resId = parseInt(changes[0].record_id.split(",")[1]);
                     var dataId = self.state.data.filter(function (element) {
-                        return element.res_id == resId;
+                        return element.res_id === resId;
                     });
                     if (dataId.length > 0) {
                         var bodyRow = self.$el.find("[data-id='" + dataId[0].id + "']");
-                        var $tr = self.$el.find("thead").find("tr");
+                        var $tr = self.$(".o_list_table").find("thead").find("tr");
                         var i = 0;
                         var cellPos = 0;
                         _.each($tr.children(), function (td) {
-                            if ($(td).data("name") == fieldName) {
+                            if ($(td).data("name") === fieldName) {
                                 cellPos = i;
                             }
                             i += 1;
                         });
-                        if (cellPos != 0) {
+                        if (cellPos !== 0) {
                             self._renderChangesetPopover(
                                 $(bodyRow.children().get(cellPos)),
                                 changes
