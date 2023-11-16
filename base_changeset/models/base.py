@@ -30,6 +30,16 @@ class Base(models.AbstractModel):
     count_pending_changeset_changes = fields.Integer(
         compute="_compute_count_pending_changesets"
     )
+    child_changeset_ids = fields.One2many(
+        comodel_name="record.changeset",
+        compute="_compute_child_changeset_ids",
+        string="Child Changesets",
+    )
+    child_changeset_change_ids = fields.One2many(
+        comodel_name="record.changeset.change",
+        compute="_compute_child_changeset_ids",
+        string="Child Changeset Changes",
+    )
     user_can_see_changeset = fields.Boolean(compute="_compute_user_can_see_changeset")
 
     def _compute_changeset_ids(self):
@@ -40,6 +50,15 @@ class Base(models.AbstractModel):
             )
             record.changeset_ids = changesets
             record.changeset_change_ids = changesets.mapped("change_ids")
+
+    def _compute_child_changeset_ids(self):
+        model_name = self._name
+        for record in self:
+            changesets = self.env["record.changeset"].search(
+                [("parent_model", "=", model_name), ("parent_id", "=", record.id)]
+            )
+            record.child_changeset_ids = changesets
+            record.child_changeset_change_ids = changesets.mapped("change_ids")
 
     def _compute_count_pending_changesets(self):
         model_name = self._name

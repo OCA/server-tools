@@ -9,6 +9,7 @@
                 <field name="res_id" widget="integer" />
                 <field name="date" />
                 <field name="modified_by_id" />
+                <field name="action" />
                 <field name="state" />
                 <button
                     name="apply"
@@ -38,6 +39,7 @@
                         type="object"
                         class="oe_highlight"
                         states="draft"
+                        groups="base_changeset.group_changeset_user"
                     />
                     <button
                         name="cancel"
@@ -45,6 +47,7 @@
                         type="object"
                         class="oe_highlight"
                         states="draft"
+                        groups="base_changeset.group_changeset_user"
                     />
                     <field
                         name="state"
@@ -55,7 +58,10 @@
                 <sheet>
                     <group>
                         <group>
-                            <field name="record_id" />
+                            <field
+                                name="record_id"
+                                attrs="{'invisible': [('record_id', '=', False)]}"
+                            />
                             <field name="model" />
                             <field name="res_id" widget="integer" />
                         </group>
@@ -70,7 +76,11 @@
                             <field name="modified_by_id" />
                         </group>
                     </group>
-                    <group string="Changes">
+                    <group
+                        name="group_changes"
+                        string="Changes"
+                        attrs="{'invisible': [('change_ids', '=', [])]}"
+                    >
                         <field name="change_ids" nolabel="1">
                             <tree>
                                 <field name="field_id" context="{'no_open': True}" />
@@ -99,8 +109,23 @@
                             </tree>
                         </field>
                     </group>
-                    <group>
-                        <field name="note" />
+                    <group
+                        name="group_raw_changes"
+                        string="Changes"
+                        attrs="{'invisible': [('raw_changes_html', '=', False)]}"
+                    >
+                        <field
+                            name="raw_changes_html"
+                            readonly="1"
+                            nolabel="1"
+                            attrs="{'invisible': [('raw_changes_html', '=', False)]}"
+                        />
+                    </group>
+                    <group name="group_note">
+                        <field
+                            name="note"
+                            attrs="{'invisible': [('note', '=', False)]}"
+                        />
                     </group>
                 </sheet>
             </form>

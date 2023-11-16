@@ -10,3 +10,10 @@
 .base_changeset_popover {
     max-width: 100%;
 }
+.o_list_table tr.changeset-unlink {
+    background: #fd9090 !important;
+}
+.o_list_table tr.changeset-create {
+    background: #acf7ac !important;
+    text-align: center;
+}

@@ -1,9 +1,11 @@
 # Copyright 2015-2017 Camptocamp SA
 # Copyright 2020 Onestein (<https://www.onestein.eu>)
+# Copyright 2023 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import fields
 from odoo.tests.common import TransactionCase
+from odoo.tools import mute_logger
 
 from ..models.base import disable_changeset
 from .common import ChangesetTestCommon
@@ -12,6 +14,7 @@ from .common import ChangesetTestCommon
 class TestChangesetFieldType(ChangesetTestCommon, TransactionCase):
     """Check that changeset changes are stored expectingly to their types"""
 
+    @mute_logger("odoo.models.unlink")
     def _setup_rules(self):
         ChangesetFieldRule = self.env["changeset.field.rule"]
         ChangesetFieldRule.search([]).unlink()
@@ -179,12 +182,74 @@ class TestChangesetFieldType(ChangesetTestCommon, TransactionCase):
                 {self.field_many2many.name: [self.env.ref("base.ch").id]}
             )
 
+    @mute_logger("odoo.models.unlink")
     def test_new_changeset_one2many(self):
-        """Add a new changeset on a One2many field is not supported"""
-        with self.assertRaises(NotImplementedError):
-            self.partner.write(
-                {self.field_one2many.name: [self.env.ref("base.user_root").id]}
-            )
+        """Add a new changeset on a One2many field"""
+        one2many_value = [0, 0, {"login": "new-user"}]
+        self.partner.write({self.field_one2many.name: [one2many_value]})
+        self.partner._compute_child_changeset_ids()
+        changeset = self.partner.child_changeset_ids
+        self.assertEqual(changeset.action, "create")
+        self.assertTrue(changeset.rule_id)
+        self.assertEqual(changeset.model, self.field_one2many.relation)
+        self.assertFalse(changeset.res_id)
+        self.assertEqual(
+            changeset.raw_changes, str({self.field_one2many.name: [one2many_value]})
+        )
+        self.assertTrue(changeset.raw_changes_html)
+        self.assertFalse(changeset.change_ids)
+        self.assertFalse(self.partner[self.field_one2many.name])
+        changeset.apply()
+        self.assertTrue(self.partner[self.field_one2many.name])
+        self.assertEqual(changeset.state, "done")
+        self.assertTrue(changeset.res_id)
+        new_user_id = changeset.res_id
+        changeset.unlink()
+        # Update + cancel
+        one2many_value = [1, new_user_id, {"login": "new-user2"}]
+        self.partner.write({self.field_one2many.name: [one2many_value]})
+        self.partner._compute_child_changeset_ids()
+        changeset = self.partner.child_changeset_ids
+        self.assertEqual(changeset.action, "write")
+        self.assertEqual(changeset.model, self.field_one2many.relation)
+        self.assertTrue(changeset.res_id, new_user_id)
+        self.assertEqual(
+            changeset.raw_changes, str({self.field_one2many.name: [one2many_value]})
+        )
+        login_field = self.env["ir.model.fields"].search(
+            [("model_id.model", "=", "res.users"), ("name", "=", "login")]
+        )
+        self.assert_child_changeset(
+            self.partner,
+            self.env.user,
+            [
+                (
+                    login_field,
+                    "new-user",
+                    "new-user2",
+                    "draft",
+                )
+            ],
+        )
+        changeset.cancel()
+        self.assertTrue(self.partner[self.field_one2many.name])
+        self.assertEqual(changeset.state, "done")
+        changeset.unlink()
+        # Remove user + apply
+        one2many_value = [2, new_user_id, False]
+        self.partner.write({self.field_one2many.name: [one2many_value]})
+        self.partner._compute_child_changeset_ids()
+        changeset = self.partner.child_changeset_ids
+        self.assertEqual(changeset.action, "unlink")
+        self.assertEqual(changeset.model, self.field_one2many.relation)
+        self.assertEqual(changeset.res_id, new_user_id)
+        self.assertEqual(
+            changeset.raw_changes, str({self.field_one2many.name: [one2many_value]})
+        )
+        self.assertFalse(changeset.change_ids)
+        changeset.apply()
+        self.assertFalse(self.partner[self.field_one2many.name])
+        self.assertEqual(changeset.state, "done")
 
     def test_new_changeset_binary(self):
         """Add a new changeset on a Binary field is not supported"""

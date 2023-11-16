@@ -1,5 +1,6 @@
 # Copyright 2015-2017 Camptocamp SA
 # Copyright 2020 Onestein (<https://www.onestein.eu>)
+# Copyright 2023 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from itertools import groupby
@@ -168,7 +169,9 @@ class RecordChangesetChange(models.Model):
             for fname in field_names:
                 if fname == field_name:
                     if rec.state in states:
-                        value = rec.record_id[rec.field_id.name]
+                        value = (
+                            rec.record_id[rec.field_id.name] if rec.record_id else False
+                        )
                     else:
                         old_field = rec.get_field_for_type(rec.field_id, "old")
                         value = rec[old_field]
@@ -304,6 +307,8 @@ class RecordChangesetChange(models.Model):
 
     @api.model
     def _has_field_changed(self, record, field, value):
+        if not record:
+            return False
         field_def = record._fields[field]
         current_value = field_def.convert_to_write(record[field], record)
         if not (current_value or value):
@@ -347,11 +352,16 @@ class RecordChangesetChange(models.Model):
 
         :returns: dict of values, boolean
         """
-        new_field_name = self.get_field_for_type(rule.field_id, "new")
-        new_value = self._value_for_changeset(record, field_name, value=value)
+        field = rule._get_field_from_field_name(field_name)
+        new_field_name = self.get_field_for_type(field, "new")
+        new_value = (
+            self._value_for_changeset(record, field_name, value=value)
+            if record
+            else value
+        )
         change = {
             new_field_name: new_value,
-            "field_id": rule.field_id.id,
+            "field_id": field.id,
             "rule_id": rule.id,
         }
         if rule.action == "auto":
@@ -368,7 +378,7 @@ class RecordChangesetChange(models.Model):
             # Normally the 'old' value is set when we use the 'apply'
             # button, but since we short circuit the 'apply', we
             # directly set the 'old' value here
-            old_field_name = self.get_field_for_type(rule.field_id, "old")
+            old_field_name = self.get_field_for_type(field, "old")
             # get values ready to write as expected by the changeset
             # (for instance, a many2one is written in a reference
             # field)

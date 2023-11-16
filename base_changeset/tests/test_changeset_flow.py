@@ -7,6 +7,7 @@ from datetime import datetime, timedelta
 from odoo import fields
 from odoo.exceptions import UserError
 from odoo.tests.common import TransactionCase
+from odoo.tools import mute_logger
 
 from ..models.base import disable_changeset
 from .common import ChangesetTestCommon
@@ -29,6 +30,7 @@ class TestChangesetFlow(ChangesetTestCommon, TransactionCase):
       becomes 'done'
     """
 
+    @mute_logger("odoo.models.unlink")
     def _setup_rules(self):
         ChangesetFieldRule = self.env["changeset.field.rule"]
         ChangesetFieldRule.search([]).unlink()
