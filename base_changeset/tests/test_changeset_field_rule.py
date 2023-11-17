@@ -26,6 +26,7 @@ class TestChangesetFieldRule(common.TransactionCase):
         get_rules = ChangesetFieldRule.get_rules(None, "res.partner")
         self.assertEqual(get_rules, {"name": rule1, "street": rule2})
 
+    @mute_logger("odoo.models.unlink")
     def test_get_rules_source(self):
         ChangesetFieldRule = self.env["changeset.field.rule"]
         ChangesetFieldRule.search([]).unlink()
@@ -48,6 +49,7 @@ class TestChangesetFieldRule(common.TransactionCase):
         rules = model.get_rules("res.company", "res.partner")
         self.assertEqual(rules, {"name": rule1, "street": rule3})
 
+    @mute_logger("odoo.models.unlink")
     def test_get_rules_cache(self):
         ChangesetFieldRule = self.env["changeset.field.rule"]
         ChangesetFieldRule.search([]).unlink()

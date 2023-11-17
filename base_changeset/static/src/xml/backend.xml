@@ -12,7 +12,10 @@
                 <td>
                     <t t-esc="change.new_value_display" />
                 </td>
-                <td class="pl-4" t-if="change.user_can_validate_changeset">
+                <td
+                    class="pl-4"
+                    t-if="change.user_can_validate_changeset and !change.is_informative_change"
+                >
                     <div class="btn-group">
                         <button
                             class="btn btn-danger base_changeset_reject btn-sm"
