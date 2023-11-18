@@ -71,14 +71,19 @@ class Base(models.AbstractModel):
     def _jsonify_record(self, parser, rec, root):
         """JSONify one record (rec). Private function called by jsonify."""
         strict = self.env.context.get("jsonify_record_strict", False)
-        for field in parser:
-            field_dict, subparser = rec.__parse_field(field)
+        for field_key in parser:
+            field_dict, subparser = rec.__parse_field(field_key)
+            function = field_dict.get("function")
             try:
                 self._jsonify_record_validate_field(rec, field_dict, strict)
             except SwallableException:
-                continue
+                if not function:
+                    # If we have a function we can use it to get the value
+                    # even if the field is not available.
+                    # If not, well there's nothing we can do.
+                    continue
             json_key = field_dict.get("target", field_dict["name"])
-            if field_dict.get("function"):
+            if function:
                 try:
                     value = self._jsonify_record_handle_function(
                         rec, field_dict, strict
