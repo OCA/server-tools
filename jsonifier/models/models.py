@@ -71,10 +71,12 @@ class Base(models.AbstractModel):
     def _jsonify_record(self, parser, rec, root):
         """JSONify one record (rec). Private function called by jsonify."""
         strict = self.env.context.get("jsonify_record_strict", False)
-        for field in parser:
-            field_dict, subparser = rec.__parse_field(field)
+        for field_key in parser:
+            field_dict, subparser = rec.__parse_field(field_key)
             field_name = field_dict["name"]
-            if field_name not in rec._fields:
+            field = rec._fields.get(field_name)
+            function = field_dict.get("function")
+            if not field and not function:
                 if strict:
                     # let it fail
                     rec._fields[field_name]  # pylint: disable=pointless-statement
@@ -87,9 +89,7 @@ class Base(models.AbstractModel):
                     )
                 continue
             json_key = field_dict.get("target", field_name)
-            field = rec._fields[field_name]
-            if field_dict.get("function"):
-                function = field_dict["function"]
+            if function:
                 try:
                     value = self._function_value(rec, function, field_name)
                 except UserError:
