@@ -23,7 +23,7 @@
                         name="web_ribbon"
                         title="Archived"
                         bg_color="bg-danger"
-                        attrs="{'invisible': [('active', '=', True)]}"
+                        invisible="active"
                     />
                     <div class="oe_button_box" name="button_box">
                     </div>
@@ -46,7 +46,8 @@
                             <field name="exception_type" widget="radio" />
                             <field
                                 name="domain"
-                                attrs="{'invisible': [('exception_type','!=','by_domain')], 'required': [('exception_type','=','by_domain')]}"
+                                invisible="exception_type != 'by_domain'"
+                                required="exception_type == 'by_domain'"
                                 widget="domain"
                                 options="{'model': 'model'}"
                             />
@@ -57,7 +58,8 @@
                         <page
                             name="code"
                             string="Python Code"
-                            attrs="{'invisible': [('exception_type','!=','by_py_code')], 'required': [('exception_type','=','by_py_code')]}"
+                            invisible="exception_type != 'by_py_code'"
+                            required="exception_type == 'by_py_code'"
                         >
                             <field
                                 name="code"
@@ -69,7 +71,7 @@
                         <page
                             name="help"
                             string="Help"
-                            attrs="{'invisible': [('exception_type','!=','by_py_code')]}"
+                            invisible="exception_type != 'by_py_code'"
                         >
                             <group>
                                 <div style="margin-top: 4px;">
