@@ -45,7 +45,7 @@ odoo.define("base_changeset.relational_fields", function (require) {
                 args: [[id]],
                 context: _.extend({}, this.context, {set_change_by_ui: true}),
             }).then(function () {
-                self.trigger_up("reload");
+                self._render();
             });
         },
 
