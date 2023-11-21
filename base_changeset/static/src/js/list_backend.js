@@ -2,8 +2,6 @@ odoo.define("base_changeset.list_backend", function (require) {
     "use strict";
 
     var ListRenderer = require("web.ListRenderer");
-    var core = require("web.core");
-    var qweb = core.qweb;
 
     ListRenderer.include({
         /* eslint-disable no-unused-vars */
@@ -11,7 +9,6 @@ odoo.define("base_changeset.list_backend", function (require) {
             this._super.apply(this, arguments);
             this.lastChangeset = false;
         },
-
         _onToggleOptionalColumnDropdown: function (ev) {
             this._super.apply(this, arguments);
             // HACK to trigger the renderChangesetPopovers when user has added / removed an optional column
@@ -19,7 +16,6 @@ odoo.define("base_changeset.list_backend", function (require) {
                 this.renderChangesetPopovers(this.lastChangeset);
             }
         },
-
         renderChangesetPopovers: function (changeset) {
             var self = this;
             this.lastChangeset = changeset;
@@ -67,59 +63,6 @@ odoo.define("base_changeset.list_backend", function (require) {
                     }
                 });
             });
-        },
-
-        _renderChangesetPopover: function ($el, changes) {
-            var self = this;
-            if (this.mode !== "readonly") {
-                return;
-            }
-            var $button = $(
-                qweb.render("ChangesetButton", {
-                    count: changes.length,
-                })
-            );
-
-            $button.on("click", function (ev) {
-                ev.stopPropagation();
-            });
-
-            $el.prepend($button);
-
-            var options = {
-                content: function () {
-                    var $content = $(
-                        qweb.render("ChangesetPopover", {
-                            changes: changes,
-                        })
-                    );
-                    $content.find(".base_changeset_apply").on("click", function () {
-                        self._applyClicked($(this));
-                    });
-                    $content.find(".base_changeset_reject").on("click", function () {
-                        self._rejectClicked($(this));
-                    });
-                    return $content;
-                },
-                html: true,
-                placement: "bottom",
-                title: "Pending Changes",
-                trigger: "focus",
-                delay: {show: 0, hide: 100},
-                template: qweb.render("ChangesetTemplate"),
-            };
-
-            $button.popover(options);
-        },
-
-        _applyClicked: function ($el) {
-            var id = parseInt($el.data("id"), 10);
-            this.getParent().applyChange(id);
-        },
-
-        _rejectClicked: function ($el) {
-            var id = parseInt($el.data("id"), 10);
-            this.getParent().rejectChange(id);
         },
     });
 });

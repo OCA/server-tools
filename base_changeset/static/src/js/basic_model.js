@@ -2,6 +2,9 @@ odoo.define("base_changeset.basic_model", function (require) {
     "use strict";
 
     var BasicModel = require("web.BasicModel");
+    var BasicRenderer = require("web.BasicRenderer");
+    var core = require("web.core");
+    var qweb = core.qweb;
 
     BasicModel.include({
         applyChange: function (id) {
@@ -12,7 +15,6 @@ odoo.define("base_changeset.basic_model", function (require) {
                 context: _.extend({}, this.context, {set_change_by_ui: true}),
             });
         },
-
         rejectChange: function (id) {
             return this._rpc({
                 model: "record.changeset.change",
@@ -42,6 +44,56 @@ odoo.define("base_changeset.basic_model", function (require) {
                         resolve(res);
                     });
             });
+        },
+    });
+
+    BasicRenderer.include({
+        _renderChangesetPopover: function ($el, changes) {
+            var self = this;
+            if (this.mode !== "readonly") {
+                return;
+            }
+            var $button = $(
+                qweb.render("ChangesetButton", {
+                    count: changes.length,
+                })
+            );
+            $el.append($button);
+            var placement_option = "bottom";
+            if (self.viewType == "list") {
+                var placement_option = "right";
+            }
+            var options = {
+                content: function () {
+                    var $content = $(
+                        qweb.render("ChangesetPopover", {
+                            changes: changes,
+                        })
+                    );
+                    $content.find(".base_changeset_apply").on("click", function () {
+                        self._applyClicked($(this));
+                    });
+                    $content.find(".base_changeset_reject").on("click", function () {
+                        self._rejectClicked($(this));
+                    });
+                    return $content;
+                },
+                html: true,
+                placement: placement_option,
+                title: "Pending Changes",
+                trigger: "bottom",
+                delay: {show: 0, hide: 100},
+                template: qweb.render("ChangesetTemplate"),
+            };
+            $button.popover(options);
+        },
+        _applyClicked: function ($el) {
+            var id = parseInt($el.data("id"), 10);
+            this.getParent().applyChange(id);
+        },
+        _rejectClicked: function ($el) {
+            var id = parseInt($el.data("id"), 10);
+            this.getParent().rejectChange(id);
         },
     });
 });
