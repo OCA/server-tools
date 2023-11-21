@@ -49,4 +49,13 @@
             </p>
         </div>
     </t>
+    <!-- Hide the buttons if there is a linked revision, in which case the revision
+        and the changes it contains will be accepted/rejected..-->
+    <t t-extend="ChangesetPopover">
+        <t t-jquery="td.pl-4" t-operation="attributes">
+            <attribute
+                name="t-if"
+            >change.user_can_validate_changeset and !change.has_review_ids</attribute>
+        </t>
+    </t>
 </templates>

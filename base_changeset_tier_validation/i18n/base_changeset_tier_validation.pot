@@ -6,24 +6,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-15 09:48+0000\n"
-"PO-Revision-Date: 2023-11-15 09:48+0000\n"
+"POT-Creation-Date: 2023-11-21 13:46+0000\n"
+"PO-Revision-Date: 2023-11-21 13:46+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-
-#. module: base_changeset_tier_validation
-#: model_terms:ir.ui.view,arch_db:base_changeset_tier_validation.tier_validation_label_changeset
-msgid ""
-"<br/>\n"
-"                <span>\n"
-"                    This Record has changeset to be\n"
-"                    validated.\n"
-"                </span>"
-msgstr ""
 
 #. module: base_changeset_tier_validation
 #: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_review__changeset_id
@@ -33,6 +23,8 @@ msgstr ""
 #. module: base_changeset_tier_validation
 #: model:ir.model.fields,field_description:base_changeset_tier_validation.field_changeset_field_rule__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset_tier_validation.field_record_changeset__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_record_changeset_change__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_res_users__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_definition__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_review__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_validation__changeset_change_ids
@@ -45,8 +37,20 @@ msgid "Changeset Field Rules"
 msgstr ""
 
 #. module: base_changeset_tier_validation
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_review__changeset_ref
+msgid "Changeset Ref"
+msgstr ""
+
+#. module: base_changeset_tier_validation
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_review__changeset_ref_display_name
+msgid "Changeset Ref Display Name"
+msgstr ""
+
+#. module: base_changeset_tier_validation
 #: model:ir.model.fields,field_description:base_changeset_tier_validation.field_changeset_field_rule__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset_tier_validation.field_record_changeset__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_record_changeset_change__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_res_users__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_definition__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_review__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_validation__changeset_ids
@@ -56,6 +60,8 @@ msgstr ""
 #. module: base_changeset_tier_validation
 #: model:ir.model.fields,field_description:base_changeset_tier_validation.field_changeset_field_rule__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset_tier_validation.field_record_changeset__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_record_changeset_change__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_res_users__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_definition__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_review__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_validation__count_pending_changeset_changes
@@ -65,6 +71,8 @@ msgstr ""
 #. module: base_changeset_tier_validation
 #: model:ir.model.fields,field_description:base_changeset_tier_validation.field_changeset_field_rule__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset_tier_validation.field_record_changeset__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_record_changeset_change__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_res_users__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_definition__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_review__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_validation__count_pending_changesets
@@ -79,6 +87,8 @@ msgstr ""
 #. module: base_changeset_tier_validation
 #: model:ir.model.fields,field_description:base_changeset_tier_validation.field_changeset_field_rule__display_name
 #: model:ir.model.fields,field_description:base_changeset_tier_validation.field_record_changeset__display_name
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_record_changeset_change__display_name
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_res_users__display_name
 #: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_definition__display_name
 #: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_review__display_name
 #: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_validation__display_name
@@ -91,8 +101,15 @@ msgid "Field Model"
 msgstr ""
 
 #. module: base_changeset_tier_validation
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_record_changeset_change__has_review_ids
+msgid "Has Review"
+msgstr ""
+
+#. module: base_changeset_tier_validation
 #: model:ir.model.fields,field_description:base_changeset_tier_validation.field_changeset_field_rule__id
 #: model:ir.model.fields,field_description:base_changeset_tier_validation.field_record_changeset__id
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_record_changeset_change__id
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_res_users__id
 #: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_definition__id
 #: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_review__id
 #: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_validation__id
@@ -109,6 +126,8 @@ msgstr ""
 #. module: base_changeset_tier_validation
 #: model:ir.model.fields,field_description:base_changeset_tier_validation.field_changeset_field_rule____last_update
 #: model:ir.model.fields,field_description:base_changeset_tier_validation.field_record_changeset____last_update
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_record_changeset_change____last_update
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_res_users____last_update
 #: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_definition____last_update
 #: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_review____last_update
 #: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_validation____last_update
@@ -116,18 +135,20 @@ msgid "Last Modified on"
 msgstr ""
 
 #. module: base_changeset_tier_validation
-#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_validation__last_pending_changeset_review
-msgid "Last Pending Changeset Review"
-msgstr ""
-
-#. module: base_changeset_tier_validation
-#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_validation__last_pending_changeset_review_ref
-msgid "Last Pending Changeset Review Ref"
-msgstr ""
-
-#. module: base_changeset_tier_validation
 #: model:ir.model,name:base_changeset_tier_validation.model_record_changeset
 msgid "Record Changeset"
+msgstr ""
+
+#. module: base_changeset_tier_validation
+#: model:ir.model,name:base_changeset_tier_validation.model_record_changeset_change
+msgid "Record Changeset Change"
+msgstr ""
+
+#. module: base_changeset_tier_validation
+#. openerp-web
+#: code:addons/base_changeset_tier_validation/static/src/xml/tier_review_template.xml:0
+#, python-format
+msgid "Reject"
 msgstr ""
 
 #. module: base_changeset_tier_validation
@@ -191,8 +212,34 @@ msgstr ""
 #. module: base_changeset_tier_validation
 #: model:ir.model.fields,field_description:base_changeset_tier_validation.field_changeset_field_rule__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset_tier_validation.field_record_changeset__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_record_changeset_change__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_res_users__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_definition__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_review__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_validation__user_can_see_changeset
 msgid "User Can See Changeset"
+msgstr ""
+
+#. module: base_changeset_tier_validation
+#: model:ir.model,name:base_changeset_tier_validation.model_res_users
+msgid "Users"
+msgstr ""
+
+#. module: base_changeset_tier_validation
+#. openerp-web
+#: code:addons/base_changeset_tier_validation/static/src/xml/tier_review_template.xml:0
+#, python-format
+msgid "Validate"
+msgstr ""
+
+#. module: base_changeset_tier_validation
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_validation__pending_review_ids
+msgid "Validations"
+msgstr ""
+
+#. module: base_changeset_tier_validation
+#. openerp-web
+#: code:addons/base_changeset_tier_validation/static/src/xml/tier_review_template.xml:0
+#, python-format
+msgid "change.user_can_validate_changeset and !change.has_review_ids"
 msgstr ""
