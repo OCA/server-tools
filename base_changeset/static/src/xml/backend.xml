@@ -35,8 +35,6 @@
         <a
             role="button"
             tabindex="0"
-            aria-label="Pending Changes"
-            title="Pending Changes"
             data-toggle="tooltip"
             class="badge badge-warning badge-pill base_changeset_button ml-2"
         >
