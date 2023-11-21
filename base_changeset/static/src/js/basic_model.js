@@ -48,6 +48,11 @@ odoo.define("base_changeset.basic_model", function (require) {
     });
 
     BasicRenderer.include({
+        /* eslint-disable no-unused-vars */
+        init: function (parent, state, params) {
+            this._super.apply(this, arguments);
+            $(".base_changeset_popover").remove();
+        },
         _renderChangesetPopover: function ($el, changes) {
             var self = this;
             if (this.mode !== "readonly") {
@@ -80,8 +85,7 @@ odoo.define("base_changeset.basic_model", function (require) {
                 },
                 html: true,
                 placement: placement_option,
-                title: "Pending Changes",
-                trigger: "bottom",
+                trigger: "hover focus",
                 delay: {show: 0, hide: 100},
                 template: qweb.render("ChangesetTemplate"),
             };
