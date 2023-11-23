@@ -20,24 +20,69 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
 #. module: module_auto_update
-#: model:ir.actions.server,name:module_auto_update.ir_module_module_upgrade_changed_checksum
-#: model:ir.ui.menu,name:module_auto_update.menu_ir_module_module_upgrade_changed_checksum
+#: model_terms:ir.ui.view,arch_db:module_auto_update.view_base_module_upgrade
+msgid "Are you sure you want to launch module auto-update?"
+msgstr ""
+
+#. module: module_auto_update
+#: model:ir.actions.act_window,name:module_auto_update.base_module_upgrade_wizard_action
+#: model:ir.model,name:module_auto_update.model_module_auto_update
+#: model:ir.ui.menu,name:module_auto_update.menu_base_module_upgrade_wizard_action
+#: model_terms:ir.ui.view,arch_db:module_auto_update.view_base_module_upgrade
 msgid "Auto-Upgrade Modules"
 msgstr ""
 
 #. module: module_auto_update
+#: model_terms:ir.ui.view,arch_db:module_auto_update.view_base_module_upgrade
+msgid "Cancel"
+msgstr ""
+
+#. module: module_auto_update
+#: model_terms:ir.ui.view,arch_db:module_auto_update.view_base_module_upgrade
+msgid "Confirm"
+msgstr ""
+
+#. module: module_auto_update
+#: model:ir.model.fields,field_description:module_auto_update.field_module_auto_update__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: module_auto_update
+#: model:ir.model.fields,field_description:module_auto_update.field_module_auto_update__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: module_auto_update
 #: model:ir.model.fields,field_description:module_auto_update.field_ir_module_module__display_name
+#: model:ir.model.fields,field_description:module_auto_update.field_module_auto_update__display_name
 msgid "Display Name"
 msgstr ""
 
 #. module: module_auto_update
 #: model:ir.model.fields,field_description:module_auto_update.field_ir_module_module__id
+#: model:ir.model.fields,field_description:module_auto_update.field_module_auto_update__id
 msgid "ID"
 msgstr ""
 
 #. module: module_auto_update
+#: model_terms:ir.ui.view,arch_db:module_auto_update.view_base_module_upgrade
+msgid "Impacted Apps"
+msgstr ""
+
+#. module: module_auto_update
 #: model:ir.model.fields,field_description:module_auto_update.field_ir_module_module____last_update
+#: model:ir.model.fields,field_description:module_auto_update.field_module_auto_update____last_update
 msgid "Last Modified on"
+msgstr ""
+
+#. module: module_auto_update
+#: model:ir.model.fields,field_description:module_auto_update.field_module_auto_update__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: module_auto_update
+#: model:ir.model.fields,field_description:module_auto_update.field_module_auto_update__write_date
+msgid "Last Updated on"
 msgstr ""
 
 #. module: module_auto_update
@@ -46,7 +91,18 @@ msgid "Module"
 msgstr "Modul"
 
 #. module: module_auto_update
+#: model:ir.model.fields,field_description:module_auto_update.field_module_auto_update__modules_to_update_ids
+msgid "Modules to Update"
+msgstr ""
+
+#. module: module_auto_update
+#: model_terms:ir.ui.view,arch_db:module_auto_update.view_base_module_upgrade
+msgid "Show Modules to Update"
+msgstr ""
+
+#. module: module_auto_update
 #: model:ir.model.fields,field_description:module_auto_update.field_ir_module_module__smart_search
+#: model:ir.model.fields,field_description:module_auto_update.field_module_auto_update__smart_search
 msgid "Smart Search"
 msgstr ""
 
