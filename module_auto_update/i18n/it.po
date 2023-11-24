@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-07-21 02:43+0000\n"
-"PO-Revision-Date: 2023-08-02 13:11+0000\n"
+"PO-Revision-Date: 2023-11-24 11:33+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -22,7 +22,7 @@ msgstr ""
 #. module: module_auto_update
 #: model_terms:ir.ui.view,arch_db:module_auto_update.view_base_module_upgrade
 msgid "Are you sure you want to launch module auto-update?"
-msgstr ""
+msgstr "Confermi di voler lanciare l'aggiornamento automatico dei moduli?"
 
 #. module: module_auto_update
 #: model:ir.actions.act_window,name:module_auto_update.base_module_upgrade_wizard_action
@@ -35,22 +35,22 @@ msgstr "Aggiorna moduli automaticamente"
 #. module: module_auto_update
 #: model_terms:ir.ui.view,arch_db:module_auto_update.view_base_module_upgrade
 msgid "Cancel"
-msgstr ""
+msgstr "Annulla"
 
 #. module: module_auto_update
 #: model_terms:ir.ui.view,arch_db:module_auto_update.view_base_module_upgrade
 msgid "Confirm"
-msgstr ""
+msgstr "Conferma"
 
 #. module: module_auto_update
 #: model:ir.model.fields,field_description:module_auto_update.field_module_auto_update__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creato da"
 
 #. module: module_auto_update
 #: model:ir.model.fields,field_description:module_auto_update.field_module_auto_update__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creato il"
 
 #. module: module_auto_update
 #: model:ir.model.fields,field_description:module_auto_update.field_ir_module_module__display_name
@@ -67,7 +67,7 @@ msgstr "ID"
 #. module: module_auto_update
 #: model_terms:ir.ui.view,arch_db:module_auto_update.view_base_module_upgrade
 msgid "Impacted Apps"
-msgstr ""
+msgstr "Applicazioni da aggiornare"
 
 #. module: module_auto_update
 #: model:ir.model.fields,field_description:module_auto_update.field_ir_module_module____last_update
@@ -78,12 +78,12 @@ msgstr "Ultima modifica il"
 #. module: module_auto_update
 #: model:ir.model.fields,field_description:module_auto_update.field_module_auto_update__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Ultimo aggiornamento di"
 
 #. module: module_auto_update
 #: model:ir.model.fields,field_description:module_auto_update.field_module_auto_update__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Ultimo aggiornamento il"
 
 #. module: module_auto_update
 #: model:ir.model,name:module_auto_update.model_ir_module_module
@@ -93,12 +93,12 @@ msgstr "Modulo"
 #. module: module_auto_update
 #: model:ir.model.fields,field_description:module_auto_update.field_module_auto_update__modules_to_update_ids
 msgid "Modules to Update"
-msgstr ""
+msgstr "Moduli da aggiornare"
 
 #. module: module_auto_update
 #: model_terms:ir.ui.view,arch_db:module_auto_update.view_base_module_upgrade
 msgid "Show Modules to Update"
-msgstr ""
+msgstr "Mostra moduli da aggiornare"
 
 #. module: module_auto_update
 #: model:ir.model.fields,field_description:module_auto_update.field_ir_module_module__smart_search
