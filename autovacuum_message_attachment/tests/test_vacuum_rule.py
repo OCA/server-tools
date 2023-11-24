@@ -4,7 +4,7 @@
 import base64
 from datetime import date, timedelta
 
-from odoo import api, exceptions
+from odoo import api, exceptions, registry
 from odoo.tests import common
 from odoo.tools import DEFAULT_SERVER_DATE_FORMAT
 
@@ -24,10 +24,10 @@ class TestVacuumRule(common.TransactionCase):
 
     def tearDown(self):
         self.registry.leave_test_mode()
-        super(TestVacuumRule, self).tearDown()
+        super().tearDown()
 
     def setUp(self):
-        super(TestVacuumRule, self).setUp()
+        super().setUp()
         self.registry.enter_test_mode(self.env.cr)
         self.env = api.Environment(
             self.registry.test_cr, self.env.uid, self.env.context
@@ -158,8 +158,15 @@ class TestVacuumRule(common.TransactionCase):
         rule = self.env["vacuum.rule"].create(rule_vals)
         self.message_obj.autovacuum(ttype="message")
         # no message deleted as the filter does not match
-        self.assertEqual(len(partner.message_ids), 1)
+        # we need to check the existence of the message in a new cursor because
+        # it its deleted in batch in separated cursor. The original test's cursor
+        # is not aware of the deletion otherwise.
+        with registry(self.env.cr.dbname).cursor() as new_cr:
+            partner_new_env = partner.with_env(partner.env(cr=new_cr))
+            self.assertEqual(len(partner_new_env.message_ids), 1)
 
         rule.write({"model_filter_domain": "[['name', '=', 'Test Partner']]"})
         self.message_obj.autovacuum(ttype="message")
-        self.assertEqual(len(partner.message_ids), 0)
+        with registry(self.env.cr.dbname).cursor() as new_cr:
+            partner_new_env = partner.with_env(partner.env(cr=new_cr))
+            self.assertEqual(len(partner_new_env.message_ids), 0)
