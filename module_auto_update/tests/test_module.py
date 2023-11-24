@@ -18,7 +18,7 @@ MODULE_NAME = "module_auto_update"
 
 class TestModule(TransactionCase):
     def setUp(self):
-        super(TestModule, self).setUp()
+        super().setUp()
         self.own_module = self.env["ir.module.module"].search(
             [("name", "=", MODULE_NAME)]
         )
@@ -83,7 +83,7 @@ class TestModule(TransactionCase):
 @odoo.tests.tagged("post_install", "-at_install")
 class TestModuleAfterInstall(TransactionCase):
     def setUp(self):
-        super(TestModuleAfterInstall, self).setUp()
+        super().setUp()
         Imm = self.env["ir.module.module"]
         self.own_module = Imm.search([("name", "=", MODULE_NAME)])
         self.base_module = Imm.search([("name", "=", "base")])
@@ -126,7 +126,6 @@ class TestModuleAfterInstall(TransactionCase):
 
         # upgrade_changed_checksum commits, so mock that
         with mock.patch.object(self.env.cr, "commit"):
-
             # we simulate an install by setting module states
             Bmu._patch_method("upgrade_module", upgrade_module_mock)
             try:
@@ -165,7 +164,6 @@ class TestModuleAfterInstall(TransactionCase):
 
         # upgrade_changed_checksum commits, so mock that
         with mock.patch.object(self.env.cr, "commit"):
-
             # we simulate an install by setting module states
             Bmu._patch_method("upgrade_module", upgrade_module_mock)
             try:
@@ -199,7 +197,6 @@ class TestModuleAfterInstall(TransactionCase):
 
         # upgrade_changed_checksum commits, so mock that
         with mock.patch.object(self.env.cr, "commit"):
-
             # we simulate an install by setting module states
             Bmu._patch_method("upgrade_module", upgrade_module_mock)
             # got just other modules to_upgrade and no checksum ones
@@ -222,7 +219,6 @@ class TestModuleAfterInstall(TransactionCase):
 
         # upgrade_changed_checksum commits, so mock that
         with mock.patch.object(self.env.cr, "commit"):
-
             # we simulate an install by setting module states
             Bmu._patch_method("upgrade_module", upgrade_module_mock)
             try:
