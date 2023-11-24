@@ -10,6 +10,7 @@
     "license": "LGPL-3",
     "installable": True,
     "summary": "Automatically delete old mail messages and attachments",
+    "maintainers": ["florian-dacosta"],
     "depends": ["mail"],
     "data": ["data/data.xml", "views/rule_vacuum.xml", "security/ir.model.access.csv"],
 }
