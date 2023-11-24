@@ -37,12 +37,8 @@ def ensure_module_state(env, modules, state):
     names = [r[0] for r in env.cr.fetchall()]
     if names:
         raise FailedUpgradeError(
-            "The following modules should be in state '%s' "
-            "at this stage: %s. Bailing out for safety."
-            % (
-                state,
-                ",".join(names),
-            ),
+            f"The following modules should be in state {state!r} "
+            f"at this stage: {','.join(names)}. Bailing out for safety."
         )
 
 
