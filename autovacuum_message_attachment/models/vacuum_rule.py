@@ -59,13 +59,14 @@ class VacuumRule(models.Model):
         help="Technical field used to set attributes (invisible/required, "
         "domain, etc...for other fields, like the domain filter",
     )
-    model_filter_domain = fields.Text(string="Model Filter Domain")
+    model_filter_domain = fields.Text()
     model = fields.Char(readonly=True, compute="_compute_model_id", string="Model code")
     message_type = fields.Selection(
         [
             ("email", "Email"),
             ("comment", "Comment"),
             ("notification", "System notification"),
+            ("user_notification", "User Specific Notification"),
             ("all", "All"),
         ]
     )
