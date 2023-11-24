@@ -10,7 +10,7 @@ from ..models.module import DEFAULT_EXCLUDE_PATTERNS
 
 class TestAddonHash(unittest.TestCase):
     def setUp(self):
-        super(TestAddonHash, self).setUp()
+        super().setUp()
         self.sample_dir = os.path.join(
             os.path.dirname(__file__),
             "sample_module",
