@@ -19,6 +19,7 @@ setuptools.setup(
         'odoo-addon-base_name_search_improved>=16.0dev,<16.1dev',
         'odoo-addon-base_partition>=16.0dev,<16.1dev',
         'odoo-addon-base_search_fuzzy>=16.0dev,<16.1dev',
+        'odoo-addon-base_sequence_default>=16.0dev,<16.1dev',
         'odoo-addon-base_sequence_option>=16.0dev,<16.1dev',
         'odoo-addon-base_sparse_field_list_support>=16.0dev,<16.1dev',
         'odoo-addon-base_technical_user>=16.0dev,<16.1dev',
