@@ -173,7 +173,8 @@ class AbstractUrl(models.AbstractModel):
                     if current_url.key != url_key:
                         current_url.redirect = True
                         record._add_url(referential, lang, url_key)
-            record.url_need_refresh = False
+            if record.url_need_refresh:
+                record.url_need_refresh = False
 
     def _add_url(self, referential, lang, url_key):
         self.ensure_one()

@@ -121,3 +121,25 @@ class TestAbstractUrl(TransactionCase, FakeModelLoader):
         ) as mocked_redirect:
             self.product.active = False
             mocked_redirect.assert_called_once()
+
+    def test_update_twice_write_once(self):
+        """"
+        When we update twice the same record, the write method should be called
+        only once. This is important because for example, by default, in
+        shopinvader_search_engine_update, when the method write is called,
+        it mark the record as to_recompute. The recompute will then call the
+        serializer method on each binding one by one and set the state to done.
+        Unfortunately, if a record has 2 bindings, the serializer will call 2
+        times the _update_url_key method. The first time, if every time the
+        method make a write on the record, the record will end up with the
+        state to_recompute.
+        """ ""
+
+        # we mock the write method to check the number of call but we want the
+        # method to be executed
+        original_write = self.product.write
+        with mock.patch.object(type(self.product), "write") as mocked_write:
+            mocked_write.side_effect = original_write
+            self.product._update_url_key("global", "en_US")
+            self.product._update_url_key("global", "en_US")
+            mocked_write.assert_called_once()
