@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-28 09:48+0000\n"
-"PO-Revision-Date: 2023-09-21 15:37+0000\n"
+"PO-Revision-Date: 2023-11-28 14:33+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-server-tools-8-0/"
 "language/it/)\n"
@@ -100,7 +100,7 @@ msgstr "Eliminazione dei vecchi backup di database non riuscita."
 #: code:addons/auto_backup/models/db_backup.py:137
 #, python-format
 msgid "Connection Test Failed!"
-msgstr "Test connessione Fallito!"
+msgstr "Test connessione fallito!"
 
 #. module: auto_backup
 #: code:addons/auto_backup/models/db_backup.py:134
