@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-03 10:08+0000\n"
-"PO-Revision-Date: 2023-06-13 16:08+0000\n"
+"PO-Revision-Date: 2023-11-28 14:34+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -110,7 +110,7 @@ msgstr "Eliminazione dei vecchi backup di database non riuscita."
 #: code:addons/auto_backup/models/db_backup.py:144
 #, python-format
 msgid "Connection Test Failed!"
-msgstr "Test connessione Fallito!"
+msgstr "Test connessione fallito!"
 
 #. module: auto_backup
 #: code:addons/auto_backup/models/db_backup.py:139
