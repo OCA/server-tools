@@ -30,7 +30,7 @@ class Base(models.AbstractModel):
         elif raise_if_missing:
             raise UserError(
                 _("The technical user is missing in the company {}").format(
-                    self.env.user.company_id.name
+                    self.env.company.name
                 )
             )
         return self_sudoer
