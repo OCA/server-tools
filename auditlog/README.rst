@@ -115,6 +115,7 @@ Contributors
 * Holden Rehg <holdenrehg@gmail.com>
 * Bhavesh Odedra <bodedra@opensourceintegrators.com>
 * Hardik Suthar <hsuthar@opensourceintegrators.com>
+* Dennis Sluijk <d.sluijk@onestein.nl>
 
 Other credits
 ~~~~~~~~~~~~~

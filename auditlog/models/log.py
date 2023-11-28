@@ -1,6 +1,7 @@
 # Copyright 2015 ABF OSIELL <https://osiell.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo import models, fields
+from odoo.tools.safe_eval import safe_eval
 
 
 class AuditlogLog(models.Model):
@@ -12,6 +13,7 @@ class AuditlogLog(models.Model):
     model_id = fields.Many2one(
         'ir.model', string="Model")
     res_id = fields.Integer("Resource ID")
+    res_ids = fields.Char("Resource IDs")
     user_id = fields.Many2one(
         'res.users', string="User")
     method = fields.Char("Method", size=64)
@@ -26,6 +28,15 @@ class AuditlogLog(models.Model):
          ('fast', "Fast log"),
          ],
         string="Type")
+
+    def show_res_ids(self):
+        self.ensure_one()
+        return {
+            "type": "ir.actions.act_window",
+            "view_mode": "tree,form",
+            "res_model": self.model_id.model,
+            "domain": [("id", "in", safe_eval(self.res_ids))],
+        }
 
 
 class AuditlogLogLine(models.Model):
