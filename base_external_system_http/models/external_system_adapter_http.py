@@ -2,12 +2,11 @@
 # Copyright 2023 Therp BV <https://therp.nl>.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 """Extend base adapter model for connections through http(s)."""
-import json
 import logging
 
 import requests
 
-from odoo import _, api, fields, models
+from odoo import _, api, models
 from odoo.exceptions import UserError
 
 # You must initialize logging, otherwise you'll not see debug output.
@@ -36,38 +35,20 @@ class ExternalSystemAdapterHTTP(models.AbstractModel):
     @api.model
     def external_destroy_client(self, client):
         """If needed logout of server."""
-        pass
 
     def get(self, endpoint=None, params=None, **kwargs):
         """Pass transparantly to request.get, but check response."""
         url = self._get_url(endpoint=endpoint)
         _logger.debug("Will get data from %s", url)
         response = requests.get(url, params=params, **kwargs)
-        if response.status_code != 200:
-            message = _("Data could not be retrieved from endpoint %s: %s") % (
-                endpoint,
-                str(response.text),
-            )
-            _logger.error(message)
-            raise UserError(message)
-        _logger.info(
-            _("Data succesfully retrieved from endpoint %s"),
-            endpoint,
-        )
-        return response
+        return self._return_checked_response(endpoint, response)
 
     def post(self, endpoint=None, data=None, json=None, **kwargs):
         """Post data to http server."""
         url = self._get_url(endpoint=endpoint)
         _logger.debug("Will post data to %s", url)
         response = requests.post(url, data=data, json=json, **kwargs)
-        if response.status_code not in (200, 201):
-            message = _("Data could not be pushed to endpoint %s: %s") % (
-                endpoint,
-                str(response.text),
-            )
-            _logger.error(message)
-            raise UserError(message)
+        return self._return_checked_response(endpoint, response)
 
     def _get_url(self, endpoint=None, url_suffix=None):
         """Make full url for endpoint.
@@ -83,19 +64,44 @@ class ExternalSystemAdapterHTTP(models.AbstractModel):
                     ("system_id", "=", system.id),
                     ("name", "=", endpoint),
                 ],
-                limit=1
+                limit=1,
             )
             if not endpoint_record:
                 raise UserError(
-                    _("Endpoint %s not found on system %s")
-                    % (endpoint, system.name)
+                    _("Endpoint %(endpoint)s not found on system %(system_name)s")
+                    % {
+                        "endpoint": endpoint,
+                        "system_name": system.name,
+                    }
                 )
-        url = "%(scheme)s://%(host)s%(port)s%(remote_path)s%(endpoint)s%(url_suffix)s" % {
-            "scheme": system.scheme or "https",
-            "host": system.host,
-            "port": ":" + str(system.port) if system.port else "",
-            "remote_path": system.remote_path if system.remote_path else "",
-            "endpoint": endpoint_record.endpoint if endpoint else "",
-            "url_suffix": url_suffix if url_suffix else "",
-        }
+        url = (
+            "%(scheme)s://%(host)s%(port)s%(remote_path)s%(endpoint)s%(url_suffix)s"
+            % {
+                "scheme": system.scheme or "https",
+                "host": system.host,
+                "port": ":" + str(system.port) if system.port else "",
+                "remote_path": system.remote_path if system.remote_path else "",
+                "endpoint": endpoint_record.endpoint if endpoint else "",
+                "url_suffix": url_suffix if url_suffix else "",
+            }
+        )
         return url
+
+    def _return_checked_response(self, endpoint, response):
+        """For response statuscodes > 201, log error and raise exception."""
+        if response.status_code > 201:
+            _logger.error(
+                "Got response with statuscode %(status)s"
+                " from endpoint %(endpoint)s: %(text)s",
+                {
+                    "status": str(response.status_code),
+                    "endpoint": endpoint,
+                    "text": str(response.text),
+                },
+            )
+            raise UserError(_("Communication failure with %s, check log") % endpoint)
+        _logger.info(
+            "Succesfull communication with endpoint %(endpoint)s",
+            {"endpoint": endpoint},
+        )
+        return response
