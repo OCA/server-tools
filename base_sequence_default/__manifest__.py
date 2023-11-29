@@ -4,7 +4,7 @@
 {
     "name": "Default Fields with Sequence",
     "summary": "Use sequences for default values of fields when creating a new record",
-    "version": "16.0.1.0.1",
+    "version": "16.0.1.0.2",
     "development_status": "Alpha",
     "category": "Tools",
     "website": "https://github.com/OCA/server-tools",
