@@ -22,19 +22,68 @@ msgid "Base"
 msgstr "Base"
 
 #. module: model_read_only
+#: model:ir.model.fields,field_description:model_read_only.field_model_readonly_restriction__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: model_read_only
+#: model:ir.model.fields,field_description:model_read_only.field_model_readonly_restriction__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: model_read_only
 #: model:ir.model.fields,field_description:model_read_only.field_ir_model__display_name
+#: model:ir.model.fields,field_description:model_read_only.field_model_readonly_restriction__display_name
 msgid "Display Name"
 msgstr "Nome visualizzato"
 
 #. module: model_read_only
+#: model:ir.model.fields,field_description:model_read_only.field_model_readonly_restriction__restriction_domain
+msgid "Domain"
+msgstr ""
+
+#. module: model_read_only
+#: model:ir.model.fields,field_description:model_read_only.field_model_readonly_restriction__group_ids
+msgid "Groups"
+msgstr ""
+
+#. module: model_read_only
 #: model:ir.model.fields,field_description:model_read_only.field_ir_model__id
+#: model:ir.model.fields,field_description:model_read_only.field_model_readonly_restriction__id
 msgid "ID"
 msgstr "ID"
 
 #. module: model_read_only
+#: model:ir.model.fields,help:model_read_only.field_model_readonly_restriction__restriction_domain
+msgid "If empty - restriction is applied always."
+msgstr ""
+
+#. module: model_read_only
+#: model:ir.model.fields,help:model_read_only.field_model_readonly_restriction__group_ids
+msgid "If empty - restriction is applied for everyone."
+msgstr ""
+
+#. module: model_read_only
 #: model:ir.model.fields,field_description:model_read_only.field_ir_model____last_update
+#: model:ir.model.fields,field_description:model_read_only.field_model_readonly_restriction____last_update
 msgid "Last Modified on"
 msgstr "Ultima modifica il"
+
+#. module: model_read_only
+#: model:ir.model.fields,field_description:model_read_only.field_model_readonly_restriction__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: model_read_only
+#: model:ir.model.fields,field_description:model_read_only.field_model_readonly_restriction__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: model_read_only
+#: model:ir.model.fields,field_description:model_read_only.field_model_readonly_restriction__model_id
+#: model:ir.model.fields,field_description:model_read_only.field_model_readonly_restriction__model_name
+msgid "Model"
+msgstr ""
 
 #. module: model_read_only
 #: model:ir.model,name:model_read_only.model_ir_model
@@ -42,12 +91,18 @@ msgid "Models"
 msgstr "Modelli"
 
 #. module: model_read_only
-#: model:ir.model.fields,field_description:model_read_only.field_ir_model__readonly_group_ids
-msgid "Readonly Group"
-msgstr "Gruppi sola lettura"
+#: model:ir.model.fields,field_description:model_read_only.field_ir_model__readonly_restriction_ids
+msgid "Readonly Restriction"
+msgstr ""
+
+#. module: model_read_only
+#: model_terms:ir.ui.view,arch_db:model_read_only.view_model_form_inherit
+msgid "Readonly Restrictions"
+msgstr ""
 
 #. module: model_read_only
 #: model:ir.model.fields,field_description:model_read_only.field_ir_model__smart_search
+#: model:ir.model.fields,field_description:model_read_only.field_model_readonly_restriction__smart_search
 msgid "Smart Search"
 msgstr "Ricerca intelligente"
 
@@ -56,3 +111,11 @@ msgstr "Ricerca intelligente"
 #, python-format
 msgid "You are not allowed to modify this record."
 msgstr "Non hai i permessi per modificare questo record."
+
+#. module: model_read_only
+#: model:ir.model,name:model_read_only.model_model_readonly_restriction
+msgid "model.readonly.restriction"
+msgstr ""
+
+#~ msgid "Readonly Group"
+#~ msgstr "Gruppi sola lettura"
