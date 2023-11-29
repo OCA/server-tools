@@ -12,6 +12,11 @@ To configure this module, you need to:
     Sequences*.
 7.  Create one sequence with code named after this pattern:
     `base_sequence_default.{object}.fields.{field}`. E.g.:
-    `base_sequence_default.res.partner.fields.name` to add a default
-    sequenced name for new partners.
+    `base_sequence_default.res.partner.fields.name` to add a default sequenced
+    name for new partners. Do not use `{}` when adding the model and field name
+    to the pattern.
+
+    ![Setting the sequence code properly](https://github.com/OCA/server-tools/assets/147538094/ebf4be69-85d4-4c28-a3ec-bbe930fd53cf)
 8.  Configure the sequence at will.
+
+    ![Configuring a sequence to have date range sub-sequences](https://github.com/OCA/server-tools/assets/147538094/e3eb311b-738f-4fce-9af5-a1b592908704)
