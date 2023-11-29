@@ -2,7 +2,7 @@
 {
     "name": "Model Read Only",
     "category": "Tools",
-    "version": "14.0.2.0.0",
+    "version": "14.0.3.0.0",
     "license": "AGPL-3",
     "author": "Ilyas, ooops404, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/server-tools",
