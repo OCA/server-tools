@@ -7,3 +7,5 @@ To use this module, it is necessary to:
     on creation.
 4.  Check that the field defined in the sequence is set to the next
     value in the sequence.
+
+    ![The partner reference was auto-incremented as configured](https://github.com/OCA/server-tools/assets/147538094/82698762-6ac2-4ac0-89ba-7c9b32ea5909)
