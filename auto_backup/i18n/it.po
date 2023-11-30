@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-28 09:48+0000\n"
-"PO-Revision-Date: 2023-11-28 14:33+0000\n"
+"PO-Revision-Date: 2023-11-30 22:34+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-server-tools-8-0/"
 "language/it/)\n"
@@ -210,7 +210,7 @@ msgstr "ID"
 #. module: auto_backup
 #: help:db.backup,message_unread:0
 msgid "If checked new messages require your attention."
-msgstr "Se selezionato i nuovi messaggi richiedono la tua attenzione."
+msgstr "Se selezionata, nuovi messaggi richiedono attenzione."
 
 #. module: auto_backup
 #: field:db.backup,message_is_follower:0
