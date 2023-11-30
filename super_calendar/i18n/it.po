@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-28 21:29+0000\n"
-"PO-Revision-Date: 2023-06-07 17:09+0000\n"
+"PO-Revision-Date: 2023-11-30 16:36+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-server-tools-8-0/"
 "language/it/)\n"
@@ -144,7 +144,7 @@ msgstr ""
 #. module: super_calendar
 #: field:super.calendar.configurator.line,domain:0
 msgid "Domain"
-msgstr "Domain"
+msgstr "Dominio"
 
 #. module: super_calendar
 #: field:super.calendar,duration:0
