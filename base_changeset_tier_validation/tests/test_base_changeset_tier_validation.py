@@ -108,6 +108,40 @@ class TestBaseChangesetTierValidation(common.SavepointCase):
         teardown_test_model(cls.env, [TierValidationTester])
         return super().tearDownClass()
 
+    def test_update_tier_validation_tester_simple_validate(self):
+        test_record_user = self.test_record.with_user(self.user)
+        test_record_manager = self.test_record.with_user(self.manager)
+        test_record_user.write({"test_field": 1.0})
+        test_record_manager.invalidate_cache()
+        self.assertEqual(test_record_manager.test_field, 0)
+        self.assertEqual(test_record_manager.total_pending_reviews, 1)
+        self.assertTrue(test_record_manager.review_ids.summary)  # Test Field: 0.0 > 1.0
+        self.assertEqual(test_record_manager.changeset_ids.state, "draft")
+        self.assertEqual(test_record_manager.changeset_ids.review_ids.status, "pending")
+        test_record_manager.review_ids.validate_tier()
+        self.assertEqual(test_record_manager.changeset_ids.state, "done")
+        self.assertEqual(
+            test_record_manager.changeset_ids.review_ids.status, "approved"
+        )
+        self.assertEqual(test_record_manager.test_field, 1)
+
+    def test_update_tier_validation_tester_simple_reject(self):
+        test_record_user = self.test_record.with_user(self.user)
+        test_record_manager = self.test_record.with_user(self.manager)
+        test_record_user.write({"test_field": 1.0})
+        test_record_manager.invalidate_cache()
+        self.assertEqual(test_record_manager.test_field, 0)
+        self.assertEqual(test_record_manager.total_pending_reviews, 1)
+        self.assertTrue(test_record_manager.review_ids.summary)  # Test Field: 0.0 > 1.0
+        self.assertEqual(test_record_manager.changeset_ids.state, "draft")
+        self.assertEqual(test_record_manager.changeset_ids.review_ids.status, "pending")
+        test_record_manager.review_ids.reject_tier()
+        self.assertEqual(test_record_manager.changeset_ids.state, "done")
+        self.assertEqual(
+            test_record_manager.changeset_ids.review_ids.status, "rejected"
+        )
+        self.assertEqual(test_record_manager.test_field, 0)
+
     def test_update_tier_validation_tester_full(self):
         test_record_user = self.test_record.with_user(self.user)
         test_record_manager = self.test_record.with_user(self.manager)
@@ -159,3 +193,35 @@ class TestBaseChangesetTierValidation(common.SavepointCase):
         # Change state to done
         with self.assertRaises(ValidationError):
             test_record_manager.write({"state": "done"})
+
+    def test_update_tier_validation_tester_changeset_01(self):
+        test_record_user = self.test_record.with_user(self.user)
+        test_record_manager = self.test_record.with_user(self.manager)
+        # Change test_field
+        test_record_user.write({"test_field": 1.0})
+        test_record_manager.invalidate_cache()
+        self.assertEqual(test_record_manager.total_pending_reviews, 1)
+        self.assertEqual(test_record_manager.changeset_ids.state, "draft")
+        self.assertEqual(test_record_manager.changeset_ids.review_ids.status, "pending")
+        test_record_manager.changeset_ids.apply()
+        self.assertEqual(test_record_manager.changeset_ids.state, "done")
+        self.assertEqual(
+            test_record_manager.changeset_ids.review_ids.status, "approved"
+        )
+        self.assertEqual(test_record_manager.test_field, 1)
+
+    def test_update_tier_validation_tester_changeset_02(self):
+        test_record_user = self.test_record.with_user(self.user)
+        test_record_manager = self.test_record.with_user(self.manager)
+        # Change test_field
+        test_record_user.write({"test_field": 1.0})
+        test_record_manager.invalidate_cache()
+        self.assertEqual(test_record_manager.total_pending_reviews, 1)
+        self.assertEqual(test_record_manager.changeset_ids.state, "draft")
+        self.assertEqual(test_record_manager.changeset_ids.review_ids.status, "pending")
+        test_record_manager.changeset_ids.cancel()
+        self.assertEqual(test_record_manager.changeset_ids.state, "done")
+        self.assertEqual(
+            test_record_manager.changeset_ids.review_ids.status, "rejected"
+        )
+        self.assertEqual(test_record_manager.test_field, 0)

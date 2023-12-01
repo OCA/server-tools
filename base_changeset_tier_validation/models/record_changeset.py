@@ -55,3 +55,28 @@ class RecordChangeset(models.Model):
             "requested_by": self.env.uid,
             "changeset_id": self.id,
         }
+
+    def apply(self):
+        """Auto-approve related reviews if changeset is apply."""
+        super().apply()
+        if self.env.context.get("apply_from_changeset"):
+            return
+        for item in self.filtered(
+            lambda x: x.state == "done" and x.review_ids.status == "pending"
+        ):
+            for review in item.review_ids:
+                review.with_context(apply_from_changeset=True)._tier_process("approved")
+
+    def cancel(self):
+        """Auto-reject related reviews if changeset is cancel."""
+        super().cancel()
+        if self.env.context.get("cancel_from_changeset"):
+            return
+
+        for item in self.filtered(
+            lambda x: x.state == "done" and x.review_ids.status == "pending"
+        ):
+            for review in item.review_ids:
+                review.with_context(cancel_from_changeset=True)._tier_process(
+                    "rejected"
+                )
