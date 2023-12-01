@@ -14,6 +14,7 @@ class ImportXLSXWizard(models.TransientModel):
     _description = "Wizard for importing excel"
 
     import_file = fields.Binary(string="Import File (*.xlsx)")
+    filename = fields.Char("Import File Name")
     template_id = fields.Many2one(
         "xlsx.template",
         string="Template",
