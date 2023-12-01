@@ -825,6 +825,11 @@ msgid "Import File (*.xlsx)"
 msgstr "Importar archivo (*.xlsx)"
 
 #. module: excel_import_export
+#: model:ir.model.fields,field_description:excel_import_export.field_import_xlsx_wizard__filename
+msgid "Import File Name"
+msgstr ""
+
+#. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.import_xlsx_wizard
 msgid "Import File Template"
 msgstr "Importar plantilla de archivo"
