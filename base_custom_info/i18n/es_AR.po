@@ -182,6 +182,13 @@ msgid "Click to define a new custom info template."
 msgstr "Pulse para definir una nueva plantilla de inf. personalizada."
 
 #. module: base_custom_info
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_option__code
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_property__code
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value__code
+msgid "Code"
+msgstr ""
+
+#. module: base_custom_info
 #: model:ir.model.fields.selection,name:base_custom_info.selection__custom_info_property__widget__html
 msgid "Complex text"
 msgstr "Texto complejo"
@@ -919,6 +926,12 @@ msgstr ""
 #, python-format
 msgid "You must set a existing model."
 msgstr "Debe configurar un modelo existente."
+
+#. module: base_custom_info
+#: code:addons/base_custom_info/models/custom_info.py:0
+#, python-format
+msgid "get_custom_info: No property or code!"
+msgstr ""
 
 #~ msgid "Custom Info Categories"
 #~ msgstr "Categorías de inf. personalizada"
