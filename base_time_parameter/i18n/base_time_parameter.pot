@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -81,6 +81,30 @@ msgid "Display Name"
 msgstr ""
 
 #. module: base_time_parameter
+#: code:addons/base_time_parameter/models/base_time_parameter_version.py:0
+#, python-format
+msgid "Error occurred while validating date: %s"
+msgstr ""
+
+#. module: base_time_parameter
+#: code:addons/base_time_parameter/models/base_time_parameter_version.py:0
+#, python-format
+msgid "Error occurred while validating float: %s"
+msgstr ""
+
+#. module: base_time_parameter
+#: code:addons/base_time_parameter/models/base_time_parameter_version.py:0
+#, python-format
+msgid "Error occurred while validating integer: %s"
+msgstr ""
+
+#. module: base_time_parameter
+#: code:addons/base_time_parameter/models/base_time_parameter_version.py:0
+#, python-format
+msgid "Error occurred while validating json: %s"
+msgstr ""
+
+#. module: base_time_parameter
 #: model:ir.model.fields,help:base_time_parameter.field_base_time_parameter__model_id
 msgid "Filter by model (e.g. hr.payslip)"
 msgstr ""
@@ -148,24 +172,18 @@ msgid "Parameter Name"
 msgstr ""
 
 #. module: base_time_parameter
-#: model:ir.model.fields.selection,name:base_time_parameter.selection__base_time_parameter__type__reference
-msgid "Reference"
+#: model:ir.model.fields.selection,name:base_time_parameter.selection__base_time_parameter__type__record
+msgid "Record"
 msgstr ""
 
 #. module: base_time_parameter
-#: model:ir.model.fields.selection,name:base_time_parameter.selection__base_time_parameter__type__reference_id
-msgid "Reference ID"
+#: model:ir.model.fields,field_description:base_time_parameter.field_base_time_parameter__record_model
+msgid "Record Model"
 msgstr ""
 
 #. module: base_time_parameter
 #: model:ir.model.fields,field_description:base_time_parameter.field_base_time_parameter_version__value_reference
 msgid "Reference Value"
-msgstr ""
-
-#. module: base_time_parameter
-#: model:ir.model.fields,field_description:base_time_parameter.field_base_time_parameter__smart_search
-#: model:ir.model.fields,field_description:base_time_parameter.field_base_time_parameter_version__smart_search
-msgid "Smart Search"
 msgstr ""
 
 #. module: base_time_parameter
@@ -187,7 +205,7 @@ msgstr ""
 
 #. module: base_time_parameter
 #: model:ir.actions.act_window,name:base_time_parameter.base_time_parameter_action
-#: model:ir.ui.menu,name:base_time_parameter.menu_action_base_time_parameter
+#: model:ir.ui.menu,name:base_time_parameter.base_time_parameter_menu
 msgid "Time Parameters"
 msgstr ""
 
@@ -208,6 +226,7 @@ msgid "Value"
 msgstr ""
 
 #. module: base_time_parameter
+#: model:ir.actions.act_window,name:base_time_parameter.base_time_parameter_version_action
 #: model:ir.model.fields,field_description:base_time_parameter.field_base_time_parameter__version_ids
 #: model_terms:ir.ui.view,arch_db:base_time_parameter.base_time_parameter_view_form
 msgid "Versions"
