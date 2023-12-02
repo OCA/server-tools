@@ -10,6 +10,7 @@
             <tree>
                 <field name="sequence" widget="handle" />
                 <field name="name" />
+                <field name="code" />
                 <field name="field_type" />
                 <field name="category_id" />
                 <field name="required" />
@@ -35,6 +36,7 @@
                 <sheet>
                     <group>
                         <field name="name" />
+                        <field name="code" />
                         <field name="widget" />
                         <field name="field_type" />
                         <field name="category_id" />
@@ -89,6 +91,7 @@
                 <field name="category_id" />
                 <field name="required" />
                 <field name="default_value" />
+                <field name="code" />
                 <group expand="0" string="Group By">
                     <filter
                         string="Template"

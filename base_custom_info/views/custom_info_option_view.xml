@@ -9,6 +9,7 @@
         <field name="arch" type="xml">
             <tree editable="bottom">
                 <field name="name" />
+                <field name="code" />
                 <!-- Hidden for now from backend UI -->
                 <field name="template_id" invisible="1" />
             </tree>
@@ -35,6 +36,7 @@
                 <sheet>
                     <group>
                         <field name="name" />
+                        <field name="code" />
                         <!-- Hidden for now from backend UI -->
                         <field name="template_id" invisible="1" />
                     </group>
