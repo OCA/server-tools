@@ -39,6 +39,7 @@ addon | version | maintainers | summary
 [base_sequence_option](base_sequence_option/) | 15.0.1.0.0 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Alternative sequence options for specific models
 [base_sparse_field_list_support](base_sparse_field_list_support/) | 15.0.1.0.0 |  | add list support to convert_to_cache()
 [base_technical_user](base_technical_user/) | 15.0.1.0.0 |  | Add a technical user parameter on the company
+[base_time_parameter](base_time_parameter/) | 15.0.1.0.0 | [![appstogrow](https://github.com/appstogrow.png?size=30px)](https://github.com/appstogrow) [![nimarosa](https://github.com/nimarosa.png?size=30px)](https://github.com/nimarosa) | Time dependent parameters Adds the feature to define parameters with time based versions.
 [base_time_window](base_time_window/) | 15.0.1.0.0 |  | Base model to handle time windows
 [base_translation_field_label](base_translation_field_label/) | 15.0.1.0.0 | [![GuillemCForgeFlow](https://github.com/GuillemCForgeFlow.png?size=30px)](https://github.com/GuillemCForgeFlow) | Shows the field label and optionally hides the Translated field value.
 [base_view_inheritance_extension](base_view_inheritance_extension/) | 15.0.2.0.2 |  | Adds more operators for view inheritance
