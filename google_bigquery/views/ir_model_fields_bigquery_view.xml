@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="ir_model_fields_bigquery_tree" model="ir.ui.view">
+        <field name="model">ir.model.fields.bigquery</field>
+        <field name="arch" type="xml">
+            <tree create="0" delete="0">
+                <field name="field_id" readonly="1" force_save="1" />
+                <field name="nested" invisible="1" />
+                <field name="field_type" />
+                <field name="enabled" invisible="1" />
+                <button
+                    name="toggle_enabled"
+                    string="Disabled"
+                    type="object"
+                    class="float-right"
+                    attrs="{'invisible': [('enabled', '=', True)]}"
+                />
+                <button
+                    name="toggle_enabled"
+                    string="Enabled"
+                    type="object"
+                    class="float-right btn-success"
+                    attrs="{'invisible': [('enabled', '=', False)]}"
+                />
+                <button
+                    name="toggle_nested"
+                    string="Flat"
+                    type="object"
+                    class="float-right mr-2"
+                    attrs="{'invisible': ['|', ('nested', '=', True), ('field_type', 'not in', ('many2many', 'many2one', 'one2many'))]}"
+                />
+                <button
+                    name="toggle_nested"
+                    string="Nested"
+                    type="object"
+                    class="float-right btn-info mr-2"
+                    attrs="{'invisible': ['|', ('nested', '=', False), ('field_type', 'not in', ('many2many', 'many2one', 'one2many'))]}"
+                />
+            </tree>
+        </field>
+    </record>
+
+    <record id="ir_model_fields_bigquery_form" model="ir.ui.view">
+        <field name="model">ir.model.fields.bigquery</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="field_relation" invisible="1" />
+                        <field name="parent_id" invisible="1" />
+                        <field
+                            name="field_id"
+                            force_save="1"
+                            readonly="not context.get('child_field')"
+                            domain="[('model_id.model', '=', field_relation)]"
+                        />
+                        <field name="field_type" invisible="1" />
+                        <field name="enabled" />
+                        <field
+                            name="nested"
+                            attrs="{'invisible': [('field_type', 'not in', ('many2many', 'many2one', 'one2many'))]}"
+                        />
+                    </group>
+                    <notebook>
+                        <page
+                            name="children_page"
+                            string="Fields"
+                            attrs="{'invisible': ['|', ('nested', '=', False), ('field_type', 'not in', ('many2many', 'many2one', 'one2many'))]}"
+                        >
+                            <field name="child_ids" context="{'child_field': True}">
+                                <tree>
+                                    <field name="field_id" />
+                                    <field name="nested" invisible="1" />
+                                    <field name="field_type" />
+                                    <field name="enabled" invisible="1" />
+                                    <button
+                                        name="toggle_enabled"
+                                        string="Disabled"
+                                        type="object"
+                                        class="float-right"
+                                        attrs="{'invisible': [('enabled', '=', True)]}"
+                                    />
+                                    <button
+                                        name="toggle_enabled"
+                                        string="Enabled"
+                                        type="object"
+                                        class="float-right btn-success"
+                                        attrs="{'invisible': [('enabled', '=', False)]}"
+                                    />
+                                    <button
+                                        name="toggle_nested"
+                                        string="Flat"
+                                        type="object"
+                                        class="float-right mr-2"
+                                        attrs="{'invisible': ['|', ('nested', '=', True), ('field_type', 'not in', ('many2many', 'many2one', 'one2many'))]}"
+                                    />
+                                    <button
+                                        name="toggle_nested"
+                                        string="Nested"
+                                        type="object"
+                                        class="float-right btn-info mr-2"
+                                        attrs="{'invisible': ['|', ('nested', '=', False), ('field_type', 'not in', ('many2many', 'many2one', 'one2many'))]}"
+                                    />
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

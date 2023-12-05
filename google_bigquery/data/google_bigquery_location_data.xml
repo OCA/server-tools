@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- List taken from: https://cloud.google.com/bigquery/docs/locations#locations_or_region_types (no API available) -->
+    <record id="location_1" model="google.bigquery.location">
+        <field name="name">us-central1</field>
+        <field name="description">Iowa</field>
+    </record>
+    <record id="location_2" model="google.bigquery.location">
+        <field name="name">us-west4</field>
+        <field name="description">Las Vegas</field>
+    </record>
+    <record id="location_3" model="google.bigquery.location">
+        <field name="name">us-west2</field>
+        <field name="description">Los Angeles</field>
+    </record>
+    <record id="location_4" model="google.bigquery.location">
+        <field name="name">Montréal</field>
+        <field name="description">northamerica-northeast1</field>
+    </record>
+    <record id="location_5" model="google.bigquery.location">
+        <field name="name">us-east4</field>
+        <field name="description">Northern Virginia</field>
+    </record>
+    <record id="location_6" model="google.bigquery.location">
+        <field name="name">us-west1</field>
+        <field name="description">Oregon</field>
+    </record>
+    <record id="location_7" model="google.bigquery.location">
+        <field name="name">us-west3</field>
+        <field name="description">Salt Lake City</field>
+    </record>
+    <record id="location_8" model="google.bigquery.location">
+        <field name="name">southamerica-east1</field>
+        <field name="description">São Paulo</field>
+    </record>
+    <record id="location_9" model="google.bigquery.location">
+        <field name="name">southamerica-west1</field>
+        <field name="description">Santiago</field>
+    </record>
+    <record id="location_10" model="google.bigquery.location">
+        <field name="name">us-east1</field>
+        <field name="description">South Carolina</field>
+    </record>
+    <record id="location_11" model="google.bigquery.location">
+        <field name="name">northamerica-northeast2</field>
+        <field name="description">Toronto</field>
+    </record>
+
+    <record id="location_12" model="google.bigquery.location">
+        <field name="name">asia-south2</field>
+        <field name="description">Delhi</field>
+    </record>
+    <record id="location_13" model="google.bigquery.location">
+        <field name="name">asia-east2</field>
+        <field name="description">Hong Kong</field>
+    </record>
+    <record id="location_14" model="google.bigquery.location">
+        <field name="name">asia-southeast2</field>
+        <field name="description">Jakarta</field>
+    </record>
+    <record id="location_15" model="google.bigquery.location">
+        <field name="name">australia-southeast2</field>
+        <field name="description">Melbourne</field>
+    </record>
+    <record id="location_16" model="google.bigquery.location">
+        <field name="name">asia-south1</field>
+        <field name="description">Mumbai</field>
+    </record>
+    <record id="location_17" model="google.bigquery.location">
+        <field name="name">asia-northeast2</field>
+        <field name="description">Osaka</field>
+    </record>
+    <record id="location_18" model="google.bigquery.location">
+        <field name="name">asia-northeast3</field>
+        <field name="description">Seoul</field>
+    </record>
+    <record id="location_19" model="google.bigquery.location">
+        <field name="name">asia-southeast1</field>
+        <field name="description">Singapore</field>
+    </record>
+    <record id="location_20" model="google.bigquery.location">
+        <field name="name">australia-southeast1</field>
+        <field name="description">Sydney</field>
+    </record>
+    <record id="location_21" model="google.bigquery.location">
+        <field name="name">asia-east1</field>
+        <field name="description">Taiwan</field>
+    </record>
+    <record id="location_22" model="google.bigquery.location">
+        <field name="name">asia-northeast1</field>
+        <field name="description">Tokyo</field>
+    </record>
+
+    <record id="location_23" model="google.bigquery.location">
+        <field name="name">europe-west1</field>
+        <field name="description">Belgium</field>
+    </record>
+    <record id="location_24" model="google.bigquery.location">
+        <field name="name">europe-north1</field>
+        <field name="description">Finland</field>
+    </record>
+    <record id="location_25" model="google.bigquery.location">
+        <field name="name">europe-west3</field>
+        <field name="description">Frankfurt</field>
+    </record>
+    <record id="location_26" model="google.bigquery.location">
+        <field name="name">europe-west2</field>
+        <field name="description">London</field>
+    </record>
+    <record id="location_27" model="google.bigquery.location">
+        <field name="name">europe-west4</field>
+        <field name="description">Netherlands</field>
+    </record>
+    <record id="location_28" model="google.bigquery.location">
+        <field name="name">europe-central2</field>
+        <field name="description">Warsaw</field>
+    </record>
+    <record id="location_29" model="google.bigquery.location">
+        <field name="name">europe-west6</field>
+        <field name="description">Zürich</field>
+    </record>
+</odoo>
