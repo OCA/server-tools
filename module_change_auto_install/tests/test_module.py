@@ -12,7 +12,6 @@ from odoo.addons.module_change_auto_install.patch import (
 
 
 class TestModule(TransactionCase):
-
     _EXPECTED_RESULTS = {
         "web_responsive": {"web_responsive": True},
         "sale, purchase,": {"sale": True, "purchase": True},
