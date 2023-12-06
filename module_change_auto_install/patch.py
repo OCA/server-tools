@@ -47,7 +47,6 @@ def _get_modules_dict_auto_install_config(config_value):
 
 
 def _overload_load_manifest(module, mod_path=None):
-
     res = _original_load_manifest(module, mod_path=None)
     auto_install = res.get("auto_install", False)
 

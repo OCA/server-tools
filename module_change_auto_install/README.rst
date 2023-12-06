@@ -17,32 +17,32 @@ Change auto installable modules
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github
-    :target: https://github.com/OCA/server-tools/tree/16.0/module_change_auto_install
+    :target: https://github.com/OCA/server-tools/tree/17.0/module_change_auto_install
     :alt: OCA/server-tools
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/server-tools-16-0/server-tools-16-0-module_change_auto_install
+    :target: https://translation.odoo-community.org/projects/server-tools-17-0/server-tools-17-0-module_change_auto_install
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/server-tools&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/server-tools&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-In odoo, by default some modules are marked as auto installable
-by the ``auto_install`` key present in the manifest.
+In odoo, by default some modules are marked as auto installable by the
+``auto_install`` key present in the manifest.
 
-* This feature is very useful for "glue" modules that allow two modules to work together.
-  (A typical example is ``sale_stock`` which allows ``sale`` and ``stock`` modules to work together).
+-  This feature is very useful for "glue" modules that allow two modules
+   to work together. (A typical example is ``sale_stock`` which allows
+   ``sale`` and ``stock`` modules to work together).
+-  However, Odoo SA also marks some modules as auto installable, even
+   though this is not technically required. This can happen for modules
+   the company wants to promote like ``iap``, modules with a big wow
+   effect like ``partner_autocomplete``, or some modules they consider
+   useful by default like ``account_edi``. See the discussion:
+   https://github.com/odoo/odoo/issues/71190
 
-* However, Odoo SA also marks some modules as auto installable, even though
-  this is not technically required. This can happen
-  for modules the company wants to promote like ``iap``,
-  modules with a big wow effect like ``partner_autocomplete``,
-  or some modules they consider useful by default like ``account_edi``.
-  See the discussion: https://github.com/odoo/odoo/issues/71190
-
-This module allows to change by configuration, the list of auto installable modules,
-adding or removing some modules to auto install.
+This module allows to change by configuration, the list of auto
+installable modules, adding or removing some modules to auto install.
 
 **Table of contents**
 
@@ -54,79 +54,80 @@ Installation
 
 You don't have to install this module. To make the features working :
 
-* make the module ``module_change_auto_install`` available in your addons path
-* update your ``odoo.cfg`` following  the "Configure" section
+-  make the module ``module_change_auto_install`` available in your
+   addons path
+-  update your ``odoo.cfg`` following the "Configure" section
 
 Configuration
 =============
 
-* Edit your ``odoo.cfg`` configuration file:
-
-* Add the module ``module_change_auto_install`` in the ``server_wide_modules`` list.
-
-* (optional) Add a new entry ``modules_auto_install_disabled`` to mark
-  a list of modules as NOT auto installable.
-
-* (optional) Add a new entry ``modules_auto_install_enabled`` to mark
-  a list of modules as auto installable. This feature can be usefull for companies
-  that are hosting a lot of Odoo instances for many customers, and want some modules
-  to be always installed.
+-  Edit your ``odoo.cfg`` configuration file:
+-  Add the module ``module_change_auto_install`` in the
+   ``server_wide_modules`` list.
+-  (optional) Add a new entry ``modules_auto_install_disabled`` to mark
+   a list of modules as NOT auto installable.
+-  (optional) Add a new entry ``modules_auto_install_enabled`` to mark a
+   list of modules as auto installable. This feature can be usefull for
+   companies that are hosting a lot of Odoo instances for many
+   customers, and want some modules to be always installed.
 
 **Typical Settings**
 
-.. code-block:: shell
+.. code:: shell
 
-    server_wide_modules = web,module_change_auto_install
+   server_wide_modules = web,module_change_auto_install
 
-    modules_auto_install_disabled =
-        partner_autocomplete,
-        iap,
-        mail_bot
+   modules_auto_install_disabled =
+       partner_autocomplete,
+       iap,
+       mail_bot
 
-    modules_auto_install_enabled =
-        web_responsive:web,
-        base_technical_features,
-        disable_odoo_online,
-        account_usability
+   modules_auto_install_enabled =
+       web_responsive:web,
+       base_technical_features,
+       disable_odoo_online,
+       account_usability
 
-Run your instance and check logs. Modules that has been altered should be present in your log, at the load of your instance:
+Run your instance and check logs. Modules that has been altered should
+be present in your log, at the load of your instance:
 
-.. code-block:: shell
+.. code:: shell
 
-    INFO db_name odoo.addons.module_change_auto_install.patch: Module 'iap' has been marked as NOT auto installable.
-    INFO db_name odoo.addons.module_change_auto_install.patch: Module 'mail_bot' has been marked as NOT auto installable.
-    INFO db_name odoo.addons.module_change_auto_install.patch: Module 'partner_autocomplete' has been marked as NOT auto installable.
-    INFO db_name odoo.modules.loading: 42 modules loaded in 0.32s, 0 queries (+0 extra)
+   INFO db_name odoo.addons.module_change_auto_install.patch: Module 'iap' has been marked as NOT auto installable.
+   INFO db_name odoo.addons.module_change_auto_install.patch: Module 'mail_bot' has been marked as NOT auto installable.
+   INFO db_name odoo.addons.module_change_auto_install.patch: Module 'partner_autocomplete' has been marked as NOT auto installable.
+   INFO db_name odoo.modules.loading: 42 modules loaded in 0.32s, 0 queries (+0 extra)
 
 **Advanced Configuration Possibilities**
 
 if your ``odoo.cfg`` file contains the following configuration:
 
-.. code-block:: shell
+.. code:: shell
 
-    modules_auto_install_enabled =
-        account_usability,
-        web_responsive:web,
-        base_technical_features:,
-        point_of_sale:sale/purchase
+   modules_auto_install_enabled =
+       account_usability,
+       web_responsive:web,
+       base_technical_features:,
+       point_of_sale:sale/purchase
 
 The behaviour will be the following:
 
-* ``account_usability`` module will be installed as soon as all the default dependencies are installed. (here ``account``)
-
-* ``web_responsive`` module will be installed as soon as ``web`` is installed. (Althought ``web_responsive`` depends on ``web`` and ``mail``)
-
-* ``base_technical_features`` will be ALWAYS installed
-
-* ``point_of_sale`` module will be installed as soon as ``sale`` and ``purchase`` module are installed.
+-  ``account_usability`` module will be installed as soon as all the
+   default dependencies are installed. (here ``account``)
+-  ``web_responsive`` module will be installed as soon as ``web`` is
+   installed. (Althought ``web_responsive`` depends on ``web`` and
+   ``mail``)
+-  ``base_technical_features`` will be ALWAYS installed
+-  ``point_of_sale`` module will be installed as soon as ``sale`` and
+   ``purchase`` module are installed.
 
 Development
 ===========
 
-If you upgrade your odoo Instance from a major version to another,
-using the OCA Free Software project "OpenUpgrade", you can also use
-this module during the upgrade process, to avoid the installation of
-useless new modules.
+If you upgrade your odoo Instance from a major version to another, using
+the OCA Free Software project "OpenUpgrade", you can also use this
+module during the upgrade process, to avoid the installation of useless
+new modules.
 
 Bug Tracker
 ===========
@@ -134,7 +135,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/server-tools/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/server-tools/issues/new?body=module:%20module_change_auto_install%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/server-tools/issues/new?body=module:%20module_change_auto_install%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -142,17 +143,17 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * GRAP
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Sylvain LE GAL <https://twitter.com/legalsylvain>
+-  Sylvain LE GAL <https://twitter.com/legalsylvain>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -172,6 +173,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-legalsylvain| 
 
-This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/16.0/module_change_auto_install>`_ project on GitHub.
+This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/17.0/module_change_auto_install>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
