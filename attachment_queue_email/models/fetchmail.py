@@ -6,12 +6,11 @@ from odoo import api, fields, models
 class FetchmailServer(models.Model):
     _inherit = "fetchmail.server"
 
-    def company_default_get(self):
-        company_id = self.env["res.company"]._company_default_get("fetchmail.server")
-        return self.env["res.company"].browse(company_id).id
-
     company_id = fields.Many2one(
-        "res.company", string="Company", required=True, default=company_default_get
+        "res.company",
+        string="Company",
+        required=True,
+        default=lambda self: self.env.company,
     )
     attachment_condition_ids = fields.One2many(
         "fetchmail.attachment.condition",
