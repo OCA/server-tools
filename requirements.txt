@@ -1,9 +1,14 @@
 # generated from manifests external_dependencies
 astor
+cryptography
 dataclasses
+lxml
 mako
+odoo_test_helper
 odoorpc
 openpyxl
 openupgradelib
 pygount
+pysftp
 sentry_sdk==1.17.0
+unidecode
