@@ -1,14 +1,17 @@
 # Copyright 2016 Therp BV <https://therp.nl>
 # Copyright 2018 Tecnativa - Sergio Teruel
 # Copyright 2021 Camptocamp SA (https://www.camptocamp.com).
+# Copyright 2023 Tecnativa - Carlos Dauden
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
 import ast
+import re
 
 import astor
 from lxml import etree
 
 from odoo import api, models
+from odoo.osv import expression
 
 
 def ast_dict_update(source, update):
@@ -128,3 +131,79 @@ class IrUiView(models.Model):
                 pretty_source=lambda s: "".join(s).strip(),
             )
         return source
+
+    @api.model
+    def inheritance_handler_attributes_text_add(self, source, specs):
+        """Implement
+        <$node position="attributes">
+            <attribute name="$attribute" operation="text_add">
+                $text_before {old_value} $text_after
+            </attribute>
+        </$node>"""
+        node = self.locate_node(source, specs)
+        for attribute_node in specs:
+            attribute_name = attribute_node.get("name")
+            old_value = node.get(attribute_name) or ""
+            node.attrib[attribute_name] = attribute_node.text.format(
+                old_value=old_value
+            )
+        return source
+
+    @api.model
+    def inheritance_handler_attributes_domain_add(self, source, specs):
+        """Implement
+        <$node position="attributes">
+            <attribute name="$attribute" operation="domain_add"
+                       condition="$field_condition" join_operator="OR">
+                $domain_to_add
+            </attribute>
+        </$node>"""
+        node = self.locate_node(source, specs)
+        for attribute_node in specs:
+            attribute_name = attribute_node.get("name")
+            condition = attribute_node.get("condition")
+            join_operator = attribute_node.get("join_operator") or "AND"
+            old_value = node.get(attribute_name) or ""
+            if old_value:
+                old_domain = ast.literal_eval(
+                    self.var2str_domain_text(old_value.strip())
+                )
+                new_domain = ast.literal_eval(
+                    self.var2str_domain_text(attribute_node.text.strip())
+                )
+                if join_operator == "OR":
+                    new_value = str(expression.OR([old_domain, new_domain]))
+                else:
+                    new_value = str(expression.AND([old_domain, new_domain]))
+                new_value = self.str2var_domain_text(new_value)
+            else:
+                # We must ensure that the domain definition has not line breaks because
+                # in update mode the domain cause an invalid syntax error
+                new_value = attribute_node.text.strip()
+            if condition:
+                new_value = "{condition} and {new_value} or {old_value}".format(
+                    condition=condition,
+                    new_value=new_value,
+                    old_value=old_value or [],
+                )
+            node.attrib[attribute_name] = new_value
+        return source
+
+    @api.model
+    def var2str_domain_text(self, domain_str):
+        """Replaces var names with str names to allow eval without defined vars"""
+        # Replace fields in 2 steps because 1 step returns "parent_sufix"."var_sufix"
+        regex_parent = re.compile(r"parent\.(\b\w+\b)")
+        domain_str = re.sub(
+            regex_parent, r"'parent.\1_is_a_var_to_replace'", domain_str
+        )
+        regex = re.compile(r"(?<!\')(\b\w+\b)(?!\')")
+        return re.sub(regex, r"'\1_is_a_var_to_replace'", domain_str)
+
+    @api.model
+    def str2var_domain_text(self, domain_str):
+        """Revert var2str_domain_text cleaning apostrophes and suffix in vars"""
+        pattern = re.compile(r"'(parent\.[^']+)_is_a_var_to_replace'")
+        domain_str = pattern.sub(r"\1", domain_str)
+        pattern = re.compile(r"'([^']+)_is_a_var_to_replace'")
+        return pattern.sub(r"\1", domain_str)
