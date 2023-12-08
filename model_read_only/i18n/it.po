@@ -86,6 +86,11 @@ msgid "Model"
 msgstr "Modello"
 
 #. module: model_read_only
+#: model:ir.model,name:model_read_only.model_model_readonly_restriction
+msgid "Model Readonly Restriction"
+msgstr ""
+
+#. module: model_read_only
 #: model:ir.model,name:model_read_only.model_ir_model
 msgid "Models"
 msgstr "Modelli"
@@ -112,10 +117,8 @@ msgstr "Ricerca intelligente"
 msgid "You are not allowed to modify this record."
 msgstr "Non hai i permessi per modificare questo record."
 
-#. module: model_read_only
-#: model:ir.model,name:model_read_only.model_model_readonly_restriction
-msgid "model.readonly.restriction"
-msgstr "model.readonly.restriction"
+#~ msgid "model.readonly.restriction"
+#~ msgstr "model.readonly.restriction"
 
 #~ msgid "Readonly Group"
 #~ msgstr "Gruppi sola lettura"
