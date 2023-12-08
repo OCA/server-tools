@@ -6,6 +6,7 @@ from odoo.tools.safe_eval import safe_eval
 
 class ModelReadonlyRestriction(models.Model):
     _name = "model.readonly.restriction"
+    _description = "Model Readonly Restriction"
 
     model_id = fields.Many2one("ir.model")
     model_name = fields.Char(related="model_id.model")
