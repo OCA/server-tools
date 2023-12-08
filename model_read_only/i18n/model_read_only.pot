@@ -83,6 +83,11 @@ msgid "Model"
 msgstr ""
 
 #. module: model_read_only
+#: model:ir.model,name:model_read_only.model_model_readonly_restriction
+msgid "Model Readonly Restriction"
+msgstr ""
+
+#. module: model_read_only
 #: model:ir.model,name:model_read_only.model_ir_model
 msgid "Models"
 msgstr ""
@@ -107,9 +112,4 @@ msgstr ""
 #: code:addons/model_read_only/models/models.py:0
 #, python-format
 msgid "You are not allowed to modify this record."
-msgstr ""
-
-#. module: model_read_only
-#: model:ir.model,name:model_read_only.model_model_readonly_restriction
-msgid "model.readonly.restriction"
 msgstr ""
