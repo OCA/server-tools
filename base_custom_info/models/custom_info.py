@@ -109,3 +109,19 @@ class CustomInfo(models.AbstractModel):
         return self.mapped("custom_info_template_id") | self.mapped(
             "custom_info_ids.value_id.template_id"
         )
+
+    # TODO: Revisar
+    @api.model
+    def get_views(self, views, options=None):
+        """Adapt the label of the dummy search field
+
+        Ensure the technical name does not show up in the Custom Filter
+        fields list (while still showing up in the Export widget)
+        """
+        result = super().get_views(views, options=options)
+        result["models"]["custom.info.value"] = self.env[
+            "custom.info.value"
+        ].fields_get(allfields=[], attributes=self._get_view_field_attributes())
+        # if "date_range_search_id" in result["models"][self._name]:
+        #     result["models"][self._name]["date_range_search_id"]["string"] = _("Period")
+        return result

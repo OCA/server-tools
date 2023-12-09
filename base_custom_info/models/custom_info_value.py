@@ -9,7 +9,7 @@ from odoo.tools.safe_eval import safe_eval
 class CustomInfoValue(models.Model):
     _description = "Custom information value"
     _name = "custom.info.value"
-    _rec_name = "value"
+    # _rec_name = "value"
     _order = (
         "model, res_id, category_sequence, category_id, "
         "property_sequence, property_id"
@@ -21,7 +21,6 @@ class CustomInfoValue(models.Model):
             "Another property with that name exists for that resource.",
         ),
     ]
-
     model = fields.Char(
         related="property_id.model",
         index=True,

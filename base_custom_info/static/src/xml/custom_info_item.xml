@@ -1,20 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <template>
-    <t t-name="base_custom_info.table">
-        <div class="o_group">
+    <t t-name="base_custom_info.table" owl="1">
+        <div class="o_group o_legacy_form_view">
             <table class="o_group o_inner_group">
                 <tbody>
-
+                    <t t-foreach="props.list.records" t-as="item" t-key="item.id">
+                        <tr>
+                            <td class="o_td_label"><label
+                                    class="o_form_label"
+                                    t-out="item.data.name"
+                                /></td>
+                            <td class="o_td_field">
+                                <Field
+                                    name="getFieldName(item.data.field_type)"
+                                    record="item"
+                                    type="item.data.widget"
+                                    fieldInfo="getFieldInfo(item.data.widget)"
+                                />
+                            </td>
+                        </tr>
+                    </t>
                 </tbody>
             </table>
         </div>
-    </t>
-    <t t-name="base_custom_info.item">
-        <tr>
-            <td class="o_td_label">
-                <label class="o_form_label" t-esc="data.data['name']" />
-            </td>
-            <td style="width: 100%" class="result_data custom_info_value" />
-        </tr>
     </t>
 </template>

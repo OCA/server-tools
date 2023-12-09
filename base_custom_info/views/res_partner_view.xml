@@ -25,7 +25,8 @@
                             colspan="4"
                             nolabel="1"
                             mode="custom_info"
-                        />
+                        >
+                        </field>
                     </group>
                 </page>
             </xpath>

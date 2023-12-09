@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <t t-name="web.X2ManyField" owl="1" t-inherit="web.X2ManyField">
+        <ListRenderer
+            t-if="viewMode === 'list'"
+            t-props="rendererProps"
+            position="after"
+        >
+            <CustomInfoRenderer
+                t-elif="viewMode === 'custom_info'"
+                t-props="rendererProps"
+            />
+        </ListRenderer>
+    </t>
+
+</odoo>

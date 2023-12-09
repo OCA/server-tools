@@ -28,7 +28,7 @@
     <record id="custom_info_value_editable" model="ir.ui.view">
         <field name="model">custom.info.value</field>
         <field name="arch" type="xml">
-            <custom_info string="Custom Property Values">
+            <custom_info>
                 <field name="name" />
                 <field name="owner_id" />
                 <field name="property_id" force_save="1" readonly="0" />
