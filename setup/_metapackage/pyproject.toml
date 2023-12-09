@@ -1,0 +1,11 @@
+[project]
+name = "odoo-addons-oca-server-tools"
+version = "17.0.20231209.0"
+dependencies = [
+    "odoo-addon-module_change_auto_install>=17.0dev,<17.1dev",
+]
+classifiers=[
+    "Programming Language :: Python",
+    "Framework :: Odoo",
+    "Framework :: Odoo :: 17.0",
+]
