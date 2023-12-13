@@ -23,6 +23,13 @@ addon | version | maintainers | summary
 --- | --- | --- | ---
 [module_change_auto_install](module_change_auto_install/) | 17.0.1.0.0 | [![legalsylvain](https://github.com/legalsylvain.png?size=30px)](https://github.com/legalsylvain) | Customize auto installables modules by configuration
 
+
+Unported addons
+---------------
+addon | version | maintainers | summary
+--- | --- | --- | ---
+[views_migration_17](views_migration_17/) | 17.0.1.0.0 (unported) |  | Views Migration to v17
+
 [//]: # (end addons)
 
 <!-- prettier-ignore-end -->
