@@ -63,5 +63,5 @@ class CustomSentryWsgiMiddleware(SentryWsgiMiddleware):
 
     def __call__(self, environ, start_response):
         if self.session_store is None:
-            self.session_store = session_store()  # Assuming session_store is supposed to be a method
+            self.session_store = session_store # Assuming session_store is supposed to be a method
         return super().__call__(environ, start_response)
