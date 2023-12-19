@@ -16,7 +16,7 @@ class TestTrackingManager(TransactionCase):
         cls.loader.backup_registry()
         from .models import ResPartnerBank
 
-        cls.loader.update_registry([ResPartnerBank])
+        cls.loader.update_registry((ResPartnerBank,))
 
         cls.partner_categ_1, cls.partner_categ_2, cls.partner_categ_3 = cls.env[
             "res.partner.category"
@@ -74,7 +74,7 @@ class TestTrackingManager(TransactionCase):
     @classmethod
     def flush_tracking(cls):
         """Force the creation of tracking values."""
-        cls.env["base"].flush()
+        cls.env["base"].flush_model()
         cls.env.cr.precommit.run()
 
     @property
