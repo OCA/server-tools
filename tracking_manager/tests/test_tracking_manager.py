@@ -4,10 +4,10 @@
 
 from odoo_test_helper import FakeModelLoader
 
-from odoo.tests.common import SavepointCase
+from odoo.tests.common import TransactionCase
 
 
-class TestTrackingManager(SavepointCase):
+class TestTrackingManager(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
