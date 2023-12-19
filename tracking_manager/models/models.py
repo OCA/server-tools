@@ -131,7 +131,7 @@ class Base(models.AbstractModel):
                 record._tm_notify_owner("update", changes)
         data = self.env.cr.precommit.data.pop("tracking.manager.data", {})
         self._tm_post_message(data)
-        self.flush()
+        self.flush_model()
 
     def _tm_track_create_unlink(self, mode):
         self.env.cr.precommit.add(self._tm_finalize_o2m_tracking)
