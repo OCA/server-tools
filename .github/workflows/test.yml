@@ -36,20 +36,19 @@ jobs:
       matrix:
         include:
           - container: ghcr.io/oca/oca-ci/py3.10-odoo16.0:latest
-            include: "database_cleanup"
+            include: "database_cleanup,tracking_manager"
             makepot: "true"
             name: test with Odoo
           - container: ghcr.io/oca/oca-ci/py3.10-ocb16.0:latest
-            include: "database_cleanup"
+            include: "database_cleanup,tracking_manager"
             name: test with OCB
           - container: ghcr.io/oca/oca-ci/py3.10-odoo16.0:latest
-            exclude: "database_cleanup"
+            exclude: "database_cleanup,tracking_manager"
             makepot: "true"
             name: test with Odoo
           - container: ghcr.io/oca/oca-ci/py3.10-ocb16.0:latest
-            exclude: "database_cleanup"
+            exclude: "database_cleanup,tracking_manager"
             name: test with OCB
-            makepot: "true"
     services:
       postgres:
         image: postgres:12.0
