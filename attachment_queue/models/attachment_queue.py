@@ -20,7 +20,7 @@ class AttachmentQueue(models.Model):
     _name = "attachment.queue"
     _description = "Attachment Queue"
     _inherits = {"ir.attachment": "attachment_id"}
-    _inherit = ["mail.thread"]
+    _inherit = ["mail.thread", "mail.activity.mixin"]
 
     attachment_id = fields.Many2one(
         "ir.attachment",
