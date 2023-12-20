@@ -40,6 +40,11 @@
                     <field name="state_message" nolabel="1" />
                 </group>
             </group>
+            <xpath expr="//sheet" position="after">
+                <div class="oe_chatter">
+                    <field name="activity_ids" widget="mail_activity" />
+                </div>
+            </xpath>
         </field>
     </record>
 
