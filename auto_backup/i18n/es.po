@@ -65,7 +65,6 @@ msgstr "Formato de copia de Seguridad"
 #. module: auto_backup
 #: model:ir.actions.server,name:auto_backup.ir_cron_backup_scheduler_0_ir_actions_server
 #: model:ir.cron,cron_name:auto_backup.ir_cron_backup_scheduler_0
-#: model:ir.cron,name:auto_backup.ir_cron_backup_scheduler_0
 msgid "Backup Scheduler"
 msgstr "Planificador de Copia de Seguridad"
 
@@ -114,6 +113,7 @@ msgid "Choose the storage method for this backup."
 msgstr "Elija el método de almacenamiento para esta copia de seguridad."
 
 #. module: auto_backup
+#. odoo-python
 #: code:addons/auto_backup/models/db_backup.py:0
 #, python-format
 msgid "Cleanup of old database backups failed."
@@ -122,16 +122,23 @@ msgstr ""
 "fallado."
 
 #. module: auto_backup
+#. odoo-python
 #: code:addons/auto_backup/models/db_backup.py:0
 #, python-format
 msgid "Connection Test Failed!"
 msgstr "Error en la prueba de conexión!"
 
 #. module: auto_backup
+#. odoo-python
 #: code:addons/auto_backup/models/db_backup.py:0
 #, python-format
 msgid "Connection Test Succeeded!"
 msgstr "Prueba de conexión correcta!"
+
+#. module: auto_backup
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__count_changesets
+msgid "Count Changesets"
+msgstr ""
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__count_pending_changeset_changes
@@ -159,6 +166,7 @@ msgid "Database Backup"
 msgstr "Copia de seguridad de la base de datos"
 
 #. module: auto_backup
+#. odoo-python
 #: code:addons/auto_backup/models/db_backup.py:0
 #: model:mail.message.subtype,description:auto_backup.mail_message_subtype_failure
 #, python-format
@@ -166,6 +174,7 @@ msgid "Database backup failed."
 msgstr "La copia de seguridad de la base de datos ha fallado."
 
 #. module: auto_backup
+#. odoo-python
 #: code:addons/auto_backup/models/db_backup.py:0
 #: model:mail.message.subtype,description:auto_backup.mail_message_subtype_success
 #, python-format
@@ -183,6 +192,7 @@ msgid "Display Name"
 msgstr "Nombre a mostrar"
 
 #. module: auto_backup
+#. odoo-python
 #: code:addons/auto_backup/models/db_backup.py:0
 #, python-format
 msgid ""
@@ -245,7 +255,6 @@ msgstr "ID"
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__message_needaction
-#: model:ir.model.fields,help:auto_backup.field_db_backup__message_unread
 msgid "If checked, new messages require your attention."
 msgstr "Si está marcado. nuevos mensajes requieren su atención."
 
@@ -317,18 +326,13 @@ msgstr "Número de Errores"
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__message_needaction_counter
-msgid "Number of messages which requires an action"
-msgstr "Número de mensajes que requieren un acción"
+msgid "Number of messages requiring action"
+msgstr ""
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__message_has_error_counter
 msgid "Number of messages with delivery error"
 msgstr "Número de mensajes con error de entrega"
-
-#. module: auto_backup
-#: model:ir.model.fields,help:auto_backup.field_db_backup__message_unread_counter
-msgid "Number of unread messages"
-msgstr "Número de mensajes no leídos"
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__sftp_private_key
@@ -388,6 +392,11 @@ msgstr ""
 "copias de seguridad generadas."
 
 #. module: auto_backup
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__smart_search
+msgid "Smart Search"
+msgstr ""
+
+#. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__name
 msgid "Summary of this backup process"
 msgstr "Resumen de este proceso de copia de seguridad"
@@ -404,6 +413,21 @@ msgid ""
 msgstr ""
 "El nombre del host o la dirección IP de su servidor remoto. Por ejemplo "
 "192.168.0.1"
+
+#. module: auto_backup
+#: model:ir.model.fields,help:auto_backup.field_db_backup__count_pending_changeset_changes
+msgid "The number of pending changes of this record"
+msgstr ""
+
+#. module: auto_backup
+#: model:ir.model.fields,help:auto_backup.field_db_backup__count_pending_changesets
+msgid "The number of pending changesets of this record"
+msgstr ""
+
+#. module: auto_backup
+#: model:ir.model.fields,help:auto_backup.field_db_backup__count_changesets
+msgid "The overall number of changesets of this record"
+msgstr ""
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__sftp_password
@@ -427,16 +451,6 @@ msgid ""
 msgstr ""
 "El nombre de usuario donde la conexión SFTP se debe hacer con. Este es el "
 "usuario en el servidor externo."
-
-#. module: auto_backup
-#: model:ir.model.fields,field_description:auto_backup.field_db_backup__message_unread
-msgid "Unread Messages"
-msgstr "Mensajes No Leídos"
-
-#. module: auto_backup
-#: model:ir.model.fields,field_description:auto_backup.field_db_backup__message_unread_counter
-msgid "Unread Messages Counter"
-msgstr "Contador de Mensajes no Leídos"
 
 #. module: auto_backup
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
@@ -491,3 +505,15 @@ msgstr "sftp.example.com"
 #: model:ir.model.fields.selection,name:auto_backup.selection__db_backup__backup_format__zip
 msgid "zip (includes filestore)"
 msgstr "zip (incluye almacén de archivos)"
+
+#~ msgid "Number of messages which requires an action"
+#~ msgstr "Número de mensajes que requieren un acción"
+
+#~ msgid "Number of unread messages"
+#~ msgstr "Número de mensajes no leídos"
+
+#~ msgid "Unread Messages"
+#~ msgstr "Mensajes No Leídos"
+
+#~ msgid "Unread Messages Counter"
+#~ msgstr "Contador de Mensajes no Leídos"
