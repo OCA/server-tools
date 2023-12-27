@@ -157,6 +157,7 @@ class AttachmentSynchronizeTask(models.Model):
         self.ensure_one()
         fs = self.backend_id.fs
         filepath = self.filepath or ""
+        filepath = filepath.rstrip(fs.sep)
         if filepath and not fs.exists(filepath):
             return []
         if self.pattern:
@@ -171,16 +172,18 @@ class AttachmentSynchronizeTask(models.Model):
     def _manage_file_after_import(self, file_name, fullpath, attachment):
         self.ensure_one()
         fs = self.backend_id.fs
-        new_full_path = False
+        new_name = False
         if self.after_import == "rename":
             new_name = self._template_render(self.new_name, attachment)
-            new_full_path = fs.sep.join([self.filepath, new_name])
+            path = self.filepath or ""
         elif self.after_import == "move":
-            new_full_path = fs.sep.join([self.move_path, file_name])
+            new_name = file_name
+            path = self.move_path or ""
         elif self.after_import == "move_rename":
             new_name = self._template_render(self.new_name, attachment)
-            new_full_path = fs.sep.join([self.move_path, new_name])
-        if new_full_path:
+            path = self.move_path or ""
+        if new_name:
+            new_full_path = fs.sep.join([path.rstrip(fs.sep), new_name])
             fs.move(fullpath, new_full_path)
         if self.after_import == "delete":
             fs.rm(fullpath)
@@ -196,7 +199,10 @@ class AttachmentSynchronizeTask(models.Model):
                 continue
             with self.env.cr.savepoint():
                 file_name = file_path.split(fs.sep)[-1]
-                data = fs.read_bytes(file_path)
+                # avoid use of cat_file because it may not be implemeted in async
+                # implementation like sshfs
+                with fs.open(file_path, "rb") as fs_file:
+                    data = fs_file.read()
                 data = base64.b64encode(data)
                 attach_vals = self._prepare_attachment_vals(data, file_name)
                 attachment = attach_obj.create(attach_vals)
