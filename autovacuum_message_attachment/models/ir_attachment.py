@@ -30,7 +30,7 @@ class IrAttachment(models.Model):
         if rule.model_ids:
             models = rule.model_ids.mapped("model")
             domains.append([("res_model", "in", models)])
-        else:
+        elif not rule.empty_model or not rule.filename_pattern:
             # Avoid deleting attachment without model, if there are, it is
             # probably some attachments created by Odoo
             domains.append([("res_model", "!=", False)])
