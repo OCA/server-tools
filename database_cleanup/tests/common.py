@@ -12,10 +12,3 @@ class Common(TransactionCase):
         # we also need the original registry for further tests, so save a
         # reference to it
         self.original_registry = Registry.registries[self.env.cr.dbname]
-
-    def tearDown(self):
-        super(Common, self).tearDown()
-        # Force rollback to avoid unstable test database
-        self.env.cr.rollback()
-        # reset afterwards
-        Registry.registries[self.env.cr.dbname] = self.original_registry
