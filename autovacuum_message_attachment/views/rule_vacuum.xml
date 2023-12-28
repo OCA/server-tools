@@ -39,6 +39,10 @@
                         <group attrs="{'invisible': [('ttype', '!=', 'attachment')]}">
                             <field name="filename_pattern" />
                             <field name="inheriting_model" />
+                            <field
+                                name="empty_model"
+                                attrs="{'invisible': ['|', ('model_ids', '!=', []), ('filename_pattern', '=', False)]}"
+                            />
                         </group>
                         <group string="Models">
                             <field name="model_ids" nolabel="1" colspan="4" />
