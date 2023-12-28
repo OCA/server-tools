@@ -61,6 +61,10 @@ class VacuumRule(models.Model):
     )
     model_filter_domain = fields.Text()
     model = fields.Char(readonly=True, compute="_compute_model_id", string="Model code")
+    empty_model = fields.Boolean(
+        help="Take into account attachment not linked to any model, but only if a "
+        "pattern is set, to avoid deleting attachments generated/needed by odoo"
+    )
     message_type = fields.Selection(
         [
             ("email", "Email"),
