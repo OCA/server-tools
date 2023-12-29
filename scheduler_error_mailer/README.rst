@@ -77,6 +77,10 @@ Contributors
    -  Cristina Martin R.
    -  Víctor Martínez
 
+-  `Komit <https://komit-consulting.com>`__:
+
+   -  Cuong NGUYEN MINH TRAN MANH
+
 Maintainers
 -----------
 
