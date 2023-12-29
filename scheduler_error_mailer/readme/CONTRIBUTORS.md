@@ -6,3 +6,5 @@
 - [Tecnativa](https://www.tecnativa.com):
   - Cristina Martin R.
   - Víctor Martínez
+- [Komit](https://komit-consulting.com):
+  - Cuong NGUYEN MINH TRAN MANH

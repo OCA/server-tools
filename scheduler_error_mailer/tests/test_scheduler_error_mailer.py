@@ -25,7 +25,7 @@ class TestSchedulerErrorMailer(TransactionCase):
             )
 
     def test_init_hook(self):
-        post_init_hook(self.env.cr, self.env.registry)
+        post_init_hook(self.env)
         self.assertFalse(
             self.env["ir.cron"].search([("email_template_id", "=", False)])
         )
