@@ -181,11 +181,7 @@ class IrUiView(models.Model):
                 # in update mode the domain cause an invalid syntax error
                 new_value = attribute_node.text.strip()
             if condition:
-                new_value = "{condition} and {new_value} or {old_value}".format(
-                    condition=condition,
-                    new_value=new_value,
-                    old_value=old_value or [],
-                )
+                new_value = f"{condition} and {new_value} or {old_value or []}"
             node.attrib[attribute_name] = new_value
         return source
 
