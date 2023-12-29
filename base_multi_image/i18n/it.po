@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-06 02:24+0000\n"
-"PO-Revision-Date: 2023-04-17 16:35+0000\n"
+"PO-Revision-Date: 2023-12-29 17:36+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: base_multi_image
 #: model:ir.model,name:base_multi_image.model_base_multi_image_owner
@@ -81,7 +81,7 @@ msgstr "Estensione file"
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__filename
 msgid "Filename"
-msgstr "Nome del file"
+msgstr "Nome file"
 
 #. module: base_multi_image
 #: model:ir.model.fields.selection,name:base_multi_image.selection__base_multi_image_image__storage__filestore
