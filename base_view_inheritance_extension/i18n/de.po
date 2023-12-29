@@ -29,11 +29,6 @@ msgid "Phone numbers"
 msgstr ""
 
 #. module: base_view_inheritance_extension
-#: model:ir.model.fields,field_description:base_view_inheritance_extension.field_ir_ui_view__smart_search
-msgid "Smart Search"
-msgstr ""
-
-#. module: base_view_inheritance_extension
 #: model:ir.model,name:base_view_inheritance_extension.model_ir_ui_view
 msgid "View"
 msgstr ""
