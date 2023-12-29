@@ -19,6 +19,46 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: database_cleanup
+#: model:ir.model,name:database_cleanup.model_cleanup_create_indexes_line
+msgid "Cleanup Create Indexes line"
+msgstr ""
+
+#. module: database_cleanup
+#: model:ir.model,name:database_cleanup.model_cleanup_purge_line_column
+msgid "Cleanup Purge Line Column"
+msgstr ""
+
+#. module: database_cleanup
+#: model:ir.model,name:database_cleanup.model_cleanup_purge_line_data
+msgid "Cleanup Purge Line Data"
+msgstr ""
+
+#. module: database_cleanup
+#: model:ir.model,name:database_cleanup.model_cleanup_purge_line_menu
+msgid "Cleanup Purge Line Menu"
+msgstr ""
+
+#. module: database_cleanup
+#: model:ir.model,name:database_cleanup.model_cleanup_purge_line_model
+msgid "Cleanup Purge Line Model"
+msgstr ""
+
+#. module: database_cleanup
+#: model:ir.model,name:database_cleanup.model_cleanup_purge_line_module
+msgid "Cleanup Purge Line Module"
+msgstr ""
+
+#. module: database_cleanup
+#: model:ir.model,name:database_cleanup.model_cleanup_purge_line_property
+msgid "Cleanup Purge Line Property"
+msgstr ""
+
+#. module: database_cleanup
+#: model:ir.model,name:database_cleanup.model_cleanup_purge_line_table
+msgid "Cleanup Purge Line Table"
+msgstr ""
+
+#. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_column__purge_line_ids
 msgid "Columns to purge"
 msgstr ""
@@ -113,7 +153,6 @@ msgstr ""
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_line__display_name
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_wizard__display_name
-#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line__display_name
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_column__display_name
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_data__display_name
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_menu__display_name
@@ -121,7 +160,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_module__display_name
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_property__display_name
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_table__display_name
-#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard__display_name
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_column__display_name
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_data__display_name
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_menu__display_name
@@ -133,12 +171,12 @@ msgid "Display Name"
 msgstr "ชื่อที่ใช้แสดง"
 
 #. module: database_cleanup
-#: selection:cleanup.purge.line.property,reason:0
+#: model:ir.model.fields.selection,name:database_cleanup.selection__cleanup_purge_line_property__reason__reason_duplicate
 msgid "Duplicated property"
 msgstr ""
 
 #. module: database_cleanup
-#: selection:cleanup.purge.line.property,reason:0
+#: model:ir.model.fields.selection,name:database_cleanup.selection__cleanup_purge_line_property__reason__reason_default_false
 msgid "Empty default property"
 msgstr ""
 
@@ -155,7 +193,6 @@ msgstr ""
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_line__id
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_wizard__id
-#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line__id
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_column__id
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_data__id
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_menu__id
@@ -163,7 +200,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_module__id
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_property__id
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_table__id
-#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard__id
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_column__id
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_data__id
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_menu__id
@@ -177,7 +213,6 @@ msgstr "รหัส"
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_line____last_update
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_wizard____last_update
-#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line____last_update
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_column____last_update
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_data____last_update
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_menu____last_update
@@ -185,7 +220,6 @@ msgstr "รหัส"
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_module____last_update
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_property____last_update
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_table____last_update
-#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard____last_update
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_column____last_update
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_data____last_update
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_menu____last_update
@@ -285,37 +319,43 @@ msgid "Name"
 msgstr "ชื่อ"
 
 #. module: database_cleanup
-#: code:addons/database_cleanup/models/purge_menus.py:54
+#. odoo-python
+#: code:addons/database_cleanup/models/purge_menus.py:0
 #, python-format
 msgid "No dangling menu entries found"
 msgstr ""
 
 #. module: database_cleanup
-#: code:addons/database_cleanup/models/purge_modules.py:83
+#. odoo-python
+#: code:addons/database_cleanup/models/purge_modules.py:0
 #, python-format
 msgid "No modules found to purge"
 msgstr ""
 
 #. module: database_cleanup
-#: code:addons/database_cleanup/models/purge_columns.py:128
+#. odoo-python
+#: code:addons/database_cleanup/models/purge_columns.py:0
 #, python-format
 msgid "No orphaned columns found"
 msgstr ""
 
 #. module: database_cleanup
-#: code:addons/database_cleanup/models/purge_data.py:68
+#. odoo-python
+#: code:addons/database_cleanup/models/purge_data.py:0
 #, python-format
 msgid "No orphaned data entries found"
 msgstr ""
 
 #. module: database_cleanup
-#: code:addons/database_cleanup/models/purge_models.py:113
+#. odoo-python
+#: code:addons/database_cleanup/models/purge_models.py:0
 #, python-format
 msgid "No orphaned models found"
 msgstr ""
 
 #. module: database_cleanup
-#: code:addons/database_cleanup/models/purge_tables.py:107
+#. odoo-python
+#: code:addons/database_cleanup/models/purge_tables.py:0
 #, python-format
 msgid "No orphaned tables found"
 msgstr ""
@@ -350,11 +390,6 @@ msgstr ""
 #. module: database_cleanup
 #: model:ir.model,name:database_cleanup.model_cleanup_purge_line
 msgid "Purge Column Abstract Wizard"
-msgstr ""
-
-#. module: database_cleanup
-#: model:ir.model,name:database_cleanup.model_cleanup_purge_line_column
-msgid "Purge Column Wizard Lines"
 msgstr ""
 
 #. module: database_cleanup
@@ -403,9 +438,7 @@ msgstr ""
 
 #. module: database_cleanup
 #: model:ir.actions.server,name:database_cleanup.action_purge_models
-#: model:ir.model,name:database_cleanup.model_cleanup_purge_line_model
 #: model:ir.model,name:database_cleanup.model_cleanup_purge_wizard_model
-#: model_terms:ir.ui.view,arch_db:database_cleanup.tree_purge_line
 msgid "Purge models"
 msgstr ""
 
@@ -452,7 +485,6 @@ msgstr ""
 
 #. module: database_cleanup
 #: model:ir.actions.server,name:database_cleanup.action_purge_property
-#: model:ir.model,name:database_cleanup.model_cleanup_purge_line_property
 #: model:ir.model,name:database_cleanup.model_cleanup_purge_wizard_property
 msgid "Purge properties"
 msgstr ""
@@ -466,11 +498,6 @@ msgstr ""
 #: model:ir.actions.server,name:database_cleanup.action_purge_tables
 #: model:ir.model,name:database_cleanup.model_cleanup_purge_wizard_table
 msgid "Purge tables"
-msgstr ""
-
-#. module: database_cleanup
-#: model:ir.model,name:database_cleanup.model_cleanup_purge_line_table
-msgid "Purge tables wizard lines"
 msgstr ""
 
 #. module: database_cleanup
@@ -496,7 +523,7 @@ msgid "Reason"
 msgstr "เหตุผล"
 
 #. module: database_cleanup
-#: selection:cleanup.purge.line.property,reason:0
+#: model:ir.model.fields.selection,name:database_cleanup.selection__cleanup_purge_line_property__reason__reason_default
 msgid "Same value as default"
 msgstr ""
 
@@ -506,7 +533,8 @@ msgid "Select lines"
 msgstr ""
 
 #. module: database_cleanup
-#: code:addons/database_cleanup/models/purge_wizard.py:75
+#. odoo-python
+#: code:addons/database_cleanup/models/purge_wizard.py:0
 #, python-format
 msgid "Select lines to purge"
 msgstr ""
@@ -517,7 +545,7 @@ msgid "Tables to purge"
 msgstr ""
 
 #. module: database_cleanup
-#: selection:cleanup.purge.line.property,reason:0
+#: model:ir.model.fields.selection,name:database_cleanup.selection__cleanup_purge_line_property__reason__reason_unknown_model
 msgid "Unknown model"
 msgstr ""
 
@@ -525,24 +553,4 @@ msgstr ""
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_line__wizard_id
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line__wizard_id
 msgid "Wizard"
-msgstr ""
-
-#. module: database_cleanup
-#: model:ir.model,name:database_cleanup.model_cleanup_create_indexes_line
-msgid "cleanup.create_indexes.line"
-msgstr ""
-
-#. module: database_cleanup
-#: model:ir.model,name:database_cleanup.model_cleanup_purge_line_data
-msgid "cleanup.purge.line.data"
-msgstr ""
-
-#. module: database_cleanup
-#: model:ir.model,name:database_cleanup.model_cleanup_purge_line_menu
-msgid "cleanup.purge.line.menu"
-msgstr ""
-
-#. module: database_cleanup
-#: model:ir.model,name:database_cleanup.model_cleanup_purge_line_module
-msgid "cleanup.purge.line.module"
 msgstr ""
