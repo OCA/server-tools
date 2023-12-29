@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-06 02:51+0000\n"
-"PO-Revision-Date: 2023-06-20 11:11+0000\n"
+"PO-Revision-Date: 2023-12-29 17:40+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -97,7 +97,7 @@ msgstr "File"
 #. module: sql_export
 #: model:ir.model.fields,field_description:sql_export.field_sql_file_wizard_file_name
 msgid "File Name"
-msgstr "Nome del campo"
+msgstr "Nome file"
 
 #. module: sql_export
 #: model:ir.model.fields,field_description:sql_export.field_sql_export_id
