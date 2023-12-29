@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-11-03 13:39+0000\n"
+"PO-Revision-Date: 2024-02-05 09:35+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -36,6 +36,8 @@ msgid ""
 "* Choose: wizard show in user selection mode\n"
 "* Get: wizard show results from user action"
 msgstr ""
+"* Choose: wizard mostrato in modalità selezione utente\n"
+"* Get: wizard mostra i risultati dall'azione dell'utente"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -68,6 +70,10 @@ msgid ""
 "represent product object, e.g., <code>$</code><code>{value and value.uom_id."
 "name or \"\"}</code>"
 msgstr ""
+"<b>Cond. campo</b>: Codice Python in <code>$</code><code>{...}</code> per "
+"manipolare il valore del campo, es., se il campo è product_id, <code>valore</"
+"code> rappresenterà l'oggetto prodotto, es., <code>$</code><code>{value and "
+"value.uom_id.name or \"\"}</code>"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -77,6 +83,11 @@ msgid ""
 "will represent 'ABC', e.g., <code>$</code><code>{value == \"ABC\" and \"X\" "
 "or \"Y\"}</code> thus can change from cell value to other value for import."
 msgstr ""
+"<b>Cond. campo</b>: codice Python nel valore <code>$</code><code>{...}</"
+"code> reppresenterà dati dalla cella Excel, es., se A1 = 'ABC', "
+"<code>valore</code> reppresenterà 'ABC', es., <code>$</code><code>{value == "
+"\"ABC\" and \"X\" or \"Y\"}</code> può quindi modificare da un valore della "
+"cella ad un altro valore per l'importazione."
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -150,6 +161,9 @@ msgid ""
 "code>, e.g., apply style for specific product, <code>#?value.name == \"ABC\" "
 "and #{font=bold;fill=red} or None?</code>"
 msgstr ""
+"<b>Stile con/Cond.</b>: stile condizionale da codice Python in <code>#?...?</"
+"code>, es., applica lo sptile per un prodotto specifico, <code>#?value.name "
+"== \"ABC\" and #{font=bold;fill=red} or None?</code>"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -158,6 +172,9 @@ msgid ""
 "e.g., <code>#{align=left;style=text}</code>. See module's <b>style.py</b> "
 "for available styles."
 msgstr ""
+"<b>Stile</b>: stile predefinito in <code>#{...}</code> che si applica ad "
+"ogni cella, es., <code>#{align=left;style=text}</code>. Vedere il <b>style."
+"py</b> del modulo per gli stili disponibili."
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -208,6 +225,46 @@ msgid ""
 "\n"
 "                                </code>"
 msgstr ""
+"<code class=\"oe_grey\">\n"
+"{\n"
+"    '__EXPORT__': {\n"
+"        'sale_order': {  # il foglio può essere un nuome  (stringa) o indice "
+"(intero)\n"
+"            '_HEAD_': {\n"
+"                'B2': 'partner_id.display_name<span>$</span>{value or \"\"}"
+"#{align=left;style=text}',\n"
+"                'B3': 'name<span>$</span>{value or \"\"}#{align=left;"
+"style=text}',\n"
+"            },\n"
+"            'line_ids': {  # prefisso con _CONT_ per continuare la riga "
+"dalla riga campo precedente \n"
+"                'A6': 'product_id.display_name<span>$</span>{value or \"\"}"
+"#{style=text}',\n"
+"                'C6': 'product_uom_qty<span>$</span>{value or 0}"
+"#{style=number}',\n"
+"                'E6': 'price_unit<span>$</span>{value or 0}"
+"#{style=number}',\n"
+"                'G6': 'price_subtotal<span>$</span>{value or 0}"
+"#{style=number}',\n"
+"            },\n"
+"        },\n"
+"    },\n"
+"    '__IMPORT__': {\n"
+"        'sale_order': {  #  il foglio può essere un nuome  (stringa) o "
+"indice (intero)\n"
+"            'order_line': {  # prefisso con _NODEL_ per non cancellare le "
+"righe prima dell'impostazione\n"
+"                'A6': 'product_id',\n"
+"                'C6': 'product_uom_qty',\n"
+"                'E6': 'price_unit<span>$</span>{value &gt; 0 and value or "
+"0}',\n"
+"            },\n"
+"        },\n"
+"    },\n"
+"    '__POST_IMPORT__': '<span>$</span>{object.post_import_do_something()}',\n"
+"}\n"
+"\n"
+"                                </code>"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -280,7 +337,22 @@ msgstr "Aggiunge sezione foglio"
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_report__choose_template
 msgid "Allow Choose Template"
-msgstr "Consente Selezione Modello"
+msgstr "Consente selezione schema"
+
+#. module: excel_import_export
+#: model:ir.model.fields,field_description:excel_import_export.field_export_xlsx_wizard__assigned_attachment_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_import_xlsx_wizard__assigned_attachment_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_ir_actions_report__assigned_attachment_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_report_xlsx_wizard__assigned_attachment_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_export__assigned_attachment_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_import__assigned_attachment_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_report__assigned_attachment_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_styles__assigned_attachment_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__assigned_attachment_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__assigned_attachment_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_import__assigned_attachment_ids
+msgid "Assigned Attachments"
+msgstr "Allegati assegnati"
 
 #. module: excel_import_export
 #: model:ir.model,name:excel_import_export.model_xlsx_styles
@@ -346,12 +418,12 @@ msgstr "Selezione"
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.xlsx_report_view
 msgid "Choose Template:"
-msgstr "Seleziona Modello:"
+msgstr "Seleziona schema:"
 
 #. module: excel_import_export
 #: model_terms:ir.actions.act_window,help:excel_import_export.action_xlsx_template
 msgid "Click to create a XLSX Template Object."
-msgstr "Click per creare un Oggetto Modello XLSX."
+msgstr "Fare clic per creare un schema oggetto XLSX."
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.export_xlsx_wizard
@@ -463,7 +535,7 @@ msgstr "Il documento deve essere in stato bozza"
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__use_report_wizard
 msgid "Easy Reporting"
-msgstr ""
+msgstr "Reportistica facile"
 
 #. module: excel_import_export
 #. odoo-python
@@ -502,12 +574,12 @@ msgstr "Excel"
 #. module: excel_import_export
 #: model:ir.model,name:excel_import_export.model_xlsx_export
 msgid "Excel Export AbstractModel"
-msgstr ""
+msgstr "Esportazione Excel AbstractModel"
 
 #. module: excel_import_export
 #: model:ir.model,name:excel_import_export.model_xlsx_import
 msgid "Excel Import AbstractModel"
-msgstr ""
+msgstr "Importazione Excel AbstractModel"
 
 #. module: excel_import_export
 #: model:ir.ui.menu,name:excel_import_export.menu_excel_import_export
@@ -522,12 +594,12 @@ msgstr "Report Excel"
 #. module: excel_import_export
 #: model:ir.model,name:excel_import_export.model_xlsx_report
 msgid "Excel Report AbstractModel"
-msgstr ""
+msgstr "Resoconto Excel AbstractModel"
 
 #. module: excel_import_export
 #: model:ir.model,name:excel_import_export.model_xlsx_template
 msgid "Excel template file and instruction"
-msgstr "File modello excel e istruzioni"
+msgstr "File schema excel e istruzioni"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.report_xlsx_wizard
@@ -565,6 +637,16 @@ msgid ""
 "Excel Sheet(s), each with 1 header section (_HEAD_) and multiple row "
 "sections (one2many fields)."
 msgstr ""
+"Le istruzioni di esportazione indicano come scrivere i dati da un record "
+"attivo nelle celle specifiche di un foglio Excel.\n"
+"                                  Per esempio, un record attivo può essere "
+"un ordine di vendita che l'utente vuol esportare.\n"
+"                                  Il record stesso verrà mappato "
+"nell'intestazine del foglio Excel. Il record può contenere campi multipli "
+"one2many, che verranno scritti come righe di dati.\n"
+"                                  Le segenti istruzioni si possno "
+"considerare cme fogli Excel, ognuno con una sezione intestazione (_HEAD_) e "
+"sessioni righe multiple (one2many fields)."
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__is_extend
@@ -588,7 +670,7 @@ msgstr "Campo"
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__field_cond
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_import__field_cond
 msgid "Field Cond."
-msgstr ""
+msgstr "Cond. campo"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_export_xlsx_wizard__data
@@ -601,7 +683,7 @@ msgstr "File"
 #: code:addons/excel_import_export/wizard/import_xlsx_wizard.py:0
 #, python-format
 msgid "File \"%(fname)s\" not found in template, %(name)s."
-msgstr ""
+msgstr "File \"%(fname)s\" non trovato nello schema, %(name)s."
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__datas
@@ -613,7 +695,7 @@ msgstr "Contenuto File"
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_report__name
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__fname
 msgid "File Name"
-msgstr "Nome File"
+msgstr "Nome file"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -627,6 +709,9 @@ msgid ""
 "                                    Normally, this will be within templates."
 "xml file within addons."
 msgstr ""
+"Di seguito si mistra un semplice esempio della costruzione del dizionario.\n"
+"                                    Normalmente, questo è all'interno del "
+"file templates.xml negli addons."
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -634,6 +719,8 @@ msgid ""
 "For code block <code>$</code><code>{...}</code> and <code>#?...?</code>, "
 "following object are available,"
 msgstr ""
+"Per il blocco di codice <code>$</code><code>{...}</code> e <code>#?...?</"
+"code>, sono disponibili i segenti oggetti,"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -641,11 +728,13 @@ msgid ""
 "For code block <code>$</code><code>{...}</code>, following object are "
 "available,"
 msgstr ""
+"Per il blocco di codice <code>$</code><code>{...}</code>, sono disponibili i "
+"seguenti oggetti,"
 
 #. module: excel_import_export
 #: model:ir.model,name:excel_import_export.model_report_xlsx_wizard
 msgid "Generic Report Wizard, used with template reporting option"
-msgstr "Wizard Report Generico, usato con l'opzione dei modelli di report"
+msgstr "Wizard Report Generico, usato con l'opzione dello schema resoconto"
 
 #. module: excel_import_export
 #: model:ir.model.fields.selection,name:excel_import_export.selection__export_xlsx_wizard__state__get
@@ -654,12 +743,12 @@ msgstr "Wizard Report Generico, usato con l'opzione dei modelli di report"
 #: model:ir.model.fields.selection,name:excel_import_export.selection__report_sale_order__state__get
 #: model:ir.model.fields.selection,name:excel_import_export.selection__xlsx_report__state__get
 msgid "Get"
-msgstr ""
+msgstr "Ottieni"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.export_xlsx_wizard
 msgid "Get Import Template"
-msgstr ""
+msgstr "Ottieni schema importazione"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__gname
@@ -748,12 +837,12 @@ msgstr "Importa File (*.xlsx)"
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_import_xlsx_wizard__filename
 msgid "Import File Name"
-msgstr ""
+msgstr "Nome file importazione"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.import_xlsx_wizard
 msgid "Import File Template"
-msgstr "Modello File Importazione"
+msgstr "Schema file importazione"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_import_xlsx_wizard__attachment_ids
@@ -773,6 +862,15 @@ msgid ""
 "section (_HEAD_) and data table can be mapped to row section (one2many "
 "field, begins from specifed cells."
 msgstr ""
+"Le istruzioni di importazione indicano come ottenere dati dai fogli Excel e "
+"scriverli in un record attivo.\n"
+"                                  Per esempio, l'utente crea un documento "
+"ordine di vendita e vuole impotare le righe ordine da Excel.\n"
+"                                  Viceversa per esportare, i dati dalle "
+"celle Excel verranno mappati nei campi del record durante l'importazione.\n"
+"                                  Le celle possono essere mappate sui record "
+"nella sezione intestazione (_HEAD_) e la tabella dati può essere mappata nel "
+"campo della sezione riga (one2many), iniziando da una cella specifica."
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.import_xlsx_wizard
@@ -804,6 +902,9 @@ msgid ""
 "order_line), and map data field (i.e., product_id.name, uom_id.name, qty) "
 "into the first row cells to start rolling (e.g., A6, B6, C6)."
 msgstr ""
+"Nella sezione riga, la lista dati verrà estratta dal campo riga one2many "
+"(es. order_line), e il campo data mappa (cioè product_id.name, uom_id.name, "
+"qty) nella prima cella della riga per iniziare l'estrazine (es. A6, B6, C6)."
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -812,6 +913,9 @@ msgid ""
 "(e.g., order_line) by mapping cells on first row onwards (e.g., A6, B6, C6) "
 "to fields (e.g., product_id, uom_id, qty)"
 msgstr ""
+"Nella sezione riga, la tabella dati da Excel può essere importata in un "
+"campo riga one2many (es, order_line) mappando le celle dalla prima riga in "
+"avanti (es. A6, B6, C6) ai campi (es. product_id, uom_id, qty)"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -859,7 +963,7 @@ msgstr "Tipo stile %s non valido"
 #: code:addons/excel_import_export/models/common.py:0
 #, python-format
 msgid "Invalid value %(value)s for style type %(key)s"
-msgstr ""
+msgstr "Valore %(value)s non valido per il tipo stile %(key)s"
 
 #. module: excel_import_export
 #. odoo-python
@@ -869,6 +973,8 @@ msgid ""
 "Key Error\n"
 "%s"
 msgstr ""
+"Errore chiave\n"
+"%s"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_export_xlsx_wizard____last_update
@@ -906,6 +1012,9 @@ msgid ""
 "Multiple template of same model, can belong to same group,\n"
 "result in multiple template selection"
 msgstr ""
+"Schemi multipli dello stesso modello possono appartenere allo stesso "
+"gruppo,\n"
+"risultando in una selezione schema multiplo"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_import__no_delete
@@ -917,7 +1026,7 @@ msgstr "Non Cancellare"
 #: code:addons/excel_import_export/models/xlsx_import.py:0
 #, python-format
 msgid "No data_dict['__IMPORT__'] in template %s"
-msgstr ""
+msgstr "Nessun data_dict['__IMPORT__'] nello schema %s"
 
 #. module: excel_import_export
 #. odoo-python
@@ -941,7 +1050,7 @@ msgstr "Nessun file in %s"
 #: code:addons/excel_import_export/wizard/import_xlsx_wizard.py:0
 #, python-format
 msgid "No template found"
-msgstr "Nessun modello trovato"
+msgstr "Nessuno schema trovato"
 
 #. module: excel_import_export
 #. odoo-python
@@ -1053,12 +1162,12 @@ msgstr "Modello Report"
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_ir_actions_report__report_type
 msgid "Report Type"
-msgstr "Tipo Report"
+msgstr "Tipo resoconto"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_report_xlsx_wizard__res_model
 msgid "Res Model"
-msgstr ""
+msgstr "Modello res"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_import_xlsx_wizard__res_id
@@ -1107,7 +1216,7 @@ msgstr "Esempio"
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "Sample Input Instruction as Dictionary"
-msgstr ""
+msgstr "Esempio istruzione ingresso cme dizionario"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_report_xlsx_wizard__domain
@@ -1131,7 +1240,7 @@ msgstr "Sequenza"
 #: code:addons/excel_import_export/wizard/import_xlsx_wizard.py:0
 #, python-format
 msgid "Set Templates"
-msgstr ""
+msgstr "Imposta schemi"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__sheet
@@ -1191,20 +1300,20 @@ msgstr "Somma"
 #: model:ir.model.fields,field_description:excel_import_export.field_import_xlsx_wizard__template_id
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_report__template_id
 msgid "Template"
-msgstr "Modello"
+msgstr "Schema"
 
 #. module: excel_import_export
 #. odoo-python
 #: code:addons/excel_import_export/models/ir_report.py:0
 #, python-format
 msgid "Template %(report_name)s on model %(model)s is not unique!"
-msgstr ""
+msgstr "Lo schema %(report_name)s nel modello %(model)s non è univoco!"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_import_xlsx_wizard__fname
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__name
 msgid "Template Name"
-msgstr "Nome Modello"
+msgstr "Nome schema"
 
 #. module: excel_import_export
 #. odoo-python
@@ -1214,6 +1323,8 @@ msgid ""
 "Template with CSV Quoting = False, data must not contain the same char as "
 "delimiter -> \"%s\""
 msgstr ""
+"Schema CSV con Quoting = False, i dati non devno contenere lo stesso "
+"carattere come separatore -> \"%s\""
 
 #. module: excel_import_export
 #. odoo-python
@@ -1221,19 +1332,19 @@ msgstr ""
 #: code:addons/excel_import_export/models/xlsx_import.py:0
 #, python-format
 msgid "Template's model mismatch"
-msgstr ""
+msgstr "Schema del modello non corrispondente"
 
 #. module: excel_import_export
 #: model:ir.model.fields,help:excel_import_export.field_xlsx_template__res_model
 msgid "The database object this attachment will be attached to."
-msgstr ""
+msgstr "L'oggetto del database a cui verrà assegnato questo allegato."
 
 #. module: excel_import_export
 #. odoo-python
 #: code:addons/excel_import_export/models/xlsx_template.py:0
 #, python-format
 msgid "The selected redirect action is not for model %s"
-msgstr ""
+msgstr "L'azione di reindirizzamento selezionato non è per il modello %s"
 
 #. module: excel_import_export
 #: model:ir.model.fields,help:excel_import_export.field_ir_actions_report__report_type
@@ -1243,6 +1354,10 @@ msgid ""
 "browser PDF means the report will be rendered using Wkhtmltopdf and "
 "downloaded by the user."
 msgstr ""
+"Il tipo di resoconto che verrà generato, ognuno avente il suo metodo di "
+"generazione. HTML vuol dire che il resoconto sarà aperto direttamente nel "
+"tuo browser mentre PDF vuol dire che il resoconto sarà generato usando "
+"Wkhtmltopdf e scaricato dall'utente."
 
 #. module: excel_import_export
 #. odoo-python
@@ -1259,6 +1374,8 @@ msgid ""
 "This is the computed instruction based on tab Import/Export,\n"
 "to be used by xlsx import/export engine"
 msgstr ""
+"Questa è l'istruzine elaborata in base alla linguetta Importa/Esporta\n"
+"da usare dal motore importa/esporta xlsx"
 
 #. module: excel_import_export
 #: model:ir.model.fields,help:excel_import_export.field_xlsx_template__input_instruction
@@ -1292,13 +1409,13 @@ msgstr "Wizard per l'importazione excel"
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_import__template_id
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "XLSX Template"
-msgstr "Modello XLSX"
+msgstr "Schema XLSX"
 
 #. module: excel_import_export
 #: model:ir.actions.act_window,name:excel_import_export.action_xlsx_template
 #: model:ir.ui.menu,name:excel_import_export.menu_xlsx_template
 msgid "XLSX Templates"
-msgstr "Modelli XLSX"
+msgstr "Schemi XLSX"
 
 #. module: excel_import_export
 #: model:ir.model.fields,help:excel_import_export.field_import_xlsx_wizard__attachment_ids
@@ -1315,7 +1432,7 @@ msgstr "o"
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.import_xlsx_wizard
 msgid "⇒ Get Sample Import Template"
-msgstr ""
+msgstr "⇒ Scarica esempio schema di importazione"
 
 #~ msgid ""
 #~ "<code class=\"oe_grey\">\n"
@@ -1396,9 +1513,6 @@ msgstr ""
 #~ "Una finestra di popup con il tuo report è stata bloccata. Bisogna "
 #~ "cambiare le impostazioni del browser per consentire le finestre popup da "
 #~ "questa pagina."
-
-#~ msgid "Assigned Attachments"
-#~ msgstr "Allegati Assegnati"
 
 #, python-format
 #~ msgid "File \"%s\" not found in template, %s."
