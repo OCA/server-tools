@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-28 00:59+0000\n"
-"PO-Revision-Date: 2023-06-07 17:09+0000\n"
+"PO-Revision-Date: 2023-12-29 17:38+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-server-tools-8-0/"
 "language/it/)\n"
@@ -71,7 +71,7 @@ msgstr "Estensione file"
 #. module: base_multi_image
 #: field:base_multi_image.image,filename:0
 msgid "Filename"
-msgstr "Nome del file"
+msgstr "Nome file"
 
 #. module: base_multi_image
 #: field:base_multi_image.image,image_main:0
