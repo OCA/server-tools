@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-28 09:49+0000\n"
-"PO-Revision-Date: 2023-07-10 11:10+0000\n"
+"PO-Revision-Date: 2023-12-29 17:38+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-server-tools-8-0/"
 "language/it/)\n"
@@ -303,7 +303,7 @@ msgstr "File"
 #. module: module_prototyper
 #: field:module_prototyper.module.export,name:0
 msgid "File Name"
-msgstr "Nome del campo"
+msgstr "Nome file"
 
 #. module: module_prototyper
 #: selection:module_prototyper,license:0
