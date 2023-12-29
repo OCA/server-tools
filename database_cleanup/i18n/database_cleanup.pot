@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -148,7 +148,6 @@ msgstr ""
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_line__display_name
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_wizard__display_name
-#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line__display_name
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_column__display_name
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_data__display_name
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_menu__display_name
@@ -156,7 +155,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_module__display_name
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_property__display_name
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_table__display_name
-#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard__display_name
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_column__display_name
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_data__display_name
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_menu__display_name
@@ -164,9 +162,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_module__display_name
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_property__display_name
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_table__display_name
-#: model:ir.model.fields,field_description:database_cleanup.field_ir_model__display_name
-#: model:ir.model.fields,field_description:database_cleanup.field_ir_model_data__display_name
-#: model:ir.model.fields,field_description:database_cleanup.field_ir_model_fields__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -193,7 +188,6 @@ msgstr ""
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_line__id
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_wizard__id
-#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line__id
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_column__id
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_data__id
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_menu__id
@@ -201,7 +195,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_module__id
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_property__id
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_table__id
-#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard__id
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_column__id
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_data__id
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_menu__id
@@ -209,16 +202,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_module__id
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_property__id
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_table__id
-#: model:ir.model.fields,field_description:database_cleanup.field_ir_model__id
-#: model:ir.model.fields,field_description:database_cleanup.field_ir_model_data__id
-#: model:ir.model.fields,field_description:database_cleanup.field_ir_model_fields__id
 msgid "ID"
 msgstr ""
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_line____last_update
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_wizard____last_update
-#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line____last_update
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_column____last_update
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_data____last_update
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_menu____last_update
@@ -226,7 +215,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_module____last_update
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_property____last_update
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_table____last_update
-#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard____last_update
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_column____last_update
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_data____last_update
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_menu____last_update
@@ -234,9 +222,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_module____last_update
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_property____last_update
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_table____last_update
-#: model:ir.model.fields,field_description:database_cleanup.field_ir_model____last_update
-#: model:ir.model.fields,field_description:database_cleanup.field_ir_model_data____last_update
-#: model:ir.model.fields,field_description:database_cleanup.field_ir_model_fields____last_update
 msgid "Last Modified on"
 msgstr ""
 
@@ -329,36 +314,42 @@ msgid "Name"
 msgstr ""
 
 #. module: database_cleanup
+#. odoo-python
 #: code:addons/database_cleanup/models/purge_menus.py:0
 #, python-format
 msgid "No dangling menu entries found"
 msgstr ""
 
 #. module: database_cleanup
+#. odoo-python
 #: code:addons/database_cleanup/models/purge_modules.py:0
 #, python-format
 msgid "No modules found to purge"
 msgstr ""
 
 #. module: database_cleanup
+#. odoo-python
 #: code:addons/database_cleanup/models/purge_columns.py:0
 #, python-format
 msgid "No orphaned columns found"
 msgstr ""
 
 #. module: database_cleanup
+#. odoo-python
 #: code:addons/database_cleanup/models/purge_data.py:0
 #, python-format
 msgid "No orphaned data entries found"
 msgstr ""
 
 #. module: database_cleanup
+#. odoo-python
 #: code:addons/database_cleanup/models/purge_models.py:0
 #, python-format
 msgid "No orphaned models found"
 msgstr ""
 
 #. module: database_cleanup
+#. odoo-python
 #: code:addons/database_cleanup/models/purge_tables.py:0
 #, python-format
 msgid "No orphaned tables found"
@@ -443,7 +434,6 @@ msgstr ""
 #. module: database_cleanup
 #: model:ir.actions.server,name:database_cleanup.action_purge_models
 #: model:ir.model,name:database_cleanup.model_cleanup_purge_wizard_model
-#: model_terms:ir.ui.view,arch_db:database_cleanup.tree_purge_line
 msgid "Purge models"
 msgstr ""
 
@@ -538,34 +528,10 @@ msgid "Select lines"
 msgstr ""
 
 #. module: database_cleanup
+#. odoo-python
 #: code:addons/database_cleanup/models/purge_wizard.py:0
 #, python-format
 msgid "Select lines to purge"
-msgstr ""
-
-#. module: database_cleanup
-#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_line__smart_search
-#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_wizard__smart_search
-#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line__smart_search
-#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_column__smart_search
-#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_data__smart_search
-#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_menu__smart_search
-#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_model__smart_search
-#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_module__smart_search
-#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_property__smart_search
-#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_table__smart_search
-#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard__smart_search
-#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_column__smart_search
-#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_data__smart_search
-#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_menu__smart_search
-#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_model__smart_search
-#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_module__smart_search
-#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_property__smart_search
-#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_table__smart_search
-#: model:ir.model.fields,field_description:database_cleanup.field_ir_model__smart_search
-#: model:ir.model.fields,field_description:database_cleanup.field_ir_model_data__smart_search
-#: model:ir.model.fields,field_description:database_cleanup.field_ir_model_fields__smart_search
-msgid "Smart Search"
 msgstr ""
 
 #. module: database_cleanup
