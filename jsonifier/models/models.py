@@ -18,7 +18,6 @@ _logger = logging.getLogger(__name__)
 
 
 class Base(models.AbstractModel):
-
     _inherit = "base"
 
     @api.model

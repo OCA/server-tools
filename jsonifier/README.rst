@@ -17,183 +17,180 @@ JSONifier
     :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
     :alt: License: LGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github
-    :target: https://github.com/OCA/server-tools/tree/16.0/jsonifier
+    :target: https://github.com/OCA/server-tools/tree/17.0/jsonifier
     :alt: OCA/server-tools
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/server-tools-16-0/server-tools-16-0-jsonifier
+    :target: https://translation.odoo-community.org/projects/server-tools-17-0/server-tools-17-0-jsonifier
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/server-tools&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/server-tools&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module adds a 'jsonify' method to every model of the ORM.
-It works on the current recordset and requires a single argument 'parser'
-that specify the field to extract.
+This module adds a 'jsonify' method to every model of the ORM. It works
+on the current recordset and requires a single argument 'parser' that
+specify the field to extract.
 
 Example of a simple parser:
 
+.. code:: python
 
-.. code-block:: python
-
-    parser = [
-        'name',
-        'number',
-        'create_date',
-        ('partner_id', ['id', 'display_name', 'ref'])
-        ('line_id', ['id', ('product_id', ['name']), 'price_unit'])
-    ]
+   parser = [
+       'name',
+       'number',
+       'create_date',
+       ('partner_id', ['id', 'display_name', 'ref'])
+       ('line_id', ['id', ('product_id', ['name']), 'price_unit'])
+   ]
 
 In order to be consistent with the Odoo API the jsonify method always
-returns a list of objects even if there is only one element in the recordset.
+returns a list of objects even if there is only one element in the
+recordset.
 
-By default the key into the JSON is the name of the field extracted
-from the model. If you need to specify an alternate name to use as key, you
+By default the key into the JSON is the name of the field extracted from
+the model. If you need to specify an alternate name to use as key, you
 can define your mapping as follow into the parser definition:
 
-.. code-block:: python
+.. code:: python
 
-    parser = [
-        'field_name:json_key'
-    ]
+   parser = [
+       'field_name:json_key'
+   ]
 
-.. code-block:: python
+.. code:: python
 
+   parser = [
+       'name',
+       'number',
+       'create_date:creationDate',
+       ('partner_id:partners', ['id', 'display_name', 'ref'])
+       ('line_id:lines', ['id', ('product_id', ['name']), 'price_unit'])
+   ]
 
-    parser = [
-        'name',
-        'number',
-        'create_date:creationDate',
-        ('partner_id:partners', ['id', 'display_name', 'ref'])
-        ('line_id:lines', ['id', ('product_id', ['name']), 'price_unit'])
-    ]
+If you need to parse the value of a field in a custom way, you can pass
+a callable or the name of a method on the model:
 
-If you need to parse the value of a field in a custom way,
-you can pass a callable or the name of a method on the model:
+.. code:: python
 
-.. code-block:: python
+   parser = [
+       ('name', "jsonify_name")  # method name
+       ('number', lambda rec, field_name: rec[field_name] * 2))  # callable
+   ]
 
-    parser = [
-        ('name', "jsonify_name")  # method name
-        ('number', lambda rec, field_name: rec[field_name] * 2))  # callable
-    ]
+Also the module provide a method "get_json_parser" on the ir.exports
+object that generate a parser from an ir.exports configuration.
 
-Also the module provide a method "get_json_parser" on the ir.exports object
-that generate a parser from an ir.exports configuration.
-
-Further features are available for advanced uses.
-It defines a simple "resolver" model that has a "python_code" field and a resolve
-function so that arbitrary functions can be configured to transform fields,
-or process the resulting dictionary.
-It is also to specify a lang to extract the translation of any given field.
+Further features are available for advanced uses. It defines a simple
+"resolver" model that has a "python_code" field and a resolve function
+so that arbitrary functions can be configured to transform fields, or
+process the resulting dictionary. It is also to specify a lang to
+extract the translation of any given field.
 
 To use these features, a full parser follows the following structure:
 
-.. code-block:: python
+.. code:: python
 
-    parser = {
-        "resolver": 3,
-        "language_agnostic": True,
-        "langs": {
-            False: [
-                {'name': 'description'},
-                {'name': 'number', 'resolver': 5},
-                ({'name': 'partner_id', 'target': 'partner'}, [{'name': 'display_name'}])
-            ],
-            'fr_FR': [
-                {'name': 'description', 'target': 'descriptions_fr'},
-                ({'name': 'partner_id', 'target': 'partner'}, [{'name': 'description', 'target': 'description_fr'}])
-            ],
-        }
-    }
+   parser = {
+       "resolver": 3,
+       "language_agnostic": True,
+       "langs": {
+           False: [
+               {'name': 'description'},
+               {'name': 'number', 'resolver': 5},
+               ({'name': 'partner_id', 'target': 'partner'}, [{'name': 'display_name'}])
+           ],
+           'fr_FR': [
+               {'name': 'description', 'target': 'descriptions_fr'},
+               ({'name': 'partner_id', 'target': 'partner'}, [{'name': 'description', 'target': 'description_fr'}])
+           ],
+       }
+   }
 
+One would get a result having this structure (note that the translated
+fields are merged in the same dictionary):
 
-One would get a result having this structure (note that the translated fields are merged in the same dictionary):
+.. code:: python
 
-.. code-block:: python
+   exported_json == {
+       "description": "English description",
+       "description_fr": "French description, voilà",
+       "number": 42,
+       "partner": {
+           "display_name": "partner name",
+           "description_fr": "French description of that partner",
+       },
+   }
 
-    exported_json == {
-        "description": "English description",
-        "description_fr": "French description, voilà",
-        "number": 42,
-        "partner": {
-            "display_name": "partner name",
-            "description_fr": "French description of that partner",
-        },
-    }
+Note that a resolver can be passed either as a recordset or as an id, so
+as to be fully serializable. A slightly simpler version in case the
+translation of fields is not needed, but other features like custom
+resolvers are:
 
+.. code:: python
 
-Note that a resolver can be passed either as a recordset or as an id, so as to be fully serializable.
-A slightly simpler version in case the translation of fields is not needed,
-but other features like custom resolvers are:
+   parser = {
+       "resolver": 3,
+       "fields": [
+               {'name': 'description'},
+               {'name': 'number', 'resolver': 5},
+               ({'name': 'partner_id', 'target': 'partners'}, [{'name': 'display_name'}]),
+       ],
+   }
 
-.. code-block:: python
+By passing the fields key instead of langs, we have essentially the same
+behaviour as simple parsers, with the added benefit of being able to use
+resolvers.
 
-    parser = {
-        "resolver": 3,
-        "fields": [
-                {'name': 'description'},
-                {'name': 'number', 'resolver': 5},
-                ({'name': 'partner_id', 'target': 'partners'}, [{'name': 'display_name'}]),
-        ],
-    }
-
-
-By passing the `fields` key instead of `langs`, we have essentially the same behaviour as simple parsers,
-with the added benefit of being able to use resolvers.
-
-Standard use-cases of resolvers are:
-- give field-specific defaults (e.g. `""` instead of `None`)
-- cast a field type (e.g. `int()`)
-- alias a particular field for a specific export
-- ...
+Standard use-cases of resolvers are: - give field-specific defaults
+(e.g. "" instead of None) - cast a field type (e.g. int()) - alias a
+particular field for a specific export - ...
 
 A simple parser is simply translated into a full parser at export.
 
 If the global resolver is given, then the json_dict goes through:
 
-.. code-block:: python
+.. code:: python
 
-    resolver.resolve(dict, record)
+   resolver.resolve(dict, record)
 
-Which allows to add external data from the context or transform the dictionary
-if necessary. Similarly if given for a field the resolver evaluates the result.
+Which allows to add external data from the context or transform the
+dictionary if necessary. Similarly if given for a field the resolver
+evaluates the result.
 
-It is possible for a target to have a marshaller by ending the target with '=list':
-in that case the result is put into a list.
+It is possible for a target to have a marshaller by ending the target
+with '=list': in that case the result is put into a list.
 
-.. code-block:: python
+.. code:: python
 
-  parser = {
-      fields: [
-          {'name': 'name'},
-          {'name': 'field_1', 'target': 'customTags=list'},
-          {'name': 'field_2', 'target': 'customTags=list'},
-      ]
-  }
-
+   parser = {
+       fields: [
+           {'name': 'name'},
+           {'name': 'field_1', 'target': 'customTags=list'},
+           {'name': 'field_2', 'target': 'customTags=list'},
+       ]
+   }
 
 Would result in the following JSON structure:
 
-.. code-block:: python
+.. code:: python
 
-    {
-        'name': 'record_name',
-        'customTags': ['field_1_value', 'field_2_value'],
-    }
+   {
+       'name': 'record_name',
+       'customTags': ['field_1_value', 'field_2_value'],
+   }
 
-The intended use-case is to be compatible with APIs that require all translated
-parameters to be exported simultaneously, and ask for custom properties to be
-put in a sub-dictionary.
-Since it is often the case that some of these requirements are optional,
-new requirements could be met without needing to add field or change any code.
+The intended use-case is to be compatible with APIs that require all
+translated parameters to be exported simultaneously, and ask for custom
+properties to be put in a sub-dictionary. Since it is often the case
+that some of these requirements are optional, new requirements could be
+met without needing to add field or change any code.
 
-Note that the export values with the simple parser depends on the record's lang;
-this is in contrast with full parsers which are designed to be language agnostic.
+Note that the export values with the simple parser depends on the
+record's lang; this is in contrast with full parsers which are designed
+to be language agnostic.
 
-
-NOTE: this module was named `base_jsonify` till version 14.0.1.5.0.
+NOTE: this module was named base_jsonify till version 14.0.1.5.0.
 
 **Table of contents**
 
@@ -206,7 +203,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/server-tools/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/server-tools/issues/new?body=module:%20jsonifier%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/server-tools/issues/new?body=module:%20jsonifier%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -214,24 +211,24 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Akretion
 * ACSONE
 * Camptocamp
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* BEAU Sébastien <sebastien.beau@akretion.com>
-* Raphaël Reverdy <raphael.reverdy@akretion.com>
-* Laurent Mignon <laurent.mignon@acsone.eu>
-* Nans Lefebvre <nans.lefebvre@acsone.eu>
-* Simone Orsi <simone.orsi@camptocamp.com>
-* Iván Todorovich <ivan.todorovich@camptocamp.com>
+-  BEAU Sébastien <sebastien.beau@akretion.com>
+-  Raphaël Reverdy <raphael.reverdy@akretion.com>
+-  Laurent Mignon <laurent.mignon@acsone.eu>
+-  Nans Lefebvre <nans.lefebvre@acsone.eu>
+-  Simone Orsi <simone.orsi@camptocamp.com>
+-  Iván Todorovich <ivan.todorovich@camptocamp.com>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -243,6 +240,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/16.0/jsonifier>`_ project on GitHub.
+This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/17.0/jsonifier>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
