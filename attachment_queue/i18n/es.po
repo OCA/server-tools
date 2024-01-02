@@ -6,13 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2024-01-02 20:35+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: attachment_queue
 #: model:mail.template,body_html:attachment_queue.attachment_failure_notification
@@ -23,460 +25,476 @@ msgid ""
 "                <p style=\"margin:0px 0px 10px 0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;\">Regards,<br></p>\n"
 "            "
 msgstr ""
+"\n"
+"                <p style=\"margin:0px 0px 10px 0px;font-size:13px;font-"
+"family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;\""
+">Hola,<br><br></p>\n"
+"                <p style=\"margin:0px 0px 10px 0px;font-size:13px;font-"
+"family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;\""
+">El archivo adjunto ${object.name}ha fallado con el siguiente mensaje de "
+"error  : <br>${object.state_message}<br></p><p style=\"margin:0px 0px 10px "
+"0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, "
+"Verdana, Arial, sans-serif;\"></p>\n"
+"                <p style=\"margin:0px 0px 10px 0px;font-size:13px;font-"
+"family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;\""
+">Saludos,<br></p>\n"
+"            "
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__access_token
 msgid "Access Token"
-msgstr ""
+msgstr "Ficha de Acceso"
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__message_needaction
 msgid "Action Needed"
-msgstr ""
+msgstr "Acción Necesaria"
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__activity_ids
 msgid "Activities"
-msgstr ""
+msgstr "Actividades"
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__activity_exception_decoration
 msgid "Activity Exception Decoration"
-msgstr ""
+msgstr "Decoración de Actividad de Excepción"
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__activity_state
 msgid "Activity State"
-msgstr ""
+msgstr "Estado de la Actividad"
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__activity_type_icon
 msgid "Activity Type Icon"
-msgstr ""
+msgstr "Icono de Tipo de Actividad"
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__attachment_id
 #: model_terms:ir.ui.view,arch_db:attachment_queue.view_attachment_queue_search
 msgid "Attachment"
-msgstr ""
+msgstr "Archivo Adjunto"
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__message_attachment_count
 msgid "Attachment Count"
-msgstr ""
+msgstr "Conteo de Adjuntos"
 
 #. module: attachment_queue
 #: model:mail.template,name:attachment_queue.attachment_failure_notification
 msgid "Attachment Failure notification"
-msgstr ""
+msgstr "Adjuntar Notificación de fallo"
 
 #. module: attachment_queue
 #: model:ir.model,name:attachment_queue.model_attachment_queue
 msgid "Attachment Queue"
-msgstr ""
+msgstr "Cola de Archivos Adjuntos"
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__local_url
 msgid "Attachment URL"
-msgstr ""
+msgstr "URL del Archivo Adjunto"
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue_reschedule__attachment_ids
 #: model_terms:ir.ui.view,arch_db:attachment_queue.view_attachment_queue_search
 msgid "Attachments"
-msgstr ""
+msgstr "Archivos Adjuntos"
 
 #. module: attachment_queue
 #: model:ir.actions.act_window,name:attachment_queue.action_attachment_queue
 #: model:ir.ui.menu,name:attachment_queue.menu_attachment_queue
 msgid "Attachments Queue"
-msgstr ""
+msgstr "Cola de Archivos Adjuntos"
 
 #. module: attachment_queue
 #: model_terms:ir.ui.view,arch_db:attachment_queue.view_attachment_queue_search
 msgid "Binary"
-msgstr ""
+msgstr "Binario"
 
 #. module: attachment_queue
 #: model_terms:ir.ui.view,arch_db:attachment_queue.view_reschedule_attachment
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__checksum
 msgid "Checksum/SHA1"
-msgstr ""
+msgstr "Verificación de suma/SHA1"
 
 #. module: attachment_queue
 #: model:ir.model.fields,help:attachment_queue.field_attachment_queue__failure_emails
 msgid ""
 "Comma-separated list of email addresses to be notified in case offailure"
 msgstr ""
+"Lista separada por comas de direcciones de correo electrónico a las que "
+"notificar en caso de fallo"
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__company_id
 #: model_terms:ir.ui.view,arch_db:attachment_queue.view_attachment_queue_search
 msgid "Company"
-msgstr ""
+msgstr "Companía"
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__create_uid
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue_reschedule__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creado por"
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__create_date
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue_reschedule__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creado el"
 
 #. module: attachment_queue
 #: model_terms:ir.ui.view,arch_db:attachment_queue.view_attachment_queue_search
 msgid "Creation Month"
-msgstr ""
+msgstr "Mes de Creación"
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__db_datas
 msgid "Database Data"
-msgstr ""
+msgstr "Base de Datos"
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__date_done
 msgid "Date Done"
-msgstr ""
+msgstr "Fecha de Realización"
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__description
 msgid "Description"
-msgstr ""
+msgstr "Descripción"
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__display_name
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue_reschedule__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Mostrar Nombre"
 
 #. module: attachment_queue
 #: model:ir.model.fields.selection,name:attachment_queue.selection__attachment_queue__state__done
 #: model_terms:ir.ui.view,arch_db:attachment_queue.view_attachment_queue_search
 msgid "Done"
-msgstr ""
+msgstr "Realizado"
 
 #. module: attachment_queue
 #: model_terms:ir.ui.view,arch_db:attachment_queue.view_attachment_queue_form
 msgid "Error"
-msgstr ""
+msgstr "Error"
 
 #. module: attachment_queue
 #: model:ir.model.fields.selection,name:attachment_queue.selection__attachment_queue__state__failed
 #: model_terms:ir.ui.view,arch_db:attachment_queue.view_attachment_queue_search
 msgid "Failed"
-msgstr ""
+msgstr "Fallido"
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__failure_emails
 msgid "Failure Emails"
-msgstr ""
+msgstr "Correos Electrónicos de Error"
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__datas
 msgid "File Content (base64)"
-msgstr ""
+msgstr "Contenido del Archivo (base64)"
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__raw
 msgid "File Content (raw)"
-msgstr ""
+msgstr "Contenido del Archivo (sin procesar)"
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__file_size
 msgid "File Size"
-msgstr ""
+msgstr "Tamaño del Archivo"
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__file_type
 msgid "File Type"
-msgstr ""
+msgstr "Tipo de Archivo"
 
 #. module: attachment_queue
 #: model_terms:ir.ui.view,arch_db:attachment_queue.view_attachment_queue_search
 msgid "File type"
-msgstr ""
+msgstr "Tipo de archivo"
 
 #. module: attachment_queue
 #: model_terms:ir.ui.view,arch_db:attachment_queue.view_attachment_queue_search
 msgid "Filter on my documents"
-msgstr ""
+msgstr "Filtrar en mis documentos"
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__message_follower_ids
 msgid "Followers"
-msgstr ""
+msgstr "Seguidores/as"
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__message_partner_ids
 msgid "Followers (Partners)"
-msgstr ""
+msgstr "Seguidores (Socios)"
 
 #. module: attachment_queue
 #: model:ir.model.fields,help:attachment_queue.field_attachment_queue__activity_type_icon
 msgid "Font awesome icon e.g. fa-tasks"
-msgstr ""
+msgstr "Icono de fuente impresionante, por ejemplo fa-tasks"
 
 #. module: attachment_queue
 #: model_terms:ir.ui.view,arch_db:attachment_queue.view_attachment_queue_search
 msgid "Group By"
-msgstr ""
+msgstr "Grupo Por"
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__has_message
 msgid "Has Message"
-msgstr ""
+msgstr "Tiene Mensaje"
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__id
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue_reschedule__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__activity_exception_icon
 msgid "Icon"
-msgstr ""
+msgstr "Icono"
 
 #. module: attachment_queue
 #: model:ir.model.fields,help:attachment_queue.field_attachment_queue__activity_exception_icon
 msgid "Icon to indicate an exception activity."
-msgstr ""
+msgstr "Icono para indicar la excepción de la actividad."
 
 #. module: attachment_queue
 #: model:ir.model.fields,help:attachment_queue.field_attachment_queue__message_needaction
 msgid "If checked, new messages require your attention."
-msgstr ""
+msgstr "Si está marcada, nuevos mensajes requieren su atención."
 
 #. module: attachment_queue
 #: model:ir.model.fields,help:attachment_queue.field_attachment_queue__message_has_error
 #: model:ir.model.fields,help:attachment_queue.field_attachment_queue__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
-msgstr ""
+msgstr "Si está marcado, algunos mensajes tienen un error de entrega."
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__image_height
 msgid "Image Height"
-msgstr ""
+msgstr "Altura de la imagen"
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__image_src
 msgid "Image Src"
-msgstr ""
+msgstr "Origen de la imagen"
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__image_width
 msgid "Image Width"
-msgstr ""
+msgstr "Anchura de la Imagen"
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__index_content
 msgid "Indexed Content"
-msgstr ""
+msgstr "Contenido Indexado"
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__message_is_follower
 msgid "Is Follower"
-msgstr ""
+msgstr "Es Seguidor/a"
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__public
 msgid "Is public document"
-msgstr ""
+msgstr "Es un documento público"
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue____last_update
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue_reschedule____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última modificación el"
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__write_uid
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue_reschedule__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Última Actualización por"
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__write_date
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue_reschedule__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Última Actualización el"
 
 #. module: attachment_queue
 #: model:ir.model.fields,help:attachment_queue.field_attachment_queue__attachment_id
 msgid "Link to ir.attachment model "
-msgstr ""
+msgstr "Enlace al modelo ir.attachment "
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__message_main_attachment_id
 msgid "Main Attachment"
-msgstr ""
+msgstr "Archivo Adjunto Principal"
 
 #. module: attachment_queue
 #: model_terms:ir.ui.view,arch_db:attachment_queue.view_attachment_queue_form
 msgid "Manual run"
-msgstr ""
+msgstr "Ejecución manual"
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__message_has_error
 msgid "Message Delivery error"
-msgstr ""
+msgstr "Error en Entrega de Mensaje"
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__message_ids
 msgid "Messages"
-msgstr ""
+msgstr "Mensajes"
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__mimetype
 msgid "Mime Type"
-msgstr ""
+msgstr "Tipo Mimo"
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__my_activity_date_deadline
 msgid "My Activity Deadline"
-msgstr ""
+msgstr "Fecha Límite de Mi Actividad"
 
 #. module: attachment_queue
 #: model_terms:ir.ui.view,arch_db:attachment_queue.view_attachment_queue_search
 msgid "My Document(s)"
-msgstr ""
+msgstr "Mis Documento(s)"
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__name
 msgid "Name"
-msgstr ""
+msgstr "Nombre"
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__activity_calendar_event_id
 msgid "Next Activity Calendar Event"
-msgstr ""
+msgstr "Próximo Evento del Calendario de Actividades"
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__activity_date_deadline
 msgid "Next Activity Deadline"
-msgstr ""
+msgstr "Fecha límite de la Siguiente Actividad"
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__activity_summary
 msgid "Next Activity Summary"
-msgstr ""
+msgstr "Resumen de la Siguiente Actividad"
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__activity_type_id
 msgid "Next Activity Type"
-msgstr ""
+msgstr "Tipo de la Siguiente Actividad"
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__message_needaction_counter
 msgid "Number of Actions"
-msgstr ""
+msgstr "Número de Acciones"
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__message_has_error_counter
 msgid "Number of errors"
-msgstr ""
+msgstr "Número de errores"
 
 #. module: attachment_queue
 #: model:ir.model.fields,help:attachment_queue.field_attachment_queue__message_needaction_counter
 msgid "Number of messages requiring action"
-msgstr ""
+msgstr "Número de mensajes que requieren una acción"
 
 #. module: attachment_queue
 #: model:ir.model.fields,help:attachment_queue.field_attachment_queue__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr ""
+msgstr "Número de mensajes con error de entrega"
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__original_id
 msgid "Original (unoptimized, unresized) attachment"
-msgstr ""
+msgstr "Archivo adjunto original (sin optimizar y sin redimensionar)"
 
 #. module: attachment_queue
 #: model_terms:ir.ui.view,arch_db:attachment_queue.view_attachment_queue_search
 msgid "Owner"
-msgstr ""
+msgstr "Propietario"
 
 #. module: attachment_queue
 #: model:ir.model.fields.selection,name:attachment_queue.selection__attachment_queue__state__pending
 #: model_terms:ir.ui.view,arch_db:attachment_queue.view_attachment_queue_search
 msgid "Pending"
-msgstr ""
+msgstr "Pendiente"
 
 #. module: attachment_queue
 #: model_terms:ir.ui.view,arch_db:attachment_queue.view_reschedule_attachment
 msgid "Requeue Attachments"
-msgstr ""
+msgstr "Volver a poner en cola los Archivos Adjuntos"
 
 #. module: attachment_queue
 #: model_terms:ir.ui.view,arch_db:attachment_queue.view_attachment_queue_form
 #: model_terms:ir.ui.view,arch_db:attachment_queue.view_reschedule_attachment
 msgid "Reschedule"
-msgstr ""
+msgstr "Reprogramar"
 
 #. module: attachment_queue
 #: model:ir.actions.act_window,name:attachment_queue.action_reschedule_attachment
 msgid "Reschedule Attachment"
-msgstr ""
+msgstr "Reprogramar Adjunto"
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__res_field
 msgid "Resource Field"
-msgstr ""
+msgstr "Campo de Recurso"
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__res_id
 msgid "Resource ID"
-msgstr ""
+msgstr "ID del Recurso"
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__res_model
 msgid "Resource Model"
-msgstr ""
+msgstr "Modelo del Recurso"
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__res_name
 msgid "Resource Name"
-msgstr ""
+msgstr "Nombre del Recurso"
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__activity_user_id
 msgid "Responsible User"
-msgstr ""
+msgstr "Usuario Responsable"
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__message_has_sms_error
 msgid "SMS Delivery error"
-msgstr ""
+msgstr "Error en la Entrega de SMS"
 
 #. module: attachment_queue
 #: model_terms:ir.ui.view,arch_db:attachment_queue.view_attachment_queue_form
 msgid "Set to Done"
-msgstr ""
+msgstr "Establecer como Hecho"
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__smart_search
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue_reschedule__smart_search
 msgid "Smart Search"
-msgstr ""
+msgstr "Búsqueda Inteligente"
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__state
 #: model_terms:ir.ui.view,arch_db:attachment_queue.view_attachment_queue_search
 msgid "State"
-msgstr ""
+msgstr "Estado"
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__state_message
 msgid "State Message"
-msgstr ""
+msgstr "Mensaje de Estado"
 
 #. module: attachment_queue
 #: model:ir.model.fields,help:attachment_queue.field_attachment_queue__activity_state
@@ -486,16 +504,20 @@ msgid ""
 "Today: Activity date is today\n"
 "Planned: Future activities."
 msgstr ""
+"Estado basado en actividades\n"
+"Vencido: Fecha de vencimiento ya paso\n"
+"Hoy: La fecha de actividad es hoy\n"
+"Planeado: Actividades futuras."
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__store_fname
 msgid "Stored Filename"
-msgstr ""
+msgstr "Nombre del Archivo Almacenado"
 
 #. module: attachment_queue
 #: model:mail.template,subject:attachment_queue.attachment_failure_notification
 msgid "The attachment {{object.name}} has failed"
-msgstr ""
+msgstr "El archivo adjunto {{object.name}} ha fallado"
 
 #. module: attachment_queue
 #: model:ir.model.fields,help:attachment_queue.field_attachment_queue__file_type
@@ -503,47 +525,49 @@ msgid ""
 "The file type determines an import method to be used to parse and transform "
 "data before their import in ERP or an export"
 msgstr ""
+"El tipo de archivo determina el método de importación que se utilizará para "
+"analizar y transformar los datos antes de importarlos al ERP o exportarlos"
 
 #. module: attachment_queue
 #: model_terms:ir.ui.view,arch_db:attachment_queue.view_reschedule_attachment
 msgid "The selected attachments will be rescheduled."
-msgstr ""
+msgstr "Los anexos seleccionados se reprogramarán."
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__type
 #: model_terms:ir.ui.view,arch_db:attachment_queue.view_attachment_queue_search
 msgid "Type"
-msgstr ""
+msgstr "Tipo"
 
 #. module: attachment_queue
 #: model:ir.model.fields,help:attachment_queue.field_attachment_queue__activity_exception_decoration
 msgid "Type of the exception activity on record."
-msgstr ""
+msgstr "Tipo de actividad excepcional registrada."
 
 #. module: attachment_queue
 #: model_terms:ir.ui.view,arch_db:attachment_queue.view_attachment_queue_search
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__url
 msgid "Url"
-msgstr ""
+msgstr "Url"
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__website_message_ids
 msgid "Website Messages"
-msgstr ""
+msgstr "Mensajes de la Página Web"
 
 #. module: attachment_queue
 #: model:ir.model.fields,help:attachment_queue.field_attachment_queue__website_message_ids
 msgid "Website communication history"
-msgstr ""
+msgstr "Historial de la comunicación del sitio web"
 
 #. module: attachment_queue
 #: model:ir.model,name:attachment_queue.model_attachment_queue_reschedule
 msgid "Wizard to reschedule a selection of attachments"
-msgstr ""
+msgstr "Asistente para reprogramar una selección de anexos"
 
 #. module: attachment_queue
 #: model:ir.model.fields,help:attachment_queue.field_attachment_queue__type
@@ -551,6 +575,8 @@ msgid ""
 "You can either upload a file from your computer or copy/paste an internet "
 "link to your file."
 msgstr ""
+"Puede cargar un archivo desde su ordenador o copiar/pegar un enlace de "
+"Internet a su archivo."
 
 #. module: attachment_queue
 #. odoo-python
@@ -558,4 +584,4 @@ msgstr ""
 #: code:addons/attachment_queue/tests/test_models.py:0
 #, python-format
 msgid "boom"
-msgstr ""
+msgstr "auge"
