@@ -4,27 +4,27 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-09-02 16:07+0000\n"
-"Last-Translator: Ignacio Buioli <ibuioli@gmail.com>\n"
+"PO-Revision-Date: 2024-04-04 11:35+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
-"Language: es_AR\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: rpc_helper
 #: model:ir.model.fields,field_description:rpc_helper.field_ir_model__changeset_change_ids
 msgid "Changeset Changes"
-msgstr "Cambios del Conjunto de Cambios"
+msgstr ""
 
 #. module: rpc_helper
 #: model:ir.model.fields,field_description:rpc_helper.field_ir_model__changeset_ids
 msgid "Changesets"
-msgstr "Conjunto de Cambios"
+msgstr ""
 
 #. module: rpc_helper
 #: model:ir.model.fields,help:rpc_helper.field_ir_model__rpc_config_edit
@@ -33,10 +33,10 @@ msgid ""
 "wrapped by a dict with key `disable`. Eg: {'disable': ['search', 'do_this']}"
 "To disable all methods, use `{'disable: ['all']}`"
 msgstr ""
-"Configure los ajustes de RPC a través de JSON. El valor debe ser una lista "
-"de métodos para deshabilitar envueltos por un dict con la clave "
-"`deshabilitar`. Por ejemplo: {'disable': ['search', 'do_this']} Para "
-"deshabilitar todos los métodos, use `{'disable: ['all']}`"
+"Impostare configurazione RPC con JSON. Il valore deve essere un elenco di "
+"metodi da disabilitare inseriti in un dizionario con chiave `disable`. Es. "
+"{'disable': ['search', 'do_this']} Pr disabilitare tutti i metodi usare "
+"`{'disable: ['all']}`"
 
 #. module: rpc_helper
 #: model:ir.model.fields,field_description:rpc_helper.field_ir_model__count_changesets
@@ -46,51 +46,51 @@ msgstr ""
 #. module: rpc_helper
 #: model:ir.model.fields,field_description:rpc_helper.field_ir_model__count_pending_changeset_changes
 msgid "Count Pending Changeset Changes"
-msgstr "Cuenta de los Cambios Pendientes de los Conjuntos de Cambios"
+msgstr ""
 
 #. module: rpc_helper
 #: model:ir.model.fields,field_description:rpc_helper.field_ir_model__count_pending_changesets
 msgid "Count Pending Changesets"
-msgstr "Cuenta de los Conjuntos de Cambios Pendientes"
+msgstr ""
 
 #. module: rpc_helper
 #: model:ir.model,name:rpc_helper.model_ir_model
 msgid "Models"
-msgstr "Modelos"
+msgstr "Modelli"
 
 #. module: rpc_helper
 #. odoo-python
 #: code:addons/rpc_helper/patch.py:0
 #, python-format
 msgid "Object %s doesn't exist"
-msgstr "El Objeto %s no existe"
+msgstr "L'oggetto %s non esiste"
 
 #. module: rpc_helper
 #. odoo-python
 #: code:addons/rpc_helper/patch.py:0
 #, python-format
 msgid "RPC call on %s is not allowed"
-msgstr "Las llamadas RPC en %s no están permitidas"
+msgstr "La chiamata RPC su %s non è consentita"
 
 #. module: rpc_helper
 #: model_terms:ir.ui.view,arch_db:rpc_helper.view_model_form
 msgid "RPC config"
-msgstr "Configuración RPC"
+msgstr "Configurazione RPC"
 
 #. module: rpc_helper
 #: model:ir.model.fields,field_description:rpc_helper.field_ir_model__rpc_config
 msgid "Rpc Config"
-msgstr "Configuración Rpc"
+msgstr "Configurazione RPC"
 
 #. module: rpc_helper
 #: model:ir.model.fields,field_description:rpc_helper.field_ir_model__rpc_config_edit
 msgid "Rpc Config Edit"
-msgstr "Editar la Configuración Rpc"
+msgstr "Mdifica configurazione RPC"
 
 #. module: rpc_helper
 #: model:ir.model.fields,field_description:rpc_helper.field_ir_model__smart_search
 msgid "Smart Search"
-msgstr "Búsqueda Inteligente"
+msgstr "Ricerca intelligente"
 
 #. module: rpc_helper
 #: model:ir.model.fields,help:rpc_helper.field_ir_model__count_pending_changeset_changes
@@ -110,13 +110,4 @@ msgstr ""
 #. module: rpc_helper
 #: model:ir.model.fields,field_description:rpc_helper.field_ir_model__user_can_see_changeset
 msgid "User Can See Changeset"
-msgstr "El Usuario Puede ver Conjuntos de Cambios"
-
-#~ msgid "Display Name"
-#~ msgstr "Mostrar Nombre"
-
-#~ msgid "ID"
-#~ msgstr "ID"
-
-#~ msgid "Last Modified on"
-#~ msgstr "Última modificación en"
+msgstr ""
