@@ -369,10 +369,10 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !! source digest: sha256:c2bfb7648f5bdbd7dfc39ce9e3a2169fa7ba35f0d5467e289da141c53a7deded
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/lgpl-3.0-standalone.html"><img alt="License: LGPL-3" src="https://img.shields.io/badge/licence-LGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/server-tools/tree/16.0/jsonifier"><img alt="OCA/server-tools" src="https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/server-tools-16-0/server-tools-16-0-jsonifier"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/server-tools&amp;target_branch=16.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
-<p>This module adds a ‘jsonify’ method to every model of the ORM.
-It works on the current recordset and requires a single argument ‘parser’
-that specify the field to extract.</p>
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/lgpl-3.0-standalone.html"><img alt="License: LGPL-3" src="https://img.shields.io/badge/licence-LGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/server-tools/tree/17.0/jsonifier"><img alt="OCA/server-tools" src="https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/server-tools-17-0/server-tools-17-0-jsonifier"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/server-tools&amp;target_branch=17.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
+<p>This module adds a ‘jsonify’ method to every model of the ORM. It works
+on the current recordset and requires a single argument ‘parser’ that
+specify the field to extract.</p>
 <p>Example of a simple parser:</p>
 <pre class="code python literal-block">
 <span class="n">parser</span> <span class="o">=</span> <span class="p">[</span><span class="w">
@@ -384,9 +384,10 @@ that specify the field to extract.</p>
 </span><span class="p">]</span>
 </pre>
 <p>In order to be consistent with the Odoo API the jsonify method always
-returns a list of objects even if there is only one element in the recordset.</p>
-<p>By default the key into the JSON is the name of the field extracted
-from the model. If you need to specify an alternate name to use as key, you
+returns a list of objects even if there is only one element in the
+recordset.</p>
+<p>By default the key into the JSON is the name of the field extracted from
+the model. If you need to specify an alternate name to use as key, you
 can define your mapping as follow into the parser definition:</p>
 <pre class="code python literal-block">
 <span class="n">parser</span> <span class="o">=</span> <span class="p">[</span><span class="w">
@@ -402,21 +403,21 @@ can define your mapping as follow into the parser definition:</p>
 </span>    <span class="p">(</span><span class="s1">'line_id:lines'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'id'</span><span class="p">,</span> <span class="p">(</span><span class="s1">'product_id'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'name'</span><span class="p">]),</span> <span class="s1">'price_unit'</span><span class="p">])</span><span class="w">
 </span><span class="p">]</span>
 </pre>
-<p>If you need to parse the value of a field in a custom way,
-you can pass a callable or the name of a method on the model:</p>
+<p>If you need to parse the value of a field in a custom way, you can pass
+a callable or the name of a method on the model:</p>
 <pre class="code python literal-block">
 <span class="n">parser</span> <span class="o">=</span> <span class="p">[</span><span class="w">
 </span>    <span class="p">(</span><span class="s1">'name'</span><span class="p">,</span> <span class="s2">&quot;jsonify_name&quot;</span><span class="p">)</span>  <span class="c1"># method name</span><span class="w">
 </span>    <span class="p">(</span><span class="s1">'number'</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">rec</span><span class="p">,</span> <span class="n">field_name</span><span class="p">:</span> <span class="n">rec</span><span class="p">[</span><span class="n">field_name</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2</span><span class="p">))</span>  <span class="c1"># callable</span><span class="w">
 </span><span class="p">]</span>
 </pre>
-<p>Also the module provide a method “get_json_parser” on the ir.exports object
-that generate a parser from an ir.exports configuration.</p>
-<p>Further features are available for advanced uses.
-It defines a simple “resolver” model that has a “python_code” field and a resolve
-function so that arbitrary functions can be configured to transform fields,
-or process the resulting dictionary.
-It is also to specify a lang to extract the translation of any given field.</p>
+<p>Also the module provide a method “get_json_parser” on the ir.exports
+object that generate a parser from an ir.exports configuration.</p>
+<p>Further features are available for advanced uses. It defines a simple
+“resolver” model that has a “python_code” field and a resolve function
+so that arbitrary functions can be configured to transform fields, or
+process the resulting dictionary. It is also to specify a lang to
+extract the translation of any given field.</p>
 <p>To use these features, a full parser follows the following structure:</p>
 <pre class="code python literal-block">
 <span class="n">parser</span> <span class="o">=</span> <span class="p">{</span><span class="w">
@@ -435,7 +436,8 @@ It is also to specify a lang to extract the translation of any given field.</p>
 </span>    <span class="p">}</span><span class="w">
 </span><span class="p">}</span>
 </pre>
-<p>One would get a result having this structure (note that the translated fields are merged in the same dictionary):</p>
+<p>One would get a result having this structure (note that the translated
+fields are merged in the same dictionary):</p>
 <pre class="code python literal-block">
 <span class="n">exported_json</span> <span class="o">==</span> <span class="p">{</span><span class="w">
 </span>    <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;English description&quot;</span><span class="p">,</span><span class="w">
@@ -447,9 +449,10 @@ It is also to specify a lang to extract the translation of any given field.</p>
 </span>    <span class="p">},</span><span class="w">
 </span><span class="p">}</span>
 </pre>
-<p>Note that a resolver can be passed either as a recordset or as an id, so as to be fully serializable.
-A slightly simpler version in case the translation of fields is not needed,
-but other features like custom resolvers are:</p>
+<p>Note that a resolver can be passed either as a recordset or as an id, so
+as to be fully serializable. A slightly simpler version in case the
+translation of fields is not needed, but other features like custom
+resolvers are:</p>
 <pre class="code python literal-block">
 <span class="n">parser</span> <span class="o">=</span> <span class="p">{</span><span class="w">
 </span>    <span class="s2">&quot;resolver&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span><span class="w">
@@ -460,22 +463,22 @@ but other features like custom resolvers are:</p>
 </span>    <span class="p">],</span><span class="w">
 </span><span class="p">}</span>
 </pre>
-<p>By passing the <cite>fields</cite> key instead of <cite>langs</cite>, we have essentially the same behaviour as simple parsers,
-with the added benefit of being able to use resolvers.</p>
-<p>Standard use-cases of resolvers are:
-- give field-specific defaults (e.g. <cite>“”</cite> instead of <cite>None</cite>)
-- cast a field type (e.g. <cite>int()</cite>)
-- alias a particular field for a specific export
-- …</p>
+<p>By passing the fields key instead of langs, we have essentially the same
+behaviour as simple parsers, with the added benefit of being able to use
+resolvers.</p>
+<p>Standard use-cases of resolvers are: - give field-specific defaults
+(e.g. “” instead of None) - cast a field type (e.g. int()) - alias a
+particular field for a specific export - …</p>
 <p>A simple parser is simply translated into a full parser at export.</p>
 <p>If the global resolver is given, then the json_dict goes through:</p>
 <pre class="code python literal-block">
 <span class="n">resolver</span><span class="o">.</span><span class="n">resolve</span><span class="p">(</span><span class="nb">dict</span><span class="p">,</span> <span class="n">record</span><span class="p">)</span>
 </pre>
-<p>Which allows to add external data from the context or transform the dictionary
-if necessary. Similarly if given for a field the resolver evaluates the result.</p>
-<p>It is possible for a target to have a marshaller by ending the target with ‘=list’:
-in that case the result is put into a list.</p>
+<p>Which allows to add external data from the context or transform the
+dictionary if necessary. Similarly if given for a field the resolver
+evaluates the result.</p>
+<p>It is possible for a target to have a marshaller by ending the target
+with ‘=list’: in that case the result is put into a list.</p>
 <pre class="code python literal-block">
 <span class="n">parser</span> <span class="o">=</span> <span class="p">{</span><span class="w">
 </span>    <span class="n">fields</span><span class="p">:</span> <span class="p">[</span><span class="w">
@@ -492,14 +495,15 @@ in that case the result is put into a list.</p>
 </span>    <span class="s1">'customTags'</span><span class="p">:</span> <span class="p">[</span><span class="s1">'field_1_value'</span><span class="p">,</span> <span class="s1">'field_2_value'</span><span class="p">],</span><span class="w">
 </span><span class="p">}</span>
 </pre>
-<p>The intended use-case is to be compatible with APIs that require all translated
-parameters to be exported simultaneously, and ask for custom properties to be
-put in a sub-dictionary.
-Since it is often the case that some of these requirements are optional,
-new requirements could be met without needing to add field or change any code.</p>
-<p>Note that the export values with the simple parser depends on the record’s lang;
-this is in contrast with full parsers which are designed to be language agnostic.</p>
-<p>NOTE: this module was named <cite>base_jsonify</cite> till version 14.0.1.5.0.</p>
+<p>The intended use-case is to be compatible with APIs that require all
+translated parameters to be exported simultaneously, and ask for custom
+properties to be put in a sub-dictionary. Since it is often the case
+that some of these requirements are optional, new requirements could be
+met without needing to add field or change any code.</p>
+<p>Note that the export values with the simple parser depends on the
+record’s lang; this is in contrast with full parsers which are designed
+to be language agnostic.</p>
+<p>NOTE: this module was named base_jsonify till version 14.0.1.5.0.</p>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
@@ -517,7 +521,7 @@ this is in contrast with full parsers which are designed to be language agnostic
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/server-tools/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-<a class="reference external" href="https://github.com/OCA/server-tools/issues/new?body=module:%20jsonifier%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+<a class="reference external" href="https://github.com/OCA/server-tools/issues/new?body=module:%20jsonifier%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
@@ -548,7 +552,7 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <p>OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.</p>
-<p>This module is part of the <a class="reference external" href="https://github.com/OCA/server-tools/tree/16.0/jsonifier">OCA/server-tools</a> project on GitHub.</p>
+<p>This module is part of the <a class="reference external" href="https://github.com/OCA/server-tools/tree/17.0/jsonifier">OCA/server-tools</a> project on GitHub.</p>
 <p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
 </div>
 </div>
