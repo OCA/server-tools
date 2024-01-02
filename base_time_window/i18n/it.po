@@ -1,0 +1,164 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* base_time_window
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#. module: base_time_window
+#. odoo-python
+#: code:addons/base_time_window/models/time_window_mixin.py:0
+#, python-format
+msgid "%(end_time)s must be > %(start_time)s"
+msgstr ""
+
+#. module: base_time_window
+#. odoo-python
+#: code:addons/base_time_window/models/time_window_mixin.py:0
+#, python-format
+msgid "%(record_name)s overlaps %(other_name)s"
+msgstr ""
+
+#. module: base_time_window
+#. odoo-python
+#: code:addons/base_time_window/models/time_window_mixin.py:0
+#, python-format
+msgid "At least one time.weekday is required"
+msgstr ""
+
+#. module: base_time_window
+#: model:ir.model.fields,field_description:base_time_window.field_time_weekday__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: base_time_window
+#: model:ir.model.fields,field_description:base_time_window.field_time_weekday__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: base_time_window
+#: model:ir.model.fields,field_description:base_time_window.field_time_weekday__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: base_time_window
+#: model:ir.model.fields.selection,name:base_time_window.selection__time_weekday__name__4
+msgid "Friday"
+msgstr ""
+
+#. module: base_time_window
+#: model:ir.model.fields,field_description:base_time_window.field_time_window_mixin__time_window_start
+msgid "From"
+msgstr ""
+
+#. module: base_time_window
+#. odoo-python
+#: code:addons/base_time_window/models/time_window_mixin.py:0
+#, python-format
+msgid "Hour should be between 00 and 23"
+msgstr ""
+
+#. module: base_time_window
+#: model:ir.model.fields,field_description:base_time_window.field_time_weekday__id
+msgid "ID"
+msgstr ""
+
+#. module: base_time_window
+#: model:ir.model.fields,field_description:base_time_window.field_time_weekday____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: base_time_window
+#: model:ir.model.fields,field_description:base_time_window.field_time_weekday__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: base_time_window
+#: model:ir.model.fields,field_description:base_time_window.field_time_weekday__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: base_time_window
+#: model:ir.model.fields.selection,name:base_time_window.selection__time_weekday__name__0
+msgid "Monday"
+msgstr ""
+
+#. module: base_time_window
+#: model:ir.model.fields,field_description:base_time_window.field_time_weekday__name
+msgid "Name"
+msgstr ""
+
+#. module: base_time_window
+#. odoo-python
+#: code:addons/base_time_window/models/time_weekday.py:0
+#: model:ir.model.constraint,message:base_time_window.constraint_time_weekday_name_uniq
+#, python-format
+msgid "Name must be unique"
+msgstr ""
+
+#. module: base_time_window
+#: model:ir.model.fields.selection,name:base_time_window.selection__time_weekday__name__5
+msgid "Saturday"
+msgstr ""
+
+#. module: base_time_window
+#: model:ir.model.fields,field_description:base_time_window.field_time_weekday__smart_search
+#: model:ir.model.fields,field_description:base_time_window.field_time_window_mixin__smart_search
+msgid "Smart Search"
+msgstr ""
+
+#. module: base_time_window
+#: model:ir.model.fields.selection,name:base_time_window.selection__time_weekday__name__6
+msgid "Sunday"
+msgstr ""
+
+#. module: base_time_window
+#: model:ir.model.fields.selection,name:base_time_window.selection__time_weekday__name__3
+msgid "Thursday"
+msgstr ""
+
+#. module: base_time_window
+#: model:ir.model,name:base_time_window.model_time_weekday
+msgid "Time Week Day"
+msgstr ""
+
+#. module: base_time_window
+#: model:ir.model,name:base_time_window.model_time_window_mixin
+msgid "Time Window"
+msgstr ""
+
+#. module: base_time_window
+#: model:ir.model.fields,field_description:base_time_window.field_time_window_mixin__time_window_weekday_ids
+msgid "Time Window Weekday"
+msgstr ""
+
+#. module: base_time_window
+#: model:ir.model.fields,field_description:base_time_window.field_time_window_mixin__time_window_end
+msgid "To"
+msgstr ""
+
+#. module: base_time_window
+#: model:ir.model.fields.selection,name:base_time_window.selection__time_weekday__name__1
+msgid "Tuesday"
+msgstr ""
+
+#. module: base_time_window
+#: model:ir.model.fields.selection,name:base_time_window.selection__time_weekday__name__2
+msgid "Wednesday"
+msgstr ""
+
+#. module: base_time_window
+#. odoo-python
+#: code:addons/base_time_window/models/time_window_mixin.py:0
+#, python-format
+msgid "{days}: From {start} to {end}"
+msgstr ""
