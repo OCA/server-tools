@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-11-03 13:39+0000\n"
+"PO-Revision-Date: 2024-01-02 16:34+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -181,7 +181,7 @@ msgstr "Rendicontazione"
 #. module: module_analysis
 #: model:ir.model.fields,field_description:module_analysis.field_ir_module_module__scss_code_qty
 msgid "SCSS Code Quantity"
-msgstr ""
+msgstr "SCSS Quantità codice"
 
 #. module: module_analysis
 #: model:ir.model.fields,field_description:module_analysis.field_ir_module_type__sequence
@@ -200,7 +200,7 @@ msgstr "Impostazioni"
 #: model:ir.model.fields,field_description:module_analysis.field_ir_module_type__smart_search
 #: model:ir.model.fields,field_description:module_analysis.field_ir_module_type_rule__smart_search
 msgid "Smart Search"
-msgstr ""
+msgstr "Ricerca intelligente"
 
 #. module: module_analysis
 #: model:ir.model.constraint,message:module_analysis.constraint_ir_module_author_name_uniq
@@ -216,7 +216,7 @@ msgstr "Tipologia e Autori"
 #: model:ir.actions.server,name:module_analysis.cron_module_analysis_ir_actions_server
 #: model:ir.cron,cron_name:module_analysis.cron_module_analysis
 msgid "Update Module Analysis"
-msgstr ""
+msgstr "Aggorna analisi modulo"
 
 #. module: module_analysis
 #: model:ir.model.fields,field_description:module_analysis.field_ir_module_module__xml_code_qty
