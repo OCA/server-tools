@@ -29,5 +29,6 @@
                 ],
     'data': ['mail_view.xml'],
     'installable': True,
+    'preloadable': False,
     'active': False,
 }

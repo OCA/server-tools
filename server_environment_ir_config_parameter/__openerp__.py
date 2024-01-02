@@ -10,6 +10,7 @@
     'license': 'AGPL-3',
     'author': 'ACSONE SA/NV,Odoo Community Association (OCA)',
     'website': 'https://odoo-community.org/',
+    'preloadable': False,
     'depends': [
         'server_environment',
     ],
