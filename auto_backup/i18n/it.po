@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-06 02:24+0000\n"
-"PO-Revision-Date: 2023-12-24 19:44+0000\n"
+"PO-Revision-Date: 2024-01-03 14:37+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -62,7 +62,7 @@ msgid ""
 "Backups older than this will be deleted automatically. Set 0 to disable "
 "autodeletion."
 msgstr ""
-"I Backup antecedenti questo numero di giorni saranno eliminati "
+"I backup antecedenti questo numero di giorni saranno eliminati "
 "automaticamente. Impostare a 0 per disattivare l'eliminazione automatica."
 
 #. module: auto_backup
@@ -78,7 +78,7 @@ msgstr "Impossibile duplicare una configurazione."
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup_method
 msgid "Choose the storage method for this backup."
-msgstr "Scegliere il tipo di archiviazione per questo metodo di backup."
+msgstr "Scegliere il metodo di archiviazione per questo backup."
 
 #. module: auto_backup
 #: code:addons/auto_backup/models/db_backup.py:257
@@ -125,7 +125,7 @@ msgstr "Backup del Database riuscito."
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup_days_to_keep
 msgid "Days to keep"
-msgstr "Giorni da conservare"
+msgstr "Giorni di conservazione"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup_display_name
@@ -250,15 +250,15 @@ msgstr "Opzioni di ricerca"
 #. module: auto_backup
 #: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "Search the action named 'Backup scheduler'."
-msgstr "Cerca l'azione denominata 'Pianificazione del backup'."
+msgstr "Cercare l'azione chiamata \"Schedulatore backup\"."
 
 #. module: auto_backup
 #: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid ""
 "Set the scheduler to active and fill in how often you want backups generated."
 msgstr ""
-"Impostare lo scheduler per attivare e compilare la frequenza con cui si "
-"desidera generare il backup."
+"Impostare lo schedulatore su attivo e inserire la frequenza di generazione "
+"dei backup desiderata."
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup_name
