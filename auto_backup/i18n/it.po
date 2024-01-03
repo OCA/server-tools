@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-03 10:08+0000\n"
-"PO-Revision-Date: 2023-12-24 19:40+0000\n"
+"PO-Revision-Date: 2024-01-03 15:34+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -74,12 +74,11 @@ msgstr "Backup riuscito"
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__days_to_keep
-#, fuzzy
 msgid ""
 "Backups older than this will be deleted automatically. Set 0 to disable "
 "autodeletion."
 msgstr ""
-"I Backup antecedenti questo numero di giorni saranno eliminati "
+"I backup antecedenti questo numero di giorni saranno eliminati "
 "automaticamente. Impostare a 0 per disattivare l'eliminazione automatica."
 
 #. module: auto_backup
@@ -95,12 +94,12 @@ msgstr "Impossibile duplicare una configurazione."
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__changeset_change_ids
 msgid "Changeset Changes"
-msgstr ""
+msgstr "Modifiche dell'insieme di modifiche"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__changeset_ids
 msgid "Changesets"
-msgstr ""
+msgstr "Insieme di modifiche"
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__backup_format
@@ -109,9 +108,8 @@ msgstr "Scegliere il tipo di archiviazione per questo metodo di backup."
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__method
-#, fuzzy
 msgid "Choose the storage method for this backup."
-msgstr "Scegliere il metodo di archiviazione per il backup."
+msgstr "Scegliere il metodo di archiviazione per questo backup."
 
 #. module: auto_backup
 #: code:addons/auto_backup/models/db_backup.py:0
@@ -134,12 +132,12 @@ msgstr "Prova di connessione superata!"
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__count_pending_changeset_changes
 msgid "Count Pending Changeset Changes"
-msgstr ""
+msgstr "Conteggio modifiche dell'insieme di modifiche in attesa"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__count_pending_changesets
 msgid "Count Pending Changesets"
-msgstr ""
+msgstr "Conteggio insieme di modifiche in attesa"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__create_uid
@@ -173,7 +171,7 @@ msgstr "Backup del database riuscito."
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__days_to_keep
 msgid "Days To Keep"
-msgstr ""
+msgstr "Giorni di conservazione"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__display_name
@@ -224,7 +222,7 @@ msgstr ""
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__has_message
 msgid "Has Message"
-msgstr ""
+msgstr "Ha un messaggio"
 
 #. module: auto_backup
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
@@ -374,18 +372,16 @@ msgstr "Errore consegna SMS"
 
 #. module: auto_backup
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
-#, fuzzy
 msgid "Search the action named 'Backup scheduler'."
-msgstr "Cerca l'azione denominata 'Pianificazione del backup'."
+msgstr "Cercare l'azione chiamata \"Schedulatore backup\"."
 
 #. module: auto_backup
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
-#, fuzzy
 msgid ""
 "Set the scheduler to active and fill in how often you want backups generated."
 msgstr ""
-"Impostare lo scheduler per attivare e compilare la frequenza con cui si "
-"desidera generare il backup."
+"Impostare lo schedulatore su attivo e inserire la frequenza di generazione "
+"dei backup desiderata."
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__name
@@ -448,7 +444,7 @@ msgstr ""
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__user_can_see_changeset
 msgid "User Can See Changeset"
-msgstr ""
+msgstr "L'utente pò vedere l'insieme delle modifiche"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__sftp_user
