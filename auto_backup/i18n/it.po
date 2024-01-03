@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-03 10:08+0000\n"
-"PO-Revision-Date: 2023-12-24 18:38+0000\n"
+"PO-Revision-Date: 2024-01-03 15:33+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -79,7 +79,7 @@ msgid ""
 "Backups older than this will be deleted automatically. Set 0 to disable "
 "autodeletion."
 msgstr ""
-"I Backup antecedenti questo numero di giorni saranno eliminati "
+"I backup antecedenti questo numero di giorni saranno eliminati "
 "automaticamente. Impostare a 0 per disattivare l'eliminazione automatica."
 
 #. module: auto_backup
@@ -110,7 +110,7 @@ msgstr "Scegliere il tipo di archiviazione per questo metodo di backup."
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__method
 msgid "Choose the storage method for this backup."
-msgstr "Scegliere il tipo di archiviazione per questo metodo di backup."
+msgstr "Scegliere il metodo di archiviazione per questo backup."
 
 #. module: auto_backup
 #: code:addons/auto_backup/models/db_backup.py:265
@@ -372,15 +372,15 @@ msgstr "Impostazioni SFTP"
 #. module: auto_backup
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "Search the action named 'Backup scheduler'."
-msgstr "Cerca l'azione denominata 'Pianificazione del backup'."
+msgstr "Cercare l'azione chiamata \"Schedulatore backup\"."
 
 #. module: auto_backup
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid ""
 "Set the scheduler to active and fill in how often you want backups generated."
 msgstr ""
-"Impostare lo scheduler per attivare e compilare la frequenza con cui si "
-"desidera generare il backup."
+"Impostare lo schedulatore su attivo e inserire la frequenza di generazione "
+"dei backup desiderata."
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__name
