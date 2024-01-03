@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-06 02:24+0000\n"
-"PO-Revision-Date: 2023-04-17 16:40+0000\n"
+"PO-Revision-Date: 2024-01-05 10:36+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: base_search_fuzzy
 #: model:ir.model.fields,help:base_search_fuzzy.field_trgm_index__index_type
@@ -27,6 +27,9 @@ msgid ""
 "search index type.See: https://www.postgresql.org/docs/current/textsearch-"
 "indexes.html"
 msgstr ""
+"Citazione dalla documentazione PostgreSQL: gli indici GIN sono il tipo di "
+"indice di ricerca preferiti. Vedere: https://www.postgresql.org/docs/current/"
+"textsearch-indexes.html"
 
 #. module: base_search_fuzzy
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index__create_uid
@@ -51,12 +54,12 @@ msgstr "Campo"
 #. module: base_search_fuzzy
 #: model:ir.model.fields.selection,name:base_search_fuzzy.selection__trgm_index__index_type__gin
 msgid "GIN"
-msgstr ""
+msgstr "GIN"
 
 #. module: base_search_fuzzy
 #: model:ir.model.fields.selection,name:base_search_fuzzy.selection__trgm_index__index_type__gist
 msgid "GiST"
-msgstr ""
+msgstr "GiST"
 
 #. module: base_search_fuzzy
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index__id
@@ -66,12 +69,12 @@ msgstr "ID"
 #. module: base_search_fuzzy
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index__index_name
 msgid "Index Name"
-msgstr ""
+msgstr "Nome indice"
 
 #. module: base_search_fuzzy
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index__index_type
 msgid "Index Type"
-msgstr ""
+msgstr "Tipo indice"
 
 #. module: base_search_fuzzy
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index____last_update
@@ -91,7 +94,7 @@ msgstr "Ultimo aggiornamento il"
 #. module: base_search_fuzzy
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index__smart_search
 msgid "Smart Search"
-msgstr ""
+msgstr "Ricerca intelligente"
 
 #. module: base_search_fuzzy
 #: model:ir.model.fields,help:base_search_fuzzy.field_trgm_index__index_name
@@ -101,25 +104,29 @@ msgid ""
 "this index is reused. If the index is located in another table then a number "
 "is added at the end of the index name."
 msgstr ""
+"Il nome indice è generat automaticamente come fieldname_indextype_idx. Se "
+"l'indice esiste già e l'indice è ubicato nella stessa tabella allora è "
+"riutilizzato. Se l'indice è ubicato in un'altra tabella, allora viene "
+"aggiunto un numero alla fine del nome dell'indice."
 
 #. module: base_search_fuzzy
 #. odoo-python
 #: code:addons/base_search_fuzzy/models/trgm_index.py:0
 #, python-format
 msgid "The pg_trgm extension does not exists or cannot be installed."
-msgstr ""
+msgstr "L'estensione pg_trgm non esiste o non può essere installata."
 
 #. module: base_search_fuzzy
 #: model:ir.actions.act_window,name:base_search_fuzzy.trgm_index_action
 #: model:ir.model,name:base_search_fuzzy.model_trgm_index
 #: model:ir.ui.menu,name:base_search_fuzzy.trgm_index_menu
 msgid "Trigram Index"
-msgstr ""
+msgstr "Indice trigramma"
 
 #. module: base_search_fuzzy
 #: model:ir.model.fields,help:base_search_fuzzy.field_trgm_index__field_id
 msgid "You can either select a field of type \"text\" or \"char\"."
-msgstr ""
+msgstr "Si può selezionare un campo di tipo \"text\" o \"char\"."
 
 #~ msgid "Models"
 #~ msgstr "Modelli"
