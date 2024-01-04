@@ -86,6 +86,6 @@ def _overload_load_manifest(module, mod_path=None):
 
 
 def post_load():
-    _logger.info("Aplying patch module_change_auto_intall ...")
+    _logger.info("Applying patch module_change_auto_intall ...")
     modules.module.load_manifest = _overload_load_manifest
     modules.load_manifest = _overload_load_manifest
