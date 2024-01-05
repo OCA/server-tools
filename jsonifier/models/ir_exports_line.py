@@ -46,7 +46,7 @@ class IrExportsLine(models.Model):
                 raise ValidationError(
                     _("Name and Target must have the same hierarchy depth")
                 )
-            for name, name_with_target in zip(names, names_with_target):
+            for name, name_with_target in zip(names, names_with_target, strict=True):
                 field_name = name_with_target.split(":")[0]
                 if name != field_name:
                     raise ValidationError(

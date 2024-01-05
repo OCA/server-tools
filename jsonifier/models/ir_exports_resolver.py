@@ -35,7 +35,7 @@ class FieldResolver(models.Model):
         context = records.env.context
         if self.type == "global":
             assert len(param) == len(records)
-            for value, record in zip(param, records):
+            for value, record in zip(param, records, strict=True):
                 values = {"value": value, "record": record, "context": context}
                 safe_eval(self.python_code, values, mode="exec", nocopy=True)
                 result.append(values["result"])

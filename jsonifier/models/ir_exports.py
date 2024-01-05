@@ -100,7 +100,7 @@ class IrExports(models.Model):
         """
         self.ensure_one()
         parser = {}
-        lang_to_lines = partition(self.export_fields, lambda l: l.lang_id.code)
+        lang_to_lines = partition(self.export_fields, lambda _l: _l.lang_id.code)
         lang_parsers = {}
         for lang in lang_to_lines:
             dict_parser = OrderedDict()
