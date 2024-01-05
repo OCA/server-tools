@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
 
     <record id="image_form_view" model="ir.ui.view">
@@ -8,36 +8,53 @@
             <form string="Image">
                 <sheet>
                     <group>
-                        <group string="Owner" attrs="{'invisible': [('show_technical', '=', False),],}">
+                        <group
+                            string="Owner"
+                            attrs="{'invisible': [('show_technical', '=', False),],}"
+                        >
                             <field name="show_technical" invisible="True" />
-                            <field name="owner_model"/>
-                            <field name="owner_id"/>
-                            <field name="owner_ref_id"/>
-                            <field name="sequence"/>
+                            <field name="owner_model" />
+                            <field name="owner_id" />
+                            <field name="owner_ref_id" />
+                            <field name="sequence" />
                         </group>
                         <group string="Name">
-                            <field name="name"/>
-                            <field name="storage"/>
-                            <field name="extension"/>
+                            <field name="name" />
+                            <field name="storage" />
+                            <field name="extension" />
                         </group>
                     </group>
                     <group>
                         <group string="Options">
-                            <field name="url" attrs="{'invisible': [('storage', '!=', 'url')],'required': [('storage', '=', 'url')],}"
-                                   widget="url"/>
-                            <field name="path" attrs="{'invisible': [('storage', '!=', 'file')],'required': [('storage', '=', 'file')],}"/>
-                            <field name="filename" invisible="1"/>
-                            <field name="attachment_image" attrs="{'invisible': [('storage', '!=', 'filestore')],'required': [('storage', '=', 'filestore')],}"
-                                   filename="filename"/>
-                            <field name="file_db_store" attrs="{'invisible': [('storage', '!=', 'db')],'required': [('storage', '=', 'db')],}"
-                                   filename="filename"/>
+                            <field
+                                name="url"
+                                attrs="{'invisible': [('storage', '!=', 'url')],'required': [('storage', '=', 'url')],}"
+                                widget="url"
+                            />
+                            <field
+                                name="path"
+                                attrs="{'invisible': [('storage', '!=', 'file')],'required': [('storage', '=', 'file')],}"
+                            />
+                            <field name="filename" invisible="1" />
+                            <field
+                                name="attachment_image"
+                                attrs="{'invisible': [('storage', '!=', 'filestore')],'required': [('storage', '=', 'filestore')],}"
+                                filename="filename"
+                            />
+                            <field
+                                name="file_db_store"
+                                attrs="{'invisible': [('storage', '!=', 'db')],'required': [('storage', '=', 'db')],}"
+                                filename="filename"
+                            />
 
                         </group>
                         <group string="Preview">
-                            <field name="image_1920"
-                                   widget="image"
-                                   readonly="True"
-                                   nolabel="1" />
+                            <field
+                                name="image_1920"
+                                widget="image"
+                                readonly="True"
+                                nolabel="1"
+                            />
                         </group>
                     </group>
                     <group string="Comments">
@@ -53,12 +70,12 @@
         <field name="model">base_multi_image.image</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="image_128" widget="image" string="Image"/>
-                <field name="name"/>
-                <field name="storage"/>
-                <field name="owner_model"/>
-                <field name="owner_id"/>
-                <field name="sequence" invisible="True"/>
+                <field name="image_128" widget="image" string="Image" />
+                <field name="name" />
+                <field name="storage" />
+                <field name="owner_model" />
+                <field name="owner_id" />
+                <field name="sequence" invisible="True" />
             </tree>
         </field>
     </record>
@@ -68,17 +85,19 @@
         <field name="model">base_multi_image.image</field>
         <field name="arch" type="xml">
             <kanban string="Product Images" default_order="sequence">
-                <field name="id"/>
-                <field name="name"/>
-                <field name="storage"/>
-                <field name="image_1920"/>
-                <field name="sequence"/>
+                <field name="id" />
+                <field name="name" />
+                <field name="storage" />
+                <field name="image_1920" />
+                <field name="sequence" />
                 <templates>
                     <t t-name="kanban-box">
                         <div class="card oe_kanban_global_click p-0">
-                            <a t-if="! read_only_mode"
-                               type="delete"
-                               style="position: absolute; right: 0; padding: 4px; diplay: inline-block">X</a>
+                            <a
+                                t-if="! read_only_mode"
+                                type="delete"
+                                style="position: absolute; right: 0; padding: 4px; diplay: inline-block"
+                            >X</a>
                             <div class="oe_module_vignette">
                                 <a type="open">
                                     <img
@@ -87,21 +106,26 @@
                                       'base_multi_image.image',
                                       'image_128',
                                       record.id.raw_value)"
-                                        class="oe_kanban_image"/>
+                                        class="oe_kanban_image"
+                                    />
                                 </a>
                                 <div class="oe_module_desc">
-                                    <div class="oe_kanban_box_content oe_kanban_color_bglight oe_kanban_color_border">
+                                    <div
+                                        class="oe_kanban_box_content oe_kanban_color_bglight oe_kanban_color_border"
+                                    >
                                         <table class="oe_kanban_table">
                                             <tr>
-                                                <td class="oe_kanban_title1"
+                                                <td
+                                                    class="oe_kanban_title1"
                                                     align="left"
-                                                    valign="middle">
+                                                    valign="middle"
+                                                >
                                                     <h4>
                                                         <a type="open">
-                                                            <field name="name"/>
+                                                            <field name="name" />
                                                         </a>
                                                     </h4>
-                                                    <field name="storage"/>
+                                                    <field name="storage" />
                                                 </td>
                                             </tr>
                                         </table>
@@ -123,9 +147,6 @@
         <field name="help">Click to add an image attached to an specific record.</field>
     </record>
 
-    <menuitem
-        id="image_menu"
-        action="image_action"
-        parent="base.menu_custom"/>
+    <menuitem id="image_menu" action="image_action" parent="base.menu_custom" />
 
 </odoo>

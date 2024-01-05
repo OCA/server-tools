@@ -3,7 +3,7 @@
 # © 2015 Antiun Ingeniería S.L. - Jairo Llopis
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import _, api, fields, models, tools
+from odoo import _, api, fields, models
 
 
 class Owner(models.AbstractModel):
@@ -45,14 +45,15 @@ class Owner(models.AbstractModel):
         values = {
             "storage": "filestore",
             "owner_model": self._name,
-            "owner_id": self.id}
+            "owner_id": self.id,
+        }
         if name:
             values["name"] = name
         image_rec = False
         if self.image_ids:
             image_rec = self.image_ids[0]
         if image:
-            values.update({'attachment_image': image})
+            values.update({"attachment_image": image})
             if image_rec:
                 image_rec.write(values)
             else:
@@ -61,11 +62,9 @@ class Owner(models.AbstractModel):
         else:
             image_rec and image_rec.unlink()
 
-
     def _inverse_multi_image_main(self):
         for owner in self:
             owner._set_multi_image(owner.image_1920)
-
 
     def unlink(self):
         """Mimic `ondelete="cascade"` for multi images.

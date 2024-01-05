@@ -16,7 +16,7 @@ _logger = logging.getLogger(__name__)
 
 class Image(models.Model):
     _name = "base_multi_image.image"
-    _inherit = 'image.mixin'
+    _inherit = "image.mixin"
     _order = "sequence, owner_model, owner_id, id"
     _description = """ image model for multiple image functionality """
     _sql_constraints = [
@@ -55,9 +55,11 @@ class Image(models.Model):
     file_db_store = fields.Binary("Image( stored in database)", attachment=False)
     path = fields.Char("Image path", help="Image path")
     url = fields.Char("Image remote URL")
-    attachment_image = fields.Image('Image')
+    attachment_image = fields.Image("Image")
     image_1920 = fields.Image(
-        "Full-sized image", max_width=1920, max_height=1920,
+        "Full-sized image",
+        max_width=1920,
+        max_height=1920,
         # store=True,
         compute="_compute_get_image",
     )
@@ -96,7 +98,6 @@ class Image(models.Model):
         #    return self.attachment_id.datas
         # else:
         return self.attachment_image
-
 
     def _get_image_from_db(self):
         return self.file_db_store
@@ -181,11 +182,11 @@ class Image(models.Model):
         for record in self:
             if record.storage == "db" and not record.file_db_store:
                 raise exceptions.ValidationError(
-                    _('You must upload image to store in database.'))
+                    _("You must upload image to store in database.")
+                )
 
     @api.constrains("storage", "attachment_id")
     def _check_attachment_id(self):
         for record in self:
             if record.storage == "filestore" and not record.attachment_image:
-                raise exceptions.ValidationError(
-                    _('You must upload image.'))
+                raise exceptions.ValidationError(_("You must upload image."))
