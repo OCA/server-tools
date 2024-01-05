@@ -15,7 +15,7 @@
                         </group>
                     </group>
                     <group name="index" string="Index">
-                        <field name="export_fields" nolabel="1">
+                        <field name="export_fields" nolabel="1" colspan="2">
                             <tree editable="bottom">
                                 <field name="name" />
                                 <field name="target" />
