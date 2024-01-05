@@ -1,6 +1,6 @@
 # © 2016 Antiun Ingeniería S.L. - Jairo Llopis
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-# Credit to https://github.com/odof/server-tools/blob/16.0-base_multi_image/base_multi_image/hooks.py
+# Credit to https://github.com/odof/
 import logging
 
 from odoo import SUPERUSER_ID, api

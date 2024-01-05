@@ -94,7 +94,8 @@ class Image(models.Model):
         )
 
     def _get_image_from_filestore(self):
-        # if self.attachment_id: #TODO what if we need to choose images from attachments related to the record?
+        # if self.attachment_id:
+        # TODO what if we need to choose images from attachments from the record?
         #    return self.attachment_id.datas
         # else:
         return self.attachment_image
