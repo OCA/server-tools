@@ -16,7 +16,7 @@ _logger = logging.getLogger(__name__)
 
 class Image(models.Model):
     _name = "base_multi_image.image"
-    # TODO: when migrating to 15.0 use image.mixin
+    _inherit = 'image.mixin'
     _order = "sequence, owner_model, owner_id, id"
     _description = """ image model for multiple image functionality """
     _sql_constraints = [
@@ -52,28 +52,14 @@ class Image(models.Model):
     attachment_id = fields.Many2one(
         "ir.attachment", string="Attachment", domain="[('index_content', '=', 'image')]"
     )
-    file_db_store = fields.Binary("Image stored in database")
+    file_db_store = fields.Binary("Image( stored in database)", attachment=False)
     path = fields.Char("Image path", help="Image path")
     url = fields.Char("Image remote URL")
-    image_main = fields.Image("Full-sized image", compute="_compute_image")
-    image_medium = fields.Image(
-        "Medium-sized image",
-        related="image_main",
-        max_width=128,
-        max_height=128,
-        help="Medium-sized image. It is automatically resized as a "
-        "128 x 128 px image, with aspect ratio preserved, only when the "
-        "image exceeds one of those sizes. Use this field in form views "
-        "or kanban views.",
-    )
-    image_small = fields.Image(
-        "Small-sized image",
-        related="image_main",
-        max_width=64,
-        max_height=64,
-        help="Small-sized image. It is automatically resized as a 64 x 64 px "
-        "image, with aspect ratio preserved. Use this field anywhere a "
-        "small image is required.",
+    attachment_image = fields.Image('Image')
+    image_1920 = fields.Image(
+        "Full-sized image", max_width=1920, max_height=1920,
+        # store=True,
+        compute="_compute_get_image",
     )
     comments = fields.Text(translate=True)
     sequence = fields.Integer(default=10)
@@ -96,7 +82,7 @@ class Image(models.Model):
     def _compute_image(self):
         """Get image data from the right storage type."""
         for s in self:
-            s.image_main = getattr(s, "_get_image_from_%s" % s.storage)()
+            s.image_1920 = getattr(s, "_get_image_from_%s" % s.storage)()
 
     @api.depends("owner_id", "owner_model")
     def _compute_show_technical(self):
@@ -106,7 +92,11 @@ class Image(models.Model):
         )
 
     def _get_image_from_filestore(self):
-        return self.attachment_id.datas
+        # if self.attachment_id: #TODO what if we need to choose images from attachments related to the record?
+        #    return self.attachment_id.datas
+        # else:
+        return self.attachment_image
+
 
     def _get_image_from_db(self):
         return self.file_db_store
@@ -191,13 +181,11 @@ class Image(models.Model):
         for record in self:
             if record.storage == "db" and not record.file_db_store:
                 raise exceptions.ValidationError(
-                    _("You must provide an attached file for the image.")
-                )
+                    _('You must upload image to store in database.'))
 
     @api.constrains("storage", "attachment_id")
     def _check_attachment_id(self):
         for record in self:
-            if record.storage == "filestore" and not record.attachment_id:
+            if record.storage == "filestore" and not record.attachment_image:
                 raise exceptions.ValidationError(
-                    _("You must provide an attachment for the image.")
-                )
+                    _('You must upload image.'))

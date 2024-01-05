@@ -17,23 +17,11 @@ class Owner(models.AbstractModel):
         domain=lambda self: [("owner_model", "=", self._name)],
         copy=True,
     )
-    image_main = fields.Binary(
+    image_1920 = fields.Image(
         string="Main image",
         store=False,
         compute="_compute_multi_image",
         inverse="_inverse_multi_image_main",
-    )
-    image_main_medium = fields.Binary(
-        string="Medium image",
-        compute="_compute_multi_image",
-        inverse="_inverse_multi_image_main_medium",
-        store=False,
-    )
-    image_main_small = fields.Binary(
-        string="Small image",
-        compute="_compute_multi_image",
-        inverse="_inverse_multi_image_main_small",
-        store=False,
     )
 
     @api.depends("image_ids")
@@ -45,9 +33,7 @@ class Owner(models.AbstractModel):
         """
         for s in self:
             first = s.image_ids[:1]
-            s.image_main = first.image_main
-            s.image_main_medium = first.image_medium
-            s.image_main_small = first.image_small
+            s.image_1920 = first.image_1920
 
     def _set_multi_image(self, image=False, name=False):
         """Save or delete the main image for this record.
@@ -57,35 +43,29 @@ class Owner(models.AbstractModel):
         """
         # Values to save
         values = {
-            "storage": "db",
-            "file_db_store": tools.image_process(image, size=(1024, 1024)),
+            "storage": "filestore",
             "owner_model": self._name,
-        }
+            "owner_id": self.id}
         if name:
             values["name"] = name
+        image_rec = False
+        if self.image_ids:
+            image_rec = self.image_ids[0]
+        if image:
+            values.update({'attachment_image': image})
+            if image_rec:
+                image_rec.write(values)
+            else:
+                values.setdefault("name", name or _("Main image"))
+                self.image_ids = [(0, 0, values)]
+        else:
+            image_rec and image_rec.unlink()
 
-        for s in self:
-            if image:
-                values["owner_id"] = s.id
-                # Editing
-                if s.image_ids:
-                    s.image_ids[0].write(values)
-                # Adding
-                else:
-                    values.setdefault("name", name or _("Main image"))
-                    s.image_ids = [(0, 0, values)]
-            # Deleting
-            elif s.image_ids:
-                s.image_ids[0].unlink()
 
     def _inverse_multi_image_main(self):
-        self._set_multi_image(self.image_main)
+        for owner in self:
+            owner._set_multi_image(owner.image_1920)
 
-    def _inverse_multi_image_main_medium(self):
-        self._set_multi_image(self.image_main_medium)
-
-    def _inverse_multi_image_main_small(self):
-        self._set_multi_image(self.image_main_small)
 
     def unlink(self):
         """Mimic `ondelete="cascade"` for multi images.
