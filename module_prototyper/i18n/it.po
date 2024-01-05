@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-28 09:49+0000\n"
-"PO-Revision-Date: 2023-12-29 17:38+0000\n"
+"PO-Revision-Date: 2024-01-05 16:36+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-server-tools-8-0/"
 "language/it/)\n"
@@ -40,7 +40,7 @@ msgstr "Versione API"
 #. module: module_prototyper
 #: field:module_prototyper,right_ids:0
 msgid "Access Rights"
-msgstr "Diritti di Accesso"
+msgstr "Diritti di accesso"
 
 #. module: module_prototyper
 #: field:module_prototyper,activity_ids:0
