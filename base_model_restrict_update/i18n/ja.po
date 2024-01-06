@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-01-05 10:34+0000\n"
+"PO-Revision-Date: 2024-01-06 10:33+0000\n"
 "Last-Translator: \"Ivy Liu (QRTL)\" <liuhehe@quartile.co>\n"
 "Language-Team: none\n"
 "Language: ja\n"
@@ -65,7 +65,7 @@ msgstr "選択すると、ユーザに特別な権限がない限りモデルは
 #: code:addons/base_model_restrict_update/models/ir_model_access.py:27
 #, python-format
 msgid "You are only allowed to read this record. (%s - %s)"
-msgstr "このレコードのみ閲覧可能です。 (%s - %s)"
+msgstr "このレコードのみ閲覧可能です。(%s - %s)"
 
 #. module: base_model_restrict_update
 #: code:addons/base_model_restrict_update/models/res_users.py:24
