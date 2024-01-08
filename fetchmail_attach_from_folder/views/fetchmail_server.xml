@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <record model="ir.ui.view" id="view_email_server_form">
@@ -8,21 +8,19 @@
         <field name="arch" type="xml">
             <field name="object_id" position="attributes">
                 <attribute
-                    name="attrs">{'required': [('type', '!=', 'imap')]}</attribute>
+                    name="attrs"
+                >{'required': [('type', '!=', 'imap')]}</attribute>
             </field>
             <field name="type" position="after">
                 <field name="folders_only" />
             </field>
-            <xpath
-                expr="//notebook"
-                position="inside">
+            <xpath expr="//notebook" position="inside">
                 <page
                     string="Folders to monitor"
-                    attrs="{'invisible': [('type','!=','imap')]}">
+                    attrs="{'invisible': [('type','!=','imap')]}"
+                >
                     <group>
-                        <field
-                            name="folder_ids"
-                            nolabel="1">
+                        <field name="folder_ids" nolabel="1">
                             <tree colors="gray:active==False">
                                 <field name="active" invisible="True" />
                                 <field name="sequence" widget="handle" />
@@ -40,36 +38,40 @@
                                         type="object"
                                         name="button_confirm_folder"
                                         string="Test &amp; Confirm"
-                                        states="draft"/>
+                                        states="draft"
+                                    />
                                     <button
                                         type="object"
                                         name="button_attach_mail_manually"
                                         string="Attach mail manually"
-                                        states="done"/>
+                                        states="done"
+                                    />
                                     <button
                                         type="object"
                                         name="fetch_mail"
                                         string="Fetch folder now"
-                                        states="done"/>
+                                        states="done"
+                                    />
                                     <button
                                         string="Reset Confirmation"
                                         type="object"
                                         name="set_draft"
-                                        states="done"/>
+                                        states="done"
+                                    />
                                 </header>
                                 <group>
                                     <group>
                                         <field
                                             name="path"
-                                            placeholder="INBOX.subfolder1" />
+                                            placeholder="INBOX.subfolder1"
+                                        />
                                         <field name="model_id" />
-                                        <field
-                                            name="model_field"
-                                            placeholder="email" />
+                                        <field name="model_field" placeholder="email" />
                                         <field name="match_algorithm" />
                                         <field
                                             name="mail_field"
-                                            placeholder="to,from" />
+                                            placeholder="to,from"
+                                        />
                                     </group>
                                     <group>
                                         <field name="active" />
@@ -80,18 +82,18 @@
                                         <field
                                             name="model_order"
                                             attrs="{'readonly': [('match_first','==',False)], 'required': [('match_first','==',True)]}"
-                                            placeholder="name asc,type desc" />
+                                            placeholder="name asc,type desc"
+                                        />
                                         <field
                                             name="domain"
-                                            placeholder="[('state', '=', 'open')]" />
+                                            placeholder="[('state', '=', 'open')]"
+                                        />
                                     </group>
                                 </group>
                             </form>
                         </field>
                     </group>
-                    <separator
-                        string="Folders available on server"
-                        colspan="6" />
+                    <separator string="Folders available on server" colspan="6" />
                     <field name="folders_available" />
                 </page>
             </xpath>
