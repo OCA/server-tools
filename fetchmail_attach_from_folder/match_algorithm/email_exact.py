@@ -1,4 +1,4 @@
-# Copyright - 2013-2018 Therp BV <https://therp.nl>.
+# Copyright - 2013-2024 Therp BV <https://therp.nl>.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from odoo.tools.mail import email_split
 from odoo.tools.safe_eval import safe_eval
@@ -8,9 +8,6 @@ from .base import Base
 
 class EmailExact(Base):
     """Search for exactly the mailadress as noted in the email"""
-
-    name = "Exact mailadress"
-    required_fields = ["model_field", "mail_field"]
 
     def _get_mailaddresses(self, folder, mail_message):
         mailaddresses = []
