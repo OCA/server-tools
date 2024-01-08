@@ -11,7 +11,7 @@ class AttachMailManually(models.TransientModel):
     _name = "fetchmail.attach.mail.manually"
 
     name = fields.Char()
-    folder_id = fields.Many2one("fetchmail.server.folder", "Folder", readonly=True)
+    folder_id = fields.Many2one(comodel_name="fetchmail.server.folder", readonly=True)
     mail_ids = fields.One2many(
         "fetchmail.attach.mail.manually.mail", "wizard_id", "Emails"
     )
@@ -49,7 +49,6 @@ class AttachMailManually(models.TransientModel):
         connection.close()
         return defaults
 
-    @api.multi
     def attach_mails(self):
         self.ensure_one()
         folder = self.folder_id
@@ -72,6 +71,7 @@ class AttachMailManually(models.TransientModel):
     def fields_view_get(
         self, view_id=None, view_type="form", toolbar=False, submenu=False
     ):
+        # TODO: Change or replace this...
         result = super(AttachMailManually, self).fields_view_get(
             view_id=view_id, view_type=view_type, toolbar=toolbar, submenu=submenu
         )
@@ -92,11 +92,10 @@ class AttachMailManuallyMail(models.TransientModel):
 
     wizard_id = fields.Many2one("fetchmail.attach.mail.manually", readonly=True)
     msgid = fields.Char("Message id", readonly=True)
-    subject = fields.Char("Subject", readonly=True)
-    date = fields.Datetime("Date", readonly=True)
+    subject = fields.Char(readonly=True)
+    date = fields.Datetime(readonly=True)
     email_from = fields.Char("From", readonly=True)
-    body = fields.Html("Body", readonly=True)
+    body = fields.Html(readonly=True)
     object_id = fields.Reference(
         lambda self: [(m.model, m.name) for m in self.env["ir.model"].search([])],
-        string="Object",
     )

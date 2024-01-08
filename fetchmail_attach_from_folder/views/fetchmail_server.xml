@@ -4,95 +4,104 @@
     <record model="ir.ui.view" id="view_email_server_form">
         <field name="name">fetchmail.server.form</field>
         <field name="model">fetchmail.server</field>
-        <field name="inherit_id" ref="fetchmail.view_email_server_form" />
+        <field name="inherit_id" ref="mail.view_email_server_form" />
         <field name="arch" type="xml">
             <field name="object_id" position="attributes">
                 <attribute
                     name="attrs"
-                >{'required': [('type', '!=', 'imap')]}</attribute>
+                >{'required': [('server_type', '!=', 'imap')]}</attribute>
             </field>
-            <field name="type" position="after">
+            <field name="server_type" position="after">
                 <field name="folders_only" />
             </field>
             <xpath expr="//notebook" position="inside">
                 <page
                     string="Folders to monitor"
-                    attrs="{'invisible': [('type','!=','imap')]}"
+                    attrs="{'invisible': [('server_type','!=','imap')]}"
                 >
-                    <group>
-                        <field name="folder_ids" nolabel="1">
-                            <tree colors="gray:active==False">
-                                <field name="active" invisible="True" />
-                                <field name="sequence" widget="handle" />
-                                <field name="path" />
+                    <field name="folder_ids" nolabel="1">
+                        <tree decoration-muted="active == False">
+                            <field name="active" invisible="True" />
+                            <field name="sequence" widget="handle" />
+                            <field name="path" />
+                            <field name="model_id" />
+                            <field name="match_algorithm" />
+                            <field name="model_field" />
+                            <field name="mail_field" />
+                            <field name="state" />
+                        </tree>
+                        <form>
+                            <field name="state" invisible="1" />
+                            <header>
+                                <button
+                                    type="object"
+                                    name="button_confirm_folder"
+                                    string="Test &amp; Confirm"
+                                    states="draft"
+                                />
+                                <button
+                                    type="object"
+                                    name="button_attach_mail_manually"
+                                    string="Attach mail manually"
+                                    states="done"
+                                />
+                                <button
+                                    type="object"
+                                    name="fetch_mail"
+                                    string="Fetch folder now"
+                                    states="done"
+                                />
+                                <button
+                                    string="Reset Confirmation"
+                                    type="object"
+                                    name="set_draft"
+                                    states="done"
+                                />
+                            </header>
+                            <group>
+                                <field name="path" placeholder="INBOX.subfolder1" />
                                 <field name="model_id" />
-                                <field name="model_field" />
                                 <field name="match_algorithm" />
-                                <field name="mail_field" />
-                                <field name="state" />
-                            </tree>
-                            <form>
-                                <field name="state" invisible="1" />
-                                <header>
-                                    <button
-                                        type="object"
-                                        name="button_confirm_folder"
-                                        string="Test &amp; Confirm"
-                                        states="draft"
+                                <group
+                                    name="group_email_match"
+                                    attrs="{'invisible':
+                                        [('match_algorithm','=','odoo_standard')]}"
+                                >
+                                    <field
+                                        name="model_field"
+                                        placeholder="email"
+                                        attrs="{'required':
+                                            [('match_algorithm','in',['email_exact','email_domain'])]}"
                                     />
-                                    <button
-                                        type="object"
-                                        name="button_attach_mail_manually"
-                                        string="Attach mail manually"
-                                        states="done"
+                                    <field
+                                        name="mail_field"
+                                        placeholder="to,from"
+                                        attrs="{'required':
+                                            [('match_algorithm','in',['email_exact','email_domain'])]}"
                                     />
-                                    <button
-                                        type="object"
-                                        name="fetch_mail"
-                                        string="Fetch folder now"
-                                        states="done"
+                                    <field name="match_first" />
+                                    <field
+                                        name="domain"
+                                        placeholder="[('state', '=', 'open')]"
                                     />
-                                    <button
-                                        string="Reset Confirmation"
-                                        type="object"
-                                        name="set_draft"
-                                        states="done"
+                                    <field
+                                        name="model_order"
+                                        placeholder="name asc"
+                                        attrs="{'readonly':
+                                            [('match_first','==',False)],
+                                            'required':
+                                            [('match_first','==',True)]}"
                                     />
-                                </header>
-                                <group>
-                                    <group>
-                                        <field
-                                            name="path"
-                                            placeholder="INBOX.subfolder1"
-                                        />
-                                        <field name="model_id" />
-                                        <field name="model_field" placeholder="email" />
-                                        <field name="match_algorithm" />
-                                        <field
-                                            name="mail_field"
-                                            placeholder="to,from"
-                                        />
-                                    </group>
-                                    <group>
-                                        <field name="active" />
-                                        <field name="delete_matching" />
-                                        <field name="flag_nonmatching" />
-                                        <field name="match_first" />
-                                        <field name="msg_state" />
-                                        <field
-                                            name="model_order"
-                                            attrs="{'readonly': [('match_first','==',False)], 'required': [('match_first','==',True)]}"
-                                            placeholder="name asc,type desc"
-                                        />
-                                        <field
-                                            name="domain"
-                                            placeholder="[('state', '=', 'open')]"
-                                        />
-                                    </group>
+                                    <field name="flag_nonmatching" />
                                 </group>
-                            </form>
-                        </field>
-                    </group>
+                                <group>
+                                    <field name="active" />
+                                    <field name="delete_matching" />
+                                    <field name="msg_state" />
+                                </group>
+                            </group>
+                        </form>
+                    </field>
                     <separator string="Folders available on server" colspan="6" />
                     <field name="folders_available" />
                 </page>

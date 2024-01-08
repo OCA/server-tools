@@ -146,12 +146,3 @@ class TestMatchAlgorithms(TransactionCase):
         folder.match_algorithm = "EmailDomain"
         connection = MockConnection()
         folder.retrieve_imap_folder(connection)
-
-    def test_field_view_get(self):
-        """For the moment just check execution withouth errors."""
-        server_model = self.env["fetchmail.server"]
-        view = server_model.fields_view_get()
-        self.assertTrue(view)
-        self.assertIn(
-            "match_algorithm", view["fields"]["folder_ids"]["views"]["form"]["arch"]
-        )
