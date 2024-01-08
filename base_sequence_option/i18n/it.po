@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-06-26 13:10+0000\n"
+"PO-Revision-Date: 2024-01-08 17:36+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -167,7 +167,7 @@ msgstr "Sequenza modello base opzione"
 #. module: base_sequence_option
 #: model:ir.model,name:base_sequence_option.model_ir_sequence_option_line
 msgid "Sequence Option Line"
-msgstr "Riga opzioni sequenza"
+msgstr "Riga opzione sequenza"
 
 #. module: base_sequence_option
 #: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option__option_ids
