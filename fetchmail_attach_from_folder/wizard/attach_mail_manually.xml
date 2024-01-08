@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <record model="ir.ui.view" id="view_attach_mail_manually">
@@ -31,12 +31,10 @@
                         string="Save"
                         type="object"
                         name="attach_mails"
-                        class="oe_highlight" />
+                        class="oe_highlight"
+                    />
                     or
-                    <button
-                        special="cancel"
-                        string="Cancel"
-                        class="oe_link" />
+                    <button special="cancel" string="Cancel" class="oe_link" />
                 </footer>
             </form>
         </field>
