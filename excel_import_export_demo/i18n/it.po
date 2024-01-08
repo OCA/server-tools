@@ -6,13 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2024-01-08 17:35+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: excel_import_export_demo
 #: model:ir.actions.report,print_report_name:excel_import_export_demo.action_report_saleorder_excel
@@ -20,6 +22,8 @@ msgid ""
 "(object.state in ('draft', 'sent') and 'Quotation - %s' % (object.name)) or "
 "'Order - %s' % (object.name)"
 msgstr ""
+"(object.state in ('draft', 'sent') and 'Quotation - %s' % (object.name)) or "
+"'Order - %s' % (object.name)"
 
 #. module: excel_import_export_demo
 #: model:ir.model.fields,help:excel_import_export_demo.field_report_crm_lead__state
@@ -28,198 +32,200 @@ msgid ""
 "* Choose: wizard show in user selection mode\n"
 "* Get: wizard show results from user action"
 msgstr ""
+"* Choose: wizard mostrato in modalità selezione utente\n"
+"* Get: wizard mostra i risultati dall'azione dell'utente"
 
 #. module: excel_import_export_demo
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_crm_lead__choose_template
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__choose_template
 msgid "Allow Choose Template"
-msgstr ""
+msgstr "Consente selezione modello"
 
 #. module: excel_import_export_demo
 #: model_terms:ir.ui.view,arch_db:excel_import_export_demo.partner_list_wizard
 msgid "Cancel"
-msgstr ""
+msgstr "Annulla"
 
 #. module: excel_import_export_demo
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_crm_lead__create_uid
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__create_uid
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creato da"
 
 #. module: excel_import_export_demo
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_crm_lead__create_date
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__create_date
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creato il"
 
 #. module: excel_import_export_demo
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_crm_lead__display_name
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__display_name
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: excel_import_export_demo
 #: model_terms:ir.ui.view,arch_db:excel_import_export_demo.partner_list_wizard
 msgid "Execute"
-msgstr ""
+msgstr "Esegui"
 
 #. module: excel_import_export_demo
 #: model:ir.actions.act_window,name:excel_import_export_demo.action_purchase_order_export_xlsx
 #: model:ir.actions.act_window,name:excel_import_export_demo.action_sale_oder_export_xlsx
 msgid "Export Excel"
-msgstr ""
+msgstr "Esporta Excel"
 
 #. module: excel_import_export_demo
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_crm_lead__data
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__data
 msgid "File"
-msgstr ""
+msgstr "File"
 
 #. module: excel_import_export_demo
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_crm_lead__name
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__name
 msgid "File Name"
-msgstr ""
+msgstr "Nome file"
 
 #. module: excel_import_export_demo
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_crm_lead__id
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__id
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: excel_import_export_demo
 #: model:ir.actions.act_window,name:excel_import_export_demo.action_purchase_order_import_xlsx
 #: model:ir.actions.act_window,name:excel_import_export_demo.action_sale_oder_import_xlsx
 msgid "Import Excel"
-msgstr ""
+msgstr "Importa Excel"
 
 #. module: excel_import_export_demo
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_crm_lead____last_update
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list____last_update
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: excel_import_export_demo
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_crm_lead__write_uid
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__write_uid
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Ultimo aggiornamento di"
 
 #. module: excel_import_export_demo
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_crm_lead__write_date
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__write_date
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Ultimo aggiornamento il"
 
 #. module: excel_import_export_demo
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__partner_ids
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__partner_id
 msgid "Partner"
-msgstr ""
+msgstr "Partner"
 
 #. module: excel_import_export_demo
 #: model:ir.actions.report,name:excel_import_export_demo.action_report_partner_excel
 msgid "Partner List (.xlsx)"
-msgstr ""
+msgstr "Elenco partner (.xlsx)"
 
 #. module: excel_import_export_demo
 #: model:ir.actions.act_window,name:excel_import_export_demo.action_report_partner_list
 #: model:ir.ui.menu,name:excel_import_export_demo.menu_report_partner_list
 msgid "Partner List Report"
-msgstr ""
+msgstr "Resoconto lista partner"
 
 #. module: excel_import_export_demo
 #: model:ir.actions.report,name:excel_import_export_demo.action_report_saleorder_excel
 msgid "Quotation / Order (.xlsx)"
-msgstr ""
+msgstr "Preventivo / Ordine (.xlsx)"
 
 #. module: excel_import_export_demo
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_crm_lead__results
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__results
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__results
 msgid "Results"
-msgstr ""
+msgstr "Risultati"
 
 #. module: excel_import_export_demo
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_crm_lead__revenue_by_country
 msgid "Revenue By Country"
-msgstr ""
+msgstr "Ricavo per nazione"
 
 #. module: excel_import_export_demo
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_crm_lead__revenue_by_team
 msgid "Revenue By Team"
-msgstr ""
+msgstr "Ricavo per team"
 
 #. module: excel_import_export_demo
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_crm_lead__team_id
 msgid "Sales Team"
-msgstr ""
+msgstr "Team vendite"
 
 #. module: excel_import_export_demo
 #: model:ir.actions.act_window,name:excel_import_export_demo.action_import_sale_order
 #: model:ir.ui.menu,name:excel_import_export_demo.menu_import_sale_order
 msgid "Sample Import Sale Order"
-msgstr ""
+msgstr "Esempio importazione ordine di vendita"
 
 #. module: excel_import_export_demo
 #: model:ir.actions.act_window,name:excel_import_export_demo.action_report_crm_lead
 #: model:ir.ui.menu,name:excel_import_export_demo.menu_report_crm_lead
 msgid "Sample Lead Report"
-msgstr ""
+msgstr "Esempio resoconto contatti"
 
 #. module: excel_import_export_demo
 #: model:ir.actions.act_window,name:excel_import_export_demo.action_report_sale_order
 #: model:ir.ui.menu,name:excel_import_export_demo.menu_report_sale_order
 msgid "Sample Sales Report"
-msgstr ""
+msgstr "Esempio resoconto vendite"
 
 #. module: excel_import_export_demo
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_crm_lead__smart_search
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__smart_search
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__smart_search
 msgid "Smart Search"
-msgstr ""
+msgstr "Ricerca intelligente"
 
 #. module: excel_import_export_demo
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_crm_lead__state
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__state
 msgid "State"
-msgstr ""
+msgstr "Stato"
 
 #. module: excel_import_export_demo
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_crm_lead__template_id
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__template_id
 msgid "Template"
-msgstr ""
+msgstr "Modello"
 
 #. module: excel_import_export_demo
 #: model:ir.model.fields,help:excel_import_export_demo.field_report_partner_list__results
 msgid "Use compute fields, so there is nothing store in database"
-msgstr ""
+msgstr "Usa campi calcolati, così non viene conservato nulla nel database"
 
 #. module: excel_import_export_demo
 #: model:ir.model.fields,help:excel_import_export_demo.field_report_sale_order__results
 msgid "Use compute fields, so there is nothing stored in database"
-msgstr ""
+msgstr "Usa campi calcolati, così non viene conservato nulla nel database"
 
 #. module: excel_import_export_demo
 #: model:ir.model,name:excel_import_export_demo.model_report_crm_lead
 msgid "Wizard for report.crm.lead"
-msgstr ""
+msgstr "Procedura guidata per report.crm.lead"
 
 #. module: excel_import_export_demo
 #: model:ir.model,name:excel_import_export_demo.model_report_partner_list
 msgid "Wizard for report.partner.list"
-msgstr ""
+msgstr "Procedura guidata per report.partner.list"
 
 #. module: excel_import_export_demo
 #: model:ir.model,name:excel_import_export_demo.model_report_sale_order
 msgid "Wizard for report.sale.order"
-msgstr ""
+msgstr "Procedura guidata per report.sale.order"
