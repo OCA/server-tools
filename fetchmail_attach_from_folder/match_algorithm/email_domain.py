@@ -1,4 +1,4 @@
-# Copyright - 2013-2018 Therp BV <https://therp.nl>.
+# Copyright - 2013-2024 Therp BV <https://therp.nl>.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from .email_exact import EmailExact
 
@@ -9,11 +9,9 @@ class EmailDomain(EmailExact):
     Beware of match_first here, this is most likely to get it wrong (gmail).
     """
 
-    name = "Domain of email address"
-
     def search_matches(self, folder, mail_message):
         """Returns recordset of matching objects."""
-        matches = super(EmailDomain, self).search_matches(folder, mail_message)
+        matches = super().search_matches(folder, mail_message)
         if not matches:
             object_model = folder.env[folder.model_id.model]
             domains = []
