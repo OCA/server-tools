@@ -1,9 +1,9 @@
-# Copyright - 2013-2018 Therp BV <https://therp.nl>.
+# Copyright - 2013-2024 Therp BV <https://therp.nl>.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 import base64
 import logging
 
-from odoo import _, api, fields, models
+from odoo import _, fields, models
 from odoo.exceptions import UserError, ValidationError
 
 from .. import match_algorithm
@@ -16,28 +16,8 @@ class FetchmailServerFolder(models.Model):
     _rec_name = "path"
     _order = "sequence"
 
-    def _get_match_algorithms(self):
-        def get_all_subclasses(cls):
-            return cls.__subclasses__() + [
-                subsub
-                for sub in cls.__subclasses__()
-                for subsub in get_all_subclasses(sub)
-            ]
-
-        return {
-                cls.__name__: cls
-                for cls in get_all_subclasses(match_algorithm.base.Base)
-        }
-
-    def _get_match_algorithms_sel(self):
-        algorithms = []
-        for cls in self._get_match_algorithms().itervalues():
-            algorithms.append((cls.__name__, cls.name))
-        algorithms.sort()
-        return algorithms
-
-    server_id = fields.Many2one("fetchmail.server", "Server")
-    sequence = fields.Integer("Sequence")
+    server_id = fields.Many2one("fetchmail.server")
+    sequence = fields.Integer()
     state = fields.Selection(
         [("draft", "Not Confirmed"), ("done", "Confirmed")],
         string="Status",
@@ -47,18 +27,19 @@ class FetchmailServerFolder(models.Model):
         default="draft",
     )
     path = fields.Char(
-        "Path",
         required=True,
         help="The path to your mail folder."
         " Typically would be something like 'INBOX.myfolder'",
     )
     model_id = fields.Many2one(
-        "ir.model", "Model", required=True, help="The model to attach emails to"
+        comodel_name="ir.model",
+        required=True,
+        ondelete="cascade",
+        help="The model to attach emails to",
     )
     model_field = fields.Char(
         "Field (model)",
-        help="The field in your model that contains the field to match "
-        "against.\n"
+        help="The field in your model that contains the field to match against.\n"
         "Examples:\n"
         "'email' if your model is res.partner, or "
         "'partner_id.email' if you're matching sale orders",
@@ -69,21 +50,23 @@ class FetchmailServerFolder(models.Model):
         "with 'Use 1st match'",
     )
     match_algorithm = fields.Selection(
-        _get_match_algorithms_sel,
-        "Match algorithm",
+        selection=[
+            ("odoo_standard", "Odoo standard"),
+            ("email_domain", "Domain of email address"),
+            ("email_exact", "Exact mailadress"),
+        ],
         required=True,
         help="The algorithm used to determine which object an email matches.",
     )
     mail_field = fields.Char(
         "Field (email)",
-        help="The field in the email used for matching. Typically "
-        "this is 'to' or 'from'",
+        help="The field in the email used for matching."
+        " Typically this is 'to' or 'from'",
     )
     delete_matching = fields.Boolean(
         "Delete matches", help="Delete matched emails from server"
     )
     flag_nonmatching = fields.Boolean(
-        "Flag nonmatching",
         default=True,
         help="Flag emails in the server that don't match any object in Odoo",
     )
@@ -92,26 +75,34 @@ class FetchmailServerFolder(models.Model):
         help="If there are multiple matches, use the first one. If "
         "not checked, multiple matches count as no match at all",
     )
-    domain = fields.Char(
-        "Domain", help="Fill in a search filter to narrow down objects to match"
-    )
+    domain = fields.Char(help="Fill in a search filter to narrow down objects to match")
     msg_state = fields.Selection(
         selection=[("sent", "Sent"), ("received", "Received")],
         string="Message state",
         default="received",
-        help="The state messages fetched from this folder should be "
-        "assigned in Odoo",
+        help="The state messages fetched from this folder should be assigned in Odoo",
     )
-    active = fields.Boolean("Active", default=True)
+    active = fields.Boolean(default=True)
 
-    @api.multi
     def get_algorithm(self):
-        return self._get_match_algorithms()[self.match_algorithm]()
+        """Translate algorithm code to implementation class.
 
-    @api.multi
+        We used to load this dynamically, but having it more or less hardcoded
+        allows to adapt the UI to the selected algorithm, withouth needing
+        the (deprecated) fields_view_get trickery we used in the past.
+        """
+        self.ensure_one()
+        if self.match_algorithm == "odoo_standard":
+            return match_algorithm.odoo_standard.OdooStandard
+        if self.match_algorithm == "email_domain":
+            return match_algorithm.email_domain.EmailDomain
+        if self.match_algorithm == "email_exact":
+            return match_algorithm.email_exact.EmailExact
+        return None
+
     def button_confirm_folder(self):
+        self.write({"state": "draft"})
         for this in self:
-            this.write({"state": "draft"})
             if not this.active:
                 continue
             connection = this.server_id.connect()
@@ -121,7 +112,6 @@ class FetchmailServerFolder(models.Model):
             connection.close()
             this.write({"state": "done"})
 
-    @api.multi
     def button_attach_mail_manually(self):
         self.ensure_one()
         return {
@@ -133,52 +123,50 @@ class FetchmailServerFolder(models.Model):
             "view_mode": "form",
         }
 
-    @api.multi
     def set_draft(self):
         self.write({"state": "draft"})
         return True
 
-    @api.multi
     def get_msgids(self, connection, criteria):
         """Return imap ids of messages to process"""
         self.ensure_one()
         server = self.server_id
         _logger.info(
-            "start checking for emails in folder %s on server %s",
-            self.path,
-            server.name,
+            "start checking for emails in folder %(folder)s on server %(server)s",
+            {"folder": self.path, "server": server.name},
         )
         if connection.select(self.path)[0] != "OK":
             raise UserError(
-                _("Could not open mailbox %s on %s") % (self.path, server.name)
+                _("Could not open folder %(folder)s on server %(server)s")
+                % {"folder": self.path, "server": server.name}
             )
         result, msgids = connection.search(None, criteria)
         if result != "OK":
             raise UserError(
-                _("Could not search mailbox %s on %s") % (self.path, server.name)
+                _("Could not search folder %(folder)s on server %(server)s")
+                % {"folder": self.path, "server": server.name}
             )
         _logger.info(
-            "finished checking for emails in %s on server %s", self.path, server.name
+            "finished checking for emails in folder %(folder)s on server %(server)s",
+            {"folder": self.path, "server": server.name},
         )
         return msgids
 
-    @api.multi
     def fetch_msg(self, connection, msgid):
         """Select a single message from a folder."""
         self.ensure_one()
-        server = self.server_id
         result, msgdata = connection.fetch(msgid, "(RFC822)")
         if result != "OK":
             raise UserError(
-                _("Could not fetch %s in %s on %s") % (msgid, self.path, server.server)
+                _("Could not fetch %(msgid)s in folder %(folder)s on server %(server)s")
+                % {"msgid": msgid, "folder": self.path, "server": self.server_id.name}
             )
         message_org = msgdata[0][1]  # rfc822 message source
         mail_message = self.env["mail.thread"].message_parse(
-            message_org, save_original=server.original
+            message_org, save_original=self.server_id.original
         )
         return (mail_message, message_org)
 
-    @api.multi
     def retrieve_imap_folder(self, connection):
         """Retrieve all mails for one IMAP folder."""
         self.ensure_one()
@@ -193,10 +181,10 @@ class FetchmailServerFolder(models.Model):
             except Exception:
                 self.env.cr.execute("rollback to savepoint apply_matching")
                 _logger.exception(
-                    "Failed to fetch mail %s from %s", msgid, self.server_id.name
+                    "Failed to fetch mail %(msgid)s from server %(server)s",
+                    {"msgid": msgid, "server": self.server_id.name},
                 )
 
-    @api.multi
     def fetch_mail(self):
         """Retrieve all mails for IMAP folders.
 
@@ -213,16 +201,20 @@ class FetchmailServerFolder(models.Model):
                 connection.close()
             except Exception:
                 _logger.error(
-                    _("General failure when trying to connect to %s server %s."),
-                    this.server_id.type,
-                    this.server_id.name,
+                    (
+                        "General failure when trying to connect to"
+                        " %(server_type)s server %(server)s."
+                    ),
+                    {
+                        "server_type": this.server_id.server_type,
+                        "server": this.server_id.name,
+                    },
                     exc_info=True,
                 )
             finally:
                 if connection:
                     connection.logout()
 
-    @api.multi
     def update_msg(self, connection, msgid, matched=True, flagged=False):
         """Update msg in imap folder depending on match and settings."""
         if matched:
@@ -234,7 +226,6 @@ class FetchmailServerFolder(models.Model):
             if self.flag_nonmatching:
                 connection.store(msgid, "+FLAGS", "\\FLAGGED")
 
-    @api.multi
     def apply_matching(self, connection, msgid, match_algorithm):
         """Return ids of objects matched"""
         self.ensure_one()
@@ -252,7 +243,6 @@ class FetchmailServerFolder(models.Model):
             )
         self.update_msg(connection, msgid, matched=matched)
 
-    @api.multi
     def attach_mail(self, match_object, mail_message):
         """Attach mail to match_object."""
         self.ensure_one()
@@ -270,11 +260,9 @@ class FetchmailServerFolder(models.Model):
                 if len(attachment) < 2:
                     continue
                 fname, fcontent = attachment[:2]
-                if isinstance(fcontent, unicode):
-                    fcontent = fcontent.encode("utf-8")
                 data_attach = {
                     "name": fname,
-                    "datas": base64.b64encode(str(fcontent)),
+                    "datas": base64.b64encode(fcontent),
                     "datas_fname": fname,
                     "description": _("Mail attachment"),
                     "res_model": model_name,
