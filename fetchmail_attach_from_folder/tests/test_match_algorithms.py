@@ -1,6 +1,5 @@
 # Copyright - 2015-2018 Therp BV <https://acme.com>.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-from odoo import models
 from odoo.tests.common import TransactionCase
 
 from ..match_algorithm import email_domain, email_exact, odoo_standard
@@ -49,16 +48,32 @@ class MockConnection:
 
 
 class TestMatchAlgorithms(TransactionCase):
-    def _get_base_folder(self):
-        server_model = self.env["fetchmail.server"]
-        folder_model = self.env["fetchmail.server.folder"]
-        folder = folder_model.browse([models.NewId()])
-        folder.model_id = self.env.ref("base.model_res_partner").id
-        folder.model_field = "email"
-        folder.match_algorithm = "EmailExact"
-        folder.mail_field = "to,from"
-        folder.server_id = server_model.browse([models.NewId()])
-        return folder
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+
+        cls.server_model = cls.env["fetchmail.server"]
+        cls.folder_model = cls.env["fetchmail.server.folder"]
+        cls.server = cls.server_model.create(
+            {
+                "name": "Test Fetchmail Server",
+                "server": "imap.example.com",
+                "server_type": "imap",
+                "active": True,
+                "state": "done",
+            }
+        )
+        cls.folder = cls.folder_model.create(
+            {
+                "server_id": cls.server.id,
+                "sequence": 5,
+                "path": "INBOX",
+                "model_id": cls.env.ref("base.model_res_partner").id,
+                "model_field": "email",
+                "match_algorithm": "email_exact",
+                "mail_field": "to,from",
+            }
+        )
 
     def do_matching(
         self,
@@ -83,8 +98,7 @@ class TestMatchAlgorithms(TransactionCase):
             "to": "demo@yourcompany.example.com",
             "from": "someone@else.com",
         }
-        folder = self._get_base_folder()
-        folder.match_algorithm = "EmailExact"
+        folder = self.folder
         self.do_matching(
             email_exact.EmailExact, "base.user_demo_res_partner", folder, mail_message
         )
@@ -100,8 +114,8 @@ class TestMatchAlgorithms(TransactionCase):
             "from": "someone@else.com",
             "attachments": [("hello.txt", "Hello World!")],
         }
-        folder = self._get_base_folder()
-        folder.match_algorithm = "EmailDomain"
+        folder = self.folder
+        folder.match_algorithm = "email_domain"
         folder.use_first_match = True
         self.do_matching(
             email_domain.EmailDomain,
@@ -122,8 +136,8 @@ class TestMatchAlgorithms(TransactionCase):
             "Message-Id: 42\n"
             "Hello world"
         )
-        folder = self._get_base_folder()
-        folder.match_algorithm = "OdooStandard"
+        folder = self.folder
+        folder.match_algorithm = "odoo_standard"
         matcher = odoo_standard.OdooStandard()
         matches = matcher.search_matches(folder, None)
         self.assertEqual(len(matches), 1)
@@ -134,15 +148,15 @@ class TestMatchAlgorithms(TransactionCase):
         )
 
     def test_apply_matching_exact(self):
-        folder = self._get_base_folder()
-        folder.match_algorithm = "EmailExact"
+        folder = self.folder
+        folder.match_algorithm = "email_domain"
         connection = MockConnection()
         msgid = "<485a8041-d560-a981-5afc-d31c1f136748@acme.com>"
         matcher = email_exact.EmailExact()
         folder.apply_matching(connection, msgid, matcher)
 
     def test_retrieve_imap_folder_domain(self):
-        folder = self._get_base_folder()
-        folder.match_algorithm = "EmailDomain"
+        folder = self.folder
+        folder.match_algorithm = "email_domain"
         connection = MockConnection()
         folder.retrieve_imap_folder(connection)
