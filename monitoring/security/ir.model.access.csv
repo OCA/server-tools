@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_monitoring_script,access_monitoring_script,model_monitoring_script,base.group_system,1,1,1,1
+access_monitoring,access_monitoring,model_monitoring,base.group_system,1,1,1,1
