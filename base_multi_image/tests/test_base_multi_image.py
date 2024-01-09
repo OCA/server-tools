@@ -9,7 +9,7 @@ from odoo.tests import TransactionCase
 from odoo.tools.misc import file_open
 
 
-class TestBaseException(TransactionCase):
+class TestMultiImage(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -57,6 +57,11 @@ class TestBaseException(TransactionCase):
                 ],
             }
         )
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.loader.restore_registry()
+        super(TestMultiImage, cls).tearDownClass()
 
     def test_all_images(self):
         self.assertEqual(len(self.img_owner.image_ids), 2)
