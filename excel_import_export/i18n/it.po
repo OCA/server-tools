@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-01-08 17:34+0000\n"
+"PO-Revision-Date: 2024-01-09 10:33+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -658,7 +658,7 @@ msgstr "Ottieni"
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.export_xlsx_wizard
 msgid "Get Import Template"
-msgstr "Scarica il template di Import"
+msgstr "Ottieni modello importazione"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__gname
@@ -855,7 +855,7 @@ msgid ""
 "Key Error\n"
 "%s"
 msgstr ""
-"Errore Chiave\n"
+"Errore chiave\n"
 "%s"
 
 #. module: excel_import_export
@@ -1064,7 +1064,7 @@ msgstr "Sequenza"
 #: code:addons/excel_import_export/wizard/import_xlsx_wizard.py:111
 #, python-format
 msgid "Set Templates"
-msgstr "Imposta Template"
+msgstr "Imposta modelli"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__sheet
@@ -1135,7 +1135,7 @@ msgstr ""
 #: code:addons/excel_import_export/models/xlsx_import.py:249
 #, python-format
 msgid "Template's model mismatch"
-msgstr "Modello di Template non corrispondente"
+msgstr "Schema del modello non corrispondente"
 
 #. module: excel_import_export
 #: selection:ir.actions.report,report_type:0
@@ -1241,4 +1241,4 @@ msgstr "o"
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.import_xlsx_wizard
 msgid "⇒ Get Sample Import Template"
-msgstr "⇒ Scarica Esempio Template di Importazione"
+msgstr "⇒ Scarica esempio schema di importazione"
