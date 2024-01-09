@@ -61,7 +61,7 @@ class Image(models.Model):
         max_width=1920,
         max_height=1920,
         # store=True,
-        compute="_compute_get_image",
+        compute="_compute_image",
     )
     comments = fields.Text(translate=True)
     sequence = fields.Integer(default=10)
