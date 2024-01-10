@@ -97,7 +97,7 @@ class CleanupPurgeWizardColumn(models.TransientModel):
             "AND a.attname NOT IN %s",
             (model_pools[0]._table, tuple(columns)),
         )
-        return [column for column, in self.env.cr.fetchall()]
+        return [column for (column,) in self.env.cr.fetchall()]
 
     @api.model
     def find(self):
