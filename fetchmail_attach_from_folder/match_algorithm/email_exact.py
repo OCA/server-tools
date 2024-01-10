@@ -3,24 +3,22 @@
 from odoo.tools.mail import email_split
 from odoo.tools.safe_eval import safe_eval
 
-from .base import Base
 
-
-class EmailExact(Base):
+class EmailExact:
     """Search for exactly the mailadress as noted in the email"""
 
-    def _get_mailaddresses(self, folder, mail_message):
+    def _get_mailaddresses(self, folder, message_dict):
         mailaddresses = []
         fields = folder.mail_field.split(",")
         for field in fields:
-            if field in mail_message:
-                mailaddresses += email_split(mail_message[field])
+            if field in message_dict:
+                mailaddresses += email_split(message_dict[field])
         return [addr.lower() for addr in mailaddresses]
 
     def _get_mailaddress_search_domain(
-        self, folder, mail_message, operator="=", values=None
+        self, folder, message_dict, operator="=", values=None
     ):
-        mailaddresses = values or self._get_mailaddresses(folder, mail_message)
+        mailaddresses = values or self._get_mailaddresses(folder, message_dict)
         if not mailaddresses:
             return [(0, "=", 1)]
         search_domain = (
@@ -30,8 +28,9 @@ class EmailExact(Base):
         )
         return search_domain
 
-    def search_matches(self, folder, mail_message):
+    def search_matches(self, folder, message_dict):
         """Returns recordset of matching objects."""
         object_model = folder.env[folder.model_id.model]
-        search_domain = self._get_mailaddress_search_domain(folder, mail_message)
-        return object_model.search(search_domain, order=folder.model_order)
+        search_domain = self._get_mailaddress_search_domain(folder, message_dict)
+        matches = object_model.search(search_domain, order=folder.model_order)
+        return matches.ids

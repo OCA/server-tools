@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from odoo.tests.common import TransactionCase
 
-from ..match_algorithm import email_domain, email_exact, odoo_standard
+from ..match_algorithm import email_domain, email_exact
 
 MSG_BODY = [
     (
@@ -116,7 +116,7 @@ class TestMatchAlgorithms(TransactionCase):
         }
         folder = self.folder
         folder.match_algorithm = "email_domain"
-        folder.use_first_match = True
+        folder.match_first = True
         self.do_matching(
             email_domain.EmailDomain,
             "base.res_partner_address_31",
@@ -128,32 +128,12 @@ class TestMatchAlgorithms(TransactionCase):
             mail_message["subject"],
         )
 
-    def test_odoo_standard(self):
-        mail_message_org = (
-            "To: demo@yourcompany.example.com\n"
-            "From: someone@else.com\n"
-            "Subject: testsubject\n"
-            "Message-Id: 42\n"
-            "Hello world"
-        )
-        folder = self.folder
-        folder.match_algorithm = "odoo_standard"
-        matcher = odoo_standard.OdooStandard()
-        matches = matcher.search_matches(folder, None)
-        self.assertEqual(len(matches), 1)
-        matcher.handle_match(None, matches[0], folder, None, mail_message_org, None)
-        self.assertIn(
-            "Hello world",
-            self.env["mail.message"].search([("subject", "=", "testsubject")]).body,
-        )
-
     def test_apply_matching_exact(self):
         folder = self.folder
-        folder.match_algorithm = "email_domain"
+        folder.match_algorithm = "email_exact"
         connection = MockConnection()
         msgid = "<485a8041-d560-a981-5afc-d31c1f136748@acme.com>"
-        matcher = email_exact.EmailExact()
-        folder.apply_matching(connection, msgid, matcher)
+        folder.apply_matching(connection, msgid)
 
     def test_retrieve_imap_folder_domain(self):
         folder = self.folder
