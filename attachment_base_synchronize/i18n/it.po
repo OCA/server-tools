@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-23 21:53+0000\n"
-"PO-Revision-Date: 2023-12-29 17:34+0000\n"
+"PO-Revision-Date: 2024-01-10 14:37+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -176,7 +176,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_file_type
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
 msgid "File type"
-msgstr "Tipo di file"
+msgstr "Tipo file"
 
 #. module: attachment_base_synchronize
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
