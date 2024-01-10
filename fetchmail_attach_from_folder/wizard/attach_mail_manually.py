@@ -8,7 +8,10 @@ _logger = logging.getLogger(__name__)
 
 
 class AttachMailManually(models.TransientModel):
+    """Attach mail to selected documents."""
+
     _name = "fetchmail.attach.mail.manually"
+    _description = __doc__
 
     name = fields.Char()
     folder_id = fields.Many2one(comodel_name="fetchmail.server.folder", readonly=True)
@@ -88,7 +91,10 @@ class AttachMailManually(models.TransientModel):
 
 
 class AttachMailManuallyMail(models.TransientModel):
+    """Attach single mail to selected documents."""
+
     _name = "fetchmail.attach.mail.manually.mail"
+    _description = __doc__
 
     wizard_id = fields.Many2one("fetchmail.attach.mail.manually", readonly=True)
     msgid = fields.Char("Message id", readonly=True)
