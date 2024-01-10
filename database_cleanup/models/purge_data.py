@@ -61,7 +61,7 @@ class CleanupPurgeWizardData(models.TransientModel):
                 """,
                 (model, IdentifierAdapter(self.env[model]._table)),
             )
-            data_ids.extend(data_row for data_row, in self.env.cr.fetchall())
+            data_ids.extend(data_row for (data_row,) in self.env.cr.fetchall())
         data_ids += (
             self.env["ir.model.data"]
             .search(
