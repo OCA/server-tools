@@ -19,7 +19,7 @@ class CreateIndexesLine(models.TransientModel):
     def purge(self):
         for field in self.mapped("field_id"):
             model = self.env[field.model]
-            name = f"{model._table}_{field.name}_index"
+            name = f"{model._table}__{field.name}_index"
             self.env.cr.execute(
                 "create index %s ON %s (%s)",
                 (
@@ -56,7 +56,7 @@ class CreateIndexesWizard(models.TransientModel):
             if field.model not in self.env.registry:
                 continue
             model = self.env[field.model]
-            name = f"{model._table}_{field.name}_index"
+            name = f"{model._table}__{field.name}_index"
             self.env.cr.execute(
                 "select indexname from pg_indexes "
                 "where indexname=%s and tablename=%s",

@@ -103,8 +103,9 @@ class CleanupPurgeWizardProperty(models.TransientModel):
                                         "id",
                                         "not in",
                                         default_properties.filtered(
-                                            lambda x: x.company_id
-                                            and x.fields_id == prop.fields_id
+                                            lambda x,
+                                            prop_fields_id=prop.fields_id: x.company_id
+                                            and x.fields_id == prop_fields_id
                                         ).ids,
                                     )
                                 ]
