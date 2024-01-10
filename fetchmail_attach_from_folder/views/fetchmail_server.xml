@@ -11,14 +11,14 @@
                     name="attrs"
                 >{'required': [('server_type', '!=', 'imap')]}</attribute>
             </field>
-            <field name="server_type" position="after">
-                <field name="folders_only" />
-            </field>
             <xpath expr="//notebook" position="inside">
                 <page
                     string="Folders to monitor"
                     attrs="{'invisible': [('server_type','!=','imap')]}"
                 >
+                    <group>
+                        <field name="folders_only" />
+                    </group>
                     <field name="folder_ids" nolabel="1">
                         <tree decoration-muted="active == False">
                             <field name="active" invisible="True" />
@@ -58,10 +58,12 @@
                                     states="done"
                                 />
                             </header>
-                            <group>
-                                <field name="path" placeholder="INBOX.subfolder1" />
-                                <field name="model_id" />
-                                <field name="match_algorithm" />
+                            <group colspan="4" col="2">
+                                <group>
+                                    <field name="path" placeholder="INBOX.subfolder1" />
+                                    <field name="model_id" />
+                                    <field name="match_algorithm" />
+                                </group>
                                 <group
                                     name="group_email_match"
                                     attrs="{'invisible':
