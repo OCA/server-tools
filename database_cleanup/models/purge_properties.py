@@ -58,7 +58,7 @@ class CleanupPurgeWizardProperty(models.TransientModel):
             except KeyError:
                 result.append(
                     {
-                        "name": "{}@{}: {}".format(prop.name, prop.res_id, value),
+                        "name": f"{prop.name}@{prop.res_id}: {value}",
                         "property_id": prop.id,
                         "reason": REASON_UNKNOWN_MODEL,
                     }
@@ -67,7 +67,7 @@ class CleanupPurgeWizardProperty(models.TransientModel):
             if not value:
                 result.append(
                     {
-                        "name": "{}@{}: {}".format(prop.name, prop.res_id, value),
+                        "name": f"{prop.name}@{prop.res_id}: {value}",
                         "property_id": prop.id,
                         "reason": REASON_DEFAULT_FALSE,
                     }
@@ -139,9 +139,7 @@ class CleanupPurgeWizardProperty(models.TransientModel):
             for prop in self.env["ir.property"].search([("id", "in", ids)])[1:]:
                 result.append(
                     {
-                        "name": "{}@{}: {}".format(
-                            prop.name, prop.res_id, prop.get_by_record()
-                        ),
+                        "name": f"{prop.name}@{prop.res_id}: {prop.get_by_record()}",
                         "property_id": prop.id,
                         "reason": REASON_DUPLICATE,
                     }
