@@ -19,7 +19,10 @@ class FetchmailServer(models.Model):
         """Retrieve available folders from IMAP server."""
 
         def parse_list_response(line):
-            flags, delimiter, mailbox_name = list_response_pattern.match(line).groups()
+            string_line = line.decode("utf-8")
+            flags, delimiter, mailbox_name = list_response_pattern.match(
+                string_line
+            ).groups()
             mailbox_name = mailbox_name.strip('"')
             return (flags, delimiter, mailbox_name)
 
@@ -34,7 +37,7 @@ class FetchmailServer(models.Model):
                 continue
             folders_available = []
             for folder_entry in list_result[1]:
-                folders_available.append(parse_list_response(str(folder_entry))[2])
+                folders_available.append(parse_list_response(folder_entry)[2])
             this.folders_available = "\n".join(folders_available)
             connection.logout()
 
@@ -47,13 +50,14 @@ class FetchmailServer(models.Model):
         string="Folders",
         context={"active_test": False},
     )
-    object_id = fields.Many2one(required=False)  # comodel_name='ir.model'
-    server_type = fields.Selection(default="imap")
     folders_only = fields.Boolean(
         string="Only folders, not inbox",
         help="Check this field to leave imap inbox alone"
         " and only retrieve mail from configured folders.",
     )
+    # Below existing fields, that are modified by this module.
+    object_id = fields.Many2one(required=False)  # comodel_name='ir.model'
+    server_type = fields.Selection(default="imap")
 
     @api.onchange("server_type", "is_ssl", "object_id")
     def onchange_server_type(self):

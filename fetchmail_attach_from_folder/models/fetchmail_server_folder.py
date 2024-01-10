@@ -1,18 +1,18 @@
 # Copyright - 2013-2024 Therp BV <https://therp.nl>.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-import base64
 import logging
 
 from odoo import _, fields, models
 from odoo.exceptions import UserError, ValidationError
 
-from .. import match_algorithm
-
 _logger = logging.getLogger(__name__)
 
 
 class FetchmailServerFolder(models.Model):
+    """Define folders (IMAP mailboxes) from which to fetch mail."""
+
     _name = "fetchmail.server.folder"
+    _description = __doc__
     _rec_name = "path"
     _order = "sequence"
 
@@ -84,22 +84,6 @@ class FetchmailServerFolder(models.Model):
     )
     active = fields.Boolean(default=True)
 
-    def get_algorithm(self):
-        """Translate algorithm code to implementation class.
-
-        We used to load this dynamically, but having it more or less hardcoded
-        allows to adapt the UI to the selected algorithm, withouth needing
-        the (deprecated) fields_view_get trickery we used in the past.
-        """
-        self.ensure_one()
-        if self.match_algorithm == "odoo_standard":
-            return match_algorithm.odoo_standard.OdooStandard
-        if self.match_algorithm == "email_domain":
-            return match_algorithm.email_domain.EmailDomain
-        if self.match_algorithm == "email_exact":
-            return match_algorithm.email_exact.EmailExact
-        return None
-
     def button_confirm_folder(self):
         self.write({"state": "draft"})
         for this in self:
@@ -126,64 +110,6 @@ class FetchmailServerFolder(models.Model):
     def set_draft(self):
         self.write({"state": "draft"})
         return True
-
-    def get_msgids(self, connection, criteria):
-        """Return imap ids of messages to process"""
-        self.ensure_one()
-        server = self.server_id
-        _logger.info(
-            "start checking for emails in folder %(folder)s on server %(server)s",
-            {"folder": self.path, "server": server.name},
-        )
-        if connection.select(self.path)[0] != "OK":
-            raise UserError(
-                _("Could not open folder %(folder)s on server %(server)s")
-                % {"folder": self.path, "server": server.name}
-            )
-        result, msgids = connection.search(None, criteria)
-        if result != "OK":
-            raise UserError(
-                _("Could not search folder %(folder)s on server %(server)s")
-                % {"folder": self.path, "server": server.name}
-            )
-        _logger.info(
-            "finished checking for emails in folder %(folder)s on server %(server)s",
-            {"folder": self.path, "server": server.name},
-        )
-        return msgids
-
-    def fetch_msg(self, connection, msgid):
-        """Select a single message from a folder."""
-        self.ensure_one()
-        result, msgdata = connection.fetch(msgid, "(RFC822)")
-        if result != "OK":
-            raise UserError(
-                _("Could not fetch %(msgid)s in folder %(folder)s on server %(server)s")
-                % {"msgid": msgid, "folder": self.path, "server": self.server_id.name}
-            )
-        message_org = msgdata[0][1]  # rfc822 message source
-        mail_message = self.env["mail.thread"].message_parse(
-            message_org, save_original=self.server_id.original
-        )
-        return (mail_message, message_org)
-
-    def retrieve_imap_folder(self, connection):
-        """Retrieve all mails for one IMAP folder."""
-        self.ensure_one()
-        msgids = self.get_msgids(connection, "UNDELETED")
-        match_algorithm = self.get_algorithm()
-        for msgid in msgids[0].split():
-            # We will accept exceptions for single messages
-            try:
-                self.env.cr.execute("savepoint apply_matching")
-                self.apply_matching(connection, msgid, match_algorithm)
-                self.env.cr.execute("release savepoint apply_matching")
-            except Exception:
-                self.env.cr.execute("rollback to savepoint apply_matching")
-                _logger.exception(
-                    "Failed to fetch mail %(msgid)s from server %(server)s",
-                    {"msgid": msgid, "server": self.server_id.name},
-                )
 
     def fetch_mail(self):
         """Retrieve all mails for IMAP folders.
@@ -215,6 +141,82 @@ class FetchmailServerFolder(models.Model):
                 if connection:
                     connection.logout()
 
+    def retrieve_imap_folder(self, connection):
+        """Retrieve all mails for one IMAP folder."""
+        self.ensure_one()
+        msgids = self.get_msgids(connection, "UNDELETED")
+        for msgid in msgids[0].split():
+            # We will accept exceptions for single messages
+            try:
+                self.env.cr.execute("savepoint apply_matching")
+                self.apply_matching(connection, msgid)
+                self.env.cr.execute("release savepoint apply_matching")
+            except Exception:
+                self.env.cr.execute("rollback to savepoint apply_matching")
+                _logger.exception(
+                    "Failed to fetch mail %(msgid)s from server %(server)s",
+                    {"msgid": msgid, "server": self.server_id.name},
+                )
+
+    def get_msgids(self, connection, criteria):
+        """Return imap ids of messages to process"""
+        self.ensure_one()
+        server = self.server_id
+        _logger.info(
+            "start checking for emails in folder %(folder)s on server %(server)s",
+            {"folder": self.path, "server": server.name},
+        )
+        if connection.select(self.path)[0] != "OK":
+            raise UserError(
+                _("Could not open folder %(folder)s on server %(server)s")
+                % {"folder": self.path, "server": server.name}
+            )
+        result, msgids = connection.search(None, criteria)
+        if result != "OK":
+            raise UserError(
+                _("Could not search folder %(folder)s on server %(server)s")
+                % {"folder": self.path, "server": server.name}
+            )
+        _logger.info(
+            "finished checking for emails in folder %(folder)s on server %(server)s",
+            {"folder": self.path, "server": server.name},
+        )
+        return msgids
+
+    def apply_matching(self, connection, msgid):
+        """Return ids of objects matched"""
+        self.ensure_one()
+        thread_model = self.env["mail.thread"]
+        message_org = self.fetch_msg(connection, msgid)
+        custom_values = (
+            None
+            if self.match_algorithm == "odoo_standard"
+            else {
+                "folder": self,
+            }
+        )
+        thread_id = thread_model.message_process(
+            self.model_id.model,
+            message_org,
+            custom_values=custom_values,
+            save_original=self.server_id.original,
+            strip_attachments=(not self.server_id.attach),
+        )
+        matched = True if thread_id else False
+        self.update_msg(connection, msgid, matched=matched)
+
+    def fetch_msg(self, connection, msgid):
+        """Select a single message from a folder."""
+        self.ensure_one()
+        result, msgdata = connection.fetch(msgid, "(RFC822)")
+        if result != "OK":
+            raise UserError(
+                _("Could not fetch %(msgid)s in folder %(folder)s on server %(server)s")
+                % {"msgid": msgid, "folder": self.path, "server": self.server_id.name}
+            )
+        message_org = msgdata[0][1]  # rfc822 message source
+        return message_org
+
     def update_msg(self, connection, msgid, matched=True, flagged=False):
         """Update msg in imap folder depending on match and settings."""
         if matched:
@@ -225,61 +227,3 @@ class FetchmailServerFolder(models.Model):
         else:
             if self.flag_nonmatching:
                 connection.store(msgid, "+FLAGS", "\\FLAGGED")
-
-    def apply_matching(self, connection, msgid, match_algorithm):
-        """Return ids of objects matched"""
-        self.ensure_one()
-        mail_message, message_org = self.fetch_msg(connection, msgid)
-        if self.env["mail.message"].search(
-            [("message_id", "=", mail_message["message_id"])]
-        ):
-            # Ignore mails that have been handled already
-            return
-        matches = match_algorithm.search_matches(self, mail_message)
-        matched = matches and (len(matches) == 1 or self.match_first)
-        if matched:
-            match_algorithm.handle_match(
-                connection, matches[0], self, mail_message, message_org, msgid
-            )
-        self.update_msg(connection, msgid, matched=matched)
-
-    def attach_mail(self, match_object, mail_message):
-        """Attach mail to match_object."""
-        self.ensure_one()
-        partner = False
-        model_name = self.model_id.model
-        if model_name == "res.partner":
-            partner = match_object
-        elif "partner_id" in self.env[model_name]._fields:
-            partner = match_object.partner_id
-        attachments = []
-        if self.server_id.attach and mail_message.get("attachments"):
-            for attachment in mail_message["attachments"]:
-                # Attachment should at least have filename and data, but
-                # might have some extra element(s)
-                if len(attachment) < 2:
-                    continue
-                fname, fcontent = attachment[:2]
-                data_attach = {
-                    "name": fname,
-                    "datas": base64.b64encode(fcontent),
-                    "datas_fname": fname,
-                    "description": _("Mail attachment"),
-                    "res_model": model_name,
-                    "res_id": match_object.id,
-                }
-                attachments.append(self.env["ir.attachment"].create(data_attach))
-        self.env["mail.message"].create(
-            {
-                "author_id": partner and partner.id or False,
-                "model": model_name,
-                "res_id": match_object.id,
-                "message_type": "email",
-                "body": mail_message.get("body"),
-                "subject": mail_message.get("subject"),
-                "email_from": mail_message.get("from"),
-                "date": mail_message.get("date"),
-                "message_id": mail_message.get("message_id"),
-                "attachment_ids": [(6, 0, [a.id for a in attachments])],
-            }
-        )
