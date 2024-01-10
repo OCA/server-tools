@@ -1,2 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_model_fetchmail_server_folder,fetchmail.server.folder,model_fetchmail_server_folder,base.group_system,1,1,1,1
+access_fetchmail_attach_mail_manually,access_fetchmail_attach_mail_manually,model_fetchmail_attach_mail_manually,base.group_system,1,1,1,1
+access_fetchmail_attach_mail_manually_mail,access_fetchmail_attach_mail_manually_mail,model_fetchmail_attach_mail_manually_mail,base.group_system,1,1,1,1
