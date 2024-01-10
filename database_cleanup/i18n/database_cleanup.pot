@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -203,26 +203,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_property__id
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_table__id
 msgid "ID"
-msgstr ""
-
-#. module: database_cleanup
-#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_line____last_update
-#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_wizard____last_update
-#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_column____last_update
-#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_data____last_update
-#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_menu____last_update
-#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_model____last_update
-#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_module____last_update
-#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_property____last_update
-#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_table____last_update
-#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_column____last_update
-#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_data____last_update
-#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_menu____last_update
-#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_model____last_update
-#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_module____last_update
-#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_property____last_update
-#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_table____last_update
-msgid "Last Modified on"
 msgstr ""
 
 #. module: database_cleanup

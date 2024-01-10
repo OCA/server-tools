@@ -13,13 +13,10 @@
                     />
                     <button type="object" name="select_lines" string="Select lines" />
                 </header>
-                <div attrs="{'invisible': [('purge_line_ids', '!=', [])]}">
+                <div invisible="purge_line_ids">
                     Nothing found to clean up.
                 </div>
-                <field
-                    name="purge_line_ids"
-                    attrs="{'invisible': [('purge_line_ids', '=', [])]}"
-                >
+                <field name="purge_line_ids" invisible="not purge_line_ids">
                     <form>
                         <group>
                             <field name="name" />
@@ -31,7 +28,7 @@
                                 name="purge"
                                 class="oe_highlight"
                                 string="Purge"
-                                attrs="{'invisible': [('purged', '=', True)]}"
+                                invisible="purged"
                             />
                         </footer>
                     </form>
@@ -50,7 +47,7 @@
                     name="purge"
                     icon="fa-times-circle text-danger"
                     string="Purge this model"
-                    attrs="{'invisible': [('purged', '=', True)]}"
+                    invisible="purged"
                 />
             </tree>
         </field>

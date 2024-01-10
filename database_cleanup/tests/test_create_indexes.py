@@ -13,7 +13,7 @@ class TestCreateIndexesLine(Common):
         super().setUp()
         with environment() as env:
             # delete some index and check if our module recreated it
-            env.cr.execute("drop index res_partner_name_index")
+            env.cr.execute("drop index res_partner__name_index")
 
     def test_deleted_index(self):
         with environment() as env:
@@ -21,6 +21,6 @@ class TestCreateIndexesLine(Common):
             wizard.purge_all()
             env.cr.execute(
                 "select indexname from pg_indexes where "
-                "indexname='res_partner_name_index' and tablename='res_partner' "
+                "indexname='res_partner__name_index' and tablename='res_partner' "
             )
             self.assertEqual(env.cr.rowcount, 1)
