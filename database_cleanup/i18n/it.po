@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-03 10:08+0000\n"
-"PO-Revision-Date: 2024-01-09 22:36+0000\n"
+"PO-Revision-Date: 2024-01-10 14:35+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -114,7 +114,7 @@ msgstr "Creato"
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_property__create_uid
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_table__create_uid
 msgid "Created by"
-msgstr "Created by"
+msgstr "Creato da"
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_line__create_date
@@ -134,7 +134,7 @@ msgstr "Created by"
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_property__create_date
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_table__create_date
 msgid "Created on"
-msgstr "Created on"
+msgstr "Creato il"
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_data__data_id
@@ -249,7 +249,7 @@ msgstr "Ultima modifica il"
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_property__write_uid
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_table__write_uid
 msgid "Last Updated by"
-msgstr "Last Updated by"
+msgstr "Ultimo aggiornamento di"
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_line__write_date
@@ -493,7 +493,7 @@ msgstr "Pulisci proprietà"
 #. module: database_cleanup
 #: model:ir.model,name:database_cleanup.model_cleanup_purge_wizard
 msgid "Purge stuff"
-msgstr ""
+msgstr "Elimina elementi"
 
 #. module: database_cleanup
 #: model:ir.actions.server,name:database_cleanup.action_purge_tables
