@@ -11,7 +11,7 @@ from odoo.tests import TransactionCase
 class SudoTechCase(TransactionCase):
     @classmethod
     def setUpClass(cls):
-        super(SudoTechCase, cls).setUpClass()
+        super().setUpClass()
         cls.user_tech = (
             cls.env["res.users"]
             .with_context(tracking_disable=True, no_reset_password=True)
