@@ -16,7 +16,7 @@ class Base(models.AbstractModel):
             if fieldname not in record:
                 column = self._fields[fieldname]
                 if value and column.type == "many2one":
-                    value = value[0]  # many2one are tuple (id, name)
+                    value = value["id"]
                 new_values[fieldname] = value
         return new_values
 
@@ -33,7 +33,7 @@ class Base(models.AbstractModel):
         # _onchange_spec() will return onchange fields from the default view
         # we need all fields in the dict even the empty ones
         # otherwise 'onchange()' will not apply changes to them
-        onchange_specs = {field_name: "1" for field_name, field in self._fields.items()}
+        onchange_specs = self._get_fields_spec()
         all_values = values.copy()
         # If self is a record (play onchange on existing record)
         # we take the value of the field
@@ -55,7 +55,7 @@ class Base(models.AbstractModel):
 
         new_values = {}
         for field in onchange_fields:
-            onchange_values = self.onchange(all_values, field, onchange_specs)
+            onchange_values = self.onchange(all_values, [field], onchange_specs)
             new_values.update(self._get_new_values(values, onchange_values))
             all_values.update(new_values)
 
