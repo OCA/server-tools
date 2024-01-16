@@ -55,16 +55,9 @@ class BaseExceptionModel(models.AbstractModel):
             if rec.exception_ids and not rec.ignore_exception:
                 rec.exceptions_summary = "<ul>%s</ul>" % "".join(
                     [
-                        "<li>%s: <i>%s</i> <b>%s<b></li>"
-                        % tuple(
-                            map(
-                                html.escape,
-                                (
-                                    e.name,
-                                    e.description or "",
-                                    _("(Blocking exception)") if e.is_blocking else "",
-                                ),
-                            )
+                        f"<li>{html.escape(e.name)}: <i>{html.escape(e.description or '')}</i> <b>"
+                        + _(
+                            f"{'(Blocking exception)' if e.is_blocking else ''}</b></li>"
                         )
                         for e in rec.exception_ids
                     ]

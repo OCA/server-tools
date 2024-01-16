@@ -2,7 +2,6 @@
 # Copyright 2020 Hibou Corp.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-
 from odoo_test_helper import FakeModelLoader
 
 from odoo.exceptions import UserError, ValidationError
