@@ -66,6 +66,11 @@ class ExceptionRule(models.Model):
         self.ensure_one()
         return safe_eval(self.domain)
 
+    def _get_validation_error_message(self):
+        if not self:
+            return ""
+        return "\n".join(self.mapped("name"))
+
 
 class BaseExceptionMethod(models.AbstractModel):
     _name = "base.exception.method"
@@ -284,4 +289,5 @@ class BaseExceptionModel(models.AbstractModel):
         exception_ids = self.detect_exceptions()
         if exception_ids:
             exceptions = self.env["exception.rule"].browse(exception_ids)
-            raise ValidationError("\n".join(exceptions.mapped("name")))
+            msg = exceptions._get_validation_error_message()
+            raise ValidationError(_(msg))
