@@ -1,12 +1,10 @@
 # Copyright 2023 Omal Bastin (o4odoo@gmail.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-import base64
 
 from odoo_test_helper import FakeModelLoader
 
 from odoo.tests import TransactionCase
-from odoo.tools.misc import file_open
 
 
 class TestMultiImage(TransactionCase):
@@ -62,18 +60,23 @@ class TestMultiImage(TransactionCase):
     @classmethod
     def tearDownClass(cls):
         cls.loader.restore_registry()
-        super(TestMultiImage, cls).tearDownClass()
+        super().tearDownClass()
 
     def test_all_images(self):
         self.assertEqual(len(self.img_owner.image_ids), 2)
 
     def test_add_image(self):
         self.img_owner.image_ids = [
-            (0, 0, {"storage": "filestore",
+            (
+                0,
+                0,
+                {
+                    "storage": "filestore",
                     "attachment_image": self.grey_image,
                     "name": "Image 3",
                     "owner_model": "base_multi_image.owner.test",
-                    })
+                },
+            )
         ]
         self.img_owner.invalidate_recordset()
         self.assertEqual(len(self.img_owner.image_ids), 3)

@@ -42,7 +42,7 @@ class Image(models.Model):
             ("file", "OS file"),
             ("db", "Database"),
             ("filestore", "Filestore"),
-            ("attachment", "Attachment")
+            ("attachment", "Attachment"),
         ],
         required=True,
         default="filestore",
@@ -51,7 +51,9 @@ class Image(models.Model):
     filename = fields.Char()
     extension = fields.Char("File extension", readonly=True)
     attachment_id = fields.Many2one(
-        "ir.attachment", string="Image stored in Attachment", domain="[('index_content', '=', 'image')]"
+        "ir.attachment",
+        string="Image stored in Attachment",
+        domain="[('index_content', '=', 'image')]",
     )
     file_db_store = fields.Binary("Image stored in database", attachment=False)
     path = fields.Char("Image path", help="Image path")
@@ -81,9 +83,17 @@ class Image(models.Model):
         """Get a reference field based on the split model and id fields."""
         for s in self:
             if s.owner_model:
-                s.owner_ref_id = "{0.owner_model},{0.owner_id}".format(s)
+                s.owner_ref_id = f"{s.owner_model},{s.owner_id}"
 
-    @api.depends("storage", "path", "file_db_store", "url", "attachment_id", "attachment_image",'name')
+    @api.depends(
+        "storage",
+        "path",
+        "file_db_store",
+        "url",
+        "attachment_id",
+        "attachment_image",
+        "name",
+    )
     def _compute_image(self):
         """Get image data from the right storage type."""
         for s in self:
@@ -101,7 +111,7 @@ class Image(models.Model):
 
     def _get_image_from_attachment(self):
         if self.attachment_id:
-           return self.attachment_id.datas
+            return self.attachment_id.datas
 
     def _get_image_from_db(self):
         return self.file_db_store

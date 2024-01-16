@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
 
     <record id="image_form_view" model="ir.ui.view">
@@ -10,10 +9,7 @@
                     <notebook>
                         <page string="Basic Information">
                         <group>
-                            <group
-                                string="Owner"
-                                invisible="show_technical == False"
-                            >
+                            <group string="Owner" invisible="show_technical == False">
                                 <field name="show_technical" invisible="True" />
                                 <field name="owner_model" />
                                 <field name="owner_id" />
@@ -29,35 +25,35 @@
                         <group>
                             <group string="Options">
                                 <field
-                                    name="url"
-                                    invisible="storage != 'url'"
-                                    required="storage == 'url'"
-                                    widget="url"
-                                />
+                                        name="url"
+                                        invisible="storage != 'url'"
+                                        required="storage == 'url'"
+                                        widget="url"
+                                    />
                                 <field
-                                    name="path"
-                                    invisible="storage != 'file'"
-                                    required="storage == 'file'"
-                                />
+                                        name="path"
+                                        invisible="storage != 'file'"
+                                        required="storage == 'file'"
+                                    />
                                 <field name="filename" invisible="1" />
                                 <field
-                                    name="attachment_image"
-                                    invisible="storage != 'filestore'"
-                                    required="storage == 'filestore'"
-                                    filename="filename"
-                                />
+                                        name="attachment_image"
+                                        invisible="storage != 'filestore'"
+                                        required="storage == 'filestore'"
+                                        filename="filename"
+                                    />
                                 <field
-                                    name="file_db_store"
-                                    invisible="storage != 'db'"
-                                    required="storage == 'db'"
-                                    filename="filename"
-                                />
+                                        name="file_db_store"
+                                        invisible="storage != 'db'"
+                                        required="storage == 'db'"
+                                        filename="filename"
+                                    />
                                 <field
-                                    name="attachment_id"
-                                    invisible="storage != 'attachment'"
-                                    required="storage == 'attachment'"
-                                    filename="filename"
-                                />
+                                        name="attachment_id"
+                                        invisible="storage != 'attachment'"
+                                        required="storage == 'attachment'"
+                                        filename="filename"
+                                    />
 
                             </group>
                             </group>

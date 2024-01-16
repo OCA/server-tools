@@ -3,8 +3,6 @@
 
 import logging
 
-from odoo import SUPERUSER_ID, api
-
 _logger = logging.getLogger(__name__)
 
 
@@ -22,24 +20,19 @@ def pre_init_hook_for_submodules(env, model, field):
     """
     cr = env.cr
     with cr.savepoint():
-        print('pre inittttttttttttt',env['base_multi_image.image'].search([]))
         table = env[model]._table
         column_exists = table_has_column(cr, table, field)
         # fields.Binary(), extract the binary content directly from the table
         if column_exists:
-            extract_query = """
-                SELECT id, '%(model)s', '%(model)s,' || id, 'db', %(field)s
-                FROM %(table)s
-                WHERE %(field)s IS NOT NULL
-            """ % {
-                "table": table,
-                "field": field,
-                "model": model,
-            }
+            extract_query = f"""
+                SELECT id, '{model}', '{model},' || id, 'db', {field}
+                FROM {table}
+                WHERE {field} IS NOT NULL
+            """
             image_field = "file_db_store"
         # fields.Binary(attachment=True), get the ir_attachment record ID
         else:
-            extract_query = """
+            extract_query = f"""
                 SELECT
                     res_id,
                     res_model,
@@ -47,29 +40,24 @@ def pre_init_hook_for_submodules(env, model, field):
                     'attachment',
                     id
                 FROM ir_attachment
-                WHERE res_field='%(field)s' AND res_model='%(model)s'
-            """ % {
-                "model": model,
-                "field": field,
-            }
+                WHERE res_field='{field}' AND res_model='{model}'
+            """
             image_field = "attachment_id"
         cr.execute(  # pylint: disable=sql-injection
-            """
+            f"""
                 INSERT INTO base_multi_image_image (
                     owner_id,
                     owner_model,
                     owner_ref_id,
                     storage,
-                    %s
+                    {image_field}
                 )
-                %s
+                {extract_query}
             """
-            % (image_field, extract_query)
         )
 
 
-def uninstall_hook_for_submodules(
-    env, model, field=None):
+def uninstall_hook_for_submodules(env, model, field=None):
     """Moves images from multi to single mode and remove multi-images for a
     given model.
 
@@ -118,13 +106,10 @@ def save_directly_to_table(cr, Model, field, Field, main_images):
         fields.append(field + " = " + "%(image)s")
 
     query = """
-        UPDATE %(table)s
-        SET %(fields)s
+        UPDATE {table}
+        SET {fields}
         WHERE id = %%(id)s
-    """ % {
-        "table": Model._table,
-        "fields": ", ".join(fields),
-    }
+    """.format(table=Model._table, fields=", ".join(fields))
     for main_image in main_images:
         params = {"id": main_image.owner_id}
         if field and not Field.attachment:

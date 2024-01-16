@@ -62,7 +62,7 @@ class Owner(models.AbstractModel):
                 values.setdefault("name", name or _("Main image"))
                 self.image_ids = [(0, 0, values)]
         else:
-            #unlink
+            # unlink
             image_rec and image_rec.unlink()
 
     def _inverse_multi_image_main(self):
