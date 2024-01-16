@@ -23,7 +23,7 @@
                         name="web_ribbon"
                         title="Archived"
                         bg_color="bg-danger"
-                        attrs="{'invisible': [('active', '=', True)]}"
+                        invisible="active"
                     />
                     <div class="oe_button_box" name="button_box">
                     </div>
@@ -46,7 +46,8 @@
                             <field name="exception_type" widget="radio" />
                             <field
                                 name="domain"
-                                attrs="{'invisible': [('exception_type','!=','by_domain')], 'required': [('exception_type','=','by_domain')]}"
+                                invisible="exception_type != 'by_domain'"
+                                required="exception_type == 'by_domain'"
                                 widget="domain"
                                 options="{'model': 'model'}"
                             />
@@ -57,7 +58,8 @@
                         <page
                             name="code"
                             string="Python Code"
-                            attrs="{'invisible': [('exception_type','!=','by_py_code')], 'required': [('exception_type','=','by_py_code')]}"
+                            invisible="exception_type != 'by_py_code'"
+                            required="exception_type == 'by_py_code'"
                         >
                             <field
                                 name="code"
@@ -69,23 +71,21 @@
                         <page
                             name="help"
                             string="Help"
-                            attrs="{'invisible': [('exception_type','!=','by_py_code')]}"
+                            invisible="exception_type != 'by_py_code'"
                         >
-                            <group>
-                                <div style="margin-top: 4px;">
-                                    <h3>Help with Python expressions</h3>
-                                    <p
-                                    >Various fields may use Python code or Python expressions. The following variables can be used:</p>
-                                    <ul>
-                                        <li><code
-                                            >self</code>: Record on which the rule is evaluated.</li>
-                                        <li>To block the exception use: <code
-                                            >failed = True</code></li>
-                                    </ul>
-                                    <p
-                                    >As well as all the libraries provided in safe_eval.</p>
-                                </div>
-                            </group>
+                            <div style="margin-top: 4px;">
+                                <h3>Help with Python expressions</h3>
+                                <p
+                                >Various fields may use Python code or Python expressions. The following variables can be used:</p>
+                                <ul>
+                                    <li><code
+                                        >self</code>: Record on which the rule is evaluated.</li>
+                                    <li>To block the exception use: <code
+                                        >failed = True</code></li>
+                                </ul>
+                                <p
+                                >As well as all the libraries provided in safe_eval.</p>
+                            </div>
                         </page>
                     </notebook>
                 </sheet>

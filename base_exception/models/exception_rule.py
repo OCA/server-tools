@@ -124,15 +124,15 @@ class ExceptionRule(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         res = super().create(vals_list)
-        self._get_cached_rules_for_domain.clear_cache(self)
+        self.env.registry.clear_cache()
         return res
 
     def write(self, vals):
         res = super().write(vals)
-        self._get_cached_rules_for_domain.clear_cache(self)
+        self.env.registry.clear_cache()
         return res
 
     def unlink(self):
         res = super().unlink()
-        self._get_cached_rules_for_domain.clear_cache(self)
+        self.env.registry.clear_cache()
         return res
