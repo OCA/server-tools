@@ -1,0 +1,59 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* base_technical_user
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2019-08-31 04:54+0000\n"
+"Last-Translator: 黎伟杰 <674416404@qq.com>\n"
+"Language-Team: none\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 3.8\n"
+
+#. module: base_technical_user
+#: model:ir.model,name:base_technical_user.model_base
+msgid "Base"
+msgstr ""
+
+#. module: base_technical_user
+#: model:ir.model,name:base_technical_user.model_res_company
+msgid "Companies"
+msgstr "公司"
+
+#. module: base_technical_user
+#: model_terms:ir.ui.view,arch_db:base_technical_user.res_company_view_form_inherit_base_technical_user
+msgid "Configuration"
+msgstr "配置"
+
+#. module: base_technical_user
+#: model:ir.model.fields,field_description:base_technical_user.field_res_company__smart_search
+msgid "Smart Search"
+msgstr ""
+
+#. module: base_technical_user
+#: model_terms:ir.ui.view,arch_db:base_technical_user.res_company_view_form_inherit_base_technical_user
+msgid "Technical Parameters"
+msgstr "技术参数"
+
+#. module: base_technical_user
+#: model:ir.model.fields,field_description:base_technical_user.field_res_company__user_tech_id
+msgid "Technical User"
+msgstr "技术用户"
+
+#. module: base_technical_user
+#. odoo-python
+#: code:addons/base_technical_user/models/models.py:0
+#, python-format
+msgid "The technical user is missing in the company {}"
+msgstr ""
+
+#. module: base_technical_user
+#: model:ir.model.fields,help:base_technical_user.field_res_company__user_tech_id
+msgid "This user can be used by process for technical purpose"
+msgstr "此用户可由流程用于技术目的"
