@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_base_onchange_rule_user,base.onchange.rule.user,model_base_onchange_rule,,1,0,0,0
+access_base_onchange_rule_manager,base.onchange.rule.manager,model_base_onchange_rule,base.group_system,1,1,1,1
