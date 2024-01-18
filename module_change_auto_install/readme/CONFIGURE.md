@@ -3,14 +3,19 @@
   `server_wide_modules` list.
 - (optional) Add a new entry `modules_auto_install_disabled` to mark a
   list of modules as NOT auto installable.
+  The environment variable ``ODOO_MODULES_AUTO_INSTALL_DISABLED`` can also be set.
 - (optional) Add a new entry `modules_auto_install_enabled` to mark a
   list of modules as auto installable. This feature can be usefull for
   companies that are hosting a lot of Odoo instances for many customers,
   and want some modules to be always installed.
+  The environment variable ``ODOO_MODULES_AUTO_INSTALL_ENABLED`` can also be set.
+
+The values in the configuration file takes precedence over the environment variable
+values.
 
 **Typical Settings**
 
-``` shell
+``` cfg
 server_wide_modules = web,module_change_auto_install
 
 modules_auto_install_disabled =
@@ -24,6 +29,14 @@ modules_auto_install_enabled =
     disable_odoo_online,
     account_usability
 ```
+
+When using environment variables, the same configuration is:
+
+``` shell
+export ODOO_MODULES_AUTO_INSTALL_DISABLED=partner_autocomplete,iap,mail_bot
+export ODOO_MODULES_AUTO_INSTALL_ENABLED=web_responsive:web,base_technical_features,disable_odoo_online,account_usability
+```
+
 
 Run your instance and check logs. Modules that has been altered should
 be present in your log, at the load of your instance:
@@ -39,7 +52,7 @@ INFO db_name odoo.modules.loading: 42 modules loaded in 0.32s, 0 queries (+0 ext
 
 if your `odoo.cfg` file contains the following configuration:
 
-``` shell
+``` cfg
 modules_auto_install_enabled =
     account_usability,
     web_responsive:web,
@@ -56,3 +69,10 @@ The behaviour will be the following:
 - `base_technical_features` will be ALWAYS installed
 - `point_of_sale` module will be installed as soon as `sale` and
   `purchase` module are installed.
+
+When using environment variables, the same configuration is:
+
+``` shell
+export ODOO_MODULES_AUTO_INSTALL_ENABLED=account_usability,web_responsive:web,base_technical_features:,point_of_sale:sale/purchase
+```
+

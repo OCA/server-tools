@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import logging
+import os
 
 from odoo import modules
 from odoo.tools import config
@@ -51,10 +52,16 @@ def _overload_load_manifest(module, mod_path=None):
     auto_install = res.get("auto_install", False)
 
     modules_auto_install_enabled_dict = _get_modules_dict_auto_install_config(
-        config.get("modules_auto_install_enabled")
+        config.get(
+            "modules_auto_install_enabled",
+            os.environ.get("ODOO_MODULES_AUTO_INSTALL_ENABLED"),
+        )
     )
     modules_auto_install_disabled_dict = _get_modules_dict_auto_install_config(
-        config.get("modules_auto_install_disabled")
+        config.get(
+            "modules_auto_install_disabled",
+            os.environ.get("ODOO_MODULES_AUTO_INSTALL_DISABLED"),
+        )
     )
 
     if auto_install and module in modules_auto_install_disabled_dict.keys():
