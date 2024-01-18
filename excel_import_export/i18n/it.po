@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-01-09 10:33+0000\n"
+"PO-Revision-Date: 2024-01-18 09:35+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -1147,7 +1147,7 @@ msgstr "Modello Report"
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_ir_actions_report__report_type
 msgid "Report Type"
-msgstr "Tipo Report"
+msgstr "Tipo resoconto"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_report_xlsx_wizard__res_model
