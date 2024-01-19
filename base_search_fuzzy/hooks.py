@@ -22,15 +22,10 @@ def patch_leaf_trgm(original):
             return original(self, leaf, model, alias)
         # The field must exist
         if left not in model._fields:
-            raise ValueError(
-                "Invalid field {!r} in domain term {!r}".format(left, leaf)
-            )
+            raise ValueError(f"Invalid field {left!r} in domain term {leaf!r}")
 
         # Generate correct WHERE clause part
-        query = '("{}"."{}" %% %s)'.format(
-            alias,
-            left,
-        )
+        query = f'("{alias}"."{left}" %% %s)'
         params = [right]
         return query, params
 
