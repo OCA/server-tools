@@ -28,7 +28,7 @@ class QueryGenerationCase(TransactionCase):
         # test the right sql query statement creation
         # now there should be only one '%'
         complete_where = self.env.cr.mogrify(
-            "SELECT FROM {} WHERE {}".format(from_clause, where_clause),
+            f"SELECT FROM {from_clause} WHERE {where_clause}",
             where_clause_params,
         )
         self.assertEqual(
@@ -51,7 +51,7 @@ class QueryGenerationCase(TransactionCase):
         )
 
         complete_where = self.env.cr.mogrify(
-            "SELECT FROM {} WHERE {}".format(from_clause, where_clause),
+            f"SELECT FROM {from_clause} WHERE {where_clause}",
             where_clause_params,
         )
 
