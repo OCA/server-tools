@@ -132,7 +132,7 @@ class TrgmIndex(models.Model):
         table_name = self.env[self.field_id.model_id.model]._table
         column_name = self.field_id.name
         index_type = self.index_type
-        index_name = "{}_{}_idx".format(column_name, index_type)
+        index_name = f"{column_name}_{index_type}_idx"
         index_exists, index_name = self.get_not_used_index(index_name, table_name)
 
         if not index_exists:
