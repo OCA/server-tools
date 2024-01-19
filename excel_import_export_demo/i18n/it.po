@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-01-08 17:35+0000\n"
+"PO-Revision-Date: 2024-01-19 07:35+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -166,7 +166,7 @@ msgstr "Ricavo per team"
 #. module: excel_import_export_demo
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_crm_lead__team_id
 msgid "Sales Team"
-msgstr "Team vendite"
+msgstr "Team di vendita"
 
 #. module: excel_import_export_demo
 #: model:ir.actions.act_window,name:excel_import_export_demo.action_import_sale_order
