@@ -387,6 +387,9 @@ class AuditlogRule(models.Model):
                 .with_context(prefetch_fields=False)
                 .read(fields_list)
             }
+            # Prevent the cache of modified fields from being poisoned by
+            # x2many items inaccessible to the current user.
+            self.invalidate_recordset(vals.keys())
             result = write_full.origin(self, vals, **kwargs)
             new_values = {
                 d["id"]: d
