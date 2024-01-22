@@ -4,4 +4,6 @@
 
 
 def format_m2m(records):
-    return "; ".join(records.mapped("display_name"))
+    if records:
+        return "; ".join(records.mapped("display_name"))
+    return ""
