@@ -9,14 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-01 02:43+0000\n"
-"PO-Revision-Date: 2017-08-01 02:43+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2023-06-08 12:11+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule_active
@@ -31,12 +32,12 @@ msgstr ""
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule_create_uid
 msgid "Created by"
-msgstr "Created by"
+msgstr "Creato da"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule_create_date
 msgid "Created on"
-msgstr "Created on"
+msgstr "Creato il"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule_description
@@ -48,7 +49,7 @@ msgstr "Descrizione"
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm_display_name
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule_display_name
 msgid "Display Name"
-msgstr "Nome da visualizzare"
+msgstr "Nome visualizzato"
 
 #. module: base_exception
 #: code:addons/base_exception/models/base_exception.py:246
@@ -138,12 +139,12 @@ msgstr "Ultima modifica il"
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule_write_uid
 msgid "Last Updated by"
-msgstr "Last Updated by"
+msgstr "Ultimo aggiornamento di"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule_write_date
 msgid "Last Updated on"
-msgstr "Last Updated on"
+msgstr "Ultimo aggiornamento il"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_base_exception_main_exception_id
