@@ -11,7 +11,7 @@ class IrSequenceOption(models.Model):
     _description = "Sequence Option Base Model"
     _check_company_auto = True
 
-    name = fields.Char(readonly=True)
+    name = fields.Char()
     use_sequence_option = fields.Boolean(
         string="Use sequence options",
         help="If checked, Odoo will try to find the new matching sequence first, "
