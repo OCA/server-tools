@@ -2,10 +2,10 @@
 
 2.  In the search you can use:
 
-    `self.env['res.partner'].search([('name', '%', 'Jon Miller)])`
+    `self.env['res.partner'].search([('name', '%', 'Jon Smit')])`
 
 3.  In this example the function will return positive result for John
-    Miller or John Mill.
+    Smith or John Smit.
 
 4.  You can tweak the number of strings to be returned by adjusting the
     set limit (default: 0.3). NB: Currently you have to set the limit by

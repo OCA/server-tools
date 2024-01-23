@@ -3,11 +3,12 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from odoo.osv import expression
 from odoo.tests.common import TransactionCase
+from odoo.tools.sql import SQL
 
 
 class QueryGenerationCase(TransactionCase):
     def setUp(self):
-        super(QueryGenerationCase, self).setUp()
+        super().setUp()
         self.ResPartner = self.env["res.partner"]
         self.TrgmIndex = self.env["trgm.index"]
         self.ResPartnerCategory = self.env["res.partner.category"]
@@ -17,6 +18,7 @@ class QueryGenerationCase(TransactionCase):
         # the added fuzzy search operator should be available in the allowed
         # operators
         self.assertIn("%", expression.TERM_OPERATORS)
+        self.assertEqual(SQL("%%"), expression.SQL_OPERATORS["%"])
 
         # create new query with fuzzy search operator
         query = self.ResPartner._where_calc([("name", "%", "test")], active_test=False)
@@ -46,8 +48,12 @@ class QueryGenerationCase(TransactionCase):
 
         # the % parameter has to be escaped (%%) for the string replation
         self.assertIn(
-            """("res_partner_category"."name"->>'en_US' %% %s)""",
+            """("res_partner_category"."name"->>%s %% %s)""",
             where_clause,
+        )
+        self.assertEqual(
+            ["en_US", "Goschaeftlic"],
+            where_clause_params,
         )
 
         complete_where = self.env.cr.mogrify(
