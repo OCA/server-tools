@@ -4,37 +4,11 @@
 # Copyright 2021 Tecnativa - Jairo Llopis
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from functools import wraps
-
 from odoo.osv import expression
-
-
-def patch_leaf_trgm(original):
-    @wraps(original)
-    def _wrapper(self, leaf, model, alias):
-        left, operator, right = leaf
-        # No overload for other operators...
-        if operator != "%":
-            # Except translation "inselect" queries
-            if operator == "inselect":
-                right = (right[0].replace(" % ", " %% "), right[1])
-                leaf = (left, operator, right)
-            return original(self, leaf, model, alias)
-        # The field must exist
-        if left not in model._fields:
-            raise ValueError(f"Invalid field {left!r} in domain term {leaf!r}")
-
-        # Generate correct WHERE clause part
-        query = f'("{alias}"."{left}" %% %s)'
-        params = [right]
-        return query, params
-
-    return _wrapper
+from odoo.tools.sql import SQL
 
 
 def post_load():
     """Patch expression generators to enable the fuzzy search operator."""
     expression.TERM_OPERATORS += ("%",)
-    expression.expression._expression__leaf_to_sql = patch_leaf_trgm(
-        expression.expression._expression__leaf_to_sql
-    )
+    expression.SQL_OPERATORS.update({"%": SQL("%%")})
