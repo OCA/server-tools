@@ -8,3 +8,4 @@
 - <teodoralexandru@nexterp.ro> 2020 NextERP SRL.
 - Daniel Reis \<<dreis@opensourceintegrators.com>\>
 - Nikul Chaudhary \<<nchaudhary@opensourceintegrators.com>\>
+- Nguyen Minh Chien \<<chien@trobz.com>\>
