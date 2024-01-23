@@ -64,10 +64,10 @@ Usage
 
 2. In the search you can use:
 
-   ``self.env['res.partner'].search([('name', '%', 'Jon Miller)])``
+   ``self.env['res.partner'].search([('name', '%', 'Jon Smit')])``
 
 3. In this example the function will return positive result for John
-   Miller or John Mill.
+   Smith or John Smit.
 
 4. You can tweak the number of strings to be returned by adjusting the
    set limit (default: 0.3). NB: Currently you have to set the limit by
@@ -93,12 +93,11 @@ if you are in a **demo** database. The steps are the following:
 Known issues / Roadmap
 ======================
 
--  Modify the general search parts (e.g. in tree view or many2one
-   fields)
--  Add better order by handling
--  This module will not be necessary from version 16 (`[IMP] Better
-   handling of indexes
-   #83015 <https://github.com/odoo/odoo/pull/83015>`__)
+- Modify the general search parts (e.g. in tree view or many2one fields)
+- Add better order by handling
+- This module will not be necessary from version 16 (`[IMP] Better
+  handling of indexes
+  #83015 <https://github.com/odoo/odoo/pull/83015>`__)
 
 Bug Tracker
 ===========
@@ -123,18 +122,19 @@ Authors
 Contributors
 ------------
 
--  Christoph Giesel <https://github.com/christophlsa>
--  Jordi Ballester <jordi.ballester@forgeflow.com>
--  Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
--  Dave Lasley <dave@laslabs.com>
--  `Tecnativa <https://www.tecnativa.com>`__:
+- Christoph Giesel <https://github.com/christophlsa>
+- Jordi Ballester <jordi.ballester@forgeflow.com>
+- Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
+- Dave Lasley <dave@laslabs.com>
+- `Tecnativa <https://www.tecnativa.com>`__:
 
-   -  Vicent Cubells
-   -  Ernesto Tejeda
+  - Vicent Cubells
+  - Ernesto Tejeda
 
--  teodoralexandru@nexterp.ro 2020 NextERP SRL.
--  Daniel Reis <dreis@opensourceintegrators.com>
--  Nikul Chaudhary <nchaudhary@opensourceintegrators.com>
+- teodoralexandru@nexterp.ro 2020 NextERP SRL.
+- Daniel Reis <dreis@opensourceintegrators.com>
+- Nikul Chaudhary <nchaudhary@opensourceintegrators.com>
+- Nguyen Minh Chien <chien@trobz.com>
 
 Maintainers
 -----------

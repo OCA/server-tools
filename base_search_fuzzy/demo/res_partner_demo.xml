@@ -16,7 +16,7 @@
         <field name="inherit_id" ref="base.view_res_partner_filter" />
         <field name="arch" type="xml">
             <field name="name" position="after">
-                <field name="display_name" operator="%" />
+                <field name="complete_name" operator="%" />
             </field>
         </field>
     </record>
