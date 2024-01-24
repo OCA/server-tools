@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 ACSONE SA/NV
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="job_function_auto_export__do_trigger_export" model="queue.job.function">
+        <field name="model_id" ref="auto_export.model_auto_export" />
+        <field name="method">_do_trigger_export</field>
+        <field name="channel_id" ref="auto_export.channel_auto_export" />
+    </record>
+</odoo>
