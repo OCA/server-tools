@@ -25,7 +25,7 @@ class CleanupPurgeLine(models.AbstractModel):
     def purge(self):
         raise NotImplementedError
 
-    @api.model
+    @api.model_create_multi
     def create(self, values):
         # make sure the user trying this is actually supposed to do it
         if self.env.ref("base.group_erp_manager") not in self.env.user.groups_id:
@@ -80,7 +80,7 @@ class PurgeWizard(models.AbstractModel):
     def name_get(self):
         return [(this.id, self._description) for this in self]
 
-    @api.model
+    @api.model_create_multi
     def create(self, values):
         # make sure the user trying this is actually supposed to do it
         if self.env.ref("base.group_erp_manager") not in self.env.user.groups_id:
