@@ -38,7 +38,9 @@ class TestDST(TransactionCase):
             self.assertEqual(timezone_date_orig.tzinfo.zone, "Europe/Paris")
             with odoo.registry(self.env.cr.dbname).cursor() as new_cr:
                 registry = odoo.registry(new_cr.dbname)
-                registry["ir.cron"]._process_job(new_cr.dbname, new_cr, job)
+                db = odoo.sql_db.db_connect(new_cr.dbname)
+
+                registry["ir.cron"]._process_job(db, new_cr, job)
                 # since it is updated as a sql query in module
                 cron.invalidate_recordset()
                 day_after_date_orig = (timezone_date_orig + timedelta(days=1)).day
