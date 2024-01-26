@@ -19,7 +19,7 @@ def get_request_info(request):
     """
     urlparts = urllib.parse.urlsplit(request.url)
     return {
-        "url": "{}://{}{}".format(urlparts.scheme, urlparts.netloc, urlparts.path),
+        "url": f"{urlparts.scheme}://{urlparts.netloc}{urlparts.path}",
         "query_string": urlparts.query,
         "method": request.method,
         "headers": dict(datastructures.EnvironHeaders(request.environ)),
@@ -80,7 +80,7 @@ def fetch_git_sha(path, head=None):
                 "Cannot identify HEAD for git repository at %s" % (path,)
             )
 
-        with open(head_path, "r") as fp:
+        with open(head_path) as fp:
             head = text_type(fp.read()).strip()
 
         if head.startswith("ref: "):

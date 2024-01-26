@@ -25,9 +25,9 @@ class TestOdooCookieSanitizer(TransactionCase):
         self.assertEqual(
             http["cookies"],
             "website_lang=en_us;"
-            "session_id={m};"
-            "Session_ID={m};"
-            "foo=bar".format(m=proc.MASK),
+            f"session_id={proc.MASK};"
+            f"Session_ID={proc.MASK};"
+            "foo=bar",
         )
 
     def test_cookie_as_string_with_partials(self):
@@ -63,7 +63,7 @@ class TestOdooCookieSanitizer(TransactionCase):
         self.assertEqual(
             http["headers"]["Cookie"],
             "foo=bar;"
-            "session_id={m};"
-            "Session_ID={m};"
-            "a_session_id_here={m}".format(m=proc.MASK),
+            f"session_id={proc.MASK};"
+            f"Session_ID={proc.MASK};"
+            f"a_session_id_here={proc.MASK}",
         )
