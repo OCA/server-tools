@@ -4,7 +4,6 @@
     sentry-sdk.
 """
 
-from __future__ import absolute_import
 
 import re
 
@@ -13,7 +12,7 @@ from sentry_sdk._compat import text_type
 from .generalutils import string_types, varmap
 
 
-class SanitizeKeysProcessor(object):
+class SanitizeKeysProcessor:
     """Class from raven for sanitize keys, cookies, etc
     Asterisk out things that correspond to a configurable set of keys."""
 
