@@ -2,7 +2,7 @@ try:
     from collections.abc import Mapping
 except ImportError:  # pragma: no cover
     # Python < 3.3
-    from collections import Mapping  # pragma: no cover
+    from collections.abc import Mapping  # pragma: no cover
 
 
 def string_types():
