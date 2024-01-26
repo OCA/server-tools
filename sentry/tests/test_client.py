@@ -29,7 +29,8 @@ class TestException(exceptions.UserError):
 
 
 class InMemoryTransport(HttpTransport):
-    """A :class:`sentry_sdk.Hub.transport` subclass which simply stores events in a list.
+    """A :class:`sentry_sdk.Hub.transport` subclass which simply stores events
+    in a list.
 
     Extended based on the one found in raven-python to avoid additional testing
     dependencies: https://git.io/vyGO3
@@ -76,7 +77,7 @@ class NoopHandler(logging.Handler):
 
 class TestClientSetup(TransactionCase):
     def setUp(self):
-        super(TestClientSetup, self).setUp()
+        super().setUp()
         self.dsn = "http://public:secret@example.com/1"
         self.patch_config(
             {
