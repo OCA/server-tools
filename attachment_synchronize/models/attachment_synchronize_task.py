@@ -236,7 +236,6 @@ class AttachmentSynchronizeTask(models.Model):
         # due to orm limitation method call from ui should not have params
         # so we need to define this method to be able to copy
         # if we do not do this the context will be injected in default params
-        # in V14 maybe we can call copy directly
         self.copy()
 
     def copy(self, default=None):
