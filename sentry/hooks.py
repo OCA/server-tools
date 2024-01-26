@@ -96,6 +96,7 @@ def initialize_sentry(config):
             "`sentry_transport` has been deprecated.  "
             "Its not neccesary send it, will use `HttpTranport` by default.",
             DeprecationWarning,
+            stacklevel=1,
         )
     options = {}
     for option in const.get_sentry_options():

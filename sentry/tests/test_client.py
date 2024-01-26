@@ -76,7 +76,7 @@ class NoopHandler(logging.Handler):
 
 class TestClientSetup(TransactionCase):
     def setUp(self):
-        super(TestClientSetup, self).setUp()
+        super().setUp()
         self.dsn = "http://public:secret@example.com/1"
         self.patch_config(
             {
