@@ -28,8 +28,6 @@ class SyncCommon(TransactionCase):
 
     def setUp(self):
         super().setUp()
-        #        self.env.cr.commit = mock.Mock()
-        #        self.registry.enter_test_mode(self.env.cr)
         self.backend = self.env.ref("fs_storage.default_fs_storage")
         self.filedata = base64.b64encode(b"This is a simple file")
         self.directory_input = "test_import"

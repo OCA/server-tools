@@ -161,10 +161,6 @@
                     context="{'search_default_done': 1}"
                 />
                 <field name="active" widget="boolean_toggle" />
-                <!-- TODO FIXME button is always visible, we should only
-                     show it if it's embeded in an other view
-                     But it's seem that invisible do not work on button
-                -->
                 <button
                     name="button_duplicate_record"
                     type="object"
