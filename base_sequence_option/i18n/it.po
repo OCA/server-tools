@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-01-08 17:36+0000\n"
+"PO-Revision-Date: 2024-01-29 17:02+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -30,7 +30,7 @@ msgstr "Applica sul modello"
 #. module: base_sequence_option
 #: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option_line__base_id
 msgid "Base"
-msgstr ""
+msgstr "Base"
 
 #. module: base_sequence_option
 #: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option__company_id
@@ -83,7 +83,7 @@ msgstr "Trova l'opzione di corrispondenza in base ai valori del documento"
 #: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option__id
 #: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option_line__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: base_sequence_option
 #: model:ir.model.fields,help:base_sequence_option.field_ir_sequence_option__use_sequence_option
@@ -211,3 +211,9 @@ msgid ""
 "number upon assignment, there can still be gaps in the sequence if records "
 "are deleted. The 'no gap' implementation is slower than the standard one."
 msgstr ""
+"Nell'assegnare un numero sequenza ad un record, l'implementazione 'senza "
+"salti' assicura che ogni numero sequenza precedente sia già stato assegnato. "
+"Mentre questa implementazione di sequenza non salta alcun numero "
+"nell'assegnamento, ci possono essere dei salti nella sequenza se i record "
+"vengono cancellati. L'implementazione 'senza salti' è più lenta di quella "
+"standard."
