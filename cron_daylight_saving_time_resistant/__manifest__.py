@@ -8,6 +8,7 @@
     "author": "akretion, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "installable": True,
+    "maintainers": ["florian-dacosta"],
     "depends": [
         "base",
     ],
