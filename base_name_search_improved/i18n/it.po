@@ -120,8 +120,8 @@ msgstr ""
 "comportamento più \"rilassato\". Odoo cerca nativamente record che includono "
 "le frasi inserite così come sono inserite. Attivando questa opzioneverranno "
 "cercati record che contengono le parole inserite indipendentemente "
-"dall'ordine in cui sono inserite. Per esempio se cerchiamo un contatto \"Fred"
-" Flinstone\", Odoo restituirà in modo predefinito solo i record che "
+"dall'ordine in cui sono inserite. Per esempio se cerchiamo un contatto "
+"\"Fred Flinstone\", Odoo restituirà in modo predefinito solo i record che "
 "contengono la frase esatta. Con la ricerca intelligente attiva verrà "
 "restituito ogni record che contiene le parole \"Fred\" e \"Flinstone\".\n"
 "                        <br/>\n"
@@ -313,6 +313,7 @@ msgstr "Ricerca nome intelligente abilitata?"
 #: model:ir.model.fields,field_description:base_name_search_improved.field_digest_tip__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_fetchmail_server__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_format_address_mixin__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_fs_storage__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_google_gmail_mixin__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_iap_account__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_iap_autocomplete_api__smart_search
@@ -519,6 +520,9 @@ msgstr "Ricerca nome intelligente abilitata?"
 #: model:ir.model.fields,field_description:base_name_search_improved.field_sale_payment_provider_onboarding_wizard__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_sale_report__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_sequence_mixin__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_server_config__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_server_env_mixin__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_server_env_techname_mixin__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_sms_api__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_sms_composer__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_sms_resend__smart_search
