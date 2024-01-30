@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo-addon-attachment_queue>=16.0dev,<16.1dev',
+        'odoo-addon-attachment_synchronize>=16.0dev,<16.1dev',
         'odoo-addon-attachment_unindex_content>=16.0dev,<16.1dev',
         'odoo-addon-auditlog>=16.0dev,<16.1dev',
         'odoo-addon-auto_backup>=16.0dev,<16.1dev',
