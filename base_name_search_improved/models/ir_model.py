@@ -126,7 +126,6 @@ def patch_name_search():
 
 
 class Base(models.AbstractModel):
-
     _inherit = "base"
 
     # TODO perhaps better to create only the field when enabled on the model
