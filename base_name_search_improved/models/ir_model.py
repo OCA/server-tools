@@ -3,6 +3,7 @@
 
 import logging
 from ast import literal_eval
+from collections import defaultdict
 
 from lxml import etree
 
@@ -55,12 +56,13 @@ def _get_name_search_domain(self):
     return []
 
 
-def _extend_name_results(self, domain, results, limit, name_get_uid):
+def _extend_name_results(self, domain, results, limit):
     result_count = len(results)
     if result_count < limit:
         domain += [("id", "not in", results)]
         rec_ids = self._search(
-            domain, limit=limit - result_count, access_rights_uid=name_get_uid
+            domain,
+            limit=limit - result_count,
         )
         results.extend(rec_ids)
     return results
@@ -69,16 +71,15 @@ def _extend_name_results(self, domain, results, limit, name_get_uid):
 def patch_name_search():
     @api.model
     def _name_search(
-        self, name="", args=None, operator="ilike", limit=100, name_get_uid=None
+        self, name="", domain=None, operator="ilike", limit=100, order=None
     ):
         # Perform standard name search
         res = _name_search.origin(
             self,
             name=name,
-            args=args,
-            operator=operator,
+            domain=domain,
             limit=limit,
-            name_get_uid=name_get_uid,
+            order=order,
         )
         if name and _get_use_smart_name_search(self.sudo()) and operator in ALLOWED_OPS:
             # _name_search.origin is a query, we need to convert it to a list
@@ -86,7 +87,7 @@ def patch_name_search():
             limit = limit or 0
 
             # we add domain
-            args = args or [] + _get_name_search_domain(self.sudo())
+            args = domain or [] + _get_name_search_domain(self.sudo())
 
             # Support a list of fields to search on
             all_names = _get_rec_names(self.sudo())
@@ -94,15 +95,11 @@ def patch_name_search():
             # Try regular search on each additional search field
             for rec_name in all_names[1:]:
                 domain = [(rec_name, operator, name)]
-                res = _extend_name_results(
-                    self, base_domain + domain, res, limit, name_get_uid
-                )
+                res = _extend_name_results(self, base_domain + domain, res, limit)
             # Try ordered word search on each of the search fields
             for rec_name in all_names:
                 domain = [(rec_name, operator, name.replace(" ", "%"))]
-                res = _extend_name_results(
-                    self, base_domain + domain, res, limit, name_get_uid
-                )
+                res = _extend_name_results(self, base_domain + domain, res, limit)
             # Try unordered word search on each of the search fields
             # we only perform this search if we have at least one
             # separator character
@@ -116,9 +113,7 @@ def patch_name_search():
                             word_domain and ["|"] + word_domain or word_domain
                         ) + [(rec_name, operator, word)]
                     domain = (domain and ["&"] + domain or domain) + word_domain
-                res = _extend_name_results(
-                    self, base_domain + domain, res, limit, name_get_uid
-                )
+                res = _extend_name_results(self, base_domain + domain, res, limit)
 
         return res
 
@@ -130,8 +125,7 @@ class Base(models.AbstractModel):
 
     # TODO perhaps better to create only the field when enabled on the model
     smart_search = fields.Char(
-        compute="_compute_smart_search",
-        search="_search_smart_search",
+        compute="_compute_smart_search", search="_search_smart_search", translate=False
     )
 
     def _compute_smart_search(self):
@@ -214,7 +208,7 @@ class IrModel(models.Model):
 
     @api.constrains("name_search_ids", "name_search_domain", "add_smart_search")
     def update_search_wo_restart(self):
-        self.clear_caches()
+        self.env.registry.clear_cache()
 
     @api.constrains("name_search_domain")
     def check_name_search_domain(self):
@@ -252,9 +246,16 @@ class IrModel(models.Model):
         """
         _logger.info("Patching BaseModel for Smart Search")
 
+        patched_models = defaultdict(set)
+
+        def patch(model, name, method):
+            if model not in patched_models[name]:
+                ModelClass = type(model)
+                method.origin = getattr(ModelClass, name)
+                setattr(ModelClass, name, method)
+
         for model in self.sudo().search(self.ids or []):
             Model = self.env.get(model.model)
             if Model is not None and not Model._abstract:
-                Model._patch_method("_name_search", patch_name_search())
-
+                patch(Model, "_name_search", patch_name_search())
         return super()._register_hook()
