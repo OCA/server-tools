@@ -17,52 +17,55 @@ Improved Name Search
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github
-    :target: https://github.com/OCA/server-tools/tree/16.0/base_name_search_improved
+    :target: https://github.com/OCA/server-tools/tree/17.0/base_name_search_improved
     :alt: OCA/server-tools
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/server-tools-16-0/server-tools-16-0-base_name_search_improved
+    :target: https://translation.odoo-community.org/projects/server-tools-17-0/server-tools-17-0-base_name_search_improved
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/server-tools&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/server-tools&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-Extends the name search feature to use additional, more relaxed
-matching methods, and to allow searching into configurable additional
-record fields.
+Extends the name search feature to use additional, more relaxed matching
+methods, and to allow searching into configurable additional record
+fields.
 
-The name search is the lookup feature to select a related record.
-For example, selecting a Customer on a new Sales order.
+The name search is the lookup feature to select a related record. For
+example, selecting a Customer on a new Sales order.
 
-For example, typing "john brown" doesn't match "John M. Brown".
-The relaxed search also looks up for records containing all the words,
-so "John M. Brown" would be a match.
-It also tolerates words in a different order, so searching
-for "brown john" also works.
+For example, typing "john brown" doesn't match "John M. Brown". The
+relaxed search also looks up for records containing all the words, so
+"John M. Brown" would be a match. It also tolerates words in a different
+order, so searching for "brown john" also works.
 
-.. figure:: https://raw.githubusercontent.com/OCA/server-tools/11.0/base_name_search_improved/images/image0.png
+|image1|
 
-Additionally, an Administrator can configure other fields to also lookup into.
-For example, Customers could be additionally searched by City or Phone number.
+Additionally, an Administrator can configure other fields to also lookup
+into. For example, Customers could be additionally searched by City or
+Phone number.
 
-.. figure:: https://raw.githubusercontent.com/OCA/server-tools/11.0/base_name_search_improved/images/image2.png
+|image2|
 
 How it works:
 
-Regular name search is performed, and the additional search logic is only
-triggered if not enough results are found.
-This way, no overhead is added on searches that would normally yield results.
+Regular name search is performed, and the additional search logic is
+only triggered if not enough results are found. This way, no overhead is
+added on searches that would normally yield results.
 
-But if not enough results are found, then additional search methods are tried.
-The specific methods used are:
+But if not enough results are found, then additional search methods are
+tried. The specific methods used are:
 
-- Try regular search on each of the additional fields
-- Try ordered word search on each of the search fields
-- Try unordered word search on each of the search fields
+-  Try regular search on each of the additional fields
+-  Try ordered word search on each of the search fields
+-  Try unordered word search on each of the search fields
 
-All results found are presented in that order,
-hopefully presenting them in order of relevance.
+All results found are presented in that order, hopefully presenting them
+in order of relevance.
+
+.. |image1| image:: https://raw.githubusercontent.com/OCA/server-tools/11.0/base_name_search_improved/images/image0.png
+.. |image2| image:: https://raw.githubusercontent.com/OCA/server-tools/11.0/base_name_search_improved/images/image2.png
 
 **Table of contents**
 
@@ -72,16 +75,16 @@ hopefully presenting them in order of relevance.
 Configuration
 =============
 
-The fuzzy search is automatically enabled on all Models.
-Note that this only affects typing in related fields.
-The regular ``search()``, used in the top right search box, is not affected.
+The fuzzy search is automatically enabled on all Models. Note that this
+only affects typing in related fields. The regular ``search()``, used in
+the top right search box, is not affected.
 
-Additional search fields can be configured at Settings > Technical > Database > Models,
-using the "Name Search Fields" field.
+Additional search fields can be configured at Settings > Technical >
+Database > Models, using the "Name Search Fields" field.
 
-.. figure:: https://raw.githubusercontent.com/OCA/server-tools/11.0/base_name_search_improved/images/image1.png
-   :alt: Name Search Fields
-   :width: 600 px
+|image1|
+
+.. |image1| image:: https://raw.githubusercontent.com/OCA/server-tools/11.0/base_name_search_improved/images/image1.png
 
 Usage
 =====
@@ -91,11 +94,20 @@ Just type into any related field, such as Customer on a Sale Order.
 Known issues / Roadmap
 ======================
 
-* Also use fuzzy search, such as the Levenshtein distance:
-  https://www.postgresql.org/docs/9.5/static/fuzzystrmatch.html
-* The list of additional fields to search could benefit from caching, for efficiency.
-* This feature could also be implemented for regular ``search`` on the ``name`` field.
-* While adding m2o or other related field that also have an improved name search, that improved name search is not used (while if name_search is customizend on a module and you add a field of that model on another model it works ok). Esto por ejemplo es en productos si agregamos campo "categoría pública" y a categoría pública le ponemos "parent_id". Entonces vamos a ver que si buscamos por una categoría padre no busca nada, en vez si hacemos esa lógica en name_search de modulo si funciona
+-  Also use fuzzy search, such as the Levenshtein distance:
+   https://www.postgresql.org/docs/9.5/static/fuzzystrmatch.html
+-  The list of additional fields to search could benefit from caching,
+   for efficiency.
+-  This feature could also be implemented for regular ``search`` on the
+   ``name`` field.
+-  While adding m2o or other related field that also have an improved
+   name search, that improved name search is not used (while if
+   name_search is customizend on a module and you add a field of that
+   model on another model it works ok). Esto por ejemplo es en productos
+   si agregamos campo "categoría pública" y a categoría pública le
+   ponemos "parent_id". Entonces vamos a ver que si buscamos por una
+   categoría padre no busca nada, en vez si hacemos esa lógica en
+   name_search de modulo si funciona
 
 Bug Tracker
 ===========
@@ -103,7 +115,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/server-tools/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/server-tools/issues/new?body=module:%20base_name_search_improved%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/server-tools/issues/new?body=module:%20base_name_search_improved%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -111,27 +123,27 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Daniel Reis
 * ADHOC SA
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Daniel Reis <https://github.com/dreispt>
-* Kitti U. <kittiu@ecosoft.co.th> (migrate to v14)
-* Radovan Skolnik <radovan@skolnik.info>
+-  Daniel Reis <https://github.com/dreispt>
+-  Kitti U. <kittiu@ecosoft.co.th> (migrate to v14)
+-  Radovan Skolnik <radovan@skolnik.info>
 
 Other credits
-~~~~~~~~~~~~~
+-------------
 
 The development of this module has been financially supported by:
 
-* Odoo Community Association
+-  Odoo Community Association
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -143,6 +155,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/16.0/base_name_search_improved>`_ project on GitHub.
+This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/17.0/base_name_search_improved>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
