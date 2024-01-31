@@ -65,13 +65,13 @@
                             <!-- TODO use new odoo domain widget -->
                             <field
                                 name="name_search_domain"
-                                attrs="{'invisible': [('use_smart_name_search', '=', False), ('add_smart_search', '=', False)]}"
+                                invisible="not use_smart_name_search and not add_smart_search"
                             />
                         </group>
                     </group>
                     <notebook
                         colspan="4"
-                        attrs="{'invisible': [('use_smart_name_search', '=', False), ('add_smart_search', '=', False)]}"
+                        invisible="not use_smart_name_search and not add_smart_search"
                     >
                         <page string="Smart Search Fields">
                             <!-- we use default m2m widget and not tags widget so that is clearer the technical name of the field added -->
@@ -97,7 +97,7 @@
         <field name="model">ir.model</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="id" invisible="1" />
+                <field name="id" column_invisible="True" />
                 <field name="name" readonly="1" />
                 <field
                     name="name_search_ids"
