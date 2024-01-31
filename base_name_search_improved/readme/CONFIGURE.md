@@ -5,4 +5,4 @@ the top right search box, is not affected.
 Additional search fields can be configured at Settings \> Technical \>
 Database \> Models, using the "Name Search Fields" field.
 
-![](https://raw.githubusercontent.com/OCA/server-tools/11.0/base_name_search_improved/images/image1.png)
+![image1](https://raw.githubusercontent.com/OCA/server-tools/11.0/base_name_search_improved/images/image1.png)
