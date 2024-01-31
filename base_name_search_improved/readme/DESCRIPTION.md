@@ -10,13 +10,13 @@ relaxed search also looks up for records containing all the words, so
 "John M. Brown" would be a match. It also tolerates words in a different
 order, so searching for "brown john" also works.
 
-![](https://raw.githubusercontent.com/OCA/server-tools/11.0/base_name_search_improved/images/image0.png)
+![image0](https://raw.githubusercontent.com/OCA/server-tools/11.0/base_name_search_improved/images/image0.png)
 
 Additionally, an Administrator can configure other fields to also lookup
 into. For example, Customers could be additionally searched by City or
 Phone number.
 
-![](https://raw.githubusercontent.com/OCA/server-tools/11.0/base_name_search_improved/images/image2.png)
+![image2](https://raw.githubusercontent.com/OCA/server-tools/11.0/base_name_search_improved/images/image2.png)
 
 How it works:
 
