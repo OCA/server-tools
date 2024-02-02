@@ -4,7 +4,7 @@
 {
     "name": "Base Sequence Option",
     "summary": "Alternative sequence options for specific models",
-    "version": "16.0.1.0.0",
+    "version": "16.0.1.0.1",
     "author": "Ecosoft, Odoo Community Association (OCA)",
     "maintainers": ["kittiu"],
     "development_status": "Alpha",
