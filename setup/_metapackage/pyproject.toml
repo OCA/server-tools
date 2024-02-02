@@ -1,9 +1,10 @@
 [project]
 name = "odoo-addons-oca-server-tools"
-version = "17.0.20240202.2"
+version = "17.0.20240202.3"
 dependencies = [
     "odoo-addon-base_exception>=17.0dev,<17.1dev",
     "odoo-addon-base_technical_user>=17.0dev,<17.1dev",
+    "odoo-addon-base_view_inheritance_extension>=17.0dev,<17.1dev",
     "odoo-addon-database_cleanup>=17.0dev,<17.1dev",
     "odoo-addon-dbfilter_from_header>=17.0dev,<17.1dev",
     "odoo-addon-jsonifier>=17.0dev,<17.1dev",
