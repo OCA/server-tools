@@ -3,7 +3,7 @@ import logging
 _logger = logging.getLogger(__name__)
 
 
-class OdooPatch(object):
+class OdooPatch:
     """Simple mechanism to apply a collection of monkeypatches using a
     context manager.
 
