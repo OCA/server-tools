@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  scheduler_error_mailer for Odoo
+  Copyright (C) 2012-2013 Akretion Sébastien BEAU,David Beal,Alexis de Lattre
+  Copyright (C) 2016 Sodexis
+  Copyright (C) 2018 bloopark systems (<http://bloopark.de>)
+  The licence is in the file __openerp__.py
+-->
+<odoo>
+    <record id="ir_cron_view" model="ir.ui.view">
+        <field name="name">ir.cron.error.mailer.form</field>
+        <field name="model">ir.cron</field>
+        <field name="inherit_id" ref="base.ir_cron_view_form" />
+        <field name="arch" type="xml">
+            <field name="doall" position="after">
+                <field name="email_template_id" />
+            </field>
+        </field>
+    </record>
+</odoo>
