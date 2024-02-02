@@ -1,0 +1,42 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * base_view_inheritance_extension
+#
+# Translators:
+# Niki Waibel <niki.waibel@gmail.com>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-12-01 02:10+0000\n"
+"PO-Revision-Date: 2017-12-01 02:10+0000\n"
+"Last-Translator: Niki Waibel <niki.waibel@gmail.com>, 2017\n"
+"Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: base_view_inheritance_extension
+#: model_terms:ir.ui.view,arch_db:base_view_inheritance_extension.view_partner_simple_form
+msgid "Partner form"
+msgstr ""
+
+#. module: base_view_inheritance_extension
+#: model_terms:ir.ui.view,arch_db:base_view_inheritance_extension.view_partner_simple_form
+msgid "Phone numbers"
+msgstr ""
+
+#. module: base_view_inheritance_extension
+#: model:ir.model.fields,field_description:base_view_inheritance_extension.field_ir_ui_view__smart_search
+msgid "Smart Search"
+msgstr ""
+
+#. module: base_view_inheritance_extension
+#: model:ir.model,name:base_view_inheritance_extension.model_ir_ui_view
+msgid "View"
+msgstr ""
+
+#~ msgid "ir.ui.view"
+#~ msgstr "ir.ui.view"
