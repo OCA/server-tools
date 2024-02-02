@@ -5,6 +5,8 @@
     "name": "Actions for recurring documents",
     "version": "10.0.1.0.0",
     "author": "Therp BV,Odoo Community Association (OCA)",
+    "website": "https://github.com/OCA/server-tools"
+               "/tree/10.0/subscription_action",
     "license": "AGPL-3",
     "category": "Extra Tools",
     "summary": "Run a server action on a newly created document",

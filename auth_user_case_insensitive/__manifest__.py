@@ -6,7 +6,8 @@
     "summary": "Makes the user login field case insensitive",
     "version": "10.0.1.0.1",
     "category": "Authentication",
-    "website": "https://laslabs.com/",
+    "website": "https://github.com/OCA/server-tools"
+               "/tree/10.0/auth_user_case_insensitive",
     "author": "LasLabs, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "application": False,

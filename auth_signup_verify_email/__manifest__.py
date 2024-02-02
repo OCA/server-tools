@@ -5,7 +5,8 @@
     "summary": "Force uninvited users to use a good email for signup",
     "version": "10.0.2.0.0",
     "category": "Authentication",
-    "website": "http://github.com/OCA/server-tools",
+    "website": "https://github.com/OCA/server-tools"
+               "/tree/10.0/auth_signup_verify_email",
     "author": "Tecnativa, "
               "Odoo Community Association (OCA)",
     "license": "AGPL-3",

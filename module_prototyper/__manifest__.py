@@ -26,7 +26,8 @@
     'author': 'Savoir-faire Linux, Sudokeys, Onestein, '
               'Odoo Community Association (OCA)',
     'maintainer': 'Savoir-faire Linux',
-    'website': 'http://www.savoirfairelinux.com',
+    'website': 'https://github.com/OCA/server-tools'
+               '/tree/10.0/module_prototyper',
     'license': 'AGPL-3',
     'category': 'Others',
     'summary': 'Prototype your module.',

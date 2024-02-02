@@ -9,7 +9,8 @@
     'version': '10.0.1.0.0',
     'category': 'Tools',
     'author': "Agile Business Group,Eficent,Odoo Community Association (OCA)",
-    'website': 'https://github.com/OCA/server-tools',
+    'website': 'https://github.com/OCA/server-tools'
+               '/tree/10.0/fetchmail_notify_error_to_sender',
     'license': 'AGPL-3',
     'depends': [
         'fetchmail',

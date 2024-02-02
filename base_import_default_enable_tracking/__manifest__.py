@@ -9,7 +9,8 @@
     'version': '10.0.1.0.0',
     'license': 'AGPL-3',
     'author': 'ACSONE SA/NV, Odoo Community Association (OCA)',
-    'website': 'https://www.acsone.eu',
+    'website': 'https://github.com/OCA/server-tools'
+               '/tree/10.0/base_import_default_enable_tracking',
     'depends': [
         'base_import',
     ],

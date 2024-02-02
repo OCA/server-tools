@@ -8,7 +8,8 @@
     "license": "AGPL-3",
     "category": "Tools",
     "summary": "Import records from another Odoo instance",
-    "website": "https://github.com/OCA/server-tools",
+    "website": "https://github.com/OCA/server-tools"
+               "/tree/10.0/base_import_odoo",
     "depends": [
         'mail',
     ],

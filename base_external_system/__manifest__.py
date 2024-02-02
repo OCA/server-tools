@@ -7,7 +7,8 @@
     "summary": "Data models allowing for connection to external systems.",
     "version": "10.0.1.0.0",
     "category": "Base",
-    "website": "https://laslabs.com/",
+    "website": "https://github.com/OCA/server-tools"
+               "/tree/10.0/base_external_system",
     "author": "LasLabs, Odoo Community Association (OCA)",
     "license": "LGPL-3",
     "application": False,

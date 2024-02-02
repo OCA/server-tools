@@ -12,7 +12,8 @@
               'Odoo Community Association (OCA)',
     'summary': """Allow multiple connection with the same OAuth account""",
     'category': 'Tool',
-    'website': 'https://github.com/OCA/server-tools',
+    'website': 'https://github.com/OCA/server-tools'
+               '/tree/10.0/auth_oauth_multi_token',
     'depends': ['auth_oauth'],
     'data': [
         'views/res_users.xml',

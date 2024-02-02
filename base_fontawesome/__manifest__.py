@@ -8,6 +8,8 @@
     'version': '10.0.4.7.0',
     'license': 'LGPL-3',
     'author': 'Camptocamp,Odoo Community Association (OCA)',
+    "website": "https://github.com/OCA/server-tools"
+               "/tree/10.0/base_fontawesome",
     'depends': [
         'web',
     ],

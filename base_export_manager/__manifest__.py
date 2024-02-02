@@ -23,7 +23,8 @@
               'LasLabs, '
               'Ursa Information Systems, '
               'Odoo Community Association (OCA)',
-    'website': 'https://www.tecnativa.com',
+    'website': 'https://github.com/OCA/server-tools'
+               '/tree/10.0/base_export_manager',
     'license': 'AGPL-3',
     'installable': True,
     'application': False,

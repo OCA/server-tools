@@ -25,7 +25,8 @@
     "depends": ["base"],
     "author": "Camptocamp,Odoo Community Association (OCA)",
     "summary": "sample config file for server_environment",
-    "website": "http://www.camptocamp.com",
+    "website": "https://github.com/OCA/server-tools"
+               "/tree/10.0/server_environment_files_sample",
     "preloadable": False,
     "license": "GPL-3 or any later version",
     "category": "Tools",

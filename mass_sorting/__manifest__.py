@@ -10,7 +10,8 @@
     'author': 'GRAP,Odoo Community Association (OCA)',
     'summary': 'Sort any models by any fields list',
     'category': 'Tools',
-    'website': 'http://www.grap.coop',
+    'website': 'https://github.com/OCA/server-tools'
+               '/tree/10.0/mass_sorting',
     'license': 'AGPL-3',
     'depends': [
         'base',

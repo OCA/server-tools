@@ -5,6 +5,8 @@
     "name": "Extended view inheritance",
     "version": "10.0.1.0.2",
     "author": "Therp BV,Odoo Community Association (OCA)",
+    "website": "https://github.com/OCA/server-tools"
+               "/tree/10.0/base_view_inheritance_extension",
     "license": "LGPL-3",
     "category": "Hidden/Dependency",
     "summary": "Adds more operators for view inheritance",

@@ -12,7 +12,8 @@
               "LasLabs, "
               "Odoo Community Association (OCA)",
     'maintainer': 'Odoo Community Association (OCA)',
-    'website': "http://acsone.eu",
+    'website': "https://github.com/OCA/server-tools"
+               "/tree/10.0/auth_session_timeout",
     'category': 'Tools',
     'version': '10.0.1.0.3',
     'license': 'AGPL-3',

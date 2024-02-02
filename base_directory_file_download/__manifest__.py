@@ -6,7 +6,8 @@
     'name': 'Directory Files Download',
     'summary': 'Download all files of a directory on server',
     'author': 'Onestein, Odoo Community Association (OCA)',
-    'website': 'https://github.com/OCA/server-tools',
+    'website': 'https://github.com/OCA/server-tools'
+               '/tree/10.0/base_directory_file_download',
     'category': 'Tools',
     'version': '10.0.1.0.0',
     'license': 'AGPL-3',

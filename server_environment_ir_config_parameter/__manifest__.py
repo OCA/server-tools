@@ -9,7 +9,8 @@
     'version': '10.0.1.0.1',
     'license': 'AGPL-3',
     'author': 'ACSONE SA/NV,Odoo Community Association (OCA)',
-    'website': 'https://odoo-community.org/',
+    'website': 'https://github.com/OCA/server-tools'
+               '/tree/10.0/server_environment_ir_config_parameter',
     'preloadable': False,
     'depends': [
         'server_environment',

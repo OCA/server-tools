@@ -25,7 +25,8 @@
     "depends": ["base"],
     "author": "Camptocamp,Odoo Community Association (OCA)",
     "summary": "move some configurations out of the database",
-    "website": "http://odoo-community.org/",
+    "website": "https://github.com/OCA/server-tools"
+               "/tree/10.0/server_environment",
     "license": "GPL-3 or any later version",
     "category": "Tools",
     "preloadable": False,

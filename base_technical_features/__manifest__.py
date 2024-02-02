@@ -6,7 +6,8 @@
     "summary": "Access to technical features without activating debug mode",
     "version": "10.0.1.0.1",
     "category": "Usability",
-    "website": "https://github.com/oca/server-tools",
+    "website": "https://github.com/OCA/server-tools"
+               "/tree/10.0/base_technical_features",
     "author": "Opener B.V., Odoo Community Association (OCA)",
     "depends": ['web'],
     "data": [

@@ -5,6 +5,8 @@
     "name": "Remove odoo.com Bindings",
     "version": "10.0.1.0.0",
     "author": "Therp BV,GRAP,Odoo Community Association (OCA)",
+    "website": "https://github.com/OCA/server-tools"
+               "/tree/10.0/disable_odoo_online",
     "license": "AGPL-3",
     "category": "base",
     "depends": [

@@ -8,7 +8,8 @@
     "summary": "Helper functions to give correct format to date[time] fields",
     "version": "10.0.1.0.0",
     "category": "Tools",
-    "website": "https://www.tecnativa.com",
+    "website": "https://github.com/OCA/server-tools"
+               "/tree/10.0/datetime_formatter",
     "author": "Grupo ESOC Ingeniería de Servicios, "
               "Tecnativa,"
               "Odoo Community Association (OCA)",

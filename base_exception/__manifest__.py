@@ -8,7 +8,8 @@
  'summary': """This module provide an abstract model to manage customizable
   exceptions to be applied on different models (sale order, invoice, ...)""",
  'author': "Akretion, Sodexis, Camptocamp, Odoo Community Association (OCA)",
- 'website': 'http://www.akretion.com',
+ 'website': 'https://github.com/OCA/server-tools'
+            '/tree/10.0/base_exception',
  'depends': ['base_setup'],
  'license': 'AGPL-3',
  'data': [

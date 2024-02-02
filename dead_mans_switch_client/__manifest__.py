@@ -6,6 +6,8 @@
     "name": "Dead man's switch (client)",
     "version": "10.0.1.0.0",
     "author": "Therp BV, Odoo Community Association (OCA)",
+    "website": "https://github.com/OCA/server-tools"
+               "/tree/10.0/dead_mans_switch_client",
     "license": "AGPL-3",
     "category": "Monitoring",
     "summary": "Be notified when customers' Odoo instances go down",

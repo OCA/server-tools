@@ -7,7 +7,8 @@
     'summary': 'Automatically update Odoo modules',
     'version': '10.0.2.0.3',
     'category': 'Extra Tools',
-    'website': 'https://github.com/OCA/server-tools',
+    'website': 'https://github.com/OCA/server-tools'
+               '/tree/10.0/module_auto_update',
     'author': 'LasLabs, '
               'Juan José Scarafía, '
               'Tecnativa, '

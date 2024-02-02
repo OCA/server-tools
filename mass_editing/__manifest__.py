@@ -15,7 +15,8 @@
         'Raul Martin <raul.martin@braintec-group.com>',
     ],
     'category': 'Tools',
-    'website': 'http://www.serpentcs.com',
+    'website': 'https://github.com/OCA/server-tools'
+               '/tree/10.0/mass_editing',
     'license': 'GPL-3 or any later version',
     'summary': 'Mass Editing',
     'uninstall_hook': 'uninstall_hook',

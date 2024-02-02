@@ -9,18 +9,18 @@
     'author': "Daniel Reis, "
               "LasLabs, "
               "Odoo Community Association (OCA)",
-    'website': 'https://github.com/OCA/server-tools',
+    'website': 'https://github.com/OCA/server-tools'
+               '/tree/10.0/base_external_dbsource_mssql',
     'license': 'LGPL-3',
     'depends': [
         'base_external_dbsource_sqlite',
     ],
-    # Uncomment this for v11
-    # 'external_dependencies': [
-    #     'python': [
-    #         'sqlalchemy',
-    #         'pymssql',
-    #     ]
-    # ],
+    'external_dependencies': {
+        'python': [
+            'sqlalchemy',
+            'pymssql',
+        ]
+    },
     'demo': [
         'demo/base_external_dbsource.xml',
     ],

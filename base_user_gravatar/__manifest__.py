@@ -7,7 +7,8 @@
     'version': '10.0.1.0.1',
     'author': 'LasLabs, Endika Iglesias, Odoo Community Association (OCA)',
     'category': 'Tools',
-    'website': 'https://odoo-community.org/',
+    'website': 'https://github.com/OCA/server-tools'
+               '/tree/10.0/base_user_gravatar',
     "license": "AGPL-3",
     "application": False,
     'installable': True,

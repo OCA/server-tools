@@ -6,7 +6,8 @@
     'version': '10.0.1.0.0',
     'author': 'Vauxoo, Odoo Community Association (OCA)',
     'category': 'Server Tools',
-    'website': 'https://www.vauxoo.com',
+    'website': 'https://github.com/OCA/server-tools'
+               '/tree/10.0/webhook',
     'license': 'AGPL-3',
     'depends': [
         'web',

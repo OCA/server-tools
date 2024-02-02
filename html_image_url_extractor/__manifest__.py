@@ -7,7 +7,8 @@
     "summary": "Extract images found in any HTML field",
     "version": "10.0.1.0.0",
     "category": "Tools",
-    "website": "https://www.tecnativa.com",
+    "website": "https://github.com/OCA/server-tools"
+               "/tree/10.0/html_image_url_extractor",
     "author": "Tecnativa, "
               "Odoo Community Association (OCA)",
     "license": "AGPL-3",

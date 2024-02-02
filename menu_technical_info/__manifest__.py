@@ -8,7 +8,7 @@
     'version': '9.0.1.0.0',
     'author': 'Onestein, Odoo Community Association (OCA)',
     'license': 'AGPL-3',
-    'website': 'http://www.onestein.eu',
+    'website': 'https://github.com/OCA/server-tools',
     'depends': ['web'],
     'data': [
         'views/menu_technical_info_templates.xml',

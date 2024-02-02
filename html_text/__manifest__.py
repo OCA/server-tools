@@ -7,7 +7,8 @@
     "summary": "Generate excerpts from any HTML field",
     "version": "10.0.1.0.1",
     "category": "Tools",
-    "website": "https://tecnativa.com",
+    "website": "https://github.com/OCA/server-tools"
+               "/tree/10.0/html_text",
     "author": "Grupo ESOC Ingeniería de Servicios, "
               "Tecnativa, "
               "Odoo Community Association (OCA)",

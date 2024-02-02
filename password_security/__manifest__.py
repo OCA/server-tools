@@ -12,7 +12,8 @@
         'auth_crypt',
         'auth_signup',
     ],
-    "website": "https://laslabs.com",
+    "website": "https://github.com/OCA/server-tools"
+               "/tree/10.0/password_security",
     "license": "LGPL-3",
     "data": [
         'views/res_company_view.xml',

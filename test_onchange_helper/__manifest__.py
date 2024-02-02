@@ -9,7 +9,8 @@
     "version": "10.0.2.1.0",
     "license": "AGPL-3",
     "author": "ACSONE SA/NV,Odoo Community Association (OCA)",
-    "website": "https://acsone.eu/",
+    "website": "https://github.com/OCA/server-tools"
+               "/tree/10.0/test_onchange_helper",
     "depends": ["onchange_helper"],
     "data": [
         'security/test_onchange_helper_multi_line.xml',
