@@ -99,7 +99,7 @@ class UpgradeAnalysis(models.Model):
         if not os.path.exists(full_path):
             try:
                 os.makedirs(full_path)
-            except os.error:
+            except OSError:
                 return "ERROR: could not create migrations directory %s:\n" % (
                     full_path
                 )

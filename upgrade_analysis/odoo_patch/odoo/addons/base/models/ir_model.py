@@ -23,7 +23,7 @@ class IrModelConstraintPatch(OdooPatch):
         }
 
         data_list = []
-        for (key, definition, message) in model._sql_constraints:
+        for key, definition, message in model._sql_constraints:
             conname = "%s_%s" % (model._table, key)
             module = constraint_module.get(key)
             record = self._reflect_constraint(

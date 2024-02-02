@@ -144,13 +144,13 @@ class UpgradeRecord(models.Model):
             """SELECT DISTINCT(module) FROM upgrade_record
             ORDER BY module"""
         )
-        return [module for module, in self.env.cr.fetchall()]
+        return [module for (module,) in self.env.cr.fetchall()]
 
     @staticmethod
     def _read_manifest(addon_dir):
         for manifest_name in MANIFEST_NAMES:
             if os.access(os.path.join(addon_dir, manifest_name), os.R_OK):
-                with open(os.path.join(addon_dir, manifest_name), "r") as f:
+                with open(os.path.join(addon_dir, manifest_name)) as f:
                     manifest_string = f.read()
                     return ast.literal_eval(manifest_string)
         raise ValidationError(
@@ -174,7 +174,7 @@ class UpgradeRecord(models.Model):
                     continue
                 parts = xml_file.split("/")
                 try:
-                    with open(os.path.join(addon_dir, *parts), "r") as xml_handle:
+                    with open(os.path.join(addon_dir, *parts)) as xml_handle:
                         files.append(xml_handle.read())
                 except UnicodeDecodeError:
                     _logger.warning(
