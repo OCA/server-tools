@@ -231,21 +231,21 @@ msgstr ""
 "        'sale_order': {  # il foglio può essere un nuome  (stringa) o indice "
 "(intero)\n"
 "            '_HEAD_': {\n"
-"                'B2': 'partner_id.display_name<span>$</span>{value or \"\""
-"}#{align=left;style=text}',\n"
-"                'B3': 'name<span>$</span>{value or \"\""
-"}#{align=left;style=text}',\n"
+"                'B2': 'partner_id.display_name<span>$</span>{value or \"\"}"
+"#{align=left;style=text}',\n"
+"                'B3': 'name<span>$</span>{value or \"\"}#{align=left;"
+"style=text}',\n"
 "            },\n"
 "            'line_ids': {  # prefisso con _CONT_ per continuare la riga "
 "dalla riga campo precedente \n"
-"                'A6': 'product_id.display_name<span>$</span>{value or \"\""
-"}#{style=text}',\n"
-"                'C6': 'product_uom_qty<span>$</span>{value or "
-"0}#{style=number}',\n"
-"                'E6': 'price_unit<span>$</span>{value or 0}#{style=number}',"
-"\n"
-"                'G6': 'price_subtotal<span>$</span>{value or "
-"0}#{style=number}',\n"
+"                'A6': 'product_id.display_name<span>$</span>{value or \"\"}"
+"#{style=text}',\n"
+"                'C6': 'product_uom_qty<span>$</span>{value or 0}"
+"#{style=number}',\n"
+"                'E6': 'price_unit<span>$</span>{value or 0}"
+"#{style=number}',\n"
+"                'G6': 'price_subtotal<span>$</span>{value or 0}"
+"#{style=number}',\n"
 "            },\n"
 "        },\n"
 "    },\n"
@@ -338,6 +338,21 @@ msgstr "Aggiunge sezione foglio"
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_report__choose_template
 msgid "Allow Choose Template"
 msgstr "Consente selezione schema"
+
+#. module: excel_import_export
+#: model:ir.model.fields,field_description:excel_import_export.field_export_xlsx_wizard__assigned_attachment_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_import_xlsx_wizard__assigned_attachment_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_ir_actions_report__assigned_attachment_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_report_xlsx_wizard__assigned_attachment_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_export__assigned_attachment_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_import__assigned_attachment_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_report__assigned_attachment_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_styles__assigned_attachment_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__assigned_attachment_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__assigned_attachment_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_import__assigned_attachment_ids
+msgid "Assigned Attachments"
+msgstr "Allegati Assegnati"
 
 #. module: excel_import_export
 #: model:ir.model,name:excel_import_export.model_xlsx_styles
@@ -887,8 +902,8 @@ msgid ""
 "order_line), and map data field (i.e., product_id.name, uom_id.name, qty) "
 "into the first row cells to start rolling (e.g., A6, B6, C6)."
 msgstr ""
-"Nella sezione riga, la lista dati verrà estratta dal campo riga one2many ("
-"es. order_line), e il campo data mappa (cioè product_id.name, uom_id.name, "
+"Nella sezione riga, la lista dati verrà estratta dal campo riga one2many "
+"(es. order_line), e il campo data mappa (cioè product_id.name, uom_id.name, "
 "qty) nella prima cella della riga per iniziare l'estrazine (es. A6, B6, C6)."
 
 #. module: excel_import_export
@@ -997,8 +1012,8 @@ msgid ""
 "Multiple template of same model, can belong to same group,\n"
 "result in multiple template selection"
 msgstr ""
-"Schemi multipli dello stesso modello possono appartenere allo stesso gruppo,"
-"\n"
+"Schemi multipli dello stesso modello possono appartenere allo stesso "
+"gruppo,\n"
 "risultando in una selezione schema multiplo"
 
 #. module: excel_import_export
@@ -1498,9 +1513,6 @@ msgstr "⇒ Scarica esempio schema di importazione"
 #~ "Una finestra di popup con il tuo report è stata bloccata. Bisogna "
 #~ "cambiare le impostazioni del browser per consentire le finestre popup da "
 #~ "questa pagina."
-
-#~ msgid "Assigned Attachments"
-#~ msgstr "Allegati Assegnati"
 
 #, python-format
 #~ msgid "File \"%s\" not found in template, %s."
