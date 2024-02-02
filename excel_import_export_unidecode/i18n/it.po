@@ -17,6 +17,13 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 
 #. module: excel_import_export_unidecode
+#: model:ir.model.fields,field_description:excel_import_export_unidecode.field_xlsx_export__assigned_attachment_ids
+#: model:ir.model.fields,field_description:excel_import_export_unidecode.field_xlsx_template__assigned_attachment_ids
+#: model:ir.model.fields,field_description:excel_import_export_unidecode.field_xlsx_template_export__assigned_attachment_ids
+msgid "Assigned Attachments"
+msgstr ""
+
+#. module: excel_import_export_unidecode
 #: model:ir.model,name:excel_import_export_unidecode.model_xlsx_template_export
 msgid "Detailed of how excel data will be exported"
 msgstr "Dettagli su come i dati excel saranno esportati"
