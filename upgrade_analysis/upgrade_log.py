@@ -211,7 +211,7 @@ def log_xml_id(cr, module, xml_id):
     if not table_exists(cr, "upgrade_record"):
         return
     if "." not in xml_id:
-        xml_id = "{}.{}".format(module, xml_id)
+        xml_id = f"{module}.{xml_id}"
     cr.execute(
         "SELECT model FROM ir_model_data " "WHERE module = %s AND name = %s",
         xml_id.split("."),

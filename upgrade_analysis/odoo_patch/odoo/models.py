@@ -17,7 +17,7 @@ class BaseModelPatch(OdooPatch):
         ):
             _id, xid, _record, _info = res
             if xid:
-                xid = xid if "." in xid else "{}.{}".format(current_module, xid)
+                xid = xid if "." in xid else f"{current_module}.{xid}"
                 upgrade_log.log_xml_id(self.env.cr, current_module, xid)
 
             yield res

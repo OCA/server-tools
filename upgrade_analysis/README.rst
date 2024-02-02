@@ -17,20 +17,29 @@ Upgrade Analysis
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github
-    :target: https://github.com/OCA/server-tools/tree/16.0/upgrade_analysis
+    :target: https://github.com/OCA/server-tools/tree/17.0/upgrade_analysis
     :alt: OCA/server-tools
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/server-tools-16-0/server-tools-16-0-upgrade_analysis
+    :target: https://translation.odoo-community.org/projects/server-tools-17-0/server-tools-17-0-upgrade_analysis
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/server-tools&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/server-tools&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module provides the tool to generate the database analysis files that indicate how the Odoo data model and module data have changed between two versions of Odoo. Database analysis files for the core modules are included in the OpenUpgrade distribution so as a migration script developer you will not usually need to use this tool yourself. If you do need to run your analysis of a custom set of modules, please refer to the documentation here: https://doc.therp.nl/openupgrade/analysis.html
+This module provides the tool to generate the database analysis files
+that indicate how the Odoo data model and module data have changed
+between two versions of Odoo. Database analysis files for the core
+modules are included in the OpenUpgrade distribution so as a migration
+script developer you will not usually need to use this tool yourself. If
+you do need to run your analysis of a custom set of modules, please
+refer to the documentation here:
+https://doc.therp.nl/openupgrade/analysis.html
 
-This module is just a tool, a continuation of the old openupgrade_records in OpenUpgrade in previous versions. It's not recommended to have this module in a production database.
+This module is just a tool, a continuation of the old
+openupgrade_records in OpenUpgrade in previous versions. It's not
+recommended to have this module in a production database.
 
 **Table of contents**
 
@@ -40,14 +49,16 @@ This module is just a tool, a continuation of the old openupgrade_records in Ope
 Usage
 =====
 
-`Usage instructions <https://oca.github.io/OpenUpgrade/analyse.html>`_
+`Usage instructions <https://oca.github.io/OpenUpgrade/analyse.html>`__
 
 Known issues / Roadmap
 ======================
 
-* Log removed modules in the module that owned them (#468)
-* Detect renamed many2many tables (#213)
-* Make sure that the ``migration_analysis.txt`` file is always generated in all cases. (See: https://github.com/OCA/OpenUpgrade/pull/3209#issuecomment-1157449981)
+-  Log removed modules in the module that owned them (#468)
+-  Detect renamed many2many tables (#213)
+-  Make sure that the ``migration_analysis.txt`` file is always
+   generated in all cases. (See:
+   https://github.com/OCA/OpenUpgrade/pull/3209#issuecomment-1157449981)
 
 Bug Tracker
 ===========
@@ -55,7 +66,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/server-tools/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/server-tools/issues/new?body=module:%20upgrade_analysis%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/server-tools/issues/new?body=module:%20upgrade_analysis%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -63,25 +74,25 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Therp BV
 * Opener B.V.
 * GRAP
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Stefan Rijnhart <stefan@opener.amsterdam>
-* Holger Brunn <hbrunn@therp.nl>
-* Pedro M. Baeza <pedro.baeza@gmail.com>
-* Ferdinand Gassauer <gass@cc-l-12.chircar.at>
-* Florent Xicluna <florent.xicluna@gmail.com>
-* Miquel Raïch <miquel.raich@forgeflow.com>
-* Sylvain LE GAL <https://twitter.com/legalsylvain>
+-  Stefan Rijnhart <stefan@opener.amsterdam>
+-  Holger Brunn <hbrunn@therp.nl>
+-  Pedro M. Baeza <pedro.baeza@gmail.com>
+-  Ferdinand Gassauer <gass@cc-l-12.chircar.at>
+-  Florent Xicluna <florent.xicluna@gmail.com>
+-  Miquel Raïch <miquel.raich@forgeflow.com>
+-  Sylvain LE GAL <https://twitter.com/legalsylvain>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -104,6 +115,6 @@ Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-StefanRijnhart| |maintainer-legalsylvain| 
 
-This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/16.0/upgrade_analysis>`_ project on GitHub.
+This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/17.0/upgrade_analysis>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
