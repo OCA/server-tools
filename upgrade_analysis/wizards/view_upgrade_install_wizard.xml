@@ -8,19 +8,19 @@
                 <header>
                   <field name="state" widget="statusbar" />
                 </header>
-                <group states="draft">
+                <group invisible="state != 'draft'">
                     <p
                         class="alert alert-warning"
                         role="alert"
                     >This will install the selected modules on the database. Do not continue if you use this database in production.</p>
                 </group>
-                <group states="done">
+                <group invisible="state != 'done'">
                     <p
                         class="alert alert-info"
                         role="alert"
                     >The modules have been installed successfuly</p>
                 </group>
-                <group col="4" states="draft">
+                <group col="4" invisible="state != 'draft'">
                     <button
                         name="select_installable_modules"
                         type="object"
@@ -43,7 +43,7 @@
                         string="All Other Modules"
                     />
                 </group>
-                <group states="draft">
+                <group invisible="state != 'draft'">
                     <field name="module_qty" />
                     <field
                         name="module_ids"
@@ -62,7 +62,7 @@
                         type="object"
                         class="btn-primary"
                         string="Install Modules"
-                        states="draft"
+                        invisible="state != 'draft'"
                     />
                     <button special="cancel" string="Close" class="btn-default" />
                 </footer>

@@ -24,17 +24,19 @@ class IrModelConstraintPatch(OdooPatch):
 
         data_list = []
         for key, definition, message in model._sql_constraints:
-            conname = "%s_%s" % (model._table, key)
+            conname = f"{model._table}_{key}"
             module = constraint_module.get(key)
             record = self._reflect_constraint(
                 model, conname, "u", cons_text(definition), module, message
             )
             if record:
-                xml_id = "%s.constraint_%s" % (module, conname)
+                xml_id = f"{module}.constraint_{conname}"
                 data_list.append(dict(xml_id=xml_id, record=record))
-
-        self.env["ir.model.data"]._update_xmlids(data_list)
-        for data in data_list:
-            xml_id = data.get("xml_id")
-            module = xml_id.split(".")[0]
-            upgrade_log.log_xml_id(self.env.cr, module, xml_id)
+        if data_list:
+            self.env["ir.model.data"]._update_xmlids(data_list)
+            # Begin OpenUpgrade addition
+            for data in data_list:
+                xml_id = data.get("xml_id")
+                module = xml_id.split(".")[0]
+                upgrade_log.log_xml_id(self.env.cr, module, xml_id)
+            # End OpenUpgrade addition
