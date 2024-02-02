@@ -28,22 +28,10 @@
                 </header>
                 <sheet>
                     <group col="4" colspan="4">
-                        <field
-                            name="config_id"
-                            attrs="{'readonly': [('state', '=', 'done')]}"
-                        />
-                        <field
-                            name="write_files"
-                            attrs="{'readonly': [('state', '=', 'done')]}"
-                        />
-                        <field
-                            name="upgrade_path"
-                            attrs="{'invisible': [('write_files', '=', False)]}"
-                        />
-                        <field
-                            name="analysis_date"
-                            attrs="{'invisible': [('analysis_date', '=', False)]}"
-                        />
+                        <field name="config_id" readonly="state == 'done'" />
+                        <field name="write_files" readonly="state == 'done'" />
+                        <field name="upgrade_path" invisible="not write_files" />
+                        <field name="analysis_date" invisible="not analysis_date" />
                     </group>
                     <group string="Log">
                         <field
