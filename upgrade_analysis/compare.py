@@ -118,12 +118,12 @@ def fieldprint(old, new, field, text, reprs):
     if not text:
         text = f"{field} is now '{new[field]}' ('{old[field]}')"
         if field in ("column1", "column2"):
-            text += " [%s]" % old["table"]
+            text += f" [{old['table']}]"
         if field == "relation":
             text += " [nothing to do]"
     reprs[module_map(old["module"])].append(f"{fullrepr}: {text}")
     if field == "module":
-        text = "previously in module %s" % old[field]
+        text = f"previously in module {old[field]}"
         fullrepr = "{:<12} / {:<24} / {:<30}".format(
             new["module"], old["model"], fieldrepr
         )
@@ -434,23 +434,23 @@ def compare_xml_sets(old_records, new_records):
     for entry in sorted_records:
         content = ""
         if "old" in entry:
-            content = "DEL %(model)s: %(name)s" % entry
+            content = f"DEL {entry['model']}: {entry['name']}"
             if "moved" in entry:
-                content += " [moved to %(moved)s module]" % entry
+                content += f" [moved to {entry['moved']} module]"
             elif "renamed" in entry:
-                content += " [renamed to %(renamed)s module]" % entry
+                content += f" [renamed to {entry['renamed']} module]"
         elif "new" in entry:
-            content = "NEW %(model)s: %(name)s" % entry
+            content = f"NEW {entry['model']}: {entry['name']}"
             if "moved" in entry:
-                content += " [moved from %(moved)s module]" % entry
+                content += f" [moved from {entry['moved']} module]"
             elif "renamed" in entry:
-                content += " [renamed from %(renamed)s module]" % entry
+                content += f" [renamed from {entry['renamed']} module]"
         if "old" not in entry and "new" not in entry:
-            content = "%(model)s: %(name)s" % entry
+            content = f"{entry['model']}: {entry['name']}"
         if entry["domain"]:
             content += " (deleted domain)"
         if entry["definition"]:
-            content += " (changed definition: %(definition)s)" % entry
+            content += f" (changed definition: {entry['definition']})"
         if entry["noupdate"]:
             content += " (noupdate)"
         if entry["noupdate_switched"]:
@@ -475,48 +475,47 @@ def compare_model_sets(old_records, new_records):
             if model not in new_models:
                 if model_map(model) not in new_models:
                     obsolete_models.append(model)
-                    text = "obsolete model %s" % model
+                    text = f"obsolete model {model}"
                     if column["model_type"]:
-                        text += " [%s]" % column["model_type"]
+                        text += f" [{column['model_type']}]"
                     reprs[module_map(column["module"])].append(text)
                     reprs["general"].append(
-                        "obsolete model %s [module %s]"
-                        % (model, module_map(column["module"]))
+                        f"obsolete model {model} [module module_map(column['module'])]"
                     )
                 else:
                     moved_module = ""
                     if module_map(column["module"]) != new_models[model_map(model)]:
-                        moved_module = " in module %s" % new_models[model_map(model)]
+                        moved_module = f" in module {new_models[model_map(model)]}"
                     text = "obsolete model {} (renamed to {}{})".format(
                         model,
                         model_map(model),
                         moved_module,
                     )
                     if column["model_type"]:
-                        text += " [%s]" % column["model_type"]
+                        text += " [column['model_type']]"
                     reprs[module_map(column["module"])].append(text)
                     reprs["general"].append(
-                        "obsolete model %s (renamed to %s) [module %s]"
-                        % (model, model_map(model), module_map(column["module"]))
+                        f"obsolete model {model} (renamed to {model_map(model)}) "
+                        f"[module {module_map(column['module'])}]"
                     )
             else:
                 if module_map(column["module"]) != new_models[model]:
                     text = f"model {model} (moved to {new_models[model]})"
                     if column["model_type"]:
-                        text += " [%s]" % column["model_type"]
+                        text += " [column['model_type']]"
                     reprs[module_map(column["module"])].append(text)
                     text = f"model {model} (moved from {old_models[model]})"
                     if column["model_type"]:
-                        text += " [%s]" % column["model_type"]
+                        text += " [column['model_type']]"
 
     for column in copy.copy(new_records):
         model = column["model"]
         if model in new_models:
             if model not in old_models:
                 if inv_model_map(model) not in old_models:
-                    text = "new model %s" % model
+                    text = f"new model {model}"
                     if column["model_type"]:
-                        text += " [%s]" % column["model_type"]
+                        text += f" [{column['model_type']}]"
                     reprs[column["module"]].append(text)
                     reprs["general"].append(
                         "new model {} [module {}]".format(model, column["module"])
@@ -524,25 +523,23 @@ def compare_model_sets(old_records, new_records):
                 else:
                     moved_module = ""
                     if column["module"] != module_map(old_models[inv_model_map(model)]):
-                        moved_module = (
-                            " in module %s" % old_models[inv_model_map(model)]
-                        )
+                        moved_module = f" in module {old_models[inv_model_map(model)]}"
                     text = "new model {} (renamed from {}{})".format(
                         model,
                         inv_model_map(model),
                         moved_module,
                     )
                     if column["model_type"]:
-                        text += " [%s]" % column["model_type"]
+                        text += f" [{column['model_type']}]"
                     reprs[column["module"]].append(text)
                     reprs["general"].append(
-                        "new model %s (renamed from %s) [module %s]"
-                        % (model, inv_model_map(model), column["module"])
+                        f"new model {model} (renamed from {inv_model_map(model)}) "
+                        f"[module {column['module']}]"
                     )
             else:
                 if column["module"] != module_map(old_models[model]):
                     text = f"model {model} (moved from {old_models[model]})"
                     if column["model_type"]:
-                        text += " [%s]" % column["model_type"]
+                        text += f" [{column['model_type']}]"
                     reprs[column["module"]].append(text)
     return reprs
