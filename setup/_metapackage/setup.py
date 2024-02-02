@@ -25,6 +25,7 @@ setuptools.setup(
         'odoo14-addon-base_fontawesome',
         'odoo14-addon-base_future_response',
         'odoo14-addon-base_generate_code',
+        'odoo14-addon-base_import_odoo',
         'odoo14-addon-base_jsonify',
         'odoo14-addon-base_kanban_stage',
         'odoo14-addon-base_kanban_stage_state',
