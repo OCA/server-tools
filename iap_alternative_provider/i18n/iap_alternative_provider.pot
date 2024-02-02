@@ -14,6 +14,11 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: iap_alternative_provider
+#: model:ir.model.fields,field_description:iap_alternative_provider.field_iap_account__assigned_attachment_ids
+msgid "Assigned Attachments"
+msgstr ""
+
+#. module: iap_alternative_provider
 #: model:ir.model,name:iap_alternative_provider.model_iap_account
 msgid "IAP Account"
 msgstr ""
