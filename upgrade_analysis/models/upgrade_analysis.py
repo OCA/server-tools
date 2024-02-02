@@ -50,7 +50,8 @@ class UpgradeAnalysis(models.Model):
     log = fields.Text(readonly=True)
     upgrade_path = fields.Char(
         compute="_compute_upgrade_path",
-        readonly=True,
+        readonly=False,
+        store=True,
         help=(
             "The base file path to save the analyse files of Odoo modules. "
             "Taken from Odoo's --upgrade-path command line option or the "
