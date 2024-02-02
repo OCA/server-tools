@@ -14,7 +14,8 @@ import copy
 try:
     from odoo.addons.openupgrade_scripts import apriori
 except ImportError:
-    from dataclasses import dataclass, field as dc_field
+    from dataclasses import dataclass
+    from dataclasses import field as dc_field
 
     @dataclass
     class NullApriori:
@@ -115,18 +116,18 @@ def fieldprint(old, new, field, text, reprs):
         fieldrepr += " ({})".format(old["type"])
     fullrepr = "{:<12} / {:<24} / {:<30}".format(old["module"], old["model"], fieldrepr)
     if not text:
-        text = "{} is now '{}' ('{}')".format(field, new[field], old[field])
+        text = f"{field} is now '{new[field]}' ('{old[field]}')"
         if field in ("column1", "column2"):
             text += " [%s]" % old["table"]
         if field == "relation":
             text += " [nothing to do]"
-    reprs[module_map(old["module"])].append("{}: {}".format(fullrepr, text))
+    reprs[module_map(old["module"])].append(f"{fullrepr}: {text}")
     if field == "module":
         text = "previously in module %s" % old[field]
         fullrepr = "{:<12} / {:<24} / {:<30}".format(
             new["module"], old["model"], fieldrepr
         )
-        reprs[module_map(new["module"])].append("{}: {}".format(fullrepr, text))
+        reprs[module_map(new["module"])].append(f"{fullrepr}: {text}")
 
 
 def report_generic(new, old, attrs, reprs):
@@ -500,11 +501,11 @@ def compare_model_sets(old_records, new_records):
                     )
             else:
                 if module_map(column["module"]) != new_models[model]:
-                    text = "model {} (moved to {})".format(model, new_models[model])
+                    text = f"model {model} (moved to {new_models[model]})"
                     if column["model_type"]:
                         text += " [%s]" % column["model_type"]
                     reprs[module_map(column["module"])].append(text)
-                    text = "model {} (moved from {})".format(model, old_models[model])
+                    text = f"model {model} (moved from {old_models[model]})"
                     if column["model_type"]:
                         text += " [%s]" % column["model_type"]
 
@@ -540,7 +541,7 @@ def compare_model_sets(old_records, new_records):
                     )
             else:
                 if column["module"] != module_map(old_models[model]):
-                    text = "model {} (moved from {})".format(model, old_models[model])
+                    text = f"model {model} (moved from {old_models[model]})"
                     if column["model_type"]:
                         text += " [%s]" % column["model_type"]
                     reprs[column["module"]].append(text)
