@@ -21,9 +21,9 @@ class TestBaseException(common.SavepointCase):
         cls.addClassCleanup(cls.loader.restore_registry)
 
         # Must be lazy-imported
-        from ._purchase_test_models import PurchaseTest, LineTest
+        from ._purchase_test_models import PurchaseTest, LineTest, ExceptionRule
 
-        cls.loader.update_registry((PurchaseTest, LineTest))
+        cls.loader.update_registry((PurchaseTest, LineTest, ExceptionRule))
 
         cls.base_exception = cls.env["base.exception"]
         cls.exception_rule = cls.env["exception.rule"]
