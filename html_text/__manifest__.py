@@ -16,7 +16,7 @@
     "installable": True,
     "external_dependencies": {
         "python": [
-            "lxml.html",
+            "lxml",
         ],
     },
     "depends": [
