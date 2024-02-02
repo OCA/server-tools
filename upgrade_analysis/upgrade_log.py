@@ -162,7 +162,7 @@ def log_model(model, local_registry):
             "hasdefault": hasdefault(field),
         }
         if field.type == "selection":
-            if isinstance(field.selection, (tuple, list)):
+            if isinstance(field.selection, tuple | list):
                 properties["selection_keys"] = str(
                     sorted(x[0] for x in field.selection)
                 )

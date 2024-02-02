@@ -8,11 +8,11 @@
                 <header>
                   <field name="state" widget="statusbar" />
                 </header>
-                <group states="draft" colspan="4">
+                <group invisible="state != 'draft'" colspan="4">
                     <p
                     >This will reinitialize all the modules installed on this database. Do not continue if you use this database in production.</p>
                 </group>
-                <group states="done" colspan="4">
+                <group invisible="state != 'done'" colspan="4">
                     <p>Modules initialized and record created</p>
                 </group>
                 <footer>
@@ -20,7 +20,7 @@
                         string="Continue"
                         name="generate"
                         type="object"
-                        states="draft"
+                        invisible="state != 'draft'"
                         class="btn-primary"
                     />
                     <button special="cancel" string="Close" class="btn-default" />
