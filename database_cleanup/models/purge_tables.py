@@ -83,7 +83,7 @@ class CleanupPurgeLineTable(models.TransientModel):
                 _sql_type = "TABLE"
             elif line.table_type == "view":
                 _sql_type = "VIEW"
-            self.logger.info("Dropping %s %s", (_sql_type, line.name))
+            self.logger.info("Dropping %s %s", _sql_type, line.name)
             self.env.cr.execute(
                 "DROP %s %s", (AsIs(_sql_type), IdentifierAdapter(line.name))
             )
