@@ -20,24 +20,33 @@ msgstr ""
 #: model:mail.template,body_html:attachment_queue.attachment_failure_notification
 msgid ""
 "\n"
-"                <p style=\"margin:0px 0px 10px 0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;\">Hello,<br><br></p>\n"
-"                <p style=\"margin:0px 0px 10px 0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;\">The attachment ${object.name} has failed with the following error message : <br>${object.state_message}<br></p><p style=\"margin:0px 0px 10px 0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;\"></p>\n"
-"                <p style=\"margin:0px 0px 10px 0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;\">Regards,<br></p>\n"
+"                <p style=\"margin:0px 0px 10px 0px;font-size:13px;font-"
+"family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;"
+"\">Hello,<br><br></p>\n"
+"                <p style=\"margin:0px 0px 10px 0px;font-size:13px;font-"
+"family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;"
+"\">The attachment ${object.name} has failed with the following error "
+"message : <br>${object.state_message}<br></p><p style=\"margin:0px 0px 10px "
+"0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, "
+"Verdana, Arial, sans-serif;\"></p>\n"
+"                <p style=\"margin:0px 0px 10px 0px;font-size:13px;font-"
+"family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;"
+"\">Regards,<br></p>\n"
 "            "
 msgstr ""
 "\n"
 "                <p style=\"margin:0px 0px 10px 0px;font-size:13px;font-"
-"family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;\""
-">Hola,<br><br></p>\n"
+"family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;"
+"\">Hola,<br><br></p>\n"
 "                <p style=\"margin:0px 0px 10px 0px;font-size:13px;font-"
-"family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;\""
-">El archivo adjunto ${object.name}ha fallado con el siguiente mensaje de "
+"family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;"
+"\">El archivo adjunto ${object.name}ha fallado con el siguiente mensaje de "
 "error  : <br>${object.state_message}<br></p><p style=\"margin:0px 0px 10px "
 "0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, "
 "Verdana, Arial, sans-serif;\"></p>\n"
 "                <p style=\"margin:0px 0px 10px 0px;font-size:13px;font-"
-"family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;\""
-">Saludos,<br></p>\n"
+"family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;"
+"\">Saludos,<br></p>\n"
 "            "
 
 #. module: attachment_queue
@@ -69,6 +78,12 @@ msgstr "Estado de la Actividad"
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__activity_type_icon
 msgid "Activity Type Icon"
 msgstr "Icono de Tipo de Actividad"
+
+#. module: attachment_queue
+#: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__assigned_attachment_ids
+#: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue_reschedule__assigned_attachment_ids
+msgid "Assigned Attachments"
+msgstr ""
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__attachment_id
@@ -580,7 +595,6 @@ msgstr ""
 
 #. module: attachment_queue
 #. odoo-python
-#: code:addons/attachment_queue/tests/test_models.py:0
 #: code:addons/attachment_queue/tests/test_models.py:0
 #, python-format
 msgid "boom"
