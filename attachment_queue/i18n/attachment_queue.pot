@@ -54,6 +54,12 @@ msgid "Activity Type Icon"
 msgstr ""
 
 #. module: attachment_queue
+#: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__assigned_attachment_ids
+#: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue_reschedule__assigned_attachment_ids
+msgid "Assigned Attachments"
+msgstr ""
+
+#. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__attachment_id
 #: model_terms:ir.ui.view,arch_db:attachment_queue.view_attachment_queue_search
 msgid "Attachment"
