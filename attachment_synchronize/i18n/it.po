@@ -45,6 +45,13 @@ msgid "Archived"
 msgstr ""
 
 #. module: attachment_synchronize
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_queue__assigned_attachment_ids
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__assigned_attachment_ids
+#: model:ir.model.fields,field_description:attachment_synchronize.field_fs_storage__assigned_attachment_ids
+msgid "Assigned Attachments"
+msgstr ""
+
+#. module: attachment_synchronize
 #: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__attachment_ids
 msgid "Attachment"
 msgstr ""
@@ -203,8 +210,8 @@ msgstr ""
 #. module: attachment_synchronize
 #: model:ir.model.fields,help:attachment_synchronize.field_attachment_synchronize_task__avoid_duplicated_files
 msgid ""
-"If checked, a file will not be imported if an Attachment Queue with the same"
-" name already exists."
+"If checked, a file will not be imported if an Attachment Queue with the same "
+"name already exists."
 msgstr ""
 
 #. module: attachment_synchronize
@@ -295,7 +302,8 @@ msgstr ""
 #. module: attachment_synchronize
 #: model:ir.model.fields,help:attachment_synchronize.field_attachment_synchronize_task__pattern
 msgid ""
-"Pattern used to select the files to be imported following the 'fnmatch' special characters (e.g. '*.txt' to catch all the text files).\n"
+"Pattern used to select the files to be imported following the 'fnmatch' "
+"special characters (e.g. '*.txt' to catch all the text files).\n"
 "If empty, import all the files found in 'File Path'."
 msgstr ""
 
@@ -359,13 +367,16 @@ msgstr ""
 #. module: attachment_synchronize
 #: model:ir.model.fields,help:attachment_synchronize.field_attachment_synchronize_task__failure_emails
 msgid ""
-"Used to fill the 'Failure Emails' field in the 'Attachments Queues' related to this task.\n"
-"An alert will be sent to these emails if any operation on these Attachment Queue's file type fails."
+"Used to fill the 'Failure Emails' field in the 'Attachments Queues' related "
+"to this task.\n"
+"An alert will be sent to these emails if any operation on these Attachment "
+"Queue's file type fails."
 msgstr ""
 
 #. module: attachment_synchronize
 #: model:ir.model.fields,help:attachment_synchronize.field_attachment_synchronize_task__file_type
 msgid ""
 "Used to fill the 'File Type' field in the imported 'Attachments Queues'.\n"
-"Further operations will be realized on these Attachments Queues depending on their 'File Type' value."
+"Further operations will be realized on these Attachments Queues depending on "
+"their 'File Type' value."
 msgstr ""
