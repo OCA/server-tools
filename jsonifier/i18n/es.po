@@ -178,11 +178,6 @@ msgid "Language Agnostic"
 msgstr "Agnóstico lingüístico"
 
 #. module: jsonifier
-#: model:ir.model.fields,field_description:jsonifier.field_ir_exports_resolver____last_update
-msgid "Last Modified on"
-msgstr "Última Modifiación en"
-
-#. module: jsonifier
 #: model:ir.model.fields,field_description:jsonifier.field_ir_exports_resolver__write_uid
 msgid "Last Updated by"
 msgstr "Actualizado por Última vez por"
@@ -210,13 +205,6 @@ msgid "Python Code"
 msgstr "Código Python"
 
 #. module: jsonifier
-#: model:ir.model.fields,field_description:jsonifier.field_ir_exports__smart_search
-#: model:ir.model.fields,field_description:jsonifier.field_ir_exports_line__smart_search
-#: model:ir.model.fields,field_description:jsonifier.field_ir_exports_resolver__smart_search
-msgid "Smart Search"
-msgstr "Búsqueda Inteligente"
-
-#. module: jsonifier
 #: model:ir.model.fields,field_description:jsonifier.field_ir_exports_line__target
 msgid "Target"
 msgstr "Objetivo"
@@ -224,8 +212,8 @@ msgstr "Objetivo"
 #. module: jsonifier
 #: model:ir.model.fields,help:jsonifier.field_ir_exports_line__target
 msgid ""
-"The complete path to the field where you can specify a target on the step as"
-" field:target"
+"The complete path to the field where you can specify a target on the step as "
+"field:target"
 msgstr ""
 "La ruta completa al campo donde se puede especificar un objetivo en el paso "
 "como field:target"
@@ -252,3 +240,9 @@ msgstr "Tipo"
 #, python-format
 msgid "Wrong parser configuration for field: `%s`"
 msgstr "Configuración incorrecta del analizador sintáctico para el campo: `%s`"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última Modifiación en"
+
+#~ msgid "Smart Search"
+#~ msgstr "Búsqueda Inteligente"

@@ -164,11 +164,6 @@ msgid "Language Agnostic"
 msgstr ""
 
 #. module: jsonifier
-#: model:ir.model.fields,field_description:jsonifier.field_ir_exports_resolver____last_update
-msgid "Last Modified on"
-msgstr ""
-
-#. module: jsonifier
 #: model:ir.model.fields,field_description:jsonifier.field_ir_exports_resolver__write_uid
 msgid "Last Updated by"
 msgstr ""
@@ -193,13 +188,6 @@ msgstr ""
 #. module: jsonifier
 #: model:ir.model.fields,field_description:jsonifier.field_ir_exports_resolver__python_code
 msgid "Python Code"
-msgstr ""
-
-#. module: jsonifier
-#: model:ir.model.fields,field_description:jsonifier.field_ir_exports__smart_search
-#: model:ir.model.fields,field_description:jsonifier.field_ir_exports_line__smart_search
-#: model:ir.model.fields,field_description:jsonifier.field_ir_exports_resolver__smart_search
-msgid "Smart Search"
 msgstr ""
 
 #. module: jsonifier
