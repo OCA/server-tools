@@ -10,6 +10,7 @@ msgstr ""
 "PO-Revision-Date: 2023-11-17 12:53+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -60,13 +61,20 @@ msgstr "Por código de Python"
 msgid ""
 "By python code: allow to define any arbitrary check\n"
 "By domain: limited to a selection by an odoo domain:\n"
-"           performance can be better when exceptions           are evaluated with several records\n"
+"           performance can be better when exceptions           are evaluated "
+"with several records\n"
 "By method: allow to select an existing check method"
 msgstr ""
 "Por código python: permite definir cualquier comprobación arbitraria\n"
 "Por dominio: limitado a una selección por un dominio odoo:\n"
-"           el rendimiento puede ser mejor cuando las excepciones se evalúan con varios registros\n"
+"           el rendimiento puede ser mejor cuando las excepciones se evalúan "
+"con varios registros\n"
 "Por método: permite seleccionar un método de comprobación existente"
+
+#. module: base_exception
+#: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_confirm
+msgid "Close"
+msgstr ""
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule__create_uid
@@ -285,8 +293,8 @@ msgid ""
 "There is a problem of configuration, python code, domain or method is "
 "missing to match the exception type."
 msgstr ""
-"Hay un problema de configuración, falta código python, dominio o método para"
-" que coincida con el tipo de excepción."
+"Hay un problema de configuración, falta código python, dominio o método para "
+"que coincida con el tipo de excepción."
 
 #. module: base_exception
 #: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_form
@@ -307,14 +315,9 @@ msgstr ""
 msgid "When checked the exception can not be ignored"
 msgstr "Cuando está marcado la excepción no puede ser ignorada"
 
-#. module: base_exception
-#: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_confirm
-msgid "_Close"
-msgstr "_Cerrar"
+#~ msgid "_Close"
+#~ msgstr "_Cerrar"
 
-#. module: base_exception
-#. odoo-python
-#: code:addons/base_exception/models/base_exception.py:0
 #, python-format
-msgid "{'(Blocking exception)' if e.is_blocking else ''}</b></li>"
-msgstr "{'(Excepción de bloqueo)' if e.is_blocking else ''}</b></li>"
+#~ msgid "{'(Blocking exception)' if e.is_blocking else ''}</b></li>"
+#~ msgstr "{'(Excepción de bloqueo)' if e.is_blocking else ''}</b></li>"
