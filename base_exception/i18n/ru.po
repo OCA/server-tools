@@ -21,13 +21,6 @@ msgstr ""
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
 #. module: base_exception
-#. odoo-python
-#: code:addons/base_exception/models/base_exception.py:0
-#, python-format
-msgid "(Blocking exception)"
-msgstr ""
-
-#. module: base_exception
 #: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_form
 msgid "<code>self</code>: Record on which the rule is evaluated."
 msgstr ""
@@ -75,6 +68,11 @@ msgid ""
 "           performance can be better when exceptions           are evaluated "
 "with several records\n"
 "By method: allow to select an existing check method"
+msgstr ""
+
+#. module: base_exception
+#: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_confirm
+msgid "Close"
 msgstr ""
 
 #. module: base_exception
@@ -214,11 +212,6 @@ msgid "Is Blocking"
 msgstr ""
 
 #. module: base_exception
-#: model:ir.model.fields,field_description:base_exception.field_exception_rule____last_update
-msgid "Last Modified on"
-msgstr ""
-
-#. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule__write_uid
 msgid "Last Updated by"
 msgstr "Последний раз обновлено"
@@ -280,14 +273,6 @@ msgid "Sequence"
 msgstr ""
 
 #. module: base_exception
-#: model:ir.model.fields,field_description:base_exception.field_base_exception__smart_search
-#: model:ir.model.fields,field_description:base_exception.field_base_exception_method__smart_search
-#: model:ir.model.fields,field_description:base_exception.field_exception_rule__smart_search
-#: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm__smart_search
-msgid "Smart Search"
-msgstr ""
-
-#. module: base_exception
 #. odoo-python
 #: code:addons/base_exception/models/base_exception.py:0
 #, python-format
@@ -318,9 +303,4 @@ msgstr ""
 #. module: base_exception
 #: model:ir.model.fields,help:base_exception.field_exception_rule__is_blocking
 msgid "When checked the exception can not be ignored"
-msgstr ""
-
-#. module: base_exception
-#: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_confirm
-msgid "_Close"
 msgstr ""
