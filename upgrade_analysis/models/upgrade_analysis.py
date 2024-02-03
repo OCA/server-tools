@@ -270,7 +270,6 @@ class UpgradeAnalysis(models.Model):
         except Exception as e:
             _logger.exception("Error generating noupdate changes: %s" % e)
             general_log += "ERROR: error when generating noupdate changes: %s\n" % e
-
         try:
             self.generate_module_coverage_file(no_changes_modules)
         except Exception as e:
@@ -575,7 +574,7 @@ class UpgradeAnalysis(models.Model):
                 )
             elif module in no_changes_modules:
                 status += "No DB layout changes. "
-            module_descriptions[module_description.ljust(49, " ")] = status.ljust(
+            module_descriptions[module_description.ljust(51, " ")] = status.ljust(
                 49, " "
             )
 
