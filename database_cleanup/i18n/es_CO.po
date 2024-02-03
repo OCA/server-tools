@@ -212,26 +212,6 @@ msgid "ID"
 msgstr "ID"
 
 #. module: database_cleanup
-#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_line____last_update
-#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_wizard____last_update
-#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_column____last_update
-#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_data____last_update
-#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_menu____last_update
-#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_model____last_update
-#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_module____last_update
-#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_property____last_update
-#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_table____last_update
-#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_column____last_update
-#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_data____last_update
-#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_menu____last_update
-#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_model____last_update
-#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_module____last_update
-#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_property____last_update
-#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_table____last_update
-msgid "Last Modified on"
-msgstr "Última Modificación el"
-
-#. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_line__write_uid
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_wizard__write_uid
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_column__write_uid
@@ -555,3 +535,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line__wizard_id
 msgid "Wizard"
 msgstr ""
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última Modificación el"
