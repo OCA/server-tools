@@ -35,11 +35,6 @@ msgid "Configuration"
 msgstr "Configuración"
 
 #. module: base_technical_user
-#: model:ir.model.fields,field_description:base_technical_user.field_res_company__smart_search
-msgid "Smart Search"
-msgstr "Búsqueda inteligente"
-
-#. module: base_technical_user
 #: model_terms:ir.ui.view,arch_db:base_technical_user.res_company_view_form_inherit_base_technical_user
 msgid "Technical Parameters"
 msgstr "Parámetros técnicos"
@@ -60,3 +55,6 @@ msgstr "En la compañia {} no se encuentra el usuario técnico"
 #: model:ir.model.fields,help:base_technical_user.field_res_company__user_tech_id
 msgid "This user can be used by process for technical purpose"
 msgstr "Este usuario debe usarse para procesos con propósitos técnicos"
+
+#~ msgid "Smart Search"
+#~ msgstr "Búsqueda inteligente"
