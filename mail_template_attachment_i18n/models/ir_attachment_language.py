@@ -6,7 +6,8 @@ from odoo import fields, models
 
 class IrAttachmentLanguage(models.Model):
     _name = "ir.attachment.language"
-    _description = 'Attachment Language'
+    _description = "Attachment Language"
+
     mail_template_id = fields.Many2one(
         comodel_name="mail.template",
         string="Template",
