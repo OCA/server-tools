@@ -55,12 +55,14 @@ def _get_name_search_domain(self):
     return []
 
 
-def _extend_name_results(self, domain, results, limit, name_get_uid):
+def _extend_name_results(self, domain, results, limit, order):
     result_count = len(results)
     if result_count < limit:
         domain += [("id", "not in", results)]
         rec_ids = self._search(
-            domain, limit=limit - result_count, access_rights_uid=name_get_uid
+            domain,
+            limit=limit - result_count,
+            order=order,
         )
         results.extend(rec_ids)
     return results
@@ -69,16 +71,16 @@ def _extend_name_results(self, domain, results, limit, name_get_uid):
 def patch_name_search():
     @api.model
     def _name_search(
-        self, name="", args=None, operator="ilike", limit=100, name_get_uid=None
+        self, name, domain=None, operator="ilike", limit=None, order=None,
     ):
         # Perform standard name search
         res = _name_search.origin(
             self,
-            name=name,
-            args=args,
+            name,
+            domain=domain,
             operator=operator,
             limit=limit,
-            name_get_uid=name_get_uid,
+            order=order,
         )
         if name and _get_use_smart_name_search(self.sudo()) and operator in ALLOWED_OPS:
             # _name_search.origin is a query, we need to convert it to a list
@@ -86,6 +88,7 @@ def patch_name_search():
             limit = limit or 0
 
             # we add domain
+            args = domain
             args = args or [] + _get_name_search_domain(self.sudo())
 
             # Support a list of fields to search on
@@ -93,31 +96,31 @@ def patch_name_search():
             base_domain = args or []
             # Try regular search on each additional search field
             for rec_name in all_names[1:]:
-                domain = [(rec_name, operator, name)]
+                new_domain = [(rec_name, operator, name)]
                 res = _extend_name_results(
-                    self, base_domain + domain, res, limit, name_get_uid
+                    self, base_domain + new_domain, res, limit, order
                 )
             # Try ordered word search on each of the search fields
             for rec_name in all_names:
-                domain = [(rec_name, operator, name.replace(" ", "%"))]
+                new_domain = [(rec_name, operator, name.replace(" ", "%"))]
                 res = _extend_name_results(
-                    self, base_domain + domain, res, limit, name_get_uid
+                    self, base_domain + new_domain, res, limit, order
                 )
             # Try unordered word search on each of the search fields
             # we only perform this search if we have at least one
             # separator character
             # also, if have raise the limit we skeep this iteration
             if " " in name and len(res) < limit:
-                domain = []
+                new_domain = []
                 for word in name.split():
                     word_domain = []
                     for rec_name in all_names:
                         word_domain = (
                             word_domain and ["|"] + word_domain or word_domain
                         ) + [(rec_name, operator, word)]
-                    domain = (domain and ["&"] + domain or domain) + word_domain
+                    new_domain = (new_domain and ["&"] + new_domain or new_domain) + word_domain
                 res = _extend_name_results(
-                    self, base_domain + domain, res, limit, name_get_uid
+                    self, base_domain + new_domain, res, limit, order
                 )
 
         return res
@@ -237,12 +240,19 @@ class IrModel(models.Model):
                 raise ValidationError(_("Name Search Domain must be a list of tuples"))
 
     def _register_hook(self):
+        def patch_method(cls, name, method):
+            origin = getattr(cls, name)
+            method.origin = origin
+
+            wrapped = api.propagate(origin, method)
+            wrapped.origin = origin
+            setattr(cls, name, wrapped)
 
         _logger.info("Patching BaseModel for Smart Search")
 
         for model in self.sudo().search(self.ids or []):
             Model = self.env.get(model.model)
             if Model is not None:
-                Model._patch_method("_name_search", patch_name_search())
+                patch_method(type(Model), "_name_search", patch_name_search())
 
         return super()._register_hook()
