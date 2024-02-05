@@ -61,4 +61,4 @@ class AuditlogLogLineView(models.Model):
 
     @property
     def _table_query(self):
-        return "SELECT %s FROM %s" % (self._select_query(), self._from_query())
+        return f"SELECT {self._select_query()} FROM {self._from_query()}"
