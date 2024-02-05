@@ -47,6 +47,7 @@ setuptools.setup(
         'odoo-addon-session_db>=16.0dev,<16.1dev',
         'odoo-addon-tracking_manager>=16.0dev,<16.1dev',
         'odoo-addon-upgrade_analysis>=16.0dev,<16.1dev',
+        'odoo-addon-url_attachment_search_fuzzy>=16.0dev,<16.1dev',
     ],
     classifiers=[
         'Programming Language :: Python',
