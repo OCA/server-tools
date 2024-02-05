@@ -79,7 +79,7 @@ class BaseImport(models.TransientModel):
                             "cell_value": cell.check_error(),
                         }
                     )
-                values.append(cell.value)
+                values.append(str(cell.value))
             if any(x for x in values if x.strip()):
                 yield values
         book.close()
