@@ -69,7 +69,7 @@ class BaseImport(models.TransientModel):
                     values.append(str(cell.value) if is_float else str(int(cell.value)))
                     continue
                 if cell.data_type is openpyxl.cell.cell.TYPE_BOOL:
-                    values.append(u"True" if cell.value else u"False")
+                    values.append("True" if cell.value else "False")
                     continue
                 if cell.data_type is openpyxl.cell.cell.TYPE_ERROR:
                     raise ValueError(
