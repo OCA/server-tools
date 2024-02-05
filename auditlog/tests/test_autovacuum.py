@@ -7,7 +7,7 @@ from odoo.tests.common import TransactionCase
 
 class TestAuditlogAutovacuum(TransactionCase):
     def setUp(self):
-        super(TestAuditlogAutovacuum, self).setUp()
+        super().setUp()
         self.groups_model_id = self.env.ref("base.model_res_groups").id
         self.groups_rule = self.env["auditlog.rule"].create(
             {
@@ -24,7 +24,7 @@ class TestAuditlogAutovacuum(TransactionCase):
 
     def tearDown(self):
         self.groups_rule.unlink()
-        super(TestAuditlogAutovacuum, self).tearDown()
+        super().tearDown()
 
     def test_autovacuum(self):
         log_model = self.env["auditlog.log"]
