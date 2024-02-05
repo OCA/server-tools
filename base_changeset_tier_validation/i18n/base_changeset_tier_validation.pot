@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-21 13:46+0000\n"
-"PO-Revision-Date: 2023-11-21 13:46+0000\n"
+"POT-Creation-Date: 2024-02-05 16:51+0000\n"
+"PO-Revision-Date: 2024-02-05 16:51+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -55,6 +55,28 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_review__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_validation__changeset_ids
 msgid "Changesets"
+msgstr ""
+
+#. module: base_changeset_tier_validation
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_changeset_field_rule__child_changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_record_changeset__child_changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_record_changeset_change__child_changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_res_users__child_changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_definition__child_changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_review__child_changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_validation__child_changeset_change_ids
+msgid "Child Changeset Changes"
+msgstr ""
+
+#. module: base_changeset_tier_validation
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_changeset_field_rule__child_changeset_ids
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_record_changeset__child_changeset_ids
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_record_changeset_change__child_changeset_ids
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_res_users__child_changeset_ids
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_definition__child_changeset_ids
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_review__child_changeset_ids
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_validation__child_changeset_ids
+msgid "Child Changesets"
 msgstr ""
 
 #. module: base_changeset_tier_validation
@@ -117,6 +139,7 @@ msgid "ID"
 msgstr ""
 
 #. module: base_changeset_tier_validation
+#: model:ir.model.fields,help:base_changeset_tier_validation.field_changeset_field_rule__summary_field_id
 #: model:ir.model.fields,help:base_changeset_tier_validation.field_tier_definition__summary_field_id
 msgid ""
 "If defined, the value of that field will be used in the summary of the "
@@ -170,7 +193,9 @@ msgid "Summary"
 msgstr ""
 
 #. module: base_changeset_tier_validation
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_changeset_field_rule__summary_field_id
 #: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_definition__summary_field_id
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_review__summary_field_id
 msgid "Summary Field"
 msgstr ""
 
@@ -229,7 +254,7 @@ msgstr ""
 #. openerp-web
 #: code:addons/base_changeset_tier_validation/static/src/xml/tier_review_template.xml:0
 #, python-format
-msgid "Validate"
+msgid "Valid"
 msgstr ""
 
 #. module: base_changeset_tier_validation
