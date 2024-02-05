@@ -420,6 +420,7 @@ class RecordChangeset(models.Model):
                 or not rule
                 or not rule._evaluate_expression(record)
                 or rule.field_id in change_fields
+                or rule.field_id.ttype == "one2many"
             ):
                 continue
             old_value = model_field.convert_to_write(record[field], record)
