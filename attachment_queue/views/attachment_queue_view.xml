@@ -35,9 +35,9 @@
                 <field name="state" />
                 <field name="file_type" />
             </field>
-            <group name="description_group">
+            <group name="description_group" position="after">
                 <group name="state_message" string="Error" colspan="4">
-                    <field name="state_message" nolabel="1" />
+                    <field name="state_message" nolabel="1" colspan="2" />
                 </group>
             </group>
             <xpath expr="//sheet" position="after">
