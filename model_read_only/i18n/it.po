@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-12-01 00:53+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2024-02-05 09:36+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -88,7 +88,7 @@ msgstr "Modello"
 #. module: model_read_only
 #: model:ir.model,name:model_read_only.model_model_readonly_restriction
 msgid "Model Readonly Restriction"
-msgstr ""
+msgstr "Restrizione solo lettura modello"
 
 #. module: model_read_only
 #: model:ir.model,name:model_read_only.model_ir_model
