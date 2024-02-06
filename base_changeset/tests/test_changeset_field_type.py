@@ -185,11 +185,24 @@ class TestChangesetFieldType(ChangesetTestCommon, TransactionCase):
     @mute_logger("odoo.models.unlink")
     def test_new_changeset_one2many(self):
         """Add a new changeset on a One2many field"""
+        # Update one2many rule to get only login field changes
+        login_field = self.env["ir.model.fields"]
+        child_fields = self.env["ir.model.fields"].search(
+            [
+                ("model_id.model", "=", self.field_one2many.relation),
+                ("name", "=", "login"),
+            ]
+        )
+        rule = self.env["changeset.field.rule"].search(
+            [("field_id.ttype", "=", "one2many")]
+        )
+        rule.write({"subfield_ids": child_fields.ids})
         one2many_value = [0, 0, {"login": "new-user"}]
         self.partner.write({self.field_one2many.name: [one2many_value]})
         self.partner._compute_child_changeset_ids()
         changeset = self.partner.child_changeset_ids
         self.assertEqual(changeset.action, "create")
+        self.assertTrue(changeset.rule_id)
         self.assertEqual(changeset.model, self.field_one2many.relation)
         self.assertFalse(changeset.res_id)
         self.assertEqual(

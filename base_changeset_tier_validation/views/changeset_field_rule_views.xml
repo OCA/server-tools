@@ -17,6 +17,7 @@
                     name="tier_definition_id"
                     attrs="{'invisible': [('create_tier_review', '=', False)]}"
                 />
+                <field name="allowed_summary_model" invisible="1" />
                 <field
                     name="summary_field_id"
                     attrs="{'invisible': [('tier_definition_id', '=', False)]}"

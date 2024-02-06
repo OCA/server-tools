@@ -58,6 +58,11 @@ class RecordChangeset(models.Model):
     record_id = fields.Reference(
         selection="_reference_models", compute="_compute_resource_record", readonly=True
     )
+    rule_id = fields.Many2one(
+        comodel_name="changeset.field.rule",
+        compute="_compute_rule_id",
+        store=True,
+    )
 
     @api.depends("action", "raw_changes")
     def _compute_raw_changes_html(self):
@@ -112,6 +117,11 @@ class RecordChangeset(models.Model):
                 rec.state = "done"
             else:
                 rec.state = "draft"
+
+    @api.depends("change_ids")
+    def _compute_rule_id(self):
+        for item in self.filtered(lambda x: x.change_ids):
+            item.rule_id = fields.first(item.change_ids).rule_id
 
     @api.model
     def get_changeset_changes_one2many(self, model, res_id):
@@ -285,6 +295,31 @@ class RecordChangeset(models.Model):
                         child_record = child_model
                         if child_res_id and isinstance(child_res_id, int):
                             child_record = child_model.browse(child_res_id)
+                            # Set the values that child_vals should have
+                            if command in (0, 1):
+                                child_model_fields = self.env[
+                                    child_record._name
+                                ]._fields
+                                for subfield in rule._get_all_subfields():
+                                    subfield_name = subfield.name
+                                    child_model_field = child_model_fields[
+                                        subfield_name
+                                    ]
+                                    if (
+                                        subfield_name not in child_vals
+                                        and change_model._type_to_suffix.get(
+                                            subfield.ttype
+                                        )
+                                        and (
+                                            child_model_field.related
+                                            or child_model_field.compute
+                                        )
+                                    ):
+                                        child_vals[
+                                            subfield_name
+                                        ] = self._get_new_value_from_record(
+                                            child_record, subfield_name, child_vals
+                                        )
                         # Prepare changes only to update (command=1)
                         child_changes = False
                         if command == 1:
@@ -313,6 +348,9 @@ class RecordChangeset(models.Model):
                                     },
                                 }
                             )
+                            # Set rule_id (change_ids not set) to set summary review fine
+                            if changeset_action == "create":
+                                child_changeset_vals.update(rule_id=rule.id)
                             if self._allow_create_changeset(child_changeset_vals):
                                 changeset_model.with_context(
                                     changeset_rule=rule

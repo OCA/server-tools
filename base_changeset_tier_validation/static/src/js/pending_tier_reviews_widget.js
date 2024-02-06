@@ -60,7 +60,7 @@ odoo.define("base_changeset_tier_validation.PendingTierReviewsField", function (
             // The form of the order line will be opened in modal
             const changeset_ref = event.currentTarget.dataset.changeset_ref;
             const changeset_ref_model = changeset_ref.split(",")[0];
-            const changeset_ref_id = changeset_ref.split(",")[1];
+            const changeset_ref_id = parseInt(changeset_ref.split(",")[1]);
             event.preventDefault();
             event.stopPropagation();
             this._rpc({

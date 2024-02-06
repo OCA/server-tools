@@ -1,4 +1,4 @@
-# Copyright 2023 Tecnativa - Víctor Martínez
+# Copyright 2023-2024 Tecnativa - Víctor Martínez
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 from odoo import api, fields, models
 
@@ -30,9 +30,12 @@ class ChangesetFieldRule(models.Model):
         domain="[('model', '=', tier_model)]",
         string="Tier definition",
     )
+    allowed_summary_model = fields.Char(
+        compute="_compute_allowed_summary_model", compute_sudo=True
+    )
     summary_field_id = fields.Many2one(
         comodel_name="ir.model.fields",
-        domain="[('model_id', '=', model_id),('store', '=', True)]",
+        domain="[('model_id.model', '=', allowed_summary_model),('store', '=', True)]",
         help="If defined, the value of that field will be used in the summary of the review.",
     )
 
@@ -58,3 +61,11 @@ class ChangesetFieldRule(models.Model):
                 )
             else:
                 item.tier_model = item.tier_model
+
+    @api.depends("field_id", "field_ttype", "field_relation", "model_id")
+    def _compute_allowed_summary_model(self):
+        for item in self:
+            if item.field_ttype == "one2many":
+                item.allowed_summary_model = item.field_relation
+            else:
+                item.allowed_summary_model = item.model_id.model
