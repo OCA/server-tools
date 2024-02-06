@@ -418,6 +418,11 @@ class RecordChangeset(models.Model):
             if (
                 (not model_field.related and not model_field.compute)
                 or not rule
+                or (
+                    rule.validator_group_ids
+                    and self.env.user in rule.mapped("validator_group_ids.users")
+                    and not rule.prevent_self_validation
+                )
                 or not rule._evaluate_expression(record)
                 or rule.field_id in change_fields
                 or rule.field_id.ttype == "one2many"
