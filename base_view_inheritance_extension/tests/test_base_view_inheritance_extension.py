@@ -240,3 +240,70 @@ class TestBaseViewInheritanceExtension(TransactionCase):
         )
         with self.assertRaisesRegex(TypeError, "Attribute `domain` is not a dict"):
             self.env["ir.ui.view"].apply_inheritance_specs(source, specs)
+
+    def test_attrs_domain_add_join_operator_or(self):
+        """Test that we can add an OR domain to an existing attrs key."""
+        self._test_attrs_domain_add(join_operator="OR")
+
+    def test_attrs_domain_add_join_operator_and(self):
+        """Test that we can add an AND domain to an existing attrs key."""
+        self._test_attrs_domain_add(join_operator="AND")
+
+    def _test_attrs_domain_add(self, join_operator):
+        """Test that we can add a domain to an existing attrs domain key."""
+        source = etree.fromstring(
+            """
+            <form>
+                <field
+                    name="ref"
+                    attrs="{
+                        'invisible': [('state', '=', 'draft')],
+                        'required': [('state', '=', False)],
+                    }"
+                />
+            </form>
+            """
+        )
+        specs = etree.fromstring(
+            """
+            <field name="ref" position="attributes">
+                <attribute name="attrs" operation="attrs_domain_add"
+                           key="required" join_operator="%s">
+                    [('state', '!=', 'draft')]
+                </attribute>
+            </field>
+            """
+            % (join_operator,)
+        )
+        res = self.env["ir.ui.view"].apply_inheritance_specs(source, specs)
+        self.assertEqual(
+            res.xpath('//field[@name="ref"]')[0].attrib["attrs"],
+            "{'invisible': [('state', '=', 'draft')], "
+            "'required': ['%s', ('state', '=', False), ('state', '!=', 'draft')]}"
+            % ("|" if join_operator == "OR" else "&"),
+        )
+
+    def test_attrs_domain_add_no_attrs(self):
+        """Test attrs_domain_add if there is no attrs: attrs is created."""
+        source = etree.fromstring(
+            """
+            <form>
+                <field name="ref"/>
+            </form>
+            """
+        )
+        specs = etree.fromstring(
+            """
+            <field name="ref" position="attributes">
+                <attribute name="attrs" operation="attrs_domain_add"
+                           key="required" join_operator="OR">
+                    [('state', '!=', 'draft')]
+                </attribute>
+            </field>
+            """
+        )
+        res = self.env["ir.ui.view"].apply_inheritance_specs(source, specs)
+        self.assertEqual(
+            res.xpath('//field[@name="ref"]')[0].attrib["attrs"],
+            "{'required': [('state', '!=', 'draft')]}",
+        )
