@@ -387,6 +387,9 @@ class AuditlogRule(models.Model):
                 .with_context(prefetch_fields=False)
                 .read(fields_list)
             }
+            # invalidate_recordset method must be called with existing fields
+            if self._name == "res.users":
+                vals = self._remove_reified_groups(vals)
             # Prevent the cache of modified fields from being poisoned by
             # x2many items inaccessible to the current user.
             self.invalidate_recordset(vals.keys())
