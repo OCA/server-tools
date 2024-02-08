@@ -71,7 +71,12 @@ def _extend_name_results(self, domain, results, limit, order):
 def patch_name_search():
     @api.model
     def _name_search(
-        self, name, domain=None, operator="ilike", limit=None, order=None,
+        self,
+        name,
+        domain=None,
+        operator="ilike",
+        limit=None,
+        order=None,
     ):
         # Perform standard name search
         res = _name_search.origin(
@@ -118,7 +123,9 @@ def patch_name_search():
                         word_domain = (
                             word_domain and ["|"] + word_domain or word_domain
                         ) + [(rec_name, operator, word)]
-                    new_domain = (new_domain and ["&"] + new_domain or new_domain) + word_domain
+                    new_domain = (
+                        new_domain and ["&"] + new_domain or new_domain
+                    ) + word_domain
                 res = _extend_name_results(
                     self, base_domain + new_domain, res, limit, order
                 )
@@ -129,7 +136,6 @@ def patch_name_search():
 
 
 class Base(models.AbstractModel):
-
     _inherit = "base"
 
     # TODO perhaps better to create only the field when enabled on the model
