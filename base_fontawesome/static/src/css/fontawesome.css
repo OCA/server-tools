@@ -30,6 +30,11 @@
     font-display: block;
 }
 
+:root,
+:host {
+    --fa-style-family: "FontAwesome";
+}
+
 .btn.fa,
 .btn.fas,
 .btn.far,
