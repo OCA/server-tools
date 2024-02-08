@@ -5,6 +5,7 @@
 from odoo.tests.common import Form, TransactionCase
 
 from odoo.addons.base.models.ir_model import MODULE_UNINSTALL_FLAG
+from odoo.addons.base.models.res_users import name_boolean_group
 
 
 class AuditlogCommon(object):
@@ -612,3 +613,80 @@ class AuditLogRuleTestForUserFields(TransactionCase):
 
         # Removing auditlog_rule
         self.auditlog_rule.unlink()
+
+
+class AuditLogRuleTestForUserModel(TransactionCase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        # get User model id
+        cls.user_model_id = cls.env["ir.model"].search([("model", "=", "res.users")]).id
+
+        # creating auditlog.rule
+        cls.auditlog_rule = (
+            cls.env["auditlog.rule"]
+            .with_context(tracking_disable=True)
+            .create(
+                {
+                    "name": "testrule 01",
+                    "model_id": cls.user_model_id,
+                    "log_read": True,
+                    "log_create": True,
+                    "log_write": True,
+                    "log_unlink": True,
+                    "log_type": "full",
+                    "capture_record": True,
+                }
+            )
+        )
+
+        # Create user id
+        cls.user = (
+            cls.env["res.users"]
+            .with_context(no_reset_password=True, tracking_disable=True)
+            .create(
+                {
+                    "name": "Test User",
+                    "login": "testuser",
+                }
+            )
+        )
+        cls.group = cls.env.ref("auditlog.group_auditlog_manager")
+
+        cls.auditlog_log = cls.env["auditlog.log"]
+        # Subscribe auditlog.rule
+        cls.auditlog_rule.subscribe()
+
+    def test_01_AuditlogFull_field_group_write_log(self):
+        """Change group and check successfully created log"""
+        self.user.with_context(tracking_disable=True).write(
+            {"groups_id": [(4, self.group.id)]}
+        )
+        # Checking log is created for testpartner1
+        write_log_record = self.auditlog_log.search(
+            [
+                ("model_id", "=", self.auditlog_rule.model_id.id),
+                ("method", "=", "write"),
+                ("res_id", "=", self.user.id),
+            ]
+        ).ensure_one()
+        self.assertTrue(write_log_record)
+
+    def test_02_AuditlogFull_field_group_write_log(self):
+        """Change group and check successfully created log, but using reified fields"""
+        fname = name_boolean_group(self.group.id)
+
+        self.user.with_context(tracking_disable=True).write(
+            {
+                fname: True,
+            }
+        )
+        # Checking log is created for testpartner1
+        write_log_record = self.auditlog_log.search(
+            [
+                ("model_id", "=", self.auditlog_rule.model_id.id),
+                ("method", "=", "write"),
+                ("res_id", "=", self.user.id),
+            ]
+        ).ensure_one()
+        self.assertTrue(write_log_record)
