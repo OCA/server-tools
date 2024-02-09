@@ -1,10 +1,12 @@
-sentry-sdk
+# generated from manifests external_dependencies
+acme
+cryptography<23.2.0
+dnspython==1.16.0
+josepy
+lxml
 openpyxl
+pygount
+pysftp
+sentry_sdk>=1.17.0
 xlrd
 xlwt
-pysftp
-pygount>1.2.1
-acme
-cryptography
-dnspython
-josepy

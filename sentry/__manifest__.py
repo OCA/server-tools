@@ -5,7 +5,7 @@
     'summary': 'Report Odoo errors to Sentry',
     'version': '12.0.2.0.0',
     'category': 'Extra Tools',
-    'website': 'https://odoo-community.org/',
+    'website': 'https://github.com/OCA/server-tools',
     'author': 'Mohammed Barsi,'
               'Versada,'
               'Nicolas JEUDY,'

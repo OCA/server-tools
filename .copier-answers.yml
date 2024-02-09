@@ -1,0 +1,26 @@
+# Do NOT update manually; changes here will be overwritten by Copier
+_commit: v1.14.0
+_src_path: https://github.com/OCA/oca-addons-repo-template.git
+ci: GitHub
+dependency_installation_mode: PIP
+generate_requirements_txt: true
+github_check_license: true
+github_ci_extra_env: {}
+github_enable_codecov: true
+github_enable_makepot: true
+github_enable_stale_action: true
+github_enforce_dev_status_compatibility: true
+include_wkhtmltopdf: true
+odoo_version: 12.0
+org_name: Odoo Community Association (OCA)
+org_slug: OCA
+rebel_module_groups:
+- fetchmail_incoming_log,fetchmail_notify_error_to_sender
+repo_description: This project aims to deal with modules related to manage Odoo server
+    environment and provide useful tools
+repo_name: Tools for server environment
+repo_slug: server-tools
+repo_website: https://github.com/OCA/server-tools
+travis_apt_packages: []
+travis_apt_sources: []
+

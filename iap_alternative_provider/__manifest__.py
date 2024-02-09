@@ -8,7 +8,7 @@
     "summary": "Base module for providing alternative provider for iap apps",
     "version": "12.0.1.0.0",
     "category": "Tools",
-    "website": "http://github.com/OCA/server-tools",
+    "website": "https://github.com/OCA/server-tools",
     "author": "Akretion, Odoo Community Association (OCA)",
     "maintainers": ["sebastienbeau"],
     "license": "AGPL-3",

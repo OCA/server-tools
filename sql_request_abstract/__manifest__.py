@@ -6,7 +6,7 @@
     'name': 'SQL Request Abstract',
     'version': '12.0.1.2.1',
     'author': 'GRAP,Akretion,Odoo Community Association (OCA)',
-    'website': 'https://www.odoo-community.org',
+    'website': 'https://github.com/OCA/server-tools',
     'license': 'AGPL-3',
     'category': 'Tools',
     'summary': 'Abstract Model to manage SQL Requests',
