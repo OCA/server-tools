@@ -6,7 +6,7 @@
     'name': 'Locale - Default UoM',
     'summary': 'This provides settings to select default UoMs at the '
                'language level.',
-    'version': '12.0.1.0.0',
+    'version': '12.0.1.0.1',
     'category': 'Extra Tools',
     'website': 'https://github.com/OCA/server-tools',
     'author': 'LasLabs, '

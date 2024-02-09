@@ -5,7 +5,7 @@
 
 {
     "name": "Attachment Synchronize",
-    "version": "12.0.2.0.0",
+    "version": "12.0.2.0.1",
     "author": "Akretion,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/server-tools",
     "maintainers": ["florian-dacosta", "sebastienbeau", "GSLabIt", "bealdav"],
