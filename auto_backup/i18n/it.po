@@ -9,14 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-03 10:08+0000\n"
-"PO-Revision-Date: 2018-03-03 10:08+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2018\n"
+"PO-Revision-Date: 2024-01-03 15:33+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: auto_backup
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
@@ -26,7 +27,7 @@ msgstr "/home/odoo/.ssh/id_rsa"
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__folder
 msgid "Absolute path for storing the backups"
-msgstr "Percorso assoluto per il salvataggio del DB"
+msgstr "Percorso assoluto per il salvataggio del DiBa"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__message_needaction
@@ -47,7 +48,7 @@ msgstr "Backup automatici"
 #. module: auto_backup
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "Automatic backups of the database can be scheduled as follows:"
-msgstr "Il backup automatico del DB è pianificato come segue:"
+msgstr "Il backup automatico del DiBa è pianificato come segue:"
 
 #. module: auto_backup
 #: model:mail.message.subtype,name:auto_backup.mail_message_subtype_failure
@@ -78,7 +79,7 @@ msgid ""
 "Backups older than this will be deleted automatically. Set 0 to disable "
 "autodeletion."
 msgstr ""
-"I Backup antecedenti questo numero di giorni saranno eliminati "
+"I backup antecedenti questo numero di giorni saranno eliminati "
 "automaticamente. Impostare a 0 per disattivare l'eliminazione automatica."
 
 #. module: auto_backup
@@ -103,14 +104,13 @@ msgstr ""
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__backup_format
-#, fuzzy
 msgid "Choose the format for this backup."
-msgstr "Scegliere il tipo di archiviazione per questo metodo di backup. "
+msgstr "Scegliere il tipo di archiviazione per questo metodo di backup."
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__method
 msgid "Choose the storage method for this backup."
-msgstr "Scegliere il tipo di archiviazione per questo metodo di backup. "
+msgstr "Scegliere il metodo di archiviazione per questo backup."
 
 #. module: auto_backup
 #: code:addons/auto_backup/models/db_backup.py:265
@@ -122,7 +122,7 @@ msgstr "Eliminazione dei vecchi backup di database non riuscita."
 #: code:addons/auto_backup/models/db_backup.py:137
 #, python-format
 msgid "Connection Test Failed!"
-msgstr "Test connessione Fallito!"
+msgstr "Test connessione fallito!"
 
 #. module: auto_backup
 #: code:addons/auto_backup/models/db_backup.py:132
@@ -177,7 +177,7 @@ msgstr ""
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__display_name
 msgid "Display Name"
-msgstr "Nome da visualizzare"
+msgstr "Nome visualizzato"
 
 #. module: auto_backup
 #: code:addons/auto_backup/models/db_backup.py:123
@@ -222,7 +222,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "Go to Settings / Technical / Automation / Scheduled Actions."
 msgstr ""
-"Andare in  Configurazione / Funzioni Tecniche / Automazione / Azioni "
+"Andare in Configurazione / Funzioni Tecniche / Automazione / Azioni "
 "Programmate."
 
 #. module: auto_backup
@@ -372,15 +372,15 @@ msgstr "Impostazioni SFTP"
 #. module: auto_backup
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "Search the action named 'Backup scheduler'."
-msgstr "Cerca l'azione denominata 'Pianificazione del backup'."
+msgstr "Cercare l'azione chiamata \"Schedulatore backup\"."
 
 #. module: auto_backup
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid ""
 "Set the scheduler to active and fill in how often you want backups generated."
 msgstr ""
-"Impostare lo scheduler per attivare e compilare la frequenza con cui si "
-"desidera generare il backup."
+"Impostare lo schedulatore su attivo e inserire la frequenza di generazione "
+"dei backup desiderata."
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__name
@@ -453,7 +453,7 @@ msgstr "Nome utente presso il Server SFTP"
 #. module: auto_backup
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "Warning:"
-msgstr "Avviso:"
+msgstr "Attenzione:"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__website_message_ids

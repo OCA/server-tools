@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* datetime_formatter
+# 	* datetime_formatter
 #
 msgid ""
 msgstr ""

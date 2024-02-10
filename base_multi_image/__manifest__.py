@@ -7,13 +7,13 @@
 {
     "name": "Multiple images base",
     "summary": "Allow multiple images for database objects",
-    "version": "12.0.1.0.0",
+    "version": "12.0.1.0.1",
     "author": "Tecnativa, "
               "Antiun Ingeniería, S.L., Sodexis, "
               "LasLabs, "
               "Odoo Community Association (OCA)",
     "license": "AGPL-3",
-    "website": "http://www.antiun.com",
+    "website": "https://github.com/OCA/server-tools",
     "category": "Tools",
     "depends": ['base'],
     'installable': True,

@@ -3,14 +3,14 @@
 
 {
     'name': 'Conditional Images',
-    'version': '12.0.1.0.1',
+    'version': '12.0.1.0.2',
     'author': 'Camptocamp, Odoo Community Association (OCA)',
     'license': 'AGPL-3',
     'category': 'Misc',
     'depends': [
         'base',
     ],
-    'website': 'http://github.com/OCA/server-tools',
+    'website': 'https://github.com/OCA/server-tools',
     'data': [
         'views/image_view.xml',
         'security/ir.model.access.csv',

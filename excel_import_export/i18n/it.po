@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-10-29 17:08+0000\n"
-"Last-Translator: Alessandro Fiorino <alessandro.fiorino@digitaldomus.it>\n"
+"PO-Revision-Date: 2024-02-05 09:36+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.10\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -74,10 +74,10 @@ msgid ""
 "change from cell value to other value for import."
 msgstr ""
 "<b>Cond. Campo</b>: codice Python nel formato <code>${...}</code> "
-"rappresenterà il valore della cella excel, ad es., se A1='ABC',  "
-"<code>value</code> rappresenterà 'ABC', ad es., <code>${value == \"ABC\" and "
-"\"X\" or \"Y\"}</code> in maniera tale da porter cambiare il valore della "
-"cella con un altro per l'importazione"
+"rappresenterà il valore della cella excel, ad es., se A1='ABC', <code>value</"
+"code> rappresenterà 'ABC', ad es., <code>${value == \"ABC\" and \"X\" or \"Y"
+"\"}</code> in maniera tale da porter cambiare il valore della cella con un "
+"altro per l'importazione"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -90,7 +90,7 @@ msgid ""
 "<b>Field</b>: Field of the record, e.g., product_id.uom_id.name. They are "
 "orm compliant."
 msgstr ""
-"<b>Campo</b>: Campo del record, ad  es., product_id.uom_id.name. Sono orm-"
+"<b>Campo</b>: Campo del record, ad es., product_id.uom_id.name. Sono orm-"
 "compliant."
 
 #. module: excel_import_export
@@ -254,7 +254,7 @@ msgstr "Aggiunge una sezione foglio"
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_report__choose_template
 msgid "Allow Choose Template"
-msgstr "Permette di scegliere il Template"
+msgstr "Consente selezione modello"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_export_xlsx_wizard__assigned_attachment_ids
@@ -267,7 +267,7 @@ msgstr "Permette di scegliere il Template"
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__assigned_attachment_ids
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_import__assigned_attachment_ids
 msgid "Assigned Attachments"
-msgstr "Allegati Assegnati"
+msgstr "Allegati assegnati"
 
 #. module: excel_import_export
 #: model:ir.model,name:excel_import_export.model_xlsx_styles
@@ -443,7 +443,7 @@ msgstr "Creato il"
 #: selection:xlsx.template.export,section_type:0
 #: selection:xlsx.template.import,section_type:0
 msgid "Data"
-msgstr "Data"
+msgstr "Dati"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__style
@@ -476,7 +476,7 @@ msgstr "Dettaglio di come i dati excel saranno importati"
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__display_name
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_import__display_name
 msgid "Display Name"
-msgstr "Nome Visualizzato"
+msgstr "Nome visualizzato"
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/wizard/import_xlsx_wizard.py:74
@@ -554,12 +554,12 @@ msgstr "Report Excel"
 #. module: excel_import_export
 #: model:ir.model,name:excel_import_export.model_xlsx_report
 msgid "Excel Report AbstractModel"
-msgstr "Report Excel AbstractModel"
+msgstr "Resoconto Excel AbstractModel"
 
 #. module: excel_import_export
 #: model:ir.model,name:excel_import_export.model_xlsx_template
 msgid "Excel template file and instruction"
-msgstr "Excel template file e istruzioni"
+msgstr "File modello excel e istruzioni"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.xlsx_report_view
@@ -598,7 +598,7 @@ msgstr "Campo"
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__field_cond
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_import__field_cond
 msgid "Field Cond."
-msgstr "Cond. Campo"
+msgstr "Cond. campo"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_export_xlsx_wizard__data
@@ -622,7 +622,7 @@ msgstr "Contenuto File"
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_report__name
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__fname
 msgid "File Name"
-msgstr "Nome File"
+msgstr "Nome file"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -658,12 +658,12 @@ msgstr "Ottieni"
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.export_xlsx_wizard
 msgid "Get Import Template"
-msgstr "Scarica il template di Import"
+msgstr "Ottieni modello importazione"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__gname
 msgid "Group Name"
-msgstr "Nome Gruppo"
+msgstr "Nome gruppo"
 
 #. module: excel_import_export
 #: selection:ir.actions.report,report_type:0
@@ -855,7 +855,7 @@ msgid ""
 "Key Error\n"
 "%s"
 msgstr ""
-"Errore Chiave\n"
+"Errore chiave\n"
 "%s"
 
 #. module: excel_import_export
@@ -878,7 +878,7 @@ msgstr "Ultima Modifica il"
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__write_uid
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_import__write_uid
 msgid "Last Updated by"
-msgstr "Ultimo Aggiornamento di"
+msgstr "Ultimo aggiornamento di"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_export_xlsx_wizard__write_date
@@ -887,7 +887,7 @@ msgstr "Ultimo Aggiornamento di"
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__write_date
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_import__write_date
 msgid "Last Updated on"
-msgstr "Ultimo Aggiornamento il"
+msgstr "Ultimo aggiornamento il"
 
 #. module: excel_import_export
 #: model:ir.model.fields,help:excel_import_export.field_xlsx_template__gname
@@ -920,7 +920,7 @@ msgstr "Nessun file in %s"
 #: code:addons/excel_import_export/wizard/import_xlsx_wizard.py:103
 #, python-format
 msgid "No template found"
-msgstr "Nessun template trovato"
+msgstr "Nessun modello trovato"
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/models/xlsx_export.py:125
@@ -1001,12 +1001,12 @@ msgstr "I record in %s superano il numero massimo di record consentiti"
 #. module: excel_import_export
 #: model:ir.model,name:excel_import_export.model_ir_actions_report
 msgid "Report Action"
-msgstr "Azione Report"
+msgstr "Azione resoconto"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_ir_actions_report__report_type
 msgid "Report Type"
-msgstr "Tipo Report"
+msgstr "Tipo resoconto"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_export_xlsx_wizard__res_id
@@ -1019,7 +1019,7 @@ msgstr "ID Risorsa"
 #: model:ir.model.fields,field_description:excel_import_export.field_import_xlsx_wizard__res_model
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__res_model
 msgid "Resource Model"
-msgstr "Modello Risorsa"
+msgstr "Modello risorsa"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__redirect_action
@@ -1052,7 +1052,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__section_type
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_import__section_type
 msgid "Section Type"
-msgstr "Tipo Sezione"
+msgstr "Tipo sezione"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__sequence
@@ -1064,7 +1064,7 @@ msgstr "Sequenza"
 #: code:addons/excel_import_export/wizard/import_xlsx_wizard.py:111
 #, python-format
 msgid "Set Templates"
-msgstr "Imposta Template"
+msgstr "Imposta modelli"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__sheet
@@ -1108,7 +1108,7 @@ msgstr "Somma"
 #: model:ir.model.fields,field_description:excel_import_export.field_import_xlsx_wizard__template_id
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_report__template_id
 msgid "Template"
-msgstr "Template"
+msgstr "Modello"
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/models/ir_report.py:23
@@ -1135,7 +1135,7 @@ msgstr ""
 #: code:addons/excel_import_export/models/xlsx_import.py:249
 #, python-format
 msgid "Template's model mismatch"
-msgstr "Modello di Template non corrispondente"
+msgstr "Schema del modello non corrispondente"
 
 #. module: excel_import_export
 #: selection:ir.actions.report,report_type:0
@@ -1145,7 +1145,7 @@ msgstr "Testo"
 #. module: excel_import_export
 #: model:ir.model.fields,help:excel_import_export.field_xlsx_template__res_model
 msgid "The database object this attachment will be attached to."
-msgstr "L'oggetto del database a cui l'allegato sarà allegato."
+msgstr "L'oggetto del database a cui verrà assegnato questo allegato."
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/models/xlsx_template.py:110
@@ -1200,7 +1200,7 @@ msgstr ""
 #: code:addons/excel_import_export/static/src/js/report/action_manager_report.js:52
 #, python-format
 msgid "Warning"
-msgstr "Avviso"
+msgstr "Attenzione"
 
 #. module: excel_import_export
 #: model:ir.model,name:excel_import_export.model_export_xlsx_wizard
@@ -1241,4 +1241,4 @@ msgstr "o"
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.import_xlsx_wizard
 msgid "⇒ Get Sample Import Template"
-msgstr "⇒ Scarica Esempio Template di Importazione"
+msgstr "⇒ Scarica esempio schema di importazione"

@@ -4,9 +4,9 @@
 
 {
     'name': 'SQL Export',
-    'version': '12.0.1.2.0',
+    'version': '12.0.1.2.1',
     'author': 'Akretion,Odoo Community Association (OCA)',
-    'website': 'http://www.akretion.com',
+    'website': 'https://github.com/OCA/server-tools',
     'license': 'AGPL-3',
     'category': 'Generic Modules/Others',
     'summary': 'Export data in csv file with SQL requests',

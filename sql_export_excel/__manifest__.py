@@ -3,9 +3,9 @@
 
 {
     'name': 'SQL Export Excel',
-    'version': '12.0.1.1.0',
+    'version': '12.0.1.1.1',
     'author': 'Akretion,Odoo Community Association (OCA)',
-    'website': 'http://github/oca/server-tools',
+    'website': 'https://github.com/OCA/server-tools',
     'license': 'AGPL-3',
     'category': 'Generic Modules/Others',
     'summary': 'Allow to export a sql query to an excel file.',

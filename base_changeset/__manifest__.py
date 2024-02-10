@@ -4,14 +4,14 @@
 
 {
     "name": "Track record changesets",
-    "version": "12.0.1.1.0",
+    "version": "12.0.1.1.1",
     "development_status": "Alpha",
     "author": "Onestein, Camptocamp, Odoo Community Association (OCA)",
     "maintainers": ["astirpe"],
     "license": "AGPL-3",
     "category": "Tools",
     "depends": ["web"],
-    "website": "https://github.com/OCA/server-tools/",
+    "website": "https://github.com/OCA/server-tools",
     "data": [
         "security/groups.xml",
         "security/ir.model.access.csv",

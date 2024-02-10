@@ -3,10 +3,10 @@
 
 {
     'name': "Audit Log",
-    'version': "12.0.2.1.0",
+    'version': "12.0.2.1.1",
     'author': "ABF OSIELL,Odoo Community Association (OCA)",
     'license': "AGPL-3",
-    'website': "https://github.com/OCA/server-tools/",
+    'website': "https://github.com/OCA/server-tools",
     'category': "Tools",
     'depends': [
         'base',

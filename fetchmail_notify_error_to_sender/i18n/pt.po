@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* fetchmail_notify_error_to_sender
+# 	* fetchmail_notify_error_to_sender
 #
 msgid ""
 msgstr ""
@@ -18,10 +18,12 @@ msgstr ""
 
 #. module: fetchmail_notify_error_to_sender
 #: model:mail.template,body_html:fetchmail_notify_error_to_sender.email_template_error_notice
-msgid "\n"
+msgid ""
+"\n"
 "            <div>\n"
 "            <p>Hello ${ctx.get('sender_message').get('from')},</p>\n"
-"            <p>we got a problem with your email: <i>${ctx.get('sender_message').get('subject')}</i></p>\n"
+"            <p>we got a problem with your email: <i>${ctx."
+"get('sender_message').get('subject')}</i></p>\n"
 "            <p>Maybe you used a wrong recipient address?</p>\n"
 "            <p><br/></p>\n"
 "            <p>Technical details:</p>\n"
@@ -63,7 +65,9 @@ msgstr "Erro de receção com: ${ctx.get('sender_message').get('subject')|safe}"
 
 #. module: fetchmail_notify_error_to_sender
 #: model:ir.model.fields,help:fetchmail_notify_error_to_sender.field_fetchmail_server__error_notice_template_id
-msgid "Set here the template to use to send notice to sender when errors occur while fetching email"
+msgid ""
+"Set here the template to use to send notice to sender when errors occur "
+"while fetching email"
 msgstr ""
 "Defina aqui o modelo a ser usado para enviar uma notificação ao remetente "
 "quando ocorrerem erros durante o recebimento de e-mails"

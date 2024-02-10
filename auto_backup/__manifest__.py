@@ -6,7 +6,7 @@
 {
     "name": "Database Auto-Backup",
     "summary": "Backups database",
-    "version": "12.0.1.0.0",
+    "version": "12.0.1.0.1",
     "author":
         "Yenthe Van Ginneken, "
         "Agile Business Group, "
@@ -15,7 +15,7 @@
         "AdaptiveCity, "
         "Odoo Community Association (OCA)",
     "license": "AGPL-3",
-    "website": "https://github.com/OCA/server-tools/",
+    "website": "https://github.com/OCA/server-tools",
     "category": "Tools",
     "depends": [
         "mail",
