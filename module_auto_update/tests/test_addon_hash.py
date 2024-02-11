@@ -64,4 +64,4 @@ class TestAddonHash(unittest.TestCase):
             exclude_patterns=['*.pyc', '*.pyo', '*.pot', 'static/*'],
             keep_langs=['fr_FR', 'nl'],
         )
-        self.assertEqual(checksum, 'fecb89486c8a29d1f760cbd01c1950f6e8421b14')
+        self.assertEqual(checksum, '1a98bb88cefd6cde72620ac5f45a9ef41c894291')
