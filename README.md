@@ -41,7 +41,7 @@ addon | version | maintainers | summary
 [base_kanban_stage_state](base_kanban_stage_state/) | 12.0.1.0.0 |  | Maps stages from base_kanban_stage to states
 [base_locale_uom_default](base_locale_uom_default/) | 12.0.1.0.1 |  | This provides settings to select default UoMs at the language level.
 [base_m2m_custom_field](base_m2m_custom_field/) | 12.0.1.0.0 |  | Customizations of Many2many
-[base_model_restrict_update](base_model_restrict_update/) | 12.0.1.1.0 |  | Update Restrict Model
+[base_model_restrict_update](base_model_restrict_update/) | 12.0.1.1.1 |  | Update Restrict Model
 [base_multi_image](base_multi_image/) | 12.0.1.0.1 |  | Allow multiple images for database objects
 [base_remote](base_remote/) | 12.0.1.0.2 |  | Remote Base
 [base_search_fuzzy](base_search_fuzzy/) | 12.0.1.0.2 |  | Fuzzy search with the PostgreSQL trigram extension
