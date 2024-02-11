@@ -53,8 +53,8 @@ addon | version | maintainers | summary
 [database_cleanup](database_cleanup/) | 12.0.1.2.1 |  | Database cleanup
 [datetime_formatter](datetime_formatter/) | 12.0.1.0.0 |  | Helper functions to give correct format to date[time] fields
 [dbfilter_from_header](dbfilter_from_header/) | 12.0.1.0.0 |  | Filter databases with HTTP headers
-[excel_import_export](excel_import_export/) | 12.0.1.0.7 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Base module for developing Excel import/export/report
-[excel_import_export_demo](excel_import_export_demo/) | 12.0.1.0.2 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Excel Import/Export/Report Demo
+[excel_import_export](excel_import_export/) | 12.0.1.0.8 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Base module for developing Excel import/export/report
+[excel_import_export_demo](excel_import_export_demo/) | 12.0.1.0.3 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Excel Import/Export/Report Demo
 [fetchmail_incoming_log](fetchmail_incoming_log/) | 12.0.1.0.0 |  | Log all messages received, before they start to be processed.
 [fetchmail_notify_error_to_sender](fetchmail_notify_error_to_sender/) | 12.0.1.0.0 |  | If fetching mails gives error, send an email to sender
 [html_image_url_extractor](html_image_url_extractor/) | 12.0.1.0.0 |  | Extract images found in any HTML field
