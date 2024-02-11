@@ -3,6 +3,7 @@
 
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
+from odoo.tools.safe_eval import safe_eval
 
 
 class ExportXLSXWizard(models.TransientModel):
@@ -27,10 +28,10 @@ class ExportXLSXWizard(models.TransientModel):
         ondelete='cascade',
         domain=lambda self: self._context.get('template_domain', []),
     )
-    res_id = fields.Integer(
-        string='Resource ID',
+    res_ids = fields.Char(
+        string="Resource IDs",
         readonly=True,
-        required=True,
+        required=True
     )
     res_model = fields.Char(
         string='Resource Model',
@@ -49,7 +50,7 @@ class ExportXLSXWizard(models.TransientModel):
     @api.model
     def default_get(self, fields):
         res_model = self._context.get('active_model', False)
-        res_id = self._context.get('active_id', False)
+        res_ids = self._context.get("active_ids", False)
         template_domain = self._context.get('template_domain', [])
         templates = self.env['xlsx.template'].search(template_domain)
         if not templates:
@@ -59,7 +60,7 @@ class ExportXLSXWizard(models.TransientModel):
             if not template.datas:
                 raise ValidationError(_('No file in %s') % (template.name,))
         defaults['template_id'] = len(templates) == 1 and templates.id or False
-        defaults['res_id'] = res_id
+        defaults["res_ids"] = ",".join([str(x) for x in res_ids])
         defaults['res_model'] = res_model
         return defaults
 
@@ -69,7 +70,7 @@ class ExportXLSXWizard(models.TransientModel):
         Export = self.env['xlsx.export']
         out_file, out_name = Export.export_xlsx(self.template_id,
                                                 self.res_model,
-                                                self.res_id)
+                                                safe_eval(self.res_ids))
         self.write({'state': 'get', 'data': out_file, 'name': out_name})
         return {
             'type': 'ir.actions.act_window',
