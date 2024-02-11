@@ -7,7 +7,7 @@
     'author': 'Akretion,Odoo Community Association (OCA)',
     'summary': 'This module enhances ir.attachment for better '
                'control of import and export of files',
-    'website': 'https://www.akretion.com',
+    'website': 'https://github.com/OCA/server-tools',
     'license': 'AGPL-3',
     'category': 'Generic Modules',
     'depends': [

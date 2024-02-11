@@ -8,6 +8,7 @@
               "Acysos S.L,"
               "Odoo Community Association (OCA)",
     "license": "AGPL-3",
+    "website": "https://github.com/OCA/server-tools",
     "category": "Hidden/Dependency",
     "summary": "Request SSL certificates from letsencrypt.org",
     "depends": [

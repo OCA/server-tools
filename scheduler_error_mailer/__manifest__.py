@@ -9,7 +9,7 @@
     'category': 'Extra Tools',
     'license': 'AGPL-3',
     'author': "Akretion,Sodexis,Odoo Community Association (OCA)",
-    'website': 'http://www.akretion.com/',
+    'website': 'https://github.com/OCA/server-tools',
     'depends': ['mail'],
     'data': [
         'data/ir_cron_email_tpl.xml',

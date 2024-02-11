@@ -6,6 +6,7 @@
     'author': "Therp BV,Odoo Community Association (OCA)",
     'depends': ['base'],
     'license': 'AGPL-3',
+    'website': 'https://github.com/OCA/server-tools',
     'category': 'Tools',
     'data': [
         "views/purge_wizard.xml",
