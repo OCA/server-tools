@@ -8,6 +8,7 @@
         <field name="arch" type="xml">
             <field name="transient" position="after">
                 <field name="restrict_update" />
+                <field name="skip_check_for_readonly_users" />
             </field>
         </field>
     </record>
