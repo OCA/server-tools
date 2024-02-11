@@ -22,8 +22,8 @@ msgid "${object.post_import_do_something()}"
 msgstr "${object.post_import_do_something()}"
 
 #. module: excel_import_export
-#: code:addons/excel_import_export/models/common.py:170
-#: code:addons/excel_import_export/models/common.py:180
+#: code:addons/excel_import_export/models/common.py:169
+#: code:addons/excel_import_export/models/common.py:179
 #, python-format
 msgid "'%s' sheet not found"
 msgstr "Foglio '%s' non trovato"
@@ -501,7 +501,7 @@ msgstr ""
 "%s"
 
 #. module: excel_import_export
-#: code:addons/excel_import_export/models/xlsx_export.py:141
+#: code:addons/excel_import_export/models/xlsx_export.py:142
 #, python-format
 msgid ""
 "Error filling data into Excel sheets\n"
@@ -716,7 +716,7 @@ msgid "If section type is row, this field is required"
 msgstr "Se il tipo sezione è riga, il campo è richiesto"
 
 #. module: excel_import_export
-#: code:addons/excel_import_export/models/xlsx_export.py:137
+#: code:addons/excel_import_export/models/xlsx_export.py:138
 #, python-format
 msgid ""
 "IllegalCharacterError\n"
@@ -837,19 +837,19 @@ msgid "Invalid file style, only .xls or .xlsx file allowed"
 msgstr "Tipo file non valido, solo file .xls o .xlsx sono consentiti"
 
 #. module: excel_import_export
-#: code:addons/excel_import_export/models/common.py:108
+#: code:addons/excel_import_export/models/common.py:107
 #, python-format
 msgid "Invalid style type %s"
 msgstr "Tipo stile non valido %s"
 
 #. module: excel_import_export
-#: code:addons/excel_import_export/models/common.py:111
+#: code:addons/excel_import_export/models/common.py:110
 #, python-format
 msgid "Invalid value %s for style type %s"
 msgstr "Valore non valido %s per il tipo di stile %s"
 
 #. module: excel_import_export
-#: code:addons/excel_import_export/models/xlsx_export.py:134
+#: code:addons/excel_import_export/models/xlsx_export.py:135
 #, python-format
 msgid ""
 "Key Error\n"
@@ -909,21 +909,21 @@ msgstr ""
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/models/xlsx_report.py:50
-#: code:addons/excel_import_export/wizard/export_xlsx_wizard.py:60
+#: code:addons/excel_import_export/wizard/export_xlsx_wizard.py:61
 #, python-format
 msgid "No file in %s"
 msgstr "Nessun file in %s"
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/models/xlsx_report.py:46
-#: code:addons/excel_import_export/wizard/export_xlsx_wizard.py:56
+#: code:addons/excel_import_export/wizard/export_xlsx_wizard.py:57
 #: code:addons/excel_import_export/wizard/import_xlsx_wizard.py:103
 #, python-format
 msgid "No template found"
 msgstr "Nessun modello trovato"
 
 #. module: excel_import_export
-#: code:addons/excel_import_export/models/xlsx_export.py:125
+#: code:addons/excel_import_export/models/xlsx_export.py:126
 #, python-format
 msgid "Not enough worksheets"
 msgstr "Non ci sono abbastanza fogli"
@@ -966,8 +966,8 @@ msgid "Please select Excel file to import"
 msgstr "Prego selezionare il file Excel da importare"
 
 #. module: excel_import_export
-#: code:addons/excel_import_export/models/common.py:158
-#: code:addons/excel_import_export/models/common.py:255
+#: code:addons/excel_import_export/models/common.py:157
+#: code:addons/excel_import_export/models/common.py:253
 #, python-format
 msgid "Position %s is not valid"
 msgstr "Posizione %s non valida"
@@ -993,7 +993,7 @@ msgstr ""
 "%s"
 
 #. module: excel_import_export
-#: code:addons/excel_import_export/models/xlsx_export.py:55
+#: code:addons/excel_import_export/models/xlsx_export.py:56
 #, python-format
 msgid "Records in %s exceed max records allowed"
 msgstr "I record in %s superano il numero massimo di record consentiti"
@@ -1009,10 +1009,14 @@ msgid "Report Type"
 msgstr "Tipo resoconto"
 
 #. module: excel_import_export
-#: model:ir.model.fields,field_description:excel_import_export.field_export_xlsx_wizard__res_id
 #: model:ir.model.fields,field_description:excel_import_export.field_import_xlsx_wizard__res_id
 msgid "Resource ID"
 msgstr "ID Risorsa"
+
+#. module: excel_import_export
+#: model:ir.model.fields,field_description:excel_import_export.field_export_xlsx_wizard__res_ids
+msgid "Resource IDs"
+msgstr ""
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_export_xlsx_wizard__res_model
@@ -1075,7 +1079,7 @@ msgid "Sheet"
 msgstr "Foglio"
 
 #. module: excel_import_export
-#: code:addons/excel_import_export/models/xlsx_export.py:129
+#: code:addons/excel_import_export/models/xlsx_export.py:130
 #: code:addons/excel_import_export/models/xlsx_import.py:147
 #, python-format
 msgid "Sheet %s not found"
@@ -1123,7 +1127,7 @@ msgid "Template Name"
 msgstr "Nome Template"
 
 #. module: excel_import_export
-#: code:addons/excel_import_export/models/common.py:242
+#: code:addons/excel_import_export/models/common.py:240
 #, python-format
 msgid ""
 "Template with CSV Quoting = False, data must not contain the same char as "
@@ -1131,7 +1135,7 @@ msgid ""
 msgstr ""
 
 #. module: excel_import_export
-#: code:addons/excel_import_export/models/xlsx_export.py:228
+#: code:addons/excel_import_export/models/xlsx_export.py:229
 #: code:addons/excel_import_export/models/xlsx_import.py:249
 #, python-format
 msgid "Template's model mismatch"
