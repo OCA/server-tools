@@ -19,4 +19,5 @@
     "demo": [
         "demo/demo_data.xml",
     ],
+    "external_dependencies": {"deb": ["nsca-client"]},
 }
