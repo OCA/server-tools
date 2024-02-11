@@ -93,7 +93,7 @@ msgid "Execute"
 msgstr ""
 
 #. module: excel_import_export_demo
-#: model:ir.actions.act_window,name:excel_import_export_demo.action_sale_oder_export_xlsx
+#: model:ir.actions.act_window,name:excel_import_export_demo.action_sale_order_export_xlsx
 msgid "Export Excel"
 msgstr ""
 
