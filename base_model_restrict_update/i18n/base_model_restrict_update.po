@@ -15,6 +15,11 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: base_model_restrict_update
+#: model:ir.model.fields,help:base_model_restrict_update.field_ir_model__skip_check_for_readonly_users
+msgid "Allow readonly users to create/write/delete records of this model"
+msgstr ""
+
+#. module: base_model_restrict_update
 #: model:ir.model,name:base_model_restrict_update.model_ir_model_access
 msgid "Model Access"
 msgstr ""
@@ -37,6 +42,11 @@ msgstr ""
 #. module: base_model_restrict_update
 #: model:ir.model.fields,help:base_model_restrict_update.field_res_users__unrestrict_model_update
 msgid "Set to true and the user can update restricted model."
+msgstr ""
+
+#. module: base_model_restrict_update
+#: model:ir.model.fields,field_description:base_model_restrict_update.field_ir_model__skip_check_for_readonly_users
+msgid "Skip Check For Readonly Users"
 msgstr ""
 
 #. module: base_model_restrict_update

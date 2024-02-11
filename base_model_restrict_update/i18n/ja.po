@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* base_model_restrict_update
+# 	* base_model_restrict_update
 #
 msgid ""
 msgstr ""
@@ -15,6 +15,11 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 4.17\n"
+
+#. module: base_model_restrict_update
+#: model:ir.model.fields,help:base_model_restrict_update.field_ir_model__skip_check_for_readonly_users
+msgid "Allow readonly users to create/write/delete records of this model"
+msgstr ""
 
 #. module: base_model_restrict_update
 #: model:ir.model,name:base_model_restrict_update.model_ir_model_access
@@ -42,6 +47,11 @@ msgid "Set to true and the user can update restricted model."
 msgstr "trueに設定するとユーザは制限付モデルを更新可能になります。"
 
 #. module: base_model_restrict_update
+#: model:ir.model.fields,field_description:base_model_restrict_update.field_ir_model__skip_check_for_readonly_users
+msgid "Skip Check For Readonly Users"
+msgstr ""
+
+#. module: base_model_restrict_update
 #: model:ir.model.fields,field_description:base_model_restrict_update.field_res_users__unrestrict_model_update
 msgid "Unrestrict Model Update"
 msgstr "モデル更新の制限を解除"
@@ -58,8 +68,11 @@ msgstr "ユーザ"
 
 #. module: base_model_restrict_update
 #: model:ir.model.fields,help:base_model_restrict_update.field_ir_model__restrict_update
-msgid "When selected, the model is restricted to read-only unless the user has the special permission."
-msgstr "選択すると、ユーザに特別な権限がない限りモデルは読取専用に制限されます。"
+msgid ""
+"When selected, the model is restricted to read-only unless the user has the "
+"special permission."
+msgstr ""
+"選択すると、ユーザに特別な権限がない限りモデルは読取専用に制限されます。"
 
 #. module: base_model_restrict_update
 #: code:addons/base_model_restrict_update/models/ir_model_access.py:27
