@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-17 02:42+0000\n"
-"PO-Revision-Date: 2024-01-02 16:36+0000\n"
+"PO-Revision-Date: 2024-02-12 10:44+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -118,7 +118,7 @@ msgstr ""
 #. module: base_name_search_improved
 #: model:ir.model.fields,field_description:base_name_search_improved.field_ir_model____last_update
 msgid "Last Modified on"
-msgstr "Ultima Modifica il"
+msgstr "Ultima modifica il"
 
 #. module: base_name_search_improved
 #: model:ir.model,name:base_name_search_improved.model_ir_model
