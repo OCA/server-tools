@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 8.0\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
@@ -14,32 +14,32 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: cron_inactivity_period
-#: field:ir.cron.inactivity.period,inactivity_hour_begin:0
+#: model:ir.model.fields,field_description:cron_inactivity_period.field_ir_cron_inactivity_period__inactivity_hour_begin
 msgid "Begin Hour"
 msgstr ""
 
 #. module: cron_inactivity_period
-#: field:ir.cron.inactivity.period,create_uid:0
+#: model:ir.model.fields,field_description:cron_inactivity_period.field_ir_cron_inactivity_period__create_uid
 msgid "Created by"
 msgstr ""
 
 #. module: cron_inactivity_period
-#: field:ir.cron.inactivity.period,create_date:0
+#: model:ir.model.fields,field_description:cron_inactivity_period.field_ir_cron_inactivity_period__create_date
 msgid "Created on"
 msgstr ""
 
 #. module: cron_inactivity_period
-#: field:ir.cron.inactivity.period,cron_id:0
-msgid "Cron id"
+#: model:ir.model.fields,field_description:cron_inactivity_period.field_ir_cron_inactivity_period__cron_id
+msgid "Cron"
 msgstr ""
 
 #. module: cron_inactivity_period
-#: field:ir.cron.inactivity.period,display_name:0
+#: model:ir.model.fields,field_description:cron_inactivity_period.field_ir_cron_inactivity_period__display_name
 msgid "Display Name"
 msgstr ""
 
 #. module: cron_inactivity_period
-#: field:ir.cron.inactivity.period,inactivity_hour_end:0
+#: model:ir.model.fields,field_description:cron_inactivity_period.field_ir_cron_inactivity_period__inactivity_hour_end
 msgid "End Hour"
 msgstr ""
 
@@ -49,45 +49,55 @@ msgid "Hour"
 msgstr ""
 
 #. module: cron_inactivity_period
-#: field:ir.cron.inactivity.period,id:0
+#: model:ir.model.fields,field_description:cron_inactivity_period.field_ir_cron_inactivity_period__id
 msgid "ID"
 msgstr ""
 
 #. module: cron_inactivity_period
-#: view:ir.cron:cron_inactivity_period.view_ir_cron_form
-#: field:ir.cron,inactivity_period_ids:0
+#: model:ir.model.fields,field_description:cron_inactivity_period.field_ir_cron__inactivity_period_ids
+#: model_terms:ir.ui.view,arch_db:cron_inactivity_period.view_ir_cron_form
 msgid "Inactivity Periods"
 msgstr ""
 
 #. module: cron_inactivity_period
-#: field:ir.cron.inactivity.period,__last_update:0
+#: model:ir.model.fields,field_description:cron_inactivity_period.field_ir_cron_inactivity_period____last_update
 msgid "Last Modified on"
 msgstr ""
 
 #. module: cron_inactivity_period
-#: field:ir.cron.inactivity.period,write_uid:0
+#: model:ir.model.fields,field_description:cron_inactivity_period.field_ir_cron_inactivity_period__write_uid
 msgid "Last Updated by"
 msgstr ""
 
 #. module: cron_inactivity_period
-#: field:ir.cron.inactivity.period,write_date:0
+#: model:ir.model.fields,field_description:cron_inactivity_period.field_ir_cron_inactivity_period__write_date
 msgid "Last Updated on"
 msgstr ""
 
 #. module: cron_inactivity_period
-#: code:addons/cron_inactivity_period/models/ir_cron_inactivity_period.py:36
+#: model:ir.model,name:cron_inactivity_period.model_ir_cron
+msgid "Scheduled Actions"
+msgstr ""
+
+#. module: cron_inactivity_period
+#: code:addons/cron_inactivity_period/models/ir_cron_inactivity_period.py:30
 #, python-format
 msgid "The End Hour should be greater than the Begin Hour"
 msgstr ""
 
 #. module: cron_inactivity_period
-#: field:ir.cron.inactivity.period,type:0
+#: model:ir.model.fields,field_description:cron_inactivity_period.field_ir_cron_inactivity_period__type
 msgid "Type"
 msgstr ""
 
 #. module: cron_inactivity_period
-#: code:addons/cron_inactivity_period/models/ir_cron_inactivity_period.py:62
+#: code:addons/cron_inactivity_period/models/ir_cron_inactivity_period.py:57
 #, python-format
 msgid "Unimplemented Feature: Inactivity Period type '%s'"
+msgstr ""
+
+#. module: cron_inactivity_period
+#: model:ir.model,name:cron_inactivity_period.model_ir_cron_inactivity_period
+msgid "ir.cron.inactivity.period"
 msgstr ""
 
