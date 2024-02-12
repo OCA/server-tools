@@ -50,16 +50,17 @@ class CleanupPurgeLineField(models.TransientModel):
         for rec in to_unlink:
             self.logger.info(' - %s.%s', rec.model_name, rec.field_id.name)
             field_id = rec.with_context(**context_flags).field_id
-            # If store field is not set, the SQL column will not be DROPPED
-            # even if exists
-            if not field_id.store:
-                table_name = self.env[rec.model_name]._table
-                column_name = field_id.name
-            else:
-                table_name = False
-                column_name = False
+            model = self.env[rec.model_name]
+            table_name = model._table
+            column_name = field_id.name
+            force_drop = False
+            # FIX: on unlink, odoo will not DROP the SQL column even if exists if the
+            # store attribute is set to False.
+            if not field_id.store and model._auto:
+                force_drop = True
+            # Odoo will internally drop the SQL column
             field_id.unlink()
-            if table_name and column_name:
+            if force_drop:
                 self._drop_column(table_name, column_name)
             rec.purged = True
         return True
