@@ -225,6 +225,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_ir_autovacuum__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_ir_config_parameter__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_ir_cron__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_ir_cron_inactivity_period__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_ir_default__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_ir_demo__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_ir_demo_failure__changeset_change_ids
@@ -560,6 +561,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_ir_autovacuum__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_ir_config_parameter__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_ir_cron__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_ir_cron_inactivity_period__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_ir_default__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_ir_demo__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_ir_demo_failure__changeset_ids
@@ -882,6 +884,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_ir_autovacuum__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_ir_config_parameter__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_ir_cron__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_ir_cron_inactivity_period__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_ir_default__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_ir_demo__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_ir_demo_failure__count_pending_changeset_changes
@@ -1197,6 +1200,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_ir_autovacuum__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_ir_config_parameter__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_ir_cron__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_ir_cron_inactivity_period__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_ir_default__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_ir_demo__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_ir_demo_failure__count_pending_changesets
@@ -1914,6 +1918,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_ir_autovacuum__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_ir_config_parameter__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_ir_cron__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_ir_cron_inactivity_period__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_ir_default__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_ir_demo__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_ir_demo_failure__user_can_see_changeset
