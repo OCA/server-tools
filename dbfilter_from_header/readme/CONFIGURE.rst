@@ -16,3 +16,5 @@ applied before looking at the regular expression in the header.
 And make sure that proxy mode is enabled in Odoo's configuration file:
 
 ``proxy_mode = True``
+
+Your filter regex can contain dynamically injected hostname (%h) or the first subdomain (%d) through which the system is being accessed
