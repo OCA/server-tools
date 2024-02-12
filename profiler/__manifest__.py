@@ -1,6 +1,6 @@
 {
     "name": "profiler",
-    "author": "Vauxoo, Sunflower IT, Odoo Community Association (OCA)",
+    "author": "Vauxoo, Therp BV, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/server-tools",
     "category": "Tests",
     "version": "14.0.1.0.0",
@@ -12,4 +12,5 @@
     ],
     "post_load": "post_load",
     "installable": True,
+    "maintainers": ["thomaspaulb"],
 }
