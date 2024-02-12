@@ -28,7 +28,7 @@ addon | version | maintainers | summary
 [auditlog](auditlog/) | 12.0.2.1.1 |  | Audit Log
 [auto_backup](auto_backup/) | 12.0.1.0.1 |  | Backups database
 [autovacuum_message_attachment](autovacuum_message_attachment/) | 12.0.1.1.1 |  | Automatically delete old mail messages and attachments
-[base_changeset](base_changeset/) | 12.0.1.1.1 | [![astirpe](https://github.com/astirpe.png?size=30px)](https://github.com/astirpe) | Track record changesets
+[base_changeset](base_changeset/) | 12.0.1.1.2 | [![astirpe](https://github.com/astirpe.png?size=30px)](https://github.com/astirpe) | Track record changesets
 [base_conditional_image](base_conditional_image/) | 12.0.1.0.2 |  | Conditional Images
 [base_cron_exclusion](base_cron_exclusion/) | 12.0.1.0.0 |  | Allow you to select scheduled actions that should not run simultaneously.
 [base_custom_info](base_custom_info/) | 12.0.2.1.0 |  | Add custom field in models
