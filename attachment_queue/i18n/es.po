@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-01-02 20:35+0000\n"
+"PO-Revision-Date: 2024-02-12 20:35+0000\n"
 "Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
@@ -83,7 +83,7 @@ msgstr "Icono de Tipo de Actividad"
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__assigned_attachment_ids
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue_reschedule__assigned_attachment_ids
 msgid "Assigned Attachments"
-msgstr ""
+msgstr "Archivos Adjuntos Asignados"
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__attachment_id
