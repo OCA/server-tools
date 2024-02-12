@@ -115,7 +115,7 @@ class Base(models.AbstractModel):
         for record in self:
             local_values = self.env["record.changeset"].add_changeset(record, values)
             super(Base, record).write(local_values)
-        return self
+        return True
 
     def _changeset_disabled(self):
         if self.env.context.get("__no_changeset") == disable_changeset:
