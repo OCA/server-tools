@@ -188,6 +188,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_ir_autovacuum__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_ir_config_parameter__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_ir_cron__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_ir_cron_inactivity_period__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_ir_default__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_ir_demo__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_ir_demo_failure__assigned_attachment_ids
