@@ -13,4 +13,5 @@
     ],
     'post_load': 'post_load',
     'installable': True,
+    'maintainers': ['thomaspaulb']
 }
