@@ -37,6 +37,7 @@ setuptools.setup(
         'odoo12-addon-bus_alt_connection',
         'odoo12-addon-company_country',
         'odoo12-addon-configuration_helper',
+        'odoo12-addon-cron_inactivity_period',
         'odoo12-addon-database_cleanup',
         'odoo12-addon-datetime_formatter',
         'odoo12-addon-dbfilter_from_header',
