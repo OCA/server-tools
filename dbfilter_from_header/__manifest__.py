@@ -6,7 +6,7 @@
 {
     "name": "dbfilter_from_header",
     "summary": "Filter databases with HTTP headers",
-    "version": "12.0.1.0.1",
+    "version": "12.0.1.0.2",
     "website": "https://github.com/OCA/server-tools",
     "author": "Therp BV, "
               "Odoo Community Association (OCA)",
