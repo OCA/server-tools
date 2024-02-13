@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="view_template_security_group" model="ir.ui.view">
+            <field name="name">template.security.group</field>
+            <field name="model">template.security.group</field>
+            <field name="arch" type="xml">
+                <form string="Eficient Security Group Creation">
+                <header>
+                    <button
+                            name="create_group"
+                            type="object"
+                            string="Create Security Group"
+                            class="oe_highlight"
+                        />
+                </header>
+                <sheet>
+                <group col="4">
+                    <field name="category_id" />
+                    <field name="name" />
+                    <field name="share" />
+                </group>
+                <notebook>
+                    <page string="Users">
+                        <field name="users" context="{'search_default_no_share':1}" />
+                    </page>
+                    <page string="Inherited">
+                        <label
+                                    for="implied_ids"
+                                    string="Users added to this group are automatically added in the following groups."
+                                />
+                        <field name="implied_ids" />
+                    </page>
+                    <page string="Menus">
+                        <field name="menu_access" />
+                    </page>
+                    <page string="Views">
+                        <field name="view_access" />
+                    </page>
+                    <page string="Access Rights">
+                        <field name="model_access">
+                            <tree string="Access Rights" editable="top" create="false">
+                                <field name="name" />
+                                <field name="res_model" />
+                                <field name="perm_read" />
+                                <field name="perm_write" />
+                                <field name="perm_create" />
+                                <field name="perm_unlink" />
+                            </tree>
+                        </field>
+                    </page>
+                    <page string="Record Rules">
+                        <field name="rule_groups">
+                            <tree string="Record Rules" editable="top">
+                                <field name="name" />
+                                <field name="model_id" />
+                                <field name="domain_force" />
+                                <field name="perm_read" />
+                                <field name="perm_write" />
+                                <field name="perm_create" />
+                                <field name="perm_unlink" />
+                            </tree>
+                        </field>
+                    </page><page string="Notes">
+                        <field name="comment" />
+                    </page>
+                </notebook>
+                </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record
+            id="action_view_template_security_group_wizard"
+            model="ir.actions.act_window"
+        >
+            <field name="name">Security Group Creation</field>
+            <field name="res_model">template.security.group</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_template_security_group" />
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>
