@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-09-03 00:15+0000\n"
+"PO-Revision-Date: 2024-02-14 19:34+0000\n"
 "Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
@@ -46,7 +46,7 @@ msgstr "Permitir Elegir Plantilla"
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__assigned_attachment_ids
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__assigned_attachment_ids
 msgid "Assigned Attachments"
-msgstr ""
+msgstr "Archivos Adjuntos Asignados"
 
 #. module: excel_import_export_demo
 #: model_terms:ir.ui.view,arch_db:excel_import_export_demo.partner_list_wizard
