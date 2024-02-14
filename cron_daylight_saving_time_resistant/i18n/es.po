@@ -6,13 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2024-02-14 15:37+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: cron_daylight_saving_time_resistant
 #: model:ir.model.fields,help:cron_daylight_saving_time_resistant.field_ir_cron__daylight_saving_time_resistant
@@ -20,18 +22,20 @@ msgid ""
 "Adjust interval to run at the same hour after and beforedaylight saving time"
 " change. It's used twice a year"
 msgstr ""
+"Ajuste el intervalo para que funcione a la misma hora después y antes del "
+"cambio de horario de verano. Se utiliza dos veces al año"
 
 #. module: cron_daylight_saving_time_resistant
 #: model:ir.model.fields,field_description:cron_daylight_saving_time_resistant.field_ir_cron__daylight_saving_time_resistant
 msgid "Daylight Saving Time Resistant"
-msgstr ""
+msgstr "Resistente al Horario de Verano"
 
 #. module: cron_daylight_saving_time_resistant
 #: model:ir.model,name:cron_daylight_saving_time_resistant.model_ir_cron
 msgid "Scheduled Actions"
-msgstr ""
+msgstr "Acciones Planificadas"
 
 #. module: cron_daylight_saving_time_resistant
 #: model:ir.model.fields,field_description:cron_daylight_saving_time_resistant.field_ir_cron__smart_search
 msgid "Smart Search"
-msgstr ""
+msgstr "Búsqueda Inteligente"
