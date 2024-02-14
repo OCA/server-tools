@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-02-13 20:34+0000\n"
+"PO-Revision-Date: 2024-02-14 15:37+0000\n"
 "Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
@@ -577,34 +577,34 @@ msgstr "Última Actualización el"
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_vacuum_rule__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Última Actualización el"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model,name:autovacuum_message_attachment.model_mail_message
 #: model:ir.model.fields.selection,name:autovacuum_message_attachment.selection__vacuum_rule__ttype__message
 msgid "Message"
-msgstr ""
+msgstr "Mensaje"
 
 #. module: autovacuum_message_attachment
 #: model_terms:ir.ui.view,arch_db:autovacuum_message_attachment.vacuum_rule_form_view
 msgid "Message Subtypes"
-msgstr ""
+msgstr "Subtipos de Mensaje"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_vacuum_rule__message_type
 msgid "Message Type"
-msgstr ""
+msgstr "Tipo de Mensaje"
 
 #. module: autovacuum_message_attachment
 #: model_terms:ir.ui.view,arch_db:autovacuum_message_attachment.vacuum_rule_form_view
 msgid "Message Vacuum Rule"
-msgstr ""
+msgstr "Regla de Evacuación de Mensajes"
 
 #. module: autovacuum_message_attachment
 #: model:ir.actions.act_window,name:autovacuum_message_attachment.action_vacuum_rule
 #: model:ir.ui.menu,name:autovacuum_message_attachment.menu_action_vacuum_rule
 msgid "Message and Attachment Vacuum Rule"
-msgstr ""
+msgstr "Regla de Evacuación de Mensajes y Archivos Adjuntos"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,help:autovacuum_message_attachment.field_vacuum_rule__message_subtype_ids
@@ -612,32 +612,34 @@ msgid ""
 "Message subtypes concerned by the rule. If left empty, the system won't take"
 " the subtype into account to find the messages to delete"
 msgstr ""
+"Subtipos de mensajes afectados por la regla. Si se deja vacío, el sistema no "
+"tendrá en cuenta el subtipo para encontrar los mensajes a eliminar"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model,name:autovacuum_message_attachment.model_autovacuum_mixin
 msgid "Mixin used to delete messages or attachments"
-msgstr ""
+msgstr "Mezclador utilizado para eliminar mensajes o archivos adjuntos"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_vacuum_rule__model_id
 msgid "Model"
-msgstr ""
+msgstr "Modelo"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_vacuum_rule__model_filter_domain
 msgid "Model Filter Domain"
-msgstr ""
+msgstr "Dominio del Filtro Modelo"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_vacuum_rule__model
 msgid "Model code"
-msgstr ""
+msgstr "Código del modelo"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_vacuum_rule__model_ids
 #: model_terms:ir.ui.view,arch_db:autovacuum_message_attachment.vacuum_rule_form_view
 msgid "Models"
-msgstr ""
+msgstr "Modelos"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,help:autovacuum_message_attachment.field_vacuum_rule__model_ids
@@ -645,18 +647,20 @@ msgid ""
 "Models concerned by the rule. If left empty, it will take all models into "
 "account"
 msgstr ""
+"Modelos afectados por la regla. Si se deja vacío, se tendrán en cuenta todos "
+"los modelos"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_vacuum_rule__name
 msgid "Name"
-msgstr ""
+msgstr "Nombre"
 
 #. module: autovacuum_message_attachment
 #. odoo-python
 #: code:addons/autovacuum_message_attachment/models/vacuum_rule.py:0
 #, python-format
 msgid "No inheritance of ir.attachment was found on model %s"
-msgstr ""
+msgstr "No se ha encontrado herencia de ir.attachment en el modelo %s"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,help:autovacuum_message_attachment.field_vacuum_rule__retention_time
@@ -665,11 +669,14 @@ msgid ""
 "database after creation. Once the delay is passed, they will be "
 "automatically deleted."
 msgstr ""
+"Número de días que los mensajes afectados por esta regla se conservarán en "
+"la base de datos tras su creación. Una vez transcurrido el plazo, se "
+"eliminarán automáticamente."
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_vacuum_rule__retention_time
 msgid "Retention Time"
-msgstr ""
+msgstr "Tiempo de Retención"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model,name:autovacuum_message_attachment.model_vacuum_rule
