@@ -2,13 +2,14 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
 import os
-import unittest
+
+from odoo.tests import TransactionCase
 
 from .. import addon_hash
 from ..models.module import DEFAULT_EXCLUDE_PATTERNS
 
 
-class TestAddonHash(unittest.TestCase):
+class TestAddonHash(TransactionCase):
     def setUp(self):
         super().setUp()
         self.sample_dir = os.path.join(
