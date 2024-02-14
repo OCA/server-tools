@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-12-07 18:34+0000\n"
+"PO-Revision-Date: 2024-02-14 19:34+0000\n"
 "Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
@@ -19,7 +19,7 @@ msgstr ""
 #. module: iap_alternative_provider
 #: model:ir.model.fields,field_description:iap_alternative_provider.field_iap_account__assigned_attachment_ids
 msgid "Assigned Attachments"
-msgstr ""
+msgstr "Archivos Adjuntos Asignados"
 
 #. module: iap_alternative_provider
 #: model:ir.model,name:iap_alternative_provider.model_iap_account
