@@ -33,7 +33,7 @@
     </record>
     <menuitem
         id="menu_report_partner_list"
-        parent="sale.menu_sale_report"
+        parent="sale.sale_menu_root"
         action="action_report_partner_list"
         name="Partner List Report"
     />
