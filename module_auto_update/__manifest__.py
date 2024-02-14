@@ -5,7 +5,7 @@
 {
     "name": "Module Auto Update",
     "summary": "Automatically update Odoo modules",
-    "version": "14.0.1.1.0",
+    "version": "14.0.1.1.1",
     "category": "Extra Tools",
     "website": "https://github.com/OCA/server-tools",
     "author": "LasLabs, "

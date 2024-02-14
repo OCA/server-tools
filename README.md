@@ -77,7 +77,7 @@ addon | version | maintainers | summary
 [mail_cleanup](mail_cleanup/) | 14.0.1.0.0 |  | Mark as read or delete mails after a set time
 [model_read_only](model_read_only/) | 14.0.3.0.1 | [![ilyasProgrammer](https://github.com/ilyasProgrammer.png?size=30px)](https://github.com/ilyasProgrammer) | Model Read Only
 [module_analysis](module_analysis/) | 14.0.1.0.1 |  | Add analysis tools regarding installed modules to know which installed modules comes from Odoo Core, OCA, or are custom modules
-[module_auto_update](module_auto_update/) | 14.0.1.1.0 |  | Automatically update Odoo modules
+[module_auto_update](module_auto_update/) | 14.0.1.1.1 |  | Automatically update Odoo modules
 [module_change_auto_install](module_change_auto_install/) | 14.0.1.0.3 | [![legalsylvain](https://github.com/legalsylvain.png?size=30px)](https://github.com/legalsylvain) | Customize auto installables modules by configuration
 [module_prototyper](module_prototyper/) | 14.0.1.0.1 |  | Prototype your module.
 [nsca_client](nsca_client/) | 14.0.1.0.2 |  | Send passive alerts to monitor your Odoo application.
