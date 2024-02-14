@@ -370,10 +370,11 @@ ul.auto-toc {
 !! source digest: sha256:d1196ef676fe52e08aa762c32f6f428315f40e98d05bbc21f3a2c07b47719019
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
 <p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Production/Stable" src="https://img.shields.io/badge/maturity-Production%2FStable-green.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/lgpl-3.0-standalone.html"><img alt="License: LGPL-3" src="https://img.shields.io/badge/licence-LGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/server-tools/tree/17.0/module_auto_update"><img alt="OCA/server-tools" src="https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/server-tools-17-0/server-tools-17-0-module_auto_update"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/server-tools&amp;target_branch=17.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
-<p>This addon provides mechanisms to compute sha1 hashes of installed addons,
-and save them in the database. It also provides a method that exploits these
-mechanisms to update a database by upgrading only the modules for which the
-hash has changed since the last successful upgrade.</p>
+<p>This addon provides mechanisms to compute sha1 hashes of installed
+addons, and save them in the database. It also provides a method that
+exploits these mechanisms to update a database by upgrading only the
+modules for which the hash has changed since the last successful
+upgrade.</p>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
@@ -394,29 +395,31 @@ hash has changed since the last successful upgrade.</p>
 <ul class="simple">
 <li><tt class="docutils literal">module_auto_update.exclude_patterns</tt>: comma-separated list of file
 name patterns to ignore when computing addon checksums. Defaults to
-<tt class="docutils literal"><span class="pre">*.pyc,*.pyo,i18n/*.pot,i18n_extra/*.pot,static/*</span></tt>.
-Filename patterns must be compatible with the python <tt class="docutils literal">fnmatch</tt> function.</li>
+<tt class="docutils literal"><span class="pre">*.pyc,*.pyo,i18n/*.pot,i18n_extra/*.pot,static/*</span></tt>. Filename
+patterns must be compatible with the python <tt class="docutils literal">fnmatch</tt> function.</li>
 </ul>
-<p>In addition to the above pattern, .po files corresponding to languages that
-are not installed in the Odoo database are ignored when computing checksums.</p>
+<p>In addition to the above pattern, .po files corresponding to languages
+that are not installed in the Odoo database are ignored when computing
+checksums.</p>
 </div>
 <div class="section" id="usage">
 <h1><a class="toc-backref" href="#toc-entry-2">Usage</a></h1>
 <p>The main method provided by this module is <tt class="docutils literal">upgrade_changed_checksum</tt>
 on <tt class="docutils literal">ir.module.module</tt>. It runs a database upgrade for all installed
-modules for which the hash has changed since the last successful
-run of this method. On success it saves the hashes in the database.</p>
+modules for which the hash has changed since the last successful run of
+this method. On success it saves the hashes in the database.</p>
 <p>The first time this method is invoked after installing the module, it
 runs an upgrade of all modules, because it has not saved the hashes yet.
-This is by design, priviledging safety. Should this be an issue,
-the method <tt class="docutils literal">_save_installed_checksums</tt> can be invoked in a situation
-where one is sure all modules on disk are installed and up-to-date in the
+This is by design, priviledging safety. Should this be an issue, the
+method <tt class="docutils literal">_save_installed_checksums</tt> can be invoked in a situation where
+one is sure all modules on disk are installed and up-to-date in the
 database.</p>
 <p>To invoke the upgrade mechanism, navigate to <em>Apps</em> menu and use the
-<em>Auto-Upgrade Modules</em> button, available only in developer mode. Restarting
-the Odoo instance is highly recommended to minify risk of any possible issues.</p>
-<p>Another easy way to invoke this upgrade mechanism is by issuing the following
-in an Odoo shell session:</p>
+<em>Auto-Upgrade Modules</em> button, available only in developer mode.
+Restarting the Odoo instance is highly recommended to minify risk of any
+possible issues.</p>
+<p>Another easy way to invoke this upgrade mechanism is by issuing the
+following in an Odoo shell session:</p>
 <pre class="code python literal-block">
 <span class="n">env</span><span class="p">[</span><span class="s1">'ir.module.module'</span><span class="p">]</span><span class="o">.</span><span class="n">upgrade_changed_checksum</span><span class="p">()</span>
 </pre>

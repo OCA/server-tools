@@ -28,10 +28,11 @@ Module Auto Update
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This addon provides mechanisms to compute sha1 hashes of installed addons,
-and save them in the database. It also provides a method that exploits these
-mechanisms to update a database by upgrading only the modules for which the
-hash has changed since the last successful upgrade.
+This addon provides mechanisms to compute sha1 hashes of installed
+addons, and save them in the database. It also provides a method that
+exploits these mechanisms to update a database by upgrading only the
+modules for which the hash has changed since the last successful
+upgrade.
 
 **Table of contents**
 
@@ -43,39 +44,41 @@ Configuration
 
 This module supports the following system parameters:
 
-* ``module_auto_update.exclude_patterns``: comma-separated list of file
-  name patterns to ignore when computing addon checksums. Defaults to
-  ``*.pyc,*.pyo,i18n/*.pot,i18n_extra/*.pot,static/*``.
-  Filename patterns must be compatible with the python ``fnmatch`` function.
+-  ``module_auto_update.exclude_patterns``: comma-separated list of file
+   name patterns to ignore when computing addon checksums. Defaults to
+   ``*.pyc,*.pyo,i18n/*.pot,i18n_extra/*.pot,static/*``. Filename
+   patterns must be compatible with the python ``fnmatch`` function.
 
-In addition to the above pattern, .po files corresponding to languages that
-are not installed in the Odoo database are ignored when computing checksums.
+In addition to the above pattern, .po files corresponding to languages
+that are not installed in the Odoo database are ignored when computing
+checksums.
 
 Usage
 =====
 
 The main method provided by this module is ``upgrade_changed_checksum``
 on ``ir.module.module``. It runs a database upgrade for all installed
-modules for which the hash has changed since the last successful
-run of this method. On success it saves the hashes in the database.
+modules for which the hash has changed since the last successful run of
+this method. On success it saves the hashes in the database.
 
 The first time this method is invoked after installing the module, it
 runs an upgrade of all modules, because it has not saved the hashes yet.
-This is by design, priviledging safety. Should this be an issue,
-the method ``_save_installed_checksums`` can be invoked in a situation
-where one is sure all modules on disk are installed and up-to-date in the
+This is by design, priviledging safety. Should this be an issue, the
+method ``_save_installed_checksums`` can be invoked in a situation where
+one is sure all modules on disk are installed and up-to-date in the
 database.
 
 To invoke the upgrade mechanism, navigate to *Apps* menu and use the
-*Auto-Upgrade Modules* button, available only in developer mode. Restarting
-the Odoo instance is highly recommended to minify risk of any possible issues.
+*Auto-Upgrade Modules* button, available only in developer mode.
+Restarting the Odoo instance is highly recommended to minify risk of any
+possible issues.
 
-Another easy way to invoke this upgrade mechanism is by issuing the following
-in an Odoo shell session:
+Another easy way to invoke this upgrade mechanism is by issuing the
+following in an Odoo shell session:
 
-.. code-block:: python
+.. code:: python
 
-  env['ir.module.module'].upgrade_changed_checksum()
+   env['ir.module.module'].upgrade_changed_checksum()
 
 Bug Tracker
 ===========
@@ -91,7 +94,7 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * LasLabs
 * Juan José Scarafía
@@ -99,17 +102,17 @@ Authors
 * ACSONE SA/NV
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Brent Hughes <brent.hughes@laslabs.com>
-* Juan José Scarafía <jjs@adhoc.com.ar>
-* Jairo Llopis <jairo.llopis@tecnativa.com>
-* Stéphane Bidoul <stephane.bidoul@acsone.eu> (https://acsone.eu)
-* Eric Antones <eantones@nuobit.com>
-* Manuel Engel <manuel.engel@initos.com>
+-  Brent Hughes <brent.hughes@laslabs.com>
+-  Juan José Scarafía <jjs@adhoc.com.ar>
+-  Jairo Llopis <jairo.llopis@tecnativa.com>
+-  Stéphane Bidoul <stephane.bidoul@acsone.eu> (https://acsone.eu)
+-  Eric Antones <eantones@nuobit.com>
+-  Manuel Engel <manuel.engel@initos.com>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
