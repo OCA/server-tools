@@ -60,7 +60,7 @@ addon | version | maintainers | summary
 [letsencrypt](letsencrypt/) | 13.0.1.1.0 |  | Request SSL certificates from letsencrypt.org
 [mail_server_relay_disallowed](mail_server_relay_disallowed/) | 13.0.1.0.1 |  | Mail Server Relay Disallowed
 [module_analysis](module_analysis/) | 13.0.1.1.1 |  | Add analysis tools regarding installed modules to know which installed modules comes from Odoo Core, OCA, or are custom modules
-[module_auto_update](module_auto_update/) | 13.0.1.0.1 |  | Automatically update Odoo modules
+[module_auto_update](module_auto_update/) | 13.0.1.0.2 |  | Automatically update Odoo modules
 [nsca_client](nsca_client/) | 13.0.1.0.2 |  | Send passive alerts to monitor your Odoo application.
 [onchange_helper](onchange_helper/) | 13.0.1.1.0 |  | Technical module that ease execution of onchange in Python code
 [profiler](profiler/) | 13.0.1.0.0 |  | profiler
