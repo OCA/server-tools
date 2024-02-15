@@ -34,6 +34,7 @@ setuptools.setup(
         'odoo14-addon-base_multi_image',
         'odoo14-addon-base_name_search_improved',
         'odoo14-addon-base_name_search_multi_lang',
+        'odoo14-addon-base_order_by_related',
         'odoo14-addon-base_remote',
         'odoo14-addon-base_report_auto_create_qweb',
         'odoo14-addon-base_search_fuzzy',

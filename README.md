@@ -47,6 +47,7 @@ addon | version | maintainers | summary
 [base_multi_image](base_multi_image/) | 14.0.1.0.1 |  | Allow multiple images for database objects
 [base_name_search_improved](base_name_search_improved/) | 14.0.1.1.1 |  | Friendlier search when typing in relation fields
 [base_name_search_multi_lang](base_name_search_multi_lang/) | 14.0.1.0.0 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Name search by multiple active language
+[base_order_by_related](base_order_by_related/) | 14.0.1.0.0 | [![thomaspaulb](https://github.com/thomaspaulb.png?size=30px)](https://github.com/thomaspaulb) | Order by non-stored related fields
 [base_remote](base_remote/) | 14.0.1.0.1 |  | Remote Base
 [base_report_auto_create_qweb](base_report_auto_create_qweb/) | 14.0.1.0.1 |  | Report qweb auto generation
 [base_search_fuzzy](base_search_fuzzy/) | 14.0.1.0.3 |  | Fuzzy search with the PostgreSQL trigram extension
