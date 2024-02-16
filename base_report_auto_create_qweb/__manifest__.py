@@ -4,7 +4,7 @@
 
 {
     "name": "Report qweb auto generation",
-    "version": "14.0.1.0.1",
+    "version": "16.0.1.0.0",
     "depends": [
         "base",
     ],
@@ -13,7 +13,7 @@
             "unidecode",
         ],
     },
-    "author": "AvanzOSC, " "Tecnativa, " "Odoo Community Association (OCA)",
+    "author": "AvanzOSC, Tecnativa, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/server-tools",
     "license": "AGPL-3",
     "category": "Tools",
