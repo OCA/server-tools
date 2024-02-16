@@ -6,7 +6,7 @@
     'version': "11.0.1.0.1",
     'author': "ABF OSIELL,Odoo Community Association (OCA)",
     'license': "AGPL-3",
-    'website': "https://github.com/OCA/server-tools/",
+    'website': "https://github.com/OCA/server-tools",
     'category': "Tools",
     'depends': [
         'base',

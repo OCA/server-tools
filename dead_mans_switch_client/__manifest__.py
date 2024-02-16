@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # © 2015-2016 Therp BV <http://therp.nl>
 # © 2017 Avoin.Systems - Miku Laitinen
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
@@ -7,6 +6,7 @@
     "version": "11.0.1.0.0",
     "author": "Therp BV, Odoo Community Association (OCA)",
     "license": "AGPL-3",
+    "website": "https://github.com/OCA/server-tools",
     "category": "Monitoring",
     "summary": "Be notified when customers' Odoo instances go down",
     "depends": [

@@ -19,6 +19,10 @@ class TestCompanyCountry(TransactionCase):
         self.main_company.write({'country_id': self.us_country.id})
         self.module_account.write({'state': 'uninstalled'})
         self.env_country = os.environ.get('COUNTRY')
+        # If COUNTRY is not set and we are in CI, define as US
+        # See discussion in OCA/server-tools#2296
+        if not self.env_country and os.environ.get("CI", '').lower() == 'true':
+            self.env_country = 'US'
 
     def tearDown(self):
         super(TestCompanyCountry, self).tearDown()

@@ -5,7 +5,7 @@
     "summary": "Send passive alerts to monitor your Odoo application.",
     "version": "11.0.1.0.0",
     "category": "Tools",
-    "website": "http://github.com/OCA/server-tools",
+    "website": "https://github.com/OCA/server-tools",
     "author": "ABF OSIELL, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "application": False,
@@ -19,4 +19,5 @@
     "demo": [
         "demo/demo_data.xml",
     ],
+    "external_dependencies": {"deb": ["nsca-client"]},
 }

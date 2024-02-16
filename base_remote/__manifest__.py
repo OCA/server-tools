@@ -6,7 +6,7 @@
     'version': '11.0.1.0.4',
     'category': 'Generic Modules/Base',
     'author': "Creu Blanca, Odoo Community Association (OCA)",
-    'website': 'http://github.com/OCA/server-tools',
+    'website': 'https://github.com/OCA/server-tools',
     'license': 'AGPL-3',
     "depends": ['web', 'base'],
     'data': [

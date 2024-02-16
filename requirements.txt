@@ -1,8 +1,9 @@
-checksumdir
-raven
-pysftp
-pyopenssl
+# generated from manifests external_dependencies
 acme
 cryptography
-dnspython
+dnspython==1.16.0
 josepy
+lxml
+pysftp
+python-ldap
+raven

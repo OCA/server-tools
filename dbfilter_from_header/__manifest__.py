@@ -9,6 +9,7 @@
     "version": "11.0.1.0.0",
     "author": "Therp BV,Odoo Community Association (OCA)",
     "license": "AGPL-3",
+    "website": "https://github.com/OCA/server-tools",
     "complexity": "normal",
     "category": "Tools",
     "depends": [
