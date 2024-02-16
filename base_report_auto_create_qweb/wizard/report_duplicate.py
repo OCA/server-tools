@@ -9,9 +9,7 @@ class IrActionsReportDuplicate(models.TransientModel):
     _name = "ir.actions.report.duplicate"
     _description = "Duplicate Qweb report"
 
-    suffix = fields.Char(
-        string="Suffix", help="This suffix will be added to the report"
-    )
+    suffix = fields.Char(help="This suffix will be added to the report")
 
     def duplicate_report(self):
         self.ensure_one()
