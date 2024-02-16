@@ -14,6 +14,21 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: base_cron_oneshot
+#: model:ir.model.fields,field_description:base_cron_oneshot.field_ir_cron_channel_ids
+msgid "Add Channels"
+msgstr ""
+
+#. module: base_cron_oneshot
+#: model:ir.model.fields,field_description:base_cron_oneshot.field_ir_cron_partner_ids
+msgid "Add Followers"
+msgstr ""
+
+#. module: base_cron_oneshot
+#: model:ir.model.fields,field_description:base_cron_oneshot.field_ir_cron_template_id
+msgid "Email Template"
+msgstr ""
+
+#. module: base_cron_oneshot
 #: model:ir.model.fields,help:base_cron_oneshot.field_ir_cron_oneshot
 msgid "Enable this to run the cron only once. The cron will be deleted right after execution."
 msgstr ""
