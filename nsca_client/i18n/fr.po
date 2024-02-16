@@ -62,6 +62,16 @@ msgid "Active"
 msgstr ""
 
 #. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check_channel_ids
+msgid "Add Channels"
+msgstr ""
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check_partner_ids
+msgid "Add Followers"
+msgstr ""
+
+#. module: nsca_client
 #: model:ir.model.fields,field_description:nsca_client.field_nsca_check_allow_void_result
 msgid "Allow void result"
 msgstr "Autoriser l'absence de résultat"
@@ -177,6 +187,11 @@ msgstr ""
 msgid ""
 "E.g.\n"
 "                                        <em>(1, u\"3 mails not sent\")</em>"
+msgstr ""
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check_template_id
+msgid "Email Template"
 msgstr ""
 
 #. module: nsca_client
