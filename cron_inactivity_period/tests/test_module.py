@@ -28,7 +28,7 @@ class TestModule(TransactionCase):
                 "cron_id": self.cron_job.id,
                 "type": "hour",
                 "inactivity_hour_begin": 0.0,
-                "inactivity_hour_end": 23.59,
+                "inactivity_hour_end": 23.9999,
             }
         )
         count = self._create_transient_model()
