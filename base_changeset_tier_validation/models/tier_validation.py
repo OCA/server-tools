@@ -1,4 +1,4 @@
-# Copyright 2023 Tecnativa - Víctor Martínez
+# Copyright 2023-2024 Tecnativa - Víctor Martínez
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 from odoo import api, fields, models
 
@@ -13,6 +13,9 @@ class TierValidation(models.AbstractModel):
         compute="_compute_pending_review_ids",
     )
     total_pending_reviews = fields.Integer(compute="_compute_total_pending_reviews")
+    total_pending_reviews_without_changeset = fields.Integer(
+        compute="_compute_total_pending_reviews_without_changeset"
+    )
 
     @api.depends("review_ids", "review_ids.status")
     def _compute_pending_review_ids(self):
@@ -25,6 +28,14 @@ class TierValidation(models.AbstractModel):
     def _compute_total_pending_reviews(self):
         for item in self:
             item.total_pending_reviews = len(item.pending_review_ids)
+
+    @api.depends("pending_review_ids")
+    def _compute_total_pending_reviews_without_changeset(self):
+        """Get total of pending revisions without changesets.
+        We will use this total to keep the base_tier_validation working."""
+        for item in self:
+            reviews = item.pending_review_ids.filtered(lambda x: not x.changeset_id)
+            item.total_pending_reviews_without_changeset = len(reviews)
 
     @api.depends("total_pending_reviews")
     def _compute_need_validation(self):
@@ -75,3 +86,11 @@ class TierValidation(models.AbstractModel):
         )
         user_review = fields.first(user_reviews)
         user_review._tier_process("rejected")
+
+    def restart_validation(self):
+        """Overwrite this method to remove only revisions not linked to changeset."""
+        for rec in self:
+            if getattr(rec, self._state_field) in self._state_from:
+                rec.mapped("review_ids").filtered(lambda x: not x.changeset_id).unlink()
+                self._update_counter()
+            rec._notify_restarted_review()

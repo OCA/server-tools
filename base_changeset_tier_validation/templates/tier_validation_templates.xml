@@ -13,7 +13,7 @@
         <button name="restart_validation" position="attributes">
             <attribute
                 name="t-attf-attrs"
-            >{'invisible': ['|','|',('total_pending_reviews', '>', 0), ('review_ids', '=', []),('#{state_field}', '#{state_operator}', #{state_value})]}</attribute>
+            >{'invisible': ['|','|',('total_pending_reviews_without_changeset', '=', 0), ('review_ids', '=', []),('#{state_field}', '#{state_operator}', #{state_value})]}</attribute>
         </button>
     </template>
     <template
@@ -23,6 +23,7 @@
         <field name="rejected" position="after">
             <field name="count_pending_changesets" invisible="1" />
             <field name="total_pending_reviews" invisible="1" />
+            <field name="total_pending_reviews_without_changeset" invisible="1" />
         </field>
         <xpath expr="//div[hasclass('alert-warning')]" position="attributes">
             <attribute name="id">base_tier_validation_warning</attribute>
