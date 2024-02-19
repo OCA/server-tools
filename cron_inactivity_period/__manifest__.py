@@ -4,7 +4,7 @@
 
 {
     "name": "Inactivity Periods for Cron Jobs",
-    "version": "12.0.1.0.0",
+    "version": "12.0.1.0.1",
     "author": "GRAP,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/server-tools",
     "license": "AGPL-3",
