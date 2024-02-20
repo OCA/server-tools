@@ -68,7 +68,8 @@ class CleanupPurgeWizardColumn(models.TransientModel):
     # Format: {table: [fields]}
     blacklist = {
         "wkf_instance": ["uid"],  # lp:1277899
-        "res_users": ["password", "password_crypt"],
+        "res_users": ["password", "password_crypt", "totp_secret"],
+        "res_partner": ["signup_token"],
     }
 
     @api.model
