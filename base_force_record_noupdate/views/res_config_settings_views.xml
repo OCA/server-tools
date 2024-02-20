@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+        <record id="res_config_settings_view_form" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit.base.setup</field>
+            <field name="model">res.config.settings</field>
+            <field name="priority" eval="0" />
+            <field name="inherit_id" ref="base_setup.res_config_settings_view_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='integration']" position="after">
+
+                    <h2 groups="base.group_no_one">Models to Protect</h2>
+                    <div
+                    groups="base.group_no_one"
+                    class="row mt16 o_settings_container"
+                    name="noupdate_tool"
+                >
+                        <div
+                        class="col-12 col-lg-6 o_setting_box"
+                        id="mail_pluggin_setting"
+                    >
+                            <div class="o_setting_left_pane">
+                                <field name="set_default_models" force_save="1" />
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label
+                                string="Set default protected models"
+                                for="set_default_models"
+                            />
+                                <div class="text-muted">
+                                    Select this option to set the default models to protect.
+                                    The default models are:
+                                    <ul>
+                                        <li>ir.model.access</li>
+                                        <li>ir.rules</li>
+                                        <li>mail.template</li>
+                                        <li>res.groups</li>
+                                        <li>res.lang</li>
+                                        <li>res.users.role</li>
+                                    </ul>
+                                    To update this list, you can add or remove models inheriting from res.config.settings.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box">
+                        <field
+                            name="models_force_noupdate"
+                            nolabel="1"
+                            widget="many2many_tags"
+                            options="{'no_create': True}"
+                            placeholder="Models to force noupdate"
+                        />
+                        <div class="text-muted">
+                            Select the models to force noupdate = True.
+                            When updated, the data with models selected will not be updated.
+                        </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+</odoo>
