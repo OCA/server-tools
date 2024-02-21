@@ -90,7 +90,7 @@ class PGSessionStore(werkzeug.contrib.sessions.SessionStore):
         if self._cr is not None:
             try:
                 self._cr.close()
-            except Exception:
+            except Exception:  # pylint: disable=except-pass
                 pass
             self._cr = None
 
@@ -163,7 +163,7 @@ def session_gc(session_store):
             try:
                 if os.path.getmtime(path) < last_week:
                     os.unlink(path)
-            except OSError:
+            except OSError:  # pylint: disable=except-pass
                 pass
 
 
