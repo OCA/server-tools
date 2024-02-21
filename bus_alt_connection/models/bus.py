@@ -4,7 +4,7 @@
 import json
 import logging
 import os
-import select
+import selectors
 
 import psycopg2
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
@@ -13,7 +13,7 @@ import odoo
 from odoo.tools import config
 
 import odoo.addons.bus.models.bus
-from odoo.addons.bus.models.bus import TIMEOUT, hashable
+from odoo.addons.bus.models.bus import TIMEOUT, hashable, stop_event
 
 _logger = logging.getLogger(__name__)
 
@@ -43,23 +43,24 @@ class ImDispatch(odoo.addons.bus.models.bus.ImDispatch):
         )
         conn = psycopg2.connect(**connection_info)
         conn.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
-        with conn.cursor() as cr:
+        with conn.cursor() as cr, selectors.DefaultSelector() as sel:
             cr.execute("listen imbus")
             conn.commit()
-            while True:
-                if select.select([conn], [], [], TIMEOUT) == ([], [], []):
-                    pass
-                else:
+            while not stop_event.is_set():
+                if sel.select(TIMEOUT):
                     conn.poll()
                     channels = []
                     while conn.notifies:
                         channels.extend(json.loads(conn.notifies.pop().payload))
-                    # dispatch to local threads/greenlets
-                    events = set()
+                    # relay notifications to websockets that have
+                    # subscribed to the corresponding channels.
+                    websockets = set()
                     for channel in channels:
-                        events.update(self.channels.pop(hashable(channel), set()))
-                    for event in events:
-                        event.set()
+                        websockets.update(
+                            self._channels_to_ws.get(hashable(channel), [])
+                        )
+                    for websocket in websockets:
+                        websocket.trigger_notification_dispatching()
 
 
 odoo.addons.bus.models.bus.ImDispatch = ImDispatch
