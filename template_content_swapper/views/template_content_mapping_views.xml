@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding='UTF-8' ?>
+<odoo>
+    <record id="view_template_content_mapping_tree" model="ir.ui.view">
+        <field name="name">template.content.mapping.tree</field>
+        <field name="model">template.content.mapping</field>
+        <field name="arch" type="xml">
+            <tree editable="top">
+                <field name="name" />
+                <field name="report_id" />
+                <field
+                    name="template_id"
+                    attrs="{'readonly':[('report_id','!=',False)]}"
+                />
+                <field
+                    name="lang"
+                    attrs="{'invisible':[('active_lang_count', '&lt;=', 1)]}"
+                />
+                <field name="content_from" />
+                <field name="content_to" />
+                <field name="active_lang_count" invisible="1" />
+            </tree>
+        </field>
+    </record>
+    <record id="view_template_content_mapping_search" model="ir.ui.view">
+        <field name="name">template.content.mapping.search</field>
+        <field name="model">template.content.mapping</field>
+        <field name="arch" type="xml">
+            <search string="Template Content Mappings">
+                <field name="name" />
+                <field name="report_id" />
+                <field name="template_id" />
+                <field name="lang" />
+                <field name="content_from" />
+                <field name="content_to" />
+                <filter
+                    string="Report"
+                    name="type_report"
+                    domain="[('report_id','!=',False)]"
+                />
+                <filter
+                    string="Frontend"
+                    name="type_frontend"
+                    domain="[('report_id','=',False)]"
+                />
+                <group expand="0" string="Group By">
+                    <filter
+                        string="Report"
+                        name="report"
+                        domain="[]"
+                        context="{'group_by':'report_id'}"
+                    />
+                    <filter
+                        string="Template"
+                        name="template"
+                        domain="[]"
+                        context="{'group_by':'template_id'}"
+                    />
+                    <filter
+                        string="Language"
+                        name="language"
+                        domain="[]"
+                        context="{'group_by':'lang'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="action_template_content_mapping" model="ir.actions.act_window">
+        <field name="name">Template Content Mappings</field>
+        <field name="res_model">template.content.mapping</field>
+        <field name="view_mode">tree</field>
+        <field name="context">{}</field>
+    </record>
+    <menuitem
+        id="menu_template_content_mapping"
+        name="Template Content Mappings"
+        parent="base.next_id_2"
+        action="action_template_content_mapping"
+        sequence="10"
+    />
+</odoo>
