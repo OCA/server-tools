@@ -57,7 +57,7 @@ addon | version | maintainers | summary
 [jsonifier](jsonifier/) | 15.0.1.0.0 |  | Base module that provide the jsonify method on all models
 [letsencrypt](letsencrypt/) | 15.0.1.0.3 |  | Request SSL certificates from letsencrypt.org
 [module_analysis](module_analysis/) | 15.0.1.1.1 |  | Add analysis tools regarding installed modules to know which installed modules comes from Odoo Core, OCA, or are custom modules
-[module_auto_update](module_auto_update/) | 15.0.1.0.1 |  | Automatically update Odoo modules
+[module_auto_update](module_auto_update/) | 15.0.1.0.2 |  | Automatically update Odoo modules
 [module_change_auto_install](module_change_auto_install/) | 15.0.1.0.0 | [![legalsylvain](https://github.com/legalsylvain.png?size=30px)](https://github.com/legalsylvain) | Customize auto installables modules by configuration
 [onchange_helper](onchange_helper/) | 15.0.1.0.1 |  | Technical module that ease execution of onchange in Python code
 [scheduler_error_mailer](scheduler_error_mailer/) | 15.0.1.0.0 |  | Scheduler Error Mailer
