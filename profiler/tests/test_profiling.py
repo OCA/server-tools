@@ -86,3 +86,4 @@ class TestProfiling(HttpCase):
             ))
             profile.disable()
             self.assertEquals(len(profile.py_request_lines), 1)
+            self.assertTrue(profile.py_request_lines.display_name)
