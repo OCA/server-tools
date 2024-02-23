@@ -70,6 +70,7 @@ setuptools.setup(
         'odoo14-addon-module_prototyper',
         'odoo14-addon-nsca_client',
         'odoo14-addon-onchange_helper',
+        'odoo14-addon-profiler',
         'odoo14-addon-rpc_helper',
         'odoo14-addon-scheduler_error_mailer',
         'odoo14-addon-sentry',
