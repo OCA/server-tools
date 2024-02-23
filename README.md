@@ -37,7 +37,7 @@ addon | version | maintainers | summary
 [base_view_inheritance_extension](base_view_inheritance_extension/) | 11.0.1.0.0 |  | Adds more operators for view inheritance
 [company_country](company_country/) | 11.0.1.0.0 | [![moylop260](https://github.com/moylop260.png?size=30px)](https://github.com/moylop260) [![luisg123v](https://github.com/luisg123v.png?size=30px)](https://github.com/luisg123v) | Set country to main company
 [configuration_helper](configuration_helper/) | 11.0.1.0.0 |  | Configuration Helper
-[database_cleanup](database_cleanup/) | 11.0.1.0.0 |  | Database cleanup
+[database_cleanup](database_cleanup/) | 11.0.1.0.1 |  | Database cleanup
 [datetime_formatter](datetime_formatter/) | 11.0.1.0.0 |  | Helper functions to give correct format to date[time] fields
 [dbfilter_from_header](dbfilter_from_header/) | 11.0.1.0.0 |  | Filter databases with HTTP headers
 [dead_mans_switch_client](dead_mans_switch_client/) | 11.0.1.0.0 |  | Be notified when customers' Odoo instances go down
