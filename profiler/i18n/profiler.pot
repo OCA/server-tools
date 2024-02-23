@@ -19,13 +19,6 @@ msgid "All activity"
 msgstr ""
 
 #. module: profiler
-#. openerp-web
-#: code:addons/profiler/static/src/js/tour.js:17
-#, python-format
-msgid "Analyze your application performance in the Profiler app."
-msgstr ""
-
-#. module: profiler
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile__attachment_count
 msgid "Attachment Count"
 msgstr ""
@@ -164,13 +157,6 @@ msgid "Getting the path to the logger"
 msgstr ""
 
 #. module: profiler
-#. openerp-web
-#: code:addons/profiler/static/src/js/tour.js:37
-#, python-format
-msgid "Give this session a name."
-msgstr ""
-
-#. module: profiler
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile__py_request_lines
 msgid "HTTP requests"
 msgstr ""
@@ -224,30 +210,9 @@ msgid "Last Updated on"
 msgstr ""
 
 #. module: profiler
-#. openerp-web
-#: code:addons/profiler/static/src/js/tour.js:32
-#, python-format
-msgid "Let's create a new profiler session."
-msgstr ""
-
-#. module: profiler
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile__name
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile_request_line__display_name
 msgid "Name"
-msgstr ""
-
-#. module: profiler
-#. openerp-web
-#: code:addons/profiler/static/src/js/tour.js:60
-#, python-format
-msgid "Now disable it to stop profiling."
-msgstr ""
-
-#. module: profiler
-#. openerp-web
-#: code:addons/profiler/static/src/js/tour.js:54
-#, python-format
-msgid "Now enable it to start profiling."
 msgstr ""
 
 #. module: profiler
@@ -359,13 +324,6 @@ msgid "Search Profiling lines"
 msgstr ""
 
 #. module: profiler
-#. openerp-web
-#: code:addons/profiler/static/src/js/tour.js:43
-#, python-format
-msgid "Select a profiling method."
-msgstr ""
-
-#. module: profiler
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile__session
 msgid "Session"
 msgstr ""
@@ -421,20 +379,6 @@ msgstr ""
 #. module: profiler
 #: model_terms:ir.ui.view,arch_db:profiler.view_profile_form
 msgid "View profiling lines"
-msgstr ""
-
-#. module: profiler
-#. openerp-web
-#: code:addons/profiler/static/src/js/tour.js:66
-#, python-format
-msgid "We now have measurements."
-msgstr ""
-
-#. module: profiler
-#. openerp-web
-#: code:addons/profiler/static/src/js/tour.js:49
-#, python-format
-msgid "When you are happy, save it."
 msgstr ""
 
 #. module: profiler
