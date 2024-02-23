@@ -93,3 +93,6 @@ class TestProfiling(HttpCase):
             )
             profile.disable()
             self.assertEqual(len(profile.sudo().py_request_lines), 1)
+            self.assertTrue(profile.py_request_lines.display_name)
+            self.assertTrue(profile.py_request_lines.attachment_id)
+            profile.action_view_attachment()
