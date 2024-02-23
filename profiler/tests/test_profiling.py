@@ -4,11 +4,10 @@
 from unittest.mock import MagicMock, patch
 
 import odoo.http
-from odoo.tests.common import HttpCase, at_install, get_db_name, post_install
+from odoo.tests.common import HttpCase, get_db_name, tagged
 
 
-@at_install(False)
-@post_install(True)
+@tagged("-at_install", "post_install")
 class TestProfiling(HttpCase):
     def test_profile_creation(self):
         """We are testing the creation of a profile."""
