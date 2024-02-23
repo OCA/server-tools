@@ -3,9 +3,10 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo.modules.module import get_module_path
-from odoo.tests.common import TransactionCase, post_install
+from odoo.tests.common import TransactionCase, at_install, post_install
 
 
+@at_install(False)
 @post_install(True)
 class TestModule(TransactionCase):
 
@@ -14,6 +15,7 @@ class TestModule(TransactionCase):
         self.IrModuleModule = self.env['ir.module.module']
 
     def test_installed_modules(self):
+        self.IrModuleModule.cron_analyse_code()
         installed_modules = self.IrModuleModule.search(
             [('state', '=', 'installed')])
         for module in installed_modules:
