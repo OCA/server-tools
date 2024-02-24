@@ -8,6 +8,7 @@
     " to know which installed modules comes from Odoo Core, OCA, or are"
     " custom modules",
     "author": "GRAP, Odoo Community Association (OCA)",
+    "maintainers": ["legalsylvain"],
     "website": "https://github.com/OCA/server-tools",
     "version": "13.0.1.1.1",
     "license": "AGPL-3",
@@ -15,16 +16,18 @@
     "data": [
         "security/ir.model.access.csv",
         "views/menu.xml",
-        "views/view_base_module_update.xml",
         "views/view_ir_module_author.xml",
         "views/view_ir_module_type.xml",
         "views/view_ir_module_type_rule.xml",
         "views/view_ir_module_module.xml",
+        "data/ir_cron.xml",
         "data/ir_config_parameter.xml",
         "data/ir_module_type.xml",
         "data/ir_module_type_rule.xml",
+        "data/ir_cron.xml",
     ],
-    "external_dependencies": {"python": ["pygount"]},
-    "post_init_hook": "analyse_installed_modules",
+    "external_dependencies": {
+        "python": ["pygount"],
+    },
     "installable": True,
 }
