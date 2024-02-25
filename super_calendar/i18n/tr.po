@@ -1,0 +1,324 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * super_calendar
+# 
+# Translators:
+# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: server-tools (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-01-19 14:44+0000\n"
+"PO-Revision-Date: 2016-01-31 13:31+0000\n"
+"Last-Translator: Ahmet Altınışık <aaltinisik@altinkaya.com.tr>\n"
+"Language-Team: Turkish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/tr/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: tr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: super_calendar
+#: model:ir.ui.menu,name:super_calendar.super_calendar_calendar
+#: model:ir.ui.menu,name:super_calendar.super_calendar_calendar_calendar
+#: view:super.calendar:super_calendar.super_calendar
+#: view:super.calendar:super_calendar.super_calendar_form
+#: view:super.calendar:super_calendar.super_calendar_tree
+msgid "Calendar"
+msgstr "Takvim"
+
+#. module: super_calendar
+#: model:ir.actions.act_window,name:super_calendar.super_calendar_configurator
+msgid "Calendar Configurators"
+msgstr "Takvim Düzenleyicileri"
+
+#. module: super_calendar
+#: selection:super.calendar.configurator.line,description_type:0
+msgid "Code"
+msgstr "Kodu"
+
+#. module: super_calendar
+#: model:ir.ui.menu,name:super_calendar.super_calendar_configuration
+msgid "Configuration"
+msgstr "Konfigürasyon"
+
+#. module: super_calendar
+#: field:super.calendar,configurator_id:0
+#: view:super.calendar.configurator:super_calendar.super_calendar_configurator_form
+#: field:super.calendar.configurator.line,configurator_id:0
+msgid "Configurator"
+msgstr "Konfigüratör"
+
+#. module: super_calendar
+#: model:ir.ui.menu,name:super_calendar.super_calendar_configurators
+#: view:super.calendar.configurator:super_calendar.super_calendar_configurator_tree
+msgid "Configurators"
+msgstr "Konfigüratörler"
+
+#. module: super_calendar
+#: field:super.calendar,create_uid:0
+#: field:super.calendar.configurator,create_uid:0
+#: field:super.calendar.configurator.line,create_uid:0
+msgid "Created by"
+msgstr "Oluşturan"
+
+#. module: super_calendar
+#: field:super.calendar,create_date:0
+#: field:super.calendar.configurator,create_date:0
+#: field:super.calendar.configurator.line,create_date:0
+msgid "Created on"
+msgstr "Oluşturuldu"
+
+#. module: super_calendar
+#: view:super.calendar:super_calendar.super_calendar_search
+msgid "Current month"
+msgstr "Bu Ay"
+
+#. module: super_calendar
+#: view:super.calendar:super_calendar.super_calendar_search
+msgid "Current week"
+msgstr "Bu Hafta"
+
+#. module: super_calendar
+#: view:super.calendar:super_calendar.super_calendar_search
+msgid "Day"
+msgstr "Gün"
+
+#. module: super_calendar
+#: field:super.calendar,name:0
+#: view:super.calendar.configurator:super_calendar.super_calendar_configurator_form
+msgid "Description"
+msgstr "Açıklama"
+
+#. module: super_calendar
+#: field:super.calendar.configurator.line,description_type:0
+msgid "Description Type"
+msgstr "Açıklama Tipi"
+
+#. module: super_calendar
+#: field:super.calendar.configurator.line,description_code:0
+#: field:super.calendar.configurator.line,description_field_id:0
+msgid "Description field"
+msgstr "Açıklama Alanı"
+
+#. module: super_calendar
+#: view:super.calendar:super_calendar.super_calendar_search
+msgid "Display all elements in the current month."
+msgstr "Bu ayda gösterilen bütün elemanlar"
+
+#. module: super_calendar
+#: view:super.calendar:super_calendar.super_calendar_search
+msgid "Display all elements in the current week."
+msgstr "Bu haftadaki bütün elemanları göster"
+
+#. module: super_calendar
+#: view:super.calendar:super_calendar.super_calendar_search
+msgid "Display all elements in the next month."
+msgstr "Sonraki ayda bütün elemanları göster"
+
+#. module: super_calendar
+#: view:super.calendar:super_calendar.super_calendar_search
+msgid "Display all elements in the next week."
+msgstr "Sonraki haftafaki bütün elemanları göster."
+
+#. module: super_calendar
+#: field:super.calendar.configurator.line,domain:0
+msgid "Domain"
+msgstr "Alan"
+
+#. module: super_calendar
+#: field:super.calendar,duration:0
+msgid "Duration"
+msgstr "Süre"
+
+#. module: super_calendar
+#: field:super.calendar.configurator.line,duration_field_id:0
+msgid "Duration field"
+msgstr "Süre alanı"
+
+#. module: super_calendar
+#: field:super.calendar.configurator.line,date_stop_field_id:0
+msgid "End date field"
+msgstr "Bitiş tarihi alanı"
+
+#. module: super_calendar
+#: view:super.calendar:super_calendar.super_calendar_search
+msgid "Extended Filters..."
+msgstr "genişletilmiş Filtreler..."
+
+#. module: super_calendar
+#: selection:super.calendar.configurator.line,description_type:0
+msgid "Field"
+msgstr "Alan"
+
+#. module: super_calendar
+#: view:super.calendar.configurator:super_calendar.super_calendar_configurator_form
+msgid "Generate Calendar"
+msgstr "Takvim Oluştur"
+
+#. module: super_calendar
+#: view:super.calendar:super_calendar.super_calendar_search
+msgid "Group By"
+msgstr "Grupla"
+
+#. module: super_calendar
+#: view:super.calendar:super_calendar.super_calendar_search
+msgid "Group all elements in the same day."
+msgstr "Aynı gündeki bütün elemanları grupla."
+
+#. module: super_calendar
+#: view:super.calendar:super_calendar.super_calendar_search
+msgid "Group all elements in the same month."
+msgstr "Aynı aydaki bütün elemanları grupla"
+
+#. module: super_calendar
+#: view:super.calendar:super_calendar.super_calendar_search
+msgid "Group all elements in the same quarter."
+msgstr "Aynı çeyrekteki bütün elelmanları grupla"
+
+#. module: super_calendar
+#: view:super.calendar:super_calendar.super_calendar_search
+msgid "Group all elements in the same week."
+msgstr "Aynı haftadaki bütün elemanları grupla"
+
+#. module: super_calendar
+#: view:super.calendar:super_calendar.super_calendar_search
+msgid "Group all elements in the same year."
+msgstr "aynı yıldaki bütün elemanları grupla"
+
+#. module: super_calendar
+#: field:super.calendar,id:0 field:super.calendar.configurator,id:0
+#: field:super.calendar.configurator.line,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: super_calendar
+#: field:super.calendar,write_uid:0
+#: field:super.calendar.configurator,write_uid:0
+#: field:super.calendar.configurator.line,write_uid:0
+msgid "Last Updated by"
+msgstr "Son güncellendi"
+
+#. module: super_calendar
+#: field:super.calendar,write_date:0
+#: field:super.calendar.configurator,write_date:0
+#: field:super.calendar.configurator.line,write_date:0
+msgid "Last Updated on"
+msgstr "Son güncellenme"
+
+#. module: super_calendar
+#: view:super.calendar.configurator:super_calendar.super_calendar_configurator_form
+msgid "Line"
+msgstr "satır"
+
+#. module: super_calendar
+#: view:super.calendar.configurator:super_calendar.super_calendar_configurator_form
+#: field:super.calendar.configurator,line_ids:0
+msgid "Lines"
+msgstr "satırlar"
+
+#. module: super_calendar
+#: field:super.calendar,model_id:0
+#: field:super.calendar.configurator.line,name:0
+msgid "Model"
+msgstr "Alan"
+
+#. module: super_calendar
+#: view:super.calendar:super_calendar.super_calendar_search
+msgid "Month"
+msgstr "Ay"
+
+#. module: super_calendar
+#: view:super.calendar:super_calendar.super_calendar_search
+msgid "My Items"
+msgstr "Öğlerim"
+
+#. module: super_calendar
+#: field:super.calendar.configurator,name:0
+msgid "Name"
+msgstr "Adı"
+
+#. module: super_calendar
+#: view:super.calendar:super_calendar.super_calendar_search
+msgid "Next month"
+msgstr "Sonraki Ay"
+
+#. module: super_calendar
+#: view:super.calendar:super_calendar.super_calendar_search
+msgid "Next week"
+msgstr "Sonraki Hafta"
+
+#. module: super_calendar
+#: view:super.calendar:super_calendar.super_calendar_search
+msgid "Period"
+msgstr "Dönem"
+
+#. module: super_calendar
+#: view:super.calendar:super_calendar.super_calendar_search
+msgid "Quarter"
+msgstr "Çeyrek"
+
+#. module: super_calendar
+#: field:super.calendar,res_id:0
+msgid "Resource"
+msgstr "Kaynak"
+
+#. module: super_calendar
+#: view:super.calendar:super_calendar.super_calendar_search
+msgid "Search Calendar"
+msgstr "Takvim Ara"
+
+#. module: super_calendar
+#: field:super.calendar,date_start:0
+msgid "Start date"
+msgstr "Başlangıç Tarihi"
+
+#. module: super_calendar
+#: field:super.calendar.configurator.line,date_start_field_id:0
+msgid "Start date field"
+msgstr "Başlangıç tarihi alanı"
+
+#. module: super_calendar
+#: model:ir.actions.act_window,name:super_calendar.super_calendar_action
+#: model:ir.ui.menu,name:super_calendar.super_calendar_menu
+msgid "Super Calendar"
+msgstr "Süper Takvim"
+
+#. module: super_calendar
+#: code:addons/super_calendar/models/super_calendar_configurator.py:112
+#, python-format
+msgid "The 'User' field of record %s (%s) does not refer to res.users"
+msgstr "Kayıt %s (%s) nin 'User' alanı res.users a bağlantı vermiyor."
+
+#. module: super_calendar
+#: help:super.calendar.configurator.line,description_code:0
+msgid ""
+"Use '${o}' to refer to the involved object.\n"
+"E.g.: '${o.project_id.name}'"
+msgstr "İlgili nesneye  '${o}' kullanarak erişebilirsiniz. \nÖr.: '${o.project_id.name}'"
+
+#. module: super_calendar
+#: view:super.calendar.configurator:super_calendar.super_calendar_configurator_form
+msgid ""
+"Use '${o}' to refer to the involved object. E.g.: '${o.project_id.name}'"
+msgstr "İlgili nesneye '${o}' kullanarak erişebilirsiniz. Ör.: '${o.project_id.name}'"
+
+#. module: super_calendar
+#: field:super.calendar,user_id:0
+msgid "User"
+msgstr "Kullanıcı"
+
+#. module: super_calendar
+#: field:super.calendar.configurator.line,user_field_id:0
+msgid "User field"
+msgstr "Kullanıcı Alanı"
+
+#. module: super_calendar
+#: view:super.calendar:super_calendar.super_calendar_search
+msgid "Week"
+msgstr "Hafta"
+
+#. module: super_calendar
+#: view:super.calendar:super_calendar.super_calendar_search
+msgid "Year"
+msgstr "Yıl"

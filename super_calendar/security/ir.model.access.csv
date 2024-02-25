@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_model_super_calendar_configurator,access_model_super_calendar_configurator,model_super_calendar_configurator,base.group_system,1,1,1,1
+access_model_super_calendar_configurator_line,access_model_super_calendar_configurator_line,model_super_calendar_configurator_line,base.group_system,1,1,1,1
+access_model_super_calendar,access_model_super_calendar,model_super_calendar,base.group_user,1,0,0,0
+access_model_admin_calendar_admin,access_model_super_calendar_admin,model_super_calendar,base.group_system,1,1,1,1
