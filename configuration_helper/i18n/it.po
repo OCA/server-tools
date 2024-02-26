@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-06 02:25+0000\n"
-"PO-Revision-Date: 2023-09-21 15:37+0000\n"
+"PO-Revision-Date: 2024-02-26 09:41+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -23,7 +23,7 @@ msgstr ""
 #. module: configuration_helper
 #: model:ir.model,name:configuration_helper.model_abstract_config_settings
 msgid "Abstract configuration settings"
-msgstr "Sintesi impostazioni configurazione"
+msgstr "Impostazioni configurazione astratte"
 
 #. module: configuration_helper
 #: model:ir.model.fields,field_description:configuration_helper.field_abstract_config_settings_company_id
