@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+        <record id="res_config_settings_view_form_inherit_admin_passkey" model="ir.ui.view">
+            <field name="name">res.config.settings.view</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="base_setup.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@id='default_user_rights']" position='after'>
+                    <h2>PassKey</h2>
+                    <div class="row mt16 o_settings_container" id="auth_admin_passkey_container">
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="auth_admin_passkey_send_to_admin"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label string="Send email to Admin user" for="auth_admin_passkey_send_to_admin"/>
+                                <div class="text-muted">
+                                    When the administrator use his password to login in
+                                    with a different account, Odoo will send an email
+                                    to the admin user.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="auth_admin_passkey_send_to_user"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label string="Send email to User" for="auth_admin_passkey_send_to_user"/>
+                                <div class="text-muted">
+                                    When the administrator use his password to login in
+                                    with a different account, Odoo will send an email
+                                    to the account user.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+</odoo>

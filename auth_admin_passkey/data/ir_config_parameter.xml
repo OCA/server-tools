@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="send_to_admin" model="ir.config_parameter">
+            <field name="key">auth_admin_passkey.send_to_admin</field>
+            <field name="value">True</field>
+        </record>
+
+        <record id="send_to_user" model="ir.config_parameter">
+            <field name="key">auth_admin_passkey.send_to_user</field>
+            <field name="value">True</field>
+        </record>
+
+    </data>
+</odoo>

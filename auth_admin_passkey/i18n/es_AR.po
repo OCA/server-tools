@@ -1,0 +1,137 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * auth_admin_passkey
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-07-22 17:40+0000\n"
+"PO-Revision-Date: 2019-07-22 14:46-0300\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: es_AR\n"
+"X-Generator: Poedit 2.0.6\n"
+
+#. module: auth_admin_passkey
+#: code:addons/auth_admin_passkey/models/res_users.py:64
+#, python-format
+msgid "<pre>User with login '%s' has the same password as you.</pre>"
+msgstr "<pre>El usuario '%s' tiene la misma contraseña que usted.</pre>"
+
+#. module: auth_admin_passkey
+#: code:addons/auth_admin_passkey/models/res_users.py:39
+#, python-format
+msgid ""
+"Admin user used his passkey to login with '%s'.\n"
+"\n"
+"\n"
+"\n"
+"Technicals informations belows : \n"
+"\n"
+"- Login date : %s\n"
+"\n"
+msgstr ""
+"El usuario administrador ha usado su contraseña para acceder a '%s'.\n"
+"\n"
+"\n"
+"\n"
+"Datos técnicos a continuación : \n"
+"\n"
+"- Fecha de acceso : %s\n"
+"\n"
+
+#. module: auth_admin_passkey
+#: model:ir.ui.view,arch_db:auth_admin_passkey.res_config_settings_view_form_inherit_admin_passkey
+msgid "PassKey"
+msgstr "Llave Maestra"
+
+#. module: auth_admin_passkey
+#: code:addons/auth_admin_passkey/models/res_users.py:38
+#, python-format
+msgid "Passkey used"
+msgstr "Clave de acceso maestra utilizada"
+
+#. module: auth_admin_passkey
+#: model:ir.ui.view,arch_db:auth_admin_passkey.res_config_settings_view_form_inherit_admin_passkey
+msgid "Send email to Admin user"
+msgstr "Enviar correo electrónico al usuario administrador"
+
+#. module: auth_admin_passkey
+#: model:ir.ui.view,arch_db:auth_admin_passkey.res_config_settings_view_form_inherit_admin_passkey
+msgid "Send email to User"
+msgstr "Enviar correo electrónico al usuario"
+
+#. module: auth_admin_passkey
+#: model:ir.model.fields,field_description:auth_admin_passkey.field_res_config_settings_auth_admin_passkey_send_to_admin
+msgid "Send email to admin user."
+msgstr "Enviar correo electrónico al usuario administrador."
+
+#. module: auth_admin_passkey
+#: model:ir.model.fields,field_description:auth_admin_passkey.field_res_config_settings_auth_admin_passkey_send_to_user
+msgid "Send email to user."
+msgstr "Enviar correo electrónico al usuario."
+
+#. module: auth_admin_passkey
+#: model:ir.model,name:auth_admin_passkey.model_res_users
+msgid "Users"
+msgstr "Usuarios"
+
+#. module: auth_admin_passkey
+#: model:ir.ui.view,arch_db:auth_admin_passkey.res_config_settings_view_form_inherit_admin_passkey
+msgid ""
+"When the administrator use his password to login in\n"
+"                                    with a different account, Odoo will "
+"send an email\n"
+"                                    to the account user."
+msgstr ""
+"Cuando el administrador usa su contraseña para iniciar sesión con una "
+"cuenta diferente, Odoo enviará un correo electrónico al usuario de la "
+"cuenta."
+
+#. module: auth_admin_passkey
+#: model:ir.ui.view,arch_db:auth_admin_passkey.res_config_settings_view_form_inherit_admin_passkey
+msgid ""
+"When the administrator use his password to login in\n"
+"                                    with a different account, Odoo will "
+"send an email\n"
+"                                    to the admin user."
+msgstr ""
+"Cuando el administrador usa su contraseña para iniciar sesión con una "
+"cuenta diferente, Odoo enviará un correo electrónico al usuario "
+"administrador."
+
+#. module: auth_admin_passkey
+#: model:ir.model.fields,help:auth_admin_passkey.field_res_config_settings_auth_admin_passkey_send_to_user
+msgid ""
+"When the administrator use his password to login in with a different "
+"account, Odoo will send an email to the account user."
+msgstr ""
+"Cuando el administrador use su contraseña para iniciar sesión con una "
+"cuenta diferente, Odoo enviará un correo electrónico al usuario de la "
+"cuenta."
+
+#. module: auth_admin_passkey
+#: model:ir.model.fields,help:auth_admin_passkey.field_res_config_settings_auth_admin_passkey_send_to_admin
+msgid ""
+"When the administrator use his password to login in with a different "
+"account, Odoo will send an email to the admin user."
+msgstr ""
+"Cuando el administrador use su contraseña para iniciar sesión con una "
+"cuenta diferente, Odoo enviará un correo electrónico al usuario "
+"administrador."
+
+#. module: auth_admin_passkey
+#: code:addons/auth_admin_passkey/models/res_users.py:62
+#, python-format
+msgid "[WARNING] Odoo Security Risk"
+msgstr "[ADVERTENCIA] Riesgo de seguridad de Odoo"
+
+#. module: auth_admin_passkey
+#: model:ir.model,name:auth_admin_passkey.model_res_config_settings
+msgid "res.config.settings"
+msgstr "res.config.settings"
