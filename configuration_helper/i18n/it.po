@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: server-tools (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-10-04 09:42+0000\n"
-"PO-Revision-Date: 2023-09-21 13:37+0000\n"
+"PO-Revision-Date: 2024-02-26 09:39+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-server-tools-9-0/"
 "language/it/)\n"
@@ -22,7 +22,7 @@ msgstr ""
 #. module: configuration_helper
 #: model:ir.model,name:configuration_helper.model_abstract_config_settings
 msgid "Abstract configuration settings"
-msgstr "Sintesi impostazioni configurazione"
+msgstr "Impostazioni configurazione astratte"
 
 #. module: configuration_helper
 #: model:ir.model.fields,field_description:configuration_helper.field_abstract_config_settings_company_id
