@@ -9,6 +9,6 @@
     "website": "https://github.com/OCA/server-tools",
     "license": "AGPL-3",
     "category": "Generic Modules",
-    "depends": ["base"],
+    "depends": ["base", "web"],
     "installable": True,
 }
