@@ -6,7 +6,6 @@ from odoo.exceptions import UserError
 
 
 class Base(models.AbstractModel):
-
     _inherit = "base"
 
     def partition(self, accessor):
