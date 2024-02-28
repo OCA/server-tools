@@ -5,7 +5,7 @@
 {
     "name": "Base Partition",
     "summary": "Base module that provide the partition method on all models",
-    "version": "16.0.1.0.0",
+    "version": "17.0.1.0.0",
     "category": "Uncategorized",
     "website": "https://github.com/OCA/server-tools",
     "author": "Acsone SA/NV, Odoo Community Association (OCA)",
