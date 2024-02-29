@@ -32,6 +32,7 @@ addon | version | maintainers | summary
 [base_domain_inverse_function](base_domain_inverse_function/) | 13.0.1.0.0 | [![grindtildeath](https://github.com/grindtildeath.png?size=30px)](https://github.com/grindtildeath) | Provide function to inverse domain into parts
 [base_exception](base_exception/) | 13.0.1.2.0 |  | This module provide an abstract model to manage customizable exceptions to be applied on different models (sale order, invoice, ...)
 [base_fontawesome](base_fontawesome/) | 13.0.5.13.0 |  | Up to date Fontawesome resources.
+[base_import_odoo](base_import_odoo/) | 13.0.1.0.0 |  | Import records from another Odoo instance
 [base_jsonify](base_jsonify/) | 13.0.3.2.1 |  | Base module that provide the jsonify method on all models
 [base_m2m_custom_field](base_m2m_custom_field/) | 13.0.1.0.1 |  | Customizations of Many2many
 [base_name_search_improved](base_name_search_improved/) | 13.0.1.1.1 |  | Friendlier search when typing in relation fields

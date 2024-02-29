@@ -19,6 +19,7 @@ setuptools.setup(
         'odoo13-addon-base_domain_inverse_function',
         'odoo13-addon-base_exception',
         'odoo13-addon-base_fontawesome',
+        'odoo13-addon-base_import_odoo',
         'odoo13-addon-base_jsonify',
         'odoo13-addon-base_m2m_custom_field',
         'odoo13-addon-base_name_search_improved',
