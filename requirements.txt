@@ -5,6 +5,7 @@ cryptography
 dnspython
 josepy
 lxml
+odoorpc
 openpyxl
 pygount
 pyOpenSSL<23
