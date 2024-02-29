@@ -68,8 +68,9 @@ def select_transport(name=DEFAULT_TRANSPORT):
 def get_sentry_logging(level=DEFAULT_LOG_LEVEL):
     if level not in LOG_LEVEL_MAP:
         level = DEFAULT_LOG_LEVEL
-
-    return LoggingIntegration(level=LOG_LEVEL_MAP[level], event_level=logging.WARNING)
+    return LoggingIntegration(
+        level=LOG_LEVEL_MAP[level], event_level=LOG_LEVEL_MAP[level]
+    )
 
 
 def get_sentry_options():
