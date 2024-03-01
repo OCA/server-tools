@@ -16,7 +16,8 @@ odoo_test_flavor: Both
 odoo_version: 17.0
 org_name: Odoo Community Association (OCA)
 org_slug: OCA
-rebel_module_groups: []
+rebel_module_groups:
+- database_cleanup
 repo_description: 'TODO: add repo description.'
 repo_name: Server Tools
 repo_slug: server-tools
