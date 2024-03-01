@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: base_import_odoo
-#: model:ir.ui.view,arch_db:base_import_odoo.view_import_odoo_database_form
+#: model_terms:ir.ui.view,arch_db:base_import_odoo.view_import_odoo_database_form
 msgid ""
 "# `vals` is the dictionary to be passed to create/write, and you have access "
 "to `env`, `_id`, `remote`"
@@ -41,109 +41,144 @@ msgid "An Odoo database to import"
 msgstr ""
 
 #. module: base_import_odoo
-#: selection:import.odoo.database.field,mapping_type:0
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database__assigned_attachment_ids
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_field__assigned_attachment_ids
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_model__assigned_attachment_ids
+msgid "Assigned Attachments"
+msgstr ""
+
+#. module: base_import_odoo
+#: model:ir.model.fields.selection,name:base_import_odoo.selection__import_odoo_database_field__mapping_type__by_field
 msgid "Based on equal fields"
 msgstr ""
 
 #. module: base_import_odoo
-#: selection:import.odoo.database.field,mapping_type:0
+#: model:ir.model.fields.selection,name:base_import_odoo.selection__import_odoo_database_field__mapping_type__by_reference
 msgid "By reference"
 msgstr ""
 
 #. module: base_import_odoo
-#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_create_uid
-#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_field_create_uid
-#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_model_create_uid
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database__changeset_change_ids
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_field__changeset_change_ids
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_model__changeset_change_ids
+msgid "Changeset Changes"
+msgstr ""
+
+#. module: base_import_odoo
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database__changeset_ids
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_field__changeset_ids
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_model__changeset_ids
+msgid "Changesets"
+msgstr ""
+
+#. module: base_import_odoo
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_field__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_model__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr ""
+
+#. module: base_import_odoo
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database__count_pending_changesets
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_field__count_pending_changesets
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_model__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr ""
+
+#. module: base_import_odoo
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database__create_uid
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_field__create_uid
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_model__create_uid
 msgid "Created by"
 msgstr "Үүсгэгч"
 
 #. module: base_import_odoo
-#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_create_date
-#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_field_create_date
-#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_model_create_date
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database__create_date
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_field__create_date
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_model__create_date
 msgid "Created on"
 msgstr "Үүсгэсэн"
 
 #. module: base_import_odoo
-#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_cronjob_running
-msgid "Cronjob running"
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database__cronjob_running
+msgid "Cronjob Running"
 msgstr ""
 
 #. module: base_import_odoo
-#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_database
-#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_field_database_id
-#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_model_database_id
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database__database
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_field__database_id
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_model__database_id
 msgid "Database"
 msgstr ""
 
 #. module: base_import_odoo
-#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_model_defaults
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_model__defaults
 msgid "Defaults"
 msgstr ""
 
 #. module: base_import_odoo
-#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_display_name
-#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_field_display_name
-#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_model_display_name
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database__display_name
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_field__display_name
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_model__display_name
 msgid "Display Name"
 msgstr "Дэлгэцийн Нэр"
 
 #. module: base_import_odoo
-#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_model_domain
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_model__domain
 msgid "Domain"
 msgstr ""
 
 #. module: base_import_odoo
-#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_duplicates
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database__duplicates
 msgid "Duplicate handling"
 msgstr ""
 
 #. module: base_import_odoo
-#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_field_field_ids
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_field__field_ids
 msgid "Field"
 msgstr ""
 
 #. module: base_import_odoo
-#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_import_field_mappings
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database__import_field_mappings
 msgid "Field mappings"
 msgstr ""
 
 #. module: base_import_odoo
-#: selection:import.odoo.database.field,mapping_type:0
+#: model:ir.model.fields.selection,name:base_import_odoo.selection__import_odoo_database_field__mapping_type__fixed
 msgid "Fixed"
 msgstr ""
 
 #. module: base_import_odoo
-#: model:ir.model.fields,field_description:base_import_odoo.field_ir_model_data_import_database_id
+#: model:ir.model.fields,field_description:base_import_odoo.field_ir_model_data__import_database_id
 msgid "From remote database"
 msgstr ""
 
 #. module: base_import_odoo
-#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_field_id
-#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_id
-#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_model_id
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database__id
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_field__id
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_model__id
 msgid "ID"
 msgstr "ID"
 
 #. module: base_import_odoo
-#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_field_id_field_id
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_field__id_field_id
 msgid "ID field"
 msgstr ""
 
 #. module: base_import_odoo
-#: model:ir.model.fields,help:base_import_odoo.field_import_odoo_database_field_field_ids
+#: model:ir.model.fields,help:base_import_odoo.field_import_odoo_database_field__field_ids
 msgid "If set, the mapping is only effective when setting said field"
 msgstr ""
 
 #. module: base_import_odoo
-#: model:ir.model.fields,help:base_import_odoo.field_import_odoo_database_field_local_id
+#: model:ir.model.fields,help:base_import_odoo.field_import_odoo_database_field__local_id
 msgid ""
 "If you leave this empty, a new record will be created in the local database "
 "when this field is set on the remote database"
 msgstr ""
 
 #. module: base_import_odoo
-#: model:ir.model.fields,help:base_import_odoo.field_import_odoo_database_field_remote_id
+#: model:ir.model.fields,help:base_import_odoo.field_import_odoo_database_field__remote_id
 msgid ""
 "If you leave this empty, every (set) field value will be mapped to the local "
 "ID"
@@ -156,113 +191,127 @@ msgid "Import configurations"
 msgstr ""
 
 #. module: base_import_odoo
-#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_cronjob_id
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database__cronjob_id
 msgid "Import job"
 msgstr ""
 
 #. module: base_import_odoo
-#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_import_line_ids
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database__import_line_ids
 msgid "Import models"
 msgstr ""
 
 #. module: base_import_odoo
-#: model:ir.ui.view,arch_db:base_import_odoo.view_import_odoo_database_qweb
+#: model_terms:ir.ui.view,arch_db:base_import_odoo.view_import_odoo_database_qweb
 msgid "Import progress"
 msgstr ""
 
 #. module: base_import_odoo
-#: model:ir.ui.view,arch_db:base_import_odoo.view_import_odoo_database_qweb
+#: model_terms:ir.ui.view,arch_db:base_import_odoo.view_import_odoo_database_qweb
 msgid "Import results"
 msgstr ""
 
 #. module: base_import_odoo
-#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database___last_update
-#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_field___last_update
-#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_model___last_update
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database____last_update
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_field____last_update
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_model____last_update
 msgid "Last Modified on"
 msgstr "Сүүлийн засвар хийсэн огноо"
 
 #. module: base_import_odoo
-#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_field_write_uid
-#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_model_write_uid
-#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_write_uid
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database__write_uid
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_field__write_uid
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_model__write_uid
 msgid "Last Updated by"
 msgstr "Сүүлийн засвар хийсэн"
 
 #. module: base_import_odoo
-#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_field_write_date
-#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_model_write_date
-#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_write_date
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database__write_date
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_field__write_date
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_model__write_date
 msgid "Last Updated on"
 msgstr "Сүүлийн засвар хийсэн огноо"
 
 #. module: base_import_odoo
-#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_field_local_id
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_field__local_id
 msgid "Local ID"
 msgstr ""
 
 #. module: base_import_odoo
-#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_field_model
-#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_field_model_id
-#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_model_model_id
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_field__model_id
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_model__model_id
 msgid "Model"
 msgstr ""
 
 #. module: base_import_odoo
-#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_field_model_field_id
+#: model:ir.model,name:base_import_odoo.model_ir_model_data
+msgid "Model Data"
+msgstr ""
+
+#. module: base_import_odoo
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_field__model_field_id
 msgid "Model field"
 msgstr ""
 
 #. module: base_import_odoo
-#: model:ir.model.fields,help:base_import_odoo.field_import_odoo_database_model_defaults
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_field__model
+msgid "Model name"
+msgstr ""
+
+#. module: base_import_odoo
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database__null_password
+msgid "Null Password"
+msgstr ""
+
+#. module: base_import_odoo
+#: model:ir.model.fields,help:base_import_odoo.field_import_odoo_database_model__defaults
 msgid "Optional defaults dict to avoid empty values"
 msgstr ""
 
 #. module: base_import_odoo
-#: model:ir.model.fields,help:base_import_odoo.field_import_odoo_database_model_domain
+#: model:ir.model.fields,help:base_import_odoo.field_import_odoo_database_model__domain
 msgid "Optional filter to import only a subset"
 msgstr ""
 
 #. module: base_import_odoo
-#: model:ir.model.fields,help:base_import_odoo.field_import_odoo_database_model_postprocess
+#: model:ir.model.fields,help:base_import_odoo.field_import_odoo_database_model__postprocess
 msgid ""
 "Optional python code for postprocessing. Your code has access to `vals` "
 "which is the dictionary passed to create/write, and `env`."
 msgstr ""
 
 #. module: base_import_odoo
-#: selection:import.odoo.database,duplicates:0
+#: model:ir.model.fields.selection,name:base_import_odoo.selection__import_odoo_database__duplicates__overwrite_empty
 msgid "Overwrite empty fields"
 msgstr ""
 
 #. module: base_import_odoo
-#: selection:import.odoo.database,duplicates:0
+#: model:ir.model.fields.selection,name:base_import_odoo.selection__import_odoo_database__duplicates__overwrite
 msgid "Overwrite existing"
 msgstr ""
 
 #. module: base_import_odoo
-#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_password
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database__password
 msgid "Password"
 msgstr ""
 
 #. module: base_import_odoo
-#: code:addons/base_import_odoo/models/import_odoo_database.py:630
+#: code:addons/base_import_odoo/models/import_odoo_database.py:0
 #, python-format
 msgid "Please install the \"odoorpc\" libary in your environment"
 msgstr ""
 
 #. module: base_import_odoo
-#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_model_postprocess
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_model__postprocess
 msgid "Postprocess"
 msgstr ""
 
 #. module: base_import_odoo
-#: model:ir.ui.view,arch_db:base_import_odoo.view_import_odoo_database_form
+#: model_terms:ir.ui.view,arch_db:base_import_odoo.view_import_odoo_database_form
 msgid "Refresh"
 msgstr ""
 
 #. module: base_import_odoo
-#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_field_remote_id
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_field__remote_id
 msgid "Remote ID"
 msgstr ""
 
@@ -272,31 +321,31 @@ msgid "Remote Odoo import"
 msgstr ""
 
 #. module: base_import_odoo
-#: model:ir.model.fields,field_description:base_import_odoo.field_ir_model_data_import_database_record_id
+#: model:ir.model.fields,field_description:base_import_odoo.field_ir_model_data__import_database_record_id
 msgid "Remote database ID"
 msgstr ""
 
 #. module: base_import_odoo
-#: model:ir.ui.view,arch_db:base_import_odoo.view_import_odoo_database_form
+#: model_terms:ir.ui.view,arch_db:base_import_odoo.view_import_odoo_database_form
 msgid "Run import"
 msgstr ""
 
 #. module: base_import_odoo
-#: model:ir.ui.view,arch_db:base_import_odoo.view_import_odoo_database_field_form
+#: model_terms:ir.ui.view,arch_db:base_import_odoo.view_import_odoo_database_field_form
 msgid ""
 "Select fields for which to generate unique values during import. You'll need "
 "this for res.users#login for example."
 msgstr ""
 
 #. module: base_import_odoo
-#: model:ir.ui.view,arch_db:base_import_odoo.view_import_odoo_database_field_form
+#: model_terms:ir.ui.view,arch_db:base_import_odoo.view_import_odoo_database_field_form
 msgid ""
 "Select fields which must be equal to treat a pair of remote and local "
 "records of this model as being equal."
 msgstr ""
 
 #. module: base_import_odoo
-#: model:ir.ui.view,arch_db:base_import_odoo.view_import_odoo_database_field_form
+#: model_terms:ir.ui.view,arch_db:base_import_odoo.view_import_odoo_database_field_form
 msgid ""
 "Select the field that stores the model name and the one that stores the "
 "linked ID. The IDs for previously imported records will be mapped to the "
@@ -304,35 +353,42 @@ msgid ""
 msgstr ""
 
 #. module: base_import_odoo
-#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_field_sequence
-#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_model_sequence
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_field__sequence
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_model__sequence
 msgid "Sequence"
 msgstr "Дараалал"
 
 #. module: base_import_odoo
-#: selection:import.odoo.database,duplicates:0
+#: model:ir.model.fields.selection,name:base_import_odoo.selection__import_odoo_database__duplicates__skip
 msgid "Skip existing"
 msgstr ""
 
 #. module: base_import_odoo
-#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_status_data
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database__smart_search
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_field__smart_search
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_model__smart_search
+msgid "Smart Search"
+msgstr ""
+
+#. module: base_import_odoo
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database__status_data
 msgid "Status"
 msgstr "Төлөв"
 
 #. module: base_import_odoo
-#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_status_html
-msgid "Status html"
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database__status_html
+msgid "Status Html"
 msgstr ""
 
 #. module: base_import_odoo
-#: model:ir.ui.view,arch_db:base_import_odoo.view_import_odoo_database_qweb
+#: model_terms:ir.ui.view,arch_db:base_import_odoo.view_import_odoo_database_qweb
 msgid ""
 "The following remote ids don't have a mapping but have to be imported "
 "anyways due to not null constraints."
 msgstr ""
 
 #. module: base_import_odoo
-#: model:ir.ui.view,arch_db:base_import_odoo.view_import_odoo_database_qweb
+#: model_terms:ir.ui.view,arch_db:base_import_odoo.view_import_odoo_database_qweb
 msgid ""
 "To fix this, create mappings for the remote ids listed, or if this is not "
 "feasible, map the whole model. You might also have a too specific domain on "
@@ -340,39 +396,46 @@ msgid ""
 msgstr ""
 
 #. module: base_import_odoo
-#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_field_mapping_type
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_field__mapping_type
 msgid "Type"
 msgstr "Төрөл"
 
 #. module: base_import_odoo
-#: code:addons/base_import_odoo/models/import_odoo_database.py:611
+#: code:addons/base_import_odoo/models/import_odoo_database.py:0
 #, python-format
 msgid "Unhandled field type %s"
 msgstr ""
 
 #. module: base_import_odoo
-#: selection:import.odoo.database.field,mapping_type:0
+#: model:ir.model.fields.selection,name:base_import_odoo.selection__import_odoo_database_field__mapping_type__unique
 msgid "Unique"
 msgstr ""
 
 #. module: base_import_odoo
-#: code:addons/base_import_odoo/models/import_odoo_database.py:408
+#: code:addons/base_import_odoo/models/import_odoo_database.py:0
 #, python-format
 msgid "Unknown mapping"
 msgstr ""
 
 #. module: base_import_odoo
-#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_url
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database__url
 msgid "Url"
 msgstr ""
 
 #. module: base_import_odoo
-#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_user
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database__user
 msgid "User"
 msgstr "Хэрэглэгч"
 
 #. module: base_import_odoo
-#: model:ir.ui.view,arch_db:base_import_odoo.view_import_odoo_database_field_form
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_field__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_model__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr ""
+
+#. module: base_import_odoo
+#: model_terms:ir.ui.view,arch_db:base_import_odoo.view_import_odoo_database_field_form
 msgid ""
 "When a record of this model is imported, it will be replaced with the record "
 "you select as local ID. If you select a field and/or a remote ID, this "
@@ -381,11 +444,6 @@ msgid ""
 msgstr ""
 
 #. module: base_import_odoo
-#: model:ir.ui.view,arch_db:base_import_odoo.view_import_odoo_database_qweb
+#: model_terms:ir.ui.view,arch_db:base_import_odoo.view_import_odoo_database_qweb
 msgid "done"
-msgstr ""
-
-#. module: base_import_odoo
-#: model:ir.model,name:base_import_odoo.model_ir_model_data
-msgid "ir.model.data"
 msgstr ""
