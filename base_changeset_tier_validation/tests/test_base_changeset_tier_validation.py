@@ -115,7 +115,9 @@ class TestBaseChangesetTierValidation(common.SavepointCase):
         test_record_manager.invalidate_cache()
         self.assertEqual(test_record_manager.test_field, 0)
         self.assertEqual(test_record_manager.total_pending_reviews, 1)
-        self.assertTrue(test_record_manager.review_ids.summary)  # Test Field: 0.0 > 1.0
+        self.assertTrue(
+            ": +1.0" in test_record_manager.review_ids.summary
+        )  # Test Field: +1.0
         self.assertEqual(test_record_manager.changeset_ids.state, "draft")
         self.assertEqual(test_record_manager.changeset_ids.review_ids.status, "pending")
         test_record_manager.review_ids.validate_tier()
@@ -132,7 +134,9 @@ class TestBaseChangesetTierValidation(common.SavepointCase):
         test_record_manager.invalidate_cache()
         self.assertEqual(test_record_manager.test_field, 0)
         self.assertEqual(test_record_manager.total_pending_reviews, 1)
-        self.assertTrue(test_record_manager.review_ids.summary)  # Test Field: 0.0 > 1.0
+        self.assertTrue(
+            ": +1.0" in test_record_manager.review_ids.summary
+        )  # Test Field: +1.0
         self.assertEqual(test_record_manager.changeset_ids.state, "draft")
         self.assertEqual(test_record_manager.changeset_ids.review_ids.status, "pending")
         test_record_manager.review_ids.reject_tier()
@@ -150,7 +154,9 @@ class TestBaseChangesetTierValidation(common.SavepointCase):
         test_record_manager.invalidate_cache()
         self.assertEqual(test_record_manager.test_field, 0)
         self.assertEqual(test_record_manager.total_pending_reviews, 1)
-        self.assertTrue(test_record_manager.review_ids.summary)  # Test Field: 0.0 > 1.0
+        self.assertTrue(
+            ": +1.0" in test_record_manager.review_ids.summary
+        )  # Test Field: +1.0
         # Change user_id
         test_record_user.write({"user_id": self.user.id})
         test_record_manager.invalidate_cache()
