@@ -1,4 +1,4 @@
-# Copyright 2023 Tecnativa - Víctor Martínez
+# Copyright 2023-2024 Tecnativa - Víctor Martínez
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 from odoo import api, fields, models
 
@@ -40,10 +40,18 @@ class TierReview(models.Model):
             )
             if changes:
                 change = fields.first(changes)
-                value = "%s > %s" % (
-                    change.origin_value_display,
-                    change.new_value_display,
-                )
+                # Set +/- new value or old_value > new_value
+                if change.field_type in ("integer", "float", "monetary"):
+                    old_value = change["origin_value_%s" % (change.field_type)]
+                    new_value = change["new_value_%s" % (change.field_type)]
+                    prefix = "+" if new_value > old_value else ""
+                    final_value = new_value - old_value
+                    value = "%s%s" % (prefix, final_value)
+                else:
+                    value = "%s > %s" % (
+                        change.origin_value_display,
+                        change.new_value_display,
+                    )
             else:
                 field_name = item.summary_field_id.name
                 model = self.env[item.model]
