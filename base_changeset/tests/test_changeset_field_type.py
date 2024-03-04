@@ -224,7 +224,7 @@ class TestChangesetFieldType(ChangesetTestCommon, TransactionCase):
         changeset = self.partner.child_changeset_ids
         self.assertEqual(changeset.action, "write")
         self.assertEqual(changeset.model, self.field_one2many.relation)
-        self.assertTrue(changeset.res_id, new_user_id)
+        self.assertEqual(changeset.res_id, new_user_id)
         self.assertEqual(
             changeset.raw_changes, str({self.field_one2many.name: [one2many_value]})
         )

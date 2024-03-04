@@ -291,35 +291,44 @@ class RecordChangeset(models.Model):
                 # Changes related to the one2many (create changeset and changes)
                 child_model = self.env[rule.field_relation]
                 for [command, child_res_id, child_vals] in values[field]:
-                    if command in (0, 1, 2):
-                        child_record = child_model
-                        if child_res_id and isinstance(child_res_id, int):
-                            child_record = child_model.browse(child_res_id)
-                            # Set the values that child_vals should have
-                            if command in (0, 1):
-                                child_model_fields = self.env[
-                                    child_record._name
-                                ]._fields
-                                for subfield in rule._get_all_subfields():
-                                    subfield_name = subfield.name
-                                    child_model_field = child_model_fields[
+                    child_record = (
+                        child_model.browse(child_res_id)
+                        if child_res_id and isinstance(child_res_id, int)
+                        else child_model
+                    )
+                    if command in (0, 1):
+                        # Prepare subfield_names
+                        # Set the values that child_vals should have
+                        subfield_names = []
+                        child_model_fields = self.env[child_model._name]._fields
+                        for subfield in rule._get_all_subfields():
+                            subfield_name = subfield.name
+                            child_model_field = child_model_fields[subfield_name]
+                            if (
+                                subfield_name not in child_vals
+                                and change_model._type_to_suffix.get(subfield.ttype)
+                                and (
+                                    child_model_field.related
+                                    or child_model_field.compute
+                                )
+                            ):
+                                subfield_names.append(subfield_name)
+                        if subfield_names:
+                            if child_res_id and isinstance(child_res_id, int):
+                                for subfield_name in subfield_names:
+                                    subfield_value = self._get_new_value_from_record(
+                                        child_record, subfield_name, child_vals
+                                    )
+                                    child_vals[subfield_name] = subfield_value
+                            else:
+                                record_virtual = self.env[child_model._name].new(
+                                    child_vals
+                                )
+                                for subfield_name in subfield_names:
+                                    child_vals[subfield_name] = record_virtual[
                                         subfield_name
                                     ]
-                                    if (
-                                        subfield_name not in child_vals
-                                        and change_model._type_to_suffix.get(
-                                            subfield.ttype
-                                        )
-                                        and (
-                                            child_model_field.related
-                                            or child_model_field.compute
-                                        )
-                                    ):
-                                        child_vals[
-                                            subfield_name
-                                        ] = self._get_new_value_from_record(
-                                            child_record, subfield_name, child_vals
-                                        )
+                    if command in (0, 1, 2):
                         # Prepare changes only to update (command=1)
                         child_changes = False
                         if command == 1:

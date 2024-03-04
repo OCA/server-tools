@@ -1,5 +1,7 @@
 # Copyright 2023-2024 Tecnativa - Víctor Martínez
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
+import ast
+
 from odoo import api, fields, models
 
 
@@ -21,37 +23,41 @@ class TierReview(models.Model):
         compute="_compute_changeset_ref_display_name",
     )
 
-    @api.depends("definition_id", "changeset_id")
+    @api.depends("definition_id", "changeset_id", "changeset_id.rule_id")
     def _compute_summary_field_id(self):
         for item in self:
-            changes = item.changeset_id.change_ids
-            if changes and any(x.rule_id.summary_field_id for x in changes):
-                final_changes = changes.filtered(lambda x: x.rule_id.summary_field_id)
-                change = fields.first(final_changes)
-                item.summary_field_id = change.rule_id.summary_field_id
-            else:
-                item.summary_field_id = item.definition_id.summary_field_id
+            item.summary_field_id = (
+                item.changeset_id.rule_id.summary_field_id
+                or item.definition_id.summary_field_id
+            )
 
     @api.depends("summary_field_id", "model", "res_id", "changeset_id")
     def _compute_summary(self):
         for item in self.filtered(lambda x: x.summary_field_id):
-            changes = item.changeset_id.change_ids.filtered(
-                lambda x: x.field_id == item.summary_field_id
-            )
-            if changes:
-                change = fields.first(changes)
-                # Set +/- new value or old_value > new_value
-                if change.field_type in ("integer", "float", "monetary"):
-                    old_value = change["origin_value_%s" % (change.field_type)]
-                    new_value = change["new_value_%s" % (change.field_type)]
-                    prefix = "+" if new_value > old_value else ""
-                    final_value = new_value - old_value
-                    value = "%s%s" % (prefix, final_value)
+            if item.changeset_id:
+                changes = item.changeset_id.change_ids.filtered(
+                    lambda x: x.field_id == item.summary_field_id
+                )
+                if changes:
+                    change = fields.first(changes)
+                    # Set +/- new value or old_value > new_value
+                    if change.field_type in ("integer", "float", "monetary"):
+                        old_value = change["origin_value_%s" % (change.field_type)]
+                        new_value = change["new_value_%s" % (change.field_type)]
+                        prefix = "+" if new_value > old_value else ""
+                        new_value = new_value - old_value
+                        value = "%s%s" % (prefix, new_value)
+                    else:
+                        value = "%s > %s" % (
+                            change.origin_value_display,
+                            change.new_value_display,
+                        )
                 else:
-                    value = "%s > %s" % (
-                        change.origin_value_display,
-                        change.new_value_display,
-                    )
+                    raw_changes = ast.literal_eval(item.changeset_id.raw_changes)
+                    field_name = list(raw_changes.keys())[0]
+                    final_values = raw_changes[field_name][0][2]
+                    field_name = item.summary_field_id.name
+                    value = final_values[field_name]
             else:
                 field_name = item.summary_field_id.name
                 model = self.env[item.model]
