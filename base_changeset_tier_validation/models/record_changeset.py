@@ -6,10 +6,19 @@ from odoo import api, fields, models
 class RecordChangeset(models.Model):
     _inherit = "record.changeset"
 
+    review_summary = fields.Char(
+        compute="_compute_review_summary", string="Review Summary", store=True
+    )
     review_ids = fields.One2many(
         comodel_name="tier.review",
         inverse_name="changeset_id",
     )
+
+    @api.depends("review_ids", "review_ids.summary")
+    def _compute_review_summary(self):
+        for item in self:
+            review = fields.first(item.review_ids)
+            item.review_summary = review.summary if review else False
 
     @api.model_create_multi
     def create(self, vals_list):
