@@ -17,9 +17,7 @@
     "license": "AGPL-3",
     "website": "https://github.com/OCA/server-tools",
     "category": "Tools",
-    "depends": [
-        "mail",
-    ],
+    "depends": ["mail"],
     "data": [
         "data/ir_cron.xml",
         "data/mail_message_subtype.xml",
@@ -27,7 +25,5 @@
         "view/db_backup_view.xml",
     ],
     "installable": True,
-    "external_dependencies": {
-        "python": ["pysftp"],
-    },
+    "external_dependencies": {"python": ["pysftp"]},
 }
