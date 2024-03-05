@@ -28,6 +28,7 @@ class IrModelAccess(models.Model):
                             keys=('lang',))
     def check(self, cr, uid, model, mode='read', raise_exception=True,
               context=None):
+        # pylint: disable=old-api7-method-defined
         if isinstance(uid, BaseSuspendSecurityUid):
             return True
         return super(IrModelAccess, self).check(
