@@ -31,3 +31,12 @@ to refer to some xmlid, say ``%(xmlid)s``.
                condition="$field_condition" join_operator="OR">
         $domain_to_add
     </attribute>
+
+**Add domain with AND/OR join operator (AND if missed) for key in attrs**
+
+.. code-block:: xml
+
+    <attribute name="$attribute" operation="attrs_domain_add"
+               key="$attrs_key" join_operator="OR">
+        $domain_to_add_to_attrs_key
+    </attribute>
