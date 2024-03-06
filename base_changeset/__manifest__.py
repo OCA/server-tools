@@ -23,7 +23,7 @@
     ],
     "assets": {
         "web.assets_backend": [
-            "base_changeset/static/src/components/form_label.*",
+            "base_changeset/static/src/components/form_field.*",
             "base_changeset/static/src/components/changeset_popover.*",
             "base_changeset/static/src/components/record.esm.js",
         ],
