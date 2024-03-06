@@ -32,6 +32,9 @@
             <field name="name" position="after">
                 <field name="model_id" />
             </field>
+            <button name="purge" position="attributes">
+                <attribute name="string">Purge this column</attribute>
+            </button>
         </field>
     </record>
 
