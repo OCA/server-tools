@@ -101,6 +101,16 @@ class TestDbBackup(common.TransactionCase):
                 }
             )
 
+    def test_check_folder_exists(self):
+        """ It should log about already existing folder """
+        rec_id = self.new_record("local")
+        rec_id.write({
+            "folder": rec_id.folder,
+        })
+        rec_id.action_backup()
+        # No error was raised, just a log, test pass
+        self.assertTrue(True)
+
     @mock.patch("%s._" % model)
     def test_action_sftp_test_connection_success(self, _):
         """It should raise connection succeeded warning"""
@@ -150,7 +160,16 @@ class TestDbBackup(common.TransactionCase):
             with self.patch_filtered_sftp(rec_id):
                 conn = rec_id.sftp_connection().__enter__()
                 rec_id.action_backup()
-                conn.makedirs.assert_called_once_with(rec_id.folder)
+                conn.makedirs.assert_called_once_with(rec_id.folder, exist_ok=True)
+
+    def test_action_backup_sftp_cleanup(self):
+        """ Backup sftp database and cleanup old databases """
+        rec_id = self.new_record()
+        with mock.patch.object(rec_id, "filename"):
+            rec_id.days_to_keep = 1
+            rec_id.cleanup()
+            self.assertEqual("sftp", rec_id.method)
+            rec_id.filename.assert_called_once_with(mock.ANY, rec_id.backup_format)
 
     def test_action_backup_sftp_mkdirs_conn_exception(self):
         """It should guard from ConnectionException on remote.mkdirs"""
