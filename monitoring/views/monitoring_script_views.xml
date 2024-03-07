@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_monitoring_script_form" model="ir.ui.view">
+        <field name="model">monitoring.script</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="state" widget="statusbar" />
+                </header>
+                <sheet>
+                    <group>
+                        <field name="name" />
+                        <field name="active" widget="boolean_toggle" />
+                        <field name="token" />
+                        <field name="check_type" />
+                        <field
+                            name="warning"
+                            attrs="{'invisible': [('check_type', 'not in', ('lower', 'higher'))]}"
+                        />
+                        <field
+                            name="critical"
+                            attrs="{'invisible': [('check_type', 'not in', ('lower', 'higher'))]}"
+                        />
+                        <field name="snippet" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+     <record id="view_monitoring_script_tree" model="ir.ui.view">
+        <field name="model">monitoring.script</field>
+        <field name="arch" type="xml">
+            <tree
+                decoration-muted="not active"
+                decoration-warning="active and state == 'warning'"
+                decoration-danger="active and state == 'critical'"
+            >
+                <field name="name" />
+                <field name="token" />
+                <field name="active" widget="boolean_toggle" />
+                <field name="state" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_monitoring_script" model="ir.actions.act_window">
+        <field name="name">Monitoring Script</field>
+        <field name="res_model">monitoring.script</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'active_test': False}</field>
+    </record>
+
+    <menuitem
+        id="menu_monitoring_script"
+        name="Scripts"
+        parent="menu_monitoring_root"
+        action="action_monitoring_script"
+    />
+</odoo>
