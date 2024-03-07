@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
+from odoo.tools.safe_eval import safe_eval
 
 
 class AuditlogLog(models.Model):
@@ -16,6 +17,7 @@ class AuditlogLog(models.Model):
     model_name = fields.Char(readonly=True)
     model_model = fields.Char(string="Technical Model Name", readonly=True)
     res_id = fields.Integer("Resource ID")
+    res_ids = fields.Char("Resource IDs")
     user_id = fields.Many2one("res.users", string="User")
     method = fields.Char(size=64)
     line_ids = fields.One2many("auditlog.log.line", "log_id", string="Fields updated")
@@ -48,6 +50,15 @@ class AuditlogLog(models.Model):
             model = self.env["ir.model"].sudo().browse(vals["model_id"])
             vals.update({"model_name": model.name, "model_model": model.model})
         return super().write(vals)
+
+    def show_res_ids(self):
+        self.ensure_one()
+        return {
+            "type": "ir.actions.act_window",
+            "view_mode": "tree,form",
+            "res_model": self.model_id.model,
+            "domain": [("id", "in", safe_eval(self.res_ids))],
+        }
 
 
 class AuditlogLogLine(models.Model):
