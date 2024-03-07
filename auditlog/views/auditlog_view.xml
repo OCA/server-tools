@@ -18,14 +18,14 @@
                         string="Subscribe"
                         name="subscribe"
                         type="object"
-                        states="draft"
+                        invisible="state not in ['draft']"
                         class="oe_highlight"
                     />
                     <button
                         string="Unsubscribe"
                         name="unsubscribe"
                         type="object"
-                        states="subscribed"
+                        invisible="state not in ['subscribed']"
                     />
                     <field name="state" widget="statusbar" />
                 </header>
@@ -35,14 +35,14 @@
                             <field name="name" required="1" />
                             <field name="model_id" />
                             <field name="log_type" />
-                            <field
+                            <field 
                                 name="action_id"
                                 readonly="1"
                                 groups="base.group_no_one"
                             />
                             <field
                                 name="capture_record"
-                                attrs="{'invisible':['|' ,('log_type','!=', 'full'), ('log_unlink','!=', True)]}"
+                                invisible="log_type != 'full' or log_unlink != True"
                             />
                             <field
                                 name="users_to_exclude_ids"
@@ -83,7 +83,7 @@
             </tree>
         </field>
     </record>
-    <record id="view_auditlog_rule_search" model="ir.ui.view">
+    <record model="ir.ui.view" id="view_auditlog_rule_search">
         <field name="name">auditlog.rule.search</field>
         <field name="model">auditlog.rule</field>
         <field name="arch" type="xml">
@@ -95,16 +95,16 @@
                     string="Draft"
                 />
                 <filter
-                    name="state_subscribed"
-                    domain="[('state','=','subscribed')]"
-                    string="Subscribed"
-                />
+                   name="state_subscribed"
+                   domain="[('state','=','subscribed')]" 
+                   string="Subscribed"
+                 />
                 <field name="model_id" />
                 <group expand="0" string="Group By...">
                     <filter
                         name="group_by_state"
                         string="State"
-                        domain="[]"
+                        domain="[]"                     
                         context="{'group_by':'state'}"
                     />
                 </group>
@@ -120,7 +120,7 @@
         <field name="search_view_id" ref="view_auditlog_rule_search" />
     </record>
     <menuitem
-        id="menu_action_auditlog_rule_tree"
+        id="menu_action_auditlog_rule_tree" 
         parent="menu_audit"
         action="action_auditlog_rule_tree"
     />
@@ -142,12 +142,12 @@
                             <field name="model_id" readonly="1" />
                             <field
                                 name="model_name"
-                                attrs="{'invisible': [('model_id', '!=', False)]}"
+                                invisible="model_id != False"
                                 readonly="1"
                             />
                             <field
                                 name="model_model"
-                                attrs="{'invisible': [('model_id', '!=', False)]}"
+                                invisible="model_id != False"
                                 readonly="1"
                             />
                             <field name="res_id" readonly="1" />
@@ -164,9 +164,9 @@
                                 <group>
                                     <field name="field_id" readonly="1" />
                                     <field
-                                        name="field_name"
-                                        attrs="{'invisible': [('field_id', '!=', False)]}"
-                                        readonly="1"
+                                        name="field_name" 
+                                        invisible="field_id != False" 
+                                        readonly="1" 
                                     />
                                 </group>
                                 <group string="Values" col="4">
@@ -204,7 +204,7 @@
             </tree>
         </field>
     </record>
-    <record id="view_auditlog_log_search" model="ir.ui.view">
+    <record model="ir.ui.view" id="view_auditlog_log_search">
         <field name="name">auditlog.log.search</field>
         <field name="model">auditlog.log</field>
         <field name="arch" type="xml">
@@ -221,28 +221,28 @@
                         context="{'group_by':'user_id'}"
                     />
                     <filter
-                        name="group_by_model_id"
+                        name="group_by_model_id" 
                         string="Model"
                         domain="[]"
                         context="{'group_by':'model_id'}"
                     />
                     <filter
                         name="group_by_res_id"
-                        string="Resource ID"
+                        string="Resource ID"  
                         domain="[]"
-                        context="{'group_by':'res_id'}"
+                        context="{'group_by':'res_id'}" 
                     />
                     <filter
-                        name="group_by_create_date"
+                        name="group_by_create_date" 
                         string="Date"
-                        domain="[]"
-                        context="{'group_by':'create_date'}"
+                        domain="[]" 
+                        context="{'group_by':'create_date'}"  
                     />
                     <filter
-                        name="group_by_http_session"
+                        name="group_by_http_session" 
                         string="User session"
                         domain="[]"
-                        context="{'group_by':'http_session_id'}"
+                        context="{'group_by':'http_session_id'}" 
                     />
                     <filter
                         name="group_by_http_request"
@@ -260,10 +260,10 @@
         <field name="search_view_id" ref="view_auditlog_log_search" />
     </record>
     <menuitem
-        id="menu_audit_logs"
-        name="Logs"
-        parent="menu_audit"
-        action="action_auditlog_log_tree"
+        id="menu_audit_logs" 
+        name="Logs" 
+        parent="menu_audit" 
+        action="action_auditlog_log_tree" 
     />
     <!-- auditlog.log.line -->
     <record model="ir.ui.view" id="view_auditlog_line_tree">
@@ -301,47 +301,47 @@
                 <field name="user_id" />
                 <group expand="0" string="Group By...">
                     <filter
-                        name="group_by_user_id"
-                        string="User"
+                       name="group_by_user_id"
+                       string="User"
+                       domain="[]" 
+                       context="{'group_by':'user_id'}"
+                    />
+                    <filter 
+                        name="group_by_model_id" 
+                        string="Model" 
                         domain="[]"
-                        context="{'group_by':'user_id'}"
+                        context="{'group_by':'model_id'}" 
                     />
                     <filter
-                        name="group_by_model_id"
-                        string="Model"
-                        domain="[]"
-                        context="{'group_by':'model_id'}"
-                    />
-                    <filter
-                        name="group_by_field_id"
+                        name="group_by_field_id" 
                         string="Field"
-                        domain="[]"
-                        context="{'group_by':'field_id'}"
-                    />
+                        domain="[]" 
+                        context="{'group_by':'field_id'}" 
+                     />
                     <filter
-                        name="group_by_res_id"
-                        string="Resource ID"
+                        name="group_by_res_id" 
+                        string="Resource ID" 
                         domain="[]"
-                        context="{'group_by':'res_id'}"
-                    />
+                        context="{'group_by':'res_id'}" 
+                     />
                     <filter
-                        name="group_by_create_date"
-                        string="Date"
+                        name="group_by_create_date" 
+                        string="Date" 
                         domain="[]"
                         context="{'group_by':'create_date'}"
-                    />
+                      />
                     <filter
-                        name="group_by_http_session"
+                        name="group_by_http_session" 
                         string="User session"
-                        domain="[]"
+                        domain="[]" 
                         context="{'group_by':'http_session_id'}"
-                    />
+                      />
                     <filter
-                        name="group_by_http_request"
+                        name="group_by_http_request" 
                         string="HTTP Request"
-                        domain="[]"
+                        domain="[]" 
                         context="{'group_by':'http_request_id'}"
-                    />
+                      />
                 </group>
             </search>
         </field>
@@ -354,10 +354,10 @@
         <field name="context">{'search_default_group_by_model_id': 1}</field>
     </record>
     <menuitem
-        id="menu_auditlog_line"
+        id="menu_auditlog_line" 
         name="Log Lines"
-        parent="menu_audit"
+        parent="menu_audit" 
         action="action_auditlog_line"
-        sequence="20"
+        sequence="20" 
     />
 </odoo>
