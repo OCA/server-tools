@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.attachment.delete.restrict</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base_setup.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='user_default_rights']" position="inside">
+                <div
+                    class="col-12 col-lg-6 o_setting_box"
+                    id="global_restrict_delete_attachment"
+                    title="Restrict Deletion on attachment"
+                >
+                    <div class="o_setting_right_pane">
+                        <label for="global_restrict_delete_attachment" />
+                        <div class="text-muted">
+                            Select default level of delete restriction on attachments
+                        </div>
+                        <div class="mt8">
+                            <field
+                                name="global_restrict_delete_attachment"
+                                class="o_light_label"
+                            />
+                        </div>
+                    </div>
+                    <div
+                        class="o_setting_right_pane"
+                        attrs="{'invisible': [('global_restrict_delete_attachment','not in',['custom', 'owner_custom'])]}"
+                    >
+                        <div>
+                            Authorized Groups:
+                        </div>
+                        <div class="mt8">
+                            <field
+                                name="global_delete_attachment_group_ids"
+                                class="o_light_label"
+                                nolabel="1"
+                                widget="many2many_tags"
+                                options="{'no_create': True}"
+                            />
+                        </div>
+                        <div>
+                            Authorized Users:
+                        </div>
+                        <div class="mt8">
+                            <field
+                                name="global_delete_attachment_user_ids"
+                                nolabel="1"
+                                widget="many2many_tags"
+                                options="{'no_create': True}"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
