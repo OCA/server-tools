@@ -1,7 +1,7 @@
 /** @odoo-module */
 
 import {Component} from "@odoo/owl";
-import {FormLabel} from "@web/views/form/form_label";
+import {Field} from "@web/views/fields/field";
 import Popover from "web.Popover";
 
 export class BaseChangesetPopover extends Popover {
@@ -49,5 +49,5 @@ export class BaseChangesetPopoverWrapper extends Component {}
 BaseChangesetPopoverWrapper.components = {BaseChangesetPopover};
 BaseChangesetPopoverWrapper.template = "base_changeset.ChangesetPopoverWrapper";
 
-FormLabel.components = FormLabel.components || {};
-Object.assign(FormLabel.components, {BaseChangesetPopoverWrapper});
+Field.components = Field.components || {};
+Object.assign(Field.components, {BaseChangesetPopoverWrapper});
