@@ -185,25 +185,25 @@ class AuditlogRule(models.Model):
             #   -> create
             check_attr = "auditlog_ruled_create"
             if rule.log_create and not hasattr(model_model, check_attr):
-                model_model._patch_method("create", rule._make_create())
+                self._patch_method(model_model, "create", rule._make_create())
                 setattr(type(model_model), check_attr, True)
                 updated = True
             #   -> read
             check_attr = "auditlog_ruled_read"
             if rule.log_read and not hasattr(model_model, check_attr):
-                model_model._patch_method("read", rule._make_read())
+                self._patch_method(model_model, "read", rule._make_read())
                 setattr(type(model_model), check_attr, True)
                 updated = True
             #   -> write
             check_attr = "auditlog_ruled_write"
             if rule.log_write and not hasattr(model_model, check_attr):
-                model_model._patch_method("write", rule._make_write())
+                self._patch_method(model_model, "write", rule._make_write())
                 setattr(type(model_model), check_attr, True)
                 updated = True
             #   -> unlink
             check_attr = "auditlog_ruled_unlink"
             if rule.log_unlink and not hasattr(model_model, check_attr):
-                model_model._patch_method("unlink", rule._make_unlink())
+                self._patch_method(model_model, "unlink", rule._make_unlink())
                 setattr(type(model_model), check_attr, True)
                 updated = True
         return updated
@@ -266,6 +266,14 @@ class AuditlogRule(models.Model):
             for n, f in model._fields.items()
             if (not f.compute and not f.related) or f.store
         )
+
+    def _patch_method(self, obj, name, method):
+        cls = type(obj)
+        origin = getattr(cls, name)
+        method.origin = origin
+        wrapped = api.propagate(origin, method)
+        wrapped.origin = origin
+        setattr(cls, name, wrapped)
 
     def _make_create(self):
         """Instanciate a create method that log its calls."""
