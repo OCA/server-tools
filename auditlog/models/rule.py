@@ -20,7 +20,7 @@ FIELDS_BLACKLIST = [
 EMPTY_DICT = {}
 
 
-class DictDiffer(object):
+class DictDiffer:
     """Calculate the difference between two dictionaries as:
     (1) items added
     (2) items removed
