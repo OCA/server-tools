@@ -51,12 +51,11 @@ class AuditlogRule(models.Model):
     _name = "auditlog.rule"
     _description = "Auditlog - Rule"
 
-    name = fields.Char(required=True, states={"subscribed": [("readonly", True)]})
+    name = fields.Char(required=True)
     model_id = fields.Many2one(
         "ir.model",
         "Model",
         help="Select model for which you want to generate log.",
-        states={"subscribed": [("readonly", True)]},
         ondelete="set null",
         index=True,
     )
@@ -69,7 +68,6 @@ class AuditlogRule(models.Model):
         "rule_id",
         string="Users",
         help="if  User is not added then it will applicable for all users",
-        states={"subscribed": [("readonly", True)]},
     )
     log_read = fields.Boolean(
         "Log Reads",
@@ -77,7 +75,6 @@ class AuditlogRule(models.Model):
             "Select this if you want to keep track of read/open on any "
             "record of the model of this rule"
         ),
-        states={"subscribed": [("readonly", True)]},
     )
     log_write = fields.Boolean(
         "Log Writes",
@@ -86,7 +83,6 @@ class AuditlogRule(models.Model):
             "Select this if you want to keep track of modification on any "
             "record of the model of this rule"
         ),
-        states={"subscribed": [("readonly", True)]},
     )
     log_unlink = fields.Boolean(
         "Log Deletes",
@@ -95,7 +91,6 @@ class AuditlogRule(models.Model):
             "Select this if you want to keep track of deletion on any "
             "record of the model of this rule"
         ),
-        states={"subscribed": [("readonly", True)]},
     )
     log_create = fields.Boolean(
         "Log Creates",
@@ -104,7 +99,6 @@ class AuditlogRule(models.Model):
             "Select this if you want to keep track of creation on any "
             "record of the model of this rule"
         ),
-        states={"subscribed": [("readonly", True)]},
     )
     log_type = fields.Selection(
         [("full", "Full log"), ("fast", "Fast log")],
@@ -118,7 +112,6 @@ class AuditlogRule(models.Model):
             "Fast log: only log the changes made through the create and "
             "write operations (less information, but it is faster)"
         ),
-        states={"subscribed": [("readonly", True)]},
     )
 
     state = fields.Selection(
@@ -129,7 +122,6 @@ class AuditlogRule(models.Model):
     action_id = fields.Many2one(
         "ir.actions.act_window",
         string="Action",
-        states={"subscribed": [("readonly", True)]},
     )
     capture_record = fields.Boolean(
         help="Select this if you want to keep track of Unlink Record",
@@ -138,14 +130,12 @@ class AuditlogRule(models.Model):
         "res.users",
         string="Users to Exclude",
         context={"active_test": False},
-        states={"subscribed": [("readonly", True)]},
     )
 
     fields_to_exclude_ids = fields.Many2many(
         "ir.model.fields",
         domain="[('model_id', '=', model_id)]",
         string="Fields to Exclude",
-        states={"subscribed": [("readonly", True)]},
     )
 
     _sql_constraints = [
@@ -185,25 +175,25 @@ class AuditlogRule(models.Model):
             #   -> create
             check_attr = "auditlog_ruled_create"
             if rule.log_create and not hasattr(model_model, check_attr):
-                model_model._patch_method("create", rule._make_create())
+                self._patch_method(model_model, "create", rule._make_create())
                 setattr(type(model_model), check_attr, True)
                 updated = True
             #   -> read
             check_attr = "auditlog_ruled_read"
             if rule.log_read and not hasattr(model_model, check_attr):
-                model_model._patch_method("read", rule._make_read())
+                self._patch_method(model_model, "read", rule._make_read())
                 setattr(type(model_model), check_attr, True)
                 updated = True
             #   -> write
             check_attr = "auditlog_ruled_write"
             if rule.log_write and not hasattr(model_model, check_attr):
-                model_model._patch_method("write", rule._make_write())
+                self._patch_method(model_model, "write", rule._make_write())
                 setattr(type(model_model), check_attr, True)
                 updated = True
             #   -> unlink
             check_attr = "auditlog_ruled_unlink"
             if rule.log_unlink and not hasattr(model_model, check_attr):
-                model_model._patch_method("unlink", rule._make_unlink())
+                self._patch_method(model_model, "unlink", rule._make_unlink())
                 setattr(type(model_model), check_attr, True)
                 updated = True
         return updated
@@ -266,6 +256,14 @@ class AuditlogRule(models.Model):
             for n, f in model._fields.items()
             if (not f.compute and not f.related) or f.store
         )
+
+    def _patch_method(self, obj, name, method):
+        cls = type(obj)
+        origin = getattr(cls, name)
+        method.origin = origin
+        wrapped = api.propagate(origin, method)
+        wrapped.origin = origin
+        setattr(cls, name, wrapped)
 
     def _make_create(self):
         """Instanciate a create method that log its calls."""
