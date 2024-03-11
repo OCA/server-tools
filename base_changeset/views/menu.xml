@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <menuitem
+        id="menu_changeset"
+        name="Record Changesets"
+        groups="group_changeset_user,group_changeset_manager"
+        parent="base.menu_administration"
+        sequence="20"
+    />
+    <menuitem
+        id="menu_changeset_field_rule"
+        parent="menu_changeset"
+        name="Field Rules"
+        groups="group_changeset_manager"
+        sequence="20"
+        action="action_changeset_field_rule_view"
+    />
+    <menuitem
+        id="menu_record_changeset"
+        parent="menu_changeset"
+        sequence="20"
+        name="Changesets"
+        groups="group_changeset_user"
+        action="action_record_changeset_view"
+    />
+    <menuitem
+        id="menu_record_changeset_change"
+        parent="menu_changeset"
+        sequence="20"
+        name="Changes"
+        groups="group_changeset_user"
+        action="action_record_changeset_change_view"
+    />
+</odoo>

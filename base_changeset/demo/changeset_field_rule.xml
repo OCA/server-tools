@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record model="changeset.field.rule" id="changeset_field_rule_name">
+        <field name="field_id" ref="base.field_res_partner__name" />
+        <field name="action">auto</field>
+    </record>
+    <record model="changeset.field.rule" id="changeset_field_rule_street">
+        <field name="field_id" ref="base.field_res_partner__street" />
+        <field name="action">auto</field>
+    </record>
+    <record model="changeset.field.rule" id="changeset_field_rule_street2">
+        <field name="field_id" ref="base.field_res_partner__street2" />
+        <field name="action">validate</field>
+    </record>
+    <record model="changeset.field.rule" id="changeset_field_rule_zip">
+        <field name="field_id" ref="base.field_res_partner__zip" />
+        <field name="action">validate</field>
+    </record>
+    <record model="changeset.field.rule" id="changeset_field_rule_city">
+        <field name="field_id" ref="base.field_res_partner__city" />
+        <field name="action">validate</field>
+    </record>
+    <record model="changeset.field.rule" id="changeset_field_rule_email">
+        <field name="field_id" ref="base.field_res_partner__email" />
+        <field name="action">never</field>
+    </record>
+    <record model="changeset.field.rule" id="changeset_field_rule_ref">
+        <field name="field_id" ref="base.field_res_partner__ref" />
+        <field name="action">validate</field>
+    </record>
+    <record model="changeset.field.rule" id="changeset_field_rule_country_id">
+        <field name="field_id" ref="base.field_res_partner__country_id" />
+        <field name="action">auto</field>
+    </record>
+    <record model="changeset.field.rule" id="changeset_field_rule_partner_latitude">
+        <field name="field_id" ref="base.field_res_partner__partner_latitude" />
+        <field name="action">auto</field>
+    </record>
+</odoo>
