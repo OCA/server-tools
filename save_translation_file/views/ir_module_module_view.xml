@@ -12,7 +12,7 @@
                         confirm="Overwrite all i18n files for this module ?"
                         type="object"
                         states="installed"
-                        icon="terp-translate"
+                        icon="fa-language"
                     />
                 </button>
             </field>
@@ -28,7 +28,7 @@
                         confirm="Overwrite all i18n files for this module ?"
                         type="object"
                         states="installed"
-                        icon="terp-translate"
+                        icon="fa-language"
                     />
                 </field>
             </field>
