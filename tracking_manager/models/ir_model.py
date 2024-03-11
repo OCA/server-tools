@@ -100,21 +100,27 @@ class IrModel(models.Model):
     def _default_automatic_custom_tracking_domain_rules(self):
         return {
             "product.product": [
+                ("readonly", "=", False),
                 "|",
                 ("ttype", "!=", "one2many"),
                 ("name", "in", ["barcode_ids"]),
             ],
             "sale.order": [
+                ("readonly", "=", False),
                 "|",
                 ("ttype", "!=", "one2many"),
                 ("name", "in", ["order_line"]),
             ],
             "account.move": [
+                ("readonly", "=", False),
                 "|",
                 ("ttype", "!=", "one2many"),
                 ("name", "in", ["invoice_line_ids"]),
             ],
-            "default_automatic_rule": [("ttype", "!=", "one2many")],
+            "default_automatic_rule": [
+                ("ttype", "!=", "one2many"),
+                ("readonly", "=", False),
+            ],
         }
 
     @api.depends("automatic_custom_tracking")
@@ -176,7 +182,7 @@ class IrModelFields(models.Model):
         for record in self:
             record.native_tracking = bool(record.tracking)
 
-    @api.depends("readonly", "related", "store")
+    @api.depends("related", "store")
     def _compute_trackable(self):
         blacklists = [
             "activity_ids",
@@ -185,13 +191,9 @@ class IrModelFields(models.Model):
             "message_main_attachment",
             "message_main_attachement_id",
         ]
+
         for rec in self:
-            rec.trackable = (
-                rec.name not in blacklists
-                and rec.store
-                and not rec.readonly
-                and not rec.related
-            )
+            rec.trackable = rec.name not in blacklists and rec.store and not rec.related
 
     def write(self, vals):
         custom_tracking = None
