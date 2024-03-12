@@ -1,0 +1,217 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* base_sequence_option
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2023-11-11 15:39+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: base_sequence_option
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option_line__filter_domain
+msgid "Apply On"
+msgstr "Aplicar En"
+
+#. module: base_sequence_option
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option__model
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option_line__model
+msgid "Apply On Model"
+msgstr "Aplicar en el Modelo"
+
+#. module: base_sequence_option
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option_line__base_id
+msgid "Base"
+msgstr "Base"
+
+#. module: base_sequence_option
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option__company_id
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option_line__company_id
+msgid "Company"
+msgstr "Compañía"
+
+#. module: base_sequence_option
+#: model:ir.model.fields,help:base_sequence_option.field_ir_sequence_option__company_id
+#: model:ir.model.fields,help:base_sequence_option.field_ir_sequence_option_line__company_id
+msgid "Company related to this sequence option"
+msgstr "Compañía relacionada con esta opción de secuencia"
+
+#. module: base_sequence_option
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option__create_uid
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option_line__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: base_sequence_option
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option__create_date
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option_line__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: base_sequence_option
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option_line__name
+msgid "Description"
+msgstr "Descripción"
+
+#. module: base_sequence_option
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option__display_name
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option_line__display_name
+msgid "Display Name"
+msgstr "Mostrar Nombre"
+
+#. module: base_sequence_option
+#: model_terms:ir.ui.view,arch_db:base_sequence_option.view_ir_sequence_option_form
+msgid "Doctype Sequence"
+msgstr "Secuencia de tipo de Documento"
+
+#. module: base_sequence_option
+#: model:ir.model.fields,help:base_sequence_option.field_ir_sequence_option_line__filter_domain
+msgid "Find matching option by document values"
+msgstr "Buscar opción coincidente por valores del documento"
+
+#. module: base_sequence_option
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option__id
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option_line__id
+msgid "ID"
+msgstr "ID (identificación)"
+
+#. module: base_sequence_option
+#: model:ir.model.fields,help:base_sequence_option.field_ir_sequence_option__use_sequence_option
+#: model:ir.model.fields,help:base_sequence_option.field_ir_sequence_option_line__use_sequence_option
+msgid ""
+"If checked, Odoo will try to find the new matching sequence first, if not "
+"found, fall back to use the original Odoo sequence."
+msgstr ""
+"Si esta marcada, Odoo tratara de encontrar la nueva secuencia coincidente "
+"primero, si no se encuentra, retrocede para usar la secuencia original de "
+"Odoo."
+
+#. module: base_sequence_option
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option_line__implementation
+msgid "Implementation"
+msgstr "Implementación"
+
+#. module: base_sequence_option
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option____last_update
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option_line____last_update
+msgid "Last Modified on"
+msgstr "Última Modificación el"
+
+#. module: base_sequence_option
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option__write_uid
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option_line__write_uid
+msgid "Last Updated by"
+msgstr "Actualizado por Última vez por"
+
+#. module: base_sequence_option
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option__write_date
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option_line__write_date
+msgid "Last Updated on"
+msgstr "Última Actualización el"
+
+#. module: base_sequence_option
+#: model:ir.actions.act_window,name:base_sequence_option.action_ir_sequence_option
+#: model:ir.ui.menu,name:base_sequence_option.menu_ir_sequence_option
+msgid "Manage Sequence Options"
+msgstr "Gestionar Opciones de Secuencia"
+
+#. module: base_sequence_option
+#: model_terms:ir.ui.view,arch_db:base_sequence_option.view_ir_sequence_option_form
+msgid "Matching Domain"
+msgstr "Dominio Correspondiente"
+
+#. module: base_sequence_option
+#. odoo-python
+#: code:addons/base_sequence_option/models/ir_sequence_option.py:0
+#, python-format
+msgid "Multiple optional sequences found for this model!"
+msgstr "¡Múltiples secuencias opcionales encontradas para este modelo!"
+
+#. module: base_sequence_option
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option__name
+#: model_terms:ir.ui.view,arch_db:base_sequence_option.view_ir_sequence_option_form
+msgid "Name"
+msgstr "Nombre"
+
+#. module: base_sequence_option
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option_line__prefix
+msgid "Prefix"
+msgstr "Prefijo"
+
+#. module: base_sequence_option
+#: model:ir.model.fields,help:base_sequence_option.field_ir_sequence_option_line__prefix
+msgid "Prefix value of the record for the sequence"
+msgstr "Valor del prefijo del registro para la secuencia"
+
+#. module: base_sequence_option
+#: model:ir.model,name:base_sequence_option.model_ir_sequence
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option_line__sequence_id
+msgid "Sequence"
+msgstr "Secuencia"
+
+#. module: base_sequence_option
+#: model:ir.model,name:base_sequence_option.model_ir_sequence_option
+msgid "Sequence Option Base Model"
+msgstr "Secuencia Opción Modelo Base"
+
+#. module: base_sequence_option
+#: model:ir.model,name:base_sequence_option.model_ir_sequence_option_line
+msgid "Sequence Option Line"
+msgstr "Línea de Opción de Secuencia"
+
+#. module: base_sequence_option
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option__option_ids
+msgid "Sequence Options"
+msgstr "Opciones de Secuencia"
+
+#. module: base_sequence_option
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence__smart_search
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option__smart_search
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option_line__smart_search
+msgid "Smart Search"
+msgstr "Búsqueda Inteligente"
+
+#. module: base_sequence_option
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option_line__suffix
+msgid "Suffix"
+msgstr "Sufijo"
+
+#. module: base_sequence_option
+#: model:ir.model.fields,help:base_sequence_option.field_ir_sequence_option_line__suffix
+msgid "Suffix value of the record for the sequence"
+msgstr "Valor del sufijo del registro para la secuencia"
+
+#. module: base_sequence_option
+#: model_terms:ir.ui.view,arch_db:base_sequence_option.view_ir_sequence_option_form
+msgid "Use Sequence"
+msgstr "Secuencia de Uso"
+
+#. module: base_sequence_option
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option__use_sequence_option
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option_line__use_sequence_option
+msgid "Use sequence options"
+msgstr "Utilizar opciones de secuencia"
+
+#. module: base_sequence_option
+#: model:ir.model.fields,help:base_sequence_option.field_ir_sequence_option_line__implementation
+msgid ""
+"While assigning a sequence number to a record, the 'no gap' sequence "
+"implementation ensures that each previous sequence number has been assigned "
+"already. While this sequence implementation will not skip any sequence "
+"number upon assignment, there can still be gaps in the sequence if records "
+"are deleted. The 'no gap' implementation is slower than the standard one."
+msgstr ""
+"Al asignar un número de secuencia a un registro, la implementación de la "
+"secuencia \"sin espacios\" garantiza que ya se ha asignado cada número de "
+"secuencia anterior. Aunque esta implementación de la secuencia no omitirá "
+"ningún número de secuencia al asignarlo, puede haber huecos en la secuencia "
+"si se borran registros. La implementación \"sin huecos\" es más lenta que la "
+"estándar."
