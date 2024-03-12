@@ -106,6 +106,9 @@ Contributors
 ------------
 
 -  Kitti U. <kittiu@ecosoft.co.th>
+-  `Komit <https://komit-comsulting.com>`__:
+
+   -  Le Dinh Tien <tien-ld@komit-consulting.com>
 
 Maintainers
 -----------
