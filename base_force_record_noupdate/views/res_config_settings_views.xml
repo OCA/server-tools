@@ -8,7 +8,7 @@
             <field name="arch" type="xml">
                 <xpath expr="//div[@name='integration']" position="after">
 
-                    <h2 groups="base.group_no_one">Models to Protect</h2>
+                    <h2 groups="base.group_no_one">Models on which to force "noupdate=True"</h2>
                     <div
                     groups="base.group_no_one"
                     class="row mt16 o_settings_container"
@@ -27,8 +27,7 @@
                                 for="set_default_models"
                             />
                                 <div class="text-muted">
-                                    Select this option to set the default models to protect.
-                                    The default models are:
+                                    Selecting this option is a shortcut to add the following models to the list of models for which noupdate=True will be forced:
                                     <ul>
                                         <li>ir.model.access</li>
                                         <li>ir.rules</li>
@@ -37,7 +36,6 @@
                                         <li>res.lang</li>
                                         <li>res.users.role</li>
                                     </ul>
-                                    To update this list, you can add or remove models inheriting from res.config.settings.
                                 </div>
                             </div>
                         </div>
@@ -50,8 +48,8 @@
                             placeholder="Models to force noupdate"
                         />
                         <div class="text-muted">
-                            Select the models to force noupdate = True.
-                            When updated, the data with models selected will not be updated.
+                            Select the models on which  to force noupdate = True for the records defined in modules. 
+                            When the modules owning the records of these models are updated, manual changes made in the database will not be overwritten.
                         </div>
                         </div>
                     </div>
