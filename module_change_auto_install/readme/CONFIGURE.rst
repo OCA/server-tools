@@ -4,11 +4,16 @@
 
 * (optional) Add a new entry ``modules_auto_install_disabled`` to mark
   a list of modules as NOT auto installable.
+  The environment variable ``ODOO_MODULES_AUTO_INSTALL_DISABLED`` can also be set.
 
 * (optional) Add a new entry ``modules_auto_install_enabled`` to mark
   a list of modules as auto installable. This feature can be usefull for companies
   that are hosting a lot of Odoo instances for many customers, and want some modules
   to be always installed.
+  The environment variable ``ODOO_MODULES_AUTO_INSTALL_ENABLED`` can also be set.
+
+The values in the configuration file takes precedence over the environment variable
+values.
 
 **Typical Settings**
 
