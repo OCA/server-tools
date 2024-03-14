@@ -1,0 +1,3 @@
+- Kevin Khao <kevin.khao@akretion.com>
+- Sebastien Beau <sebastien.beau@akretion.com>
+- François Poizat <francois.poizat@gmail.com>
