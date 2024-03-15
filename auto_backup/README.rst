@@ -40,7 +40,7 @@ Installation
 
 Before installing this module, you need to execute::
 
-    pip3 install pysftp==0.2.8
+    pip3 install pysftp==0.2.9
 
 Configuration
 =============

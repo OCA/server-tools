@@ -37,6 +37,10 @@
                             name="sftp_private_key"
                             placeholder="/home/odoo/.ssh/id_rsa"
                         />
+                        <field
+                            name="host_public_key"
+                            placeholder="AAAAB3NzaC1yc2EAAAADAQAB..."
+                        />
                         <button
                             name="action_sftp_test_connection"
                             type="object"
