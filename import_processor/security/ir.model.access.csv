@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_import_processor,access_import_processor,model_import_processor,base.group_user,1,0,0,0
+access_import_processor_admin,access_import_processor_admin,model_import_processor,base.group_system,1,1,1,1
+access_import_processor_wizard,access_import_processor_wizard,model_import_processor_wizard,base.group_user,1,1,1,1

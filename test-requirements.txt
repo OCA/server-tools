@@ -1,3 +1,4 @@
 odoorpc
 openupgradelib
 odoo_test_helper
+jsonpath-ng

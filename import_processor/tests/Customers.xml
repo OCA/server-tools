@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Root>
+  <Customers>
+    <Customer CustomerID="GREAT">
+      <name>Great Lakes Food Market</name>
+      <phone>(503) 555-7555</phone>
+      <email>max.ryne@example.com</email>
+      <street>2732 Baker Blvd.</street>
+      <City>Eugene</City>
+      <Region>OR</Region>
+      <zip>97403</zip>
+      <code>USA</code>
+    </Customer>
+    <Customer CustomerID="GREAT">
+      <name>Max</name>
+      <phone>(503) 555-7555</phone>
+      <email>max@example.com</email>
+      <street>2732 Baker Blvd.</street>
+      <City>Eugene</City>
+      <Region>OR</Region>
+      <zip>97403</zip>
+      <code>USA</code>
+    </Customer>
+  </Customers>
+</Root>

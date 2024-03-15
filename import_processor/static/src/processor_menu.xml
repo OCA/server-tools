@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates>
+    <t t-name="import_processor.ProcessorMenu" owl="1">
+        <li class="o_menu_item o_import_menu" role="menuitem">
+            <button type="button" class="dropdown-item" t-on-click="_onImportClick">
+                Import Processor
+            </button>
+        </li>
+    </t>
+</templates>
