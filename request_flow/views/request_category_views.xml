@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 Ecosoft
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="request_category_action_new_request" model="ir.actions.act_window">
+        <field name="name">Dashboard</field>
+        <field name="res_model">request.category</field>
+        <field name="view_mode">kanban</field>
+    </record>
+
+    <record id="request_category_action" model="ir.actions.act_window">
+        <field name="name">Request Flow Types</field>
+        <field name="res_model">request.category</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'active_test': False}</field>
+    </record>
+
+    <record id="request_action_to_review_category" model="ir.actions.act_window">
+        <field name="name">Requests to review</field>
+        <field name="res_model">request.request</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field
+            name="domain"
+        >[('approver_id', '=', uid), ('state', '=', 'pending'), ('category_id', '=', active_id)]</field>
+    </record>
+
+    <record id="request_category_view_tree" model="ir.ui.view">
+        <field name="name">request.category.view.tree</field>
+        <field name="model">request.category</field>
+        <field name="priority">10</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field
+                    name="company_id"
+                    groups="base.group_multi_company"
+                    optional="show"
+                />
+                <field name="active" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="request_category_view_search" model="ir.ui.view">
+        <field name="name">request.category.search</field>
+        <field name="model">request.category</field>
+        <field name="priority">10</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <separator />
+                <filter
+                    name="archived"
+                    string="Archived"
+                    domain="[('active', '=', False)]"
+                />
+            </search>
+        </field>
+    </record>
+
+    <record id="request_category_view_form" model="ir.ui.view">
+        <field name="name">request.category.view.form</field>
+        <field name="model">request.category</field>
+        <field name="priority">10</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <widget
+                        name="web_ribbon"
+                        title="Archived"
+                        bg_color="bg-danger"
+                        attrs="{'invisible': [('active', '=', True)]}"
+                    />
+                    <field
+                        name="image"
+                        widget="image"
+                        class="oe_avatar"
+                        options='{"preview_image": "image", "size": [80, 80]}'
+                    />
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only" />
+                        <h1>
+                            <field name="name" placeholder="Request Flow Type Name" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group name="name" string="General Info">
+                            <field name="description" />
+                            <field name="automated_sequence" />
+                            <field name="use_approver" invisible="1" />
+                            <field
+                                name="sequence_code"
+                                attrs="{
+                                'invisible': [('automated_sequence', '=', False)],
+                                'required': [('automated_sequence', '=', True)],
+                            }"
+                            />
+                            <field
+                                name="company_id"
+                                options="{'no_create': True}"
+                                groups="base.group_multi_company"
+                            />
+                        </group>
+                        <group name="server_action" string="Request's Actions">
+                            <field name="active" invisible="1" />
+                            <field name="draft_action_id" string="Set to Draft" />
+                            <field name="pending_action_id" string="After Submitted" />
+                            <field name="approved_action_id" string="After Approved" />
+                            <field name="refused_action_id" string="After Refused" />
+                            <field name="cancel_action_id" string="After Cancelled" />
+                            <separator string="Default Context" />
+                            <br />
+                            <field
+                                name="context_overwrite"
+                                widget="section_and_note_text"
+                                nolabel="1"
+                                colspan="2"
+                            />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Data Options" name="options">
+                            <group string="Request Approver">
+                                <field name="is_manager_approver" />
+                            </group>
+                            <group string="Request Data">
+                                <group name="basic_option_1">
+                                    <field
+                                        name="has_document"
+                                        string="Attach Document"
+                                        widget="radio"
+                                        options="{'horizontal': true}"
+                                    />
+                                    <field
+                                        name="has_partner"
+                                        string="Contact"
+                                        widget="radio"
+                                        options="{'horizontal': true}"
+                                    />
+                                    <field
+                                        name="has_date"
+                                        string="Date"
+                                        widget="radio"
+                                        options="{'horizontal': true}"
+                                    />
+                                    <field
+                                        name="has_period"
+                                        string="Period"
+                                        widget="radio"
+                                        options="{'horizontal': true}"
+                                    />
+                                    <field
+                                        name="has_product"
+                                        string="Product"
+                                        force_save="1"
+                                        widget="radio"
+                                        options="{'horizontal': true}"
+                                    />
+                                    <field
+                                        name="has_quantity"
+                                        string="Quantity"
+                                        widget="radio"
+                                        options="{'horizontal': true}"
+                                    />
+                                </group>
+                                <group name="basic_option_2">
+                                    <field
+                                        name="has_amount"
+                                        string="Amount"
+                                        widget="radio"
+                                        options="{'horizontal': true}"
+                                    />
+                                    <field
+                                        name="has_reference"
+                                        string="Reference"
+                                        widget="radio"
+                                        options="{'horizontal': true}"
+                                    />
+                                    <field
+                                        name="has_location"
+                                        string="Location"
+                                        widget="radio"
+                                        options="{'horizontal': true}"
+                                    />
+                                    <field
+                                        name="has_child_request"
+                                        widget="radio"
+                                        options="{'horizontal': true}"
+                                    />
+                                </group>
+                            </group>
+                            <group
+                                string="Child Document"
+                                attrs="{'invisible': [('child_doc_option_ids', '=', [])]}"
+                            >
+                                <field name="child_doc_option_ids" nolabel="1">
+                                    <tree editable="bottom">
+                                        <field name="model" />
+                                        <field name="approved_action_id" />
+                                        <field name="rejected_action_id" />
+                                    </tree>
+                                </field>
+                            </group>
+                        </page>
+                        <page string="Help" name="help">
+                            <field name="help" />
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="request_category_view_kanban" model="ir.ui.view">
+        <field name="name">request.category.views.kanban</field>
+        <field name="model">request.category</field>
+        <field name="arch" type="xml">
+            <kanban create="false" class="o_modules_kanban">
+                <field name="name" />
+                <field name="id" />
+                <field name="image" />
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_module_vignette">
+                            <t t-if="record.id">
+                                <img
+                                    t-att-src="kanban_image('request.category', 'image', record.id.raw_value)"
+                                    alt="Requests Types Image"
+                                    class="oe_kanban_avatar float-left mr-3"
+                                    width="64"
+                                    height="64"
+                                />
+                            </t>
+                            <div class="oe_module_desc">
+                                <h4 class="o_kanban_record_title">
+                                    <field name="name" />
+                                </h4>
+                                <p class="oe_module_name">
+                                    <field name="description" />
+                                </p>
+                                <div class="oe_module_action" t-if="!selection_mode">
+                                    <button
+                                        type="object"
+                                        class="btn btn-primary btn-sm"
+                                        name="create_request"
+                                        context="{'category_id':'active_id'}"
+                                    >New Request</button>
+                                    <button
+                                        type="action"
+                                        class="btn btn-sm btn-secondary float-right"
+                                        name="%(request_flow.request_action_to_review_category)d"
+                                        groups="request_flow.group_request_user"
+                                    >To Review: <field
+                                            name="request_to_validate_count"
+                                        /></button>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+</odoo>

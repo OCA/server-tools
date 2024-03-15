@@ -1,0 +1,29 @@
+<odoo noupdate="1">
+
+    <record id="mail_act_request_approval" model="mail.activity.type">
+        <field name="name">Request Approval</field>
+        <field name="icon">fa-clipboard</field>
+        <field name="res_model_id" ref="request_flow.model_request_request" />
+    </record>
+
+    <record id="mail_act_ready_to_submit" model="mail.activity.type">
+        <field name="name">Request Submission</field>
+        <field name="icon">fa-clipboard</field>
+        <field name="res_model_id" ref="request_flow.model_request_request" />
+    </record>
+
+    <!-- Request-related subtypes for messaging / Chatter -->
+    <record id="mt_request_approved" model="mail.message.subtype">
+        <field name="name">Approved</field>
+        <field name="res_model">request.request</field>
+        <field name="default" eval="True" />
+        <field name="description">Request approved</field>
+    </record>
+    <record id="mt_request_refused" model="mail.message.subtype">
+        <field name="name">Refused</field>
+        <field name="res_model">request.request</field>
+        <field name="default" eval="True" />
+        <field name="description">Request refused</field>
+    </record>
+
+</odoo>
