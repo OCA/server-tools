@@ -4,7 +4,7 @@
 
 {
     "name": "Track record changesets",
-    "version": "14.0.2.0.2",
+    "version": "14.0.2.1.0",
     "development_status": "Alpha",
     "author": "Onestein, Camptocamp, Odoo Community Association (OCA)",
     "maintainers": ["astirpe"],

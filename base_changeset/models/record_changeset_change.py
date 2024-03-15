@@ -59,6 +59,9 @@ class RecordChangesetChange(models.Model):
         readonly=True,
         ondelete="cascade",
     )
+    is_informative_change = fields.Boolean(
+        compute="_compute_is_informative_change", store=True
+    )
     field_name = fields.Char(related="field_id.name", readonly=True)
     field_type = fields.Selection(related="field_id.ttype", readonly=True)
     model = fields.Char(related="field_id.model", readonly=True, store=True)
@@ -176,6 +179,17 @@ class RecordChangesetChange(models.Model):
                 else:
                     setattr(rec, fname, False)
 
+    @api.depends("field_id", "model")
+    def _compute_is_informative_change(self):
+        for item in self:
+            if item.model and item.field_id:
+                model_field = self.env[item.model]._fields[item.field_id.name]
+                item.is_informative_change = bool(
+                    model_field.related or model_field.compute
+                )
+            else:
+                item.is_informative_change = False
+
     @api.depends(lambda self: self._value_fields)
     def _compute_value_display(self):
         for rec in self:
@@ -205,7 +219,7 @@ class RecordChangesetChange(models.Model):
 
     def set_old_value(self):
         """Copy the value of the record to the 'old' field"""
-        for change in self:
+        for change in self.filtered(lambda x: not x.is_informative_change):
             # copy the existing record's value for the history
             old_value_for_write = self._value_for_changeset(
                 change.record_id, change.field_id.name
@@ -232,12 +246,15 @@ class RecordChangesetChange(models.Model):
                 if change.state in ("cancel", "done"):
                     continue
 
-                field = change.field_id
-                new_value = change.get_new_value()
-                value_for_write = change._convert_value_for_write(new_value)
-                values[field.name] = value_for_write
+                if change.is_informative_change:
+                    change._finalize_change_approval()
+                else:
+                    field = change.field_id
+                    new_value = change.get_new_value()
+                    value_for_write = change._convert_value_for_write(new_value)
+                    values[field.name] = value_for_write
 
-                change.set_old_value()
+                    change.set_old_value()
 
                 changes_ok |= change
 
