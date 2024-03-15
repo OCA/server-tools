@@ -53,7 +53,7 @@
                     />
                 </header>
                 <sheet>
-                    <group>
+                    <group name="main_group">
                         <group>
                             <field name="record_id" />
                             <field name="model" />
@@ -70,7 +70,7 @@
                             <field name="modified_by_id" />
                         </group>
                     </group>
-                    <group string="Changes">
+                    <group name="changes_group" string="Changes">
                         <field name="change_ids" nolabel="1">
                             <tree>
                                 <field name="field_id" context="{'no_open': True}" />
@@ -99,7 +99,7 @@
                             </tree>
                         </field>
                     </group>
-                    <group>
+                    <group name="note_group">
                         <field name="note" />
                     </group>
                 </sheet>

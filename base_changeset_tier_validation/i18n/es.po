@@ -1,0 +1,248 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* base_changest_tier_validation
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-21 13:46+0000\n"
+"PO-Revision-Date: 2023-11-21 14:47+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 3.0.1\n"
+
+#. module: base_changeset_tier_validation
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_review__changeset_id
+msgid "Changeset"
+msgstr "Conjunto de cambios"
+
+#. module: base_changeset_tier_validation
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_changeset_field_rule__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_record_changeset__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_record_changeset_change__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_res_users__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_definition__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_review__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_validation__changeset_change_ids
+msgid "Changeset Changes"
+msgstr "Cambios de conjunto de cambios"
+
+#. module: base_changeset_tier_validation
+#: model:ir.model,name:base_changeset_tier_validation.model_changeset_field_rule
+msgid "Changeset Field Rules"
+msgstr "Conjuntos de cambios"
+
+#. module: base_changeset_tier_validation
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_review__changeset_ref
+msgid "Changeset Ref"
+msgstr ""
+
+#. module: base_changeset_tier_validation
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_review__changeset_ref_display_name
+msgid "Changeset Ref Display Name"
+msgstr ""
+
+#. module: base_changeset_tier_validation
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_changeset_field_rule__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_record_changeset__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_record_changeset_change__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_res_users__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_definition__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_review__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_validation__changeset_ids
+msgid "Changesets"
+msgstr "Conjuntos de cambios"
+
+#. module: base_changeset_tier_validation
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_changeset_field_rule__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_record_changeset__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_record_changeset_change__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_res_users__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_definition__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_review__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_validation__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr "Total de conjunto de cambios pendientes"
+
+#. module: base_changeset_tier_validation
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_changeset_field_rule__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_record_changeset__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_record_changeset_change__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_res_users__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_definition__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_review__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_validation__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr "Total de cambios pendientes"
+
+#. module: base_changeset_tier_validation
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_changeset_field_rule__create_tier_review
+msgid "Create tier review?"
+msgstr "¿Crear revisión?"
+
+#. module: base_changeset_tier_validation
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_changeset_field_rule__display_name
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_record_changeset__display_name
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_record_changeset_change__display_name
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_res_users__display_name
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_definition__display_name
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_review__display_name
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_validation__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: base_changeset_tier_validation
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_changeset_field_rule__field_model_id
+msgid "Field Model"
+msgstr ""
+
+#. module: base_changeset_tier_validation
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_record_changeset_change__has_review_ids
+msgid "Has Review"
+msgstr "Tiene revisión"
+
+#. module: base_changeset_tier_validation
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_changeset_field_rule__id
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_record_changeset__id
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_record_changeset_change__id
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_res_users__id
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_definition__id
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_review__id
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_validation__id
+msgid "ID"
+msgstr "ID"
+
+#. module: base_changeset_tier_validation
+#: model:ir.model.fields,help:base_changeset_tier_validation.field_tier_definition__summary_field_id
+msgid ""
+"If defined, the value of that field will be used in the summary of the "
+"review."
+msgstr ""
+"Si se define, el valor del campo se usará en el resumen de la revisión."
+
+#. module: base_changeset_tier_validation
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_changeset_field_rule____last_update
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_record_changeset____last_update
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_record_changeset_change____last_update
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_res_users____last_update
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_definition____last_update
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_review____last_update
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_validation____last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: base_changeset_tier_validation
+#: model:ir.model,name:base_changeset_tier_validation.model_record_changeset
+msgid "Record Changeset"
+msgstr "Registro de cambios"
+
+#. module: base_changeset_tier_validation
+#: model:ir.model,name:base_changeset_tier_validation.model_record_changeset_change
+msgid "Record Changeset Change"
+msgstr "Registro de cambios"
+
+#. module: base_changeset_tier_validation
+#. openerp-web
+#: code:addons/base_changeset_tier_validation/static/src/xml/tier_review_template.xml:0
+#, python-format
+msgid "Reject"
+msgstr "Rechazar"
+
+#. module: base_changeset_tier_validation
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_record_changeset__review_ids
+msgid "Review"
+msgstr "Revisor"
+
+#. module: base_changeset_tier_validation
+#: model_terms:ir.ui.view,arch_db:base_changeset_tier_validation.view_record_changeset_form
+msgid "Reviews"
+msgstr "Revisiones"
+
+#. module: base_changeset_tier_validation
+#. openerp-web
+#: code:addons/base_changeset_tier_validation/static/src/xml/tier_review_template.xml:0
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_review__summary
+#, python-format
+msgid "Summary"
+msgstr "Resumen"
+
+#. module: base_changeset_tier_validation
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_definition__summary_field_id
+msgid "Summary Field"
+msgstr "Campo resumen"
+
+#. module: base_changeset_tier_validation
+#: model:ir.model,name:base_changeset_tier_validation.model_tier_definition
+msgid "Tier Definition"
+msgstr "Definición de Nivel"
+
+#. module: base_changeset_tier_validation
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_changeset_field_rule__tier_model
+msgid "Tier Model"
+msgstr ""
+
+#. module: base_changeset_tier_validation
+#: model:ir.model,name:base_changeset_tier_validation.model_tier_review
+msgid "Tier Review"
+msgstr "Revisión de Nivel"
+
+#. module: base_changeset_tier_validation
+#: model:ir.model,name:base_changeset_tier_validation.model_tier_validation
+msgid "Tier Validation (abstract)"
+msgstr "Validaciones de Nivel (abstracto)"
+
+#. module: base_changeset_tier_validation
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_changeset_field_rule__tier_definition_id
+msgid "Tier definition"
+msgstr "Definición de Nivel"
+
+#. module: base_changeset_tier_validation
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_changeset_field_rule__tier_parent_field_id
+msgid "Tier parent field"
+msgstr "Campo principal de nivel"
+
+#. module: base_changeset_tier_validation
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_validation__total_pending_reviews
+msgid "Total Pending Reviews"
+msgstr "Total de revisiones pendientes"
+
+#. module: base_changeset_tier_validation
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_changeset_field_rule__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_record_changeset__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_record_changeset_change__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_res_users__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_definition__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_review__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_validation__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr "El usuario puede ver el conjunto de cambios"
+
+#. module: base_changeset_tier_validation
+#: model:ir.model,name:base_changeset_tier_validation.model_res_users
+msgid "Users"
+msgstr "Usuarios"
+
+#. module: base_changeset_tier_validation
+#. openerp-web
+#: code:addons/base_changeset_tier_validation/static/src/xml/tier_review_template.xml:0
+#, python-format
+msgid "Validate"
+msgstr "Validar"
+
+#. module: base_changeset_tier_validation
+#: model:ir.model.fields,field_description:base_changeset_tier_validation.field_tier_validation__pending_review_ids
+msgid "Validations"
+msgstr "Validaciones"
+
+#. module: base_changeset_tier_validation
+#. openerp-web
+#: code:addons/base_changeset_tier_validation/static/src/xml/tier_review_template.xml:0
+#, python-format
+msgid "change.user_can_validate_changeset and !change.has_review_ids"
+msgstr ""

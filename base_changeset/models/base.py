@@ -68,7 +68,9 @@ class Base(models.AbstractModel):
         :args:
         :returns: list of models
         """
-        models = self.env["changeset.field.rule"].search([]).mapped("model_id.model")
+        models = (
+            self.env["changeset.field.rule"].sudo().search([]).mapped("model_id.model")
+        )
         if config["test_enable"] and self.env.context.get("test_record_changeset"):
             if "res.partner" not in models:
                 models += ["res.partner"]  # Used in tests
@@ -103,6 +105,12 @@ class Base(models.AbstractModel):
         return True
 
     def _changeset_disabled(self):
+        if (
+            self.env.su
+            and not config["test_enable"]
+            and not self.env.context.get("test_record_changeset")
+        ):
+            return True
         if self.env.context.get("__no_changeset") == disable_changeset:
             return True
         # To avoid conflicts with tests of other modules
