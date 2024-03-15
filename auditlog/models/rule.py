@@ -693,16 +693,26 @@ class AuditlogRule(models.Model):
             vals["new_value_text"] = new_value_text
         return vals
 
+    def _except_active_ids(self):
+        """Extend for more field exceptions."""
+        return ["res.users"]
+
     def subscribe(self):
         """Subscribe Rule for auditing changes on model and apply shortcut
         to view logs on that model.
         """
         act_window_model = self.env["ir.actions.act_window"]
+        exceptions = self._except_active_ids()
         for rule in self:
             # Create a shortcut to view logs
-            domain = "[('model_id', '=', %s), ('res_id', '=', active_id)]" % (
-                rule.model_id.id
-            )
+            if rule.model_id.model in exceptions:
+                domain = "[('model_id', '=', {}), ('res_id', '=', active_id)]".format(
+                    rule.model_id.id
+                )
+            else:
+                domain = "[('model_id', '=', {}), ('res_id', 'in', active_ids)]".format(
+                    rule.model_id.id
+                )
             vals = {
                 "name": _("View logs"),
                 "res_model": "auditlog.log",
