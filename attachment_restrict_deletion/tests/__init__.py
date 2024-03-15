@@ -1,0 +1,1 @@
+from . import test_invoice_attachment_owner_rule
