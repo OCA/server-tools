@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+Copyright (C) 2018 - Today: GRAP (http://www.grap.coop)
+@author: Sylvain LE GAL (https://twitter.com/legalsylvain)
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+<odoo>
+    <record id="view_ir_cron_form" model="ir.ui.view">
+        <field name="model">ir.cron</field>
+        <field name="inherit_id" ref="base.ir_cron_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Inactivity Periods">
+                    <field name="inactivity_period_ids" nolabel="1">
+                        <tree editable="bottom">
+                            <field name="type" />
+                            <field
+                                name="inactivity_hour_begin"
+                                attrs="{'invisible': [('type', '!=', 'hour')]}"
+                                widget="float_time"
+                            />
+                            <field
+                                name="inactivity_hour_end"
+                                attrs="{'invisible': [('type', '!=', 'hour')]}"
+                                widget="float_time"
+                            />
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
