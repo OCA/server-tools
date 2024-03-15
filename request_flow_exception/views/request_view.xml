@@ -1,0 +1,83 @@
+<odoo>
+    <record id="action_request_test_tree" model="ir.actions.act_window">
+        <field name="name">Request Exception Rules</field>
+        <field name="res_model">exception.rule</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="base_exception.view_exception_rule_tree" />
+        <field
+            name="domain"
+        >[('model', 'in', ['request.request', 'request.product.line'])]</field>
+        <field
+            name="context"
+        >{'active_test': False, 'default_model' : 'request.request'}</field>
+    </record>
+    <menuitem
+        action="action_request_test_tree"
+        id="menu_request_test"
+        parent="request_flow.request_flow_menu_config"
+    />
+    <record id="request_request_view_form" model="ir.ui.view">
+        <field name="name">request_exception.request_request_view_form</field>
+        <field name="model">request.request</field>
+        <field name="inherit_id" ref="request_flow.request_request_view_form" />
+        <field name="arch" type="xml">
+            <sheet position="before">
+                <div
+                    class="alert alert-danger"
+                    role="alert"
+                    style="margin-bottom:0px;"
+                    attrs="{'invisible': [('exceptions_summary','=',False)]}"
+                >
+                    <p>
+                        <strong>There are exceptions blocking this request:</strong>
+                    </p>
+                    <field name="exceptions_summary" />
+                    <button
+                        name="action_ignore_exceptions"
+                        type="object"
+                        class="btn-danger"
+                        string="Ignore Exceptions"
+                        help="Click here to be able to confirm this Agreement regardless of the exceptions."
+                        groups="base_exception.group_exception_rule_manager"
+                    />
+                </div>
+            </sheet>
+            <xpath expr="//field[@name='company_id']/.." position="inside">
+                <field
+                    name="ignore_exception"
+                    states="pending"
+                    groups='base_exception.group_exception_rule_manager'
+                />
+            </xpath>
+            <xpath expr="//field[@name='company_id']" position="after">
+                <field name="exception_ids" widget="many2many_tags" readonly="True" />
+            </xpath>
+        </field>
+    </record>
+    <record id="request_request_view_tree" model="ir.ui.view">
+        <field name="name">request_exception.request_request_view_tree</field>
+        <field name="model">request.request</field>
+        <field name="inherit_id" ref="request_flow.request_request_view_tree" />
+        <field name="arch" type="xml">
+            <field name="state" position="after">
+                <field name="main_exception_id" />
+            </field>
+        </field>
+    </record>
+    <record id="request_request_view_search" model="ir.ui.view">
+        <field name="name">request_exception.request_search_view_search</field>
+        <field name="model">request.request</field>
+        <field name="inherit_id" ref="request_flow.request_request_view_search" />
+        <field name="arch" type="xml">
+            <filter name="filter_requests_to_review" position="after">
+                <separator orientation="vertical" />
+                <filter
+                    icon="fa-exclamation-circle"
+                    name="tofix"
+                    string="Blocked in Draft"
+                    domain="[('main_exception_id','!=',False)]"
+                />
+            </filter>
+        </field>
+    </record>
+</odoo>
