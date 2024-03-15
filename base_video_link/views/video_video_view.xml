@@ -24,8 +24,24 @@
             </div>
             <group name="config">
                 <field name="provider_id" />
-                <field name="identifier" />
-                <field name="url" />
+                <field
+                        name="manual_url"
+                        string="Url"
+                        attrs="{'invisible': [('provider_id', '!=', False)]}"
+                    />
+                <field
+                        name="manual_thumbnail_url"
+                        string="Thumbnail Url"
+                        attrs="{'invisible': [('provider_id', '!=', False)]}"
+                    />
+                <field
+                        name="identifier"
+                        attrs="{'invisible': [('provider_id', '=', False)]}"
+                    />
+                <field
+                        name="url"
+                        attrs="{'invisible': [('provider_id', '=', False)]}"
+                    />
             </group>
             <field name="thumbnail_url" widget="image_url" />
         </form>
