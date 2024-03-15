@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-10-26 03:03+0000\n"
-"PO-Revision-Date: 2024-02-16 17:36+0000\n"
+"PO-Revision-Date: 2024-03-15 15:39+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -189,14 +189,14 @@ msgstr "Ultima modifica il"
 #: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_model_write_uid
 #: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_write_uid
 msgid "Last Updated by"
-msgstr "Last Updated by"
+msgstr "Ultimo aggiornamento di"
 
 #. module: base_import_odoo
 #: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_field_write_date
 #: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_model_write_date
 #: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_write_date
 msgid "Last Updated on"
-msgstr "Last Updated on"
+msgstr "Ultimo aggiornamento il"
 
 #. module: base_import_odoo
 #: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_field_local_id
