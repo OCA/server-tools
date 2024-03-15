@@ -1,0 +1,6 @@
+<odoo>
+    <!-- Changed from approver_id to reviewer_ids -->
+    <record id="request_flow.request_approvers_rule" model="ir.rule">
+        <field name="domain_force">[('reviewer_ids','in', user.id)]</field>
+    </record>
+</odoo>

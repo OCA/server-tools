@@ -1,0 +1,98 @@
+<odoo>
+    <record id="view_request_request_filter" model="ir.ui.view">
+        <field name="name">request.request.select - request_flow_tier_validation</field>
+        <field name="model">request.request</field>
+        <field name="inherit_id" ref="request_flow.request_request_view_search" />
+        <field name="arch" type="xml">
+            <filter name="filter_requests_to_review" position="attributes">
+                <attribute
+                    name="domain"
+                >[('reviewer_ids','in',uid), ('state', '=', 'pending')]</attribute>
+            </filter>
+            <filter name="filter_requests_to_review" position="after">
+                <separator />
+                <filter
+                    name="tier_validated"
+                    string="Validated"
+                    domain="[('validated', '=', True)]"
+                    help="Requests validated and ready to be confirmed"
+                />
+            </filter>
+        </field>
+    </record>
+
+    <record id="request_request_view_kanban" model="ir.ui.view">
+        <field name="name">request.request.view.kanban</field>
+        <field name="model">request.request</field>
+        <field name="inherit_id" ref="request_flow.request_request_view_kanban" />
+        <field name="arch" type="xml">
+            <!-- hide unused stuff -->
+            <a name="action_approve" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </a>
+            <a name="action_refuse" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </a>
+            <a name="action_withdraw" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </a>
+            <t t-if="record.state.raw_value == 'pending'" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </t>
+            <t t-if="record.state.raw_value == 'approved'" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </t>
+            <t t-if="record.state.raw_value == 'refused'" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </t>
+            <!-- add new stuff -->
+            <xpath expr="//kanban/field[@name='category_id']" position="after">
+                <field name="can_review" />
+                <field name="validated" />
+                <field name="rejected" />
+           </xpath>
+            <a name="action_refuse" position="after">
+                <a
+                    name="validate_tier"
+                    type="object"
+                    attrs="{'invisible':[('can_review','=',False)]}"
+                    role="menuitem"
+                    class="dropdown-item"
+                >Validate</a>
+                <a
+                    name="reject_tier"
+                    type="object"
+                    attrs="{'invisible':[('can_review','=',False)]}"
+                    role="menuitem"
+                    class="dropdown-item"
+                >Reject</a>
+            </a>
+            <t t-if="record.state.raw_value == 'refused'" position="after">
+                <t t-if="record.can_review.raw_value">
+                    <span
+                        class="badge badge-pill float-right badge-warning mt4 mr16"
+                    >To Validate</span>
+                </t>
+                <t t-if="record.validated.raw_value">
+                    <span
+                        class="badge badge-pill float-right badge-success mt4 mr16"
+                    >Validated</span>
+                </t>
+                <t t-if="record.rejected.raw_value">
+                    <span
+                        class="badge badge-pill float-right badge-danger mt4 mr16"
+                    >Rejected</span>
+                </t>
+            </t>
+        </field>
+    </record>
+
+    <record
+        id="request_flow.request_request_action_to_review"
+        model="ir.actions.act_window"
+    >
+        <field name="domain">[]</field>
+        <field name="context">{'search_default_filter_requests_to_review': 1}</field>
+    </record>
+
+</odoo>
