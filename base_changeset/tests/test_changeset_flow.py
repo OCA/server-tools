@@ -7,6 +7,7 @@ from datetime import datetime, timedelta
 from odoo import fields
 from odoo.exceptions import UserError
 from odoo.tests.common import TransactionCase
+from odoo.tools import mute_logger
 
 from ..models.base import disable_changeset
 from .common import ChangesetTestCommon
@@ -29,6 +30,7 @@ class TestChangesetFlow(ChangesetTestCommon, TransactionCase):
       becomes 'done'
     """
 
+    @mute_logger("odoo.models.unlink")
     def _setup_rules(self):
         ChangesetFieldRule = self.env["changeset.field.rule"]
         ChangesetFieldRule.search([]).unlink()
@@ -168,7 +170,7 @@ class TestChangesetFlow(ChangesetTestCommon, TransactionCase):
         self.partner._compute_count_pending_changesets()
         self.assertEqual(self.partner.count_pending_changesets, 1)
         for change in changeset.change_ids:
-            change.get_fields_changeset_changes(changeset.model, changeset.res_id)
+            change.get_fields_changeset_changes(changeset.model, [changeset.res_id])
         changeset.change_ids.apply()
         self.partner._compute_changeset_ids()
         self.partner._compute_count_pending_changesets()
@@ -253,7 +255,7 @@ class TestChangesetFlow(ChangesetTestCommon, TransactionCase):
         self.partner._compute_count_pending_changesets()
         self.assertEqual(self.partner.count_pending_changesets, 1)
         for change in changeset.change_ids:
-            change.get_fields_changeset_changes(changeset.model, changeset.res_id)
+            change.get_fields_changeset_changes(changeset.model, [changeset.res_id])
         changeset.change_ids.apply()
         self.partner._compute_changeset_ids()
         self.partner._compute_count_pending_changesets()
@@ -272,7 +274,7 @@ class TestChangesetFlow(ChangesetTestCommon, TransactionCase):
         self.partner._compute_count_pending_changesets()
         self.assertEqual(self.partner.count_pending_changesets, 1)
         for change in changeset.change_ids:
-            change.get_fields_changeset_changes(changeset.model, changeset.res_id)
+            change.get_fields_changeset_changes(changeset.model, [changeset.res_id])
         changeset.change_ids.apply()
         self.partner._compute_changeset_ids()
         self.partner._compute_count_pending_changesets()
@@ -294,7 +296,7 @@ class TestChangesetFlow(ChangesetTestCommon, TransactionCase):
         self.assertEqual(self.partner.count_pending_changesets, 1)
         self.assertEqual(self.partner.count_pending_changeset_changes, 3)
         for change in changeset.change_ids:
-            change.get_fields_changeset_changes(changeset.model, changeset.res_id)
+            change.get_fields_changeset_changes(changeset.model, [changeset.res_id])
         changeset.apply()
         self.partner._compute_changeset_ids()
         self.partner._compute_count_pending_changesets()
@@ -381,7 +383,7 @@ class TestChangesetFlow(ChangesetTestCommon, TransactionCase):
         self.assertEqual(self.partner.count_pending_changesets, 1)
         self.assertEqual(self.partner.count_pending_changeset_changes, 3)
         for change in changeset.change_ids:
-            change.get_fields_changeset_changes(changeset.model, changeset.res_id)
+            change.get_fields_changeset_changes(changeset.model, [changeset.res_id])
         changeset2 = self._create_changeset(partner2, changes)
         partner2._compute_changeset_ids()
         partner2._compute_count_pending_changesets()
@@ -390,7 +392,7 @@ class TestChangesetFlow(ChangesetTestCommon, TransactionCase):
         self.assertEqual(partner2.count_pending_changesets, 1)
         self.assertEqual(partner2.count_pending_changeset_changes, 3)
         for change in changeset2.change_ids:
-            change.get_fields_changeset_changes(changeset2.model, changeset2.res_id)
+            change.get_fields_changeset_changes(changeset2.model, [changeset2.res_id])
         (changeset + changeset2).apply()
         self.assertEqual(self.partner.name, "Y")
         self.assertEqual(self.partner.street, "street Y")

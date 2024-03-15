@@ -380,8 +380,14 @@ class RecordChangesetChange(models.Model):
         return change, pop_value
 
     @api.model
-    def get_fields_changeset_changes(self, model, res_id):
+    def get_fields_changeset_changes(self, model, res_ids):
+        # Fix - Remove virtual_ids (necessary if using one2many)
+        _res_ids = []
+        for res_id in res_ids:
+            if isinstance(res_id, int):
+                _res_ids.append(res_id)
         fields = [
+            "record_id",
             "new_value_display",
             "origin_value_display",
             "field_name",
@@ -390,7 +396,7 @@ class RecordChangesetChange(models.Model):
         states = self.get_pending_changes_states()
         domain = [
             ("changeset_id.model", "=", model),
-            ("changeset_id.res_id", "=", res_id),
+            ("changeset_id.res_id", "in", _res_ids),
             ("state", "in", states),
         ]
         return self.search_read(domain, fields)

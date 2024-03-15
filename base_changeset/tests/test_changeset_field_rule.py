@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo.tests import common
+from odoo.tools import mute_logger
 
 
 class TestChangesetFieldRule(common.TransactionCase):
@@ -12,6 +13,7 @@ class TestChangesetFieldRule(common.TransactionCase):
         self.field_name = self.env.ref("base.field_res_partner__name")
         self.field_street = self.env.ref("base.field_res_partner__street")
 
+    @mute_logger("odoo.models.unlink")
     def test_get_rules(self):
         ChangesetFieldRule = self.env["changeset.field.rule"]
         ChangesetFieldRule.search([]).unlink()

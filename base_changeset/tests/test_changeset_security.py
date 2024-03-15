@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo.tests.common import TransactionCase
+from odoo.tools import mute_logger
 
 from .common import ChangesetTestCommon
 
@@ -9,6 +10,7 @@ from .common import ChangesetTestCommon
 class TestChangesetFlow(ChangesetTestCommon, TransactionCase):
     """Check that changesets don't leak information"""
 
+    @mute_logger("odoo.models.unlink")
     def setUp(self):
         super().setUp()
         self.env["changeset.field.rule"].search([]).unlink()
