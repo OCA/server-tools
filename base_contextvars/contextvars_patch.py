@@ -15,8 +15,16 @@ _odoo_environments_ctx = ContextVar("odoo.environments", default=())
 
 @classproperty
 def contextvars_envs(_cls):
-    # Look in _local in case we use this while the non patched context manager is active
-    return _odoo_environments_ctx.get() or getattr(_cls._local, "environments", ())
+    envs = _odoo_environments_ctx.get()
+    if not envs:
+        # Look in _local in case we use this while the non patched context manager
+        # is active
+        envs = getattr(_cls._local, "environments", ())
+        if envs:
+            # is case that an envs exist set it to context manager
+            # This can occure with pytest
+            _odoo_environments_ctx.set(envs)
+    return envs
 
 
 @classmethod  # type: ignore
