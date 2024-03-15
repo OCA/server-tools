@@ -1,0 +1,284 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* schedule
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-05-13 09:20+0000\n"
+"PO-Revision-Date: 2022-05-13 09:20+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: schedule
+#: model_terms:ir.ui.view,arch_db:schedule.schedule_day_form_view
+msgid ""
+"<span attrs=\"{'invisible': [('mode', '!=', 'weekly')]}\"> Week(s)</span>\n"
+"                                <span attrs=\"{'invisible': [('mode', '!=', 'monthly')]}\"> Month(s)</span>"
+msgstr ""
+"<span attrs=\"{'invisible': [('mode', '!=', 'weekly')]}\"> Woche(n)</span>\n"
+"                                <span attrs=\"{'invisible': [('mode', '!=', 'monthly')]}\"> Monat(e)</span>"
+
+#. module: schedule
+#: model_terms:ir.ui.view,arch_db:schedule.schedule_day_form_view
+msgid "<span> Weekday of the Month</span>"
+msgstr "<span> Wochentag des Monats</span>"
+
+#. module: schedule
+#: model_terms:ir.ui.view,arch_db:schedule.schedule_day_form_view
+msgid "<span>Every </span>"
+msgstr "<span>Alle </span>"
+
+#. module: schedule
+#: model:ir.model,name:schedule.model_schedule_weekday
+msgid "A weekday for selection in schedules"
+msgstr "Ein Wochentag für die Tagesauswahl"
+
+#. module: schedule
+#: code:addons/schedule/models/schedule_day.py:0
+#: model:ir.model.fields.selection,name:schedule.selection__schedule_day__yearly_month__4
+#, python-format
+msgid "April"
+msgstr "April"
+
+#. module: schedule
+#: code:addons/schedule/models/schedule_day.py:0
+#: model:ir.model.fields.selection,name:schedule.selection__schedule_day__yearly_month__8
+#, python-format
+msgid "August"
+msgstr "August"
+
+#. module: schedule
+#: code:addons/schedule/models/schedule_day.py:0
+#: model:ir.model.fields.selection,name:schedule.selection__schedule_day__yearly_month__12
+#, python-format
+msgid "December"
+msgstr "Dezember"
+
+#. module: schedule
+#: model:ir.model.fields,field_description:schedule.field_schedule_day__display_name
+#: model:ir.model.fields,field_description:schedule.field_schedule_weekday__display_name
+msgid "Display Name"
+msgstr "Anzeigename"
+
+#. module: schedule
+#: code:addons/schedule/models/schedule_day.py:0
+#: model:ir.model.fields.selection,name:schedule.selection__schedule_day__yearly_month__2
+#, python-format
+msgid "February"
+msgstr "Februar"
+
+#. module: schedule
+#: code:addons/schedule/models/schedule_day.py:0
+#: model:ir.model.fields.selection,name:schedule.selection__schedule_day__nth_weekday__0
+#, python-format
+msgid "First"
+msgstr "Erster"
+
+#. module: schedule
+#: code:addons/schedule/models/schedule_day.py:0
+#: model:ir.model.fields.selection,name:schedule.selection__schedule_day__nth_weekday__3
+#, python-format
+msgid "Fourth"
+msgstr "Vierter"
+
+#. module: schedule
+#: model:schedule.weekday,name:schedule.schedule_weekday_friday
+msgid "Friday"
+msgstr "Freitag"
+
+#. module: schedule
+#: code:addons/schedule/models/schedule_day.py:0
+#: model:ir.model.fields.selection,name:schedule.selection__schedule_day__yearly_month__1
+#, python-format
+msgid "January"
+msgstr "Januar"
+
+#. module: schedule
+#: code:addons/schedule/models/schedule_day.py:0
+#: model:ir.model.fields.selection,name:schedule.selection__schedule_day__yearly_month__7
+#, python-format
+msgid "July"
+msgstr "Juli"
+
+#. module: schedule
+#: code:addons/schedule/models/schedule_day.py:0
+#: model:ir.model.fields.selection,name:schedule.selection__schedule_day__yearly_month__6
+#, python-format
+msgid "June"
+msgstr "Juni"
+
+#. module: schedule
+#: code:addons/schedule/models/schedule_day.py:0
+#: model:ir.model.fields.selection,name:schedule.selection__schedule_day__nth_weekday__last
+#, python-format
+msgid "Last"
+msgstr "Letzter"
+
+#. module: schedule
+#: code:addons/schedule/models/schedule_day.py:0
+#: model:ir.model.fields.selection,name:schedule.selection__schedule_day__yearly_month__3
+#, python-format
+msgid "March"
+msgstr "März"
+
+#. module: schedule
+#: code:addons/schedule/models/schedule_day.py:0
+#: model:ir.model.fields.selection,name:schedule.selection__schedule_day__yearly_month__5
+#, python-format
+msgid "May"
+msgstr "Mai"
+
+#. module: schedule
+#: model:ir.model.fields,field_description:schedule.field_schedule_day__mode
+msgid "Mode"
+msgstr "Modus"
+
+#. module: schedule
+#: model:schedule.weekday,name:schedule.schedule_weekday_monday
+msgid "Monday"
+msgstr "Montag"
+
+#. module: schedule
+#: code:addons/schedule/models/schedule_day.py:0
+#: model:ir.model.fields.selection,name:schedule.selection__schedule_day__mode__monthly
+#, python-format
+msgid "Monthly"
+msgstr "Monatlich"
+
+#. module: schedule
+#: model:ir.model.fields,field_description:schedule.field_schedule_day__yearly_month
+msgid "Month"
+msgstr "Monat"
+
+#. module: schedule
+#: model:ir.model.fields,field_description:schedule.field_schedule_day__name
+#: model:ir.model.fields,field_description:schedule.field_schedule_weekday__name
+msgid "Name"
+msgstr "Name"
+
+#. module: schedule
+#: code:addons/schedule/models/schedule_day.py:0
+#: model:ir.model.fields.selection,name:schedule.selection__schedule_day__yearly_month__11
+#, python-format
+msgid "November"
+msgstr "November"
+
+#. module: schedule
+#: model:ir.model.fields,field_description:schedule.field_schedule_day__nth_weekday
+msgid "Nth Weekday"
+msgstr "N-ter Wochentag"
+
+#. module: schedule
+#: model:ir.model.fields,field_description:schedule.field_schedule_weekday__number
+msgid "Number"
+msgstr "Nummer"
+
+#. module: schedule
+#: code:addons/schedule/models/schedule_day.py:0
+#: model:ir.model.fields.selection,name:schedule.selection__schedule_day__yearly_month__10
+#, python-format
+msgid "October"
+msgstr "Oktober"
+
+#. module: schedule
+#: model:ir.model.fields,field_description:schedule.field_schedule_day__step
+msgid "Interval"
+msgstr "Interval"
+
+#. module: schedule
+#: model:ir.model.fields,field_description:schedule.field_schedule_day__preview
+msgid "Preview"
+msgstr "Vorschau"
+
+#. module: schedule
+#: model:schedule.weekday,name:schedule.schedule_weekday_saturday
+msgid "Saturday"
+msgstr "Samstag"
+
+#. module: schedule
+#: model:ir.model,name:schedule.model_schedule_day
+msgid "Schedule specific days within a year"
+msgstr "Spezifische Tage innerhalb eines Jahres auswählen"
+
+#. module: schedule
+#: model:ir.actions.act_window,name:schedule.action_schedule_day
+#: model:ir.ui.menu,name:schedule.menu_schedule_day
+msgid "Schedules"
+msgstr "Tagesauswahlen"
+
+#. module: schedule
+#: code:addons/schedule/models/schedule_day.py:0
+#: model:ir.model.fields.selection,name:schedule.selection__schedule_day__nth_weekday__1
+#, python-format
+msgid "Second"
+msgstr "Zweiter"
+
+#. module: schedule
+#: code:addons/schedule/models/schedule_day.py:0
+#: model:ir.model.fields.selection,name:schedule.selection__schedule_day__yearly_month__9
+#, python-format
+msgid "September"
+msgstr "September"
+
+#. module: schedule
+#: model:ir.model.fields,field_description:schedule.field_schedule_day__start_date
+msgid "Start Date"
+msgstr "Startdatum"
+
+#. module: schedule
+#: model:schedule.weekday,name:schedule.schedule_weekday_sunday
+msgid "Sunday"
+msgstr "Sonntag"
+
+#. module: schedule
+#: code:addons/schedule/models/schedule_day.py:0
+#: model:ir.model.fields.selection,name:schedule.selection__schedule_day__nth_weekday__2
+#, python-format
+msgid "Third"
+msgstr "Dritter"
+
+#. module: schedule
+#: model:schedule.weekday,name:schedule.schedule_weekday_thursday
+msgid "Thursday"
+msgstr "Donnerstag"
+
+#. module: schedule
+#: model:schedule.weekday,name:schedule.schedule_weekday_tuesday
+msgid "Tuesday"
+msgstr "Dienstag"
+
+#. module: schedule
+#: code:addons/schedule/models/schedule_day.py:0
+#, python-format
+msgid "Value must be larger than 0"
+msgstr "Wert muss größer als 0 sein"
+
+#. module: schedule
+#: model:schedule.weekday,name:schedule.schedule_weekday_wednesday
+msgid "Wednesday"
+msgstr "Mittwoch"
+
+#. module: schedule
+#: model:ir.model.fields,field_description:schedule.field_schedule_day__weekday_ids
+msgid "Weekday"
+msgstr "Wochentag"
+
+#. module: schedule
+#: code:addons/schedule/models/schedule_day.py:0
+#: model:ir.model.fields.selection,name:schedule.selection__schedule_day__mode__weekly
+#, python-format
+msgid "Weekly"
+msgstr "Wöchentlich"
+
+#. module: schedule
+#: code:addons/schedule/models/schedule_day.py:0
+#: model:ir.model.fields.selection,name:schedule.selection__schedule_day__mode__yearly
+#, python-format
+msgid "Yearly"
+msgstr "Jährlich"
