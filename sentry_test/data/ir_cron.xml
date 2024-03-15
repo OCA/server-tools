@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data noupdate="1">
+        <record id="ir_cron_sentry_test_delay" model="ir.cron">
+            <field name="name">Jobs Sentry Test all delay</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">minutes</field>
+            <field name="numbercall">-1</field>
+            <field ref="model_wizard_test_sentry" name="model_id" />
+            <field name="state">code</field>
+            <field name="code">model.test_all()</field>
+        </record>
+    </data>
+</odoo>
