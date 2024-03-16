@@ -5,6 +5,8 @@
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 # enjolras <yo@miguelrevilla.com>, 2018
+# Enric Tobella <etobella@creublanca.es>, 2018
+# Leonardo J. Caballero G. <leonardocaballero@gmail.com>, 2021, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
@@ -488,4 +490,4 @@ msgstr "Ver registros"
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule__user_ids
 msgid "if  User is not added then it will applicable for all users"
 msgstr ""
-"Si el usuario no se agrega entonces será aplicable para todos los usuarios"
+"si  el Usuario no se agrega entonces será aplicable para todos los usuarios"
