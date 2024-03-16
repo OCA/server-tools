@@ -44,7 +44,7 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
-                    <group col="4" colspan="4">
+                    <group>
                         <field name="name" />
                         <field name="module" />
                         <field name="model" />
@@ -53,7 +53,7 @@
                         <field name="mode" />
                     </group>
                     <group string="Attributes">
-                        <field name="attribute_ids" nolabel="1" colspan="4">
+                        <field name="attribute_ids" nolabel="1" colspan="2">
                             <tree>
                                 <field name="name" />
                                 <field name="value" />

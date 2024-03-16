@@ -27,7 +27,7 @@
                     />
                 </header>
                 <sheet>
-                    <group col="4" colspan="4">
+                    <group>
                         <field
                             name="config_id"
                             attrs="{'readonly': [('state', '=', 'done')]}"
@@ -51,6 +51,7 @@
                             nolabel="1"
                             widget="ace"
                             options="{'mode': 'txt'}"
+                            colspan="2"
                         />
                     </group>
 

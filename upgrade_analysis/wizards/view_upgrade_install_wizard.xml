@@ -12,15 +12,17 @@
                     <p
                         class="alert alert-warning"
                         role="alert"
+                        colspan="2"
                     >This will install the selected modules on the database. Do not continue if you use this database in production.</p>
                 </group>
                 <group states="done">
                     <p
                         class="alert alert-info"
                         role="alert"
+                        colspan="2"
                     >The modules have been installed successfuly</p>
                 </group>
-                <group col="4" states="draft">
+                <header states="draft">
                     <button
                         name="select_installable_modules"
                         type="object"
@@ -42,18 +44,19 @@
                         type="object"
                         string="All Other Modules"
                     />
-                </group>
+                </header>
+                <button
+                    name="unselect_modules"
+                    type="object"
+                    string="Clear the list"
+                    states="draft"
+                />
                 <group states="draft">
                     <field name="module_qty" />
                     <field
                         name="module_ids"
                         widget="many2many_tags"
                         options="{'no_create': True}"
-                    />
-                    <button
-                        name="unselect_modules"
-                        type="object"
-                        string="Clear the list"
                     />
                 </group>
                 <footer>
