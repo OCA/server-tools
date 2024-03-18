@@ -1,0 +1,26 @@
+<!--Defined in 'base_view_full_arch.test_format_doc'-->
+<t t-name="base_view_full_arch.test_format_doc">
+  <div>
+    Multi
+    line
+    text
+    <!--
+      Multi
+      line
+      comment
+    -->
+    Multi
+    line
+    tail
+    <ul>
+      <!-- Single line comment -->
+      <li id="single_line_text">Single line text</li>
+      <li id="empty_text_multi_line">
+
+      </li>
+      <li id="empty_text_single_line"></li>
+      <li id="null_text"/>
+      <li id="single_line_tail"/>Single line tail
+    </ul>
+  </div>
+</t>
