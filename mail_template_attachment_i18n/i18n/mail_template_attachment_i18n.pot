@@ -1,0 +1,81 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* mail_template_attachment_i18n
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mail_template_attachment_i18n
+#: model:ir.model.fields,field_description:mail_template_attachment_i18n.field_ir_attachment_language_attachment_id
+msgid "Attachment"
+msgstr ""
+
+#. module: mail_template_attachment_i18n
+#: model:ir.model.fields,field_description:mail_template_attachment_i18n.field_ir_attachment_language_create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: mail_template_attachment_i18n
+#: model:ir.model.fields,field_description:mail_template_attachment_i18n.field_ir_attachment_language_create_date
+msgid "Created on"
+msgstr ""
+
+#. module: mail_template_attachment_i18n
+#: model:ir.model.fields,field_description:mail_template_attachment_i18n.field_ir_attachment_language_display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: mail_template_attachment_i18n
+#: model:ir.model,name:mail_template_attachment_i18n.model_mail_template
+msgid "Email Templates"
+msgstr ""
+
+#. module: mail_template_attachment_i18n
+#: model:ir.model.fields,field_description:mail_template_attachment_i18n.field_ir_attachment_language_id
+msgid "ID"
+msgstr ""
+
+#. module: mail_template_attachment_i18n
+#: model:ir.model.fields,field_description:mail_template_attachment_i18n.field_ir_attachment_language_lang
+msgid "Language"
+msgstr ""
+
+#. module: mail_template_attachment_i18n
+#: model:ir.model.fields,field_description:mail_template_attachment_i18n.field_email_template_preview_ir_attachment_language_ids
+#: model:ir.model.fields,field_description:mail_template_attachment_i18n.field_mail_template_ir_attachment_language_ids
+msgid "Language Dependent Attachments"
+msgstr ""
+
+#. module: mail_template_attachment_i18n
+#: model:ir.model.fields,field_description:mail_template_attachment_i18n.field_ir_attachment_language___last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: mail_template_attachment_i18n
+#: model:ir.model.fields,field_description:mail_template_attachment_i18n.field_ir_attachment_language_write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: mail_template_attachment_i18n
+#: model:ir.model.fields,field_description:mail_template_attachment_i18n.field_ir_attachment_language_write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: mail_template_attachment_i18n
+#: model:ir.model.fields,field_description:mail_template_attachment_i18n.field_ir_attachment_language_mail_template_id
+msgid "Template"
+msgstr ""
+
+#. module: mail_template_attachment_i18n
+#: model:ir.model,name:mail_template_attachment_i18n.model_ir_attachment_language
+msgid "ir.attachment.language"
+msgstr ""
+
