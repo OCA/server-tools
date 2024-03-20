@@ -89,6 +89,7 @@ class AttachmentQueue(models.Model):
                         vals = {
                             "state": "done",
                             "date_done": fields.Datetime.now(),
+                            "state_message": None,
                         }
                         attach.write(vals)
                         attach.env.cr.commit()
