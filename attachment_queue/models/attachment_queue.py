@@ -127,6 +127,10 @@ class AttachmentQueue(models.Model):
                     self.env.ref(
                         "attachment_queue.attachment_failure_notification"
                     ).send_mail(self.id)
+                self._additional_error_hook(e)
+
+    def _additional_error_hook(self, e):
+        return True
 
     def run(self):
         """
