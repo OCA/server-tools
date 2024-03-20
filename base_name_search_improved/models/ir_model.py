@@ -89,6 +89,11 @@ def patch_name_search():
             # Support a list of fields to search on
             all_names = _get_rec_names(self.sudo())
             base_domain = args or []
+
+            # Check type res, avoid error some model.
+            if not isinstance(res, list):
+                res = []
+
             # Try regular search on each additional search field
             for rec_name in all_names[1:]:
                 domain = [(rec_name, operator, name)]
