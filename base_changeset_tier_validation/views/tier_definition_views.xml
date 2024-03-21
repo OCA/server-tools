@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="tier_definition_view_form" model="ir.ui.view">
+        <field name="name">tier.definition.form</field>
+        <field name="model">tier.definition</field>
+        <field name="inherit_id" ref="base_tier_validation.tier_definition_view_form" />
+        <field name="arch" type="xml">
+            <field name="model_id" position="after">
+                <field
+                    name="summary_field_id"
+                    attrs="{'invisible': [('model_id', '=', False)]}"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>

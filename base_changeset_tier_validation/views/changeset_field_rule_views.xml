@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_changeset_field_rule_form" model="ir.ui.view">
+        <field name="name">changeset.field.rule form</field>
+        <field name="model">changeset.field.rule</field>
+        <field name="inherit_id" ref="base_changeset.view_changeset_field_rule_form" />
+        <field name="arch" type="xml">
+            <field name="field_id" position="after">
+                <field name="create_tier_review" />
+                <field name="field_model_id" invisible="1" />
+                <field
+                    name="tier_parent_field_id"
+                    attrs="{'invisible': [('create_tier_review', '=', False)]}"
+                />
+                <field name="tier_model" invisible="1" />
+                <field
+                    name="tier_definition_id"
+                    attrs="{'invisible': [('create_tier_review', '=', False)]}"
+                />
+                <field name="allowed_summary_model" invisible="1" />
+                <field
+                    name="summary_field_id"
+                    attrs="{'invisible': [('tier_definition_id', '=', False)]}"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>

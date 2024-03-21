@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="tier_validation_buttons_changeset"
+        inherit_id="base_tier_validation.tier_validation_buttons"
+    >
+        <!-- Add more conditions to hide the buttons when a revision is pending. !-->
+        <button name="request_validation" position="attributes">
+            <attribute
+                name="t-attf-attrs"
+            >{'invisible': ['|','|','|', ('need_validation', '!=', True),('rejected','=',True),('total_pending_reviews', '>', 0),('#{state_field}', '#{state_operator}', #{state_value})]}</attribute>
+        </button>
+        <button name="restart_validation" position="attributes">
+            <attribute
+                name="t-attf-attrs"
+            >{'invisible': ['|','|',('total_pending_reviews_without_changeset', '=', 0), ('review_ids', '=', []),('#{state_field}', '#{state_operator}', #{state_value})]}</attribute>
+        </button>
+    </template>
+    <template
+        id="tier_validation_label_changeset"
+        inherit_id="base_tier_validation.tier_validation_label"
+    >
+        <field name="rejected" position="after">
+            <field name="count_pending_changesets" invisible="1" />
+            <field name="total_pending_reviews" invisible="1" />
+            <field name="total_pending_reviews_without_changeset" invisible="1" />
+        </field>
+        <xpath expr="//div[hasclass('alert-warning')]" position="attributes">
+            <attribute name="id">base_tier_validation_warning</attribute>
+        </xpath>
+        <!-- Hide base_tier_validation buttons to show custom pending reviews. -->
+        <button name="validate_tier" position="attributes">
+            <attribute name="invisible">1</attribute>
+        </button>
+        <button name="validate_tier" position="attributes">
+            <attribute name="invisible">1</attribute>
+        </button>
+        <button name="reject_tier" position="attributes">
+            <attribute name="invisible">1</attribute>
+        </button>
+        <field name="next_review" position="attributes">
+            <attribute name="invisible">1</attribute>
+        </field>
+        <xpath expr="//div[hasclass('alert-danger')]" position="after">
+            <field
+                name="pending_review_ids"
+                widget="pending_tier_reviews"
+                attrs="{'invisible':[('total_pending_reviews', '=', 0)]}"
+            />
+        </xpath>
+    </template>
+</odoo>
