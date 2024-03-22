@@ -173,13 +173,13 @@ class TestClientSetup(TransactionCase):
         (there is no exc_info in the ValidationError exception)."""
         client = initialize_sentry(config)._client
         client.transport = InMemoryTransport({"dsn": self.dsn})
-        level, msg = logging.WARNING, "Test exception"
+        level, msg = logging.ERROR, "Test exception"
 
         # Odoo handles UserErrors by logging the exception
         with patch("odoo.addons.sentry.const.DEFAULT_IGNORED_EXCEPTIONS", new=[]):
-            _logger.warning(exceptions.ValidationError(msg))
+            _logger.error(exceptions.ValidationError(msg))
 
-        level = "warning"
+        level = "error"
         self.assertEventCaptured(client, level, msg)
 
     def test_ignore_exceptions_with_no_exc_info(self):
@@ -187,12 +187,12 @@ class TestClientSetup(TransactionCase):
         (there is no exc_info in the ValidationError exception)."""
         client = initialize_sentry(config)._client
         client.transport = InMemoryTransport({"dsn": self.dsn})
-        level, msg = logging.WARNING, "Test exception"
+        level, msg = logging.ERROR, "Test exception"
 
         # Odoo handles UserErrors by logging the exception
-        _logger.warning(exceptions.ValidationError(msg))
+        _logger.error(exceptions.ValidationError(msg))
 
-        level = "warning"
+        level = "error"
         self.assertEventNotCaptured(client, level, msg)
 
     def test_exclude_logger(self):
