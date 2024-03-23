@@ -1,0 +1,72 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <record id="view_base_selection_tree" model="ir.ui.view">
+        <field name="name">base.selection.tree</field>
+        <field name="model">base.selection</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="sequence" widget="handle" />
+                <field name="field_id" />
+                <field name="code" />
+                <field name="name" />
+                <field name="default" widget="boolean_toggle" />
+                <field name="active" widget="boolean_toggle" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_base_selection_form" model="ir.ui.view">
+        <field name="name">base.selection.form</field>
+        <field name="model">base.selection</field>
+        <field name="arch" type="xml">
+            <form string="Selection Setup" name="base_selection">
+                <sheet>
+                    <widget
+                        name="web_ribbon"
+                        title="Archived"
+                        bg_color="bg-danger"
+                        attrs="{'invisible': [('active', '=', True)]}"
+                    />
+                    <div class="oe_button_box" name="button_box">
+                    </div>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only" />
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="active" invisible="1" />
+                            <field name="code" />
+                        </group>
+                    </group>
+                    <group>
+                        <group colspan="4" groups="base.group_system">
+                            <field name="field_id" />
+                            <field name="default" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_base_selection_tree" model="ir.actions.act_window">
+        <field name="name">Selections</field>
+        <field name="res_model">base.selection</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_base_selection_tree" />
+        <field name="context">{'active_test': False}</field>
+    </record>
+
+    <menuitem
+        action="action_base_selection_tree"
+        id="menu_action_selection"
+        parent="base.next_id_2"
+        sequence="90"
+        groups="base.group_system"
+    />
+
+</odoo>
