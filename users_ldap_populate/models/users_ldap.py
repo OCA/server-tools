@@ -178,7 +178,9 @@ class CompanyLDAP(orm.Model):
 
         Don't call self.query because it supresses possible exceptions
         """
-        ldap_filter = filter_format(conf['ldap_filter'] % user_name, ())
+        ldap_filter = filter_format(
+            conf['ldap_filter'], (user_name,)
+        ) if user_name != '*' else conf['ldap_filter'] % user_name
         conn = self.connect(conf)
         conn.simple_bind_s(conf['ldap_binddn'] or '',
                            conf['ldap_password'] or '')
