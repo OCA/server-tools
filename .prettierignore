@@ -1,0 +1,3 @@
+# Ignore .xml files used for tests
+*/demo/*
+*/tests/*

@@ -1,0 +1,12 @@
+<!--Defined in 'base_view_full_arch.demo_view_1'-->
+<form>
+  <sheet>
+    <group>
+      <field name="name"/>
+      <field name="active"/>
+      <field name="company_id"/>
+      <field name="login"/>
+      <field name="password"/>
+    </group>
+  </sheet>
+</form>

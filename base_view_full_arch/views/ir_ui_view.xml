@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_view_form_inherit" model="ir.ui.view">
+        <field name="model">ir.ui.view</field>
+        <field name="inherit_id" ref="base.view_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[@name='architecture']" position="before">
+                <page string="Full Arch">
+                    <field
+                        name="full_arch"
+                        string="View Architecture"
+                        widget="ace"
+                        options="{'mode': 'xml'}"
+                    />
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
