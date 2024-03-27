@@ -154,7 +154,7 @@ class DbBackup(models.Model):
             with rec.backup_log():
                 # Directory must exist
                 try:
-                    os.makedirs(rec.folder)
+                    os.makedirs(rec.folder, exist_ok=True)
                 except OSError as exc:
                     _logger.exception("Action backup - OSError: %s" % exc)
 
@@ -186,7 +186,7 @@ class DbBackup(models.Model):
                         with rec.sftp_connection() as remote:
                             # Directory must exist
                             try:
-                                remote.makedirs(rec.folder)
+                                remote.makedirs(rec.folder, exist_ok=True)
                             except pysftp.ConnectionException as exc:
                                 _logger.exception(
                                     "pysftp ConnectionException: %s" % exc

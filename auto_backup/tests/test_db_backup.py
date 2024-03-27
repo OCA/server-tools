@@ -151,7 +151,7 @@ class TestDbBackup(common.TransactionCase):
                 with patch("%s.cleanup" % class_name, new_callable=PropertyMock):
                     conn = rec_id.sftp_connection().__enter__()
                     rec_id.action_backup()
-                    conn.makedirs.assert_called_once_with(rec_id.folder)
+                    conn.makedirs.assert_called_once_with(rec_id.folder, exist_ok=True)
 
     def test_action_backup_sftp_mkdirs_conn_exception(self):
         """It should guard from ConnectionException on remote.mkdirs"""
