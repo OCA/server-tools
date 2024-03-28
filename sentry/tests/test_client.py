@@ -70,10 +70,76 @@ class NoopHandler(logging.Handler):
         pass
 
 
-class TestClientSetup(TransactionCase):
+class TestSentryCommon(TransactionCase):
     def setUp(self):
-        super(TestClientSetup, self).setUp()
+        super().setUp()
         self.dsn = "http://public:secret@example.com/1"
+
+    def assertEventCaptured(self, client, event_level, event_msg):
+        self.assertTrue(
+            client.transport.has_event(event_level, event_msg),
+            msg='Event: "%s" was not captured' % event_msg,
+        )
+
+    def assertEventNotCaptured(self, client, event_level, event_msg):
+        self.assertFalse(
+            client.transport.has_event(event_level, event_msg),
+            msg='Event: "%s" was captured' % event_msg,
+        )
+
+
+class TestClientSetupStartup(TestSentryCommon):
+    def setUp(self):
+        super().setUp()
+        config.options["sentry_enabled"] = True
+        config.options["sentry_dsn"] = self.dsn
+        config.options["sentry_logging_level"] = "info"
+        with patch(
+            "odoo.addons.sentry.const.select_transport", return_value=InMemoryTransport
+        ):
+            self.client = initialize_sentry(config)._client
+        self.handler = self.client.integrations["logging"]._handler
+
+    def assertEventCaptured(self, client, event_level, event_msg):
+        self.assertTrue(
+            client.transport.has_event(event_level, event_msg),
+            msg='Event: "%s" was not captured' % event_msg,
+        )
+
+    def assertEventNotCaptured(self, client, event_level, event_msg):
+        self.assertFalse(
+            client.transport.has_event(event_level, event_msg),
+            msg='Event: "%s" was captured' % event_msg,
+        )
+
+    def test_startup_event(self):
+        self.assertEventCaptured(self.client, "info", "Starting Odoo Server")
+
+    def test_startup_event_disabled(self):
+        config.options["sentry_enabled"] = True
+        config.options["sentry_dsn"] = self.dsn
+        config.options["sentry_ignore_startup_event"] = True
+        with patch(
+            "odoo.addons.sentry.const.select_transport", return_value=InMemoryTransport
+        ):
+            self.client = initialize_sentry(config)._client
+        self.assertEventNotCaptured(self.client, "info", "Starting Odoo Server")
+
+    def test_startup_event_disabled_if_warning_level(self):
+        config.options["sentry_enabled"] = True
+        config.options["sentry_dsn"] = self.dsn
+        config.options["sentry_ignore_startup_event"] = True
+        config.options["sentry_logging_level"] = "warning"
+        with patch(
+            "odoo.addons.sentry.const.select_transport", return_value=InMemoryTransport
+        ):
+            self.client = initialize_sentry(config)._client
+        self.assertEventNotCaptured(self.client, "info", "Starting Odoo Server")
+
+
+class TestClientSetup(TestSentryCommon):
+    def setUp(self):
+        super().setUp()
         self.patch_config(
             {
                 "sentry_enabled": True,
@@ -107,31 +173,6 @@ class TestClientSetup(TransactionCase):
 
     def log(self, level, msg, exc_info=None):
         self.logger.log(level, msg, exc_info=exc_info)
-
-    def assertEventCaptured(self, client, event_level, event_msg):
-        self.assertTrue(
-            client.transport.has_event(event_level, event_msg),
-            msg='Event: "%s" was not captured' % event_msg,
-        )
-
-    def assertEventNotCaptured(self, client, event_level, event_msg):
-        self.assertFalse(
-            client.transport.has_event(event_level, event_msg),
-            msg='Event: "%s" was captured' % event_msg,
-        )
-
-    def test_startup_event(self):
-        self.assertEventCaptured(self.client, "info", "Starting Odoo Server")
-
-    def test_startup_event_disabled(self):
-        config.options["sentry_enabled"] = True
-        config.options["sentry_dsn"] = self.dsn
-        config.options["sentry_ignore_startup_event"] = True
-        with patch(
-            "odoo.addons.sentry.const.select_transport", return_value=InMemoryTransport
-        ):
-            self.client = initialize_sentry(config)._client
-        self.assertEventNotCaptured(self.client, "info", "Starting Odoo Server")
 
     def test_initialize_raven_sets_dsn(self):
         self.assertEqual(self.client.dsn, self.dsn)
