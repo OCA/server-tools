@@ -50,6 +50,7 @@ setuptools.setup(
         'odoo-addon-scheduler_error_mailer>=15.0dev,<15.1dev',
         'odoo-addon-sentry>=15.0dev,<15.1dev',
         'odoo-addon-sequence_python>=15.0dev,<15.1dev',
+        'odoo-addon-session_db>=15.0dev,<15.1dev',
         'odoo-addon-tracking_manager>=15.0dev,<15.1dev',
         'odoo-addon-upgrade_analysis>=15.0dev,<15.1dev',
     ],
