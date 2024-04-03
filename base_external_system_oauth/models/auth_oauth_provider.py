@@ -10,7 +10,6 @@ from requests.auth import HTTPBasicAuth
 from odoo import fields, models
 from odoo.exceptions import UserError
 
-
 _logger = logging.getLogger(__name__)  # pylint: disable=invalid-name
 
 

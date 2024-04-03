@@ -1,11 +1,8 @@
-# -*- coding: utf-8 -*-
 # Copyright 2023 Therp BV.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 # pylint: disable=no-member
 """Extend external system with oauth authentication."""
-import json
 import logging
-import requests
 
 from odoo import _, api, models
 from odoo.exceptions import UserError
@@ -21,11 +18,7 @@ requests_log.propagate = True
 def strip_empty(data):
     """Strip all empty data from nested datastructure."""
     if isinstance(data, dict):
-        return {
-            k: strip_empty(v)
-            for k, v in data.items()
-            if k and v
-        }
+        return {k: strip_empty(v) for k, v in data.items() if k and v}
     if isinstance(data, list):
         return [strip_empty(item) for item in data if item]
     if isinstance(data, tuple):
@@ -75,16 +68,16 @@ class ExternalSystemAdapterOAuth(models.AbstractModel):
         """Send post request."""
         headers = kwargs.pop("headers", {})
         self._set_oauth_headers(headers)
-        return super(
-            ExternalSystemAdapterOAuth, self
-        ).post(endpoint=endpoint, data=data, json=json, headers=headers, **kwargs)
+        return super(ExternalSystemAdapterOAuth, self).post(
+            endpoint=endpoint, data=data, json=json, headers=headers, **kwargs
+        )
 
     def get_json(self, endpoint=None, params=None, **kwargs):
         """Get json formatted data from remote system."""
         self._set_oauth_headers(**kwargs)
-        return super(
-            ExternalSystemAdapterOAuth, self
-        ).get(endpoint=endpoint, params=params, **kwargs)
+        return super(ExternalSystemAdapterOAuth, self).get(
+            endpoint=endpoint, params=params, **kwargs
+        )
 
     def _set_oauth_headers(self, headers):
         """Set headers in keyword arguments."""
@@ -102,5 +95,5 @@ class ExternalSystemAdapterOAuth(models.AbstractModel):
         headers["Authorization"] = "Bearer %(token)s" % {"token": self.token}
 
     def strip_empty_data(self, data):
-        """"Utility method that can be called on adapter to cleanup data."""
+        """ "Utility method that can be called on adapter to cleanup data."""
         return strip_empty(data)
