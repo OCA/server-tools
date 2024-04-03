@@ -4,10 +4,11 @@
 {
     "name": "Base External System",
     "summary": "Data models allowing for connection to external systems.",
-    "version": "10.0.1.0.0",
+    "version": "16.0.1.0.0",
     "category": "Base",
     "website": "https://github.com/OCA/server-tools",
     "author": "LasLabs, Therp BV, Odoo Community Association (OCA)",
+    "maintainers": ["NL66278"],
     "license": "LGPL-3",
     "application": False,
     "installable": True,

@@ -1,5 +1,5 @@
 # Copyright 2017 LasLabs Inc.
-# Copyright 2023 Therp BV.
+# Copyright 2023-2024 Therp BV.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 """Define the interface for external system adapters."""
 
@@ -9,10 +9,7 @@ from odoo.exceptions import UserError
 
 
 class ExternalSystemAdapter(models.AbstractModel):
-    """This is the model that should be inherited for new external systems.
-
-    Methods provided are prefixed with ``external_`` in order to keep from
-    """
+    """This is the model that should be inherited for new external systems."""
 
     _name = "external.system.adapter"
     _description = "External System Adapter"

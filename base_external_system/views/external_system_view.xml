@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
     Copyright 2017 LasLabs Inc.
+    Copyright 2023-2024 Therp BV
     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 -->
 <odoo>
@@ -55,7 +56,7 @@
         <field name="name">external.system.view.tree</field>
         <field name="model">external.system</field>
         <field name="arch" type="xml">
-            <tree string="External Systems">
+            <tree>
                 <field name="name" />
                 <field name="host" />
                 <field name="port" />
@@ -68,13 +69,11 @@
         <field name="model">external.system</field>
         <field name="arch" type="xml">
             <search string="External Systems">
-
                 <field name="name" />
                 <field name="company_ids" />
                 <field name="host" />
                 <field name="port" />
                 <field name="username" />
-
                 <group expand="0" string="Group By">
                     <filter string="Host" domain="" context="{'group_by': 'host'}" />
                     <filter string="Port" domain="" context="{'group_by': 'port'}" />
@@ -84,7 +83,6 @@
                         context="{'group_by': 'username'}"
                     />
                 </group>
-
             </search>
         </field>
     </record>

@@ -1,5 +1,5 @@
 # Copyright 2017 LasLabs Inc.
-# Copyright 2023 Therp BV.
+# Copyright 2023-2024 Therp BV.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
 from contextlib import contextmanager
@@ -85,7 +85,6 @@ class ExternalSystem(models.Model):
                     work.append(subclass)
         return [(m._name, m._description) for m in subclasses]
 
-    @api.multi
     @api.constrains("fingerprint", "ignore_fingerprint")
     def check_fingerprint_ignore_fingerprint(self):
         """Do not allow a blank fingerprint if not set to ignore."""
@@ -98,7 +97,6 @@ class ExternalSystem(models.Model):
                     )
                 )
 
-    @api.multi
     @contextmanager
     def client(self):
         """Client object usable as a context manager to include destruction.
@@ -121,7 +119,6 @@ class ExternalSystem(models.Model):
             if client:
                 adapter.external_destroy_client(client)
 
-    @api.multi
     def action_test_connection(self):
         """Test the connection to the external system.
 
@@ -139,8 +136,15 @@ class ExternalSystem(models.Model):
             return True
         except Exception as exc:
             raise ValidationError(
-                _("Unexpected error %s when connecting to %s") % (exc, self.name)
-            )
+                _(
+                    "Unexpected error %(exception)s"
+                    " when connecting to %(system_name)s"
+                )
+                % {
+                    "exception": exc,
+                    "system_name": self.name,
+                }
+            ) from None
 
     def _get_adapter(self):
         """Trivial method to get adapter from system type.

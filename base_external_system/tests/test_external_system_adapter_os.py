@@ -1,5 +1,5 @@
 # Copyright 2017 LasLabs Inc.
-# Copyright 2023 Therp BV.
+# Copyright 2023-2024 Therp BV.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 import os
@@ -12,18 +12,15 @@ class TestExternalSystemAdapterOs(TransactionCase):
     @classmethod
     def setUpClass(cls):
         """Remember the working dir, just in case."""
-        super(TestExternalSystemAdapterOs, cls).setUpClass()
+        super().setUpClass()
         cls.working_dir = os.getcwd()
+        cls.record = cls.env.ref("base_external_system.external_system_os_demo")
 
     @classmethod
     def tearDownClass(cls):
         """Set the working dir back to origin, just in case."""
-        super(TestExternalSystemAdapterOs, cls).tearDownClass()
+        super().tearDownClass()
         os.chdir(cls.working_dir)
-
-    def setUp(self):
-        super(TestExternalSystemAdapterOs, self).setUp()
-        self.record = self.env.ref("base_external_system.external_system_os_demo")
 
     def test_external_system_adapter_os(self):
         """Client should be os, change directory and on destroy restore directory."""
