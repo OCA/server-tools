@@ -1,7 +1,5 @@
-# -*- coding: utf-8 -*-
 # Copyright 2023 Therp BV.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
-from odoo.exceptions import UserError, ValidationError
 from odoo.tests.common import TransactionCase
 
 
