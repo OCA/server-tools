@@ -1,12 +1,13 @@
-# Copyright 2023 Therp BV.
+# Copyright 2023-2024 Therp BV.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 from odoo.tests.common import TransactionCase
 
 
 class TestExternalSystem(TransactionCase):
-    def setUp(self):
-        super(TestExternalSystem, self).setUp()
-        self.record = self.env.ref("base_external_system_http.external_system_github")
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.record = cls.env.ref("base_external_system_http.external_system_github")
 
     def test_get_system_types(self):
         """It should return at least the test record's interface."""

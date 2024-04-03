@@ -1,9 +1,10 @@
-# Copyright 2023 Therp BV <https://therp.nl>.
+# Copyright 2023-2024 Therp BV <https://therp.nl>.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 {
     "name": "External System HTTP",
-    "version": "10.0.1.0.0",
+    "version": "16.0.1.0.0",
     "author": "Therp BV, Odoo Community Association (OCA)",
+    "maintainers": ["NL66278"],
     "license": "AGPL-3",
     "category": "Base",
     "website": "https://github.com/OCA/server-tools",
