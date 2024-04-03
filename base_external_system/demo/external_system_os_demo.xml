@@ -1,11 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
-
+<?xml version="1.0" encoding="utf-8" ?>
 <!--
     Copyright 2017 LasLabs Inc.
     Copyright 2023 Therp BV.
     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 -->
-
 <odoo>
 
     <record id="external_system_os_demo" model="external.system">

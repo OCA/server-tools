@@ -1,10 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
-
+<?xml version="1.0" encoding="utf-8" ?>
 <!--
     Copyright 2017 LasLabs Inc.
     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 -->
-
 <odoo>
 
     <record id="external_system_view_form" model="ir.ui.view">
@@ -13,9 +11,11 @@
         <field name="arch" type="xml">
             <form string="External System">
                 <header>
-                    <button name="action_test_connection"
-                            type="object"
-                            string="Test Connection" />
+                    <button
+                        name="action_test_connection"
+                        type="object"
+                        string="Test Connection"
+                    />
                 </header>
                 <sheet>
                     <group name="data">
@@ -76,15 +76,13 @@
                 <field name="username" />
 
                 <group expand="0" string="Group By">
-                    <filter string="Host"
-                            domain=""
-                            context="{'group_by': 'host'}" />
-                    <filter string="Port"
-                            domain=""
-                            context="{'group_by': 'port'}" />
-                    <filter string="Username"
-                            domain=""
-                            context="{'group_by': 'username'}" />
+                    <filter string="Host" domain="" context="{'group_by': 'host'}" />
+                    <filter string="Port" domain="" context="{'group_by': 'port'}" />
+                    <filter
+                        string="Username"
+                        domain=""
+                        context="{'group_by': 'username'}"
+                    />
                 </group>
 
             </search>
@@ -99,10 +97,12 @@
          <field name="view_mode">tree,form</field>
      </record>
 
-    <menuitem id="menu_external_system"
-              name="External Systems"
-              parent="base.menu_custom"
-              action="external_system_action"
-              sequence="50" />
+    <menuitem
+        id="menu_external_system"
+        name="External Systems"
+        parent="base.menu_custom"
+        action="external_system_action"
+        sequence="50"
+    />
 
 </odoo>

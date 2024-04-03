@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017 LasLabs Inc.
 # Copyright 2023 Therp BV.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
 from contextlib import contextmanager
 
-from odoo import api, fields, models, _
+from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
 
