@@ -82,6 +82,13 @@ msgid "Add Followers"
 msgstr ""
 
 #. module: nsca_client
+#: model:ir.model.fields,help:nsca_client.field_nsca_check__daylight_saving_time_resistant
+msgid ""
+"Adjust interval to run at the same hour after and beforedaylight saving time "
+"change. It's used twice a year"
+msgstr ""
+
+#. module: nsca_client
 #: model:ir.model.fields,field_description:nsca_client.field_nsca_check__allow_void_result
 msgid "Allow void result"
 msgstr "Autoriser l'absence de résultat"
@@ -185,6 +192,11 @@ msgstr "Créé le"
 #: model:ir.model.fields,field_description:nsca_client.field_nsca_check__cron_id
 msgid "Cron"
 msgstr "Cron"
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check__daylight_saving_time_resistant
+msgid "Daylight Saving Time Resistant"
+msgstr ""
 
 #. module: nsca_client
 #: model:ir.model.fields,field_description:nsca_client.field_nsca_check__display_name
