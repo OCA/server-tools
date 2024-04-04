@@ -1,0 +1,36 @@
+<?xml version="1.0" ?>
+<!--
+  Copyright 2024 Akretion
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <record id="impersonate_log_tree" model="ir.ui.view">
+        <field name="name">impersonate.log.tree</field>
+        <field name="model">impersonate.log</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="user_id" />
+                <field name="impersonated_user_id" />
+                <field name="date_start" />
+                <field name="date_end" />
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="impersonate_log_action" model="ir.actions.act_window">
+        <field name="name">Impersonate Login Logs</field>
+        <field name="res_model">impersonate.log</field>
+        <field name="view_id" ref="impersonate_log_tree" />
+        <field name="view_mode">tree</field>
+    </record>
+
+    <menuitem
+        id="menu_impersonate_log"
+        name="Impersonated Logs"
+        action="impersonate_log_action"
+        parent="base.menu_custom"
+        sequence="100"
+    />
+
+</odoo>

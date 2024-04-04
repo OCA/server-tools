@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright (C) 2024 Akretion (<http://www.akretion.com>).
+     @author Kévin Roche <kevin.roche@akretion.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="impersonate_res_users_tree">
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_tree" />
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <field name="name" position="before">
+                <button
+                    string="Switch Login"
+                    name="impersonate_login"
+                    type="object"
+                    class="btn btn-info"
+                    groups="impersonate_login.group_impersonate_login"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>

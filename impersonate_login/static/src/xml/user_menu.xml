@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright (C) 2024 Akretion (<http://www.akretion.com>).
+     @author Kévin Roche <kevin.roche@akretion.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<templates id="template" xml:space="preserve">
+     <t t-extend="UserMenu.Actions">
+         <t t-jquery="[data-menu='logout']" t-operation="before">
+             <a
+                role="menuitem"
+                href="#"
+                data-menu="origin_login"
+                class="dropdown-item"
+            >🔙 To my Login</a>
+             <a
+                role="menuitem"
+                href="#"
+                data-menu="impersonate"
+                class="dropdown-item"
+            >🔄 Switch Login</a>
+        </t>
+     </t>
+ </templates>
