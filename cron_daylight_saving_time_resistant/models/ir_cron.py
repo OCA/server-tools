@@ -45,7 +45,7 @@ class IrCron(models.Model):
         # be 1 hour too soon) and the date will just be incremented of 1
         # hour, each hour...until the changes time really occurs...
         if job["daylight_saving_time_resistant"]:
-            with cls.pool.cursor() as job_cr:
+            with db.cursor() as job_cr:
                 try:
                     cron = api.Environment(
                         job_cr,
