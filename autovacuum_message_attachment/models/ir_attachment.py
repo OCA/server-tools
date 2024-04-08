@@ -21,8 +21,8 @@ class IrAttachment(models.Model):
         if rule.inheriting_model:
             inheriting_model = self.env[rule.inheriting_model]
             attachment_link = inheriting_model._inherits.get("ir.attachment")
-            att_ids = inheriting_model.search(create_date_domain).mapped(
-                attachment_link + ".ids"
+            att_ids = (
+                inheriting_model.search(create_date_domain).mapped(attachment_link).ids
             )
             domains.append([("id", "in", att_ids)])
         if rule.filename_pattern:
