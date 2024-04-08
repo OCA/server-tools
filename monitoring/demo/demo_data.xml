@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo noupdate="1">
+    <record id="demo_check_mails" model="monitoring.script">
+        <field name="name">Check Mails</field>
+        <field name="active" eval="True" />
+        <field name="check_type">lower</field>
+        <field name="warning">2</field>
+        <field name="critical">4</field>
+        <field name="snippet">
+result = env["mail.mail"].search_count([("state", "=", "exception")])
+        </field>
+    </record>
+
+    <record id="demo_monitoring_group" model="monitoring">
+        <field name="name">Monitoring</field>
+        <field name="active" eval="True" />
+        <field name="script_ids" eval="[(4, ref('monitoring.demo_check_mails'))]" />
+    </record>
+</odoo>
