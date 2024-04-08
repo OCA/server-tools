@@ -1,0 +1,294 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* monitoring
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: monitoring
+#: model:ir.model.fields,field_description:monitoring.field_monitoring__active
+#: model:ir.model.fields,field_description:monitoring.field_monitoring_script__active
+msgid "Active"
+msgstr ""
+
+#. module: monitoring
+#: model:ir.model.fields,field_description:monitoring.field_monitoring__changeset_change_ids
+#: model:ir.model.fields,field_description:monitoring.field_monitoring_script__changeset_change_ids
+msgid "Changeset Changes"
+msgstr ""
+
+#. module: monitoring
+#: model:ir.model.fields,field_description:monitoring.field_monitoring__changeset_ids
+#: model:ir.model.fields,field_description:monitoring.field_monitoring_script__changeset_ids
+msgid "Changesets"
+msgstr ""
+
+#. module: monitoring
+#: model:ir.model.fields,field_description:monitoring.field_monitoring_script__check_type
+msgid "Check Type"
+msgstr ""
+
+#. module: monitoring
+#: model:ir.model.fields,field_description:monitoring.field_monitoring__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:monitoring.field_monitoring_script__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr ""
+
+#. module: monitoring
+#: model:ir.model.fields,field_description:monitoring.field_monitoring__count_pending_changesets
+#: model:ir.model.fields,field_description:monitoring.field_monitoring_script__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr ""
+
+#. module: monitoring
+#: model:ir.model.fields,field_description:monitoring.field_monitoring__create_uid
+#: model:ir.model.fields,field_description:monitoring.field_monitoring_script__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: monitoring
+#: model:ir.model.fields,field_description:monitoring.field_monitoring__create_date
+#: model:ir.model.fields,field_description:monitoring.field_monitoring_script__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: monitoring
+#: code:addons/monitoring/models/monitoring.py:0
+#: code:addons/monitoring/models/monitoring_script.py:0
+#: model:ir.model.fields,field_description:monitoring.field_monitoring_script__critical
+#, python-format
+msgid "Critical"
+msgstr ""
+
+#. module: monitoring
+#: model:ir.model.fields,field_description:monitoring.field_monitoring__display_name
+#: model:ir.model.fields,field_description:monitoring.field_monitoring_script__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: monitoring
+#: code:addons/monitoring/models/monitoring_script.py:0
+#, python-format
+msgid "Expect False"
+msgstr ""
+
+#. module: monitoring
+#: code:addons/monitoring/models/monitoring_script.py:0
+#, python-format
+msgid "Expect Higher"
+msgstr ""
+
+#. module: monitoring
+#: code:addons/monitoring/models/monitoring_script.py:0
+#, python-format
+msgid "Expect Lower"
+msgstr ""
+
+#. module: monitoring
+#: code:addons/monitoring/models/monitoring_script.py:0
+#, python-format
+msgid "Expect True"
+msgstr ""
+
+#. module: monitoring
+#: model:ir.ui.menu,name:monitoring.menu_monitoring
+msgid "Groups"
+msgstr ""
+
+#. module: monitoring
+#: model:ir.model.fields,field_description:monitoring.field_monitoring__id
+#: model:ir.model.fields,field_description:monitoring.field_monitoring_script__id
+msgid "ID"
+msgstr ""
+
+#. module: monitoring
+#: model:ir.model.fields,field_description:monitoring.field_monitoring____last_update
+#: model:ir.model.fields,field_description:monitoring.field_monitoring_script____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: monitoring
+#: model:ir.model.fields,field_description:monitoring.field_monitoring__write_uid
+#: model:ir.model.fields,field_description:monitoring.field_monitoring_script__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: monitoring
+#: model:ir.model.fields,field_description:monitoring.field_monitoring__write_date
+#: model:ir.model.fields,field_description:monitoring.field_monitoring_script__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: monitoring
+#: model:ir.model.fields,field_description:monitoring.field_monitoring__mail_sent
+msgid "Mail Sent"
+msgstr ""
+
+#. module: monitoring
+#: model:ir.model.fields,field_description:monitoring.field_monitoring__mail_template_id
+msgid "Mail Template"
+msgstr ""
+
+#. module: monitoring
+#: model:ir.actions.server,name:monitoring.cron_monitoring_ir_actions_server
+#: model:ir.cron,cron_name:monitoring.cron_monitoring
+#: model:ir.cron,name:monitoring.cron_monitoring
+#: model:ir.model.fields,field_description:monitoring.field_monitoring_script__monitoring_ids
+#: model:ir.ui.menu,name:monitoring.menu_monitoring_root
+msgid "Monitoring"
+msgstr ""
+
+#. module: monitoring
+#: code:addons/monitoring/models/monitoring_script.py:0
+#: model:ir.model,name:monitoring.model_monitoring_script
+#, python-format
+msgid "Monitoring Check"
+msgstr ""
+
+#. module: monitoring
+#: model:ir.actions.act_window,name:monitoring.action_monitoring
+msgid "Monitoring Group"
+msgstr ""
+
+#. module: monitoring
+#: model:ir.actions.act_window,name:monitoring.action_monitoring_script
+msgid "Monitoring Script"
+msgstr ""
+
+#. module: monitoring
+#: code:addons/monitoring/models/monitoring.py:0
+#: model:ir.model,name:monitoring.model_monitoring
+#, python-format
+msgid "Monitoring definition"
+msgstr ""
+
+#. module: monitoring
+#: model:ir.model.fields,help:monitoring.field_monitoring_script__snippet
+msgid ""
+"Monitoring script. Put the result into the variable `result`. With `env` you"
+" get an extra environment with OdooBot access levels."
+msgstr ""
+
+#. module: monitoring
+#: model:ir.model.fields,field_description:monitoring.field_monitoring__name
+#: model:ir.model.fields,field_description:monitoring.field_monitoring_script__name
+msgid "Name"
+msgstr ""
+
+#. module: monitoring
+#: code:addons/monitoring/models/monitoring.py:0
+#: code:addons/monitoring/models/monitoring_script.py:0
+#, python-format
+msgid "OK"
+msgstr ""
+
+#. module: monitoring
+#: model:ir.model.fields,field_description:monitoring.field_monitoring__script_ids
+msgid "Script"
+msgstr ""
+
+#. module: monitoring
+#: model:ir.ui.menu,name:monitoring.menu_monitoring_script
+#: model_terms:ir.ui.view,arch_db:monitoring.view_monitoring_form
+msgid "Scripts"
+msgstr ""
+
+#. module: monitoring
+#: model:ir.model.fields,help:monitoring.field_monitoring__verbose
+msgid "Send the information about all scripts"
+msgstr ""
+
+#. module: monitoring
+#: model:ir.model.fields,help:monitoring.field_monitoring__mail_template_id
+msgid ""
+"Set a mail template to send a mail if the state is warning or critical."
+msgstr ""
+
+#. module: monitoring
+#: model:ir.model.fields,field_description:monitoring.field_monitoring_script__snippet
+msgid "Snippet"
+msgstr ""
+
+#. module: monitoring
+#: model:ir.model.fields,field_description:monitoring.field_monitoring__state
+#: model:ir.model.fields,field_description:monitoring.field_monitoring_script__state
+msgid "State"
+msgstr ""
+
+#. module: monitoring
+#: code:addons/monitoring/models/monitoring.py:0
+#: code:addons/monitoring/models/monitoring_script.py:0
+#: model:ir.model.constraint,message:monitoring.constraint_monitoring_script_token_uniq
+#: model:ir.model.constraint,message:monitoring.constraint_monitoring_token_uniq
+#, python-format
+msgid "The token must be unique"
+msgstr ""
+
+#. module: monitoring
+#: model:ir.model.fields,help:monitoring.field_monitoring_script__critical
+msgid "Threshold for critical"
+msgstr ""
+
+#. module: monitoring
+#: model:ir.model.fields,help:monitoring.field_monitoring_script__warning
+msgid "Threshold for warning"
+msgstr ""
+
+#. module: monitoring
+#: model:ir.model.fields,field_description:monitoring.field_monitoring__token
+#: model:ir.model.fields,field_description:monitoring.field_monitoring_script__token
+msgid "Token"
+msgstr ""
+
+#. module: monitoring
+#: model:ir.model.fields,help:monitoring.field_monitoring__token
+#: model:ir.model.fields,help:monitoring.field_monitoring_script__token
+msgid "Token to use for the API"
+msgstr ""
+
+#. module: monitoring
+#: code:addons/monitoring/models/monitoring.py:0
+#, python-format
+msgid "Unknown"
+msgstr ""
+
+#. module: monitoring
+#: model:ir.model.fields,field_description:monitoring.field_monitoring__user_can_see_changeset
+#: model:ir.model.fields,field_description:monitoring.field_monitoring_script__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr ""
+
+#. module: monitoring
+#: model_terms:ir.ui.view,arch_db:monitoring.view_monitoring_form
+msgid "Validate"
+msgstr ""
+
+#. module: monitoring
+#: model:ir.model.fields,field_description:monitoring.field_monitoring__verbose
+msgid "Verbose"
+msgstr ""
+
+#. module: monitoring
+#: code:addons/monitoring/models/monitoring.py:0
+#: code:addons/monitoring/models/monitoring_script.py:0
+#: model:ir.model.fields,field_description:monitoring.field_monitoring_script__warning
+#, python-format
+msgid "Warning"
+msgstr ""
+
+#. module: monitoring
+#: model:ir.model.fields,help:monitoring.field_monitoring_script__check_type
+msgid ""
+"`Expect False` .. The result must be False to be not critical\n"
+"`Expect True` .. The result must be True to be not critical\n"
+"`Expect Lower` .. The result must be lower than the thresholds\n"
+"`Expect Higher` .. The result must be higher than the thresholds\n"
+msgstr ""
