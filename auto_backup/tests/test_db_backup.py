@@ -160,7 +160,7 @@ class TestDbBackup(common.TransactionCase):
             with self.patch_filtered_sftp(rec_id):
                 conn = rec_id.sftp_connection().__enter__()
                 rec_id.action_backup()
-                conn.makedirs.assert_called_once_with(rec_id.folder, exist_ok=True)
+                conn.makedirs.assert_called_once_with(rec_id.folder)
 
     def test_action_backup_sftp_cleanup(self):
         """ Backup sftp database and cleanup old databases """

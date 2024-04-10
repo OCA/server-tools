@@ -186,7 +186,7 @@ class DbBackup(models.Model):
                         with rec.sftp_connection() as remote:
                             # Directory must exist
                             try:
-                                remote.makedirs(rec.folder, exist_ok=True)
+                                remote.makedirs(rec.folder)
                             except pysftp.ConnectionException as exc:
                                 _logger.exception(
                                     "pysftp ConnectionException: %s" % exc
