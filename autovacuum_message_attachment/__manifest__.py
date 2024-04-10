@@ -3,7 +3,7 @@
 
 {
     "name": "AutoVacuum Mail Message and Attachment",
-    "version": "16.0.1.0.0",
+    "version": "16.0.1.0.1",
     "category": "Tools",
     "website": "https://github.com/OCA/server-tools",
     "author": "Akretion, Odoo Community Association (OCA)",
