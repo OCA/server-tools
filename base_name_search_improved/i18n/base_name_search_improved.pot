@@ -275,6 +275,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_name_search_improved.field_fetchmail_server__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_format_address_mixin__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_fs_storage__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_fs_test_connection__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_google_gmail_mixin__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_iap_account__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_iap_autocomplete_api__smart_search
