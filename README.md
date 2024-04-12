@@ -26,7 +26,7 @@ addon | version | maintainers | summary
 [attachment_synchronize](attachment_synchronize/) | 12.0.2.0.1 | [![florian-dacosta](https://github.com/florian-dacosta.png?size=30px)](https://github.com/florian-dacosta) [![sebastienbeau](https://github.com/sebastienbeau.png?size=30px)](https://github.com/sebastienbeau) [![GSLabIt](https://github.com/GSLabIt.png?size=30px)](https://github.com/GSLabIt) [![bealdav](https://github.com/bealdav.png?size=30px)](https://github.com/bealdav) | Attachment Synchronize
 [attachment_unindex_content](attachment_unindex_content/) | 12.0.1.0.0 | [![moylop260](https://github.com/moylop260.png?size=30px)](https://github.com/moylop260) [![ebirbe](https://github.com/ebirbe.png?size=30px)](https://github.com/ebirbe) | Disable indexing of attachments
 [auditlog](auditlog/) | 12.0.2.1.1 |  | Audit Log
-[auto_backup](auto_backup/) | 12.0.1.0.1 |  | Backups database
+[auto_backup](auto_backup/) | 12.0.1.0.2 |  | Backups database
 [autovacuum_message_attachment](autovacuum_message_attachment/) | 12.0.1.1.1 |  | Automatically delete old mail messages and attachments
 [base_changeset](base_changeset/) | 12.0.1.1.2 | [![astirpe](https://github.com/astirpe.png?size=30px)](https://github.com/astirpe) | Track record changesets
 [base_conditional_image](base_conditional_image/) | 12.0.1.0.2 |  | Conditional Images
