@@ -76,7 +76,6 @@ msgstr ""
 
 #. module: auditlog
 #: model:ir.actions.server,name:auditlog.ir_cron_auditlog_autovacuum_ir_actions_server
-#: model:ir.cron,cron_name:auditlog.ir_cron_auditlog_autovacuum
 msgid "Auto-vacuum audit logs"
 msgstr ""
 
@@ -229,17 +228,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__id
 msgid "ID"
 msgstr "ID"
-
-#. module: auditlog
-#: model:ir.model.fields,field_description:auditlog.field_auditlog_autovacuum____last_update
-#: model:ir.model.fields,field_description:auditlog.field_auditlog_http_request____last_update
-#: model:ir.model.fields,field_description:auditlog.field_auditlog_http_session____last_update
-#: model:ir.model.fields,field_description:auditlog.field_auditlog_log____last_update
-#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line____last_update
-#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view____last_update
-#: model:ir.model.fields,field_description:auditlog.field_auditlog_rule____last_update
-msgid "Last Modified on"
-msgstr "최근 수정"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_autovacuum__write_uid
@@ -595,5 +583,8 @@ msgstr ""
 
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule__user_ids
-msgid "if  User is not added then it will applicable for all users"
+msgid "if no user is added then it will applicable for all users"
 msgstr ""
+
+#~ msgid "Last Modified on"
+#~ msgstr "최근 수정"
