@@ -21,6 +21,7 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
+[auditlog](auditlog/) | 17.0.1.0.0 |  | Audit Log
 [base_exception](base_exception/) | 17.0.1.0.0 | [![hparfr](https://github.com/hparfr.png?size=30px)](https://github.com/hparfr) [![sebastienbeau](https://github.com/sebastienbeau.png?size=30px)](https://github.com/sebastienbeau) | This module provide an abstract model to manage customizable exceptions to be applied on different models (sale order, invoice, ...)
 [base_technical_user](base_technical_user/) | 17.0.1.0.0 |  | Add a technical user parameter on the company
 [base_view_inheritance_extension](base_view_inheritance_extension/) | 17.0.1.0.0 |  | Adds more operators for view inheritance
