@@ -400,7 +400,13 @@ class AuditlogRule(models.Model):
                 .with_context(prefetch_fields=False)
                 .read(fields_list)
             }
-            if self.env.user in users_to_exclude:
+            # Check if any value has actually changed
+            changes = any(
+                old_values[rec_id] != new_values[rec_id]
+                for rec_id in self.ids
+                if rec_id in old_values and rec_id in new_values
+            )
+            if not changes or self.env.user in users_to_exclude:
                 return result
             rule_model.sudo().create_logs(
                 self.env.uid,
@@ -423,8 +429,14 @@ class AuditlogRule(models.Model):
             old_vals2 = dict.fromkeys(list(vals2.keys()), False)
             old_values = {id_: old_vals2 for id_ in self.ids}
             new_values = {id_: vals2 for id_ in self.ids}
+            # Check if any value has actually changed
+            changes = any(
+                old_values[rec_id] != new_values[rec_id]
+                for rec_id in self.ids
+                if rec_id in old_values and rec_id in new_values
+            )
             result = write_fast.origin(self, vals, **kwargs)
-            if self.env.user in users_to_exclude:
+            if not changes or self.env.user in users_to_exclude:
                 return result
             rule_model.sudo().create_logs(
                 self.env.uid,
