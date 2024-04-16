@@ -8,7 +8,7 @@ import os
 from os.path import join as opj
 
 from odoo.exceptions import UserError, ValidationError
-from odoo.tests.common import SavepointCase
+from odoo.tests.common import TransactionCase
 
 DATA_DIR = opj(os.path.dirname(__file__), "generated_exports")
 _logger = logging.getLogger(__name__)
@@ -55,7 +55,7 @@ def working_directory(path):
         os.chdir(prev_cwd)
 
 
-class TestAutoExport(SavepointCase):
+class TestAutoExport(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()

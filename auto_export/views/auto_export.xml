@@ -2,18 +2,6 @@
 <!-- Copyright 2018 ACSONE SA/NV
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
-    <!--ACTION-->
-    <record model="ir.actions.act_window" id="open_auto_export_checkpoint">
-        <field name="name">Checkpoints</field>
-        <field name="res_model">connector.checkpoint</field>
-        <field name="view_mode">tree,form</field>
-        <field name="view_id" ref="auto_export.connector_checkpoint_tree_view" />
-        <field
-            name="domain"
-        >[('record_id', '=', active_id), ('model_id.model', '=', 'auto.export')]</field>
-        <field name="context">{'search_default_need_review': 1}</field>
-    </record>
-    <!--FORM view-->
     <record model="ir.ui.view" id="auto_export_form_view">
         <field name="name">auto.export.form (in auto_export)</field>
         <field name="model">auto.export</field>
@@ -43,49 +31,45 @@
                                 widget="statinfo"
                             />
                         </button>
-                        <button
-                            name="%(auto_export.open_auto_export_checkpoint)d"
-                            type="action"
-                            class="oe_stat_button"
-                            icon="fa-exclamation-triangle"
-                            attrs="{'invisible':[('checkpoint_count', '=', 0)]}"
-                        >
-                            <field
-                                string="Check points"
-                                name="checkpoint_count"
-                                widget="statinfo"
-                            />
-                        </button>
                     </div>
                     <div class="oe_title">
-                        <label
-                            for=""
-                            string="Automated Export Template"
-                            class="oe_read_only"
-                        />
-                        <label for="name" class="oe_edit_only" />
                         <h1>
-                            <field name="name" />
+                            <field name="name" placeholder="Name..." />
                         </h1>
                     </div>
-                    <group name="group_main" col="4">
-                        <field name="user_id" />
-                        <field name="ir_model_id" />
-                        <field name="ir_export_id" />
-                        <field name="technical_domain" />
-                        <field name="filename_prefix" />
-                        <field name="file_extension" />
-                        <field name="saving_protocol" />
-                        <field
-                            name="filesystem_path"
-                            attrs="{'required': [('saving_protocol', '=', 'filesystem')],
+                    <group name="group_main">
+                        <group name="group_main_left">
+                            <field name="user_id" />
+                            <field name="ir_export_id" domain="ir_export_id_domain" />
+                            <field name="filename_prefix" />
+                            <field name="saving_protocol" />
+                        </group>
+                        <group name="group_main_right">
+                            <field name="ir_model_id" />
+                            <field
+                                name="technical_domain"
+                                widget="domain"
+                                options="{'model': 'model'}"
+                            />
+                            <field name="file_extension" />
+                            <field
+                                name="filesystem_path"
+                                attrs="{'required': [('saving_protocol', '=', 'filesystem')],
                                        'invisible': [('saving_protocol', '!=', 'filesystem')]}"
-                        />
+                            />
+                            <field name="ir_export_id_domain" invisible="1" />
+                            <field name="model" invisible="1" />
+                        </group>
                     </group>
                 </sheet>
                 <div class="oe_chatter">
-                    <field name="message_follower_ids" widget="mail_followers" />
-                    <field name="message_ids" widget="mail_thread" />
+                  <field
+                        name="message_follower_ids"
+                        widget="mail_followers"
+                        groups="base.group_user"
+                    />
+                  <field name="activity_ids" widget="mail_activity" />
+                  <field name="message_ids" widget="mail_thread" />
                 </div>
             </form>
         </field>
@@ -95,21 +79,26 @@
         <field name="name">auto.export.tree (in auto_export)</field>
         <field name="model">auto.export</field>
         <field name="arch" type="xml">
-            <tree decoration-danger="has_checkpoint == True">
+            <tree decoration-danger="has_error == True">
                 <field name="name" />
                 <field name="user_id" />
                 <field name="ir_model_id" />
                 <field name="ir_export_id" />
                 <field name="filename_prefix" />
                 <field name="saving_protocol" />
+                <field name="has_error" invisible="1" />
                 <button
                     name="trigger_export"
                     string="Trigger export"
                     type="object"
                     help="This button triggers the asynchronous export."
                 />
-                <field name="has_checkpoint" invisible="1" />
-                <field name="file_extension" invisible="1" />
+                <field
+                    name="activity_ids"
+                    string="Next Activity"
+                    widget="list_activity"
+                    optional="show"
+                />
             </tree>
         </field>
     </record>
@@ -128,7 +117,7 @@
                 <filter
                     name="filter_has_checkpoint"
                     string="Needs review"
-                    domain="[('has_checkpoint', '=', True)]"
+                    domain="[('has_error', '=', True)]"
                 />
                 <group string="Group By" name="groupby">
                     <filter

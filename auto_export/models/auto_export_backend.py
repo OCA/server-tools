@@ -5,10 +5,6 @@ import logging
 
 from odoo import _, api, fields, models
 
-from .auto_export_connector_checkpoint import (
-    add_checkpoint as auto_export_add_checkpoint,
-)
-
 _logger = logging.getLogger(__name__)
 
 
@@ -17,14 +13,10 @@ class AutoExportBackend(models.Model):
     _inherit = "connector.backend"
     _description = "Auto Export Backend"
 
-    name = fields.Char(string="Name")
-    version = fields.Selection(string="Version", selection=[("1", "1.0")],)
-
-    def add_checkpoint(self, record, description):
-        self.ensure_one()
-        auto_export_add_checkpoint(
-            self.sudo().env, record._name, record.id, self._name, self.id, description
-        )
+    name = fields.Char()
+    version = fields.Selection(
+        selection=[("1", "1.0")],
+    )
 
     @api.model
     def get_backend(self):
@@ -62,4 +54,14 @@ class AutoExportBackend(models.Model):
                 display_name=record.display_name
             )
         )
-        self.add_checkpoint(record, repr(e))
+        self._create_checkpoint_activity(record, repr(e))
+
+    def _create_checkpoint_activity(self, record, message):
+        record.write(
+            {
+                "has_error": True,
+            }
+        )
+        record.activity_schedule(
+            act_type_xmlid="mail.mail_activity_data_warning", note=message
+        )

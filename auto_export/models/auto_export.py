@@ -8,7 +8,7 @@ import os
 
 import pytz
 
-from odoo import SUPERUSER_ID, _, api, fields, models
+from odoo import _, api, fields, models
 from odoo.exceptions import UserError, ValidationError
 from odoo.osv.expression import normalize_domain
 from odoo.tools.safe_eval import safe_eval
@@ -18,21 +18,16 @@ _logger = logging.getLogger(__name__)
 
 class AutoExport(models.Model):
     _name = "auto.export"
-    _inherit = ["mail.thread"]
+    _inherit = [
+        "mail.thread",
+        "mail.activity.mixin",
+    ]
     _description = "Automated Export Template"
     _order = "name asc, ir_model_id asc"
 
-    @api.model
-    def _get_default_user_id(self):
-        return self.env.user
-
-    @api.model
-    def _get_saving_protocol_selection(self):
-        return [
-            ("filesystem", "Filesystem"),
-        ]
-
-    name = fields.Char(string="Name", required=True,)
+    name = fields.Char(
+        required=True,
+    )
     user_id = fields.Many2one(
         string="User",
         help="The export job will be triggered using the selected user's "
@@ -50,10 +45,16 @@ class AutoExport(models.Model):
         help="Odoo model corresponding to the data to export (e.g. Invoices).",
         comodel_name="ir.model",
         required=True,
-        ondelete="restrict",
+        ondelete="cascade",
         domain=[("transient", "=", False)],
         tracking=True,
         index=True,
+    )
+    model = fields.Char(
+        string="Model",
+        related="ir_model_id.model",
+        store=False,
+        readonly=True,
     )
     ir_export_id = fields.Many2one(
         string="Saved export",
@@ -65,6 +66,9 @@ class AutoExport(models.Model):
         tracking=True,
         index=True,
     )
+    ir_export_id_domain = fields.Binary(
+        compute="_compute_ir_export_id_domain",
+    )
     technical_domain = fields.Char(
         string="Technical domain",
         help="Optional Odoo domain to filter on the rows to export "
@@ -72,7 +76,9 @@ class AutoExport(models.Model):
         tracking=True,
     )
     filename_prefix = fields.Char(
-        string="Filename prefix", required=True, tracking=True,
+        string="Filename prefix",
+        required=True,
+        tracking=True,
     )
     file_extension = fields.Selection(
         string="File format",
@@ -84,7 +90,7 @@ class AutoExport(models.Model):
         string="Saving protocol",
         help="The Filesystem protocol means that the export file will be "
         "saved to a selected path of the filesystem.",
-        selection=_get_saving_protocol_selection,
+        selection=lambda self: self._get_saving_protocol_selection(),
         default="filesystem",
         required=True,
         index=True,
@@ -100,25 +106,29 @@ class AutoExport(models.Model):
         store=False,
         readonly=True,
     )
-    checkpoint_count = fields.Integer(
-        string="Number of checkpoints",
-        compute="_compute_checkpoints",
-        store=False,
+    has_error = fields.Boolean(
         readonly=True,
     )
-    has_checkpoint = fields.Boolean(
-        string="Has checkpoint(s)",
-        compute="_compute_checkpoints",
-        store=False,
-        readonly=True,
-        search="_search_has_checkpoint",
-    )
+
+    @api.depends("ir_model_id")
+    def _compute_ir_export_id_domain(self):
+        for rec in self:
+            rec.ir_export_id_domain = [("resource", "=", rec.ir_model_id.model)]
+
+    @api.model
+    def _get_default_user_id(self):
+        return self.env.user
+
+    @api.model
+    def _get_saving_protocol_selection(self):
+        return [
+            ("filesystem", "Filesystem"),
+        ]
 
     @api.onchange("ir_model_id")
     def _onchange_ir_model_id(self):
         self.ensure_one()
         self.ir_export_id = False
-        return {"domain": {"ir_export_id": [("resource", "=", self.ir_model_id.model)]}}
 
     @api.onchange("saving_protocol")
     def _onchange_saving_protocol(self):
@@ -136,10 +146,10 @@ class AutoExport(models.Model):
         for rec in self:
             try:
                 normalize_domain(rec._get_domain(raise_if_exception=True))
-            except Exception:
+            except Exception as e:
                 err_msg = _("Syntax error in the domain.")
                 _logger.exception(err_msg)
-                raise ValidationError(err_msg)
+                raise ValidationError(err_msg) from e
 
     @api.constrains("ir_model_id")
     def _check_ir_model_id(self):
@@ -215,54 +225,14 @@ class AutoExport(models.Model):
                 _logger.exception("Computation error")
                 rec.preview_recordset_count = 0
 
-    def _compute_checkpoints(self):
-        """
-        This method computes the checkpoint_count and has_checkpoint fields.
-        checkpoint_count is the number of checkpoints for each record and
-        has_checkpoint defines whether the record has at least one checkpoint.
-        """
-        model = self.env["ir.model"].search([("model", "=", self._name)], limit=1)
-        res = self.env["connector.checkpoint"].read_group(
-            domain=[
-                ("model_id", "=", model.id),
-                ("record_id", "in", self.ids),
-                ("state", "=", "need_review"),
-            ],
-            fields=["record_id"],
-            groupby=["record_id"],
-        )
-        checkpoint_dict = {}
-        for dic in res:
-            rec_id = dic["record_id"]
-            checkpoint_dict.setdefault(rec_id, 0)
-            checkpoint_dict[rec_id] += dic["record_id_count"]
-        for rec in self:
-            checkpoint_count = checkpoint_dict.get(rec.id, 0)
-            rec.checkpoint_count = checkpoint_count
-            rec.has_checkpoint = checkpoint_count > 0
-
-    def _search_has_checkpoint(self, operator, value):
-        model = self.env["ir.model"].search([("model", "=", self._name)])
-        # Search for all records that need review for the current model
-        records = self.env["connector.checkpoint"].search(
-            [("model_id", "=", model.id), ("state", "=", "need_review")]
-        )
-        if records:
-            domain = [("id", "in", records.mapped("record_id"))]
-        else:
-            domain = [("id", "=", 0)]
-        value = bool(value)
-        if (operator, value) in (("=", False), ("!=", True)):
-            domain.insert(0, "!")
-        return domain
-
     def preview_recordset(self):
         self.ensure_one()
         # The preview list may not be relevant for other users than Admin
         # since they would be restricted by ACLs and record rules
         # We do not allow access to the list if the records count is <= 0
         # because it could mean the domain is incorrect
-        if self.env.user.id != SUPERUSER_ID or self.preview_recordset_count <= 0:
+        admin_user = self.env.ref("base.user_admin")
+        if self.env.user != admin_user or self.preview_recordset_count <= 0:
             return {}
         return {
             "name": _("Records to export"),
@@ -338,10 +308,15 @@ class AutoExport(models.Model):
             csv_rows.extend(export_data)
             if self.saving_protocol == "filesystem":
                 self._save_filesystem_csv(csv_rows, full_filename)
+        self.write(
+            {
+                "has_error": False,
+            }
+        )
         return full_filename
 
     def trigger_export(self):
-        description = _(u"Asynchronous auto export: {auto_export_name}")
+        description = _("Asynchronous auto export: {auto_export_name}")
         for rec in self:
             rec.with_delay(
                 description=description.format(auto_export_name=rec.display_name)
@@ -352,20 +327,19 @@ class AutoExport(models.Model):
         auto_export_rec = self.env["auto.export"].browse(auto_export_id)
         # Log action
         message = _("Auto Export triggered")
-        self.env["auto.export.backend"].get_backend().log_auto_export_action(
+        backend = self.env["auto.export.backend"].get_backend()
+        backend.log_auto_export_action(
             msg=message, record=auto_export_rec, log_level="info"
         )
         # pylint:disable=broad-except
         try:
             full_filename = auto_export_rec._export_data()
             # Log success
-            message = _("Auto Export: file {filename} created").format(
-                filename=full_filename
+            message = _(
+                "Auto Export: file %(filename)s created", filename=full_filename
             )
-            self.env["auto.export.backend"].get_backend().log_auto_export_action(
+            backend.log_auto_export_action(
                 msg=message, record=auto_export_rec, log_level="info"
             )
         except Exception as e:
-            self.env["auto.export.backend"].get_backend().process_auto_export_exception(
-                record=auto_export_rec, e=e
-            )
+            backend.process_auto_export_exception(record=auto_export_rec, e=e)
