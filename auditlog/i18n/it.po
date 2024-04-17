@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-26 01:45+0000\n"
-"PO-Revision-Date: 2024-01-09 22:36+0000\n"
+"PO-Revision-Date: 2024-04-17 14:36+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -33,54 +33,54 @@ msgstr "Audit"
 #. module: auditlog
 #: model:ir.model,name:auditlog.model_auditlog_autovacuum
 msgid "Auditlog - Delete old logs"
-msgstr "Log verifica - elimina vecchi log"
+msgstr "Log autid - elimina vecchi log"
 
 #. module: auditlog
 #: model:ir.model,name:auditlog.model_auditlog_http_session
 msgid "Auditlog - HTTP User session log"
-msgstr "Log verifica - log sessione utente HTTP"
+msgstr "Log audit - log sessione utente HTTP"
 
 #. module: auditlog
 #: model:ir.model,name:auditlog.model_auditlog_http_request
 msgid "Auditlog - HTTP request log"
-msgstr "Log verifica - log richiesta HTTP"
+msgstr "Log audit - log richiesta HTTP"
 
 #. module: auditlog
 #: model:ir.model,name:auditlog.model_auditlog_log
 msgid "Auditlog - Log"
-msgstr "Log verifica - log"
+msgstr "Log audit - log"
 
 #. module: auditlog
 #: model:ir.model,name:auditlog.model_auditlog_log_line
 #: model:ir.model,name:auditlog.model_auditlog_log_line_view
 msgid "Auditlog - Log details (fields updated)"
-msgstr "Log verifica - dettagli log (campi aggiornati)"
+msgstr "Log audit - dettagli log (campi aggiornati)"
 
 #. module: auditlog
 #: model:ir.model,name:auditlog.model_auditlog_rule
 msgid "Auditlog - Rule"
-msgstr "Log verifica - regola"
+msgstr "Log audit - regola"
 
 #. module: auditlog
 #: model:res.groups,name:auditlog.group_auditlog_manager
 msgid "Auditlog Manager"
-msgstr "Responsabile log verifica"
+msgstr "Responsabile log audit"
 
 #. module: auditlog
 #: model:ir.module.category,name:auditlog.security_auditlog_groups
 msgid "Auditlog Rights"
-msgstr "Autorizzazioni log verifica"
+msgstr "Autorizzazioni log audit"
 
 #. module: auditlog
 #: model:res.groups,name:auditlog.group_auditlog_user
 msgid "Auditlog User"
-msgstr "Utente log verifica"
+msgstr "Utente log audit"
 
 #. module: auditlog
 #: model:ir.actions.server,name:auditlog.ir_cron_auditlog_autovacuum_ir_actions_server
 #: model:ir.cron,cron_name:auditlog.ir_cron_auditlog_autovacuum
 msgid "Auto-vacuum audit logs"
-msgstr "Svuota automaticamente log verifica"
+msgstr "Svuota automaticamente log audit"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__capture_record
@@ -224,7 +224,7 @@ msgstr "Richiesta HTTP"
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_http_request_search
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_http_session_form
 msgid "HTTP Requests"
-msgstr "Richiesta HTTP"
+msgstr "Richieste HTTP"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_autovacuum__id
@@ -336,7 +336,7 @@ msgstr "Modello"
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__model_model
 msgid "Model Model"
-msgstr "Model Model"
+msgstr "Modello Model"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log__model_name
@@ -442,12 +442,12 @@ msgstr "Regole"
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule__model_id
 msgid "Select model for which you want to generate log."
-msgstr "Seleziona modello per il quale vuoi generare un log."
+msgstr "Seleziona modello per il quale si vuole generare un log."
 
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule__capture_record
 msgid "Select this if you want to keep track of Unlink Record"
-msgstr "Seleziona se vuoi seguire \"scollega record\""
+msgstr "Selezionare se si vuole tenere traccia di Unlink Record"
 
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule__log_create
@@ -455,8 +455,8 @@ msgid ""
 "Select this if you want to keep track of creation on any record of the model "
 "of this rule"
 msgstr ""
-"Seleziona se vuoi tenere traccia della creazione di qualsiasi record del "
-"modello di questa regola"
+"Selezionare se si vuole tenere traccia della creazione di qualsiasi record "
+"del modello di questa regola"
 
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule__log_unlink
@@ -464,8 +464,8 @@ msgid ""
 "Select this if you want to keep track of deletion on any record of the model "
 "of this rule"
 msgstr ""
-"Seleziona se vuoi tenere traccia dell'eliminazione di qualsiasi record del "
-"modello di questa regola"
+"Selezionare se si vuole tenere traccia dell'eliminazione di qualsiasi record "
+"del modello di questa regola"
 
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule__log_write
@@ -473,8 +473,8 @@ msgid ""
 "Select this if you want to keep track of modification on any record of the "
 "model of this rule"
 msgstr ""
-"Seleziona se vuoi tenere traccia della modifica di qualsiasi record del "
-"modello di questa regola"
+"Selezionare se si vuole tenere traccia della modifica di qualsiasi record "
+"del modello di questa regola"
 
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule__log_read
@@ -482,8 +482,8 @@ msgid ""
 "Select this if you want to keep track of read/open on any record of the "
 "model of this rule"
 msgstr ""
-"Seleziona se vuoi tenere traccia della lettura/apertura di qualsiasi record "
-"del modello di questa regola"
+"Selezionare se si vuole tenere traccia della lettura/apertura di qualsiasi "
+"record del modello di questa regola"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_http_request__http_session_id
