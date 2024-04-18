@@ -379,9 +379,7 @@ class AuditlogRule(models.Model):
             self = self.with_context(auditlog_disabled=True)
             rule_model = self.env["auditlog.rule"]
             fields_list = rule_model.get_auditlog_fields(self)
-            records_write = self.filtered(
-                lambda r: not isinstance(r.id, models.NewId)
-            )
+            records_write = self.filtered(lambda r: not isinstance(r.id, models.NewId))
             if not records_write:
                 return write_full.origin(self, vals, **kwargs)
             old_values = {
