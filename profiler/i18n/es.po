@@ -6,168 +6,170 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2024-04-18 19:36+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: profiler
 #: model:ir.model.fields.selection,name:profiler.selection__profiler_profile__python_method__full
 msgid "All activity"
-msgstr ""
+msgstr "Toda la Actividad"
 
 #. module: profiler
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile__attachment_count
 msgid "Attachment Count"
-msgstr ""
+msgstr "Contador de Archivos Adjuntos"
 
 #. module: profiler
 #: model_terms:ir.ui.view,arch_db:profiler.view_profile_form
 msgid "Attachments"
-msgstr ""
+msgstr "Archivos Adjuntos"
 
 #. module: profiler
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile_python_line__cprof_ctpercall
 msgid "CT per call"
-msgstr ""
+msgstr "TC por llamada"
 
 #. module: profiler
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile_python_line__cprof_ncalls
 msgid "Calls"
-msgstr ""
+msgstr "Llamadas"
 
 #. module: profiler
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile__changeset_change_ids
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile_python_line__changeset_change_ids
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile_request_line__changeset_change_ids
 msgid "Changeset Changes"
-msgstr ""
+msgstr "Cambios en el Conjunto de Modificaciones"
 
 #. module: profiler
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile__changeset_ids
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile_python_line__changeset_ids
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile_request_line__changeset_ids
 msgid "Changesets"
-msgstr ""
+msgstr "Conjuntos de cambios"
 
 #. module: profiler
 #: model_terms:ir.ui.view,arch_db:profiler.view_profile_form
 msgid "Clear"
-msgstr ""
+msgstr "Borrar"
 
 #. module: profiler
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile_request_line__user_context
 msgid "Context"
-msgstr ""
+msgstr "Contexto"
 
 #. module: profiler
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile_python_line__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile_request_line__count_pending_changeset_changes
 msgid "Count Pending Changeset Changes"
-msgstr ""
+msgstr "Recuento de Cambios Pendientes"
 
 #. module: profiler
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile__count_pending_changesets
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile_python_line__count_pending_changesets
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile_request_line__count_pending_changesets
 msgid "Count Pending Changesets"
-msgstr ""
+msgstr "Recuento de Cambios Pendientes"
 
 #. module: profiler
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile__create_uid
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile_python_line__create_uid
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile_request_line__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creado por"
 
 #. module: profiler
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile__create_date
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile_python_line__create_date
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile_request_line__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creado el"
 
 #. module: profiler
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile_python_line__cprof_cumtime
 msgid "Cumulative time"
-msgstr ""
+msgstr "Tiempo acumulado"
 
 #. module: profiler
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile__date_finished
 msgid "Date Finished"
-msgstr ""
+msgstr "Fecha de Finalización"
 
 #. module: profiler
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile__date_started
 msgid "Date Started"
-msgstr ""
+msgstr "Fecha de Inicio"
 
 #. module: profiler
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile__description
 msgid "Description"
-msgstr ""
+msgstr "Descripción"
 
 #. module: profiler
 #: model_terms:ir.ui.view,arch_db:profiler.view_profile_form
 msgid "Disable"
-msgstr ""
+msgstr "Deshabilitar"
 
 #. module: profiler
 #: model:ir.model.fields.selection,name:profiler.selection__profiler_profile__state__disabled
 msgid "Disabled"
-msgstr ""
+msgstr "Deshabilitado"
 
 #. module: profiler
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile__display_name
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile_python_line__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Mostrar Nombre"
 
 #. module: profiler
 #: model_terms:ir.ui.view,arch_db:profiler.view_profile_form
 msgid "Enable"
-msgstr ""
+msgstr "Habilitar"
 
 #. module: profiler
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile__enable_postgresql
 msgid "Enable Postgresql"
-msgstr ""
+msgstr "Habilitar Postgresql"
 
 #. module: profiler
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile__enable_python
 msgid "Enable Python"
-msgstr ""
+msgstr "Habilitar Python"
 
 #. module: profiler
 #: model:ir.model.fields.selection,name:profiler.selection__profiler_profile__state__enabled
 msgid "Enabled"
-msgstr ""
+msgstr "Habilitado"
 
 #. module: profiler
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile_python_line__cprof_fname
 msgid "Filename:lineno(method)"
-msgstr ""
+msgstr "Filename:lineno(método)"
 
 #. module: profiler
 #: model:ir.model.fields,help:profiler.field_profiler_profile__pg_log_path
 msgid "Getting the path to the logger"
-msgstr ""
+msgstr "Obtener la ruta hacia el registrador"
 
 #. module: profiler
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile__py_request_lines
 msgid "HTTP requests"
-msgstr ""
+msgstr "Peticiones HTTP"
 
 #. module: profiler
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile__id
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile_python_line__id
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile_request_line__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: profiler
 #: model:ir.model.fields,help:profiler.field_profiler_profile__use_py_index
@@ -176,11 +178,15 @@ msgid ""
 "To access this report, you must open the cprofile attachment view using debug mode.\n"
 "Warning: Uses more resources."
 msgstr ""
+"Índice de archivos adjuntos de cProfile legibles por humanos.\n"
+"Para acceder a este informe, debe abrir la vista de archivos adjuntos de "
+"cProfile utilizando el modo de depuración.\n"
+"Advertencia: Utiliza más recursos."
 
 #. module: profiler
 #: model:ir.model.fields,help:profiler.field_profiler_profile__enable_postgresql
 msgid "It requires postgresql server logs seudo-enabled"
-msgstr ""
+msgstr "Requiere postgresql server logs seudo-enabled"
 
 #. module: profiler
 #: code:addons/profiler/models/profiler_profile.py:0
@@ -190,76 +196,80 @@ msgid ""
 "%s\n"
 "Please, disable postgresql or re-enable it in order to read the instructions"
 msgstr ""
+"No es posible cambiar parámetro.\n"
+"%s\n"
+"Por favor, deshabilite postgresql o vuelva a habilitarlo para poder leer las "
+"instrucciones"
 
 #. module: profiler
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile____last_update
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile_python_line____last_update
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile_request_line____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última Modificación el"
 
 #. module: profiler
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile__write_uid
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile_python_line__write_uid
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile_request_line__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Última Actualización por"
 
 #. module: profiler
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile__write_date
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile_python_line__write_date
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile_request_line__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Última Actualización el"
 
 #. module: profiler
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile__name
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile_request_line__display_name
 msgid "Name"
-msgstr ""
+msgstr "Nombre"
 
 #. module: profiler
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile__py_stats_lines
 msgid "PY Stats Lines"
-msgstr ""
+msgstr "Líneas PY Estadísticas"
 
 #. module: profiler
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile_request_line__name
 msgid "Path"
-msgstr ""
+msgstr "Ruta"
 
 #. module: profiler
 #: model:ir.model.fields.selection,name:profiler.selection__profiler_profile__python_method__request
 msgid "Per HTTP request"
-msgstr ""
+msgstr "Por solicitud HTTP"
 
 #. module: profiler
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile__pg_log_path
 msgid "Pg Log Path"
-msgstr ""
+msgstr "Pg Ruta de Registro"
 
 #. module: profiler
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile__pg_remote
 msgid "Pg Remote"
-msgstr ""
+msgstr "Pg Remoto"
 
 #. module: profiler
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile__pg_stats_most_frequent_html
 #: model_terms:ir.ui.view,arch_db:profiler.view_profile_form
 msgid "PostgreSQL Stats - Most Frequent"
-msgstr ""
+msgstr "Estadísticas PostgreSQL - Más frecuentes"
 
 #. module: profiler
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile__pg_stats_slowest_html
 #: model_terms:ir.ui.view,arch_db:profiler.view_profile_form
 msgid "PostgreSQL Stats - Slowest"
-msgstr ""
+msgstr "Estadísticas PostgreSQL - El más lento"
 
 #. module: profiler
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile__pg_stats_time_consuming_html
 #: model_terms:ir.ui.view,arch_db:profiler.view_profile_form
 msgid "PostgreSQL Stats - Time Consuming"
-msgstr ""
+msgstr "Estadísticas PostgreSQL - Consumo de tiempo"
 
 #. module: profiler
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile_python_line__profile_id
@@ -267,91 +277,92 @@ msgstr ""
 #: model:ir.ui.menu,name:profiler.menu_profile
 #: model_terms:ir.ui.view,arch_db:profiler.view_profile_form
 msgid "Profile"
-msgstr ""
+msgstr "Perfil"
 
 #. module: profiler
 #: model:ir.actions.act_window,name:profiler.profile_action_window
 #: model:ir.ui.menu,name:profiler.menu_profiler
 #: model:ir.ui.menu,name:profiler.menu_profiler_root
 msgid "Profiler"
-msgstr ""
+msgstr "Perfilador"
 
 #. module: profiler
 #: model:ir.model,name:profiler.model_profiler_profile_request_line
 msgid "Profiler HTTP request Line to save cProfiling results"
 msgstr ""
+"Línea de solicitud HTTP de Profiler para guardar los resultados de cProfiling"
 
 #. module: profiler
 #: model:ir.model,name:profiler.model_profiler_profile
 msgid "Profiler Profile"
-msgstr ""
+msgstr "Perfil del Perfilador"
 
 #. module: profiler
 #: model:ir.model,name:profiler.model_profiler_profile_python_line
 msgid "Profiler Python Line to save cProfiling results"
-msgstr ""
+msgstr "Profiler Python Línea para guardar los resultados de cProfiling"
 
 #. module: profiler
 #: model:ir.actions.act_window,name:profiler.action_view_profiling_lines
 msgid "Profiling lines"
-msgstr ""
+msgstr "Líneas de perfilado"
 
 #. module: profiler
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile__python_method
 msgid "Python Method"
-msgstr ""
+msgstr "Método Python"
 
 #. module: profiler
 #: model_terms:ir.ui.view,arch_db:profiler.view_profile_form
 msgid "Python Stats - Profiling Lines"
-msgstr ""
+msgstr "Python Stats - Líneas de perfilado"
 
 #. module: profiler
 #: model_terms:ir.ui.view,arch_db:profiler.view_profile_form
 msgid "Python Stats - Requests"
-msgstr ""
+msgstr "Estadísticas Python - Peticiones"
 
 #. module: profiler
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile_python_line__cprof_nrcalls
 msgid "Recursive Calls"
-msgstr ""
+msgstr "Estadísticas Python - Peticiones"
 
 #. module: profiler
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile_request_line__root_url
 msgid "Root URL"
-msgstr ""
+msgstr "URL raíz"
 
 #. module: profiler
 #: model_terms:ir.ui.view,arch_db:profiler.view_profiling_lines_search
 msgid "Search Profiling lines"
-msgstr ""
+msgstr "Buscar Líneas de perfil"
 
 #. module: profiler
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile__session
 msgid "Session"
-msgstr ""
+msgstr "Sesión"
 
 #. module: profiler
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile__smart_search
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile_python_line__smart_search
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile_request_line__smart_search
 msgid "Smart Search"
-msgstr ""
+msgstr "Búsqueda Inteligente"
 
 #. module: profiler
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile__state
 msgid "State"
-msgstr ""
+msgstr "Estado"
 
 #. module: profiler
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile_request_line__total_time
 msgid "Time in ms"
-msgstr ""
+msgstr "Tiempo en ms"
 
 #. module: profiler
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile_python_line__cprof_ttpercall
 msgid "Time per call"
-msgstr ""
+msgstr "Tiempo por llamada"
 
 #. module: profiler
 #: code:addons/profiler/models/profiler_profile.py:0
@@ -360,45 +371,47 @@ msgid ""
 "To profile all activity, start the odoo server using the parameter '--"
 "workers=0'"
 msgstr ""
+"Para perfilar toda la actividad, inicie el servidor odoo utilizando el "
+"parámetro '--workers=0'"
 
 #. module: profiler
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile_python_line__cprof_tottime
 msgid "Total time"
-msgstr ""
+msgstr "Tiempo Total"
 
 #. module: profiler
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile__use_py_index
 msgid "Use Py Index"
-msgstr ""
+msgstr "Utilizar el Índice Py"
 
 #. module: profiler
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile_request_line__user_id
 msgid "User"
-msgstr ""
+msgstr "Usuario"
 
 #. module: profiler
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile__user_can_see_changeset
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile_python_line__user_can_see_changeset
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile_request_line__user_can_see_changeset
 msgid "User Can See Changeset"
-msgstr ""
+msgstr "El Usuario Puede Ver el Conjunto de Cambios"
 
 #. module: profiler
 #: model_terms:ir.ui.view,arch_db:profiler.view_profile_form
 msgid "View attachment"
-msgstr ""
+msgstr "Ver archivo adjunto"
 
 #. module: profiler
 #: model_terms:ir.ui.view,arch_db:profiler.view_profile_form
 msgid "View profiling lines"
-msgstr ""
+msgstr "Ver líneas de perfil"
 
 #. module: profiler
 #: model:ir.model.fields.selection,name:profiler.selection__profiler_profile_request_line__attachment_id__ir_attachment
 msgid "ir.attachment"
-msgstr ""
+msgstr "ir.attachment"
 
 #. module: profiler
 #: model:ir.model.fields,field_description:profiler.field_profiler_profile_request_line__attachment_id
 msgid "pStats file"
-msgstr ""
+msgstr "Archivo pStats"
