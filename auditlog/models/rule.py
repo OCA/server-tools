@@ -379,16 +379,19 @@ class AuditlogRule(models.Model):
             self = self.with_context(auditlog_disabled=True)
             rule_model = self.env["auditlog.rule"]
             fields_list = rule_model.get_auditlog_fields(self)
+            records_write = self.filtered(lambda r: not isinstance(r.id, models.NewId))
+            if not records_write:
+                return write_full.origin(self, vals, **kwargs)
             old_values = {
                 d["id"]: d
-                for d in self.sudo()
+                for d in records_write.sudo()
                 .with_context(prefetch_fields=False)
                 .read(fields_list)
             }
             result = write_full.origin(self, vals, **kwargs)
             new_values = {
                 d["id"]: d
-                for d in self.sudo()
+                for d in records_write.sudo()
                 .with_context(prefetch_fields=False)
                 .read(fields_list)
             }
@@ -397,7 +400,7 @@ class AuditlogRule(models.Model):
             rule_model.sudo().create_logs(
                 self.env.uid,
                 self._name,
-                self.ids,
+                records_write.ids,
                 "write",
                 old_values,
                 new_values,
