@@ -7,9 +7,7 @@ from odoo import api, fields, models
 
 class IapAccount(models.Model):
     _inherit = "iap.account"
-    _name = "iap.account"
 
-    name = fields.Char()
     provider = fields.Selection([("odoo", "Odoo IAP")], required=True, default="odoo")
 
     def _get_service_from_provider(self):
