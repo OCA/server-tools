@@ -4,8 +4,8 @@
 # Copyright 2020 Hibou Corp.
 # Copyright 2023 ACSONE SA/NV (http://acsone.eu)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
-
 import logging
+from collections import defaultdict
 
 from odoo import _, api, models
 from odoo.exceptions import UserError
@@ -35,9 +35,12 @@ class BaseExceptionMethod(models.AbstractModel):
         """
         return [("model", "=", self._name), ("active", "=", True)]
 
-    def detect_exceptions(self):
-        """List all exception_ids applied on self
-        Exception ids are also written on records
+    def _get_exceptions(self):
+        """
+        Returns a tuple with:
+        - All exceptions
+        - Rules to remove with recordset
+        - Rules to add with recordset
         """
         rules_info = (
             self.env["exception.rule"]
@@ -45,25 +48,29 @@ class BaseExceptionMethod(models.AbstractModel):
             ._get_rules_info_for_domain(self._rule_domain())
         )
         all_exception_ids = []
-        rules_to_remove = {}
-        rules_to_add = {}
+        main_records = self._get_main_records()
+        rules_to_remove = defaultdict(main_records.browse)
+        rules_to_add = defaultdict(main_records.browse)
         for rule_info in rules_info:
-            main_records = self._get_main_records()
             records_with_rule_in_exceptions = main_records.filtered(
                 lambda r, rule_id=rule_info.id: rule_id in r.exception_ids.ids
             )
             records_with_exception = self._detect_exceptions(rule_info)
             to_remove = records_with_rule_in_exceptions - records_with_exception
             to_add = records_with_exception - records_with_rule_in_exceptions
-            # we expect to always work on the same model type
-            if rule_info.id not in rules_to_remove:
-                rules_to_remove[rule_info.id] = main_records.browse()
-            rules_to_remove[rule_info.id] |= to_remove
-            if rule_info.id not in rules_to_add:
-                rules_to_add[rule_info.id] = main_records.browse()
-            rules_to_add[rule_info.id] |= to_add
+            if to_remove:
+                rules_to_remove[rule_info.id] |= to_remove
+            if to_add:
+                rules_to_add[rule_info.id] |= to_add
             if records_with_exception:
                 all_exception_ids.append(rule_info.id)
+        return all_exception_ids, rules_to_remove, rules_to_add
+
+    def detect_exceptions(self):
+        """List all exception_ids applied on self
+        Exception ids are also written on records
+        """
+        all_exception_ids, rules_to_remove, rules_to_add = self._get_exceptions()
         # Cumulate all the records to attach to the rule
         # before linking. We don't want to call "rule.write()"
         # which would:
