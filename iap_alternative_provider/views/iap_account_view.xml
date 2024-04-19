@@ -7,14 +7,16 @@
             <xpath expr="//group[@name='account']" position="before">
                 <group string="Info" name="info">
                     <field name="provider" />
-                    <field name="name" />
-                    <field name="company_ids" position="move" />
+                    <field
+                        name="company_ids"
+                        widget="many2many_tags"
+                        domain="[('id', 'in', allowed_company_ids)]"
+                        position="move"
+                    />
                 </group>
             </xpath>
             <group name="account" position="attributes">
-                <attribute
-                    name="attrs"
-                >{'invisible': [('provider', '!=', 'odoo')]}</attribute>
+                <attribute name="invisible">provider != 'odoo'</attribute>
             </group>
         </field>
     </record>
