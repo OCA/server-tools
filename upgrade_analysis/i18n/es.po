@@ -6,86 +6,88 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2024-04-20 19:36+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: upgrade_analysis
 #: model_terms:ir.ui.view,arch_db:upgrade_analysis.view_upgrade_install_wizard_form
 msgid "All Modules"
-msgstr ""
+msgstr "Todos los Módulos"
 
 #. module: upgrade_analysis
 #: model_terms:ir.ui.view,arch_db:upgrade_analysis.view_upgrade_install_wizard_form
 msgid "All OCA Modules"
-msgstr ""
+msgstr "Todos los Módulos OCA"
 
 #. module: upgrade_analysis
 #: model_terms:ir.ui.view,arch_db:upgrade_analysis.view_upgrade_install_wizard_form
 msgid "All Odoo SA Modules"
-msgstr ""
+msgstr "Todos los módulos Odoo SA"
 
 #. module: upgrade_analysis
 #: model_terms:ir.ui.view,arch_db:upgrade_analysis.view_upgrade_install_wizard_form
 msgid "All Other Modules"
-msgstr ""
+msgstr "Todos los Otros Módulos"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_comparison_config__analysis_ids
 #: model_terms:ir.ui.view,arch_db:upgrade_analysis.view_upgrade_comparison_config_form
 msgid "Analyses"
-msgstr ""
+msgstr "Análisis"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_analysis__analysis_date
 msgid "Analysis Date"
-msgstr ""
+msgstr "Fecha de Análisis"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_comparison_config__analysis_qty
 msgid "Analysis Qty"
-msgstr ""
+msgstr "Cantd de Análisis"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_record__attribute_ids
 msgid "Attribute"
-msgstr ""
+msgstr "Atributo"
 
 #. module: upgrade_analysis
 #: model_terms:ir.ui.view,arch_db:upgrade_analysis.view_upgrade_record_form
 msgid "Attributes"
-msgstr ""
+msgstr "Atributos"
 
 #. module: upgrade_analysis
 #: code:addons/upgrade_analysis/wizards/upgrade_generate_record_wizard.py:0
 #, python-format
 msgid "Cannot seem to install or upgrade modules %s"
-msgstr ""
+msgstr "Parece que no se pueden instalar o actualizar los módulos %s"
 
 #. module: upgrade_analysis
 #: model_terms:ir.ui.view,arch_db:upgrade_analysis.view_upgrade_install_wizard_form
 msgid "Clear the list"
-msgstr ""
+msgstr "Limpiar la lista"
 
 #. module: upgrade_analysis
 #: model_terms:ir.ui.view,arch_db:upgrade_analysis.view_upgrade_generate_record_wizard_form
 #: model_terms:ir.ui.view,arch_db:upgrade_analysis.view_upgrade_install_wizard_form
 msgid "Close"
-msgstr ""
+msgstr "Cerrar"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_analysis__config_id
 msgid "Comparison Config"
-msgstr ""
+msgstr "Configuración de Comparación"
 
 #. module: upgrade_analysis
 #: model:ir.ui.menu,name:upgrade_analysis.menu_upgrade_comparison_config
 msgid "Comparison Configurations"
-msgstr ""
+msgstr "Configuraciones de Comparación"
 
 #. module: upgrade_analysis
 #: code:addons/upgrade_analysis/models/upgrade_comparison_config.py:0
@@ -95,27 +97,30 @@ msgid ""
 "\n"
 "DETAIL: %s"
 msgstr ""
+"Conexión fallida.\n"
+"\n"
+"DETALLE: %s"
 
 #. module: upgrade_analysis
 #: model_terms:ir.ui.view,arch_db:upgrade_analysis.view_upgrade_generate_record_wizard_form
 msgid "Continue"
-msgstr ""
+msgstr "Continuar"
 
 #. module: upgrade_analysis
 #: code:addons/upgrade_analysis/models/upgrade_comparison_config.py:0
 #, python-format
 msgid "Could not connect the Odoo server at %s:%s"
-msgstr ""
+msgstr "No se pudo conectar el servidor Odoo en %s:%s"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields.selection,name:upgrade_analysis.selection__upgrade_record__mode__create
 msgid "Create"
-msgstr ""
+msgstr "Crear"
 
 #. module: upgrade_analysis
 #: model_terms:ir.ui.view,arch_db:upgrade_analysis.view_upgrade_record_search
 msgid "Create Mode"
-msgstr ""
+msgstr "Modo Crear"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_analysis__create_uid
@@ -125,7 +130,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_install_wizard__create_uid
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_record__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creado por"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_analysis__create_date
@@ -135,17 +140,17 @@ msgstr ""
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_install_wizard__create_date
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_record__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creado el"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_comparison_config__database
 msgid "Database"
-msgstr ""
+msgstr "Base de datos"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_record__definition
 msgid "Definition"
-msgstr ""
+msgstr "Definición"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_ir_module_module__display_name
@@ -156,37 +161,37 @@ msgstr ""
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_install_wizard__display_name
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_record__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Mostrar Nombre"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_record__domain
 msgid "Domain"
-msgstr ""
+msgstr "Dominio"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields.selection,name:upgrade_analysis.selection__upgrade_analysis__state__done
 #: model:ir.model.fields.selection,name:upgrade_analysis.selection__upgrade_generate_record_wizard__state__done
 #: model:ir.model.fields.selection,name:upgrade_analysis.selection__upgrade_install_wizard__state__done
 msgid "Done"
-msgstr ""
+msgstr "Realizado/a"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields.selection,name:upgrade_analysis.selection__upgrade_generate_record_wizard__state__draft
 #: model:ir.model.fields.selection,name:upgrade_analysis.selection__upgrade_install_wizard__state__draft
 msgid "Draft"
-msgstr ""
+msgstr "Borrador"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_record__field
 #: model:ir.model.fields.selection,name:upgrade_analysis.selection__upgrade_record__type__field
 msgid "Field"
-msgstr ""
+msgstr "Campo"
 
 #. module: upgrade_analysis
 #: model:ir.actions.act_window,name:upgrade_analysis.action_upgrade_generate_record_wizard
 #: model:ir.ui.menu,name:upgrade_analysis.menu_upgrade_generate_record
 msgid "Generate Records Wizard"
-msgstr ""
+msgstr "Asistente de Generación de Registros"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_ir_module_module__id
@@ -197,28 +202,28 @@ msgstr ""
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_install_wizard__id
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_record__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: upgrade_analysis
 #: model_terms:ir.ui.view,arch_db:upgrade_analysis.view_upgrade_install_wizard_form
 msgid "Install Modules"
-msgstr ""
+msgstr "Instalar Módulos"
 
 #. module: upgrade_analysis
 #: model:ir.actions.act_window,name:upgrade_analysis.action_upgrade_install_wizard
 #: model:ir.ui.menu,name:upgrade_analysis.menu_upgrade_install
 msgid "Install Modules Wizard"
-msgstr ""
+msgstr "Asistente de Instalación de Módulos"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_ir_module_module__is_oca_module
 msgid "Is Oca Module"
-msgstr ""
+msgstr "Es Módulo Oca"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_ir_module_module__is_odoo_module
 msgid "Is Odoo Module"
-msgstr ""
+msgstr "Es Módulo Odoo"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_ir_module_module____last_update
@@ -229,7 +234,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_install_wizard____last_update
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_record____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última Modificación el"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_analysis__write_uid
@@ -239,7 +244,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_install_wizard__write_uid
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_record__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Última Actualización por"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_analysis__write_date
@@ -249,119 +254,119 @@ msgstr ""
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_install_wizard__write_date
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_record__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Última Actualización el"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_analysis__log
 #: model_terms:ir.ui.view,arch_db:upgrade_analysis.view_upgrade_analysis_form
 msgid "Log"
-msgstr ""
+msgstr "Registro"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_record__mode
 msgid "Mode"
-msgstr ""
+msgstr "Modo"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_record__model
 #: model:ir.model.fields.selection,name:upgrade_analysis.selection__upgrade_record__type__model
 msgid "Model"
-msgstr ""
+msgstr "Modelo"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_record__model_original_module
 msgid "Model Original Module"
-msgstr ""
+msgstr "Modelo Módulo Original"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_record__model_type
 msgid "Model Type"
-msgstr ""
+msgstr "Tipo de Modelo"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields.selection,name:upgrade_analysis.selection__upgrade_record__mode__modify
 msgid "Modify"
-msgstr ""
+msgstr "Modificar"
 
 #. module: upgrade_analysis
 #: model_terms:ir.ui.view,arch_db:upgrade_analysis.view_upgrade_record_search
 msgid "Modify Mode"
-msgstr ""
+msgstr "Modificar Modo"
 
 #. module: upgrade_analysis
 #: model:ir.model,name:upgrade_analysis.model_ir_module_module
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_install_wizard__module_ids
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_record__module
 msgid "Module"
-msgstr ""
+msgstr "Módulo"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_install_wizard__module_qty
 msgid "Modules Quantity"
-msgstr ""
+msgstr "Cantidad de Módulos"
 
 #. module: upgrade_analysis
 #: model_terms:ir.ui.view,arch_db:upgrade_analysis.view_upgrade_generate_record_wizard_form
 msgid "Modules initialized and record created"
-msgstr ""
+msgstr "Módulos inicializados y registro creado"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_attribute__name
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_comparison_config__name
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_record__name
 msgid "Name"
-msgstr ""
+msgstr "Nombre"
 
 #. module: upgrade_analysis
 #: model_terms:ir.ui.view,arch_db:upgrade_analysis.view_upgrade_comparison_config_form
 msgid "New Analysis"
-msgstr ""
+msgstr "Nuevo Análisis"
 
 #. module: upgrade_analysis
 #: code:addons/upgrade_analysis/models/upgrade_record.py:0
 #, python-format
 msgid "No manifest found in %s"
-msgstr ""
+msgstr "No se ha encontrado ningún manifiesto en %s"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_record__noupdate
 msgid "Noupdate"
-msgstr ""
+msgstr "No actualizar"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_comparison_config__password
 msgid "Password"
-msgstr ""
+msgstr "Contraseña"
 
 #. module: upgrade_analysis
 #: model_terms:ir.ui.view,arch_db:upgrade_analysis.view_upgrade_analysis_form
 msgid "Perform Analysis"
-msgstr ""
+msgstr "Realizar Análisis"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_comparison_config__port
 msgid "Port"
-msgstr ""
+msgstr "Puerto"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_record__prefix
 msgid "Prefix"
-msgstr ""
+msgstr "Prefijo"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_attribute__record_id
 msgid "Record"
-msgstr ""
+msgstr "Registro"
 
 #. module: upgrade_analysis
 #: model:ir.ui.menu,name:upgrade_analysis.menu_upgrade_records
 msgid "Records"
-msgstr ""
+msgstr "Registros"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_comparison_config__server
 msgid "Server"
-msgstr ""
+msgstr "Servidor"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,help:upgrade_analysis.field_upgrade_record__mode
@@ -369,6 +374,8 @@ msgid ""
 "Set to Create if a field is newly created in this module. If this module "
 "modifies an attribute of an existing field, set to Modify."
 msgstr ""
+"Establézcalo como Crear si se crea un nuevo campo en este módulo. Si este "
+"módulo modifica un atributo de un campo existente, establece Modificar."
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_ir_module_module__smart_search
@@ -379,24 +386,24 @@ msgstr ""
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_install_wizard__smart_search
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_record__smart_search
 msgid "Smart Search"
-msgstr ""
+msgstr "Búsqueda Inteligente"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_analysis__state
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_generate_record_wizard__state
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_install_wizard__state
 msgid "State"
-msgstr ""
+msgstr "Estado"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_record__suffix
 msgid "Suffix"
-msgstr ""
+msgstr "Sufijo"
 
 #. module: upgrade_analysis
 #: model_terms:ir.ui.view,arch_db:upgrade_analysis.view_upgrade_comparison_config_form
 msgid "Test Connection"
-msgstr ""
+msgstr "Comprobar Conexión"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,help:upgrade_analysis.field_upgrade_analysis__upgrade_path
@@ -405,11 +412,14 @@ msgid ""
 "Odoo's --upgrade-path command line option or the 'scripts' subdirectory in "
 "the openupgrade_scripts addon."
 msgstr ""
+"La ruta del archivo base para guardar los archivos de análisis de los "
+"módulos de Odoo. Tomado de la opción de línea de comandos --upgrade-path de "
+"Odoo o del subdirectorio 'scripts' en el addon openupgrade_scripts."
 
 #. module: upgrade_analysis
 #: model_terms:ir.ui.view,arch_db:upgrade_analysis.view_upgrade_install_wizard_form
 msgid "The modules have been installed successfuly"
-msgstr ""
+msgstr "Los módulos se han instalado correctamente"
 
 #. module: upgrade_analysis
 #: model_terms:ir.ui.view,arch_db:upgrade_analysis.view_upgrade_install_wizard_form
@@ -417,6 +427,8 @@ msgid ""
 "This will install the selected modules on the database. Do not continue if "
 "you use this database in production."
 msgstr ""
+"Esto instalará los módulos seleccionados en la base de datos. No continúe si "
+"utiliza esta base de datos en producción."
 
 #. module: upgrade_analysis
 #: model_terms:ir.ui.view,arch_db:upgrade_analysis.view_upgrade_generate_record_wizard_form
@@ -424,89 +436,91 @@ msgid ""
 "This will reinitialize all the modules installed on this database. Do not "
 "continue if you use this database in production."
 msgstr ""
+"Esto reiniciará todos los módulos instalados en esta base de datos. No "
+"continúe si utiliza esta base de datos en producción."
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_record__type
 msgid "Type"
-msgstr ""
+msgstr "Tipo"
 
 #. module: upgrade_analysis
 #: code:addons/upgrade_analysis/models/upgrade_analysis.py:0
 #, python-format
 msgid "Unexpected root Element: %s in file: %s"
-msgstr ""
+msgstr "Elemento raíz inesperado: %s en archivo: %s"
 
 #. module: upgrade_analysis
 #: model:ir.actions.act_window,name:upgrade_analysis.action_upgrade_analysis_tree
 #: model:ir.model,name:upgrade_analysis.model_upgrade_analysis
 #: model:ir.ui.menu,name:upgrade_analysis.menu_upgrade_analysis
 msgid "Upgrade Analyses"
-msgstr ""
+msgstr "Análisis de Actualización"
 
 #. module: upgrade_analysis
 #: model:ir.ui.menu,name:upgrade_analysis.menu_upgrade
 msgid "Upgrade Analysis"
-msgstr ""
+msgstr "Análisis de Actualización"
 
 #. module: upgrade_analysis
 #: model:ir.model,name:upgrade_analysis.model_upgrade_attribute
 msgid "Upgrade Attribute"
-msgstr ""
+msgstr "Atributo de Actualización"
 
 #. module: upgrade_analysis
 #: model:ir.model,name:upgrade_analysis.model_upgrade_comparison_config
 msgid "Upgrade Comparison Configuration"
-msgstr ""
+msgstr "Configuración de Comparación de Actualizaciones"
 
 #. module: upgrade_analysis
 #: model:ir.model,name:upgrade_analysis.model_upgrade_generate_record_wizard
 msgid "Upgrade Generate Record Wizard"
-msgstr ""
+msgstr "Actualizar el Asistente para Generar Registros"
 
 #. module: upgrade_analysis
 #: model:ir.model,name:upgrade_analysis.model_upgrade_install_wizard
 msgid "Upgrade Install Wizard"
-msgstr ""
+msgstr "Asistente de Instalación de Actualizaciones"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_analysis__upgrade_path
 msgid "Upgrade Path"
-msgstr ""
+msgstr "Ruta de Actualización"
 
 #. module: upgrade_analysis
 #: model:ir.model,name:upgrade_analysis.model_upgrade_record
 msgid "Upgrade Record"
-msgstr ""
+msgstr "Registro de Actualización"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_comparison_config__username
 msgid "Username"
-msgstr ""
+msgstr "Nombre de usuario"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_attribute__value
 msgid "Value"
-msgstr ""
+msgstr "Valoración"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_comparison_config__version
 msgid "Version"
-msgstr ""
+msgstr "Versión"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_analysis__write_files
 msgid "Write Files"
-msgstr ""
+msgstr "Escribir Archivos"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,help:upgrade_analysis.field_upgrade_analysis__write_files
 msgid "Write analysis files to the module directories"
-msgstr ""
+msgstr "Escribir archivos de análisis en los directorios de los módulos"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields.selection,name:upgrade_analysis.selection__upgrade_record__type__xmlid
 msgid "XML ID"
-msgstr ""
+msgstr "ID XML"
 
 #. module: upgrade_analysis
 #: code:addons/upgrade_analysis/models/upgrade_comparison_config.py:0
@@ -515,18 +529,20 @@ msgid ""
 "You are correctly connected to the server %(server)s (version %(version)s) "
 "with the user %(user_name)s"
 msgstr ""
+"Está conectado correctamente al servidor %(server)s (versión %(version)s) "
+"con el usuario %(user_name)s"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields.selection,name:upgrade_analysis.selection__upgrade_analysis__state__draft
 msgid "draft"
-msgstr ""
+msgstr "Borrador"
 
 #. module: upgrade_analysis
 #: model:ir.actions.act_window,name:upgrade_analysis.action_upgrade_comparison_config_tree
 msgid "upgrade Comparison Configs"
-msgstr ""
+msgstr "actualizar Configuraciones de Comparación"
 
 #. module: upgrade_analysis
 #: model:ir.actions.act_window,name:upgrade_analysis.action_upgrade_record_tree
 msgid "upgrade Records"
-msgstr ""
+msgstr "actualizar Registros"
