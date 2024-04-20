@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-04-20 15:37+0000\n"
+"PO-Revision-Date: 2024-04-20 16:39+0000\n"
 "Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
@@ -35,11 +35,15 @@ msgid ""
 "<code>random</code>: The Python random module, eg. to use "
 "<code>random.randint(0, 9)</code>"
 msgstr ""
+"<code>random</code>: el módulo aleatorio de Python, por ejemplo, para usar "
+"<code>random.randint(0, 9)</code>"
 
 #. module: sequence_python
 #: model_terms:ir.ui.view,arch_db:sequence_python.sequence_view
 msgid "<code>sequence</code>: Odoo record of the sequence being used"
 msgstr ""
+"<code>secuencia</code>: Registro de Odoo de la secuencia que esta siendo "
+"utilizada"
 
 #. module: sequence_python
 #: model_terms:ir.ui.view,arch_db:sequence_python.sequence_view
@@ -115,23 +119,25 @@ msgid ""
 "The expression you type here will be evaluated as the next number. The "
 "following variables can be used:"
 msgstr ""
+"La expresión que escriba aquí se evaluará como el siguiente número. Se "
+"pueden utilizar las siguientes variables:"
 
 #. module: sequence_python
 #: model:ir.model.fields,field_description:sequence_python.field_ir_sequence__use_python_code
 msgid "Use Python"
-msgstr ""
+msgstr "Utilizar Python"
 
 #. module: sequence_python
 #: model:ir.model.fields,help:sequence_python.field_ir_sequence__python_code
 msgid "Write Python code that generates the sequence body."
-msgstr ""
+msgstr "Escribir código Python que genere el cuerpo de la secuencia."
 
 #. module: sequence_python
 #: model_terms:ir.ui.view,arch_db:sequence_python.sequence_view
 msgid "builtin Python functions"
-msgstr ""
+msgstr "funciones incorporadas de Python"
 
 #. module: sequence_python
 #: model_terms:ir.ui.view,arch_db:sequence_python.sequence_view
 msgid "number"
-msgstr ""
+msgstr "número"
