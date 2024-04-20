@@ -6,13 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2024-04-20 19:36+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: sql_export_mail
 #: model:mail.template,body_html:sql_export_mail.sql_export_mailer
@@ -25,11 +27,20 @@ msgid ""
 "</div>\n"
 "        "
 msgstr ""
+"\n"
+"<div style=\"font-family: 'Lucida Grande', Ubuntu, Arial, Verdana, sans-"
+"serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n"
+"\n"
+"<p>Encontrará el informe ${object.name or ''} como archivo adjunto del "
+"correo.</p>\n"
+"\n"
+"</div>\n"
+"        "
 
 #. module: sql_export_mail
 #: model:mail.template,subject:sql_export_mail.sql_export_mailer
 msgid "${object.name or ''}"
-msgstr ""
+msgstr "${object.name or ''}"
 
 #. module: sql_export_mail
 #: model:ir.model.fields,help:sql_export_mail.field_sql_export__mail_user_ids
@@ -37,57 +48,60 @@ msgid ""
 "Add the users who want to receive the report by e-mail. You need to link the"
 " sql query with a cron to send mail automatically"
 msgstr ""
+"Añada los usuarios que desean recibir el informe por correo electrónico. Es "
+"necesario vincular la consulta sql con un cron para enviar el correo "
+"automáticamente"
 
 #. module: sql_export_mail
 #: model:ir.model.fields,field_description:sql_export_mail.field_sql_export__assigned_attachment_ids
 msgid "Assigned Attachments"
-msgstr ""
+msgstr "Archivos Adjuntos Asignados"
 
 #. module: sql_export_mail
 #: model:ir.model.fields,field_description:sql_export_mail.field_sql_export__changeset_change_ids
 msgid "Changeset Changes"
-msgstr ""
+msgstr "Cambios en el Conjunto de Modificaciones"
 
 #. module: sql_export_mail
 #: model:ir.model.fields,field_description:sql_export_mail.field_sql_export__changeset_ids
 msgid "Changesets"
-msgstr ""
+msgstr "Conjuntos de Cambios"
 
 #. module: sql_export_mail
 #: model:ir.model.fields,field_description:sql_export_mail.field_sql_export__count_pending_changeset_changes
 msgid "Count Pending Changeset Changes"
-msgstr ""
+msgstr "Contar los Cambios del Conjunto de Cambios Pendientes"
 
 #. module: sql_export_mail
 #: model:ir.model.fields,field_description:sql_export_mail.field_sql_export__count_pending_changesets
 msgid "Count Pending Changesets"
-msgstr ""
+msgstr "Recuento de Cambios Pendientes"
 
 #. module: sql_export_mail
 #: model_terms:ir.ui.view,arch_db:sql_export_mail.sql_export_mail_view_form
 msgid "Create Cron"
-msgstr ""
+msgstr "Crear Cron"
 
 #. module: sql_export_mail
 #: model:ir.model.fields,field_description:sql_export_mail.field_sql_export__cron_ids
 #: model_terms:ir.ui.view,arch_db:sql_export_mail.sql_export_mail_view_form
 msgid "Crons"
-msgstr ""
+msgstr "Crons"
 
 #. module: sql_export_mail
 #: model:ir.model.fields,field_description:sql_export_mail.field_sql_export__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Mostrar Nombre"
 
 #. module: sql_export_mail
 #: model:ir.model.fields.selection,name:sql_export_mail.selection__sql_export__mail_condition__not_empty
 msgid "File Not Empty"
-msgstr ""
+msgstr "Fichero No Vacío"
 
 #. module: sql_export_mail
 #: model:ir.model.fields,field_description:sql_export_mail.field_sql_export__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: sql_export_mail
 #: code:addons/sql_export_mail/models/sql_export.py:0
@@ -96,44 +110,46 @@ msgid ""
 "It is not possible to execute and send a query automatically by mail if "
 "there are parameters to fill"
 msgstr ""
+"No es posible ejecutar y enviar una consulta automáticamente por correo si "
+"hay parámetros que rellenar"
 
 #. module: sql_export_mail
 #: model:ir.model.fields,field_description:sql_export_mail.field_sql_export____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última Modificación el"
 
 #. module: sql_export_mail
 #: model:ir.model.fields,field_description:sql_export_mail.field_sql_export__mail_condition
 msgid "Mail Condition"
-msgstr ""
+msgstr "Condición del Correo"
 
 #. module: sql_export_mail
 #: model:ir.model,name:sql_export_mail.model_sql_export
 msgid "SQL export"
-msgstr ""
+msgstr "Exportar SQL"
 
 #. module: sql_export_mail
 #: model:ir.model.fields,field_description:sql_export_mail.field_sql_export__smart_search
 msgid "Smart Search"
-msgstr ""
+msgstr "Búsqueda Inteligente"
 
 #. module: sql_export_mail
 #: code:addons/sql_export_mail/models/sql_export.py:0
 #, python-format
 msgid "The user does not have any e-mail address."
-msgstr ""
+msgstr "El usuario no tiene ninguna dirección de correo electrónico."
 
 #. module: sql_export_mail
 #: model:ir.model.fields,field_description:sql_export_mail.field_sql_export__user_can_see_changeset
 msgid "User Can See Changeset"
-msgstr ""
+msgstr "El Usuario Puede Ver el Conjunto de Cambios"
 
 #. module: sql_export_mail
 #: model:ir.model.fields,field_description:sql_export_mail.field_sql_export__mail_user_ids
 msgid "User to notify"
-msgstr ""
+msgstr "Usuario a notificar"
 
 #. module: sql_export_mail
 #: model_terms:ir.ui.view,arch_db:sql_export_mail.sql_export_mail_view_form
 msgid "Users Notified by e-mail"
-msgstr ""
+msgstr "Usuarios Notificados por correo electrónico"
