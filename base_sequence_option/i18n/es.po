@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-04-20 16:40+0000\n"
+"PO-Revision-Date: 2024-04-20 19:36+0000\n"
 "Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
@@ -76,14 +76,14 @@ msgstr "Secuencia de tipo de Documento"
 #. module: base_sequence_option
 #: model:ir.model.fields,help:base_sequence_option.field_ir_sequence_option_line__filter_domain
 msgid "Find matching option by document values"
-msgstr ""
+msgstr "Buscar opción coincidente por valores del documento"
 
 #. module: base_sequence_option
 #: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence__id
 #: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option__id
 #: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option_line__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: base_sequence_option
 #: model:ir.model.fields,help:base_sequence_option.field_ir_sequence_option__use_sequence_option
@@ -92,112 +92,115 @@ msgid ""
 "If checked, Odoo will try to find the new matching sequence first, if not "
 "found, fall back to use the original Odoo sequence."
 msgstr ""
+"Si esta marcada, Odoo tratara de encontrar la nueva secuencia coincidente "
+"primero, si no se encuentra, retrocede para usar la secuencia original de "
+"Odoo."
 
 #. module: base_sequence_option
 #: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option_line__implementation
 msgid "Implementation"
-msgstr ""
+msgstr "Implementación"
 
 #. module: base_sequence_option
 #: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence____last_update
 #: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option____last_update
 #: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option_line____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última Modificación el"
 
 #. module: base_sequence_option
 #: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option__write_uid
 #: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option_line__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Última Actualización por"
 
 #. module: base_sequence_option
 #: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option__write_date
 #: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option_line__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Última Actualización el"
 
 #. module: base_sequence_option
 #: model:ir.actions.act_window,name:base_sequence_option.action_ir_sequence_option
 #: model:ir.ui.menu,name:base_sequence_option.menu_ir_sequence_option
 msgid "Manage Sequence Options"
-msgstr ""
+msgstr "Gestionar Opciones de Secuencia"
 
 #. module: base_sequence_option
 #: model_terms:ir.ui.view,arch_db:base_sequence_option.view_ir_sequence_option_form
 msgid "Matching Domain"
-msgstr ""
+msgstr "Dominio Correspondiente"
 
 #. module: base_sequence_option
 #: code:addons/base_sequence_option/models/ir_sequence_option.py:0
 #, python-format
 msgid "Multiple optional sequences found for this model!"
-msgstr ""
+msgstr "¡Múltiples secuencias opcionales encontradas para este modelo!"
 
 #. module: base_sequence_option
 #: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option__name
 #: model_terms:ir.ui.view,arch_db:base_sequence_option.view_ir_sequence_option_form
 msgid "Name"
-msgstr ""
+msgstr "Nombre"
 
 #. module: base_sequence_option
 #: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option_line__prefix
 msgid "Prefix"
-msgstr ""
+msgstr "Prefijo"
 
 #. module: base_sequence_option
 #: model:ir.model.fields,help:base_sequence_option.field_ir_sequence_option_line__prefix
 msgid "Prefix value of the record for the sequence"
-msgstr ""
+msgstr "Valor del prefijo del registro para la secuencia"
 
 #. module: base_sequence_option
 #: model:ir.model,name:base_sequence_option.model_ir_sequence
 #: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option_line__sequence_id
 msgid "Sequence"
-msgstr ""
+msgstr "Secuencia"
 
 #. module: base_sequence_option
 #: model:ir.model,name:base_sequence_option.model_ir_sequence_option
 msgid "Sequence Option Base Model"
-msgstr ""
+msgstr "Secuencia Opción Modelo Base"
 
 #. module: base_sequence_option
 #: model:ir.model,name:base_sequence_option.model_ir_sequence_option_line
 msgid "Sequence Option Line"
-msgstr ""
+msgstr "Línea de Opción de Secuencia"
 
 #. module: base_sequence_option
 #: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option__option_ids
 msgid "Sequence Options"
-msgstr ""
+msgstr "Opciones de Secuencia"
 
 #. module: base_sequence_option
 #: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence__smart_search
 #: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option__smart_search
 #: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option_line__smart_search
 msgid "Smart Search"
-msgstr ""
+msgstr "Búsqueda Inteligente"
 
 #. module: base_sequence_option
 #: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option_line__suffix
 msgid "Suffix"
-msgstr ""
+msgstr "Súfijo"
 
 #. module: base_sequence_option
 #: model:ir.model.fields,help:base_sequence_option.field_ir_sequence_option_line__suffix
 msgid "Suffix value of the record for the sequence"
-msgstr ""
+msgstr "Valor del sufijo del registro para la secuencia"
 
 #. module: base_sequence_option
 #: model_terms:ir.ui.view,arch_db:base_sequence_option.view_ir_sequence_option_form
 msgid "Use Sequence"
-msgstr ""
+msgstr "Secuencia de Uso"
 
 #. module: base_sequence_option
 #: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option__use_sequence_option
 #: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option_line__use_sequence_option
 msgid "Use sequence options"
-msgstr ""
+msgstr "Utilizar opciones de secuencia"
 
 #. module: base_sequence_option
 #: model:ir.model.fields,help:base_sequence_option.field_ir_sequence_option_line__implementation
@@ -208,3 +211,9 @@ msgid ""
 "number upon assignment, there can still be gaps in the sequence if records "
 "are deleted. The 'no gap' implementation is slower than the standard one."
 msgstr ""
+"Al asignar un número de secuencia a un registro, la implementación de la "
+"secuencia \"sin espacios\" garantiza que ya se ha asignado cada número de "
+"secuencia anterior. Aunque esta implementación de la secuencia no omitirá "
+"ningún número de secuencia al asignarlo, puede haber huecos en la secuencia "
+"si se borran registros. La implementación \"sin huecos\" es más lenta que la "
+"estándar."
