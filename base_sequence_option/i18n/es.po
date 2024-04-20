@@ -6,58 +6,60 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2024-04-20 16:39+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: base_sequence_option
 #: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option_line__filter_domain
 msgid "Apply On"
-msgstr ""
+msgstr "Aplicar en"
 
 #. module: base_sequence_option
 #: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option__model
 #: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option_line__model
 msgid "Apply On Model"
-msgstr ""
+msgstr "Aplicar Sobre el Modelo"
 
 #. module: base_sequence_option
 #: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option_line__base_id
 msgid "Base"
-msgstr ""
+msgstr "Base"
 
 #. module: base_sequence_option
 #: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option__company_id
 #: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option_line__company_id
 msgid "Company"
-msgstr ""
+msgstr "Compañía"
 
 #. module: base_sequence_option
 #: model:ir.model.fields,help:base_sequence_option.field_ir_sequence_option__company_id
 #: model:ir.model.fields,help:base_sequence_option.field_ir_sequence_option_line__company_id
 msgid "Company related to this sequence option"
-msgstr ""
+msgstr "Compañía relacionada con esta opción de secuencia"
 
 #. module: base_sequence_option
 #: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option__create_uid
 #: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option_line__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creado por"
 
 #. module: base_sequence_option
 #: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option__create_date
 #: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option_line__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creado el"
 
 #. module: base_sequence_option
 #: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option_line__name
 msgid "Description"
-msgstr ""
+msgstr "Descripción"
 
 #. module: base_sequence_option
 #: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence__display_name
