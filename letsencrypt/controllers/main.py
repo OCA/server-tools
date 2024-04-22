@@ -27,4 +27,4 @@ class Letsencrypt(http.Controller):
                 return key.read()
         except IOError:
             _logger.exception(_("Error opening file %s"), path)
-        return request.not_found()
+        raise request.not_found()

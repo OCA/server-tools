@@ -75,14 +75,6 @@ class ResConfigSettings(models.TransientModel):
             "*." in altnames or self.letsencrypt_prefer_dns
         )
 
-    @api.model
-    def default_get(self, fields_list):
-        res = super().default_get(fields_list)
-        res["letsencrypt_needs_dns_provider"] = (
-            "*." in res["letsencrypt_altnames"] or res["letsencrypt_prefer_dns"]
-        )
-        return res
-
     def set_values(self):
         """Set Letsencrypt values on settings object."""
         result = super().set_values()

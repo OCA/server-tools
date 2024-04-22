@@ -2,7 +2,7 @@
     <record id="res_config_settings_view_form" model="ir.ui.view">
         <field name="name">Letsencrypt settings view</field>
         <field name="model">res.config.settings</field>
-        <field name="inherit_id" ref="base_setup.res_config_settings_view_form" />
+        <field name="inherit_id" ref="base.res_config_settings_view_form" />
         <field name="arch" type="xml">
             <xpath expr="//div[hasclass('settings')]" position="inside">
                 <div
@@ -25,14 +25,17 @@
                                     <div
                                         class="text-muted"
                                     >List the domains for the certificate</div>
-                                    <field name="letsencrypt_altnames" />
+                                    <field name="letsencrypt_altnames" widget="text" />
                                 </div>
                                 <div class="o_setting_right_pane">
                                     <label for="letsencrypt_reload_command" />
                                     <div
                                         class="text-muted"
                                     >Write a command to reload the server</div>
-                                    <field name="letsencrypt_reload_command" />
+                                    <field
+                                        name="letsencrypt_reload_command"
+                                        widget="text"
+                                    />
                                 </div>
                                 <div class="o_setting_right_pane">
                                     <label for="letsencrypt_dns_provider" />
@@ -65,6 +68,7 @@
                                         <field
                                             name="letsencrypt_dns_shell_script"
                                             attrs="{'required': [('letsencrypt_dns_provider', '=', 'shell')]}"
+                                            widget="text"
                                         />
                                     </div>
                                 </span>
