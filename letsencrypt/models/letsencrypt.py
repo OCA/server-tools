@@ -239,9 +239,10 @@ class Letsencrypt(models.AbstractModel):
             directory_url = V2_STAGING_DIRECTORY_URL
         else:
             directory_url = V2_DIRECTORY_URL
-        directory_json = requests.get(directory_url).json()
+        directory_json = requests.get(directory_url, timeout=60).json()
+        directory = acme.messages.Directory(directory_json)
         net = acme.client.ClientNetwork(account_key)
-        return acme.client.ClientV2(directory_json, net)
+        return acme.client.ClientV2(directory, net)
 
     def _register_client(self, client, account_key):
         """Register this Letsencrypt client."""
