@@ -4,6 +4,7 @@
 
 from odoo_test_helper import FakeModelLoader
 
+from odoo import Command
 from odoo.tests.common import TransactionCase
 
 
@@ -30,8 +31,8 @@ class TestTrackingManager(TransactionCase):
         cls.partner = cls.env["res.partner"].create(
             {
                 "name": "Foo",
-                "bank_ids": [(0, 0, {"acc_number": "007"})],
-                "category_id": [(6, 0, [cls.partner_categ_1.id])],
+                "bank_ids": [(Command.CREATE, 0, {"acc_number": "007"})],
+                "category_id": [(Command.SET, 0, [cls.partner_categ_1.id])],
             }
         )
         cls.partner_model = cls.env.ref("base.model_res_partner")
@@ -84,28 +85,20 @@ class TestTrackingManager(TransactionCase):
         return self.partner.message_ids
 
     def test_m2m_add_line(self):
+        self.partner = self.env["res.partner"].browse(self.partner.id)
         self.partner.write(
-            {
-                "category_id": [
-                    (
-                        6,
-                        0,
-                        [
-                            self.partner_categ_1.id,
-                            self.partner_categ_2.id,
-                        ],
-                    )
-                ]
-            }
+            {"category_id": [(Command.LINK, self.partner_categ_2.id, 0)]}
         )
         self.assertEqual(len(self.messages), 1)
-        tracking = self.messages.tracking_value_ids
+        tracking = self.messages.tracking_value_ids[0]
         self.assertEqual(len(tracking), 1)
         self.assertEqual(tracking.old_value_text, "FOO")
         self.assertEqual(tracking.new_value_text, "FOO; BAR")
 
     def test_m2m_delete_line(self):
-        self.partner.write({"category_id": [(6, 0, [])]})
+        self.partner.write(
+            {"category_id": [(Command.UNLINK, self.partner_categ_1.id, 0)]}
+        )
         self.assertEqual(len(self.messages), 1)
         tracking = self.messages.tracking_value_ids
         self.assertEqual(len(tracking), 1)
@@ -117,7 +110,7 @@ class TestTrackingManager(TransactionCase):
             {
                 "category_id": [
                     (
-                        6,
+                        Command.SET,
                         0,
                         [
                             self.partner_categ_2.id,
@@ -134,19 +127,25 @@ class TestTrackingManager(TransactionCase):
         self.assertEqual(tracking.new_value_text, "BAR; TOOH")
 
     def test_o2m_create_indirectly(self):
-        self.partner.write({"bank_ids": [(0, 0, {"acc_number": "1234567890"})]})
-        self.assertEqual(len(self.messages), 1)
-        self.assertEqual(self.messages.body.count("New"), 1)
+        self.partner.write(
+            {"bank_ids": [(Command.CREATE, 0, {"acc_number": "1234567890"})]}
+        )
+        self.assertEqual(len(self.messages), 2)
+        self.assertEqual(self.messages[0].body.count("New"), 1)
 
     def test_o2m_unlink_indirectly(self):
-        self.partner.write({"bank_ids": [(2, self.partner.bank_ids[0].id)]})
+        self.partner.write(
+            {"bank_ids": [(Command.DELETE, self.partner.bank_ids[0].id)]}
+        )
         self.assertEqual(len(self.messages), 1)
         self.assertIn("Delete", self.messages.body)
 
     def test_o2m_write_indirectly(self):
         self.partner.write(
             {
-                "bank_ids": [(1, self.partner.bank_ids[0].id, {"acc_number": "123"})],
+                "bank_ids": [
+                    (Command.UPDATE, self.partner.bank_ids[0].id, {"acc_number": "123"})
+                ],
             }
         )
         self.assertEqual(len(self.messages), 1)
@@ -160,7 +159,9 @@ class TestTrackingManager(TransactionCase):
         acc_number.custom_tracking = False
         self.partner.write(
             {
-                "bank_ids": [(1, self.partner.bank_ids[0].id, {"acc_number": "123"})],
+                "bank_ids": [
+                    (Command.UPDATE, self.partner.bank_ids[0].id, {"acc_number": "123"})
+                ],
             }
         )
         self.assertEqual(len(self.messages), 0)
@@ -169,8 +170,8 @@ class TestTrackingManager(TransactionCase):
         self.partner.write(
             {
                 "bank_ids": [
-                    (2, self.partner.bank_ids[0].id, 0),
-                    (0, 0, {"acc_number": "1234567890"}),
+                    (Command.DELETE, self.partner.bank_ids[0].id, 0),
+                    (Command.CREATE, 0, {"acc_number": "1234567890"}),
                 ]
             }
         )
@@ -183,7 +184,7 @@ class TestTrackingManager(TransactionCase):
             {
                 "bank_ids": [
                     (
-                        1,
+                        Command.UPDATE,
                         self.partner.bank_ids[0].id,
                         {
                             "category_ids": [
@@ -206,7 +207,7 @@ class TestTrackingManager(TransactionCase):
             {
                 "bank_ids": [
                     (
-                        1,
+                        Command.UPDATE,
                         self.partner.bank_ids[0].id,
                         {"bank_id": self.env["res.bank"].create({"name": "DOO"}).id},
                     ),
@@ -227,12 +228,14 @@ class TestTrackingManager(TransactionCase):
         # and no error
         self.partner.write(
             {
-                "bank_ids": [(1, self.partner.bank_ids[0].id, {"acc_number": "123"})],
+                "bank_ids": [
+                    (Command.UPDATE, self.partner.bank_ids[0].id, {"acc_number": "123"})
+                ],
             }
         )
         self.partner.write(
             {
-                "bank_ids": [(2, self.partner.bank_ids[0].id, 0)],
+                "bank_ids": [(Command.DELETE, self.partner.bank_ids[0].id, 0)],
             }
         )
         self.assertEqual(len(self.messages), 1)
