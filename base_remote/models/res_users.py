@@ -1,27 +1,14 @@
 # Copyright 2018 Creu Blanca
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from threading import current_thread
 
 from odoo import SUPERUSER_ID, api, models
 from odoo.exceptions import AccessDenied
-from odoo.service import wsgi_server
 from odoo.tools import config
 
 
 class ResUsers(models.Model):
     _inherit = "res.users"
-
-    def _register_hook(self):
-        """🐒-patch XML-RPC controller to know remote address."""
-        super()._register_hook()
-        original_fn = wsgi_server.application_unproxied
-
-        def _patch(environ, start_response):
-            current_thread().environ = environ
-            return original_fn(environ, start_response)
-
-        wsgi_server.application_unproxied = _patch
 
     @classmethod
     def _auth_check_remote(cls, login, method):
