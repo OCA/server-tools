@@ -1,7 +1,7 @@
 # Copyright 2018 Creu Blanca
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from mock import patch
+from unittest.mock import patch
 
 from odoo import http
 from odoo.tests import tagged
@@ -10,7 +10,7 @@ from odoo.tests.common import HttpCase
 
 @tagged("post_install", "-at_install")
 # Skip CSRF validation on tests
-@patch(http.__name__ + ".WebRequest.validate_csrf", return_value=True)
+@patch(http.__name__ + ".Request.validate_csrf", return_value=True)
 class TestRemote(HttpCase):
     def setUp(self):
         super().setUp()
@@ -32,6 +32,22 @@ class TestRemote(HttpCase):
             remote = self.env["res.remote"].search([("ip", "=", self.remote_addr)])
             if remote:
                 remote.unlink()
+
+        http.request = type(
+            "obj",
+            (object,),
+            {
+                "env": self.env,
+                "cr": self.env.cr,
+                "db": self.env.cr.dbname,
+                "endpoint": type("obj", (object,), {"routing": []}),
+                "httprequest": type(
+                    "obj",
+                    (object,),
+                    {"remote_addr": self.remote_addr},
+                ),
+            },
+        )
 
     def test_xmlrpc_login_ok(self, *args):
         """Test Login"""
