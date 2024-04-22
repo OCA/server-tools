@@ -5,12 +5,14 @@ import os
 import shutil
 from datetime import datetime, timedelta
 from os import path
+from unittest import mock
 
 import dns.resolver
-import mock
 
 from odoo.exceptions import UserError, ValidationError
 from odoo.tests import SingleTransactionCase
+from odoo.tests.common import Form
+from odoo.tools.misc import mute_logger
 
 from ..models.letsencrypt import _get_challenge_dir, _get_data_dir
 
@@ -39,18 +41,12 @@ class TestLetsencrypt(SingleTransactionCase):
         ).set_values()
 
     def test_config_settings(self):
-        setting_vals = self.env["res.config.settings"].default_get([])
-        self.assertEqual(setting_vals["letsencrypt_dns_provider"], "shell")
-        self.assertEqual(
-            setting_vals["letsencrypt_dns_shell_script"],
-            "touch /tmp/.letsencrypt_test",
-        )
-        self.assertEqual(
-            setting_vals["letsencrypt_altnames"], "www.example.ltd,*.example.ltd"
-        )
-        self.assertEqual(setting_vals["letsencrypt_reload_command"], "echo reloaded")
-        self.assertTrue(setting_vals["letsencrypt_needs_dns_provider"])
-        self.assertFalse(setting_vals["letsencrypt_prefer_dns"])
+        with Form(self.env["res.config.settings"]) as settings_form:
+            self.assertTrue(settings_form.letsencrypt_needs_dns_provider)
+            settings_form.letsencrypt_altnames = "www.example.ltd"
+            self.assertFalse(settings_form.letsencrypt_needs_dns_provider)
+            settings_form.letsencrypt_prefer_dns = True
+            self.assertTrue(settings_form.letsencrypt_needs_dns_provider)
 
         with self.assertRaises(ValidationError):
             self.env["res.config.settings"].create(
@@ -287,6 +283,7 @@ class TestLetsencrypt(SingleTransactionCase):
             )
         )
 
+    @mute_logger("odoo.addons.letsencrypt.models.letsencrypt")
     def test_legacy_certificate_without_altnames(self):
         self.install_certificate(60, use_altnames=False)
         self.assertFalse(

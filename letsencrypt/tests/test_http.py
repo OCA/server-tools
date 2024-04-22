@@ -5,6 +5,7 @@ import os
 import shutil
 
 from odoo.tests import HttpCase
+from odoo.tools.misc import mute_logger
 
 from ..models.letsencrypt import _get_challenge_dir
 
@@ -17,6 +18,7 @@ class TestHTTP(HttpCase):
         self.assertEqual(res.status_code, 200)
         self.assertEqual(res.text, "content")
 
+    @mute_logger("odoo.addons.letsencrypt.controllers.main")
     def test_query_missing(self):
         res = self.url_open("/.well-known/acme-challenge/foobar")
         self.assertEqual(res.status_code, 404)
