@@ -5,6 +5,7 @@
 from ast import literal_eval
 
 from odoo import api, fields, models, tools
+from odoo.osv import expression
 
 
 class IrModel(models.Model):
@@ -16,9 +17,13 @@ class IrModel(models.Model):
         compute="_compute_automatic_custom_tracking",
         readonly=False,
         store=True,
-        help=("If tick new field will be automatically tracked if the domain match"),
+        help=(
+            "If marked, the fields matching the matched by the domain"
+            " below will be automatically tracked for this model."
+        ),
     )
     automatic_custom_tracking_domain = fields.Char(
+        string="Domain",
         compute="_compute_automatic_custom_tracking_domain",
         store=True,
         readonly=False,
@@ -29,7 +34,7 @@ class IrModel(models.Model):
         models = self.sudo().search([("active_custom_tracking", "=", True)])
         return {
             model.model: model.field_id.filtered(
-                lambda f: f.custom_tracking
+                lambda f, model=model: f.custom_tracking
                 and self.env[model.model]._fields.get(f.name)
             ).mapped("name")
             for model in models
@@ -73,7 +78,7 @@ class IrModel(models.Model):
                 tracked_fields = custom_tracked_fields[model.model]
             else:
                 tracked_fields = model.field_id.filtered(
-                    lambda s: not s.readonly
+                    lambda s, model=model: not s.readonly
                     and not s.related
                     and not s.ttype == "one2many"
                     and s.name in self.env[model.model]._fields
@@ -127,8 +132,14 @@ class IrModel(models.Model):
     def _compute_automatic_custom_tracking_domain(self):
         rules = self._default_automatic_custom_tracking_domain_rules()
         for record in self:
+            automatic_custom_tracking_domain = rules.get(record.model) or rules.get(
+                "default_automatic_rule", []
+            )
+            automatic_custom_tracking_domain = expression.AND(
+                [automatic_custom_tracking_domain, [("model", "=", record.model)]]
+            )
             record.automatic_custom_tracking_domain = str(
-                rules.get(record.model) or rules.get("default_automatic_rule")
+                automatic_custom_tracking_domain
             )
 
     def update_custom_tracking(self):
@@ -147,60 +158,5 @@ class IrModel(models.Model):
 
     def write(self, vals):
         if "active_custom_tracking" in vals:
-            self.clear_caches()
-        return super().write(vals)
-
-
-class IrModelFields(models.Model):
-    _inherit = "ir.model.fields"
-
-    custom_tracking = fields.Boolean(
-        compute="_compute_custom_tracking",
-        store=True,
-        readonly=False,
-    )
-    native_tracking = fields.Boolean(
-        compute="_compute_native_tracking",
-        store=True,
-    )
-    trackable = fields.Boolean(
-        compute="_compute_trackable",
-        store=True,
-    )
-
-    @api.depends("native_tracking")
-    def _compute_custom_tracking(self):
-        for record in self:
-            if record.model_id.automatic_custom_tracking:
-                domain = literal_eval(record.model_id.automatic_custom_tracking_domain)
-                record.custom_tracking = bool(record.filtered_domain(domain))
-            else:
-                record.custom_tracking = record.native_tracking
-
-    @api.depends("tracking")
-    def _compute_native_tracking(self):
-        for record in self:
-            record.native_tracking = bool(record.tracking)
-
-    @api.depends("related", "store")
-    def _compute_trackable(self):
-        blacklists = [
-            "activity_ids",
-            "message_ids",
-            "message_last_post",
-            "message_main_attachment",
-            "message_main_attachement_id",
-        ]
-
-        for rec in self:
-            rec.trackable = rec.name not in blacklists and rec.store and not rec.related
-
-    def write(self, vals):
-        custom_tracking = None
-        if "custom_tracking" in vals:
-            self.clear_caches()
-            self.check_access_rights("write")
-            custom_tracking = vals.pop("custom_tracking")
-            self._write({"custom_tracking": custom_tracking})
-            self.invalidate_model(fnames=["custom_tracking"])
+            self.env.registry.clear_cache()
         return super().write(vals)
