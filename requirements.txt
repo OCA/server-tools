@@ -1,3 +1,2 @@
 # generated from manifests external_dependencies
 astor
-odoo_test_helper
