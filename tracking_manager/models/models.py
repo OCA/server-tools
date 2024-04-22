@@ -95,10 +95,10 @@ class Base(models.AbstractModel):
                     for field_name, messages in messages_by_field.items()
                 ]
                 # use sudo as user may not have access to mail.message
-                record.sudo().message_post_with_view(
+                record.sudo().message_post_with_source(
                     "tracking_manager.track_o2m_m2m_template",
-                    values={"lines": messages},
-                    subtype_id=self.env.ref("mail.mt_note").id,
+                    render_values={"lines": messages},
+                    subtype_xmlid="mail.mt_note",
                 )
 
     def _tm_prepare_o2m_tracking(self):
