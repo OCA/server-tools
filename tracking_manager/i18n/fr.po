@@ -50,12 +50,6 @@ msgid "Automatic Custom Tracking"
 msgstr "Suivi personnalisé"
 
 #. module: tracking_manager
-#: model:ir.model.fields,field_description:tracking_manager.field_ir_model__automatic_custom_tracking_domain
-#, fuzzy
-msgid "Automatic Custom Tracking Domain"
-msgstr "Suivi personnalisé"
-
-#. module: tracking_manager
 #: model_terms:ir.ui.view,arch_db:tracking_manager.view_model_form
 msgid "Automatic configuration"
 msgstr ""
@@ -89,7 +83,7 @@ msgid "Custom Tracking ON"
 msgstr "Suivi personnalisé"
 
 #. module: tracking_manager
-#: model_terms:ir.ui.view,arch_db:tracking_manager.view_model_form
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model__automatic_custom_tracking_domain
 msgid "Domain"
 msgstr ""
 
@@ -105,7 +99,9 @@ msgstr "Champs"
 
 #. module: tracking_manager
 #: model:ir.model.fields,help:tracking_manager.field_ir_model__automatic_custom_tracking
-msgid "If tick new field will be automatically tracked if the domain match"
+msgid ""
+"If marked, the fields matching the matched by the domain below will be "
+"automatically tracked for this model."
 msgstr ""
 
 #. module: tracking_manager
@@ -155,6 +151,10 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:tracking_manager.view_model_form
 msgid "Update fields configuration"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Automatic Custom Tracking Domain"
+#~ msgstr "Suivi personnalisé"
 
 #, fuzzy
 #~ msgid "Changesets"
