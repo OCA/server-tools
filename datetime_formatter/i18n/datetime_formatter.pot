@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.0\n"
+"Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -14,6 +14,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: datetime_formatter
+#. odoo-python
 #: code:addons/datetime_formatter/models/res_lang.py:0
 #, python-format
 msgid "Best matched language (%s) not found."
@@ -22,4 +23,9 @@ msgstr ""
 #. module: datetime_formatter
 #: model:ir.model,name:datetime_formatter.model_res_lang
 msgid "Languages"
+msgstr ""
+
+#. module: datetime_formatter
+#: model:ir.model.fields,field_description:datetime_formatter.field_res_lang__smart_search
+msgid "Smart Search"
 msgstr ""
