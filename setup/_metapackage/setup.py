@@ -28,6 +28,7 @@ setuptools.setup(
         'odoo-addon-base_technical_user>=16.0dev,<16.1dev',
         'odoo-addon-base_time_window>=16.0dev,<16.1dev',
         'odoo-addon-base_view_inheritance_extension>=16.0dev,<16.1dev',
+        'odoo-addon-bus_alt_connection>=16.0dev,<16.1dev',
         'odoo-addon-cron_daylight_saving_time_resistant>=16.0dev,<16.1dev',
         'odoo-addon-database_cleanup>=16.0dev,<16.1dev',
         'odoo-addon-dbfilter_from_header>=16.0dev,<16.1dev',
