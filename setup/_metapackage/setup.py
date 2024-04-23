@@ -31,6 +31,7 @@ setuptools.setup(
         'odoo-addon-bus_alt_connection>=16.0dev,<16.1dev',
         'odoo-addon-cron_daylight_saving_time_resistant>=16.0dev,<16.1dev',
         'odoo-addon-database_cleanup>=16.0dev,<16.1dev',
+        'odoo-addon-datetime_formatter>=16.0dev,<16.1dev',
         'odoo-addon-dbfilter_from_header>=16.0dev,<16.1dev',
         'odoo-addon-excel_import_export>=16.0dev,<16.1dev',
         'odoo-addon-excel_import_export_demo>=16.0dev,<16.1dev',
