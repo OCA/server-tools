@@ -1,5 +1,6 @@
 # Copyright 2015, 2017 Jairo Llopis <jairo.llopis@tecnativa.com>
 # Copyright 2016 Tecnativa, S.L. - Vicent Cubells
+# Copyright 2024 Tecnativa - Carolina Fernandez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 import datetime
 from random import random
@@ -15,14 +16,15 @@ from ..models.res_lang import MODE_DATE, MODE_DATETIME, MODE_TIME
 
 
 class FormatterCase(TransactionCase):
-    def setUp(self):
-        super().setUp()
-        self.rl = self.env["res.lang"]
-        self.bm = self.rl.best_match()
-        self.dt = datetime.datetime.now()
-        self.d_fmt = self.bm.date_format or DEFAULT_SERVER_DATE_FORMAT
-        self.t_fmt = self.bm.time_format or DEFAULT_SERVER_TIME_FORMAT
-        self.kwargs = dict()
+    @classmethod
+    def setUpClass(cls):
+        super(FormatterCase, cls).setUpClass()
+        cls.rl = cls.env["res.lang"]
+        cls.bm = cls.rl.best_match()
+        cls.dt = datetime.datetime.now()
+        cls.d_fmt = cls.bm.date_format or DEFAULT_SERVER_DATE_FORMAT
+        cls.t_fmt = cls.bm.time_format or DEFAULT_SERVER_TIME_FORMAT
+        cls.kwargs = dict()
 
     def tearDown(self):
         # This should be returned

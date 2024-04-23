@@ -1,23 +1,25 @@
 # Copyright 2015, 2017 Jairo Llopis <jairo.llopis@tecnativa.com>
 # Copyright 2016 Tecnativa, S.L. - Vicent Cubells
+# Copyright 2024 Tecnativa - Carolina Fernandez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from odoo.exceptions import UserError
 from odoo.tests.common import TransactionCase
 
 
 class BasicCase(TransactionCase):
-    def setUp(self):
-        super().setUp()
-        self.langs = (
-            self.env.ref("base.lang_en"),
-            self.env.ref("base.lang_es"),
-            self.env.ref("base.lang_it"),
-            self.env.ref("base.lang_pt"),
-            self.env.ref("base.lang_zh_CN"),
+    @classmethod
+    def setUpClass(cls):
+        super(BasicCase, cls).setUpClass()
+        cls.langs = (
+            cls.env.ref("base.lang_en"),
+            cls.env.ref("base.lang_es"),
+            cls.env.ref("base.lang_it"),
+            cls.env.ref("base.lang_pt"),
+            cls.env.ref("base.lang_zh_CN"),
         )
-        self.rl = self.env["res.lang"]
-        for lang in self.langs:
-            self.rl._activate_lang(lang.code)
+        cls.rl = cls.env["res.lang"]
+        for lang in cls.langs:
+            cls.rl._activate_lang(lang.code)
 
     def test_explicit(self):
         """When an explicit lang is used."""
