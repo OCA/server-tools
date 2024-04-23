@@ -1,10 +1,11 @@
-The fuzzy search is automatically enabled on all Models.
-Note that this only affects typing in related fields.
-The regular ``search()``, used in the top right search box, is not affected.
+Go to Settings > Smart Searches
+Remove default filter to see all Models
+Choose the Modlel you want to configure and choose your options (Smart Search,
+Smart Name Search, Domain, Smart Search fields)
 
-Additional search fields can be configured at Settings > Technical > Database > Models,
-using the "Name Search Fields" field.
+In the example, we choose to activate improved search for Contacts (partners) and
+Products. Furthermore user can search a contact typing their city name
 
-.. figure:: https://raw.githubusercontent.com/OCA/server-tools/11.0/base_name_search_improved/images/image1.png
+.. figure:: ../images/image1.png
    :alt: Name Search Fields
    :width: 600 px
