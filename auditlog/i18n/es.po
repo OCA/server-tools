@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-03 10:08+0000\n"
-"PO-Revision-Date: 2023-09-03 00:14+0000\n"
+"PO-Revision-Date: 2024-04-23 08:40+0000\n"
 "Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
@@ -603,7 +603,7 @@ msgstr "Ver registros"
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule__user_ids
 msgid "if no user is added then it will applicable for all users"
-msgstr ""
+msgstr "si no se añade ningún usuario, se aplicará a todos los usuarios"
 
 #~ msgid "Last Modified on"
 #~ msgstr "Última actualización por"
