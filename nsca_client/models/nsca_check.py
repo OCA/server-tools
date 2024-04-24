@@ -18,7 +18,7 @@ class NscaCheck(models.Model):
         "ir.cron", string="Cron", required=True, ondelete="cascade", readonly=True
     )
     server_id = fields.Many2one("nsca.server", string="Server", required=True)
-    service = fields.Char("Service", required=True)
+    service = fields.Char(required=True)
     nsca_model = fields.Char("NSCA Model")
     nsca_function = fields.Char("Method")
     nsca_args = fields.Char("Arguments")
@@ -55,7 +55,8 @@ class NscaCheck(models.Model):
                 "doall": False,
                 "numbercall": -1,
             }
-            super(NscaCheck, check).write(vals)
+            res = super(NscaCheck, check).write(vals)
+        return res
 
     @api.model
     def create(self, vals):

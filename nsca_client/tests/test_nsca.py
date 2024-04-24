@@ -17,8 +17,8 @@ class Popen:
         self.stderr = stderr
 
     # flake8: noqa: B902
-    def communicate(input):
-        return ["test"]
+    # def communicate(input):
+    #     return ["test"]
 
 
 class TestNsca(TransactionCase):

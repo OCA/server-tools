@@ -29,8 +29,8 @@ class NscaServer(models.Model):
     _description = "NSCA Server"
 
     name = fields.Char("Hostname", required=True)
-    port = fields.Integer("Port", default=5667, required=True)
-    password = fields.Char("Password")
+    port = fields.Integer(default=5667, required=True)
+    password = fields.Char()
     encryption_method = fields.Selection(
         selection="_selection_encryption_method",
         string="Encryption method",
