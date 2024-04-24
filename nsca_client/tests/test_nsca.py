@@ -1,7 +1,7 @@
 # Copyright 2018 Creu Blanca
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-import mock
+from unittest.mock import patch
 
 from odoo.tests.common import TransactionCase
 from odoo.tools import mute_logger
@@ -17,8 +17,8 @@ class Popen:
         self.stderr = stderr
 
     # flake8: noqa: B902
-    # def communicate(input):
-    #     return ["test"]
+    def communicate(_input):
+        return ["test"]
 
 
 class TestNsca(TransactionCase):
@@ -32,7 +32,7 @@ class TestNsca(TransactionCase):
             }
         )
         self.assertTrue(server.config_file_path)
-        with mock.patch("subprocess.Popen") as post:
+        with patch("subprocess.Popen") as post:
             post.return_value = Popen
             check = self.env["nsca.check"].create(
                 {
@@ -87,7 +87,7 @@ class TestNsca(TransactionCase):
                 "nsca_function": "_check_send_nsca_command",
             }
         )
-        with mock.patch("subprocess.Popen") as post:
+        with patch("subprocess.Popen") as post:
             post.return_value = Popen
             with mute_logger("odoo.addons.nsca_client.models.nsca_check"):
                 self.env["nsca.check"]._cron_check(check.id)
@@ -116,7 +116,7 @@ class TestNsca(TransactionCase):
         action = server.show_checks()
         self.assertEqual(check, self.env["nsca.check"].browse(action["res_id"]))
         self.assertEqual(check, self.env["nsca.check"].search(action["domain"]))
-        with mock.patch("subprocess.Popen") as post:
+        with patch("subprocess.Popen") as post:
             post.return_value = Popen
             self.env["nsca.check"]._cron_check(check.id)
             post.assert_not_called()
@@ -139,9 +139,9 @@ class TestNsca(TransactionCase):
                 "nsca_function": "_check_send_nsca_command",
             }
         )
-        with mock.patch("subprocess.Popen") as post:
+        with patch("subprocess.Popen") as post:
             post.return_value = Popen
-            with mock.patch.object(NscaServer, "_check_send_nsca_command") as func:
+            with patch.object(NscaServer, "_check_send_nsca_command") as func:
                 func.return_value = ("OK", "RESULT")
                 self.env["nsca.check"]._cron_check(check.id)
                 func.assert_called()
