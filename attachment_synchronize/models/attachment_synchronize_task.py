@@ -143,7 +143,15 @@ class AttachmentSynchronizeTask(models.Model):
             domain = []
         domain = expression.AND([domain, [("method_type", "=", "import")]])
         for task in self.search(domain):
-            task.run_import()
+            try:
+                task.run_import()
+            except Exception as e:
+                self.env.cr.rollback()
+                # log exception and continue in order to no block all task from all
+                # remote servers one is unavailable
+                _logger.warning(
+                    "Task import %s failed with error %s" % (task.name, str(e))
+                )
 
     def run(self):
         for record in self:
@@ -197,16 +205,24 @@ class AttachmentSynchronizeTask(models.Model):
         for file_path in file_path_names:
             if fs.isdir(file_path):
                 continue
-            with self.env.cr.savepoint():
+            # we need to commit after each file because it may be renamed, deleted
+            # moved on remote and if it fails later, we would could lose the file
+            # forever.
+            with self.env.registry.cursor() as new_cr:
+                new_env = api.Environment(new_cr, self.env.uid, self.env.context)
                 file_name = file_path.split(fs.sep)[-1]
                 # avoid use of cat_file because it may not be implemeted in async
                 # implementation like sshfs
                 with fs.open(file_path, "rb") as fs_file:
                     data = fs_file.read()
                 data = base64.b64encode(data)
-                attach_vals = self._prepare_attachment_vals(data, file_name)
-                attachment = attach_obj.create(attach_vals)
-                self._manage_file_after_import(file_name, file_path, attachment)
+                attach_vals = self.with_env(new_env)._prepare_attachment_vals(
+                    data, file_name
+                )
+                attachment = attach_obj.with_env(new_env).create(attach_vals)
+                self.with_env(new_env)._manage_file_after_import(
+                    file_name, file_path, attachment
+                )
                 total_import += 1
         _logger.info("Run import complete! Imported {} files".format(total_import))
 
