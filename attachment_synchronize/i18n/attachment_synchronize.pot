@@ -104,6 +104,20 @@ msgid "Backend"
 msgstr ""
 
 #. module: attachment_synchronize
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_queue__changeset_change_ids
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__changeset_change_ids
+#: model:ir.model.fields,field_description:attachment_synchronize.field_fs_storage__changeset_change_ids
+msgid "Changeset Changes"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_queue__changeset_ids
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__changeset_ids
+#: model:ir.model.fields,field_description:attachment_synchronize.field_fs_storage__changeset_ids
+msgid "Changesets"
+msgstr ""
+
+#. module: attachment_synchronize
 #: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__count_attachment_done
 msgid "Count Attachment Done"
 msgstr ""
@@ -116,6 +130,27 @@ msgstr ""
 #. module: attachment_synchronize
 #: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__count_attachment_pending
 msgid "Count Attachment Pending"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_queue__count_changesets
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__count_changesets
+#: model:ir.model.fields,field_description:attachment_synchronize.field_fs_storage__count_changesets
+msgid "Count Changesets"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_queue__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:attachment_synchronize.field_fs_storage__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_queue__count_pending_changesets
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__count_pending_changesets
+#: model:ir.model.fields,field_description:attachment_synchronize.field_fs_storage__count_pending_changesets
+msgid "Count Pending Changesets"
 msgstr ""
 
 #. module: attachment_synchronize
@@ -363,6 +398,27 @@ msgid ""
 msgstr ""
 
 #. module: attachment_synchronize
+#: model:ir.model.fields,help:attachment_synchronize.field_attachment_queue__count_pending_changeset_changes
+#: model:ir.model.fields,help:attachment_synchronize.field_attachment_synchronize_task__count_pending_changeset_changes
+#: model:ir.model.fields,help:attachment_synchronize.field_fs_storage__count_pending_changeset_changes
+msgid "The number of pending changes of this record"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields,help:attachment_synchronize.field_attachment_queue__count_pending_changesets
+#: model:ir.model.fields,help:attachment_synchronize.field_attachment_synchronize_task__count_pending_changesets
+#: model:ir.model.fields,help:attachment_synchronize.field_fs_storage__count_pending_changesets
+msgid "The number of pending changesets of this record"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields,help:attachment_synchronize.field_attachment_queue__count_changesets
+#: model:ir.model.fields,help:attachment_synchronize.field_attachment_synchronize_task__count_changesets
+#: model:ir.model.fields,help:attachment_synchronize.field_fs_storage__count_changesets
+msgid "The overall number of changesets of this record"
+msgstr ""
+
+#. module: attachment_synchronize
 #: model:ir.model.fields,help:attachment_synchronize.field_attachment_synchronize_task__failure_emails
 msgid ""
 "Used to fill the 'Failure Emails' field in the 'Attachments Queues' related to this task.\n"
@@ -374,4 +430,11 @@ msgstr ""
 msgid ""
 "Used to fill the 'File Type' field in the imported 'Attachments Queues'.\n"
 "Further operations will be realized on these Attachments Queues depending on their 'File Type' value."
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_queue__user_can_see_changeset
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__user_can_see_changeset
+#: model:ir.model.fields,field_description:attachment_synchronize.field_fs_storage__user_can_see_changeset
+msgid "User Can See Changeset"
 msgstr ""

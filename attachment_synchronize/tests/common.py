@@ -36,6 +36,18 @@ class SyncCommon(TransactionCase):
         self._clean_testing_directory()
         self._create_test_file()
         self.task = self.env.ref("attachment_synchronize.import_from_filestore")
+        self.task_delete = self.env.ref(
+            "attachment_synchronize.import_from_filestore_delete"
+        )
+        self.task_move = self.env.ref(
+            "attachment_synchronize.import_from_filestore_move"
+        )
+        self.task_rename = self.env.ref(
+            "attachment_synchronize.import_from_filestore_rename"
+        )
+        self.task_move_rename = self.env.ref(
+            "attachment_synchronize.import_from_filestore_move_rename"
+        )
 
     def tearDown(self):
         self._clean_testing_directory()
