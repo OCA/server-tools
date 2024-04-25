@@ -31,6 +31,9 @@ class FetchmailServerFolder(models.Model):
         help="The path to your mail folder."
         " Typically would be something like 'INBOX.myfolder'",
     )
+    archive_path = fields.Char(
+        help="The path where successfully retrieved messages will be stored.",
+    )
     model_id = fields.Many2one(
         comodel_name="ir.model",
         required=True,
@@ -123,6 +126,7 @@ class FetchmailServerFolder(models.Model):
             try:
                 # New connection per folder
                 connection = this.server_id.connect()
+                this.check_imap_archive_folder(connection)
                 this.retrieve_imap_folder(connection)
                 connection.close()
             except Exception:
@@ -140,6 +144,20 @@ class FetchmailServerFolder(models.Model):
             finally:
                 if connection:
                     connection.logout()
+
+    def check_imap_archive_folder(self, connection):
+        """If archive folder specified, check existance and create when needed."""
+        self.ensure_one()
+        server = self.server_id
+        if not self.archive_path:
+            return
+        if connection.select(self.archive_path)[0] != "OK":
+            connection.create(self.archive_path)
+            if connection.select(self.archive_path)[0] != "OK":
+                raise UserError(
+                    _("Could not create archive folder %(folder)s on server %(server)s")
+                    % {"folder": self.archive_path, "server": server.name}
+                )
 
     def retrieve_imap_folder(self, connection):
         """Retrieve all mails for one IMAP folder."""
@@ -204,6 +222,8 @@ class FetchmailServerFolder(models.Model):
         )
         matched = True if thread_id else False
         self.update_msg(connection, msgid, matched=matched)
+        if self.archive_path:
+            self._archive_msg(connection, msgid)
 
     def fetch_msg(self, connection, msgid):
         """Select a single message from a folder."""
@@ -227,3 +247,10 @@ class FetchmailServerFolder(models.Model):
         else:
             if self.flag_nonmatching:
                 connection.store(msgid, "+FLAGS", "\\FLAGGED")
+
+    def _archive_msg(self, connection, msgid):
+        """Archive message. Folder should already have been created."""
+        self.ensure_one()
+        connection.copy(msgid, self.archive_path)
+        connection.store(msgid, "+FLAGS", "\\Deleted")
+        connection.expunge()
