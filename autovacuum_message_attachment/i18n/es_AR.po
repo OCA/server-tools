@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-05-25 23:09+0000\n"
+"PO-Revision-Date: 2024-04-29 02:54+0000\n"
 "Last-Translator: Ignacio Buioli <ibuioli@gmail.com>\n"
 "Language-Team: none\n"
 "Language: es_AR\n"
@@ -516,7 +516,7 @@ msgstr "Email"
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_vacuum_rule__empty_model
 msgid "Empty Model"
-msgstr ""
+msgstr "Modelo Vacío"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_vacuum_rule__empty_subtype
@@ -715,6 +715,9 @@ msgid ""
 "Take into account attachment not linked to any model, but only if a pattern "
 "is set, to avoid deleting attachments generated/needed by odoo"
 msgstr ""
+"Tenga en cuenta que los archivos adjuntos no están vinculados a ningún "
+"modelo, pero solo si se establece un patrón, para evitar eliminar archivos "
+"adjuntos generados/necesarios por odoo"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,help:autovacuum_message_attachment.field_vacuum_rule__model_id
@@ -740,7 +743,7 @@ msgstr "Tipo"
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields.selection,name:autovacuum_message_attachment.selection__vacuum_rule__message_type__user_notification
 msgid "User Specific Notification"
-msgstr ""
+msgstr "Notificación Específica de Usuario"
 
 #~ msgid "Changeset Changes"
 #~ msgstr "Cambios en el Conjunto de Cambios"
