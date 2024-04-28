@@ -6,11 +6,15 @@ import pstats
 import re
 import subprocess
 import sys
+import tempfile
+
 from contextlib import contextmanager
 from cProfile import Profile
+from datetime import datetime
 
 import lxml.html
 from psycopg2 import OperationalError, ProgrammingError
+from timeit import default_timer as timer
 
 from odoo import _, api, exceptions, fields, http, models, sql_db, tools
 
@@ -92,38 +96,41 @@ class ProfilerProfileRequestLine(models.Model):
                 httprequest.name or '?',
                 fields.Datetime.to_string(tz_create_date))
 
-    def _get_attachment_name(self, prefix, suffix):
-        return '%s_%s_%s_%s' % (
-            prefix,
-            fields.Datetime.from_string(
-                self.create_date).strftime(DATETIME_FORMAT_FILE),
-            re.sub('[^0-9a-zA-Z]+', '_', self.name),
-            suffix,
+    def _get_attachment_name(self):
+        """ This is called in 'request' mode only """
+        return 'py_stats_%s_' % (
+            datetime.now().strftime(DATETIME_FORMAT_FILE),
         )
 
+    @api.model
+    def dump_stats(self, profile):
+        """ This is called in 'request' mode only """
+        cprofile_fname = self._get_attachment_name()
+        tf, cprofile_path = tempfile.mkstemp(suffix='.cprofile', prefix=cprofile_fname)
+        os.close(tf)
+        _logger.info("Dumping cProfile '%s'", cprofile_path)
+        profile.dump_stats(cprofile_path)
+        return cprofile_fname, cprofile_path
+
     @api.multi
-    def dump_stats(self):
+    def dump_stats_db(self, cprofile_fname, cprofile_path):
+        """ This is called in 'request' mode only """
         self.ensure_one()
-        with tools.osutil.tempdir() as dump_dir:
-            cprofile_fname = self._get_attachment_name("py_stats", ".cprofile")
-            cprofile_path = os.path.join(dump_dir, cprofile_fname)
-            _logger.info("Dumping cProfile '%s'", cprofile_path)
-            ProfilerProfile.profile.dump_stats(cprofile_path)
-            with open(cprofile_path, "rb") as f_cprofile:
-                datas = f_cprofile.read()
+        with open(cprofile_path, "rb") as f_cprofile:
+            datas = f_cprofile.read()
 
-            if not datas or datas == CPROFILE_EMPTY_CHARS:
-                _logger.info("cProfile stats empty.")
-                return None
+        if not datas or datas == CPROFILE_EMPTY_CHARS:
+            _logger.info("cProfile stats empty.")
+            return None
 
-            self.env['ir.attachment'].create({
-                'name': cprofile_fname,
-                'res_id': self.id,
-                'res_model': self._name,
-                'datas': base64.b64encode(datas),
-                'datas_fname': cprofile_fname,
-                'description': 'cProfile dump stats',
-            })
+        self.env['ir.attachment'].create({
+            'name': cprofile_fname,
+            'res_id': self.id,
+            'res_model': self._name,
+            'datas': base64.b64encode(datas),
+            'datas_fname': cprofile_fname,
+            'description': 'cProfile dump stats',
+        })
 
 
 class ProfilerProfilePythonLine(models.Model):
@@ -195,6 +202,7 @@ class ProfilerProfile(models.Model):
 
     name = fields.Char(required=True)
     enable_python = fields.Boolean(default=True)
+    session = fields.Char()
     python_method = fields.Selection(
         selection=_SELECTION_PYTHON_METHOD, default='full', required=True)
     enable_postgresql = fields.Boolean(
@@ -337,15 +345,21 @@ export PGOPTIONS="-c log_min_duration_statement=0 \\
                 _("To profile all activity, start the odoo server using "
                   "the parameter '--workers=0'"))
         _logger.info("Enabling profiler")
-        self.write(dict(
-            date_started=self.now_utc(),
-            state='enabled'
-        ))
         if self.enable_python and self.python_method == 'full':
             ProfilerProfile.enabled = True
+            self.write(dict(
+                date_started=self.now_utc(),
+                state='enabled'
+            ))
+            self._reset_postgresql()
         elif self.enable_python and self.python_method == 'request':
             http.request.httprequest.session.oca_profiler = self.id
-        self._reset_postgresql()
+            self.write(dict(
+                date_started=self.now_utc(),
+                state='enabled',
+                session=http.request.httprequest.session.sid,
+            ))
+        return True
 
     @api.multi
     def _reset_postgresql(self):
@@ -471,6 +485,7 @@ export PGOPTIONS="-c log_min_duration_statement=0 \\
 
     @api.multi
     def dump_stats(self):
+        """ This is used in 'full' mode only """
         self.ensure_one()
         attachment = None
         with tools.osutil.tempdir() as dump_dir:
@@ -478,9 +493,9 @@ export PGOPTIONS="-c log_min_duration_statement=0 \\
             cprofile_path = os.path.join(dump_dir, cprofile_fname)
             _logger.info("Dumping cProfile '%s'", cprofile_path)
             ProfilerProfile.profile.dump_stats(cprofile_path)
+
             with open(cprofile_path, "rb") as f_cprofile:
                 datas = f_cprofile.read()
-
             if datas and datas != CPROFILE_EMPTY_CHARS:
                 attachment = self.env['ir.attachment'].create({
                     'name': cprofile_fname,
@@ -539,6 +554,7 @@ export PGOPTIONS="-c log_min_duration_statement=0 \\
         if reset_date:
             self.date_started = self.now_utc()
         ProfilerProfile.profile.clear()
+        return True
 
     @api.multi
     def disable(self):
@@ -554,20 +570,48 @@ export PGOPTIONS="-c log_min_duration_statement=0 \\
             self.dump_stats()
         self.clear(reset_date=False)
         self._reset_postgresql()
+        return True
 
     @staticmethod
     @contextmanager
     def profiling():
-        """Thread local profile management, according to the shared "enabled"
-        """
+        # Thread local profile management, according to the shared "enabled"
         if ProfilerProfile.enabled:
             _logger.debug("Catching profiling")
             ProfilerProfile.profile.enable()
-        try:
+            try:
+                yield
+            finally:
+                if ProfilerProfile.enabled:
+                    ProfilerProfile.profile.disable()
+
+        # Per-session profile management, according to a flag saved on session
+        elif http.request and http.request.httprequest \
+                and http.request.httprequest.session \
+                and getattr(http.request.httprequest.session, 'oca_profiler', False):
+            profile = Profile()
+            profile.enable()
+            try:
+                oca_profiler_id = http.request.httprequest.session.oca_profiler
+                RequestLine = http.request.env['profiler.profile.request.line']
+                profiler = http.request.env['profiler.profile'].browse(oca_profiler_id)
+                profile = Profile()
+                start = timer()
+                profile.enable()
+                yield
+            finally:
+                end = timer()
+                profile.disable()
+            try:
+                cprofile_fname, cprofile_path = RequestLine.dump_stats(profile)
+                request_line = profiler.sudo().create_request_line()
+                request_line.dump_stats_db(cprofile_fname, cprofile_path)
+                request_line.total_time = (end - start) * 1000.0
+            except:  # noqa
+                pass
+
+        else:
             yield
-        finally:
-            if ProfilerProfile.enabled:
-                ProfilerProfile.profile.disable()
 
     @api.multi
     def action_view_attachment(self):
