@@ -75,11 +75,19 @@
                 <field name="port" />
                 <field name="username" />
                 <group expand="0" string="Group By">
-                    <filter string="Host" domain="" context="{'group_by': 'host'}" />
-                    <filter string="Port" domain="" context="{'group_by': 'port'}" />
+                    <filter
+                        string="Host"
+                        name="groupby_host"
+                        context="{'group_by': 'host'}"
+                    />
+                    <filter
+                        string="Port"
+                        name="groupby_port"
+                        context="{'group_by': 'port'}"
+                    />
                     <filter
                         string="Username"
-                        domain=""
+                        name="groupby_username"
                         context="{'group_by': 'username'}"
                     />
                 </group>
@@ -91,7 +99,6 @@
          <field name="name">External Systems</field>
          <field name="res_model">external.system</field>
          <field name="type">ir.actions.act_window</field>
-         <field name="view_type">form</field>
          <field name="view_mode">tree,form</field>
      </record>
 

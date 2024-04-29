@@ -44,7 +44,6 @@ class ExternalSystemAdapterOAuth(models.AbstractModel):
 
     token = None
 
-    @api.multi
     def external_get_client(self):
         """Return token that can be used to access remote system."""
         client = super(ExternalSystemAdapterOAuth, self).external_get_client()
@@ -52,7 +51,6 @@ class ExternalSystemAdapterOAuth(models.AbstractModel):
         self.token = oauth.get_access_token()
         return client
 
-    @api.multi
     def external_destroy_client(self, client):
         """Perform any logic necessary to destroy the client connection.
 
