@@ -5,7 +5,7 @@
 {
     "name": "Server Action Logging",
     "summary": "Module that provides a logging mechanism for server actions",
-    "version": "16.0.1.0.0",
+    "version": "15.0.1.0.0",
     "category": "Uncategorized",
     "website": "https://github.com/OCA/server-tools",
     "author": "Italo LOPES (CamptoCamp), Odoo Community Association (OCA)",
