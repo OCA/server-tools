@@ -22,15 +22,8 @@ class AttachmentQueue(models.Model):
     _inherits = {"ir.attachment": "attachment_id"}
     _inherit = ["mail.thread", "mail.activity.mixin"]
 
-    attachment_id = fields.Many2one(
-        "ir.attachment",
-        required=True,
-        ondelete="cascade",
-        help="Link to ir.attachment model ",
-    )
-    file_type = fields.Selection(
-        selection=[],
-        index="btree",
+    attachment_id = fields.Many2one("ir.attachment", required=True, ondelete="cascade", help="Link to ir.attachment model ")
+    file_type = fields.Selection(selection=[], index="btree",
         help="The file type determines an import method to be used "
         "to parse and transform data before their import in ERP or an export",
     )
