@@ -33,7 +33,8 @@ class TestBaseViewInheritanceExtension(TransactionCase):
         source = etree.fromstring(
             """
             <form>
-                <field name="account_move_id" context="{'default_journal_id': journal_id}" />
+                <field name="account_move_id"
+                 context="{'default_journal_id': journal_id}" />
             </form>
             """
         )
