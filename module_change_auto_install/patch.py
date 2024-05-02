@@ -70,13 +70,13 @@ def _overload_load_manifest(module, mod_path=None):
         else:
             if specific_dependencies:
                 _logger.info(
-                    "Module '{}' has been marked as auto installable if '{}' are installed".format(
-                        module, ",".join(specific_dependencies)
-                    )
+                    "Module '{}' has been marked as auto installable if '{}' "
+                    "are installed".format(module, ",".join(specific_dependencies))
                 )
             else:
                 _logger.info(
-                    f"Module '{module}' has been marked as auto installable in ALL CASES."
+                    f"Module '{module}' has been marked as auto installable in "
+                    f"ALL CASES."
                 )
 
             res["auto_install"] = set(specific_dependencies)
