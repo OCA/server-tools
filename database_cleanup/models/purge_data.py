@@ -78,7 +78,8 @@ class CleanupPurgeWizardData(models.TransientModel):
                     0,
                     {
                         "data_id": data.id,
-                        "name": f"{data.module}.{data.name}, object of type {data.model}",
+                        "name": f"{data.module}.{data.name}, "
+                        f"object of type {data.model}",
                     },
                 )
             )
