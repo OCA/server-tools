@@ -49,10 +49,8 @@ msgstr ""
 "No se ha detectado ningún cambio en la suma de comprobación de los módulos "
 "instalados y todos los módulos están instalados, no hay nada que hacer."
 
-#. module: module_auto_update
-#: model:ir.model.fields,field_description:module_auto_update.field_ir_module_module__smart_search
-msgid "Smart Search"
-msgstr "Búsqueda inteligente"
+#~ msgid "Smart Search"
+#~ msgstr "Búsqueda inteligente"
 
 #~ msgid "Module Upgrade"
 #~ msgstr "Actualización de módulo"
