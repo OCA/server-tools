@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-01-18 09:35+0000\n"
+"PO-Revision-Date: 2024-05-03 09:36+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -98,6 +98,8 @@ msgid ""
 "If marked, the fields matching the matched by the domain below will be "
 "automatically tracked for this model."
 msgstr ""
+"Se attiva, i campi che corrispondono alla ricerca del dominio sottostante "
+"verranno tracciati automaticamente per questo modello."
 
 #. module: tracking_manager
 #: model:ir.model,name:tracking_manager.model_mail_tracking_value
