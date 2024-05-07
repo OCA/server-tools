@@ -1,6 +1,8 @@
 # Copyright 2020 Onestein (<https://www.onestein.eu>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+import json
+
 from lxml import etree
 
 from odoo import _, api, fields, models
@@ -24,11 +26,17 @@ class Base(models.AbstractModel):
         compute="_compute_changeset_ids",
         string="Changeset Changes",
     )
+    count_changesets = fields.Integer(
+        compute="_compute_count_pending_changesets",
+        help="The overall number of changesets of this record",
+    )
     count_pending_changesets = fields.Integer(
-        compute="_compute_count_pending_changesets"
+        compute="_compute_count_pending_changesets",
+        help="The number of pending changesets of this record",
     )
     count_pending_changeset_changes = fields.Integer(
-        compute="_compute_count_pending_changesets"
+        compute="_compute_count_pending_changesets",
+        help="The number of pending changes of this record",
     )
     user_can_see_changeset = fields.Boolean(compute="_compute_user_can_see_changeset")
 
@@ -45,6 +53,7 @@ class Base(models.AbstractModel):
         model_name = self._name
         if model_name in self.models_to_track_changeset():
             for rec in self:
+                rec.count_changesets = len(rec.changeset_ids)
                 changesets = rec.changeset_ids.filtered(
                     lambda rev: rev.state == "draft"
                     and rev.res_id == rec.id
@@ -58,8 +67,9 @@ class Base(models.AbstractModel):
                 rec.count_pending_changeset_changes = len(changes)
         else:
             for rec in self:
-                rec.count_pending_changesets = 0.0
-                rec.count_pending_changeset_changes = 0.0
+                rec.count_changesets = 0
+                rec.count_pending_changesets = 0
+                rec.count_pending_changeset_changes = 0
 
     @api.model
     @ormcache(skiparg=1)
@@ -157,7 +167,14 @@ class Base(models.AbstractModel):
             button_label = _("Changes")
             doc = etree.XML(res["arch"])
             for node in doc.xpath("//div[@name='button_box']"):
-                xml_field = etree.Element(
+                field_count_changesets = etree.Element(
+                    "field",
+                    {
+                        "name": "count_changesets",
+                        "modifiers": json.dumps({"invisible": True}),
+                    },
+                )
+                field_count_pending_changeset_changes = etree.Element(
                     "field",
                     {
                         "name": "count_pending_changeset_changes",
@@ -173,9 +190,13 @@ class Base(models.AbstractModel):
                         "icon": "fa-code-fork",
                         "context": "{'search_default_draft': 1, "
                         "'search_default_record_id': active_id}",
+                        "modifiers": json.dumps(
+                            {"invisible": [("count_changesets", "=", 0)]}
+                        ),
                     },
                 )
-                xml_button.insert(0, xml_field)
+                xml_button.insert(0, field_count_pending_changeset_changes)
+                xml_button.insert(0, field_count_changesets)
                 node.insert(0, xml_button)
             res["arch"] = etree.tostring(doc, encoding="unicode")
         return res
