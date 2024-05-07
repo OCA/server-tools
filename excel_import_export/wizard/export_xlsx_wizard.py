@@ -60,7 +60,8 @@ class ExportXLSXWizard(models.TransientModel):
             if not template.datas:
                 raise ValidationError(_('No file in %s') % (template.name,))
         defaults['template_id'] = len(templates) == 1 and templates.id or False
-        defaults["res_ids"] = ",".join([str(x) for x in res_ids])
+        if res_ids:
+            defaults["res_ids"] = ",".join([str(x) for x in res_ids])
         defaults['res_model'] = res_model
         return defaults
 
