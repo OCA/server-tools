@@ -162,12 +162,12 @@ class IrModelFields(models.Model):
         store=True,
     )
 
-    @api.depends("native_tracking")
+    @api.depends("native_tracking", "trackable")
     def _compute_custom_tracking(self):
         for record in self:
             if record.model_id.automatic_custom_tracking:
                 domain = literal_eval(record.model_id.automatic_custom_tracking_domain)
-                record.custom_tracking = bool(record.filtered_domain(domain))
+                record.custom_tracking = record.filtered_domain(domain).trackable
             else:
                 record.custom_tracking = record.native_tracking
 
