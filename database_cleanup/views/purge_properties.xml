@@ -30,6 +30,9 @@
             <field name="name" position="after">
                 <field name="reason" />
             </field>
+            <button name="purge" position="attributes">
+                <attribute name="string">Purge this property</attribute>
+            </button>
         </field>
     </record>
 
