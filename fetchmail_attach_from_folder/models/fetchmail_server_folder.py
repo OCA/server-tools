@@ -202,7 +202,7 @@ class FetchmailServerFolder(models.Model):
         return msgids
 
     def apply_matching(self, connection, msgid):
-        """Return ids of objects matched"""
+        """Return id of object matched (which will be the thread_id)."""
         self.ensure_one()
         thread_model = self.env["mail.thread"]
         message_org = self.fetch_msg(connection, msgid)
@@ -224,6 +224,7 @@ class FetchmailServerFolder(models.Model):
         self.update_msg(connection, msgid, matched=matched)
         if self.archive_path:
             self._archive_msg(connection, msgid)
+        return thread_id  # Can be None if no match found.
 
     def fetch_msg(self, connection, msgid):
         """Select a single message from a folder."""

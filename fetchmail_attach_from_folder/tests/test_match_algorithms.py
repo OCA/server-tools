@@ -2,8 +2,10 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from odoo.tests.common import TransactionCase
 
-from ..match_algorithm import email_domain, email_exact
+from ..match_algorithm import email_domain
 
+TEST_EMAIL = "reynaert@dutchsagas.nl"
+TEST_SUBJECT = "Test subject"
 MSG_BODY = [
     (
         "1 (RFC822 {1149}",
@@ -13,9 +15,9 @@ MSG_BODY = [
         "\tby vanaheim.acme.com (Postfix) with ESMTP id 14A3183163\r\n"
         "\tfor <demo@yourcompany.example.com>;"
         " Mon, 26 Mar 2018 16:03:52 +0200 (CEST)\r\n"
-        "To: Test User <demo@yourcompany.example.com>\r\n"
-        "From: Ronald Portier <ronald@acme.com>\r\n"
-        "Subject: test\r\n"
+        "To: Test User <nonexistingemail@yourcompany.example.com>\r\n"
+        "From: Reynaert de Vos <%(test_email)s>\r\n"
+        "Subject: %(test_subject)s\r\n"
         "Message-ID: <485a8041-d560-a981-5afc-d31c1f136748@acme.com>\r\n"
         "Date: Mon, 26 Mar 2018 16:03:51 +0200\r\n"
         "User-Agent: Mock Test\r\n"
@@ -23,10 +25,17 @@ MSG_BODY = [
         "Content-Type: text/plain; charset=utf-8\r\n"
         "Content-Language: en-US\r\n"
         "Content-Transfer-Encoding: 7bit\r\n\r\n"
-        "Hallo Wereld!\r\n",
+        "Hallo Wereld!\r\n"
+        % {
+            "test_email": TEST_EMAIL,
+            "test_subject": TEST_SUBJECT,
+        },
     ),
-    ")",
 ]
+MAIL_MESSAGE = {
+    "subject": TEST_SUBJECT,
+    "to": "demo@yourcompany.example.com",
+}
 
 
 class MockConnection:
@@ -52,6 +61,10 @@ class TestMatchAlgorithms(TransactionCase):
     def setUpClass(cls):
         super().setUpClass()
 
+        cls.partner_model = cls.env["res.partner"]
+        cls.test_partner = cls.partner_model.with_context(tracking_disable=True).create(
+            {"name": "Reynaert de Vos", "email": TEST_EMAIL, "is_company": False}
+        )
         cls.server_model = cls.env["fetchmail.server"]
         cls.folder_model = cls.env["fetchmail.server.folder"]
         cls.server = cls.server_model.create(
@@ -71,62 +84,38 @@ class TestMatchAlgorithms(TransactionCase):
                 "model_id": cls.env.ref("base.model_res_partner").id,
                 "model_field": "email",
                 "match_algorithm": "email_exact",
-                "mail_field": "to,from",
+                # The intention is to link email to sender partner object.
+                "mail_field": "from",
             }
         )
 
-    def do_matching(
-        self,
-        match_algorithm,
-        expected_xmlid,
-        folder,
-        mail_message,
-        mail_message_org=None,
-    ):
-        matcher = match_algorithm()
-        matches = matcher.search_matches(folder, mail_message)
-        self.assertEqual(len(matches), 1)
-        self.assertEqual(matches[0], self.env.ref(expected_xmlid))
-        connection = MockConnection()
-        matcher.handle_match(
-            connection, matches[0], folder, mail_message, mail_message_org, None
-        )
-
     def test_email_exact(self):
-        mail_message = {
-            "subject": "Testsubject",
-            "to": "demo@yourcompany.example.com",
-            "from": "someone@else.com",
-        }
-        folder = self.folder
-        self.do_matching(
-            email_exact.EmailExact, "base.user_demo_res_partner", folder, mail_message
-        )
-        self.assertEqual(
-            self.env.ref("base.user_demo_res_partner").message_ids.subject,
-            mail_message["subject"],
-        )
+        """A message to ronald@acme.com should be linked to partner with that email."""
+        MAIL_MESSAGE["from"] = TEST_EMAIL
+        self._test_search_matches(email_domain.EmailDomain)
+        self._test_apply_matching(email_domain.EmailDomain)
 
     def test_email_domain(self):
-        mail_message = {
-            "subject": "Testsubject",
-            "to": "test@seagate.com",
-            "from": "someone@else.com",
-            "attachments": [("hello.txt", "Hello World!")],
-        }
-        folder = self.folder
-        folder.match_algorithm = "email_domain"
-        folder.match_first = True
-        self.do_matching(
-            email_domain.EmailDomain,
-            "base.res_partner_address_31",
-            folder,
-            mail_message,
-        )
-        self.assertEqual(
-            self.env.ref("base.res_partner_address_31").message_ids.subject,
-            mail_message["subject"],
-        )
+        """Test with email in same domain, but different mailbox."""
+        ALTERNATE_EMAIL = TEST_EMAIL.replace("reynaert@", "mariken@")
+        MAIL_MESSAGE["from"] = ALTERNATE_EMAIL
+        self.folder.match_algorithm = "email_domain"
+        self.folder.match_first = True
+        self._test_search_matches(email_domain.EmailDomain)
+        self._test_apply_matching(email_domain.EmailDomain)
+
+    def _test_search_matches(self, match_algorithm):
+        matcher = match_algorithm()
+        matches = matcher.search_matches(self.folder, MAIL_MESSAGE)
+        # matches should be a record set with length 1.
+        self.assertEqual(matches.email, self.test_partner.email)
+        self.assertEqual(matches, self.test_partner)
+
+    def _test_apply_matching(self, match_algorithm):
+        connection = MockConnection()
+        thread_id = self.folder.apply_matching(connection, "1")
+        self.assertEqual(thread_id, self.test_partner.id)
+        self.assertEqual(self.test_partner.message_ids[-1].subject, TEST_SUBJECT)
 
     def test_apply_matching_exact(self):
         folder = self.folder
