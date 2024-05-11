@@ -32,5 +32,4 @@ class EmailExact:
         """Returns recordset of matching objects."""
         object_model = folder.env[folder.model_id.model]
         search_domain = self._get_mailaddress_search_domain(folder, message_dict)
-        matches = object_model.search(search_domain, order=folder.model_order)
-        return matches.ids
+        return object_model.search(search_domain, order=folder.model_order)
