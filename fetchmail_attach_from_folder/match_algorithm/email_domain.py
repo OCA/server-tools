@@ -26,4 +26,4 @@ class EmailDomain(EmailExact):
                 ),
                 order=folder.model_order,
             )
-        return matches.ids
+        return matches
