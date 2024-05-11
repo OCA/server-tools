@@ -23,9 +23,10 @@ class MailThread(models.AbstractModel):
     ):
         """Override to apply matching algorithm to determine thread_id if requested."""
         if not thread_id and custom_values and "folder" in custom_values:
-            thread_id = self._find_match(custom_values, message_dict)
-            if not thread_id:
+            match = self._find_match(custom_values, message_dict)
+            if not match:
                 return []  # This will ultimately return thread_id = False
+            thread_id = match.id
         return super().message_route(
             message,
             message_dict,
