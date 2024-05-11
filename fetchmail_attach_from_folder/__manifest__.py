@@ -5,6 +5,7 @@
     "summary": "Attach mails in an IMAP folder to existing objects",
     "version": "16.0.1.1.0",
     "author": "Therp BV,Odoo Community Association (OCA)",
+    "maintainers": ["NL66278"],
     "website": "https://github.com/OCA/server-tools",
     "license": "AGPL-3",
     "category": "Tools",
