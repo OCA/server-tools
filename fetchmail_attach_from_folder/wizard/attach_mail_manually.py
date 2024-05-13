@@ -103,5 +103,5 @@ class AttachMailManuallyMail(models.TransientModel):
     email_from = fields.Char("From", readonly=True)
     body = fields.Html(readonly=True)
     object_id = fields.Reference(
-        lambda self: [(m.model, m.name) for m in self.env["ir.model"].search([])],
+        lambda self: [(m.model, m.name) for m in self.env["ir.model"].search([])]
     )
