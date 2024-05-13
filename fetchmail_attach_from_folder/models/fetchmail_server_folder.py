@@ -1,9 +1,14 @@
 # Copyright - 2013-2024 Therp BV <https://therp.nl>.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+import email
+import email.policy
 import logging
+from xmlrpc import client as xmlrpclib
 
-from odoo import _, fields, models
+from odoo import _, api, fields, models
 from odoo.exceptions import UserError, ValidationError
+
+from .. import match_algorithm
 
 _logger = logging.getLogger(__name__)
 
@@ -32,7 +37,7 @@ class FetchmailServerFolder(models.Model):
         " Typically would be something like 'INBOX.myfolder'",
     )
     archive_path = fields.Char(
-        help="The path where successfully retrieved messages will be stored.",
+        help="The path where successfully retrieved messages will be stored."
     )
     model_id = fields.Many2one(
         comodel_name="ir.model",
@@ -204,22 +209,23 @@ class FetchmailServerFolder(models.Model):
     def apply_matching(self, connection, msgid):
         """Return id of object matched (which will be the thread_id)."""
         self.ensure_one()
+        thread_id = None
         thread_model = self.env["mail.thread"]
         message_org = self.fetch_msg(connection, msgid)
-        custom_values = (
-            None
-            if self.match_algorithm == "odoo_standard"
-            else {
-                "folder": self,
-            }
-        )
-        thread_id = thread_model.message_process(
-            self.model_id.model,
-            message_org,
-            custom_values=custom_values,
-            save_original=self.server_id.original,
-            strip_attachments=(not self.server_id.attach),
-        )
+        if self.match_algorithm == "odoo_standard":
+            thread_id = thread_model.message_process(
+                self.model_id.model,
+                message_org,
+                save_original=self.server_id.original,
+                strip_attachments=(not self.server_id.attach),
+            )
+        else:
+            message_dict = self._get_message_dict(message_org)
+            if not self._check_message_already_present(message_dict):
+                match = self._find_match(message_dict)
+                if match:
+                    thread_id = match.id
+                    self.attach_mail(match, message_dict)
         matched = True if thread_id else False
         self.update_msg(connection, msgid, matched=matched)
         if self.archive_path:
@@ -255,3 +261,118 @@ class FetchmailServerFolder(models.Model):
         connection.copy(msgid, self.archive_path)
         connection.store(msgid, "+FLAGS", "\\Deleted")
         connection.expunge()
+
+    @api.model
+    def _get_message_dict(self, message):
+        """Get message_dict from original message.
+
+        This uses some code copied from mail.thread.message_process, that
+        unfortunately is not in a separate method.
+        """
+        if isinstance(message, xmlrpclib.Binary):
+            message = bytes(message.data)
+        if isinstance(message, str):
+            message = message.encode("utf-8")
+        message = email.message_from_bytes(message, policy=email.policy.SMTP)
+        thread_model = self.env["mail.thread"]
+        message_dict = thread_model.message_parse(
+            message, save_original=self.server_id.original
+        )
+        return message_dict
+
+    def _check_message_already_present(self, message_dict):
+        """If message already handled, it should be ignored."""
+        message_id = message_dict["message_id"]
+        if self.env["mail.message"].search([("message_id", "=", message_id)], limit=1):
+            _logger.debug(
+                "Message %(message_id)s already in database",
+                {"message_id": message_id},
+            )
+            return True
+        return False
+
+    def _find_match(self, message_dict):
+        """Try to find existing object to link mail to."""
+        self.ensure_one()
+        matcher = self._get_algorithm()
+        if not matcher:
+            return None
+        matches = matcher.search_matches(self, message_dict)
+        if not matches:
+            _logger.info(
+                "No match found for message %(subject)s with msgid %(msgid)s",
+                {
+                    "subject": message_dict.get("subject", "no subject"),
+                    "msgid": message_dict.get("message_id", "no msgid"),
+                },
+            )
+            return None
+        if len(matches) > 1:
+            _logger.debug(
+                "Multiple matches found: %(matches)s",
+                {
+                    "matches": ", ".join(
+                        [str((match.id, match.display_name)) for match in matches]
+                    ),
+                },
+            )
+        matched = len(matches) == 1 or self.match_first
+        return matched and matches[0] or None
+
+    def _get_algorithm(self):
+        """Translate algorithm code to implementation class.
+
+        We used to load this dynamically, but having it more or less hardcoded
+        allows to adapt the UI to the selected algorithm, withouth needing
+        the (deprecated) fields_view_get trickery we used in the past.
+        """
+        self.ensure_one()
+        if self.match_algorithm == "email_domain":
+            return match_algorithm.email_domain.EmailDomain()
+        if self.match_algorithm == "email_exact":
+            return match_algorithm.email_exact.EmailExact()
+        _logger.error(
+            "Unknown algorithm %(algorithm)s", {"algorithm": self.match_algorithm}
+        )
+        return None
+
+    def attach_mail(self, match_object, message_dict):
+        """Attach mail to match_object."""
+        self.ensure_one()
+        partner = False
+        model_name = self.model_id.model
+        if model_name == "res.partner":
+            partner = match_object
+        elif "partner_id" in self.env[model_name]._fields:
+            partner = match_object.partner_id
+        message_model = self.env["mail.message"]
+        msg_values = {
+            key: val
+            for key, val in message_dict.items()
+            if key in message_model._fields
+        }
+        msg_values.update(
+            {
+                "author_id": partner and partner.id or False,
+                "model": model_name,
+                "res_id": match_object.id,
+                "message_type": "email",
+            }
+        )
+        thread_model = self.env["mail.thread"]
+        attachments = message_dict["attachments"] or []
+        attachment_ids = []
+        attachement_values = thread_model._message_post_process_attachments(
+            attachments, attachment_ids, msg_values
+        )
+        msg_values.update(attachement_values)
+        message = message_model.create(msg_values)
+        _logger.debug(
+            "Message with id %(message_id)s created"
+            " for %(model_name)s with id %(thread_id)s",
+            {
+                "message_id": message.id,
+                "model_name": model_name,
+                "thread_id": match_object.id,
+            },
+        )

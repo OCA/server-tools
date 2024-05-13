@@ -25,17 +25,10 @@ MSG_BODY = [
         "Content-Type: text/plain; charset=utf-8\r\n"
         "Content-Language: en-US\r\n"
         "Content-Transfer-Encoding: 7bit\r\n\r\n"
-        "Hallo Wereld!\r\n"
-        % {
-            "test_email": TEST_EMAIL,
-            "test_subject": TEST_SUBJECT,
-        },
-    ),
+        "Hallo Wereld!\r\n" % {"test_email": TEST_EMAIL, "test_subject": TEST_SUBJECT},
+    )
 ]
-MAIL_MESSAGE = {
-    "subject": TEST_SUBJECT,
-    "to": "demo@yourcompany.example.com",
-}
+MAIL_MESSAGE = {"subject": TEST_SUBJECT, "to": "demo@yourcompany.example.com"}
 
 
 class MockConnection:
