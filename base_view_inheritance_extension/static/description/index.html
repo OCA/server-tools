@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
@@ -402,6 +401,19 @@ to refer to some xmlid, say <tt class="docutils literal">%(xmlid)s</tt>.</p>
 <p>Deprecated. This feature is now native, use <cite>&lt;attribute name=”attrname” separator=”,” remove=”something” /&gt;</cite>.</p>
 <p><strong>Move an element in the view</strong></p>
 <p>This feature is now native, cf the <a class="reference external" href="https://www.odoo.com/documentation/14.0/developer/reference/addons/views.html#inheritance-specs">official Odoo documentation</a>.</p>
+<p><strong>Add text after and/or before than original</strong></p>
+<pre class="code xml literal-block">
+<span class="nt">&lt;attribute</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;$attribute&quot;</span><span class="w"> </span><span class="na">operation=</span><span class="s">&quot;text_add&quot;</span><span class="nt">&gt;</span><span class="w">
+    </span>$text_before<span class="w"> </span>{old_value}<span class="w"> </span>$text_after<span class="w">
+</span><span class="nt">&lt;/attribute&gt;</span>
+</pre>
+<p><strong>Add domain with AND/OR join operator (AND if missed) allowing conditional changes</strong></p>
+<pre class="code xml literal-block">
+<span class="nt">&lt;attribute</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;$attribute&quot;</span><span class="w"> </span><span class="na">operation=</span><span class="s">&quot;domain_add&quot;</span><span class="w">
+           </span><span class="na">condition=</span><span class="s">&quot;$field_condition&quot;</span><span class="w"> </span><span class="na">join_operator=</span><span class="s">&quot;OR&quot;</span><span class="nt">&gt;</span><span class="w">
+    </span>$domain_to_add<span class="w">
+</span><span class="nt">&lt;/attribute&gt;</span>
+</pre>
 </div>
 <div class="section" id="known-issues-roadmap">
 <h1><a class="toc-backref" href="#toc-entry-2">Known issues / Roadmap</a></h1>
@@ -431,7 +443,11 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <ul class="simple">
 <li>Holger Brunn &lt;<a class="reference external" href="mailto:hbrunn&#64;therp.nl">hbrunn&#64;therp.nl</a>&gt;</li>
 <li>Ronald Portier &lt;<a class="reference external" href="mailto:rportier&#64;therp.nl">rportier&#64;therp.nl</a>&gt;</li>
-<li>Sergio Teruel &lt;<a class="reference external" href="mailto:sergio.teruel&#64;tecnativa.com">sergio.teruel&#64;tecnativa.com</a>&gt;</li>
+<li><a class="reference external" href="https://www.tecnativa.com">Tecnativa</a>:<ul>
+<li>Sergio Teruel</li>
+<li>Carlos Dauden</li>
+</ul>
+</li>
 <li>Iván Todorovich &lt;<a class="reference external" href="mailto:ivan.todorovich&#64;camptocamp.com">ivan.todorovich&#64;camptocamp.com</a>&gt;</li>
 </ul>
 </div>
