@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="iap_account_view_form" model="ir.ui.view">
+        <field name="model">iap.account</field>
+        <field name="inherit_id" ref="iap.iap_account_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='account']" position="before">
+                <group string="Info" name="info">
+                    <field name="provider" />
+                    <field
+                        name="company_ids"
+                        widget="many2many_tags"
+                        domain="[('id', 'in', allowed_company_ids)]"
+                        position="move"
+                    />
+                </group>
+            </xpath>
+            <group name="account" position="attributes">
+                <attribute name="invisible">provider != 'odoo'</attribute>
+            </group>
+        </field>
+    </record>
+</odoo>
