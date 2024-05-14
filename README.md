@@ -58,7 +58,7 @@ addon | version | maintainers | summary
 [base_time_parameter](base_time_parameter/) | 14.0.3.1.1 | [![appstogrow](https://github.com/appstogrow.png?size=30px)](https://github.com/appstogrow) [![nimarosa](https://github.com/nimarosa.png?size=30px)](https://github.com/nimarosa) | Time dependent parameters Adds the feature to define parameters with time based versions.
 [base_time_window](base_time_window/) | 14.0.1.0.1 |  | Base model to handle time windows
 [base_video_link](base_video_link/) | 14.0.1.1.2 |  | Add the possibility to link video on record
-[base_view_inheritance_extension](base_view_inheritance_extension/) | 14.0.1.1.2 |  | Adds more operators for view inheritance
+[base_view_inheritance_extension](base_view_inheritance_extension/) | 14.0.2.0.0 |  | Adds more operators for view inheritance
 [bus_alt_connection](bus_alt_connection/) | 14.0.1.0.0 |  | Needed when using PgBouncer as a connection pooler
 [configuration_helper](configuration_helper/) | 14.0.1.0.1 |  | Configuration Helper
 [cron_daylight_saving_time_resistant](cron_daylight_saving_time_resistant/) | 14.0.1.0.0 |  | Run cron on fixed hours
