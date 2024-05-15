@@ -176,6 +176,7 @@ class IrUiView(models.Model):
                 else:
                     new_value = str(expression.AND([old_domain, new_domain]))
                 new_value = self.str2var_domain_text(new_value)
+                old_value = "".join(old_value.splitlines())
             else:
                 # We must ensure that the domain definition has not line breaks because
                 # in update mode the domain cause an invalid syntax error
