@@ -36,6 +36,7 @@ setuptools.setup(
         'odoo-addon-excel_import_export>=16.0dev,<16.1dev',
         'odoo-addon-excel_import_export_demo>=16.0dev,<16.1dev',
         'odoo-addon-excel_import_export_unidecode>=16.0dev,<16.1dev',
+        'odoo-addon-fetchmail_attach_from_folder>=16.0dev,<16.1dev',
         'odoo-addon-html_text>=16.0dev,<16.1dev',
         'odoo-addon-iap_alternative_provider>=16.0dev,<16.1dev',
         'odoo-addon-jsonifier>=16.0dev,<16.1dev',
