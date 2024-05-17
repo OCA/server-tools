@@ -1,0 +1,13 @@
+<!--Defined in 'base_view_full_arch.demo_view_1'-->
+<form>
+  <sheet>
+    <group>
+      <field name="name" required="1"/>
+      <field name="active" widget="boolean_toggle"/>
+      <field name="company_id" widget="selection"/>
+      <field name="login"/>
+      <field name="password" password="1"/>
+    </group>
+    <field name="groups_id" readonly="1"/>
+  </sheet>
+</form>
