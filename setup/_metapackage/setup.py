@@ -45,6 +45,7 @@ setuptools.setup(
         'odoo14-addon-base_time_parameter',
         'odoo14-addon-base_time_window',
         'odoo14-addon-base_video_link',
+        'odoo14-addon-base_view_full_arch',
         'odoo14-addon-base_view_inheritance_extension',
         'odoo14-addon-bus_alt_connection',
         'odoo14-addon-configuration_helper',
