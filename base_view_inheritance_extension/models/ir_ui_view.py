@@ -181,13 +181,16 @@ class IrUiView(models.Model):
                 else:
                     new_value = str(expression.AND([old_domain, new_domain]))
                 new_value = self.str2var_domain_text(new_value)
+                old_value = "".join(old_value.splitlines())
             else:
-                new_value = attribute_node.text
+                # We must ensure that the domain definition has not line breaks because
+                # in update mode the domain cause an invalid syntax error
+                new_value = attribute_node.text.strip()
             if condition:
                 new_value = "{condition} and {new_value} or {old_value}".format(
                     condition=condition,
                     new_value=new_value,
-                    old_value=old_value,
+                    old_value=old_value or [],
                 )
             node.attrib[attribute_name] = new_value
         return source
