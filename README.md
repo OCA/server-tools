@@ -39,6 +39,7 @@ addon | version | maintainers | summary
 [base_name_search_multi_lang](base_name_search_multi_lang/) | 13.0.1.0.1 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Name search by multiple active language
 [base_remote](base_remote/) | 13.0.1.0.2 |  | Remote Base
 [base_search_fuzzy](base_search_fuzzy/) | 13.0.1.0.2 |  | Fuzzy search with the PostgreSQL trigram extension
+[base_search_multi](base_search_multi/) | 13.0.1.0.0 | [![Saran440](https://github.com/Saran440.png?size=30px)](https://github.com/Saran440) | Search multi value at once on tree view
 [base_sparse_field_list_support](base_sparse_field_list_support/) | 13.0.1.0.2 |  | add list support to convert_to_cache()
 [base_technical_user](base_technical_user/) | 13.0.1.0.1 |  | Add a technical user parameter on the company
 [base_time_window](base_time_window/) | 13.0.1.0.1 |  | Base model to handle time windows

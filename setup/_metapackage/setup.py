@@ -26,6 +26,7 @@ setuptools.setup(
         'odoo13-addon-base_name_search_multi_lang',
         'odoo13-addon-base_remote',
         'odoo13-addon-base_search_fuzzy',
+        'odoo13-addon-base_search_multi',
         'odoo13-addon-base_sparse_field_list_support',
         'odoo13-addon-base_technical_user',
         'odoo13-addon-base_time_window',
