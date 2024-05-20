@@ -40,7 +40,7 @@ addon | version | maintainers | summary
 [base_sparse_field_list_support](base_sparse_field_list_support/) | 16.0.1.0.0 |  | add list support to convert_to_cache()
 [base_technical_user](base_technical_user/) | 16.0.1.0.0 |  | Add a technical user parameter on the company
 [base_time_window](base_time_window/) | 16.0.1.0.0 |  | Base model to handle time windows
-[base_view_inheritance_extension](base_view_inheritance_extension/) | 16.0.1.2.0 |  | Adds more operators for view inheritance
+[base_view_inheritance_extension](base_view_inheritance_extension/) | 16.0.1.2.1 |  | Adds more operators for view inheritance
 [bus_alt_connection](bus_alt_connection/) | 16.0.1.0.0 |  | Needed when using PgBouncer as a connection pooler
 [cron_daylight_saving_time_resistant](cron_daylight_saving_time_resistant/) | 16.0.1.0.1 | [![florian-dacosta](https://github.com/florian-dacosta.png?size=30px)](https://github.com/florian-dacosta) | Run cron on fixed hours
 [database_cleanup](database_cleanup/) | 16.0.1.0.2 |  | Database cleanup
