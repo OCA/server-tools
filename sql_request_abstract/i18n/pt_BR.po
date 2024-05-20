@@ -9,16 +9,17 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-01 02:11+0000\n"
-"PO-Revision-Date: 2022-02-01 20:33+0000\n"
-"Last-Translator: Rodrigo Macedo <rmsolucoeseminformatica@protonmail.com>\n"
-"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/"
-"teams/23907/pt_BR/)\n"
+"PO-Revision-Date: 2024-05-20 19:38+0000\n"
+"Last-Translator: Rodrigo Macedo <sottomaiormacedotec@users.noreply."
+"translation.odoo-community.org>\n"
+"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/"
+"23907/pt_BR/)\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: sql_request_abstract
 #: model:ir.model.fields,field_description:sql_request_abstract.field_sql_request_mixin__group_ids
@@ -52,6 +53,8 @@ msgid ""
 "If filled, the query will be executed against an external database, "
 "configured in Odoo main configuration file. "
 msgstr ""
+"Se preenchido, a consulta será executada em um banco de dados externo, "
+"configurado no arquivo de configuração principal do Odoo. "
 
 #. module: sql_request_abstract
 #: code:addons/sql_request_abstract/models/sql_request_mixin.py:0
@@ -123,8 +126,8 @@ msgid ""
 " * 'SQL Valid': SQL Request has been checked and is valid"
 msgstr ""
 "Estado da solicitação:\n"
-"  * 'Rascunho': não testado\n"
-"  * 'SQL Valid': a solicitação SQL foi verificada e é válida"
+"   * 'Rascunho': não testado\n"
+"   * 'SQL Valid': a solicitação SQL foi verificada e é válida"
 
 #. module: sql_request_abstract
 #: code:addons/sql_request_abstract/models/sql_request_mixin.py:0
@@ -136,7 +139,7 @@ msgid ""
 msgstr ""
 "A consulta SQL não é válida:\n"
 "\n"
-"  %s"
+"   %s"
 
 #. module: sql_request_abstract
 #: code:addons/sql_request_abstract/models/sql_request_mixin.py:0
@@ -153,7 +156,7 @@ msgstr "Modo não implementado: '%s'"
 #. module: sql_request_abstract
 #: model:ir.model.fields,field_description:sql_request_abstract.field_sql_request_mixin__use_external_database
 msgid "Use External Database"
-msgstr ""
+msgstr "Usar banco de dados externo"
 
 #. module: sql_request_abstract
 #: model:res.groups,name:sql_request_abstract.group_sql_request_user
@@ -167,6 +170,9 @@ msgid ""
 "You can't use an external database as there are no such configuration about "
 "this. Please contact your Odoo administrator to solve this issue."
 msgstr ""
+"Você não pode usar um banco de dados externo, pois não existe tal "
+"configuração sobre isso. Entre em contato com o administrador do Odoo para "
+"resolver esse problema."
 
 #. module: sql_request_abstract
 #: model:ir.model.fields,help:sql_request_abstract.field_sql_request_mixin__query
