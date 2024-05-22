@@ -9,16 +9,17 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-07-21 02:43+0000\n"
-"PO-Revision-Date: 2019-08-30 14:37+0000\n"
-"Last-Translator: Rodrigo Macedo <rmsolucoeseminformatic4@gmail.com>\n"
-"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/"
-"teams/23907/pt_BR/)\n"
+"PO-Revision-Date: 2024-05-22 15:40+0000\n"
+"Last-Translator: Rodrigo Macedo <sottomaiormacedotec@users.noreply."
+"translation.odoo-community.org>\n"
+"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/"
+"23907/pt_BR/)\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.8\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: module_auto_update
 #: model:ir.actions.server,name:module_auto_update.ir_module_module_upgrade_changed_checksum
@@ -31,7 +32,7 @@ msgstr "Módulos de atualização automática"
 #: code:addons/module_auto_update/models/module.py:0
 #, python-format
 msgid "Checksum upgrade complete."
-msgstr ""
+msgstr "Atualização de soma de verificação concluída."
 
 #. module: module_auto_update
 #: model:ir.model,name:module_auto_update.model_ir_module_module
@@ -46,8 +47,10 @@ msgid ""
 "No checksum change detected in installed modules and all modules installed, "
 "nothing to do."
 msgstr ""
+"Nenhuma alteração de soma de verificação detectada nos módulos instalados e "
+"em todos os módulos instalados, nada a fazer."
 
 #. module: module_auto_update
 #: model:ir.model.fields,field_description:module_auto_update.field_ir_module_module__smart_search
 msgid "Smart Search"
-msgstr ""
+msgstr "Pesquisa Inteligente"
