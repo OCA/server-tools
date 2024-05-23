@@ -18,6 +18,7 @@ setuptools.setup(
         'odoo-addon-base_domain_inverse_function>=16.0dev,<16.1dev',
         'odoo-addon-base_exception>=16.0dev,<16.1dev',
         'odoo-addon-base_fontawesome>=16.0dev,<16.1dev',
+        'odoo-addon-base_force_record_noupdate>=16.0dev,<16.1dev',
         'odoo-addon-base_m2m_custom_field>=16.0dev,<16.1dev',
         'odoo-addon-base_name_search_improved>=16.0dev,<16.1dev',
         'odoo-addon-base_partition>=16.0dev,<16.1dev',
