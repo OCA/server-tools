@@ -82,6 +82,7 @@ Contributors
 * Holger Brunn <hbrunn@therp.nl>
 * Stéphane Mangin <stephane.mangin@camptocamp.com>
 * Mark Schuit <mark@gig.solutions>
+* Andrea Stirpe
 
 Maintainers
 ~~~~~~~~~~~
