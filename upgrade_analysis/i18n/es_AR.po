@@ -227,16 +227,6 @@ msgid "Is Odoo Module"
 msgstr "Es un Módulo de Odoo"
 
 #. module: upgrade_analysis
-#: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_analysis____last_update
-#: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_attribute____last_update
-#: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_comparison_config____last_update
-#: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_generate_record_wizard____last_update
-#: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_install_wizard____last_update
-#: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_record____last_update
-msgid "Last Modified on"
-msgstr "Última modificación en"
-
-#. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_analysis__write_uid
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_attribute__write_uid
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_comparison_config__write_uid
@@ -295,10 +285,14 @@ msgstr "Modo de Modificación"
 
 #. module: upgrade_analysis
 #: model:ir.model,name:upgrade_analysis.model_ir_module_module
-#: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_install_wizard__module_ids
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_record__module
 msgid "Module"
 msgstr "Módulo"
+
+#. module: upgrade_analysis
+#: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_install_wizard__module_ids
+msgid "Modules"
+msgstr ""
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_install_wizard__module_qty
@@ -378,17 +372,6 @@ msgstr ""
 "Establézcalo en Crear si se crea un campo recientemente en este módulo. Si "
 "este módulo modifica un atributo de un campo existente, configúrelo en "
 "Modificar."
-
-#. module: upgrade_analysis
-#: model:ir.model.fields,field_description:upgrade_analysis.field_ir_module_module__smart_search
-#: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_analysis__smart_search
-#: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_attribute__smart_search
-#: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_comparison_config__smart_search
-#: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_generate_record_wizard__smart_search
-#: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_install_wizard__smart_search
-#: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_record__smart_search
-msgid "Smart Search"
-msgstr ""
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_analysis__state
@@ -550,3 +533,6 @@ msgstr "actualizar configuraciones de comparación"
 #: model:ir.actions.act_window,name:upgrade_analysis.action_upgrade_record_tree
 msgid "upgrade Records"
 msgstr "actualizar Registros"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última modificación en"
