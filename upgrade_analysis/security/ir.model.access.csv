@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_upgrade_record,upgrade.record all,model_upgrade_record,,1,0,0,0
+access_upgrade_attribute,upgrade.attribute all,model_upgrade_attribute,,1,0,0,0
+access_upgrade_comparison_config,upgrade.comparison.config,model_upgrade_comparison_config,base.group_system,1,1,1,1
+access_upgrade_analysis,access_upgrade_analysis,model_upgrade_analysis,base.group_system,1,1,1,1
+access_upgrade_generate_record_wizard,access_upgrade_generate_record_wizard,model_upgrade_generate_record_wizard,base.group_system,1,1,1,1
+access_upgrade_install_wizard,access_upgrade_install_wizard,model_upgrade_install_wizard,base.group_system,1,1,1,1

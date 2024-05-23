@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_upgrade_record_search" model="ir.ui.view">
+        <field name="model">upgrade.record</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="module" />
+                <field name="model" />
+                <field name="field" />
+                <field name="type" />
+                <filter
+                    name="filter_create"
+                    string="Create Mode"
+                    domain="[('mode', '=', 'create')]"
+                />
+                <filter
+                    name="filter_modify"
+                    string="Modify Mode"
+                    domain="[('mode', '=', 'modify')]"
+                />
+                <filter name="group_by_module" context="{'group_by': 'module'}" />
+                <filter name="group_by_model" context="{'group_by': 'model'}" />
+            </search>
+        </field>
+    </record>
+
+    <record id="view_upgrade_record_tree" model="ir.ui.view">
+        <field name="model">upgrade.record</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="module" />
+                <field name="model" />
+                <field name="field" />
+                <field name="name" />
+                <field name="type" />
+                <field name="mode" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_upgrade_record_form" model="ir.ui.view">
+        <field name="model">upgrade.record</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name" />
+                        <field name="module" />
+                        <field name="model" />
+                        <field name="field" />
+                        <field name="type" />
+                        <field name="mode" />
+                    </group>
+                    <group string="Attributes">
+                        <field name="attribute_ids" nolabel="1" colspan="2">
+                            <tree>
+                                <field name="name" />
+                                <field name="value" />
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_upgrade_record_tree" model="ir.actions.act_window">
+            <field name="name">upgrade Records</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">upgrade.record</field>
+    </record>
+
+    <menuitem
+        action="action_upgrade_record_tree"
+        id="menu_upgrade_records"
+        name="Records"
+        parent="menu_upgrade"
+    />
+
+</odoo>
