@@ -1,6 +1,6 @@
 [project]
 name = "odoo-addons-oca-server-tools"
-version = "17.0.20240514.1"
+version = "17.0.20240523.0"
 dependencies = [
     "odoo-addon-auditlog>=17.0dev,<17.1dev",
     "odoo-addon-base_cron_exclusion>=17.0dev,<17.1dev",
@@ -18,6 +18,7 @@ dependencies = [
     "odoo-addon-scheduler_error_mailer>=17.0dev,<17.1dev",
     "odoo-addon-sentry>=17.0dev,<17.1dev",
     "odoo-addon-tracking_manager>=17.0dev,<17.1dev",
+    "odoo-addon-upgrade_analysis>=17.0dev,<17.1dev",
 ]
 classifiers=[
     "Programming Language :: Python",
