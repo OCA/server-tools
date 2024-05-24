@@ -7,7 +7,7 @@ MODULE = "base_force_record_noupdate"
 
 
 class TestBaseForceRecordNoupdate(TransactionCase):
-    def test_00_test_model_create_noupdate_propagation(self):
+    def test_model_create_noupdate_propagation(self):
         # NB: we're only testing models created through UI, the feature is not
         # supported yet for models created by the code itself
         imd = self.env["ir.model.data"].create(
@@ -28,7 +28,7 @@ class TestBaseForceRecordNoupdate(TransactionCase):
         )
         self.assertTrue(imd.noupdate)
 
-    def test_01_test_model_write_noupdate_propagation(self):
+    def test_model_write_noupdate_propagation(self):
         my_model = self.env["ir.model"].create(
             {
                 "name": "My Model Test 01",
@@ -48,7 +48,7 @@ class TestBaseForceRecordNoupdate(TransactionCase):
         my_model.force_noupdate = True
         self.assertTrue(imd.noupdate)
 
-    def test_02_test_model_data_create_noupdate(self):
+    def test_model_data_create_noupdate(self):
         self.env["ir.model"].create(
             [
                 {

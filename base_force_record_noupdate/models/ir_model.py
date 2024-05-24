@@ -11,12 +11,13 @@ class Model(models.Model):
     force_noupdate = fields.Boolean("Force No-Update")
 
     @api.model_create_multi
-    def create(self, vals_list):
-        mods = super().create(vals_list)
+    def create(self, vals):
+        mods = super().create(vals)
         type(self)._get_noupdate_model_ids.clear_cache(self.browse())
         self._propagate_noupdate_to_model_data()
         return mods
 
+    @api.multi
     def write(self, vals):
         res = super().write(vals)
         if "force_noupdate" in vals:
@@ -24,6 +25,7 @@ class Model(models.Model):
             self._propagate_noupdate_to_model_data()
         return res
 
+    @api.multi
     def unlink(self):
         res = super().unlink()
         type(self)._get_noupdate_model_ids.clear_cache(self.browse())
@@ -44,6 +46,7 @@ class Model(models.Model):
         if model_data:
             model_data.write({"noupdate": True})
 
+    @api.multi
     def toggle_force_noupdate(self):
         true_to_false = self.filtered("force_noupdate")
         if true_to_false:
