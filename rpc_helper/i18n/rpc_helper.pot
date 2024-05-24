@@ -14,11 +14,36 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: rpc_helper
+#: model:ir.model.fields,field_description:rpc_helper.field_ir_model__changeset_change_ids
+msgid "Changeset Changes"
+msgstr ""
+
+#. module: rpc_helper
+#: model:ir.model.fields,field_description:rpc_helper.field_ir_model__changeset_ids
+msgid "Changesets"
+msgstr ""
+
+#. module: rpc_helper
 #: model:ir.model.fields,help:rpc_helper.field_ir_model__rpc_config_edit
 msgid ""
 "Configure RPC config via JSON. Value must be a list of methods to disable "
 "wrapped by a dict with key `disable`. Eg: {'disable': ['search', "
 "'do_this']}To disable all methods, use `{'disable: ['all']}`"
+msgstr ""
+
+#. module: rpc_helper
+#: model:ir.model.fields,field_description:rpc_helper.field_ir_model__count_changesets
+msgid "Count Changesets"
+msgstr ""
+
+#. module: rpc_helper
+#: model:ir.model.fields,field_description:rpc_helper.field_ir_model__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr ""
+
+#. module: rpc_helper
+#: model:ir.model.fields,field_description:rpc_helper.field_ir_model__count_pending_changesets
+msgid "Count Pending Changesets"
 msgstr ""
 
 #. module: rpc_helper
@@ -58,4 +83,24 @@ msgstr ""
 #. module: rpc_helper
 #: model:ir.model.fields,field_description:rpc_helper.field_ir_model__smart_search
 msgid "Smart Search"
+msgstr ""
+
+#. module: rpc_helper
+#: model:ir.model.fields,help:rpc_helper.field_ir_model__count_pending_changeset_changes
+msgid "The number of pending changes of this record"
+msgstr ""
+
+#. module: rpc_helper
+#: model:ir.model.fields,help:rpc_helper.field_ir_model__count_pending_changesets
+msgid "The number of pending changesets of this record"
+msgstr ""
+
+#. module: rpc_helper
+#: model:ir.model.fields,help:rpc_helper.field_ir_model__count_changesets
+msgid "The overall number of changesets of this record"
+msgstr ""
+
+#. module: rpc_helper
+#: model:ir.model.fields,field_description:rpc_helper.field_ir_model__user_can_see_changeset
+msgid "User Can See Changeset"
 msgstr ""
