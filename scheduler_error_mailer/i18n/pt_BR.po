@@ -12,8 +12,8 @@ msgstr ""
 "PO-Revision-Date: 2024-05-23 00:02+0000\n"
 "Last-Translator: Rodrigo Macedo <sottomaiormacedotec@users.noreply."
 "translation.odoo-community.org>\n"
-"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/"
-"23907/pt_BR/)\n"
+"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/"
+"teams/23907/pt_BR/)\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -65,8 +65,8 @@ msgstr ""
 "\n"
 "                \n"
 "<div style=\"font-family: 'Lucida Grande', Ubuntu, Arial, Verdana, sans-"
-"serif; tamanho da fonte: 12px; cor: rgb(34, 34, 34); cor de fundo: #FFF; \">"
-"\n"
+"serif; tamanho da fonte: 12px; cor: rgb(34, 34, 34); cor de fundo: #FFF; "
+"\">\n"
 "\n"
 "<p>Odoo tentou executar o agendador <em><t t-out=\"object.name or ''\"/></"
 "em> no banco de dados <em><t t-out=\"ctx.get(' dbname')\"/></em> mas falhou. "
@@ -80,13 +80,13 @@ msgstr ""
 "<p>Você pode verificar os logs do servidor Odoo para obter mais informações "
 "sobre esta falha.</p>\n"
 "\n"
-"<p>Propriedades do agendador <em><t t-out=\"object.name or ''\"/></em> :</p>"
-"\n"
+"<p>Propriedades do agendador <em><t t-out=\"object.name or ''\"/></em> :</"
+"p>\n"
 "<ul>\n"
 "<li>Modelo: <t t-out=\"object.model_id.name or ''\"/></li>\n"
 "<li>Código Python: <code><t t-out=\"object.code or ''\"/></code></li>\n"
-"<li>Intervalo: <t t-out=\"object.interval_number or '0'\"/> <t t-out=\"object"
-".interval_type ou ''\"/></li>\n"
+"<li>Intervalo: <t t-out=\"object.interval_number or '0'\"/> <t t-out="
+"\"object.interval_type ou ''\"/></li>\n"
 "<li>Número de chamadas: <t t-out=\"object.numbercall or '0'\"/></li>\n"
 "<li>Repetição perdida: <t t-out=\"object.doall\"/></li>\n"
 "<li>Usuário: <t t-out=\"object.user_id.name or ''\"/></li>\n"
@@ -105,6 +105,31 @@ msgstr ""
 #: model:ir.model.fields,field_description:scheduler_error_mailer.field_ir_cron__assigned_attachment_ids
 msgid "Assigned Attachments"
 msgstr "Anexos atribuídos"
+
+#. module: scheduler_error_mailer
+#: model:ir.model.fields,field_description:scheduler_error_mailer.field_ir_cron__changeset_change_ids
+msgid "Changeset Changes"
+msgstr ""
+
+#. module: scheduler_error_mailer
+#: model:ir.model.fields,field_description:scheduler_error_mailer.field_ir_cron__changeset_ids
+msgid "Changesets"
+msgstr ""
+
+#. module: scheduler_error_mailer
+#: model:ir.model.fields,field_description:scheduler_error_mailer.field_ir_cron__count_changesets
+msgid "Count Changesets"
+msgstr ""
+
+#. module: scheduler_error_mailer
+#: model:ir.model.fields,field_description:scheduler_error_mailer.field_ir_cron__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr ""
+
+#. module: scheduler_error_mailer
+#: model:ir.model.fields,field_description:scheduler_error_mailer.field_ir_cron__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr ""
 
 #. module: scheduler_error_mailer
 #: model:ir.model.fields,field_description:scheduler_error_mailer.field_ir_cron__email_template_id
@@ -144,6 +169,26 @@ msgstr "Tarefa falhou com UID = %d."
 #: model:ir.cron,cron_name:scheduler_error_mailer.test_scheduler_error_mailer
 msgid "Test Scheduler Error Mailer"
 msgstr "Teste Agendado de Erro do Remetente"
+
+#. module: scheduler_error_mailer
+#: model:ir.model.fields,help:scheduler_error_mailer.field_ir_cron__count_pending_changeset_changes
+msgid "The number of pending changes of this record"
+msgstr ""
+
+#. module: scheduler_error_mailer
+#: model:ir.model.fields,help:scheduler_error_mailer.field_ir_cron__count_pending_changesets
+msgid "The number of pending changesets of this record"
+msgstr ""
+
+#. module: scheduler_error_mailer
+#: model:ir.model.fields,help:scheduler_error_mailer.field_ir_cron__count_changesets
+msgid "The overall number of changesets of this record"
+msgstr ""
+
+#. module: scheduler_error_mailer
+#: model:ir.model.fields,field_description:scheduler_error_mailer.field_ir_cron__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr ""
 
 #. module: scheduler_error_mailer
 #: model:mail.template,subject:scheduler_error_mailer.scheduler_error_mailer

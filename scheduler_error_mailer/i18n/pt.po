@@ -64,6 +64,31 @@ msgid "Assigned Attachments"
 msgstr ""
 
 #. module: scheduler_error_mailer
+#: model:ir.model.fields,field_description:scheduler_error_mailer.field_ir_cron__changeset_change_ids
+msgid "Changeset Changes"
+msgstr ""
+
+#. module: scheduler_error_mailer
+#: model:ir.model.fields,field_description:scheduler_error_mailer.field_ir_cron__changeset_ids
+msgid "Changesets"
+msgstr ""
+
+#. module: scheduler_error_mailer
+#: model:ir.model.fields,field_description:scheduler_error_mailer.field_ir_cron__count_changesets
+msgid "Count Changesets"
+msgstr ""
+
+#. module: scheduler_error_mailer
+#: model:ir.model.fields,field_description:scheduler_error_mailer.field_ir_cron__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr ""
+
+#. module: scheduler_error_mailer
+#: model:ir.model.fields,field_description:scheduler_error_mailer.field_ir_cron__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr ""
+
+#. module: scheduler_error_mailer
 #: model:ir.model.fields,field_description:scheduler_error_mailer.field_ir_cron__email_template_id
 msgid "Error E-mail Template"
 msgstr "Modelo do E-mail de Erro"
@@ -101,6 +126,26 @@ msgstr "Falha na tarefa com UID = %d."
 #: model:ir.cron,cron_name:scheduler_error_mailer.test_scheduler_error_mailer
 msgid "Test Scheduler Error Mailer"
 msgstr "Testar o Envio de E-mails de Erro do Agendador"
+
+#. module: scheduler_error_mailer
+#: model:ir.model.fields,help:scheduler_error_mailer.field_ir_cron__count_pending_changeset_changes
+msgid "The number of pending changes of this record"
+msgstr ""
+
+#. module: scheduler_error_mailer
+#: model:ir.model.fields,help:scheduler_error_mailer.field_ir_cron__count_pending_changesets
+msgid "The number of pending changesets of this record"
+msgstr ""
+
+#. module: scheduler_error_mailer
+#: model:ir.model.fields,help:scheduler_error_mailer.field_ir_cron__count_changesets
+msgid "The overall number of changesets of this record"
+msgstr ""
+
+#. module: scheduler_error_mailer
+#: model:ir.model.fields,field_description:scheduler_error_mailer.field_ir_cron__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr ""
 
 #. module: scheduler_error_mailer
 #: model:mail.template,subject:scheduler_error_mailer.scheduler_error_mailer
