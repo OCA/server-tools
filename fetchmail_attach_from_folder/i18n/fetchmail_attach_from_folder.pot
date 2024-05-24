@@ -70,6 +70,22 @@ msgid "Cancel"
 msgstr ""
 
 #. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually__changeset_change_ids
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__changeset_change_ids
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server__changeset_change_ids
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__changeset_change_ids
+msgid "Changeset Changes"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually__changeset_ids
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__changeset_ids
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server__changeset_ids
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__changeset_ids
+msgid "Changesets"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server__folders_only
 msgid ""
 "Check this field to leave imap inbox alone and only retrieve mail from "
@@ -114,6 +130,30 @@ msgstr ""
 #: code:addons/fetchmail_attach_from_folder/models/fetchmail_server_folder.py:0
 #, python-format
 msgid "Could not search folder %(folder)s on server %(server)s"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually__count_changesets
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__count_changesets
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server__count_changesets
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__count_changesets
+msgid "Count Changesets"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually__count_pending_changesets
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__count_pending_changesets
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server__count_pending_changesets
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__count_pending_changesets
+msgid "Count Pending Changesets"
 msgstr ""
 
 #. module: fetchmail_attach_from_folder
@@ -441,6 +481,30 @@ msgid "The model to attach emails to"
 msgstr ""
 
 #. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually__count_pending_changeset_changes
+#: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__count_pending_changeset_changes
+#: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server__count_pending_changeset_changes
+#: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server_folder__count_pending_changeset_changes
+msgid "The number of pending changes of this record"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually__count_pending_changesets
+#: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__count_pending_changesets
+#: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server__count_pending_changesets
+#: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server_folder__count_pending_changesets
+msgid "The number of pending changesets of this record"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually__count_changesets
+#: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__count_changesets
+#: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server__count_changesets
+#: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server_folder__count_changesets
+msgid "The overall number of changesets of this record"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server_folder__path
 msgid ""
 "The path to your mail folder. Typically would be something like "
@@ -467,6 +531,14 @@ msgstr ""
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__match_first
 msgid "Use 1st match"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually__user_can_see_changeset
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__user_can_see_changeset
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server__user_can_see_changeset
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__user_can_see_changeset
+msgid "User Can See Changeset"
 msgstr ""
 
 #. module: fetchmail_attach_from_folder
