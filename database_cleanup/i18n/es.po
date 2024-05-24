@@ -552,6 +552,16 @@ msgid "Reason"
 msgstr "Razón"
 
 #. module: database_cleanup
+#: model:ir.model.fields.selection,name:database_cleanup.selection__cleanup_purge_line_table__table_type__base
+msgid "SQL Table"
+msgstr ""
+
+#. module: database_cleanup
+#: model:ir.model.fields.selection,name:database_cleanup.selection__cleanup_purge_line_table__table_type__view
+msgid "SQL View"
+msgstr ""
+
+#. module: database_cleanup
 #: model:ir.model.fields.selection,name:database_cleanup.selection__cleanup_purge_line_property__reason__reason_default
 msgid "Same value as default"
 msgstr "Mismo valor como predeterminado"
@@ -567,6 +577,11 @@ msgstr "Seleccionar líneas"
 #, python-format
 msgid "Select lines to purge"
 msgstr "Seleccione líneas a limpiar"
+
+#. module: database_cleanup
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_table__table_type
+msgid "Table Type"
+msgstr ""
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_table__purge_line_ids
