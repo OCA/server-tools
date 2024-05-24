@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="changeset_field_rule_rule" model="ir.rule">
+        <field name="name">Changeset Field Rules</field>
+        <field name="model_id" ref="model_changeset_field_rule" />
+        <field name="global" eval="True" />
+        <field
+            name="domain_force"
+        >['|',('company_id','=',False),('company_id', 'in', company_ids)]</field>
+    </record>
+    <record id="record_changeset_rule" model="ir.rule">
+        <field name="name">Record Changeset</field>
+        <field name="model_id" ref="model_record_changeset" />
+        <field name="global" eval="True" />
+        <field
+            name="domain_force"
+        >['|',('company_id','=',False),('company_id', 'in', company_ids)]</field>
+    </record>
+    <record id="rule_record_changeset_change_base_user" model="ir.rule">
+        <field name="name">Restrict changeset change access for users</field>
+        <field name="model_id" ref="model_record_changeset_change" />
+        <field name="groups" eval="[(4, ref('base.group_user'))]" />
+        <field name="domain_force">[('create_uid', '=', user.id)]</field>
+    </record>
+    <record id="rule_record_changeset_change_user" model="ir.rule">
+        <field name="name">Allow changeset change access for changeset users</field>
+        <field name="model_id" ref="model_record_changeset_change" />
+        <field name="groups" eval="[(4, ref('group_changeset_user'))]" />
+        <field
+            name="domain_force"
+        >[('rule_id.validator_group_ids', 'in', user.groups_id.ids)]</field>
+    </record>
+</odoo>
