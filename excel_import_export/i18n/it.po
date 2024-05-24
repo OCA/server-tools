@@ -407,6 +407,36 @@ msgid "Cell"
 msgstr "Cella"
 
 #. module: excel_import_export
+#: model:ir.model.fields,field_description:excel_import_export.field_export_xlsx_wizard__changeset_change_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_import_xlsx_wizard__changeset_change_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_ir_actions_report__changeset_change_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_report_xlsx_wizard__changeset_change_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_export__changeset_change_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_import__changeset_change_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_report__changeset_change_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_styles__changeset_change_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__changeset_change_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__changeset_change_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_import__changeset_change_ids
+msgid "Changeset Changes"
+msgstr ""
+
+#. module: excel_import_export
+#: model:ir.model.fields,field_description:excel_import_export.field_export_xlsx_wizard__changeset_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_import_xlsx_wizard__changeset_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_ir_actions_report__changeset_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_report_xlsx_wizard__changeset_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_export__changeset_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_import__changeset_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_report__changeset_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_styles__changeset_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__changeset_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__changeset_ids
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_import__changeset_ids
+msgid "Changesets"
+msgstr ""
+
+#. module: excel_import_export
 #: model:ir.model.fields.selection,name:excel_import_export.selection__export_xlsx_wizard__state__choose
 #: model:ir.model.fields.selection,name:excel_import_export.selection__import_xlsx_wizard__state__choose
 #: model:ir.model.fields.selection,name:excel_import_export.selection__report_crm_lead__state__choose
@@ -461,6 +491,51 @@ msgstr "Converte i file in formato CSV in esportazione"
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__to_csv
 msgid "Convert to CSV?"
 msgstr "Converto in CSV?"
+
+#. module: excel_import_export
+#: model:ir.model.fields,field_description:excel_import_export.field_export_xlsx_wizard__count_changesets
+#: model:ir.model.fields,field_description:excel_import_export.field_import_xlsx_wizard__count_changesets
+#: model:ir.model.fields,field_description:excel_import_export.field_ir_actions_report__count_changesets
+#: model:ir.model.fields,field_description:excel_import_export.field_report_xlsx_wizard__count_changesets
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_export__count_changesets
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_import__count_changesets
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_report__count_changesets
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_styles__count_changesets
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__count_changesets
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__count_changesets
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_import__count_changesets
+msgid "Count Changesets"
+msgstr ""
+
+#. module: excel_import_export
+#: model:ir.model.fields,field_description:excel_import_export.field_export_xlsx_wizard__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:excel_import_export.field_import_xlsx_wizard__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:excel_import_export.field_ir_actions_report__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:excel_import_export.field_report_xlsx_wizard__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_export__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_import__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_report__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_styles__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_import__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr ""
+
+#. module: excel_import_export
+#: model:ir.model.fields,field_description:excel_import_export.field_export_xlsx_wizard__count_pending_changesets
+#: model:ir.model.fields,field_description:excel_import_export.field_import_xlsx_wizard__count_pending_changesets
+#: model:ir.model.fields,field_description:excel_import_export.field_ir_actions_report__count_pending_changesets
+#: model:ir.model.fields,field_description:excel_import_export.field_report_xlsx_wizard__count_pending_changesets
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_export__count_pending_changesets
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_import__count_pending_changesets
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_report__count_pending_changesets
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_styles__count_pending_changesets
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__count_pending_changesets
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__count_pending_changesets
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_import__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr ""
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_export_xlsx_wizard__create_uid
@@ -902,8 +977,8 @@ msgid ""
 "order_line), and map data field (i.e., product_id.name, uom_id.name, qty) "
 "into the first row cells to start rolling (e.g., A6, B6, C6)."
 msgstr ""
-"Nella sezione riga, la lista dati verrà estratta dal campo riga one2many ("
-"es. order_line), e il campo data mappa (cioè product_id.name, uom_id.name, "
+"Nella sezione riga, la lista dati verrà estratta dal campo riga one2many "
+"(es. order_line), e il campo data mappa (cioè product_id.name, uom_id.name, "
 "qty) nella prima cella della riga per iniziare l'estrazione (es. A6, B6, C6)."
 
 #. module: excel_import_export
@@ -1340,6 +1415,51 @@ msgid "The database object this attachment will be attached to."
 msgstr "L'oggetto del database a cui verrà assegnato questo allegato."
 
 #. module: excel_import_export
+#: model:ir.model.fields,help:excel_import_export.field_export_xlsx_wizard__count_pending_changeset_changes
+#: model:ir.model.fields,help:excel_import_export.field_import_xlsx_wizard__count_pending_changeset_changes
+#: model:ir.model.fields,help:excel_import_export.field_ir_actions_report__count_pending_changeset_changes
+#: model:ir.model.fields,help:excel_import_export.field_report_xlsx_wizard__count_pending_changeset_changes
+#: model:ir.model.fields,help:excel_import_export.field_xlsx_export__count_pending_changeset_changes
+#: model:ir.model.fields,help:excel_import_export.field_xlsx_import__count_pending_changeset_changes
+#: model:ir.model.fields,help:excel_import_export.field_xlsx_report__count_pending_changeset_changes
+#: model:ir.model.fields,help:excel_import_export.field_xlsx_styles__count_pending_changeset_changes
+#: model:ir.model.fields,help:excel_import_export.field_xlsx_template__count_pending_changeset_changes
+#: model:ir.model.fields,help:excel_import_export.field_xlsx_template_export__count_pending_changeset_changes
+#: model:ir.model.fields,help:excel_import_export.field_xlsx_template_import__count_pending_changeset_changes
+msgid "The number of pending changes of this record"
+msgstr ""
+
+#. module: excel_import_export
+#: model:ir.model.fields,help:excel_import_export.field_export_xlsx_wizard__count_pending_changesets
+#: model:ir.model.fields,help:excel_import_export.field_import_xlsx_wizard__count_pending_changesets
+#: model:ir.model.fields,help:excel_import_export.field_ir_actions_report__count_pending_changesets
+#: model:ir.model.fields,help:excel_import_export.field_report_xlsx_wizard__count_pending_changesets
+#: model:ir.model.fields,help:excel_import_export.field_xlsx_export__count_pending_changesets
+#: model:ir.model.fields,help:excel_import_export.field_xlsx_import__count_pending_changesets
+#: model:ir.model.fields,help:excel_import_export.field_xlsx_report__count_pending_changesets
+#: model:ir.model.fields,help:excel_import_export.field_xlsx_styles__count_pending_changesets
+#: model:ir.model.fields,help:excel_import_export.field_xlsx_template__count_pending_changesets
+#: model:ir.model.fields,help:excel_import_export.field_xlsx_template_export__count_pending_changesets
+#: model:ir.model.fields,help:excel_import_export.field_xlsx_template_import__count_pending_changesets
+msgid "The number of pending changesets of this record"
+msgstr ""
+
+#. module: excel_import_export
+#: model:ir.model.fields,help:excel_import_export.field_export_xlsx_wizard__count_changesets
+#: model:ir.model.fields,help:excel_import_export.field_import_xlsx_wizard__count_changesets
+#: model:ir.model.fields,help:excel_import_export.field_ir_actions_report__count_changesets
+#: model:ir.model.fields,help:excel_import_export.field_report_xlsx_wizard__count_changesets
+#: model:ir.model.fields,help:excel_import_export.field_xlsx_export__count_changesets
+#: model:ir.model.fields,help:excel_import_export.field_xlsx_import__count_changesets
+#: model:ir.model.fields,help:excel_import_export.field_xlsx_report__count_changesets
+#: model:ir.model.fields,help:excel_import_export.field_xlsx_styles__count_changesets
+#: model:ir.model.fields,help:excel_import_export.field_xlsx_template__count_changesets
+#: model:ir.model.fields,help:excel_import_export.field_xlsx_template_export__count_changesets
+#: model:ir.model.fields,help:excel_import_export.field_xlsx_template_import__count_changesets
+msgid "The overall number of changesets of this record"
+msgstr ""
+
+#. module: excel_import_export
 #. odoo-python
 #: code:addons/excel_import_export/models/xlsx_template.py:0
 #, python-format
@@ -1388,6 +1508,21 @@ msgid "Use common report wizard model, instead of create specific model"
 msgstr ""
 "Usa il modello comune per il wizard dei report, invece di creare un modello "
 "specifico"
+
+#. module: excel_import_export
+#: model:ir.model.fields,field_description:excel_import_export.field_export_xlsx_wizard__user_can_see_changeset
+#: model:ir.model.fields,field_description:excel_import_export.field_import_xlsx_wizard__user_can_see_changeset
+#: model:ir.model.fields,field_description:excel_import_export.field_ir_actions_report__user_can_see_changeset
+#: model:ir.model.fields,field_description:excel_import_export.field_report_xlsx_wizard__user_can_see_changeset
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_export__user_can_see_changeset
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_import__user_can_see_changeset
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_report__user_can_see_changeset
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_styles__user_can_see_changeset
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__user_can_see_changeset
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__user_can_see_changeset
+#: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_import__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr ""
 
 #. module: excel_import_export
 #: model:ir.model.fields,help:excel_import_export.field_xlsx_template__result_model_id
