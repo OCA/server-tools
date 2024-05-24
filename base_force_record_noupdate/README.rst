@@ -16,18 +16,25 @@ Force Record No-update
 .. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
-.. |badge3| image:: https://img.shields.io/badge/github-SilvioC2C%2Fserver--tools-lightgray.png?logo=github
-    :target: https://github.com/SilvioC2C/server-tools/tree/16.0-new-base_force_record_noupdate/base_force_record_noupdate
-    :alt: SilvioC2C/server-tools
+.. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github
+    :target: https://github.com/OCA/server-tools/tree/17.0/base_force_record_noupdate
+    :alt: OCA/server-tools
+.. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
+    :target: https://translation.odoo-community.org/projects/server-tools-17-0/server-tools-17-0-base_force_record_noupdate
+    :alt: Translate me on Weblate
+.. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/server-tools&target_branch=17.0
+    :alt: Try me on Runboat
 
-|badge1| |badge2| |badge3|
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 This module adds a boolean field on models form view, allowing to force
 ``noupdate=True`` to data linked to those models.
 
-Upon setting the field to ``True`` on a given model, ``noupdate=True`` will be set upon
-existing data linked to it. When creating new data linked to that model, they will
-always have ``noupdate=True`` (unless the field is reset on the model itself).
+Upon setting the field to ``True`` on a given model, ``noupdate=True``
+will be set upon existing data linked to it. When creating new data
+linked to that model, they will always have ``noupdate=True`` (unless
+the field is reset on the model itself).
 
 **Table of contents**
 
@@ -37,15 +44,16 @@ always have ``noupdate=True`` (unless the field is reset on the model itself).
 Usage
 =====
 
-To use this module, you need to open the models' form view and check field "Force No-Update"
+To use this module, you need to open the models' form view and check
+field "Force No-Update"
 
 Bug Tracker
 ===========
 
-Bugs are tracked on `GitHub Issues <https://github.com/SilvioC2C/server-tools/issues>`_.
+Bugs are tracked on `GitHub Issues <https://github.com/OCA/server-tools/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/SilvioC2C/server-tools/issues/new?body=module:%20base_force_record_noupdate%0Aversion:%2016.0-new-base_force_record_noupdate%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/server-tools/issues/new?body=module:%20base_force_record_noupdate%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -53,19 +61,29 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Camtocamp
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Italo Lopes <italo.lopes@camptocamp.com>
-* Silvio Gregorini <silvio.gregorini@camptocamp.com>
+-  Italo Lopes <italo.lopes@camptocamp.com>
+-  Silvio Gregorini <silvio.gregorini@camptocamp.com>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
-This module is part of the `SilvioC2C/server-tools <https://github.com/SilvioC2C/server-tools/tree/16.0-new-base_force_record_noupdate/base_force_record_noupdate>`_ project on GitHub.
+This module is maintained by the OCA.
 
-You are welcome to contribute.
+.. image:: https://odoo-community.org/logo.png
+   :alt: Odoo Community Association
+   :target: https://odoo-community.org
+
+OCA, or the Odoo Community Association, is a nonprofit organization whose
+mission is to support the collaborative development of Odoo features and
+promote its widespread use.
+
+This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/17.0/base_force_record_noupdate>`_ project on GitHub.
+
+You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
