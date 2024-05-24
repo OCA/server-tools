@@ -64,7 +64,6 @@ msgstr "备份格式"
 #. module: auto_backup
 #: model:ir.actions.server,name:auto_backup.ir_cron_backup_scheduler_0_ir_actions_server
 #: model:ir.cron,cron_name:auto_backup.ir_cron_backup_scheduler_0
-#: model:ir.cron,name:auto_backup.ir_cron_backup_scheduler_0
 msgid "Backup Scheduler"
 msgstr "备份计划"
 
@@ -111,22 +110,30 @@ msgid "Choose the storage method for this backup."
 msgstr "选择这个备份的存储方法."
 
 #. module: auto_backup
+#. odoo-python
 #: code:addons/auto_backup/models/db_backup.py:0
 #, python-format
 msgid "Cleanup of old database backups failed."
 msgstr "清除旧数据库备份失败."
 
 #. module: auto_backup
+#. odoo-python
 #: code:addons/auto_backup/models/db_backup.py:0
 #, python-format
 msgid "Connection Test Failed!"
 msgstr "连接测试失败！"
 
 #. module: auto_backup
+#. odoo-python
 #: code:addons/auto_backup/models/db_backup.py:0
 #, python-format
 msgid "Connection Test Succeeded!"
 msgstr "连接测试成功！"
+
+#. module: auto_backup
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__count_changesets
+msgid "Count Changesets"
+msgstr ""
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__count_pending_changeset_changes
@@ -154,6 +161,7 @@ msgid "Database Backup"
 msgstr "数据库备份"
 
 #. module: auto_backup
+#. odoo-python
 #: code:addons/auto_backup/models/db_backup.py:0
 #: model:mail.message.subtype,description:auto_backup.mail_message_subtype_failure
 #, python-format
@@ -161,6 +169,7 @@ msgid "Database backup failed."
 msgstr "数据库备份失败。"
 
 #. module: auto_backup
+#. odoo-python
 #: code:addons/auto_backup/models/db_backup.py:0
 #: model:mail.message.subtype,description:auto_backup.mail_message_subtype_success
 #, python-format
@@ -178,6 +187,7 @@ msgid "Display Name"
 msgstr "显示名称"
 
 #. module: auto_backup
+#. odoo-python
 #: code:addons/auto_backup/models/db_backup.py:0
 #, python-format
 msgid ""
@@ -236,7 +246,6 @@ msgstr "ID"
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__message_needaction
-#: model:ir.model.fields,help:auto_backup.field_db_backup__message_unread
 msgid "If checked, new messages require your attention."
 msgstr "如果勾选此项，则需要注意新消息。"
 
@@ -308,18 +317,13 @@ msgstr ""
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__message_needaction_counter
-msgid "Number of messages which requires an action"
-msgstr "需要操作的消息数量"
+msgid "Number of messages requiring action"
+msgstr ""
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__message_has_error_counter
 msgid "Number of messages with delivery error"
 msgstr "发送错误的消息数量"
-
-#. module: auto_backup
-#: model:ir.model.fields,help:auto_backup.field_db_backup__message_unread_counter
-msgid "Number of unread messages"
-msgstr "未读消息的数量"
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__sftp_private_key
@@ -377,6 +381,11 @@ msgstr ""
 "时间等数据库具体备份方案。"
 
 #. module: auto_backup
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__smart_search
+msgid "Smart Search"
+msgstr ""
+
+#. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__name
 msgid "Summary of this backup process"
 msgstr "此备份过程的摘要"
@@ -391,6 +400,21 @@ msgstr "测试 SFTP 连接"
 msgid ""
 "The host name or IP address from your remote server. For example 192.168.0.1"
 msgstr "远程服务器的主机名或IP地址。例如192.168.0.1"
+
+#. module: auto_backup
+#: model:ir.model.fields,help:auto_backup.field_db_backup__count_pending_changeset_changes
+msgid "The number of pending changes of this record"
+msgstr ""
+
+#. module: auto_backup
+#: model:ir.model.fields,help:auto_backup.field_db_backup__count_pending_changesets
+msgid "The number of pending changesets of this record"
+msgstr ""
+
+#. module: auto_backup
+#: model:ir.model.fields,help:auto_backup.field_db_backup__count_changesets
+msgid "The overall number of changesets of this record"
+msgstr ""
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__sftp_password
@@ -410,16 +434,6 @@ msgid ""
 "The username where the SFTP connection should be made with. This is the user "
 "on the external server."
 msgstr "SFTP 连接使用该用户名。这是在SFTP服务器上的用户。"
-
-#. module: auto_backup
-#: model:ir.model.fields,field_description:auto_backup.field_db_backup__message_unread
-msgid "Unread Messages"
-msgstr "未读消息"
-
-#. module: auto_backup
-#: model:ir.model.fields,field_description:auto_backup.field_db_backup__message_unread_counter
-msgid "Unread Messages Counter"
-msgstr "未读消息计数器"
 
 #. module: auto_backup
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
@@ -474,6 +488,18 @@ msgstr "sftp.example.com"
 #: model:ir.model.fields.selection,name:auto_backup.selection__db_backup__backup_format__zip
 msgid "zip (includes filestore)"
 msgstr "zip（包括文件存储）"
+
+#~ msgid "Number of messages which requires an action"
+#~ msgstr "需要操作的消息数量"
+
+#~ msgid "Number of unread messages"
+#~ msgstr "未读消息的数量"
+
+#~ msgid "Unread Messages"
+#~ msgstr "未读消息"
+
+#~ msgid "Unread Messages Counter"
+#~ msgstr "未读消息计数器"
 
 #~ msgid "Followers (Channels)"
 #~ msgstr "关注者(频道)"
