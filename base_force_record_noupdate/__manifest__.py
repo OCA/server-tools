@@ -7,7 +7,7 @@
     "author": "Camtocamp, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/server-tools",
     "category": "Hidden",
-    "version": "16.0.1.0.0",
+    "version": "13.0.1.0.0",
     "license": "AGPL-3",
     "depends": ["base"],
     "data": ["views/ir_model.xml"],

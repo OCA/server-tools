@@ -11,8 +11,8 @@ class Model(models.Model):
     force_noupdate = fields.Boolean("Force No-Update")
 
     @api.model_create_multi
-    def create(self, vals_list):
-        mods = super().create(vals_list)
+    def create(self, vals):
+        mods = super().create(vals)
         type(self)._get_noupdate_model_ids.clear_cache(self.browse())
         self._propagate_noupdate_to_model_data()
         return mods
