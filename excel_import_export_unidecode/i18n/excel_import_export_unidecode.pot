@@ -21,6 +21,41 @@ msgid "Assigned Attachments"
 msgstr ""
 
 #. module: excel_import_export_unidecode
+#: model:ir.model.fields,field_description:excel_import_export_unidecode.field_xlsx_export__changeset_change_ids
+#: model:ir.model.fields,field_description:excel_import_export_unidecode.field_xlsx_template__changeset_change_ids
+#: model:ir.model.fields,field_description:excel_import_export_unidecode.field_xlsx_template_export__changeset_change_ids
+msgid "Changeset Changes"
+msgstr ""
+
+#. module: excel_import_export_unidecode
+#: model:ir.model.fields,field_description:excel_import_export_unidecode.field_xlsx_export__changeset_ids
+#: model:ir.model.fields,field_description:excel_import_export_unidecode.field_xlsx_template__changeset_ids
+#: model:ir.model.fields,field_description:excel_import_export_unidecode.field_xlsx_template_export__changeset_ids
+msgid "Changesets"
+msgstr ""
+
+#. module: excel_import_export_unidecode
+#: model:ir.model.fields,field_description:excel_import_export_unidecode.field_xlsx_export__count_changesets
+#: model:ir.model.fields,field_description:excel_import_export_unidecode.field_xlsx_template__count_changesets
+#: model:ir.model.fields,field_description:excel_import_export_unidecode.field_xlsx_template_export__count_changesets
+msgid "Count Changesets"
+msgstr ""
+
+#. module: excel_import_export_unidecode
+#: model:ir.model.fields,field_description:excel_import_export_unidecode.field_xlsx_export__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:excel_import_export_unidecode.field_xlsx_template__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:excel_import_export_unidecode.field_xlsx_template_export__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr ""
+
+#. module: excel_import_export_unidecode
+#: model:ir.model.fields,field_description:excel_import_export_unidecode.field_xlsx_export__count_pending_changesets
+#: model:ir.model.fields,field_description:excel_import_export_unidecode.field_xlsx_template__count_pending_changesets
+#: model:ir.model.fields,field_description:excel_import_export_unidecode.field_xlsx_template_export__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr ""
+
+#. module: excel_import_export_unidecode
 #: model:ir.model,name:excel_import_export_unidecode.model_xlsx_template_export
 msgid "Detailed of how excel data will be exported"
 msgstr ""
@@ -43,6 +78,34 @@ msgid "Smart Search"
 msgstr ""
 
 #. module: excel_import_export_unidecode
+#: model:ir.model.fields,help:excel_import_export_unidecode.field_xlsx_export__count_pending_changeset_changes
+#: model:ir.model.fields,help:excel_import_export_unidecode.field_xlsx_template__count_pending_changeset_changes
+#: model:ir.model.fields,help:excel_import_export_unidecode.field_xlsx_template_export__count_pending_changeset_changes
+msgid "The number of pending changes of this record"
+msgstr ""
+
+#. module: excel_import_export_unidecode
+#: model:ir.model.fields,help:excel_import_export_unidecode.field_xlsx_export__count_pending_changesets
+#: model:ir.model.fields,help:excel_import_export_unidecode.field_xlsx_template__count_pending_changesets
+#: model:ir.model.fields,help:excel_import_export_unidecode.field_xlsx_template_export__count_pending_changesets
+msgid "The number of pending changesets of this record"
+msgstr ""
+
+#. module: excel_import_export_unidecode
+#: model:ir.model.fields,help:excel_import_export_unidecode.field_xlsx_export__count_changesets
+#: model:ir.model.fields,help:excel_import_export_unidecode.field_xlsx_template__count_changesets
+#: model:ir.model.fields,help:excel_import_export_unidecode.field_xlsx_template_export__count_changesets
+msgid "The overall number of changesets of this record"
+msgstr ""
+
+#. module: excel_import_export_unidecode
 #: model:ir.model.fields,field_description:excel_import_export_unidecode.field_xlsx_template_export__is_unidecode
 msgid "Unidecode"
+msgstr ""
+
+#. module: excel_import_export_unidecode
+#: model:ir.model.fields,field_description:excel_import_export_unidecode.field_xlsx_export__user_can_see_changeset
+#: model:ir.model.fields,field_description:excel_import_export_unidecode.field_xlsx_template__user_can_see_changeset
+#: model:ir.model.fields,field_description:excel_import_export_unidecode.field_xlsx_template_export__user_can_see_changeset
+msgid "User Can See Changeset"
 msgstr ""
