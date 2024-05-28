@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-04-04 11:35+0000\n"
+"PO-Revision-Date: 2024-05-28 09:34+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -111,14 +111,14 @@ msgstr "Backend"
 #: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__changeset_change_ids
 #: model:ir.model.fields,field_description:attachment_synchronize.field_fs_storage__changeset_change_ids
 msgid "Changeset Changes"
-msgstr ""
+msgstr "Modifiche dell'insieme di modifiche"
 
 #. module: attachment_synchronize
 #: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_queue__changeset_ids
 #: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__changeset_ids
 #: model:ir.model.fields,field_description:attachment_synchronize.field_fs_storage__changeset_ids
 msgid "Changesets"
-msgstr ""
+msgstr "Insieme di modifiche"
 
 #. module: attachment_synchronize
 #: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__count_attachment_done
@@ -140,21 +140,21 @@ msgstr "Conteggio allegati in attesa"
 #: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__count_changesets
 #: model:ir.model.fields,field_description:attachment_synchronize.field_fs_storage__count_changesets
 msgid "Count Changesets"
-msgstr ""
+msgstr "Conteggio insieme di modifiche"
 
 #. module: attachment_synchronize
 #: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_queue__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:attachment_synchronize.field_fs_storage__count_pending_changeset_changes
 msgid "Count Pending Changeset Changes"
-msgstr ""
+msgstr "Conteggio modifiche dell'insieme di modifiche in attesa"
 
 #. module: attachment_synchronize
 #: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_queue__count_pending_changesets
 #: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__count_pending_changesets
 #: model:ir.model.fields,field_description:attachment_synchronize.field_fs_storage__count_pending_changesets
 msgid "Count Pending Changesets"
-msgstr ""
+msgstr "Conteggio insieme di modifiche in attesa"
 
 #. module: attachment_synchronize
 #: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__create_uid
@@ -418,21 +418,21 @@ msgstr ""
 #: model:ir.model.fields,help:attachment_synchronize.field_attachment_synchronize_task__count_pending_changeset_changes
 #: model:ir.model.fields,help:attachment_synchronize.field_fs_storage__count_pending_changeset_changes
 msgid "The number of pending changes of this record"
-msgstr ""
+msgstr "Numero di modifiche di questo record in attesa"
 
 #. module: attachment_synchronize
 #: model:ir.model.fields,help:attachment_synchronize.field_attachment_queue__count_pending_changesets
 #: model:ir.model.fields,help:attachment_synchronize.field_attachment_synchronize_task__count_pending_changesets
 #: model:ir.model.fields,help:attachment_synchronize.field_fs_storage__count_pending_changesets
 msgid "The number of pending changesets of this record"
-msgstr ""
+msgstr "Numero di insieme di modifiche di questo record in attesa"
 
 #. module: attachment_synchronize
 #: model:ir.model.fields,help:attachment_synchronize.field_attachment_queue__count_changesets
 #: model:ir.model.fields,help:attachment_synchronize.field_attachment_synchronize_task__count_changesets
 #: model:ir.model.fields,help:attachment_synchronize.field_fs_storage__count_changesets
 msgid "The overall number of changesets of this record"
-msgstr ""
+msgstr "Il numero totale di insieme di modifiche di questo record"
 
 #. module: attachment_synchronize
 #: model:ir.model.fields,help:attachment_synchronize.field_attachment_synchronize_task__failure_emails
@@ -464,4 +464,4 @@ msgstr ""
 #: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__user_can_see_changeset
 #: model:ir.model.fields,field_description:attachment_synchronize.field_fs_storage__user_can_see_changeset
 msgid "User Can See Changeset"
-msgstr ""
+msgstr "L'utente può vedere l'insieme delle modifiche"
