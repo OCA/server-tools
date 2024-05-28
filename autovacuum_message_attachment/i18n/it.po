@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-03-06 10:37+0000\n"
+"PO-Revision-Date: 2024-05-28 09:34+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -486,7 +486,7 @@ msgstr "Relazione mancante a ir.attachment nel modello %s"
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_message__changeset_change_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_vacuum_rule__changeset_change_ids
 msgid "Changeset Changes"
-msgstr ""
+msgstr "Modifiche dell'insieme di modifiche"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_autovacuum_mixin__changeset_ids
@@ -494,7 +494,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_message__changeset_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_vacuum_rule__changeset_ids
 msgid "Changesets"
-msgstr ""
+msgstr "Insieme di modifiche"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields.selection,name:autovacuum_message_attachment.selection__vacuum_rule__message_type__comment
@@ -512,7 +512,7 @@ msgstr "Azienda"
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_message__count_changesets
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_vacuum_rule__count_changesets
 msgid "Count Changesets"
-msgstr ""
+msgstr "Conteggio insieme di modifiche"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_autovacuum_mixin__count_pending_changeset_changes
@@ -520,7 +520,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_message__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_vacuum_rule__count_pending_changeset_changes
 msgid "Count Pending Changeset Changes"
-msgstr ""
+msgstr "Conteggio modifiche dell'insieme di modifiche in attesa"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_autovacuum_mixin__count_pending_changesets
@@ -528,7 +528,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_message__count_pending_changesets
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_vacuum_rule__count_pending_changesets
 msgid "Count Pending Changesets"
-msgstr ""
+msgstr "Conteggio insieme di modifiche in attesa"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_vacuum_rule__create_uid
@@ -784,7 +784,7 @@ msgstr "Il tempo di conservazione non può essere di 0 giorni"
 #: model:ir.model.fields,help:autovacuum_message_attachment.field_mail_message__count_pending_changeset_changes
 #: model:ir.model.fields,help:autovacuum_message_attachment.field_vacuum_rule__count_pending_changeset_changes
 msgid "The number of pending changes of this record"
-msgstr ""
+msgstr "Numero di modifiche di questo record in attesa"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,help:autovacuum_message_attachment.field_autovacuum_mixin__count_pending_changesets
@@ -792,7 +792,7 @@ msgstr ""
 #: model:ir.model.fields,help:autovacuum_message_attachment.field_mail_message__count_pending_changesets
 #: model:ir.model.fields,help:autovacuum_message_attachment.field_vacuum_rule__count_pending_changesets
 msgid "The number of pending changesets of this record"
-msgstr ""
+msgstr "Numero di insieme di modifiche di questo record in attesa"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,help:autovacuum_message_attachment.field_autovacuum_mixin__count_changesets
@@ -800,7 +800,7 @@ msgstr ""
 #: model:ir.model.fields,help:autovacuum_message_attachment.field_mail_message__count_changesets
 #: model:ir.model.fields,help:autovacuum_message_attachment.field_vacuum_rule__count_changesets
 msgid "The overall number of changesets of this record"
-msgstr ""
+msgstr "Il numero totale di insieme di modifiche di questo record"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_vacuum_rule__ttype
@@ -813,7 +813,7 @@ msgstr "Tipo"
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_message__user_can_see_changeset
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_vacuum_rule__user_can_see_changeset
 msgid "User Can See Changeset"
-msgstr ""
+msgstr "L'utente può vedere l'insieme delle modifiche"
 
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields.selection,name:autovacuum_message_attachment.selection__vacuum_rule__message_type__user_notification
