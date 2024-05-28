@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-02-05 09:35+0000\n"
+"PO-Revision-Date: 2024-05-28 09:34+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -58,35 +58,35 @@ msgstr "Annulla"
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__changeset_change_ids
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__changeset_change_ids
 msgid "Changeset Changes"
-msgstr ""
+msgstr "Modifiche dell'insieme di modifiche"
 
 #. module: excel_import_export_demo
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_crm_lead__changeset_ids
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__changeset_ids
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__changeset_ids
 msgid "Changesets"
-msgstr ""
+msgstr "Insieme di modifiche"
 
 #. module: excel_import_export_demo
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_crm_lead__count_changesets
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__count_changesets
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__count_changesets
 msgid "Count Changesets"
-msgstr ""
+msgstr "Conteggio insieme di modifiche"
 
 #. module: excel_import_export_demo
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_crm_lead__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__count_pending_changeset_changes
 msgid "Count Pending Changeset Changes"
-msgstr ""
+msgstr "Conteggio modifiche dell'insieme di modifiche in attesa"
 
 #. module: excel_import_export_demo
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_crm_lead__count_pending_changesets
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__count_pending_changesets
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__count_pending_changesets
 msgid "Count Pending Changesets"
-msgstr ""
+msgstr "Conteggio insieme di modifiche in attesa"
 
 #. module: excel_import_export_demo
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_crm_lead__create_uid
@@ -252,21 +252,21 @@ msgstr "Modello"
 #: model:ir.model.fields,help:excel_import_export_demo.field_report_partner_list__count_pending_changeset_changes
 #: model:ir.model.fields,help:excel_import_export_demo.field_report_sale_order__count_pending_changeset_changes
 msgid "The number of pending changes of this record"
-msgstr ""
+msgstr "Numero di modifiche di questo record in attesa"
 
 #. module: excel_import_export_demo
 #: model:ir.model.fields,help:excel_import_export_demo.field_report_crm_lead__count_pending_changesets
 #: model:ir.model.fields,help:excel_import_export_demo.field_report_partner_list__count_pending_changesets
 #: model:ir.model.fields,help:excel_import_export_demo.field_report_sale_order__count_pending_changesets
 msgid "The number of pending changesets of this record"
-msgstr ""
+msgstr "Numero di insieme di modifiche di questo record in attesa"
 
 #. module: excel_import_export_demo
 #: model:ir.model.fields,help:excel_import_export_demo.field_report_crm_lead__count_changesets
 #: model:ir.model.fields,help:excel_import_export_demo.field_report_partner_list__count_changesets
 #: model:ir.model.fields,help:excel_import_export_demo.field_report_sale_order__count_changesets
 msgid "The overall number of changesets of this record"
-msgstr ""
+msgstr "Il numero totale di insieme di modifiche di questo record"
 
 #. module: excel_import_export_demo
 #: model:ir.model.fields,help:excel_import_export_demo.field_report_partner_list__results
@@ -283,7 +283,7 @@ msgstr "Usa campi calcolati, così non viene conservato nulla nel database"
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_partner_list__user_can_see_changeset
 #: model:ir.model.fields,field_description:excel_import_export_demo.field_report_sale_order__user_can_see_changeset
 msgid "User Can See Changeset"
-msgstr ""
+msgstr "L'utente può vedere l'insieme delle modifiche"
 
 #. module: excel_import_export_demo
 #: model:ir.model,name:excel_import_export_demo.model_report_crm_lead
