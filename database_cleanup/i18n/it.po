@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-03 10:08+0000\n"
-"PO-Revision-Date: 2024-01-20 19:36+0000\n"
+"PO-Revision-Date: 2024-05-28 09:34+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -201,7 +201,7 @@ msgstr "Campi"
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_field__purge_line_ids
 msgid "Fields to purge"
-msgstr ""
+msgstr "Campi da pulire"
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_line__id
@@ -315,7 +315,7 @@ msgstr "Dati modello"
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_field__model_name
 msgid "Model Technical Name"
-msgstr ""
+msgstr "Nome tecnico modello"
 
 #. module: database_cleanup
 #: model:ir.model,name:database_cleanup.model_ir_model
@@ -379,7 +379,7 @@ msgstr "Nessun valore dato orfano trovato"
 #: code:addons/database_cleanup/models/purge_fields.py:0
 #, python-format
 msgid "No orphaned fields found"
-msgstr ""
+msgstr "Nessun campo orfano trovato"
 
 #. module: database_cleanup
 #. odoo-python
@@ -471,7 +471,7 @@ msgstr "Pulizia valori dati riferiti a risorse mancanti"
 #: model:ir.model,name:database_cleanup.model_cleanup_purge_line_field
 #: model:ir.model,name:database_cleanup.model_cleanup_purge_wizard_field
 msgid "Purge fields"
-msgstr ""
+msgstr "Ripulisci campi"
 
 #. module: database_cleanup
 #: model:ir.actions.server,name:database_cleanup.action_purge_menus
@@ -505,7 +505,7 @@ msgstr "Pulisci voci di dati obsoleti"
 #. module: database_cleanup
 #: model:ir.ui.menu,name:database_cleanup.menu_purge_fields
 msgid "Purge obsolete fields"
-msgstr ""
+msgstr "Ripulisci campi obsoleti"
 
 #. module: database_cleanup
 #: model:ir.ui.menu,name:database_cleanup.menu_purge_menus
@@ -575,12 +575,12 @@ msgstr "Motivo"
 #. module: database_cleanup
 #: model:ir.model.fields.selection,name:database_cleanup.selection__cleanup_purge_line_table__table_type__base
 msgid "SQL Table"
-msgstr ""
+msgstr "Tabella SQL"
 
 #. module: database_cleanup
 #: model:ir.model.fields.selection,name:database_cleanup.selection__cleanup_purge_line_table__table_type__view
 msgid "SQL View"
-msgstr ""
+msgstr "Vista SQL"
 
 #. module: database_cleanup
 #: model:ir.model.fields.selection,name:database_cleanup.selection__cleanup_purge_line_property__reason__reason_default
@@ -602,7 +602,7 @@ msgstr "Selezione righe da pulire"
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_table__table_type
 msgid "Table Type"
-msgstr ""
+msgstr "Tipo tabella"
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_table__purge_line_ids
@@ -612,7 +612,7 @@ msgstr "Tabelle da pulire"
 #. module: database_cleanup
 #: model:ir.model.fields,help:database_cleanup.field_cleanup_purge_line_field__model_id
 msgid "The model this field belongs to"
-msgstr ""
+msgstr "Il modello a cui appartiene questo campo"
 
 #. module: database_cleanup
 #: model:ir.model.fields.selection,name:database_cleanup.selection__cleanup_purge_line_property__reason__reason_unknown_model
