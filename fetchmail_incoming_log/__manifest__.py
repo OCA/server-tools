@@ -3,7 +3,7 @@
 
 {
     "name": "Fetchmail Incoming Log",
-    "version": "15.0.1.0.0",
+    "version": "16.0.1.0.0",
     "category": "Tools",
     "summary": "Log all messages received, before they start to be processed.",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
