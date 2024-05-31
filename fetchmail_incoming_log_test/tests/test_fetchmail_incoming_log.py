@@ -29,6 +29,7 @@ class TestFetchmailIncomingLog(TestMailgateway):
                 subject="testing",
                 extra="",
                 msg_id=msg_id,
+                return_path="",
             )
             self.env["mail.thread"].with_context(
                 fetchmail_server_id=self.fetchmail_server.id
