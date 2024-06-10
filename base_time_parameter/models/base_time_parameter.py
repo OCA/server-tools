@@ -54,12 +54,12 @@ class TimeParameter(models.Model):
         self, model_name, code, date=None, raise_if_not_found=True, get="value"
     ):
         # Filter on company, model, code/name
-        model = self.env["ir.model"].search([("model", "=", model_name)])
+        model_sudo = self.env["ir.model"].sudo().search([("model", "=", model_name)])
         domain = [
             "&",
             ("company_id", "in", (self.env.company.id, False)),
             "&",
-            ("model_id", "in", (model.id, False)),
+            ("model_id", "in", (model_sudo.id, False)),
             "|",
             ("code", "=", code),
             "&",
@@ -75,7 +75,7 @@ class TimeParameter(models.Model):
         if not raise_if_not_found:
             return
         # Raise error
-        model_name = model.name
+        model_name = model_sudo.name
         raise UserError(
             _("No parameter for model '%(model_name)s', code '%(code)s', date %(date)s")
             % (model_name, code, date)

@@ -3,16 +3,16 @@
 
 {
     "name": "Time Parameter",
-    "version": "15.0.1.0.0",
+    "version": "16.0.1.0.0",
     "summary": """
         Time dependent parameters
         Adds the feature to define parameters
         with time based versions.
     """,
     "license": "LGPL-3",
-    "author": "Nimarosa, appstogrow, Odoo Community Association (OCA)",
+    "author": "Nimarosa, Henrik Norlin, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/server-tools",
-    "maintainers": ["appstogrow", "nimarosa"],
+    "maintainers": ["norlinhenrik", "nimarosa"],
     "category": "Technical",
     "depends": [
         "base",
