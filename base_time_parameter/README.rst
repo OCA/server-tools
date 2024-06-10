@@ -126,7 +126,7 @@ Authors
 ~~~~~~~
 
 * Nimarosa
-* appstogrow
+* Henrik Norlin
 
 Contributors
 ~~~~~~~~~~~~
@@ -148,16 +148,16 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-.. |maintainer-appstogrow| image:: https://github.com/appstogrow.png?size=40px
-    :target: https://github.com/appstogrow
-    :alt: appstogrow
+.. |maintainer-norlinhenrik| image:: https://github.com/norlinhenrik.png?size=40px
+    :target: https://github.com/norlinhenrik
+    :alt: norlinhenrik
 .. |maintainer-nimarosa| image:: https://github.com/nimarosa.png?size=40px
     :target: https://github.com/nimarosa
     :alt: nimarosa
 
 Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-appstogrow| |maintainer-nimarosa| 
+|maintainer-norlinhenrik| |maintainer-nimarosa| 
 
 This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/16.0/base_time_parameter>`_ project on GitHub.
 

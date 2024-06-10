@@ -8,8 +8,8 @@ JOE_BIDEN = "The value is 'Joe Biden'"
 
 
 class TestTimeParameter(TransactionCase):
-    def setUp(self):
-        super(TestTimeParameter, self).setUp()
+    def setUpClass(self):
+        super(TestTimeParameter, self).setUpClass()
 
         self.boolean_parameter = self.env["base.time.parameter"].create(
             {
