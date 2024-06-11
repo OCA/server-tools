@@ -12,7 +12,7 @@
                         <field name="name" />
                     </group>
                     <group string="HTTP Requests">
-                        <field name="http_request_ids" nolabel="1" />
+                        <field name="http_request_ids" nolabel="1" colspan="2" />
                     </group>
                 </sheet>
             </form>
