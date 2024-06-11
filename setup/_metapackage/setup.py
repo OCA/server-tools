@@ -49,6 +49,7 @@ setuptools.setup(
         'odoo-addon-rpc_helper>=16.0dev,<16.1dev',
         'odoo-addon-scheduler_error_mailer>=16.0dev,<16.1dev',
         'odoo-addon-sentry>=16.0dev,<16.1dev',
+        'odoo-addon-server_action_logging>=16.0dev,<16.1dev',
         'odoo-addon-session_db>=16.0dev,<16.1dev',
         'odoo-addon-tracking_manager>=16.0dev,<16.1dev',
         'odoo-addon-upgrade_analysis>=16.0dev,<16.1dev',
