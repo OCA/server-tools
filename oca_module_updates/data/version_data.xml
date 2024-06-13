@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 Dixmit
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo noupdate="1">
+
+    <record model="oca.update.version" id="version_13">
+       <field name="name">13</field>
+       <field name="old_system" eval="True" />
+    </record>
+
+    <record model="oca.update.version" id="version_14">
+       <field name="name">14</field>
+       <field name="old_system" eval="True" />
+    </record>
+
+    <record model="oca.update.version" id="version_15">
+       <field name="name">15</field>
+    </record>
+
+    <record model="oca.update.version" id="version_16">
+       <field name="name">16</field>
+    </record>
+
+    <record model="oca.update.version" id="version_17">
+       <field name="name">17</field>
+    </record>
+
+</odoo>

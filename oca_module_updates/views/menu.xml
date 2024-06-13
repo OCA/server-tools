@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <menuitem
+        id="menu_oca_updates_root"
+        name="OCA Updates"
+        sequence="100"
+        web_icon="oca_module_updates,static/description/icon.png"
+    />
+    <menuitem
+        id="menu_oca_updates_config_root"
+        name="Configuration"
+        parent="menu_oca_updates_root"
+        sequence="90"
+    />
+</odoo>

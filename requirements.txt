@@ -2,11 +2,13 @@
 astor
 cryptography
 dataclasses
+feedparser
 mako
 odoo_test_helper
 odoorpc
 openpyxl
 openupgradelib
+packaging
 pygount
 pysftp
 sentry_sdk<=1.9.0
