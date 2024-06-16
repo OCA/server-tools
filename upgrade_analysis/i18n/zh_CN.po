@@ -6,87 +6,89 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2024-06-16 13:44+0000\n"
+"Last-Translator: xtanuiha <feihu.zhang@live.com>\n"
 "Language-Team: none\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: upgrade_analysis
 #: model_terms:ir.ui.view,arch_db:upgrade_analysis.view_upgrade_install_wizard_form
 msgid "All Modules"
-msgstr ""
+msgstr "所有模块"
 
 #. module: upgrade_analysis
 #: model_terms:ir.ui.view,arch_db:upgrade_analysis.view_upgrade_install_wizard_form
 msgid "All OCA Modules"
-msgstr ""
+msgstr "所有OCA模块"
 
 #. module: upgrade_analysis
 #: model_terms:ir.ui.view,arch_db:upgrade_analysis.view_upgrade_install_wizard_form
 msgid "All Odoo SA Modules"
-msgstr ""
+msgstr "所有Odoo SA模块"
 
 #. module: upgrade_analysis
 #: model_terms:ir.ui.view,arch_db:upgrade_analysis.view_upgrade_install_wizard_form
 msgid "All Other Modules"
-msgstr ""
+msgstr "所有其它模块"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_comparison_config__analysis_ids
 #: model_terms:ir.ui.view,arch_db:upgrade_analysis.view_upgrade_comparison_config_form
 msgid "Analyses"
-msgstr ""
+msgstr "分析"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_analysis__analysis_date
 msgid "Analysis Date"
-msgstr ""
+msgstr "分析日期"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_comparison_config__analysis_qty
 msgid "Analysis Qty"
-msgstr ""
+msgstr "分析数量"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_record__attribute_ids
 msgid "Attribute"
-msgstr ""
+msgstr "属性"
 
 #. module: upgrade_analysis
 #: model_terms:ir.ui.view,arch_db:upgrade_analysis.view_upgrade_record_form
 msgid "Attributes"
-msgstr ""
+msgstr "属性"
 
 #. module: upgrade_analysis
 #. odoo-python
 #: code:addons/upgrade_analysis/wizards/upgrade_generate_record_wizard.py:0
 #, python-format
 msgid "Cannot seem to install or upgrade modules %s"
-msgstr ""
+msgstr "似乎无法安装或更新模块 %s"
 
 #. module: upgrade_analysis
 #: model_terms:ir.ui.view,arch_db:upgrade_analysis.view_upgrade_install_wizard_form
 msgid "Clear the list"
-msgstr ""
+msgstr "清空列表"
 
 #. module: upgrade_analysis
 #: model_terms:ir.ui.view,arch_db:upgrade_analysis.view_upgrade_generate_record_wizard_form
 #: model_terms:ir.ui.view,arch_db:upgrade_analysis.view_upgrade_install_wizard_form
 msgid "Close"
-msgstr ""
+msgstr "关闭"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_analysis__config_id
 msgid "Comparison Config"
-msgstr ""
+msgstr "比较配置"
 
 #. module: upgrade_analysis
 #: model:ir.ui.menu,name:upgrade_analysis.menu_upgrade_comparison_config
 msgid "Comparison Configurations"
-msgstr ""
+msgstr "比较配置"
 
 #. module: upgrade_analysis
 #. odoo-python
@@ -97,28 +99,31 @@ msgid ""
 "\n"
 "DETAIL: %s"
 msgstr ""
+"连接失败。\n"
+"\n"
+"详细信息: %s"
 
 #. module: upgrade_analysis
 #: model_terms:ir.ui.view,arch_db:upgrade_analysis.view_upgrade_generate_record_wizard_form
 msgid "Continue"
-msgstr ""
+msgstr "继续"
 
 #. module: upgrade_analysis
 #. odoo-python
 #: code:addons/upgrade_analysis/models/upgrade_comparison_config.py:0
 #, python-format
 msgid "Could not connect the Odoo server at %(server)s:%(port)s"
-msgstr ""
+msgstr "无法连接到位于 %(server)s:%(port)s 的 Odoo 服务器"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields.selection,name:upgrade_analysis.selection__upgrade_record__mode__create
 msgid "Create"
-msgstr ""
+msgstr "创建"
 
 #. module: upgrade_analysis
 #: model_terms:ir.ui.view,arch_db:upgrade_analysis.view_upgrade_record_search
 msgid "Create Mode"
-msgstr ""
+msgstr "创建模式"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_analysis__create_uid
@@ -128,7 +133,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_install_wizard__create_uid
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_record__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "创建者"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_analysis__create_date
@@ -138,17 +143,17 @@ msgstr ""
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_install_wizard__create_date
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_record__create_date
 msgid "Created on"
-msgstr ""
+msgstr "创建于"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_comparison_config__database
 msgid "Database"
-msgstr ""
+msgstr "数据库"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_record__definition
 msgid "Definition"
-msgstr ""
+msgstr "定义"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_analysis__display_name
@@ -158,37 +163,37 @@ msgstr ""
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_install_wizard__display_name
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_record__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "显示名称"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_record__domain
 msgid "Domain"
-msgstr ""
+msgstr "域"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields.selection,name:upgrade_analysis.selection__upgrade_analysis__state__done
 #: model:ir.model.fields.selection,name:upgrade_analysis.selection__upgrade_generate_record_wizard__state__done
 #: model:ir.model.fields.selection,name:upgrade_analysis.selection__upgrade_install_wizard__state__done
 msgid "Done"
-msgstr ""
+msgstr "完成"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields.selection,name:upgrade_analysis.selection__upgrade_generate_record_wizard__state__draft
 #: model:ir.model.fields.selection,name:upgrade_analysis.selection__upgrade_install_wizard__state__draft
 msgid "Draft"
-msgstr ""
+msgstr "草稿"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_record__field
 #: model:ir.model.fields.selection,name:upgrade_analysis.selection__upgrade_record__type__field
 msgid "Field"
-msgstr ""
+msgstr "字段"
 
 #. module: upgrade_analysis
 #: model:ir.actions.act_window,name:upgrade_analysis.action_upgrade_generate_record_wizard
 #: model:ir.ui.menu,name:upgrade_analysis.menu_upgrade_generate_record
 msgid "Generate Records Wizard"
-msgstr ""
+msgstr "生成记录向导"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_analysis__id
@@ -198,28 +203,28 @@ msgstr ""
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_install_wizard__id
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_record__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: upgrade_analysis
 #: model_terms:ir.ui.view,arch_db:upgrade_analysis.view_upgrade_install_wizard_form
 msgid "Install Modules"
-msgstr ""
+msgstr "安装模块"
 
 #. module: upgrade_analysis
 #: model:ir.actions.act_window,name:upgrade_analysis.action_upgrade_install_wizard
 #: model:ir.ui.menu,name:upgrade_analysis.menu_upgrade_install
 msgid "Install Modules Wizard"
-msgstr ""
+msgstr "安装模块向导"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_ir_module_module__is_oca_module
 msgid "Is Oca Module"
-msgstr ""
+msgstr "是OCA模块"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_ir_module_module__is_odoo_module
 msgid "Is Odoo Module"
-msgstr ""
+msgstr "是Odoo模块"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_analysis__write_uid
@@ -229,7 +234,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_install_wizard__write_uid
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_record__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "最后更新者"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_analysis__write_date
@@ -239,148 +244,149 @@ msgstr ""
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_install_wizard__write_date
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_record__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "最后更新于"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_analysis__log
 #: model_terms:ir.ui.view,arch_db:upgrade_analysis.view_upgrade_analysis_form
 msgid "Log"
-msgstr ""
+msgstr "日志"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_record__mode
 msgid "Mode"
-msgstr ""
+msgstr "模式"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_record__model
 #: model:ir.model.fields.selection,name:upgrade_analysis.selection__upgrade_record__type__model
 msgid "Model"
-msgstr ""
+msgstr "模型"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_record__model_original_module
 msgid "Model Original Module"
-msgstr ""
+msgstr "原模块模型"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_record__model_type
 msgid "Model Type"
-msgstr ""
+msgstr "模型类型"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields.selection,name:upgrade_analysis.selection__upgrade_record__mode__modify
 msgid "Modify"
-msgstr ""
+msgstr "修改"
 
 #. module: upgrade_analysis
 #: model_terms:ir.ui.view,arch_db:upgrade_analysis.view_upgrade_record_search
 msgid "Modify Mode"
-msgstr ""
+msgstr "修改模式"
 
 #. module: upgrade_analysis
 #: model:ir.model,name:upgrade_analysis.model_ir_module_module
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_record__module
 msgid "Module"
-msgstr ""
+msgstr "模块"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_install_wizard__module_ids
 msgid "Modules"
-msgstr ""
+msgstr "模块"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_install_wizard__module_qty
 msgid "Modules Quantity"
-msgstr ""
+msgstr "模块数"
 
 #. module: upgrade_analysis
 #: model_terms:ir.ui.view,arch_db:upgrade_analysis.view_upgrade_generate_record_wizard_form
 msgid "Modules initialized and record created"
-msgstr ""
+msgstr "模块初始化完成且记录已创建"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_attribute__name
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_comparison_config__name
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_record__name
 msgid "Name"
-msgstr ""
+msgstr "名称"
 
 #. module: upgrade_analysis
 #: model_terms:ir.ui.view,arch_db:upgrade_analysis.view_upgrade_comparison_config_form
 msgid "New Analysis"
-msgstr ""
+msgstr "新建分析"
 
 #. module: upgrade_analysis
 #. odoo-python
 #: code:addons/upgrade_analysis/models/upgrade_record.py:0
 #, python-format
 msgid "No manifest found in %(addon_dir)s"
-msgstr ""
+msgstr "在目录 %(addon_dir)s 中未找到清单文件"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_record__noupdate
 msgid "Noupdate"
-msgstr ""
+msgstr "不更新"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_comparison_config__password
 msgid "Password"
-msgstr ""
+msgstr "密码"
 
 #. module: upgrade_analysis
 #: model_terms:ir.ui.view,arch_db:upgrade_analysis.view_upgrade_analysis_form
 msgid "Perform Analysis"
-msgstr ""
+msgstr "执行分析"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_comparison_config__port
 msgid "Port"
-msgstr ""
+msgstr "端口"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_record__prefix
 msgid "Prefix"
-msgstr ""
+msgstr "前缀"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_attribute__record_id
 msgid "Record"
-msgstr ""
+msgstr "记录"
 
 #. module: upgrade_analysis
 #: model:ir.ui.menu,name:upgrade_analysis.menu_upgrade_records
 msgid "Records"
-msgstr ""
+msgstr "记录"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_comparison_config__server
 msgid "Server"
-msgstr ""
+msgstr "服务器"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,help:upgrade_analysis.field_upgrade_record__mode
 msgid ""
 "Set to Create if a field is newly created in this module. If this module "
 "modifies an attribute of an existing field, set to Modify."
-msgstr ""
+msgstr "如果字段是在此模块中新创建的，则设置为“创建”。如果此模块修改现有字段的属性，"
+"则设置为“修改”。"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_analysis__state
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_generate_record_wizard__state
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_install_wizard__state
 msgid "State"
-msgstr ""
+msgstr "状态"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_record__suffix
 msgid "Suffix"
-msgstr ""
+msgstr "后缀"
 
 #. module: upgrade_analysis
 #: model_terms:ir.ui.view,arch_db:upgrade_analysis.view_upgrade_comparison_config_form
 msgid "Test Connection"
-msgstr ""
+msgstr "测试连接"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,help:upgrade_analysis.field_upgrade_analysis__upgrade_path
@@ -389,109 +395,111 @@ msgid ""
 "Odoo's --upgrade-path command line option or the 'scripts' subdirectory in "
 "the openupgrade_scripts addon."
 msgstr ""
+"保存Odoo模块分析文件的基本文件路径。该路径取自Odoo命令行选项`--upgrade-"
+"path`或`openupgrade_scripts`附加组件中的`scripts`子目录。"
 
 #. module: upgrade_analysis
 #: model_terms:ir.ui.view,arch_db:upgrade_analysis.view_upgrade_install_wizard_form
 msgid "The modules have been installed successfuly"
-msgstr ""
+msgstr "模块已成功安装"
 
 #. module: upgrade_analysis
 #: model_terms:ir.ui.view,arch_db:upgrade_analysis.view_upgrade_install_wizard_form
 msgid ""
 "This will install the selected modules on the database. Do not continue if "
 "you use this database in production."
-msgstr ""
+msgstr "这将在数据库上安装所选模块。最好不要在生产环境数据库中使用。"
 
 #. module: upgrade_analysis
 #: model_terms:ir.ui.view,arch_db:upgrade_analysis.view_upgrade_generate_record_wizard_form
 msgid ""
 "This will reinitialize all the modules installed on this database. Do not "
 "continue if you use this database in production."
-msgstr ""
+msgstr "这将重新初始化安装在此数据库上的所有模块。最好不要在生产环境数据库中使用。"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_record__type
 msgid "Type"
-msgstr ""
+msgstr "类型"
 
 #. module: upgrade_analysis
 #. odoo-python
 #: code:addons/upgrade_analysis/models/upgrade_analysis.py:0
 #, python-format
 msgid "Unexpected root Element: %(root)s in file: %(file)s"
-msgstr ""
+msgstr "文件: %(file)s 中意外的根元素: %(root)s"
 
 #. module: upgrade_analysis
 #: model:ir.actions.act_window,name:upgrade_analysis.action_upgrade_analysis_tree
 #: model:ir.model,name:upgrade_analysis.model_upgrade_analysis
 #: model:ir.ui.menu,name:upgrade_analysis.menu_upgrade_analysis
 msgid "Upgrade Analyses"
-msgstr ""
+msgstr "升级分析"
 
 #. module: upgrade_analysis
 #: model:ir.ui.menu,name:upgrade_analysis.menu_upgrade
 msgid "Upgrade Analysis"
-msgstr ""
+msgstr "升级分析"
 
 #. module: upgrade_analysis
 #: model:ir.model,name:upgrade_analysis.model_upgrade_attribute
 msgid "Upgrade Attribute"
-msgstr ""
+msgstr "升级属性"
 
 #. module: upgrade_analysis
 #: model:ir.model,name:upgrade_analysis.model_upgrade_comparison_config
 msgid "Upgrade Comparison Configuration"
-msgstr ""
+msgstr "升级比较配置"
 
 #. module: upgrade_analysis
 #: model:ir.model,name:upgrade_analysis.model_upgrade_generate_record_wizard
 msgid "Upgrade Generate Record Wizard"
-msgstr ""
+msgstr "升级生成记录向导"
 
 #. module: upgrade_analysis
 #: model:ir.model,name:upgrade_analysis.model_upgrade_install_wizard
 msgid "Upgrade Install Wizard"
-msgstr ""
+msgstr "升级安装向导"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_analysis__upgrade_path
 msgid "Upgrade Path"
-msgstr ""
+msgstr "升级路径"
 
 #. module: upgrade_analysis
 #: model:ir.model,name:upgrade_analysis.model_upgrade_record
 msgid "Upgrade Record"
-msgstr ""
+msgstr "升级记录"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_comparison_config__username
 msgid "Username"
-msgstr ""
+msgstr "用户名"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_attribute__value
 msgid "Value"
-msgstr ""
+msgstr "值"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_comparison_config__version
 msgid "Version"
-msgstr ""
+msgstr "版本"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_analysis__write_files
 msgid "Write Files"
-msgstr ""
+msgstr "升级路径"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,help:upgrade_analysis.field_upgrade_analysis__write_files
 msgid "Write analysis files to the module directories"
-msgstr ""
+msgstr "将分析文件写入模块目录"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields.selection,name:upgrade_analysis.selection__upgrade_record__type__xmlid
 msgid "XML ID"
-msgstr ""
+msgstr "外部ID"
 
 #. module: upgrade_analysis
 #. odoo-python
@@ -500,19 +508,19 @@ msgstr ""
 msgid ""
 "You are correctly connected to the server %(server)s (version %(version)s) "
 "with the user %(user_name)s"
-msgstr ""
+msgstr "您已成功通过用户 %(user_name)s连接到服务器 %(server)s（版本 %(version)s）"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields.selection,name:upgrade_analysis.selection__upgrade_analysis__state__draft
 msgid "draft"
-msgstr ""
+msgstr "草稿"
 
 #. module: upgrade_analysis
 #: model:ir.actions.act_window,name:upgrade_analysis.action_upgrade_comparison_config_tree
 msgid "upgrade Comparison Configs"
-msgstr ""
+msgstr "升级比较配置"
 
 #. module: upgrade_analysis
 #: model:ir.actions.act_window,name:upgrade_analysis.action_upgrade_record_tree
 msgid "upgrade Records"
-msgstr ""
+msgstr "升级记录"
