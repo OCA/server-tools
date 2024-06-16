@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-01 10:38+0000\n"
-"PO-Revision-Date: 2019-08-31 04:24+0000\n"
-"Last-Translator: 黎伟杰 <674416404@qq.com>\n"
+"PO-Revision-Date: 2024-06-16 11:07+0000\n"
+"Last-Translator: xtanuiha <feihu.zhang@live.com>\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/oca/teams/23907/"
 "zh_CN/)\n"
 "Language: zh_CN\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.8\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: base_exception
 #: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_form
@@ -38,12 +38,12 @@ msgstr "应用于"
 #. module: base_exception
 #: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_form
 msgid "Archived"
-msgstr ""
+msgstr "已归档"
 
 #. module: base_exception
 #: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_form
 msgid "As well as all the libraries provided in safe_eval."
-msgstr ""
+msgstr "以及 safe_eval 中提供的所有库。"
 
 #. module: base_exception
 #: model:ir.model.fields.selection,name:base_exception.selection__exception_rule__exception_type__by_domain
@@ -53,7 +53,7 @@ msgstr "通过域"
 #. module: base_exception
 #: model:ir.model.fields.selection,name:base_exception.selection__exception_rule__exception_type__by_method
 msgid "By method"
-msgstr ""
+msgstr "通过方法"
 
 #. module: base_exception
 #: model:ir.model.fields.selection,name:base_exception.selection__exception_rule__exception_type__by_py_code
@@ -69,11 +69,15 @@ msgid ""
 "with several records\n"
 "By method: allow to select an existing check method"
 msgstr ""
+"通过Python代码：允许定义任意检查\n"
+"通过domain：限制使用Odoo domain进行选择：当对多条记录计算异常时，"
+"性能可能更优\n"
+"通过方法：允许选择一个现有的检查方法"
 
 #. module: base_exception
 #: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_confirm
 msgid "Close"
-msgstr ""
+msgstr "关闭"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule__create_uid
@@ -117,6 +121,9 @@ msgid ""
 " %(rule_name)s \n"
 "(%(error)s)"
 msgstr ""
+"评估异常规则时出现错误：\n"
+"%(rule_name)s\n"
+"（%(error)s）"
 
 #. module: base_exception
 #: model:ir.model,name:base_exception.model_base_exception
@@ -171,9 +178,8 @@ msgstr "异常"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_base_exception__exceptions_summary
-#, fuzzy
 msgid "Exceptions Summary"
-msgstr "异常管理"
+msgstr "异常摘要"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm__exception_ids
@@ -209,7 +215,7 @@ msgstr "忽略异常"
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule__is_blocking
 msgid "Is Blocking"
-msgstr ""
+msgstr "是否阻断"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule__write_uid
@@ -229,7 +235,7 @@ msgstr "主要异常"
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule__method
 msgid "Method"
-msgstr ""
+msgstr "方法"
 
 #. module: base_exception
 #. odoo-python
@@ -276,7 +282,7 @@ msgstr "序列"
 #: code:addons/base_exception/models/base_exception.py:0
 #, python-format
 msgid "The exceptions can not be ignored, because some of them are blocking."
-msgstr ""
+msgstr "无法忽略这些例外，因为其中有一些是阻断性的。"
 
 #. module: base_exception
 #. odoo-python
@@ -285,7 +291,7 @@ msgstr ""
 msgid ""
 "There is a problem of configuration, python code, domain or method is "
 "missing to match the exception type."
-msgstr ""
+msgstr "存在配置问题，缺少与异常类型匹配的Python代码、domain或方法。"
 
 #. module: base_exception
 #: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_form
@@ -302,7 +308,7 @@ msgstr "各种字段可能使用Python代码或Python表达式。可以使用以
 #. module: base_exception
 #: model:ir.model.fields,help:base_exception.field_exception_rule__is_blocking
 msgid "When checked the exception can not be ignored"
-msgstr ""
+msgstr "当被选中时，该异常不能被忽略"
 
 #~ msgid "Last Modified on"
 #~ msgstr "最后修改时间"
