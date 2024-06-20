@@ -7,6 +7,7 @@ import uuid
 from inspect import getmembers, isclass, isfunction
 
 from odoo import fields, models
+from odoo.tools.barcode import get_barcode_check_digit
 from odoo.tools.safe_eval import safe_eval, wrap_module
 
 _logger = logging.getLogger(__name__)
@@ -54,6 +55,7 @@ class IrSequence(models.Model):
             "random": wrap_random,
             "uuid": wrap_uuid,
             "string": wrap_string,
+            "get_barcode_check_digit": get_barcode_check_digit,
         }
 
     def _get_python_value(self, number_next):
