@@ -1,10 +1,10 @@
 # Copyright 2020 ACSONE SA/NV (<http://acsone.eu>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo.tests.common import SavepointCase
+from odoo.tests.common import TransactionCase
 
 
-class TestIrSequence(SavepointCase):
+class TestIrSequence(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -25,7 +25,6 @@ class TestIrSequence(SavepointCase):
         )
 
     def test_standard_sequence(self):
-        # import pdb;pdb.set_trace()
         self.assertEqual(self.sequence.python_code_preview, "AB01C")
         next_number = self.sequence._next()
         self.assertEqual(next_number, "AB01C")
