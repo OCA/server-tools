@@ -375,6 +375,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_res_partner_category__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_res_partner_industry__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_res_partner_title__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_res_remote__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_res_users__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_res_users_apikeys__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_res_users_apikeys_description__assigned_attachment_ids
