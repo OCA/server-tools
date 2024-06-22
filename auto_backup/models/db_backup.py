@@ -5,6 +5,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import logging
+import json
 import os
 import shutil
 import traceback
@@ -12,10 +13,17 @@ from contextlib import contextmanager
 from datetime import datetime, timedelta
 from glob import iglob
 
+# dump tools
+from odoo import SUPERUSER_ID
+import odoo.release
+import odoo.sql_db
+import odoo.tools
+
 from odoo import _, api, exceptions, fields, models, tools
 from odoo.service import db
 
 _logger = logging.getLogger(__name__)
+
 try:
     import pysftp
 except ImportError:  # pragma: no cover
@@ -143,6 +151,58 @@ class DbBackup(models.Model):
             _logger.info("Connection Test Failed!", exc_info=True)
             raise exceptions.Warning(_("Connection Test Failed!"))
 
+    # uanble to inheirt check_db_management_enabled function from odoo.seervice.db
+    # to override list_db restriction. so the dump functions were copied here
+    def ab_dump_db_manifest(self, cr):
+        pg_version = "%d.%d" % divmod(cr._obj.connection.server_version / 100, 100)
+        cr.execute("SELECT name, latest_version FROM ir_module_module WHERE state = 'installed'")
+        modules = dict(cr.fetchall())
+        manifest = {
+            'odoo_dump': '1',
+            'db_name': cr.dbname,
+            'version': odoo.release.version,
+            'version_info': odoo.release.version_info,
+            'major_version': odoo.release.major_version,
+            'pg_version': pg_version,
+            'modules': modules,
+        }
+        return manifest
+
+    def ab_dump_db(self, db_name, stream, backup_format):
+        """Dump database `db` into file-like object `stream` if stream is None
+        return a file object with the dump """
+
+        _logger.info('DUMP DB: %s format %s', db_name, backup_format)
+
+        cmd = ['pg_dump', '--no-owner']
+        cmd.append(db_name)
+
+        if backup_format == 'zip':
+            with odoo.tools.osutil.tempdir() as dump_dir:
+                filestore = odoo.tools.config.filestore(db_name)
+                if os.path.exists(filestore):
+                    shutil.copytree(filestore, os.path.join(dump_dir, 'filestore'))
+                with open(os.path.join(dump_dir, 'manifest.json'), 'w') as fh:
+                    db = odoo.sql_db.db_connect(db_name)
+                    with db.cursor() as cr:
+                        json.dump(self.ab_dump_db_manifest(cr), fh, indent=4)
+                cmd.insert(-1, '--file=' + os.path.join(dump_dir, 'dump.sql'))
+                odoo.tools.exec_pg_command(*cmd)
+                if stream:
+                    odoo.tools.osutil.zip_dir(dump_dir, stream, include_dir=False, fnct_sort=lambda file_name: file_name != 'dump.sql')
+                else:
+                    t=tempfile.TemporaryFile()
+                    odoo.tools.osutil.zip_dir(dump_dir, t, include_dir=False, fnct_sort=lambda file_name: file_name != 'dump.sql')
+                    t.seek(0)
+                    return t
+        else:
+            cmd.insert(-1, '--format=c')
+            stdin, stdout = odoo.tools.exec_pg_command_pipe(*cmd)
+            if stream:
+                shutil.copyfileobj(stdout, stream)
+            else:
+                return stdout
+
     @api.multi
     def action_backup(self):
         """Run selected backups."""
@@ -167,7 +227,7 @@ class DbBackup(models.Model):
                             shutil.copyfileobj(cached, destiny)
                     # Generate new backup
                     else:
-                        db.dump_db(
+                        rec.ab_dump_db(
                             self.env.cr.dbname,
                             destiny,
                             backup_format=rec.backup_format
