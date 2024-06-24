@@ -100,21 +100,27 @@ class IrModel(models.Model):
     def _default_automatic_custom_tracking_domain_rules(self):
         return {
             "product.product": [
+                ("readonly", "=", False),
                 "|",
                 ("ttype", "!=", "one2many"),
                 ("name", "in", ["barcode_ids"]),
             ],
             "sale.order": [
+                ("readonly", "=", False),
                 "|",
                 ("ttype", "!=", "one2many"),
                 ("name", "in", ["order_line"]),
             ],
             "account.move": [
+                ("readonly", "=", False),
                 "|",
                 ("ttype", "!=", "one2many"),
                 ("name", "in", ["invoice_line_ids"]),
             ],
-            "default_automatic_rule": [("ttype", "!=", "one2many")],
+            "default_automatic_rule": [
+                ("ttype", "!=", "one2many"),
+                ("readonly", "=", False),
+            ],
         }
 
     @api.depends("automatic_custom_tracking")
@@ -176,22 +182,24 @@ class IrModelFields(models.Model):
         for record in self:
             record.native_tracking = bool(record.tracking)
 
-    @api.depends("readonly", "related", "store")
+    def _get_trackable_blacklist_models(self):
+        return [
+            "mail.activity.mixin",
+            "mail.alias.mixin",
+            "mail.render.mixin",
+            "mail.thread",
+            "mail.thread.blacklist",
+            "mail.thread.cc",
+        ]
+
+    @api.depends("related")
     def _compute_trackable(self):
-        blacklists = [
-            "activity_ids",
-            "message_ids",
-            "message_last_post",
-            "message_main_attachment",
-            "message_main_attachement_id",
+        blacklisted_models = self._get_trackable_blacklist_models()
+        blacklisted_fields = [
+            fname for model in blacklisted_models for fname in self.env[model]._fields
         ]
         for rec in self:
-            rec.trackable = (
-                rec.name not in blacklists
-                and rec.store
-                and not rec.readonly
-                and not rec.related
-            )
+            rec.trackable = rec.name not in blacklisted_fields and not rec.related
 
     def write(self, vals):
         custom_tracking = None
