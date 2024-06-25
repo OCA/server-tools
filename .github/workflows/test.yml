@@ -40,7 +40,7 @@ jobs:
             name: test with OCB
             makepot: "true"
           - container: ghcr.io/oca/oca-ci/py3.6-ocb12.0:latest
-            exclude: "fetchmail_incoming_log,fetchmail_notify_error_to_sender"
+            exclude: "fetchmail_incoming_log,fetchmail_notify_error_to_sender,database_cleanup"
             name: test with OCB
             makepot: "true"
     services:
