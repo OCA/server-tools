@@ -50,7 +50,6 @@ class IrModel(models.Model):
             }
         }
         """
-        self = self.sudo()
         fields = self.env["ir.model.fields"].search(
             [
                 ("custom_tracking", "=", True),
@@ -66,27 +65,17 @@ class IrModel(models.Model):
         custom_tracked_fields = self._get_custom_tracked_fields_per_model()
         res = {}
         for model in related_models:
-            if model.model not in self.env:
-                # If the model do not exist skip it (ex: during module update)
-                continue
             if model.model in custom_tracked_fields:
                 tracked_fields = custom_tracked_fields[model.model]
             else:
                 tracked_fields = model.field_id.filtered(
-                    lambda s: not s.readonly
-                    and not s.related
-                    and not s.ttype == "one2many"
-                    and s.name in self.env[model.model]._fields
+                    lambda s: not s.readonly and not s.related
                 ).mapped("name")
             res[model.model] = {"fields": tracked_fields, "notify": []}
 
         for field in fields:
             model_name = field.model_id.model
-            if (
-                model_name in self.env
-                and self.env[model_name]._fields.get(field.name)
-                and field.relation in res
-            ):
+            if model_name in self.env and self.env[model_name]._fields.get(field.name):
                 res[field.relation]["notify"].append(
                     [self.env[model_name]._fields[field.name].inverse_name, field.name]
                 )

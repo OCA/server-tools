@@ -3,24 +3,24 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 
-from collections import defaultdict
+from collections import defaultdict, namedtuple
 
-from odoo import api, models, tools
+from odoo import _, api, models, tools
 
 from ..tools import format_m2m
 
 # To avoid conflict with other module and avoid too long function name
-# specific tracking_manager method are prefixed with _tm
+# all tracking_manager method are prefixed with _tm
+
+
+Tracker = namedtuple("TmTracker", ["model", "data", "before"])
 
 
 class Base(models.AbstractModel):
     _inherit = "base"
 
-    @tools.ormcache()
-    def is_tracked_by_o2m(self):
-        return self._name in self.env["ir.model"]._get_model_tracked_by_o2m()
-
-    def _tm_get_fields_to_notify(self):
+    @property
+    def _tm_o2m_field_to_notify(self):
         return (
             self.env["ir.model"]
             ._get_model_tracked_by_o2m()
@@ -28,7 +28,8 @@ class Base(models.AbstractModel):
             .get("notify", [])
         )
 
-    def _tm_get_fields_to_track(self):
+    @property
+    def _tm_field_to_track(self):
         # We track manually
         # all fields that belong to a model tracked via a one2many
         # all the many2many fields
@@ -39,31 +40,68 @@ class Base(models.AbstractModel):
             .get("fields", [])
         )
 
+    @tools.ormcache()
+    def _is_custom_tracked(self):
+        return self._name in self.env["ir.model"]._get_custom_tracked_fields_per_model()
+
+    @tools.ormcache()
+    def _is_custom_tracked_by_o2m(self):
+        return self._name in self.env["ir.model"]._get_model_tracked_by_o2m()
+
+    def with_tm_tracker(self):
+        if self._context.get("tm_tracker") and not hasattr(self, "_mail_flat_thread"):
+            # The current model do not support message_ids (the class is not inherited
+            # from mail thread) and the change is done from a model that support
+            # the message_ids, so message should be posted there
+            return self
+        else:
+            tm_tracker = Tracker(
+                self._name,
+                defaultdict(lambda: defaultdict(list)),
+                defaultdict(lambda: defaultdict()),
+            )
+            return self.with_context(tm_tracker=tm_tracker)
+
+    def _tm_add_message(self, mode, record_name, field_name, changes=None):
+        self.ensure_one()
+        tracker = self._context.get("tm_tracker")
+        tracker.data[self][field_name].append(
+            {
+                "mode": mode,
+                "record": record_name,
+                "changes": changes,
+            }
+        )
+
     def _tm_notify_owner(self, mode, changes=None):
         """Notify all model that have a one2many linked to the record changed"""
         self.ensure_one()
-        data = self.env.cr.precommit.data.setdefault(
-            "tracking.manager.data",
-            defaultdict(lambda: defaultdict(lambda: defaultdict(list))),
-        )
-        for field_name, owner_field_name in self._tm_get_fields_to_notify():
-            owner = self[field_name]
-            data[owner._name][owner.id][owner_field_name].append(
-                {
-                    "mode": mode,
-                    "record": self.display_name,
-                    "changes": changes,
-                }
+        for field_name, inverse_field_name in self._tm_o2m_field_to_notify:
+            self[field_name]._tm_add_message(
+                mode, self.display_name, inverse_field_name, changes
             )
 
-    def _tm_get_field_description(self, field_name):
-        return self._fields[field_name].get_description(self.env)["string"]
-
-    def _tm_get_changes(self, values):
+    def _tm_get_m2m_change(self, field_name, value):
         self.ensure_one()
+        if len(value) == 1 and len(value[0]) == 3 and value[0][0] == 6:
+            new_ids = set(value[0][2])
+            old_ids = set(self[field_name].ids)
+            if new_ids != old_ids:
+                removed_ids = old_ids - new_ids
+                added_ids = new_ids - old_ids
+                return (
+                    self[field_name].browse(removed_ids).mapped("display_name"),
+                    self[field_name].browse(added_ids).mapped("display_name"),
+                )
+        return [], []
+
+    def _tm_get_changes(self, fields_name, vals):
+        self.ensure_one()
+        tracker = self._context.get("tm_tracker")
         changes = []
-        for field_name, before in values.items():
+        for field_name in fields_name:
             field = self._fields[field_name]
+            before = tracker.before[self][field_name]
             if before != self[field_name]:
                 if field.type == "many2many":
                     old = format_m2m(before)
@@ -76,21 +114,38 @@ class Base(models.AbstractModel):
                     new = self[field_name]
                 changes.append(
                     {
-                        "name": self._tm_get_field_description(field_name),
+                        "name": _(self._fields[field_name].string),
                         "old": old,
                         "new": new,
                     }
                 )
         return changes
 
-    def _tm_post_message(self, data):
-        for model_name, model_data in data.items():
-            for record_id, messages_by_field in model_data.items():
-                record = self.env[model_name].browse(record_id)
+    def _tm_track_before_write(self, vals):
+        tracked_fields = set(self._tm_field_to_track) & (vals.keys())
+        if tracked_fields:
+            tracker = self._context.get("tm_tracker")
+            for record in self:
+                for field_name in self._tm_field_to_track:
+                    if field_name in vals:
+                        tracker.before[record][field_name] = record[field_name]
+
+    def _tm_track_write(self, vals):
+        tracked_fields = set(self._tm_field_to_track) & (vals.keys())
+        if tracked_fields:
+            for record in self:
+                changes = record._tm_get_changes(tracked_fields, vals)
+                if changes:
+                    record._tm_notify_owner("update", changes)
+
+    def _tm_post_message(self):
+        tracker = self._context.get("tm_tracker")
+        if tracker and tracker.model == self._name and tracker.data:
+            for record, messages_by_field in tracker.data.items():
                 messages = [
                     {
-                        "name": record._tm_get_field_description(field_name),
                         "messages": messages,
+                        "name": _(record._fields[field_name].string),
                     }
                     for field_name, messages in messages_by_field.items()
                 ]
@@ -101,56 +156,30 @@ class Base(models.AbstractModel):
                     subtype_id=self.env.ref("mail.mt_note").id,
                 )
 
-    def _tm_prepare_o2m_tracking(self):
-        fnames = self._tm_get_fields_to_track()
-        if not fnames:
-            return
-        self.env.cr.precommit.add(self._tm_finalize_o2m_tracking)
-        initial_values = self.env.cr.precommit.data.setdefault(
-            f"tracking.manager.before.{self._name}", {}
-        )
-        for record in self:
-            values = initial_values.setdefault(record.id, {})
-            if values is not None:
-                for fname in fnames:
-                    values.setdefault(fname, record[fname])
-
-    def _tm_finalize_o2m_tracking(self):
-        initial_values = self.env.cr.precommit.data.pop(
-            f"tracking.manager.before.{self._name}", {}
-        )
-        for _id, values in initial_values.items():
-            # Always use sudo in case that the record have been modified using sudo
-            record = self.sudo().browse(_id)
-            if not record.exists():
-                # if a record have been modify and then deleted
-                # it's not need to track the change so skip it
-                continue
-            changes = record._tm_get_changes(values)
-            if changes:
-                record._tm_notify_owner("update", changes)
-        data = self.env.cr.precommit.data.pop("tracking.manager.data", {})
-        self._tm_post_message(data)
-        self.flush_model()
-
-    def _tm_track_create_unlink(self, mode):
-        self.env.cr.precommit.add(self._tm_finalize_o2m_tracking)
-        for record in self:
-            record._tm_notify_owner(mode)
-
     def write(self, vals):
-        if self.is_tracked_by_o2m():
-            self._tm_prepare_o2m_tracking()
-        return super().write(vals)
+        if self._is_custom_tracked_by_o2m() or self._is_custom_tracked():
+            self = self.with_tm_tracker()
+            self._tm_track_before_write(vals)
+        res = super().write(vals)
+        if self._is_custom_tracked_by_o2m() or self._is_custom_tracked():
+            self._tm_track_write(vals)
+            self._tm_post_message()
+        return res
 
     @api.model_create_multi
     def create(self, list_vals):
-        records = super().create(list_vals)
-        if self.is_tracked_by_o2m():
-            records._tm_track_create_unlink("create")
-        return records
+        ori_records = super().create(list_vals)
+        if self._is_custom_tracked_by_o2m():
+            records = ori_records.with_tm_tracker()
+            for record in records:
+                record._tm_notify_owner("create")
+            records._tm_post_message()
+        return ori_records
 
     def unlink(self):
-        if self.is_tracked_by_o2m():
-            self._tm_track_create_unlink("unlink")
+        if self._is_custom_tracked_by_o2m():
+            records = self.with_tm_tracker()
+            for record in records:
+                record._tm_notify_owner("unlink")
+            records._tm_post_message()
         return super().unlink()
