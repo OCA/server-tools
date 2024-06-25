@@ -16,13 +16,12 @@ class MailTrackingValue(models.Model):
         new_value,
         col_name,
         col_info,
-        tracking_sequence,
-        model_name,
+        tracking_sequence
     ):
         if col_info["type"] == "many2many":
             col_info["type"] = "text"
             initial_value = format_m2m(initial_value)
             new_value = format_m2m(new_value)
         return super().create_tracking_values(
-            initial_value, new_value, col_name, col_info, tracking_sequence, model_name
+            initial_value, new_value, col_name, col_info, tracking_sequence
         )
