@@ -4,10 +4,10 @@
 
 from odoo_test_helper import FakeModelLoader
 
-from odoo.tests.common import TransactionCase
+from odoo.tests.common import SavepointCase
 
 
-class TestTrackingManager(TransactionCase):
+class TestTrackingManager(SavepointCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -16,7 +16,7 @@ class TestTrackingManager(TransactionCase):
         cls.loader.backup_registry()
         from .models import ResPartnerBank
 
-        cls.loader.update_registry((ResPartnerBank,))
+        cls.loader.update_registry([ResPartnerBank])
 
         cls.partner_categ_1, cls.partner_categ_2, cls.partner_categ_3 = cls.env[
             "res.partner.category"
@@ -36,7 +36,7 @@ class TestTrackingManager(TransactionCase):
         )
         cls.partner_model = cls.env.ref("base.model_res_partner")
         cls._active_tracking(["bank_ids", "category_id"])
-        cls.flush_tracking()
+        cls.flush_tracking(cls.partner)
         cls.partner.message_ids.unlink()
 
     @classmethod
@@ -72,15 +72,14 @@ class TestTrackingManager(TransactionCase):
         self.assertTrue(field.custom_tracking)
 
     @classmethod
-    def flush_tracking(cls):
+    def flush_tracking(cls, record):
         """Force the creation of tracking values."""
-        cls.env["base"].flush_model()
-        cls.env.cr.precommit.run()
+        record.invalidate_cache()
 
     @property
     def messages(self):
         # Force the creation of tracking values
-        self.flush_tracking()
+        self.flush_tracking(self.partner)
         return self.partner.message_ids
 
     def test_m2m_add_line(self):

@@ -77,9 +77,14 @@ class Base(models.AbstractModel):
         """Notify all model that have a one2many linked to the record changed"""
         self.ensure_one()
         for field_name, inverse_field_name in self._tm_o2m_field_to_notify:
-            self[field_name]._tm_add_message(
-                mode, self.display_name, inverse_field_name, changes
-            )
+            if field_name == "res_id":
+                record = self.env[self.res_model].browse(self.res_id).exists()
+            else:
+                record = self[field_name]
+            if record:
+                record._tm_add_message(
+                    mode, self.display_name, inverse_field_name, changes
+                )
 
     def _tm_get_m2m_change(self, field_name, value):
         self.ensure_one()
