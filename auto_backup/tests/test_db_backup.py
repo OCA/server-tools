@@ -12,7 +12,8 @@ from unittest.mock import PropertyMock, patch
 
 from odoo import tools
 from odoo.exceptions import UserError
-from odoo.tests import common
+
+from odoo.addons.base.tests.common import BaseCommon
 
 _logger = logging.getLogger(__name__)
 try:
@@ -27,13 +28,14 @@ class_name = "%s.DbBackup" % model
 
 class TestConnectionException(pysftp.ConnectionException):
     def __init__(self):
-        super(TestConnectionException, self).__init__("test", "test")
+        super().__init__("test", "test")
 
 
-class TestDbBackup(common.TransactionCase):
-    def setUp(self):
-        super(TestDbBackup, self).setUp()
-        self.Model = self.env["db.backup"]
+class TestDbBackup(BaseCommon):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.Model = cls.env["db.backup"]
 
     @contextmanager
     def mock_assets(self):
@@ -77,13 +79,7 @@ class TestDbBackup(common.TransactionCase):
         """It should create proper SFTP URI"""
         rec_id = self.new_record()
         self.assertEqual(
-            "sftp://%(user)s@%(host)s:%(port)s%(folder)s"
-            % {
-                "user": self.vals["sftp_user"],
-                "host": self.vals["sftp_host"],
-                "port": self.vals["sftp_port"],
-                "folder": self.vals["folder"],
-            },
+            f"sftp://{self.vals['sftp_user']}@{self.vals['sftp_host']}:{self.vals['sftp_port']}{self.vals['folder']}",
             rec_id.name,
         )
 

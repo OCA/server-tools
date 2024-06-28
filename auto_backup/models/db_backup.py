@@ -216,8 +216,7 @@ class DbBackup(models.Model):
             _logger.exception("Database backup failed: %s", self.name)
             escaped_tb = tools.html_escape(traceback.format_exc())
             self.message_post(  # pylint: disable=translation-required
-                body="<p>%s</p><pre>%s</pre>"
-                % (_("Database backup failed."), escaped_tb),
+                body=f"<p>{_('Database backup failed.')}</p><pre>{escaped_tb}</pre>",
                 subtype_id=self.env.ref("auto_backup.mail_message_subtype_failure").id,
             )
         else:
@@ -264,8 +263,8 @@ class DbBackup(models.Model):
             _logger.exception("Cleanup of old database backups failed: %s")
             escaped_tb = tools.html_escape(traceback.format_exc())
             self.message_post(  # pylint: disable=translation-required
-                body="<p>%s</p><pre>%s</pre>"
-                % (_("Cleanup of old database backups failed."), escaped_tb),
+                body=f"<p>{_('Cleanup of old database backups failed.')}</p>"
+                f"<pre>{escaped_tb}</pre>",
                 subtype_id=self.env.ref("auto_backup.failure").id,
             )
         else:
