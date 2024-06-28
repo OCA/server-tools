@@ -27,12 +27,12 @@ class_name = "%s.DbBackup" % model
 
 class TestConnectionException(pysftp.ConnectionException):
     def __init__(self):
-        super(TestConnectionException, self).__init__("test", "test")
+        super().__init__("test", "test")
 
 
 class TestDbBackup(common.TransactionCase):
     def setUp(self):
-        super(TestDbBackup, self).setUp()
+        super().setUp()
         self.Model = self.env["db.backup"]
 
     @contextmanager
@@ -77,13 +77,7 @@ class TestDbBackup(common.TransactionCase):
         """It should create proper SFTP URI"""
         rec_id = self.new_record()
         self.assertEqual(
-            "sftp://%(user)s@%(host)s:%(port)s%(folder)s"
-            % {
-                "user": self.vals["sftp_user"],
-                "host": self.vals["sftp_host"],
-                "port": self.vals["sftp_port"],
-                "folder": self.vals["folder"],
-            },
+            f"sftp://{self.vals['sftp_user']}@{self.vals['sftp_host']}:{self.vals['sftp_port']}{self.vals['folder']}",
             rec_id.name,
         )
 
