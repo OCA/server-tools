@@ -177,7 +177,6 @@ class DbBackup(models.Model):
             for rec in sftp:
                 filename = self.filename(datetime.now(), ext=rec.backup_format)
                 with rec.backup_log():
-
                     cached = db.dump_db(
                         self.env.cr.dbname, None, backup_format=rec.backup_format
                     )
@@ -250,7 +249,7 @@ class DbBackup(models.Model):
                                 name.endswith(".%s" % file_extension)
                                 and os.path.basename(name) < oldest
                             ):
-                                remote.unlink("{}/{}".format(rec.folder, name))
+                                remote.unlink(f"{rec.folder}/{name}")
 
     @contextmanager
     def cleanup_log(self):
