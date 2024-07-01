@@ -59,8 +59,11 @@ def _extend_name_results(self, domain, results, limit, name_get_uid):
     result_count = len(results)
     if result_count < limit:
         domain += [("id", "not in", results)]
-        rec_ids = self._search(
-            domain, limit=limit - result_count, access_rights_uid=name_get_uid
+        # We resolve the Query object right on so we can join both results
+        rec_ids = list(
+            self._search(
+                domain, limit=limit - result_count, access_rights_uid=name_get_uid
+            )
         )
         results.extend(rec_ids)
     return results
@@ -81,6 +84,9 @@ def patch_name_search():
             name_get_uid=name_get_uid,
         )
         if name and _get_use_smart_name_search(self.sudo()) and operator in ALLOWED_OPS:
+            # _name_search.origin returns a query object. We need to resolve it
+            # to extend it
+            res = list(res)
             limit = limit or 0
 
             # we add domain
