@@ -45,7 +45,7 @@ addon | version | maintainers | summary
 [base_m2m_custom_field](base_m2m_custom_field/) | 14.0.1.1.0 |  | Customizations of Many2many
 [base_model_restrict_update](base_model_restrict_update/) | 14.0.1.1.0 |  | Update Restrict Model
 [base_multi_image](base_multi_image/) | 14.0.1.0.1 |  | Allow multiple images for database objects
-[base_name_search_improved](base_name_search_improved/) | 14.0.1.1.1 |  | Friendlier search when typing in relation fields
+[base_name_search_improved](base_name_search_improved/) | 14.0.1.1.2 |  | Friendlier search when typing in relation fields
 [base_name_search_multi_lang](base_name_search_multi_lang/) | 14.0.1.0.0 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Name search by multiple active language
 [base_order_by_related](base_order_by_related/) | 14.0.1.0.0 | [![thomaspaulb](https://github.com/thomaspaulb.png?size=30px)](https://github.com/thomaspaulb) | Order by non-stored related fields
 [base_remote](base_remote/) | 14.0.1.0.1 |  | Remote Base
