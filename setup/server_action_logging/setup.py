@@ -1,6 +1,6 @@
 import setuptools
 
 setuptools.setup(
-    setup_requires=['setuptools-odoo'],
+    setup_requires=['whool'],
     odoo_addon=True,
 )
