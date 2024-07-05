@@ -67,6 +67,7 @@ Contributors
 -  Denis Valenchyts <denis@ventor.tech> (VentorTech OU
    <https://ventor.tech>)
 -  foram shah <foram.shah@initos.com>
+-  Carlos Jimeno <carlos.jimeno@braintec.com> (https://braintec.com)
 
 Maintainers
 -----------
