@@ -17,13 +17,13 @@ Fetchmail Notify Error to Sender
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github
-    :target: https://github.com/OCA/server-tools/tree/15.0/fetchmail_notify_error_to_sender
+    :target: https://github.com/OCA/server-tools/tree/17.0/fetchmail_notify_error_to_sender
     :alt: OCA/server-tools
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/server-tools-15-0/server-tools-15-0-fetchmail_notify_error_to_sender
+    :target: https://translation.odoo-community.org/projects/server-tools-17-0/server-tools-17-0-fetchmail_notify_error_to_sender
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/server-tools&target_branch=15.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/server-tools&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
@@ -49,8 +49,10 @@ Configuration
 
 To configure this module, you need to:
 
-#. Configure your fetchmail server setting 'Error notice template' = 'Fetchmail - error notice'.
-#. You can edit the 'Fetchmail - error notice' email template according to your needs.
+1. Configure your fetchmail server setting 'Error notice template' =
+   'Fetchmail - error notice'.
+2. You can edit the 'Fetchmail - error notice' email template according
+   to your needs.
 
 Bug Tracker
 ===========
@@ -58,7 +60,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/server-tools/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/server-tools/issues/new?body=module:%20fetchmail_notify_error_to_sender%0Aversion:%2015.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/server-tools/issues/new?body=module:%20fetchmail_notify_error_to_sender%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -66,23 +68,25 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Agile Business Group
 * ForgeFlow
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Lorenzo Battistini <lorenzo.battistini@agilebg.com>
-* Miquel Raïch <miquel.raich@forgeflow.com> (migration to v9 and v10)
-* Hai Dinh <haidd.uit@gmail.com> (migration to V11)
-* Nedas Zilinskas <nedas.zilinskas@xpansa.com> (Ventor, Xpansa Group <https://ventor.tech/>)
-* Denis Valenchyts <denis@ventor.tech> (VentorTech OU <https://ventor.tech>)
-* Helly kapatel <helly.kapatel@initos.com>
+-  Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+-  Miquel Raïch <miquel.raich@forgeflow.com> (migration to v9 and v10)
+-  Hai Dinh <haidd.uit@gmail.com> (migration to V11)
+-  Nedas Zilinskas <nedas.zilinskas@xpansa.com> (Ventor, Xpansa Group
+   <https://ventor.tech/>)
+-  Denis Valenchyts <denis@ventor.tech> (VentorTech OU
+   <https://ventor.tech>)
+-  Helly kapatel <helly.kapatel@initos.com>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -94,6 +98,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/15.0/fetchmail_notify_error_to_sender>`_ project on GitHub.
+This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/17.0/fetchmail_notify_error_to_sender>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
