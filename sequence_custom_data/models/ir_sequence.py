@@ -70,5 +70,5 @@ class IrSequence(models.Model):
                     "(code: {code}).\n"
                     "Please check prefix and suffix with available values."
                 ).format(code=self.code)
-                raise exceptions.UserError(msg)
+                raise exceptions.UserError(msg) from e
         return interpolated_prefix, interpolated_suffix

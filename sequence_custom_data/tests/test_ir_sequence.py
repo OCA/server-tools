@@ -3,11 +3,11 @@
 from uuid import uuid4
 
 from odoo import exceptions, fields
-from odoo.tests.common import SavepointCase
+from odoo.tests.common import TransactionCase
 from odoo.tools import mute_logger
 
 
-class TestIrSequence(SavepointCase):
+class TestIrSequence(TransactionCase):
     """
     Tests for ir.sequence
     """
@@ -15,6 +15,7 @@ class TestIrSequence(SavepointCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
         cls.Sequence = cls.env["ir.sequence"]
         cls.sequence = cls.Sequence.create(
             {
@@ -103,5 +104,5 @@ class TestIrSequence(SavepointCase):
             self.sequence._get_prefix_suffix()
         # Just to ensure it's the expected exception.
         expected_msg = "Please check prefix and suffix with available values"
-        self.assertIn(expected_msg, em.exception.name)
-        self.assertIn(self.sequence.code, em.exception.name)
+        self.assertIn(expected_msg, em.exception.args[0])
+        self.assertIn(self.sequence.code, em.exception.args[0])
