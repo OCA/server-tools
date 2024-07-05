@@ -13,6 +13,7 @@ class MailThread(models.AbstractModel):
     def message_route(
         self, message, message_dict, model=None, thread_id=None, custom_values=None
     ):
+        res = []
         try:
             res = super().message_route(
                 message,
@@ -33,5 +34,4 @@ class MailThread(models.AbstractModel):
             if not fetchmail_server.error_notice_template_id:
                 raise ve
             fetchmail_server.error_notice_template_id.send_mail(fetchmail_server.id)
-            raise ve
         return res
