@@ -6,7 +6,7 @@
     codes into the sequence (used for prefix/suffix).""",
     "author": "ACSONE SA/NV,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/server-tools",
-    "version": "13.0.1.0.1",
+    "version": "16.0.1.0.1",
     "license": "AGPL-3",
     "category": "Generic Modules",
     "depends": ["base"],
