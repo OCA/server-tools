@@ -61,7 +61,7 @@ class XLSXImport(models.AbstractModel):
     @api.model
     def _get_field_type(self, model, field):
         try:
-            record = self.env[model].new()
+            record = self.env[model].new({})
             for f in field.split("/"):
                 field_type = record._fields[f].type
                 if field_type in ("one2many", "many2many"):
