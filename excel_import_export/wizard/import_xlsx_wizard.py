@@ -148,6 +148,7 @@ class ImportXLSXWizard(models.TransientModel):
             return vals
         self.write({"state": "get"})
         return {
+            "name": _("Import Excel"),
             "type": "ir.actions.act_window",
             "res_model": self._name,
             "view_mode": "form",

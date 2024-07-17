@@ -2,7 +2,6 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
 
 import base64
-import json
 import os
 from ast import literal_eval
 from os.path import join as opj
@@ -126,9 +125,7 @@ class XLSXTemplate(models.Model):
 
     def _compute_result_field(self):
         for rec in self:
-            rec.result_field = (
-                ("x_%s_results" % rec.id) if rec.result_model_id else False
-            )
+            rec.result_field = (f"x_{rec.id}_results") if rec.result_model_id else False
 
     @api.constrains("redirect_action", "res_model")
     def _check_action_model(self):
@@ -139,8 +136,10 @@ class XLSXTemplate(models.Model):
                 and rec.res_model != rec.redirect_action.res_model
             ):
                 raise ValidationError(
-                    _("The selected redirect action is " "not for model %s")
-                    % rec.res_model
+                    _(
+                        f"The selected redirect action is "
+                        f"not for model {rec.res_model}"
+                    )
                 )
 
     @api.model
@@ -453,7 +452,7 @@ self['{}'] = self.env['{}'].search(self.safe_domain(self.domain))
             "binding_type": "action",
             "target": "new",
             "view_mode": "form",
-            "context": json.dumps(context_dict),
+            "context": context_dict,
         }
         action = self.env["ir.actions.act_window"].create(vals)
         self.export_action_id = action
@@ -481,7 +480,7 @@ self['{}'] = self.env['{}'].search(self.safe_domain(self.domain))
             "binding_type": "action",
             "target": "new",
             "view_mode": "form",
-            "context": json.dumps(context_dict),
+            "context": context_dict,
         }
         action = self.env["ir.actions.act_window"].create(vals)
         self.import_action_id = action

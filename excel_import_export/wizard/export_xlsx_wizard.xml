@@ -10,7 +10,7 @@
             <form string="Get Import Template">
                 <field invisible="1" name="state" />
                 <field name="name" invisible="1" />
-                <group states="choose">
+                <group invisible="state != 'choose'">
                     <group>
                         <field name="template_id" widget="selection" />
                     </group>
@@ -19,7 +19,7 @@
                         <field name="res_ids" invisible="1" />
                     </group>
                 </group>
-                <div states="get">
+                <div invisible="state != 'get'">
                     <h2>Complete Prepare File (.xlsx)</h2>
                     <p>Here is the exported file: <field
                             name="data"
@@ -27,7 +27,7 @@
                             filename="name"
                         /></p>
                 </div>
-                <footer states="choose">
+                <footer invisible="state != 'choose'">
                   <button
                         name="action_export"
                         string="Export"
@@ -41,7 +41,7 @@
                         class="oe_link"
                     />
               </footer>
-                <footer states="get">
+                <footer invisible="state != 'get'">
                     <button special="cancel" string="Close" type="object" />
                 </footer>
             </form>
