@@ -3,5 +3,6 @@ astor
 dataclasses
 mako
 odoorpc
+openpyxl
 openupgradelib
 sentry_sdk<=1.9.0

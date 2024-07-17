@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
 
 import base64
+import json
 import os
 from ast import literal_eval
 from os.path import join as opj
@@ -436,6 +437,13 @@ self['{}'] = self.env['{}'].search(self.safe_domain(self.domain))
 
     def add_export_action(self):
         self.ensure_one()
+        context_dict = {
+            "template_domain": [
+                ("res_model", "=", self.res_model),
+                ("fname", "=", self.fname),
+                ("gname", "=", False),
+            ]
+        }
         vals = {
             "name": "Export Excel",
             "res_model": "export.xlsx.wizard",
@@ -445,12 +453,7 @@ self['{}'] = self.env['{}'].search(self.safe_domain(self.domain))
             "binding_type": "action",
             "target": "new",
             "view_mode": "form",
-            "context": """
-                {'template_domain': [('res_model', '=', '%s'),
-                                     ('fname', '=', '%s'),
-                                     ('gname', '=', False)]}
-            """
-            % (self.res_model, self.fname),
+            "context": json.dumps(context_dict),
         }
         action = self.env["ir.actions.act_window"].create(vals)
         self.export_action_id = action
@@ -462,6 +465,13 @@ self['{}'] = self.env['{}'].search(self.safe_domain(self.domain))
 
     def add_import_action(self):
         self.ensure_one()
+        context_dict = {
+            "template_domain": [
+                ("res_model", "=", self.res_model),
+                ("fname", "=", self.fname),
+                ("gname", "=", False),
+            ]
+        }
         vals = {
             "name": "Import Excel",
             "res_model": "import.xlsx.wizard",
@@ -471,12 +481,7 @@ self['{}'] = self.env['{}'].search(self.safe_domain(self.domain))
             "binding_type": "action",
             "target": "new",
             "view_mode": "form",
-            "context": """
-                {'template_domain': [('res_model', '=', '%s'),
-                                     ('fname', '=', '%s'),
-                                     ('gname', '=', False)]}
-            """
-            % (self.res_model, self.fname),
+            "context": json.dumps(context_dict),
         }
         action = self.env["ir.actions.act_window"].create(vals)
         self.import_action_id = action
@@ -516,7 +521,7 @@ self['{}'] = self.env['{}'].search(self.safe_domain(self.domain))
         # Create menu
         vals = {
             "name": self.name,
-            "action": "{},{}".format(action._name, action.id),
+            "action": f"{action._name},{action.id}",
         }
         menu = self.env["ir.ui.menu"].create(vals)
         self.report_menu_id = menu
