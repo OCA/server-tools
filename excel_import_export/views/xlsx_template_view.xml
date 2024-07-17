@@ -21,7 +21,7 @@
                             name="add_report_menu"
                             string="Add Report Menu"
                             type="object"
-                            attrs="{'invisible': ['|', ('use_report_wizard', '=', False), ('report_menu_id', '!=', False)]}"
+                            invisible="not use_report_wizard or report_menu_id"
                             icon="fa-plus-square"
                             help="Add new report menu at root level"
                             class="oe_stat_button"
@@ -30,7 +30,7 @@
                             name="remove_report_menu"
                             string="Remove Report Menu"
                             type="object"
-                            attrs="{'invisible': [('report_menu_id', '=', False)]}"
+                            invisible="not report_menu_id"
                             icon="fa-minus-square"
                             class="oe_stat_button"
                         />
@@ -42,31 +42,22 @@
                         <group>
                             <field name="description" />
                             <field name="to_csv" />
-                            <field
-                                name="csv_delimiter"
-                                attrs="{'invisible': [('to_csv', '=', False)]}"
-                            />
-                            <field
-                                name="csv_extension"
-                                attrs="{'invisible': [('to_csv', '=', False)]}"
-                            />
-                            <field
-                                name="csv_quote"
-                                attrs="{'invisible': [('to_csv', '=', False)]}"
-                            />
+                            <field name="csv_delimiter" invisible="not to_csv" />
+                            <field name="csv_extension" invisible="not to_csv" />
+                            <field name="csv_quote" invisible="not to_csv" />
                             <field name="use_report_wizard" />
                             <field
                                 name="report_menu_id"
-                                attrs="{'invisible': [('report_menu_id', '=', False)]}"
+                                invisible="not report_menu_id"
                             />
                             <field
                                 name="result_model_id"
-                                attrs="{'invisible': [('use_report_wizard', '=', False)],
-                                        'required': [('use_report_wizard', '=', True)]}"
+                                invisible="not use_report_wizard"
+                                required="use_report_wizard"
                             />
                             <field
                                 name="result_field"
-                                attrs="{'invisible': [('use_report_wizard', '=', False)]}"
+                                invisible="not use_report_wizard"
                             />
                         </group>
                         <group>
@@ -79,22 +70,19 @@
                     </group>
                     <notebook>
                         <page string="Export">
-                            <div
-                                name="export_actions"
-                                attrs="{'invisible': [('use_report_wizard', '=', True)]}"
-                            >
+                            <div name="export_actions" invisible="use_report_wizard">
                                 <button
                                     name="add_export_action"
                                     class="oe_highlight"
                                     type="object"
                                     string="Add Export Action"
-                                    attrs="{'invisible': [('export_action_id', '!=', False)]}"
+                                    invisible="export_action_id"
                                 />
                                 <button
                                     name="remove_export_action"
                                     type="object"
                                     string="Remove Export Action"
-                                    attrs="{'invisible': [('export_action_id', '=', False)]}"
+                                    invisible="not export_action_id"
                                 />
                                 <field name="export_action_id" invisible="1" />
                             </div>
@@ -120,51 +108,51 @@
                                         />
                                     </control>
                                     <field name="sequence" widget="handle" />
-                                    <field name="section_type" invisible="1" />
+                                    <field name="section_type" column_invisible="1" />
                                     <field
                                         name="sheet"
-                                        attrs="{'required': [('section_type', '=', 'sheet')],
-                                                                'invisible': [('section_type', '!=', 'sheet')]}"
+                                        required="section_type == 'sheet'"
+                                        invisible="section_type != 'sheet'"
                                     />
                                     <field
                                         name="row_field"
-                                        attrs="{'required': [('section_type', 'in', ('head', 'row'))],
-                                                                    'invisible': [('section_type', 'not in', ('head', 'row'))]}"
+                                        required="section_type in ('head','row')"
+                                        invisible="section_type not in ('head','row')"
                                     />
                                     <field
                                         name="is_cont"
-                                        attrs="{'required': [('section_type', 'in', ('head', 'row'))],
-                                                                  'invisible': [('section_type', 'not in', ('head', 'row'))]}"
+                                        required="section_type in ('head','row')"
+                                        invisible="section_type not in ('head','row')"
                                     />
                                     <field
                                         name="is_extend"
-                                        attrs="{'required': [('section_type', 'in', ('head', 'row'))],
-                                                                  'invisible': [('section_type', 'not in', ('head', 'row'))]}"
+                                        required="section_type in ('head','row')"
+                                        invisible="section_type not in ('head','row')"
                                     />
                                     <field
                                         name="excel_cell"
-                                        attrs="{'required': [('section_type', '=', 'data')],
-                                                                     'invisible': [('section_type', '!=', 'data')]}"
+                                        required="section_type == 'data'"
+                                        invisible="section_type != 'data'"
                                     />
                                     <field
                                         name="field_name"
-                                        attrs="{'invisible': [('section_type', '!=', 'data')]}"
+                                        invisible="section_type != 'data'"
                                     />
                                     <field
                                         name="field_cond"
-                                        attrs="{'invisible': [('section_type', '!=', 'data')]}"
+                                        invisible="section_type != 'data'"
                                     />
                                     <field
                                         name="is_sum"
-                                        attrs="{'invisible': [('section_type', '!=', 'data')]}"
+                                        invisible="section_type != 'data'"
                                     />
                                     <field
                                         name="style"
-                                        attrs="{'invisible': [('section_type', '!=', 'data')]}"
+                                        invisible="section_type != 'data'"
                                     />
                                     <field
                                         name="style_cond"
-                                        attrs="{'invisible': [('section_type', '!=', 'data')]}"
+                                        invisible="section_type != 'data'"
                                     />
                                 </tree>
                             </field>
@@ -231,23 +219,20 @@
                                 </ul>
                             </div>
                         </page>
-                        <page
-                            string="Import"
-                            attrs="{'invisible': [('use_report_wizard', '=', True)]}"
-                        >
+                        <page string="Import" invisible="use_report_wizard">
                             <div name="import_actions">
                                 <button
                                     name="add_import_action"
                                     class="oe_highlight"
                                     type="object"
                                     string="Add Import Action"
-                                    attrs="{'invisible': [('import_action_id', '!=', False)]}"
+                                    invisible="import_action_id"
                                 />
                                 <button
                                     name="remove_import_action"
                                     type="object"
                                     string="Remove Import Action"
-                                    attrs="{'invisible': [('import_action_id', '=', False)]}"
+                                    invisible="not import_action_id"
                                 />
                                 <field name="import_action_id" invisible="1" />
                             </div>
@@ -273,33 +258,33 @@
                                         />
                                     </control>
                                     <field name="sequence" widget="handle" />
-                                    <field name="section_type" invisible="1" />
+                                    <field name="section_type" column_invisible="1" />
                                     <field
                                         name="sheet"
-                                        attrs="{'required': [('section_type', '=', 'sheet')],
-                                                                'invisible': [('section_type', '!=', 'sheet')]}"
+                                        required="section_type == 'sheet'"
+                                        invisible="section_type != 'sheet'"
                                     />
                                     <field
                                         name="row_field"
-                                        attrs="{'required': [('section_type', 'in', ('head', 'row'))],
-                                                                    'invisible': [('section_type', 'not in', ('head', 'row'))]}"
+                                        required="section_type in ('head','row')"
+                                        invisible="section_type not in ('head','row')"
                                     />
                                     <field
                                         name="no_delete"
-                                        attrs="{'invisible': [('section_type', '!=', 'row')]}"
+                                        invisible="section_type != 'row'"
                                     />
                                     <field
                                         name="excel_cell"
-                                        attrs="{'required': [('section_type', '=', 'data')],
-                                                                     'invisible': [('section_type', '!=', 'data')]}"
+                                        required="section_type == 'data'"
+                                        invisible="section_type != 'data'"
                                     />
                                     <field
                                         name="field_name"
-                                        attrs="{'invisible': [('section_type', '!=', 'data')]}"
+                                        invisible="section_type != 'data'"
                                     />
                                     <field
                                         name="field_cond"
-                                        attrs="{'invisible': [('section_type', '!=', 'data')]}"
+                                        invisible="section_type != 'data'"
                                     />
                                 </tree>
                             </field>
@@ -365,7 +350,7 @@
                             <label for="show_instruction" />
                             <field
                                 name="instruction"
-                                attrs="{'invisible': [('show_instruction', '=', False)]}"
+                                invisible="not show_instruction"
                             />
                             <hr />
                             <div style="margin-top: 4px;">
