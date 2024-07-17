@@ -9,25 +9,22 @@
         <field name="arch" type="xml">
             <form string="Excel Report">
                 <!-- search criteria -->
-                <group name="criteria" states="choose">
+                <group name="criteria" invisible="state != 'choose'">
                 </group>
                 <!-- xlsx.report common field -->
                 <div name="xlsx.report">
                     <field name="state" invisible="1" />
                     <field name="name" invisible="1" />
                     <field name="choose_template" invisible="1" />
-                    <div states="choose">
+                    <div invisible="state != 'choose'">
                         <label
                             string="Choose Template: "
                             for="template_id"
-                            attrs="{'invisible': [('choose_template', '=', False)]}"
+                            invisible="not choose_template"
                         />
-                        <field
-                            name="template_id"
-                            attrs="{'invisible': [('choose_template', '=', False)]}"
-                        />
+                        <field name="template_id" invisible="not choose_template" />
                     </div>
-                    <div states="get">
+                    <div invisible="state != 'get'">
                         <h2>
                             Complete Prepare Report (.xlsx)
                         </h2>
@@ -36,7 +33,7 @@
                             <field name="data" filename="name" class="oe_inline" />
                         </p>
                     </div>
-                    <footer states="choose">
+                    <footer invisible="state != 'choose'">
                         <button
                             name="report_xlsx"
                             string="Execute Report"
@@ -51,7 +48,7 @@
                             class="oe_link"
                         />
                     </footer>
-                    <footer states="get">
+                    <footer invisible="state != 'get'">
                         <button special="cancel" string="Close" type="object" />
                     </footer>
                 </div>

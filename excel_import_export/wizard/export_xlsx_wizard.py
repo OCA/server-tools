@@ -13,6 +13,15 @@ class ExportXLSXWizard(models.TransientModel):
     _name = "export.xlsx.wizard"
     _description = "Wizard for exporting excel"
 
+    def _domain_template_id(self):
+        return (
+            "["
+            "('res_model', '=', res_model), "
+            "('export_action_id', '!=', False), "
+            "('gname', '=', False)"
+            "]"
+        )
+
     name = fields.Char(string="File Name", readonly=True, size=500)
     data = fields.Binary(string="File", readonly=True)
     template_id = fields.Many2one(
@@ -20,7 +29,7 @@ class ExportXLSXWizard(models.TransientModel):
         string="Template",
         required=True,
         ondelete="cascade",
-        domain=lambda self: self._context.get("template_domain", []),
+        domain=lambda self: self._domain_template_id(),
     )
     res_ids = fields.Char(string="Resource IDs", readonly=True, required=True)
     res_model = fields.Char(

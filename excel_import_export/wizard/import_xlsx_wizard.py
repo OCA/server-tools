@@ -20,7 +20,6 @@ class ImportXLSXWizard(models.TransientModel):
         string="Template",
         required=True,
         ondelete="cascade",
-        domain=lambda self: self._context.get("template_domain", []),
     )
     res_id = fields.Integer(string="Resource ID", readonly=True)
     res_model = fields.Char(string="Resource Model", readonly=True, size=500)
@@ -148,6 +147,7 @@ class ImportXLSXWizard(models.TransientModel):
             return vals
         self.write({"state": "get"})
         return {
+            "name": _("Import Excel"),
             "type": "ir.actions.act_window",
             "res_model": self._name,
             "view_mode": "form",
