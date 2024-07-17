@@ -26,7 +26,7 @@ def adjust_cell_formula(value, k):
                 j = value.index(")", i)
                 val = value[i + 2 : j]
                 col, row = split_row_col(val)
-                new_val = "{}{}".format(col, row + k)
+                new_val = f"{col}{row + k}"
                 value = value.replace("?(%s)" % val, new_val)
     return value
 
@@ -290,7 +290,7 @@ def _get_cell_value(cell, field_type=False):
             value = value_str
     elif field_type in ["many2one"]:
         # If number, change to string
-        if isinstance(cell.value, (int, float, complex)):
+        if isinstance(cell.value, int | float | complex):
             value = str(cell.value)
         else:
             value = cell.value

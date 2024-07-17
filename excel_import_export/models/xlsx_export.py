@@ -5,7 +5,8 @@ import base64
 import logging
 import os
 import zipfile
-from datetime import date, datetime as dt
+from datetime import date
+from datetime import datetime as dt
 from io import BytesIO
 
 from odoo import _, api, fields, models
@@ -216,7 +217,7 @@ class XLSXExport(models.AbstractModel):
                     cont_set = cont_row + 1
                 if is_cont:
                     row = cont_set
-                    rc = "{}{}".format(col, cont_set)
+                    rc = f"{col}{cont_set}"
                 i = 0
                 new_row = 0
                 new_rc = False
@@ -226,9 +227,9 @@ class XLSXExport(models.AbstractModel):
                     rows_inserted = True
                     st.insert_rows(row + 1, row_count - 1)
                 # --
-                for (row_val, style) in vals[field]:
+                for row_val, style in vals[field]:
                     new_row = row + i
-                    new_rc = "{}{}".format(col, new_row)
+                    new_rc = f"{col}{new_row}"
                     row_val = co.adjust_cell_formula(row_val, i)
                     if row_val not in ("None", None):
                         st[new_rc] = co.str_to_number(row_val)
@@ -240,8 +241,8 @@ class XLSXExport(models.AbstractModel):
                 f = func.get(field, False)
                 if f and new_row > 0:
                     new_row += 1
-                    f_rc = "{}{}".format(col, new_row)
-                    st[f_rc] = "={}({}:{})".format(f, rc, new_rc)
+                    f_rc = f"{col}{new_row}"
+                    st[f_rc] = f"={f}({rc}:{new_rc})"
                     styles = self.env["xlsx.styles"].get_openpyxl_styles()
                     co.fill_cell_style(st[f_rc], style, styles)
                 cont_row = cont_row < new_row and new_row or cont_row
@@ -263,7 +264,7 @@ class XLSXExport(models.AbstractModel):
         ConfParam = self.env["ir.config_parameter"].sudo()
         ptemp = ConfParam.get_param("path_temp_file") or "/tmp"
         stamp = dt.utcnow().strftime("%H%M%S%f")[:-3]
-        ftemp = "{}/temp{}.xlsx".format(ptemp, stamp)
+        ftemp = f"{ptemp}/temp{stamp}.xlsx"
         # Start working with workbook
         records = res_model and self.env[res_model].browse(res_ids) or False
         outputs = []
@@ -295,7 +296,7 @@ class XLSXExport(models.AbstractModel):
                 delimiter = template.csv_delimiter
                 out_file = co.csv_from_excel(out_file, delimiter, template.csv_quote)
                 out_ext = template.csv_extension
-            outputs.append((out_file, "{}.{}".format(out_name, out_ext)))
+            outputs.append((out_file, f"{out_name}.{out_ext}"))
         # If outputs > 1 files, zip it
         if len(outputs) > 1:
             zip_buffer = BytesIO()
