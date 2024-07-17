@@ -4,7 +4,8 @@
 import base64
 import uuid
 from ast import literal_eval
-from datetime import date, datetime as dt
+from datetime import date
+from datetime import datetime as dt
 from io import BytesIO
 
 import xlrd
@@ -49,7 +50,7 @@ class XLSXImport(models.AbstractModel):
         if not xml_id or (record.id in xml_id and xml_id[record.id] == ""):
             ModelData.create(
                 {
-                    "name": "{}_{}".format(record._table, record.id),
+                    "name": f"{record._table}_{record.id}",
                     "module": "__excel_import_export__",
                     "model": record._name,
                     "res_id": record.id,
@@ -129,7 +130,7 @@ class XLSXImport(models.AbstractModel):
                 x_field, val_eval_cond = co.get_field_condition(field)
                 row, col = co.pos2idx(rc)
                 new_line_field, _x = co.get_line_max(line_field)
-                out_field = "{}/{}".format(new_line_field, x_field)
+                out_field = f"{new_line_field}/{x_field}"
                 field_type = self._get_field_type(model, out_field)
                 vals.update({out_field: []})
                 for idx in range(row, end_row):

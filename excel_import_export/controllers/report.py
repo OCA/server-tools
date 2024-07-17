@@ -80,8 +80,9 @@ class ReportController(report.ReportController):
                 )
             data = dict(url_decode(url.split("?")[1]).items())
             if "context" in data:
-                context, data_context = json.loads(context or "{}"), json.loads(
-                    data.pop("context")
+                context, data_context = (
+                    json.loads(context or "{}"),
+                    json.loads(data.pop("context")),
                 )
                 context = json.dumps({**context, **data_context})
             return self.report_routes(
