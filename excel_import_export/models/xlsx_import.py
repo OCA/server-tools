@@ -44,7 +44,7 @@ class XLSXImport(models.AbstractModel):
     @api.model
     def get_external_id(self, record):
         """Get external ID of the record, if not already exists create one"""
-        ModelData = self.env["ir.model.data"]
+        ModelData = self.sudo().env["ir.model.data"]
         xml_id = record.get_external_id()
         if not xml_id or (record.id in xml_id and xml_id[record.id] == ""):
             ModelData.create(
@@ -280,7 +280,6 @@ class XLSXImport(models.AbstractModel):
         - Delete fields' data according to data_dict['__IMPORT__']
         - Import data from excel according to data_dict['__IMPORT__']
         """
-        self = self.sudo()
         if res_model and template.res_model != res_model:
             raise ValidationError(_("Template's model mismatch"))
         record = self.env[template.res_model].browse(res_id)
