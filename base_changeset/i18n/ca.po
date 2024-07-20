@@ -326,7 +326,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_mail_alias_mixin__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_mail_blacklist__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_mail_blacklist_remove__changeset_change_ids
-#: model:ir.model.fields,field_description:base_changeset.field_mail_bot__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_mail_channel__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_mail_channel_partner__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_mail_channel_rtc_session__changeset_change_ids
@@ -778,7 +777,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_mail_alias_mixin__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_mail_blacklist__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_mail_blacklist_remove__changeset_ids
-#: model:ir.model.fields,field_description:base_changeset.field_mail_bot__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_mail_channel__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_mail_channel_partner__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_mail_channel_rtc_session__changeset_ids
@@ -1217,7 +1215,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_mail_alias_mixin__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_mail_blacklist__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_mail_blacklist_remove__count_pending_changeset_changes
-#: model:ir.model.fields,field_description:base_changeset.field_mail_bot__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_mail_channel__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_mail_channel_partner__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_mail_channel_rtc_session__count_pending_changeset_changes
@@ -1649,7 +1646,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_mail_alias_mixin__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_mail_blacklist__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_mail_blacklist_remove__count_pending_changesets
-#: model:ir.model.fields,field_description:base_changeset.field_mail_bot__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_mail_channel__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_mail_channel_partner__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_mail_channel_rtc_session__count_pending_changesets
@@ -2497,7 +2493,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_mail_alias_mixin__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_mail_blacklist__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_mail_blacklist_remove__user_can_see_changeset
-#: model:ir.model.fields,field_description:base_changeset.field_mail_bot__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_mail_channel__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_mail_channel_partner__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_mail_channel_rtc_session__user_can_see_changeset
