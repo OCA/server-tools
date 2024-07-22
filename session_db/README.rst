@@ -48,12 +48,6 @@ connection string, like ``postgres://user:passwd@server/db`` or ``db``.
 It is recommended to use a dedicated database for this module, and
 possibly a dedicated postgres user for additional security.
 
-Known issues / Roadmap
-======================
-
-This module does not work with multi-threaded workers, so it requires
-workers > 0.
-
 Bug Tracker
 ===========
 
