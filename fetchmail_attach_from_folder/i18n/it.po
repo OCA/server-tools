@@ -20,6 +20,11 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 
 #. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__action_id
+msgid "Action"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__active
 msgid "Active"
 msgstr ""
@@ -384,6 +389,13 @@ msgstr ""
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server__folders_only
 msgid "Only folders, not inbox"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server_folder__action_id
+msgid ""
+"Optional custom server action to trigger for each incoming mail, on the "
+"record that was created or updated by this mail"
 msgstr ""
 
 #. module: fetchmail_attach_from_folder
