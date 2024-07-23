@@ -56,7 +56,14 @@ class TestMatchAlgorithms(TransactionCase):
 
         cls.partner_model = cls.env["res.partner"]
         cls.test_partner = cls.partner_model.with_context(tracking_disable=True).create(
-            {"name": "Reynaert de Vos", "email": TEST_EMAIL, "is_company": False}
+            {
+                "name": "Reynaert de Vos",
+                "email": TEST_EMAIL,
+                "is_company": False,
+                "category_id": [
+                    (6, 0, []),
+                ],
+            }
         )
         cls.server_model = cls.env["fetchmail.server"]
         cls.folder_model = cls.env["fetchmail.server.folder"]
@@ -79,6 +86,40 @@ class TestMatchAlgorithms(TransactionCase):
                 "match_algorithm": "email_exact",
                 # The intention is to link email to sender partner object.
                 "mail_field": "from",
+            }
+        )
+        cls.partner_ir_model = cls.env["ir.model"].search(
+            [
+                ("model", "=", cls.partner_model._name),
+            ],
+            limit=1,
+        )
+        cls.partner_category = cls.env.ref("base.res_partner_category_12")
+        cls.server_action = cls.env["ir.actions.server"].create(
+            {
+                "name": "Action Set Active Partner",
+                "model_id": cls.partner_ir_model.id,
+                "state": "object_write",
+                "code": False,
+                "fields_lines": [
+                    (
+                        0,
+                        0,
+                        {
+                            "col1": cls.env["ir.model.fields"]
+                            .search(
+                                [
+                                    ("name", "=", "category_id"),
+                                    ("model_id", "=", cls.partner_ir_model.id),
+                                ],
+                                limit=1,
+                            )
+                            .id,
+                            "evaluation_type": "equation",
+                            "value": str([cls.partner_category.id]),
+                        },
+                    ),
+                ],
             }
         )
 
@@ -122,3 +163,15 @@ class TestMatchAlgorithms(TransactionCase):
         folder.match_algorithm = "email_domain"
         connection = MockConnection()
         folder.retrieve_imap_folder(connection)
+
+    def test_non_action(self):
+        connection = MockConnection()
+        self.folder.action_id = False
+        self.folder.apply_matching(connection, "1")
+        self.assertFalse(self.test_partner.category_id)
+
+    def test_action(self):
+        connection = MockConnection()
+        self.folder.action_id = self.server_action
+        self.folder.apply_matching(connection, "1")
+        self.assertEqual(self.partner_category, self.test_partner.category_id)
