@@ -9,12 +9,12 @@
             <field name="object_id" position="attributes">
                 <attribute
                     name="attrs"
-                >{'required': [('server_type', '!=', 'imap')]}</attribute>
+                >{'required': [('server_type', 'not in',('imap', 'outlook'))]}</attribute>
             </field>
             <xpath expr="//notebook" position="inside">
                 <page
                     string="Folders to monitor"
-                    attrs="{'invisible': [('server_type','!=','imap')]}"
+                    attrs="{'invisible': [('server_type','not in',('imap', 'outlook'))]}"
                 >
                     <group>
                         <field name="folders_only" />
