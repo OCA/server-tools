@@ -91,6 +91,12 @@ class FetchmailServerFolder(models.Model):
         help="The state messages fetched from this folder should be assigned in Odoo",
     )
     active = fields.Boolean(default=True)
+    action_id = fields.Many2one(
+        comodel_name="ir.actions.server",
+        name="Server action",
+        help="Optional custom server action to trigger for each incoming "
+        "mail, on the record that was created or updated by this mail",
+    )
 
     def button_confirm_folder(self):
         self.write({"state": "draft"})
@@ -227,10 +233,28 @@ class FetchmailServerFolder(models.Model):
                     thread_id = match.id
                     self.attach_mail(match, message_dict)
         matched = True if thread_id else False
+        if matched:
+            self.run_server_action(thread_id)
         self.update_msg(connection, msgid, matched=matched)
         if self.archive_path:
             self._archive_msg(connection, msgid)
         return thread_id  # Can be None if no match found.
+
+    def run_server_action(self, matched_object_ids):
+        action = self.action_id
+        if not action:
+            return
+        records = self.env[self.model_id.model].browse(matched_object_ids)
+        for record in records:
+            if not record.exists():
+                continue
+            action.with_context(
+                **{
+                    "active_id": record.id,
+                    "active_ids": record.ids,
+                    "active_model": self.model_id.model,
+                }
+            ).run()
 
     def fetch_msg(self, connection, msgid):
         """Select a single message from a folder."""
