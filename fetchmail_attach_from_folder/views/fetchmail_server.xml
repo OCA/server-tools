@@ -103,6 +103,7 @@
                                     <field name="active" />
                                     <field name="archive_path" />
                                     <field name="delete_matching" />
+                                    <field name="fetch_unseen_only" />
                                     <field name="msg_state" />
                                 </group>
                             </group>
