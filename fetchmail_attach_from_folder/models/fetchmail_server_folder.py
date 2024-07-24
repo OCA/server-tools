@@ -97,6 +97,10 @@ class FetchmailServerFolder(models.Model):
         help="Optional custom server action to trigger for each incoming "
         "mail, on the record that was created or updated by this mail",
     )
+    fetch_unseen_only = fields.Boolean(
+        help="By default all undeleted emails are searched. Checking this "
+        "field adds the unread condition.",
+    )
 
     def button_confirm_folder(self):
         self.write({"state": "draft"})
@@ -170,10 +174,13 @@ class FetchmailServerFolder(models.Model):
                     % {"folder": self.archive_path, "server": server.name}
                 )
 
+    def get_criteria(self):
+        return "UNDELETED" if not self.fetch_unseen_only else "UNSEEN UNDELETED"
+
     def retrieve_imap_folder(self, connection):
         """Retrieve all mails for one IMAP folder."""
         self.ensure_one()
-        msgids = self.get_msgids(connection, "UNDELETED")
+        msgids = self.get_msgids(connection, self.get_criteria())
         for msgid in msgids[0].split():
             # We will accept exceptions for single messages
             try:
