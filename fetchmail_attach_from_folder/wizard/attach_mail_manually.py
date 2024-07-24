@@ -42,7 +42,7 @@ class AttachMailManually(models.TransientModel):
         folder = folder_model.browse([folder_id])
         connection = folder.server_id.connect()
         connection.select(folder.path)
-        criteria = "FLAGGED" if folder.flag_nonmatching else "UNDELETED"
+        criteria = "FLAGGED" if folder.flag_nonmatching else folder.get_criteria()
         msgids = folder.get_msgids(connection, criteria)
         for msgid in msgids[0].split():
             mail_message, message_org = folder.fetch_msg(connection, msgid)
