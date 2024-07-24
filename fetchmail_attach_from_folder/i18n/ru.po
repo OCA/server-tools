@@ -77,6 +77,13 @@ msgid "Body"
 msgstr ""
 
 #. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server_folder__fetch_unseen_only
+msgid ""
+"By default all undeleted emails are searched. Checking this field adds the "
+"unread condition."
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
 #: model_terms:ir.ui.view,arch_db:fetchmail_attach_from_folder.view_attach_mail_manually
 msgid "Cancel"
 msgstr ""
@@ -232,6 +239,11 @@ msgstr ""
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields.selection,name:fetchmail_attach_from_folder.selection__fetchmail_server_folder__match_algorithm__email_exact
 msgid "Exact mailadress"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__fetch_unseen_only
+msgid "Fetch Unseen Only"
 msgstr ""
 
 #. module: fetchmail_attach_from_folder
