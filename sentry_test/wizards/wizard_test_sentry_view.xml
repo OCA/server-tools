@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+<record id="wizard_test_sentry_view_form" model="ir.ui.view">
+    <field name="model">wizard.test.sentry</field>
+    <field name="arch" type="xml">
+        <form string="Label">
+            <group>
+                <group string="Test Delay" name="test_delay">
+                    <button name="test_http_delay" type="object" string="HTTP delay" />
+                    <button name="test_db_delay" type="object" string="DB delay" />
+                    <button name="test_all" type="object" string="ALL delay" />
+                </group>
+                <group string="Test Error" name="test_crash">
+                    <button name="test_crash" type="object" string="Test Crash" />
+                </group>
+                <group string="Test Job" name="test_job">
+                    <button
+                            name="test_queue_job"
+                            type="object"
+                            string="Test job Queue"
+                        />
+                </group>
+                <group string="Test Logger" name="test_logger">
+                    <button
+                            name="test_log_error"
+                            type="object"
+                            string="Test Log Error"
+                        />
+                    <button
+                            name="test_log_warning"
+                            type="object"
+                            string="Test Log Warning"
+                        />
+                </group>
+            </group>
+        </form>
+    </field>
+</record>
+
+<record model="ir.actions.act_window" id="wizard_test_sentry_action">
+    <field name="name">Wizard Test Sentry</field>
+    <field name="res_model">wizard.test.sentry</field>
+    <field name="view_mode">form</field>
+    <field name="domain">[]</field>
+    <field name="context">{}</field>
+</record>
+
+<menuitem
+        id="wizard_test_sentry_menu"
+        parent="base.menu_administration"
+        sequence="20"
+        action="wizard_test_sentry_action"
+    />
+
+</odoo>
