@@ -137,7 +137,11 @@ class ImportOdooDatabase(models.Model):
         to_delete = {}
         # dummy_instance
         dummy_instances = []
-        remote = self._get_connection()
+        try:
+            remote = self._get_connection()
+        except odoorpc.error.RPCError as e:
+            self.write({"status_data": dict(self.status_data, error=str(e))})
+            return
         if self.null_password:
             self.write({"password": False})
         if commit and not tools.config["test_enable"]:
