@@ -33,6 +33,9 @@ class TestBaseImportOdoo(TransactionCase):
                     ],
                 }
             )
+        # not sure why this is needed... but odoo init of demo data does not work properly.
+        mapping_attachment = self.env.ref("base_import_odoo.mapping_attachment")
+        mapping_attachment.id_field_id = self.env.ref("base.field_ir_attachment__res_id")
 
     @tagged("post_install", "-at_install")
     @patch(
