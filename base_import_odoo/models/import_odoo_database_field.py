@@ -22,7 +22,7 @@ class ImportOdooDatabaseField(models.Model):
         required=True,
         ondelete="cascade",
     )
-    model = fields.Char(string="Model name", related=["model_id", "model"])
+    model = fields.Char(string="Model name", related="model_id.model")
     field_ids = fields.Many2many(
         "ir.model.fields",
         string="Field",
