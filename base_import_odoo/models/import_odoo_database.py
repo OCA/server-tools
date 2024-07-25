@@ -721,15 +721,13 @@ class ImportOdooDatabase(models.Model):
 
     @api.depends("status_data")
     def _compute_status_html(self):
+        template_ref = "base_import_odoo.view_import_odoo_database_qweb"
         for this in self:
             if not this.status_data:
-                this.status_html = False
-                continue
-            this.status_html = (
-                self.env.ref("base_import_odoo.view_import_odoo_database_qweb")
-                ._render({"object": this})
-                .decode("utf8")
-            )
+                status = False
+            else:
+                status = self.env['ir.qweb']._render(template_ref, {"object": this})
+            this.status_html = status
 
     @api.depends("cronjob_id")
     def _compute_cronjob_running(self):
