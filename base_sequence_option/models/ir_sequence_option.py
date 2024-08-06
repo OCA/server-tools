@@ -111,7 +111,7 @@ class IrSequenceOptionLine(models.Model):
         company = (
             hasattr(record, "company_id") and record.company_id or self.env.company
         )
-        options = options.filtered(lambda l: l.company_id == company)
+        options = options.filtered(lambda x: x.company_id == company)
         sequence = self.env["ir.sequence"]
         for option in options:
             domain = safe_eval.safe_eval(option.filter_domain)

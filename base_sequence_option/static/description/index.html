@@ -368,18 +368,20 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !! source digest: sha256:e409091f81bde204304e68835c3f5ed9f5ae0eae0c7be7e797c1930ff5e63196
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Alpha" src="https://img.shields.io/badge/maturity-Alpha-red.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/lgpl-3.0-standalone.html"><img alt="License: LGPL-3" src="https://img.shields.io/badge/licence-LGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/server-tools/tree/16.0/base_sequence_option"><img alt="OCA/server-tools" src="https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/server-tools-16-0/server-tools-16-0-base_sequence_option"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/server-tools&amp;target_branch=16.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Alpha" src="https://img.shields.io/badge/maturity-Alpha-red.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/lgpl-3.0-standalone.html"><img alt="License: LGPL-3" src="https://img.shields.io/badge/licence-LGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/server-tools/tree/17.0/base_sequence_option"><img alt="OCA/server-tools" src="https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/server-tools-17-0/server-tools-17-0-base_sequence_option"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/server-tools&amp;target_branch=17.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
 <p>This module allow user to add optional sequences to some document model.
-On which sequence is used, is based on domain matching with document values
-(and original sequence will be bypassed).</p>
+On which sequence is used, is based on domain matching with document
+values (and original sequence will be bypassed).</p>
 <p>For example, it is now possible to,</p>
 <ul class="simple">
-<li>Avoid using Odoo automatic sequence on invoice and vendor bill with old style sequence.</li>
+<li>Avoid using Odoo automatic sequence on invoice and vendor bill with
+old style sequence.</li>
 <li>Customer payment and vendor payment to run on different sequence.</li>
 <li>Assign different sales order sequence based on customer region.</li>
 </ul>
 <p>This is a base module and does nothing by itself. Following are modules
-that will allow managing sequence options for each type of documents, I.e.,</p>
+that will allow managing sequence options for each type of documents,
+I.e.,</p>
 <ul class="simple">
 <li>Purchase Order: purchase_sequence_option</li>
 <li>Invoice / Bill / Refund / Payment: account_sequence_option</li>
@@ -408,24 +410,25 @@ Only for development or testing purpose, do not use in production.
 <h1><a class="toc-backref" href="#toc-entry-1">Usage</a></h1>
 <p>To use this module, you need to:</p>
 <ol class="arabic simple">
-<li>Go to <em>Settings &gt; Technical &gt; Sequences &amp; Identifier &gt; Manage Sequence Options</em>.</li>
-<li>Based on extended module installed, different document types will be listed, i.e., Purchase Order.</li>
-<li>Activite “Use sequence options” to use, if not, fall back to normal sequence.</li>
-<li><dl class="first docutils">
-<dt>For each option, provide,</dt>
-<dd><ul class="first last">
+<li>Go to <em>Settings &gt; Technical &gt; Sequences &amp; Identifier &gt; Manage
+Sequence Options</em>.</li>
+<li>Based on extended module installed, different document types will be
+listed, i.e., Purchase Order.</li>
+<li>Activite “Use sequence options” to use, if not, fall back to normal
+sequence.</li>
+<li>For each option, provide,<ul>
 <li>Name: i.e., Customer Invoice for Cust A., Customer Payment, etc.</li>
-<li>Apply On: a filter domain to test whether a document match this option.</li>
+<li>Apply On: a filter domain to test whether a document match this
+option.</li>
 <li>Sequence: select underlining sequence to perform</li>
 </ul>
-</dd>
-</dl>
 </li>
 </ol>
 <p><strong>Note:</strong></p>
 <ul class="simple">
 <li>If no options matches the document, fall back to normal sequence.</li>
-<li>If there are multiple sequence options that match same document, error will be raised.</li>
+<li>If there are multiple sequence options that match same document,
+error will be raised.</li>
 </ul>
 </div>
 <div class="section" id="bug-tracker">
@@ -433,7 +436,7 @@ Only for development or testing purpose, do not use in production.
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/server-tools/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-<a class="reference external" href="https://github.com/OCA/server-tools/issues/new?body=module:%20base_sequence_option%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+<a class="reference external" href="https://github.com/OCA/server-tools/issues/new?body=module:%20base_sequence_option%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
@@ -459,7 +462,7 @@ mission is to support the collaborative development of Odoo features and
 promote its widespread use.</p>
 <p>Current <a class="reference external" href="https://odoo-community.org/page/maintainer-role">maintainer</a>:</p>
 <p><a class="reference external image-reference" href="https://github.com/kittiu"><img alt="kittiu" src="https://github.com/kittiu.png?size=40px" /></a></p>
-<p>This module is part of the <a class="reference external" href="https://github.com/OCA/server-tools/tree/16.0/base_sequence_option">OCA/server-tools</a> project on GitHub.</p>
+<p>This module is part of the <a class="reference external" href="https://github.com/OCA/server-tools/tree/17.0/base_sequence_option">OCA/server-tools</a> project on GitHub.</p>
 <p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
 </div>
 </div>
