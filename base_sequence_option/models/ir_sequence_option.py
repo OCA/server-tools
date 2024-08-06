@@ -58,7 +58,6 @@ class IrSequenceOptionLine(models.Model):
     model = fields.Selection(
         related="base_id.model",
         store=True,
-        readonly=True,
     )
     use_sequence_option = fields.Boolean(
         related="base_id.use_sequence_option",
@@ -78,17 +77,14 @@ class IrSequenceOptionLine(models.Model):
     prefix = fields.Char(
         related="sequence_id.prefix",
         string="Prefix",
-        readonly=True,
     )
     suffix = fields.Char(
         related="sequence_id.suffix",
         string="Suffix",
-        readonly=True,
     )
     implementation = fields.Selection(
         related="sequence_id.implementation",
         string="Implementation",
-        readonly=True,
     )
     company_id = fields.Many2one(
         comodel_name="res.company",

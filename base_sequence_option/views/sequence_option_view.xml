@@ -41,7 +41,7 @@
                 </h1>
                 <group>
                     <group>
-                        <field name="model" />
+                        <field name="model" readonly="1" />
                         <field name="company_id" groups="base.group_multi_company" />
                     </group>
                     <group>
@@ -51,13 +51,13 @@
                 <field name="option_ids">
                     <tree>
                         <field name="name" />
-                        <field name="model" invisible="1" />
+                        <field name="model" column_invisible="1" />
                         <field name="filter_domain" string="Matching Domain" />
                         <field name="sequence_id" string="Use Sequence" />
-                        <field name="prefix" />
-                        <field name="suffix" />
-                        <field name="implementation" />
-                        <field name="company_id" invisible="1" />
+                        <field name="prefix" readonly="1" />
+                        <field name="suffix" readonly="1" />
+                        <field name="implementation" readonly="1" />
+                        <field name="company_id" column_invisible="1" />
                     </tree>
                     <form>
                         <group>
