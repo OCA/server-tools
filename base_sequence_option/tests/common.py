@@ -9,7 +9,7 @@ from odoo.tests import common
 class CommonBaseSequenceOption(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
-        super(CommonBaseSequenceOption, cls).setUpClass()
+        super().setUpClass()
 
         cls.loader = FakeModelLoader(cls.env, cls.__module__)
         cls.loader.backup_registry()
@@ -90,4 +90,4 @@ class CommonBaseSequenceOption(common.TransactionCase):
     @classmethod
     def tearDownClass(cls):
         cls.loader.restore_registry()
-        return super(CommonBaseSequenceOption, cls).tearDownClass()
+        return super().tearDownClass()
