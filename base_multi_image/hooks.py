@@ -8,10 +8,13 @@ from odoo import SUPERUSER_ID, api
 _logger = logging.getLogger(__name__)
 
 
-def pre_init_hook_for_submodules(cr, model, field):
+def post_init_hook_for_submodules(cr, registry, model, field):
     """Moves images from single to multi mode.
 
-    Feel free to use this as a ``pre_init_hook`` for submodules.
+    Feel free to use this as a ``post_init_hook`` for submodules.
+
+    :param odoo.sql_db.Cursor cr:
+        Database cursor.
 
     :param str model:
         Model name, like ``product.template``.
@@ -21,55 +24,48 @@ def pre_init_hook_for_submodules(cr, model, field):
         ``image``.
     """
     env = api.Environment(cr, SUPERUSER_ID, {})
+    table = env[model]._table
     with cr.savepoint():
-        table = env[model]._table
         column_exists = table_has_column(cr, table, field)
-        # fields.Binary(), extract the binary content directly from the table
         if column_exists:
-            extract_query = """
-                SELECT id, '%(model)s', '%(model)s,' || id, 'db', %(field)s
-                FROM %(table)s
-                WHERE %(field)s IS NOT NULL
-            """ % {
-                "table": table,
-                "field": field,
-                "model": model,
-            }
-            image_field = "file_db_store"
-        # fields.Binary(attachment=True), get the ir_attachment record ID
+            cr.execute(
+                "SELECT id FROM %(table)s WHERE %(field)s IS NO NULL"
+            )  # pylint: disable=sql-injection
         else:
-            extract_query = """
-                SELECT
-                    res_id,
-                    res_model,
-                    CONCAT_WS(',', res_model, res_id),
-                    'filestore',
-                    id
-                FROM ir_attachment
-                WHERE res_field='%(field)s' AND res_model='%(model)s'
-            """ % {
-                "model": model,
-                "field": field,
-            }
-            image_field = "attachment_id"
-        cr.execute(  # pylint: disable=sql-injection
-            """
-                INSERT INTO base_multi_image_image (
-                    owner_id,
-                    owner_model,
-                    owner_ref_id,
-                    storage,
-                    %s
-                )
-                %s
-            """
-            % (image_field, extract_query)
-        )
+            cr.execute(
+                """
+                    SELECT res_id
+                    FROM ir_attachment
+                    WHERE
+                        res_field=%(field)s
+                        AND res_model=%(model)s
+                """,
+                {
+                    "field": field,
+                    "model": model,
+                },
+            )
+        record_ids = [row[0] for row in cr.fetchall()]
+        for record in env[model].browse(record_ids):
+            record.write(
+                {
+                    "image_ids": [
+                        (
+                            0,
+                            0,
+                            {
+                                "owner_id": record.id,
+                                "owner_model": model,
+                                "owner_ref_id": "%s,%s" % (model, record.id),
+                                "image_1920": record[field],
+                            },
+                        )
+                    ]
+                }
+            )
 
 
-def uninstall_hook_for_submodules(
-    cr, registry, model, field=None, field_medium=None, field_small=None
-):
+def uninstall_hook_for_submodules(cr, registry, model, field=None):
     """Moves images from multi to single mode and remove multi-images for a
     given model.
 
@@ -86,70 +82,41 @@ def uninstall_hook_for_submodules(
     :param str field:
         Binary field that had the images in that :param:`model`, like
         ``image``.
-
-    :param str field_medium:
-        Binary field that had the medium-sized images in that :param:`model`,
-        like ``image_medium``.
-
-    :param str field_small:
-        Binary field that had the small-sized images in that :param:`model`,
-        like ``image_small``.
     """
     env = api.Environment(cr, SUPERUSER_ID, {})
     with cr.savepoint():
-        Image = env["base_multi_image.image"]
-        images = Image.search([("owner_model", "=", model)], order="sequence, id")
-        if images and (field or field_medium or field_small):
+        image_obj = env["base_multi_image.image"]
+        images = image_obj.search([("owner_model", "=", model)], order="sequence, id")
+        if images and field:
             main_images = {}
             for image in images:
                 if image.owner_id not in main_images:
                     main_images[image.owner_id] = image
             main_images = main_images.values()
-            Model = env[model]
-            Field = field and Model._fields[field]
-            FieldMedium = field_medium and Model._fields[field_medium]
-            FieldSmall = field_small and Model._fields[field_small]
+            model_obj = env[model]
+            field_field = model_obj._fields[field]
 
             # fields.Binary(), save the binary content directly to the table
-            if (
-                (field and not Field.attachment)
-                or (field_medium and not FieldMedium.attachment)
-                or (field_small and not FieldSmall.attachment)
-            ):
+            if not field_field.attachment:
                 save_directly_to_table(
                     cr,
-                    Model,
-                    (field, field_medium, field_small),
-                    (Field, FieldMedium, FieldSmall),
+                    model_obj,
+                    field,
+                    field_field,
                     main_images,
                 )
             # fields.Binary(attachment=True), save the ir_attachment record ID
-            if (
-                (field and Field.attachment)
-                or (field_medium and FieldMedium.attachment)
-                or (field_small and FieldSmall.attachment)
-            ):
+            if field and field_field.attachment:
                 for main_image in main_images:
-                    owner = Model.browse(main_image.owner_id)
-                    if field and Field.attachment:
-                        Field.write(owner, main_image.image_main)
-                    if field_medium and FieldMedium.attachment:
-                        FieldMedium.write(owner, main_image.image_medium)
-                    if field_small and FieldSmall.attachment:
-                        FieldSmall.write(owner, main_image.image_small)
+                    owner = model_obj.browse(main_image.owner_id)
+                    field_field.write(owner, main_image.image_1920)
         images.unlink()
 
 
-def save_directly_to_table(cr, Model, fields, Fields, main_images):
-    field, field_medium, field_small = fields
-    Field, FieldMedium, FieldSmall = Fields
+def save_directly_to_table(cr, Model, field, Field, main_images):
     fields = []
     if field and not Field.attachment:
         fields.append(field + " = " + "%(image)s")
-    if field_medium and not FieldMedium.attachment:
-        fields.append(field_medium + " = " + "%(image_medium)s")
-    if field_small and not FieldSmall.attachment:
-        fields.append(field_small + " = " + "%(image_small)s")
     query = """
         UPDATE %(table)s
         SET %(fields)s
@@ -161,11 +128,7 @@ def save_directly_to_table(cr, Model, fields, Fields, main_images):
     for main_image in main_images:
         params = {"id": main_image.owner_id}
         if field and not Field.attachment:
-            params["image"] = main_image.image_main
-        if field_medium and not FieldMedium.attachment:
-            params["image_medium"] = main_image.image_medium
-        if field_small and not FieldSmall.attachment:
-            params["image_small"] = main_image.image_small
+            params["image"] = main_image.image_1920
         cr.execute(query, params)  # pylint: disable=sql-injection
 
 
