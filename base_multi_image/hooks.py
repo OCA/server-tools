@@ -8,7 +8,7 @@ from odoo import SUPERUSER_ID, api
 _logger = logging.getLogger(__name__)
 
 
-def post_init_hook_for_submodules(cr, registry, model, field):
+def post_init_hook_for_submodules(cr, model, field):
     """Moves images from single to multi mode.
 
     Feel free to use this as a ``post_init_hook`` for submodules.
@@ -25,11 +25,12 @@ def post_init_hook_for_submodules(cr, registry, model, field):
     """
     env = api.Environment(cr, SUPERUSER_ID, {})
     table = env[model]._table
+    image_obj = env["base_multi_image.image"]
     with cr.savepoint():
         column_exists = table_has_column(cr, table, field)
         if column_exists:
             cr.execute(
-                "SELECT id FROM %(table)s WHERE %(field)s IS NO NULL"
+                "SELECT id FROM %(table)s WHERE %(field)s IS NOT NULL"
             )  # pylint: disable=sql-injection
         else:
             cr.execute(
@@ -47,25 +48,17 @@ def post_init_hook_for_submodules(cr, registry, model, field):
             )
         record_ids = [row[0] for row in cr.fetchall()]
         for record in env[model].browse(record_ids):
-            record.write(
+            image_obj.create(
                 {
-                    "image_ids": [
-                        (
-                            0,
-                            0,
-                            {
-                                "owner_id": record.id,
-                                "owner_model": model,
-                                "owner_ref_id": "%s,%s" % (model, record.id),
-                                "image_1920": record[field],
-                            },
-                        )
-                    ]
-                }
+                    "owner_id": record.id,
+                    "owner_model": model,
+                    "owner_ref_id": "%s,%s" % (model, record.id),
+                    "image_1920": record[field],
+                },
             )
 
 
-def uninstall_hook_for_submodules(cr, registry, model, field=None):
+def uninstall_hook_for_submodules(cr, model, field=None):
     """Moves images from multi to single mode and remove multi-images for a
     given model.
 
