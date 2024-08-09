@@ -21,7 +21,7 @@ To develop a module based on this one:
 
         # If you need this, you will need ``pre_init_hook_for_submodules`` and
           ``uninstall_hook_for_submodules`` as detailed below.
-        old_image_field = fields.Binary(related="image_main", store=False)
+        old_image_field = fields.Binary(related="image_1920", store=False)
 
 * Somewhere in the owner view, add::
 
@@ -36,23 +36,16 @@ To develop a module based on this one:
 
 * If the model you are extending already had an image field, and you want to
   trick Odoo to make those images to multi-image mode, you will need to make
-  use of the provided `~.hooks.pre_init_hook_for_submodules` and
+  use of the provided `~.hooks.post_init_hook_for_submodules` and
   `~.hooks.uninstall_hook_for_submodules`, like the
   ``product_multi_image`` module does::
 
     try:
         from odoo.addons.base_multi_image.hooks import (
-            pre_init_hook_for_submodules,
             uninstall_hook_for_submodules,
         )
     except ImportError:
         pass
-
-
-    def pre_init_hook(cr):
-        """Transform single into multi images."""
-        pre_init_hook_for_submodules(cr, "product.template", "image")
-        pre_init_hook_for_submodules(cr, "product.product", "image_variant")
 
 
     def uninstall_hook(cr, registry):
