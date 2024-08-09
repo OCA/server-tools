@@ -39,7 +39,7 @@
                     <field name="sequence" />
                 </group>
                 <group string="Comments">
-                    <field name="comments" nolabel="1" />
+                    <field name="comments" colspan="2" nolabel="1" />
                 </group>
             </sheet>
         </form>
