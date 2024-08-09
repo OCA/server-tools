@@ -7,10 +7,10 @@
 {
     "name": "Multiple images base",
     "summary": "Allow multiple images for database objects",
-    "version": "15.0.1.0.0",
+    "version": "16.0.1.0.0",
     "author": "Tecnativa, "
     "Antiun Ingeniería, S.L., Sodexis, "
-    "LasLabs, "
+    "LasLabs, OpenFire, "
     "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "website": "https://github.com/OCA/server-tools",
