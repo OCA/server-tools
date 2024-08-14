@@ -65,6 +65,9 @@ class SynchronizeExportableMixin(models.AbstractModel):
     def track_export(self, attachment):
         self.export_date = datetime.datetime.now()
         self.export_attachment_id = attachment
+        if len(self.ids) == 1:
+            attachment.res_model = self._name
+            attachment.res_id = self.id
 
     def _prepare_export_data(self, idx) -> list:
         raise NotImplementedError
