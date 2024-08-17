@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-03 10:08+0000\n"
-"PO-Revision-Date: 2024-05-28 09:34+0000\n"
+"PO-Revision-Date: 2024-08-17 10:58+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: auto_backup
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
@@ -98,7 +98,7 @@ msgstr "Modifiche dell'insieme di modifiche"
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__changeset_ids
 msgid "Changesets"
-msgstr "Insieme di modifiche"
+msgstr "Insiemi di modifiche"
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__backup_format
@@ -134,7 +134,7 @@ msgstr "Test connessione avvenuto con successo!"
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__count_changesets
 msgid "Count Changesets"
-msgstr "Conteggio insieme di modifiche"
+msgstr "Conta insiemi di modifiche"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__count_pending_changeset_changes
@@ -144,7 +144,7 @@ msgstr "Conteggio modifiche dell'insieme di modifiche in attesa"
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__count_pending_changesets
 msgid "Count Pending Changesets"
-msgstr "Conteggio insieme di modifiche in attesa"
+msgstr "Conta insiemi di modifiche in attesa"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__create_uid
@@ -416,12 +416,12 @@ msgstr "Numero di modifiche di questo record in attesa"
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__count_pending_changesets
 msgid "The number of pending changesets of this record"
-msgstr "Numero di insieme di modifiche di questo record in attesa"
+msgstr "Numero di insiemi di modifiche in attesa di questo record"
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__count_changesets
 msgid "The overall number of changesets of this record"
-msgstr "Il numero totale di insieme di modifiche di questo record"
+msgstr "Numero totale di insiemi di modifiche di questo record"
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__sftp_password
