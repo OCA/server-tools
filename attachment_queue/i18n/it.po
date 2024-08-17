@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-05-28 09:34+0000\n"
+"PO-Revision-Date: 2024-08-17 10:58+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: attachment_queue
 #: model:mail.template,body_html:attachment_queue.attachment_failure_notification
@@ -143,7 +143,7 @@ msgstr "Modifiche dell'insieme di modifiche"
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__changeset_ids
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue_reschedule__changeset_ids
 msgid "Changesets"
-msgstr "Insieme di modifiche"
+msgstr "Insiemi di modifiche"
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__checksum
@@ -167,7 +167,7 @@ msgstr "Azienda"
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__count_changesets
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue_reschedule__count_changesets
 msgid "Count Changesets"
-msgstr "Conteggio insieme di modifiche"
+msgstr "Conta insiemi di modifiche"
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__count_pending_changeset_changes
@@ -179,7 +179,7 @@ msgstr "Conteggio modifiche dell'insieme di modifiche in attesa"
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__count_pending_changesets
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue_reschedule__count_pending_changesets
 msgid "Count Pending Changesets"
-msgstr "Conteggio insieme di modifiche in attesa"
+msgstr "Conta insiemi di modifiche in attesa"
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__create_uid
@@ -583,13 +583,13 @@ msgstr "Numero di modifiche di questo record in attesa"
 #: model:ir.model.fields,help:attachment_queue.field_attachment_queue__count_pending_changesets
 #: model:ir.model.fields,help:attachment_queue.field_attachment_queue_reschedule__count_pending_changesets
 msgid "The number of pending changesets of this record"
-msgstr "Numero di insieme di modifiche di questo record in attesa"
+msgstr "Numero di insiemi di modifiche in attesa di questo record"
 
 #. module: attachment_queue
 #: model:ir.model.fields,help:attachment_queue.field_attachment_queue__count_changesets
 #: model:ir.model.fields,help:attachment_queue.field_attachment_queue_reschedule__count_changesets
 msgid "The overall number of changesets of this record"
-msgstr "Il numero totale di insieme di modifiche di questo record"
+msgstr "Numero totale di insiemi di modifiche di questo record"
 
 #. module: attachment_queue
 #: model_terms:ir.ui.view,arch_db:attachment_queue.view_reschedule_attachment
