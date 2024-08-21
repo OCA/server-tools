@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-28 21:29+0000\n"
-"PO-Revision-Date: 2023-11-30 16:36+0000\n"
+"PO-Revision-Date: 2024-08-21 09:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-server-tools-8-0/"
 "language/it/)\n"
@@ -30,7 +30,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: fetchmail_attach_from_folder
 #: field:fetchmail.server.folder,active:0
@@ -41,7 +41,7 @@ msgstr "Attivo"
 #: view:fetchmail.attach.mail.manually:fetchmail_attach_from_folder.view_attach_mail_manually
 #: view:fetchmail.server:fetchmail_attach_from_folder.view_email_server_form
 msgid "Attach mail manually"
-msgstr "Allega mail manualmente"
+msgstr "Allega e-mail manualmente"
 
 #. module: fetchmail_attach_from_folder
 #: view:fetchmail.attach.mail.manually:fetchmail_attach_from_folder.view_attach_mail_manually
@@ -88,12 +88,12 @@ msgstr "Data"
 #. module: fetchmail_attach_from_folder
 #: help:fetchmail.server.folder,delete_matching:0
 msgid "Delete matched emails from server"
-msgstr "Elimina le email selezionate dal server"
+msgstr "Elimina le email corrispondenti dal server"
 
 #. module: fetchmail_attach_from_folder
 #: field:fetchmail.server.folder,delete_matching:0
 msgid "Delete matches"
-msgstr ""
+msgstr "Cancella corrispondenti"
 
 #. module: fetchmail_attach_from_folder
 #: field:fetchmail.attach.mail.manually,display_name:0
@@ -341,7 +341,7 @@ msgstr ""
 #. module: fetchmail_attach_from_folder
 #: view:fetchmail.server:fetchmail_attach_from_folder.view_email_server_form
 msgid "email"
-msgstr "email"
+msgstr "e-mail"
 
 #. module: fetchmail_attach_from_folder
 #: view:fetchmail.server:fetchmail_attach_from_folder.view_email_server_form
