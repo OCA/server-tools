@@ -7,9 +7,8 @@ import logging
 import requests
 from requests.auth import HTTPBasicAuth
 
-from odoo import fields, models
+from odoo import _, fields, models
 from odoo.exceptions import UserError
-
 
 _logger = logging.getLogger(__name__)  # pylint: disable=invalid-name
 
@@ -38,7 +37,8 @@ class AuthOAuthProvider(models.Model):
         """Redirect to method specific to provider type."""
         self.ensure_one()
         handler = getattr(self, "_get_access_token_" + self.provider_type)
-        return handler()
+        token = handler()
+        return str(token)  # Must be valid bytes for header
 
     def _get_access_token_basic(self):
         """Get access token using basic authentication."""
@@ -78,9 +78,11 @@ class AuthOAuthProvider(models.Model):
         """Check response from oauth provider."""
         if response.status_code != 200:
             raise UserError(
-                "Error at login to OAuth provider:\n"
-                "Status_code: %(status_code)s\n"
-                "Response: %(response)s"
+                _(
+                    "Error at login to OAuth provider:\n"
+                    "Status_code: %(status_code)s\n"
+                    "Response: %(response)s"
+                )
                 % {"status_code": response.status_code, "response": response.content}
             )
         _logger.debug(
