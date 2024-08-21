@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="external_system_view_form" model="ir.ui.view">
+        <field name="model">external.system</field>
+        <field name="inherit_id" ref="base_external_system.external_system_view_form" />
+        <field name="arch" type="xml">
+        <!-- Add endpoint field -->
+            <xpath expr="//notebook" position="inside">
+                <page string="Configure http endpoints">
+                    <field name="endpoint_ids" nolabel="1">
+                        <tree>
+                            <field name="name" />
+                            <field name="endpoint" />
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,6 @@
+# Ignore all existing modules, to prevent runaway diffs
+# When updating a module, remove ignore line from this file.
+hc_api
+hc_base
+hc_calendar
+website_subscription_request_calendar
