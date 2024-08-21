@@ -90,16 +90,28 @@ class ExternalSystemAdapterHTTP(models.AbstractModel):
     def _return_checked_response(self, endpoint, response):
         """For response statuscodes > 201, log error and raise exception."""
         if response.status_code > 201:
-            _logger.error(
+            if isinstance(response.text, (str, unicode)):  # noqa: F821
+                response_text = response.text
+            else:
+                try:
+                    response_text = str(response.text)
+                except Exception:
+                    response_text = "- No valid response text -"
+            error_dict = {
+                "status": str(response.status_code),
+                "endpoint": endpoint,
+                "text": response_text,
+            }
+            untranslated_error = (
                 "Got response with statuscode %(status)s"
-                " from endpoint %(endpoint)s: %(text)s",
-                {
-                    "status": str(response.status_code),
-                    "endpoint": endpoint,
-                    "text": str(response.text),
-                },
+                " from endpoint %(endpoint)s: %(text)s"
             )
-            raise UserError(_("Communication failure with %s, check log") % endpoint)
+            _logger.error(untranslated_error, error_dict)
+            translated_error = _(
+                "Got response with statuscode %(status)s"
+                " from endpoint %(endpoint)s: %(text)s"
+            )
+            raise UserError(translated_error % error_dict)
         _logger.info(
             "Succesfull communication with endpoint %(endpoint)s",
             {"endpoint": endpoint},
