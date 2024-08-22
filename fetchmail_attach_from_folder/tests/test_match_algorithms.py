@@ -58,6 +58,11 @@ class MockConnection:
         """Mock an IMAP4.expunge action"""
         return ("OK", None)
 
+    def uid(self, command, *args):
+        """Return from the appropiate mocked method."""
+        method = getattr(self, command)
+        return method(*args)
+
 
 class TestMatchAlgorithms(TransactionCase):
     @classmethod
