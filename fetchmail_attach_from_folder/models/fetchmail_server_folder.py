@@ -180,22 +180,26 @@ class FetchmailServerFolder(models.Model):
     def retrieve_imap_folder(self, connection):
         """Retrieve all mails for one IMAP folder."""
         self.ensure_one()
-        msgids = self.get_msgids(connection, self.get_criteria())
-        for msgid in msgids[0].split():
+        message_uids = self.get_message_uids(connection, self.get_criteria())
+        for message_uid in message_uids[0].split():
             # We will accept exceptions for single messages
             try:
                 self.env.cr.execute("savepoint apply_matching")
-                self.apply_matching(connection, msgid)
+                self.apply_matching(connection, message_uid)
                 self.env.cr.execute("release savepoint apply_matching")
             except Exception:
                 self.env.cr.execute("rollback to savepoint apply_matching")
                 _logger.exception(
-                    "Failed to fetch mail %(msgid)s from server %(server)s",
-                    {"msgid": msgid, "server": self.server_id.name},
+                    "Failed to fetch mail %(message_uid)s from server %(server)s",
+                    {"message_uid": message_uid, "server": self.server_id.name},
                 )
 
-    def get_msgids(self, connection, criteria):
+    def get_message_uids(self, connection, criteria):
         """Return imap ids of messages to process"""
+        # Note that these message_uids are linked to the folder on
+        # the imap server. They have nothing at all todo with the
+        # message_id field that is part of the message itself, and the
+        # two should not be confused.
         self.ensure_one()
         server = self.server_id
         _logger.info(
@@ -207,7 +211,8 @@ class FetchmailServerFolder(models.Model):
                 _("Could not open folder %(folder)s on server %(server)s")
                 % {"folder": self.path, "server": server.name}
             )
-        result, msgids = connection.search(None, criteria)
+        charset = None  # Generally we do not need to set a charset.
+        result, message_uids = connection.uid("search", charset, criteria)
         if result != "OK":
             raise UserError(
                 _("Could not search folder %(folder)s on server %(server)s")
@@ -217,14 +222,14 @@ class FetchmailServerFolder(models.Model):
             "finished checking for emails in folder %(folder)s on server %(server)s",
             {"folder": self.path, "server": server.name},
         )
-        return msgids
+        return message_uids
 
-    def apply_matching(self, connection, msgid):
+    def apply_matching(self, connection, message_uid):
         """Return id of object matched (which will be the thread_id)."""
         self.ensure_one()
         thread_id = None
         thread_model = self.env["mail.thread"]
-        message_org = self.fetch_msg(connection, msgid)
+        message_org = self.fetch_msg(connection, message_uid)
         if self.match_algorithm == "odoo_standard":
             thread_id = thread_model.message_process(
                 self.model_id.model,
@@ -242,9 +247,9 @@ class FetchmailServerFolder(models.Model):
         matched = True if thread_id else False
         if matched:
             self.run_server_action(thread_id)
-        self.update_msg(connection, msgid, matched=matched)
-        if self.archive_path:
-            self._archive_msg(connection, msgid)
+        self.update_msg(connection, message_uid, matched=matched)
+        if self.archive_path and not self.delete_matching:
+            self._archive_msg(connection, message_uid)
         return thread_id  # Can be None if no match found.
 
     def run_server_action(self, matched_object_ids):
@@ -263,34 +268,39 @@ class FetchmailServerFolder(models.Model):
                 }
             ).run()
 
-    def fetch_msg(self, connection, msgid):
+    def fetch_msg(self, connection, message_uid):
         """Select a single message from a folder."""
         self.ensure_one()
-        result, msgdata = connection.fetch(msgid, "(RFC822)")
+        result, msgdata = connection.uid("fetch", message_uid, "(RFC822)")
         if result != "OK":
             raise UserError(
-                _("Could not fetch %(msgid)s in folder %(folder)s on server %(server)s")
-                % {"msgid": msgid, "folder": self.path, "server": self.server_id.name}
+                _(
+                    "Could not fetch %(message_uid)s in folder %(folder)s on server %(server)s"
+                )
+                % {
+                    "message_uid": message_uid,
+                    "folder": self.path,
+                    "server": self.server_id.name,
+                }
             )
         message_org = msgdata[0][1]  # rfc822 message source
         return message_org
 
-    def update_msg(self, connection, msgid, matched=True, flagged=False):
+    def update_msg(self, connection, message_uid, matched=True, flagged=False):
         """Update msg in imap folder depending on match and settings."""
         if matched:
             if self.delete_matching:
-                connection.store(msgid, "+FLAGS", "\\DELETED")
+                connection.uid("store", message_uid, "+FLAGS", "\\DELETED")
             elif flagged and self.flag_nonmatching:
-                connection.store(msgid, "-FLAGS", "\\FLAGGED")
+                connection.uid("store", message_uid, "-FLAGS", "\\FLAGGED")
         else:
             if self.flag_nonmatching:
-                connection.store(msgid, "+FLAGS", "\\FLAGGED")
+                connection.uid("store", message_uid, "+FLAGS", "\\FLAGGED")
 
-    def _archive_msg(self, connection, msgid):
+    def _archive_msg(self, connection, message_uid):
         """Archive message. Folder should already have been created."""
-        self.ensure_one()
-        connection.copy(msgid, self.archive_path)
-        connection.store(msgid, "+FLAGS", "\\Deleted")
+        connection.uid("copy", message_uid, self.archive_path)
+        connection.uid("store", message_uid, "+FLAGS", "\\Deleted")
         connection.expunge()
 
     @api.model
@@ -331,10 +341,10 @@ class FetchmailServerFolder(models.Model):
         matches = matcher.search_matches(self, message_dict)
         if not matches:
             _logger.info(
-                "No match found for message %(subject)s with msgid %(msgid)s",
+                "No match found for message %(subject)s with message_uid %(message_uid)s",
                 {
                     "subject": message_dict.get("subject", "no subject"),
-                    "msgid": message_dict.get("message_id", "no msgid"),
+                    "message_uid": message_dict.get("message_id", "no message_uid"),
                 },
             )
             return None
