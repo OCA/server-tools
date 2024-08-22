@@ -48,6 +48,11 @@ class MockConnection:
         """Return some msgid's."""
         return ("OK", ["123 456"])
 
+    def uid(self, command, *args):
+        """Return from the appropiate mocked method."""
+        method = getattr(self, command)
+        return method(*args)
+
 
 class TestMatchAlgorithms(TransactionCase):
     @classmethod
