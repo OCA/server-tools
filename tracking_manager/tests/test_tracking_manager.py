@@ -1,24 +1,15 @@
 # Copyright 2022 Akretion (https://www.akretion.com).
 # @author Kévin Roche <kevin.roche@akretion.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-
-from odoo_test_helper import FakeModelLoader
-
 from odoo import Command
 from odoo.tests.common import TransactionCase
+from odoo.tools import mute_logger
 
 
 class TestTrackingManager(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        # Load fake models ->/
-        cls.loader = FakeModelLoader(cls.env, cls.__module__)
-        cls.loader.backup_registry()
-        from .models import ResPartnerBank
-
-        cls.loader.update_registry((ResPartnerBank,))
-
         cls.partner_categ_1, cls.partner_categ_2, cls.partner_categ_3 = cls.env[
             "res.partner.category"
         ].create(
@@ -31,19 +22,14 @@ class TestTrackingManager(TransactionCase):
         cls.partner = cls.env["res.partner"].create(
             {
                 "name": "Foo",
-                "bank_ids": [(Command.CREATE, 0, {"acc_number": "007"})],
+                "user_ids": [(Command.CREATE, 0, {"login": "007"})],
                 "category_id": [(Command.SET, 0, [cls.partner_categ_1.id])],
             }
         )
         cls.partner_model = cls.env.ref("base.model_res_partner")
-        cls._active_tracking(["bank_ids", "category_id"])
+        cls._active_tracking(["user_ids", "category_id"])
         cls.flush_tracking()
         cls.partner.message_ids.unlink()
-
-    @classmethod
-    def tearDownClass(cls):
-        cls.loader.restore_registry()
-        super().tearDownClass()
 
     @classmethod
     def _active_tracking(cls, fields_list):
@@ -56,7 +42,7 @@ class TestTrackingManager(TransactionCase):
         return cls.partner_model.field_id.filtered(lambda s: s.name in fields_list)
 
     def test_not_tracked(self):
-        field = self._get_fields(["name"])[0]
+        field = self._get_fields(["mobile"])[0]
         self.assertFalse(field.native_tracking)
         self.assertFalse(field.custom_tracking)
 
@@ -66,7 +52,7 @@ class TestTrackingManager(TransactionCase):
         self.assertTrue(field.custom_tracking)
 
     def test_update_tracked(self):
-        field = self._get_fields(["name"])[0]
+        field = self._get_fields(["mobile"])[0]
         self.assertFalse(field.native_tracking)
         self.partner_model.automatic_custom_tracking = True
         self.partner_model.update_custom_tracking()
@@ -127,15 +113,14 @@ class TestTrackingManager(TransactionCase):
         self.assertEqual(tracking.new_value_text, "BAR; TOOH")
 
     def test_o2m_create_indirectly(self):
-        self.partner.write(
-            {"bank_ids": [(Command.CREATE, 0, {"acc_number": "1234567890"})]}
-        )
+        self.partner.write({"user_ids": [(Command.CREATE, 0, {"login": "1234567890"})]})
         self.assertEqual(len(self.messages), 2)
         self.assertEqual(self.messages[0].body.count("New"), 1)
 
+    @mute_logger("odoo.models.unlink")
     def test_o2m_unlink_indirectly(self):
         self.partner.write(
-            {"bank_ids": [(Command.DELETE, self.partner.bank_ids[0].id)]}
+            {"user_ids": [(Command.DELETE, self.partner.user_ids[0].id)]}
         )
         self.assertEqual(len(self.messages), 1)
         self.assertIn("Delete", self.messages.body)
@@ -143,8 +128,8 @@ class TestTrackingManager(TransactionCase):
     def test_o2m_write_indirectly(self):
         self.partner.write(
             {
-                "bank_ids": [
-                    (Command.UPDATE, self.partner.bank_ids[0].id, {"acc_number": "123"})
+                "user_ids": [
+                    (Command.UPDATE, self.partner.user_ids[0].id, {"login": "123"})
                 ],
             }
         )
@@ -152,26 +137,27 @@ class TestTrackingManager(TransactionCase):
         self.assertIn("Change", self.messages.body)
 
     def test_o2m_write_indirectly_on_not_tracked_fields(self):
-        # Active custom tracking on res.partner.bank and remove tracking on acc_number
-        bank_model = self.env["ir.model"].search([("model", "=", "res.partner.bank")])
-        bank_model.active_custom_tracking = True
-        acc_number = bank_model.field_id.filtered(lambda x: x.name == "acc_number")
-        acc_number.custom_tracking = False
+        # Active custom tracking on res.users and remove tracking on login
+        res_users_model = self.env["ir.model"].search([("model", "=", "res.users")])
+        res_users_model.active_custom_tracking = True
+        login_field = res_users_model.field_id.filtered(lambda x: x.name == "login")
+        login_field.custom_tracking = False
         self.partner.write(
             {
-                "bank_ids": [
-                    (Command.UPDATE, self.partner.bank_ids[0].id, {"acc_number": "123"})
+                "user_ids": [
+                    (Command.UPDATE, self.partner.user_ids[0].id, {"login": "123"})
                 ],
             }
         )
         self.assertEqual(len(self.messages), 0)
 
+    @mute_logger("odoo.models.unlink")
     def test_o2m_create_and_unlink_indirectly(self):
         self.partner.write(
             {
-                "bank_ids": [
-                    (Command.DELETE, self.partner.bank_ids[0].id, 0),
-                    (Command.CREATE, 0, {"acc_number": "1234567890"}),
+                "user_ids": [
+                    (Command.DELETE, self.partner.user_ids[0].id, 0),
+                    (Command.CREATE, 0, {"login": "1234567890"}),
                 ]
             }
         )
@@ -180,18 +166,22 @@ class TestTrackingManager(TransactionCase):
         self.assertEqual(self.messages.body.count("Delete"), 1)
 
     def test_o2m_update_m2m_indirectly(self):
+        self.group_extra = self.env["res.groups"].create({"name": "Test group"})
         self.partner.write(
             {
-                "bank_ids": [
+                "user_ids": [
                     (
                         Command.UPDATE,
-                        self.partner.bank_ids[0].id,
+                        self.partner.user_ids[0].id,
                         {
-                            "category_ids": [
+                            "groups_id": [
                                 (
                                     6,
                                     0,
-                                    [self.partner_categ_1.id, self.partner_categ_2.id],
+                                    [
+                                        self.env.ref("base.group_user").id,
+                                        self.group_extra.id,
+                                    ],
                                 )
                             ]
                         },
@@ -205,11 +195,15 @@ class TestTrackingManager(TransactionCase):
     def test_o2m_update_m2o_indirectly(self):
         self.partner.write(
             {
-                "bank_ids": [
+                "user_ids": [
                     (
                         Command.UPDATE,
-                        self.partner.bank_ids[0].id,
-                        {"bank_id": self.env["res.bank"].create({"name": "DOO"}).id},
+                        self.partner.user_ids[0].id,
+                        {
+                            "action_id": self.env["ir.actions.actions"]
+                            .create({"name": "test", "type": "ir.actions.act_window"})
+                            .id
+                        },
                     ),
                 ]
             }
@@ -217,6 +211,7 @@ class TestTrackingManager(TransactionCase):
         self.assertEqual(len(self.messages), 1)
         self.assertEqual(self.messages.body.count("Changed"), 1)
 
+    @mute_logger("odoo.models.unlink")
     def test_o2m_write_and_unlink_indirectly(self):
         # when editing a o2m in some special case
         # like the computed field amount_tax of purchase order line
@@ -228,14 +223,14 @@ class TestTrackingManager(TransactionCase):
         # and no error
         self.partner.write(
             {
-                "bank_ids": [
-                    (Command.UPDATE, self.partner.bank_ids[0].id, {"acc_number": "123"})
+                "user_ids": [
+                    (Command.UPDATE, self.partner.user_ids[0].id, {"login": "123"})
                 ],
             }
         )
         self.partner.write(
             {
-                "bank_ids": [(Command.DELETE, self.partner.bank_ids[0].id, 0)],
+                "user_ids": [(Command.DELETE, self.partner.user_ids[0].id, 0)],
             }
         )
         self.assertEqual(len(self.messages), 1)
@@ -243,29 +238,35 @@ class TestTrackingManager(TransactionCase):
         self.assertEqual(self.messages.body.count("Delete"), 1)
 
     def test_o2m_create_directly(self):
-        self.env["res.partner.bank"].create(
+        # Add custom context to prevent message from mail addon
+        self.env["res.users"].with_context(
+            mail_create_nolog=True, mail_notrack=True
+        ).create(
             {
-                "acc_number": "1234567890",
+                "name": "1234567890",
+                "login": "1234567890",
                 "partner_id": self.partner.id,
             }
         )
         self.assertEqual(len(self.messages), 1)
         self.assertEqual(self.messages.body.count("New"), 1)
 
+    @mute_logger("odoo.models.unlink")
     def test_o2m_unlink_directly(self):
-        self.partner.bank_ids.unlink()
+        self.partner.user_ids.unlink()
         self.assertEqual(len(self.messages), 1)
         self.assertEqual(self.messages.body.count("Delete"), 1)
 
     def test_o2m_update_directly(self):
-        self.partner.bank_ids.write({"acc_number": "0987654321"})
+        self.partner.user_ids.write({"login": "0987654321"})
         self.assertEqual(len(self.messages), 1)
         self.assertEqual(self.messages.body.count("Change :"), 1)
 
+    @mute_logger("odoo.models.unlink")
     def test_o2m_write_and_unlink_directly(self):
         # see explanation of test_o2m_write_and_unlink_indirectly
-        self.partner.bank_ids.write({"acc_number": "0987654321"})
-        self.partner.bank_ids.unlink()
+        self.partner.user_ids.write({"login": "0987654321"})
+        self.partner.user_ids.unlink()
         self.assertEqual(len(self.messages), 1)
         self.assertEqual(self.messages.body.count("Change"), 0)
         self.assertEqual(self.messages.body.count("Delete"), 1)
