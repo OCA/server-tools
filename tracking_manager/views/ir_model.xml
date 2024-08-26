@@ -9,8 +9,13 @@
         <field name="inherit_id" ref="base.view_model_form" />
         <field name="arch" type="xml">
             <xpath expr="//sheet/group[1]" position="after">
-
-                <group string="Custom Tracking">
+                <!-- We add the field because it has groups. !-->
+                <field name="is_mail_thread" invisible="1" />
+                <group
+                    string="Custom Tracking"
+                    name="tracking_manager"
+                    attrs="{'invisible': [('is_mail_thread', '=', False)]}"
+                >
                     <group>
                         <field name="active_custom_tracking" string="Active" />
                         <field
@@ -42,10 +47,9 @@
                     </group>
                 </group>
             </xpath>
-
             <xpath expr="//sheet/group[1]" position="before">
-                        <div class="oe_button_box" name="button_box">
-                            <button
+                <div class="oe_button_box" name="button_box">
+                    <button
                         name="%(ir_model_fields_action)d"
                         type="action"
                         class="oe_stat_button"
@@ -58,9 +62,8 @@
                             string="Tracked Fields"
                         />
                             </button>
-                        </div>
-                </xpath>
+                </div>
+            </xpath>
         </field>
     </record>
-
 </odoo>
