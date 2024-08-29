@@ -85,6 +85,9 @@ class Base(models.AbstractModel):
 
     def _tm_post_message(self, data):
         for model_name, model_data in data.items():
+            # check if record has mail.thread mixin
+            if not getattr(self.env[model_name], "message_post_with_view", False):
+                continue
             for record_id, messages_by_field in model_data.items():
                 record = self.env[model_name].browse(record_id)
                 messages = [
