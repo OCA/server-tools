@@ -21,6 +21,12 @@ class AttachmentQueue(models.Model):
         selection_add=[("export", "Export File (External location)")]
     )
 
+    def _write_file_to_remote(self, fs, full_path):
+        self.ensure_one()
+        data = base64.b64decode(self.datas)
+        with fs.open(full_path, "wb") as f:
+            f.write(data)
+
     def _run(self):
         res = super()._run()
         if self.file_type == "export":
@@ -32,9 +38,7 @@ class AttachmentQueue(models.Model):
             # create missing folders if necessary :
             if folder_path and not fs.exists(folder_path):
                 fs.makedirs(folder_path)
-            data = base64.b64decode(self.datas)
-            with fs.open(full_path, "wb") as f:
-                f.write(data)
+            self._write_file_to_remote(fs, full_path)
         return res
 
     def _get_failure_emails(self):
