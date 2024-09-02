@@ -36,6 +36,7 @@ Without having to code to create excel file, developer do,
 - Design excel template using standard Excel application, e.g., colors, fonts, formulas, etc.
 - Instruct how the data will be located in Excel with simple dictionary instruction or from Odoo UI.
 - Odoo will combine instruction with excel template, and result in final excel file.
+- Functionality allowing you to add the excel file to an email template
 
 **Table of contents**
 
@@ -101,6 +102,11 @@ This create report menu with criteria wizard. (example - excel_import_export_dem
 3. Create report model as models.Transient, then define search criteria fields, and get reporing data into ``results`` field -- <report>.py
 4. Create/Design Excel Template File (.xlsx), in the template, name the underlining tab used for report results -- <report_file>.xlsx
 5. Create instruction dictionary for report in xlsx.template model -- templates.xml
+
+To add the export to an email template:
+
+1. On Settings page, check the box 'Available On Mail'
+2. Add email(s) template that you want on the field 'Email Template'
 
 **Note:**
 
@@ -171,6 +177,7 @@ Contributors
 
 * Kitti Upariphutthiphong. <kittiu@gmail.com> (http://ecosoft.co.th)
 * Saran Lim. <saranl@ecosoft.co.th> (http://ecosoft.co.th)
+* Mathieu Delva <mathieu.delva@akretion.com>
 
 Maintainers
 ~~~~~~~~~~~

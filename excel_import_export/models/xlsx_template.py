@@ -122,6 +122,10 @@ class XLSXTemplate(models.Model):
         comodel_name="ir.actions.report",
         string="Report Action",
     )
+    available_on_mail = fields.Boolean()
+    mail_template_ids = fields.One2many(
+        "mail.template", "export_template_id", string="Mail Template"
+    )
 
     def _compute_result_field(self):
         for rec in self:

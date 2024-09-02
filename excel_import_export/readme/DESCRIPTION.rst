@@ -6,3 +6,4 @@ Without having to code to create excel file, developer do,
 - Design excel template using standard Excel application, e.g., colors, fonts, formulas, etc.
 - Instruct how the data will be located in Excel with simple dictionary instruction or from Odoo UI.
 - Odoo will combine instruction with excel template, and result in final excel file.
+- Functionality allowing you to add the excel file to an email template

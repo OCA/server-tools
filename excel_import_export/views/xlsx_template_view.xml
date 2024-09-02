@@ -408,6 +408,16 @@
                                 </pre>
                             </div>
                         </page>
+                        <page string="Settings">
+                            <group>
+                                <field name="available_on_mail" />
+                                <field
+                                    name="mail_template_ids"
+                                    widget="many2many_tags"
+                                    attrs="{'invisible': [('available_on_mail', '=', False)]}"
+                                />
+                            </group>
+                        </page>
                     </notebook>
                 </sheet>
             </form>

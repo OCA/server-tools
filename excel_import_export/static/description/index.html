@@ -8,10 +8,11 @@
 
 /*
 :Author: David Goodger (goodger@python.org)
-:Id: $Id: html4css1.css 8954 2022-01-20 10:10:25Z milde $
+:Id: $Id: html4css1.css 9511 2024-01-13 09:50:07Z milde $
 :Copyright: This stylesheet has been placed in the public domain.
 
 Default cascading style sheet for the HTML output of Docutils.
+Despite the name, some widely supported CSS2 features are used.
 
 See https://docutils.sourceforge.io/docs/howto/html-stylesheets.html for how to
 customize this style sheet.
@@ -274,7 +275,7 @@ pre.literal-block, pre.doctest-block, pre.math, pre.code {
   margin-left: 2em ;
   margin-right: 2em }
 
-pre.code .ln { color: grey; } /* line numbers */
+pre.code .ln { color: gray; } /* line numbers */
 pre.code, code { background-color: #eeeeee }
 pre.code .comment, code .comment { color: #5C6576 }
 pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
@@ -300,7 +301,7 @@ span.option {
 span.pre {
   white-space: pre }
 
-span.problematic {
+span.problematic, pre.problematic {
   color: red }
 
 span.section-subtitle {
@@ -376,6 +377,7 @@ ul.auto-toc {
 <li>Design excel template using standard Excel application, e.g., colors, fonts, formulas, etc.</li>
 <li>Instruct how the data will be located in Excel with simple dictionary instruction or from Odoo UI.</li>
 <li>Odoo will combine instruction with excel template, and result in final excel file.</li>
+<li>Functionality allowing you to add the excel file to an email template</li>
 </ul>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
@@ -445,6 +447,11 @@ ul.auto-toc {
 <li>Create report model as models.Transient, then define search criteria fields, and get reporing data into <tt class="docutils literal">results</tt> field – &lt;report&gt;.py</li>
 <li>Create/Design Excel Template File (.xlsx), in the template, name the underlining tab used for report results – &lt;report_file&gt;.xlsx</li>
 <li>Create instruction dictionary for report in xlsx.template model – templates.xml</li>
+</ol>
+<p>To add the export to an email template:</p>
+<ol class="arabic simple">
+<li>On Settings page, check the box ‘Available On Mail’</li>
+<li>Add email(s) template that you want on the field ‘Email Template’</li>
 </ol>
 <p><strong>Note:</strong></p>
 <p>Another option for reporting is to use report action (report_type=’excel’), I.e.,</p>
@@ -516,12 +523,15 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <ul class="simple">
 <li>Kitti Upariphutthiphong. &lt;<a class="reference external" href="mailto:kittiu&#64;gmail.com">kittiu&#64;gmail.com</a>&gt; (<a class="reference external" href="http://ecosoft.co.th">http://ecosoft.co.th</a>)</li>
 <li>Saran Lim. &lt;<a class="reference external" href="mailto:saranl&#64;ecosoft.co.th">saranl&#64;ecosoft.co.th</a>&gt; (<a class="reference external" href="http://ecosoft.co.th">http://ecosoft.co.th</a>)</li>
+<li>Mathieu Delva &lt;<a class="reference external" href="mailto:mathieu.delva&#64;akretion.com">mathieu.delva&#64;akretion.com</a>&gt;</li>
 </ul>
 </div>
 <div class="section" id="maintainers">
 <h2><a class="toc-backref" href="#toc-entry-11">Maintainers</a></h2>
 <p>This module is maintained by the OCA.</p>
-<a class="reference external image-reference" href="https://odoo-community.org"><img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" /></a>
+<a class="reference external image-reference" href="https://odoo-community.org">
+<img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" />
+</a>
 <p>OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.</p>

@@ -46,6 +46,11 @@ This create report menu with criteria wizard. (example - excel_import_export_dem
 4. Create/Design Excel Template File (.xlsx), in the template, name the underlining tab used for report results -- <report_file>.xlsx
 5. Create instruction dictionary for report in xlsx.template model -- templates.xml
 
+To add the export to an email template:
+
+1. On Settings page, check the box 'Available On Mail'
+2. Add email(s) template that you want on the field 'Email Template'
+
 **Note:**
 
 Another option for reporting is to use report action (report_type='excel'), I.e.,
