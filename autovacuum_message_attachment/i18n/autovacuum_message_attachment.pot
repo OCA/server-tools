@@ -139,6 +139,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_base_module_uninstall__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_base_module_update__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_base_module_upgrade__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_base_multi_image_image__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_base_multi_image_owner__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_base_partner_merge_automatic_wizard__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_base_partner_merge_line__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_bus_bus__assigned_attachment_ids
@@ -155,6 +157,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_change_password_user__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_change_password_wizard__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_changeset_field_rule__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_conditional_image__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_conditional_image_consumer_mixin__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_crm_activity_report__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_crm_iap_lead_helpers__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_crm_iap_lead_industry__assigned_attachment_ids
@@ -266,6 +270,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_ir_ui_view__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_ir_ui_view_custom__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_ir_websocket__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_letsencrypt__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_activity__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_activity_mixin__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_activity_type__assigned_attachment_ids
@@ -303,6 +308,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_thread_phone__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_tracking_value__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_wizard_invite__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_nsca_check__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_nsca_server__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_payment_icon__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_payment_link_wizard__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_payment_provider__assigned_attachment_ids
