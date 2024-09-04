@@ -15,6 +15,7 @@ setuptools.setup(
         'odoo-addon-auto_backup>=16.0dev,<16.1dev',
         'odoo-addon-autovacuum_message_attachment>=16.0dev,<16.1dev',
         'odoo-addon-base_changeset>=16.0dev,<16.1dev',
+        'odoo-addon-base_conditional_image>=16.0dev,<16.1dev',
         'odoo-addon-base_cron_exclusion>=16.0dev,<16.1dev',
         'odoo-addon-base_domain_inverse_function>=16.0dev,<16.1dev',
         'odoo-addon-base_exception>=16.0dev,<16.1dev',
