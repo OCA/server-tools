@@ -5,7 +5,6 @@ from odoo import _, api, fields, models, tools
 
 
 class TimeWeekday(models.Model):
-
     _name = "time.weekday"
     _description = "Time Week Day"
 
