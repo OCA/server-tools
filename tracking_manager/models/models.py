@@ -97,12 +97,13 @@ class Base(models.AbstractModel):
                     }
                     for field_name, messages in messages_by_field.items()
                 ]
-                # use sudo as user may not have access to mail.message
-                record.sudo().message_post_with_source(
+                # We do not use message_post_with_view() because emails would be sent
+                rendered_template = self.env["ir.qweb"]._render(
                     "tracking_manager.track_o2m_m2m_template",
-                    render_values={"lines": messages},
-                    subtype_xmlid="mail.mt_note",
+                    {"lines": messages, "object": record},
+                    minimal_qcontext=True,
                 )
+                record._message_log(body=rendered_template)
 
     def _tm_prepare_o2m_tracking(self):
         fnames = self._tm_get_fields_to_track()
