@@ -6,7 +6,7 @@
     "name": "Tracking Manager",
     "summary": """This module tracks all fields of a model,
                 including one2many and many2many ones.""",
-    "version": "16.0.1.1.2",
+    "version": "16.0.1.1.3",
     "category": "Tools",
     "website": "https://github.com/OCA/server-tools",
     "author": "Akretion, Odoo Community Association (OCA)",
