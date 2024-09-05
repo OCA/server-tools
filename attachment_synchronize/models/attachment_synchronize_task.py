@@ -211,11 +211,7 @@ class AttachmentSynchronizeTask(models.Model):
             with self.env.registry.cursor() as new_cr:
                 new_env = api.Environment(new_cr, self.env.uid, self.env.context)
                 file_name = file_path.split(fs.sep)[-1]
-                # avoid use of cat_file because it may not be implemeted in async
-                # implementation like sshfs
-                with fs.open(file_path, "rb") as fs_file:
-                    data = fs_file.read()
-                data = base64.b64encode(data)
+                data = base64.b64encode(fs.cat_file(file_path))
                 attach_vals = self.with_env(new_env)._prepare_attachment_vals(
                     data, file_name
                 )
