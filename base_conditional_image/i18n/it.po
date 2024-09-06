@@ -1,0 +1,134 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* base_conditional_image
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#. module: base_conditional_image
+#: model:ir.model.fields,field_description:base_conditional_image.field_conditional_image__company_id
+msgid "Company"
+msgstr ""
+
+#. module: base_conditional_image
+#: model:ir.model.fields,help:base_conditional_image.field_conditional_image__company_id
+msgid ""
+"Company related check. If inherited object does not have a `company_id` "
+"field, it will be ignored. The check will first take the records with a "
+"company then, if no match is found, the ones without a company."
+msgstr ""
+
+#. module: base_conditional_image
+#: model:ir.model,name:base_conditional_image.model_conditional_image
+#: model_terms:ir.ui.view,arch_db:base_conditional_image.view_conditional_image_form
+msgid "Conditional Image"
+msgstr ""
+
+#. module: base_conditional_image
+#: model:ir.actions.act_window,name:base_conditional_image.conditional_image_action
+#: model:ir.ui.menu,name:base_conditional_image.conditional_image_menu
+msgid "Conditional Images"
+msgstr ""
+
+#. module: base_conditional_image
+#: model:ir.model.fields,field_description:base_conditional_image.field_conditional_image__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: base_conditional_image
+#: model:ir.model.fields,field_description:base_conditional_image.field_conditional_image__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: base_conditional_image
+#: model:ir.model.fields,field_description:base_conditional_image.field_conditional_image__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: base_conditional_image
+#: model:ir.model.fields,field_description:base_conditional_image.field_conditional_image__id
+msgid "ID"
+msgstr ""
+
+#. module: base_conditional_image
+#: model:ir.model.fields,field_description:base_conditional_image.field_conditional_image__image_1920
+#: model:ir.model.fields,field_description:base_conditional_image.field_conditional_image_consumer_mixin__image_1920
+msgid "Image"
+msgstr ""
+
+#. module: base_conditional_image
+#: model:ir.model.fields,field_description:base_conditional_image.field_conditional_image__image_1024
+#: model:ir.model.fields,field_description:base_conditional_image.field_conditional_image_consumer_mixin__image_1024
+msgid "Image 1024"
+msgstr ""
+
+#. module: base_conditional_image
+#: model:ir.model.fields,field_description:base_conditional_image.field_conditional_image__image_128
+#: model:ir.model.fields,field_description:base_conditional_image.field_conditional_image_consumer_mixin__image_128
+msgid "Image 128"
+msgstr ""
+
+#. module: base_conditional_image
+#: model:ir.model.fields,field_description:base_conditional_image.field_conditional_image__image_256
+#: model:ir.model.fields,field_description:base_conditional_image.field_conditional_image_consumer_mixin__image_256
+msgid "Image 256"
+msgstr ""
+
+#. module: base_conditional_image
+#: model:ir.model.fields,field_description:base_conditional_image.field_conditional_image__image_512
+#: model:ir.model.fields,field_description:base_conditional_image.field_conditional_image_consumer_mixin__image_512
+msgid "Image 512"
+msgstr ""
+
+#. module: base_conditional_image
+#: model:ir.model.fields,field_description:base_conditional_image.field_conditional_image____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: base_conditional_image
+#: model:ir.model.fields,field_description:base_conditional_image.field_conditional_image__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: base_conditional_image
+#: model:ir.model.fields,field_description:base_conditional_image.field_conditional_image__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: base_conditional_image
+#: model:ir.model,name:base_conditional_image.model_conditional_image_consumer_mixin
+msgid "Mixin for conditional images consumers"
+msgstr ""
+
+#. module: base_conditional_image
+#: model:ir.model.fields,field_description:base_conditional_image.field_conditional_image__model_name
+msgid "Model Name"
+msgstr ""
+
+#. module: base_conditional_image
+#: model:ir.model.fields,field_description:base_conditional_image.field_conditional_image__name
+msgid "Name"
+msgstr ""
+
+#. module: base_conditional_image
+#: model:ir.model.fields,help:base_conditional_image.field_conditional_image__selector
+msgid ""
+"Python expression used as selector when multiple images are usedfor the same"
+" object. The variable `object` refers to the actual record on which the "
+"expression will be executed. An empty expression will always return `True`."
+msgstr ""
+
+#. module: base_conditional_image
+#: model:ir.model.fields,field_description:base_conditional_image.field_conditional_image__selector
+#: model_terms:ir.ui.view,arch_db:base_conditional_image.view_conditional_image_form
+msgid "Selector"
+msgstr ""
