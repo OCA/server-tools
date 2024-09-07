@@ -191,6 +191,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_base_module_uninstall__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_base_module_update__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_base_module_upgrade__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_base_multi_image_image__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_base_multi_image_owner__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_base_partner_merge_automatic_wizard__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_base_partner_merge_line__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_bus_bus__changeset_change_ids
@@ -630,6 +632,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_base_module_uninstall__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_base_module_update__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_base_module_upgrade__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_base_multi_image_image__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_base_multi_image_owner__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_base_partner_merge_automatic_wizard__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_base_partner_merge_line__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_bus_bus__changeset_ids
@@ -1056,6 +1060,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_base_module_uninstall__count_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_base_module_update__count_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_base_module_upgrade__count_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_base_multi_image_image__count_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_base_multi_image_owner__count_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_base_partner_merge_automatic_wizard__count_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_base_partner_merge_line__count_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_bus_bus__count_changesets
@@ -1475,6 +1481,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_base_module_uninstall__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_base_module_update__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_base_module_upgrade__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_base_multi_image_image__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_base_multi_image_owner__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_base_partner_merge_automatic_wizard__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_base_partner_merge_line__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_bus_bus__count_pending_changeset_changes
@@ -1894,6 +1902,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_base_module_uninstall__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_base_module_update__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_base_module_upgrade__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_base_multi_image_image__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_base_multi_image_owner__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_base_partner_merge_automatic_wizard__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_base_partner_merge_line__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_bus_bus__count_pending_changesets
@@ -2687,6 +2697,8 @@ msgstr ""
 #: model:ir.model.fields,help:base_changeset.field_base_module_uninstall__count_pending_changeset_changes
 #: model:ir.model.fields,help:base_changeset.field_base_module_update__count_pending_changeset_changes
 #: model:ir.model.fields,help:base_changeset.field_base_module_upgrade__count_pending_changeset_changes
+#: model:ir.model.fields,help:base_changeset.field_base_multi_image_image__count_pending_changeset_changes
+#: model:ir.model.fields,help:base_changeset.field_base_multi_image_owner__count_pending_changeset_changes
 #: model:ir.model.fields,help:base_changeset.field_base_partner_merge_automatic_wizard__count_pending_changeset_changes
 #: model:ir.model.fields,help:base_changeset.field_base_partner_merge_line__count_pending_changeset_changes
 #: model:ir.model.fields,help:base_changeset.field_bus_bus__count_pending_changeset_changes
@@ -3106,6 +3118,8 @@ msgstr ""
 #: model:ir.model.fields,help:base_changeset.field_base_module_uninstall__count_pending_changesets
 #: model:ir.model.fields,help:base_changeset.field_base_module_update__count_pending_changesets
 #: model:ir.model.fields,help:base_changeset.field_base_module_upgrade__count_pending_changesets
+#: model:ir.model.fields,help:base_changeset.field_base_multi_image_image__count_pending_changesets
+#: model:ir.model.fields,help:base_changeset.field_base_multi_image_owner__count_pending_changesets
 #: model:ir.model.fields,help:base_changeset.field_base_partner_merge_automatic_wizard__count_pending_changesets
 #: model:ir.model.fields,help:base_changeset.field_base_partner_merge_line__count_pending_changesets
 #: model:ir.model.fields,help:base_changeset.field_bus_bus__count_pending_changesets
@@ -3525,6 +3539,8 @@ msgstr ""
 #: model:ir.model.fields,help:base_changeset.field_base_module_uninstall__count_changesets
 #: model:ir.model.fields,help:base_changeset.field_base_module_update__count_changesets
 #: model:ir.model.fields,help:base_changeset.field_base_module_upgrade__count_changesets
+#: model:ir.model.fields,help:base_changeset.field_base_multi_image_image__count_changesets
+#: model:ir.model.fields,help:base_changeset.field_base_multi_image_owner__count_changesets
 #: model:ir.model.fields,help:base_changeset.field_base_partner_merge_automatic_wizard__count_changesets
 #: model:ir.model.fields,help:base_changeset.field_base_partner_merge_line__count_changesets
 #: model:ir.model.fields,help:base_changeset.field_bus_bus__count_changesets
@@ -3989,6 +4005,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_base_module_uninstall__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_base_module_update__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_base_module_upgrade__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_base_multi_image_image__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_base_multi_image_owner__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_base_partner_merge_automatic_wizard__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_base_partner_merge_line__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_bus_bus__user_can_see_changeset
