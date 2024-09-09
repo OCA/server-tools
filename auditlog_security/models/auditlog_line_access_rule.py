@@ -55,7 +55,6 @@ class AuditlogLineAccessRule(models.Model):
         res.regenerate_rules()
         return res
 
-    @api.multi
     def write(self, vals):
         res = super(AuditlogLineAccessRule, self).write(vals)
         for this in self:
