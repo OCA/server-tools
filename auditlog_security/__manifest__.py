@@ -3,12 +3,12 @@
 
 {
     "name": "Audit Log User Permissions",
-    "version": "11.0.1.1.4",
+    "version": "16.0.1.0.0",
     "author": "Therp B.V.,Odoo Community Association (OCA)",
     "license": "AGPL-3",
-    "website": "https://github.com/OCA/server-tools/",
+    "website": "https://github.com/OCA/server-tools",
     "category": "Tools",
-    "description": """Allow regular users to view Audit log lines
+    "summary": """Allow regular users to view Audit log lines
                    via the form view of the relevant model""",
     "depends": [
         "auditlog",

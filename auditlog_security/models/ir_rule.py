@@ -1,7 +1,7 @@
 # Copyright 2021 Therp B.V.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import exceptions, models, fields, api, _
+from odoo import fields, models
 
 
 class IrRule(models.Model):
@@ -11,6 +11,6 @@ class IrRule(models.Model):
         "auditlog.line.access.rule",
         required=False,
         index=True,
-        ondelete='cascade',
+        ondelete="cascade",
         help="Auditlog line access Rule that generated this ir.rule",
     )

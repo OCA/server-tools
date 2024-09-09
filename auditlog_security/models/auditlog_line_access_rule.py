@@ -1,8 +1,7 @@
 # Copyright 2021 Therp B.V.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import exceptions, models, fields, api, modules, _
-from odoo.addons.auditlog.models.rule import FIELDS_BLACKLIST
+from odoo import api, fields, models
 
 
 class AuditlogLineAccessRule(models.Model):
@@ -89,9 +88,7 @@ class AuditlogLineAccessRule(models.Model):
         self.ensure_one()
         if not self.needs_rule():
             return []
-        domain_force = "[" + " ('log_id.model_id' , '=', %s)," % (
-            self.model_id.id
-        )
+        domain_force = "[" + " ('log_id.model_id' , '=', %s)," % (self.model_id.id)
         if self.field_ids:
             domain_force = "[('field_id', 'in',  %s)]" % (self.field_ids.ids)
             model = self.env.ref("auditlog.model_auditlog_log_line")
@@ -99,23 +96,23 @@ class AuditlogLineAccessRule(models.Model):
             domain_force = "[('model_id', '=', %s)]" % (self.model_id.id)
             model = self.env.ref("auditlog.model_auditlog_log")
         auditlog_security_group = self.env.ref(
-                'auditlog_security.group_can_view_audit_logs')
+            "auditlog_security.group_can_view_audit_logs"
+        )
         return [
-        {
-            "name": "auditlog_extended_%s" % self.id,
-            "model_id": model.id,
-            "groups": [(6, 0, self.group_ids.ids)],
-            "perm_read": True,
-            "domain_force": domain_force,
-            "auditlog_line_access_rule_id": self.id,
-        }, 
-        {
-            "name": "auditlog_extended_%s" % self.id,
-            "model_id": model.id,
-            "groups": [(6, 0, [auditlog_security_group.id])],
-            "perm_read": True,
-            "domain_force": [(1, '=', 1)],
-            "auditlog_line_access_rule_id": self.id,
-        }]
-
-
+            {
+                "name": "auditlog_extended_%s" % self.id,
+                "model_id": model.id,
+                "groups": [(6, 0, self.group_ids.ids)],
+                "perm_read": True,
+                "domain_force": domain_force,
+                "auditlog_line_access_rule_id": self.id,
+            },
+            {
+                "name": "auditlog_extended_%s" % self.id,
+                "model_id": model.id,
+                "groups": [(6, 0, [auditlog_security_group.id])],
+                "perm_read": True,
+                "domain_force": [(1, "=", 1)],
+                "auditlog_line_access_rule_id": self.id,
+            },
+        ]
