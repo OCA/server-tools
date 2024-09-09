@@ -32,13 +32,6 @@ class TimeWeekday(models.Model):
         for record in self:
             record.display_name = translated_values[record.name]
 
-    def name_get(self):
-        """
-        WORKAROUND since Odoo doesn't handle properly records where name is
-        a selection
-        """
-        return [(r.id, r.display_name) for r in self]
-
     @api.model
     @tools.ormcache("name")
     def _get_id_by_name(self, name):
@@ -47,15 +40,15 @@ class TimeWeekday(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         records = super().create(vals_list)
-        self._get_id_by_name.clear_cache(self)
+        self.env.registry.clear_cache()  # _get_id_by_name
         return records
 
     def write(self, vals):
         result = super().write(vals)
-        self._get_id_by_name.clear_cache(self)
+        self.env.registry.clear_cache()  # _get_id_by_name
         return result
 
     def unlink(self):
         result = super().unlink()
-        self._get_id_by_name.clear_cache(self)
+        self.env.registry.clear_cache()  # _get_id_by_name
         return result
