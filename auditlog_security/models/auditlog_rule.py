@@ -58,7 +58,6 @@ class AuditlogRule(models.Model):
             res = [x for x in selected_field_names if x in res]
         return res
 
-    @api.multi
     def write(self, values):
         cache_invalidating_fields = [
             "state",
@@ -97,7 +96,6 @@ class AuditlogRule(models.Model):
             "type": "ir.actions.act_window",
         }
 
-    @api.multi
     def _create_server_action(self):
         self.ensure_one()
         code = "action = env['auditlog.rule']._get_view_log_lines_action()"
@@ -116,7 +114,6 @@ class AuditlogRule(models.Model):
         self.write({"server_action_id": server_action.id})
         return server_action
 
-    @api.multi
     def subscribe(self):
         for rule in self:
             server_action = rule._create_server_action()
@@ -131,7 +128,6 @@ class AuditlogRule(models.Model):
             )
         return res
 
-    @api.multi
     def unsubscribe(self):
         for rule in self:
             rule.auditlog_line_access_rule_ids.remove_rules()
