@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 Dixmit
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record model="ir.ui.view" id="oca_update_version_form_view">
+        <field name="model">oca.update.version</field>
+        <field name="arch" type="xml">
+            <form>
+                <header />
+                <sheet>
+                    <group>
+                        <field name="name" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="oca_update_version_search_view">
+        <field name="model">oca.update.version</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="oca_update_version_tree_view">
+        <field name="model">oca.update.version</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="oca_update_version_act_window">
+        <field name="name">Versions</field>
+        <field name="res_model">oca.update.version</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+
+    <record model="ir.ui.menu" id="oca_update_version_menu">
+        <field name="name">Versions</field>
+        <field name="parent_id" ref="menu_oca_updates_config_root" />
+        <field name="action" ref="oca_update_version_act_window" />
+        <field name="sequence" eval="90" />
+    </record>
+
+</odoo>

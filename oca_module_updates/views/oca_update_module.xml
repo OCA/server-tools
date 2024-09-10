@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 Dixmit
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record model="ir.ui.view" id="oca_update_module_form_view">
+        <field name="model">oca.update.module</field>
+        <field name="arch" type="xml">
+            <form>
+                <header />
+                <sheet>
+                    <div name="button_box" class="oe_button_box">
+                        <button
+                            name="feed_data"
+                            string="Update Module"
+                            type="object"
+                            class="oe_highlight"
+                        />
+                    </div>
+                    <group>
+                        <field name="name" />
+                        <field name="version_id" />
+                        <field name="url" widget="url" />
+                        <field name="last_version" />
+                        <field name="published_on" />
+                        <field
+                            name="tag_ids"
+                            widget="many2many_tags"
+                            options="{'color_field': 'color'}"
+                        />
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" />
+                    <field name="activity_ids" />
+                    <field name="message_ids" />
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="oca_update_module_search_view">
+        <field name="model">oca.update.module</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="version_id" />
+                <field name="last_version" />
+                <field name="tag_ids" />
+                <separator />
+                <filter string="Last Update" name="published_on" date="published_on" />
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="oca_update_module_tree_view">
+        <field name="model">oca.update.module</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="version_id" />
+                <field name="last_version" />
+                <field
+                    name="tag_ids"
+                    widget="many2many_tags"
+                    options="{'color_field': 'color'}"
+                />
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="oca_update_module_act_window">
+        <field name="name">Modules</field>
+        <field name="res_model">oca.update.module</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+
+    <record model="ir.ui.menu" id="oca_update_module_menu">
+        <field name="name">Modules</field>
+        <field name="parent_id" ref="menu_oca_updates_root" />
+        <field name="action" ref="oca_update_module_act_window" />
+        <field name="sequence" eval="10" />
+    </record>
+
+</odoo>

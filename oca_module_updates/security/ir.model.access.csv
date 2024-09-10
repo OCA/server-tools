@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_oca_update_module,Access Module Model,model_oca_update_module,group_oca_update,1,1,1,1
+access_oca_update_version,Access Module Version,model_oca_update_version,group_oca_update,1,1,1,1
+access_oca_update_tag,Access Module Tag,model_oca_update_tag,group_oca_update,1,1,1,1
