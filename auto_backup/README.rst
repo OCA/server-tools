@@ -89,6 +89,7 @@ Contributors
 * Yenthe Van Ginneken <yenthe.vanginneken@vanroey.be>
 * Alessio Gerace <alessio.gerace@agilebg.com>
 * Jairo Llopis <yajo.sk8@gmail.com>
+* Tom Blauwendraat <tom@sunflowerweb.nl>
 
 Maintainer
 ----------
