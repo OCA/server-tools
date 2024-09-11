@@ -4,7 +4,7 @@
 {
     "name": "Excel Import/Export/Report: Unidecode",
     "summary": "Add unidecode option to excel import/export/report",
-    "version": "16.0.1.0.1",
+    "version": "17.0.1.0.0",
     "author": "FactorLibre,Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "website": "https://github.com/OCA/server-tools",
