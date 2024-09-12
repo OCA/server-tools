@@ -4,4 +4,5 @@ dataclasses
 mako
 odoorpc
 openupgradelib
+pygount
 sentry_sdk<=1.9.0
