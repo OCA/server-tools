@@ -11,6 +11,7 @@
                 <field
                     name="is_unidecode"
                     attrs="{'invisible': [('section_type', '!=', 'data')]}"
+                    invisible="section_type != 'data'"
                 />
             </field>
         </field>
