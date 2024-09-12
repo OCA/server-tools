@@ -12,7 +12,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
             <xpath expr="//field[@name='state']/.." position="after">
                 <button
                     name="button_analyse_code"
-                    states="installed"
+                    invisible="state != 'installed'"
                     string="Refresh Code Analysis"
                     type="object"
                     class="btn btn-primary"
