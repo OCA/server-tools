@@ -1,0 +1,230 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* autovacuum_message_attachment
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-03-15 10:48+0000\n"
+"PO-Revision-Date: 2022-03-15 10:48+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: autovacuum_message_attachment
+#: field:vacuum.rule,active:0
+msgid "Active"
+msgstr "Attivo"
+
+#. module: autovacuum_message_attachment
+#: selection:vacuum.rule,message_type:0
+msgid "All"
+msgstr "Tutti"
+
+#. module: autovacuum_message_attachment
+#: field:ir.model,assigned_attachment_ids:0
+msgid "Assigned Attachments"
+msgstr "Assigned Attachments"
+
+#. module: autovacuum_message_attachment
+#: selection:vacuum.rule,ttype:0
+msgid "Attachment"
+msgstr "Allegato"
+
+#. module: autovacuum_message_attachment
+#: selection:vacuum.rule,message_type:0
+msgid "Comment"
+msgstr "Commento"
+
+#. module: autovacuum_message_attachment
+#: field:vacuum.rule,company_id:0
+msgid "Company"
+msgstr "Azienda"
+
+#. module: autovacuum_message_attachment
+#: field:vacuum.rule,create_uid:0
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: autovacuum_message_attachment
+#: field:vacuum.rule,create_date:0
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: autovacuum_message_attachment
+#: view:vacuum.rule:autovacuum_message_attachment.vacuum_rule_form_view
+#: field:vacuum.rule,description:0
+msgid "Description"
+msgstr "Descrizione"
+
+#. module: autovacuum_message_attachment
+#: field:autovacuum.mixin,display_name:0
+#: field:vacuum.rule,display_name:0
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: autovacuum_message_attachment
+#: selection:vacuum.rule,message_type:0
+msgid "Email"
+msgstr "Email"
+
+#. module: autovacuum_message_attachment
+#: field:vacuum.rule,empty_subtype:0
+msgid "Empty subtype"
+msgstr "Sottotipo vuoto"
+
+#. module: autovacuum_message_attachment
+#: field:vacuum.rule,filename_pattern:0
+msgid "Filename pattern"
+msgstr "Pattern nome file"
+
+#. module: autovacuum_message_attachment
+#: field:autovacuum.mixin,id:0
+#: field:vacuum.rule,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: autovacuum_message_attachment
+#: help:vacuum.rule,filename_pattern:0
+msgid "If set, only attachments containing this pattern will be deleted."
+msgstr "Se impostato, solo gli allegati che contengono questo pattern saranno eliminati."
+
+#. module: autovacuum_message_attachment
+#: field:autovacuum.mixin,__last_update:0
+#: field:vacuum.rule,__last_update:0
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: autovacuum_message_attachment
+#: field:vacuum.rule,write_uid:0
+msgid "Last Updated by"
+msgstr "Ultimo aggiornamento da"
+
+#. module: autovacuum_message_attachment
+#: field:vacuum.rule,write_date:0
+msgid "Last Updated on"
+msgstr "Ultimo aggiornamento il"
+
+#. module: autovacuum_message_attachment
+#: model:ir.model,name:autovacuum_message_attachment.model_mail_message
+#: selection:vacuum.rule,ttype:0
+msgid "Message"
+msgstr "Messaggio"
+
+#. module: autovacuum_message_attachment
+#: view:vacuum.rule:autovacuum_message_attachment.vacuum_rule_form_view
+msgid "Message Models"
+msgstr "Modelli messaggi"
+
+#. module: autovacuum_message_attachment
+#: view:vacuum.rule:autovacuum_message_attachment.vacuum_rule_form_view
+msgid "Message Subtypes"
+msgstr "Modelli sottotipi"
+
+#. module: autovacuum_message_attachment
+#: view:vacuum.rule:autovacuum_message_attachment.vacuum_rule_form_view
+msgid "Message Vacuum Rule"
+msgstr "Regole pulizia messaggi"
+
+#. module: autovacuum_message_attachment
+#: model:ir.actions.act_window,name:autovacuum_message_attachment.action_vacuum_rule
+#: model:ir.ui.menu,name:autovacuum_message_attachment.menu_action_vacuum_rule
+msgid "Message and Attachment Vacuum Rule"
+msgstr "Regole pulizia messaggi e allegati"
+
+#. module: autovacuum_message_attachment
+#: help:vacuum.rule,message_subtype_ids:0
+msgid "Message subtypes concerned by the rule. If left empty, the system won't take the subtype into account to find the messages to delete"
+msgstr "Sottotipi di messaggi interessati dalla regola. Se lasciato vuoto, il sistema non prenderà in considerazione il sottotipo per trovare i messaggi da cancellare"
+
+#. module: autovacuum_message_attachment
+#: field:vacuum.rule,message_type:0
+msgid "Message type"
+msgstr "Tipo messaggio"
+
+#. module: autovacuum_message_attachment
+#: model:ir.model,name:autovacuum_message_attachment.model_autovacuum_mixin
+msgid "Mixin used to delete messages or attachments"
+msgstr "Mixin utilizzato per cancellare i messaggi o gli allegati"
+
+#. module: autovacuum_message_attachment
+#: field:vacuum.rule,model_filter_domain:0
+msgid "Model Filter Domain"
+msgstr "Dominio modello"
+
+#. module: autovacuum_message_attachment
+#: field:vacuum.rule,model:0
+msgid "Model code"
+msgstr "Codice modello"
+
+#. module: autovacuum_message_attachment
+#: field:vacuum.rule,model_id:0
+msgid "Model id"
+msgstr "ID Modello"
+
+#. module: autovacuum_message_attachment
+#: model:ir.model,name:autovacuum_message_attachment.model_ir_model
+#: field:vacuum.rule,model_ids:0
+msgid "Models"
+msgstr "Modelli"
+
+#. module: autovacuum_message_attachment
+#: help:vacuum.rule,model_ids:0
+msgid "Models concerned by the rule. If left empty, it will take all models into account"
+msgstr "Modelli interessati dalla regola. Se lasciato vuoto, prenderà in considerazione tutti i modelli"
+
+#. module: autovacuum_message_attachment
+#: field:vacuum.rule,name:0
+msgid "Name"
+msgstr "Nome"
+
+#. module: autovacuum_message_attachment
+#: help:vacuum.rule,retention_time:0
+msgid "Number of days the messages concerned by this rule will be kept in the database after creation. Once the delay is passed, they will be automatically deleted."
+msgstr "Numero di giorni in cui i messaggi interessati da questa regola saranno tenuti nel database dopo la creazione. .Una volta che il periodo sarà passato, saranno automaticamente cancellati."
+
+#. module: autovacuum_message_attachment
+#: field:vacuum.rule,retention_time:0
+msgid "Retention time"
+msgstr "Tempo di conservazione"
+
+#. module: autovacuum_message_attachment
+#: model:ir.model,name:autovacuum_message_attachment.model_vacuum_rule
+msgid "Rules Used to delete message historic"
+msgstr "Regole utilizzate per cancellare lo storico dei messaggi"
+
+#. module: autovacuum_message_attachment
+#: field:vacuum.rule,message_subtype_ids:0
+msgid "Subtypes"
+msgstr "Sottotipi"
+
+#. module: autovacuum_message_attachment
+#: selection:vacuum.rule,message_type:0
+msgid "System notification"
+msgstr "Notifica di sistema"
+
+#. module: autovacuum_message_attachment
+#: help:vacuum.rule,empty_subtype:0
+msgid "Take also into account messages with no subtypes"
+msgstr "Prendi in considerazione anche i messaggi senza sottotipi"
+
+#. module: autovacuum_message_attachment
+#: help:vacuum.rule,model_id:0
+msgid "Technical field used to set attributes (invisible/required, domain, etc...for other fields, like the domain filter"
+msgstr "Campo tecnico utilizzato per impostare gli attributi (invisible/required, domain, ecc...per altri campi, come il filtro del dominio)"
+
+#. module: autovacuum_message_attachment
+#: code:addons/autovacuum_message_attachment/models/vacuum_rule.py:77
+#, python-format
+msgid "The Retention Time can't be 0 days"
+msgstr "Il tempo di conservazione non può essere 0 giorni"
+
+#. module: autovacuum_message_attachment
+#: field:vacuum.rule,ttype:0
+msgid "Type"
+msgstr "Tipo"
+

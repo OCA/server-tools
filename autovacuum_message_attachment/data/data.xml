@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp>
+    <data noupdate="1">
+        <record id="ir_cron_vacuum_message" model="ir.cron">
+            <field name="name">AutoVacuum Mails and Messages</field>
+            <field name="active" eval="False"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="function">autovacuum</field>
+            <field name="args">("message", 5000)</field>
+            <field name="doall" eval="False"/>
+            <field name="model">mail.message</field>
+        </record>
+
+        <record id="ir_cron_vacuum_attachment" model="ir.cron">
+            <field name="name">AutoVacuum Attachments</field>
+            <field name="active" eval="False" />
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="function">autovacuum</field>
+            <field name="args">("attachment", 5000)</field>
+            <field name="doall" eval="False" />
+            <field name="model">ir.attachment</field>
+        </record>
+    </data>
+
+</openerp>
