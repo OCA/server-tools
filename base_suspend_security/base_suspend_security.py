@@ -30,3 +30,16 @@ class BaseSuspendSecurityUid(int):
 
     def __iter__(self):
         yield super(BaseSuspendSecurityUid, self).__int__()
+
+    def __len__(self):
+        return 1
+
+    def __getitem__(self, key):
+        int_value = super(BaseSuspendSecurityUid, self).__int__()
+        if isinstance(key, slice):
+            if key.start > 0:
+                return ()
+            return (int_value,)
+        if key != 0:
+            raise IndexError
+        return int_value
