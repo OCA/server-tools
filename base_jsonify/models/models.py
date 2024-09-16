@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
-# © 2017 Akretion (http://www.akretion.com)
+# Copyright 2017 Akretion (http://www.akretion.com)
 # Sébastien BEAU <sebastien.beau@akretion.com>
 # Raphaël Reverdy <raphael.reverdy@akretion.com>
+# Copyright 2020 Camptocamp SA (http://www.camptocamp.com)
+# Simone Orsi <simahawk@gmail.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import api, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools.translate import _
 
@@ -27,20 +29,23 @@ class Base(models.AbstractModel):
             field_name, json_key = field_name.split(':')
         return field_name, json_key, subparser
 
-    @api.multi
-    def jsonify(self, parser):
-        """ Convert the record according to the parser given
+    def jsonify(self, parser, one=False):
+        """Convert the record according to the given parser.
+
         Example of parser:
             parser = [
                 'name',
                 'number',
                 'create_date',
                 ('partner_id', ['id', 'display_name', 'ref'])
+                ('shipping_id', callable)
+                ('delivery_id', "record_method")
                 ('line_id', ['id', ('product_id', ['name']), 'price_unit'])
             ]
 
         In order to be consistent with the odoo api the jsonify method always
-        return a list of object even if there is only one element in input
+        return a list of object even if there is only one element in input.
+        You can change this behavior by passing `one=True` to get only one element.
 
         By default the key into the json is the name of the field extracted
         from the model. If you need to specify an alternate name to use as
@@ -51,28 +56,66 @@ class Base(models.AbstractModel):
         ]
 
         """
+        if one:
+            self.ensure_one()
+
         result = []
 
         for rec in self:
             res = {}
             for field in parser:
                 field_name, json_key, subparser = self.__parse_field(field)
-                field_type = rec._fields[field_name].type
                 if subparser:
-                    if field_type in ('one2many', 'many2many'):
-                        res[json_key] = rec[field_name].jsonify(subparser)
-                    elif field_type in ('many2one', 'reference'):
-                        if rec[field_name]:
-                            res[json_key] =\
-                                rec[field_name].jsonify(subparser)[0]
-                        else:
-                            res[json_key] = None
-                    else:
-                        raise UserError(_('Wrong parser configuration'))
+                    res[json_key] = rec._jsonify_value_subparser(field_name, subparser)
                 else:
-                    value = rec[field_name]
-                    if value is False and field_type != 'boolean':
-                        value = None
-                    res[json_key] = value
+                    res[json_key] = rec._jsonify_value(field_name)
             result.append(res)
+        if one:
+            return result[0] if result else {}
         return result
+
+    def _jsonify_value(self, field_name):
+        field = self._fields[field_name]
+        value = self[field_name]
+        # TODO: we should get default by field (eg: char field -> "")
+        if value is False and field.type != "boolean":
+            value = None
+        elif field.type == "date":
+            value = fields.Date.from_string(value).isoformat()
+        elif field.type == "datetime":
+            # Ensures value is a datetime
+            value = fields.Datetime.from_string(value)
+            # Get the timestamp converted to the client's timezone.
+            # This call also add the tzinfo into the datetime object
+            value = fields.Datetime.context_timestamp(self, value)
+            value = value.isoformat()
+        elif field.type in ("many2one", "reference"):
+            value = value.display_name if value else None
+        elif field.type in ("one2many", "many2many"):
+            value = [v.display_name for v in value]
+        return value
+
+    def _jsonify_value_subparser(self, field_name, subparser):
+        value = None
+        if callable(subparser):
+            # a simple function
+            value = subparser(self, field_name)
+        elif isinstance(subparser, str):
+            # a method on the record itself
+            method = getattr(self, subparser, None)
+            if method:
+                value = method(field_name)
+            else:
+                self._jsonify_bad_parser_error(field_name)
+        else:
+            field = self._fields[field_name]
+            if not (field.relational or field.type == "reference"):
+                self._jsonify_bad_parser_error(field_name)
+            rec_value = self[field_name]
+            value = rec_value.jsonify(subparser) if rec_value else []
+            if field.type in ("many2one", "reference"):
+                value = value[0] if value else None
+        return value
+
+    def _jsonify_bad_parser_error(self, field_name):
+        raise UserError(_("Wrong parser configuration for field: `%s`") % field_name)
