@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2018 ACSONE SA/NV
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="auto_export_reader" model="res.groups">
+        <field name="name">Auto Export Reader</field>
+    </record>
+    <record id="auto_export_manager" model="res.groups">
+        <field name="name">Auto Export Manager</field>
+        <field
+            name="users"
+            eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
+        />
+    </record>
+</odoo>
