@@ -317,6 +317,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_ir_ui_view__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_ir_ui_view_custom__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_ir_websocket__changeset_change_ids
+#: model:ir.model.fields,field_description:base_changeset.field_letsencrypt__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_mail_activity__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_mail_activity_mixin__changeset_change_ids
 #: model:ir.model.fields,field_description:base_changeset.field_mail_activity_type__changeset_change_ids
@@ -758,6 +759,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_ir_ui_view__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_ir_ui_view_custom__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_ir_websocket__changeset_ids
+#: model:ir.model.fields,field_description:base_changeset.field_letsencrypt__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_mail_activity__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_mail_activity_mixin__changeset_ids
 #: model:ir.model.fields,field_description:base_changeset.field_mail_activity_type__changeset_ids
@@ -1186,6 +1188,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_ir_ui_view__count_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_ir_ui_view_custom__count_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_ir_websocket__count_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_letsencrypt__count_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_mail_activity__count_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_mail_activity_mixin__count_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_mail_activity_type__count_changesets
@@ -1607,6 +1610,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_ir_ui_view__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_ir_ui_view_custom__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_ir_websocket__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_changeset.field_letsencrypt__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_mail_activity__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_mail_activity_mixin__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:base_changeset.field_mail_activity_type__count_pending_changeset_changes
@@ -2028,6 +2032,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_ir_ui_view__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_ir_ui_view_custom__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_ir_websocket__count_pending_changesets
+#: model:ir.model.fields,field_description:base_changeset.field_letsencrypt__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_mail_activity__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_mail_activity_mixin__count_pending_changesets
 #: model:ir.model.fields,field_description:base_changeset.field_mail_activity_type__count_pending_changesets
@@ -2823,6 +2828,7 @@ msgstr ""
 #: model:ir.model.fields,help:base_changeset.field_ir_ui_view__count_pending_changeset_changes
 #: model:ir.model.fields,help:base_changeset.field_ir_ui_view_custom__count_pending_changeset_changes
 #: model:ir.model.fields,help:base_changeset.field_ir_websocket__count_pending_changeset_changes
+#: model:ir.model.fields,help:base_changeset.field_letsencrypt__count_pending_changeset_changes
 #: model:ir.model.fields,help:base_changeset.field_mail_activity__count_pending_changeset_changes
 #: model:ir.model.fields,help:base_changeset.field_mail_activity_mixin__count_pending_changeset_changes
 #: model:ir.model.fields,help:base_changeset.field_mail_activity_type__count_pending_changeset_changes
@@ -3244,6 +3250,7 @@ msgstr ""
 #: model:ir.model.fields,help:base_changeset.field_ir_ui_view__count_pending_changesets
 #: model:ir.model.fields,help:base_changeset.field_ir_ui_view_custom__count_pending_changesets
 #: model:ir.model.fields,help:base_changeset.field_ir_websocket__count_pending_changesets
+#: model:ir.model.fields,help:base_changeset.field_letsencrypt__count_pending_changesets
 #: model:ir.model.fields,help:base_changeset.field_mail_activity__count_pending_changesets
 #: model:ir.model.fields,help:base_changeset.field_mail_activity_mixin__count_pending_changesets
 #: model:ir.model.fields,help:base_changeset.field_mail_activity_type__count_pending_changesets
@@ -3665,6 +3672,7 @@ msgstr ""
 #: model:ir.model.fields,help:base_changeset.field_ir_ui_view__count_changesets
 #: model:ir.model.fields,help:base_changeset.field_ir_ui_view_custom__count_changesets
 #: model:ir.model.fields,help:base_changeset.field_ir_websocket__count_changesets
+#: model:ir.model.fields,help:base_changeset.field_letsencrypt__count_changesets
 #: model:ir.model.fields,help:base_changeset.field_mail_activity__count_changesets
 #: model:ir.model.fields,help:base_changeset.field_mail_activity_mixin__count_changesets
 #: model:ir.model.fields,help:base_changeset.field_mail_activity_type__count_changesets
@@ -4131,6 +4139,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_changeset.field_ir_ui_view__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_ir_ui_view_custom__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_ir_websocket__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_changeset.field_letsencrypt__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_mail_activity__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_mail_activity_mixin__user_can_see_changeset
 #: model:ir.model.fields,field_description:base_changeset.field_mail_activity_type__user_can_see_changeset
