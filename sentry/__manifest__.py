@@ -3,7 +3,7 @@
 {
     'name': 'Sentry',
     'summary': 'Report Odoo errors to Sentry',
-    'version': '12.0.2.0.2',
+    'version': '12.0.2.0.3',
     'category': 'Extra Tools',
     'website': 'https://github.com/OCA/server-tools',
     'author': 'Mohammed Barsi,'
