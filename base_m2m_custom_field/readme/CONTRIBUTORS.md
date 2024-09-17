@@ -1,1 +1,3 @@
 - Akim Juillerat \<<akim.juillerat@camptocamp.com>\>
+- Fernando La Chica \<<fernandolachica@gmail.com>\>
+- Tris Doan \<<tridm@trobz.com>\>

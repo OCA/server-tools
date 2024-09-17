@@ -3,7 +3,7 @@
 {
     "name": "Base Many2many Custom Field",
     "summary": "Customizations of Many2many",
-    "version": "14.0.1.1.0",
+    "version": "17.0.1.0.0",
     "category": "Technical Settings",
     "author": "Camptocamp, Odoo Community Association (OCA)",
     "license": "AGPL-3",
