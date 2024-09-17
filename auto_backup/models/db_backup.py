@@ -11,6 +11,7 @@ from contextlib import contextmanager
 from datetime import datetime, timedelta
 from glob import iglob
 
+import odoo
 from odoo import _, api, exceptions, fields, models, tools
 from odoo.exceptions import UserError
 from odoo.service import db
@@ -145,6 +146,12 @@ class DbBackup(models.Model):
 
     def action_backup(self):
         """Run selected backups."""
+        list_db = odoo.tools.config["list_db"]
+
+        # Enable access to the database when backup database
+        if not list_db:
+            odoo.tools.config["list_db"] = True
+
         backup = None
         successful = self.browse()
 
@@ -201,6 +208,8 @@ class DbBackup(models.Model):
 
         # Remove old files for successful backups
         successful.cleanup()
+
+        odoo.tools.config["list_db"] = list_db
 
     @api.model
     def action_backup_all(self):
