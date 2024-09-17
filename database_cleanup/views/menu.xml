@@ -70,4 +70,11 @@
         <field name="action" ref="action_purge_property" />
         <field name="parent_id" ref="menu_database_cleanup"/>
     </record>
+
+    <record model="ir.ui.menu" id="menu_purge_translations">
+        <field name="name">Purge obsolete translations</field>
+        <field name="sequence" eval="90" />
+        <field name="action" ref="action_purge_translations" />
+        <field name="parent_id" ref="menu_database_cleanup"/>
+    </record>
 </odoo>
