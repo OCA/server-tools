@@ -1,44 +1,45 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <record id="purge_tables_view" model="ir.ui.view">
-        <field name="model">cleanup.purge.wizard.table</field>
+    <record id="purge_menus_rel_view" model="ir.ui.view">
+        <field name="model">cleanup.purge.wizard.menu.rel</field>
         <field name="inherit_id" ref="form_purge_wizard" />
         <field name="mode">primary</field>
         <field name="arch" type="xml">
             <data />
         </field>
     </record>
-    <record id="action_purge_tables" model="ir.actions.server">
-        <field name="name">Purge tables</field>
+    <record id="action_purge_menu_rel" model="ir.actions.server">
+        <field name="name">Purge menus</field>
         <field name="type">ir.actions.server</field>
         <field name="state">code</field>
         <field
             name="model_id"
-            ref="database_cleanup.model_cleanup_purge_wizard_table"
+            ref="database_cleanup.model_cleanup_purge_wizard_menu_rel"
         />
         <field name="code">
-            action = env.get('cleanup.purge.wizard.table').get_wizard_action()
+            action = env.get('cleanup.purge.wizard.menu.rel').get_wizard_action()
         </field>
     </record>
-    <record id="purge_table_line_tree" model="ir.ui.view">
-        <field name="model">cleanup.purge.line.table</field>
+    <record id="purge_menu_rel_line_tree" model="ir.ui.view">
+        <field name="model">cleanup.purge.line.menu.rel</field>
         <field name="inherit_id" ref="tree_purge_line" />
         <field name="mode">primary</field>
         <field name="arch" type="xml">
-            <field name="name" position="after">
-                <field name="table_type" />
-            </field>
+            <data />
         </field>
     </record>
-    <record id="action_purge_table_line" model="ir.actions.server">
+    <record id="action_purge_menu_rel_line" model="ir.actions.server">
         <field name="name">Purge</field>
         <field name="type">ir.actions.server</field>
         <field name="state">code</field>
-        <field name="model_id" ref="database_cleanup.model_cleanup_purge_line_table" />
+        <field
+            name="model_id"
+            ref="database_cleanup.model_cleanup_purge_line_menu_rel"
+        />
         <field name="code">records.purge()</field>
         <field
             name="binding_model_id"
-            ref="database_cleanup.model_cleanup_purge_line_table"
+            ref="database_cleanup.model_cleanup_purge_line_menu_rel"
         />
     </record>
 </odoo>

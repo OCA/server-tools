@@ -43,6 +43,18 @@
         <field name="action" ref="action_purge_menus" />
         <field name="parent_id" ref="menu_database_cleanup" />
     </record>
+    <record model="ir.ui.menu" id="menu_purge_menus_rel">
+        <field name="name">Purge parent menu &amp; child entries</field>
+        <field name="sequence" eval="62" />
+        <field name="action" ref="action_purge_menu_rel" />
+        <field name="parent_id" ref="menu_database_cleanup" />
+    </record>
+    <record model="ir.ui.menu" id="menu_purge_actions">
+        <field name="name">Purge obsolete window actions</field>
+        <field name="sequence" eval="65" />
+        <field name="action" ref="action_purge_actions" />
+        <field name="parent_id" ref="menu_database_cleanup" />
+    </record>
     <record model="ir.ui.menu" id="menu_create_indexes">
         <field name="name">Create missing indexes</field>
         <field name="sequence" eval="70" />
