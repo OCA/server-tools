@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-08-17 10:58+0000\n"
+"PO-Revision-Date: 2024-09-17 10:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -249,7 +249,7 @@ msgstr "Contenuto file (base64)"
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__raw
 msgid "File Content (raw)"
-msgstr "Contenuto file (grezzo)"
+msgstr "Contenuto file (raw)"
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__file_size
