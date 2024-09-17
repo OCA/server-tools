@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_record_changeset_form" model="ir.ui.view">
+        <field name="name">record.changeset.form</field>
+        <field name="model">record.changeset</field>
+        <field name="inherit_id" ref="base_changeset.view_record_changeset_form" />
+        <field name="arch" type="xml">
+            <field name="res_id" position="after">
+                <field
+                    name="review_summary"
+                    attrs="{'invisible': [('review_summary', '=', False)]}"
+                />
+            </field>
+            <group name="note_group" position="after">
+                <group name="reviews_group" string="Reviews">
+                    <field
+                        name="review_ids"
+                        nolabel="1"
+                        context="{'tree_view_ref': 'base_changeset_tier_validation.tier_review_view_tree_custom'}"
+                    />
+                </group>
+            </group>
+        </field>
+    </record>
+</odoo>

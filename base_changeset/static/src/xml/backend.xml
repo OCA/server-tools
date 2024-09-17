@@ -12,7 +12,10 @@
                 <td>
                     <t t-esc="change.new_value_display" />
                 </td>
-                <td class="pl-4" t-if="change.user_can_validate_changeset">
+                <td
+                    class="pl-4"
+                    t-if="change.user_can_validate_changeset and !change.is_informative_change"
+                >
                     <div class="btn-group">
                         <button
                             class="btn btn-danger base_changeset_reject btn-sm"
@@ -35,8 +38,6 @@
         <a
             role="button"
             tabindex="0"
-            aria-label="Pending Changes"
-            title="Pending Changes"
             data-toggle="tooltip"
             class="badge badge-warning badge-pill base_changeset_button ml-2"
         >
@@ -49,5 +50,15 @@
             <h3 class="popover-header" />
             <div class="popover-body" />
         </div>
+    </t>
+    <t t-name="ChangesetRecordCreate">
+        <tr class="o_data_row changeset-create">
+            <td t-attf-colspan="#{colspan}" class="o_data_cell o_handle_cell">
+                There is an extra line to be validated <a
+                    class="open-changeset-create"
+                    t-attf-data-id="#{changeset_id}"
+                >View changeset</a>
+            </td>
+        </tr>
     </t>
 </templates>
