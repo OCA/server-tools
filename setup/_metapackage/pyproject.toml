@@ -1,6 +1,6 @@
 [project]
 name = "odoo-addons-oca-server-tools"
-version = "17.0.20240915.0"
+version = "17.0.20240917.0"
 dependencies = [
     "odoo-addon-auditlog>=17.0dev,<17.1dev",
     "odoo-addon-base_cron_exclusion>=17.0dev,<17.1dev",
@@ -19,6 +19,7 @@ dependencies = [
     "odoo-addon-scheduler_error_mailer>=17.0dev,<17.1dev",
     "odoo-addon-sentry>=17.0dev,<17.1dev",
     "odoo-addon-server_action_logging>=17.0dev,<17.1dev",
+    "odoo-addon-session_db>=17.0dev,<17.1dev",
     "odoo-addon-tracking_manager>=17.0dev,<17.1dev",
     "odoo-addon-upgrade_analysis>=17.0dev,<17.1dev",
 ]
