@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-03-28 01:17+0000\n"
+"PO-Revision-Date: 2024-09-18 23:00+0000\n"
 "Last-Translator: Ignacio Buioli <ibuioli@gmail.com>\n"
 "Language-Team: none\n"
 "Language: es_AR\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: base_remote
 #: model:ir.model,name:base_remote.model_base
@@ -37,7 +37,7 @@ msgstr "Conjunto de Cambios"
 #: model:ir.model.fields,field_description:base_remote.field_res_remote__count_changesets
 #: model:ir.model.fields,field_description:base_remote.field_res_users__count_changesets
 msgid "Count Changesets"
-msgstr ""
+msgstr "Cuenta de Conjuntos de Cambios"
 
 #. module: base_remote
 #: model:ir.model.fields,field_description:base_remote.field_res_remote__count_pending_changeset_changes
@@ -133,24 +133,24 @@ msgstr "Búsqueda Inteligente"
 #: model:ir.model.fields,help:base_remote.field_res_remote__count_pending_changeset_changes
 #: model:ir.model.fields,help:base_remote.field_res_users__count_pending_changeset_changes
 msgid "The number of pending changes of this record"
-msgstr ""
+msgstr "El número de cambios pendientes de este registro"
 
 #. module: base_remote
 #: model:ir.model.fields,help:base_remote.field_res_remote__count_pending_changesets
 #: model:ir.model.fields,help:base_remote.field_res_users__count_pending_changesets
 msgid "The number of pending changesets of this record"
-msgstr ""
+msgstr "El número de conjunto de cambios pendientes de este registro"
 
 #. module: base_remote
 #: model:ir.model.fields,help:base_remote.field_res_remote__count_changesets
 #: model:ir.model.fields,help:base_remote.field_res_users__count_changesets
 msgid "The overall number of changesets of this record"
-msgstr ""
+msgstr "El número total de conjuntos de cambios de este registro"
 
 #. module: base_remote
 #: model:ir.model,name:base_remote.model_res_users
 msgid "User"
-msgstr ""
+msgstr "Usuario"
 
 #. module: base_remote
 #: model:ir.model.fields,field_description:base_remote.field_res_remote__user_can_see_changeset
