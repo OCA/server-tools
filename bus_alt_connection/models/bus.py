@@ -46,6 +46,7 @@ class ImDispatch(odoo.addons.bus.models.bus.ImDispatch):
         with conn.cursor() as cr, selectors.DefaultSelector() as sel:
             cr.execute("listen imbus")
             conn.commit()
+            sel.register(conn, selectors.EVENT_READ)
             while not stop_event.is_set():
                 if sel.select(TIMEOUT):
                     conn.poll()
