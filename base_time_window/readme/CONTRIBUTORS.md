@@ -5,3 +5,4 @@
 Trobz
 
 - Dung Tran \<<dungtd@trobz.com>\>
+- Khoi (Kien Kim) \<<khoikk@trobz.com>\>
