@@ -16,13 +16,13 @@ class TimeWindowMixin(models.AbstractModel):
     _description = "Time Window"
     _order = "time_window_start"
 
-    # TODO patch api.constrains with field here?
-    _time_window_overlap_check_field = False
-
     time_window_start = fields.Float("From", required=True)
     time_window_end = fields.Float("To", required=True)
     time_window_weekday_ids = fields.Many2many(
         comodel_name="time.weekday", required=True
+    )
+    partner_id = fields.Many2one(
+        "res.partner", required=True, index=True, ondelete="cascade"
     )
 
     @api.constrains("time_window_start", "time_window_end", "time_window_weekday_ids")
@@ -59,7 +59,7 @@ class TimeWindowMixin(models.AbstractModel):
                             NUMRANGE(%(start)s::numeric, %(end)s::numeric)
                     AND w.id != %(window_id)s
                     AND d.%(relation_week_day_fkey)s in %(weekday_ids)s
-                    AND w.%(check_field)s = %(check_field_id)s;"""
+                    AND w.partner_id = %(partner_id)s;"""
             self.env.cr.execute(
                 SQL,
                 dict(
@@ -71,8 +71,7 @@ class TimeWindowMixin(models.AbstractModel):
                     end=record.time_window_end,
                     window_id=record.id,
                     weekday_ids=tuple(record.time_window_weekday_ids.ids),
-                    check_field=AsIs(self._time_window_overlap_check_field),
-                    check_field_id=record[self._time_window_overlap_check_field].id,
+                    partner_id=record.partner_id.id,
                 ),
             )
             res = self.env.cr.fetchall()
