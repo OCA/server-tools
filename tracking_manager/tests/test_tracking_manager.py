@@ -36,6 +36,10 @@ class TestTrackingManager(SavepointCase):
         )
         cls.partner_model = cls.env.ref("base.model_res_partner")
         cls._active_tracking(["bank_ids", "category_id"])
+        bank_ids_field = cls.partner_model.field_id.filtered(
+            lambda x: x.name == "bank_ids"
+        )
+        bank_ids_field.custom_tracking = True
         cls.flush_tracking()
         cls.partner.message_ids.unlink()
 

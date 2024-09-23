@@ -168,7 +168,7 @@ class IrModelFields(models.Model):
         store=True,
     )
 
-    @api.depends("native_tracking", "trackable")
+    @api.depends("native_tracking", "trackable", "model_id.automatic_custom_tracking")
     def _compute_custom_tracking(self):
         for record in self:
             if record.model_id.automatic_custom_tracking:
