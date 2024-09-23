@@ -17,8 +17,8 @@ class Base(models.AbstractModel):
             self_sudoer = self.with_user(tech_user.id)
             # We restrict the allowed companies to the one of the tech user
             allowed_company_ids = self.env.context.get("allowed_company_ids")
-            # TODO: Is any(...) part necessary as we can consider company should always be
-            # the one of the tech_user ?
+            # TODO: Is any(...) part necessary as we can
+            # consider company should always be the one of the tech_user ?
             if allowed_company_ids and any(
                 company
                 for company in allowed_company_ids
