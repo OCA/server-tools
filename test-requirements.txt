@@ -1,1 +1,2 @@
 odoo-test-helper
+odoo-addon-excel_import_export @ git+https://github.com/OCA/server-tools.git@refs/pull/2991/head#subdirectory=excel_import_export
