@@ -51,8 +51,8 @@ configured by prepending the argument name with *sentry_* in your Odoo config
 file. Currently supported additional client arguments are: ``include_local_variables,
 max_breadcrumbs, release, environment, server_name, shutdown_timeout,
 in_app_include, in_app_exclude, default_integrations, dist, sample_rate,
-send_default_pii, http_proxy, https_proxy, max_request_body_size, debug, 
-attach_stacktrace, ca_certs, propagate_traces, traces_sample_rate, 
+send_default_pii, http_proxy, https_proxy, max_request_body_size, debug,
+attach_stacktrace, ca_certs, propagate_traces, traces_sample_rate,
 auto_enabling_integrations``.
 
 Example Odoo configuration
@@ -74,3 +74,5 @@ Below is an example of Odoo configuration file with *Odoo Sentry* options::
     sentry_environment = production
     sentry_release = 1.3.2
     sentry_odoo_dir = /home/odoo/odoo/
+
+The options can be also set as environment variables, with the format ODOO_{option_name_in_uppercase}. For example ODOO_SENTRY_ENABLED

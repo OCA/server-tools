@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import logging
+import os
 
 import odoo.http
 from odoo.service import wsgi_server
@@ -55,30 +56,42 @@ def get_odoo_commit(odoo_dir):
             "Odoo directory: '%s' not a valid git repository", odoo_dir)
 
 
+def get_sentry_config_value(config, option_name, option_default=False):
+    return os.environ.get(
+        'ODOO_SENTRY_%s' % option_name.upper(),
+        config.get("sentry_" + option_name, option_default))
+
+
 def initialize_sentry(config):
     """  Setup an instance of :class:`sentry_sdk.Client`.
         :param config: Sentry configuration
         :param client: class used to instantiate the sentry_sdk client.
     """
-    enabled = config.get("sentry_enabled", False)
+    enabled = get_sentry_config_value(config, 'enabled', False)
     if not (HAS_SENTRY_SDK and enabled):
         return
     _logger.info("Initializing sentry...")
-    if config.get("sentry_odoo_dir") and config.get("sentry_release"):
+    if get_sentry_config_value(config, 'odoo_dir') and \
+            get_sentry_config_value(config, 'odoo_release'):
         _logger.debug("Both sentry_odoo_dir and \
                        sentry_release defined, choosing sentry_release")
     options = {
-        "release": config.get("sentry_release",
-                              get_odoo_commit(config.get("sentry_odoo_dir"))),
+        "release": get_sentry_config_value(
+            config,
+            'release',
+            get_odoo_commit(get_sentry_config_value(config, "odoo_dir"))
+            ),
     }
     for option in const.get_sentry_options():
-        value = config.get('sentry_%s' % option.key, option.default)
+        value = get_sentry_config_value(config, option.key, option.default)
         if isinstance(option.converter, collections.Callable):
             value = option.converter(value)
         options[option.key] = value
 
     exclude_loggers = const.split_multiple(
-        config.get("sentry_exclude_loggers", const.DEFAULT_EXCLUDE_LOGGERS)
+        get_sentry_config_value(
+            config, 'exclude_loggers', const.DEFAULT_EXCLUDE_LOGGERS)
+
     )
     # Change name `ignore_exceptions` (with raven)
     # to `ignore_errors' (sentry_sdk)
@@ -95,7 +108,8 @@ def initialize_sentry(config):
     client = sentry_sdk.init(**options)
 
     sentry_sdk.set_tag("include_context",
-                       config.get("sentry_include_context", True))
+                       get_sentry_config_value(config, 'include_contex') or
+                       True)
 
     if exclude_loggers:
         for item in exclude_loggers:

@@ -69,7 +69,7 @@ def get_sentry_logging(level=DEFAULT_LOG_LEVEL):
 
     return LoggingIntegration(
         level=LOG_LEVEL_MAP[level],
-        event_level=logging.WARNING
+        event_level=LOG_LEVEL_MAP[level]
     )
 
 
