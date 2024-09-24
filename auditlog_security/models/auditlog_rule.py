@@ -1,4 +1,4 @@
-# Copyright 2021 Therp B.V.
+# Copyright 2021-2024 Therp B.V.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, fields, models, tools
@@ -9,7 +9,7 @@ class AuditlogRule(models.Model):
     _inherit = "auditlog.rule"
 
     auditlog_line_access_rule_ids = fields.One2many(
-        "auditlog.line.access.rule", "auditlog_rule_id", ondelete="cascade"
+        "auditlog.line.access.rule", "auditlog_rule_id"
     )
     server_action_id = fields.Many2one(
         "ir.actions.server",

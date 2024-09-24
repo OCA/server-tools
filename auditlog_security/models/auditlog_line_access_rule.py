@@ -1,4 +1,4 @@
-# Copyright 2021 Therp B.V.
+# Copyright 2021-2024 Therp B.V.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
@@ -6,6 +6,7 @@ from odoo import api, fields, models
 
 class AuditlogLineAccessRule(models.Model):
     _name = "auditlog.line.access.rule"
+    _description = "Auditlog Line Access Rule"
 
     name = fields.Char()
 
@@ -48,7 +49,7 @@ class AuditlogLineAccessRule(models.Model):
             )
         return res
 
-    @api.model
+    @api.model_create_multi
     def create(self, vals):
         res = super(AuditlogLineAccessRule, self).create(vals)
         res.add_default_group_if_needed()

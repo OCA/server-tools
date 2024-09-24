@@ -1,4 +1,4 @@
-# Copyright 2021 Therp B.V.
+# Copyright 2021-2024 Therp B.V.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import fields, models
