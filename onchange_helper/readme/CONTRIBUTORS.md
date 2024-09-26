@@ -3,3 +3,4 @@
 - Andrea Stirpe \<<a.stirpe@onestein.nl>\>
 - Souheil Bejaoui \<<souheil.bejaoui@acsone.eu>\>
 - Kevin Khao \<<kevin.khao@akretion.com>\>
+- Thien Vo \<<thienvh@trobz.com>\>

@@ -125,6 +125,13 @@ Contributors
 -  Andrea Stirpe <a.stirpe@onestein.nl>
 -  Souheil Bejaoui <souheil.bejaoui@acsone.eu>
 -  Kevin Khao <kevin.khao@akretion.com>
+-  Thien Vo <thienvh@trobz.com>
+
+Other credits
+-------------
+
+The migration of this module from 17.0 to 18.0 was financially supported
+by Camptocamp.
 
 Maintainers
 -----------
