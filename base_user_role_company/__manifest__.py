@@ -7,7 +7,8 @@
     "category": "Tools",
     "author": "Open Source Integrators, Odoo Community Association (OCA)",
     "license": "AGPL-3",
-    "website": "https://github.com/OCA/server-backend",
+    "website": "https://github.com/OCA/server-tools"
+               "/tree/10.0/base_user_role_company",
     "depends": ["base_user_role"],
     "data": [
         "views/role.xml",

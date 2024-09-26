@@ -18,7 +18,8 @@
               'Incaser Informatica S.L., '
               "Tecnativa, "
               'Odoo Community Association (OCA)',
-    'website': 'http://www.incaser.es',
+    'website': 'https://github.com/OCA/server-tools'
+               '/tree/10.0/auth_supplier',
     'license': 'AGPL-3',
     'installable': True,
 }

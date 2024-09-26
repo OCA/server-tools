@@ -1,0 +1,126 @@
+name: tests
+
+on:
+  pull_request:
+    branches:
+      - "10.0*"
+  push:
+    branches:
+      - "10.0"
+      - "10.0-ocabot-*"
+
+jobs:
+  unreleased-deps:
+    runs-on: ubuntu-latest
+    name: Detect unreleased dependencies
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+          for reqfile in requirements.txt test-requirements.txt ; do
+              if [ -f ${reqfile} ] ; then
+                  result=0
+                  # reject non-comment lines that contain a / (i.e. URLs, relative paths)
+                  grep "^[^#].*/" ${reqfile} || result=$?
+                  if [ $result -eq 0 ] ; then
+                      echo "Unreleased dependencies found in ${reqfile}."
+                      exit 1
+                  fi
+              fi
+          done
+  test:
+    runs-on: ubuntu-20.04
+    container: ${{ matrix.container }}
+    name: ${{ matrix.name }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - container: ghcr.io/oca/oca-ci/py2.7-odoo10.0:latest
+            include: "onchange_helper,test_onchange_helper"
+            makepot: "true"
+            name: test with Odoo
+          - container: ghcr.io/oca/oca-ci/py2.7-ocb10.0:latest
+            include: "onchange_helper,test_onchange_helper"
+            name: test with OCB
+          - container: ghcr.io/oca/oca-ci/py2.7-odoo10.0:latest
+            include: "database_cleanup"
+            makepot: "true"
+            name: test with Odoo
+          - container: ghcr.io/oca/oca-ci/py2.7-ocb10.0:latest
+            include: "database_cleanup"
+            name: test with OCB
+          - container: ghcr.io/oca/oca-ci/py2.7-odoo10.0:latest
+            include: "auth_session_timeout"
+            makepot: "true"
+            name: test with Odoo
+          - container: ghcr.io/oca/oca-ci/py2.7-ocb10.0:latest
+            include: "auth_session_timeout"
+            name: test with OCB
+          - container: ghcr.io/oca/oca-ci/py2.7-odoo10.0:latest
+            include: "auth_brute_force"
+            makepot: "true"
+            name: test with Odoo
+          - container: ghcr.io/oca/oca-ci/py2.7-ocb10.0:latest
+            include: "auth_brute_force"
+            name: test with OCB
+          - container: ghcr.io/oca/oca-ci/py2.7-odoo10.0:latest
+            include: "base_import_odoo"
+            makepot: "true"
+            name: test with Odoo
+          - container: ghcr.io/oca/oca-ci/py2.7-ocb10.0:latest
+            include: "base_import_odoo"
+            name: test with OCB
+          - container: ghcr.io/oca/oca-ci/py2.7-odoo10.0:latest
+            exclude: "onchange_helper,test_onchange_helper,database_cleanup,auth_session_timeout,auth_brute_force,base_import_odoo"
+            makepot: "true"
+            name: test with Odoo
+          - container: ghcr.io/oca/oca-ci/py2.7-ocb10.0:latest
+            exclude: "onchange_helper,test_onchange_helper,database_cleanup,auth_session_timeout,auth_brute_force,base_import_odoo"
+            name: test with OCB
+    services:
+      postgres:
+        image: postgres:9.6
+        env:
+          POSTGRES_USER: odoo
+          POSTGRES_PASSWORD: odoo
+          POSTGRES_DB: odoo
+        ports:
+          - 5432:5432
+    env:
+      INCLUDE: "${{ matrix.include }}"
+      EXCLUDE: "${{ matrix.exclude }}"
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+      - name: Install required deb packages
+        # expect-dev: provides unbuffer utility
+        # postfix: some tests want a local mail server
+        # unixodbc-dev: Oracle client
+        # default-libmysqlclient-dev: MySQL client
+        run: |
+          apt-get update
+          DEBIAN_FRONTEND=noninteractive apt-get install -qq \
+            expect-dev \
+            unixodbc-dev \
+            default-libmysqlclient-dev \
+            postfix
+      - name: Install addons and dependencies
+        run: oca_install_addons
+      - name: Link server environment samples
+        run: ln -s ${ADDONS_DIR}/server_environment_files_sample ${ADDONS_DIR}/server_environment_files
+      - name: Check licenses
+        run: manifestoo -d . check-licenses
+      - name: Check development status
+        run: manifestoo -d . check-dev-status --default-dev-status=Beta
+      - name: Initialize test db
+        run: |
+          oca_init_test_database
+          printf '\nrunning_env = dev\n' >> ${ODOO_RC}
+          cat ${ODOO_RC}
+      - name: Run tests
+        run: oca_run_tests
+      - uses: codecov/codecov-action@v1
+      - name: Update .pot files
+        run: oca_export_and_push_pot https://x-access-token:${{ secrets.GIT_PUSH_TOKEN }}@github.com/${{ github.repository }}
+        if: ${{ matrix.makepot == 'true' && github.event_name == 'push' && github.repository_owner == 'OCA' }}

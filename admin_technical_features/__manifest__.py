@@ -25,7 +25,7 @@
     'version': '9.0.0.1.0',
     'author': "Savoir-faire Linux,Odoo Community Association (OCA)",
     'maintainer': 'Savoir-faire Linux',
-    'website': 'http://www.savoirfairelinux.com',
+    'website': 'https://github.com/OCA/server-tools',
     'license': 'AGPL-3',
     'category': 'Administration',
     'summary': 'Checks the technical features box for admin user.',

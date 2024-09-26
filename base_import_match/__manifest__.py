@@ -7,7 +7,8 @@
     "summary": "Try to avoid duplicates before importing",
     "version": "10.0.1.0.0",
     "category": "Tools",
-    "website": "https://tecnativa.com",
+    "website": "https://github.com/OCA/server-tools"
+               "/tree/10.0/base_import_match",
     "author": "Grupo ESOC Ingeniería de Servicios,"
               "Tecnativa, "
               "Odoo Community Association (OCA)",

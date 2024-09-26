@@ -9,7 +9,8 @@
                "simultaneously.",
     "version": "10.0.1.0.0",
     "author": "Eficent, Odoo Community Association (OCA)",
-    "website": "https://github.com/OCA/server-tools",
+    "website": "https://github.com/OCA/server-tools"
+               "/tree/10.0/base_cron_exclusion",
     "category": "Tools",
     "depends": [
         "base",

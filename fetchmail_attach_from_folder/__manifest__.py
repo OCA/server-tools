@@ -6,7 +6,8 @@
     'summary': 'Attach mails in an IMAP folder to existing objects',
     'version': '10.0.1.1.0',
     'author': 'Therp BV,Odoo Community Association (OCA)',
-    'website': 'http://www.therp.nl',
+    'website': 'https://github.com/OCA/server-tools'
+               '/tree/10.0/fetchmail_attach_from_folder',
     'license': 'AGPL-3',
     'category': 'Tools',
     'depends': ['fetchmail'],

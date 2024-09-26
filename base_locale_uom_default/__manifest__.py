@@ -8,7 +8,8 @@
                'language level.',
     'version': '10.0.1.0.0',
     'category': 'Extra Tools',
-    'website': 'https://laslabs.com/',
+    'website': 'https://github.com/OCA/server-tools'
+               '/tree/10.0/base_locale_uom_default',
     'author': 'LasLabs, '
               'Odoo Community Association (OCA)',
     'license': 'LGPL-3',

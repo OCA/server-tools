@@ -7,7 +7,8 @@
     'name': 'SQL Export',
     'version': '10.0.1.0.0',
     'author': 'Akretion,Odoo Community Association (OCA)',
-    'website': 'http://www.akretion.com',
+    'website': 'https://github.com/OCA/server-tools'
+               '/tree/10.0/sql_export',
     'license': 'AGPL-3',
     'category': 'Generic Modules/Others',
     'summary': 'Export data in csv file with SQL requests',

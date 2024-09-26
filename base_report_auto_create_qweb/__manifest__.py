@@ -17,7 +17,8 @@
     "author": "AvanzOSC, "
               "Tecnativa, "
               "Odoo Community Association (OCA), ",
-    "website": "https://github.com/OCA/server-tools",
+    "website": "https://github.com/OCA/server-tools"
+               "/tree/10.0/base_report_auto_create_qweb",
     "license": "AGPL-3",
     "category": "Tools",
     "data": [

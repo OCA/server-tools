@@ -28,12 +28,10 @@ class TestAddonHash(unittest.TestCase):
             'README.rst',
             'data/f1.xml',
             'data/f2.xml',
-            'i18n/en.po',
             'i18n/en_US.po',
             'i18n/fr.po',
             'i18n/fr_BE.po',
             'i18n/test.pot',
-            'i18n_extra/en.po',
             'i18n_extra/fr.po',
             'i18n_extra/nl_NL.po',
             'models/stuff.py',
@@ -65,4 +63,4 @@ class TestAddonHash(unittest.TestCase):
             exclude_patterns=['*.pyc', '*.pyo', '*.pot', 'static/*'],
             keep_langs=['fr_FR', 'nl'],
         )
-        self.assertEqual(checksum, 'fecb89486c8a29d1f760cbd01c1950f6e8421b14')
+        self.assertEqual(checksum, '383127efb8f00e8ba41aaee8857929b97fdd168f')

@@ -37,7 +37,7 @@ location = http://localhost/magento/
 apiusername = my_api_login
 apipass = my_api_password
     """,
-    "website": "http://www.camptocamp.com",
+    "website": "https://github.com/OCA/server-tools",
     "category": "Tools",
     "init_xml": [],
     "demo_xml": [],

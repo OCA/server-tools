@@ -31,13 +31,13 @@ class TestLetsencrypt(SingleTransactionCase):
     def setUp(self):
         super(TestLetsencrypt, self).setUp()
         self.env['ir.config_parameter'].set_param(
-            'web.base.url', 'http://www.example.com'
+            'web.base.url', 'http://www.example.ltd'
         )
         self.env['base.config.settings'].create(
             {
                 'letsencrypt_dns_provider': 'shell',
                 'letsencrypt_dns_shell_script': 'touch /tmp/.letsencrypt_test',
-                'letsencrypt_altnames': 'www.example.com,*.example.com',
+                'letsencrypt_altnames': 'www.example.ltd,*.example.ltd',
                 'letsencrypt_reload_command': 'true',  # i.e. /bin/true
             }
         ).set_letsencrypt_settings()
@@ -51,7 +51,7 @@ class TestLetsencrypt(SingleTransactionCase):
         )
         self.assertEqual(
             setting_vals['letsencrypt_altnames'],
-            'www.example.com,*.example.com'
+            'www.example.ltd,*.example.ltd'
         )
         self.assertEqual(setting_vals['letsencrypt_reload_command'], 'true')
         self.assertTrue(setting_vals['letsencrypt_needs_dns_provider'])
@@ -93,14 +93,14 @@ class TestLetsencrypt(SingleTransactionCase):
         self.install_certificate(days_left=10)
         self.env['letsencrypt']._cron()
         poll.assert_called()
-        query.assert_called_with("_acme-challenge.example.com.", "TXT")
+        query.assert_called_with("_acme-challenge.example.ltd.", "TXT")
         self.assertTrue(path.isfile('/tmp/.letsencrypt_test'))
         self.assertTrue(path.isfile(path.join(_get_data_dir(), 'domain.crt')))
 
     def test_dns_challenge_error_on_missing_provider(self):
         self.env['base.config.settings'].create(
             {
-                'letsencrypt_altnames': '*.example.com',
+                'letsencrypt_altnames': '*.example.ltd',
                 'letsencrypt_dns_provider': False,
             }
         ).set_letsencrypt_settings()
@@ -110,7 +110,7 @@ class TestLetsencrypt(SingleTransactionCase):
     def test_prefer_dns_setting(self):
         self.env['base.config.settings'].create(
             {
-                'letsencrypt_altnames': 'example.com',
+                'letsencrypt_altnames': 'example.ltd',
                 'letsencrypt_prefer_dns': True,
             }
         ).set_letsencrypt_settings()
@@ -122,37 +122,37 @@ class TestLetsencrypt(SingleTransactionCase):
         self.assertEqual(
             cascade(
                 [
-                    'www.example.com',
-                    '*.example.com',
-                    'example.com',
-                    'example.com',
-                    'notexample.com',
-                    'multi.sub.example.com',
-                    'www2.example.com',
-                    'unrelated.com',
+                    'www.example.ltd',
+                    '*.example.ltd',
+                    'example.ltd',
+                    'example.ltd',
+                    'notexample.ltd',
+                    'multi.sub.example.ltd',
+                    'www2.example.ltd',
+                    'unrelated.ltd',
                 ]
             ),
             [
-                '*.example.com',
-                'example.com',
-                'multi.sub.example.com',
-                'notexample.com',
-                'unrelated.com',
+                '*.example.ltd',
+                'example.ltd',
+                'multi.sub.example.ltd',
+                'notexample.ltd',
+                'unrelated.ltd',
             ],
         )
         self.assertEqual(cascade([]), [])
-        self.assertEqual(cascade(['*.example.com']), ['*.example.com'])
-        self.assertEqual(cascade(['www.example.com']), ['www.example.com'])
+        self.assertEqual(cascade(['*.example.ltd']), ['*.example.ltd'])
+        self.assertEqual(cascade(['www.example.ltd']), ['www.example.ltd'])
         self.assertEqual(
-            cascade(['www.example.com', 'example.com']),
-            ['example.com', 'www.example.com'],
+            cascade(['www.example.ltd', 'example.ltd']),
+            ['example.ltd', 'www.example.ltd'],
         )
 
         with self.assertRaises(UserError):
-            cascade(['www.*.example.com'])
+            cascade(['www.*.example.ltd'])
 
         with self.assertRaises(UserError):
-            cascade(['*.*.example.com'])
+            cascade(['*.*.example.ltd'])
 
     def test_altnames_parsing(self):
         config = self.env['ir.config_parameter']
@@ -160,29 +160,29 @@ class TestLetsencrypt(SingleTransactionCase):
 
         self.assertEqual(
             letsencrypt._get_altnames(),
-            ['www.example.com', '*.example.com']
+            ['www.example.ltd', '*.example.ltd']
         )
 
         config.set_param('letsencrypt.altnames', '')
-        self.assertEqual(letsencrypt._get_altnames(), ['www.example.com'])
+        self.assertEqual(letsencrypt._get_altnames(), ['www.example.ltd'])
 
-        config.set_param('letsencrypt.altnames', 'foobar.example.com')
-        self.assertEqual(letsencrypt._get_altnames(), ['foobar.example.com'])
+        config.set_param('letsencrypt.altnames', 'foobar.example.ltd')
+        self.assertEqual(letsencrypt._get_altnames(), ['foobar.example.ltd'])
 
         config.set_param(
-            'letsencrypt.altnames', 'example.com,example.org,example.net'
+            'letsencrypt.altnames', 'example.ltd,example.org,example.net'
         )
         self.assertEqual(
             letsencrypt._get_altnames(),
-            ['example.com', 'example.org', 'example.net'],
+            ['example.ltd', 'example.org', 'example.net'],
         )
 
         config.set_param(
-            'letsencrypt.altnames', 'example.com, example.org\nexample.net'
+            'letsencrypt.altnames', 'example.ltd, example.org\nexample.net'
         )
         self.assertEqual(
             letsencrypt._get_altnames(),
-            ['example.com', 'example.org', 'example.net'],
+            ['example.ltd', 'example.org', 'example.net'],
         )
 
     def test_key_generation_and_retrieval(self):
@@ -209,8 +209,8 @@ class TestLetsencrypt(SingleTransactionCase):
         generate_key.assert_called()
 
     def test_domain_validation(self):
-        self.env['letsencrypt']._validate_domain('example.com')
-        self.env['letsencrypt']._validate_domain('www.example.com')
+        self.env['letsencrypt']._validate_domain('example.ltd')
+        self.env['letsencrypt']._validate_domain('www.example.ltd')
 
         with self.assertRaises(UserError):
             self.env['letsencrypt']._validate_domain('1.1.1.1')
@@ -228,7 +228,7 @@ class TestLetsencrypt(SingleTransactionCase):
         self.assertFalse(
             self.env['letsencrypt']._should_run(
                 path.join(_get_data_dir(), 'domain.crt'),
-                ['www.example.com', '*.example.com'],
+                ['www.example.ltd', '*.example.ltd'],
             )
         )
 
@@ -237,7 +237,7 @@ class TestLetsencrypt(SingleTransactionCase):
         self.assertTrue(
             self.env['letsencrypt']._should_run(
                 path.join(_get_data_dir(), 'domain.crt'),
-                ['www.example.com', '*.example.com'],
+                ['www.example.ltd', '*.example.ltd'],
             )
         )
 
@@ -246,7 +246,7 @@ class TestLetsencrypt(SingleTransactionCase):
         self.assertTrue(
             self.env['letsencrypt']._should_run(
                 path.join(_get_data_dir(), 'domain.crt'),
-                ['www.example.com', '*.example.com'],
+                ['www.example.ltd', '*.example.ltd'],
             )
         )
 
@@ -254,22 +254,22 @@ class TestLetsencrypt(SingleTransactionCase):
         self.assertTrue(
             self.env['letsencrypt']._should_run(
                 path.join(_get_data_dir(), 'domain.crt'),
-                ['www.example.com', '*.example.com'],
+                ['www.example.ltd', '*.example.ltd'],
             )
         )
 
     def test_new_altnames(self):
-        self.install_certificate(60, 'www.example.com', ())
+        self.install_certificate(60, 'www.example.ltd', ())
         self.assertTrue(
             self.env['letsencrypt']._should_run(
                 path.join(_get_data_dir(), 'domain.crt'),
-                ['www.example.com', '*.example.com'],
+                ['www.example.ltd', '*.example.ltd'],
             )
         )
         self.assertFalse(
             self.env['letsencrypt']._should_run(
                 path.join(_get_data_dir(), 'domain.crt'),
-                ['www.example.com'],
+                ['www.example.ltd'],
             )
         )
 
@@ -278,15 +278,15 @@ class TestLetsencrypt(SingleTransactionCase):
         self.assertFalse(
             self.env['letsencrypt']._should_run(
                 path.join(_get_data_dir(), 'domain.crt'),
-                ['www.example.com'],
+                ['www.example.ltd'],
             )
         )
 
     def install_certificate(
         self,
         days_left,
-        common_name='www.example.com',
-        altnames=('*.example.com',),
+        common_name='www.example.ltd',
+        altnames=('*.example.ltd',),
         use_altnames=True,
     ):
         from cryptography import x509

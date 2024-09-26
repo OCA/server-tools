@@ -9,7 +9,8 @@
     'author': "Daniel Reis, "
               "LasLabs, "
               "Odoo Community Association (OCA)",
-    'website': 'https://github.com/OCA/server-tools',
+    'website': 'https://github.com/OCA/server-tools'
+               '/tree/10.0/base_external_dbsource_oracle',
     'license': 'LGPL-3',
     'depends': [
         'base_external_dbsource',

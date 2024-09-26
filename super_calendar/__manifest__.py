@@ -33,7 +33,8 @@
                'Alejandro Santana, '
                'Agathe Mollé, '
                'Odoo Community Association (OCA)'),
-    'website': 'http://www.agilebg.com',
+    'website': 'https://github.com/OCA/server-tools'
+               '/tree/10.0/super_calendar',
     'license': 'AGPL-3',
     'depends': [
         'base',

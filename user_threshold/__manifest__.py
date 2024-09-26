@@ -6,7 +6,8 @@
     "summary": "Add Configurable User Threshold Support",
     "version": "10.0.1.0.1",
     "category": "Authentication",
-    "website": "https://www.laslabs.com",
+    "website": "https://github.com/OCA/server-tools"
+               "/tree/10.0/user_threshold",
     "author": "LasLabs, Odoo Community Association (OCA)",
     "license": "LGPL-3",
     "application": False,

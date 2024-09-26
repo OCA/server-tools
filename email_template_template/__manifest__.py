@@ -93,7 +93,7 @@ In your template template:
     Best,
     Example Corp
 """,
-    'website': 'http://therp.nl',
+    'website': 'https://github.com/OCA/server-tools',
     'images': [],
     'depends': ['email_template'],
     'data': [

@@ -8,6 +8,8 @@
     "summary": "Filter databases with HTTP headers",
     "version": "10.0.1.0.0",
     "author": "Therp BV,Odoo Community Association (OCA)",
+    "website": "https://github.com/OCA/server-tools"
+               "/tree/10.0/dbfilter_from_header",
     "license": "AGPL-3",
     "complexity": "normal",
     "category": "Tools",

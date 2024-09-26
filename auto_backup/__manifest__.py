@@ -16,7 +16,8 @@
         "Odoo Community Association (OCA)"
     ),
     'license': "AGPL-3",
-    "website": "http://www.vanroey.be/applications/bedrijfsbeheer/odoo",
+    "website": "https://github.com/OCA/server-tools"
+               "/tree/10.0/auto_backup",
     "category": "Tools",
     "depends": [
         'mail',

@@ -10,7 +10,7 @@
    Create view to inspect/change technical parameters
  """,
  'author': "Camptocamp,Odoo Community Association (OCA)",
- 'website': 'http://openerp.camptocamp.com',
+ 'website': 'https://github.com/OCA/server-tools',
  'license': 'AGPL-3',
  'depends': ['base'],
  'init_xml': [],

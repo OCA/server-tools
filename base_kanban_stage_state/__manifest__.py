@@ -6,7 +6,8 @@
     "summary": "Maps stages from base_kanban_stage to states",
     "version": "10.0.1.0.0",
     "category": "Base",
-    "website": "https://odoo-community.org/",
+    "website": "https://github.com/OCA/server-tools"
+               "/tree/10.0/base_kanban_stage_state",
     "author": "SMDrugstore, Odoo Community Association (OCA)",
     "license": "LGPL-3",
     "application": False,

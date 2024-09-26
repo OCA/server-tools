@@ -10,7 +10,8 @@
     'author': "Eficent, "
               "Odoo Community Association (OCA)",
     'license': 'AGPL-3',
-    'website': 'https://github.com/OCA/server-tools',
+    'website': 'https://github.com/OCA/server-tools'
+               '/tree/10.0/mail_log_message_to_process',
     'depends': ['mail'],
     'installable': True,
 }

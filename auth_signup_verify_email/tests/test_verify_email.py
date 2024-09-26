@@ -44,6 +44,6 @@ class UICase(HttpCase):
 
     def test_good_email(self):
         """Test acceptance of good emails."""
-        self.data["login"] = "good@example.com"
+        self.data["login"] = "good@test.com"
         doc = self.html_doc(data=self.data)
         self.assertTrue(doc.xpath('//p[@class="alert alert-success"]'))

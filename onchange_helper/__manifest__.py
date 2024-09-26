@@ -7,7 +7,8 @@
  'summary': 'Technical module that ease execution of onchange in Python code',
  'author': 'Akretion,Camptocamp, ACSONE SA/NV, '
            'Odoo Community Association (OCA)',
- 'website': 'https://github.com/OCA/server-tools',
+ 'website': 'https://github.com/OCA/server-tools'
+            '/tree/10.0/onchange_helper',
  'license': 'AGPL-3',
  'category': 'Generic Modules',
  'depends': ['base'],

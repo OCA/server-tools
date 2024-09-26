@@ -6,7 +6,8 @@
     "summary": "Store accounts and credentials",
     "version": "10.0.2.0.2",
     "category": "Uncategorized",
-    "website": "https://akretion.com/",
+    "website": "https://github.com/OCA/server-tools"
+               "/tree/10.0/keychain",
     "author": "Akretion, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "application": False,
