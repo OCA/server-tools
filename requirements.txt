@@ -6,4 +6,5 @@ mako
 odoorpc
 openupgradelib
 pysftp
+pygount
 sentry_sdk<=1.9.0

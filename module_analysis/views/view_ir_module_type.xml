@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Copyright (C) 2019-Today: GRAP (<http://www.grap.coop/>)
+@author: Sylvain LE GAL (https://twitter.com/legalsylvain)
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+ -->
+<odoo>
+    <record id="view_ir_module_type_form" model="ir.ui.view">
+        <field name="model">ir.module.type</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <div class="oe_edit_only">
+                            <label for="name" />
+                        </div>
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div>
+                    <group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="view_ir_module_type_tree" model="ir.ui.view">
+        <field name="model">ir.module.type</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="installed_module_qty" />
+            </tree>
+        </field>
+    </record>
+    <record id="action_ir_module_type" model="ir.actions.act_window">
+        <field name="name">Modules Types</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">ir.module.type</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem
+        id="menu_module_types"
+        parent="menu_module_analysis_settings"
+        sequence="2"
+        action="action_ir_module_type"
+        groups="base.group_no_one"
+    />
+</odoo>
