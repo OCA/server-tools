@@ -3,9 +3,11 @@
 import logging
 
 import psycopg2
+from psycopg2 import OperationalError
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
+from odoo.service.model import PG_CONCURRENCY_ERRORS_TO_RETRY
 
 from odoo.addons.queue_job.exception import RetryableJobError
 
@@ -115,18 +117,38 @@ class AttachmentQueue(models.Model):
                 seconds=DEFAULT_ETA_FOR_RETRY,
                 ignore_retry=True,
             ) from exc
-        if self.state == "pending":
+        if self.state != "done":
             try:
                 with self.env.cr.savepoint():
                     self.run()
-            except Exception as e:
-                _logger.warning(STR_ERROR_DURING_PROCESSING.format(self.id) + str(e))
-                self.write({"state": "failed", "state_message": str(e)})
-                emails = self.failure_emails
-                if emails:
-                    self.env.ref(
-                        "attachment_queue.attachment_failure_notification"
-                    ).send_mail(self.id)
+            except OperationalError as err:
+                # re-raise typical transaction serialization error so queue job retries
+                # no need to set attachment as failed since it will be retried.
+                if err.pgcode in PG_CONCURRENCY_ERRORS_TO_RETRY:
+                    raise
+                self._set_attachment_failure(err)
+            except RetryableJobError as err:
+                # re-raise Retryable Error to keep the functionality
+                # we still set the attachment as failed here because it may not be
+                # retried (in case max_retries is reached). We would not want a
+                # pending attachment with no related pending job
+                self._set_attachment_failure(err)
+                # a rollback has been made before because of the savepoint.
+                # we need to commit because we re-raise the exception and a rollback
+                # will be performed
+                self.env.cr.commit()  # pylint: disable=E8102
+                raise
+            except Exception as err:
+                self._set_attachment_failure(err)
+
+    def _set_attachment_failure(self, error):
+        _logger.warning(STR_ERROR_DURING_PROCESSING.format(self.id) + str(error))
+        self.write({"state": "failed", "state_message": str(error)})
+        emails = self.failure_emails
+        if emails:
+            self.env.ref("attachment_queue.attachment_failure_notification").send_mail(
+                self.id
+            )
 
     def run(self):
         """
