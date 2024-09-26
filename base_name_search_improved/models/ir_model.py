@@ -8,6 +8,7 @@ from lxml import etree
 
 from odoo import _, api, fields, models, tools
 from odoo.exceptions import ValidationError
+from odoo.osv import expression
 
 _logger = logging.getLogger(__name__)
 # Extended name search is only used on some operators
@@ -73,35 +74,35 @@ def patch_name_search():
     def _name_search(
         self, name="", args=None, operator="ilike", limit=100, name_get_uid=None
     ):
-        # Perform standard name search
+        use_smart_search = _get_use_smart_name_search(self.sudo())
+        # we add domain
+        base_domain = expression.AND([_get_name_search_domain(self.sudo()), args or []])
+
+        # Perform standard name search (with added domain if use_smart_search enable)
         res = _name_search.origin(
             self,
             name=name,
-            args=args,
+            args=base_domain if use_smart_search else args,
             operator=operator,
             limit=limit,
             name_get_uid=name_get_uid,
         )
-        if name and _get_use_smart_name_search(self.sudo()) and operator in ALLOWED_OPS:
+        if name and use_smart_search and operator in ALLOWED_OPS:
             limit = limit or 0
-
-            # we add domain
-            args = args or [] + _get_name_search_domain(self.sudo())
 
             # Support a list of fields to search on
             all_names = _get_rec_names(self.sudo())
-            base_domain = args or []
             # Try regular search on each additional search field
             for rec_name in all_names[1:]:
                 domain = [(rec_name, operator, name)]
                 res = _extend_name_results(
-                    self, base_domain + domain, res, limit, name_get_uid
+                    self, expression.AND([domain, base_domain]), res, limit, name_get_uid
                 )
             # Try ordered word search on each of the search fields
             for rec_name in all_names:
                 domain = [(rec_name, operator, name.replace(" ", "%"))]
                 res = _extend_name_results(
-                    self, base_domain + domain, res, limit, name_get_uid
+                    self, expression.AND([domain, base_domain]), res, limit, name_get_uid
                 )
             # Try unordered word search on each of the search fields
             # we only perform this search if we have at least one
@@ -117,7 +118,7 @@ def patch_name_search():
                         ) + [(rec_name, operator, word)]
                     domain = (domain and ["&"] + domain or domain) + word_domain
                 res = _extend_name_results(
-                    self, base_domain + domain, res, limit, name_get_uid
+                    self, expression.AND([domain, base_domain]), res, limit, name_get_uid
                 )
 
         return res
@@ -204,7 +205,10 @@ class IrModel(models.Model):
         "searching from other records (for eg. from m2o fields",
     )
     name_search_ids = fields.Many2many("ir.model.fields", string="Smart Search Fields")
-    name_search_domain = fields.Char(string="Smart Search Domain")
+    name_search_domain = fields.Char(
+        string="Smart Search Domain",
+        help="Add a domain if you want to limit results returned on smart "
+        "searches ('Name Search' and/or 'Search View')")
     smart_search_warning = fields.Html(compute="_compute_smart_search_warning")
 
     @api.depends("name_search_ids")
@@ -233,7 +237,7 @@ class IrModel(models.Model):
             else:
                 rec.smart_search_warning = False
 
-    @api.constrains("name_search_ids", "name_search_domain", "add_smart_search")
+    @api.constrains("name_search_ids", "name_search_domain", "add_smart_search", "use_smart_name_search")
     def update_search_wo_restart(self):
         self.clear_caches()
 
