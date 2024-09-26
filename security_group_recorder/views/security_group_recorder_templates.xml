@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <template
+            id="assets_backend"
+            name="mail assets"
+            inherit_id="web.assets_backend"
+        >
+            <xpath expr="." position="inside">
+                <script
+                    type="text/javascript"
+                    src="/security_group_recorder/static/src/js/play_button.js"
+                />
+                <link
+                    rel="stylesheet"
+                    type="text/scss"
+                    href="/security_group_recorder/static/src/scss/play_button.scss"
+                />
+            </xpath>
+        </template>
+    </data>
+</odoo>
