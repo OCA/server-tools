@@ -5,6 +5,8 @@ import base64
 
 from odoo import api, fields, models
 
+from odoo.addons.queue_job.exception import RetryableJobError
+
 
 class AttachmentQueue(models.Model):
     _inherit = "attachment.queue"
@@ -30,16 +32,25 @@ class AttachmentQueue(models.Model):
     def _run(self):
         res = super()._run()
         if self.file_type == "export":
-            fs = self.fs_storage_id.fs
-            folder_path = self.task_id.filepath
-            full_path = (
-                folder_path and fs.sep.join([folder_path, self.name]) or self.name
-            )
-            # create missing folders if necessary :
-            if folder_path and not fs.exists(folder_path):
-                fs.makedirs(folder_path)
-            self._write_file_to_remote(fs, full_path)
+            try:
+                fs = self.fs_storage_id.fs
+                folder_path = self.task_id.filepath
+                full_path = (
+                    folder_path and fs.sep.join([folder_path, self.name]) or self.name
+                )
+                # create missing folders if necessary :
+                if folder_path and not fs.exists(folder_path):
+                    fs.makedirs(folder_path)
+                self._write_file_to_remote(fs, full_path)
+            except TimeoutError as err:
+                raise RetryableJobError(
+                    str(err),
+                    seconds=self._timeout_retry_seconds(),
+                ) from err
         return res
+
+    def _timeout_retry_seconds(self):
+        return 60 * 60 * 4
 
     def _get_failure_emails(self):
         res = super()._get_failure_emails()
