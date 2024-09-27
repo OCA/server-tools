@@ -1,7 +1,10 @@
 # generated from manifests external_dependencies
+acme
 astor
 cryptography
 dataclasses
+dnspython
+josepy
 mako
 odoo_test_helper
 odoorpc

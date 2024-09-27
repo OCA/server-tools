@@ -1,0 +1,100 @@
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">Letsencrypt settings view</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('settings')]" position="inside">
+                <div
+                    class="app_settings_block"
+                    data-string="Let's Encrypt"
+                    string="Let's Encrypt"
+                    data-key="letsencrypt"
+                >
+                    <div id="letsencrypt_settings">
+                        <h2>Let's Encrypt</h2>
+                        <field
+                            name="letsencrypt_needs_dns_provider"
+                            readonly="1"
+                            invisible="1"
+                        />
+                        <div class="row mt16 o_settings_container">
+                            <div class="col-xs-12 col-md-12 o_setting_box">
+                                <div class="o_setting_right_pane">
+                                    <label for="letsencrypt_altnames" />
+                                    <div
+                                        class="text-muted"
+                                    >List the domains for the certificate</div>
+                                    <field name="letsencrypt_altnames" widget="text" />
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="letsencrypt_reload_command" />
+                                    <div
+                                        class="text-muted"
+                                    >Write a command to reload the server</div>
+                                    <field
+                                        name="letsencrypt_reload_command"
+                                        widget="text"
+                                    />
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="letsencrypt_dns_provider" />
+                                    <div
+                                        class="text-muted"
+                                    >Set a DNS provider if you need wildcard certificates</div>
+                                    <div class="content-group">
+                                        <div class="mt16 row">
+                                            <label
+                                                for="letsencrypt_dns_provider"
+                                                class="col-xs-3 col-md-3 o_light_label"
+                                            />
+                                            <field
+                                                class="oe_inline"
+                                                name="letsencrypt_dns_provider"
+                                                attrs="{'required': [('letsencrypt_needs_dns_provider', '=', True)]}"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <span id="letsencrypt_dns_provider_settings">
+                                    <div
+                                        class="o_setting_right_pane"
+                                        attrs="{'invisible': [('letsencrypt_dns_provider', '!=', 'shell')]}"
+                                    >
+                                        <label for="letsencrypt_dns_shell_script" />
+                                        <div
+                                            class="text-muted"
+                                        >Write a shell script to update your DNS records</div>
+                                        <field
+                                            name="letsencrypt_dns_shell_script"
+                                            attrs="{'required': [('letsencrypt_dns_provider', '=', 'shell')]}"
+                                            widget="text"
+                                        />
+                                    </div>
+                                </span>
+                                <div class="o_setting_left_pane">
+                                    <field name="letsencrypt_testing_mode" />
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="letsencrypt_testing_mode" />
+                                    <div
+                                        class="text-muted"
+                                    >Use the testing server, which has higher rate limits but creates invalid certificates.</div>
+                                </div>
+                                <div class="o_setting_left_pane">
+                                    <field name="letsencrypt_prefer_dns" />
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="letsencrypt_prefer_dns" />
+                                    <div
+                                        class="text-muted"
+                                    >Validate through DNS even when HTTP validation is possible. Use this if your Odoo instance isn't publicly accessible.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -45,6 +45,7 @@ setuptools.setup(
         'odoo-addon-html_text>=16.0dev,<16.1dev',
         'odoo-addon-iap_alternative_provider>=16.0dev,<16.1dev',
         'odoo-addon-jsonifier>=16.0dev,<16.1dev',
+        'odoo-addon-letsencrypt>=16.0dev,<16.1dev',
         'odoo-addon-module_analysis>=16.0dev,<16.1dev',
         'odoo-addon-module_auto_update>=16.0dev,<16.1dev',
         'odoo-addon-module_change_auto_install>=16.0dev,<16.1dev',
