@@ -5,7 +5,7 @@
 
 from unittest import mock
 
-from odoo import fields, tools
+from odoo import tools
 from odoo.exceptions import UserError
 from odoo.tests.common import TransactionCase
 
@@ -39,7 +39,6 @@ class TestParser(TransactionCase):
                         },
                     )
                 ],
-                "date": fields.Date.from_string("2019-10-31"),
             }
         )
         Langs = cls.env["res.lang"].with_context(active_test=False)
@@ -144,7 +143,6 @@ class TestParser(TransactionCase):
             "active",
             ("category_id", ["name"]),
             "create_date",
-            "date",
         ]
         # put our own create date to ease tests
         self.env.cr.execute(
@@ -170,15 +168,13 @@ class TestParser(TransactionCase):
                 }
             ],
             "create_date": "2019-10-31T14:39:49",
-            "date": "2019-10-31",
         }
         expected_json_with_fieldname = {
             "_fieldname_lang": "Language",
             "lang": "en_US",
             "_fieldname_comment": "Notes",
             "comment": None,
-            "_fieldname_credit_limit": "Credit Limit",
-            "credit_limit": 0.0,
+            "partner_latitude": 0.0,
             "_fieldname_name": "Name",
             "name": "Akretion",
             "_fieldname_color": "Color Index",
@@ -213,11 +209,10 @@ class TestParser(TransactionCase):
             "_fieldname_active": "Active",
             "active": True,
             "_fieldname_category_id": "Tags",
-            "category_id": [{"_fieldname_name": "Tag Name", "name": "Inovator"}],
+            "category_id": [{"_fieldname_name": "Name", "name": "Inovator"}],
             "_fieldname_create_date": "Created on",
-            "create_date": "2019-10-31T15:39:49+01:00",
-            "_fieldname_date": "Date",
-            "date": "2019-10-31",
+            "_fieldname_partner_latitude": "Geo Latitude",
+            "create_date": "2019-10-31T14:39:49",
         }
         json_partner = self.partner.jsonify(parser)
         self.assertDictEqual(json_partner[0], expected_json)

@@ -16,7 +16,7 @@
     <record id="act_ui_exports_resolver_view" model="ir.actions.act_window">
         <field name="name">Custom Export Resolvers</field>
         <field name="res_model">ir.exports.resolver</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
     <menuitem
         id="ui_exports_resolvers"

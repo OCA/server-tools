@@ -5,3 +5,4 @@
 - Simone Orsi \<<simone.orsi@camptocamp.com>\>
 - Iván Todorovich \<<ivan.todorovich@camptocamp.com>\>
 - Nguyen Minh Chien \<<chien@trobz.com>\>
+- Thien Vo \<<thienvh@trobz.com>\>

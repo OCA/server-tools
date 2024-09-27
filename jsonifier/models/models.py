@@ -132,7 +132,7 @@ class Base(models.AbstractModel):
         function = field_dict["function"]
         try:
             return self._function_value(rec, function, field_name)
-        except UserError:
+        except UserError as err:
             if strict:
                 raise
             if not tools.config["test_enable"]:
@@ -140,7 +140,7 @@ class Base(models.AbstractModel):
                     "%(model)s.%(func)s not available",
                     {"model": self._name, "func": str(function)},
                 )
-                raise SwallableException()
+                raise SwallableException() from err
 
     def _jsonify_record_handle_subparser(self, rec, field_dict, strict, subparser):
         field_name = field_dict["name"]
