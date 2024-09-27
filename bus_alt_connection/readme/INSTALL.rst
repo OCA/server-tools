@@ -1,6 +1,6 @@
-You don't need to install this module in the database(s) to enable it.
+You need to install this module in the database(s) to enable it.
 
-But you need to load it server-wide:
+And you also need to load it server-wide:
 
 * By starting Odoo with ``--load=web,bus_alt_connection``
 
