@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_model_form_inherit" model="ir.ui.view">
+        <field name="name">view.model.form.inherit</field>
+        <field name="model">ir.model</field>
+        <field name="inherit_id" ref="base.view_model_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='field_id']/tree/field[@name='ttype']" position="after">
+                <field name="relation"/>
+                <field name="relation_field"/>
+                <field name="relation_table"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
