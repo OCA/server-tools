@@ -8,10 +8,11 @@
 
 /*
 :Author: David Goodger (goodger@python.org)
-:Id: $Id: html4css1.css 8954 2022-01-20 10:10:25Z milde $
+:Id: $Id: html4css1.css 9511 2024-01-13 09:50:07Z milde $
 :Copyright: This stylesheet has been placed in the public domain.
 
 Default cascading style sheet for the HTML output of Docutils.
+Despite the name, some widely supported CSS2 features are used.
 
 See https://docutils.sourceforge.io/docs/howto/html-stylesheets.html for how to
 customize this style sheet.
@@ -274,7 +275,7 @@ pre.literal-block, pre.doctest-block, pre.math, pre.code {
   margin-left: 2em ;
   margin-right: 2em }
 
-pre.code .ln { color: grey; } /* line numbers */
+pre.code .ln { color: gray; } /* line numbers */
 pre.code, code { background-color: #eeeeee }
 pre.code .comment, code .comment { color: #5C6576 }
 pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
@@ -300,7 +301,7 @@ span.option {
 span.pre {
   white-space: pre }
 
-span.problematic {
+span.problematic, pre.problematic {
   color: red }
 
 span.section-subtitle {
@@ -368,7 +369,7 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !! source digest: sha256:ddd42fedebde78f1cd5b0cab74c7e30a308efa05c79efc2f84c0724cf3f40901
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/lgpl-3.0-standalone.html"><img alt="License: LGPL-3" src="https://img.shields.io/badge/licence-LGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/server-tools/tree/17.0/jsonifier"><img alt="OCA/server-tools" src="https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/server-tools-17-0/server-tools-17-0-jsonifier"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/server-tools&amp;target_branch=17.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/lgpl-3.0-standalone.html"><img alt="License: LGPL-3" src="https://img.shields.io/badge/licence-LGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/server-tools/tree/18.0/jsonifier"><img alt="OCA/server-tools" src="https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/server-tools-18-0/server-tools-18-0-jsonifier"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/server-tools&amp;target_branch=18.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
 <p>This module adds a ‘jsonify’ method to every model of the ORM. It works
 on the current recordset and requires a single argument ‘parser’ that
 specify the field to extract.</p>
@@ -506,27 +507,61 @@ to be language agnostic.</p>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><a class="reference internal" href="#bug-tracker" id="toc-entry-1">Bug Tracker</a></li>
-<li><a class="reference internal" href="#credits" id="toc-entry-2">Credits</a><ul>
-<li><a class="reference internal" href="#authors" id="toc-entry-3">Authors</a></li>
-<li><a class="reference internal" href="#contributors" id="toc-entry-4">Contributors</a></li>
-<li><a class="reference internal" href="#maintainers" id="toc-entry-5">Maintainers</a></li>
+<li><a class="reference internal" href="#usage" id="toc-entry-1">Usage</a><ul>
+<li><a class="reference internal" href="#with-fieldname-parameter" id="toc-entry-2">with_fieldname parameter</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#bug-tracker" id="toc-entry-3">Bug Tracker</a></li>
+<li><a class="reference internal" href="#credits" id="toc-entry-4">Credits</a><ul>
+<li><a class="reference internal" href="#authors" id="toc-entry-5">Authors</a></li>
+<li><a class="reference internal" href="#contributors" id="toc-entry-6">Contributors</a></li>
+<li><a class="reference internal" href="#other-credits" id="toc-entry-7">Other credits</a></li>
+<li><a class="reference internal" href="#maintainers" id="toc-entry-8">Maintainers</a></li>
 </ul>
 </li>
 </ul>
 </div>
+<div class="section" id="usage">
+<h1><a class="toc-backref" href="#toc-entry-1">Usage</a></h1>
+<div class="section" id="with-fieldname-parameter">
+<h2><a class="toc-backref" href="#toc-entry-2">with_fieldname parameter</a></h2>
+<p>The with_fieldname option of jsonify() method, when true, will inject on
+the same level of the data “_fieldname_$field” keys that will contain
+the field name, in the language of the current user.</p>
+<blockquote>
+Examples of with_fieldname usage:</blockquote>
+<pre class="code python literal-block">
+<span class="c1"># example 1</span><span class="w">
+</span><span class="n">parser</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">'name'</span><span class="p">)]</span><span class="w">
+</span><span class="n">a</span><span class="o">.</span><span class="n">jsonify</span><span class="p">(</span><span class="n">parser</span><span class="o">=</span><span class="n">parser</span><span class="p">)</span><span class="w">
+</span><span class="p">[{</span><span class="s1">'name'</span><span class="p">:</span> <span class="s1">'SO3996'</span><span class="p">}]</span><span class="w">
+</span><span class="o">&gt;&gt;&gt;</span> <span class="n">a</span><span class="o">.</span><span class="n">jsonify</span><span class="p">(</span><span class="n">parser</span><span class="o">=</span><span class="n">parser</span><span class="p">,</span> <span class="n">with_fieldname</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="w">
+</span><span class="p">[{</span><span class="s1">'name'</span><span class="p">:</span> <span class="s1">'SO3996'</span><span class="p">}]</span><span class="w">
+</span><span class="o">&gt;&gt;&gt;</span> <span class="n">a</span><span class="o">.</span><span class="n">jsonify</span><span class="p">(</span><span class="n">parser</span><span class="o">=</span><span class="n">parser</span><span class="p">,</span> <span class="n">with_fieldname</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="w">
+</span><span class="p">[{</span><span class="s1">'fieldname_name'</span><span class="p">:</span> <span class="s1">'Order Reference'</span><span class="p">,</span> <span class="s1">'name'</span><span class="p">:</span> <span class="s1">'SO3996'</span><span class="p">}}]</span><span class="w">
+
+
+</span><span class="c1"># example 2 - with a subparser-</span><span class="w">
+</span><span class="n">parser</span><span class="o">=</span><span class="p">[</span><span class="s1">'name'</span><span class="p">,</span> <span class="s1">'create_date'</span><span class="p">,</span> <span class="p">(</span><span class="s1">'order_line'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'id'</span> <span class="p">,</span> <span class="s1">'product_uom'</span><span class="p">,</span> <span class="s1">'is_expense'</span><span class="p">])]</span><span class="w">
+</span><span class="o">&gt;&gt;&gt;</span> <span class="n">a</span><span class="o">.</span><span class="n">jsonify</span><span class="p">(</span><span class="n">parser</span><span class="o">=</span><span class="n">parser</span><span class="p">,</span> <span class="n">with_fieldname</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="w">
+</span><span class="p">[{</span><span class="s1">'name'</span><span class="p">:</span> <span class="s1">'SO3996'</span><span class="p">,</span> <span class="s1">'create_date'</span><span class="p">:</span> <span class="s1">'2015-06-02T12:18:26.279909+00:00'</span><span class="p">,</span> <span class="s1">'order_line'</span><span class="p">:</span> <span class="p">[{</span><span class="s1">'id'</span><span class="p">:</span> <span class="mi">16649</span><span class="p">,</span> <span class="s1">'product_uom'</span><span class="p">:</span> <span class="s1">'stuks'</span><span class="p">,</span> <span class="s1">'is_expense'</span><span class="p">:</span> <span class="kc">False</span><span class="p">},</span> <span class="p">{</span><span class="s1">'id'</span><span class="p">:</span> <span class="mi">16651</span><span class="p">,</span> <span class="s1">'product_uom'</span><span class="p">:</span> <span class="s1">'stuks'</span><span class="p">,</span> <span class="s1">'is_expense'</span><span class="p">:</span> <span class="kc">False</span><span class="p">},</span> <span class="p">{</span><span class="s1">'id'</span><span class="p">:</span> <span class="mi">16650</span><span class="p">,</span> <span class="s1">'product_uom'</span><span class="p">:</span> <span class="s1">'stuks'</span><span class="p">,</span> <span class="s1">'is_expense'</span><span class="p">:</span> <span class="kc">False</span><span class="p">}]}]</span><span class="w">
+</span><span class="o">&gt;&gt;&gt;</span> <span class="n">a</span><span class="o">.</span><span class="n">jsonify</span><span class="p">(</span><span class="n">parser</span><span class="o">=</span><span class="n">parser</span><span class="p">,</span> <span class="n">with_fieldname</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="w">
+</span><span class="p">[{</span><span class="s1">'fieldname_name'</span><span class="p">:</span> <span class="s1">'Order Reference'</span><span class="p">,</span> <span class="s1">'name'</span><span class="p">:</span> <span class="s1">'SO3996'</span><span class="p">,</span> <span class="s1">'fieldname_create_date'</span><span class="p">:</span> <span class="s1">'Creation Date'</span><span class="p">,</span> <span class="s1">'create_date'</span><span class="p">:</span> <span class="s1">'2015-06-02T12:18:26.279909+00:00'</span><span class="p">,</span> <span class="s1">'fieldname_order_line'</span><span class="p">:</span> <span class="s1">'Order Lines'</span><span class="p">,</span> <span class="s1">'order_line'</span><span class="p">:</span> <span class="p">[{</span><span class="s1">'fieldname_id'</span><span class="p">:</span> <span class="s1">'ID'</span><span class="p">,</span> <span class="s1">'id'</span><span class="p">:</span> <span class="mi">16649</span><span class="p">,</span> <span class="s1">'fieldname_product_uom'</span><span class="p">:</span> <span class="s1">'Unit of Measure'</span><span class="p">,</span> <span class="s1">'product_uom'</span><span class="p">:</span> <span class="s1">'stuks'</span><span class="p">,</span> <span class="s1">'fieldname_is_expense'</span><span class="p">:</span> <span class="s1">'Is expense'</span><span class="p">,</span> <span class="s1">'is_expense'</span><span class="p">:</span> <span class="kc">False</span><span class="p">}]}]</span>
+</pre>
+</div>
+</div>
 <div class="section" id="bug-tracker">
-<h1><a class="toc-backref" href="#toc-entry-1">Bug Tracker</a></h1>
+<h1><a class="toc-backref" href="#toc-entry-3">Bug Tracker</a></h1>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/server-tools/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-<a class="reference external" href="https://github.com/OCA/server-tools/issues/new?body=module:%20jsonifier%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+<a class="reference external" href="https://github.com/OCA/server-tools/issues/new?body=module:%20jsonifier%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
-<h1><a class="toc-backref" href="#toc-entry-2">Credits</a></h1>
+<h1><a class="toc-backref" href="#toc-entry-4">Credits</a></h1>
 <div class="section" id="authors">
-<h2><a class="toc-backref" href="#toc-entry-3">Authors</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-5">Authors</a></h2>
 <ul class="simple">
 <li>Akretion</li>
 <li>ACSONE</li>
@@ -534,7 +569,7 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 </ul>
 </div>
 <div class="section" id="contributors">
-<h2><a class="toc-backref" href="#toc-entry-4">Contributors</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-6">Contributors</a></h2>
 <ul class="simple">
 <li>BEAU Sébastien &lt;<a class="reference external" href="mailto:sebastien.beau&#64;akretion.com">sebastien.beau&#64;akretion.com</a>&gt;</li>
 <li>Raphaël Reverdy &lt;<a class="reference external" href="mailto:raphael.reverdy&#64;akretion.com">raphael.reverdy&#64;akretion.com</a>&gt;</li>
@@ -543,16 +578,24 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <li>Simone Orsi &lt;<a class="reference external" href="mailto:simone.orsi&#64;camptocamp.com">simone.orsi&#64;camptocamp.com</a>&gt;</li>
 <li>Iván Todorovich &lt;<a class="reference external" href="mailto:ivan.todorovich&#64;camptocamp.com">ivan.todorovich&#64;camptocamp.com</a>&gt;</li>
 <li>Nguyen Minh Chien &lt;<a class="reference external" href="mailto:chien&#64;trobz.com">chien&#64;trobz.com</a>&gt;</li>
+<li>Thien Vo &lt;<a class="reference external" href="mailto:thienvh&#64;trobz.com">thienvh&#64;trobz.com</a>&gt;</li>
 </ul>
 </div>
+<div class="section" id="other-credits">
+<h2><a class="toc-backref" href="#toc-entry-7">Other credits</a></h2>
+<p>The migration of this module from 17.0 to 18.0 was financially supported
+by Camptocamp.</p>
+</div>
 <div class="section" id="maintainers">
-<h2><a class="toc-backref" href="#toc-entry-5">Maintainers</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-8">Maintainers</a></h2>
 <p>This module is maintained by the OCA.</p>
-<a class="reference external image-reference" href="https://odoo-community.org"><img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" /></a>
+<a class="reference external image-reference" href="https://odoo-community.org">
+<img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" />
+</a>
 <p>OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.</p>
-<p>This module is part of the <a class="reference external" href="https://github.com/OCA/server-tools/tree/17.0/jsonifier">OCA/server-tools</a> project on GitHub.</p>
+<p>This module is part of the <a class="reference external" href="https://github.com/OCA/server-tools/tree/18.0/jsonifier">OCA/server-tools</a> project on GitHub.</p>
 <p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
 </div>
 </div>

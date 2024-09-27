@@ -16,13 +16,13 @@
                     </group>
                     <group name="index" string="Index">
                         <field name="export_fields" nolabel="1" colspan="2">
-                            <tree editable="bottom">
+                            <list editable="bottom">
                                 <field name="name" />
                                 <field name="target" />
                                 <field name="lang_id" />
                                 <field name="resolver_id" />
                                 <field name="instance_method_name" />
-                            </tree>
+                            </list>
                         </field>
                     </group>
                 </sheet>
@@ -32,7 +32,7 @@
     <record id="act_ui_exports_view" model="ir.actions.act_window">
         <field name="name">Export Fields</field>
         <field name="res_model">ir.exports</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
     <menuitem id="ui_exports" action="act_ui_exports_view" parent="base.next_id_2" />
 </odoo>

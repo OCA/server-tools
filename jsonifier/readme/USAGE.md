@@ -1,7 +1,7 @@
 ## with_fieldname parameter
 
 The with_fieldname option of jsonify() method, when true, will inject on
-the same level of the data "\_[fieldname]()\$field" keys that will
+the same level of the data "\_fieldname_\$field" keys that will
 contain the field name, in the language of the current user.
 
 > Examples of with_fieldname usage:

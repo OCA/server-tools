@@ -204,8 +204,8 @@ with_fieldname parameter
 ------------------------
 
 The with_fieldname option of jsonify() method, when true, will inject on
-the same level of the data "\_\ `fieldname <>`__\ $field" keys that will
-contain the field name, in the language of the current user.
+the same level of the data "\_fieldname\_$field" keys that will contain
+the field name, in the language of the current user.
 
    Examples of with_fieldname usage:
 
@@ -258,6 +258,13 @@ Contributors
 -  Simone Orsi <simone.orsi@camptocamp.com>
 -  Iván Todorovich <ivan.todorovich@camptocamp.com>
 -  Nguyen Minh Chien <chien@trobz.com>
+-  Thien Vo <thienvh@trobz.com>
+
+Other credits
+-------------
+
+The migration of this module from 17.0 to 18.0 was financially supported
+by Camptocamp.
 
 Maintainers
 -----------
