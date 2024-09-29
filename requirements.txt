@@ -10,7 +10,7 @@ odoo_test_helper
 odoorpc
 openpyxl
 openupgradelib
-pygount
+pygount==1.4.0
 pysftp
 sentry_sdk<=1.9.0
 unidecode
