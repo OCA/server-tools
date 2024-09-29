@@ -1,0 +1,648 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* nsca_client
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-04-20 23:50+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: nsca_client
+#: model_terms:ir.ui.view,arch_db:nsca_client.view_nsca_check_form
+msgid "0: OK"
+msgstr "0: OK"
+
+#. module: nsca_client
+#: model_terms:ir.ui.view,arch_db:nsca_client.view_nsca_check_form
+msgid "1: WARNING"
+msgstr "1: ADVERTENCIA"
+
+#. module: nsca_client
+#: model_terms:ir.ui.view,arch_db:nsca_client.view_nsca_check_form
+msgid "2: CRITICAL"
+msgstr "2: CRÍTICO"
+
+#. module: nsca_client
+#: model_terms:ir.ui.view,arch_db:nsca_client.view_nsca_check_form
+msgid "3: UNKNOWN"
+msgstr "3: DESCONOCIDO"
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check__help
+msgid "Action Description"
+msgstr "Descripción de la Acción"
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check__name
+msgid "Action Name"
+msgstr "Nombre Acción"
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check__state
+msgid "Action To Do"
+msgstr "Acción A Realizar"
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check__type
+msgid "Action Type"
+msgstr "Tipo de Acción"
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check__active
+msgid "Active"
+msgstr "Activo"
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check__activity_type_id
+msgid "Activity"
+msgstr "Actividad"
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check__activity_user_type
+msgid "Activity User Type"
+msgstr "Tipo Actividad Usuario"
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check__channel_ids
+msgid "Add Channels"
+msgstr "Añadir Canales"
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check__partner_ids
+msgid "Add Followers"
+msgstr "Añadir Seguidores"
+
+#. module: nsca_client
+#: model:ir.model.fields,help:nsca_client.field_nsca_check__daylight_saving_time_resistant
+msgid ""
+"Adjust interval to run at the same hour after and beforedaylight saving time"
+" change. It's used twice a year"
+msgstr ""
+"Ajuste el intervalo para que funcione a la misma hora después y antes del "
+"cambio de horario de verano. Se utiliza dos veces al año"
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check__allow_void_result
+msgid "Allow void result"
+msgstr "Permitir resultado nulo"
+
+#. module: nsca_client
+#: model_terms:ir.ui.view,arch_db:nsca_client.view_nsca_check_form
+msgid ""
+"Any other RC value will be treated as\n"
+"                                        CRITICAL."
+msgstr ""
+"Cualquier otro valor RC será tratado como\n"
+" CRÍTICO."
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check__nsca_args
+msgid "Arguments"
+msgstr "Argumentos"
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check__binding_model_id
+msgid "Binding Model"
+msgstr "Modelo de Encuadernación"
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check__binding_type
+msgid "Binding Type"
+msgstr "Tipo de Encuadernación"
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check__binding_view_types
+msgid "Binding View Types"
+msgstr "Tipos de Vistas Vinculantes"
+
+#. module: nsca_client
+#: model:ir.model.fields,help:nsca_client.field_nsca_check__allow_void_result
+msgid ""
+"By default, a CRITICAL message is sent if the method does not return.\n"
+"If checked, no message will be sent in such a case."
+msgstr ""
+"Por defecto, se envía un mensaje CRÍTICO si el método no devuelve.\n"
+"Si se marca, no se enviará ningún mensaje en tal caso."
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_server__check_count
+msgid "Check Count"
+msgstr "Comprobar el Recuento"
+
+#. module: nsca_client
+#: model:ir.actions.act_window,name:nsca_client.action_nsca_check_tree
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_server__check_ids
+#: model:ir.ui.menu,name:nsca_client.menu_action_nsca_check_tree
+#: model_terms:ir.ui.view,arch_db:nsca_client.view_nsca_server_form
+msgid "Checks"
+msgstr "Comprobaciones"
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check__child_ids
+msgid "Child Actions"
+msgstr "Acciones Hijas"
+
+#. module: nsca_client
+#: model:ir.model.fields,help:nsca_client.field_nsca_check__child_ids
+msgid ""
+"Child server actions that will be executed. Note that the last return "
+"returned action value will be used as global return value."
+msgstr ""
+"Acciones del servidor hijo que se ejecutarán. Tenga en cuenta que el último "
+"valor de acción devuelto se utilizará como valor de retorno global."
+
+#. module: nsca_client
+#: code:addons/nsca_client/models/nsca_server.py:0
+#, python-format
+msgid ""
+"Command '%s' not found. Please install the NSCA client.\n"
+"On Debian/Ubuntu: apt-get install nsca-client"
+msgstr ""
+"Comando '%s' no encontrado. Por favor, instale el cliente NSCA.\n"
+"En Debian/Ubuntu: apt-get install nsca-client"
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_server__config_dir_path
+msgid "Configuration directory"
+msgstr "Directorio de configuración"
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_server__config_file_path
+msgid "Configuration file"
+msgstr "Archivo de Configuración"
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check__create_uid
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_server__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check__create_date
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_server__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check__cron_id
+msgid "Cron"
+msgstr "Cron"
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check__daylight_saving_time_resistant
+msgid "Daylight Saving Time Resistant"
+msgstr "Resistente al Horario de Verano"
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check__display_name
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_server__display_name
+msgid "Display Name"
+msgstr "Mostrar Nombre"
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check__activity_date_deadline_range
+msgid "Due Date In"
+msgstr "Fecha de Vencimiento En"
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check__activity_date_deadline_range_type
+msgid "Due type"
+msgstr "Tipo de vencimiento"
+
+#. module: nsca_client
+#: model_terms:ir.ui.view,arch_db:nsca_client.view_nsca_check_form
+msgid ""
+"E.g.\n"
+"                                        <em>(1, u\"3 mails not sent\")</em>"
+msgstr ""
+"Por ejemplo\n"
+" <em>(1, u \"3 correos no enviados\")</em>"
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check__template_id
+msgid "Email Template"
+msgstr "Plantilla de Correo Electrónico"
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_server__encryption_method
+msgid "Encryption method"
+msgstr "Método de encriptación"
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check__xml_id
+msgid "External ID"
+msgstr "ID Externo"
+
+#. module: nsca_client
+#: model_terms:ir.ui.view,arch_db:nsca_client.view_nsca_check_form
+msgid "Frequency"
+msgstr "Frecuencia"
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check__groups_id
+msgid "Groups"
+msgstr "Grupos"
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_server__name
+msgid "Hostname"
+msgstr "Nombre del huésped"
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_server__node_hostname
+msgid "Hostname of this node"
+msgstr "Nombre de host de este nodo"
+
+#. module: nsca_client
+#: model:ir.model.fields,help:nsca_client.field_nsca_check__numbercall
+msgid ""
+"How many times the method is called,\n"
+"a negative number indicates no limit."
+msgstr ""
+"Cuántas veces se llama al método,\n"
+"un número negativo indica que no hay límite."
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check__id
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_server__id
+msgid "ID"
+msgstr "ID"
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check__interval_number
+msgid "Interval Number"
+msgstr "Número de Intervalo"
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check__interval_type
+msgid "Interval Unit"
+msgstr "Unidad de Intervalo"
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check__lastcall
+msgid "Last Execution Date"
+msgstr "Última Fecha de Ejecución"
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check____last_update
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_server____last_update
+msgid "Last Modified on"
+msgstr "Última Modificación el"
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check__write_uid
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_server__write_uid
+msgid "Last Updated by"
+msgstr "Última Actualización por"
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check__write_date
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_server__write_date
+msgid "Last Updated on"
+msgstr "Última Actualización el"
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check__link_field_id
+msgid "Link Field"
+msgstr "Campo de Enlace"
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check__nsca_function
+msgid "Method"
+msgstr "Método"
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check__model_id
+msgid "Model"
+msgstr "Modelo"
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check__model_name
+msgid "Model Name"
+msgstr "Nombre del Modelo"
+
+#. module: nsca_client
+#: model:ir.model.fields,help:nsca_client.field_nsca_check__crud_model_id
+msgid ""
+"Model for record creation / update. Set this field only to specify a "
+"different model than the base model."
+msgstr ""
+"Modelo para la creación / actualización de registros. Establezca este campo "
+"sólo para especificar un modelo diferente al modelo base."
+
+#. module: nsca_client
+#: model:ir.model.fields,help:nsca_client.field_nsca_check__model_id
+msgid "Model on which the server action runs."
+msgstr "Modelo sobre el que se ejecuta la acción del servidor."
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check__mutually_exclusive_cron_ids
+msgid "Mutually Exclusive Scheduled Actions"
+msgstr "Acciones programadas excluyentes mutuamente"
+
+#. module: nsca_client
+#: code:addons/nsca_client/models/nsca_check.py:0
+#: model:ir.model,name:nsca_client.model_nsca_check
+#: model_terms:ir.ui.view,arch_db:nsca_client.view_nsca_check_form
+#, python-format
+msgid "NSCA Check"
+msgstr "Comprobación NSCA"
+
+#. module: nsca_client
+#: model:ir.cron,cron_name:nsca_client.demo_nsca_check_mails_ir_cron
+#: model:ir.cron,name:nsca_client.demo_nsca_check_mails_ir_cron
+#: model:nsca.check,cron_name:nsca_client.demo_nsca_check_mails
+#: model:nsca.check,name:nsca_client.demo_nsca_check_mails
+msgid "NSCA Check - Odoo Mail Queue"
+msgstr "NSCA Comprobación - Cola de correo Odoo"
+
+#. module: nsca_client
+#: model:ir.ui.menu,name:nsca_client.menu_nsca_client
+msgid "NSCA Client"
+msgstr "Cliente NSCA"
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check__nsca_model
+msgid "NSCA Model"
+msgstr "Modelo NSCA"
+
+#. module: nsca_client
+#: model:ir.model,name:nsca_client.model_nsca_server
+#: model_terms:ir.ui.view,arch_db:nsca_client.view_nsca_server_form
+msgid "NSCA Server"
+msgstr "Servidor NSCA"
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check__cron_name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check__nextcall
+msgid "Next Execution Date"
+msgstr "Próxima Fecha de Ejecución"
+
+#. module: nsca_client
+#: model:ir.model.fields,help:nsca_client.field_nsca_check__nextcall
+msgid "Next planned execution date for this job."
+msgstr "Próxima fecha de ejecución prevista para este trabajo."
+
+#. module: nsca_client
+#: model_terms:ir.ui.view,arch_db:nsca_client.view_nsca_server_form
+msgid "Node identity"
+msgstr "Identidad del nodo"
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check__activity_note
+msgid "Note"
+msgstr "Nota"
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check__numbercall
+msgid "Number of Calls"
+msgstr "Número de Llamadas"
+
+#. module: nsca_client
+#: model:ir.model.fields,help:nsca_client.field_nsca_check__help
+msgid ""
+"Optional help text for the users with a description of the target view, such"
+" as its usage and purpose."
+msgstr ""
+"Texto de ayuda opcional para los usuarios con una descripción de la vista de "
+"destino, como su uso y propósito."
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_server__password
+msgid "Password"
+msgstr "Contraseña"
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_server__port
+msgid "Port"
+msgstr "Puerto"
+
+#. module: nsca_client
+#: model:ir.model.fields,help:nsca_client.field_nsca_check__lastcall
+msgid ""
+"Previous time the cron ran successfully, provided to the job through the "
+"context on the `lastcall` key"
+msgstr ""
+"Hora anterior en la que el cron se ejecutó correctamente, proporcionada al "
+"trabajo a través del contexto en la tecla `lastcall"
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check__priority
+msgid "Priority"
+msgstr "Prioridad"
+
+#. module: nsca_client
+#: model:ir.model.fields,help:nsca_client.field_nsca_check__link_field_id
+msgid ""
+"Provide the field used to link the newly created record on the record used "
+"by the server action."
+msgstr ""
+"Proporcione el campo utilizado para vincular el registro recién creado en el "
+"registro utilizado por la acción del servidor."
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check__code
+msgid "Python Code"
+msgstr "Código Python"
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check__doall
+msgid "Repeat Missed"
+msgstr "Repetición Fallida"
+
+#. module: nsca_client
+#: model:ir.model.fields,help:nsca_client.field_nsca_check__interval_number
+msgid "Repeat every x."
+msgstr "Repite cada x."
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check__activity_user_id
+msgid "Responsible"
+msgstr "Responsable"
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check__user_id
+msgid "Scheduler User"
+msgstr "Programador Usuario"
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check__sequence
+msgid "Sequence"
+msgstr "Secuencia"
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check__server_id
+msgid "Server"
+msgstr "Servidor"
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check__ir_actions_server_id
+msgid "Server action"
+msgstr "Acción de servidor"
+
+#. module: nsca_client
+#: model:ir.actions.act_window,name:nsca_client.action_nsca_server_tree
+#: model:ir.ui.menu,name:nsca_client.menu_action_nsca_server_tree
+msgid "Servers"
+msgstr "Servidores"
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check__service
+msgid "Service"
+msgstr "Servicio"
+
+#. module: nsca_client
+#: model:ir.model.fields,help:nsca_client.field_nsca_check__binding_model_id
+msgid ""
+"Setting a value makes this action available in the sidebar for the given "
+"model."
+msgstr ""
+"Establecer un valor hace que esta acción esté disponible en la barra lateral "
+"para el modelo dado."
+
+#. module: nsca_client
+#: model_terms:ir.ui.view,arch_db:nsca_client.view_nsca_check_form
+msgid "Settings"
+msgstr "Configuraciones"
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check__smart_search
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_server__smart_search
+msgid "Smart Search"
+msgstr "Búsqueda Inteligente"
+
+#. module: nsca_client
+#: model:ir.model.fields,help:nsca_client.field_nsca_check__doall
+msgid ""
+"Specify if missed occurrences should be executed when the server restarts."
+msgstr ""
+"Especifique si las incidencias omitidas deben ejecutarse cuando se reinicie "
+"el servidor."
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check__activity_summary
+msgid "Summary"
+msgstr "Resumen"
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check__crud_model_id
+msgid "Target Model"
+msgstr "Modelo de Objetivo"
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check__crud_model_name
+msgid "Target Model Name"
+msgstr "Nombre del modelo de destino"
+
+#. module: nsca_client
+#: model:ir.model.fields,help:nsca_client.field_nsca_check__activity_user_field_name
+msgid "Technical name of the user on the record"
+msgstr "Nombre técnico del usuario en el registro"
+
+#. module: nsca_client
+#: model_terms:ir.ui.view,arch_db:nsca_client.view_nsca_check_form
+msgid ""
+"The method must return a tuple (RC,\n"
+"                                        MESSAGE) where RC is an integer:"
+msgstr ""
+"El método debe devolver una tupla (RC,\n"
+" MENSAJE) donde RC es un número entero:"
+
+#. module: nsca_client
+#: model:ir.model.fields,help:nsca_client.field_nsca_check__priority
+msgid ""
+"The priority of the job, as an integer: 0 means higher priority, 10 means "
+"lower priority."
+msgstr ""
+"La prioridad del trabajo, como un número entero: 0 significa mayor "
+"prioridad, 10 menor prioridad."
+
+#. module: nsca_client
+#: model:ir.model.fields,help:nsca_client.field_nsca_server__node_hostname
+msgid ""
+"This is the hostname of the current Odoo node declared in the monitoring "
+"server."
+msgstr ""
+"Este es el nombre de host del nodo Odoo actual declarado en el servidor de "
+"monitorización."
+
+#. module: nsca_client
+#: model:ir.model.fields,help:nsca_client.field_nsca_check__state
+msgid ""
+"Type of server action. The following values are available:\n"
+"- 'Execute Python Code': a block of python code that will be executed\n"
+"- 'Create': create a new record with new values\n"
+"- 'Update a Record': update the values of a record\n"
+"- 'Execute several actions': define an action that triggers several other server actions\n"
+"- 'Send Email': automatically send an email (Discuss)\n"
+"- 'Add Followers': add followers to a record (Discuss)\n"
+"- 'Create Next Activity': create an activity (Discuss)"
+msgstr ""
+"Tipo de acción del servidor. Están disponibles los siguientes valores:\n"
+"- 'Ejecutar código Python': un bloque de código python que se ejecutará.\n"
+"- 'Create': crear un nuevo registro con nuevos valores\n"
+"- 'Actualizar un registro': actualizar los valores de un registro\n"
+"- Ejecutar varias acciones\": define una acción que desencadena otras "
+"acciones del servidor.\n"
+"- Enviar correo electrónico': enviar automáticamente un correo electrónico "
+"(Discutir)\n"
+"- Añadir seguidores\": añadir seguidores a un registro (Discutir)\n"
+"- Crear siguiente actividad': crear una actividad (Discutir)"
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check__usage
+msgid "Usage"
+msgstr "Uso"
+
+#. module: nsca_client
+#: model:ir.model.fields,help:nsca_client.field_nsca_check__activity_user_type
+msgid ""
+"Use 'Specific User' to always assign the same user on the next activity. Use"
+" 'Generic User From Record' to specify the field name of the user to choose "
+"on the record."
+msgstr ""
+"Utilice 'Usuario Específico' para asignar siempre el mismo usuario en la "
+"siguiente actividad. Utilice 'Usuario genérico del registro' para "
+"especificar el nombre de campo del usuario a elegir en el registro."
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check__activity_user_field_name
+msgid "User field name"
+msgstr "Nombre del campo de usuario"
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check__fields_lines
+msgid "Value Mapping"
+msgstr "Mapa de valores"
+
+#. module: nsca_client
+#: model:ir.model.fields,help:nsca_client.field_nsca_check__sequence
+msgid ""
+"When dealing with multiple actions, the execution order is based on the "
+"sequence. Low number means high priority."
+msgstr ""
+"Cuando se trata de acciones múltiples, el orden de ejecución se basa en la "
+"secuencia. Un número bajo significa prioridad alta."
+
+#. module: nsca_client
+#: model:ir.model.fields,help:nsca_client.field_nsca_check__code
+msgid ""
+"Write Python code that the action will execute. Some variables are available"
+" for use; help about python expression is given in the help tab."
+msgstr ""
+"Escriba el código Python que ejecutará la acción. Algunas variables están "
+"disponibles para su uso; ayuda sobre la expresión de Python se da en la "
+"pestaña de ayuda."
