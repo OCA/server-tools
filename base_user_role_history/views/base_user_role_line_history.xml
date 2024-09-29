@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2019 ACSONE SA/NV
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <!--FORM view-->
+
+    <record model="ir.ui.view" id="base_user_role_line_history_form_view">
+        <field name="name">base.user.role.line.history.form (in base_user_role_history)</field>
+        <field name="model">base.user.role.line.history</field>
+        <field name="arch" type="xml">
+            <form create="0" edit="0" delete="0">
+                <header>
+                </header>
+                <sheet>
+                    <group name="group_main" col="4">
+                        <field name="create_uid"
+                               string="Editor"/>
+                        <field name="performed_action"/>
+                        <field name="user_id"
+                               string="Edited user"/>
+                        <field name="create_date"
+                               string="Date and time of edition"/>
+                        <field name="old_role_id"/>
+                        <field name="new_role_id"/>
+                        <field name="old_date_from"/>
+                        <field name="new_date_from"/>
+                        <field name="old_date_to"/>
+                        <field name="new_date_to"/>
+                        <field name="old_is_enabled"/>
+                        <field name="new_is_enabled"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!--TREE view-->
+
+    <record model="ir.ui.view" id="base_user_role_line_history_tree_view">
+        <field name="name">base.user.role.line.history.tree (in base_user_role_history)</field>
+        <field name="model">base.user.role.line.history</field>
+        <field name="arch" type="xml">
+            <tree decoration-success="performed_action == 'add'"
+                  decoration-danger="performed_action == 'unlink'"
+                  create="0" edit="0" delete="0">
+                <field name="create_uid"
+                       string="Editor"/>
+                <field name="create_date"
+                       string="Date and time of edition"/>
+                <field name="performed_action"/>
+                <field name="old_role_id"/>
+                <field name="new_role_id"/>
+                <field name="old_date_from"/>
+                <field name="new_date_from"/>
+                <field name="old_date_to"/>
+                <field name="new_date_to"/>
+                <field name="old_is_enabled"/>
+                <field name="new_is_enabled"/>
+            </tree>
+        </field>
+    </record>
+
+    <!--SEARCH view-->
+
+    <record model="ir.ui.view" id="base_user_role_line_history_search_view">
+        <field name="name">base.user.role.line.history.search (in base_user_role_history)</field>
+        <field name="model">base.user.role.line.history</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="old_role_id"/>
+                <field name="new_role_id"/>
+                <group string="Group By" name="groupby">
+                    <filter name="group_by_old_role"
+                            string="Old role"
+                            context="{'group_by': 'old_role_id'}"/>
+                    <filter name="group_by_new_role"
+                            string="New role"
+                            context="{'group_by': 'new_role_id'}"/>
+                    <filter name="group_by_performed_action"
+                            string="Action"
+                            context="{'group_by': 'performed_action'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+</odoo>
