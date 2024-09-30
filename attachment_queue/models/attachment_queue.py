@@ -52,7 +52,7 @@ class AttachmentQueue(models.Model):
     def _job_attrs(self):
         # Override this method to have file type specific job attributes
         self.ensure_one()
-        return {"channel": "attachment_queue"}
+        return {"channel": "root.attachment_queue"}
 
     def _schedule_jobs(self):
         for el in self:
