@@ -1399,6 +1399,16 @@ msgstr ""
 
 #. module: excel_import_export
 #. odoo-python
+#: code:addons/excel_import_export/models/xlsx_import.py:0
+#, python-format
+msgid ""
+"The value for the '%(field)s' field is expected to be in cell "
+"%(cell_position)s, but no column exists for that cell in the Excel sheet. "
+"Please check your Excel file."
+msgstr ""
+
+#. module: excel_import_export
+#. odoo-python
 #: code:addons/excel_import_export/wizard/import_xlsx_wizard.py:0
 #, python-format
 msgid "This import action is not usable in this document context"
@@ -1500,9 +1510,9 @@ msgstr "⇒ 获取示例导入模板"
 #~ "code> thus can change from cell value to other value for import."
 #~ msgstr ""
 #~ "<b>字段条件</b>: Python代码 <code>${...}</code> 值将代表来自excel 单元格的"
-#~ "数据, 例如, if A1 = 'ABC', <code>value</code> 代表'ABC',例如, <code>"
-#~ "${value == \"ABC\" and \"X\" or \"Y\"}</code> 因此可以从单元格值更改为其他"
-#~ "值以进行导入."
+#~ "数据, 例如, if A1 = 'ABC', <code>value</code> 代表'ABC',例如, "
+#~ "<code>${value == \"ABC\" and \"X\" or \"Y\"}</code> 因此可以从单元格值更改"
+#~ "为其他值以进行导入."
 
 #~ msgid ""
 #~ "<code class=\"oe_grey\">\n"

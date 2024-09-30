@@ -75,8 +75,8 @@ msgid ""
 msgstr ""
 "<b>Cond. de campo</b>: código Python en <code>$</code><code>{...}</code> "
 "para manipular el valor del campo, por ejemplo, si campo = product_id, "
-"<code>valor </code> representará el objeto del producto, por ejemplo, <code>"
-"$</code><code>{value y value.uom_id.name o \"\"}</code>"
+"<code>valor </code> representará el objeto del producto, por ejemplo, "
+"<code>$</code><code>{value y value.uom_id.name o \"\"}</code>"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -1487,6 +1487,16 @@ msgstr ""
 "generación. HTML significa que el informe se abrirá directamente en el "
 "navegador PDF quiere decir que el informe se renderizará utilizando "
 "Wkhtmltopdf y será descargado por el usuario."
+
+#. module: excel_import_export
+#. odoo-python
+#: code:addons/excel_import_export/models/xlsx_import.py:0
+#, python-format
+msgid ""
+"The value for the '%(field)s' field is expected to be in cell "
+"%(cell_position)s, but no column exists for that cell in the Excel sheet. "
+"Please check your Excel file."
+msgstr ""
 
 #. module: excel_import_export
 #. odoo-python
