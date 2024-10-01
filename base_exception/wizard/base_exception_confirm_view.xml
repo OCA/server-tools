@@ -7,10 +7,10 @@
             <form string="Outstanding exceptions to manager" version="7.0">
                 <group>
                     <field name="exception_ids" nolabel="1" colspan="2">
-                        <tree>
+                        <list>
                             <field name="name" />
                             <field name="description" />
-                        </tree>
+                        </list>
                     </field>
                     <newline />
                 </group>
