@@ -5,11 +5,11 @@
 # Copyright 2023 ACSONE SA/NV (http://acsone.eu)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-import html
 import logging
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError, ValidationError
+from odoo.tools import html_escape
 
 _logger = logging.getLogger(__name__)
 
@@ -53,14 +53,15 @@ class BaseExceptionModel(models.AbstractModel):
     def _compute_exceptions_summary(self):
         for rec in self:
             if rec.exception_ids and not rec.ignore_exception:
-                rec.exceptions_summary = "<ul>%s</ul>" % "".join(
-                    [
-                        f"<li>{html.escape(e.name)}: <i>{html.escape(e.description or '')}</i> <b>"
-                        + _(
-                            f"{'(Blocking exception)' if e.is_blocking else ''}</b></li>"
+                rec.exceptions_summary = "<ul>{}</ul>".format(
+                    "".join(
+                        "<li>{}: <i>{}</i> <b>{}</b></li>".format(
+                            html_escape(e.name),
+                            html_escape(e.description or ""),
+                            "(Blocking exception)" if e.is_blocking else "",
                         )
                         for e in rec.exception_ids
-                    ]
+                    )
                 )
             else:
                 rec.exceptions_summary = False
