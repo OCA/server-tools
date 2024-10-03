@@ -164,7 +164,7 @@ class IrModuleModule(models.Model):
         if not path:
             return res
         for root, _, files in os.walk(path, followlinks=True):
-            if set(Path(root).parts) & set(exclude_directories):
+            if set(Path(root).relative_to(path).parts) & set(exclude_directories):
                 continue
             for name in files:
                 if name in exclude_files:
