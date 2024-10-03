@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_video_video,video.video,model_video_video,base.group_user,1,0,0,0
+access_video_provider,video.provider,model_video_provider,base.group_user,1,0,0,0
+access_video_video_manager,video.video,model_video_video,base.group_system,1,1,1,1
+access_video_provider_manager,video.provider,model_video_provider,base.group_system,1,1,1,1
