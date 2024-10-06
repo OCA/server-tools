@@ -1,5 +1,6 @@
 # Copyright 2016 Therp BV <http://therp.nl>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+
 from contextlib import contextmanager
 from psycopg2 import ProgrammingError
 from odoo.modules.registry import Registry
@@ -60,6 +61,31 @@ class TestDatabaseCleanup(TransactionCase):
             with self.env.registry.cursor() as cr:
                 with mute_logger("odoo.sql_db"):
                     cr.execute("select database_cleanup_test from res_partner")
+
+    def test_purge_obsolete_columns_ignore_inherited(self):
+        """ Inherited columns have to be ignored because they cannot be deleted """
+
+        # Create an inherited table
+        self.env.cr.execute(
+            "CREATE table dbcleanup_inherited_test (database_cleanup_test2 int) "
+            "INHERITS (res_partner)"
+            )
+
+        # We need use a model that inherits from another
+        client_action_model = self.env["ir.model"].search(
+            [("model", "=", "ir.actions.act_window")], limit=1)
+        # Add name column (wich is inherited) to columns to remove
+        purge_columns = self.env["cleanup.purge.wizard.column"].create(
+            {"purge_line_ids": [
+                (0, 0, {"model_id": client_action_model.id,
+                        "name": "name"})]}
+        )
+        purge_columns.purge_all()
+        # the column must not be removed by the wizard
+        with self.env.registry.cursor() as cr:
+            with mute_logger("odoo.sql_db"):
+                # this query must be executed without error
+                cr.execute("select name from ir_act_window")
 
     def test_purge_obsolete_data(self):
         # create a data entry pointing nowhere
