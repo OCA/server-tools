@@ -1,3 +1,4 @@
+import logging
 from unittest import mock
 
 import psycopg2
@@ -48,7 +49,10 @@ class TestPGSessionStore(TransactionCase):
 
     def test_retry(self):
         """Test that session operations are retried before failing"""
-        with mock.patch("odoo.sql_db.Cursor.execute") as mock_execute:
+        with (
+            mock.patch("odoo.sql_db.Cursor.execute") as mock_execute,
+            self.assertLogs(level=logging.WARNING) as logs,
+        ):
             mock_execute.side_effect = psycopg2.OperationalError()
             try:
                 self.session_store.get("abc")
@@ -59,6 +63,9 @@ class TestPGSessionStore(TransactionCase):
                 # in a way that interferes with the Cursor.execute mock
                 raise AssertionError("expected psycopg2.OperationalError")
             assert mock_execute.call_count == 5
+            self.assertEqual(len(logs.records), 1)
+            self.assertEqual(logs.records[0].levelno, logging.WARNING)
+            self.assertIn("operation try 5/5 failed, aborting", logs.output[0])
         # when the error is resolved, it works again
         self.session_store.get("abc")
 
