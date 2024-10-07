@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
@@ -9,10 +8,11 @@
 
 /*
 :Author: David Goodger (goodger@python.org)
-:Id: $Id: html4css1.css 8954 2022-01-20 10:10:25Z milde $
+:Id: $Id: html4css1.css 9511 2024-01-13 09:50:07Z milde $
 :Copyright: This stylesheet has been placed in the public domain.
 
 Default cascading style sheet for the HTML output of Docutils.
+Despite the name, some widely supported CSS2 features are used.
 
 See https://docutils.sourceforge.io/docs/howto/html-stylesheets.html for how to
 customize this style sheet.
@@ -275,7 +275,7 @@ pre.literal-block, pre.doctest-block, pre.math, pre.code {
   margin-left: 2em ;
   margin-right: 2em }
 
-pre.code .ln { color: grey; } /* line numbers */
+pre.code .ln { color: gray; } /* line numbers */
 pre.code, code { background-color: #eeeeee }
 pre.code .comment, code .comment { color: #5C6576 }
 pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
@@ -301,7 +301,7 @@ span.option {
 span.pre {
   white-space: pre }
 
-span.problematic {
+span.problematic, pre.problematic {
   color: red }
 
 span.section-subtitle {
@@ -369,30 +369,32 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !! source digest: sha256:ea58b36b08c5d8ff1eaf428f88f80f7171cac26df0babe83a7e95f7f54e518b6
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/server-tools/tree/16.0/attachment_unindex_content"><img alt="OCA/server-tools" src="https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/server-tools-16-0/server-tools-16-0-attachment_unindex_content"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/server-tools&amp;target_branch=16.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/server-tools/tree/18.0/attachment_unindex_content"><img alt="OCA/server-tools" src="https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/server-tools-18-0/server-tools-18-0-attachment_unindex_content"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/server-tools&amp;target_branch=18.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
 <p>This module disables the indexation of attachments content.</p>
-<p>Attachment model has a field called ‘index_content’ where the content of the
-attachment is read and stored directly in the database. This field is useful in
-order to search content of a file. But most of cases it is not used, so, you
-can install this module in order to:</p>
+<p>Attachment model has a field called ‘index_content’ where the content of
+the attachment is read and stored directly in the database. This field
+is useful in order to search content of a file. But most of cases it is
+not used, so, you can install this module in order to:</p>
 <ul class="simple">
-<li><strong>Avoid Duplicating Data:</strong> Because indexation extracts text content from
-files and put it on the database in order it could be searched, but this
-implies you have the file data in your <tt class="docutils literal">filestore</tt> directory, and also part
-(or sometimes all) of that data in your database too.</li>
+<li><strong>Avoid Duplicating Data:</strong> Because indexation extracts text content
+from files and put it on the database in order it could be searched,
+but this implies you have the file data in your <tt class="docutils literal">filestore</tt>
+directory, and also part (or sometimes all) of that data in your
+database too.</li>
 <li><strong>Improve Performance:</strong> Since not all indexed files are plain text,
 they require extra process to read them.</li>
 </ul>
-<p>Maybe you could try to uninstall modules like <tt class="docutils literal">document</tt> in order to disable
-its indexation features, but you could face the uninstallation of other modules
-that could be useful for you (e.g, <tt class="docutils literal">hr_recruitment</tt> depends on that).</p>
-<p>But even if you don’t have <tt class="docutils literal">document</tt> installed, you’d still have plain text
-content indexation by default. As you can see in this SQL query results,
-indexation is active even without it:</p>
-<p><a class="reference external image-reference" href="https://user-images.githubusercontent.com/442938/67894113-45d27a80-fb2e-11e9-9a22-ba43d8b444c5.png"><img alt="SQL Query result showing indexed content" src="https://user-images.githubusercontent.com/442938/67894113-45d27a80-fb2e-11e9-9a22-ba43d8b444c5.png" style="width: 400px; height: 200px;" /></a></p>
-<p>Using this module you will not require to uninstall any module to disable
-the attachment content indexation, because we directly disable it at
-<tt class="docutils literal">ir.attachment</tt> base.</p>
+<p>Maybe you could try to uninstall modules like <tt class="docutils literal">document</tt> in order to
+disable its indexation features, but you could face the uninstallation
+of other modules that could be useful for you (e.g, <tt class="docutils literal">hr_recruitment</tt>
+depends on that).</p>
+<p>But even if you don’t have <tt class="docutils literal">document</tt> installed, you’d still have
+plain text content indexation by default. As you can see in this SQL
+query results, indexation is active even without it:</p>
+<p><a class="reference external image-reference" href="https://user-images.githubusercontent.com/442938/67894113-45d27a80-fb2e-11e9-9a22-ba43d8b444c5.png"><img alt="SQL Query result showing indexed content" src="https://user-images.githubusercontent.com/442938/67894113-45d27a80-fb2e-11e9-9a22-ba43d8b444c5.png" /></a></p>
+<p>Using this module you will not require to uninstall any module to
+disable the attachment content indexation, because we directly disable
+it at <tt class="docutils literal">ir.attachment</tt> base.</p>
 <p>Also, after the installation, the <tt class="docutils literal">index_content</tt> field on attachments
 already recorded in database will be cleared.</p>
 <p><strong>Table of contents</strong></p>
@@ -412,7 +414,7 @@ already recorded in database will be cleared.</p>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/server-tools/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-<a class="reference external" href="https://github.com/OCA/server-tools/issues/new?body=module:%20attachment_unindex_content%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+<a class="reference external" href="https://github.com/OCA/server-tools/issues/new?body=module:%20attachment_unindex_content%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
@@ -433,13 +435,15 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <div class="section" id="maintainers">
 <h2><a class="toc-backref" href="#toc-entry-5">Maintainers</a></h2>
 <p>This module is maintained by the OCA.</p>
-<a class="reference external image-reference" href="https://odoo-community.org"><img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" /></a>
+<a class="reference external image-reference" href="https://odoo-community.org">
+<img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" />
+</a>
 <p>OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.</p>
 <p>Current <a class="reference external" href="https://odoo-community.org/page/maintainer-role">maintainers</a>:</p>
 <p><a class="reference external image-reference" href="https://github.com/moylop260"><img alt="moylop260" src="https://github.com/moylop260.png?size=40px" /></a> <a class="reference external image-reference" href="https://github.com/ebirbe"><img alt="ebirbe" src="https://github.com/ebirbe.png?size=40px" /></a> <a class="reference external image-reference" href="https://github.com/luisg123v"><img alt="luisg123v" src="https://github.com/luisg123v.png?size=40px" /></a></p>
-<p>This module is part of the <a class="reference external" href="https://github.com/OCA/server-tools/tree/16.0/attachment_unindex_content">OCA/server-tools</a> project on GitHub.</p>
+<p>This module is part of the <a class="reference external" href="https://github.com/OCA/server-tools/tree/18.0/attachment_unindex_content">OCA/server-tools</a> project on GitHub.</p>
 <p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
 </div>
 </div>
