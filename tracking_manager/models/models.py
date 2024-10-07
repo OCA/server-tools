@@ -89,6 +89,9 @@ class Base(models.AbstractModel):
             if not getattr(self.env[model_name], "message_post_with_view", False):
                 continue
             for record_id, messages_by_field in model_data.items():
+                # Avoid error if no record is linked (example: child_ids of res.partner)
+                if not record_id:
+                    continue
                 record = self.env[model_name].browse(record_id)
                 messages = [
                     {
