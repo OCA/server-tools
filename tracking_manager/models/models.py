@@ -6,6 +6,7 @@
 from collections import defaultdict
 
 from odoo import api, models, tools
+from odoo.exceptions import AccessError
 
 from ..tools import format_m2m
 
@@ -120,7 +121,11 @@ class Base(models.AbstractModel):
             values = initial_values.setdefault(record.id, {})
             if values is not None:
                 for fname in fnames:
-                    values.setdefault(fname, record[fname])
+                    try:
+                        values.setdefault(fname, record[fname])
+                    except AccessError:
+                        # User does not have access to the field (example with groups)
+                        continue
 
     def _tm_finalize_o2m_tracking(self):
         initial_values = self.env.cr.precommit.data.pop(
