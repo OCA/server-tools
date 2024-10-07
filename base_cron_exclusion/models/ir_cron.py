@@ -67,5 +67,5 @@ class IrCron(models.Model):
             res = super()._process_job(db, cron_cr, job)
         finally:
             locked_crons.close()
-            _logger.debug("released blocks for cron job %s" % job["cron_name"])
+            _logger.debug("released blocks for cron job %s", job["cron_name"])
         return res
