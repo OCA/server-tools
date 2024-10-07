@@ -1,6 +1,6 @@
 {
     "name": "Store sessions in DB",
-    "version": "17.0.1.0.0",
+    "version": "18.0.1.0.0",
     "author": "Odoo SA,ACSONE SA/NV,Odoo Community Association (OCA)",
     "license": "LGPL-3",
     "website": "https://github.com/OCA/server-tools",
