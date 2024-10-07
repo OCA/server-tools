@@ -63,9 +63,10 @@ class TestPGSessionStore(TransactionCase):
         self.session_store.get("abc")
 
     def test_retry_connect_fail(self):
-        with mock.patch("odoo.sql_db.Cursor.execute") as mock_execute, mock.patch(
-            "odoo.sql_db.db_connect"
-        ) as mock_db_connect:
+        with (
+            mock.patch("odoo.sql_db.Cursor.execute") as mock_execute,
+            mock.patch("odoo.sql_db.db_connect") as mock_db_connect,
+        ):
             mock_execute.side_effect = psycopg2.OperationalError()
             mock_db_connect.side_effect = RuntimeError("connection failed")
             # get fails, and a RuntimeError is raised when trying to reconnect
