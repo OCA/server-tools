@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
     "name": "Mail cleanup",
-    "version": "14.0.1.0.0",
+    "version": "16.0.1.0.0",
     "category": "Tools",
     "summary": "Mark as read or delete mails after a set time",
     "author": "Camptocamp, " "Odoo Community Association (OCA)",

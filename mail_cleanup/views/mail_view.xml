@@ -5,7 +5,7 @@
         <field name="name">inherit_fetchmail_for cleanup</field>
         <field name="model">fetchmail.server</field>
         <!--parent python entity -->
-        <field name="inherit_id" ref="fetchmail.view_email_server_form" />
+        <field name="inherit_id" ref="mail.view_email_server_form" />
         <!-- modulename.view -->
         <field name="arch" type="xml">
             <field name="is_ssl" position="after">
