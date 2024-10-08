@@ -28,7 +28,7 @@ class TestTrackingManager(TransactionCase):
             }
         )
         cls.partner_model = cls.env.ref("base.model_res_partner")
-        cls._active_tracking(["user_ids", "category_id", "child_ids"])
+        cls._active_tracking(["user_ids", "category_id"])
         cls.flush_tracking()
         cls.partner.message_ids.unlink()
 
@@ -270,6 +270,7 @@ class TestTrackingManager(TransactionCase):
         self.assertEqual(self.messages.body.count("Delete"), 1)
 
     def test_o2m_update_record(self):
+        self.env.ref("base.field_res_partner__child_ids").custom_tracking = True
         child = self.env["res.partner"].create(
             {"name": "Test child", "parent_id": self.partner.id}
         )
