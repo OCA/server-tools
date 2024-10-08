@@ -7,11 +7,11 @@
             <field name="state_ids" position="after">
                 <label for="region_ids" />
                 <field name="region_ids">
-                    <tree editable="bottom">
+                    <list editable="bottom">
                         <field name="name" />
                         <field name="description" />
                         <field name="partner_id" />
-                    </tree>
+                    </list>
                 </field>
             </field>
         </field>

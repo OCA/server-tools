@@ -4,9 +4,9 @@
         <field name="name">res.region.tree</field>
         <field name="model">res.region</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name" />
-            </tree>
+            </list>
         </field>
     </record>
     <!-- Region Form View -->
@@ -39,6 +39,6 @@
         <field name="name">Regions</field>
         <field name="res_model">res.region</field>
         <field name="view_id" ref="res_region_tree_view" />
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>

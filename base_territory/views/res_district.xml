@@ -4,10 +4,10 @@
         <field name="name">res.district.tree</field>
         <field name="model">res.district</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name" />
                 <field name="region_id" />
-            </tree>
+            </list>
         </field>
     </record>
     <!-- District Form View -->
@@ -41,6 +41,6 @@
         <field name="name">Districts</field>
         <field name="res_model">res.district</field>
         <field name="view_id" ref="res_district_tree_view" />
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>
