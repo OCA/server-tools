@@ -1,4 +1,5 @@
 # Copyright 2022 Akretion (https://www.akretion.com).
+# Copyright 2024 Tecnativa - Víctor Martínez
 # @author Kévin Roche <kevin.roche@akretion.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
@@ -27,7 +28,7 @@ class TestTrackingManager(TransactionCase):
             }
         )
         cls.partner_model = cls.env.ref("base.model_res_partner")
-        cls._active_tracking(["user_ids", "category_id"])
+        cls._active_tracking(["user_ids", "category_id", "child_ids"])
         cls.flush_tracking()
         cls.partner.message_ids.unlink()
 
@@ -267,3 +268,10 @@ class TestTrackingManager(TransactionCase):
         self.assertEqual(len(self.messages), 1)
         self.assertEqual(self.messages.body.count("Change"), 0)
         self.assertEqual(self.messages.body.count("Delete"), 1)
+
+    def test_o2m_update_record(self):
+        child = self.env["res.partner"].create(
+            {"name": "Test child", "parent_id": self.partner.id}
+        )
+        child.write({"parent_id": False})
+        self.assertEqual(len(self.messages), 1)
