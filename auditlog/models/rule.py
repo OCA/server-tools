@@ -214,13 +214,13 @@ class AuditlogRule(models.Model):
         for rule in self:
             model_model = self.env[rule.model_id.model or rule.model_model]
             for method in ["create", "read", "write", "unlink"]:
-                if getattr(rule, "log_%s" % method) and hasattr(
+                if getattr(rule, f"log_{method}") and hasattr(
                     getattr(model_model, method), "origin"
                 ):
                     setattr(
                         type(model_model), method, getattr(model_model, method).origin
                     )
-                    delattr(type(model_model), "auditlog_ruled_%s" % method)
+                    delattr(type(model_model), f"auditlog_ruled_{method}")
                     updated = True
         if updated:
             modules.registry.Registry(self.env.cr.dbname).signal_changes()
@@ -700,8 +700,8 @@ class AuditlogRule(models.Model):
         act_window_model = self.env["ir.actions.act_window"]
         for rule in self:
             # Create a shortcut to view logs
-            domain = "[('model_id', '=', %s), ('res_id', '=', active_id)]" % (
-                rule.model_id.id
+            domain = (
+                f"[('model_id', '=', {rule.model_id.id}), ('res_id', '=', active_id)]"
             )
             vals = {
                 "name": _("View logs"),
