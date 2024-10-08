@@ -65,14 +65,14 @@ def _overload_load_manifest(module, mod_path=None):
     )
 
     if auto_install and module in modules_auto_install_disabled_dict.keys():
-        _logger.info("Module '%s' has been marked as NOT auto installable." % module)
+        _logger.info(f"Module '{module}' has been marked as NOT auto installable.")
         res["auto_install"] = False
 
     if not auto_install and module in modules_auto_install_enabled_dict.keys():
         specific_dependencies = modules_auto_install_enabled_dict.get(module)
         if isinstance(specific_dependencies, bool):
             # Classical case
-            _logger.info("Module '%s' has been marked as auto installable." % module)
+            _logger.info(f"Module '{module}' has been marked as auto installable.")
             res["auto_install"] = set(res["depends"])
         else:
             if specific_dependencies:
