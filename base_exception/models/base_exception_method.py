@@ -154,5 +154,14 @@ class BaseExceptionMethod(models.AbstractModel):
         Find exceptions found on self.
         """
         base_domain = self._get_base_domain()
-        records = self.filtered_domain(base_domain)
-        return getattr(records, rule_info.method)()
+        model = self._context.get("params", {}).get("model")
+        if (
+            rule_info.method == "button_validate"
+            and model == "stock.picking"
+            or rule_info.method == "action_confirm"
+            and model == "sale.order"
+        ):
+            records = self.filtered_domain(base_domain)
+        else:
+            records = self.env["stock.picking"].browse()
+        return records
