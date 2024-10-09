@@ -75,6 +75,9 @@ class AttachmentQueue(models.Model):
 
     def _get_failure_emails(self):
         # to be overriden in submodules implementing the file_type
+        _logger.info(
+            "_get_failure_emails() is deprecated, use _notify_on_failure() instead"
+        )
         self.ensure_one()
         return ""
 
@@ -122,11 +125,15 @@ class AttachmentQueue(models.Model):
             except Exception as e:
                 _logger.warning(STR_ERROR_DURING_PROCESSING.format(self.id) + str(e))
                 self.write({"state": "failed", "state_message": str(e)})
-                emails = self.failure_emails
-                if emails:
-                    self.env.ref(
-                        "attachment_queue.attachment_failure_notification"
-                    ).send_mail(self.id)
+                self._notify_on_failure()
+
+    def _notify_on_failure(self):
+        """Notify can be done by mail or with activity"""
+        self.ensure_one()
+        if self.failure_emails:
+            self.env.ref("attachment_queue.attachment_failure_notification").send_mail(
+                self.id
+            )
 
     def run(self):
         """
