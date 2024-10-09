@@ -691,3 +691,87 @@ class AuditLogRuleTestForUserModel(TransactionCase):
             ]
         ).ensure_one()
         self.assertTrue(write_log_record)
+
+
+class AuditLogRuleTestPartnerCompanyDependentFields(TransactionCase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        # get Contact model id
+        cls.contact_model_id = (
+            cls.env["ir.model"].search([("model", "=", "res.partner")]).id
+        )
+
+        # creating auditlog.rule
+        cls.auditlog_rule = (
+            cls.env["auditlog.rule"]
+            .with_context(tracking_disable=True)
+            .create(
+                {
+                    "name": "testrule 01",
+                    "model_id": cls.contact_model_id,
+                    "log_read": True,
+                    "log_create": True,
+                    "log_write": True,
+                    "log_unlink": True,
+                    "log_type": "full",
+                    "capture_record": True,
+                }
+            )
+        )
+
+        # Subscribe auditlog.rule
+        cls.auditlog_rule.subscribe()
+
+        cls.auditlog_log = cls.env["auditlog.log"]
+
+        # Creating new res.partner
+        cls.testpartner = (
+            cls.env["res.partner"]
+            .with_context(tracking_disable=True)
+            .create(
+                {
+                    "name": "testpartner",
+                    "barcode": "0000",
+                }
+            )
+        )
+
+    def test_01_AuditlogFull_company_dependent_field_create_log(self):
+        """Checks that the changes in a company dependent field are tracked"""
+        create_log_record = self.auditlog_log.search(
+            [
+                ("model_id", "=", self.auditlog_rule.model_id.id),
+                ("method", "=", "create"),
+                ("res_id", "=", self.testpartner.id),
+            ]
+        ).ensure_one()
+        self.assertTrue(create_log_record)
+        field_names = create_log_record.line_ids.mapped("field_name")
+
+        # Checking log lines created for barcode
+        self.assertTrue("barcode" in field_names)
+
+        # Removing created log record
+        create_log_record.unlink()
+
+    def test_02_AuditlogFull_company_dependent_field_write_log(self):
+        """Checks that the changes in a company dependent field are tracked"""
+        self.testpartner.with_context(tracking_disable=True).write(
+            {
+                "barcode": "0001",
+            }
+        )
+        # Checking log is created for testpartner1
+        write_log_record = self.auditlog_log.search(
+            [
+                ("model_id", "=", self.auditlog_rule.model_id.id),
+                ("method", "=", "write"),
+                ("res_id", "=", self.testpartner.id),
+            ]
+        ).ensure_one()
+        self.assertTrue(write_log_record)
+        field_names = write_log_record.line_ids.mapped("field_name")
+
+        # Checking log lines not created for phone
+        self.assertTrue("barcode" in field_names)
