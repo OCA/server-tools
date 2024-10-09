@@ -105,12 +105,6 @@ msgid ""
 msgstr ""
 
 #. module: tracking_manager
-#: model:ir.model,name:tracking_manager.model_mail_tracking_value
-#, fuzzy
-msgid "Mail Tracking Value"
-msgstr "Suivi natif"
-
-#. module: tracking_manager
 #: model:ir.model,name:tracking_manager.model_ir_model
 msgid "Models"
 msgstr "Modèles"
@@ -151,6 +145,10 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:tracking_manager.view_model_form
 msgid "Update fields configuration"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Mail Tracking Value"
+#~ msgstr "Suivi natif"
 
 #, fuzzy
 #~ msgid "Automatic Custom Tracking Domain"
