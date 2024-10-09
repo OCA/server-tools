@@ -11,7 +11,7 @@
     "author": "Camptocamp,Creu Blanca,Odoo Community Association (OCA)",
     "depends": ["web"],
     "assets": {
-        "web.assets_common": [
+        "web.assets_backend": [
             (
                 "replace",
                 "web/static/lib/fontawesome/css/font-awesome.css",
