@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="ir_translation_safe_wizard_form_view">
+        <field name="name">ir.translation.safe.wizard.form</field>
+        <field name="model">ir.translation.safe.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Preinvoice Contract">
+                <group>
+                    <field name="lang_id" />
+                    <field name="module" />
+                </group>
+                <footer>
+                    <button
+            name="execute"
+            class="btn btn-primary"
+            type="object"
+            string="Check Translations"
+          />
+                    <button special="cancel" string="Cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="ir_translation_safe_wizard_act_window">
+        <field name="name">Check Existing Translations</field>
+        <field name="res_model">ir.translation.safe.wizard</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+    <menuitem
+    name="Check Existing Translations"
+    action="ir_translation_safe_wizard_act_window"
+    id="ir_check_translations_menu"
+    parent="base.menu_translation"
+    sequence="90"
+  />
+</odoo>
