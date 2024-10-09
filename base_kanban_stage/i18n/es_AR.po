@@ -1,0 +1,390 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * base_kanban_stage
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-12-01 02:10+0000\n"
+"PO-Revision-Date: 2022-03-27 21:17+0000\n"
+"Last-Translator: Ignacio Buioli <ibuioli@gmail.com>\n"
+"Language-Team: Spanish (Argentina) (https://www.transifex.com/oca/"
+"teams/23907/es_AR/)\n"
+"Language: es_AR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
+
+#. module: base_kanban_stage
+#: model:ir.model.fields,help:base_kanban_stage.field_base_kanban_abstract__kanban_status
+msgid ""
+"A record can have one of several Kanban statuses, which are used to indicate "
+"whether there are any special situations affecting it. The exact meaning of "
+"each status is allowed to vary based on the stage the record is in but they "
+"are roughly as follow:\n"
+"* Normal Handling: Default status, no special situations\n"
+"* Ready: Ready to transition to the next stage\n"
+"* Special Handling: Blocked in some way (e.g. must be handled by a specific "
+"user)\n"
+msgstr ""
+"Un registro puede tener uno de varios estados Kanban, que se utilizan para "
+"indicar si hay alguna situación especial que lo afecte. Se permite que el "
+"significado exacto de cada estado varíe según la etapa en la que se "
+"encuentre el registro, pero son más o menos los siguientes:\n"
+"* Manejo normal: estado predeterminado, sin situaciones especiales\n"
+"* Listo: Listo para la transición a la siguiente etapa\n"
+"* Manejo especial: bloqueado de alguna manera (por ejemplo, debe ser "
+"manejado por un usuario específico)\n"
+
+#. module: base_kanban_stage
+#: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_abstract__user_id
+msgid "Assigned To"
+msgstr "Asignado A"
+
+#. module: base_kanban_stage
+#: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_stage__res_model_id
+msgid "Associated Model"
+msgstr "Modelo Asociado"
+
+#. module: base_kanban_stage
+#: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_stage__fold
+msgid "Collapse?"
+msgstr "¿Colapsar?"
+
+#. module: base_kanban_stage
+#: model:ir.model.fields,help:base_kanban_stage.field_base_kanban_abstract__kanban_color
+msgid "Color index to be used for the record's Kanban card"
+msgstr "Índice de color usado para la tarjeta Kanban del registro"
+
+#. module: base_kanban_stage
+#: model_terms:ir.ui.view,arch_db:base_kanban_stage.base_kanban_stage_view_form
+msgid "Core Info"
+msgstr "Información del Núcleo"
+
+#. module: base_kanban_stage
+#: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_stage__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: base_kanban_stage
+#: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_stage__create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: base_kanban_stage
+#: model_terms:ir.ui.view,arch_db:base_kanban_stage.base_kanban_abstract_view_kanban
+msgid "Delete"
+msgstr "Eliminar"
+
+#. module: base_kanban_stage
+#: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_stage__description
+msgid "Description"
+msgstr "Descripción"
+
+#. module: base_kanban_stage
+#: model:ir.model.fields,help:base_kanban_stage.field_base_kanban_stage__fold
+msgid "Determines whether this stage will be collapsed down in Kanban views"
+msgstr "Determina si esta etapa será colapsada en las vistas Kanban"
+
+#. module: base_kanban_stage
+#: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_stage__display_name
+msgid "Display Name"
+msgstr "Mostrar Nombre"
+
+#. module: base_kanban_stage
+#: model:ir.model.fields,help:base_kanban_stage.field_base_kanban_stage__name
+msgid "Displayed as the header for this stage in Kanban views"
+msgstr "Mostrado como la cabecera para esta etapa en las vistas Kanban"
+
+#. module: base_kanban_stage
+#: model_terms:ir.ui.view,arch_db:base_kanban_stage.base_kanban_abstract_view_kanban
+msgid "Dropdown menu"
+msgstr "Menú desplegable"
+
+#. module: base_kanban_stage
+#: model_terms:ir.ui.view,arch_db:base_kanban_stage.base_kanban_abstract_view_kanban
+msgid "Edit"
+msgstr "Editar"
+
+#. module: base_kanban_stage
+#: model:ir.model.fields,help:base_kanban_stage.field_base_kanban_abstract__kanban_legend_normal
+msgid ""
+"Explanation text to help users understand how the normal handling status "
+"applies to this record (depends on current stage)"
+msgstr ""
+"Texto explicativo para ayudar a los usuarios a comprender cómo se aplica el "
+"estado de manejo normal en este registro (depende de la etapa actual)"
+
+#. module: base_kanban_stage
+#: model:ir.model.fields,help:base_kanban_stage.field_base_kanban_stage__legend_normal
+msgid ""
+"Explanation text to help users understand how the normal handling status "
+"applies to this stage"
+msgstr ""
+"Texto explicativo para ayudar a los usuarios a comprender cómo se aplica el "
+"estado de manejo normal a esta etapa"
+
+#. module: base_kanban_stage
+#: model:ir.model.fields,help:base_kanban_stage.field_base_kanban_abstract__kanban_legend_priority
+msgid ""
+"Explanation text to help users understand how the priority/star mechanism "
+"applies to this record (depends on current stage)"
+msgstr ""
+"Texto explicativo para ayudar a los usuarios a comprender cómo se aplica el "
+"mecanismo de prioridad/estrella a este registro (depende de la etapa actual)"
+
+#. module: base_kanban_stage
+#: model:ir.model.fields,help:base_kanban_stage.field_base_kanban_stage__legend_priority
+msgid ""
+"Explanation text to help users understand how the priority/star mechanism "
+"applies to this stage"
+msgstr ""
+"Texto explicativo para ayudar a los usuarios a comprender cómo se aplica el "
+"mecanismo de prioridad/estrella a esta etapa"
+
+#. module: base_kanban_stage
+#: model:ir.model.fields,help:base_kanban_stage.field_base_kanban_abstract__kanban_legend_done
+msgid ""
+"Explanation text to help users understand how the ready status applies to "
+"this record (depends on current stage)"
+msgstr ""
+"Texto explicativo para ayudar a los usuarios a comprender cómo se aplica el "
+"estado listo a este registro (depende de la etapa actual)"
+
+#. module: base_kanban_stage
+#: model:ir.model.fields,help:base_kanban_stage.field_base_kanban_stage__legend_done
+msgid ""
+"Explanation text to help users understand how the ready status applies to "
+"this stage"
+msgstr ""
+"Texto explicativo para ayudar a los usuarios a comprender cómo se aplica el "
+"estado listo a esta etapa"
+
+#. module: base_kanban_stage
+#: model:ir.model.fields,help:base_kanban_stage.field_base_kanban_abstract__kanban_legend_blocked
+msgid ""
+"Explanation text to help users understand how the special handling status "
+"applies to this record (depends on current stage)"
+msgstr ""
+"Texto explicativo para ayudar a los usuarios a comprender cómo se aplica el "
+"estado de manejo especial a este registro (depende de la etapa actual)"
+
+#. module: base_kanban_stage
+#: model:ir.model.fields,help:base_kanban_stage.field_base_kanban_stage__legend_blocked
+msgid ""
+"Explanation text to help users understand how the special handling status "
+"applies to this stage"
+msgstr ""
+"Texto explicativo para ayudar a los usuarios a comprender cómo se aplica el "
+"estado de manejo especial a esta etapa"
+
+#. module: base_kanban_stage
+#: code:addons/base_kanban_stage/models/ir_model.py:0
+#, python-format
+msgid "Field \"Kanban\" cannot be changed to \"False\"."
+msgstr "El campo \"Kanban\" no se puede cambiar a \"False\"."
+
+#. module: base_kanban_stage
+#: model:ir.model.fields.selection,name:base_kanban_stage.selection__base_kanban_abstract__kanban_priority__2
+msgid "High"
+msgstr "Alto"
+
+#. module: base_kanban_stage
+#: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_stage__id
+msgid "ID"
+msgstr "ID"
+
+#. module: base_kanban_stage
+#: model:ir.model.fields,field_description:base_kanban_stage.field_ir_model__is_kanban
+#: model:ir.ui.menu,name:base_kanban_stage.base_kanban_stage_root_menu
+#: model_terms:ir.ui.view,arch_db:base_kanban_stage.model_search_view
+msgid "Kanban"
+msgstr "Kanban"
+
+#. module: base_kanban_stage
+#: model:ir.model,name:base_kanban_stage.model_base_kanban_abstract
+msgid "Kanban Abstract"
+msgstr "Abtracto del Kanban"
+
+#. module: base_kanban_stage
+#: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_abstract__kanban_color
+msgid "Kanban Color Index"
+msgstr "Índice de Color del Kanban"
+
+#. module: base_kanban_stage
+#: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_abstract__kanban_priority
+msgid "Kanban Priority"
+msgstr "Prioridad del Kanban"
+
+#. module: base_kanban_stage
+#: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_abstract__kanban_sequence
+msgid "Kanban Sequence"
+msgstr "Secuencia del Kanban"
+
+#. module: base_kanban_stage
+#: model:ir.model,name:base_kanban_stage.model_base_kanban_stage
+#: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_abstract__stage_id
+#: model_terms:ir.ui.view,arch_db:base_kanban_stage.base_kanban_stage_view_form
+msgid "Kanban Stage"
+msgstr "Etapa del Kanban"
+
+#. module: base_kanban_stage
+#: model:ir.actions.act_window,name:base_kanban_stage.base_kanban_stage_action
+#: model_terms:ir.ui.view,arch_db:base_kanban_stage.base_kanban_stage_view_search
+msgid "Kanban Stages"
+msgstr "Etapas del Kanban"
+
+#. module: base_kanban_stage
+#: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_abstract__kanban_status
+msgid "Kanban Status"
+msgstr "Estado del Kanban"
+
+#. module: base_kanban_stage
+#: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_stage____last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: base_kanban_stage
+#: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_stage__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización realizada por"
+
+#. module: base_kanban_stage
+#: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_stage__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: base_kanban_stage
+#: model:ir.model.fields.selection,name:base_kanban_stage.selection__base_kanban_abstract__kanban_priority__1
+#: model:ir.model.fields.selection,name:base_kanban_stage.selection__base_kanban_abstract_tester__kanban_priority__1
+msgid "Medium"
+msgstr "Medio"
+
+#. module: base_kanban_stage
+#: model:ir.model,name:base_kanban_stage.model_ir_model
+msgid "Models"
+msgstr "Modelos"
+
+#. module: base_kanban_stage
+#: model:ir.model.fields.selection,name:base_kanban_stage.selection__base_kanban_abstract__kanban_priority__0
+#: model:ir.model.fields.selection,name:base_kanban_stage.selection__base_kanban_abstract_tester__kanban_priority__0
+msgid "Normal"
+msgstr "Normal"
+
+#. module: base_kanban_stage
+#: model:ir.model.fields.selection,name:base_kanban_stage.selection__base_kanban_abstract__kanban_status__normal
+msgid "Normal Handling"
+msgstr "Manejo normal"
+
+#. module: base_kanban_stage
+#: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_abstract__kanban_legend_normal
+#: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_stage__legend_normal
+msgid "Normal Handling Explanation"
+msgstr "Explicación del Manejo normal"
+
+#. module: base_kanban_stage
+#: code:addons/base_kanban_stage/models/ir_model.py:0
+#, python-format
+msgid "Only custom models can be modified."
+msgstr "Solo los modelos personalizados se pueden modificar."
+
+#. module: base_kanban_stage
+#: model:ir.model.fields,help:base_kanban_stage.field_base_kanban_abstract__kanban_sequence
+msgid ""
+"Order of record in relation to other records in the same Kanban stage and "
+"with the same priority"
+msgstr ""
+"Orden del registro en relación a otros registros en la misma Etapa Kanban y "
+"con la misma prioridad"
+
+#. module: base_kanban_stage
+#: model:ir.model.fields,help:base_kanban_stage.field_base_kanban_stage__sequence
+msgid "Order of stage in relation to other stages available for the same model"
+msgstr ""
+"Orden de la etapa en relación a otras etapas disponibles para el mismo modelo"
+
+#. module: base_kanban_stage
+#: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_abstract__kanban_legend_priority
+#: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_stage__legend_priority
+msgid "Priority Explanation"
+msgstr "Explicación de la Prioridad"
+
+#. module: base_kanban_stage
+#: model_terms:ir.ui.view,arch_db:base_kanban_stage.base_kanban_stage_view_form
+msgid "Priority and Statuses"
+msgstr "Prioridad y Estados"
+
+#. module: base_kanban_stage
+#: model:ir.model.fields.selection,name:base_kanban_stage.selection__base_kanban_abstract__kanban_status__done
+#: model:ir.model.fields.selection,name:base_kanban_stage.selection__base_kanban_abstract_tester__kanban_status__done
+msgid "Ready"
+msgstr "Listo"
+
+#. module: base_kanban_stage
+#: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_abstract__kanban_legend_done
+#: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_stage__legend_done
+msgid "Ready Explanation"
+msgstr "Explicación de Listo"
+
+#. module: base_kanban_stage
+#: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_stage__sequence
+msgid "Sequence"
+msgstr "Secuencia"
+
+#. module: base_kanban_stage
+#: model:ir.model.fields,help:base_kanban_stage.field_base_kanban_stage__description
+msgid "Short description of the stage's meaning/purpose"
+msgstr "Explicación corta del significado/propósito de la etapa"
+
+#. module: base_kanban_stage
+#: model:ir.model.fields.selection,name:base_kanban_stage.selection__base_kanban_abstract__kanban_status__blocked
+#: model:ir.model.fields.selection,name:base_kanban_stage.selection__base_kanban_abstract_tester__kanban_status__blocked
+msgid "Special Handling"
+msgstr "Manejo especial"
+
+#. module: base_kanban_stage
+#: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_abstract__kanban_legend_blocked
+#: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_stage__legend_blocked
+msgid "Special Handling Explanation"
+msgstr "Explicación del Manejo especial"
+
+#. module: base_kanban_stage
+#: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_stage__name
+msgid "Stage Name"
+msgstr "Nombre de la Etapa"
+
+#. module: base_kanban_stage
+#: model:ir.ui.menu,name:base_kanban_stage.base_kanban_stage_menu
+msgid "Stages"
+msgstr "Etapas"
+
+#. module: base_kanban_stage
+#: model:ir.model.fields,help:base_kanban_stage.field_base_kanban_abstract__stage_id
+msgid "The Kanban stage that this record is currently in"
+msgstr "La Etapa del Kanban en la cual este registro se encuentra actualmente"
+
+#. module: base_kanban_stage
+#: model:ir.model.fields,help:base_kanban_stage.field_base_kanban_stage__res_model_id
+msgid "The model that this Kanban stage will be used for"
+msgstr "El modelo al cual esta Etapa Kanban será usado"
+
+#. module: base_kanban_stage
+#: model:ir.model.fields,help:base_kanban_stage.field_base_kanban_abstract__kanban_priority
+msgid "The priority of the record (shown as stars in Kanban views)"
+msgstr ""
+"La prioridad del registro (visualizado como estrellas en la vista Kanban)"
+
+#. module: base_kanban_stage
+#: model:ir.model.fields,help:base_kanban_stage.field_base_kanban_abstract__user_id
+msgid "User that the record is currently assigned to"
+msgstr "Usuario actualmente asignado al registro"
+
+#. module: base_kanban_stage
+#: model:ir.model.fields,help:base_kanban_stage.field_ir_model__is_kanban
+msgid "Whether this model support kanban stages."
+msgstr "Si este modelo admite etapas kanban."
