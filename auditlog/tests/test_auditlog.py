@@ -259,6 +259,20 @@ class AuditlogCommon(object):
             1,
         )
 
+    def test_LogExport(self):
+        self.groups_rule.subscribe()
+
+        auditlog_log = self.env["auditlog.log"]
+        self.env["res.groups"].search([]).export_data(["name"])
+        self.assertTrue(
+            auditlog_log.search(
+                [
+                    ("model_id", "=", self.groups_model_id),
+                    ("method", "=", "export_data"),
+                ]
+            ).ensure_one()
+        )
+
 
 class TestAuditlogFull(TransactionCase, AuditlogCommon):
     def setUp(self):
