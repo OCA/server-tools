@@ -50,4 +50,14 @@
             <div class="popover-body" />
         </div>
     </t>
+    <t t-name="ChangesetRecordCreate">
+        <tr class="o_data_row changeset-create">
+            <td t-attf-colspan="#{colspan}" class="o_data_cell o_handle_cell">
+                There is an extra line to be validated <a
+                    class="open-changeset-create"
+                    t-attf-data-id="#{changeset_id}"
+                >View changeset</a>
+            </td>
+        </tr>
+    </t>
 </templates>
