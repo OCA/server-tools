@@ -12,6 +12,7 @@
                         <field name="name" />
                         <field name="active" widget="boolean_toggle" />
                         <field name="token" />
+                        <field name="output_format" />
                         <field name="check_type" />
                         <field
                             name="warning"
@@ -22,6 +23,14 @@
                             attrs="{'invisible': [('check_type', 'not in', ('lower', 'higher'))]}"
                         />
                         <field name="snippet" />
+                    </group>
+
+                    <group
+                        string="Prometheus"
+                        attrs="{'invisible': [('output_format', '!=', 'prometheus')]}"
+                    >
+                        <field name="prometheus_metric" />
+                        <field name="prometheus_label" />
                     </group>
                 </sheet>
             </form>
@@ -40,6 +49,7 @@
                 <field name="token" />
                 <field name="active" widget="boolean_toggle" />
                 <field name="state" />
+                <field name="output_format" />
             </tree>
         </field>
     </record>
