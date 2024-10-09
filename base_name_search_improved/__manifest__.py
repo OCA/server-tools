@@ -3,7 +3,7 @@
 {
     "name": "Improved Name Search",
     "summary": "Friendlier search when typing in relation fields",
-    "version": "16.0.1.0.1",
+    "version": "16.0.1.0.2",
     "category": "Uncategorized",
     "website": "https://github.com/OCA/server-tools",
     "author": "Daniel Reis, Odoo Community Association (OCA), ADHOC SA",

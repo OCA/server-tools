@@ -36,7 +36,7 @@ addon | version | maintainers | summary
 [base_force_record_noupdate](base_force_record_noupdate/) | 16.0.1.0.0 |  | Manually force noupdate=True on models
 [base_m2m_custom_field](base_m2m_custom_field/) | 16.0.1.0.0 |  | Customizations of Many2many
 [base_multi_image](base_multi_image/) | 16.0.1.0.0 |  | Allow multiple images for database objects
-[base_name_search_improved](base_name_search_improved/) | 16.0.1.0.1 |  | Friendlier search when typing in relation fields
+[base_name_search_improved](base_name_search_improved/) | 16.0.1.0.2 |  | Friendlier search when typing in relation fields
 [base_partition](base_partition/) | 16.0.1.0.0 |  | Base module that provide the partition method on all models
 [base_remote](base_remote/) | 16.0.1.0.0 |  | Remote Base
 [base_search_fuzzy](base_search_fuzzy/) | 16.0.1.0.0 |  | Fuzzy search with the PostgreSQL trigram extension
