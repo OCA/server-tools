@@ -3,7 +3,6 @@
 # Simone Orsi <simahawk@gmail.com>
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
-import mock
 
 from odoo import fields, tools
 from odoo.exceptions import UserError
@@ -394,24 +393,25 @@ class TestParser(SavepointCase):
     def test_bad_parsers_fail_gracefully(self):
         rec = self.category
 
-        logger_patch_path = "odoo.addons.jsonifier.models.models._logger.error"
-
-        # logging is disabled when testing as it's useless and makes build fail.
+        # logging is disabled when testing as it makes too much noise
         tools.config["test_enable"] = False
 
+        logger_name = "odoo.addons.jsonifier.models.models"
         bad_field_name = ["Name"]
-        with mock.patch(logger_patch_path) as mocked_logger:
+        with self.assertLogs(logger=logger_name, level="WARNING") as capt:
             rec.jsonify(bad_field_name, one=True)
-            mocked_logger.assert_called()
+            self.assertIn("res.partner.category.Name not availabl", capt.output[0])
 
         bad_function_name = {"fields": [{"name": "name", "function": "notafunction"}]}
-        with mock.patch(logger_patch_path) as mocked_logger:
+        with self.assertLogs(logger=logger_name, level="WARNING") as capt:
             rec.jsonify(bad_function_name, one=True)
-            mocked_logger.assert_called()
+            self.assertIn(
+                "res.partner.category.notafunction not available", capt.output[0]
+            )
 
         bad_subparser = {"fields": [({"name": "name"}, [{"name": "subparser_name"}])]}
-        with mock.patch(logger_patch_path) as mocked_logger:
+        with self.assertLogs(logger=logger_name, level="WARNING") as capt:
             rec.jsonify(bad_subparser, one=True)
-            mocked_logger.assert_called()
+            self.assertIn("res.partner.category.name not relational", capt.output[0])
 
         tools.config["test_enable"] = True
