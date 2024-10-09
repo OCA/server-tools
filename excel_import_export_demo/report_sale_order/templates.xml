@@ -16,7 +16,7 @@
                         '_HEAD_': {
                             'B2': 'partner_id.display_name${value or ""}#{align=left;style=text}',
                         },
-                        'results': {
+                        '_EXTEND_results': {
                             'A5': 'name${value or ""}#{style=text}',
                             'B5': 'confirmation_date${value or ""}#{style=date}',
                             'C5': 'amount_untaxed${value or 0}#{style=number}@{sum}',
