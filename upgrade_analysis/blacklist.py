@@ -1,4 +1,9 @@
-BLACKLIST_MODULES = []
+BLACKLIST_MODULES = [
+    "payment_alipay",
+    "payment_ogone",
+    "payment_payulatam",
+    "payment_payumoney",
+]
 
 # the hw_* modules are not affected by a migration as they don't
 # contain any ORM functionality, but they do start up threads that
