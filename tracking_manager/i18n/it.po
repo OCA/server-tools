@@ -102,11 +102,6 @@ msgstr ""
 "verranno tracciati automaticamente per questo modello."
 
 #. module: tracking_manager
-#: model:ir.model,name:tracking_manager.model_mail_tracking_value
-msgid "Mail Tracking Value"
-msgstr "Valore tracciamento e-mail"
-
-#. module: tracking_manager
 #: model:ir.model,name:tracking_manager.model_ir_model
 msgid "Models"
 msgstr "Modelli"
@@ -145,6 +140,9 @@ msgstr "Aggiorna"
 #: model_terms:ir.ui.view,arch_db:tracking_manager.view_model_form
 msgid "Update fields configuration"
 msgstr "Aggiorna configurazione campi"
+
+#~ msgid "Mail Tracking Value"
+#~ msgstr "Valore tracciamento e-mail"
 
 #~ msgid "Automatic Custom Tracking Domain"
 #~ msgstr "Dominio tracciamento personalizzato automatico"
