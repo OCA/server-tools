@@ -1,1 +1,2 @@
 odoo-test-helper
+jsonpath-ng

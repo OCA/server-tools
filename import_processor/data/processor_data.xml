@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+      <record id="demo_import_processor_csv" model="import.processor">
+          <field name="name">Import Res Partner (CSV with chunk size)</field>
+          <field name="model_id" ref="base.model_res_partner" />
+          <field name="active" eval="1" />
+          <field name="file_type">csv</field>
+          <field name="chunk_size">2</field>
+          <field name="preprocessor">
+regex = r"^[a-z0-9]+[\._]?[a-z0-9]+[@][a-zA-Z]+[.][a-zA-Z]{2,3}$"
+fields_list = ["name", "email", "phone", "street", "street2", "zip", "city"]
+          </field>
+          <field name="processor">
+for contact in entry:
+  email = contact.get("email")
+  if re.search(regex, email):
+    data = {key: value for key, value in contact.items() if key in fields_list}
+    rec = model.search([("email", "=", email)])
+    if rec:
+      rec.update(data)
+    else:
+      rec = model.create(data)
+
+    records |= rec
+          </field>
+          <field name="postprocessor">
+log("Processed the following records: %s", records)
+          </field>
+      </record>
+
+      <record id="demo_import_processor_xml" model="import.processor">
+          <field name="name">Import Res Partner (XML)</field>
+          <field name="model_id" ref="base.model_res_partner" />
+          <field name="active" eval="1" />
+          <field name="file_type">xml</field>
+          <field name="xml_path_entry">//Customer</field>
+          <field name="preprocessor">
+# Regex Email Validation
+regex = r"^[a-z0-9]+[\._]?[a-z0-9]+[@][a-zA-Z]+[.][a-zA-Z]{2,3}$"
+
+fields_list = ["name", "email", "phone", "street", "street2", "zip", "city"]
+
+# Converts XML file to Dictionary
+def xml_to_dict(xml_element):
+  result = {}
+  for child in xml_element:
+    if len(child) == 0:
+      result[child.tag] = child.text
+    else:
+      result[child.tag] = xml_to_dict(child)
+  return result
+          </field>
+          <field name="processor">
+entry = xml_to_dict(entry)
+
+email = entry.get("email")
+if re.search(regex, email):
+  rec = model.search([("email", "=", email)])
+  data = {key: value for key, value in entry.items() if key in fields_list}
+  if rec:
+    rec.update(data)
+  else:
+    rec = model.create(data)
+
+  records |= rec
+          </field>
+          <field name="postprocessor">
+log("Processed the following records: %s", records)
+          </field>
+      </record>
+
+      <record id="demo_import_processor_json" model="import.processor">
+          <field name="name">Import Res Partner (JSON)</field>
+          <field name="model_id" ref="base.model_res_partner" />
+          <field name="active" eval="1" />
+          <field name="file_type">json</field>
+          <field name="json_path_entry">'contact'</field>
+          <field name="preprocessor">
+# Regex Email Validation
+regex = r"^[a-z0-9]+[\._]?[a-z0-9]+[@][a-zA-Z]+[.][a-zA-Z]{2,3}$"
+fields_list = ["name", "email", "phone", "street", "street2", "zip", "city"]
+          </field>
+          <field name="processor">
+for contact in entry:
+  email = contact.get("email")
+  if re.search(regex, email):
+    rec = model.search([("email", "=", email)])
+    data = {key: value for key, value in contact.items() if key in fields_list}
+    if rec:
+      rec.update(data)
+    else:
+      rec = model.create(data)
+
+    records |= rec
+          </field>
+          <field name="postprocessor">
+log("Processed the following records: %s", records)
+          </field>
+      </record>
+</odoo>

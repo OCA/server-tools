@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_import_processor_tree" model="ir.ui.view">
+        <field name="model">import.processor</field>
+        <field name="arch" type="xml">
+            <tree decoration-muted="not active">
+                <field name="active" />
+                <field name="name" />
+                <field name="model_id" />
+                <field name="file_type" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_import_processor_form" model="ir.ui.view">
+        <field name="model">import.processor</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name" />
+                        <field name="model_id" />
+                        <field name="active" widget="boolean_toggle" />
+                        <field name="file_type" />
+                        <field
+                            name="file_encoding"
+                            attrs="{'invisible': [('file_type', 'not in', ('csv', 'json'))]}"
+                        />
+                        <field name="compression" />
+                        <field name="chunk_size" />
+                    </group>
+
+                    <group
+                        string="CSV Settings"
+                        name="csv"
+                        attrs="{'invisible': [('file_type', '!=', 'csv')]}"
+                    >
+                        <field name="csv_delimiter" />
+                        <field name="csv_quotechar" />
+                        <field name="csv_row_offset" />
+                    </group>
+
+                    <group
+                        string="JSON Settings"
+                        name="csv"
+                        attrs="{'invisible': [('file_type', '!=', 'json')]}"
+                    >
+                        <field
+                            name="json_path_entry"
+                            attrs="{'required': [('file_type', '=', 'json')]}"
+                        />
+                    </group>
+
+                    <group
+                        string="XML Settings"
+                        name="csv"
+                        attrs="{'invisible': [('file_type', '!=', 'xml')]}"
+                    >
+                        <field
+                            name="xml_path_entry"
+                            attrs="{'required': [('file_type', '=', 'xml')]}"
+                        />
+                        <field
+                            name="xml_namespaces"
+                            widget="ace"
+                            options="{'mode': 'python'}"
+                        />
+                    </group>
+
+                    <group
+                        string="Tabular Settings"
+                        name="tabular"
+                        attrs="{'invisible': [('file_type', 'not in', ('xlsx',))]}"
+                    >
+                        <field name="tabular_sheet_name" />
+                        <field name="tabular_sheet_index" />
+                        <field name="tabular_col_offset" />
+                        <field name="tabular_row_offset" />
+                    </group>
+
+                    <notebook>
+                        <page string="Processor">
+                            <field
+                                name="processor"
+                                widget="ace"
+                                options="{'mode': 'python'}"
+                            />
+                        </page>
+                        <page string="Pre-Processor">
+                            <field
+                                name="preprocessor"
+                                widget="ace"
+                                options="{'mode': 'python'}"
+                            />
+                        </page>
+                        <page string="Post-Processor">
+                            <field
+                                name="postprocessor"
+                                widget="ace"
+                                options="{'mode': 'python'}"
+                            />
+                        </page>
+                        <page string="Help" name="help_info">
+                            <group>
+                                <div style="margin-top: 4px;">
+                                    <h3>Help with Python expressions</h3>
+                                    <p
+                                    >Various fields may use Python code or Python expressions. The python environments are passed between the pre-processor, code, and post-processor. The following variables are additionally defined:</p>
+                                    <field name="help_text" />
+                                </div>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_import_processor" model="ir.actions.act_window">
+        <field name="name">Import Processors</field>
+        <field name="res_model">import.processor</field>
+        <field name="context">{"active_test": False}</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="menu_import_processor"
+        name="Import Processors"
+        action="action_import_processor"
+        parent="base.next_id_6"
+    />
+</odoo>
