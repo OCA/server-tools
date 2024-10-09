@@ -97,11 +97,6 @@ msgid ""
 msgstr ""
 
 #. module: tracking_manager
-#: model:ir.model,name:tracking_manager.model_mail_tracking_value
-msgid "Mail Tracking Value"
-msgstr ""
-
-#. module: tracking_manager
 #: model:ir.model,name:tracking_manager.model_ir_model
 msgid "Models"
 msgstr ""
