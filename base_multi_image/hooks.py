@@ -24,37 +24,31 @@ def pre_init_hook_for_submodules(env, model, field):
         column_exists = table_has_column(cr, table, field)
         # fields.Binary(), extract the binary content directly from the table
         if column_exists:
-            extract_query = f"""
-                SELECT id, '{model}', '{model},' || id, 'db', {field}
-                FROM {table}
-                WHERE {field} IS NOT NULL
-            """
-            image_field = "file_db_store"
-        # fields.Binary(attachment=True), get the ir_attachment record ID
+            cr.execute("SELECT id FROM %(table)s WHERE %(field)s IS NOT NULL")  # pylint: disable=sql-injection
         else:
-            extract_query = f"""
-                SELECT
-                    res_id,
-                    res_model,
-                    CONCAT_WS(',', res_model, res_id),
-                    'attachment',
-                    id
-                FROM ir_attachment
-                WHERE res_field='{field}' AND res_model='{model}'
-            """
-            image_field = "attachment_id"
-        cr.execute(  # pylint: disable=sql-injection
-            f"""
-                INSERT INTO base_multi_image_image (
-                    owner_id,
-                    owner_model,
-                    owner_ref_id,
-                    storage,
-                    {image_field}
-                )
-                {extract_query}
-            """
-        )
+            cr.execute(
+                """
+                    SELECT res_id
+                    FROM ir_attachment
+                    WHERE
+                        res_field=%(field)s
+                        AND res_model=%(model)s
+                """,
+                {
+                    "field": field,
+                    "model": model,
+                },
+            )
+        record_ids = [row[0] for row in cr.fetchall()]
+        for record in env[model].browse(record_ids):
+            image_obj.create(
+                {
+                    "owner_id": record.id,
+                    "owner_model": model,
+                    "owner_ref_id": f"{model},{record.id}",
+                    "image_1920": record[field],
+                },
+            )
 
 
 def uninstall_hook_for_submodules(env, model, field=None):
@@ -108,7 +102,7 @@ def save_directly_to_table(cr, Model, field, Field, main_images):
     query = """
         UPDATE {table}
         SET {fields}
-        WHERE id = %%(id)s
+        WHERE id = %(id)s
     """.format(table=Model._table, fields=", ".join(fields))
     for main_image in main_images:
         params = {"id": main_image.owner_id}

@@ -1,69 +1,21 @@
 <odoo>
-    <record id="image_form_view" model="ir.ui.view">
-        <field name="name">Multi image form</field>
-        <field name="model">base_multi_image.image</field>
-        <field name="arch" type="xml">
-            <form string="Image">
-                <sheet>
-                    <notebook>
-                        <page string="Basic Information">
-                            <group>
-                                <group
-                                    string="Owner"
-                                    invisible="show_technical == False"
-                                >
-                                    <field name="show_technical" invisible="True" />
-                                    <field name="owner_model" />
-                                    <field name="owner_id" />
-                                    <field name="owner_ref_id" />
-                                    <field name="sequence" />
-                                </group>
-                                <group string="Name">
-                                    <field name="name" />
-                                    <field name="storage" />
-                                    <field name="extension" />
-                                </group>
-                            </group>
-                            <group>
-                                <group string="Options">
-                                    <field
-                                        name="url"
-                                        invisible="storage != 'url'"
-                                        required="storage == 'url'"
-                                        widget="url"
-                                    />
-                                    <field
-                                        name="path"
-                                        invisible="storage != 'file'"
-                                        required="storage == 'file'"
-                                    />
-                                    <field name="filename" invisible="1" />
-                                    <field
-                                        name="attachment_image"
-                                        invisible="storage != 'filestore'"
-                                        required="storage == 'filestore'"
-                                        filename="filename"
-                                    />
-                                    <field
-                                        name="file_db_store"
-                                        invisible="storage != 'db'"
-                                        required="storage == 'db'"
-                                        filename="filename"
-                                    />
-                                    <field
-                                        name="attachment_id"
-                                        invisible="storage != 'attachment'"
-                                        required="storage == 'attachment'"
-                                        filename="filename"
-                                    />
-                                </group>
-                            </group>
-                            <group string="Comments">
-                                <field name="comments" nolabel="1" />
-                            </group>
-                        </page>
-                        <page string="Preview">
-                            <field
+
+<record id="image_form_view" model="ir.ui.view">
+    <field name="name">Multi image form</field>
+    <field name="model">base_multi_image.image</field>
+    <field name="arch" type="xml">
+        <form string="Image">
+            <sheet>
+                <group>
+                    <group string="Owner" invisible="show_technical == False">
+                        <field name="show_technical" invisible="True" />
+                        <field name="owner_model" />
+                        <field name="owner_id" />
+                        <field name="owner_ref_id" />
+                    </group>
+                    <group string="Image">
+                        <field name="name" />
+                        <field
                                 name="image_1920"
                                 widget="image"
                                 options="{'zoom': true, 'preview_image':'image_256'}"
