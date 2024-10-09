@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_model_form" model="ir.ui.view">
+        <field name="name">ir.model form</field>
+        <field name="model">ir.model</field>
+        <field name="inherit_id" ref="base.view_model_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/group[1]" position="after">
+                <group name="delete_attachment_restriction">
+                    <group>
+                        <field name="restrict_delete_attachment" />
+                    </group>
+                    <group
+                        attrs="{'invisible': [('restrict_delete_attachment','not in',['custom', 'owner_custom'])]}"
+                    >
+                        <field
+                            name="delete_attachment_group_ids"
+                            widget="many2many_tags"
+                        />
+                        <field
+                            name="delete_attachment_user_ids"
+                            widget="many2many_tags"
+                        />
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
