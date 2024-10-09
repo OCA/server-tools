@@ -100,11 +100,6 @@ msgid ""
 msgstr "如果标记，与下面域匹配的字段将自动跟踪此模型。"
 
 #. module: tracking_manager
-#: model:ir.model,name:tracking_manager.model_mail_tracking_value
-msgid "Mail Tracking Value"
-msgstr "邮件跟踪值"
-
-#. module: tracking_manager
 #: model:ir.model,name:tracking_manager.model_ir_model
 msgid "Models"
 msgstr "模型"
@@ -143,3 +138,6 @@ msgstr "更新"
 #: model_terms:ir.ui.view,arch_db:tracking_manager.view_model_form
 msgid "Update fields configuration"
 msgstr "更新字段配置"
+
+#~ msgid "Mail Tracking Value"
+#~ msgstr "邮件跟踪值"
