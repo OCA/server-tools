@@ -8,14 +8,7 @@
         <form string="Image">
             <sheet>
                 <group>
-                    <group
-                            string="Owner"
-                            attrs="{
-                                'invisible': [
-                                    ('show_technical', '=', False),
-                                ],
-                            }"
-                        >
+                    <group string="Owner" invisible="show_technical == False">
                         <field name="show_technical" invisible="True" />
                         <field name="owner_model" />
                         <field name="owner_id" />

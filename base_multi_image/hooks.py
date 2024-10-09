@@ -29,9 +29,7 @@ def post_init_hook_for_submodules(cr, model, field):
     with cr.savepoint():
         column_exists = table_has_column(cr, table, field)
         if column_exists:
-            cr.execute(
-                "SELECT id FROM %(table)s WHERE %(field)s IS NOT NULL"
-            )  # pylint: disable=sql-injection
+            cr.execute("SELECT id FROM %(table)s WHERE %(field)s IS NOT NULL")  # pylint: disable=sql-injection
         else:
             cr.execute(
                 """
@@ -52,7 +50,7 @@ def post_init_hook_for_submodules(cr, model, field):
                 {
                     "owner_id": record.id,
                     "owner_model": model,
-                    "owner_ref_id": "%s,%s" % (model, record.id),
+                    "owner_ref_id": f"{model},{record.id}",
                     "image_1920": record[field],
                 },
             )
@@ -111,13 +109,10 @@ def save_directly_to_table(cr, Model, field, Field, main_images):
     if field and not Field.attachment:
         fields.append(field + " = " + "%(image)s")
     query = """
-        UPDATE %(table)s
-        SET %(fields)s
-        WHERE id = %%(id)s
-    """ % {
-        "table": Model._table,
-        "fields": ", ".join(fields),
-    }
+        UPDATE {table}
+        SET {fields}
+        WHERE id = %(id)s
+    """.format(table=Model._table, fields=", ".join(fields))
     for main_image in main_images:
         params = {"id": main_image.owner_id}
         if field and not Field.attachment:
