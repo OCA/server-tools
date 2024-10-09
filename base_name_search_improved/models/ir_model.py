@@ -237,12 +237,25 @@ class IrModel(models.Model):
                 raise ValidationError(_("Name Search Domain must be a list of tuples"))
 
     def _register_hook(self):
+        """Apply monkey patches.
 
+        Patch `fields_view_get` on the base model, and a freshly generated copy
+        of `_name_search` on each concrete model.
+
+        We want to skip abstract models because patching those may mess up the
+        inheritance. An example of this is `ir.model` which is assigned the
+        studio mixin using `inherit = ['studio.mixin', 'ir.model']`.
+        If the mixin itself is patched, and the method is overridden once again
+        (in, say, enterprise's `documents_spreadsheet`), the super() method
+        called in that override is the patched version of `studio.mixin` rather
+        than the override of `ir.model` in the base module, which is now skipped
+        entirely.
+        """
         _logger.info("Patching BaseModel for Smart Search")
 
         for model in self.sudo().search(self.ids or []):
             Model = self.env.get(model.model)
-            if Model is not None:
+            if Model is not None and not Model._abstract:
                 Model._patch_method("_name_search", patch_name_search())
 
         return super()._register_hook()
