@@ -22,6 +22,7 @@ Available addons
 addon | version | maintainers | summary
 --- | --- | --- | ---
 [jsonifier](jsonifier/) | 18.0.1.0.0 |  | JSON-ify data for all models
+[onchange_helper](onchange_helper/) | 18.0.1.0.0 |  | Technical module that ease execution of onchange in Python code
 
 [//]: # (end addons)
 
