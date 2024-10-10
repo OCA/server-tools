@@ -35,23 +35,21 @@ msgstr "Base"
 #: model:ir.model.fields,help:jsonifier.field_ir_exports_resolver__python_code
 msgid ""
 "Compute the result from 'value' by setting the variable 'result'.\n"
+"\n"
 "For fields resolvers:\n"
+":param record: the record\n"
 ":param name: name of the field\n"
 ":param value: value of the field\n"
 ":param field_type: type of the field\n"
+"\n"
 "For global resolvers:\n"
 ":param value: JSON dict\n"
-":param record: the record"
+":param record: the record\n"
+"\n"
+"In both types, you can override the final json key.\n"
+"To achieve this, simply return a dict like: \n"
+"{'result': {'_value': $value, '_json_key': $new_json_key}}"
 msgstr ""
-"Calcule el resultado a partir de 'valor' estableciendo la variable "
-"'resultado'.\n"
-"Para resolvedores de campos:\n"
-":param nombre: nombre del campo\n"
-":param valor: valor del campo\n"
-":param tipo_campo: tipo del campo\n"
-"Para resolvedores globales:\n"
-":param valor: dict JSON\n"
-":param registro: el registro"
 
 #. module: jsonifier
 #: model_terms:ir.ui.view,arch_db:jsonifier.view_ir_exports
@@ -92,7 +90,6 @@ msgstr "Mostrar Nombre"
 #. module: jsonifier
 #. odoo-python
 #: code:addons/jsonifier/models/ir_exports_line.py:0
-#, python-format
 msgid "Either set a function or a resolver, not both."
 msgstr "O bien establece una función o una resolución, no ambas."
 
@@ -195,7 +192,6 @@ msgstr "Nombre"
 #. module: jsonifier
 #. odoo-python
 #: code:addons/jsonifier/models/ir_exports_line.py:0
-#, python-format
 msgid "Name and Target must have the same hierarchy depth"
 msgstr "Nombre y Destino deben tener la misma profundidad jerárquica"
 
@@ -221,7 +217,6 @@ msgstr ""
 #. module: jsonifier
 #. odoo-python
 #: code:addons/jsonifier/models/ir_exports_line.py:0
-#, python-format
 msgid ""
 "The target must reference the same field as in name '%(name)s' not in "
 "'%(name_with_target)s'"
@@ -237,9 +232,28 @@ msgstr "Tipo"
 #. module: jsonifier
 #. odoo-python
 #: code:addons/jsonifier/models/models.py:0
-#, python-format
 msgid "Wrong parser configuration for field: `%s`"
 msgstr "Configuración incorrecta del analizador sintáctico para el campo: `%s`"
+
+#~ msgid ""
+#~ "Compute the result from 'value' by setting the variable 'result'.\n"
+#~ "For fields resolvers:\n"
+#~ ":param name: name of the field\n"
+#~ ":param value: value of the field\n"
+#~ ":param field_type: type of the field\n"
+#~ "For global resolvers:\n"
+#~ ":param value: JSON dict\n"
+#~ ":param record: the record"
+#~ msgstr ""
+#~ "Calcule el resultado a partir de 'valor' estableciendo la variable "
+#~ "'resultado'.\n"
+#~ "Para resolvedores de campos:\n"
+#~ ":param nombre: nombre del campo\n"
+#~ ":param valor: valor del campo\n"
+#~ ":param tipo_campo: tipo del campo\n"
+#~ "Para resolvedores globales:\n"
+#~ ":param valor: dict JSON\n"
+#~ ":param registro: el registro"
 
 #~ msgid "Last Modified on"
 #~ msgstr "Última Modifiación en"
