@@ -24,7 +24,7 @@ def pre_init_hook_for_submodules(env, model, field):
         column_exists = table_has_column(cr, table, field)
         # fields.Binary(), extract the binary content directly from the table
         if column_exists:
-            cr.execute("SELECT id FROM %(table)s WHERE %(field)s IS NOT NULL")  # pylint: disable=sql-injection
+            cr.execute("SELECT id FROM %(table)s WHERE %(field)s IS NOT NULL")
         else:
             cr.execute(
                 """
