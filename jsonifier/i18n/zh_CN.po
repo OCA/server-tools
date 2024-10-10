@@ -35,21 +35,21 @@ msgstr "基础"
 #: model:ir.model.fields,help:jsonifier.field_ir_exports_resolver__python_code
 msgid ""
 "Compute the result from 'value' by setting the variable 'result'.\n"
+"\n"
 "For fields resolvers:\n"
+":param record: the record\n"
 ":param name: name of the field\n"
 ":param value: value of the field\n"
 ":param field_type: type of the field\n"
+"\n"
 "For global resolvers:\n"
 ":param value: JSON dict\n"
-":param record: the record"
+":param record: the record\n"
+"\n"
+"In both types, you can override the final json key.\n"
+"To achieve this, simply return a dict like: \n"
+"{'result': {'_value': $value, '_json_key': $new_json_key}}"
 msgstr ""
-"通过设置变量 'result' 来计算来自 'value' 的结果。\n"
-"对于字段解析器：\n"
-":param name: 字段名\n"
-":param value: 字段值\n"
-":param field_type: 对于全局解析器的字段类型\n"
-":param value: JSON 字典\n"
-":param record: 记录对象"
 
 #. module: jsonifier
 #: model_terms:ir.ui.view,arch_db:jsonifier.view_ir_exports
@@ -90,7 +90,6 @@ msgstr "显示名称"
 #. module: jsonifier
 #. odoo-python
 #: code:addons/jsonifier/models/ir_exports_line.py:0
-#, python-format
 msgid "Either set a function or a resolver, not both."
 msgstr "只能设置函数或解析器中的一个，不能同时设置。"
 
@@ -155,7 +154,8 @@ msgstr "如果设置，将对字段值应用特定解析器"
 msgid ""
 "If set, will set the lang to False when exporting lines without lang, "
 "otherwise it uses the lang in the given context to export these fields"
-msgstr "如果设置，在导出不包含语言信息的行时，会将语言(lang)设置为False；否则，它会使"
+msgstr ""
+"如果设置，在导出不包含语言信息的行时，会将语言(lang)设置为False；否则，它会使"
 "用给定上下文中的语言来导出这些字段"
 
 #. module: jsonifier
@@ -191,7 +191,6 @@ msgstr "名称"
 #. module: jsonifier
 #. odoo-python
 #: code:addons/jsonifier/models/ir_exports_line.py:0
-#, python-format
 msgid "Name and Target must have the same hierarchy depth"
 msgstr "名称和别名必须具有相同的层次结构深度"
 
@@ -215,7 +214,6 @@ msgstr "字段的完整路径，您可以在其中指定步骤作为字段的别
 #. module: jsonifier
 #. odoo-python
 #: code:addons/jsonifier/models/ir_exports_line.py:0
-#, python-format
 msgid ""
 "The target must reference the same field as in name '%(name)s' not in "
 "'%(name_with_target)s'"
@@ -229,9 +227,26 @@ msgstr "类型"
 #. module: jsonifier
 #. odoo-python
 #: code:addons/jsonifier/models/models.py:0
-#, python-format
 msgid "Wrong parser configuration for field: `%s`"
 msgstr "字段`%s`的解析器配置有误"
+
+#~ msgid ""
+#~ "Compute the result from 'value' by setting the variable 'result'.\n"
+#~ "For fields resolvers:\n"
+#~ ":param name: name of the field\n"
+#~ ":param value: value of the field\n"
+#~ ":param field_type: type of the field\n"
+#~ "For global resolvers:\n"
+#~ ":param value: JSON dict\n"
+#~ ":param record: the record"
+#~ msgstr ""
+#~ "通过设置变量 'result' 来计算来自 'value' 的结果。\n"
+#~ "对于字段解析器：\n"
+#~ ":param name: 字段名\n"
+#~ ":param value: 字段值\n"
+#~ ":param field_type: 对于全局解析器的字段类型\n"
+#~ ":param value: JSON 字典\n"
+#~ ":param record: 记录对象"
 
 #, python-format
 #~ msgid "The target must reference the same field as in name '%s' not in '%s'"
