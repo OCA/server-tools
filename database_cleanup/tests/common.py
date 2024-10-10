@@ -15,7 +15,7 @@ def environment():
     """Return an environment with a new cursor for the current database; the
     cursor is committed and closed after the context block.
     """
-    registry = odoo.registry(common.get_db_name())
+    registry = odoo.modules.registry.Registry(common.get_db_name())
     with registry.cursor() as cr:
         yield odoo.api.Environment(cr, ADMIN_USER_ID, {})
 
