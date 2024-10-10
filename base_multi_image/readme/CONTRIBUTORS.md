@@ -6,4 +6,4 @@
 - Shepilov Vladislav \<<shepilov.v@protonmail.com>\>
 - [Greenice](https://www.greenice.com):
 - Fernando La Chica \<<fernandolachica@gmail.com>\>
-- Ugne Sinkeviciene \<<ugne@versada.eu>\>
+- Ugnė Sinkevičienė \<<ugne@versada.eu>\>

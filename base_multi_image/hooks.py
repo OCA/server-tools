@@ -29,7 +29,7 @@ def post_init_hook_for_submodules(cr, model, field):
     with cr.savepoint():
         column_exists = table_has_column(cr, table, field)
         if column_exists:
-            cr.execute("SELECT id FROM %(table)s WHERE %(field)s IS NOT NULL")  # pylint: disable=sql-injection
+            cr.execute("SELECT id FROM %(table)s WHERE %(field)s IS NOT NULL")
         else:
             cr.execute(
                 """

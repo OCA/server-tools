@@ -156,7 +156,7 @@ Contributors
 - Shepilov Vladislav <shepilov.v@protonmail.com>
 - `Greenice <https://www.greenice.com>`__:
 - Fernando La Chica <fernandolachica@gmail.com>
-- Ugne Sinkeviciene <ugne@versada.eu>
+- Ugnė Sinkevičienė <ugne@versada.eu>
 
 Other credits
 -------------
