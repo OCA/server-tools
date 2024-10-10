@@ -72,7 +72,7 @@ class PurgeWizard(models.AbstractModel):
         return {
             "type": "ir.actions.act_window",
             "name": _("Select lines to purge"),
-            "views": [(False, "tree"), (False, "form")],
+            "views": [(False, "list"), (False, "form")],
             "res_model": self._fields["purge_line_ids"].comodel_name,
             "domain": [("wizard_id", "in", self.ids)],
         }
