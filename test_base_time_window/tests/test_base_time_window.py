@@ -2,10 +2,10 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo.exceptions import ValidationError
-from odoo.tests import SavepointCase
+from odoo.tests import TransactionCase
 
 
-class TestTimeWindow(SavepointCase):
+class TestTimeWindow(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
