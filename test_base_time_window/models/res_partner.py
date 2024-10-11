@@ -7,7 +7,6 @@ from odoo import fields, models
 
 
 class ResPartner(models.Model):
-
     _inherit = "res.partner"
 
     time_window_ids = fields.One2many(

@@ -4,7 +4,6 @@ from odoo import api, fields, models
 
 
 class TestPartnerTimeWindow(models.Model):
-
     _name = "test.partner.time.window"
     _inherit = "time.window.mixin"
     _description = "Test partner time Window"
