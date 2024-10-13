@@ -1,0 +1,233 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* base_time_parameter
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: base_time_parameter
+#: model:ir.model.constraint,message:base_time_parameter.constraint_base_time_parameter_version__unique
+msgid "A parameter cannot have two versions starting the same day."
+msgstr ""
+
+#. module: base_time_parameter
+#: model:ir.model,name:base_time_parameter.model_base
+msgid "Base"
+msgstr ""
+
+#. module: base_time_parameter
+#: model:ir.model.fields.selection,name:base_time_parameter.selection__base_time_parameter__type__boolean
+msgid "Boolean (True/False)"
+msgstr ""
+
+#. module: base_time_parameter
+#: model:ir.model.fields,field_description:base_time_parameter.field_base_time_parameter__code
+#: model:ir.model.fields,field_description:base_time_parameter.field_base_time_parameter_version__code
+msgid "Code"
+msgstr ""
+
+#. module: base_time_parameter
+#: model:ir.model.fields,field_description:base_time_parameter.field_base_time_parameter__company_id
+#: model:ir.model.fields,field_description:base_time_parameter.field_base_time_parameter_version__company_id
+msgid "Company"
+msgstr ""
+
+#. module: base_time_parameter
+#: model:ir.model.fields,field_description:base_time_parameter.field_base_time_parameter__country_id
+#: model:ir.model.fields,field_description:base_time_parameter.field_base_time_parameter_version__country_id
+msgid "Country"
+msgstr ""
+
+#. module: base_time_parameter
+#: model:ir.model.fields,field_description:base_time_parameter.field_base_time_parameter__create_uid
+#: model:ir.model.fields,field_description:base_time_parameter.field_base_time_parameter_version__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: base_time_parameter
+#: model:ir.model.fields,field_description:base_time_parameter.field_base_time_parameter__create_date
+#: model:ir.model.fields,field_description:base_time_parameter.field_base_time_parameter_version__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: base_time_parameter
+#: model:ir.model.fields.selection,name:base_time_parameter.selection__base_time_parameter__type__date
+msgid "Date"
+msgstr ""
+
+#. module: base_time_parameter
+#: model:ir.model.fields,field_description:base_time_parameter.field_base_time_parameter_version__date_from
+msgid "Date From"
+msgstr ""
+
+#. module: base_time_parameter
+#: model:ir.model.fields,field_description:base_time_parameter.field_base_time_parameter__description
+#: model_terms:ir.ui.view,arch_db:base_time_parameter.base_time_parameter_view_form
+msgid "Description"
+msgstr ""
+
+#. module: base_time_parameter
+#: model:ir.model.fields,field_description:base_time_parameter.field_base_time_parameter__display_name
+#: model:ir.model.fields,field_description:base_time_parameter.field_base_time_parameter_version__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: base_time_parameter
+#: code:addons/base_time_parameter/models/base_time_parameter_version.py:0
+#, python-format
+msgid "Error occurred while validating date: %s"
+msgstr ""
+
+#. module: base_time_parameter
+#: code:addons/base_time_parameter/models/base_time_parameter_version.py:0
+#, python-format
+msgid "Error occurred while validating float: %s"
+msgstr ""
+
+#. module: base_time_parameter
+#: code:addons/base_time_parameter/models/base_time_parameter_version.py:0
+#, python-format
+msgid "Error occurred while validating integer: %s"
+msgstr ""
+
+#. module: base_time_parameter
+#: code:addons/base_time_parameter/models/base_time_parameter_version.py:0
+#, python-format
+msgid "Error occurred while validating json: %s"
+msgstr ""
+
+#. module: base_time_parameter
+#: model:ir.model.fields,help:base_time_parameter.field_base_time_parameter__model_id
+msgid "Filter by model (e.g. hr.payslip)"
+msgstr ""
+
+#. module: base_time_parameter
+#: model:ir.model.fields.selection,name:base_time_parameter.selection__base_time_parameter__type__float
+msgid "Floating point number"
+msgstr ""
+
+#. module: base_time_parameter
+#: model:ir.model.fields,field_description:base_time_parameter.field_base_time_parameter__id
+#: model:ir.model.fields,field_description:base_time_parameter.field_base_time_parameter_version__id
+msgid "ID"
+msgstr ""
+
+#. module: base_time_parameter
+#: model:ir.model.fields.selection,name:base_time_parameter.selection__base_time_parameter__type__integer
+msgid "Integer number"
+msgstr ""
+
+#. module: base_time_parameter
+#: model:ir.model.fields.selection,name:base_time_parameter.selection__base_time_parameter__type__json
+msgid "JSON"
+msgstr ""
+
+#. module: base_time_parameter
+#: model:ir.model.fields,field_description:base_time_parameter.field_base_time_parameter____last_update
+#: model:ir.model.fields,field_description:base_time_parameter.field_base_time_parameter_version____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: base_time_parameter
+#: model:ir.model.fields,field_description:base_time_parameter.field_base_time_parameter__write_uid
+#: model:ir.model.fields,field_description:base_time_parameter.field_base_time_parameter_version__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: base_time_parameter
+#: model:ir.model.fields,field_description:base_time_parameter.field_base_time_parameter__write_date
+#: model:ir.model.fields,field_description:base_time_parameter.field_base_time_parameter_version__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: base_time_parameter
+#: model:res.groups,name:base_time_parameter.group_time_parameter
+msgid "Manage Time Parameters"
+msgstr ""
+
+#. module: base_time_parameter
+#: model:ir.model.fields,field_description:base_time_parameter.field_base_time_parameter__model_id
+#: model_terms:ir.ui.view,arch_db:base_time_parameter.base_time_parameter_view_search
+msgid "Model"
+msgstr ""
+
+#. module: base_time_parameter
+#: code:addons/base_time_parameter/models/base_time_parameter.py:0
+#, python-format
+msgid ""
+"No parameter for model '%(model_name)s', code '%(code)s', date %(date)s"
+msgstr ""
+
+#. module: base_time_parameter
+#: model:ir.model.fields,field_description:base_time_parameter.field_base_time_parameter__name
+msgid "Parameter Name"
+msgstr ""
+
+#. module: base_time_parameter
+#: model:ir.model.fields.selection,name:base_time_parameter.selection__base_time_parameter__type__record
+msgid "Record"
+msgstr ""
+
+#. module: base_time_parameter
+#: model:ir.model.fields,field_description:base_time_parameter.field_base_time_parameter__record_model
+msgid "Record Model"
+msgstr ""
+
+#. module: base_time_parameter
+#: model:ir.model.fields,field_description:base_time_parameter.field_base_time_parameter_version__value_reference
+msgid "Reference Value"
+msgstr ""
+
+#. module: base_time_parameter
+#: model:ir.model.fields.selection,name:base_time_parameter.selection__base_time_parameter__type__string
+msgid "Text"
+msgstr ""
+
+#. module: base_time_parameter
+#: model:ir.model,name:base_time_parameter.model_base_time_parameter
+#: model:ir.model.fields,field_description:base_time_parameter.field_base_time_parameter_version__parameter_id
+#: model_terms:ir.ui.view,arch_db:base_time_parameter.base_time_parameter_view_form
+msgid "Time Parameter"
+msgstr ""
+
+#. module: base_time_parameter
+#: model:ir.model,name:base_time_parameter.model_base_time_parameter_version
+msgid "Time Parameter Version"
+msgstr ""
+
+#. module: base_time_parameter
+#: model:ir.actions.act_window,name:base_time_parameter.base_time_parameter_action
+#: model:ir.ui.menu,name:base_time_parameter.base_time_parameter_menu
+msgid "Time Parameters"
+msgstr ""
+
+#. module: base_time_parameter
+#: model:ir.model.constraint,message:base_time_parameter.constraint_base_time_parameter__unique
+msgid "Two time parameters cannot have the same code."
+msgstr ""
+
+#. module: base_time_parameter
+#: model:ir.model.fields,field_description:base_time_parameter.field_base_time_parameter__type
+#: model:ir.model.fields,field_description:base_time_parameter.field_base_time_parameter_version__type
+msgid "Type"
+msgstr ""
+
+#. module: base_time_parameter
+#: model:ir.model.fields,field_description:base_time_parameter.field_base_time_parameter_version__value
+msgid "Value"
+msgstr ""
+
+#. module: base_time_parameter
+#: model:ir.actions.act_window,name:base_time_parameter.base_time_parameter_version_action
+#: model:ir.model.fields,field_description:base_time_parameter.field_base_time_parameter__version_ids
+#: model_terms:ir.ui.view,arch_db:base_time_parameter.base_time_parameter_view_form
+msgid "Versions"
+msgstr ""
