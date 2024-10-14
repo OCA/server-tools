@@ -14,7 +14,7 @@ class AttachMailManually(models.TransientModel):
     _description = __doc__
 
     name = fields.Char()
-    folder_id = fields.Many2one(comodel_name="fetchmail.server.folder", readonly=True)
+    folder_id = fields.Many2one(comodel_name="fetchmail.server.folder")
     mail_ids = fields.One2many(
         "fetchmail.attach.mail.manually.mail", "wizard_id", "Emails"
     )
@@ -32,7 +32,7 @@ class AttachMailManually(models.TransientModel):
 
     @api.model
     def default_get(self, fields_list):
-        defaults = super(AttachMailManually, self).default_get(fields_list)
+        defaults = super().default_get(fields_list)
         if not fields_list or "name" in fields_list:
             defaults["name"] = _("Attach emails manually")
         defaults["mail_ids"] = []
@@ -75,7 +75,7 @@ class AttachMailManually(models.TransientModel):
         self, view_id=None, view_type="form", toolbar=False, submenu=False
     ):
         # TODO: Change or replace this...
-        result = super(AttachMailManually, self).fields_view_get(
+        result = super().fields_view_get(
             view_id=view_id, view_type=view_type, toolbar=toolbar, submenu=submenu
         )
         if view_type != "form":
@@ -96,12 +96,12 @@ class AttachMailManuallyMail(models.TransientModel):
     _name = "fetchmail.attach.mail.manually.mail"
     _description = __doc__
 
-    wizard_id = fields.Many2one("fetchmail.attach.mail.manually", readonly=True)
-    msgid = fields.Char("Message id", readonly=True)
-    subject = fields.Char(readonly=True)
-    date = fields.Datetime(readonly=True)
-    email_from = fields.Char("From", readonly=True)
-    body = fields.Html(readonly=True)
+    wizard_id = fields.Many2one("fetchmail.attach.mail.manually")
+    msgid = fields.Char("Message id")
+    subject = fields.Char()
+    date = fields.Datetime()
+    email_from = fields.Char("From")
+    body = fields.Html()
     object_id = fields.Reference(
         lambda self: [(m.model, m.name) for m in self.env["ir.model"].search([])]
     )

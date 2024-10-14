@@ -16,8 +16,8 @@ MSG_BODY = [
         "\tfor <demo@yourcompany.example.com>;"
         " Mon, 26 Mar 2018 16:03:52 +0200 (CEST)\r\n"
         "To: Test User <nonexistingemail@yourcompany.example.com>\r\n"
-        "From: Reynaert de Vos <%(test_email)s>\r\n"
-        "Subject: %(test_subject)s\r\n"
+        f"From: Reynaert de Vos <{TEST_EMAIL}>\r\n"
+        f"Subject: {TEST_SUBJECT}\r\n"
         "Message-ID: <485a8041-d560-a981-5afc-d31c1f136748@acme.com>\r\n"
         "Date: Mon, 26 Mar 2018 16:03:51 +0200\r\n"
         "User-Agent: Mock Test\r\n"
@@ -25,7 +25,7 @@ MSG_BODY = [
         "Content-Type: text/plain; charset=utf-8\r\n"
         "Content-Language: en-US\r\n"
         "Content-Transfer-Encoding: 7bit\r\n\r\n"
-        "Hallo Wereld!\r\n" % {"test_email": TEST_EMAIL, "test_subject": TEST_SUBJECT},
+        "Hallo Wereld!\r\n",
     )
 ]
 MAIL_MESSAGE = {"subject": TEST_SUBJECT, "to": "demo@yourcompany.example.com"}
@@ -98,28 +98,11 @@ class TestMatchAlgorithms(TransactionCase):
         cls.server_action = cls.env["ir.actions.server"].create(
             {
                 "name": "Action Set Active Partner",
-                "model_id": cls.partner_ir_model.id,
                 "state": "object_write",
-                "code": False,
-                "fields_lines": [
-                    (
-                        0,
-                        0,
-                        {
-                            "col1": cls.env["ir.model.fields"]
-                            .search(
-                                [
-                                    ("name", "=", "category_id"),
-                                    ("model_id", "=", cls.partner_ir_model.id),
-                                ],
-                                limit=1,
-                            )
-                            .id,
-                            "evaluation_type": "equation",
-                            "value": str([cls.partner_category.id]),
-                        },
-                    ),
-                ],
+                "update_path": "category_id",
+                "evaluation_type": "value",
+                "value": str(cls.partner_category.id),
+                "model_id": cls.partner_ir_model.id,
             }
         )
 

@@ -8,20 +8,20 @@
         <field name="arch" type="xml">
             <field name="object_id" position="attributes">
                 <attribute
-                    name="attrs"
-                >{'required': [('server_type', 'not in',('imap', 'outlook'))]}</attribute>
+                    name="required"
+                >server_type not in ('imap', 'outlook')</attribute>
             </field>
             <xpath expr="//notebook" position="inside">
                 <page
                     string="Folders to monitor"
-                    attrs="{'invisible': [('server_type','not in',('imap', 'outlook'))]}"
+                    invisible="server_type not in ('imap', 'outlook')"
                 >
                     <group>
                         <field name="folders_only" />
                     </group>
                     <field name="folder_ids" nolabel="1">
                         <tree decoration-muted="active == False">
-                            <field name="active" invisible="True" />
+                            <field name="active" column_invisible="True" />
                             <field name="sequence" widget="handle" />
                             <field name="path" />
                             <field name="archive_path" />
@@ -39,25 +39,25 @@
                                     type="object"
                                     name="button_confirm_folder"
                                     string="Test &amp; Confirm"
-                                    states="draft"
+                                    invisible="state != 'draft'"
                                 />
                                 <button
                                     type="object"
                                     name="button_attach_mail_manually"
                                     string="Attach mail manually"
-                                    states="done"
+                                    invisible="state != 'done'"
                                 />
                                 <button
                                     type="object"
                                     name="fetch_mail"
                                     string="Fetch folder now"
-                                    states="done"
+                                    invisible="state != 'done'"
                                 />
                                 <button
                                     string="Reset Confirmation"
                                     type="object"
                                     name="set_draft"
-                                    states="done"
+                                    invisible="state != 'done'"
                                 />
                             </header>
                             <group colspan="4" col="2">
@@ -69,20 +69,17 @@
                                 </group>
                                 <group
                                     name="group_email_match"
-                                    attrs="{'invisible':
-                                        [('match_algorithm','=','odoo_standard')]}"
+                                    invisible="match_algorithm == 'odoo_standard'"
                                 >
                                     <field
                                         name="model_field"
                                         placeholder="email"
-                                        attrs="{'required':
-                                            [('match_algorithm','in',['email_exact','email_domain'])]}"
+                                        required="match_algorithm in ['email_exact', 'email_domain']"
                                     />
                                     <field
                                         name="mail_field"
                                         placeholder="to,from"
-                                        attrs="{'required':
-                                            [('match_algorithm','in',['email_exact','email_domain'])]}"
+                                        required="match_algorithm in ['email_exact', 'email_domain']"
                                     />
                                     <field name="match_first" />
                                     <field
@@ -92,10 +89,8 @@
                                     <field
                                         name="model_order"
                                         placeholder="name asc"
-                                        attrs="{'readonly':
-                                            [('match_first','==',False)],
-                                            'required':
-                                            [('match_first','==',True)]}"
+                                        readonly="not match_first"
+                                        required="match_first"
                                     />
                                     <field name="flag_nonmatching" />
                                 </group>
@@ -110,7 +105,7 @@
                         </form>
                     </field>
                     <separator string="Folders available on server" colspan="6" />
-                    <field name="folders_available" />
+                    <field name="folders_available" readonly="1" />
                 </page>
             </xpath>
         </field>

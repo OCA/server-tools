@@ -7,7 +7,7 @@
         <field name="arch" type="xml">
             <form col="4" string="Attach mail manually">
                 <group>
-                    <field name="folder_id" />
+                    <field name="folder_id" invisible="1" />
                     <field name="mail_ids" nolabel="1" colspan="4">
                         <tree create="0">
                             <field name="email_from" />
