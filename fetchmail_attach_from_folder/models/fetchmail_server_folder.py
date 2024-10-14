@@ -393,7 +393,7 @@ class FetchmailServerFolder(models.Model):
         thread_model = self.env["mail.thread"]
         attachments = message_dict["attachments"] or []
         attachment_ids = []
-        attachement_values = thread_model._message_post_process_attachments(
+        attachement_values = thread_model._process_attachments_for_post(
             attachments, attachment_ids, msg_values
         )
         msg_values.update(attachement_values)

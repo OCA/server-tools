@@ -42,7 +42,8 @@ class FetchmailServer(models.Model):
             connection.logout()
 
     folders_available = fields.Text(
-        string="Available folders", compute="_compute_folders_available", readonly=True
+        string="Available folders",
+        compute="_compute_folders_available",
     )
     folder_ids = fields.One2many(
         comodel_name="fetchmail.server.folder",
