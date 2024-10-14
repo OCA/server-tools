@@ -1,0 +1,574 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * base_name_search_improved
+#
+# Translators:
+# Ozge Altinisik <ozge@altinkaya.com.tr>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-01-07 04:03+0000\n"
+"PO-Revision-Date: 2017-01-07 04:03+0000\n"
+"Last-Translator: Ozge Altinisik <ozge@altinkaya.com.tr>, 2017\n"
+"Language-Team: Turkish (Turkey) (https://www.transifex.com/oca/teams/23907/"
+"tr_TR/)\n"
+"Language: tr_TR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. module: base_name_search_improved
+#: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_form_new
+msgid ""
+"<b>IMPORTANT:</b> Please note that enabling smart search may affect the "
+"performance of searches and the system in general."
+msgstr ""
+
+#. module: base_name_search_improved
+#: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_form_new
+msgid ""
+"<b>Smart Name Search</b>: when searching for a record from another record "
+"through the m2o/m2m widgets, for example when adding a Product in a Sales "
+"Order Line or when selecting a Contact in an Invoice."
+msgstr ""
+
+#. module: base_name_search_improved
+#: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_form_new
+msgid ""
+"<b>Smart Search Fields</b>. You can define a set of fields by which we want "
+"to search"
+msgstr ""
+
+#. module: base_name_search_improved
+#: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_form_new
+msgid ""
+"<b>Smart Search</b>: when searching in list, kanban and other views, the "
+"first option will be to search using \"Smart Search\""
+msgstr ""
+
+#. module: base_name_search_improved
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_model__add_smart_search
+msgid "Add Smart Search"
+msgstr ""
+
+#. module: base_name_search_improved
+#: model:ir.model.fields,help:base_name_search_improved.field_ir_model__add_smart_search
+msgid "Add Smart Search on search views"
+msgstr ""
+
+#. module: base_name_search_improved
+#: model:ir.model,name:base_name_search_improved.model_base
+msgid "Base"
+msgstr ""
+
+#. module: base_name_search_improved
+#. odoo-python
+#: code:addons/base_name_search_improved/models/ir_model.py:0
+#, python-format
+msgid "Couldn't eval Name Search Domain (%s)"
+msgstr ""
+
+#. module: base_name_search_improved
+#: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_form_new
+msgid "Custom Search"
+msgstr ""
+
+#. module: base_name_search_improved
+#: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_form_new
+msgid ""
+"Define a <b>Smart Search Domain</b> (for example, only show internal users "
+"and not portal users)"
+msgstr ""
+
+#. module: base_name_search_improved
+#: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_tree
+msgid "Domain"
+msgstr ""
+
+#. module: base_name_search_improved
+#: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_form_new
+msgid ""
+"If \"Smart Search\" has been activated, searches will have a more \"relaxed"
+"\" behaviour. Odoo natively searches for records that include the phrases "
+"entered as they are entered. When activating this option it will search for "
+"records that contain entered words regardless of the order in which they are "
+"entered. For example if we search for a Contact \"Fred Flinstone\", Odoo "
+"would by default only return those records that contain exactly that phrase. "
+"With Smart Search active any record containing the words \"Fred\" and "
+"\"Flinstone\" will be returned.\n"
+"                        <br/>\n"
+"                        <br/>\n"
+"\n"
+"                        By enabling Smart Search you can also add configure "
+"these two optional behaviours:"
+msgstr ""
+
+#. module: base_name_search_improved
+#: model:ir.model,name:base_name_search_improved.model_ir_model
+msgid "Models"
+msgstr "Tipler"
+
+#. module: base_name_search_improved
+#. odoo-python
+#: code:addons/base_name_search_improved/models/ir_model.py:0
+#, python-format
+msgid "Name Search Domain must be a list of tuples"
+msgstr ""
+
+#. module: base_name_search_improved
+#: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_tree
+msgid "Search Fields"
+msgstr ""
+
+#. module: base_name_search_improved
+#: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_form_new
+#: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_search
+#: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_tree
+msgid "Smart Name Search"
+msgstr ""
+
+#. module: base_name_search_improved
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_model__use_smart_name_search
+msgid "Smart Name Search Enabled?"
+msgstr ""
+
+#. module: base_name_search_improved
+#: model:ir.model.fields,field_description:base_name_search_improved.field__unknown__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_account__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_account_tag__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_account_template__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_accrued_orders_wizard__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_analytic_account__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_analytic_applicability__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_analytic_distribution_model__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_analytic_line__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_analytic_plan__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_automatic_entry_wizard__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_bank_statement__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_bank_statement_line__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_cash_rounding__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_chart_template__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_edi_common__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_edi_document__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_edi_format__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_edi_xml_cii__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_edi_xml_ubl_20__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_edi_xml_ubl_21__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_edi_xml_ubl_a_nz__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_edi_xml_ubl_bis3__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_edi_xml_ubl_de__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_edi_xml_ubl_efff__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_edi_xml_ubl_nl__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_edi_xml_ubl_sg__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_financial_year_op__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_fiscal_position__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_fiscal_position_account__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_fiscal_position_account_template__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_fiscal_position_tax__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_fiscal_position_tax_template__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_fiscal_position_template__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_full_reconcile__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_group__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_group_template__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_incoterms__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_invoice_report__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_invoice_send__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_journal__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_journal_group__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_move__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_move_line__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_move_reversal__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_partial_reconcile__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_payment__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_payment_method__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_payment_method_line__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_payment_register__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_payment_term__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_payment_term_line__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_reconcile_model__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_reconcile_model_line__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_reconcile_model_line_template__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_reconcile_model_partner_mapping__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_reconcile_model_template__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_report__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_report_column__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_report_expression__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_report_external_value__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_report_line__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_resequence_wizard__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_root__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_setup_bank_manual_config__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_tax__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_tax_group__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_tax_repartition_line__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_tax_repartition_line_template__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_tax_template__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_tour_upload_bill__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_tour_upload_bill_email_confirm__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_account_unreconcile__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_analytic_mixin__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_auditlog_autovacuum__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_auditlog_http_request__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_auditlog_http_session__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_auditlog_log__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_auditlog_log_line__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_auditlog_log_line_view__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_auditlog_rule__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_auth_totp_device__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_auth_totp_wizard__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_avatar_mixin__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_base__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_base_document_layout__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_base_enable_profiling_wizard__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_base_import_import__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_base_import_mapping__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_base_import_tests_models_char__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_base_import_tests_models_char_noreadonly__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_base_import_tests_models_char_readonly__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_base_import_tests_models_char_required__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_base_import_tests_models_char_states__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_base_import_tests_models_char_stillreadonly__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_base_import_tests_models_complex__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_base_import_tests_models_float__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_base_import_tests_models_m2o__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_base_import_tests_models_m2o_related__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_base_import_tests_models_m2o_required__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_base_import_tests_models_m2o_required_related__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_base_import_tests_models_o2m__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_base_import_tests_models_o2m_child__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_base_import_tests_models_preview__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_base_language_export__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_base_language_import__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_base_language_install__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_base_module_install_request__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_base_module_install_review__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_base_module_uninstall__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_base_module_update__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_base_module_upgrade__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_base_partner_merge_automatic_wizard__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_base_partner_merge_line__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_bus_bus__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_bus_presence__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_calendar_alarm__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_calendar_alarm_manager__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_calendar_attendee__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_calendar_event__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_calendar_event_type__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_calendar_filters__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_calendar_provider_config__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_calendar_recurrence__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_change_password_own__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_change_password_user__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_change_password_wizard__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_crm_activity_report__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_crm_iap_lead_helpers__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_crm_iap_lead_industry__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_crm_iap_lead_mining_request__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_crm_iap_lead_role__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_crm_iap_lead_seniority__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_crm_lead2opportunity_partner__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_crm_lead2opportunity_partner_mass__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_crm_lead__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_crm_lead_lost__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_crm_lead_pls_update__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_crm_lead_scoring_frequency__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_crm_lead_scoring_frequency_field__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_crm_lost_reason__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_crm_merge_opportunity__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_crm_quotation_partner__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_crm_recurring_plan__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_crm_stage__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_crm_tag__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_crm_team__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_crm_team_member__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_decimal_precision__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_digest_digest__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_digest_tip__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_fetchmail_server__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_format_address_mixin__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_fs_storage__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_google_gmail_mixin__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_iap_account__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_iap_autocomplete_api__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_iap_enrich_api__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_image_mixin__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_actions_act_url__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_actions_act_window__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_actions_act_window_close__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_actions_act_window_view__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_actions_actions__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_actions_client__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_actions_report__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_actions_server__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_actions_todo__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_asset__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_attachment__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_autovacuum__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_binary__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_config_parameter__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_cron__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_cron_trigger__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_default__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_demo__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_demo_failure__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_demo_failure_wizard__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_exports__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_exports_line__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_fields_converter__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_filters__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_http__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_logging__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_mail_server__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_model__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_model_access__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_model_constraint__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_model_data__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_model_fields__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_model_fields_selection__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_model_relation__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_module_category__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_module_module__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_module_module_dependency__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_module_module_exclusion__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_profile__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_property__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_qweb__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_qweb_field__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_qweb_field_barcode__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_qweb_field_contact__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_qweb_field_date__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_qweb_field_datetime__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_qweb_field_duration__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_qweb_field_float__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_qweb_field_float_time__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_qweb_field_html__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_qweb_field_image__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_qweb_field_image_url__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_qweb_field_integer__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_qweb_field_many2many__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_qweb_field_many2one__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_qweb_field_monetary__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_qweb_field_qweb__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_qweb_field_relative__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_qweb_field_selection__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_qweb_field_text__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_qweb_field_time__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_rule__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_sequence__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_sequence_date_range__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_server_object_lines__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_ui_menu__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_ui_view__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_ui_view_custom__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_websocket__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_mail_activity__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_mail_activity_mixin__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_mail_activity_type__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_mail_alias__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_mail_alias_mixin__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_mail_blacklist__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_mail_blacklist_remove__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_mail_bot__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_mail_channel__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_mail_channel_member__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_mail_channel_rtc_session__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_mail_compose_message__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_mail_composer_mixin__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_mail_followers__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_mail_gateway_allowed__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_mail_guest__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_mail_ice_server__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_mail_link_preview__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_mail_mail__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_mail_message__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_mail_message_reaction__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_mail_message_schedule__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_mail_message_subtype__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_mail_notification__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_mail_render_mixin__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_mail_resend_message__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_mail_resend_partner__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_mail_shortcode__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_mail_template__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_mail_template_preview__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_mail_template_reset__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_mail_thread__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_mail_thread_blacklist__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_mail_thread_cc__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_mail_thread_phone__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_mail_tracking_value__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_mail_wizard_invite__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_payment_icon__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_payment_link_wizard__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_payment_provider__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_payment_provider_onboarding_wizard__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_payment_refund_wizard__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_payment_token__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_payment_transaction__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_phone_blacklist__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_phone_blacklist_remove__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_portal_mixin__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_portal_share__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_portal_wizard__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_portal_wizard_user__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_privacy_log__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_privacy_lookup_wizard__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_privacy_lookup_wizard_line__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_product_attribute__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_product_attribute_custom_value__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_product_attribute_value__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_product_category__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_product_label_layout__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_product_packaging__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_product_pricelist__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_product_pricelist_item__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_product_product__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_product_supplierinfo__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_product_tag__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_product_template__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_product_template_attribute_exclusion__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_product_template_attribute_line__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_product_template_attribute_value__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_publisher_warranty_contract__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_purchase_bill_union__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_purchase_order__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_purchase_order_line__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_purchase_report__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_queue_job__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_queue_job_channel__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_queue_job_function__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_queue_jobs_to_cancelled__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_queue_jobs_to_done__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_queue_requeue_job__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_report_account_report_hash_integrity__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_report_account_report_invoice__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_report_account_report_invoice_with_payments__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_report_base_report_irmodulereference__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_report_layout__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_report_paperformat__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_report_product_report_pricelist__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_report_product_report_producttemplatelabel__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_report_product_report_producttemplatelabel_dymo__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_res_bank__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_res_company__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_res_config__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_res_config_installer__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_res_config_settings__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_res_country__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_res_country_group__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_res_country_state__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_res_currency__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_res_currency_rate__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_res_groups__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_res_lang__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_res_partner__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_res_partner_autocomplete_sync__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_res_partner_bank__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_res_partner_category__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_res_partner_industry__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_res_partner_title__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_res_users__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_res_users_apikeys__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_res_users_apikeys_description__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_res_users_apikeys_show__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_res_users_deletion__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_res_users_identitycheck__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_res_users_log__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_res_users_settings__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_res_users_settings_volumes__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_reset_view_arch_wizard__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_resource_calendar__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_resource_calendar_attendance__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_resource_calendar_leaves__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_resource_mixin__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_resource_resource__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_sale_advance_payment_inv__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_sale_order__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_sale_order_cancel__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_sale_order_line__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_sale_order_option__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_sale_order_template__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_sale_order_template_line__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_sale_order_template_option__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_sale_payment_provider_onboarding_wizard__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_sale_report__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_sequence_mixin__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_server_config__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_server_env_mixin__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_server_env_techname_mixin__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_sms_api__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_sms_composer__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_sms_resend__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_sms_resend_recipient__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_sms_sms__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_sms_template__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_sms_template_preview__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_sms_template_reset__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_snailmail_confirm__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_snailmail_confirm_invoice__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_snailmail_letter__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_snailmail_letter_format_error__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_snailmail_letter_missing_required_fields__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_sparse_fields_test__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_spreadsheet_dashboard__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_spreadsheet_dashboard_group__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_template_reset_mixin__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_uom_category__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_uom_uom__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_utm_campaign__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_utm_medium__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_utm_mixin__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_utm_source__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_utm_source_mixin__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_utm_stage__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_utm_tag__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_validate_account_move__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_web_editor_assets__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_web_editor_converter_test_sub__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_web_tour_tour__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_wizard_ir_model_menu_create__smart_search
+#: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_search
+#: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_tree
+msgid "Smart Search"
+msgstr ""
+
+#. module: base_name_search_improved
+#: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_form_new
+msgid "Smart Search (search view)"
+msgstr ""
+
+#. module: base_name_search_improved
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_model__name_search_domain
+msgid "Smart Search Domain"
+msgstr ""
+
+#. module: base_name_search_improved
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_model__name_search_ids
+#: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_form_new
+msgid "Smart Search Fields"
+msgstr ""
+
+#. module: base_name_search_improved
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_model__smart_search_warning
+msgid "Smart Search Warning"
+msgstr ""
+
+#. module: base_name_search_improved
+#: model_terms:ir.ui.view,arch_db:base_name_search_improved.view_model_form_new
+msgid "Smart Search can be activated in two complementary ways:"
+msgstr ""
+
+#. module: base_name_search_improved
+#: model:ir.actions.act_window,name:base_name_search_improved.action_improved_name_search
+#: model:ir.ui.menu,name:base_name_search_improved.menu_improved_name_search
+msgid "Smart Searches"
+msgstr ""
+
+#. module: base_name_search_improved
+#: model:ir.model.fields,help:base_name_search_improved.field_ir_model__use_smart_name_search
+msgid ""
+"Use Smart Search for 'name_search', this will affect when searching from "
+"other records (for eg. from m2o fields"
+msgstr ""
