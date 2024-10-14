@@ -4,7 +4,7 @@
 {
     "name": "Server Action Logging",
     "summary": "Module that provides a logging mechanism for server actions",
-    "version": "17.0.1.0.0",
+    "version": "18.0.1.0.0",
     "category": "Hidden",
     "website": "https://github.com/OCA/server-tools",
     "author": "Camptocamp, Odoo Community Association (OCA)",
