@@ -1,0 +1,109 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="view_exception_rule_list" model="ir.ui.view">
+        <field name="name">exception.rule.list</field>
+        <field name="model">exception.rule</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="sequence" widget="handle" />
+                <field name="name" />
+                <field name="description" />
+                <field name="model" />
+                <field name="active" widget="boolean_toggle" />
+            </list>
+        </field>
+    </record>
+    <record id="view_exception_rule_form" model="ir.ui.view">
+        <field name="name">exception.rule.form</field>
+        <field name="model">exception.rule</field>
+        <field name="arch" type="xml">
+            <form string="Exception Rule Setup" name="exception_rule">
+                <sheet>
+                    <widget
+                        name="web_ribbon"
+                        title="Archived"
+                        bg_color="bg-danger"
+                        invisible="active"
+                    />
+                    <div class="oe_button_box" name="button_box">
+                    </div>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only" />
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="active" invisible="1" />
+                            <field name="description" />
+                        </group>
+                    </group>
+                    <field name="exception_type" invisible="1" />
+                    <group>
+                        <group colspan="4" groups="base.group_system">
+                            <field name="model" />
+                            <field name="exception_type" widget="radio" />
+                            <field
+                                name="domain"
+                                invisible="exception_type != 'by_domain'"
+                                required="exception_type == 'by_domain'"
+                                widget="domain"
+                                options="{'model': 'model'}"
+                            />
+                            <field name="is_blocking" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page
+                            name="code"
+                            string="Python Code"
+                            invisible="exception_type != 'by_py_code'"
+                            required="exception_type == 'by_py_code'"
+                        >
+                            <field
+                                name="code"
+                                widget="code"
+                                options="{'mode': 'python'}"
+                                placeholder="Enter Python code here. Help about Python expression is available in the help tab of this document."
+                            />
+                        </page>
+                        <page
+                            name="help"
+                            string="Help"
+                            invisible="exception_type != 'by_py_code'"
+                        >
+                            <div style="margin-top: 4px;">
+                                <h3>Help with Python expressions</h3>
+                                <p
+                                >Various fields may use Python code or Python expressions. The following variables can be used:</p>
+                                <ul>
+                                    <li><code
+                                        >self</code>: Record on which the rule is evaluated.</li>
+                                    <li>To block the exception use: <code
+                                        >failed = True</code></li>
+                                </ul>
+                                <p
+                                >As well as all the libraries provided in safe_eval.</p>
+                            </div>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_exception_rule_list" model="ir.actions.act_window">
+        <field name="name">Exception Rules</field>
+        <field name="res_model">exception.rule</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="view_exception_rule_list" />
+        <field name="context">{'active_test': False}</field>
+    </record>
+    <menuitem
+        action="action_exception_rule_list"
+        id="menu_action_exception"
+        parent="base.menu_custom"
+        sequence="90"
+        groups="base_exception.group_exception_rule_manager"
+    />
+</odoo>
