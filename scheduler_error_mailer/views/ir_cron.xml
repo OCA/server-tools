@@ -14,7 +14,6 @@
         <field name="arch" type="xml">
             <field name="priority" position="after">
                 <field name="email_template_id" />
-                <button name="test_super" string="test" type="object" class="btn btn-primary oe_stat_button"/>
             </field>
         </field>
     </record>
