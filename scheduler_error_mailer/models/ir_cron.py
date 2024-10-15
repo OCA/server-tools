@@ -42,7 +42,7 @@ class IrCron(models.Model):
             template = my_cron.email_template_id.with_context(**context).sudo()
             template.send_mail(my_cron.id, force_send=True)
 
-        return res
+        return True
 
     @api.model
     def _test_scheduler_failure(self):
