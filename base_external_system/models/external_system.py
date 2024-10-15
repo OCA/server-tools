@@ -155,5 +155,8 @@ class ExternalSystem(models.Model):
 
         An alternative would be to use standard python classes, but that would take
         away the possibility to extend them in the Odoo way.
+
+        To even further extend the possibility of the adapter to have its own
+        runtime memory, we add an (at first) empty dictionary to the context.
         """
-        return self.with_context(system=self).env[self.system_type]
+        return self.with_context(system=self, adapter_memory={}).env[self.system_type]

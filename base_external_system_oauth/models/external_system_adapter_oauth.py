@@ -1,10 +1,10 @@
-# Copyright 2023 Therp BV.
+# Copyright 2023-2024 Therp BV.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 # pylint: disable=no-member
 """Extend external system with oauth authentication."""
 import logging
 
-from odoo import _, api, models
+from odoo import _, models
 from odoo.exceptions import UserError
 
 # You must initialize logging, otherwise you'll not see debug output.
@@ -42,7 +42,20 @@ class ExternalSystemAdapterOAuth(models.AbstractModel):
     _inherit = "external.system.adapter.http"
     _description = "External System Adapter OAuth"
 
-    token = None
+    def get_token(self):
+        """Get token from adapter_memory."""
+        return self.env.context["adapter_memory"].get("token", None)
+
+    def set_token(self, value):
+        """Store token in adapter_memor."""
+        self.env.context["adapter_memory"]["token"] = value
+
+    def del_token(self):
+        """Get system from environment."""
+        if "token" in self.env.context["adapter_memory"]:
+            del self.env.context["adapter_memory"]["token"]
+
+    token = property(get_token, set_token, del_token)
 
     def external_get_client(self):
         """Return token that can be used to access remote system."""
@@ -52,15 +65,9 @@ class ExternalSystemAdapterOAuth(models.AbstractModel):
         return client
 
     def external_destroy_client(self, client):
-        """Perform any logic necessary to destroy the client connection.
-
-        Args:
-            client (mixed): The client that was returned by
-             ``external_get_client``.
-        """
-        if self.token:
-            self.token = None
-        super(ExternalSystemAdapterOAuth, self).external_destroy_client(client)
+        """Delete token from client."""
+        del self.token
+        return super(ExternalSystemAdapterOAuth, self).external_destroy_client(client)
 
     def post(self, endpoint=None, data=None, json=None, **kwargs):
         """Send post request."""
