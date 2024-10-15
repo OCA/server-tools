@@ -25,14 +25,26 @@ class IrCron(models.Model):
         ),
     )
 
+    def test_super(self):
+        method_list = [func for func in dir(super()) if callable(getattr(super(), func))]
+        for method in method_list:
+            logging.error("Available methods in super: %s", method)
+        # logging.error("Available methods in super: %s", super_instance)
+        # super_methods = dir(super())
+        # logging.error("Available methods in super: %s", super_methods)
+
     @api.model
     def _handle_callback_exception(
         self, cron_name, server_action_id, job_id, job_exception
     ):
-        res = super()._handle_callback_exception(
-            cron_name, server_action_id, job_id, job_exception
-        )
+        # super_methods = dir(super())
+        # logging.warning("Available methods in super: %s", super_methods)
+
+        # res = super()._handle_callback_exception(
+        #     cron_name, server_action_id, job_id, job_exception
+        # )
         my_cron = self.browse(job_id)
+        logging.warning("Available cron: %s", my_cron)
 
         if my_cron.email_template_id:
             # we put the job_exception in context to be able to print it inside
