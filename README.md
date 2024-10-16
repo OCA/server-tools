@@ -64,7 +64,7 @@ addon | version | maintainers | summary
 [ir_sequence_standard_default](ir_sequence_standard_default/) | 12.0.1.0.0 | [![moylop260](https://github.com/moylop260.png?size=30px)](https://github.com/moylop260) [![ebirbe](https://github.com/ebirbe.png?size=30px)](https://github.com/ebirbe) | Use Standard implementation of ir.sequence instead of NoGap
 [letsencrypt](letsencrypt/) | 12.0.2.0.1 |  | Request SSL certificates from letsencrypt.org
 [mail_cleanup](mail_cleanup/) | 12.0.1.0.0 |  | Mark as read or delete mails after a set time
-[module_analysis](module_analysis/) | 12.0.1.0.5 | [![legalsylvain](https://github.com/legalsylvain.png?size=30px)](https://github.com/legalsylvain) | Add analysis tools regarding installed modules to know which installed modules comes from Odoo Core, OCA, or are custom modules
+[module_analysis](module_analysis/) | 12.0.1.0.6 | [![legalsylvain](https://github.com/legalsylvain.png?size=30px)](https://github.com/legalsylvain) | Add analysis tools regarding installed modules to know which installed modules comes from Odoo Core, OCA, or are custom modules
 [module_auto_update](module_auto_update/) | 12.0.2.0.7 |  | Automatically update Odoo modules
 [module_change_auto_install](module_change_auto_install/) | 12.0.1.0.1 | [![legalsylvain](https://github.com/legalsylvain.png?size=30px)](https://github.com/legalsylvain) | Customize auto installables modules by configuration
 [nsca_client](nsca_client/) | 12.0.1.0.0 |  | Send passive alerts to monitor your Odoo application.
