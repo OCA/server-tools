@@ -61,7 +61,7 @@ addon | version | maintainers | summary
 [iap_alternative_provider](iap_alternative_provider/) | 13.0.1.0.1 | [![sebastienbeau](https://github.com/sebastienbeau.png?size=30px)](https://github.com/sebastienbeau) | Base module for providing alternative provider for iap apps
 [letsencrypt](letsencrypt/) | 13.0.1.1.0 |  | Request SSL certificates from letsencrypt.org
 [mail_server_relay_disallowed](mail_server_relay_disallowed/) | 13.0.1.0.1 |  | Mail Server Relay Disallowed
-[module_analysis](module_analysis/) | 13.0.1.1.2 | [![legalsylvain](https://github.com/legalsylvain.png?size=30px)](https://github.com/legalsylvain) | Add analysis tools regarding installed modules to know which installed modules comes from Odoo Core, OCA, or are custom modules
+[module_analysis](module_analysis/) | 13.0.1.1.3 | [![legalsylvain](https://github.com/legalsylvain.png?size=30px)](https://github.com/legalsylvain) | Add analysis tools regarding installed modules to know which installed modules comes from Odoo Core, OCA, or are custom modules
 [module_auto_update](module_auto_update/) | 13.0.1.0.2 |  | Automatically update Odoo modules
 [nsca_client](nsca_client/) | 13.0.1.0.2 |  | Send passive alerts to monitor your Odoo application.
 [onchange_helper](onchange_helper/) | 13.0.1.1.0 |  | Technical module that ease execution of onchange in Python code
