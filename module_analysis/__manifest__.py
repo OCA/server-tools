@@ -9,7 +9,7 @@
     " custom modules",
     "author": "GRAP, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/server-tools",
-    "version": "15.0.1.1.1",
+    "version": "15.0.1.1.2",
     "license": "AGPL-3",
     "depends": ["base"],
     "data": [
