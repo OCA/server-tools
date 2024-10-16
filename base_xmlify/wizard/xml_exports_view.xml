@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_xml_export" model="ir.ui.view">
+        <field name="name">ir.exports.xml.wizard.form</field>
+        <field name="model">ir.exports.xml.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Export to XML">
+                <group>
+                    <field name="model_id" />
+                    <field name="model_name" invisible="1" />
+                    <field
+                        name="domain"
+                        widget="domain"
+                        options="{'model': 'model_name'}"
+                    />
+                    <field name="filename" />
+                    <field name="destination" />
+                    <field name="export_id" />
+                    <field name="module_id" />
+                </group>
+                <footer>
+                    <button
+                        string="Export"
+                        name="export_to_xml"
+                        type="object"
+                        class="btn-primary"
+                    />
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_xml_export" model="ir.actions.act_window">
+        <field name="name">XML export</field>
+        <field name="res_model">ir.exports.xml.wizard</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_xml_export" />
+        <field name="target">new</field>
+    </record>
+    <menuitem
+        name="Export Records to XML"
+        action="action_xml_export"
+        id="ir_xml_export_menu"
+        parent="base.next_id_9"
+    />
+</odoo>
