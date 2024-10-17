@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="conditional_image_partner_action" model="ir.actions.act_window">
+        <field name="name">Conditional Images</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">conditional.image</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{"default_model_name": "res.partner"}</field>
+        <field name="domain">[("model_name", "=", "res.partner")]</field>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            Create a conditional image for your address book
+          </p>
+        </field>
+    </record>
+
+    <record model="ir.ui.menu" id="conditional_image_partner_menu">
+        <field name="name">Conditional Images</field>
+        <field name="parent_id" ref="contacts.res_partner_menu_config" />
+        <field name="action" ref="conditional_image_partner_action" />
+        <field name="sequence" eval="99" />
+    </record>
+</odoo>
