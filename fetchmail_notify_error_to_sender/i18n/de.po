@@ -1,0 +1,83 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * fetchmail_notify_error_to_sender
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-12-01 02:10+0000\n"
+"PO-Revision-Date: 2017-12-01 02:10+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: fetchmail_notify_error_to_sender
+#: model:mail.template,body_html:fetchmail_notify_error_to_sender.email_template_error_notice
+msgid ""
+"\n"
+"            <div>\n"
+"            <p>Hello ${ctx.get('sender_message').get('from')},</p>\n"
+"            <p>we got a problem with your email: <i>${ctx."
+"get('sender_message').get('subject')}</i></p>\n"
+"            <p>Maybe you used a wrong recipient address?</p>\n"
+"            <p><br/></p>\n"
+"            <p>Technical details:</p>\n"
+"            <p><i>${ctx.get('route_exception')}</i></p>\n"
+"            </div>\n"
+"        "
+msgstr ""
+
+#. module: fetchmail_notify_error_to_sender
+#: model:ir.model.fields,field_description:fetchmail_notify_error_to_sender.field_fetchmail_server__display_name
+#: model:ir.model.fields,field_description:fetchmail_notify_error_to_sender.field_mail_thread__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: fetchmail_notify_error_to_sender
+#: model:ir.model,name:fetchmail_notify_error_to_sender.model_mail_thread
+msgid "Email Thread"
+msgstr ""
+
+#. module: fetchmail_notify_error_to_sender
+#: model:ir.model.fields,field_description:fetchmail_notify_error_to_sender.field_fetchmail_server__error_notice_template_id
+msgid "Error notice template"
+msgstr ""
+
+#. module: fetchmail_notify_error_to_sender
+#: model:ir.model.fields,field_description:fetchmail_notify_error_to_sender.field_fetchmail_server__id
+#: model:ir.model.fields,field_description:fetchmail_notify_error_to_sender.field_mail_thread__id
+msgid "ID"
+msgstr ""
+
+#. module: fetchmail_notify_error_to_sender
+#: model:ir.model,name:fetchmail_notify_error_to_sender.model_fetchmail_server
+msgid "Incoming Mail Server"
+msgstr ""
+
+#. module: fetchmail_notify_error_to_sender
+#: model:ir.model.fields,field_description:fetchmail_notify_error_to_sender.field_fetchmail_server____last_update
+#: model:ir.model.fields,field_description:fetchmail_notify_error_to_sender.field_mail_thread____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: fetchmail_notify_error_to_sender
+#: model:mail.template,subject:fetchmail_notify_error_to_sender.email_template_error_notice
+msgid "Receiving error with: ${ctx.get('sender_message').get('subject')|safe}"
+msgstr ""
+
+#. module: fetchmail_notify_error_to_sender
+#: model:ir.model.fields,help:fetchmail_notify_error_to_sender.field_fetchmail_server__error_notice_template_id
+msgid ""
+"Set here the template to use to send notice to sender when errors occur "
+"while fetching email"
+msgstr ""
+
+#~ msgid "POP/IMAP Server"
+#~ msgstr "POP/IMAP-Server"
