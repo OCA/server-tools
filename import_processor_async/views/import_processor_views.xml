@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_import_processor_form" model="ir.ui.view">
+        <field name="model">import.processor</field>
+        <field name="inherit_id" ref="import_processor.view_import_processor_form" />
+        <field name="arch" type="xml">
+            <field name="chunk_size" position="after">
+                <field name="async_processing" />
+                <field
+                    name="channel_id"
+                    attrs="{'invisible': [('async_processing', '=', False)]}"
+                />
+            </field>
+
+            <xpath expr="//page[./field[@name='postprocessor']]" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': [('async_processing', '=', True)]}</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

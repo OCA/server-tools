@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_importer_wizard_form" model="ir.ui.view">
+        <field name="model">import.processor.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="model" invisible="1" />
+                        <field
+                            name="processor_id"
+                            options="{'no_create': True, 'no_open': True}"
+                            required="1"
+                        />
+                        <field name="file_upload" required="1" />
+                        <field name="message" />
+                    </group>
+                </sheet>
+                <footer>
+                    <button
+                        type="object"
+                        name="action_import"
+                        string="Import"
+                        class="btn-primary"
+                    />
+                    <button type="special" string="Close" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>
