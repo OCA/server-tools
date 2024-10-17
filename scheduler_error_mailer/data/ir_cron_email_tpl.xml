@@ -27,8 +27,6 @@
 <li>Model : <t t-out="object.model_id.name or ''"/></li>
 <li>Python code : <code><t t-out="object.code or ''"/></code></li>
 <li>Interval : <t t-out="object.interval_number or '0'"/> <t t-out="object.interval_type or ''"/></li>
-<li>Number of calls : <t t-out="object.numbercall or '0'"/></li>
-<li>Repeat missed : <t t-out="object.doall"/></li>
 <li>User : <t t-out="object.user_id.name or ''"/></li>
 </ul>
 
