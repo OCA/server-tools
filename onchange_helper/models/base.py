@@ -38,6 +38,12 @@ class Base(models.AbstractModel):
         # If self is a record (play onchange on existing record)
         # we take the value of the field
         # If self is an empty record we will have an empty value
+        if not self:
+            temp_values = values.copy()
+            onchange_values = self.onchange(temp_values, False, onchange_specs)
+            all_values.update(self._get_new_values(values, onchange_values))
+            return all_values
+
         if self:
             self.ensure_one()
             record_values = self._convert_to_write(
