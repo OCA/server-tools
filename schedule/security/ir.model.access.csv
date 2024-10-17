@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_schedule_day,access_schedule_day,model_schedule_day,base.group_system,1,1,1,1
+access_schedule_day_user,access_schedule_day,model_schedule_day,base.group_user,1,0,0,0
+access_schedule_weekday_user,access_schedule_weekday,model_schedule_weekday,base.group_user,1,0,0,0

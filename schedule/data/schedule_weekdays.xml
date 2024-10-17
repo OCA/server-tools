@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="schedule_weekday_monday" model="schedule.weekday">
+        <field name="name">Monday</field>
+        <field name="number">0</field>
+    </record>
+
+    <record id="schedule_weekday_tuesday" model="schedule.weekday">
+        <field name="name">Tuesday</field>
+        <field name="number">1</field>
+    </record>
+
+    <record id="schedule_weekday_wednesday" model="schedule.weekday">
+        <field name="name">Wednesday</field>
+        <field name="number">2</field>
+    </record>
+
+    <record id="schedule_weekday_thursday" model="schedule.weekday">
+        <field name="name">Thursday</field>
+        <field name="number">3</field>
+    </record>
+
+    <record id="schedule_weekday_friday" model="schedule.weekday">
+        <field name="name">Friday</field>
+        <field name="number">4</field>
+    </record>
+
+    <record id="schedule_weekday_saturday" model="schedule.weekday">
+        <field name="name">Saturday</field>
+        <field name="number">5</field>
+    </record>
+
+    <record id="schedule_weekday_sunday" model="schedule.weekday">
+        <field name="name">Sunday</field>
+        <field name="number">6</field>
+    </record>
+</odoo>

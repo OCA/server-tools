@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="schedule_day_tree_view" model="ir.ui.view">
+        <field name="model">schedule.day</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="mode" />
+                <field name="weekday_ids" widget="many2many_tags" />
+                <field name="step" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="schedule_day_form_view" model="ir.ui.view">
+        <field name="model">schedule.day</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" />
+                            <field name="mode" />
+                            <field name="weekday_ids" widget="many2many_checkboxes" />
+                            <field
+                                name="start_date"
+                                attrs="{'invisible': [('mode', 'not in', ['weekly', 'monthly'])]}"
+                            />
+                            <label
+                                for="step"
+                                attrs="{'invisible': [('mode', 'not in', ('weekly', 'monthly'))]}"
+                            />
+                            <div
+                                attrs="{'invisible': [('mode', 'not in', ('weekly', 'monthly'))]}"
+                            >
+                                <span>Every </span>
+                                <field name="step" class="oe_inline" />
+                                <span
+                                    attrs="{'invisible': [('mode', '!=', 'weekly')]}"
+                                > Week(s)</span>
+                                <span
+                                    attrs="{'invisible': [('mode', '!=', 'monthly')]}"
+                                > Month(s)</span>
+                            </div>
+                            <label
+                                for="nth_weekday"
+                                attrs="{'invisible': [('mode', 'not in', ('monthly', 'yearly'))]}"
+                            />
+                            <div
+                                attrs="{'invisible': [('mode', 'not in', ('monthly', 'yearly'))]}"
+                            >
+                                <field name="nth_weekday" class="oe_inline" />
+                                <span> Weekday of the Month</span>
+                            </div>
+                            <field
+                                name="yearly_month"
+                                attrs="{'invisible': [('mode', '!=', 'yearly')]}"
+                            />
+                            <field name="preview" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_schedule_day" model="ir.actions.act_window">
+        <field name="name">Schedules</field>
+        <field name="res_model">schedule.day</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        action="action_schedule_day"
+        id="menu_schedule_day"
+        parent="base.menu_automation"
+        sequence="100"
+    />
+</odoo>
