@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  scheduler_error_mailer for Odoo
+  Copyright (C) 2012-2013 Akretion Sébastien BEAU,David Beal,Alexis de Lattre
+  Copyright (C) 2016 Sodexis
+  Copyright (C) 2018 bloopark systems (<http://bloopark.de>)
+  The licence is in the file __openerp__.py
+-->
+<odoo noupdate="1">
+    <record id="test_scheduler_error_mailer" model="ir.cron">
+        <field name="name">Test Scheduler Error Mailer</field>
+        <field name="active" eval="False" />
+        <field name="user_id" ref="base.user_root" />
+        <field name="interval_number">1</field>
+        <field name="interval_type">hours</field>
+        <field name="model_id" ref="model_ir_cron" />
+        <field name="state">code</field>
+        <field name="code">model._test_scheduler_failure()</field>
+        <field
+            name="email_template_id"
+            ref="scheduler_error_mailer.scheduler_error_mailer"
+        />
+    </record>
+</odoo>
