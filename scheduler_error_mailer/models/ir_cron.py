@@ -5,7 +5,7 @@
 
 import logging
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 
 _logger = logging.getLogger(__name__)
@@ -25,28 +25,29 @@ class IrCron(models.Model):
         ),
     )
 
-    @api.model
-    def _handle_callback_exception(
-        self, cron_name, server_action_id, job_id, job_exception
-    ):
-        res = super()._handle_callback_exception(
-            cron_name, server_action_id, job_id, job_exception
-        )
-        my_cron = self.browse(job_id)
-
-        if my_cron.email_template_id:
+    def _handle_callback_exception(self, cron_name, server_action_id, job_exception):
+        self.ensure_one()
+        if self.email_template_id:
             # we put the job_exception in context to be able to print it inside
             # the email template
             context = {"job_exception": str(job_exception), "dbname": self._cr.dbname}
 
             _logger.debug("Sending scheduler error email with context=%s", context)
 
-            template = my_cron.email_template_id.with_context(**context).sudo()
-            template.send_mail(my_cron.id, force_send=True)
-
-        return res
+            template = self.email_template_id.with_context(**context).sudo()
+            template.send_mail(self.id, force_send=True)
 
     @api.model
     def _test_scheduler_failure(self):
         """This function is used to test and debug this module."""
-        raise UserError(_("Task failure with UID = %d.") % self._uid)
+        raise UserError(self.env._("Task failure with UID = %(uid)d.", uid=self._uid))
+
+    @api.model
+    def _callback(self, cron_name, server_action_id):
+        try:
+            return super()._callback(cron_name, server_action_id)
+        except Exception as e:
+            self._handle_callback_exception(cron_name, server_action_id, e)
+
+            # Re-raise the original job exception
+            raise
