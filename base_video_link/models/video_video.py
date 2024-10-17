@@ -12,20 +12,26 @@ class VideoVideo(models.Model):
 
     sequence = fields.Integer()
     name = fields.Char(required=True)
-    provider_id = fields.Many2one("video.provider", "Provider", required=True)
+    provider_id = fields.Many2one("video.provider", "Provider")
     identifier = fields.Char(required=True)
+    manual_url = fields.Char()
+    manual_thumbnail_url = fields.Char()
     url = fields.Char(compute="_compute_url")
     thumbnail_url = fields.Char(compute="_compute_url")
 
     @api.depends("identifier", "provider_id")
     def _compute_url(self):
         for record in self:
-            record.url = ""
-            record.thumbnail_url = ""
-            provider = record.provider_id
-            if provider.pattern_video_url:
-                record.url = provider.pattern_video_url.format(record=record)
-            if provider.pattern_thumbnail_url:
-                record.thumbnail_url = provider.pattern_thumbnail_url.format(
-                    record=record
-                )
+            if record.provider_id:
+                record.url = ""
+                record.thumbnail_url = ""
+                provider = record.provider_id
+                if provider.pattern_video_url:
+                    record.url = provider.pattern_video_url.format(record=record)
+                if provider.pattern_thumbnail_url:
+                    record.thumbnail_url = provider.pattern_thumbnail_url.format(
+                        record=record
+                    )
+            else:
+                record.url = record.manual_url
+                record.thumbnail_url = record.thumbnail_url
