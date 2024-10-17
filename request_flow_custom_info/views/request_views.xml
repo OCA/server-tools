@@ -1,0 +1,26 @@
+<odoo>
+    <record id="request_request_view_form" model="ir.ui.view">
+        <field name="name">request.request.view.form</field>
+        <field name="model">request.request</field>
+        <field name="inherit_id" ref="request_flow.request_request_view_form" />
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page name="custom_info" string="Custom Information">
+                    <field
+                        name="custom_info_template_id"
+                        options='{"no_quick_create": True}'
+                        placeholder="Choose Template"
+                    />
+                    <group>
+                        <field
+                            name="custom_info_ids"
+                            colspan="4"
+                            nolabel="1"
+                            mode="custom_info"
+                        />
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+</odoo>
