@@ -379,14 +379,18 @@ class RecordChangesetChange(models.Model):
 
         return change, pop_value
 
-    @api.model
-    def get_fields_changeset_changes(self, model, res_id):
-        fields = [
+    def _get_fields_changeset_changes(self):
+        """Method to extend the fields to be get, for example to use in templates."""
+        return [
             "new_value_display",
             "origin_value_display",
             "field_name",
             "user_can_validate_changeset",
         ]
+
+    @api.model
+    def get_fields_changeset_changes(self, model, res_id):
+        fields = self._get_fields_changeset_changes()
         states = self.get_pending_changes_states()
         domain = [
             ("changeset_id.model", "=", model),

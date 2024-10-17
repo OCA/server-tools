@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="tier_review_view_tree" model="ir.ui.view">
+        <field name="name">tier.review.tree</field>
+        <field name="model">tier.review</field>
+        <field name="inherit_id" ref="base_tier_validation.tier_review_view_tree" />
+        <field name="arch" type="xml">
+            <field name="comment" position="before">
+                <field name="summary" />
+            </field>
+            <field name="comment" position="after">
+                <field name="changeset_id" />
+            </field>
+        </field>
+    </record>
+    <record id="tier_review_view_tree_custom" model="ir.ui.view">
+        <field name="name">stock.move.raw.tree.custom</field>
+        <field name="model">tier.review</field>
+        <field name="priority">1000</field>
+        <field name="inherit_id" ref="tier_review_view_tree" />
+        <field name="arch" type="xml">
+            <field name="sequence" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="review_type" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="changeset_id" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+        </field>
+    </record>
+</odoo>
