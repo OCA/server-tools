@@ -82,19 +82,20 @@
                                     name="user_can_validate_changeset"
                                     invisible="1"
                                 />
+                                <field name="is_informative_change" invisible="1" />
                                 <button
                                     name="apply"
                                     string="Apply"
                                     type="object"
                                     icon="fa-plus-circle"
-                                    attrs="{'invisible': [('user_can_validate_changeset', '=', False)]}"
+                                    attrs="{'invisible': ['|', ('user_can_validate_changeset', '=', False), ('is_informative_change', '=', False)]}"
                                 />
                                 <button
                                     name="cancel"
                                     string="Reject"
                                     type="object"
                                     icon="fa-times"
-                                    attrs="{'invisible': [('user_can_validate_changeset', '=', False)]}"
+                                    attrs="{'invisible': ['|', ('user_can_validate_changeset', '=', False), ('is_informative_change', '=', False)]}"
                                 />
                             </tree>
                         </field>

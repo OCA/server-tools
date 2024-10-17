@@ -163,10 +163,56 @@ class RecordChangeset(models.Model):
                         or record._fields[field].null(record)
                     )
             changes.append(change)
+        extra_changes = self._prepare_extra_changes(changes, record, values, rules)
+        if extra_changes:
+            changes.extend(extra_changes)
         if changes:
             changeset_vals = self._prepare_changeset_vals(changes, record, source)
             self.env["record.changeset"].create(changeset_vals)
         return write_values
+
+    def _get_new_value_from_record(self, record, field, values):
+        """Simulate the process with .new() method to get the new value of the field."""
+        vals_new = record.read()[0]
+        del vals_new[field]
+        vals_new.update(values)
+        record_virtual = self.env[record._name].new(vals_new)
+        return record._fields[field].convert_to_write(
+            record_virtual[field], record_virtual
+        )
+
+    def _prepare_extra_changes(self, changes, record, values, rules):
+        """Add extra changes from related and compute fields."""
+        change_model = self.env["record.changeset.change"]
+        changes = []
+        if not record:
+            return changes
+        model_fields = self.env[record._name]._fields
+        change_fields = []
+        for change in changes:
+            change_fields.append(change["field_id"])
+        for field in list(rules.keys()):
+            model_field = model_fields[field]
+            rule = rules.get(field)
+            if (
+                (not model_field.related and not model_field.compute)
+                or not rule
+                or not rule._evaluate_expression(record)
+                or rule.field_id in change_fields
+            ):
+                continue
+            old_value = model_field.convert_to_write(record[field], record)
+            new_value = self._get_new_value_from_record(record, field, values)
+            if old_value != new_value:
+                change, _pop_value = change_model._prepare_changeset_change(
+                    record,
+                    rule,
+                    field,
+                    new_value,
+                )
+                if change:
+                    changes.append(change)
+        return changes
 
     @api.model
     def _prepare_changeset_vals(self, changes, record, source):
