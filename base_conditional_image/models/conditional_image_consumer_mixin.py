@@ -16,43 +16,44 @@ class ConditionalImageConsumerMixin(models.AbstractModel):
     image_128 = fields.Image(compute="_compute_images", store=False, readonly=True)
 
     def _conditional_image_evaluate_selector(self, conditional_image):
+        """Returns if the current conditional image is selectable
+        By default, an image missing it's selector is considered valid
+        """
         self.ensure_one()
         if conditional_image.selector:
-            if (
-                conditional_image.company_id == self.company_id
-                or self.company_id
-                and not conditional_image.company_id
-            ):
-                return bool(
-                    safe_eval(conditional_image.selector or "True", {"object": self})
+            return bool(
+                safe_eval(
+                    conditional_image.selector or "True",
+                    # To avoid company access issue, we set the object to
+                    # allow searching outside the company/user rules
+                    {"object": self},
                 )
-        return False
+            )
+        return True
 
     def _compute_images(self):
-        if "company_id" in self._fields:
-            search_clause = [("model_name", "=", self._name)]
-        else:
-            # If inherited object doesn't have a `company_id` field,
-            # remove the items with a company defined and the related checks
-            search_clause = [
-                ("model_name", "=", self._name),
-                ("company_id", "=", False),
-            ]
-
-        conditional_images = self.env["conditional.image"].search(
-            search_clause, order="company_id, selector"
+        all_images = (
+            self.sudo()
+            .env["conditional.image"]
+            .search(
+                [
+                    ("model_name", "=", self._name),
+                ],
+                order="sequence",
+            )
         )
-
+        default_image = all_images.filtered(lambda ci: ci.default)
+        conditional_images = all_images - default_image
         for record in self:
             images_found = conditional_images.filtered(
                 lambda img: record._conditional_image_evaluate_selector(img)
             )
             values = {
-                "image_1920": False,
-                "image_1024": False,
-                "image_512": False,
-                "image_256": False,
-                "image_128": False,
+                "image_1920": default_image.image_1920 if default_image else False,
+                "image_1024": default_image.image_1024 if default_image else False,
+                "image_512": default_image.image_512 if default_image else False,
+                "image_256": default_image.image_256 if default_image else False,
+                "image_128": default_image.image_128 if default_image else False,
             }
             if images_found:
                 image = images_found[0]
@@ -63,4 +64,4 @@ class ConditionalImageConsumerMixin(models.AbstractModel):
                     "image_256": image.image_256,
                     "image_128": image.image_128,
                 }
-            record.update(values)
+            record.write(values)
