@@ -12,6 +12,22 @@ Get the details:
 
 .. image:: ../static/description/log.png
 
+Check the User Sessions in the `Settings / Technical / Audit / User Sessions` menu.
+
+.. image:: ../static/description/user_sessions.png
+
+Get the User session details:
+
+.. image:: ../static/description/user_session.png
+
+Check the HTTP requests in the `Settings / Technical / Audit / HTTP requests` menu.
+
+.. image:: ../static/description/http_requests.png
+
+Get the HTTP request details:
+
+.. image:: ../static/description/http_request.png
+
 A scheduled action exists to delete logs older than 6 months (180 days)
 automatically but is not enabled by default.
 To activate it and/or change the delay, go to the
