@@ -10,3 +10,11 @@
 .base_changeset_popover {
     max-width: 100%;
 }
+// .popover has z-index: 1060, we need to change it and set z-index of other
+// parts so that it does not overlap.
+.popover {
+    z-index: 1 !important;
+}
+html .o_web_client > .o_action_manager > .o_action > .o_control_panel {
+    z-index: 2;
+}
