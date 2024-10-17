@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+        <record model="mail.template" id="generate_password_template">
+            <field name="name">Generate Password</field>
+            <field name="model_id" ref="base.model_res_users" />
+            <field
+            name="email_from"
+        ><![CDATA[${object.company_id.name} <${(object.company_id.email or user.email)|safe}>]]></field>
+            <field name="email_to">${object.email|safe}</field>
+            <field name="subject">Odoo - Password And Login Information</field>
+            <field
+            name="body_html"
+        ><![CDATA[
+Your Odoo credentials have been set:
+<ul>
+<li>Login : ${object.login}</li>
+<li>Password : ${ctx.get('generated_password')}</li>
+</ul>
+Please,
+<ul>
+<li>remember this password and delete this email;</li>
+<li>Communicate the password to your team, if there are many people that are using the same credentials;</li>
+</ul>]]>
+            </field>
+        </record>
+
+</odoo>

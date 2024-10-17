@@ -1,0 +1,72 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* auth_generate_password
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-12-09 12:53+0000\n"
+"PO-Revision-Date: 2014-12-09 12:53+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: auth_generate_password
+#: model:email.template,body_html:auth_generate_password.generate_password_template
+msgid "\n"
+"Your Odoo credentials has been changed:\n"
+"<ul>\n"
+"<li>Login : ${object.login}</li>\n"
+"<li>New Password : ${object.password}</li>\n"
+"</ul>\n"
+"Please,\n"
+"<ul>\n"
+"<li>remember this password and delete this email;</li>\n"
+"<li>Communicate the password to your team, if there are many people that are using the same credentials;</li>\n"
+"</ul>\n"
+"            "
+msgstr "\n"
+"Vos identifiants Odoo ont changés :\n"
+"<ul>\n"
+"<li>Login : ${object.login}</li>\n"
+"<li>Nouveau Mot de passe : ${object.password}</li>\n"
+"</ul>\n"
+"Merci de,\n"
+"<ul>\n"
+"<li>vous souvenir de ce mot de passe et de supprimer cet email ;</li>\n"
+"<li>de communiquer ce mot de passe à votre équipe, si plusieurs personnes utilisent les même identifiants;</li>\n"
+"</ul>\n"
+"            "
+
+#. module: auth_generate_password
+#: code:addons/auth_generate_password/model/res_users.py:48
+#, python-format
+msgid "Cannot send email: user has no email address."
+msgstr "Impossible d'envoyer un email : l'utilisateur n'a pas d'adresse."
+
+#. module: auth_generate_password
+#: view:res.users:0
+msgid "Generate Password and Send Mail"
+msgstr "Générer un mot de passe et envoyer un email"
+
+#. module: auth_generate_password
+#: model:email.template,subject:auth_generate_password.generate_password_template
+msgid "Odoo - Password Changed"
+msgstr "Odoo - Mot de passe changé"
+
+#. module: auth_generate_password
+#: code:_description:0
+#: model:ir.model,name:auth_generate_password.model_res_users
+#, python-format
+msgid "Users"
+msgstr "Utilisateurs"
+
+#. module: auth_generate_password
+#: view:res.users:0
+msgid "base.group_system"
+msgstr "base.group_system"
+
