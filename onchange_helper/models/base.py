@@ -20,6 +20,17 @@ class Base(models.AbstractModel):
                 new_values[fieldname] = value
         return new_values
 
+    def _check_field_is_editable(self, field):
+        if field.readonly:
+            return False
+        elif field._related_comodel_name:
+            return self.env["ir.model.access"].check(
+                field._related_comodel_name, "write", raise_exception=False
+            )
+        elif field.groups:
+            return self.user_has_groups(field.groups)
+        return True
+
     @api.model
     def play_onchanges(self, values, onchange_fields):
         """
@@ -33,7 +44,14 @@ class Base(models.AbstractModel):
         # _onchange_spec() will return onchange fields from the default view
         # we need all fields in the dict even the empty ones
         # otherwise 'onchange()' will not apply changes to them
+        editable_fields = [
+            (field_name, field)
+            for field_name, field in self._fields.items()
+            if self._check_field_is_editable(field)
+        ]
         onchange_specs = {field_name: "1" for field_name, field in self._fields.items()}
+        editable_fields_name = [x[0] for x in editable_fields]
+        onchange_fields = [field_name for field_name in editable_fields_name]
         all_values = values.copy()
         # If self is a record (play onchange on existing record)
         # we take the value of the field
@@ -41,10 +59,7 @@ class Base(models.AbstractModel):
         if self:
             self.ensure_one()
             record_values = self._convert_to_write(
-                {
-                    field_name: self[field_name]
-                    for field_name, field in self._fields.items()
-                }
+                {field_name: self[field_name] for field_name, field in editable_fields}
             )
         else:
             # We get default values, they may be used in onchange
