@@ -10,6 +10,7 @@ import traceback
 from contextlib import contextmanager
 from datetime import datetime, timedelta
 from glob import iglob
+from base64 import decodebytes
 
 from odoo import _, api, exceptions, fields, models, tools
 from odoo.exceptions import UserError
@@ -20,6 +21,10 @@ try:
     import pysftp
 except ImportError:  # pragma: no cover
     _logger.debug("Cannot import pysftp")
+try:
+    import paramiko
+except ImportError:  # pragma: no cover
+    _logger.debug("Cannot import paramiko")
 
 
 class DbBackup(models.Model):
@@ -85,6 +90,10 @@ class DbBackup(models.Model):
         "Private key location",
         help="Path to the private key file. Only the Odoo user should have "
         "read permissions for that file.",
+    )
+    host_public_key = fields.Char(
+        "Host public key",
+        help="The hosts public key. Can be obtained with e.g. 'ssh-keyscan 202.54.1.5'",
     )
 
     backup_format = fields.Selection(
@@ -293,6 +302,14 @@ class DbBackup(models.Model):
         _logger.debug(
             "Trying to connect to sftp://%(username)s@%(host)s:%(port)d", extra=params
         )
+
+        if self.host_public_key and hasattr(pysftp, 'CnOpts'):
+            key = paramiko.RSAKey(data=decodebytes(self.host_public_key.encode()))
+            # Added here this "fake" knownhosts file in order to prevent an exception for empty known host files
+            cnopts = pysftp.CnOpts(knownhosts='ihopefullydontexist')
+            cnopts.hostkeys.add(self.sftp_host, 'ssh-rsa', key)
+            params["cnopts"] = cnopts
+
         if self.sftp_private_key:
             params["private_key"] = self.sftp_private_key
             if self.sftp_password:
