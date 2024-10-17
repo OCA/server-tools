@@ -73,6 +73,8 @@ jobs:
         run: manifestoo -d . check-dev-status --default-dev-status=Beta
       - name: Initialize test db
         run: oca_init_test_database
+      - name: Config server wide config
+        run: echo "server_wide_modules=base,web,force_https_redirection" >> /etc/odoo.cfg
       - name: Run tests
         run: oca_run_tests
       - uses: codecov/codecov-action@v4
