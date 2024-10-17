@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!-- Copyright 2021 Ecosoft
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+  <record id="res_users_view_form" model="ir.ui.view">
+    <field name="name">hr.user.preferences.view.form.request.inherit</field>
+    <field name="model">res.users</field>
+    <field name="inherit_id" ref="hr.res_users_view_form_profile" />
+    <field name="arch" type="xml">
+      <header position="inside">
+        <button
+                    name="%(request_flow.request_category_action_new_request)d"
+                    string="Request Flow"
+                    type="action"
+                    class="btn btn-primary"
+                />
+      </header>
+    </field>
+  </record>
+</odoo>

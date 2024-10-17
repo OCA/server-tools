@@ -1,0 +1,23 @@
+<odoo noupdate="1">
+
+    <record id="request_category_data_general_request" model="request.category">
+        <field name="name">General Request</field>
+        <field
+            name="image"
+            type="base64"
+            file="request_flow/static/src/img/checklist-svgrepo-com.svg"
+        />
+        <field name="sequence">10</field>
+        <field name="has_date">optional</field>
+        <field name="has_period">optional</field>
+        <field name="has_product">optional</field>
+        <field name="has_quantity">optional</field>
+        <field name="has_amount">optional</field>
+        <field name="has_reference">optional</field>
+        <field name="has_partner">optional</field>
+        <field name="has_location">optional</field>
+        <field name="has_document">optional</field>
+        <field name="is_manager_approver">True</field>
+    </record>
+
+</odoo>

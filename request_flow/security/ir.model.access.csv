@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_request_request,access_request_request,model_request_request,,1,1,1,1
+access_request_request_user,access_request_request,model_request_request,group_request_user,1,1,1,1
+access_request_request_manager,access_request_request,model_request_request,group_request_manager,1,1,1,1
+access_request_category,access_request_category,model_request_category,,1,0,0,0
+access_request_category_user,access_request_category,model_request_category,group_request_user,1,0,0,0
+access_request_category_manager,access_request_category,model_request_category,group_request_manager,1,1,1,1
+access_request_product_line_user,access_request_product_line,model_request_product_line,,1,1,1,1
+access_request_product_line_manager,access_request_product_line,model_request_product_line,,1,1,1,1
+access_request_category_doc_option,access_request_category_doc_option,model_request_category_child_doc_option,,1,0,0,0
+access_request_child_doc,access_request_child_doc,model_request_child_doc,,1,0,0,0
