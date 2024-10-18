@@ -5,6 +5,7 @@ import logging
 
 from werkzeug.exceptions import NotFound
 
+from odoo.exceptions import ValidationError
 from odoo.tests import TransactionCase
 
 from odoo.addons.monitoring.controllers.main import MonitoringHome
@@ -111,11 +112,63 @@ class TestMonitoring(TransactionCase):
     def test_controller(self):
         with MockRequest(self.env) as request_mock:
             request_mock.not_found = NotFound
-            response = self.controller.monitoring("invalid")
-            self.assertEqual(response.status_code, 404)
+            with self.assertRaises(NotFound):
+                self.controller.monitoring("invalid")
 
             response = self.controller.monitoring(self.script.token)
             self.assertEqual(response.status_code, 200)
 
             response = self.controller.monitoring(self.monitoring.token)
             self.assertEqual(response.status_code, 200)
+
+    def test_formatting_headers(self):
+        self.monitoring.output_format = "json"
+        self.assertEqual(
+            self.monitoring.response_headers().get("Content-Type"),
+            "application/json",
+        )
+
+        self.monitoring.output_format = "prometheus"
+        self.assertEqual(
+            self.monitoring.response_headers().get("Content-Type"),
+            "text/plain",
+        )
+
+        with self.assertRaises(NotImplementedError):
+            self.monitoring.output_format = ""
+            self.monitoring.response_headers()
+
+    def test_prometheus_configuration(self):
+        self.monitoring.output_format = "prometheus"
+        self.monitoring._check_prometheus_metric()
+
+        with self.assertRaises(ValidationError):
+            self.monitoring.prometheus_label = "invalid!"
+
+        self.monitoring.prometheus_label = "valid"
+        with self.assertRaises(ValidationError):
+            self.monitoring.prometheus_metric = "invalid!"
+
+    def test_prometheus_formatting(self):
+        self.monitoring.output_format = "prometheus"
+        result = self.monitoring.validate_and_format()
+
+        metric = self.monitoring.prometheus_metric
+        self.assertIn(f"HELP {metric}_value", result)
+        self.assertIn(f"TYPE {metric}_value", result)
+        self.assertIn(f"HELP {metric}_warning", result)
+        self.assertIn(f"TYPE {metric}_warning", result)
+        self.assertIn(f"HELP {metric}_critical", result)
+        self.assertIn(f"TYPE {metric}_critical", result)
+
+        self.assertEqual(
+            self.monitoring.format_prometheus_line(f"{metric}_value", value=1),
+            f"{metric}_value 1",
+        )
+
+        self.assertEqual(
+            self.monitoring.format_prometheus_line(
+                f"{metric}_value", value=1, labels={"check": "abc", "test": "def"}
+            ),
+            '%s_value{check="abc",test="def"} 1' % metric,
+        )
