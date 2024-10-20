@@ -1,0 +1,60 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * base_technical_user
+#
+# Translators:
+# Paolo Valier <paolo.valier@hotmail.it>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-01-06 02:25+0000\n"
+"PO-Revision-Date: 2024-01-02 16:34+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: base_technical_user
+#: model:ir.model,name:base_technical_user.model_base
+msgid "Base"
+msgstr "Base"
+
+#. module: base_technical_user
+#: model:ir.model,name:base_technical_user.model_res_company
+msgid "Companies"
+msgstr "Aziende"
+
+#. module: base_technical_user
+#: model_terms:ir.ui.view,arch_db:base_technical_user.res_company_view_form_inherit_base_technical_user
+msgid "Configuration"
+msgstr "Configurazione"
+
+#. module: base_technical_user
+#: model_terms:ir.ui.view,arch_db:base_technical_user.res_company_view_form_inherit_base_technical_user
+msgid "Technical Parameters"
+msgstr "Parametri Tecnici"
+
+#. module: base_technical_user
+#: model:ir.model.fields,field_description:base_technical_user.field_res_company__user_tech_id
+msgid "Technical User"
+msgstr "Utente tecnico"
+
+#. module: base_technical_user
+#. odoo-python
+#: code:addons/base_technical_user/models/models.py:0
+#, python-format
+msgid "The technical user is missing in the company {}"
+msgstr "Manca l'utente tecnico nell'azienda {}"
+
+#. module: base_technical_user
+#: model:ir.model.fields,help:base_technical_user.field_res_company__user_tech_id
+msgid "This user can be used by process for technical purpose"
+msgstr "Questo utente può essere usato dai processi per motvi tecnici"
+
+#~ msgid "Smart Search"
+#~ msgstr "Ricerca intelligente"
