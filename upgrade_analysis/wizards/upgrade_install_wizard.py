@@ -24,6 +24,7 @@ class UpgradeInstallWizard(models.TransientModel):
     module_ids = fields.Many2many(
         comodel_name="ir.module.module",
         domain=lambda x: x._module_ids_domain(),
+        string="Modules",
     )
 
     module_qty = fields.Integer(
@@ -34,7 +35,7 @@ class UpgradeInstallWizard(models.TransientModel):
     def _module_ids_domain(self, extra_domain=None):
         domain = [
             "&",
-            ("state", "not in", ["uninstallable", "unknown"]),
+            ("state", "not in", ["installed", "uninstallable", "unknown"]),
             ("name", "not in", BLACKLIST_MODULES),
         ]
         if extra_domain:
