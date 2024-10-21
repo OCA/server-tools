@@ -1,5 +1,6 @@
 # Copyright - 2015-2018 Therp BV <https://acme.com>.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# pylint: disable=method-required-super
 from odoo.tests.common import TransactionCase
 
 from ..match_algorithm import email_domain
@@ -36,17 +37,30 @@ class MockConnection:
         """Mock selecting a folder."""
         return ("OK",)
 
-    def store(self, msgid, msg_item, value):
+    def create(self, path):
+        """Mock creating a folder."""
+        return ("OK",)
+
+    def store(self, message_uid, msg_item, value):
         """Mock store command."""
         return "OK"
 
-    def fetch(self, msgid, parts):
+    def copy(self, message_uid, folder_path):
+        """Mock copy command."""
+        return "OK"
+
+    def fetch(self, message_uid, parts):
         """Return RFC822 formatted message."""
         return ("OK", MSG_BODY)
 
     def search(self, charset, criteria):
-        """Return some msgid's."""
+        """Return some message uid's."""
         return ("OK", ["123 456"])
+
+    def uid(self, command, *args):
+        """Return from the appropiate mocked method."""
+        method = getattr(self, command)
+        return method(*args)
 
 
 class TestMatchAlgorithms(TransactionCase):
@@ -155,12 +169,18 @@ class TestMatchAlgorithms(TransactionCase):
         folder = self.folder
         folder.match_algorithm = "email_exact"
         connection = MockConnection()
-        msgid = "<485a8041-d560-a981-5afc-d31c1f136748@acme.com>"
-        folder.apply_matching(connection, msgid)
+        message_uid = "<485a8041-d560-a981-5afc-d31c1f136748@acme.com>"
+        folder.apply_matching(connection, message_uid)
 
     def test_retrieve_imap_folder_domain(self):
         folder = self.folder
         folder.match_algorithm = "email_domain"
+        connection = MockConnection()
+        folder.retrieve_imap_folder(connection)
+
+    def test_archive_messages(self):
+        folder = self.folder
+        folder.archive_path = "archived_messages"
         connection = MockConnection()
         folder.retrieve_imap_folder(connection)
 
