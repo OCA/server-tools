@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="cleanup_create_indexes_wizard_view_form" model="ir.ui.view">
+        <field name="model">cleanup.create_indexes.wizard</field>
+        <field name="inherit_id" ref="form_purge_wizard" />
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <button name="purge_all" position="attributes">
+                <attribute name="string">Create all</attribute>
+            </button>
+            <button name="purge" position="attributes">
+                <attribute name="string">Create</attribute>
+            </button>
+        </field>
+    </record>
+
+    <record id="cleanup_create_indexes_wizard_action" model="ir.actions.server">
+        <field name="name">Create missing indexes</field>
+        <field name="type">ir.actions.server</field>
+        <field name="state">code</field>
+        <field
+            name="model_id"
+            ref="database_cleanup.model_cleanup_create_indexes_wizard"
+        />
+        <field
+            name="code"
+        >action = env.get('cleanup.create_indexes.wizard').get_wizard_action()</field>
+    </record>
+
+    <record id="cleanup_create_indexes_line_view_tree" model="ir.ui.view">
+        <field name="model">cleanup.create_indexes.line</field>
+        <field name="inherit_id" ref="tree_purge_line" />
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <button name="purge" position="attributes">
+                <attribute name="string">Create this index</attribute>
+                <attribute name="icon">gtk-add</attribute>
+            </button>
+        </field>
+    </record>
+
+    <record id="cleanup_create_indexes_line_action" model="ir.actions.server">
+        <field name="name">Create</field>
+        <field name="type">ir.actions.server</field>
+        <field name="state">code</field>
+        <field
+            name="model_id"
+            ref="database_cleanup.model_cleanup_create_indexes_line"
+        />
+        <field name="code">records.purge()</field>
+        <field
+            name="binding_model_id"
+            ref="database_cleanup.model_cleanup_create_indexes_line"
+        />
+    </record>
+</odoo>
