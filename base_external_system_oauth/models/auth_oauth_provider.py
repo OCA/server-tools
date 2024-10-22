@@ -7,7 +7,7 @@ import logging
 import requests
 from requests.auth import HTTPBasicAuth
 
-from odoo import fields, models
+from odoo import _, fields, models
 from odoo.exceptions import UserError
 
 _logger = logging.getLogger(__name__)  # pylint: disable=invalid-name
@@ -46,7 +46,7 @@ class AuthOAuthProvider(models.Model):
         }
         basic = HTTPBasicAuth(self.client_id, self.client_secret)
         response = requests.post(
-            url=self.auth_endpoint, params=login_params, auth=basic
+            url=self.auth_endpoint, params=login_params, timeout=60, auth=basic
         )
         self._check_response(response)
         return response.json()["access_token"]
@@ -68,7 +68,7 @@ class AuthOAuthProvider(models.Model):
         }
         login_headers = {"Content-Type": "application/x-www-form-urlencoded"}
         response = requests.post(
-            url=login_url, headers=login_headers, data=login_params
+            url=login_url, headers=login_headers, data=login_params, timeout=60
         )
         self._check_response(response)
         return response.json()["access_token"]
@@ -77,9 +77,11 @@ class AuthOAuthProvider(models.Model):
         """Check response from oauth provider."""
         if response.status_code != 200:
             raise UserError(
-                "Error at login to OAuth provider:\n"
-                "Status_code: %(status_code)s\n"
-                "Response: %(response)s"
+                _(
+                    "Error at login to OAuth provider:\n"
+                    "Status_code: %(status_code)s\n"
+                    "Response: %(response)s"
+                )
                 % {"status_code": response.status_code, "response": response.content}
             )
         _logger.debug(
