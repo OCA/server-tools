@@ -17,7 +17,20 @@ class ExternalSystemAdapterOs(models.AbstractModel):
     _inherit = "external.system.adapter"
     _description = "External System OS"
 
-    previous_dir = None
+    def get_previous_dir(self):
+        """Get previous_dir from adapter_memory."""
+        return self.env.context["adapter_memory"].get("previous_dir", None)
+
+    def set_previous_dir(self, value):
+        """Store previous_dir in adapter_memor."""
+        self.env.context["adapter_memory"]["previous_dir"] = value
+
+    def del_previous_dir(self):
+        """Get system from environment."""
+        if "previous_dir" in self.env.context["adapter_memory"]:
+            del self.env.context["adapter_memory"]["previous_dir"]
+
+    previous_dir = property(get_previous_dir, set_previous_dir, del_previous_dir)
 
     @api.model
     def external_get_client(self):
