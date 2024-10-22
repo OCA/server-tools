@@ -5,7 +5,7 @@
     "name": "Upgrade Analysis",
     "summary": "Performs a difference analysis between modules"
     " installed on two different Odoo instances",
-    "version": "16.0.1.0.2",
+    "version": "16.0.1.1.0",
     "category": "Migration",
     "author": "Therp BV, Opener B.V., GRAP, Odoo Community Association (OCA)",
     "maintainers": ["StefanRijnhart", "legalsylvain"],
