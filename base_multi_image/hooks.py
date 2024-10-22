@@ -3,12 +3,10 @@
 
 import logging
 
-from odoo import SUPERUSER_ID, api
-
 _logger = logging.getLogger(__name__)
 
 
-def post_init_hook_for_submodules(cr, model, field):
+def post_init_hook_for_submodules(env, model, field):
     """Moves images from single to multi mode.
 
     Feel free to use this as a ``post_init_hook`` for submodules.
@@ -23,15 +21,14 @@ def post_init_hook_for_submodules(cr, model, field):
         Binary field that had the images in that :param:`model`, like
         ``image``.
     """
-    env = api.Environment(cr, SUPERUSER_ID, {})
     table = env[model]._table
     image_obj = env["base_multi_image.image"]
-    with cr.savepoint():
-        column_exists = table_has_column(cr, table, field)
+    with env.cr.savepoint():
+        column_exists = table_has_column(env, table, field)
         if column_exists:
-            cr.execute("SELECT id FROM %(table)s WHERE %(field)s IS NOT NULL")
+            env.cr.execute("SELECT id FROM %(table)s WHERE %(field)s IS NOT NULL")
         else:
-            cr.execute(
+            env.cr.execute(
                 """
                     SELECT res_id
                     FROM ir_attachment
@@ -44,7 +41,7 @@ def post_init_hook_for_submodules(cr, model, field):
                     "model": model,
                 },
             )
-        record_ids = [row[0] for row in cr.fetchall()]
+        record_ids = [row[0] for row in env.cr.fetchall()]
         for record in env[model].browse(record_ids):
             image_obj.create(
                 {
@@ -56,7 +53,7 @@ def post_init_hook_for_submodules(cr, model, field):
             )
 
 
-def uninstall_hook_for_submodules(cr, model, field=None):
+def uninstall_hook_for_submodules(env, model, field=None):
     """Moves images from multi to single mode and remove multi-images for a
     given model.
 
@@ -74,8 +71,7 @@ def uninstall_hook_for_submodules(cr, model, field=None):
         Binary field that had the images in that :param:`model`, like
         ``image``.
     """
-    env = api.Environment(cr, SUPERUSER_ID, {})
-    with cr.savepoint():
+    with env.cr.savepoint():
         image_obj = env["base_multi_image.image"]
         images = image_obj.search([("owner_model", "=", model)], order="sequence, id")
         if images and field:
@@ -90,7 +86,7 @@ def uninstall_hook_for_submodules(cr, model, field=None):
             # fields.Binary(), save the binary content directly to the table
             if not field_field.attachment:
                 save_directly_to_table(
-                    cr,
+                    env,
                     model_obj,
                     field,
                     field_field,
@@ -104,7 +100,7 @@ def uninstall_hook_for_submodules(cr, model, field=None):
         images.unlink()
 
 
-def save_directly_to_table(cr, Model, field, Field, main_images):
+def save_directly_to_table(env, Model, field, Field, main_images):
     fields = []
     if field and not Field.attachment:
         fields.append(field + " = " + "%(image)s")
@@ -117,14 +113,14 @@ def save_directly_to_table(cr, Model, field, Field, main_images):
         params = {"id": main_image.owner_id}
         if field and not Field.attachment:
             params["image"] = main_image.image_1920
-        cr.execute(query, params)  # pylint: disable=sql-injection
+        env.cr.execute(query, params)  # pylint: disable=sql-injection
 
 
-def table_has_column(cr, table, field):
+def table_has_column(env, table, field):
     query = """
         SELECT %(field)s
         FROM information_schema.columns
         WHERE table_name=%(table)s and column_name=%(field)s;
     """
-    cr.execute(query, {"table": table, "field": field})
-    return bool(cr.fetchall())
+    env.cr.execute(query, {"table": table, "field": field})
+    return bool(env.cr.fetchall())
