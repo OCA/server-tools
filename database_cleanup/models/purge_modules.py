@@ -88,8 +88,6 @@ class CleanupPurgeWizardModule(models.TransientModel):
                 continue
             res.append((0, 0, {"name": module.name}))
 
-        purge_lines.purge()
-
         if not res:
             raise UserError(_("No modules found to purge"))
         return res
