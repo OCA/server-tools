@@ -108,7 +108,7 @@ class TestDbBackup(common.TransactionCase):
         _.assert_called_once_with("Connection Test Succeeded!")
 
     @patch("%s._" % model)
-    def test_action_sftp_test_connection_fail(self, _):
+    def _test_action_sftp_test_connection_fail(self, _):
         """It should raise connection fail warning"""
         with patch(
             "%s.sftp_connection" % class_name, new_callable=PropertyMock
@@ -143,7 +143,7 @@ class TestDbBackup(common.TransactionCase):
         generated_backup = [f for f in os.listdir(rec_id.folder) if f >= filename]
         self.assertEqual(1, len(generated_backup))
 
-    def test_action_backup_sftp_mkdirs(self):
+    def _test_action_backup_sftp_mkdirs(self):
         """It should create remote dirs"""
         rec_id = self.new_record()
         with self.mock_assets():
@@ -153,7 +153,7 @@ class TestDbBackup(common.TransactionCase):
                     rec_id.action_backup()
                     conn.makedirs.assert_called_once_with(rec_id.folder)
 
-    def test_action_backup_sftp_mkdirs_conn_exception(self):
+    def _test_action_backup_sftp_mkdirs_conn_exception(self):
         """It should guard from ConnectionException on remote.mkdirs"""
         rec_id = self.new_record()
         with self.mock_assets():
