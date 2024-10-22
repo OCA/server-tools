@@ -3,7 +3,7 @@
 
 import copy
 
-from odoo import _, api, fields, models, modules
+from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
 FIELDS_BLACKLIST = [
@@ -223,7 +223,7 @@ class AuditlogRule(models.Model):
                     delattr(type(model_model), "auditlog_ruled_%s" % method)
                     updated = True
         if updated:
-            modules.registry.Registry(self.env.cr.dbname).signal_changes()
+            self._update_registry()
 
     @api.model_create_multi
     def create(self, vals_list):
@@ -236,7 +236,7 @@ class AuditlogRule(models.Model):
         new_records = super().create(vals_list)
         updated = [record._register_hook() for record in new_records]
         if any(updated):
-            modules.registry.Registry(self.env.cr.dbname).signal_changes()
+            self._update_registry()
         return new_records
 
     def write(self, vals):
@@ -248,7 +248,7 @@ class AuditlogRule(models.Model):
             vals.update({"model_name": model.name, "model_model": model.model})
         res = super().write(vals)
         if self._register_hook():
-            modules.registry.Registry(self.env.cr.dbname).signal_changes()
+            self._update_registry()
         return res
 
     def unlink(self):
@@ -735,3 +735,9 @@ class AuditlogRule(models.Model):
                 if isinstance(fieldvalue, models.BaseModel) and not fieldvalue:
                     vals[fieldname] = False
         return vals_list
+
+    def _update_registry(self):
+        """Update the registry after a modification on automation rules."""
+        if self.env.registry.ready and not self.env.context.get("import_file"):
+            # notify other workers
+            self.env.registry.registry_invalidated = True
