@@ -38,14 +38,16 @@ class ExternalSystemAdapterHTTP(models.AbstractModel):
         """Pass transparantly to request.get, but check response."""
         url = self._get_url(endpoint=endpoint)
         _logger.debug("Will get data from %s", url)
-        response = requests.get(url, params=params, **kwargs)
+        timeout = kwargs.pop("timeout", 60)  # default timeout a full minute.
+        response = requests.get(url, params=params, timeout=timeout, **kwargs)
         return self._return_checked_response(endpoint, response)
 
     def post(self, endpoint=None, data=None, json=None, **kwargs):
         """Post data to http server."""
         url = self._get_url(endpoint=endpoint)
         _logger.debug("Will post data to %s", url)
-        response = requests.post(url, data=data, json=json, **kwargs)
+        timeout = kwargs.pop("timeout", 60)  # default timeout a full minute.
+        response = requests.post(url, data=data, json=json, timeout=timeout, **kwargs)
         return self._return_checked_response(endpoint, response)
 
     def _get_url(self, endpoint=None, url_suffix=None):
