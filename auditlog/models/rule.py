@@ -737,7 +737,8 @@ class AuditlogRule(models.Model):
         return vals_list
 
     def _update_registry(self):
-        """Update the registry after a modification on automation rules."""
+        """Force a registry reload after rule change"""
+        # this code comes from `base_automation` which has a similar need
         if self.env.registry.ready and not self.env.context.get("import_file"):
             # notify other workers
             self.env.registry.registry_invalidated = True
