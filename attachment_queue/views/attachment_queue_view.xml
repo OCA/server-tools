@@ -23,6 +23,9 @@
                     />
                 </header>
             </xpath>
+            <label for="name" position="before">
+                <div class="oe_button_box" name="button_box" />
+            </label>
             <field name="url" position="after">
                 <field name="date_done" />
                 <field name="state" />
