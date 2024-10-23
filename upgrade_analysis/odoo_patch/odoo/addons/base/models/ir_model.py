@@ -1,4 +1,5 @@
 from odoo.addons.base.models import ir_model
+from odoo import models
 
 from ...... import upgrade_log
 from .....odoo_patch import OdooPatch
@@ -9,34 +10,30 @@ class IrModelConstraintPatch(OdooPatch):
     method_names = ["_reflect_model"]
 
     def _reflect_model(self, model):
-        """Reflect the _sql_constraints of the given model."""
-
+        """ Reflect the _sql_constraints of the given model. """
         def cons_text(txt):
-            return txt.lower().replace(", ", ",").replace(" (", "(")
+            return txt.lower().replace(', ',',').replace(' (','(')
 
         # map each constraint on the name of the module where it is defined
         constraint_module = {
             constraint[0]: cls._module
-            for cls in reversed(type(model).mro())
-            if not getattr(cls, "pool", None)
-            for constraint in getattr(cls, "_local_sql_constraints", ())
+            for cls in reversed(self.env.registry[model._name].mro())
+            if models.is_definition_class(cls)
+            for constraint in getattr(cls, '_local_sql_constraints', ())
         }
 
         data_list = []
-        for key, definition, message in model._sql_constraints:
-            conname = f"{model._table}_{key}"
+        for (key, definition, message) in model._sql_constraints:
+            conname = '%s_%s' % (model._table, key)
             module = constraint_module.get(key)
-            record = self._reflect_constraint(
-                model, conname, "u", cons_text(definition), module, message
-            )
+            record = self._reflect_constraint(model, conname, 'u', cons_text(definition), module, message)
+            xml_id = '%s.constraint_%s' % (module, conname)
             if record:
-                xml_id = f"{module}.constraint_{conname}"
                 data_list.append(dict(xml_id=xml_id, record=record))
-        if data_list:
-            self.env["ir.model.data"]._update_xmlids(data_list)
+            else:
+                self.env['ir.model.data']._load_xmlid(xml_id)
             # Begin OpenUpgrade addition
-            for data in data_list:
-                xml_id = data.get("xml_id")
-                module = xml_id.split(".")[0]
-                upgrade_log.log_xml_id(self.env.cr, module, xml_id)
+            upgrade_log.log_xml_id(self.env.cr, module, xml_id)
             # End OpenUpgrade addition
+        if data_list:
+            self.env['ir.model.data']._update_xmlids(data_list)
