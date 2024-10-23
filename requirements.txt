@@ -10,3 +10,4 @@ pysftp
 sentry_sdk>=1.17.0,<2
 xlrd
 xlwt
+xmlrunner
