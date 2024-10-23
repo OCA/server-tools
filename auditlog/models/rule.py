@@ -523,10 +523,16 @@ class AuditlogRule(models.Model):
                 "http_session_id": http_session_model.current_http_session(),
             }
             vals.update(additional_log_values or {})
-            log = log_model.create(vals)
+
             diff = DictDiffer(
                 new_values.get(res_id, EMPTY_DICT), old_values.get(res_id, EMPTY_DICT)
             )
+            changed_fields = diff.changed() - set(FIELDS_BLACKLIST)
+            if not changed_fields and method == "write":
+                continue
+
+            log = log_model.create(vals)
+
             if method == "create":
                 self._create_log_line_on_create(
                     log, diff.added(), new_values, fields_to_exclude
