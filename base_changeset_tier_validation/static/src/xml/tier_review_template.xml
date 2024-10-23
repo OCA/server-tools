@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates>
+    <t t-extend="tier.review.ReviewsTable">
+        <t t-jquery="th[name='th_comment']" t-operation="before">
+            <th name="th_summary" class="text-left">Summary</th>
+        </t>
+        <t t-jquery="td[name='td_comment']" t-operation="before">
+            <td name="td_summary" class="text-left">
+                <t t-if="review.summary">
+                    <span t-esc="review.summary" />
+                </t>
+            </td>
+        </t>
+    </t>
+    <t t-name="tier.review.PendingTierReviewsContent">
+        <div class="panel-group PendingTierReviewsContent">
+            <div class="o_review" />
+        </div>
+    </t>
+    <t t-name="tier.review.PendingTierReviews">
+        <div t-foreach="reviews" t-as="review" class="alert alert-warning" role="alert">
+            <p>
+                <field name="can_review" invisible="1" />
+                <button
+                    type="button"
+                    class="btn oe_inline oe_button btn-success validate_tier"
+                    t-att-data-review_id="review.id"
+                >
+                    <i class="fa fa-fw o_button_icon fa-thumbs-up" />
+                    <span>Valid</span>
+                </button>
+                <button
+                    type="button"
+                    class="btn oe_inline oe_button btn-danger reject_tier"
+                    t-att-data-review_id="review.id"
+                >
+                    <i class="fa fa-fw o_button_icon fa-thumbs-down" />
+                    <span>Reject</span>
+                </button>
+                <span t-esc="review.summary or review.name" />
+                <a
+                    t-if="review.changeset_ref_display_name"
+                    class="o_form_uri o_field_widget o_readonly_modifier open_changeset_ref"
+                    name="last_pending_changeset_review_ref"
+                    t-att-data-changeset_ref="review.changeset_ref"
+                >
+                    <span t-esc="review.changeset_ref_display_name" />
+                </a>
+            </p>
+        </div>
+    </t>
+    <!-- Hide the buttons if there is a linked revision, in which case the revision
+        and the changes it contains will be accepted/rejected..-->
+    <t t-extend="ChangesetPopover">
+        <t t-jquery="td.pl-4" t-operation="attributes">
+            <attribute
+                name="t-if"
+            >change.user_can_validate_changeset and !change.has_review_ids</attribute>
+        </t>
+    </t>
+</templates>

@@ -29,8 +29,14 @@
                             <field
                                 name="field_id"
                                 options="{'no_create_edit': True, 'no_open': True}"
-                                domain="[('ttype', 'in', ('char', 'selection', 'date', 'datetime', 'float', 'monetary', 'integer', 'text', 'boolean', 'many2one')),
-                                            ('readonly', '=', False)]"
+                                domain="[('ttype', 'in', ('char', 'selection', 'date', 'datetime', 'float', 'monetary', 'integer', 'text', 'boolean', 'one2many', 'many2one'))]"
+                            />
+                            <field name="field_ttype" invisible="1" />
+                            <field name="field_relation" invisible="1" />
+                            <field
+                                name="subfield_ids"
+                                widget="many2many_tags"
+                                attrs="{'invisible': [('field_ttype', '!=', 'one2many')]}"
                             />
                         </group>
                         <group>

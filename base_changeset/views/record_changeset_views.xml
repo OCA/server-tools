@@ -9,6 +9,7 @@
                 <field name="res_id" widget="integer" />
                 <field name="date" />
                 <field name="modified_by_id" />
+                <field name="action" />
                 <field name="state" />
                 <button
                     name="apply"
@@ -38,6 +39,7 @@
                         type="object"
                         class="oe_highlight"
                         states="draft"
+                        groups="base_changeset.group_changeset_user"
                     />
                     <button
                         name="cancel"
@@ -45,6 +47,7 @@
                         type="object"
                         class="oe_highlight"
                         states="draft"
+                        groups="base_changeset.group_changeset_user"
                     />
                     <field
                         name="state"
@@ -53,9 +56,12 @@
                     />
                 </header>
                 <sheet>
-                    <group>
+                    <group name="main_group">
                         <group>
-                            <field name="record_id" />
+                            <field
+                                name="record_id"
+                                attrs="{'invisible': [('record_id', '=', False)]}"
+                            />
                             <field name="model" />
                             <field name="res_id" widget="integer" />
                         </group>
@@ -70,7 +76,11 @@
                             <field name="modified_by_id" />
                         </group>
                     </group>
-                    <group string="Changes">
+                    <group
+                        name="changes_group"
+                        string="Changes"
+                        attrs="{'invisible': [('change_ids', '=', [])]}"
+                    >
                         <field name="change_ids" nolabel="1">
                             <tree>
                                 <field name="field_id" context="{'no_open': True}" />
@@ -82,25 +92,40 @@
                                     name="user_can_validate_changeset"
                                     invisible="1"
                                 />
+                                <field name="is_informative_change" invisible="1" />
                                 <button
                                     name="apply"
                                     string="Apply"
                                     type="object"
                                     icon="fa-plus-circle"
-                                    attrs="{'invisible': [('user_can_validate_changeset', '=', False)]}"
+                                    attrs="{'invisible': ['|', ('user_can_validate_changeset', '=', False), ('is_informative_change', '=', False)]}"
                                 />
                                 <button
                                     name="cancel"
                                     string="Reject"
                                     type="object"
                                     icon="fa-times"
-                                    attrs="{'invisible': [('user_can_validate_changeset', '=', False)]}"
+                                    attrs="{'invisible': ['|', ('user_can_validate_changeset', '=', False), ('is_informative_change', '=', False)]}"
                                 />
                             </tree>
                         </field>
                     </group>
-                    <group>
-                        <field name="note" />
+                    <group
+                        string="Changes"
+                        attrs="{'invisible': [('raw_changes_html', '=', False)]}"
+                    >
+                        <field
+                            name="raw_changes_html"
+                            readonly="1"
+                            nolabel="1"
+                            attrs="{'invisible': [('raw_changes_html', '=', False)]}"
+                        />
+                    </group>
+                    <group name="note_group">
+                        <field
+                            name="note"
+                            attrs="{'invisible': [('note', '=', False)]}"
+                        />
                     </group>
                 </sheet>
             </form>
