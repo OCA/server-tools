@@ -22,11 +22,30 @@
                 <sheet>
                     <group string="Rule">
                         <group colspan="1">
-                            <field name="name" required="1"/>
-                            <field name="model_id"/>
-                            <field name="log_type"/>
-                            <field name="action_id" readonly="1" groups="base.group_no_one"/>
-                            <field name="capture_record" attrs="{'invisible':['|' ,('log_type','!=', 'full'), ('log_unlink','!=', True)]}"/>
+                            <field name="name" required="1" />
+                            <field name="model_id" />
+                            <field name="log_type" />
+                            <field
+                                name="action_id"
+                                readonly="1"
+                                groups="base.group_no_one"
+                            />
+<<<<<<< HEAD
+                            <field
+=======
+                            <field 
+>>>>>>> 84209db52 ([ADD] Backport user and field exclusion in auditlog)
+                                name="capture_record"
+                                attrs="{'invisible':['|' ,('log_type','!=', 'full'), ('log_unlink','!=', True)]}"
+                            />
+                            <field
+                                name="users_to_exclude_ids"
+                                widget="many2many_tags"
+                            />
+                            <field
+                                name="fields_to_exclude_ids"
+                                widget="many2many_tags"
+                            />
                         </group>
                         <group colspan="1">
                             <field name="log_read"/>
