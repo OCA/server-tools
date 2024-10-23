@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base_setup.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='integration']">
+                <div class="col-xs-12 col-md-6 o_setting_box" id="bigquery_settings">
+                    <div class="o_setting_right_pane o_documents_right_pane">
+                        <span class="o_form_label">Google BigQuery</span>
+                        <span
+                            class="fa fa-lg fa-building-o"
+                            title="Values set here are company-specific."
+                            aria-label="Values set here are company-specific."
+                            groups="base.group_multi_company"
+                            role="img"
+                        />
+
+                        <div class="content-group">
+                            <div class="row mt16">
+                                <label
+                                    class="o_form_label col-lg-3 o_light_label"
+                                    for="bigquery_credentials"
+                                    string="Credentials (JSON)"
+                                />
+                                <field name="bigquery_credentials" />
+                            </div>
+                        </div>
+                        <div
+                            class="content-group"
+                            attrs="{'invisible': [('bigquery_project', '=', False)]}"
+                        >
+                            <div class="row mt16">
+                                <label
+                                    class="o_form_label col-lg-3 o_light_label"
+                                    for="bigquery_project"
+                                    string="Project ID"
+                                />
+                                <field name="bigquery_project" />
+                            </div>
+                        </div>
+                        <div class="content-group">
+                            <div class="row mt16">
+                                <label
+                                    class="o_form_label col-lg-3 o_light_label"
+                                    for="bigquery_dataset"
+                                    string="Dataset ID"
+                                />
+                                <field
+                                    name="bigquery_dataset"
+                                    attrs="{'required': [('bigquery_credentials', '!=', False)]}"
+                                />
+                            </div>
+                        </div>
+                        <div class="content-group">
+                            <div class="row mt16">
+                                <label
+                                    class="o_form_label col-lg-3 o_light_label"
+                                    for="bigquery_dataset_location_id"
+                                    string="Dataset Location"
+                                />
+                                <field
+                                    name="bigquery_dataset_location_id"
+                                    attrs="{'required': [('bigquery_credentials', '!=', False)]}"
+                                />
+                            </div>
+                        </div>
+                        <div class="content-group">
+                            <div class="row mt16">
+                                <label
+                                    class="o_form_label col-lg-3 o_light_label"
+                                    for="bigquery_sandbox"
+                                    string="Sandbox"
+                                />
+                                <field name="bigquery_sandbox" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </xpath>
+        </field>
+    </record>
+</odoo>

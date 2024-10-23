@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="onboarding_service_account_step">
+        <t t-call="base.onboarding_step">
+            <t t-set="title">Setup Service Account</t>
+            <t t-set="description">Setup a service account at Google</t>
+            <t t-set="done_icon" t-value="'fa-star'" />
+            <t t-set="done_text">Well done!</t>
+            <t t-set="btn_text">Setup</t>
+            <t t-set="model" t-value="'res.company'" />
+            <t t-set="method" t-value="'action_bigquery_service_account_step'" />
+        </t>
+    </template>
+    <template id="onboarding_credentials_step">
+        <t t-call="base.onboarding_step">
+            <t t-set="title">Configure</t>
+            <t t-set="description">Configure BigQuery credentials (service account)</t>
+            <t t-set="done_icon" t-value="'fa-star'" />
+            <t t-set="done_text">Well done!</t>
+            <t t-set="btn_text">Configure</t>
+            <t t-set="model" t-value="'res.company'" />
+            <t t-set="method" t-value="'action_bigquery_credentials_step'" />
+            <t
+                t-set="state"
+                t-value="state.get('bigquery_onboarding_step_credentials_state')"
+            />
+        </t>
+    </template>
+    <template id="onboarding_models_step">
+        <t t-call="base.onboarding_step">
+            <t t-set="title">Enable synchronization</t>
+            <t t-set="description">Enable BigQuery synchronization for models.</t>
+            <t t-set="done_icon" t-value="'fa-star'" />
+            <t t-set="done_text">Awesome, lets do this!</t>
+            <t t-set="btn_text">Setup</t>
+            <t t-set="model" t-value="'res.company'" />
+            <t t-set="method" t-value="'action_bigquery_models_step'" />
+            <t
+                t-set="state"
+                t-value="state.get('bigquery_onboarding_step_models_state')"
+            />
+        </t>
+    </template>
+
+    <template id="onboarding_panel">
+        <t t-call="base.onboarding_container">
+            <t t-set="classes" t-value="'o_onboarding_violet'" />
+            <t
+                t-set="bg_image"
+                t-value="'/account/static/src/img/account_invoice_onboarding_bg.jpg'"
+            />
+            <t t-set="close_method" t-value="'action_close_bigquery_onboarding'" />
+            <t t-set="close_model" t-value="'res.company'" />
+
+            <t
+                t-call="google_bigquery.onboarding_service_account_step"
+                name="service_account_step"
+            />
+            <t
+                t-call="google_bigquery.onboarding_credentials_step"
+                name="credentials_step"
+            />
+            <t t-call="google_bigquery.onboarding_models_step" name="models_step" />
+        </t>
+    </template>
+</odoo>

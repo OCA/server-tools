@@ -4,6 +4,7 @@ astor
 cryptography==2.6.1
 dataclasses
 dnspython
+google-cloud-bigquery
 josepy
 mako
 odoo_test_helper
