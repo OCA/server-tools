@@ -231,6 +231,8 @@ class AuditlogRule(models.Model):
         model = self.env["ir.model"].sudo().browse(vals["model_id"])
         vals.update({"model_name": model.name, "model_model": model.model})
         new_record = super().create(vals)
+        if new_record.state == 'subscribed' and not new_record.action_id:
+            new_record.subscribe()
         if new_record._register_hook():
             modules.registry.Registry(self.env.cr.dbname).signal_changes()
         return new_record
