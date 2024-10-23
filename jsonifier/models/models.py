@@ -121,15 +121,15 @@ class Base(models.AbstractModel):
             if strict:
                 # let it fail
                 rec._fields[field_name]  # pylint: disable=pointless-statement
-            if not tools.config["test_enable"]:
-                # If running live, log proper error
-                # so that techies can track it down
-                _logger.error(
-                    "%(model)s.%(fname)s not available",
-                    {"model": self._name, "fname": field_name},
-                )
+            else:
+                if not tools.config["test_enable"]:
+                    # If running live, log proper error
+                    # so that techies can track it down
+                    _logger.warning(
+                        "%(model)s.%(fname)s not available",
+                        {"model": self._name, "fname": field_name},
+                    )
                 raise SwallableException()
-
         return True
 
     def _jsonify_record_handle_function(self, rec, field_dict, strict):
