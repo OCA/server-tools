@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2018 ACSONE SA/NV
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.model.access" id="auto_export_access_read">
+        <field name="name">auto.export access read</field>
+        <field name="model_id" ref="auto_export.model_auto_export" />
+        <field name="group_id" ref="auto_export.auto_export_reader" />
+        <field name="perm_read" eval="1" />
+        <field name="perm_create" eval="0" />
+        <field name="perm_write" eval="0" />
+        <field name="perm_unlink" eval="0" />
+    </record>
+    <record model="ir.model.access" id="auto_export_access_full">
+        <field name="name">auto.export access full</field>
+        <field name="model_id" ref="auto_export.model_auto_export" />
+        <field name="group_id" ref="auto_export.auto_export_manager" />
+        <field name="perm_read" eval="1" />
+        <field name="perm_create" eval="1" />
+        <field name="perm_write" eval="1" />
+        <field name="perm_unlink" eval="1" />
+    </record>
+</odoo>

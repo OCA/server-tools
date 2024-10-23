@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2018 ACSONE SA/NV
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.menu" id="auto_export_main_menu">
+        <field name="name">Auto Export</field>
+        <field name="sequence" eval="50" />
+        <field name="web_icon">auto_export,static/description/icon.png</field>
+    </record>
+    <record model="ir.ui.menu" id="auto_export_menu">
+        <field name="name">Templates</field>
+        <field name="parent_id" ref="auto_export.auto_export_main_menu" />
+        <field name="action" ref="auto_export.auto_export_act_window" />
+        <field name="sequence" eval="10" />
+    </record>
+</odoo>

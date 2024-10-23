@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2018 ACSONE SA/NV
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="connector_checkpoint_form_view">
+        <field name="name">connector.checkpoint.form (in auto_export)</field>
+        <field name="model">connector.checkpoint</field>
+        <field name="inherit_id" ref="connector.view_connector_checkpoint_form" />
+        <field name="arch" type="xml">
+            <field name="backend_id" position="after">
+                <field name="description" />
+            </field>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="connector_checkpoint_tree_view">
+        <field name="name">connector.checkpoint.tree (in auto_export)</field>
+        <field name="model">connector.checkpoint</field>
+        <field name="arch" type="xml">
+            <tree create="0" delete="0" edit="0">
+                <field name="description" />
+                <field name="state" />
+                <button
+                    name="reviewed"
+                    type="object"
+                    class="oe_highlight"
+                    icon="fa-check-square-o"
+                    states="need_review"
+                    string="Reviewed"
+                />
+            </tree>
+        </field>
+    </record>
+</odoo>
