@@ -5,9 +5,11 @@
 import json
 import logging
 import os
+from collections import namedtuple
 
-from odoo import _, api, exceptions, models, tools
+from odoo import SUPERUSER_ID, _, api, exceptions, models, tools
 from odoo.modules.module import get_module_path
+from odoo.modules.registry import Registry
 
 from ..addon_hash import addon_hash
 
@@ -196,3 +198,25 @@ class Module(models.Model):
                 "sticky": False,
             },
         }
+
+    def upgrade_changed_checksum_shell(self, overwrite_existing_translations=False):
+        """Call upgrade_changed_checksum, but in a minimal environment that
+        doesn't fail when base models like res.users or ir.model have been changed.
+
+        This function is designed to be called in a shell that ends immediately
+        afterwards, as it destroys the current session.
+        """
+        fake_module = namedtuple("fake_module", ["name"])
+        self.env.cr.close()
+        with self.env.registry.cursor() as _cr:
+            Registry.delete_all()
+            minimal_registry = object.__new__(Registry)
+            minimal_registry.init(_cr.dbname)
+            minimal_registry.load(_cr, fake_module("base"))
+            minimal_registry.load(_cr, fake_module("module_auto_update"))
+            _cr.transaction = api.Transaction(minimal_registry)
+            minimal_registry.setup_models(_cr)
+            minimal_env = api.Environment(_cr, SUPERUSER_ID, {})
+            minimal_env["ir.module.module"].upgrade_changed_checksum(
+                overwrite_existing_translations=overwrite_existing_translations,
+            )

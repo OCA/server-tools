@@ -19,4 +19,4 @@ in an Odoo shell session:
 
 .. code-block:: python
 
-  env['ir.module.module'].upgrade_changed_checksum()
+  env['ir.module.module'].upgrade_changed_checksum_shell()
