@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+     <record model="ir.ui.view" id="view_auditlog_log_tree">
+        <field name="name">auditlog.log.form</field>
+        <field name="model">auditlog.log</field>
+        <field name="inherit_id" ref="auditlog.view_auditlog_log_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="attributes">
+                <attribute name="delete">false</attribute>
+            </xpath>
+        </field>
+     </record>
+
+    <record model="ir.ui.view" id="view_auditlog_log_form">
+        <field name="name">auditlog.log.form</field>
+        <field name="model">auditlog.log</field>
+        <field name="inherit_id" ref="auditlog.view_auditlog_log_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="attributes">
+                <attribute name="delete">false</attribute>
+            </xpath>
+            <xpath
+                expr="//field[@name='line_ids']/form/group[2]/field[@name='old_value']"
+                position="before"
+            >
+                <field name="user_id" readonly="1" />
+            </xpath>
+
+            <xpath
+                expr="//field[@name='line_ids']/tree/field[@name='field_description']"
+                position="before"
+            >
+                <field name="user_id" />
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_auditlog_log_line_form">
+        <field name="name">auditlog.log.line.form</field>
+        <field name="model">auditlog.log.line</field>
+        <field name="arch" type="xml">
+                <form string="Log - Field updated" delete="0">
+                    <group>
+                        <field name="field_id" readonly="1" />
+                    </group>
+                    <group string="Values" col="4">
+                        <field name="create_date" readonly="1" />
+                        <field name="user_id" readonly="1" />
+                        <field name="old_value" readonly="1" />
+                        <field name="new_value" readonly="1" />
+                        <field name="old_value_text" readonly="1" />
+                        <field name="new_value_text" readonly="1" />
+                    </group>
+                </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_auditlog_log_line_tree">
+        <field name="name">auditlog.log.line.tree</field>
+        <field name="model">auditlog.log.line</field>
+        <field name="arch" type="xml">
+            <tree delete="0">
+                <field name="create_date" />
+                <field name="field_name" string="Changed" />
+                <field name="old_value_text" />
+                <field name="new_value_text" />
+                <field name="user_id" />
+                <field name="method" string="Type of operation" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="audit_log_line_action" model="ir.actions.act_window">
+        <field name="name">View Log Lines</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">auditlog.log.line</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- show logs for partner out side of technical too, now that we have rules
+    for all types of users, will place in "contact" -->
+
+
+    <record id="auditlog_form_view_ext" model="ir.ui.view">
+        <field name="name">auditlog rule form extension</field>
+        <field name="model">auditlog.rule</field>
+        <field name="inherit_id" ref="auditlog.view_auditlog_rule_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//group[last()]" position="after">
+                <group>
+                    <div>
+                        <p>
+                            Add fields here to make any changes to them (audit log lines)
+                            visible to members of the selected groups.
+                        </p>
+                    </div>
+                </group>
+                <group>
+                    <field name="log_selected_fields_only" />
+                    <!-- in the domain are the blacklisted fields in auditlog they
+                        would be skipped anyway, so we repeat here to avoid incongruencies
+                    -->
+                    <field name="auditlog_line_access_rule_ids">
+                        <tree>
+                            <field name="state" readonly="1" invisible="1" />
+                            <field name="model_id" readonly="1" invisible="1" />
+                            <field
+                                name="group_ids"
+                                widget="many2many_tags"
+                                options="{'no_create': True}"
+                            />
+                            <field
+                                name="field_ids"
+                                widget="many2many_tags"
+                                options="{'no_create': True}"
+                                domain="[('model_id', '=' , model_id),('name', 'not in', ['id', 'create_uid', 'create_date', 'write_uid', 'write_date','display_name', '__last_update']) ]"
+                                attrs="{'readonly': [('state', '=', 'subscribed')]}"
+                            />
+                        </tree>
+                        <form>
+                            <sheet>
+                                <group>
+                                    <field name="state" readonly="1" invisible="1" />
+                                    <field name="model_id" readonly="1" invisible="1" />
+                                    <field
+                                        name="auditlog_rule_id"
+                                        readonly="1"
+                                        invisible="1"
+                                    />
+                                    <field
+                                        name="group_ids"
+                                        attrs="{'readonly': [('state', '=', 'subscribed')]}"
+                                    />
+                                    <field
+                                        name="field_ids"
+                                        domain="[('model_id', '=' , model_id),('name', 'not in', ['id', 'create_uid', 'create_date', 'write_uid', 'write_date','display_name', '__last_update']) ]"
+                                        attrs="{'readonly': [('state', '=', 'subscribed')]}"
+                                    />
+                                </group>
+                            </sheet>
+                        </form>
+                    </field>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="auditlog_tree_view_ext" model="ir.ui.view">
+        <field name="name">auditlog rule tree extension</field>
+        <field name="model">auditlog.rule</field>
+        <field name="inherit_id" ref="auditlog.view_auditlog_rule_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='state']" position="after">
+                <field name="auditlog_line_access_rule_ids">
+                    <tree>
+                        <field name="group_ids" />
+                        <field name="field_ids" />
+
+                    </tree>
+
+                </field>
+            </xpath>
+        </field>
+    </record>
+</odoo>
