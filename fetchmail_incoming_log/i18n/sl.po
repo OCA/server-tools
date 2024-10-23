@@ -1,0 +1,50 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * mail_log_messages_to_process
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-10-21 22:54+0000\n"
+"PO-Revision-Date: 2017-10-21 22:54+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
+"Language: sl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3);\n"
+
+#. module: fetchmail_incoming_log
+#: model:ir.model.fields,field_description:fetchmail_incoming_log.field_mail_thread__changeset_change_ids
+msgid "Changeset Changes"
+msgstr ""
+
+#. module: fetchmail_incoming_log
+#: model:ir.model.fields,field_description:fetchmail_incoming_log.field_mail_thread__changeset_ids
+msgid "Changesets"
+msgstr ""
+
+#. module: fetchmail_incoming_log
+#: model:ir.model.fields,field_description:fetchmail_incoming_log.field_mail_thread__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr ""
+
+#. module: fetchmail_incoming_log
+#: model:ir.model.fields,field_description:fetchmail_incoming_log.field_mail_thread__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr ""
+
+#. module: fetchmail_incoming_log
+#: model:ir.model,name:fetchmail_incoming_log.model_mail_thread
+msgid "Email Thread"
+msgstr "E-poštna nit"
+
+#. module: fetchmail_incoming_log
+#: model:ir.model.fields,field_description:fetchmail_incoming_log.field_mail_thread__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr ""
