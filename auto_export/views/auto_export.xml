@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2018 ACSONE SA/NV
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="auto_export_form_view">
+        <field name="name">auto.export.form (in auto_export)</field>
+        <field name="model">auto.export</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button
+                        name="trigger_export"
+                        string="Trigger Export"
+                        help="This button triggers the asynchronous export."
+                        type="object"
+                        class="btn-primary"
+                    />
+                </header>
+                <sheet>
+                    <div name="button_box" class="oe_button_box">
+                        <button
+                            name="preview_recordset"
+                            help="Preview the list of records that will be exported, depending on the specified domain"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-bars"
+                        >
+                            <field
+                                string="Records to export"
+                                name="preview_recordset_count"
+                                widget="statinfo"
+                            />
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Name..." />
+                        </h1>
+                    </div>
+                    <group name="group_main">
+                        <group name="group_main_left">
+                            <field name="user_id" />
+                            <field name="ir_export_id" domain="ir_export_id_domain" />
+                            <field name="filename_prefix" />
+                            <field name="saving_protocol" />
+                        </group>
+                        <group name="group_main_right">
+                            <field name="ir_model_id" />
+                            <field
+                                name="technical_domain"
+                                widget="domain"
+                                options="{'model': 'model'}"
+                            />
+                            <field name="file_extension" />
+                            <field
+                                name="filesystem_path"
+                                attrs="{'required': [('saving_protocol', '=', 'filesystem')],
+                                       'invisible': [('saving_protocol', '!=', 'filesystem')]}"
+                            />
+                            <field name="ir_export_id_domain" invisible="1" />
+                            <field name="model" invisible="1" />
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                  <field
+                        name="message_follower_ids"
+                        widget="mail_followers"
+                        groups="base.group_user"
+                    />
+                  <field name="activity_ids" widget="mail_activity" />
+                  <field name="message_ids" widget="mail_thread" />
+                </div>
+            </form>
+        </field>
+    </record>
+    <!--TREE view-->
+    <record model="ir.ui.view" id="auto_export_tree_view">
+        <field name="name">auto.export.tree (in auto_export)</field>
+        <field name="model">auto.export</field>
+        <field name="arch" type="xml">
+            <tree decoration-danger="has_error == True">
+                <field name="name" />
+                <field name="user_id" />
+                <field name="ir_model_id" />
+                <field name="ir_export_id" />
+                <field name="filename_prefix" />
+                <field name="saving_protocol" />
+                <field name="has_error" invisible="1" />
+                <button
+                    name="trigger_export"
+                    string="Trigger export"
+                    type="object"
+                    help="This button triggers the asynchronous export."
+                />
+                <field
+                    name="activity_ids"
+                    string="Next Activity"
+                    widget="list_activity"
+                    optional="show"
+                />
+            </tree>
+        </field>
+    </record>
+    <!--SEARCH view-->
+    <record model="ir.ui.view" id="auto_export_search_view">
+        <field name="name">auto.export.search (in auto_export)</field>
+        <field name="model">auto.export</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="user_id" />
+                <field name="ir_model_id" />
+                <field name="ir_export_id" />
+                <field name="filename_prefix" />
+                <field name="saving_protocol" />
+                <filter
+                    name="filter_has_checkpoint"
+                    string="Needs review"
+                    domain="[('has_error', '=', True)]"
+                />
+                <group string="Group By" name="groupby">
+                    <filter
+                        name="group_by_user_id"
+                        string="User"
+                        context="{'group_by': 'user_id'}"
+                    />
+                    <filter
+                        name="group_by_ir_model_id"
+                        string="Data model"
+                        context="{'group_by': 'ir_model_id'}"
+                    />
+                    <filter
+                        name="group_by_ir_export_id"
+                        string="Saved export"
+                        context="{'group_by': 'ir_export_id'}"
+                    />
+                    <filter
+                        name="group_by_file_extension"
+                        string="File format"
+                        context="{'group_by': 'file_extension'}"
+                    />
+                    <filter
+                        name="group_by_saving_protocol"
+                        string="Saving protocol"
+                        context="{'group_by': 'saving_protocol'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+    <!--ACTION-->
+    <record model="ir.actions.act_window" id="auto_export_act_window">
+        <field name="name">Automated Export Templates</field>
+        <field name="res_model">auto.export</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+    <!--Server Actions-->
+    <record id="auto_export_trigger_export_act" model="ir.actions.server">
+        <field name="name">Trigger export</field>
+        <field name="model_id" ref="model_auto_export" />
+        <field name="state">code</field>
+        <field name="code">records.trigger_export()</field>
+        <field name="binding_model_id" ref="auto_export.model_auto_export" />
+        <field name="binding_type">action</field>
+        <field name="binding_view_types">list,form</field>
+    </record>
+</odoo>
