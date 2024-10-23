@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  ~ Copyright 2024 Simone Rubino - Aion Tech
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
+<templates xml:space="preserve">
+
+    <t t-inherit="base_import.ImportView.side_panel" t-inherit-mode="extension">
+
+        <xpath expr="//input[@id='oe_import_tracking']" position="attributes">
+            <attribute name="checked">checked</attribute>
+        </xpath>
+
+    </t>
+
+</templates>
