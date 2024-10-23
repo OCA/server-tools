@@ -1,5 +1,6 @@
 # Copyright 2015-2017 Camptocamp SA
 # Copyright 2020 Onestein (<https://www.onestein.eu>)
+# Copyright 2023 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models, tools
@@ -14,6 +15,19 @@ class ChangesetFieldRule(models.Model):
     model_id = fields.Many2one(related="field_id.model_id", store=True)
     field_id = fields.Many2one(
         comodel_name="ir.model.fields", ondelete="cascade", required=True
+    )
+    field_ttype = fields.Selection(related="field_id.ttype")
+    field_relation = fields.Char(related="field_id.relation")
+    subfield_ids = fields.Many2many(
+        comodel_name="ir.model.fields",
+        domain="""
+        [
+            ('model_id.model', '=', field_relation),
+            ('store', '=', True),
+            ('ttype', 'not in', ('one2many', 'many2many'))
+        ]
+        """,
+        ondelete="cascade",
     )
     action = fields.Selection(
         selection="_selection_action",
@@ -96,6 +110,36 @@ class ChangesetFieldRule(models.Model):
     def _check_expression(self):
         for this in self:
             this._evaluate_expression(self.env[this.model_id.model].new({}))
+
+    def _get_all_subfields(self):
+        """Get all the indicated subfields, or all the valid fields of the model
+        to save the changes."""
+        if self.subfield_ids:
+            return self.subfield_ids
+        return (
+            self.env["ir.model.fields"]
+            .sudo()
+            .search(
+                [
+                    ("model_id.model", "=", self.field_relation),
+                    ("store", "=", True),
+                    ("name", "not in", models.MAGIC_COLUMNS),
+                    ("ttype", "not in", ("one2many", "many2many")),
+                ]
+            )
+        )
+
+    def _get_field_from_field_name(self, field_name):
+        """We need to get the field from the rule or the field that corresponds to
+        with field_name parameter."""
+        if self.field_ttype == "one2many":
+            return self.env["ir.model.fields"].search(
+                [
+                    ("model_id.model", "=", self.field_relation),
+                    ("name", "=", field_name),
+                ]
+            )
+        return self.field_id
 
     @ormcache(skiparg=1)
     @api.model
