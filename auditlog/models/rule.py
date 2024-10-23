@@ -147,6 +147,17 @@ class AuditlogRule(models.Model):
         string="Fields to Exclude",
         states={"subscribed": [("readonly", True)]},
     )
+    message_track = fields.Boolean(
+        help="Select this if you want to keep track message note of this rule",
+        states={"subscribed": [("readonly", True)]},
+    )
+    field_reference_id = fields.Many2one(
+        comodel_name="ir.model.fields",
+        domain="[('model_id', '=', model_id)]",
+        string="Reference Track",
+        states={"subscribed": [("readonly", True)]},
+        help="Select field reference for track message",
+    )
 
     _sql_constraints = [
         (
@@ -519,10 +530,14 @@ class AuditlogRule(models.Model):
             diff = DictDiffer(
                 new_values.get(res_id, EMPTY_DICT), old_values.get(res_id, EMPTY_DICT)
             )
+            origin_model = self.env[log.model_model].browse(log.res_id)
+            msg = ""
             if method == "create":
                 self._create_log_line_on_create(
                     log, diff.added(), new_values, fields_to_exclude
                 )
+                if auditlog_rule.message_track:
+                    msg = "<ul><li>%s created</li></ul>" % (log.name)
             elif method == "read":
                 self._create_log_line_on_read(
                     log,
@@ -534,6 +549,17 @@ class AuditlogRule(models.Model):
                 self._create_log_line_on_write(
                     log, diff.changed(), old_values, new_values, fields_to_exclude
                 )
+                if auditlog_rule.message_track and log.line_ids:
+                    ARROW_RIGHT = '<div class="fa fa-long-arrow-right"/>'
+                    msg = "<ul>"
+                    for line in log.line_ids:
+                        msg += "<li>%s: %s %s %s</li>" % (
+                            line.field_id.field_description,
+                            line.old_value_text,
+                            ARROW_RIGHT,
+                            line.new_value_text,
+                        )
+                    msg += "</ul>"
             elif method == "unlink" and auditlog_rule.capture_record:
                 self._create_log_line_on_read(
                     log,
@@ -541,6 +567,13 @@ class AuditlogRule(models.Model):
                     old_values,
                     fields_to_exclude,
                 )
+                if auditlog_rule.message_track:
+                    msg = "<ul><li>%s deleted</li></ul>" % (log.name)
+            # Tracking message back to reference field
+            if auditlog_rule.message_track and log.line_ids:
+                origin = origin_model[auditlog_rule.field_reference_id.name]
+                if origin:
+                    origin.message_post(body=_("Changed:\n{}").format(msg))
 
     def _get_field(self, model, field_name):
         cache = self.pool._auditlog_field_cache

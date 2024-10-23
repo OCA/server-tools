@@ -52,6 +52,11 @@
                                 name="fields_to_exclude_ids"
                                 widget="many2many_tags"
                             />
+                            <field name="message_track" />
+                            <field
+                                name="field_reference_id"
+                                attrs="{'invisible': [('message_track', '=', False)]}"
+                            />
                         </group>
                         <group colspan="1">
                             <field name="log_read" />
