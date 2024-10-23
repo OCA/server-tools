@@ -4,6 +4,7 @@ You need to define how to connect directly to the database:
 
     - ``IMDISPATCHER_DB_HOST=db-01``
     - ``IMDISPATCHER_DB_PORT=5432``
+    - ``IMDISPATCHER_DB_NAME=v12c``
 
 * Or in Odoo's configuration file:
 
@@ -13,3 +14,4 @@ You need to define how to connect directly to the database:
   (...)
   imdispatcher_db_host = db-01
   imdispatcher_db_port = 5432
+  imdispatcher_db_name = v12c

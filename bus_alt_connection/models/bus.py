@@ -10,17 +10,23 @@ import psycopg2
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 
 import odoo
+from odoo import api, models
 from odoo.tools import config
 
-from odoo.addons.bus.models.bus import hashable, TIMEOUT
+from odoo.addons.bus.models.bus import hashable, json_dump, TIMEOUT
 import odoo.addons.bus.models.bus
 
 
 _logger = logging.getLogger(__name__)
 
 
-def _connection_info_for(db_name):
-    db_or_uri, connection_info = odoo.sql_db.connection_info_for(db_name)
+def _connection_info():
+    database = os.environ.get(
+        'ODOO_IMDISPATCHER_DB_NAME',
+        config.get('imdispatcher_db_name')
+        ) or 'postgres'
+
+    db_or_uri, connection_info = odoo.sql_db.connection_info_for(database)
 
     for p in ('host', 'port'):
         cfg = (os.environ.get('ODOO_IMDISPATCHER_DB_%s' % p.upper()) or
@@ -32,13 +38,44 @@ def _connection_info_for(db_name):
     return connection_info
 
 
+class ImBus(models.Model):
+
+    _inherit = 'bus.bus'
+
+    @api.model
+    def sendmany(self, notifications):
+        channels = set()
+        for channel, message in notifications:
+            channels.add(channel)
+            values = {
+                "channel": json_dump(channel),
+                "message": json_dump(message)
+            }
+            self.sudo().create(values)
+        if channels:
+            # We have to wait until the notifications are commited in database.
+            # When calling `NOTIFY imbus`, some concurrent threads will be
+            # awakened and will fetch the notification in the bus table. If the
+            # transaction is not commited yet, there will be nothing to fetch,
+            # and the longpolling will return no notification.
+            def notify():
+                database = _connection_info()["database"]
+                _, connection_info = odoo.sql_db.connection_info_for(database)
+                _logger.debug("Bus.sendmany to db %(database)s "
+                              "(via %(host)s:%(port)s)",
+                              connection_info)
+                with odoo.sql_db.db_connect(database).cursor() as cr:
+                    cr.execute("notify imbus, %s", (json_dump(list(channels)),))
+            self._cr.after('commit', notify)
+
+
 class ImDispatch(odoo.addons.bus.models.bus.ImDispatch):
 
     def loop(self):
         """ Dispatch postgres notifications to the relevant
             polling threads/greenlets """
-        connection_info = _connection_info_for('postgres')
-        _logger.info("Bus.loop listen imbus on db postgres "
+        connection_info = _connection_info()
+        _logger.info("Bus.loop listen imbus on db %(database)s "
                      "(via %(host)s:%(port)s)",
                      connection_info)
         conn = psycopg2.connect(**connection_info)
