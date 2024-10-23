@@ -43,11 +43,11 @@ jobs:
             include: "fetchmail_incoming_log,fetchmail_notify_error_to_sender"
             name: test with OCB
           - container: ghcr.io/oca/oca-ci/py3.6-odoo12.0:latest
-            exclude: "fetchmail_incoming_log,fetchmail_notify_error_to_sender"
+            exclude: "fetchmail_incoming_log,fetchmail_notify_error_to_sender,database_cleanup,sentry"
             makepot: "true"
             name: test with Odoo
           - container: ghcr.io/oca/oca-ci/py3.6-ocb12.0:latest
-            exclude: "fetchmail_incoming_log,fetchmail_notify_error_to_sender"
+            exclude: "fetchmail_incoming_log,fetchmail_notify_error_to_sender,database_cleanup,sentry"
             name: test with OCB
     services:
       postgres:

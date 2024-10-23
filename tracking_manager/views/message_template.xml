@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright (C) 2022 Akretion (<http://www.akretion.com>).
+     @author Kévin Roche <kevin.roche@akretion.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <template id="track_o2m_m2m_template">
+        <div>
+            <ul>
+                <t t-foreach="lines" t-as="line">
+                    <li>
+                        <b>
+                            <t t-esc="line.get('name')" />: </b>
+                        <br />
+                        <t t-foreach="line.get('messages')" t-as="message">
+                            <ul>
+                                <t t-if="message.get('mode', False) == 'create'">
+                                    <b>New :</b>
+                                </t>
+                                <t t-if="message.get('mode', False) == 'unlink'">
+                                    <b>Delete :</b>
+                                </t>
+                                <t t-if="message.get('mode', False) == 'update'">
+                                    <b>Change :</b>
+                                </t>
+                                <t t-esc="message.get('record')" />
+                                <t t-if="message.get('mode', False) == 'update'">
+                                    <ul>
+                                        <t
+                                            t-foreach="message.get('changes')"
+                                            t-as="change"
+                                        >
+                                            <li>
+                                                <t t-esc="change.get('name')" /> :
+                                                <t t-esc="change.get('old')" />
+                                                <div
+                                                    class="o_Message_trackingValueSeparator o_Message_trackingValueItem fa fa-long-arrow-right"
+                                                    title="Changed"
+                                                    role="img"
+                                                />
+                                                <t t-esc="change.get('new')" />
+                                            </li>
+                                        </t>
+                                    </ul>
+                                </t>
+                            </ul>
+                        </t>
+                    </li>
+                </t>
+            </ul>
+        </div>
+    </template>
+</odoo>
