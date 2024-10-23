@@ -1,0 +1,205 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* base_sequence_option
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: base_sequence_option
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option_line__filter_domain
+msgid "Apply On"
+msgstr ""
+
+#. module: base_sequence_option
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option__model
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option_line__model
+msgid "Apply On Model"
+msgstr ""
+
+#. module: base_sequence_option
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option_line__base_id
+msgid "Base"
+msgstr ""
+
+#. module: base_sequence_option
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option__company_id
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option_line__company_id
+msgid "Company"
+msgstr ""
+
+#. module: base_sequence_option
+#: model:ir.model.fields,help:base_sequence_option.field_ir_sequence_option__company_id
+#: model:ir.model.fields,help:base_sequence_option.field_ir_sequence_option_line__company_id
+msgid "Company related to this sequence option"
+msgstr ""
+
+#. module: base_sequence_option
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option__create_uid
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option_line__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: base_sequence_option
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option__create_date
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option_line__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: base_sequence_option
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option_line__name
+msgid "Description"
+msgstr ""
+
+#. module: base_sequence_option
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option__display_name
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option_line__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: base_sequence_option
+#: model_terms:ir.ui.view,arch_db:base_sequence_option.view_ir_sequence_option_form
+msgid "Doctype Sequence"
+msgstr ""
+
+#. module: base_sequence_option
+#: model:ir.model.fields,help:base_sequence_option.field_ir_sequence_option_line__filter_domain
+msgid "Find matching option by document values"
+msgstr ""
+
+#. module: base_sequence_option
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option__id
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option_line__id
+msgid "ID"
+msgstr ""
+
+#. module: base_sequence_option
+#: model:ir.model.fields,help:base_sequence_option.field_ir_sequence_option__use_sequence_option
+#: model:ir.model.fields,help:base_sequence_option.field_ir_sequence_option_line__use_sequence_option
+msgid ""
+"If checked, Odoo will try to find the new matching sequence first, if not "
+"found, fall back to use the original Odoo sequence."
+msgstr ""
+
+#. module: base_sequence_option
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option_line__implementation
+msgid "Implementation"
+msgstr ""
+
+#. module: base_sequence_option
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option____last_update
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option_line____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: base_sequence_option
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option__write_uid
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option_line__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: base_sequence_option
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option__write_date
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option_line__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: base_sequence_option
+#: model:ir.actions.act_window,name:base_sequence_option.action_ir_sequence_option
+#: model:ir.ui.menu,name:base_sequence_option.menu_ir_sequence_option
+msgid "Manage Sequence Options"
+msgstr ""
+
+#. module: base_sequence_option
+#: model_terms:ir.ui.view,arch_db:base_sequence_option.view_ir_sequence_option_form
+msgid "Matching Domain"
+msgstr ""
+
+#. module: base_sequence_option
+#. odoo-python
+#: code:addons/base_sequence_option/models/ir_sequence_option.py:0
+#, python-format
+msgid "Multiple optional sequences found for this model!"
+msgstr ""
+
+#. module: base_sequence_option
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option__name
+#: model_terms:ir.ui.view,arch_db:base_sequence_option.view_ir_sequence_option_form
+msgid "Name"
+msgstr ""
+
+#. module: base_sequence_option
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option_line__prefix
+msgid "Prefix"
+msgstr ""
+
+#. module: base_sequence_option
+#: model:ir.model.fields,help:base_sequence_option.field_ir_sequence_option_line__prefix
+msgid "Prefix value of the record for the sequence"
+msgstr ""
+
+#. module: base_sequence_option
+#: model:ir.model,name:base_sequence_option.model_ir_sequence
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option_line__sequence_id
+msgid "Sequence"
+msgstr ""
+
+#. module: base_sequence_option
+#: model:ir.model,name:base_sequence_option.model_ir_sequence_option
+msgid "Sequence Option Base Model"
+msgstr ""
+
+#. module: base_sequence_option
+#: model:ir.model,name:base_sequence_option.model_ir_sequence_option_line
+msgid "Sequence Option Line"
+msgstr ""
+
+#. module: base_sequence_option
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option__option_ids
+msgid "Sequence Options"
+msgstr ""
+
+#. module: base_sequence_option
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence__smart_search
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option__smart_search
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option_line__smart_search
+msgid "Smart Search"
+msgstr ""
+
+#. module: base_sequence_option
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option_line__suffix
+msgid "Suffix"
+msgstr ""
+
+#. module: base_sequence_option
+#: model:ir.model.fields,help:base_sequence_option.field_ir_sequence_option_line__suffix
+msgid "Suffix value of the record for the sequence"
+msgstr ""
+
+#. module: base_sequence_option
+#: model_terms:ir.ui.view,arch_db:base_sequence_option.view_ir_sequence_option_form
+msgid "Use Sequence"
+msgstr ""
+
+#. module: base_sequence_option
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option__use_sequence_option
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option_line__use_sequence_option
+msgid "Use sequence options"
+msgstr ""
+
+#. module: base_sequence_option
+#: model:ir.model.fields,help:base_sequence_option.field_ir_sequence_option_line__implementation
+msgid ""
+"While assigning a sequence number to a record, the 'no gap' sequence "
+"implementation ensures that each previous sequence number has been assigned "
+"already. While this sequence implementation will not skip any sequence "
+"number upon assignment, there can still be gaps in the sequence if records "
+"are deleted. The 'no gap' implementation is slower than the standard one."
+msgstr ""

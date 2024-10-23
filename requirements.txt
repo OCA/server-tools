@@ -2,6 +2,7 @@
 astor
 dataclasses
 mako
+odoo_test_helper
 odoorpc
 openupgradelib
 pygount
