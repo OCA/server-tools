@@ -4,7 +4,19 @@
         <xpath expr=".">
             <script
                 type="text/javascript"
-                src="/base_changeset/static/src/js/backend.js"
+                src="/base_changeset/static/src/js/basic_model.js"
+            />
+            <script
+                type="text/javascript"
+                src="/base_changeset/static/src/js/form_backend.js"
+            />
+            <script
+                type="text/javascript"
+                src="/base_changeset/static/src/js/list_backend.js"
+            />
+            <script
+                type="text/javascript"
+                src="/base_changeset/static/src/js/relational_fields.js"
             />
             <link
                 href="/base_changeset/static/src/scss/backend.scss"
