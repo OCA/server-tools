@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Form View -->
+    <record id="base_time_parameter_view_form" model="ir.ui.view">
+        <field name="name">base.time.parameter.form</field>
+        <field name="model">base.time.parameter</field>
+        <field name="priority">20</field>
+        <field name="arch" type="xml">
+            <form string="Time Parameter">
+                <sheet>
+                    <group>
+                        <field name="name" />
+                        <field name="code" />
+                        <field name="model_id" />
+                        <field name="type" />
+                        <field
+                            name="record_model"
+                            attrs="{'invisible': [('type', '!=', 'record')]}"
+                        />
+                    </group>
+                    <group string="Versions">
+                        <field
+                            name="version_ids"
+                            nolabel="1"
+                            context="{'default_parameter_id': active_id}"
+                        >
+                            <tree editable="bottom">
+                                <field name="date_from" />
+                                <field name="type" invisible="1" />
+                                <field
+                                    name="value"
+                                    attrs="{'column_invisible':[('parent.type', '=', 'record')]}"
+                                />
+                                <field
+                                    name="value_reference"
+                                    attrs="{'column_invisible':[
+                                        '|',
+                                        ('parent.type', '!=', 'record'),
+                                        ('parent.record_model', '!=', False),
+                                    ]}"
+                                />
+                            </tree>
+                        </field>
+                    </group>
+                    <field name="description" placeholder="Description" />
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="base_time_parameter_view_form_hide_model" model="ir.ui.view">
+        <field name="name">base.time.parameter.form hide model</field>
+        <field name="model">base.time.parameter</field>
+        <field name="inherit_id" ref="base_time_parameter_view_form" />
+        <field name="mode">primary</field>
+        <field name="priority">10</field>
+        <field name="arch" type="xml">
+            <field name="model_id" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+        </field>
+    </record>
+
+    <!-- Tree View -->
+    <record id="base_time_parameter_view_tree" model="ir.ui.view">
+        <field name="name">base.time.parameter.tree</field>
+        <field name="model">base.time.parameter</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="code" widget="badge" />
+                <field name="name" />
+                <field name="model_id" />
+                <field name="version_ids" />
+                <field
+                    name="company_id"
+                    required="1"
+                    groups="base.group_multi_company"
+                />
+            </tree>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="base_time_parameter_view_search" model="ir.ui.view">
+        <field name="name">base.time.parameter.search</field>
+        <field name="model">base.time.parameter</field>
+        <field name="arch" type="xml">
+            <search>
+                <field
+                    name="name"
+                    filter_domain="['|', ('name', 'ilike', self), ('code', 'ilike', self)]"
+                />
+                <field name="model_id" />
+                <filter
+                    name="model_id"
+                    string="Model"
+                    domain="[]"
+                    context="{'group_by': 'model_id'}"
+                />
+            </search>
+        </field>
+    </record>
+
+    <!-- Actions -->
+    <record id="base_time_parameter_action" model="ir.actions.act_window">
+        <field name="name">Time Parameters</field>
+        <field name="res_model">base.time.parameter</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="base_time_parameter_view_search" />
+    </record>
+    <record id="base_time_parameter_action_tree" model="ir.actions.act_window.view">
+        <field name="act_window_id" ref="base_time_parameter_action" />
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="base_time_parameter_view_tree" />
+    </record>
+    <record id="base_time_parameter_action_form" model="ir.actions.act_window.view">
+        <field name="act_window_id" ref="base_time_parameter_action" />
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="base_time_parameter_view_form" />
+    </record>
+
+    <!-- Menus -->
+    <menuitem
+        id="base_time_parameter_menu"
+        action="base_time_parameter_action"
+        name="Time Parameters"
+        parent="base.menu_ir_property"
+        sequence="35"
+    />
+</odoo>
