@@ -1,0 +1,129 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sequence_python
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#. module: sequence_python
+#: model_terms:ir.ui.view,arch_db:sequence_python.sequence_view
+msgid "<code>number</code>: The next number of the sequence (integer)"
+msgstr ""
+
+#. module: sequence_python
+#: model_terms:ir.ui.view,arch_db:sequence_python.sequence_view
+msgid ""
+"<code>number_padded</code>: Padded string of the next number of the sequence"
+msgstr ""
+
+#. module: sequence_python
+#: model_terms:ir.ui.view,arch_db:sequence_python.sequence_view
+msgid ""
+"<code>random</code>: The Python random module, eg. to use "
+"<code>random.randint(0, 9)</code>"
+msgstr ""
+
+#. module: sequence_python
+#: model_terms:ir.ui.view,arch_db:sequence_python.sequence_view
+msgid "<code>sequence</code>: Odoo record of the sequence being used"
+msgstr ""
+
+#. module: sequence_python
+#: model_terms:ir.ui.view,arch_db:sequence_python.sequence_view
+msgid ""
+"<code>string</code>: The Python string module, eg. to use "
+"<code>random.choices(string.ascii_letters + string.digits, k=4)</code>"
+msgstr ""
+
+#. module: sequence_python
+#: model_terms:ir.ui.view,arch_db:sequence_python.sequence_view
+msgid ""
+"<code>uuid</code>: The Python uuid module, eg. to use "
+"<code>uuid.uuid4()</code>"
+msgstr ""
+
+#. module: sequence_python
+#: model_terms:ir.ui.view,arch_db:sequence_python.sequence_view
+msgid "Aside from this, you may use several"
+msgstr ""
+
+#. module: sequence_python
+#: model:ir.model.fields,field_description:sequence_python.field_ir_sequence__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sequence_python
+#: model_terms:ir.ui.view,arch_db:sequence_python.sequence_view
+msgid "Help with Python expressions"
+msgstr ""
+
+#. module: sequence_python
+#: model:ir.model.fields,field_description:sequence_python.field_ir_sequence__id
+msgid "ID"
+msgstr ""
+
+#. module: sequence_python
+#: model:ir.model.fields,field_description:sequence_python.field_ir_sequence____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: sequence_python
+#: model:ir.model.fields,field_description:sequence_python.field_ir_sequence__python_code_preview
+msgid "Preview"
+msgstr ""
+
+#. module: sequence_python
+#: model_terms:ir.ui.view,arch_db:sequence_python.sequence_view
+msgid "Python Code"
+msgstr ""
+
+#. module: sequence_python
+#: model:ir.model.fields,field_description:sequence_python.field_ir_sequence__python_code
+msgid "Python expression"
+msgstr ""
+
+#. module: sequence_python
+#: model:ir.model,name:sequence_python.model_ir_sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: sequence_python
+#: model:ir.model.fields,field_description:sequence_python.field_ir_sequence__smart_search
+msgid "Smart Search"
+msgstr ""
+
+#. module: sequence_python
+#: model_terms:ir.ui.view,arch_db:sequence_python.sequence_view
+msgid ""
+"The expression you type here will be evaluated as the next number. The "
+"following variables can be used:"
+msgstr ""
+
+#. module: sequence_python
+#: model:ir.model.fields,field_description:sequence_python.field_ir_sequence__use_python_code
+msgid "Use Python"
+msgstr ""
+
+#. module: sequence_python
+#: model:ir.model.fields,help:sequence_python.field_ir_sequence__python_code
+msgid "Write Python code that generates the sequence body."
+msgstr ""
+
+#. module: sequence_python
+#: model_terms:ir.ui.view,arch_db:sequence_python.sequence_view
+msgid "builtin Python functions"
+msgstr ""
+
+#. module: sequence_python
+#: model_terms:ir.ui.view,arch_db:sequence_python.sequence_view
+msgid "number"
+msgstr ""
