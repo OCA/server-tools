@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo noupdate="1">
+    <record id="mapped_admin" model="res.users" context="{'no_reset_password': True}">
+        <field name="name">Mapped admin</field>
+        <field name="login">mapped_admin</field>
+    </record>
+</odoo>
