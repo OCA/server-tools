@@ -25,7 +25,9 @@
         <field name="inherit_id" ref="tree_purge_line" />
         <field name="mode">primary</field>
         <field name="arch" type="xml">
-            <data />
+            <field name="name" position="after">
+                <field name="table_type"/>
+            </field>
         </field>
     </record>
     <record id="action_purge_table_line" model="ir.actions.server">
