@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo noupdate="1">
+    <record model="res.groups" id="group_module_import">
+        <field name="name">Allow importation of modules</field>
+        <field
+            name="users"
+            eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
+        />
+    </record>
+    <record model="res.groups" id="base.group_system">
+        <field name="implied_ids" eval="[(4, ref('group_module_import'))]" />
+    </record>
+</odoo>

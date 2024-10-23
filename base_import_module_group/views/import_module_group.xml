@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="import_module_view_action" model="ir.actions.act_window">
+        <field name="name">Import Module</field>
+        <field name="res_model">base.import.module</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+    <menuitem
+        id="import_module_menuitem"
+        name="Import Module"
+        action="import_module_view_action"
+        parent="base.menu_administration"
+        groups="base_import_module_group.group_module_import"
+    />
+</odoo>
