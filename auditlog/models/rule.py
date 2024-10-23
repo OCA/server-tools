@@ -106,6 +106,15 @@ class AuditlogRule(models.Model):
         ),
         states={"subscribed": [("readonly", True)]},
     )
+    log_export_data = fields.Boolean(
+        "Log Exports",
+        default=True,
+        help=(
+            "Select this if you want to keep track of exports "
+            "of the model of this rule"
+        ),
+        states={"subscribed": [("readonly", True)]},
+    )
     log_type = fields.Selection(
         [("full", "Full log"), ("fast", "Fast log")],
         string="Type",
@@ -206,6 +215,12 @@ class AuditlogRule(models.Model):
                 model_model._patch_method("unlink", rule._make_unlink())
                 setattr(type(model_model), check_attr, True)
                 updated = True
+            #   -> export_data
+            check_attr = "auditlog_ruled_export_data"
+            if rule.log_export_data and not hasattr(model_model, check_attr):
+                model_model._patch_method("export_data", rule._make_export_data())
+                setattr(type(model_model), check_attr, True)
+                updated = True
         return updated
 
     def _revert_methods(self):
@@ -213,7 +228,7 @@ class AuditlogRule(models.Model):
         updated = False
         for rule in self:
             model_model = self.env[rule.model_id.model or rule.model_model]
-            for method in ["create", "read", "write", "unlink"]:
+            for method in ["create", "read", "write", "unlink", "export_data"]:
                 if getattr(rule, "log_%s" % method) and hasattr(
                     getattr(model_model, method), "origin"
                 ):
@@ -266,6 +281,31 @@ class AuditlogRule(models.Model):
             for n, f in model._fields.items()
             if (not f.compute and not f.related) or f.store or f.company_dependent
         )
+
+    def _make_export_data(self):
+        """Instanciate a create method that log its calls."""
+        self.ensure_one()
+        log_type = self.log_type
+        users_to_exclude = self.mapped("users_to_exclude_ids")
+
+        def export_data(self, fields_to_export):
+            res = export_data.origin(self, fields_to_export)
+            self = self.with_context(auditlog_disabled=True)
+            rule_model = self.env["auditlog.rule"]
+            if self.env.user in users_to_exclude:
+                return res
+            rule_model.sudo().create_logs(
+                self.env.uid,
+                self._name,
+                self.ids,
+                "export_data",
+                None,
+                None,
+                {"log_type": log_type},
+            )
+            return res
+
+        return export_data
 
     def _make_create(self):
         """Instanciate a create method that log its calls."""
@@ -510,20 +550,25 @@ class AuditlogRule(models.Model):
         model_id = self.pool._auditlog_model_cache[res_model]
         auditlog_rule = self.env["auditlog.rule"].search([("model_id", "=", model_id)])
         fields_to_exclude = auditlog_rule.fields_to_exclude_ids.mapped("name")
+
+        vals = {
+            "model_id": model_id,
+            "method": method,
+            "user_id": uid,
+            "http_request_id": http_request_model.current_http_request(),
+            "http_session_id": http_session_model.current_http_session(),
+        }
+        vals.update(additional_log_values or {})
+        if method == "export_data":
+            vals.update({"res_ids": str(res_ids)})
+            return log_model.create(vals)
+
         for res_id in res_ids:
             name = model_model.browse(res_id).name_get()
             res_name = name and name[0] and name[0][1]
-            vals = {
-                "name": res_name,
-                "model_id": model_id,
-                "res_id": res_id,
-                "method": method,
-                "user_id": uid,
-                "http_request_id": http_request_model.current_http_request(),
-                "http_session_id": http_session_model.current_http_session(),
-            }
-            vals.update(additional_log_values or {})
-            log = log_model.create(vals)
+
+            log_vals = {**vals, **{"name": res_name, "res_id": res_id}}
+            log = log_model.create(log_vals)
             diff = DictDiffer(
                 new_values.get(res_id, EMPTY_DICT), old_values.get(res_id, EMPTY_DICT)
             )
