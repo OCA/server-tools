@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 # pylint: disable=consider-merging-classes-inherited
 from odoo import _, api, fields, models
-from odoo.exceptions import UserError
+from odoo.exceptions import MissingError, UserError
 
 
 class CleanupPurgeLineMenu(models.TransientModel):
@@ -42,15 +42,24 @@ class CleanupPurgeWizardMenu(models.TransientModel):
         res = []
         for menu in (
             self.env["ir.ui.menu"]
-            .with_context(active_test=False)
+            .with_context({"ir.ui.menu.full_list": True, "active_test": False})
             .search([("action", "!=", False)])
         ):
-            if menu.action.type != "ir.actions.act_window":
-                continue
-            if (menu.action.res_model and menu.action.res_model not in self.env) or (
-                menu.action.binding_model_id
-                and menu.action.binding_model_id not in self.env
+            action_missing = False
+            try:
+                if menu.action.type != "ir.actions.act_window":
+                    continue
+            except MissingError:
+                action_missing = True
+            if (
+                action_missing
+                or (menu.action.res_model and menu.action.res_model not in self.env)
+                or (
+                    menu.action.binding_model_id.model
+                    and menu.action.binding_model_id.model not in self.env
+                )
             ):
+                # get parent
                 res.append((0, 0, {"name": menu.complete_name, "menu_id": menu.id}))
         if not res:
             raise UserError(_("No dangling menu entries found"))
