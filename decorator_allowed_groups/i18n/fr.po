@@ -1,0 +1,30 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#   * decorator_allowed_groups
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-02-19 07:52+0000\n"
+"PO-Revision-Date: 2021-02-19 07:52+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: decorator_allowed_groups
+#: code:addons/decorator_allowed_groups/models/decorator.py:45
+#, python-format
+msgid "To execute the function %s, you should be member of one of the following groups:\n"
+" %s"
+msgstr "Pour executer cette fonction %s, vous devez être membre de l'un des groupes suivants:\n"
+" %s"
+
+#. module: decorator_allowed_groups
+#: model:ir.model,name:decorator_allowed_groups.model_ir_ui_view
+msgid "View"
+msgstr "Vue"
+
