@@ -22,8 +22,8 @@
                         <field
                             name="attachment_ids"
                             widget="many2many_binary"
+                            attrs="{'invisible': [('res_id', '!=', False)], 'required': [('res_id', '=', False)]}"
                             nolabel="1"
-                            attrs="{'invisible': [('res_id', '!=', False)]}"
                         />
                     </group>
                     <group>

@@ -29,7 +29,6 @@ class ImportXLSXWizard(models.TransientModel):
     attachment_ids = fields.Many2many(
         "ir.attachment",
         string="Import File(s) (*.xlsx)",
-        required=True,
         help="You can select multiple files to import.",
     )
     state = fields.Selection(
