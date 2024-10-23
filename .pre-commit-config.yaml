@@ -20,7 +20,10 @@ exclude: |
   # Ignore test files in addons
   /tests/samples/.*|
   # You don't usually want a bot to modify your legal texts
-  (LICENSE.*|COPYING.*)
+  (LICENSE.*|COPYING.*)|
+  # This folder contains patches on Odoo core which doesn't adhere to OCA's
+  # code style. Formatting/linting this leads to a much more noisy diff
+  ^upgrade_analysis/odoo_patch/odoo/
 default_language_version:
   python: python3
   node: "16.17.0"
