@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates>
+    <t t-name="mail.systray.PlayButtonMenu" t-if="widget.hasTechnicalSettingsGroup">
+        <li class="o_mail_systray_item">
+            <a
+                class="dropdown-toggle o-no-caret o_record_security_group_button"
+                id="record_security_group_button"
+                dat0a-display="static"
+                aria-expanded="false"
+                title="Register Security Group"
+                href="#"
+                role="button"
+            >
+                <i
+                    class="fa fa-play-circle"
+                    role="img"
+                    aria-label="Register Security Group"
+                />
+            </a>
+        </li>
+    </t>
+</templates>
