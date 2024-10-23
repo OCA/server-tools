@@ -132,15 +132,26 @@ class TestDatabaseCleanup(TransactionCase):
 
         with keep_registry(), mute_logger("odoo.modules.graph", "odoo.modules.loading"):
             purge_modules = self.env["cleanup.purge.wizard.module"].create({})
-            # this module should be purged already during default_get
-            self.assertFalse(self.env["ir.module.module"].search(
+            # no modules are purged during default_get
+            self.assertTrue(self.env["ir.module.module"].search(
                 [("name", "=", "database_cleanup_test_uninstalled")]))
+            self.assertTrue(self.env["ir.module.module"].search(
+                [("name", "=", "database_cleanup_test_to_upgrade")]))
 
         with keep_registry(), mute_logger("odoo.modules.graph", "odoo.modules.loading"):
             purge_modules.purge_all()
-            # must be removed by the wizard
-            self.assertFalse(self.env["ir.module.module"].search(
-                [("name", "=", "database_cleanup_test_to_upgrade")]))
+            # to_upgrade modules must be removed by the wizard
+            self.assertFalse(
+                self.env["ir.module.module"].search(
+                    [("name", "=", "database_cleanup_test_to_upgrade")]
+                )
+            )
+            # uninstalled modules must be removed by the wizard
+            self.assertFalse(
+                self.env["ir.module.module"].search(
+                    [("name", "=", "database_cleanup_test_uninstalled")]
+                )
+            )
 
     def tearDown(self):
         super(TestDatabaseCleanup, self).tearDown()
