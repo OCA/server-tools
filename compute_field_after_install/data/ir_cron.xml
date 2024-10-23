@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<odoo noupdate="1">
+
+    <record forcecreate="True" id="ir_cron_scheduler_alarm" model="ir.cron">
+        <field name="name">Run Recompute field</field>
+        <field eval="True" name="active" />
+        <field name="user_id" ref="base.user_root" />
+        <field name="interval_number">30</field>
+        <field name="interval_type">minutes</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False" />
+        <field name="model_id" ref="model_recompute_field" />
+        <field name="state">code</field>
+        <field name="code">model._run_all()</field>
+    </record>
+
+</odoo>
