@@ -1,5 +1,7 @@
 from odoo.tests import common, tagged
 
+from ..odoo_patch.odoo_patch import OdooPatch
+
 
 @tagged("post_install", "-at_install")
 class TestUpgradeAnalysis(common.TransactionCase):
@@ -44,3 +46,26 @@ class TestUpgradeAnalysis(common.TransactionCase):
 
         # TypeError: Many2many fields ir.actions.server.partner_ids and
         # ir.actions.server.partner_ids use the same table and columns
+
+    def test_odoo_patch(self):
+        """
+        Test the patched versions of Odoo's base functions
+        """
+        self.assertFalse(
+            self.env["upgrade.record"].search(
+                [
+                    ("name", "=", "base.constraint_ir_module_module_name_uniq"),
+                    ("type", "=", "xmlid"),
+                ]
+            )
+        )
+        with OdooPatch():
+            self.env["ir.model.constraint"]._reflect_model(self.IrModuleModule)
+        self.assertTrue(
+            self.env["upgrade.record"].search(
+                [
+                    ("name", "=", "base.constraint_ir_module_module_name_uniq"),
+                    ("type", "=", "xmlid"),
+                ]
+            )
+        )
