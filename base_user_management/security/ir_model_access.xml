@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="access_manage_users_res_users" model="ir.model.access">
+        <field name="name">access_manage_users_res_users</field>
+        <field name="model_id" ref="base.model_res_users" />
+        <field
+            name="group_id"
+            ref="base_user_management.group_access_right_security_manage_users"
+        />
+        <field name="perm_read" eval="1" />
+        <field name="perm_create" eval="1" />
+        <field name="perm_write" eval="1" />
+        <field name="perm_unlink" eval="1" />
+    </record>
+
+    <record id="access_manage_users_change_password_wizard" model="ir.model.access">
+        <field name="name">access_manage_users_change_password_wizard</field>
+        <field name="model_id" ref="base.model_change_password_wizard" />
+        <field
+            name="group_id"
+            ref="base_user_management.group_access_right_security_manage_users"
+        />
+        <field name="perm_read" eval="1" />
+        <field name="perm_create" eval="1" />
+        <field name="perm_write" eval="1" />
+        <field name="perm_unlink" eval="0" />
+    </record>
+
+    <record id="access_manage_users_change_password_user" model="ir.model.access">
+        <field name="name">access_manage_users_change_password_user</field>
+        <field name="model_id" ref="base.model_change_password_user" />
+        <field
+            name="group_id"
+            ref="base_user_management.group_access_right_security_manage_users"
+        />
+        <field name="perm_read" eval="1" />
+        <field name="perm_create" eval="1" />
+        <field name="perm_write" eval="1" />
+        <field name="perm_unlink" eval="0" />
+    </record>
+</odoo>

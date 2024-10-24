@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="res.groups" id="group_access_right_security_manage_users">
+        <field name="name">Manage Users</field>
+    </record>
+</odoo>
