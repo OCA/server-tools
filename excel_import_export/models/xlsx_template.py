@@ -434,31 +434,53 @@ self['{}'] = self.env['{}'].search(self.safe_domain(self.domain))
                 inst_dict[itype] = rec.post_import_hook
             rec.instruction = inst_dict
 
-    def add_export_action(self):
-        self.ensure_one()
+    def _get_export_action_domain(self, model):
+        return [
+            ("binding_model_id", "=", model.id),
+            ("res_model", "=", "export.xlsx.wizard"),
+            ("name", "=", "Export Excel"),
+        ]
+
+    def _get_export_action(self, model):
+        export_action_domain = self._get_export_action_domain(model)
+        return self.env["ir.actions.act_window"].search(export_action_domain, limit=1)
+
+    def _create_export_action(self, model):
         vals = {
             "name": "Export Excel",
             "res_model": "export.xlsx.wizard",
-            "binding_model_id": self.env["ir.model"]
-            .search([("model", "=", self.res_model)])
-            .id,
+            "binding_model_id": model.id,
             "binding_type": "action",
             "target": "new",
             "view_mode": "form",
             "context": """
                 {'template_domain': [('res_model', '=', '%s'),
-                                     ('fname', '=', '%s'),
-                                     ('gname', '=', False)]}
+                                    ('export_action_id', '!=', False),
+                                    ('gname', '=', False)]}
             """
-            % (self.res_model, self.fname),
+            % (self.res_model),
         }
-        action = self.env["ir.actions.act_window"].create(vals)
-        self.export_action_id = action
+        return self.env["ir.actions.act_window"].create(vals)
+
+    def add_export_action(self):
+        self.ensure_one()
+        model = self.env["ir.model"].search([("model", "=", self.res_model)], limit=1)
+        export_action = self._get_export_action(model)
+        if not export_action:
+            export_action = self._create_export_action(model)
+        self.export_action_id = export_action
 
     def remove_export_action(self):
         self.ensure_one()
-        if self.export_action_id:
-            self.export_action_id.unlink()
+        export_action = self.export_action_id
+        self.export_action_id = False
+        if not self.search(
+            [
+                ("res_model", "=", self.res_model),
+                ("export_action_id", "=", export_action.id),
+            ]
+        ):
+            export_action.unlink()
 
     def add_import_action(self):
         self.ensure_one()
