@@ -10,11 +10,10 @@ from odoo.tests import common
 
 
 @common.tagged("post_install", "-at_install")
-class TestXMLRPC(common.HttpSavepointCase):
-    @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
-        cls.admin_uid = cls.env.ref("base.user_admin").id
+class TestXMLRPC(common.HttpCase):
+    def setUp(self):
+        super().setUp()
+        self.admin_uid = self.env.ref("base.user_admin").id
 
     def _set_disable(self, val):
         type(self.env["res.partner"])._disable_rpc = val

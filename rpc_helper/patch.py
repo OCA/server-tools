@@ -12,10 +12,10 @@ def protected__execute_cr(cr, uid, obj, method, *args, **kw):
     odoo.api.Environment.reset()  # clean cache etc if we retry the same transaction
     recs = odoo.api.Environment(cr, uid, {}).get(obj)
     if recs is None:
-        raise UserError(_("Object %s doesn't exist", obj))
+        raise UserError(_("Object %s doesn't exist") % obj)
     # custom code starts here
     if not _rpc_allowed(recs, method):
-        raise UserError(_("RPC call on %s is not allowed", obj))
+        raise UserError(_("RPC call on %s is not allowed") % obj)
     return protected__execute_cr._orig__execute_cr(cr, uid, obj, method, *args, **kw)
 
 

@@ -9,12 +9,12 @@
         <field name="model">ir.model</field>
         <field name="inherit_id" ref="base.view_model_form" />
         <field name="arch" type="xml">
-            <xpath expr="//notebook/page[@name='views']" position="after">
+            <xpath expr="//field[@name='view_ids']/.." position="after">
                 <page name="rpc_config" string="RPC config">
-                  <field
+                    <field
                         name="rpc_config_edit"
-                        groups="base.group_no_one"
                         widget="ace"
+                        groups="base.group_no_one"
                     />
                 </page>
             </xpath>
