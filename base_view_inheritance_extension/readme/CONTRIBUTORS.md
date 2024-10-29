@@ -3,4 +3,7 @@
 - [Tecnativa](https://www.tecnativa.com):
   - Sergio Teruel
   - Carlos Dauden
+- [Trobz](https://www.trobz.com):
+  - Nhan Tran \<<nhant@trobz.com>\>
 - Iván Todorovich \<<ivan.todorovich@camptocamp.com>\>
+- Frederic Grall \<<fgr@apik.cloud>>

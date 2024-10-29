@@ -16,7 +16,7 @@ class TestBaseViewInheritanceExtension(TransactionCase):
 
     def test_base_view_inheritance_extension(self):
         view_id = self.env.ref("base.view_partner_simple_form").id
-        arch, view = self.env["res.partner"]._get_view(view_id=view_id)
+        arch, _ = self.env["res.partner"]._get_view(view_id=view_id)
         # Verify normal attributes work
         self.assertEqual(arch.xpath("//form")[0].get("string"), "Partner form")
         # Verify our extra context key worked
@@ -104,96 +104,31 @@ class TestBaseViewInheritanceExtension(TransactionCase):
         ]
         self.assertEqual(
             res.xpath('//field[@name="invoice_line_ids"]')[0].attrib["context"],
-            "{%s}" % ", ".join(expected_items),
+            "{%s}" % ", ".join(expected_items),  # noqa: UP031
         )
 
-    def test_update_attrs_new_key(self):
-        """Test that we can add new keys to an existing dict"""
+    def test_text_add_operation(self):
         source = etree.fromstring(
             """
             <form>
-                <field
-                    name="ref"
-                    attrs="{'invisible': [('state', '=', 'draft')]}"
-                />
+                <field name="customer_id" string="Client"/>
             </form>
             """
-        )
-        specs = etree.fromstring(
-            """
-            <field name="ref" position="attributes">
-                <attribute name="attrs" operation="update">
-                    {
-                        "required": [("state", "!=", "draft")],
-                    }
-                </attribute>
-            </field>
-            """
-        )
-        res = self.env["ir.ui.view"].apply_inheritance_specs(source, specs)
-        self.assertEqual(
-            res.xpath('//field[@name="ref"]')[0].attrib["attrs"],
-            "{'invisible': [('state', '=', 'draft')], "
-            "'required': [('state', '!=', 'draft')]}",
         )
 
-    def test_update_attrs_replace(self):
-        """Test that we can replace an existing dict key"""
-        source = etree.fromstring(
-            """
-            <form>
-                <field
-                    name="ref"
-                    attrs="{
-                        'invisible': [('state', '=', 'draft')],
-                        'required': [('state', '=', False)],
-                    }"
-                />
-            </form>
-            """
-        )
         specs = etree.fromstring(
             """
-            <field name="ref" position="attributes">
-                <attribute name="attrs" operation="update">
-                    {
-                        "required": [('state', '!=', 'draft')],
-                    }
-                </attribute>
+            <field name="customer_id" position="attributes">
+                <attribute name="string"
+                operation="text_add">{old_value} Customer</attribute>
             </field>
             """
-        )
-        res = self.env["ir.ui.view"].apply_inheritance_specs(source, specs)
-        self.assertEqual(
-            res.xpath('//field[@name="ref"]')[0].attrib["attrs"],
-            "{'invisible': [('state', '=', 'draft')], "
-            "'required': [('state', '!=', 'draft')]}",
         )
 
-    def test_update_empty_source_dict(self):
-        """Test that we can add new keys by creating the dict if it's missing"""
-        source = etree.fromstring(
-            """
-            <form>
-                <field name="ref" />
-            </form>
-            """
-        )
-        specs = etree.fromstring(
-            """
-            <field name="ref" position="attributes">
-                <attribute name="attrs" operation="update">
-                    {
-                        "required": [('state', '!=', 'draft')],
-                    }
-                </attribute>
-            </field>
-            """
-        )
         res = self.env["ir.ui.view"].apply_inheritance_specs(source, specs)
         self.assertEqual(
-            res.xpath('//field[@name="ref"]')[0].attrib["attrs"],
-            "{'required': [('state', '!=', 'draft')]}",
+            res.xpath('//field[@name="customer_id"]')[0].attrib["string"],
+            "Client Customer",
         )
 
     def test_update_operation_not_a_dict(self):
@@ -208,16 +143,39 @@ class TestBaseViewInheritanceExtension(TransactionCase):
         specs = etree.fromstring(
             """
             <field name="ref" position="attributes">
-                <attribute name="attrs" operation="update">
+                <attribute name="context" operation="update">
                     ["not", "a", "dict"]
                 </attribute>
             </field>
             """
         )
         with self.assertRaisesRegex(
-            TypeError, "Operation for attribute `attrs` is not a dict"
+            TypeError, "Operation for attribute `context` is not a dict"
         ):
             self.env["ir.ui.view"].apply_inheritance_specs(source, specs)
+
+    def test_domain_add_operation(self):
+        source = etree.fromstring(
+            """
+            <form>
+                <field name="child_ids" domain="[('state', '=', 'confirm')]" />
+            </form>
+            """
+        )
+        specs = etree.fromstring(
+            """
+            <field name="child_ids" position="attributes">
+                <attribute name="domain" operation="domain_add">
+                    [('state', '!=', 'draft')]
+                </attribute>
+            </field>
+            """
+        )
+        res = self.env["ir.ui.view"].apply_inheritance_specs(source, specs)
+        self.assertEqual(
+            res.xpath('//field[@name="child_ids"]')[0].attrib["domain"],
+            "['&', ('state', '=', 'confirm'), ('state', '!=', 'draft')]",
+        )
 
     def test_update_source_not_a_dict(self):
         """We should get an error if we try to update a non-dict attribute"""
