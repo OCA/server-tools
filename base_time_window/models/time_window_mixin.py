@@ -6,7 +6,7 @@ from datetime import time
 
 from psycopg2.extensions import AsIs
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 from odoo.tools.misc import format_time
 
@@ -31,18 +31,16 @@ class TimeWindowMixin(models.AbstractModel):
         for record in self:
             if record.time_window_start > record.time_window_end:
                 raise ValidationError(
-                    _("%(end_time)s must be > %(start_time)s")
-                    % (
-                        {
-                            "end_time": self.float_to_time_repr(record.time_window_end),
-                            "start_time": self.float_to_time_repr(
-                                record.time_window_start
-                            ),
-                        }
+                    self.env._(
+                        "%(end_time)s must be > %(start_time)s",
+                        end_time=self.float_to_time_repr(record.time_window_end),
+                        start_time=self.float_to_time_repr(record.time_window_start),
                     )
                 )
             if not record.time_window_weekday_ids:
-                raise ValidationError(_("At least one time.weekday is required"))
+                raise ValidationError(
+                    self.env._("At least one time.weekday is required")
+                )
             # here we use a plain SQL query to benefit of the numrange
             # function available in PostgresSQL
             # (http://www.postgresql.org/docs/current/static/rangetypes.html)
@@ -55,8 +53,8 @@ class TimeWindowMixin(models.AbstractModel):
                     on d.%(relation_window_fkey)s = w.id
                 WHERE
                     NUMRANGE(w.time_window_start::numeric,
-                        w.time_window_end::numeric) &&
-                            NUMRANGE(%(start)s::numeric, %(end)s::numeric)
+                     w.time_window_end::numeric) &&
+                        NUMRANGE(%(start)s::numeric, %(end)s::numeric)
                     AND w.id != %(window_id)s
                     AND d.%(relation_week_day_fkey)s in %(weekday_ids)s
                     AND w.%(check_field)s = %(check_field_id)s;"""
@@ -79,19 +77,17 @@ class TimeWindowMixin(models.AbstractModel):
             if res:
                 other = self.browse(res[0][0])
                 raise ValidationError(
-                    _("%(record_name)s overlaps %(other_name)s")
-                    % (
-                        {
-                            "record_name": record.display_name,
-                            "other_name": other.display_name,
-                        }
+                    self.env._(
+                        "%(record_name)s overlaps %(other_name)s",
+                        record_name=record.display_name,
+                        other_name=other.display_name,
                     )
                 )
 
     @api.depends("time_window_start", "time_window_end", "time_window_weekday_ids")
     def _compute_display_name(self):
         for record in self:
-            record.display_name = _("{days}: From {start} to {end}").format(
+            record.display_name = self.env._("{days}: From {start} to {end}").format(
                 days=", ".join(record.time_window_weekday_ids.mapped("display_name")),
                 start=format_time(self.env, record.get_time_window_start_time()),
                 end=format_time(self.env, record.get_time_window_end_time()),
@@ -99,7 +95,7 @@ class TimeWindowMixin(models.AbstractModel):
 
     @api.constrains("time_window_start", "time_window_end")
     def _check_window_under_twenty_four_hours(self):
-        error_msg = _("Hour should be between 00 and 23")
+        error_msg = self.env._("Hour should be between 00 and 23")
         for record in self:
             if record.time_window_start:
                 hour, minute = self._get_hour_min_from_value(record.time_window_start)

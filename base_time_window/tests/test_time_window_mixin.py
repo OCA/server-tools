@@ -9,18 +9,23 @@ class TestTimeWindowMixin(TransactionCase):
     def setUpClass(cls):
         super().setUpClass()
 
-        cls.loader = FakeModelLoader(cls.env, cls.__module__)
-        cls.loader.backup_registry()
-        from .test_models import TestTimeWindowModel
-
-        cls.loader.update_registry((TestTimeWindowModel,))
-
         cls.customer1 = cls.env["res.partner"].create({"name": "Test1"})
         cls.customer2 = cls.env["res.partner"].create({"name": "Test2"})
         cls.customer3 = cls.env["res.partner"].create({"name": "Test3"})
 
         cls.weekday1 = cls.env["time.weekday"].search([("name", "=", "1")])
         cls.weekday2 = cls.env["time.weekday"].search([("name", "=", "2")])
+
+        cls.loader = FakeModelLoader(cls.env, cls.__module__)
+        cls.loader.backup_registry()
+        from .test_models import TestTimeWindowModel
+
+        cls.loader.update_registry((TestTimeWindowModel,))
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.loader.restore_registry()
+        super().tearDownClass()
 
     def test_time_window_no_overlap(self):
         with self.assertRaises(ValidationError):
