@@ -1,7 +1,7 @@
 # Copyright 2020 ACSONE SA/NV
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models, tools
+from odoo import api, fields, models, tools
 
 
 class TimeWeekday(models.Model):
@@ -20,7 +20,7 @@ class TimeWeekday(models.Model):
         ],
         required=True,
     )
-    _sql_constraints = [("name_uniq", "UNIQUE(name)", _("Name must be unique"))]
+    _sql_constraints = [("name_uniq", "UNIQUE(name)", ("Name must be unique"))]
 
     @api.depends("name")
     def _compute_display_name(self):
@@ -40,15 +40,15 @@ class TimeWeekday(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         records = super().create(vals_list)
-        self.env.registry.clear_cache()  # _get_id_by_name
+        self.env.registry.clear_cache()
         return records
 
     def write(self, vals):
         result = super().write(vals)
-        self.env.registry.clear_cache()  # _get_id_by_name
+        self.env.registry.clear_cache()
         return result
 
     def unlink(self):
         result = super().unlink()
-        self.env.registry.clear_cache()  # _get_id_by_name
+        self.env.registry.clear_cache()
         return result
