@@ -3,12 +3,12 @@
     <record id="view_upgrade_comparison_config_tree" model="ir.ui.view">
         <field name="model">upgrade.comparison.config</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name" />
                 <field name="server" />
                 <field name="port" />
                 <field name="database" />
-            </tree>
+            </list>
         </field>
     </record>
 

@@ -486,7 +486,10 @@ def compare_model_sets(old_records, new_records):
                     moved_module = ""
                     if module_map(column["module"]) != new_models[model_map(model)]:
                         moved_module = f" in module {new_models[model_map(model)]}"
-                    text = f"obsolete model {model} (renamed to {model_map(model)}{moved_module})"
+                    text = (
+                        f"obsolete model {model}"
+                        f" (renamed to {model_map(model)}{moved_module})"
+                    )
                     if column["model_type"]:
                         text += " [column['model_type']]"
                     reprs[module_map(column["module"])].append(text)
@@ -520,7 +523,10 @@ def compare_model_sets(old_records, new_records):
                     moved_module = ""
                     if column["module"] != module_map(old_models[inv_model_map(model)]):
                         moved_module = f" in module {old_models[inv_model_map(model)]}"
-                    text = f"new model {model} (renamed from {inv_model_map(model)}{moved_module})"
+                    text = (
+                        f"new model {model} "
+                        f"(renamed from {inv_model_map(model)}{moved_module})"
+                    )
                     if column["model_type"]:
                         text += f" [{column['model_type']}]"
                     reprs[column["module"]].append(text)

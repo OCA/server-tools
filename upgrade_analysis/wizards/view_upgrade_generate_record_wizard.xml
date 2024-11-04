@@ -32,9 +32,8 @@
 
     <record id="action_upgrade_generate_record_wizard" model="ir.actions.act_window">
         <field name="name">Generate Records Wizard</field>
-        <field name="type">ir.actions.act_window</field>
         <field name="res_model">upgrade.generate.record.wizard</field>
-        <field name="view_mode">form,tree</field>
+        <field name="view_mode">form,list</field>
         <field name="target">new</field>
     </record>
 
