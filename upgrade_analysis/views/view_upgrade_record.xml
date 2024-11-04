@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record id="view_upgrade_record_search" model="ir.ui.view">
         <field name="model">upgrade.record</field>
         <field name="arch" type="xml">
@@ -66,9 +65,9 @@
     </record>
 
     <record id="action_upgrade_record_tree" model="ir.actions.act_window">
-            <field name="name">upgrade Records</field>
-            <field name="type">ir.actions.act_window</field>
-            <field name="res_model">upgrade.record</field>
+        <field name="name">upgrade Records</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">upgrade.record</field>
     </record>
 
     <menuitem
@@ -77,5 +76,4 @@
         name="Records"
         parent="menu_upgrade"
     />
-
 </odoo>
