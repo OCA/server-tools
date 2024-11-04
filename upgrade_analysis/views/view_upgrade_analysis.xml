@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record id="view_upgrade_analysis_tree" model="ir.ui.view">
         <field name="model">upgrade.analysis</field>
         <field name="arch" type="xml">
@@ -17,7 +16,7 @@
         <field name="arch" type="xml">
             <form create="false">
                 <header>
-                  <field name="state" widget="statusbar" />
+                    <field name="state" widget="statusbar" />
                     <button
                         name="analyze"
                         string="Perform Analysis"
@@ -42,7 +41,6 @@
                             colspan="2"
                         />
                     </group>
-
                 </sheet>
             </form>
         </field>
@@ -60,5 +58,4 @@
         name="Upgrade Analyses"
         parent="menu_upgrade"
     />
-
 </odoo>
