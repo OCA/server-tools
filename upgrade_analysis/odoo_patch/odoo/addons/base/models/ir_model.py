@@ -26,12 +26,12 @@ class IrModelConstraintPatch(OdooPatch):
 
         data_list = []
         for key, definition, message in model._sql_constraints:
-            conname = "%s_%s" % (model._table, key)
+            conname = f"{model._table}_{key}"
             module = constraint_module.get(key)
             record = self._reflect_constraint(
                 model, conname, "u", cons_text(definition), module, message
             )
-            xml_id = "%s.constraint_%s" % (module, conname)
+            xml_id = f"{module}.constraint_{conname}"
             if record:
                 data_list.append(dict(xml_id=xml_id, record=record))
             else:
