@@ -74,9 +74,8 @@
 
     <record id="action_upgrade_install_wizard" model="ir.actions.act_window">
         <field name="name">Install Modules Wizard</field>
-        <field name="type">ir.actions.act_window</field>
         <field name="res_model">upgrade.install.wizard</field>
-        <field name="view_mode">form,tree</field>
+        <field name="view_mode">form,list</field>
         <field name="target">new</field>
     </record>
 

@@ -89,8 +89,8 @@ class UpgradeAnalysis(models.Model):
         if module.is_odoo_module:
             if not self.upgrade_path:
                 return (
-                    "ERROR: no upgrade_path set when writing analysis of %s\n"
-                    % module_name
+                    f"ERROR: no upgrade_path set when writing analysis of "
+                    f"{module_name}\n"
                 )
             full_path = os.path.join(self.upgrade_path, module_name, version)
         else:
@@ -101,15 +101,13 @@ class UpgradeAnalysis(models.Model):
             try:
                 os.makedirs(full_path)
             except OSError:
-                return "ERROR: could not create migrations directory %s:\n" % (
-                    full_path
-                )
+                return f"ERROR: could not create migrations directory {full_path}:\n"
         logfile = os.path.join(full_path, filename)
         try:
             f = open(logfile, "w")
         except Exception:
-            return "ERROR: could not open file %s for writing:\n" % logfile
-        _logger.debug("Writing analysis to %s", logfile)
+            return f"ERROR: could not open file {logfile} for writing:\n"
+        _logger.debug(f"Writing analysis to {logfile}")
         f.write(content)
         f.close()
         return None
@@ -219,17 +217,17 @@ class UpgradeAnalysis(models.Model):
                 keys.remove(ignore_module)
 
         for key in keys:
-            contents = "---Models in module '%s'---\n" % key
+            contents = f"---Models in module '{key}'---\n"
             if key in res_model:
                 contents += "\n".join([str(line) for line in res_model[key]])
                 if res_model[key]:
                     contents += "\n"
-            contents += "---Fields in module '%s'---\n" % key
+            contents += f"---Fields in module '{key}'---\n"
             if key in res:
                 contents += "\n".join([str(line) for line in sorted(res[key])])
                 if res[key]:
                     contents += "\n"
-            contents += "---XML records in module '%s'---\n" % key
+            contents += f"---XML records in module '{key}'---\n"
             if key in res_xml:
                 contents += "\n".join([str(line) for line in res_xml[key]])
                 if res_xml[key]:
@@ -268,13 +266,13 @@ class UpgradeAnalysis(models.Model):
         try:
             self.generate_noupdate_changes()
         except Exception as e:
-            _logger.exception("Error generating noupdate changes: %s" % e)
-            general_log += "ERROR: error when generating noupdate changes: %s\n" % e
+            _logger.exception(f"Error generating noupdate changes: {e}")
+            general_log += "ERROR: error when generating noupdate changes: {e}\n"
         try:
             self.generate_module_coverage_file(no_changes_modules)
         except Exception as e:
-            _logger.exception("Error generating module coverage file: %s" % e)
-            general_log += "ERROR: error when generating module coverage file: %s\n" % e
+            _logger.exception(f"Error generating module coverage file: {e}")
+            general_log += f"ERROR: error when generating module coverage file: {e}\n"
 
         self.write(
             {
@@ -553,20 +551,19 @@ class UpgradeAnalysis(models.Model):
         for module in all_modules:
             status = ""
             if module in all_local_modules and module in all_remote_modules:
-                module_description = " %s" % module
+                module_description = f" {module}"
             elif module in all_local_modules:
-                module_description = " |new| %s" % module
+                module_description = f" |new| {module}"
             else:
-                module_description = " |del| %s" % module
+                module_description = f" |del| {module}"
 
             if module in compare.apriori.merged_modules:
-                status = "Merged into %s. " % compare.apriori.merged_modules[module]
+                status = f"Merged into {compare.apriori.merged_modules[module]}. "
             elif module in compare.apriori.renamed_modules:
-                status = "Renamed to %s. " % compare.apriori.renamed_modules[module]
+                status = f"Renamed to {compare.apriori.renamed_modules[module]}. "
             elif module in compare.apriori.renamed_modules.values():
-                status = (
-                    "Renamed from %s. "
-                    % [
+                status = "Renamed from {}. ".format(
+                    [
                         x
                         for x in compare.apriori.renamed_modules
                         if compare.apriori.renamed_modules[x] == module
