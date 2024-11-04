@@ -3,11 +3,11 @@
     <record id="view_upgrade_analysis_tree" model="ir.ui.view">
         <field name="model">upgrade.analysis</field>
         <field name="arch" type="xml">
-            <tree decoration-info="state == 'draft'">
+            <list decoration-info="state == 'draft'">
                 <field name="config_id" />
                 <field name="analysis_date" />
                 <field name="state" />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -48,7 +48,6 @@
 
     <record id="action_upgrade_analysis_tree" model="ir.actions.act_window">
         <field name="name">Upgrade Analyses</field>
-        <field name="type">ir.actions.act_window</field>
         <field name="res_model">upgrade.analysis</field>
     </record>
 
