@@ -65,7 +65,6 @@ msgstr "属性"
 #. module: upgrade_analysis
 #. odoo-python
 #: code:addons/upgrade_analysis/wizards/upgrade_generate_record_wizard.py:0
-#, python-format
 msgid "Cannot seem to install or upgrade modules %s"
 msgstr "似乎无法安装或更新模块 %s"
 
@@ -93,7 +92,6 @@ msgstr "比较配置"
 #. module: upgrade_analysis
 #. odoo-python
 #: code:addons/upgrade_analysis/models/upgrade_comparison_config.py:0
-#, python-format
 msgid ""
 "Connection failed.\n"
 "\n"
@@ -111,7 +109,6 @@ msgstr "继续"
 #. module: upgrade_analysis
 #. odoo-python
 #: code:addons/upgrade_analysis/models/upgrade_comparison_config.py:0
-#, python-format
 msgid "Could not connect the Odoo server at %(server)s:%(port)s"
 msgstr "无法连接到位于 %(server)s:%(port)s 的 Odoo 服务器"
 
@@ -319,7 +316,6 @@ msgstr "新建分析"
 #. module: upgrade_analysis
 #. odoo-python
 #: code:addons/upgrade_analysis/models/upgrade_record.py:0
-#, python-format
 msgid "No manifest found in %(addon_dir)s"
 msgstr "在目录 %(addon_dir)s 中未找到清单文件"
 
@@ -368,7 +364,8 @@ msgstr "服务器"
 msgid ""
 "Set to Create if a field is newly created in this module. If this module "
 "modifies an attribute of an existing field, set to Modify."
-msgstr "如果字段是在此模块中新创建的，则设置为“创建”。如果此模块修改现有字段的属性，"
+msgstr ""
+"如果字段是在此模块中新创建的，则设置为“创建”。如果此模块修改现有字段的属性，"
 "则设置为“修改”。"
 
 #. module: upgrade_analysis
@@ -395,8 +392,8 @@ msgid ""
 "Odoo's --upgrade-path command line option or the 'scripts' subdirectory in "
 "the openupgrade_scripts addon."
 msgstr ""
-"保存Odoo模块分析文件的基本文件路径。该路径取自Odoo命令行选项`--upgrade-"
-"path`或`openupgrade_scripts`附加组件中的`scripts`子目录。"
+"保存Odoo模块分析文件的基本文件路径。该路径取自Odoo命令行选项`--upgrade-path`"
+"或`openupgrade_scripts`附加组件中的`scripts`子目录。"
 
 #. module: upgrade_analysis
 #: model_terms:ir.ui.view,arch_db:upgrade_analysis.view_upgrade_install_wizard_form
@@ -415,7 +412,8 @@ msgstr "这将在数据库上安装所选模块。最好不要在生产环境数
 msgid ""
 "This will reinitialize all the modules installed on this database. Do not "
 "continue if you use this database in production."
-msgstr "这将重新初始化安装在此数据库上的所有模块。最好不要在生产环境数据库中使用。"
+msgstr ""
+"这将重新初始化安装在此数据库上的所有模块。最好不要在生产环境数据库中使用。"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_record__type
@@ -425,7 +423,6 @@ msgstr "类型"
 #. module: upgrade_analysis
 #. odoo-python
 #: code:addons/upgrade_analysis/models/upgrade_analysis.py:0
-#, python-format
 msgid "Unexpected root Element: %(root)s in file: %(file)s"
 msgstr "文件: %(file)s 中意外的根元素: %(root)s"
 
@@ -504,11 +501,11 @@ msgstr "外部ID"
 #. module: upgrade_analysis
 #. odoo-python
 #: code:addons/upgrade_analysis/models/upgrade_comparison_config.py:0
-#, python-format
 msgid ""
 "You are correctly connected to the server %(server)s (version %(version)s) "
 "with the user %(user_name)s"
-msgstr "您已成功通过用户 %(user_name)s连接到服务器 %(server)s（版本 %(version)s）"
+msgstr ""
+"您已成功通过用户 %(user_name)s连接到服务器 %(server)s（版本 %(version)s）"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields.selection,name:upgrade_analysis.selection__upgrade_analysis__state__draft

@@ -65,7 +65,6 @@ msgstr "Attributi"
 #. module: upgrade_analysis
 #. odoo-python
 #: code:addons/upgrade_analysis/wizards/upgrade_generate_record_wizard.py:0
-#, python-format
 msgid "Cannot seem to install or upgrade modules %s"
 msgstr "Cembra che non si possano installae o aggiornare moduli %s"
 
@@ -93,7 +92,6 @@ msgstr "Configurazioni di confronto"
 #. module: upgrade_analysis
 #. odoo-python
 #: code:addons/upgrade_analysis/models/upgrade_comparison_config.py:0
-#, python-format
 msgid ""
 "Connection failed.\n"
 "\n"
@@ -111,7 +109,6 @@ msgstr "Continua"
 #. module: upgrade_analysis
 #. odoo-python
 #: code:addons/upgrade_analysis/models/upgrade_comparison_config.py:0
-#, python-format
 msgid "Could not connect the Odoo server at %(server)s:%(port)s"
 msgstr "Impossibile collegarsi al server Odoo a %(server)s:%(port)s"
 
@@ -319,7 +316,6 @@ msgstr "Nuonva analisi"
 #. module: upgrade_analysis
 #. odoo-python
 #: code:addons/upgrade_analysis/models/upgrade_record.py:0
-#, python-format
 msgid "No manifest found in %(addon_dir)s"
 msgstr "Manifest non trovato in %(addon_dir)s"
 
@@ -431,7 +427,6 @@ msgstr "Tipo"
 #. module: upgrade_analysis
 #. odoo-python
 #: code:addons/upgrade_analysis/models/upgrade_analysis.py:0
-#, python-format
 msgid "Unexpected root Element: %(root)s in file: %(file)s"
 msgstr "Elemento radice inatteso: %(root)s nel file: %(file)s"
 
@@ -510,7 +505,6 @@ msgstr "ID XML"
 #. module: upgrade_analysis
 #. odoo-python
 #: code:addons/upgrade_analysis/models/upgrade_comparison_config.py:0
-#, python-format
 msgid ""
 "You are correctly connected to the server %(server)s (version %(version)s) "
 "with the user %(user_name)s"
