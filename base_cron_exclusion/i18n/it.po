@@ -30,6 +30,5 @@ msgstr "Azioni pianificate"
 #. module: base_cron_exclusion
 #. odoo-python
 #: code:addons/base_cron_exclusion/models/ir_cron.py:0
-#, python-format
 msgid "You can not mutually exclude a scheduled actions with itself."
 msgstr "Non è possibile escludere mutualmente azioni schedulate con se stesse."
