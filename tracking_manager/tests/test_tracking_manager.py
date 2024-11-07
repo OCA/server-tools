@@ -194,20 +194,12 @@ class TestTrackingManager(TransactionCase):
         self.assertEqual(self.messages.body.count("Changed"), 1)
 
     def test_o2m_update_m2o_indirectly(self):
+        user = self.partner.user_ids[0]
+        action = self.env["ir.actions.act_window"].create(
+            {"name": "test", "type": "ir.actions.act_window", "res_model": user._name}
+        )
         self.partner.write(
-            {
-                "user_ids": [
-                    (
-                        Command.UPDATE,
-                        self.partner.user_ids[0].id,
-                        {
-                            "action_id": self.env["ir.actions.actions"]
-                            .create({"name": "test", "type": "ir.actions.act_window"})
-                            .id
-                        },
-                    ),
-                ]
-            }
+            {"user_ids": [(Command.UPDATE, user.id, {"action_id": action.id})]}
         )
         self.assertEqual(len(self.messages), 1)
         self.assertEqual(self.messages.body.count("Changed"), 1)
