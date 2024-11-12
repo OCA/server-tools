@@ -24,7 +24,15 @@ class TestIrSequence(TransactionCase):
             }
         )
 
+    def test_non_python_sequence(self):
+        """Verify if non-Python sequences still work"""
+        self.sequence.number_next_actual = 1
+        self.sequence.use_python_code = False
+        next_number = self.sequence._next()
+        self.assertEqual(next_number, "A01")
+
     def test_standard_sequence(self):
+        self.sequence.number_next_actual = 1
         self.assertEqual(self.sequence.python_code_preview, "AB01C")
         next_number = self.sequence._next()
         self.assertEqual(next_number, "AB01C")
@@ -37,3 +45,9 @@ class TestIrSequence(TransactionCase):
         self.assertEqual(next_number, "AB01C")
         next_number = self.sequence._next()
         self.assertEqual(next_number, "AB02C")
+
+    def test_preview_with_wrong_python_syntax(self):
+        # This will raise a Python TypeError exception
+        self.sequence.python_code = "number_padded + 1"
+        # It will not raise but put the Exception text in the preview field
+        self.assertIn("TypeError", self.sequence.python_code_preview)
