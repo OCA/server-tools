@@ -13,13 +13,13 @@ difference is that you have to wrap values in a dictionary like
 To disable all calls:
 
     {
-        "disable": ["all"],
+        "disable": ["all"]
     }
 
 To disable only some methods:
 
     {
-        "disable": ["create", "write", "another_method"],
+        "disable": ["create", "write", "another_method"]
     }
 
 NOTE: on the resulting JSON will be automatically formatted on save for

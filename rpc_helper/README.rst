@@ -54,7 +54,7 @@ To disable all calls:
 ::
 
    {
-       "disable": ["all"],
+       "disable": ["all"]
    }
 
 To disable only some methods:
@@ -62,7 +62,7 @@ To disable only some methods:
 ::
 
    {
-       "disable": ["create", "write", "another_method"],
+       "disable": ["create", "write", "another_method"]
    }
 
 NOTE: on the resulting JSON will be automatically formatted on save for
@@ -121,6 +121,16 @@ Contributors
 ------------
 
 - Simone Orsi <simone.orsi@camptocamp.com>
+
+Trobz
+
+- Tuan Nguyen <tuanna@trobz.com>
+
+Other credits
+-------------
+
+The migration of this module from 16.0 to 18.0 was financially supported
+by Camptocamp.
 
 Maintainers
 -----------
