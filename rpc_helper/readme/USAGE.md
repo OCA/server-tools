@@ -1,7 +1,6 @@
-Via code
-~~~~~~~~
+## Via code
 
-Decorate an Odoo model class like this::
+Decorate an Odoo model class like this:
 
     from odoo.addons.rpc_helper.decorator import disable_rpc
 
@@ -11,14 +10,12 @@ Decorate an Odoo model class like this::
 
 This will disable ALL calls.
 
-To selectively disable only some methods::
+To selectively disable only some methods:
 
     @disable_rpc("create", "write", "any_method")
     class AverageModel(models.Model):
         _inherit = "avg.model"
 
-
-Via `ir.model` configuration
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+## Via ir.model configuration
 
 See "Configuration" section.
