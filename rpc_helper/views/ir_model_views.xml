@@ -14,7 +14,7 @@
                     <field
                         name="rpc_config_edit"
                         groups="base.group_no_one"
-                        widget="ace"
+                        widget="code"
                     />
                 </page>
             </xpath>
