@@ -4,18 +4,18 @@
 
 import odoo
 from odoo.exceptions import UserError
-from odoo.tools.translate import _
 
 
 def protected__execute_cr(cr, uid, obj, method, *args, **kw):
     # Same as original func in odoo.service.model.execute_cr
     cr.reset()
-    recs = odoo.api.Environment(cr, uid, {}).get(obj)
+    env = odoo.api.Environment(cr, uid, {})
+    recs = env.get(obj)
     if recs is None:
-        raise UserError(_("Object %s doesn't exist", obj))
+        raise UserError(env._("Object %s doesn't exist", obj))
     # custom code starts here
     if not _rpc_allowed(recs, method):
-        raise UserError(_("RPC call on %s is not allowed", obj))
+        raise UserError(env._("RPC call on %s is not allowed", obj))
     return protected__execute_cr._orig__execute_cr(cr, uid, obj, method, *args, **kw)
 
 

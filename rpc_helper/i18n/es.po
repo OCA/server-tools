@@ -17,16 +17,6 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 
 #. module: rpc_helper
-#: model:ir.model.fields,field_description:rpc_helper.field_ir_model__changeset_change_ids
-msgid "Changeset Changes"
-msgstr ""
-
-#. module: rpc_helper
-#: model:ir.model.fields,field_description:rpc_helper.field_ir_model__changeset_ids
-msgid "Changesets"
-msgstr ""
-
-#. module: rpc_helper
 #: model:ir.model.fields,help:rpc_helper.field_ir_model__rpc_config_edit
 msgid ""
 "Configure RPC config via JSON. Value must be a list of methods to disable "
@@ -39,21 +29,6 @@ msgstr ""
 "['all']}`"
 
 #. module: rpc_helper
-#: model:ir.model.fields,field_description:rpc_helper.field_ir_model__count_changesets
-msgid "Count Changesets"
-msgstr ""
-
-#. module: rpc_helper
-#: model:ir.model.fields,field_description:rpc_helper.field_ir_model__count_pending_changeset_changes
-msgid "Count Pending Changeset Changes"
-msgstr ""
-
-#. module: rpc_helper
-#: model:ir.model.fields,field_description:rpc_helper.field_ir_model__count_pending_changesets
-msgid "Count Pending Changesets"
-msgstr ""
-
-#. module: rpc_helper
 #: model:ir.model,name:rpc_helper.model_ir_model
 msgid "Models"
 msgstr "Modelos"
@@ -61,14 +36,12 @@ msgstr "Modelos"
 #. module: rpc_helper
 #. odoo-python
 #: code:addons/rpc_helper/patch.py:0
-#, python-format
 msgid "Object %s doesn't exist"
 msgstr "El objeto %s no existe"
 
 #. module: rpc_helper
 #. odoo-python
 #: code:addons/rpc_helper/patch.py:0
-#, python-format
 msgid "RPC call on %s is not allowed"
 msgstr "La llamada RPC en %s no está permitida"
 
@@ -87,27 +60,5 @@ msgstr "Configuración Rpc"
 msgid "Rpc Config Edit"
 msgstr "Editar configuración Rpc"
 
-#. module: rpc_helper
-#: model:ir.model.fields,field_description:rpc_helper.field_ir_model__smart_search
-msgid "Smart Search"
-msgstr "Búsqueda inteligente"
-
-#. module: rpc_helper
-#: model:ir.model.fields,help:rpc_helper.field_ir_model__count_pending_changeset_changes
-msgid "The number of pending changes of this record"
-msgstr ""
-
-#. module: rpc_helper
-#: model:ir.model.fields,help:rpc_helper.field_ir_model__count_pending_changesets
-msgid "The number of pending changesets of this record"
-msgstr ""
-
-#. module: rpc_helper
-#: model:ir.model.fields,help:rpc_helper.field_ir_model__count_changesets
-msgid "The overall number of changesets of this record"
-msgstr ""
-
-#. module: rpc_helper
-#: model:ir.model.fields,field_description:rpc_helper.field_ir_model__user_can_see_changeset
-msgid "User Can See Changeset"
-msgstr ""
+#~ msgid "Smart Search"
+#~ msgstr "Búsqueda inteligente"
