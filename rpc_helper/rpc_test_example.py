@@ -1,5 +1,5 @@
-"""Basic example script you can use to test your own models for real.
-"""
+"""Basic example script you can use to test your own models for real."""
+
 from xmlrpc import client
 
 HOST = "127.0.0.1"
