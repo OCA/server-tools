@@ -1,5 +1,5 @@
 <t t-name="hc_result.template_dear_context_partner">
-        <!-- use this so we can preview all templates. -->
-        <t t-set="partner" t-value="object.env.context.get('recipient', False)"/>
-            <h2>Beste <t t-out="partner and partner.name or ''"/>,</h2>
-    </t>
+    <!-- Gebruik dit in meerdere sjablonen. -->
+    <t t-set="partner" t-value="object.env.context.get('recipient', False)"/>
+    <h2>Beste <t t-out="partner and partner.name or ''"/>,</h2>
+</t>

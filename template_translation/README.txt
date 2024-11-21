@@ -15,18 +15,18 @@ templates (that will mostly have a noupdate xmlid) have been edited
 already, or have been added through the user-interface, so can not be
 found by grepping code at all.
 
-Workflow (This has yet to be implemented)
------------------------------------------
+Advanced Workflow
+-----------------
 
 a. Retrieve template in specific language:
-   python3 template-get.py -x <xmlid> -l <language> -p <password>
+   python3 template-get.py -x <xmlid> -l <language> -p <password> 1> template.xml
 
-   Will retrieve template contents to stdout. Pipe to desired file.
+   Will retrieve template contents to stdout and pipe to desired file.
 
 b. Edit file:
    vim ~/tmp/hc_result.template_greetings-nl.xml
 
 c. Put template:
-   python3 template-put.py -x <xmlid> -l <language> -p <password>
+   cat template.xml | python3 template-put.py -x <xmlid> -l <language> -p <password>
 
    Will take template contents from stdin.
