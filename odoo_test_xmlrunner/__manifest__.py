@@ -1,7 +1,7 @@
 {
     "name": "Unittest xUnit reports",
-    "version": "17.0.1.0.0",
-    "depends": ["base"],
+    "version": "14.0.1.0.0",
+    "depends": [],
     "author": "Smile, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "summary": """
