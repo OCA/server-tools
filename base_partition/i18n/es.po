@@ -24,7 +24,6 @@ msgstr "Base"
 #. module: base_partition
 #. odoo-python
 #: code:addons/base_partition/models/models.py:0
-#, python-format
 msgid ""
 "Either set up a '_default_batch_size' on the model or provide a batch_size "
 "parameter."
