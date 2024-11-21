@@ -14,7 +14,12 @@ from odoo.tests import SingleTransactionCase
 from odoo.tests.common import Form
 from odoo.tools.misc import mute_logger
 
-from ..models.letsencrypt import _get_challenge_dir, _get_data_dir
+from ..models.letsencrypt import (
+    TYPE_CHALLENGE_DNS,
+    TYPE_CHALLENGE_HTTP,
+    _get_challenge_dir,
+    _get_data_dir,
+)
 
 CERT_DIR = path.join(path.dirname(__file__), "certs")
 
@@ -22,6 +27,34 @@ CERT_DIR = path.join(path.dirname(__file__), "certs")
 def _poll(order, deadline):
     order_resource = mock.Mock(["fullchain_pem"])
     order_resource.fullchain_pem = "chain"
+    return order_resource
+
+
+def _new_order_dns(csr_pem):
+    challenge = mock.Mock()
+    challenge.chall.typ = TYPE_CHALLENGE_DNS
+    challenge.validation = mock.Mock(return_value="")
+
+    authorizations = mock.Mock()
+    authorizations.body.challenges = [challenge]
+    authorizations.body.identifier.value = "example.ltd"
+
+    order_resource = mock.Mock()
+    order_resource.authorizations = [authorizations]
+    return order_resource
+
+
+def _new_order_http(csr_pem):
+    challenge = mock.Mock()
+    challenge.chall.typ = TYPE_CHALLENGE_HTTP
+    challenge.token = b"token"
+    challenge.validation = mock.Mock(return_value="")
+
+    authorizations = mock.Mock()
+    authorizations.body.challenges = [challenge]
+
+    order_resource = mock.Mock()
+    order_resource.authorizations = [authorizations]
     return order_resource
 
 
@@ -54,8 +87,10 @@ class TestLetsencrypt(SingleTransactionCase):
             ).set_values()
 
     @mock.patch("acme.client.ClientV2.answer_challenge")
+    @mock.patch("acme.client.ClientV2.new_account")
+    @mock.patch("acme.client.ClientV2.new_order", side_effect=_new_order_http)
     @mock.patch("acme.client.ClientV2.poll_and_finalize", side_effect=_poll)
-    def test_http_challenge(self, poll, _answer_challenge):
+    def test_http_challenge(self, poll, new_order, new_account, _answer_challenge):
         letsencrypt = self.env["letsencrypt"]
         self.env["res.config.settings"].create(
             {"letsencrypt_altnames": ""}
@@ -71,8 +106,12 @@ class TestLetsencrypt(SingleTransactionCase):
     @mock.patch("dns.resolver.query")
     @mock.patch("time.sleep")
     @mock.patch("acme.client.ClientV2.answer_challenge")
+    @mock.patch("acme.client.ClientV2.new_account")
+    @mock.patch("acme.client.ClientV2.new_order", side_effect=_new_order_dns)
     @mock.patch("acme.client.ClientV2.poll_and_finalize", side_effect=_poll)
-    def test_dns_challenge(self, poll, answer_challenge, sleep, query, dnsupd):
+    def test_dns_challenge(
+        self, poll, new_order, new_account, answer_challenge, sleep, query, dnsupd
+    ):
 
         record = None
 
@@ -113,7 +152,12 @@ class TestLetsencrypt(SingleTransactionCase):
         self.assertTrue(path.isfile("/tmp/.letsencrypt_test"))
         self.assertTrue(path.isfile(path.join(_get_data_dir(), "www.example.ltd.crt")))
 
-    def test_dns_challenge_error_on_missing_provider(self):
+    @mock.patch("acme.client.ClientV2.new_account")
+    @mock.patch("acme.client.ClientV2.new_order", side_effect=_new_order_dns)
+    @mock.patch("acme.client.ClientV2.poll_and_finalize", side_effect=_poll)
+    def test_dns_challenge_error_on_missing_provider(
+        self, poll, new_order, new_account
+    ):
         self.env["res.config.settings"].create(
             {
                 "letsencrypt_altnames": "*.example.ltd",
