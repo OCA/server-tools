@@ -9,6 +9,7 @@
     "category": "Tools",
     "summary": "Request SSL certificates from letsencrypt.org",
     "depends": ["base"],
+    "maintainers": ["hbrunn"],
     "data": [
         "data/ir_config_parameter.xml",
         "data/ir_cron.xml",
