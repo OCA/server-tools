@@ -1,33 +1,31 @@
 import os
-import threading
+from unittest.mock import patch
 
-import xmlrunner
+from xmlrunner import XMLTestRunner
 
-from odoo.tests import loader as odoo_loader
-from odoo.tests.result import OdooTestResult
+from odoo.tests.common import OdooSuite
 from odoo.tools import config
 
+if config["test_enable"]:
+    unpatched_run = OdooSuite.run
 
-def new_run_suite(suite, module_name=None):
-    # Override : Get and create a config dir
-    test_result_directory = config.get("test_result_directory", "test_results")
-    # create test result directory if not exists
-    if not os.path.exists(test_result_directory):
-        os.makedirs(test_result_directory)
+    def run(self, result):
+        # Override : Get and create a config dir
+        test_result_directory = config.get("test_result_directory", "test_results")
+        # create test result directory if not exists
+        if not os.path.exists(test_result_directory):
+            os.makedirs(test_result_directory)
 
-    # avoid dependency hell
-    from odoo.modules import module
+        # Suite run method will be called by the XMLTestRunner,
+        # so we need to run the original run method
+        with patch.object(self, "run", lambda result: unpatched_run(self, result)):
+            # Override : XMLTestRunner to run the tests and generate XML reports
+            results = XMLTestRunner(
+                output=test_result_directory,
+                verbosity=2,
+            ).run(self)
 
-    module.current_test = module_name
-    threading.current_thread().testing = True
-    results = OdooTestResult()
+        result.update(results)
+        return result
 
-    # Override : XMLTestRunner to run the tests and generate XML reports
-    xmlrunner.XMLTestRunner(output=test_result_directory, verbosity=2).run(suite)
-
-    threading.current_thread().testing = False
-    module.current_test = None
-    return results
-
-
-odoo_loader.run_suite = new_run_suite
+    patch("odoo.tests.common.OdooSuite.run", run).start()
