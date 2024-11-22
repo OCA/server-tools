@@ -30,6 +30,20 @@ def get_args():
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
     parser.add_argument(
+        "-l",
+        "--language",
+        dest="language",
+        required=False,
+        help="Full ISO language code, like nl_NL or ru_RU.",
+    )
+    parser.add_argument(
+        "-m",
+        "--module",
+        dest="module",
+        required=False,
+        help="Module containing templates.",
+    )
+    parser.add_argument(
         "-p",
         "--password",
         dest="password",
@@ -42,13 +56,6 @@ def get_args():
         dest="xmlid",
         required=False,
         help="xmlid fo mail template to retrieve.",
-    )
-    parser.add_argument(
-        "-l",
-        "--language",
-        dest="language",
-        required=False,
-        help="Full ISO language code, like nl_NL or ru_RU.",
     )
     return parser.parse_args()
 
