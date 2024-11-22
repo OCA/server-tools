@@ -3,11 +3,13 @@
 
 import logging
 
-from odoo import http
+from odoo import _, http
+from odoo.exceptions import UserError
 from odoo.http import request
 
 _logger = logging.getLogger(__name__)  # pylint: disable=invalid-name
 
+REQUIRED_KEYS = ["xmlid", "language"]
 
 STATEMENT_TEMPLATE_GET = """\
 SELECT vw.arch_db::jsonb->%(language)s
@@ -30,20 +32,28 @@ class TemplateGet(http.Controller):
     )
     def get_template(self, **kwargs):
         """Get template contents from xmlid and language."""
-        # Create exactly what is shown in #8264 attachment
+        for key in REQUIRED_KEYS:
+            if key not in REQUIRED_KEYS:
+                raise UserError(_("Missing key in %(key)s in request") % {"key": key})
         xmlid = kwargs.get("xmlid", "portal.portal_share_template")
         language = kwargs.get("language", "en_US")
         xmlid_parts = xmlid.split(".")
         query_parms = {
             "language": language,
+            "xmlid": xmlid,
             "module": xmlid_parts[0],
             "name": xmlid_parts[1],
         }
         database_cursor = request.env.cr
         database_cursor.execute(STATEMENT_TEMPLATE_GET, query_parms)
-        template_content = database_cursor.fetchone()[0]
+        template_content = database_cursor.fetchone()
+        if not template_content:
+            raise UserError(
+                _("Can not find content for xmlid %(xmlid)s and language %(language)s")
+                % query_parms
+            )
         result = {
-            "template_content": template_content,
+            "template_content": template_content[0],
         }
         _logger.debug(
             "Retrieved template %s in language %s",

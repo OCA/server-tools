@@ -26,8 +26,10 @@ def template_put(args, config, cookies):
     response = requests.post(
         url=endpoint, headers=headers, data=json_data, cookies=cookies, timeout=15
     )
-    if "result" not in response:
-        print(response.text)
+    received = response.json()
+    if "result" not in received:
+        raise Exception(received)
+    return received
 
 
 if __name__ == "__main__":

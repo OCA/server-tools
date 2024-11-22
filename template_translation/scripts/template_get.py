@@ -5,8 +5,10 @@ import requests
 from api_login import get_args, get_config, get_session
 
 
-def template_get(args, config, cookies):
+def template_get_receive(args, xmlid=None, cookies=None):
     """Retrieve subscription information"""
+    config = get_config()
+    cookies = cookies or get_session(args, config)
     config_dict = config["template_get"]
     endpoint = "%s/" % config_dict["endpoint"]
     headers = {"Content-Type": "application/json"}
@@ -17,7 +19,10 @@ def template_get(args, config, cookies):
     json_data = json.dumps(
         {
             "jsonrpc": "2.0",
-            "params": {"xmlid": args.xmlid, "language": args.language},
+            "params": {
+                "xmlid": xmlid or args.xmlid,
+                "language": args.language,
+            },
             "id": "template_get",
         }
     )
@@ -25,14 +30,16 @@ def template_get(args, config, cookies):
         url=endpoint, headers=headers, data=json_data, cookies=cookies, timeout=15
     )
     received = response.json()
-    if "result" in received:
-        print(received["result"]["template_content"])  # to stdout
-    else:
-        print(response.text)
+    if "result" not in received:
+        raise Exception(received)
+    return received
+
+
+def template_get(args):
+    received = template_get_receive(args)
+    print(received["result"]["template_content"])  # to stdout
 
 
 if __name__ == "__main__":
     main_args = get_args()
-    main_config = get_config()
-    main_cookies = get_session(main_args, main_config)
-    template_get(main_args, main_config, main_cookies)
+    template_get(main_args)

@@ -10,10 +10,12 @@ _logger = logging.getLogger(__name__)  # pylint: disable=invalid-name
 
 
 STATEMENT_TEMPLATE_LIST = """\
-SELECT name
+SELECT md.name
   FROM ir_model_data md
+  JOIN ir_ui_view vw ON md.res_id = vw.id
   WHERE md.model = 'ir.ui.view'
-  AND md.module = %(module)s
+    AND md.module = %(module)s
+    AND vw.type = 'qweb'
 """
 
 

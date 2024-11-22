@@ -5,8 +5,10 @@ import requests
 from api_login import get_args, get_config, get_session
 
 
-def template_list(args, config, cookies):
+def template_list_receive(args, cookies=None):
     """Retrieve subscription information"""
+    config = get_config()
+    cookies = cookies or get_session(args, config)
     config_dict = config["template_list"]
     endpoint = "%s/" % config_dict["endpoint"]
     headers = {"Content-Type": "application/json"}
@@ -23,16 +25,18 @@ def template_list(args, config, cookies):
         url=endpoint, headers=headers, data=json_data, cookies=cookies, timeout=15
     )
     received = response.json()
-    if "result" in received:
-        template_list = received["result"]["template_list"]
-        for xmlid in template_list:
-            print("%s.%s" % (args.module, xmlid))  # to stdout
-    else:
-        print(response.text)
+    if "result" not in received:
+        raise Exception(received)
+    return received
+
+
+def template_list(args):
+    received = template_list_receive(args)
+    template_list = received["result"]["template_list"]
+    for xmlid in template_list:
+        print("%s.%s" % (args.module, xmlid))  # to stdout
 
 
 if __name__ == "__main__":
     main_args = get_args()
-    main_config = get_config()
-    main_cookies = get_session(main_args, main_config)
-    template_list(main_args, main_config, main_cookies)
+    template_list(main_args)

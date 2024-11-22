@@ -9,7 +9,7 @@ from configparser import ConfigParser, ExtendedInterpolation
 import requests
 
 # You must initialize logging, otherwise you'll not see debug output.
-_logger = logging.getLogger()
+_logger = logging.getLogger(__name__)
 _logger.setLevel(logging.DEBUG)
 _logger.propagate = False
 
