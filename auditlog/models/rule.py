@@ -1,10 +1,11 @@
 # Copyright 2015 ABF OSIELL <https://osiell.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
+import contextlib
 import copy
 
 from odoo import _, api, fields, models
-from odoo.exceptions import UserError
+from odoo.exceptions import AccessError, UserError
 
 FIELDS_BLACKLIST = [
     "id",
@@ -263,11 +264,13 @@ class AuditlogRule(models.Model):
         By default it is all stored fields only, but you can
         override this.
         """
-        return list(
-            n
-            for n, f in model._fields.items()
-            if (not f.compute and not f.related) or f.store
-        )
+        fields_list = []
+        for n, f in model._fields.items():
+            if (not f.compute and not f.related) or f.store:
+                with contextlib.suppress(AccessError):
+                    model.check_field_access_rights("read", [n])
+                    fields_list.append(n)
+        return fields_list
 
     def _make_create(self):
         """Instanciate a create method that log its calls."""
@@ -287,7 +290,7 @@ class AuditlogRule(models.Model):
             # their values exist in cache.
             new_values = {}
             fields_list = rule_model.get_auditlog_fields(self)
-            for new_record in new_records.sudo():
+            for new_record in new_records:
                 new_values.setdefault(new_record.id, {})
                 for fname, field in new_record._fields.items():
                     if fname not in fields_list:
@@ -385,9 +388,7 @@ class AuditlogRule(models.Model):
             fields_list = rule_model.get_auditlog_fields(self)
             old_values = {
                 d["id"]: d
-                for d in self.sudo()
-                .with_context(prefetch_fields=False)
-                .read(fields_list)
+                for d in self.with_context(prefetch_fields=False).read(fields_list)
             }
             # invalidate_recordset method must be called with existing fields
             if self._name == "res.users":
@@ -398,9 +399,7 @@ class AuditlogRule(models.Model):
             result = write_full.origin(self, vals, **kwargs)
             new_values = {
                 d["id"]: d
-                for d in self.sudo()
-                .with_context(prefetch_fields=False)
-                .read(fields_list)
+                for d in self.with_context(prefetch_fields=False).read(fields_list)
             }
             if self.env.user in users_to_exclude:
                 return result
@@ -453,9 +452,7 @@ class AuditlogRule(models.Model):
             fields_list = rule_model.get_auditlog_fields(self)
             old_values = {
                 d["id"]: d
-                for d in self.sudo()
-                .with_context(prefetch_fields=False)
-                .read(fields_list)
+                for d in self.with_context(prefetch_fields=False).read(fields_list)
             }
             if self.env.user in users_to_exclude:
                 return unlink_full.origin(self, **kwargs)
