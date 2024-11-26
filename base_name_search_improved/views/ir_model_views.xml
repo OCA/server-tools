@@ -17,27 +17,27 @@
                     <p class="alert alert-info" role="alert" style="margin-bottom:0px;">
                         Smart Search can be activated in two complementary ways:
                         <ul>
-                            <li>
+                        <li>
                                 <b
-                                >Smart Search</b>: when searching in list, kanban and other views, the first option will be to search using "Smart Search"
+                        >Smart Search</b>: when searching in list, kanban and other views, the first option will be to search using "Smart Search"
                             </li>
-                            <li>
+                        <li>
                                 <b
-                                >Smart Name Search</b>: when searching for a record from another record through the m2o/m2m widgets, for example when adding a Product in a Sales Order Line or when selecting a Contact in an Invoice.
+                        >Smart Name Search</b>: when searching for a record from another record through the m2o/m2m widgets, for example when adding a Product in a Sales Order Line or when selecting a Contact in an Invoice.
                             </li>
-                        </ul>
+                    </ul>
                         If "Smart Search" has been activated, searches will have a more "relaxed" behaviour. Odoo natively searches for records that include the phrases entered as they are entered. When activating this option it will search for records that contain entered words regardless of the order in which they are entered. For example if we search for a Contact "Fred Flinstone", Odoo would by default only return those records that contain exactly that phrase. With Smart Search active any record containing the words "Fred" and "Flinstone" will be returned.
                         <br />
                         <br />
 
                         By enabling Smart Search you can also add configure these two optional behaviours:
                         <ul>
-                            <li>Define a <b
-                                >Smart Search Domain</b> (for example, only show internal users and not portal users)</li>
-                            <li>
+                        <li>Define a <b
+                        >Smart Search Domain</b> (for example, only show internal users and not portal users)</li>
+                        <li>
                                 <b
-                                >Smart Search Fields</b>. You can define a set of fields by which we want to search</li>
-                        </ul>
+                        >Smart Search Fields</b>. You can define a set of fields by which we want to search</li>
+                    </ul>
                     </p>
                     <p
                         class="alert alert-warning"
@@ -45,7 +45,7 @@
                         style="margin-bottom:0px;"
                     >
                         <b
-                        >IMPORTANT:</b> Please note that enabling smart search may affect the performance of searches and the system in general.
+                    >IMPORTANT:</b> Please note that enabling smart search may affect the performance of searches and the system in general.
                         <field name="smart_search_warning" />
                     </p>
                     <group>
