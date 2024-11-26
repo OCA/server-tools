@@ -50,7 +50,6 @@
                     </p>
                     <group>
                         <group>
-                            <field name="id" invisible="1" />
                             <field name="model" readonly="1" />
                             <field
                                 name="add_smart_search"
@@ -79,12 +78,12 @@
                                 name="name_search_ids"
                                 domain="[('model_id', '=', id), ('selectable', '=', True)]"
                             >
-                                <tree>
+                                <list>
                                     <field name="name" />
                                     <field name="field_description" />
                                     <field name="ttype" />
                                     <field name="state" groups="base.group_no_one" />
-                                </tree>
+                                </list>
                             </field>
                         </page>
                     </notebook>
@@ -93,11 +92,10 @@
         </field>
     </record>
     <record id="view_model_tree" model="ir.ui.view">
-        <field name="name">view.model.tree</field>
+        <field name="name">view.model.list</field>
         <field name="model">ir.model</field>
         <field name="arch" type="xml">
-            <tree>
-                <field name="id" column_invisible="True" />
+            <list>
                 <field name="name" readonly="1" />
                 <field
                     name="name_search_ids"
@@ -116,7 +114,7 @@
                     string="Smart Name Search"
                     widget="boolean_toggle"
                 />
-            </tree>
+            </list>
         </field>
     </record>
     <record id="view_model_search" model="ir.ui.view">
@@ -143,12 +141,12 @@
     <record id="action_improved_name_search" model="ir.actions.act_window">
         <field name="name">Smart Searches</field>
         <field name="res_model">ir.model</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="search_view_id" ref="view_model_search" />
         <field
             name="view_ids"
             eval="[(5, 0, 0),
-            (0, 0, {'view_mode': 'tree', 'view_id': ref('view_model_tree')}),
+            (0, 0, {'view_mode': 'list', 'view_id': ref('view_model_tree')}),
             (0, 0, {'view_mode': 'form', 'view_id': ref('view_model_form_new')}
         )]"
         />

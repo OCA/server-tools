@@ -41,38 +41,40 @@ class NameSearchCase(TransactionCase):
 
     def test_RelevanceOrderedResults(self):
         """Return results ordered by relevance"""
-        res = self.Partner._name_search("555 777")
-        self.assertEqual(res[0], self.partner1.id, "Match full string honoring spaces")
+        res = self.Partner.name_search("555 777")
         self.assertEqual(
-            res[1], self.partner2.id, "Match words honoring order of appearance"
+            res[0][0], self.partner1.id, "Match full string honoring spaces"
         )
         self.assertEqual(
-            res[2],
+            res[1][0], self.partner2.id, "Match words honoring order of appearance"
+        )
+        self.assertEqual(
+            res[2][0],
             self.partner3.id,
             "Match all words, regardless of order of appearance",
         )
 
     def test_NameSearchMustMatchAllWords(self):
         """Must Match All Words"""
-        res = self.Partner._name_search("ulm aaa 555 777")
+        res = self.Partner.name_search("ulm aaa 555 777")
         self.assertFalse(res)
 
     def test_NameSearchDifferentFields(self):
         """Must Match All Words"""
-        res = self.Partner._name_search("ulm 555 777")
+        res = self.Partner.name_search("ulm 555 777")
         self.assertEqual(len(res), 1)
 
     def test_NameSearchDomain(self):
         """Must not return a partner with parent"""
-        res = self.Partner._name_search("Edward Foster")
+        res = self.Partner.name_search("Edward Foster")
         self.assertFalse(res)
 
     def test_MustHonorDomain(self):
         """Must also honor a provided Domain"""
-        res = self.Partner._name_search("+351", domain=[("vat", "=", "3333")])
+        res = self.Partner.name_search("+351", args=[("vat", "=", "3333")])
         gambulputty = self.partner3.id
         self.assertEqual(len(res), 1)
-        self.assertEqual(res[0], gambulputty)
+        self.assertEqual(res[0][0], gambulputty)
 
     def test_SmartSearchWarning(self):
         """Must check the funtional work of _compute_smart_search_warning"""
