@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 17.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -102,7 +102,6 @@ msgstr ""
 #. module: base_exception
 #. odoo-python
 #: code:addons/base_exception/models/base_exception_method.py:0
-#, python-format
 msgid ""
 "Error when evaluating the exception.rule rule:\n"
 " %(rule_name)s \n"
@@ -140,7 +139,7 @@ msgid "Exception Rule Setup"
 msgstr ""
 
 #. module: base_exception
-#: model:ir.actions.act_window,name:base_exception.action_exception_rule_tree
+#: model:ir.actions.act_window,name:base_exception.action_exception_rule_list
 #: model:ir.ui.menu,name:base_exception.menu_action_exception
 msgid "Exception Rules"
 msgstr ""
@@ -224,7 +223,6 @@ msgstr ""
 #. module: base_exception
 #. odoo-python
 #: code:addons/base_exception/wizard/base_exception_confirm.py:0
-#, python-format
 msgid "Only 1 ID accepted, got %r."
 msgstr ""
 
@@ -264,14 +262,12 @@ msgstr ""
 #. module: base_exception
 #. odoo-python
 #: code:addons/base_exception/models/base_exception.py:0
-#, python-format
 msgid "The exceptions can not be ignored, because some of them are blocking."
 msgstr ""
 
 #. module: base_exception
 #. odoo-python
 #: code:addons/base_exception/models/exception_rule.py:0
-#, python-format
 msgid ""
 "There is a problem of configuration, python code, domain or method is "
 "missing to match the exception type."
