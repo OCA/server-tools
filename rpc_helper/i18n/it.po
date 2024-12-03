@@ -17,16 +17,6 @@ msgstr ""
 "X-Generator: Weblate 5.6.2\n"
 
 #. module: rpc_helper
-#: model:ir.model.fields,field_description:rpc_helper.field_ir_model__changeset_change_ids
-msgid "Changeset Changes"
-msgstr "Modifiche dell'insieme di modifiche"
-
-#. module: rpc_helper
-#: model:ir.model.fields,field_description:rpc_helper.field_ir_model__changeset_ids
-msgid "Changesets"
-msgstr "Insiemi di modifiche"
-
-#. module: rpc_helper
 #: model:ir.model.fields,help:rpc_helper.field_ir_model__rpc_config_edit
 msgid ""
 "Configure RPC config via JSON. Value must be a list of methods to disable "
@@ -39,21 +29,6 @@ msgstr ""
 "`{'disable: ['all']}`"
 
 #. module: rpc_helper
-#: model:ir.model.fields,field_description:rpc_helper.field_ir_model__count_changesets
-msgid "Count Changesets"
-msgstr "Conta insiemi di modifiche"
-
-#. module: rpc_helper
-#: model:ir.model.fields,field_description:rpc_helper.field_ir_model__count_pending_changeset_changes
-msgid "Count Pending Changeset Changes"
-msgstr "Conteggio modifiche dell'insieme di modifiche in attesa"
-
-#. module: rpc_helper
-#: model:ir.model.fields,field_description:rpc_helper.field_ir_model__count_pending_changesets
-msgid "Count Pending Changesets"
-msgstr "Conta insiemi di modifiche in attesa"
-
-#. module: rpc_helper
 #: model:ir.model,name:rpc_helper.model_ir_model
 msgid "Models"
 msgstr "Modelli"
@@ -61,14 +36,12 @@ msgstr "Modelli"
 #. module: rpc_helper
 #. odoo-python
 #: code:addons/rpc_helper/patch.py:0
-#, python-format
 msgid "Object %s doesn't exist"
 msgstr "L'oggetto %s non esiste"
 
 #. module: rpc_helper
 #. odoo-python
 #: code:addons/rpc_helper/patch.py:0
-#, python-format
 msgid "RPC call on %s is not allowed"
 msgstr "La chiamata RPC su %s non è consentita"
 
@@ -87,27 +60,32 @@ msgstr "Configurazione RPC"
 msgid "Rpc Config Edit"
 msgstr "Mdifica configurazione RPC"
 
-#. module: rpc_helper
-#: model:ir.model.fields,field_description:rpc_helper.field_ir_model__smart_search
-msgid "Smart Search"
-msgstr "Ricerca intelligente"
+#~ msgid "Changeset Changes"
+#~ msgstr "Modifiche dell'insieme di modifiche"
 
-#. module: rpc_helper
-#: model:ir.model.fields,help:rpc_helper.field_ir_model__count_pending_changeset_changes
-msgid "The number of pending changes of this record"
-msgstr "Numero di modifiche di questo record in attesa"
+#~ msgid "Changesets"
+#~ msgstr "Insiemi di modifiche"
 
-#. module: rpc_helper
-#: model:ir.model.fields,help:rpc_helper.field_ir_model__count_pending_changesets
-msgid "The number of pending changesets of this record"
-msgstr "Numero di insiemi di modifiche in attesa di questo record"
+#~ msgid "Count Changesets"
+#~ msgstr "Conta insiemi di modifiche"
 
-#. module: rpc_helper
-#: model:ir.model.fields,help:rpc_helper.field_ir_model__count_changesets
-msgid "The overall number of changesets of this record"
-msgstr "Numero totale di insiemi di modifiche di questo record"
+#~ msgid "Count Pending Changeset Changes"
+#~ msgstr "Conteggio modifiche dell'insieme di modifiche in attesa"
 
-#. module: rpc_helper
-#: model:ir.model.fields,field_description:rpc_helper.field_ir_model__user_can_see_changeset
-msgid "User Can See Changeset"
-msgstr "L'utente può vedere l'insieme delle modifiche"
+#~ msgid "Count Pending Changesets"
+#~ msgstr "Conta insiemi di modifiche in attesa"
+
+#~ msgid "Smart Search"
+#~ msgstr "Ricerca intelligente"
+
+#~ msgid "The number of pending changes of this record"
+#~ msgstr "Numero di modifiche di questo record in attesa"
+
+#~ msgid "The number of pending changesets of this record"
+#~ msgstr "Numero di insiemi di modifiche in attesa di questo record"
+
+#~ msgid "The overall number of changesets of this record"
+#~ msgstr "Numero totale di insiemi di modifiche di questo record"
+
+#~ msgid "User Can See Changeset"
+#~ msgstr "L'utente può vedere l'insieme delle modifiche"
