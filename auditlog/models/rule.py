@@ -3,7 +3,7 @@
 
 import copy
 
-from odoo import _, api, fields, models
+from odoo import Command, _, api, fields, models
 from odoo.exceptions import UserError
 
 FIELDS_BLACKLIST = [
@@ -524,34 +524,36 @@ class AuditlogRule(models.Model):
                 "http_session_id": http_session_model.current_http_session(),
             }
             vals.update(additional_log_values or {})
-            log = log_model.create(vals)
             diff = DictDiffer(
                 new_values.get(res_id, EMPTY_DICT), old_values.get(res_id, EMPTY_DICT)
             )
             if method == "create":
-                self._create_log_line_on_create(
-                    log, diff.added(), new_values, fields_to_exclude
+                vals["line_ids"] = self._create_log_line_on_create(
+                    vals, diff.added(), new_values, fields_to_exclude
                 )
             elif method == "read":
-                self._create_log_line_on_read(
-                    log,
+                vals["line_ids"] = self._create_log_line_on_read(
+                    vals,
                     list(old_values.get(res_id, EMPTY_DICT).keys()),
                     old_values,
                     fields_to_exclude,
                 )
             elif method == "write":
-                self._create_log_line_on_write(
-                    log, diff.changed(), old_values, new_values, fields_to_exclude
+                vals["line_ids"] = self._create_log_line_on_write(
+                    vals, diff.changed(), old_values, new_values, fields_to_exclude
                 )
             elif method == "unlink" and auditlog_rule.capture_record:
-                self._create_log_line_on_read(
-                    log,
+                vals["line_ids"] = self._create_log_line_on_read(
+                    vals,
                     list(old_values.get(res_id, EMPTY_DICT).keys()),
                     old_values,
                     fields_to_exclude,
                 )
+            if method == "unlink" or vals.get("line_ids", {}):
+                log_model.create(vals)
 
-    def _get_field(self, model, field_name):
+    def _get_field(self, model_id, field_name):
+        model = self.env["ir.model"].sudo().browse(model_id)
         cache = self.pool._auditlog_field_cache
         if field_name not in cache.get(model.model, {}):
             cache.setdefault(model.model, {})
@@ -574,29 +576,34 @@ class AuditlogRule(models.Model):
         return cache[model.model][field_name]
 
     def _create_log_line_on_read(
-        self, log, fields_list, read_values, fields_to_exclude
+        self, log_vals, fields_list, read_values, fields_to_exclude
     ):
         """Log field filled on a 'read' operation."""
-        log_line_model = self.env["auditlog.log.line"]
         fields_to_exclude = fields_to_exclude + FIELDS_BLACKLIST
+        line_vals = []
         for field_name in fields_list:
             if field_name in fields_to_exclude:
                 continue
-            field = self._get_field(log.model_id, field_name)
+            field = self._get_field(log_vals["model_id"], field_name)
             # not all fields have an ir.models.field entry (ie. related fields)
             if field:
-                log_vals = self._prepare_log_line_vals_on_read(log, field, read_values)
-                log_line_model.create(log_vals)
+                line_vals.append(
+                    Command.create(
+                        self._prepare_log_line_vals_on_read(
+                            log_vals, field, read_values
+                        )
+                    )
+                )
+        return line_vals
 
-    def _prepare_log_line_vals_on_read(self, log, field, read_values):
+    def _prepare_log_line_vals_on_read(self, log_vals, field, read_values):
         """Prepare the dictionary of values used to create a log line on a
         'read' operation.
         """
         vals = {
             "field_id": field["id"],
-            "log_id": log.id,
-            "old_value": read_values[log.res_id][field["name"]],
-            "old_value_text": read_values[log.res_id][field["name"]],
+            "old_value": read_values[log_vals["res_id"]][field["name"]],
+            "old_value_text": read_values[log_vals["res_id"]][field["name"]],
             "new_value": False,
             "new_value_text": False,
         }
@@ -608,36 +615,43 @@ class AuditlogRule(models.Model):
         return vals
 
     def _create_log_line_on_write(
-        self, log, fields_list, old_values, new_values, fields_to_exclude
+        self, log_vals, fields_list, old_values, new_values, fields_to_exclude
     ):
         """Log field updated on a 'write' operation."""
-        log_line_model = self.env["auditlog.log.line"]
         fields_to_exclude = fields_to_exclude + FIELDS_BLACKLIST
+        line_vals = []
         for field_name in fields_list:
             if field_name in fields_to_exclude:
                 continue
-            field = self._get_field(log.model_id, field_name)
+            field = self._get_field(log_vals["model_id"], field_name)
             # not all fields have an ir.models.field entry (ie. related fields)
             if field:
-                log_vals = self._prepare_log_line_vals_on_write(
-                    log, field, old_values, new_values
+                line_vals.append(
+                    Command.create(
+                        self._prepare_log_line_vals_on_write(
+                            log_vals, field, old_values, new_values
+                        )
+                    )
                 )
-                log_line_model.create(log_vals)
+        return line_vals
 
-    def _prepare_log_line_vals_on_write(self, log, field, old_values, new_values):
+    def _prepare_log_line_vals_on_write(self, log_vals, field, old_values, new_values):
         """Prepare the dictionary of values used to create a log line on a
         'write' operation.
         """
         vals = {
             "field_id": field["id"],
-            "log_id": log.id,
-            "old_value": old_values[log.res_id][field["name"]],
-            "old_value_text": old_values[log.res_id][field["name"]],
-            "new_value": new_values[log.res_id][field["name"]],
-            "new_value_text": new_values[log.res_id][field["name"]],
+            "old_value": old_values[log_vals["res_id"]][field["name"]],
+            "old_value_text": old_values[log_vals["res_id"]][field["name"]],
+            "new_value": new_values[log_vals["res_id"]][field["name"]],
+            "new_value_text": new_values[log_vals["res_id"]][field["name"]],
         }
         # for *2many fields, log the display_name
-        if log.log_type == "full" and field["relation"] and "2many" in field["ttype"]:
+        if (
+            log_vals["log_type"] == "full"
+            and field["relation"]
+            and "2many" in field["ttype"]
+        ):
             # Filter IDs to prevent a 'display_name' call on deleted resources
             existing_ids = self.env[field["relation"]]._search(
                 [("id", "in", vals["old_value"])]
@@ -660,33 +674,42 @@ class AuditlogRule(models.Model):
         return vals
 
     def _create_log_line_on_create(
-        self, log, fields_list, new_values, fields_to_exclude
+        self, log_vals, fields_list, new_values, fields_to_exclude
     ):
         """Log field filled on a 'create' operation."""
-        log_line_model = self.env["auditlog.log.line"]
         fields_to_exclude = fields_to_exclude + FIELDS_BLACKLIST
+        line_vals = []
         for field_name in fields_list:
             if field_name in fields_to_exclude:
                 continue
-            field = self._get_field(log.model_id, field_name)
+            field = self._get_field(log_vals["model_id"], field_name)
             # not all fields have an ir.models.field entry (ie. related fields)
             if field:
-                log_vals = self._prepare_log_line_vals_on_create(log, field, new_values)
-                log_line_model.create(log_vals)
+                line_vals.append(
+                    Command.create(
+                        self._prepare_log_line_vals_on_create(
+                            log_vals, field, new_values
+                        )
+                    )
+                )
+        return line_vals
 
-    def _prepare_log_line_vals_on_create(self, log, field, new_values):
+    def _prepare_log_line_vals_on_create(self, log_vals, field, new_values):
         """Prepare the dictionary of values used to create a log line on a
         'create' operation.
         """
         vals = {
             "field_id": field["id"],
-            "log_id": log.id,
             "old_value": False,
             "old_value_text": False,
-            "new_value": new_values[log.res_id][field["name"]],
-            "new_value_text": new_values[log.res_id][field["name"]],
+            "new_value": new_values[log_vals["res_id"]][field["name"]],
+            "new_value_text": new_values[log_vals["res_id"]][field["name"]],
         }
-        if log.log_type == "full" and field["relation"] and "2many" in field["ttype"]:
+        if (
+            log_vals["log_type"] == "full"
+            and field["relation"]
+            and "2many" in field["ttype"]
+        ):
             vals["new_value_text"] = [
                 (x.id, x.display_name)
                 for x in self.env[field["relation"]].browse(vals["new_value"])

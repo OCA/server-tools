@@ -698,3 +698,75 @@ class AuditLogRuleTestForUserModel(TransactionCase):
             ]
         ).ensure_one()
         self.assertTrue(write_log_record)
+
+
+class AuditlogFast_excluded_fields(TransactionCase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        # get Contact model id
+        cls.contact_model_id = (
+            cls.env["ir.model"].search([("model", "=", "res.partner")]).id
+        )
+
+        # get phone field id
+        cls.fields_to_exclude_ids = (
+            cls.env["ir.model.fields"]
+            .search([("model", "=", "res.partner"), ("name", "=", "phone")])
+            .id
+        )
+        # creating auditlog.rule
+        cls.auditlog_rule = (
+            cls.env["auditlog.rule"]
+            .with_context(tracking_disable=True)
+            .create(
+                {
+                    "name": "testrule 01",
+                    "model_id": cls.contact_model_id,
+                    "log_read": True,
+                    "log_create": True,
+                    "log_write": True,
+                    "log_unlink": True,
+                    "log_type": "fast",
+                    "capture_record": True,
+                }
+            )
+        )
+
+        # Updating phone in fields_to_exclude_ids
+        cls.auditlog_rule.fields_to_exclude_ids = [[4, cls.fields_to_exclude_ids]]
+
+        # Subscribe auditlog.rule
+        cls.auditlog_rule.subscribe()
+
+        cls.auditlog_log = cls.env["auditlog.log"]
+
+        # Creating new res.partner
+        cls.testpartner1 = (
+            cls.env["res.partner"]
+            .with_context(tracking_disable=True)
+            .create(
+                {
+                    "name": "testpartner1",
+                    "phone": "123",
+                }
+            )
+        )
+
+    def test_01_AuditlogFast_field_exclude_write_log(self):
+        # Checking fields_to_exclude_ids
+        self.testpartner1.with_context(tracking_disable=True).write(
+            {
+                "phone": "1234567890",
+            }
+        )
+        # Checking log is created for testpartner1
+        self.assertFalse(
+            self.auditlog_log.search(
+                [
+                    ("model_id", "=", self.auditlog_rule.model_id.id),
+                    ("method", "=", "write"),
+                    ("res_id", "=", self.testpartner1.id),
+                ]
+            )
+        )
