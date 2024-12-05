@@ -67,10 +67,10 @@
         </field>
     </record>
     <record model="ir.ui.view" id="view_auditlog_rule_tree">
-        <field name="name">auditlog.rule.tree</field>
+        <field name="name">auditlog.rule.list</field>
         <field name="model">auditlog.rule</field>
         <field name="arch" type="xml">
-            <tree
+            <list
                 decoration-info="state == 'draft'"
                 decoration-bf="state == 'subscribed'"
             >
@@ -82,7 +82,7 @@
                 <field name="log_unlink" />
                 <field name="log_create" />
                 <field name="state" />
-            </tree>
+            </list>
         </field>
     </record>
     <record id="view_auditlog_rule_search" model="ir.ui.view">
@@ -117,7 +117,7 @@
         <field name="name">Rules</field>
         <field name="res_model">auditlog.rule</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="context">{}</field>
         <field name="search_view_id" ref="view_auditlog_rule_search" />
     </record>
@@ -178,14 +178,14 @@
                                     <field name="new_value_text" readonly="1" />
                                 </group>
                             </form>
-                            <tree>
+                            <list>
                                 <field name="field_description" />
                                 <field name="field_name" />
                                 <!--<field name="old_value"/>-->
                                 <field name="old_value_text" />
                                 <!--<field name="new_value"/>-->
                                 <field name="new_value_text" />
-                            </tree>
+                            </list>
                         </field>
                     </group>
                 </sheet>
@@ -193,17 +193,17 @@
         </field>
     </record>
     <record model="ir.ui.view" id="view_auditlog_log_tree">
-        <field name="name">auditlog.log.tree</field>
+        <field name="name">auditlog.log.list</field>
         <field name="model">auditlog.log</field>
         <field name="arch" type="xml">
-            <tree create="false">
+            <list create="false">
                 <field name="create_date" />
                 <field name="name" />
                 <field name="model_id" />
                 <field name="res_id" />
                 <field name="method" />
                 <field name="user_id" />
-            </tree>
+            </list>
         </field>
     </record>
     <record id="view_auditlog_log_search" model="ir.ui.view">
@@ -269,10 +269,10 @@
     />
     <!-- auditlog.log.line -->
     <record model="ir.ui.view" id="view_auditlog_line_tree">
-        <field name="name">view.auditlog.line.tree</field>
+        <field name="name">view.auditlog.line.list</field>
         <field name="model">auditlog.log.line.view</field>
         <field name="arch" type="xml">
-            <tree create="0">
+            <list create="0">
                 <field name="create_date" optional="show" />
                 <field name="user_id" optional="show" />
                 <field name="http_session_id" optional="hide" />
@@ -289,7 +289,7 @@
                 <field name="old_value_text" optional="show" />
                 <field name="new_value_text" optional="show" />
                 <field name="log_type" optional="hide" />
-            </tree>
+            </list>
         </field>
     </record>
     <record id="view_auditlog_line_search" model="ir.ui.view">
@@ -351,7 +351,7 @@
     <record id="action_auditlog_line" model="ir.actions.act_window">
         <field name="name">Log Lines</field>
         <field name="res_model">auditlog.log.line.view</field>
-        <field name="view_mode">tree</field>
+        <field name="view_mode">list</field>
         <field name="search_view_id" ref="view_auditlog_line_search" />
         <field name="context">{'search_default_group_by_model_id': 1}</field>
     </record>
