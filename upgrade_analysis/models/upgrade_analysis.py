@@ -530,7 +530,16 @@ class UpgradeAnalysis(models.Model):
 
         module_domain = [
             ("state", "=", "installed"),
-            ("name", "not in", ["upgrade_analysis", "openupgrade_records"]),
+            (
+                "name",
+                "not in",
+                [
+                    "upgrade_analysis",
+                    "openupgrade_records",
+                    "openupgrade_scripts",
+                    "openupgrade_framework",
+                ],
+            ),
         ]
 
         connection = self.config_id.get_connection()
