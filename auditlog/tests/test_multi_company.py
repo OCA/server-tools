@@ -1,9 +1,8 @@
 from unittest.mock import patch
 
 from odoo.fields import Command
+from odoo.models import BaseModel
 from odoo.tests.common import TransactionCase
-
-from odoo.addons.base.models.res_users import Groups
 
 
 class TestMultiCompany(TransactionCase):
@@ -78,10 +77,12 @@ class TestMultiCompany(TransactionCase):
             present in the cache at this point, leading to the deletion of the
             value from the company that is inaccessible to the current user.
             """
-            return super(Groups, self).write(vals)
+            return BaseModel.write(self, vals)
 
         # Do the write.
-        with patch.object(Groups, "write", side_effect=write, autospec=True):
+        with patch.object(
+            self.env["res.groups"].__class__, "write", side_effect=write, autospec=True
+        ):
             group_with_user.write({"users": [Command.set(self.user2.ids)]})
         self.assertEqual(group_with_user.users, self.user2)
         # Ensure that the users of the other companies are still there.
