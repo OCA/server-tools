@@ -83,6 +83,7 @@ class TestMultiCompany(TransactionCase):
         # Do the write.
         with patch.object(Groups, "write", side_effect=write, autospec=True):
             group_with_user.write({"users": [Command.set(self.user2.ids)]})
+        self.group.invalidate_recordset(["users"])
         self.assertEqual(group_with_user.users, self.user2)
         # Ensure that the users of the other companies are still there.
         self.env.invalidate_all()
