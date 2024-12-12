@@ -11,6 +11,7 @@ class IrModelAccess(models.Model):
 
     @api.model
     @tools.ormcache_context(
+<<<<<<< HEAD
         "self.env.uid",
         "self.env.su",
         "model",
@@ -66,3 +67,27 @@ class IrModelAccess(models.Model):
             )
             .mapped("model_id.model")
         )
+=======
+        "self._uid", "model", "mode", "raise_exception", keys=("lang",)
+    )
+    def check(self, model, mode="read", raise_exception=True):
+        res = super(IrModelAccess, self).check(model, mode, raise_exception)
+        if self._uid == 1:
+            return True
+        self._cr.execute(
+            "SELECT restrict_update FROM ir_model WHERE model = %s", (model,)
+        )
+        query_res = self._cr.dictfetchall()[0]
+        if (
+            query_res["restrict_update"]
+            and mode != "read"
+            and not self.env.user.unrestrict_model_update
+        ):
+            if raise_exception:
+                raise AccessError(
+                    _("You are only allowed to read this record. (%s - %s)")
+                    % (model, mode)
+                )
+            return False
+        return res
+>>>>>>> [12.0][ADD] base_model_restrict_update

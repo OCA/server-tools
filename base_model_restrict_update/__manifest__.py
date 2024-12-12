@@ -2,7 +2,11 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 {
     "name": "Update Restrict Model",
+<<<<<<< HEAD
     "version": "16.0.1.0.1",
+=======
+    "version": "12.0.1.0.0",
+>>>>>>> [12.0][ADD] base_model_restrict_update
     "depends": ["base"],
     "website": "https://github.com/OCA/server-tools",
     "author": "Odoo Community Association (OCA), Quartile Limited",
