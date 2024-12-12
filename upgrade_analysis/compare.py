@@ -480,7 +480,8 @@ def compare_model_sets(old_records, new_records):
                         text += f" [{column['model_type']}]"
                     reprs[module_map(column["module"])].append(text)
                     reprs["general"].append(
-                        f"obsolete model {model} [module module_map(column['module'])]"
+                        f"obsolete model {model} "
+                        f"[module {module_map(column['module'])}]"
                     )
                 else:
                     moved_module = ""
@@ -491,7 +492,7 @@ def compare_model_sets(old_records, new_records):
                         f" (renamed to {model_map(model)}{moved_module})"
                     )
                     if column["model_type"]:
-                        text += " [column['model_type']]"
+                        text += f" [{column['model_type']}]"
                     reprs[module_map(column["module"])].append(text)
                     reprs["general"].append(
                         f"obsolete model {model} (renamed to {model_map(model)}) "
@@ -501,11 +502,11 @@ def compare_model_sets(old_records, new_records):
                 if module_map(column["module"]) != new_models[model]:
                     text = f"model {model} (moved to {new_models[model]})"
                     if column["model_type"]:
-                        text += " [column['model_type']]"
+                        text += f" [{column['model_type']}]"
                     reprs[module_map(column["module"])].append(text)
                     text = f"model {model} (moved from {old_models[model]})"
                     if column["model_type"]:
-                        text += " [column['model_type']]"
+                        text += f" [{column['model_type']}]"
 
     for column in copy.copy(new_records):
         model = column["model"]
