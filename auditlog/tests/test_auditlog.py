@@ -543,9 +543,7 @@ class AuditLogRuleTestForUserFields(TransactionCase):
     def test_02_AuditlogFull_field_exclude_write_log(self):
         # Checking fields_to_exclude_ids
         self.testpartner1.with_context(tracking_disable=True).write(
-            {
-                "phone": "1234567890",
-            }
+            {"phone": "1234567890", "name": "abc"}
         )
         # Checking log is created for testpartner1
         write_log_record = self.auditlog_log.search(
