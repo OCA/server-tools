@@ -1,4 +1,4 @@
-* Quartile Limited
+* `Quartile <https://www.quartile.co>`__:
 
   * Yoshi Tashiro <tashiro@quartile.co>
 
