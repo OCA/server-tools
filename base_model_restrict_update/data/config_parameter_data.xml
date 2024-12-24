@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="excluded_models_from_readonly" model="ir.config_parameter">
+        <field
+            name="key"
+        >base_model_restrict_update.excluded_models_from_readonly</field>
+        <field name="value">bus.presence</field>
+    </record>
+</odoo>
