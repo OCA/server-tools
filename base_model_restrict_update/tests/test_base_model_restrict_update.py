@@ -1,63 +1,91 @@
-# Copyright 2021 Quartile Limited
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
+# Copyright 2021-2024 Quartile
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
-from odoo.exceptions import AccessError
-from odoo.tests import SavepointCase, tagged
+from odoo.exceptions import AccessError, UserError
+from odoo.fields import Command
+from odoo.tests import common, tagged
 
 
 @tagged("post_install", "-at_install")
-class TestBaseModelRestrictUpdate(SavepointCase):
+class TestBaseModelRestrictUpdate(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.partner_model = cls.env["ir.model"].search([("model", "=", "res.partner")])[
-            0
-        ]
-        cls.partner_model.restrict_update = True
-        cls.test_partner = cls.env["res.partner"].create({"name": "Test Partner"})
-        cls.restrict_test_user = cls.env["res.users"].create(
-            {
-                "name": "Resticted user",
-                "login": "resticted@example.com",
-                "unrestrict_model_update": False,
-            }
+        cls.model_partner = cls.env["ir.model"].search([("model", "=", "res.partner")])
+        cls.group_partner_update = cls.env["res.groups"].create(
+            {"name": "Partner Update Group"}
         )
-        cls.permit_test_user = cls.env["res.users"].create(
-            {
-                "name": "Permit user",
-                "login": "permit@example.com",
-                "email": "permit@example.com",
-                "unrestrict_model_update": True,
-            }
+        cls.test_user = cls.env["res.users"].create({"name": "test", "login": "test"})
+        cls.partner_model_with_test_user = cls.env["res.partner"].with_user(
+            cls.test_user.id
+        )
+        cls.test_partner_with_test_user = (
+            cls.env["res.partner"].with_user(cls.test_user.id).create({"name": "foo"})
         )
 
-    def test_01_create_partner(self):
+    def test_no_restriction(self):
+        self.partner_model_with_test_user.create({"name": "bar"})
+        self.test_partner_with_test_user.write({"name": "baz"})
+        self.test_partner_with_test_user.unlink()
+
+    def test_with_model_restriction(self):
+        self.model_partner.restrict_update = True
         with self.assertRaises(AccessError):
-            self.env["res.partner"].with_user(self.restrict_test_user.id).create(
-                {"name": "Test Partner"}
-            )
-        self.env["res.partner"].with_user(self.permit_test_user.id).create(
-            {"name": "Test Partner"}
+            self.partner_model_with_test_user.create({"name": "bar"})
+        with self.assertRaises(AccessError):
+            self.test_partner_with_test_user.write({"name": "baz"})
+        with self.assertRaises(AccessError):
+            self.test_partner_with_test_user.unlink()
+        self.model_partner.update_allowed_group_ids = self.group_partner_update
+        with self.assertRaises(AccessError):
+            self.partner_model_with_test_user.create({"name": "bar"})
+        with self.assertRaises(AccessError):
+            self.test_partner_with_test_user.write({"name": "baz"})
+        with self.assertRaises(AccessError):
+            self.test_partner_with_test_user.unlink()
+        self.test_user.groups_id = [Command.link(self.group_partner_update.id)]
+        self.partner_model_with_test_user.create({"name": "bar"})
+        self.test_partner_with_test_user.write({"name": "baz"})
+        self.test_partner_with_test_user.unlink()
+
+    def test_with_user_readonly(self):
+        self.test_user.is_readonly_user = True
+        with self.assertRaises(AccessError):
+            self.partner_model_with_test_user.create({"name": "bar"})
+        with self.assertRaises(AccessError):
+            self.test_partner_with_test_user.write({"name": "baz"})
+        with self.assertRaises(AccessError):
+            self.test_partner_with_test_user.unlink()
+        # To confirm that is_readonly_user prevails
+        self.model_partner.restrict_update = True
+        self.model_partner.update_allowed_group_ids = self.group_partner_update
+        self.test_user.groups_id = [Command.link(self.group_partner_update.id)]
+        with self.assertRaises(AccessError):
+            self.partner_model_with_test_user.create({"name": "bar"})
+        with self.assertRaises(AccessError):
+            self.test_partner_with_test_user.write({"name": "baz"})
+        with self.assertRaises(AccessError):
+            self.test_partner_with_test_user.unlink()
+        self.test_user.is_readonly_user = False
+        self.partner_model_with_test_user.create({"name": "bar"})
+        self.test_partner_with_test_user.write({"name": "baz"})
+        self.test_user.is_readonly_user = True
+        with self.assertRaises(AccessError):
+            self.test_partner_with_test_user.write({"name": "qux"})
+        with self.assertRaises(AccessError):
+            self.test_partner_with_test_user.unlink()
+        self.env["ir.config_parameter"].sudo().set_param(
+            "base_model_restrict_update.excluded_models_from_readonly", "res.partner"
         )
+        self.test_partner_with_test_user.write({"name": "qux"})
+        self.test_partner_with_test_user.unlink()
 
-    def test_02_update_partner(self):
-        with self.assertRaises(AccessError):
-            self.test_partner.with_user(self.restrict_test_user.id).update(
-                {"name": "Test Partner 2"}
-            )
-        self.test_partner.with_user(self.permit_test_user.id).update(
-            {"name": "Test Partner 2"}
-        )
-
-    def test_03_unlink_partner(self):
-        test_partner = self.test_partner.sudo().copy()
-        with self.assertRaises(AccessError):
-            test_partner.with_user(self.restrict_test_user.id).unlink()
-        test_partner.with_user(self.permit_test_user.id).unlink()
-
-    def test_04_readonly_user_update_partner(self):
-        self.permit_test_user.write({"is_readonly_user": True})
-        with self.assertRaises(AccessError):
-            self.test_partner.with_user(self.permit_test_user.id).update(
-                {"name": "Test Partner 2"}
-            )
+    def test_set_user_readonly(self):
+        group_system_id = self.env.ref("base.group_system").id
+        self.test_user.groups_id = [Command.link(group_system_id)]
+        with self.assertRaises(UserError):
+            self.test_user.is_readonly_user = True
+        self.test_user.groups_id = [Command.unlink(group_system_id)]
+        self.test_user.is_readonly_user = True
+        with self.assertRaises(UserError):
+            self.test_user.groups_id = [Command.link(group_system_id)]
