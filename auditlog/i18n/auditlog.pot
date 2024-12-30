@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 17.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -151,7 +151,6 @@ msgstr ""
 #. module: auditlog
 #. odoo-python
 #: code:addons/auditlog/models/rule.py:0
-#, python-format
 msgid "Field 'model_id' cannot be empty."
 msgstr ""
 
@@ -342,21 +341,18 @@ msgstr ""
 #. module: auditlog
 #. odoo-python
 #: code:addons/auditlog/models/log.py:0
-#, python-format
 msgid "No field defined to create line."
 msgstr ""
 
 #. module: auditlog
 #. odoo-python
 #: code:addons/auditlog/models/rule.py:0
-#, python-format
 msgid "No model defined to create line."
 msgstr ""
 
 #. module: auditlog
 #. odoo-python
 #: code:addons/auditlog/models/log.py:0
-#, python-format
 msgid "No model defined to create log."
 msgstr ""
 
@@ -495,14 +491,12 @@ msgstr ""
 #. module: auditlog
 #. odoo-python
 #: code:addons/auditlog/models/log.py:0
-#, python-format
 msgid "The field 'field_id' cannot be empty."
 msgstr ""
 
 #. module: auditlog
 #. odoo-python
 #: code:addons/auditlog/models/log.py:0
-#, python-format
 msgid "The field 'model_id' cannot be empty."
 msgstr ""
 
@@ -570,7 +564,6 @@ msgstr ""
 #. module: auditlog
 #. odoo-python
 #: code:addons/auditlog/models/rule.py:0
-#, python-format
 msgid "View logs"
 msgstr ""
 
