@@ -158,7 +158,6 @@ msgstr "Campo"
 #. module: auditlog
 #. odoo-python
 #: code:addons/auditlog/models/rule.py:0
-#, python-format
 msgid "Field 'model_id' cannot be empty."
 msgstr ""
 
@@ -356,21 +355,18 @@ msgstr "Novo Valor de Texto"
 #. module: auditlog
 #. odoo-python
 #: code:addons/auditlog/models/log.py:0
-#, python-format
 msgid "No field defined to create line."
 msgstr ""
 
 #. module: auditlog
 #. odoo-python
 #: code:addons/auditlog/models/rule.py:0
-#, python-format
 msgid "No model defined to create line."
 msgstr ""
 
 #. module: auditlog
 #. odoo-python
 #: code:addons/auditlog/models/log.py:0
-#, python-format
 msgid "No model defined to create log."
 msgstr ""
 
@@ -517,14 +513,12 @@ msgstr "Nome técnico"
 #. module: auditlog
 #. odoo-python
 #: code:addons/auditlog/models/log.py:0
-#, python-format
 msgid "The field 'field_id' cannot be empty."
 msgstr ""
 
 #. module: auditlog
 #. odoo-python
 #: code:addons/auditlog/models/log.py:0
-#, python-format
 msgid "The field 'model_id' cannot be empty."
 msgstr ""
 
@@ -594,7 +588,6 @@ msgstr "Valores"
 #. module: auditlog
 #. odoo-python
 #: code:addons/auditlog/models/rule.py:0
-#, python-format
 msgid "View logs"
 msgstr "Ver Histórico"
 
