@@ -18,8 +18,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__action_id
@@ -159,7 +159,6 @@ msgstr ""
 #. module: auditlog
 #. odoo-python
 #: code:addons/auditlog/models/rule.py:0
-#, python-format
 msgid "Field 'model_id' cannot be empty."
 msgstr ""
 
@@ -352,21 +351,18 @@ msgstr ""
 #. module: auditlog
 #. odoo-python
 #: code:addons/auditlog/models/log.py:0
-#, python-format
 msgid "No field defined to create line."
 msgstr ""
 
 #. module: auditlog
 #. odoo-python
 #: code:addons/auditlog/models/rule.py:0
-#, python-format
 msgid "No model defined to create line."
 msgstr ""
 
 #. module: auditlog
 #. odoo-python
 #: code:addons/auditlog/models/log.py:0
-#, python-format
 msgid "No model defined to create log."
 msgstr ""
 
@@ -505,14 +501,12 @@ msgstr ""
 #. module: auditlog
 #. odoo-python
 #: code:addons/auditlog/models/log.py:0
-#, python-format
 msgid "The field 'field_id' cannot be empty."
 msgstr ""
 
 #. module: auditlog
 #. odoo-python
 #: code:addons/auditlog/models/log.py:0
-#, python-format
 msgid "The field 'model_id' cannot be empty."
 msgstr ""
 
@@ -580,7 +574,6 @@ msgstr ""
 #. module: auditlog
 #. odoo-python
 #: code:addons/auditlog/models/rule.py:0
-#, python-format
 msgid "View logs"
 msgstr ""
 

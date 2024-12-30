@@ -157,7 +157,6 @@ msgstr "Fält"
 #. module: auditlog
 #. odoo-python
 #: code:addons/auditlog/models/rule.py:0
-#, python-format
 msgid "Field 'model_id' cannot be empty."
 msgstr "Fältet \"model_id\" får inte vara tomt."
 
@@ -187,8 +186,8 @@ msgid ""
 "(less information, but it is faster)"
 msgstr ""
 "Full log: gör en skillnad mellan data före och efter operationen (loggar mer "
-"information, t.ex. beräknade fält som uppdaterades, men det går långsammare)"
-"\n"
+"information, t.ex. beräknade fält som uppdaterades, men det går "
+"långsammare)\n"
 "Snabb loggning: loggar endast de ändringar som gjorts genom skapande- och "
 "skrivoperationerna (mindre information, men det går snabbare)"
 
@@ -355,21 +354,18 @@ msgstr "Nytt värde Text"
 #. module: auditlog
 #. odoo-python
 #: code:addons/auditlog/models/log.py:0
-#, python-format
 msgid "No field defined to create line."
 msgstr "Inget fält definierat för att skapa linje."
 
 #. module: auditlog
 #. odoo-python
 #: code:addons/auditlog/models/rule.py:0
-#, python-format
 msgid "No model defined to create line."
 msgstr "Ingen modell definierad för att skapa linjen."
 
 #. module: auditlog
 #. odoo-python
 #: code:addons/auditlog/models/log.py:0
-#, python-format
 msgid "No model defined to create log."
 msgstr "Ingen modell definierad för att skapa logg."
 
@@ -516,14 +512,12 @@ msgstr "Tekniskt namn"
 #. module: auditlog
 #. odoo-python
 #: code:addons/auditlog/models/log.py:0
-#, python-format
 msgid "The field 'field_id' cannot be empty."
 msgstr "Fältet 'field_id' får inte vara tomt."
 
 #. module: auditlog
 #. odoo-python
 #: code:addons/auditlog/models/log.py:0
-#, python-format
 msgid "The field 'model_id' cannot be empty."
 msgstr "Fältet 'model_id' får inte vara tomt."
 
@@ -593,7 +587,6 @@ msgstr "Värden"
 #. module: auditlog
 #. odoo-python
 #: code:addons/auditlog/models/rule.py:0
-#, python-format
 msgid "View logs"
 msgstr "Visa loggar"
 
