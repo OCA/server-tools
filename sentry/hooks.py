@@ -100,7 +100,7 @@ def initialize_sentry(config):
         )
     options = {}
     for option in const.get_sentry_options():
-        value = config.get("sentry_%s" % option.key, option.default)
+        value = config.get(f"sentry_{option.key}", option.default)
         if isinstance(option.converter, abc.Callable):
             value = option.converter(value)
         options[option.key] = value
