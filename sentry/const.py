@@ -33,7 +33,7 @@ SentryOption = collections.namedtuple("SentryOption", ["key", "default", "conver
 
 # Mapping of Odoo logging level -> Python stdlib logging library log level.
 LOG_LEVEL_MAP = {
-    getattr(odoo.loglevels, "LOG_%s" % x): getattr(logging, x)
+    getattr(odoo.loglevels, f"LOG_{x}"): getattr(logging, x)
     for x in ("CRITICAL", "ERROR", "WARNING", "INFO", "DEBUG", "NOTSET")
 }
 DEFAULT_LOG_LEVEL = "warn"
