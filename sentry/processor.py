@@ -1,9 +1,8 @@
-""" Custom class of raven.core.processors taken of https://git.io/JITko
-    This is a custom class of processor to filter and sanitize
-    passwords and keys from request data, it does not exist in
-    sentry-sdk.
+"""Custom class of raven.core.processors taken of https://git.io/JITko
+This is a custom class of processor to filter and sanitize
+passwords and keys from request data, it does not exist in
+sentry-sdk.
 """
-
 
 import re
 
