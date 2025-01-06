@@ -4,12 +4,13 @@
 
 
 import logging
+from functools import reduce
+from itertools import groupby
 
 from odoo import api, fields, models
 from odoo.exceptions import Warning as UserError
-from odoo.tools.translate import _
-
 from odoo.tools import config
+from odoo.tools.translate import _
 
 _logger = logging.getLogger(__name__)
 
@@ -62,32 +63,45 @@ class RecomputeField(models.Model):
         return self.search([("state", "=", "todo")]).run()
 
     def run(self):
-        for task in self:
-            cursor = self.env.cr
-            model = self.env[task.model]
+        # Group tasks by compute method to avoid computing multifields computes multiple times
+
+        def group_key(task):
+            return task.model, self.env[task.model]._fields[task.field].compute
+
+        model_tasks = groupby(
+            self.sorted(key=group_key),
+            group_key,
+        )
+        for (model, _compute_fun), tasks in model_tasks:
+            tasks = reduce(lambda x, y: x | y, tasks)
+            fields = set(tasks.mapped("field"))
+            last_id = max(tasks.mapped("last_id"), default=None)
+            step = min(tasks.mapped("step"))
 
             while True:
                 _logger.info(
-                    "Recompute field %s for model %s in background. Last id %d",
-                    task.field,
-                    task.model,
-                    task.last_id,
+                    "Recompute fields %s for model %s in background. Last id %d",
+                    fields,
+                    model,
+                    last_id,
                 )
-                records = model.search(
-                    [("id", "<", task.last_id)] if task.last_id else [],
-                    limit=task.step,
+                records = self.env[model].search(
+                    [("id", "<", last_id)] if last_id else [],
+                    limit=step,
                     order="id desc",
                 )
                 if not records:
-                    task.state = "done"
-                    cursor.commit()
+                    tasks.state = "done"
+                    self.env.cr.commit()  # pylint: disable=E8102
                     break
+                for field in fields:
+                    field_ = records._fields[field]
+                    self.env.add_to_compute(field_, records)
 
-                field = records._fields[task.field]
-                self.env.add_to_compute(field, records)
                 records.recompute()
-                task.last_id = records[-1].id
-                cursor.commit()
+                last_id = records[-1].id
+                tasks.last_id = last_id
+                self.env.cr.commit()  # pylint: disable=E8102
 
         return True
 
