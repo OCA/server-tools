@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<!--
+    Copyright 2025 Akretion (http://www.akretion.com).
+    @author Sébastien BEAU <sebastien.beau@akretion.com>
+    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
 <odoo>
 
     <record id="recompute_field_view_tree" model="ir.ui.view">
