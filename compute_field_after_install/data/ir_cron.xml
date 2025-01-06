@@ -1,4 +1,9 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright 2025 Akretion (http://www.akretion.com).
+    @author Sébastien BEAU <sebastien.beau@akretion.com>
+    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
 <odoo noupdate="1">
 
     <record forcecreate="True" id="ir_cron_scheduler_alarm" model="ir.cron">

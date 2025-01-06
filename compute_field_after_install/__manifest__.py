@@ -1,23 +1,17 @@
-# Copyright 2016 Akretion (http://www.akretion.com)
+# Copyright 2025 Akretion (http://www.akretion.com)
 # Sébastien BEAU <sebastien.beau@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 {
-    "name": "Base compute field after install",
-    "summary": "Computed field are computed after the install process",
-    "version": "14.0.1.0.0",
-    "category": "e-commerce",
+    "name": "Compute field after install",
+    "summary": "Compute computed fields after the install process",
+    "version": "16.0.1.0.0",
+    "category": "Tools",
     "website": "https://github.com/OCA/server-tools",
     "author": "Akretion,Odoo Community Association (OCA)",
     "maintainers": ["sebastienbeau"],
     "license": "AGPL-3",
-    "application": False,
     "installable": True,
-    "auto_install": False,
-    "external_dependencies": {
-        "python": [],
-        "bin": [],
-    },
     "depends": [
         "base",
     ],
@@ -26,6 +20,4 @@
         "views/recompute_field_view.xml",
         "security/ir.model.access.csv",
     ],
-    "demo": [],
-    "qweb": [],
 }

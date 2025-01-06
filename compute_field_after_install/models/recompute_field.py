@@ -1,13 +1,13 @@
-# Copyright 2017 Akretion (http://www.akretion.com).
+# Copyright 2025 Akretion (http://www.akretion.com).
 # @author Sébastien BEAU <sebastien.beau@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 
 import logging
 
-from openerp import api, fields, models
-from openerp.exceptions import Warning as UserError
-from openerp.tools.translate import _
+from odoo import api, fields, models
+from odoo.exceptions import Warning as UserError
+from odoo.tools.translate import _
 
 from odoo.tools import config
 
@@ -77,6 +77,7 @@ def add_to_compute(self, field, records):
         "recompute.field" in self
         and len(records) > config.get("differ_recomputed_field_size", 50000)
         and self.context.get("module")
+        and not getattr(field, "precompute", False)
     ):
         _logger.info(
             "Differs recomputation of field %s for model %s as there is %s records",
