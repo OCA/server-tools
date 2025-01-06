@@ -1,5 +1,5 @@
-Computed field can be really long to be computed when installing a module and so block
-the migration process during a long time.
+Computed field computation can be a really long process when installing a module and 
+can block the migration process for a long time.
 
-This module give the possibility to compute
-the field added after the installation
+This module gives the possibility to defer the field computation after 
+the installation.
