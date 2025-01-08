@@ -29,9 +29,7 @@ class AutovacuumMixin(models.AbstractModel):
                     batch_delete.with_env(new_env).unlink()
                     new_env.cr.commit()
             except Exception as e:
-                _logger.exception(
-                    "Failed to delete Ms : {} - {}".format(self._name, str(e))
-                )
+                _logger.exception(f"Failed to delete Ms : {self._name} - {str(e)}")
 
     # Call by cron
     @api.model
@@ -60,8 +58,6 @@ class AutovacuumMixin(models.AbstractModel):
                 record_domain.append(leaf)
                 continue
             field, operator, value = leaf
-            record_domain.append(
-                ("{}.{}".format(autovacuum_relation, field), operator, value)
-            )
+            record_domain.append((f"{autovacuum_relation}.{field}", operator, value))
         records = self.env[rule.model_id.model].search(record_domain)
         return self.search(domain + [("res_id", "in", records.ids)])
