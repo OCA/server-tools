@@ -179,13 +179,13 @@ Authors
 Other credits
 -------------
 
-- `Smile <https://smile.eu/fr>`__:
+-  `Smile <https://smile.eu/fr>`__:
 
-  - Martin Deconinck martin.deconinck@smile.fr
+   -  Martin Deconinck martin.deconinck@smile.fr
 
-- `Akretion <https://akretion.com>`__:
+-  `Akretion <https://akretion.com>`__:
 
-  - Florian Mounier florian.mounier@akretion.com
+   -  Florian Mounier florian.mounier@akretion.com
 
 Maintainers
 -----------
