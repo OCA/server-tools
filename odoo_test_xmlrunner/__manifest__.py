@@ -10,7 +10,6 @@
     "website": "https://github.com/OCA/server-tools",
     "category": "Tools",
     "sequence": 20,
-    "auto_install": True,
     "installable": True,
     "application": False,
     "external_dependencies": {
