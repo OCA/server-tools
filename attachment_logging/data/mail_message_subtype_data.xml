@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo noupdate="1">
+
+    <record id="mt_attachment" model="mail.message.subtype">
+        <field name="name">Attachments</field>
+        <field name="default" eval="False" />
+        <field name="internal" eval="True" />
+        <field name="sequence" eval="150" />
+    </record>
+
+</odoo>
