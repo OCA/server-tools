@@ -4,6 +4,7 @@ import logging
 import re
 
 from odoo import _, api, fields, models
+from odoo.exceptions import UserError
 
 _logger = logging.getLogger(__name__)
 
@@ -30,7 +31,11 @@ class FetchmailServer(models.Model):
             if this.state != "done":
                 this.folders_available = _("Confirm connection first.")
                 continue
-            connection = this.connect()
+            try:
+                connection = this.connect()
+            except UserError:
+                this.folders_available = _("Confirm connection first.")
+                continue
             list_result = connection.list()
             if list_result[0] != "OK":
                 this.folders_available = _("Unable to retrieve folders.")
