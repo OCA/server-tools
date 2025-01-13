@@ -3,7 +3,7 @@
 
 import logging
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 _logger = logging.getLogger(__name__)
@@ -17,7 +17,7 @@ class IrCron(models.Model):
         for item in self:
             if item in item.mutually_exclusive_cron_ids:
                 raise ValidationError(
-                    _(
+                    self.env._(
                         "You can not mutually exclude a scheduled actions with "
                         "itself."
                     )
