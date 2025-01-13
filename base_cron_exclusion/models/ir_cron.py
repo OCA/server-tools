@@ -50,8 +50,7 @@ class IrCron(models.Model):
             lock_cr.execute(
                 """SELECT *
                                FROM ir_cron
-                               WHERE numbercall != 0
-                                  AND active
+                               WHERE active
                                   AND id IN %s
                                FOR UPDATE NOWAIT""",
                 (locked_ids,),
