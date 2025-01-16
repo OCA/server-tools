@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-08-17 10:58+0000\n"
+"PO-Revision-Date: 2025-01-16 16:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -154,7 +154,7 @@ msgstr "Conteggio modifiche dell'insieme di modifiche in attesa"
 #: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__count_pending_changesets
 #: model:ir.model.fields,field_description:attachment_synchronize.field_fs_storage__count_pending_changesets
 msgid "Count Pending Changesets"
-msgstr "Conta insiemi di modifiche in attesa"
+msgstr "Conteggio insieme di modifiche in attesa"
 
 #. module: attachment_synchronize
 #: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__create_uid
@@ -185,7 +185,7 @@ msgstr "Allegati completati"
 #. module: attachment_synchronize
 #: model_terms:ir.ui.view,arch_db:attachment_synchronize.view_attachment_task_tree
 msgid "Duplicate"
-msgstr "Duplicato"
+msgstr "Duplica"
 
 #. module: attachment_synchronize
 #: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__active
