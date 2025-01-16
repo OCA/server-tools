@@ -19,7 +19,7 @@ msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-28 09:48+0000\n"
-"PO-Revision-Date: 2023-06-07 17:09+0000\n"
+"PO-Revision-Date: 2025-01-16 16:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-server-tools-8-0/"
 "language/it/)\n"
@@ -28,7 +28,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: base_report_auto_create_qweb
 #: view:ir.actions.report.xml.duplicate:base_report_auto_create_qweb.ir_actions_report_xml_duplicate_form_view
@@ -58,12 +58,12 @@ msgstr "Nome visualizzato"
 #. module: base_report_auto_create_qweb
 #: view:ir.actions.report.xml.duplicate:base_report_auto_create_qweb.ir_actions_report_xml_duplicate_form_view
 msgid "Duplicate"
-msgstr "Duplicato"
+msgstr "Duplica"
 
 #. module: base_report_auto_create_qweb
 #: view:ir.actions.report.xml:base_report_auto_create_qweb.ir_actions_report_xml_form_view
 msgid "Duplicate Report"
-msgstr "Duplica Report"
+msgstr "Duplica resoconto"
 
 #. module: base_report_auto_create_qweb
 #: field:ir.actions.report.xml.duplicate,id:0
@@ -89,7 +89,7 @@ msgstr "Ultimo aggiornamento il"
 #: model:ir.actions.act_window,name:base_report_auto_create_qweb.ir_actions_report_xml_duplicate_action
 #: view:ir.actions.report.xml.duplicate:base_report_auto_create_qweb.ir_actions_report_xml_duplicate_form_view
 msgid "Report duplication"
-msgstr "Duplicazione Report"
+msgstr "Duplicazione resoconto"
 
 #. module: base_report_auto_create_qweb
 #: field:ir.actions.report.xml.duplicate,suffix:0
@@ -100,12 +100,12 @@ msgstr "Suffisso"
 #: code:addons/base_report_auto_create_qweb/models/report_xml.py:66
 #, python-format
 msgid "Template Name must contain at least a dot in it's name"
-msgstr "Il nome del Template deve contenere almeno un punto nel nome."
+msgstr "Il nome del modello deve contenere almeno un punto nel nome"
 
 #. module: base_report_auto_create_qweb
 #: help:ir.actions.report.xml.duplicate,suffix:0
 msgid "This suffix will be added to the report"
-msgstr "Questo suffisso verrà aggiunto al report"
+msgstr "Questo suffisso verrà aggiunto al resoconto"
 
 #. module: base_report_auto_create_qweb
 #: view:ir.actions.report.xml.duplicate:base_report_auto_create_qweb.ir_actions_report_xml_duplicate_form_view
