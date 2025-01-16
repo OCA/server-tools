@@ -47,7 +47,6 @@ msgstr "Usuario técnico"
 #. module: base_technical_user
 #. odoo-python
 #: code:addons/base_technical_user/models/models.py:0
-#, python-format
 msgid "The technical user is missing in the company {}"
 msgstr "En la compañia {} no se encuentra el usuario técnico"
 
