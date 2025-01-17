@@ -88,12 +88,10 @@ class Image(models.Model):
             # Retrieve from remote url
             self.image_1920 = self._get_image_from_url(self.load_from)
             filename = self.load_from.split("/")[-1]
-            self.name, self.extension = os.path.splitext(filename)
+            self.name = os.path.splitext(filename)[0]
         else:
             self.image_1920 = self._get_image_from_file(self.load_from)
-            self.name, self.extension = os.path.splitext(
-                os.path.basename(self.load_from)
-            )
+            self.name = os.path.splitext(os.path.basename(self.load_from))[0]
         self.name = self._make_name_pretty(self.name)
         self.load_from = False
 
@@ -185,5 +183,5 @@ class Image(models.Model):
     @api.onchange("filename")
     def _onchange_filename(self):
         if self.filename:
-            self.name, self.extension = os.path.splitext(self.filename)
+            self.name = os.path.splitext(self.filename)[0]
             self.name = self._make_name_pretty(self.name)
