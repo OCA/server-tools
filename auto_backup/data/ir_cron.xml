@@ -5,7 +5,6 @@
         <field name="user_id" ref="base.user_root" />
         <field name="interval_number">1</field>
         <field name="interval_type">days</field>
-        <field name="numbercall">-1</field>
         <field
             name="nextcall"
             eval="(datetime.now() + timedelta(days=1)).strftime('%Y-%m-%d 03:00:00')"

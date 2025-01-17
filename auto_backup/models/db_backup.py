@@ -118,7 +118,7 @@ class DbBackup(models.Model):
                 tools.config.filestore(self.env.cr.dbname)
             ):
                 raise exceptions.ValidationError(
-                    _(
+                    self.env._(
                         "Do not save backups on your filestore, or you will "
                         "backup your backups too!"
                     )
@@ -136,7 +136,7 @@ class DbBackup(models.Model):
             pysftp.SSHException,
         ) as exc:
             _logger.info("Connection Test Failed!", exc_info=True)
-            raise UserError(_("Connection Test Failed!")) from exc
+            raise UserError(self.env._("Connection Test Failed!")) from exc
 
     def action_backup(self):
         """Run selected backups."""
@@ -178,9 +178,8 @@ class DbBackup(models.Model):
 
                     with cached:
                         with rec.sftp_connection() as remote:
-                            # Directory must exist
                             try:
-                                remote.makedirs(rec.folder, exist_ok=True)
+                                remote.makedirs(rec.folder)
                             except pysftp.ConnectionException as exc:
                                 _logger.exception(f"pysftp ConnectionException: {exc}")
 
