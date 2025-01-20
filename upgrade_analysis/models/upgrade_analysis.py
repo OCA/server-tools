@@ -10,7 +10,6 @@ import os
 from copy import deepcopy
 
 from lxml import etree
-from mako.template import Template
 
 from odoo import fields, models, release
 from odoo.exceptions import ValidationError
@@ -519,15 +518,6 @@ class UpgradeAnalysis(models.Model):
         if not module_coverage_file_folder:
             return
 
-        file_template = Template(
-            filename=os.path.join(
-                get_module_path("upgrade_analysis"),
-                "static",
-                "src",
-                "module_coverage_template.rst.mako",
-            )
-        )
-
         module_domain = [
             ("state", "=", "installed"),
             (
@@ -587,10 +577,13 @@ class UpgradeAnalysis(models.Model):
                 49, " "
             )
 
-        rendered_text = file_template.render(
-            start_version=start_version,
-            end_version=end_version,
-            module_descriptions=module_descriptions,
+        rendered_text = self.env["ir.qweb"]._render(
+            "upgrade_analysis.module_coverage",
+            values=dict(
+                start_version=start_version,
+                end_version=end_version,
+                module_descriptions=module_descriptions,
+            ),
         )
 
         file_name = "modules{}-{}.rst".format(
