@@ -139,7 +139,10 @@ def report_generic(new, old, attrs, reprs):
         elif attr == "stored":
             if old[attr] != new[attr]:
                 if new["stored"]:
-                    text = "is now stored"
+                    if new.get("isproperty") and old.get("isproperty"):
+                        text = "needs conversion to v18-style company dependent"
+                    else:
+                        text = "is now stored"
                 else:
                     text = "not stored anymore"
                 fieldprint(old, new, "", text, reprs)
