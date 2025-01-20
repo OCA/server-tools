@@ -17,6 +17,25 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 #. module: upgrade_analysis
+#: model_terms:ir.ui.view,arch_db:upgrade_analysis.module_coverage
+msgid "-&gt;"
+msgstr ""
+
+#. module: upgrade_analysis
+#: model_terms:ir.ui.view,arch_db:upgrade_analysis.module_coverage
+msgid ""
+"============================\n"
+"\n"
+".. include:: coverage_legend.rst\n"
+"\n"
+"+---------------------------------------------------+----------------------"
+"+-------------------------------------------------+\n"
+"| Module                                            | Status               + "
+"Extra Information                               |\n"
+"+===================================================+======================+=================================================+"
+msgstr ""
+
+#. module: upgrade_analysis
 #: model_terms:ir.ui.view,arch_db:upgrade_analysis.view_upgrade_install_wizard_form
 msgid "All Modules"
 msgstr "Tous les modules"
@@ -281,6 +300,11 @@ msgstr ""
 #: model:ir.model,name:upgrade_analysis.model_ir_module_module
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_record__module
 msgid "Module"
+msgstr ""
+
+#. module: upgrade_analysis
+#: model_terms:ir.ui.view,arch_db:upgrade_analysis.module_coverage
+msgid "Module coverage"
 msgstr ""
 
 #. module: upgrade_analysis
