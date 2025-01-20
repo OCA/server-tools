@@ -1,4 +1,7 @@
-Module coverage ${start_version} -> ${end_version}
+<odoo>
+    <template id="module_coverage">Module coverage <t t-out="start_version" /> -> <t
+        t-out="end_version"
+    />
 ============================
 
 .. include:: coverage_legend.rst
@@ -6,7 +9,9 @@ Module coverage ${start_version} -> ${end_version}
 +---------------------------------------------------+----------------------+-------------------------------------------------+
 | Module                                            | Status               + Extra Information                               |
 +===================================================+======================+=================================================+
-% for module, extra_information in module_descriptions.items():
-|${module}|                      |${extra_information}|
+<t t-foreach="module_descriptions" t-as="module">
+|<t t-out="module" />|                      |<t t-out="module_value" />|
 +---------------------------------------------------+----------------------+-------------------------------------------------+
-% endfor
+</t>
+</template>
+</odoo>

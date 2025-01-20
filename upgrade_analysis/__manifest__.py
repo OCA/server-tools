@@ -11,6 +11,7 @@
     "maintainers": ["StefanRijnhart", "legalsylvain"],
     "website": "https://github.com/OCA/server-tools",
     "data": [
+        "templates/module_coverage_template.xml",
         "security/ir.model.access.csv",
         "views/menu.xml",
         "views/view_upgrade_comparison_config.xml",
@@ -22,7 +23,7 @@
     "installable": True,
     "depends": ["base"],
     "external_dependencies": {
-        "python": ["mako", "dataclasses", "odoorpc", "openupgradelib"],
+        "python": ["dataclasses", "odoorpc", "openupgradelib"],
     },
     "license": "AGPL-3",
 }
