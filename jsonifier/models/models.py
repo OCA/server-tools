@@ -128,8 +128,7 @@ class Base(models.AbstractModel):
                     "%(model)s.%(fname)s not available",
                     {"model": self._name, "fname": field_name},
                 )
-                raise SwallableException()
-
+            raise SwallableException()
         return True
 
     def _jsonify_record_handle_function(self, rec, field_dict, strict):
