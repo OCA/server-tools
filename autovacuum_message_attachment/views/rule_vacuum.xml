@@ -10,7 +10,7 @@
                         name="web_ribbon"
                         text="Archived"
                         bg_color="bg-danger"
-                        attrs="{'invisible': [('active', '=', True)]}"
+                        invisible="active"
                     />
                     <field name="active" invisible="1" />
                     <group col="1">
@@ -20,28 +20,19 @@
                             <field name="company_id" />
                             <field name="retention_time" />
                         </group>
-                        <group
-                            col="4"
-                            attrs="{'invisible': [('ttype', '!=', 'message')]}"
-                        >
-                            <field
-                                name="message_type"
-                                attrs="{'required': [('ttype', '=', 'message')]}"
-                            />
+                        <group col="4" invisible="ttype != 'message'">
+                            <field name="message_type" required="ttype == 'message'" />
                             <field name="empty_subtype" />
                         </group>
-                        <group
-                            string="Message Subtypes"
-                            attrs="{'invisible': [('ttype', '!=', 'message')]}"
-                        >
+                        <group string="Message Subtypes" invisible="ttype != 'message'">
                             <field name="message_subtype_ids" nolabel="1" colspan="4" />
                         </group>
-                        <group attrs="{'invisible': [('ttype', '!=', 'attachment')]}">
+                        <group invisible="ttype != 'attachment'">
                             <field name="filename_pattern" />
                             <field name="inheriting_model" />
                             <field
                                 name="empty_model"
-                                attrs="{'invisible': ['|', ('model_ids', '!=', []), ('filename_pattern', '=', False)]}"
+                                invisible="model_ids != [] or not filename_pattern"
                             />
                         </group>
                         <group string="Models">
@@ -52,7 +43,7 @@
                             <field name="model" invisible="1" />
                             <field
                                 name="model_filter_domain"
-                                attrs="{'invisible': [('model_id', '=', False)]}"
+                                invisible="not model_id"
                                 widget="domain"
                                 options="{'model': 'model'}"
                             />
@@ -69,11 +60,11 @@
         <field name="name">vacuum.rule.form.view</field>
         <field name="model">vacuum.rule</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name" />
                 <field name="company_id" />
                 <field name="retention_time" />
-            </tree>
+            </list>
         </field>
     </record>
     <record model="ir.actions.act_window" id="action_vacuum_rule">

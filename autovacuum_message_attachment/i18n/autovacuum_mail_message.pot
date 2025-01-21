@@ -79,16 +79,6 @@ msgid "Message"
 msgstr ""
 
 #. module: autovacuum_mail_message
-#: model:ir.ui.view,arch_db:autovacuum_mail_message.message_vacuum_rule_form_view
-msgid "Message Models"
-msgstr ""
-
-#. module: autovacuum_mail_message
-#: model:ir.ui.view,arch_db:autovacuum_mail_message.message_vacuum_rule_form_view
-msgid "Message Subtypes"
-msgstr ""
-
-#. module: autovacuum_mail_message
 #: model:ir.actions.act_window,name:autovacuum_mail_message.action_message_vacuum_rule
 #: model:ir.ui.menu,name:autovacuum_mail_message.menu_action_message_vacuum_rule
 #: model:ir.ui.view,arch_db:autovacuum_mail_message.message_vacuum_rule_form_view

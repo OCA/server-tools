@@ -4,7 +4,8 @@
 import base64
 from datetime import date, timedelta
 
-from odoo import api, exceptions, registry
+from odoo import api, exceptions
+from odoo.modules.registry import Registry
 from odoo.tests import common
 from odoo.tools import DEFAULT_SERVER_DATE_FORMAT
 
@@ -161,12 +162,12 @@ class TestVacuumRule(common.TransactionCase):
         # we need to check the existence of the message in a new cursor because
         # it its deleted in batch in separated cursor. The original test's cursor
         # is not aware of the deletion otherwise.
-        with registry(self.env.cr.dbname).cursor() as new_cr:
+        with Registry(self.env.cr.dbname).cursor() as new_cr:
             partner_new_env = partner.with_env(partner.env(cr=new_cr))
             self.assertEqual(len(partner_new_env.message_ids), 1)
 
         rule.write({"model_filter_domain": "[['name', '=', 'Test Partner']]"})
         self.message_obj.autovacuum(ttype="message")
-        with registry(self.env.cr.dbname).cursor() as new_cr:
+        with Registry(self.env.cr.dbname).cursor() as new_cr:
             partner_new_env = partner.with_env(partner.env(cr=new_cr))
             self.assertEqual(len(partner_new_env.message_ids), 0)
