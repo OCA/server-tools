@@ -1,22 +1,12 @@
 # Copyright (C) 2018 Akretion
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
-from odoo import _, api, exceptions, fields, models
+from odoo import api, exceptions, fields, models
 
 
 class VacuumRule(models.Model):
     _name = "vacuum.rule"
     _description = "Rules Used to delete message historic"
-
-    @api.depends("model_ids")
-    def _compute_model_id(self):
-        for rule in self:
-            if rule.model_ids and len(rule.model_ids) == 1:
-                rule.model_id = rule.model_ids.id
-                rule.model = rule.model_id.model
-            else:
-                rule.model_id = False
-                rule.model = False
 
     name = fields.Char(required=True)
     ttype = fields.Selection(
@@ -54,13 +44,12 @@ class VacuumRule(models.Model):
     )
     model_id = fields.Many2one(
         "ir.model",
-        readonly=True,
         compute="_compute_model_id",
         help="Technical field used to set attributes (invisible/required, "
         "domain, etc...for other fields, like the domain filter",
     )
     model_filter_domain = fields.Text()
-    model = fields.Char(readonly=True, compute="_compute_model_id", string="Model code")
+    model = fields.Char(compute="_compute_model_id", string="Model code")
     empty_model = fields.Boolean(
         help="Take into account attachment not linked to any model, but only if a "
         "pattern is set, to avoid deleting attachments generated/needed by odoo"
@@ -84,12 +73,25 @@ class VacuumRule(models.Model):
     active = fields.Boolean(default=True)
     description = fields.Text()
 
+    @api.depends("model_ids")
+    def _compute_model_id(self):
+        for rule in self:
+            model_id = False
+            model = False
+
+            if rule.model_ids and len(rule.model_ids) == 1:
+                model_id = rule.model_ids.id
+                model = rule.model_id.model
+
+            rule.model_id = model_id
+            rule.model = model
+
     @api.constrains("retention_time")
     def retention_time_not_null(self):
         for rule in self:
             if not rule.retention_time:
                 raise exceptions.ValidationError(
-                    _("The Retention Time can't be 0 days")
+                    self.env._("The Retention Time can't be 0 days")
                 )
 
     @api.constrains("inheriting_model")
@@ -97,8 +99,9 @@ class VacuumRule(models.Model):
         for rule in self.filtered(lambda r: r.inheriting_model):
             if rule.ttype != "attachment":
                 raise exceptions.ValidationError(
-                    _(
-                        "Inheriting model cannot be used on rule where type is not attachment"
+                    self.env._(
+                        "Inheriting model cannot be used on "
+                        "rule where type is not attachment"
                     )
                 )
             if (
@@ -106,16 +109,20 @@ class VacuumRule(models.Model):
                 not in self.env["ir.attachment"]._inherits_children
             ):
                 raise exceptions.ValidationError(
-                    _("No inheritance of ir.attachment was found on model %s")
-                    % rule.inheriting_model
+                    self.env._(
+                        "No inheritance of ir.attachment "
+                        f"was found on model {rule.inheriting_model}"
+                    )
                 )
             attachment_field = self.env[rule.inheriting_model]._inherits.get(
                 "ir.attachment"
             )
             if not attachment_field:
                 raise exceptions.ValidationError(
-                    _("Cannot find relation to ir.attachment on model %s")
-                    % rule.inheriting_model
+                    self.env._(
+                        "Cannot find relation to ir.attachment "
+                        f"on model {rule.inheriting_model}"
+                    )
                 )
 
     def _search_autovacuum_records(self):

@@ -3,8 +3,8 @@
 
 import logging
 
-import odoo
 from odoo import api, models
+from odoo.modules.registry import Registry
 from odoo.tools.safe_eval import datetime, safe_eval
 
 _logger = logging.getLogger(__name__)
@@ -15,7 +15,7 @@ class AutovacuumMixin(models.AbstractModel):
     _description = "Mixin used to delete messages or attachments"
 
     def batch_unlink(self):
-        with odoo.registry(self.env.cr.dbname).cursor() as new_cr:
+        with Registry(self.env.cr.dbname).cursor() as new_cr:
             new_env = api.Environment(new_cr, self.env.uid, self.env.context)
             try:
                 while self:
@@ -54,7 +54,7 @@ class AutovacuumMixin(models.AbstractModel):
         )
         autovacuum_relation = self._autovacuum_relation
         for leaf in domain:
-            if not isinstance(leaf, (tuple, list)):
+            if not isinstance(leaf, (tuple | list)):
                 record_domain.append(leaf)
                 continue
             field, operator, value = leaf
