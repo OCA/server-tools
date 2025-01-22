@@ -40,17 +40,14 @@ class InMemoryTransport(HttpTransport):
         self.events = []
         self.envelopes = []
 
-    def capture_event(self, event, *args, **kwargs):
-        self.events.append(event)
-
     def capture_envelope(self, envelope, *args, **kwargs):
         self.envelopes.append(envelope)
 
     def has_event(self, event_level, event_msg):
-        for event in self.events:
+        for event in self.envelopes:
             if (
-                event.get("level") == event_level
-                and event.get("logentry", {}).get("message") == event_msg
+                event.get_event().get("level") == event_level
+                and event.get_event().get("logentry", {}).get("message") == event_msg
             ):
                 return True
         return False
