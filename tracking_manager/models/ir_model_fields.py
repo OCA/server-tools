@@ -24,6 +24,11 @@ class IrModelFields(models.Model):
         store=True,
     )
 
+    tracking_domain = fields.Char(
+        help="Add a domain filter to only track changes when"
+        " certain condition apply on the parent record."
+    )
+
     @api.depends("native_tracking")
     def _compute_custom_tracking(self):
         for record in self:
@@ -59,4 +64,10 @@ class IrModelFields(models.Model):
             custom_tracking = vals.pop("custom_tracking")
             self._write({"custom_tracking": custom_tracking})
             self.invalidate_model(fnames=["custom_tracking"])
+        if "tracking_domain" in vals:
+            self.env.registry.clear_cache()
+            self.check_access_rights("write")
+            custom_tracking_domain = vals.pop("tracking_domain")
+            self._write({"tracking_domain": custom_tracking_domain})
+            self.invalidate_model(fnames=["tracking_domain"])
         return super().write(vals)

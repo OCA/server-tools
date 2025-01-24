@@ -1,5 +1,6 @@
 - In setting \> models: select a model
 - Check "Active" under Custom Tracking.
+- Add an optional domain on the field to limit tracking on certain condition. 
 - You have two options - 1) manually configure tracked fields one by
   one, or 2) determine tracked fields based on a specific domain.
 - For 1) manually configure tracked fields one by one
@@ -10,8 +11,8 @@
     accordingly.
   - Click "Update" for the domain to take effect.
 
-![image](./static/description/model_view.png)
+![model_view](./static/description/model_view.png)
 
 - Then select the fields to track
 
-![image](./static/description/fields.png)
+![fields](./static/description/fields.drawio.png)
