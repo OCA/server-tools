@@ -530,7 +530,9 @@ class AuditlogRule(models.Model):
                     "user_id": uid,
                     "added": diff.added(),
                     "changed": diff.changed(),
+                    "new": new_values,
                     "old": old_values,
+                    "fields_to_exclude": fields_to_exclude,
                     "additional_log_values": additional_log_values,
                 })
                 return False
