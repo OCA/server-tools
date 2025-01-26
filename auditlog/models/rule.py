@@ -2,9 +2,12 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import copy
+import logging
 
 from odoo import _, api, fields, models, modules
 from odoo.exceptions import UserError
+
+_logger = logging.getLogger(__name__)
 
 FIELDS_BLACKLIST = [
     "id",
@@ -20,7 +23,7 @@ FIELDS_BLACKLIST = [
 EMPTY_DICT = {}
 
 
-class DictDiffer(object):
+class DictDiffer:
     """Calculate the difference between two dictionaries as:
     (1) items added
     (2) items removed
@@ -107,7 +110,7 @@ class AuditlogRule(models.Model):
         states={"subscribed": [("readonly", True)]},
     )
     log_type = fields.Selection(
-        [("full", "Full log"), ("fast", "Fast log")],
+        [("full", "Full log"), ("fast", "Fast log"), ("file", "File only")],
         string="Type",
         required=True,
         default="full",
@@ -116,7 +119,8 @@ class AuditlogRule(models.Model):
             "the operation (log more info like computed fields which were "
             "updated, but it is slower)\n"
             "Fast log: only log the changes made through the create and "
-            "write operations (less information, but it is faster)"
+            "write operations (less information, but it is faster)\n"
+            "File only: only prints information to logfile"
         ),
         states={"subscribed": [("readonly", True)]},
     )
@@ -315,7 +319,7 @@ class AuditlogRule(models.Model):
             vals_list2 = copy.deepcopy(vals_list)
             new_records = create_fast.origin(self, vals_list, **kwargs)
             new_values = {}
-            for vals, new_record in zip(vals_list2, new_records):
+            for vals, new_record in zip(vals_list2, new_records, strict=False):
                 new_values.setdefault(new_record.id, vals)
             if self.env.user in users_to_exclude:
                 return new_records
@@ -513,6 +517,23 @@ class AuditlogRule(models.Model):
         for res_id in res_ids:
             name = model_model.browse(res_id).name_get()
             res_name = name and name[0] and name[0][1]
+            diff = DictDiffer(
+                new_values.get(res_id, EMPTY_DICT), old_values.get(res_id, EMPTY_DICT)
+            )
+            if additional_log_values.get("log_type", "file") == "file":
+                _logger.info({
+                    "auditlog": "_",
+                    "name": res_name,
+                    "model_id": model_id,
+                    "res_id": res_id,
+                    "method": method,
+                    "user_id": uid,
+                    "added": diff.added(),
+                    "changed": diff.changed(),
+                    "old": old_values,
+                    "additional_log_values": additional_log_values,
+                })
+                return False
             vals = {
                 "name": res_name,
                 "model_id": model_id,
@@ -524,9 +545,6 @@ class AuditlogRule(models.Model):
             }
             vals.update(additional_log_values or {})
             log = log_model.create(vals)
-            diff = DictDiffer(
-                new_values.get(res_id, EMPTY_DICT), old_values.get(res_id, EMPTY_DICT)
-            )
             if method == "create":
                 self._create_log_line_on_create(
                     log, diff.added(), new_values, fields_to_exclude
