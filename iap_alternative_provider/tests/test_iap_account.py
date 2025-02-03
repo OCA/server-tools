@@ -51,3 +51,27 @@ class IapAccountCase(TransactionCase):
         ):
             account.write({"service_name": "some-service-2"})
             self.assertEqual(account.service_name, "other-service")
+
+    def test_unlink_odoo_iap(self):
+        account = self.env["iap.account"].create(
+            {
+                "name": "Odoo IAP",
+                "provider": "odoo",
+                "service_name": "some-service",
+            }
+        )
+        account.unlink()
+        self.assertFalse(account.exists(), "Account should be deleted")
+
+    def test_search_odoo_iap(self):
+        account = self.env["iap.account"].create(
+            {
+                "name": "Odoo IAP",
+                "provider": "odoo",
+                "service_name": "some-service",
+            }
+        )
+        results = self.env["iap.account"].search([("name", "=", "Odoo IAP")])
+        self.assertIn(
+            account.id, results.ids, "Account should be found in search results"
+        )
