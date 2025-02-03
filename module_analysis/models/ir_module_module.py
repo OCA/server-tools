@@ -26,7 +26,7 @@ class IrModuleModule(models.Model):
     )
 
     module_type_id = fields.Many2one(
-        string="Module Type", comodel_name="ir.module.type", readonly=True
+        string="Module Type Identifier", comodel_name="ir.module.type", readonly=True
     )
 
     python_code_qty = fields.Integer(string="Python Code Quantity", readonly=True)

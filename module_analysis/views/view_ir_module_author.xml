@@ -28,17 +28,17 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
     <record id="view_ir_module_author_tree" model="ir.ui.view">
         <field name="model">ir.module.author</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name" />
                 <field name="installed_module_qty" />
-            </tree>
+            </list>
         </field>
     </record>
     <record id="action_ir_module_author" model="ir.actions.act_window">
         <field name="name">Modules Authors</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">ir.module.author</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
     <menuitem
         id="menu_module_authors"
