@@ -54,13 +54,12 @@ class VacuumRule(models.Model):
     )
     model_id = fields.Many2one(
         "ir.model",
-        readonly=True,
         compute="_compute_model_id",
         help="Technical field used to set attributes (invisible/required, "
         "domain, etc...for other fields, like the domain filter",
     )
     model_filter_domain = fields.Text()
-    model = fields.Char(readonly=True, compute="_compute_model_id", string="Model code")
+    model = fields.Char(compute="_compute_model_id", string="Model code")
     empty_model = fields.Boolean(
         help="Take into account attachment not linked to any model, but only if a "
         "pattern is set, to avoid deleting attachments generated/needed by odoo"

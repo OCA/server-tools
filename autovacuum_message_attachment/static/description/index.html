@@ -378,34 +378,93 @@ messages you want to delete automatically.</p>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><a class="reference internal" href="#configuration" id="toc-entry-1">Configuration</a></li>
-<li><a class="reference internal" href="#known-issues-roadmap" id="toc-entry-2">Known issues / Roadmap</a></li>
-<li><a class="reference internal" href="#bug-tracker" id="toc-entry-3">Bug Tracker</a></li>
-<li><a class="reference internal" href="#credits" id="toc-entry-4">Credits</a><ul>
-<li><a class="reference internal" href="#authors" id="toc-entry-5">Authors</a></li>
-<li><a class="reference internal" href="#contributors" id="toc-entry-6">Contributors</a></li>
-<li><a class="reference internal" href="#maintainers" id="toc-entry-7">Maintainers</a></li>
+<li><a class="reference internal" href="#configuration" id="toc-entry-1">Configuration</a><ul>
+<li><a class="reference internal" href="#to-create-autovacuum-rules" id="toc-entry-2">To Create AutoVacuum Rules</a></li>
+<li><a class="reference internal" href="#to-configure-the-attachment-autovacuum-rule" id="toc-entry-3">To Configure the Attachment AutoVacuum Rule</a></li>
+<li><a class="reference internal" href="#to-configure-the-message-autovacuum-rule" id="toc-entry-4">To Configure the Message AutoVacuum Rule</a></li>
+<li><a class="reference internal" href="#to-configure-autovacuum-cron-jobs" id="toc-entry-5">To Configure AutoVacuum Cron Jobs</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#known-issues-roadmap" id="toc-entry-6">Known issues / Roadmap</a></li>
+<li><a class="reference internal" href="#bug-tracker" id="toc-entry-7">Bug Tracker</a></li>
+<li><a class="reference internal" href="#credits" id="toc-entry-8">Credits</a><ul>
+<li><a class="reference internal" href="#authors" id="toc-entry-9">Authors</a></li>
+<li><a class="reference internal" href="#contributors" id="toc-entry-10">Contributors</a></li>
+<li><a class="reference internal" href="#maintainers" id="toc-entry-11">Maintainers</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="section" id="configuration">
 <h1><a class="toc-backref" href="#toc-entry-1">Configuration</a></h1>
+<div class="section" id="to-create-autovacuum-rules">
+<h2><a class="toc-backref" href="#toc-entry-2">To Create AutoVacuum Rules</a></h2>
+<p>Go to Settings -&gt; Technical -&gt; Email -&gt; Message And Attachment Vacuum
+Rules</p>
 <ul class="simple">
-<li>Go to the menu configuration =&gt; Technical =&gt; Email =&gt; Message And
-Attachment Vacuum Rules</li>
-<li>Add the adequates rules for your company. On each rule, you can
-indicate the models, type and subtypes for which you want to delete
-the messages, along with a retention time (in days). Or for
-attachment, you can specify a substring of the name.</li>
-<li>Activate the cron AutoVacuum Mails and Messages and/or AutoVacuum
-Attachments</li>
+<li>Press the “New” button to add a new rule</li>
 </ul>
-<p>It is recommanded to run it frequently and when the system is not very
-loaded. (For instance : once a day, during the night.)</p>
+</div>
+<div class="section" id="to-configure-the-attachment-autovacuum-rule">
+<h2><a class="toc-backref" href="#toc-entry-3">To Configure the Attachment AutoVacuum Rule</a></h2>
+<ul class="simple">
+<li><strong>Name:</strong> Set the name of the rule</li>
+<li><strong>Type:</strong> Select type “Attachment”</li>
+<li><strong>Company:</strong> Select a Company</li>
+<li><strong>Retention Time:</strong> Set Retention Time in days</li>
+<li><strong>Filename Pattern:</strong> Set file name pattern (for example “.pdf”)</li>
+<li><strong>Inherited Model:</strong> Set the Inherited Model (optional)</li>
+<li><strong>Model:</strong> Select the Model to apply the rule to</li>
+<li><strong>Model Filter Domain:</strong> Specify the domain for the model to select
+particular records only</li>
+<li><strong>Description:</strong> Add a description for the rule set (optional)</li>
+</ul>
+<p><img alt="image1" src="https://raw.githubusercontent.com/OCA/server-tools/17.0/autovacuum_message_attachment/static/description/Attachment_Vacuum_Rule.png" /></p>
+</div>
+<div class="section" id="to-configure-the-message-autovacuum-rule">
+<h2><a class="toc-backref" href="#toc-entry-4">To Configure the Message AutoVacuum Rule</a></h2>
+<ul class="simple">
+<li><strong>Name:</strong> Set the name of the rule</li>
+<li><strong>Type:</strong> Select type “Message”</li>
+<li><strong>Company:</strong> Select a Company</li>
+<li><strong>Retention Time:</strong> Set Retention Time in days</li>
+<li><strong>Message Type:</strong> Select the Message Type to apply the rule to:<ul>
+<li><strong>All:</strong> Apply to all messages</li>
+<li><strong>Comment:</strong> Apply to comments</li>
+<li><strong>System Notification:</strong> Apply to system notifications</li>
+<li><strong>User Specific Notification:</strong> Apply to user specific notifications</li>
+</ul>
+</li>
+<li><strong>Empty Subtype:</strong> Apply to messages with no subtype</li>
+<li><strong>Message Subtype:</strong> Press the “Add line” button and select the
+Chatter Message Subtype to apply the rule to</li>
+<li><strong>Model:</strong> Select the Model to apply the rule to</li>
+<li><strong>Message Filter Domain:</strong> Specify the domain for the model to select
+particular records only</li>
+<li><strong>Description:</strong> Add a description for the rule set (optional)</li>
+</ul>
+<p><img alt="image2" src="https://raw.githubusercontent.com/OCA/server-tools/17.0/autovacuum_message_attachment/static/description/Message_Vacuum_Rule.png" /></p>
+</div>
+<div class="section" id="to-configure-autovacuum-cron-jobs">
+<h2><a class="toc-backref" href="#toc-entry-5">To Configure AutoVacuum Cron Jobs</a></h2>
+<p>Note: The AutoVacuum Mails and Messages and AutoVacuum Attachments
+scheduled actions are created by default and need to be activated.</p>
+<p>Go to Settings -&gt; Technical -&gt; Automation -&gt; Scheduled Actions</p>
+<ul class="simple">
+<li>Activate the scheduled actions needed (AutoVacuum Mails and Messages
+and/or AutoVacuum Attachments)</li>
+<li>Go to Actions -&gt; Unarchive or toggle the Active status of the
+scheduled action</li>
+<li>Select a record and specify the frequency of the cron job if needed</li>
+</ul>
+<p><img alt="image3" src="https://raw.githubusercontent.com/OCA/server-tools/17.0/autovacuum_message_attachment/static/description/AutoVacuum_Cron_Jobs.png" /></p>
+<p><img alt="image4" src="https://raw.githubusercontent.com/OCA/server-tools/17.0/autovacuum_message_attachment/static/description/AutoVacuum_Cron_Jobs2.png" /></p>
+<p>Note: It is recommanded to run it frequently and when the system is not
+very loaded. (For instance : once a day, during the night.)</p>
+</div>
 </div>
 <div class="section" id="known-issues-roadmap">
-<h1><a class="toc-backref" href="#toc-entry-2">Known issues / Roadmap</a></h1>
+<h1><a class="toc-backref" href="#toc-entry-6">Known issues / Roadmap</a></h1>
 <p>You have to be careful with rules regarding attachment deletion because
 Odoo find the attachment to delete with their name. Odoo will find all
 attachments containing the substring configured on the rule, so you have
@@ -413,7 +472,7 @@ to be specific enough on the other criterias (concerned models…) to
 avoid unwanted attachment deletion.</p>
 </div>
 <div class="section" id="bug-tracker">
-<h1><a class="toc-backref" href="#toc-entry-3">Bug Tracker</a></h1>
+<h1><a class="toc-backref" href="#toc-entry-7">Bug Tracker</a></h1>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/server-tools/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
@@ -421,15 +480,15 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
-<h1><a class="toc-backref" href="#toc-entry-4">Credits</a></h1>
+<h1><a class="toc-backref" href="#toc-entry-8">Credits</a></h1>
 <div class="section" id="authors">
-<h2><a class="toc-backref" href="#toc-entry-5">Authors</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-9">Authors</a></h2>
 <ul class="simple">
 <li>Akretion</li>
 </ul>
 </div>
 <div class="section" id="contributors">
-<h2><a class="toc-backref" href="#toc-entry-6">Contributors</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-10">Contributors</a></h2>
 <ul class="simple">
 <li>Florian da Costa &lt;<a class="reference external" href="mailto:florian.dacosta&#64;akretion.com">florian.dacosta&#64;akretion.com</a>&gt;</li>
 <li>Enric Tobella &lt;<a class="reference external" href="mailto:etobella&#64;creublanca.es">etobella&#64;creublanca.es</a>&gt;</li>
@@ -438,7 +497,7 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 </ul>
 </div>
 <div class="section" id="maintainers">
-<h2><a class="toc-backref" href="#toc-entry-7">Maintainers</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-11">Maintainers</a></h2>
 <p>This module is maintained by the OCA.</p>
 <a class="reference external image-reference" href="https://odoo-community.org">
 <img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" />
