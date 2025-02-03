@@ -98,7 +98,8 @@ class VacuumRule(models.Model):
             if rule.ttype != "attachment":
                 raise exceptions.ValidationError(
                     _(
-                        "Inheriting model cannot be used on rule where type is not attachment"
+                        "Inheriting model cannot be used on rule where "
+                        "type is not attachment"
                     )
                 )
             if (
