@@ -108,7 +108,7 @@ class IrModuleModule(models.Model):
         exclude_files = [x.strip() for x in val.split(",") if x.strip()]
 
         for module in self:
-            _logger.info("Analysing Code for module %s ..." % (module.name))
+            _logger.info(self.env._("Analysing Code for module %s ...") % (module.name))
 
             # Update Authors, based on manifest key
             authors = []

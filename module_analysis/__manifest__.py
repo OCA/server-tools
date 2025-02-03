@@ -10,7 +10,7 @@
     "author": "GRAP, Odoo Community Association (OCA)",
     "maintainers": ["legalsylvain"],
     "website": "https://github.com/OCA/server-tools",
-    "version": "17.0.1.0.1",
+    "version": "18.0.1.0.0",
     "license": "AGPL-3",
     "depends": ["base"],
     "data": [

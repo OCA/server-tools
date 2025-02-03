@@ -3,4 +3,5 @@ astor
 dataclasses
 odoorpc
 openupgradelib
+pygount
 sentry_sdk>=2.0.0

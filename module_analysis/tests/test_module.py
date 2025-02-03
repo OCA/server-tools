@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo.tests.common import TransactionCase
+from odoo.tools.translate import _
 
 
 class TestModule(TransactionCase):
@@ -26,8 +27,11 @@ class TestModule(TransactionCase):
                 module.python_code_qty > 0
                 or module.xml_code_qty > 0
                 or module.js_code_qty > 0,
-                "module '%s' doesn't have code analysed defined, whereas it is"
-                " installed." % (module.name),
+                _(
+                    "module %s doesn't have code analysed defined, whereas it is"
+                    " installed."
+                )
+                % (module.name),
             )
 
     def test_uninstalled_modules(self):
@@ -35,6 +39,6 @@ class TestModule(TransactionCase):
         for module in uninstalled_modules:
             self.assertTrue(
                 module.python_code_qty == 0,
-                "module '%s' has python lines defined, whereas it is"
-                " not installed." % (module.name),
+                _("module %s has python lines defined, whereas it is" " not installed.")
+                % (module.name),
             )
