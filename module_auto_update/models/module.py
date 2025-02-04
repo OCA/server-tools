@@ -13,7 +13,7 @@ from ..addon_hash import addon_hash
 
 PARAM_INSTALLED_CHECKSUMS = "module_auto_update.installed_checksums"
 PARAM_EXCLUDE_PATTERNS = "module_auto_update.exclude_patterns"
-DEFAULT_EXCLUDE_PATTERNS = "*.pyc,*.pyo,i18n/*.pot,i18n_extra/*.pot,static/*"
+DEFAULT_EXCLUDE_PATTERNS = "*.pyc,*.pyo,i18n/*.pot,i18n_extra/*.pot,static/*,tests/*"
 
 _logger = logging.getLogger(__name__)
 
@@ -127,9 +127,9 @@ class Module(models.Model):
             overwrite_existing_translations,
         )
 
-        tools.config[
-            "overwrite_existing_translations"
-        ] = overwrite_existing_translations
+        tools.config["overwrite_existing_translations"] = (
+            overwrite_existing_translations
+        )
 
         _logger.info("Updating modules list...")
         self.update_list()
@@ -177,9 +177,10 @@ class Module(models.Model):
         partial_modules = self._get_modules_partially_installed()
         if partial_modules:
             raise IncompleteUpgradeError(
-                "Checksum upgrade successful "
-                "but incomplete for the following modules: %s"
-                % ",".join(partial_modules.mapped("name"))
+                "Checksum upgrade successful but "
+                "incomplete for the following modules: {}".format(
+                    ",".join(partial_modules.mapped("name"))
+                )
             )
 
         _logger.info("Checksum upgrade complete.")
