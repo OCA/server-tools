@@ -11,11 +11,11 @@ from odoo.addons.session_db.pg_session_store import PGSessionStore
 
 
 def _make_postgres_uri(
-    login=None, password=None, host=None, port=None, database=None, **kwargs
+    user=None, password=None, host=None, port=None, database=None, **kwargs
 ):
     uri = ["postgres://"]
-    if login:
-        uri.append(login)
+    if user:
+        uri.append(user)
         if password:
             uri.append(f":{password}")
         uri.append("@")
@@ -80,3 +80,15 @@ class TestPGSessionStore(TransactionCase):
             assert mock_execute.call_count == 1
         # when the error is resolved, it works again
         self.session_store.get("abc")
+
+    def test_make_postgres_uri(self):
+        connection_info = {
+            "host": "localhost",
+            "port": 5432,
+            "database": "test",
+            "user": "test",
+            "password": "PASSWORD",
+        }
+        assert "postgres://test:PASSWORD@localhost:5432/test" == _make_postgres_uri(
+            **connection_info
+        )
