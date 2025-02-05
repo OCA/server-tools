@@ -1,6 +1,7 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 import ast
 import logging
+import os
 import re
 
 from lxml import etree
@@ -26,6 +27,19 @@ def new_tag_record(self, rec, extra_vals=None):
 
 
 xml_import._tag_record = new_tag_record
+
+
+def write_to_file(filename, content):
+    output_folder = os.getenv("VIEWS_MIGRATION_17_OUTPUT_DIR")
+    if output_folder:
+        filename = os.path.join(output_folder, *filename.split(os.sep)[-3:])
+        try:
+            os.makedirs(os.path.dirname(filename), exist_ok=True)
+        except PermissionError:
+            _logger.error(f"Permission denied: {filename}")
+            return
+    with open(filename, "w", encoding="utf-8") as file:
+        file.write(content)
 
 
 def _convert_ir_ui_view_modifiers(self, record_node, extra_vals=None):
@@ -131,8 +145,7 @@ def _convert_ir_ui_view_modifiers(self, record_node, extra_vals=None):
             f_arch.text = root_content.text
 
             new_xml = previous_xml.replace(arch, arch_result)
-            with file_open(self.xml_filename, "w") as file:
-                file.write(new_xml)
+            write_to_file(self.xml_filename, new_xml)
             try:
                 # test file before save
                 etree.fromstring(new_xml.encode())
@@ -147,6 +160,7 @@ def _convert_ir_ui_view_modifiers(self, record_node, extra_vals=None):
 
 
 import itertools
+import os
 
 from odoo.osv.expression import (
     AND_OPERATOR,
@@ -1545,12 +1559,3 @@ def modifier_to_domain(modifier):
             return _modifier_to_domain_ast_wrap_domain(modifier_ast)
     except Exception as e:
         raise ValueError(f"{e}: {modifier}")
-
-
-def str2bool(s):
-    s = s.lower()
-    if s in ("1", "true"):
-        return True
-    if s in ("0", "false"):
-        return False
-    raise ValueError()
