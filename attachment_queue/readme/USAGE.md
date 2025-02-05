@@ -9,9 +9,9 @@ task at a go:
 Settings \> Technical \> System parameters \>
 attachment_queue_cron_batch_limit
 
-image:: ../static/description/tree.png
+![tree view](../static/description/tree.png)
 
 This module can be used in combination with attachment_synchronize to
 control file processing workflow
 
-image:: ../static/description/form.png
+![form view](../static/description/form.png)
