@@ -6,9 +6,9 @@ from odoo_test_helper import FakeModelLoader
 
 from odoo import registry
 from odoo.exceptions import UserError
-from odoo.tests.common import TransactionCase
 from odoo.tools import mute_logger
 
+from odoo.addons.base.tests.common import BaseCommon
 from odoo.addons.queue_job.exception import RetryableJobError
 from odoo.addons.queue_job.tests.common import trap_jobs
 
@@ -21,14 +21,14 @@ MOCK_PATH_RUN = (
 )
 
 
-class TestAttachmentBaseQueue(TransactionCase):
+class TestAttachmentBaseQueue(BaseCommon):
     def _create_dummy_attachment(self, override=False, no_job=False):
         override = override or {}
         vals = DUMMY_AQ_VALS.copy()
         vals.update(override)
         if no_job:
             return (
-                self.env["attachment.queue"].with_context(test_queue_job_no_delay=True)
+                self.env["attachment.queue"].with_context(queue_job__no_delay=True)
             ).create(vals)
         return self.env["attachment.queue"].create(vals)
 
@@ -59,7 +59,10 @@ class TestAttachmentBaseQueue(TransactionCase):
             )
 
     def test_aq_locked_job(self):
-        """If an attachment is already running, and a job tries to run it, retry later"""
+        """
+        If an attachment is already running, and a job tries to run it,
+        retry later
+        """
         attachment = self.env.ref("attachment_queue.dummy_attachment_queue")
         with registry(self.env.cr.dbname).cursor() as new_cr:
             new_cr.execute(
