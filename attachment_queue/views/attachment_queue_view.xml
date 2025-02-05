@@ -10,21 +10,21 @@
                 <header>
                     <button
                         name="button_manual_run"
-                        states="pending,failed"
+                        invisible="state not in ('pending', 'failed')"
                         string="Manual run"
                         type="object"
                         class="oe_highlight"
                     />
                     <button
                         name="button_reschedule"
-                        states="done,failed"
+                        invisible="state not in ('done', 'failed')"
                         string="Reschedule"
                         type="object"
                         class="oe_highlight"
                     />
                     <button
                         name="set_done"
-                        states="pending,failed"
+                        invisible="state not in ('pending', 'failed')"
                         string="Set to Done"
                         type="object"
                     />
