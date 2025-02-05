@@ -7,6 +7,7 @@ import json
 import xmlrpc
 
 from odoo.tests import common
+from odoo.tools import mute_logger
 
 
 @common.tagged("post_install", "-at_install")
@@ -46,10 +47,12 @@ class TestXMLRPC(common.HttpCase):
         self._set_disable(("all",))
         msg = "RPC call on res.partner is not allowed"
         with self.assertRaisesRegex(xmlrpc.client.Fault, msg):
-            self._rpc_call("search")
+            with mute_logger("odoo.http"):
+                self._rpc_call("search")
 
         with self.assertRaisesRegex(xmlrpc.client.Fault, msg):
-            self._rpc_call("create", vals=[{"name": "Foo"}])
+            with mute_logger("odoo.http"):
+                self._rpc_call("create", vals=[{"name": "Foo"}])
 
     def test_xmlrpc_can_search_create_blocked(self):
         self._set_disable(("create",))
@@ -57,16 +60,19 @@ class TestXMLRPC(common.HttpCase):
 
         msg = "RPC call on res.partner is not allowed"
         with self.assertRaisesRegex(xmlrpc.client.Fault, msg):
-            self._rpc_call("create", vals=[{"name": "Foo"}])
+            with mute_logger("odoo.http"):
+                self._rpc_call("create", vals=[{"name": "Foo"}])
 
     def test_xmlrpc_all_blocked__ir_model(self):
         self._set_disable_on_model(("all",))
         msg = "RPC call on res.partner is not allowed"
         with self.assertRaisesRegex(xmlrpc.client.Fault, msg):
-            self._rpc_call("search")
+            with mute_logger("odoo.http"):
+                self._rpc_call("search")
 
         with self.assertRaisesRegex(xmlrpc.client.Fault, msg):
-            self._rpc_call("create", vals=[{"name": "Foo"}])
+            with mute_logger("odoo.http"):
+                self._rpc_call("create", vals=[{"name": "Foo"}])
 
     def test_xmlrpc_can_search_create_blocked__ir_model(self):
         self._set_disable_on_model(("create",))
@@ -74,4 +80,5 @@ class TestXMLRPC(common.HttpCase):
 
         msg = "RPC call on res.partner is not allowed"
         with self.assertRaisesRegex(xmlrpc.client.Fault, msg):
-            self._rpc_call("create", vals=[{"name": "Foo"}])
+            with mute_logger("odoo.http"):
+                self._rpc_call("create", vals=[{"name": "Foo"}])

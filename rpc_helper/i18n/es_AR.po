@@ -60,6 +60,11 @@ msgstr "Configuración Rpc"
 msgid "Rpc Config Edit"
 msgstr "Editar la Configuración Rpc"
 
+#. module: rpc_helper
+#: model:ir.model.fields,field_description:rpc_helper.field_ir_model__smart_search
+msgid "Smart Search"
+msgstr "Búsqueda Inteligente"
+
 #~ msgid "Changeset Changes"
 #~ msgstr "Cambios del Conjunto de Cambios"
 
@@ -74,9 +79,6 @@ msgstr "Editar la Configuración Rpc"
 
 #~ msgid "Count Pending Changesets"
 #~ msgstr "Cuenta de los Conjuntos de Cambios Pendientes"
-
-#~ msgid "Smart Search"
-#~ msgstr "Búsqueda Inteligente"
 
 #~ msgid "The number of pending changes of this record"
 #~ msgstr "El número de los cambios pendientes de este registro"
