@@ -25,13 +25,9 @@ class IrCron(models.Model):
         ),
     )
 
-    @api.model
     def _handle_callback_exception(
         self, cron_name, server_action_id, job_id, job_exception
     ):
-        res = super()._handle_callback_exception(
-            cron_name, server_action_id, job_id, job_exception
-        )
         my_cron = self.browse(job_id)
 
         if my_cron.email_template_id:
@@ -44,7 +40,16 @@ class IrCron(models.Model):
             template = my_cron.email_template_id.with_context(**context).sudo()
             template.send_mail(my_cron.id, force_send=True)
 
-        return res
+    def _callback(self, cron_name, server_action_id):
+        """Extend the base _callback to handle errors with email notifications."""
+        self.ensure_one()
+        try:
+            return super()._callback(cron_name, server_action_id)
+        except Exception as job_exception:
+            self._handle_callback_exception(
+                cron_name, server_action_id, self.id, job_exception
+            )
+            raise
 
     @api.model
     def _test_scheduler_failure(self):
