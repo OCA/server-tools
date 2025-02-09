@@ -25,6 +25,9 @@ var/
 *.egg
 *.eggs
 
+# Windows installers
+*.msi
+
 # Debian packages
 *.deb
 
@@ -33,6 +36,7 @@ var/
 
 # MacOS packages
 *.dmg
+*.pkg
 
 # Installer logs
 pip-log.txt
