@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Detect unreleased dependencies
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - run: |
           for reqfile in requirements.txt test-requirements.txt ; do
               if [ -f ${reqfile} ] ; then
@@ -62,7 +62,7 @@ jobs:
       INCLUDE: "${{ matrix.include }}"
       EXCLUDE: "${{ matrix.exclude }}"
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           persist-credentials: false
       - name: Install addons and dependencies
