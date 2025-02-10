@@ -1,1 +1,0 @@
-* stephane.bidoul@acsone.eu

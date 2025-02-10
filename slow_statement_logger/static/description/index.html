@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
@@ -9,10 +8,11 @@
 
 /*
 :Author: David Goodger (goodger@python.org)
-:Id: $Id: html4css1.css 8954 2022-01-20 10:10:25Z milde $
+:Id: $Id: html4css1.css 9511 2024-01-13 09:50:07Z milde $
 :Copyright: This stylesheet has been placed in the public domain.
 
 Default cascading style sheet for the HTML output of Docutils.
+Despite the name, some widely supported CSS2 features are used.
 
 See https://docutils.sourceforge.io/docs/howto/html-stylesheets.html for how to
 customize this style sheet.
@@ -275,7 +275,7 @@ pre.literal-block, pre.doctest-block, pre.math, pre.code {
   margin-left: 2em ;
   margin-right: 2em }
 
-pre.code .ln { color: grey; } /* line numbers */
+pre.code .ln { color: gray; } /* line numbers */
 pre.code, code { background-color: #eeeeee }
 pre.code .comment, code .comment { color: #5C6576 }
 pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
@@ -301,7 +301,7 @@ span.option {
 span.pre {
   white-space: pre }
 
-span.problematic {
+span.problematic, pre.problematic {
   color: red }
 
 span.section-subtitle {
@@ -369,10 +369,10 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !! source digest: sha256:2d480706fdd0f2eec0b6884731447e0272422836691fc9d9109914bdb5d175ed
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/server-tools/tree/14.0/slow_statement_logger"><img alt="OCA/server-tools" src="https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/server-tools-14-0/server-tools-14-0-slow_statement_logger"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/server-tools&amp;target_branch=14.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
-<p>This module lets you log slow SQL statements. It is useful when you don’t have
-access to the PostgreSQL log or when it is difficult to correlate the
-PostgreSQL log with the Odoo log.</p>
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/server-tools/tree/17.0/slow_statement_logger"><img alt="OCA/server-tools" src="https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/server-tools-17-0/server-tools-17-0-slow_statement_logger"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/server-tools&amp;target_branch=17.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
+<p>This module lets you log slow SQL statements. It is useful when you
+don’t have access to the PostgreSQL log or when it is difficult to
+correlate the PostgreSQL log with the Odoo log.</p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">This module may leak confidential data in the log, in a similar way
@@ -393,15 +393,15 @@ to Odoo’s <tt class="docutils literal"><span class="pre">--log-level=debug_sql
 </div>
 <div class="section" id="usage">
 <h1><a class="toc-backref" href="#toc-entry-1">Usage</a></h1>
-<p>Add <tt class="docutils literal">slow_statement_logger</tt> to Odoo’s <tt class="docutils literal"><span class="pre">--load</span></tt> command line option, or to the
-<tt class="docutils literal">server_wide_modules</tt> configuration file entry.</p>
-<p>Add a <tt class="docutils literal">log_min_duration_statement</tt> entry in the <tt class="docutils literal">options</tt> section of your
-Odoo configuration file. Statements running at least this number of
+<p>Add <tt class="docutils literal">slow_statement_logger</tt> to Odoo’s <tt class="docutils literal"><span class="pre">--load</span></tt> command line option,
+or to the <tt class="docutils literal">server_wide_modules</tt> configuration file entry.</p>
+<p>Add a <tt class="docutils literal">log_min_duration_statement</tt> entry in the <tt class="docutils literal">options</tt> section of
+your Odoo configuration file. Statements running at least this number of
 milliseconds will be logged with a <em>debug</em> level in the
-<tt class="docutils literal">odoo.addons.slow_statement_logger</tt> logger. <tt class="docutils literal">0</tt> means all statements will be
-logged. <tt class="docutils literal"><span class="pre">-1</span></tt> disables this logging. You can also set an environment variable
-<tt class="docutils literal">ODOO_LOG_MIN_DURATION_STATEMENT</tt> which will have priority over the
-configuration file entry.</p>
+<tt class="docutils literal">odoo.addons.slow_statement_logger</tt> logger. <tt class="docutils literal">0</tt> means all statements
+will be logged. <tt class="docutils literal"><span class="pre">-1</span></tt> disables this logging. You can also set an
+environment variable <tt class="docutils literal">ODOO_LOG_MIN_DURATION_STATEMENT</tt> which will have
+priority over the configuration file entry.</p>
 <p>Add <tt class="docutils literal">odoo.addons.slow_statement_logger:DEBUG</tt> in your <tt class="docutils literal">log_handler</tt>
 configuration file entry or <tt class="docutils literal"><span class="pre">--log-handler</span></tt> command line option.</p>
 </div>
@@ -410,7 +410,7 @@ configuration file entry or <tt class="docutils literal"><span class="pre">--log
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/server-tools/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-<a class="reference external" href="https://github.com/OCA/server-tools/issues/new?body=module:%20slow_statement_logger%0Aversion:%2014.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+<a class="reference external" href="https://github.com/OCA/server-tools/issues/new?body=module:%20slow_statement_logger%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
@@ -430,11 +430,13 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <div class="section" id="maintainers">
 <h2><a class="toc-backref" href="#toc-entry-6">Maintainers</a></h2>
 <p>This module is maintained by the OCA.</p>
-<a class="reference external image-reference" href="https://odoo-community.org"><img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" /></a>
+<a class="reference external image-reference" href="https://odoo-community.org">
+<img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" />
+</a>
 <p>OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.</p>
-<p>This module is part of the <a class="reference external" href="https://github.com/OCA/server-tools/tree/14.0/slow_statement_logger">OCA/server-tools</a> project on GitHub.</p>
+<p>This module is part of the <a class="reference external" href="https://github.com/OCA/server-tools/tree/17.0/slow_statement_logger">OCA/server-tools</a> project on GitHub.</p>
 <p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
 </div>
 </div>
