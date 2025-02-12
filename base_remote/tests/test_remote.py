@@ -33,6 +33,7 @@ class TestRemote(HttpCase):
             if remote:
                 remote.unlink()
 
+        self.original_request = http.request
         http.request = type(
             "obj",
             (object,),
@@ -48,6 +49,10 @@ class TestRemote(HttpCase):
                 ),
             },
         )
+
+    def tearDown(self):
+        super().tearDown()
+        http.request = self.original_request
 
     def test_xmlrpc_login_ok(self, *args):
         """Test Login"""
