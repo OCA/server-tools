@@ -8,8 +8,6 @@ from __future__ import absolute_import
 
 import re
 
-from sentry_sdk._compat import text_type
-
 from .generalutils import string_types, varmap
 
 
@@ -53,7 +51,7 @@ class SanitizeKeysProcessor(object):
         if isinstance(item, bytes):
             item = item.decode("utf-8", "replace")
         else:
-            item = text_type(item)
+            item = str(item)
 
         item = item.lower()
         for key in self.sanitize_keys:
