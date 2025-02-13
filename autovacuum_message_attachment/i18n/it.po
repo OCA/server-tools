@@ -81,6 +81,7 @@ msgstr "Tutti"
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_cleanup_purge_wizard_model__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_cleanup_purge_wizard_module__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_cleanup_purge_wizard_table__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_db_backup__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_decimal_precision__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_discuss_channel__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_discuss_channel_member__assigned_attachment_ids
