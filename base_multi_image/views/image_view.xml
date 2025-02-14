@@ -36,8 +36,8 @@
         </field>
     </record>
 
-    <record id="image_tree_view" model="ir.ui.view">
-        <field name="name">Multi image tree</field>
+    <record id="image_list_view" model="ir.ui.view">
+        <field name="name">Multi image list</field>
         <field name="model">base_multi_image.image</field>
         <field name="arch" type="xml">
             <list>
@@ -58,7 +58,7 @@
                 <field name="name" />
                 <field name="sequence" />
                 <templates>
-                    <t t-name="kanban-box">
+                    <t t-name="card">
                         <div style="position: relative">
                             <a
                                 t-if="! read_only_mode"

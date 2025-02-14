@@ -7,3 +7,4 @@
 - [Greenice](https://www.greenice.com):
 - Fernando La Chica \<<fernandolachica@gmail.com>\>
 - Ugnė Sinkevičienė \<<ugne@versada.eu>\>
+- Andrius Laukavičius \<<andrius.laukavicius@versada.eu>\>
