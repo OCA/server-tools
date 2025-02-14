@@ -40,12 +40,12 @@
         <field name="name">Multi image tree</field>
         <field name="model">base_multi_image.image</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name" />
                 <field name="owner_model" />
                 <field name="owner_id" />
                 <field name="sequence" invisible="True" />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -111,7 +111,7 @@
     <record id="image_action" model="ir.actions.act_window">
         <field name="name">Multi images</field>
         <field name="res_model">base_multi_image.image</field>
-        <field name="view_mode">kanban,tree,form</field>
+        <field name="view_mode">kanban,list,form</field>
         <field name="help">Click to add an image attached to an specific record.</field>
     </record>
 
