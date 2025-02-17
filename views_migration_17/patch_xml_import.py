@@ -159,7 +159,7 @@ from odoo.osv.expression import (
     distribute_not,
     normalize_domain,
 )
-from odoo.tools import apply_inheritance_specs, locate_node, mute_logger
+from odoo.tools import apply_inheritance_specs, locate_node
 
 # from odoo import tools
 from odoo.tools.misc import str2bool, unique
