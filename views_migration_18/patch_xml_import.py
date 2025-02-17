@@ -159,11 +159,11 @@ from odoo.osv.expression import (
     distribute_not,
     normalize_domain,
 )
-from odoo.tools import apply_inheritance_specs, locate_node
 
 # from odoo import tools
 from odoo.tools.misc import str2bool, unique
 from odoo.tools.safe_eval import _BUILTINS
+from odoo.tools.template_inheritance import apply_inheritance_specs
 from odoo.tools.view_validation import (
     _get_expression_contextual_values,
     get_domain_value_names,
@@ -721,7 +721,7 @@ def convert_node_modifiers_inplace(root, env, model, view_type, ref):
         itertools.chain(
             root.findall(".//*[@attrs]"),
             root.findall(".//*[@states]"),
-            root.findall(".//tree/*[@invisible]"),
+            root.findall(".//list/*[@invisible]"),
         )
     ):
         expr_to_attr(item)
@@ -955,7 +955,7 @@ def extract_node_modifiers(node, view_type, py_field_modifiers=None):
                 if parent.tag in (
                     "groupby",
                     "header",
-                ):  # tree view element with form view behavior
+                ):  # list view element with form view behavior
                     parent_view_type = "form"
                     break
             if parent_view_type == "tree":
