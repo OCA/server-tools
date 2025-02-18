@@ -22,24 +22,24 @@
                 <div states="get">
                     <h2>Complete Prepare File (.xlsx)</h2>
                     <p>Here is the exported file: <field
-                            name="data"
-                            readonly="1"
-                            filename="name"
-                        /></p>
+                        name="data"
+                        readonly="1"
+                        filename="name"
+                    /></p>
                 </div>
                 <footer states="choose">
                   <button
-                        name="action_export"
-                        string="Export"
-                        type="object"
-                        class="oe_highlight"
-                    /> or
+                    name="action_export"
+                    string="Export"
+                    type="object"
+                    class="oe_highlight"
+                /> or
                   <button
-                        special="cancel"
-                        string="Cancel"
-                        type="object"
-                        class="oe_link"
-                    />
+                    special="cancel"
+                    string="Cancel"
+                    type="object"
+                    class="oe_link"
+                />
               </footer>
                 <footer states="get">
                     <button special="cancel" string="Close" type="object" />

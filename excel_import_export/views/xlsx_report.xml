@@ -9,8 +9,7 @@
         <field name="arch" type="xml">
             <form string="Excel Report">
                 <!-- search criteria -->
-                <group name="criteria" states="choose">
-                </group>
+                <group name="criteria" states="choose" />
                 <!-- xlsx.report common field -->
                 <div name="xlsx.report">
                     <field name="state" invisible="1" />
@@ -38,18 +37,18 @@
                     </div>
                     <footer states="choose">
                         <button
-                            name="report_xlsx"
-                            string="Execute Report"
-                            type="object"
-                            class="oe_highlight"
-                        />
+                        name="report_xlsx"
+                        string="Execute Report"
+                        type="object"
+                        class="oe_highlight"
+                    />
                         or
                         <button
-                            special="cancel"
-                            string="Cancel"
-                            type="object"
-                            class="oe_link"
-                        />
+                        special="cancel"
+                        string="Cancel"
+                        type="object"
+                        class="oe_link"
+                    />
                     </footer>
                     <footer states="get">
                         <button special="cancel" string="Close" type="object" />

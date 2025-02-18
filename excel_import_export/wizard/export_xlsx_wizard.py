@@ -41,7 +41,7 @@ class ExportXLSXWizard(models.TransientModel):
         templates = self.env["xlsx.template"].search(template_domain)
         if not templates:
             raise ValidationError(_("No template found"))
-        defaults = super(ExportXLSXWizard, self).default_get(fields)
+        defaults = super().default_get(fields)
         for template in templates:
             if not template.datas:
                 raise ValidationError(_("No file in %s") % (template.name,))

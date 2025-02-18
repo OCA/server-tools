@@ -53,11 +53,11 @@
                 </group>
                 <footer states="choose">
                     <button
-                        name="action_import"
-                        string="Import"
-                        type="object"
-                        class="oe_highlight"
-                    />
+                    name="action_import"
+                    string="Import"
+                    type="object"
+                    class="oe_highlight"
+                />
                     or
                     <button string="Cancel" class="oe_link" special="cancel" />
                 </footer>

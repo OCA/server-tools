@@ -177,58 +177,58 @@
                                   You can look at following instruction as Excel Sheet(s), each with 1 header section (_HEAD_) and multiple row sections (one2many fields).
                                 </p>
                                 <ul>
-                                    <li
-                                    >In header section part, map data fields (e.g., number, partner_id.name) into cells (e.g., B1, B2).</li>
-                                    <li
-                                    >In row section, data list will be rolled out from one2many row field (e.g., order_line), and map data field (i.e., product_id.name, uom_id.name, qty) into the first row cells to start rolling (e.g., A6, B6, C6).</li>
-                                </ul>
+                                <li
+                                >In header section part, map data fields (e.g., number, partner_id.name) into cells (e.g., B1, B2).</li>
+                                <li
+                                >In row section, data list will be rolled out from one2many row field (e.g., order_line), and map data field (i.e., product_id.name, uom_id.name, qty) into the first row cells to start rolling (e.g., A6, B6, C6).</li>
+                            </ul>
                                 <p>Following are more explaination on each column:</p>
                                 <ul>
-                                    <li><b
-                                        >Sheet</b>: Name (e.g., Sheet 1) or index (e.g., 1) of excel sheet to export data to</li>
-                                    <li><b
-                                        >Row Field</b>: Use _HEAD_ for the record itself, and one2many field (e.g., line_ids) for row data</li>
-                                    <li><b
-                                        >Continue</b>: If not selected, start rolling with specified first row cells. If selected, continue from previous one2many field</li>
-                                    <li><b
-                                        >Extend</b>: If selected, extend one row after one data row in order to preserve the sum line</li>
-                                    <li><b
-                                        >Cell</b>: Location of data in excel sheet (e.g., A1, B1, ...)</li>
-                                    <li><b
-                                        >Field</b>: Field of the record, e.g., product_id.uom_id.name. They are orm compliant.</li>
-                                    <li><b>Field Cond.</b>: Python code in <code
-                                        >$</code><code
-                                        >{...}</code> to manipulate field value, e.g., if field = product_id, <code
-                                        >value</code> will represent product object, e.g., <code
-                                        >$</code><code
-                                        >{value and value.uom_id.name or ""}</code></li>
-                                    <li><b>Sum</b>: Add sum value on last row, <code
-                                        >@{sum}</code></li>
-                                    <li><b>Style</b>: Default style in <code
-                                        >#{...}</code> that apply to each cell, e.g., <code
-                                        >#{align=left;style=text}</code>. See module's <b
-                                        >style.py</b> for available styles.</li>
-                                    <li><b
-                                        >Style w/Cond.</b>: Conditional style by python code in <code
-                                        >#?...?</code>, e.g., apply style for specific product, <code
-                                        >#?value.name == "ABC" and #{font=bold;fill=red} or None?</code></li>
-                                </ul>
+                                <li><b
+                                >Sheet</b>: Name (e.g., Sheet 1) or index (e.g., 1) of excel sheet to export data to</li>
+                                <li><b
+                                >Row Field</b>: Use _HEAD_ for the record itself, and one2many field (e.g., line_ids) for row data</li>
+                                <li><b
+                                >Continue</b>: If not selected, start rolling with specified first row cells. If selected, continue from previous one2many field</li>
+                                <li><b
+                                >Extend</b>: If selected, extend one row after one data row in order to preserve the sum line</li>
+                                <li><b
+                                >Cell</b>: Location of data in excel sheet (e.g., A1, B1, ...)</li>
+                                <li><b
+                                >Field</b>: Field of the record, e.g., product_id.uom_id.name. They are orm compliant.</li>
+                                <li><b>Field Cond.</b>: Python code in <code
+                                >$</code><code
+                                >{...}</code> to manipulate field value, e.g., if field = product_id, <code
+                                >value</code> will represent product object, e.g., <code
+                                >$</code><code
+                                >{value and value.uom_id.name or ""}</code></li>
+                                <li><b>Sum</b>: Add sum value on last row, <code
+                                >@{sum}</code></li>
+                                <li><b>Style</b>: Default style in <code
+                                >#{...}</code> that apply to each cell, e.g., <code
+                                >#{align=left;style=text}</code>. See module's <b
+                                >style.py</b> for available styles.</li>
+                                <li><b
+                                >Style w/Cond.</b>: Conditional style by python code in <code
+                                >#?...?</code>, e.g., apply style for specific product, <code
+                                >#?value.name == "ABC" and #{font=bold;fill=red} or None?</code></li>
+                            </ul>
                                 <p>
-                                    <b>Note:</b>
-                                </p>
+                                <b>Note:</b>
+                            </p>
                                 For code block <code>$</code><code
-                                >{...}</code> and <code
-                                >#?...?</code>, following object are available,
+                            >{...}</code> and <code
+                            >#?...?</code>, following object are available,
                                 <ul>
-                                    <li><code>value</code>: value from <b>Field</b></li>
-                                    <li><code
-                                        >object</code>: record object or line object depends on <b
-                                        >Row Field</b></li>
-                                    <li><code
-                                        >model</code>: active model, e.g., self.env['my.model']</li>
-                                    <li><code
-                                        >date, datetime, time</code>: some useful python classes</li>
-                                </ul>
+                                <li><code>value</code>: value from <b>Field</b></li>
+                                <li><code
+                                >object</code>: record object or line object depends on <b
+                                >Row Field</b></li>
+                                <li><code
+                                >model</code>: active model, e.g., self.env['my.model']</li>
+                                <li><code
+                                >date, datetime, time</code>: some useful python classes</li>
+                            </ul>
                             </div>
                         </page>
                         <page
@@ -319,44 +319,44 @@
                                   Cells can be mapped to record in header section (_HEAD_) and data table can be mapped to row section (one2many field, begins from specifed cells.
                                 </p>
                                 <ul>
-                                    <li
-                                    >In header section, map cells (e.g., B1, B2) into data fields (e.g., number, partner_id).</li>
-                                    <li
-                                    >In row section, data table from excel can be imported to one2many row field (e.g., order_line) by mapping cells on first row onwards (e.g., A6, B6, C6) to fields (e.g., product_id, uom_id, qty) </li>
-                                </ul>
+                                <li
+                                >In header section, map cells (e.g., B1, B2) into data fields (e.g., number, partner_id).</li>
+                                <li
+                                >In row section, data table from excel can be imported to one2many row field (e.g., order_line) by mapping cells on first row onwards (e.g., A6, B6, C6) to fields (e.g., product_id, uom_id, qty) </li>
+                            </ul>
                                 <p>Following are more explaination on each column:</p>
                                 <ul>
-                                    <li><b
-                                        >Sheet</b>: Name (e.g., Sheet 1) or index (e.g., 1) of excel sheet</li>
-                                    <li><b
-                                        >Row Field</b>: Use _HEAD_ for the record itself, and one2many field for row data, e.g., order_line, line_ids<code
-                                        >[max_row]</code> where <code
-                                        >[max_row]</code> is optional number of rows to import</li>
-                                    <li><b
-                                        >No Delete</b>: By default, all one2many lines will be deleted before import. Select this, to avoid deletion</li>
-                                    <li><b
-                                        >Cell</b>: Location of data in excel sheet (e.g., A1, B1, ...)</li>
-                                    <li><b
-                                        >Field</b>: Field of the record to be imported to, e.g., product_id</li>
-                                    <li><b>Field Cond.</b>: Python code in <code
-                                        >$</code><code
-                                        >{...}</code> value will represent data from excel cell, e.g., if A1 = 'ABC', <code
-                                        >value</code> will represent 'ABC', e.g., <code
-                                        >$</code><code
-                                        >{value == "ABC" and "X" or "Y"}</code> thus can change from cell value to other value for import.</li>
-                                </ul>
+                                <li><b
+                                >Sheet</b>: Name (e.g., Sheet 1) or index (e.g., 1) of excel sheet</li>
+                                <li><b
+                                >Row Field</b>: Use _HEAD_ for the record itself, and one2many field for row data, e.g., order_line, line_ids<code
+                                >[max_row]</code> where <code
+                                >[max_row]</code> is optional number of rows to import</li>
+                                <li><b
+                                >No Delete</b>: By default, all one2many lines will be deleted before import. Select this, to avoid deletion</li>
+                                <li><b
+                                >Cell</b>: Location of data in excel sheet (e.g., A1, B1, ...)</li>
+                                <li><b
+                                >Field</b>: Field of the record to be imported to, e.g., product_id</li>
+                                <li><b>Field Cond.</b>: Python code in <code
+                                >$</code><code
+                                >{...}</code> value will represent data from excel cell, e.g., if A1 = 'ABC', <code
+                                >value</code> will represent 'ABC', e.g., <code
+                                >$</code><code
+                                >{value == "ABC" and "X" or "Y"}</code> thus can change from cell value to other value for import.</li>
+                            </ul>
                                 <p>
-                                    <b>Note:</b>
-                                </p>
+                                <b>Note:</b>
+                            </p>
                                 For code block <code>$</code><code
-                                >{...}</code>, following object are available,
+                            >{...}</code>, following object are available,
                                 <ul>
-                                    <li><code>value</code>: value from <b>Cell</b></li>
-                                    <li><code
-                                        >model</code>: active model, e.g., self.env['my.model']</li>
-                                    <li><code
-                                        >date, datetime, time</code>: some useful python classes</li>
-                                </ul>
+                                <li><code>value</code>: value from <b>Cell</b></li>
+                                <li><code
+                                >model</code>: active model, e.g., self.env['my.model']</li>
+                                <li><code
+                                >date, datetime, time</code>: some useful python classes</li>
+                            </ul>
                             </div>
                         </page>
                         <page string="Input Instruction (Dict.)">
@@ -381,7 +381,7 @@
         'sale_order': {  # sheet can be name (string) or index (integer)
             '_HEAD_': {
                 'B2': 'partner_id.display_name<span
-                                        >$</span>{value or ""}#{align=left;style=text}',
+                                    >$</span>{value or ""}#{align=left;style=text}',
                 'B3': 'name<span>$</span>{value or ""}#{align=left;style=text}',
             },
             'line_ids': {  # prefix with _CONT_ to continue rows from previous row field
