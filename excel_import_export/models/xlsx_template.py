@@ -214,12 +214,9 @@ class XLSXTemplate(models.Model):
         else:
             _field.ensure_one()
             _field.write({"relation": self.result_model_id.model})
-        _field.compute = """
-self['{}'] = self.env['{}'].search(self.safe_domain(self.domain))
-        """.format(
-            self.result_field,
-            self.result_model_id.model,
-        )
+        _field.compute = f"""
+self['{self.result_field}'] = self.env['{self.result_model_id.model}'].search(self.safe_domain(self.domain))
+        """
 
     def _update_result_export_ids(self):
         self.ensure_one()
@@ -538,7 +535,7 @@ self['{}'] = self.env['{}'].search(self.safe_domain(self.domain))
         # Create menu
         vals = {
             "name": self.name,
-            "action": "{},{}".format(action._name, action.id),
+            "action": f"{action._name},{action.id}",
         }
         menu = self.env["ir.ui.menu"].create(vals)
         self.report_menu_id = menu

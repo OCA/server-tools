@@ -26,7 +26,7 @@ def adjust_cell_formula(value, k):
                 j = value.index(")", i)
                 val = value[i + 2 : j]
                 col, row = split_row_col(val)
-                new_val = "{}{}".format(col, row + k)
+                new_val = f"{col}{row + k}"
                 value = value.replace("?(%s)" % val, new_val)
     return value
 

@@ -29,7 +29,7 @@ class ReportAction(models.Model):
 
     @api.model
     def _get_report_from_name(self, report_name):
-        res = super(ReportAction, self)._get_report_from_name(report_name)
+        res = super()._get_report_from_name(report_name)
         if res:
             return res
         report_obj = self.env["ir.actions.report"]
