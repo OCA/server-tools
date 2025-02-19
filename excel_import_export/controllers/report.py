@@ -12,19 +12,19 @@ from odoo.http import content_disposition, request, route, serialize_exception
 from odoo.tools import html_escape
 from odoo.tools.safe_eval import safe_eval, time
 
-from odoo.addons.web.controllers import report
+from odoo.addons.web.controllers.report import ReportController
 
 _logger = logging.getLogger(__name__)
 
 
-class ReportController(report.ReportController):
+class ReportExcelController(ReportController):
     @route()
     def report_routes(self, reportname, docids=None, converter=None, **data):
         if converter == "excel":
             report = request.env["ir.actions.report"]._get_report_from_name(reportname)
             context = dict(request.env.context)
             if docids:
-                docids = [int(i) for i in docids.split(",")]
+                docids = [int(i) for i in docids.split(",") if i.isdigit()]
             if data.get("options"):
                 data.update(json.loads(data.pop("options")))
             if data.get("context"):
@@ -32,10 +32,7 @@ class ReportController(report.ReportController):
                 # from the webclient *but* if the user explicitely wants to
                 # change the lang, this mechanism overwrites it.
                 data["context"] = json.loads(data["context"])
-                if data["context"].get("lang"):
-                    del data["context"]["lang"]
                 context.update(data["context"])
-
             excel, report_name = report.with_context(**context)._render_excel(
                 docids, data=data
             )

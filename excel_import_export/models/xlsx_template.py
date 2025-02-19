@@ -6,7 +6,7 @@ import os
 from ast import literal_eval
 from os.path import join as opj
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError, ValidationError
 from odoo.modules.module import get_module_path
 
@@ -125,9 +125,7 @@ class XLSXTemplate(models.Model):
 
     def _compute_result_field(self):
         for rec in self:
-            rec.result_field = (
-                ("x_%s_results" % rec.id) if rec.result_model_id else False
-            )
+            rec.result_field = (f"x_{rec.id}_results") if rec.result_model_id else False
 
     @api.constrains("redirect_action", "res_model")
     def _check_action_model(self):
@@ -138,8 +136,10 @@ class XLSXTemplate(models.Model):
                 and rec.res_model != rec.redirect_action.res_model
             ):
                 raise ValidationError(
-                    _("The selected redirect action is " "not for model %s")
-                    % rec.res_model
+                    self.env._(
+                        "The selected redirect action is " "not for model %s",
+                        rec.res_model,
+                    )
                 )
 
     @api.model
@@ -196,6 +196,7 @@ class XLSXTemplate(models.Model):
         self.ensure_one()
         _model = self.env["ir.model"].search([("model", "=", "report.xlsx.wizard")])
         _model.ensure_one()
+        result_model = self.result_model_id.model
         _field = self.env["ir.model.fields"].search(
             [("model", "=", "report.xlsx.wizard"), ("name", "=", self.result_field)]
         )
@@ -206,16 +207,18 @@ class XLSXTemplate(models.Model):
                     "name": self.result_field,
                     "field_description": "Results",
                     "ttype": "many2many",
-                    "relation": self.result_model_id.model,
+                    "relation": result_model,
                     "store": False,
                     "depends": "res_model",
                 }
             )
         else:
             _field.ensure_one()
-            _field.write({"relation": self.result_model_id.model})
+            _field.write({"relation": result_model})
         _field.compute = f"""
-self['{self.result_field}'] = self.env['{self.result_model_id.model}'].search(self.safe_domain(self.domain))
+self[
+'{self.result_field}'
+] = self.env['{result_model}'].search(self.safe_domain(self.domain))
         """
 
     def _update_result_export_ids(self):
@@ -387,9 +390,9 @@ self['{self.result_field}'] = self.env['{self.result_model_id.model}'].search(se
                 if line.section_type in ("head", "row"):
                     row_field = line.row_field
                     if line.section_type == "row" and line.is_cont:
-                        row_field = "_CONT_%s" % row_field
+                        row_field = f"_CONT_{row_field}"
                     if line.section_type == "row" and line.is_extend:
-                        row_field = "_EXTEND_%s" % row_field
+                        row_field = f"_EXTEND_{row_field}"
                     row_dict = {row_field: {}}
                     inst_dict[itype][prev_sheet].update(row_dict)
                     prev_row = row_field
@@ -413,7 +416,7 @@ self['{self.result_field}'] = self.env['{self.result_model_id.model}'].search(se
                 if line.section_type in ("head", "row"):
                     row_field = line.row_field
                     if line.section_type == "row" and line.no_delete:
-                        row_field = "_NODEL_%s" % row_field
+                        row_field = f"_NODEL_{row_field}"
                     row_dict = {row_field: {}}
                     inst_dict[itype][prev_sheet].update(row_dict)
                     prev_row = row_field
@@ -450,12 +453,13 @@ self['{self.result_field}'] = self.env['{self.result_model_id.model}'].search(se
             "binding_type": "action",
             "target": "new",
             "view_mode": "form",
-            "context": """
-                {'template_domain': [('res_model', '=', '%s'),
-                                    ('export_action_id', '!=', False),
-                                    ('gname', '=', False)]}
-            """
-            % (self.res_model),
+            "context": {
+                "template_domain": [
+                    ("res_model", "=", self.res_model),
+                    ("export_action_id", "!=", False),
+                    ("gname", "=", False),
+                ]
+            },
         }
         return self.env["ir.actions.act_window"].create(vals)
 
@@ -490,12 +494,13 @@ self['{self.result_field}'] = self.env['{self.result_model_id.model}'].search(se
             "binding_type": "action",
             "target": "new",
             "view_mode": "form",
-            "context": """
-                {'template_domain': [('res_model', '=', '%s'),
-                                     ('fname', '=', '%s'),
-                                     ('gname', '=', False)]}
-            """
-            % (self.res_model, self.fname),
+            "context": {
+                "template_domain": [
+                    ("res_model", "=", self.res_model),
+                    ("fname", "=", self.fname),
+                    ("gname", "=", False),
+                ],
+            },
         }
         action = self.env["ir.actions.act_window"].create(vals)
         self.import_action_id = action
@@ -508,7 +513,7 @@ self['{self.result_field}'] = self.env['{self.result_model_id.model}'].search(se
     def add_report_menu(self):
         self.ensure_one()
         if not self.fname:
-            raise UserError(_("No file content!"))
+            raise UserError(self.env._("No file content!"))
         # Create report action
         vals = {
             "name": self.name,
@@ -587,7 +592,7 @@ class XLSXTemplateImport(models.Model):
     def _extract_field_name(self, vals):
         if self._context.get("compute_from_input") and vals.get("field_name"):
             field_name, field_cond = co.get_field_condition(vals["field_name"])
-            field_cond = field_cond and "${%s}" % (field_cond or "") or False
+            field_cond = field_cond and f"${{{field_cond or ''}}}" or False
             vals.update({"field_name": field_name, "field_cond": field_cond})
         return vals
 
@@ -643,9 +648,9 @@ class XLSXTemplateExport(models.Model):
             vals.update(
                 {
                     "field_name": field_name,
-                    "field_cond": "${%s}" % (field_cond or ""),
-                    "style": "#{%s}" % (style or ""),
-                    "style_cond": "#?%s?" % (style_cond or ""),
+                    "field_cond": f"${{{field_cond or ''}}}",
+                    "style": f"#{{{style or ''}}}",
+                    "style_cond": f"#?{style_cond or ''}?",
                     "is_sum": func == "sum" and True or False,
                 }
             )

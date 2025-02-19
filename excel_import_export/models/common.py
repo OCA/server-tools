@@ -27,7 +27,7 @@ def adjust_cell_formula(value, k):
                 val = value[i + 2 : j]
                 col, row = split_row_col(val)
                 new_val = f"{col}{row + k}"
-                value = value.replace("?(%s)" % val, new_val)
+                value = value.replace(f"?({val})", new_val)
     return value
 
 
@@ -41,7 +41,7 @@ def get_field_aggregation(field):
             if cond or cond == "":
                 return (field[:i], cond)
         except Exception:
-            return (field.replace("@{%s}" % cond, ""), False)
+            return (field.replace(f"@{{{cond}}}", ""), False)
     return (field, False)
 
 
@@ -53,7 +53,7 @@ def get_field_condition(field):
         cond = field[i + 2 : j]
         try:
             if cond or cond == "":
-                return (field.replace("${%s}" % cond, ""), cond)
+                return (field.replace(f"${{{cond}}}", ""), cond)
         except Exception:
             return (field, False)
     return (field, False)
@@ -74,7 +74,7 @@ def get_field_style(field):
         cond = field[i + 2 : j]
         try:
             if cond or cond == "":
-                return (field.replace("#{%s}" % cond, ""), cond)
+                return (field.replace(f"#{{{cond}}}", ""), cond)
         except Exception:
             return (field, False)
     return (field, False)
@@ -88,7 +88,7 @@ def get_field_style_cond(field):
         cond = field[i + 2 : j]
         try:
             if cond or cond == "":
-                return (field.replace("#?%s?" % cond, ""), cond)
+                return (field.replace(f"#?{cond}?", ""), cond)
         except Exception:
             return (field, False)
     return (field, False)
@@ -99,11 +99,14 @@ def fill_cell_style(field, field_style, styles):
     for f in field_styles:
         (key, value) = f.split("=")
         if key not in styles.keys():
-            raise ValidationError(_("Invalid style type %s") % key)
+            raise ValidationError(_("Invalid style type %s", key))
         if value.lower() not in styles[key].keys():
             raise ValidationError(
-                _("Invalid value %(value)s for style type %(key)s")
-                % {"value": value, "key": key}
+                _(
+                    "Invalid value %(value)s for style type %(key)s",
+                    value=value,
+                    key=key,
+                )
             )
         cell_style = styles[key][value]
         if key == "font":
@@ -151,7 +154,7 @@ def get_groupby(line_field):
 def split_row_col(pos):
     match = re.match(r"([a-z]+)([0-9]+)", pos, re.I)
     if not match:
-        raise ValidationError(_("Position %s is not valid") % pos)
+        raise ValidationError(_("Position %s is not valid", pos))
     col, row = match.groups()
     return col, int(row)
 
@@ -163,7 +166,7 @@ def openpyxl_get_sheet_by_name(book, name):
         if sheetname == name:
             return book.worksheets[i]
         i += 1
-    raise ValidationError(_("'%s' sheet not found") % (name,))
+    raise ValidationError(_("'%s' sheet not found", name))
 
 
 def xlrd_get_sheet_by_name(book, name):
@@ -173,7 +176,7 @@ def xlrd_get_sheet_by_name(book, name):
             if sheet.name == name:
                 return sheet
     except IndexError as exc:
-        raise ValidationError(_("'%s' sheet not found") % (name,)) from exc
+        raise ValidationError(_("'%s' sheet not found", name)) from exc
 
 
 def isfloat(input_val):
@@ -236,9 +239,9 @@ def csv_from_excel(excel_content, delimiter, quote):
                 raise ValidationError(
                     _(
                         "Template with CSV Quoting = False, data must not "
-                        'contain the same char as delimiter -> "%s"'
+                        'contain the same char as delimiter -> "%s"',
+                        delimiter,
                     )
-                    % delimiter
                 )
             row.append(x)
         wr.writerow(row)
@@ -250,7 +253,7 @@ def csv_from_excel(excel_content, delimiter, quote):
 def pos2idx(pos):
     match = re.match(r"([a-z]+)([0-9]+)", pos, re.I)
     if not match:
-        raise ValidationError(_("Position %s is not valid") % (pos,))
+        raise ValidationError(_("Position %s is not valid", pos))
     col, row = match.groups()
     col_num = 0
     for c in col:
@@ -290,7 +293,7 @@ def _get_cell_value(cell, field_type=False):
             value = value_str
     elif field_type in ["many2one"]:
         # If number, change to string
-        if isinstance(cell.value, (int, float, complex)):
+        if isinstance(cell.value, int | float | complex):
             value = str(cell.value)
         else:
             value = cell.value
