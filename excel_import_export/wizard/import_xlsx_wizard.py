@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
 
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import RedirectWarning, ValidationError
 
 
@@ -13,6 +13,15 @@ class ImportXLSXWizard(models.TransientModel):
     _name = "import.xlsx.wizard"
     _description = "Wizard for importing excel"
 
+    def _domain_template_id(self):
+        return (
+            "["
+            "('res_model', '=', res_model), "
+            "('fname', '=', fname), "
+            "('gname', '=', False)"
+            "] if fname and res_model else []"
+        )
+
     import_file = fields.Binary(string="Import File (*.xlsx)")
     filename = fields.Char("Import File Name")
     template_id = fields.Many2one(
@@ -20,7 +29,7 @@ class ImportXLSXWizard(models.TransientModel):
         string="Template",
         required=True,
         ondelete="cascade",
-        domain=lambda self: self._context.get("template_domain", []),
+        domain=lambda self: self._domain_template_id(),
     )
     res_id = fields.Integer(string="Resource ID", readonly=True)
     res_model = fields.Char(string="Resource Model", readonly=True, size=500)
@@ -41,30 +50,30 @@ class ImportXLSXWizard(models.TransientModel):
         "\n* Get: wizard show results from user action",
     )
 
-    @api.model
-    def view_init(self, fields_list):
+    def check_view_init(self, context):
         """This template only works on some context of active record"""
-        res = super().view_init(fields_list)
-        res_model = self._context.get("active_model", False)
-        res_id = self._context.get("active_id", False)
+        res_model = context.get("active_model", False)
+        res_id = context.get("active_id", False)
         if not res_model or not res_id:
-            return res
+            return
         record = self.env[res_model].browse(res_id)
         messages = []
         valid = True
         # For all import, only allow import in draft state (for documents)
-        import_states = self._context.get("template_import_states", [])
+        import_states = context.get("template_import_states", [])
         if import_states:  # states specified in context, test this
             if "state" in record and record["state"] not in import_states:
-                messages.append(_("Document must be in %s states") % import_states)
+                messages.append(
+                    self.env._("Document must be in %s states", import_states)
+                )
                 valid = False
         else:  # no specific state specified, test with draft
             if "state" in record and "draft" not in record["state"]:  # not in
-                messages.append(_("Document must be in draft state"))
+                messages.append(self.env._("Document must be in draft state"))
                 valid = False
         # Context testing
-        if self._context.get("template_context", False):
-            template_context = self._context["template_context"]
+        if context.get("template_context", False):
+            template_context = context["template_context"]
             for key, value in template_context.items():
                 if (
                     key not in record
@@ -77,7 +86,7 @@ class ImportXLSXWizard(models.TransientModel):
                 ):
                     valid = False
                     messages.append(
-                        _(
+                        self.env._(
                             "This import action is not usable "
                             "in this document context"
                         )
@@ -85,45 +94,47 @@ class ImportXLSXWizard(models.TransientModel):
                     break
         if not valid:
             raise ValidationError("\n".join(messages))
-        return res
+        return
 
     @api.model
-    def default_get(self, fields):
-        res_model = self._context.get("active_model", False)
-        res_id = self._context.get("active_id", False)
-        template_domain = self._context.get("template_domain", [])
+    def default_get(self, fields_list):
+        context = self.env.context
+        res_model = context.get("active_model", False)
+        res_id = context.get("active_id", False)
+        template_domain = context.get("template_domain", [])
         templates = self.env["xlsx.template"].search(template_domain)
         if not templates:
-            raise ValidationError(_("No template found"))
-        defaults = super().default_get(fields)
+            raise ValidationError(self.env._("No template found"))
+        res = super().default_get(fields_list)
         for template in templates:
             if not template.datas:
                 act = self.env.ref("excel_import_export.action_xlsx_template")
                 raise RedirectWarning(
-                    _(
+                    self.env._(
                         'File "%(fname)s" not found in template, %(name)s.',
                         fname=template.fname,
                         name=template.name,
                     ),
                     act.id,
-                    _("Set Templates"),
+                    self.env._("Set Templates"),
                 )
-        defaults["template_id"] = len(templates) == 1 and template.id or False
-        defaults["res_id"] = res_id
-        defaults["res_model"] = res_model
-        return defaults
+        self.check_view_init(context)
+        res["template_id"] = len(templates) == 1 and template.id or False
+        res["res_id"] = res_id
+        res["res_model"] = res_model
+        return res
 
     def get_import_sample(self):
         self.ensure_one()
         return {
-            "name": _("Import Excel"),
+            "name": self.env._("Import Excel"),
             "type": "ir.actions.act_window",
             "res_model": "import.xlsx.wizard",
             "view_mode": "form",
             "res_id": self.id,
             "views": [(False, "form")],
             "target": "new",
-            "context": self._context.copy(),
+            "context": self.env.context.copy(),
         }
 
     def action_import(self):
@@ -140,7 +151,7 @@ class ImportXLSXWizard(models.TransientModel):
                 record = Import.import_xlsx(attach.datas, self.template_id)
                 res_ids.append(record.id)
         else:
-            raise ValidationError(_("Please select Excel file to import"))
+            raise ValidationError(self.env._("Please select Excel file to import"))
         # If redirect_action is specified, do redirection
         if self.template_id.redirect_action:
             vals = self.template_id.redirect_action.read()[0]

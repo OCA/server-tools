@@ -81,8 +81,8 @@ For reporting, also call export_xlsx(...) but through following method
 
 -  ``self.env['xslx.report'].report_xlsx(...)``
 
-After install this module, go to Settings > Excel Import/Export > XLSX
-Templates, this is where the key component located.
+After install this module, go to Settings > Technical > Excel
+Import/Export > XLSX Templates, this is where the key component located.
 
 As this module provide tools, it is best to explain as use cases. For
 example use cases, please install **excel_import_export_demo**
@@ -145,13 +145,15 @@ Another option for reporting is to use report action
 
 .. code:: xml
 
-   <report id='action_report_saleorder_excel'
-           string='Quotation / Order (.xlsx)'
-           model='sale.order'
-           name='sale_order.xlsx'
-           file='sale_order'
-           report_type='excel'
-   />
+   <record id="action_report_saleorder_excel" model="ir.actions.report">
+           <field name="name">Quotation / Order (.xlsx)</field>
+           <field name="model">ir.model</field>
+           <field name="report_name">'sale.order'</field>
+           <field name="report_file">'sale.order'</field>
+           <field name="binding_model_id" ref="sale.model_sale_order"/>
+           <field name="binding_type">report</field>
+           <field name="report_type">excel</field>
+   </record>
 
 By using report action, Odoo will find template using combination of
 model and name, then do the export for the underlining record. Please
@@ -168,8 +170,8 @@ But instead of having to write XML / Python code like normally do, this
 option allow user to create a report based on a model or view, all by
 configuration only.
 
-1. Goto > Technical> Excel Import/Export > XLSX Templates, and create a
-   new template for a report.
+1. Go to Settings > Technical> Excel Import/Export > XLSX Templates, and
+   create a new template for a report.
 2. On the new template, select "Easy Reporting" option, then select
    followings
 
@@ -223,6 +225,7 @@ Contributors
 
 -  Kitti Upariphutthiphong. <kittiu@gmail.com> (http://ecosoft.co.th)
 -  Saran Lim. <saranl@ecosoft.co.th> (http://ecosoft.co.th)
+-  Do Anh Duy <duyda@trobz.com>
 
 Maintainers
 -----------

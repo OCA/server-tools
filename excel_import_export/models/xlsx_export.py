@@ -9,7 +9,7 @@ from datetime import date
 from datetime import datetime as dt
 from io import BytesIO
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 from odoo.tools.float_utils import float_compare
 from odoo.tools.safe_eval import safe_eval
@@ -79,7 +79,9 @@ class XLSXExport(models.AbstractModel):
         line_field = line_field.replace("_EXTEND_", "")  # Remove _EXTEND_ if any
         lines = record[line_field]
         if max_row > 0 and len(lines) > max_row:
-            raise Exception(_("Records in %s exceed max records allowed") % line_field)
+            raise Exception(
+                self.env._("Records in %s exceed max records allowed", line_field)
+            )
         vals = {field: [] for field in fields}  # value and do_style
         # Get field condition & aggre function
         conditions_dict = self._get_conditions_dict()
@@ -123,7 +125,7 @@ class XLSXExport(models.AbstractModel):
             i += 1
             field, style = co.get_field_style(field)
             styles.update({i: style})
-            style_cond = style_cond.replace("#{%s}" % style, str(i))
+            style_cond = style_cond.replace(f"#{{{style}}}", str(i))
         if not styles:
             return False
         res = safe_eval(style_cond, eval_context)
@@ -144,26 +146,26 @@ class XLSXExport(models.AbstractModel):
                     st = co.openpyxl_get_sheet_by_name(workbook, sheet_name)
                 elif isinstance(sheet_name, int):
                     if sheet_name > len(workbook.worksheets):
-                        raise Exception(_("Not enough worksheets"))
+                        raise Exception(self.env._("Not enough worksheets"))
                     st = workbook.worksheets[sheet_name - 1]
                 if not st:
-                    raise ValidationError(_("Sheet %s not found") % sheet_name)
+                    raise ValidationError(self.env._("Sheet %s not found", sheet_name))
                 # Fill data, header and rows
                 self._fill_head(ws, st, record)
                 self._fill_lines(ws, st, record)
         except KeyError as e:
-            raise ValidationError(_("Key Error\n%s") % e) from e
+            raise ValidationError(self.env._("Key Error\n%s", e)) from e
         except IllegalCharacterError as e:
             raise ValidationError(
-                _(
+                self.env._(
                     "IllegalCharacterError\n"
-                    "Some exporting data contain special character\n%s"
+                    "Some exporting data contain special character\n%s",
+                    e,
                 )
-                % e
             ) from e
         except Exception as e:
             raise ValidationError(
-                _("Error filling data into Excel sheets\n%s") % e
+                self.env._("Error filling data into Excel sheets\n%s", e)
             ) from e
 
     @api.model
@@ -251,7 +253,7 @@ class XLSXExport(models.AbstractModel):
     @api.model
     def export_xlsx(self, template, res_model, res_ids):
         if template.res_model != res_model:
-            raise ValidationError(_("Template's model mismatch"))
+            raise ValidationError(self.env._("Template's model mismatch"))
         data_dict = co.literal_eval(template.instruction.strip())
         export_dict = data_dict.get("__EXPORT__", False)
         out_name = template.name

@@ -1,6 +1,7 @@
 # Copyright 2019 Ecosoft Co., Ltd (http://ecosoft.co.th/)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
-import ast
+
+from ast import literal_eval
 
 from odoo import fields, models
 
@@ -19,4 +20,4 @@ class ReportXLSXWizard(models.TransientModel):
         return res
 
     def safe_domain(self, str_domain):
-        return ast.literal_eval(str_domain or "[]")
+        return literal_eval(str_domain or "[]")

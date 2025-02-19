@@ -11,7 +11,7 @@ from io import BytesIO
 import xlrd
 import xlwt
 
-from odoo import _, api, models
+from odoo import api, models
 from odoo.exceptions import UserError, ValidationError
 from odoo.tools.float_utils import float_compare
 from odoo.tools.safe_eval import safe_eval
@@ -71,7 +71,7 @@ class XLSXImport(models.AbstractModel):
                     return field_type
         except Exception as exc:
             raise ValidationError(
-                _("Invalid declaration, %s has no valid field type") % field
+                self.env._("Invalid declaration, %s has no valid field type", field)
             ) from exc
 
     @api.model
@@ -94,7 +94,7 @@ class XLSXImport(models.AbstractModel):
                         new_fv = data_dict[s].pop(f)
                         data_dict[s][f.replace("_NODEL_", "")] = new_fv
         except Exception as e:
-            raise ValidationError(_("Error deleting data\n%s") % e) from e
+            raise ValidationError(self.env._("Error deleting data\n%s", e)) from e
 
     @api.model
     def _get_end_row(self, st, worksheet, line_field):
@@ -112,12 +112,13 @@ class XLSXImport(models.AbstractModel):
                     cell_type = st.cell_type(idx, col)  # empty type = 0
                 except Exception as e:
                     raise UserError(
-                        _(
+                        self.env._(
                             "The value for the '%(field)s' field is expected to be "
                             "in cell %(cell_position)s, but no column exists for that "
-                            "cell in the Excel sheet. Please check your Excel file."
+                            "cell in the Excel sheet. Please check your Excel file.",
+                            field=_col,
+                            cell_position=rc,
                         )
-                        % {"field": _col, "cell_position": rc}
                     ) from e
                 r_types = test_rows.get(idx, [])
                 r_types.append(cell_type)
@@ -166,7 +167,7 @@ class XLSXImport(models.AbstractModel):
             elif isinstance(sheet_name, int):
                 st = wb.sheet_by_index(sheet_name - 1)
             if not st:
-                raise ValidationError(_("Sheet %s not found") % sheet_name)
+                raise ValidationError(self.env._("Sheet %s not found", sheet_name))
             # HEAD updates
             for rc, field in worksheet.get("_HEAD_", {}).items():
                 rc, key_eval_cond = co.get_field_condition(rc)
@@ -256,7 +257,7 @@ class XLSXImport(models.AbstractModel):
                 },
             )
             if errors.get("messages"):
-                message = _("Error importing data")
+                message = self.env._("Error importing data")
                 messages = errors["messages"]
                 if isinstance(messages, dict):
                     message = messages["message"]
@@ -266,7 +267,7 @@ class XLSXImport(models.AbstractModel):
             return self.env.ref(xml_id)
         except xlrd.XLRDError as exc:
             raise ValidationError(
-                _("Invalid file style, only .xls or .xlsx file allowed")
+                self.env._("Invalid file style, only .xls or .xlsx file allowed")
             ) from exc
         except Exception as e:
             raise e
@@ -282,7 +283,9 @@ class XLSXImport(models.AbstractModel):
                 eval_context = {"object": record}
                 safe_eval(code, eval_context)
         except Exception as e:
-            raise ValidationError(_("Post import operation error\n%s") % e) from e
+            raise ValidationError(
+                self.env._("Post import operation error\n%s", e)
+            ) from e
 
     @api.model
     def import_xlsx(self, import_file, template, res_model=False, res_id=False):
@@ -292,12 +295,12 @@ class XLSXImport(models.AbstractModel):
         - Import data from excel according to data_dict['__IMPORT__']
         """
         if res_model and template.res_model != res_model:
-            raise ValidationError(_("Template's model mismatch"))
+            raise ValidationError(self.env._("Template's model mismatch"))
         record = self.env[template.res_model].browse(res_id)
         data_dict = literal_eval(template.instruction.strip())
         if not data_dict.get("__IMPORT__"):
             raise ValidationError(
-                _("No data_dict['__IMPORT__'] in template %s") % template.name
+                self.env._("No data_dict['__IMPORT__'] in template %s", template.name)
             )
         if record:
             # Delete existing data first

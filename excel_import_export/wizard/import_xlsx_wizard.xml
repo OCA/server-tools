@@ -8,24 +8,20 @@
         <field name="model">import.xlsx.wizard</field>
         <field name="arch" type="xml">
             <form string="Import File Template">
-                <field name="id" invisible="1" />
-                <field name="state" invisible="1" />
                 <field name="fname" invisible="1" />
                 <field name="filename" invisible="1" />
-                <field name="res_model" invisible="1" />
-                <field name="res_id" invisible="1" />
-                <group states="choose">
+                <group invisible="state != 'choose'">
                     <group>
                         <field
                             name="import_file"
-                            attrs="{'invisible': [('res_id', '=', False)]}"
+                            invisible="not res_id"
                             filename="filename"
                         />
                         <field
                             name="attachment_ids"
                             widget="many2many_binary"
                             nolabel="1"
-                            attrs="{'invisible': [('res_id', '!=', False)]}"
+                            invisible="res_id"
                         />
                     </group>
                     <group>
@@ -36,32 +32,27 @@
                                 string="⇒ Get Sample Import Template"
                                 type="object"
                                 class="oe_link"
-                                attrs="{'invisible': [('id', '!=', False)]}"
+                                invisible="id"
                             />
                         </div>
-                        <field
-                            name="datas"
-                            filename="fname"
-                            attrs="{'invisible': [('id', '=', False)]}"
-                        />
+                        <field name="datas" filename="fname" invisible="not id" />
                     </group>
                 </group>
-                <group states="get">
+                <group invisible="state != 'get'">
                     <p>
                         Import Successful!
                     </p>
                 </group>
-                <footer states="choose">
+                <footer invisible="state != 'choose'">
                     <button
-                    name="action_import"
-                    string="Import"
-                    type="object"
-                    class="oe_highlight"
-                />
-                    or
+                        name="action_import"
+                        string="Import"
+                        type="object"
+                        class="oe_highlight me-2"
+                    />
                     <button string="Cancel" class="oe_link" special="cancel" />
                 </footer>
-                <footer states="get">
+                <footer invisible="state != 'get'">
                     <button string="Close" class="oe_link" special="cancel" />
                 </footer>
             </form>
