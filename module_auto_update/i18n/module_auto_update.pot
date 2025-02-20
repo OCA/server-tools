@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 17.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -22,7 +22,6 @@ msgstr ""
 #. module: module_auto_update
 #. odoo-python
 #: code:addons/module_auto_update/models/module.py:0
-#, python-format
 msgid "Checksum upgrade complete."
 msgstr ""
 
@@ -34,7 +33,6 @@ msgstr ""
 #. module: module_auto_update
 #. odoo-python
 #: code:addons/module_auto_update/models/module.py:0
-#, python-format
 msgid ""
 "No checksum change detected in installed modules and all modules installed, "
 "nothing to do."
