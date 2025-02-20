@@ -90,9 +90,7 @@ class Image(models.Model):
     def _compute_show_technical(self):
         """Know if you need to show the technical fields."""
         self.show_technical = all(
-            "default_owner_{}s".format(f) not in self.env.context for f in (
-                "id", "model"
-            )
+            f"default_owner_{f}s" not in self.env.context for f in ("id", "model")
         )
 
     def _get_image_from_filestore(self):
