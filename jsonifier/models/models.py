@@ -102,6 +102,9 @@ class Base(models.AbstractModel):
                 value = rec._jsonify_value(field, rec[field.name])
                 resolver = field_dict.get("resolver")
                 if resolver:
+                    if isinstance(resolver, int):
+                        # cached versions of the parser are stored as integer
+                        resolver = self.env["ir.exports.resolver"].browse(resolver)
                     value, json_key = self._jsonify_record_handle_resolver(
                         rec, field, resolver, json_key
                     )
@@ -208,7 +211,9 @@ class Base(models.AbstractModel):
         if isinstance(parser, list):
             parser = convert_simple_to_full_parser(parser)
         resolver = parser.get("resolver")
-
+        if isinstance(resolver, int):
+            # cached versions of the parser are stored as integer
+            resolver = self.env["ir.exports.resolver"].browse(resolver)
         results = [{} for record in self]
         parsers = {False: parser["fields"]} if "fields" in parser else parser["langs"]
         for lang in parsers:
