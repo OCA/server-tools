@@ -2,8 +2,6 @@
 <!-- Copyright 2021 Ecosoft Co., Ltd. (http://ecosoft.co.th)
      License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html). -->
 <odoo>
-
-
     <record id="view_ir_sequence_option_tree" model="ir.ui.view">
         <field name="name">view.ir.sequence.option.tree</field>
         <field name="model">ir.sequence.option</field>
@@ -95,5 +93,4 @@
         parent="base.next_id_5"
         sequence="20"
     />
-
 </odoo>
