@@ -11,14 +11,17 @@ class BaseSequenceTester(models.Model):
     name = fields.Char(default="/")
     test_type = fields.Selection(selection=[("a", "A"), ("b", "B")])
 
-    @api.model
-    def create(self, vals):
-        seq = self.env["ir.sequence.option.line"].get_sequence(self.new(vals))
-        if seq:  # use sequence from sequence.option, instead of base.sequence.tester
-            self = self.with_context(sequence_option_id=seq.id)
-        new_seq = self.env["ir.sequence"].next_by_code("base.sequence.tester")
-        vals["name"] = new_seq
-        return super().create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            seq = self.env["ir.sequence.option.line"].get_sequence(self.new(vals))
+            if (
+                seq
+            ):  # use sequence from sequence.option, instead of base.sequence.tester
+                self = self.with_context(sequence_option_id=seq.id)
+            new_seq = self.env["ir.sequence"].next_by_code("base.sequence.tester")
+            vals["name"] = new_seq
+        return super().create(vals_list)
 
 
 class IrSequenceOption(models.Model):
