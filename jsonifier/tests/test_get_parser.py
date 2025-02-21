@@ -253,11 +253,9 @@ class TestParser(TransactionCase):
             "_fieldname_active": "Active",
             "active": True,
             "_fieldname_category_id": "Tags",
-            "category_id": [{"_fieldname_name": "Tag Name", "name": "Inovator"}],
+            "category_id": [{"_fieldname_name": "Name", "name": "Inovator"}],
             "_fieldname_create_date": "Created on",
             "create_date": "2019-10-31T14:39:49",
-            "_fieldname_date": "Date",
-            "date": "2019-10-31",
             "partner_latitude": 0.0,
         }
         json_partner = self.partner.jsonify(parser)
