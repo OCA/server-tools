@@ -1,0 +1,45 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * html_text
+#
+# Translators:
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-12-29 03:40+0000\n"
+"PO-Revision-Date: 2016-12-29 03:40+0000\n"
+"Last-Translator: Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016\n"
+"Language-Team: Turkish (https://www.transifex.com/oca/teams/23907/tr/)\n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: html_text
+#: model:ir.model.fields,field_description:html_text.field_ir_fields_converter__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: html_text
+#: model:ir.model,name:html_text.model_ir_fields_converter
+#, fuzzy
+msgid "Fields Converter"
+msgstr "ir.fields.converter"
+
+#. module: html_text
+#: model:ir.model.fields,field_description:html_text.field_ir_fields_converter__id
+msgid "ID"
+msgstr ""
+
+#. module: html_text
+#: model:ir.model.fields,field_description:html_text.field_ir_fields_converter____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: html_text
+#: model:ir.model.fields,field_description:html_text.field_ir_fields_converter__smart_search
+msgid "Smart Search"
+msgstr ""
