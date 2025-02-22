@@ -1,6 +1,6 @@
 [project]
 name = "odoo-addons-oca-server-tools"
-version = "17.0.20241227.0"
+version = "17.0.20250222.0"
 dependencies = [
     "odoo-addon-auditlog>=17.0dev,<17.1dev",
     "odoo-addon-base_cron_exclusion>=17.0dev,<17.1dev",
@@ -14,6 +14,7 @@ dependencies = [
     "odoo-addon-dbfilter_from_header>=17.0dev,<17.1dev",
     "odoo-addon-fetchmail_notify_error_to_sender>=17.0dev,<17.1dev",
     "odoo-addon-fetchmail_notify_error_to_sender_test>=17.0dev,<17.1dev",
+    "odoo-addon-html_text>=17.0dev,<17.1dev",
     "odoo-addon-iap_alternative_provider>=17.0dev,<17.1dev",
     "odoo-addon-jsonifier>=17.0dev,<17.1dev",
     "odoo-addon-module_analysis>=17.0dev,<17.1dev",

@@ -33,6 +33,7 @@ addon | version | maintainers | summary
 [dbfilter_from_header](dbfilter_from_header/) | 17.0.1.0.0 |  | Filter databases with HTTP headers
 [fetchmail_notify_error_to_sender](fetchmail_notify_error_to_sender/) | 17.0.1.0.0 |  | If fetching mails gives error, send an email to sender
 [fetchmail_notify_error_to_sender_test](fetchmail_notify_error_to_sender_test/) | 17.0.1.0.0 |  | Test for Fetchmail Notify Error to Sender
+[html_text](html_text/) | 17.0.1.0.0 |  | Generate excerpts from any HTML field
 [iap_alternative_provider](iap_alternative_provider/) | 17.0.1.0.0 | [![sebastienbeau](https://github.com/sebastienbeau.png?size=30px)](https://github.com/sebastienbeau) | Base module for providing alternative provider for iap apps
 [jsonifier](jsonifier/) | 17.0.1.0.0 |  | JSON-ify data for all models
 [module_analysis](module_analysis/) | 17.0.1.0.1 | [![legalsylvain](https://github.com/legalsylvain.png?size=30px)](https://github.com/legalsylvain) | Add analysis tools regarding installed modules to know which installed modules comes from Odoo Core, OCA, or are custom modules
