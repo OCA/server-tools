@@ -20,26 +20,18 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 
 #. module: html_text
-#: model:ir.model.fields,field_description:html_text.field_ir_fields_converter__display_name
-msgid "Display Name"
-msgstr "Nome visualizzato"
-
-#. module: html_text
 #: model:ir.model,name:html_text.model_ir_fields_converter
 msgid "Fields Converter"
 msgstr "Convertitore file"
 
-#. module: html_text
-#: model:ir.model.fields,field_description:html_text.field_ir_fields_converter__id
-msgid "ID"
-msgstr "ID"
+#~ msgid "Display Name"
+#~ msgstr "Nome visualizzato"
 
-#. module: html_text
-#: model:ir.model.fields,field_description:html_text.field_ir_fields_converter____last_update
-msgid "Last Modified on"
-msgstr "Ultima modifica il"
+#~ msgid "ID"
+#~ msgstr "ID"
 
-#. module: html_text
-#: model:ir.model.fields,field_description:html_text.field_ir_fields_converter__smart_search
-msgid "Smart Search"
-msgstr "Ricerca intelligente"
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"
+
+#~ msgid "Smart Search"
+#~ msgstr "Ricerca intelligente"
