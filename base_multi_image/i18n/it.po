@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-06 02:24+0000\n"
-"PO-Revision-Date: 2024-09-11 09:06+0000\n"
+"PO-Revision-Date: 2023-12-29 17:36+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -18,20 +18,19 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6.2\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: base_multi_image
 #: model:ir.model,name:base_multi_image.model_base_multi_image_owner
 msgid " Wizard for base multi image "
-msgstr " Procedura guidata per immagine multipla base "
+msgstr ""
 
 #. module: base_multi_image
 #: model:ir.model,name:base_multi_image.model_base_multi_image_image
 msgid " image model for multiple image functionality "
-msgstr " modello immagine per funzionalità immagine multipla "
+msgstr ""
 
 #. module: base_multi_image
-#. odoo-python
 #: code:addons/base_multi_image/models/image.py:0
 #: model:ir.model.constraint,message:base_multi_image.constraint_base_multi_image_image_uniq_name_owner
 #, python-format
@@ -39,29 +38,20 @@ msgid "A document can have only one image with the same name."
 msgstr "Un documento può avere una sola immagine con lo stesso nome."
 
 #. module: base_multi_image
-#. odoo-python
-#: code:addons/base_multi_image/models/image.py:0
-#, python-format
-msgid "Can not open the image %(path)s, error : %(error)s"
-msgstr "Impossibile aprire l'immagine %(path)s, errore: %(error)s"
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__attachment_id
+msgid "Attachment"
+msgstr "Allegato"
 
 #. module: base_multi_image
 #: model_terms:ir.actions.act_window,help:base_multi_image.image_action
 msgid "Click to add an image attached to an specific record."
-msgstr "Fare clic per aggiungere una immagine allegata ad un record specifico."
+msgstr ""
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__comments
 #: model_terms:ir.ui.view,arch_db:base_multi_image.image_form_view
 msgid "Comments"
 msgstr "Commenti"
-
-#. module: base_multi_image
-#. odoo-python
-#: code:addons/base_multi_image/models/image.py:0
-#, python-format
-msgid "Could not retrieve URL: %(url)s: %(error)s"
-msgstr "Impossibile recuperare URL: %(url)s: %(error)s"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__create_uid
@@ -74,21 +64,34 @@ msgid "Created on"
 msgstr "Creato il"
 
 #. module: base_multi_image
+#: model:ir.model.fields.selection,name:base_multi_image.selection__base_multi_image_image__storage__db
+msgid "Database"
+msgstr "Database"
+
+#. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__display_name
 msgid "Display Name"
 msgstr "Nome visualizzato"
 
 #. module: base_multi_image
-#: model:ir.model.fields,help:base_multi_image.field_base_multi_image_image__load_from
-msgid "Either a remote url or a file path on the server"
-msgstr "Un URL remoto o un percorso di file sul server"
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__extension
+msgid "File extension"
+msgstr "Estensione file"
 
 #. module: base_multi_image
-#. odoo-python
-#: code:addons/base_multi_image/models/image.py:0
-#, python-format
-msgid "File size exceeds configured maximum (%s bytes)"
-msgstr "La dimensione del file supera il massimo configurato (%s byte)"
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__filename
+msgid "Filename"
+msgstr "Nome file"
+
+#. module: base_multi_image
+#: model:ir.model.fields.selection,name:base_multi_image.selection__base_multi_image_image__storage__filestore
+msgid "Filestore"
+msgstr ""
+
+#. module: base_multi_image
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__image_main
+msgid "Full-sized image"
+msgstr ""
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__id
@@ -96,40 +99,25 @@ msgid "ID"
 msgstr "ID"
 
 #. module: base_multi_image
-#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__image_1920
 #: model_terms:ir.ui.view,arch_db:base_multi_image.image_form_view
 msgid "Image"
 msgstr "Immagine"
 
 #. module: base_multi_image
-#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__image_1024
-msgid "Image 1024"
-msgstr "Immagine 1024"
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__path
+#: model:ir.model.fields,help:base_multi_image.field_base_multi_image_image__path
+msgid "Image path"
+msgstr "Percorso immagine"
 
 #. module: base_multi_image
-#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__image_128
-msgid "Image 128"
-msgstr "Immagine 128"
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__url
+msgid "Image remote URL"
+msgstr "URL remoto dell'immagine"
 
 #. module: base_multi_image
-#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__image_256
-msgid "Image 256"
-msgstr "Immagine 256"
-
-#. module: base_multi_image
-#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__image_512
-msgid "Image 512"
-msgstr "Immagine 512"
-
-#. module: base_multi_image
-#. odoo-python
-#: code:addons/base_multi_image/models/image.py:0
-#, python-format
-msgid ""
-"Image size excessive, imported images must be smaller than 42 million pixel"
-msgstr ""
-"Dimensione immagine eccessiva, le immagini importate devono essere inferiori "
-"a 42 milioni di pixel"
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__file_db_store
+msgid "Image stored in database"
+msgstr "Immagine salata del database"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__name
@@ -138,7 +126,6 @@ msgstr "Titolo dell'immagine"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_owner__image_ids
-#: model_terms:ir.ui.view,arch_db:base_multi_image.image_kanban_view
 msgid "Images"
 msgstr "Immagini"
 
@@ -158,15 +145,45 @@ msgid "Last Updated on"
 msgstr "Ultimo aggiornamento il"
 
 #. module: base_multi_image
-#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__load_from
-msgid "Load from"
-msgstr "Carica da"
+#: code:addons/base_multi_image/models/owner.py:0
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_owner__image_main
+#, python-format
+msgid "Main image"
+msgstr "Immagine principale"
+
+#. module: base_multi_image
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_owner__image_main_medium
+msgid "Medium image"
+msgstr ""
+
+#. module: base_multi_image
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__image_medium
+msgid "Medium-sized image"
+msgstr ""
+
+#. module: base_multi_image
+#: model:ir.model.fields,help:base_multi_image.field_base_multi_image_image__image_medium
+msgid ""
+"Medium-sized image. It is automatically resized as a 128 x 128 px image, "
+"with aspect ratio preserved, only when the image exceeds one of those sizes. "
+"Use this field in form views or kanban views."
+msgstr ""
 
 #. module: base_multi_image
 #: model:ir.actions.act_window,name:base_multi_image.image_action
 #: model:ir.ui.menu,name:base_multi_image.image_menu
 msgid "Multi images"
 msgstr "Immagini multiple"
+
+#. module: base_multi_image
+#: model_terms:ir.ui.view,arch_db:base_multi_image.image_form_view
+msgid "Name"
+msgstr "Nome"
+
+#. module: base_multi_image
+#: model:ir.model.fields.selection,name:base_multi_image.selection__base_multi_image_image__storage__file
+msgid "OS file"
+msgstr ""
 
 #. module: base_multi_image
 #: model_terms:ir.ui.view,arch_db:base_multi_image.image_form_view
@@ -182,12 +199,22 @@ msgstr "Proprietario"
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__owner_model
 msgid "Owner Model"
-msgstr "Modello proprietario"
+msgstr ""
+
+#. module: base_multi_image
+#: model_terms:ir.ui.view,arch_db:base_multi_image.image_form_view
+msgid "Preview"
+msgstr "Anteprima"
+
+#. module: base_multi_image
+#: model_terms:ir.ui.view,arch_db:base_multi_image.image_kanban_view
+msgid "Product Images"
+msgstr "Immagini del Prodotto"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__owner_ref_id
 msgid "Referenced Owner"
-msgstr "Riferimento proprietario"
+msgstr ""
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__sequence
@@ -197,48 +224,55 @@ msgstr "Sequenza"
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__show_technical
 msgid "Show Technical"
-msgstr "Visualizza tecnica"
+msgstr ""
 
 #. module: base_multi_image
-#. odoo-python
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_owner__image_main_small
+msgid "Small image"
+msgstr ""
+
+#. module: base_multi_image
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__image_small
+msgid "Small-sized image"
+msgstr ""
+
+#. module: base_multi_image
+#: model:ir.model.fields,help:base_multi_image.field_base_multi_image_image__image_small
+msgid ""
+"Small-sized image. It is automatically resized as a 64 x 64 px image, with "
+"aspect ratio preserved. Use this field anywhere a small image is required."
+msgstr ""
+
+#. module: base_multi_image
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__storage
+msgid "Storage"
+msgstr ""
+
+#. module: base_multi_image
+#: model:ir.model.fields.selection,name:base_multi_image.selection__base_multi_image_image__storage__url
+msgid "URL"
+msgstr "URL"
+
+#. module: base_multi_image
 #: code:addons/base_multi_image/models/image.py:0
 #, python-format
-msgid "The image %s doesn't exist"
-msgstr "L'immagine %s non esiste"
+msgid "You must provide a file path for the image."
+msgstr ""
 
-#~ msgid "Attachment"
-#~ msgstr "Allegato"
-
-#~ msgid "Database"
-#~ msgstr "Database"
-
-#~ msgid "File extension"
-#~ msgstr "Estensione file"
-
-#~ msgid "Filename"
-#~ msgstr "Nome del file"
-
-#~ msgid "Image path"
-#~ msgstr "Percorso immagine"
-
-#~ msgid "Image remote URL"
-#~ msgstr "URL remoto dell'immagine"
-
-#~ msgid "Image stored in database"
-#~ msgstr "Immagine salata del database"
-
+#. module: base_multi_image
+#: code:addons/base_multi_image/models/image.py:0
 #, python-format
-#~ msgid "Main image"
-#~ msgstr "Immagine principale"
+msgid "You must provide an URL for the image."
+msgstr ""
 
-#~ msgid "Name"
-#~ msgstr "Nome"
+#. module: base_multi_image
+#: code:addons/base_multi_image/models/image.py:0
+#, python-format
+msgid "You must provide an attached file for the image."
+msgstr ""
 
-#~ msgid "Preview"
-#~ msgstr "Anteprima"
-
-#~ msgid "Product Images"
-#~ msgstr "Immagini del Prodotto"
-
-#~ msgid "URL"
-#~ msgstr "URL"
+#. module: base_multi_image
+#: code:addons/base_multi_image/models/image.py:0
+#, python-format
+msgid "You must provide an attachment for the image."
+msgstr ""

@@ -3,18 +3,13 @@
 
 import logging
 
-from odoo import SUPERUSER_ID, api
-
 _logger = logging.getLogger(__name__)
 
 
-def post_init_hook_for_submodules(cr, model, field):
+def pre_init_hook_for_submodules(env, model, field):
     """Moves images from single to multi mode.
 
-    Feel free to use this as a ``post_init_hook`` for submodules.
-
-    :param odoo.sql_db.Cursor cr:
-        Database cursor.
+    Feel free to use this as a ``pre_init_hook`` for submodules.
 
     :param str model:
         Model name, like ``product.template``.
@@ -23,48 +18,48 @@ def post_init_hook_for_submodules(cr, model, field):
         Binary field that had the images in that :param:`model`, like
         ``image``.
     """
-    env = api.Environment(cr, SUPERUSER_ID, {})
-    table = env[model]._table
-    image_obj = env["base_multi_image.image"]
+    cr = env.cr
     with cr.savepoint():
+        table = env[model]._table
         column_exists = table_has_column(cr, table, field)
+        # fields.Binary(), extract the binary content directly from the table
         if column_exists:
-            cr.execute("SELECT id FROM %(table)s WHERE %(field)s IS NOT NULL")  # pylint: disable=sql-injection
+            extract_query = f"""
+                SELECT id, '{model}', '{model},' || id, 'db', {field}
+                FROM {table}
+                WHERE {field} IS NOT NULL
+            """
+            image_field = "file_db_store"
+        # fields.Binary(attachment=True), get the ir_attachment record ID
         else:
-            cr.execute(
-                """
-                    SELECT res_id
-                    FROM ir_attachment
-                    WHERE
-                        res_field=%(field)s
-                        AND res_model=%(model)s
-                """,
-                {
-                    "field": field,
-                    "model": model,
-                },
-            )
-        record_ids = [row[0] for row in cr.fetchall()]
-        for record in env[model].browse(record_ids):
-            image_obj.create(
-                {
-                    "owner_id": record.id,
-                    "owner_model": model,
-                    "owner_ref_id": f"{model},{record.id}",
-                    "image_1920": record[field],
-                },
-            )
+            extract_query = f"""
+                SELECT
+                    res_id,
+                    res_model,
+                    CONCAT_WS(',', res_model, res_id),
+                    'attachment',
+                    id
+                FROM ir_attachment
+                WHERE res_field='{field}' AND res_model='{model}'
+            """
+            image_field = "attachment_id"
+        cr.execute(  # pylint: disable=sql-injection
+            f"""
+                INSERT INTO base_multi_image_image (
+                    owner_id,
+                    owner_model,
+                    owner_ref_id,
+                    storage,
+                    {image_field}
+                )
+                {extract_query}
+            """
+        )
 
 
-def uninstall_hook_for_submodules(cr, model, field=None):
+def uninstall_hook_for_submodules(env, model, field=None):
     """Moves images from multi to single mode and remove multi-images for a
     given model.
-
-    :param odoo.sql_db.Cursor cr:
-        Database cursor.
-
-    :param odoo.modules.registry.RegistryManager registry:
-        Database registry, using v7 api.
 
     :param str model:
         Model technical name, like "res.partner". All multi-images for that
@@ -73,34 +68,35 @@ def uninstall_hook_for_submodules(cr, model, field=None):
     :param str field:
         Binary field that had the images in that :param:`model`, like
         ``image``.
+
     """
-    env = api.Environment(cr, SUPERUSER_ID, {})
+    cr = env.cr
     with cr.savepoint():
-        image_obj = env["base_multi_image.image"]
-        images = image_obj.search([("owner_model", "=", model)], order="sequence, id")
+        Image = env["base_multi_image.image"]
+        images = Image.search([("owner_model", "=", model)], order="sequence, id")
         if images and field:
             main_images = {}
             for image in images:
                 if image.owner_id not in main_images:
                     main_images[image.owner_id] = image
             main_images = main_images.values()
-            model_obj = env[model]
-            field_field = model_obj._fields[field]
+            Model = env[model]
+            Field = Model._fields[field]
 
             # fields.Binary(), save the binary content directly to the table
-            if not field_field.attachment:
+            if not Field.attachment:
                 save_directly_to_table(
                     cr,
-                    model_obj,
+                    Model,
                     field,
-                    field_field,
+                    Field,
                     main_images,
                 )
             # fields.Binary(attachment=True), save the ir_attachment record ID
-            if field and field_field.attachment:
+            if Field.attachment:
                 for main_image in main_images:
-                    owner = model_obj.browse(main_image.owner_id)
-                    field_field.write(owner, main_image.image_1920)
+                    owner = Model.browse(main_image.owner_id)
+                    Field.write(owner, main_image.image_1920)
         images.unlink()
 
 
@@ -108,14 +104,12 @@ def save_directly_to_table(cr, Model, field, Field, main_images):
     fields = []
     if field and not Field.attachment:
         fields.append(field + " = " + "%(image)s")
+
     query = """
         UPDATE {table}
         SET {fields}
-        WHERE id = %(id)s
-    """.format(
-        table=Model._table,
-        fields=", ".join(fields),
-    )
+        WHERE id = %%(id)s
+    """.format(table=Model._table, fields=", ".join(fields))
     for main_image in main_images:
         params = {"id": main_image.owner_id}
         if field and not Field.attachment:
