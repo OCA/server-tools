@@ -52,6 +52,17 @@
                                 name="fields_to_exclude_ids"
                                 widget="many2many_tags"
                             />
+                            <field name="helpdesk_id" />
+                            <field name="records_monitored_amount" invisible="True"/>
+                            <div
+                                attrs="{'invisible': [('records_monitored_amount', '=', -1)]}"
+                            />
+                            <div class="o_row o_row_readonly" attrs="{'invisible': [('records_monitored_amount', '=', -1)]}">
+                                <span title="The amount of records that will be monitored" class="fa fa-exclamation-triangle text-warning"/>
+                                <div style="display: inline-block; min-width: 200px;">
+                                    <field name="records_monitored_display" readonly="1"/>
+                                </div>
+                            </div>
                         </group>
                         <group colspan="1">
                             <field name="log_read" />

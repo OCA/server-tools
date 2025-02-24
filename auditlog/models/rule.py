@@ -5,6 +5,7 @@ import copy
 
 from odoo import _, api, fields, models, modules
 from odoo.exceptions import UserError
+from odoo.tools.populate import compute
 
 FIELDS_BLACKLIST = [
     "id",
@@ -140,7 +141,18 @@ class AuditlogRule(models.Model):
         context={"active_test": False},
         states={"subscribed": [("readonly", True)]},
     )
-
+    helpdesk_id = fields.Many2one(
+        "helpdesk.team",
+        string="Team to notify",
+    )
+    records_monitored_amount = fields.Integer(
+        string="Number of records that will be monitored: ",
+        compute='_compute_monitored_count'
+    )
+    records_monitored_display = fields.Char(
+        string="Records Monitored Display",
+        compute="_compute_records_monitored_display",
+    )
     fields_to_exclude_ids = fields.Many2many(
         "ir.model.fields",
         domain="[('model_id', '=', model_id)]",
@@ -510,6 +522,8 @@ class AuditlogRule(models.Model):
         model_id = self.pool._auditlog_model_cache[res_model]
         auditlog_rule = self.env["auditlog.rule"].search([("model_id", "=", model_id)])
         fields_to_exclude = auditlog_rule.fields_to_exclude_ids.mapped("name")
+
+        ticket_text = ""
         for res_id in res_ids:
             name = model_model.browse(res_id).name_get()
             res_name = name and name[0] and name[0][1]
@@ -527,10 +541,24 @@ class AuditlogRule(models.Model):
             diff = DictDiffer(
                 new_values.get(res_id, EMPTY_DICT), old_values.get(res_id, EMPTY_DICT)
             )
+
+            ticket_text = "This ticket was made because"
+            auditlog_rule_link = '<a href="%s%s">%s</a>' % (
+                self.env["ir.config_parameter"].sudo().get_param("web.base.url"),  # Base URL
+                "/web#id=%d&view_type=form&model=%s" % (auditlog_rule.id, auditlog_rule._name),  # Record URL
+                auditlog_rule.name  # Display text for the link
+            )
+            modified_object_link = '<a href="%s%s">%s</a>' % (
+                self.env["ir.config_parameter"].sudo().get_param("web.base.url"),  # Base URL
+                "/web#id=%d&view_type=form&model=%s" % (res_id, res_model),  # Modified object URL
+                res_name  # Display text for the link
+            )
+
             if method == "create":
                 self._create_log_line_on_create(
                     log, diff.added(), new_values, fields_to_exclude
                 )
+                ticket_text += "a new record was created: %s. " % modified_object_link
             elif method == "read":
                 self._create_log_line_on_read(
                     log,
@@ -538,10 +566,12 @@ class AuditlogRule(models.Model):
                     old_values,
                     fields_to_exclude,
                 )
+                ticket_text += "record %s was read. " % modified_object_link
             elif method == "write":
                 self._create_log_line_on_write(
                     log, diff.changed(), old_values, new_values, fields_to_exclude
                 )
+                ticket_text += "record %s was written to. " % modified_object_link
             elif method == "unlink" and auditlog_rule.capture_record:
                 self._create_log_line_on_read(
                     log,
@@ -549,6 +579,23 @@ class AuditlogRule(models.Model):
                     old_values,
                     fields_to_exclude,
                 )
+                ticket_text += "record %s was unlinked. " % modified_object_link
+
+
+            ticket_text += "This department was notified according to Audit Rule: %s" % auditlog_rule_link
+
+            self._create_ticket(auditlog_rule, ticket_text)
+
+    def _create_ticket(self, rule, ticket_description):
+
+        if rule.helpdesk_id:
+            self.env["helpdesk.ticket"].create(
+                {
+                    "team_id": rule.helpdesk_id.id,
+                    "name": "New Log Created for Rule: %s" % rule.name,
+                    "description": ticket_description,
+                }
+            )
 
     def _get_field(self, model, field_name):
         cache = self.pool._auditlog_field_cache
@@ -734,3 +781,19 @@ class AuditlogRule(models.Model):
                 if isinstance(fieldvalue, models.BaseModel) and not fieldvalue:
                     vals[fieldname] = False
         return vals_list
+
+
+
+    @api.depends("helpdesk_id","model_id")
+    def _compute_monitored_count(self):
+        for record in self:
+            if record.helpdesk_id and record.model_id:
+                model_name = record.model_id.model
+                record.records_monitored_amount = self.env[model_name].search_count([])
+            else:
+                record.records_monitored_amount = -1
+
+    @api.depends("records_monitored_amount")
+    def _compute_records_monitored_display(self):
+        for record in self:
+            record.records_monitored_display = ("Number of records that will be monitored: %s" % record.records_monitored_amount)
