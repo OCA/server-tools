@@ -69,13 +69,13 @@ class Image(models.Model):
         """Get a reference field based on the split model and id fields."""
         for s in self:
             if s.owner_model:
-                s.owner_ref_id = "{0.owner_model},{0.owner_id}".format(s)
+                s.owner_ref_id = f"{s.owner_model},{s.owner_id}"
 
     @api.depends("owner_id", "owner_model")
     def _compute_show_technical(self):
         """Know if you need to show the technical fields."""
         self.show_technical = all(
-            "default_owner_%s" % f not in self.env.context for f in ("id", "model")
+            f"default_owner_{f}" not in self.env.context for f in ("id", "model")
         )
 
     @api.onchange("load_from")
