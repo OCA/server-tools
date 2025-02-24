@@ -6,3 +6,5 @@
 - Shepilov Vladislav \<<shepilov.v@protonmail.com>\>
 - [Greenice](https://www.greenice.com):
   - Fernando La Chica \<<fernandolachica@gmail.com>\>
+- [Heliconia Solutions Pvt. Ltd.](https://www.heliconia.io)
+  - Bhavesh Heliconia

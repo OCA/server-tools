@@ -2,15 +2,17 @@
 #        Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
 # © 2015 Antiun Ingeniería S.L. - Jairo Llopis
 # © 2016 Sodexis
+# © 2024 Omal bastin <omalbastin@gmail.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 {
     "name": "Multiple images base",
     "summary": "Allow multiple images for database objects",
-    "version": "16.0.1.0.1",
+    "version": "18.0.1.0.0",
     "author": "Tecnativa, "
     "Antiun Ingeniería, S.L., Sodexis, "
-    "LasLabs, OpenFire, "
+    "LasLabs, "
+    "Omal Bastin (O4ODOO), "
     "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "website": "https://github.com/OCA/server-tools",
