@@ -70,7 +70,7 @@
     <record model="ir.actions.act_window" id="action_vacuum_rule">
         <field name="name">Message and Attachment Vacuum Rule</field>
         <field name="res_model">vacuum.rule</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
     <menuitem
         id="menu_action_vacuum_rule"
