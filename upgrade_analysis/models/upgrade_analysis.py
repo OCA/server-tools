@@ -550,11 +550,13 @@ class UpgradeAnalysis(models.Model):
         all_local_modules = (
             self.env["ir.module.module"].search(module_domain).mapped("name")
         )
-        all_remote_modules = (
-            connection.env["ir.module.module"]
-            .browse(connection.env["ir.module.module"].search(module_domain))
-            .mapped("name")
-        )
+
+        all_remote_modules = [
+            x["name"]
+            for x in connection.env["ir.module.module"].search_read(
+                module_domain, ["name"]
+            )
+        ]
 
         start_version = connection.version
         end_version = release.major_version
