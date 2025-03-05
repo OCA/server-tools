@@ -88,10 +88,12 @@ class UpgradeAnalysis(models.Model):
         module = self.env["ir.module.module"].search([("name", "=", module_name)])[0]
         if module.is_odoo_module:
             if not self.upgrade_path:
-                return (
-                    "ERROR: no upgrade_path set when writing analysis of %s\n"
-                    % module_name
-                )
+                self._compute_upgrade_path()
+                if not self.upgrade_path:
+                    return (
+                        "ERROR: no upgrade_path set when writing analysis of %s\n"
+                        % module_name
+                    )
             full_path = os.path.join(self.upgrade_path, module_name, version)
         else:
             full_path = os.path.join(
