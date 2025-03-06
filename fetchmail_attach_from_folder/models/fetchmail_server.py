@@ -56,9 +56,9 @@ class FetchmailServer(models.Model):
         context={"active_test": False},
     )
     folders_only = fields.Boolean(
-        string="Only folders, not inbox",
-        help="Check this field to leave imap inbox alone"
-        " and only retrieve mail from configured folders.",
+        string="Process Only Specified Folders",
+        help="Enable this option to ignore the default IMAP inbox processing and "
+        "retrieve emails only from the specified folders.",
     )
     # Below existing fields, that are modified by this module.
     object_id = fields.Many2one(required=False)  # comodel_name='ir.model'
