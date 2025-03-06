@@ -106,6 +106,10 @@ Contributors
 ------------
 
 - Kitti U. <kittiu@ecosoft.co.th>
+- Grall F. <fgr@apik.cloud>
+- `Heliconia Solutions Pvt. Ltd. <https://www.heliconia.io>`__
+
+  - Bhavesh Heliconia
 
 Maintainers
 -----------
