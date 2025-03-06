@@ -17,20 +17,20 @@ Date & Time Formatter
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github
-    :target: https://github.com/OCA/server-tools/tree/16.0/datetime_formatter
+    :target: https://github.com/OCA/server-tools/tree/17.0/datetime_formatter
     :alt: OCA/server-tools
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/server-tools-16-0/server-tools-16-0-datetime_formatter
+    :target: https://translation.odoo-community.org/projects/server-tools-17-0/server-tools-17-0-datetime_formatter
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/server-tools&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/server-tools&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module was written to extend the functionality of Odoo language engine to
-support formatting `Date`, `Time` and `Datetime` fields easily and allow you to
-print them in the best format for the user.
+This module was written to extend the functionality of Odoo language
+engine to support formatting Date, Time and Datetime fields easily and
+allow you to print them in the best format for the user.
 
 **Table of contents**
 
@@ -40,27 +40,33 @@ print them in the best format for the user.
 Usage
 =====
 
-This module adds a technical programming feature, and it should be used by
-addon developers, not by end users. This means that you must not expect to see
-any changes if you are a user and install this, but if you find you have it
-already installed, it's probably because you have another modules that depend
-on this one.
+This module adds a technical programming feature, and it should be used
+by addon developers, not by end users. This means that you must not
+expect to see any changes if you are a user and install this, but if you
+find you have it already installed, it's probably because you have
+another modules that depend on this one.
 
 If you are a developer, to use this module, you need to:
 
-* Call anywhere in your code::
+-  Call anywhere in your code:
 
-    formatted_string = self.env["res.lang"].datetime_formatter(datetime_value)
+   ::
 
-* If you use Qweb::
+      formatted_string = self.env["res.lang"].datetime_formatter(datetime_value)
 
-    <t t-esc="env['res.lang'].datetime_formatter(datetime_value)"/>
+-  If you use Qweb:
 
-* If you call it from a record that has a `lang` field::
+   ::
 
-    formatted_string = record.lang.datetime_formatter(record.datetime_field)
+      <t t-esc="env['res.lang'].datetime_formatter(datetime_value)"/>
 
-* ``models.ResLang.datetime_formatter`` docstring explains its usage.
+-  If you call it from a record that has a lang field:
+
+   ::
+
+      formatted_string = record.lang.datetime_formatter(record.datetime_field)
+
+-  ``models.ResLang.datetime_formatter`` docstring explains its usage.
 
 Bug Tracker
 ===========
@@ -68,7 +74,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/server-tools/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/server-tools/issues/new?body=module:%20datetime_formatter%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/server-tools/issues/new?body=module:%20datetime_formatter%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -76,26 +82,27 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Grupo ESOC Ingeniería de Servicios
 * Tecnativa
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* `Tecnativa <https://www.tecnativa.com>`_:
+-  `Tecnativa <https://www.tecnativa.com>`__:
 
-  * Jairo Llopis
-  * Vicent Cubells
-  * Ernesto Tejeda
-  * Víctor Martínez
-  * Carolina Fernandez
-* Tautvydas Banevičius <baneviciustautvydas@gmail.com>
-* Dhara Solanki <dhara.solanki@initos.com>
+   -  Jairo Llopis
+   -  Vicent Cubells
+   -  Ernesto Tejeda
+   -  Víctor Martínez
+   -  Carolina Fernandez
+
+-  Tautvydas Banevičius <baneviciustautvydas@gmail.com>
+-  Dhara Solanki <dhara.solanki@initos.com>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -107,6 +114,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/16.0/datetime_formatter>`_ project on GitHub.
+This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/17.0/datetime_formatter>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

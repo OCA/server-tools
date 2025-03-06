@@ -9,7 +9,7 @@ from odoo.tests.common import TransactionCase
 class BasicCase(TransactionCase):
     @classmethod
     def setUpClass(cls):
-        super(BasicCase, cls).setUpClass()
+        super().setUpClass()
         cls.langs = (
             cls.env.ref("base.lang_en"),
             cls.env.ref("base.lang_es"),

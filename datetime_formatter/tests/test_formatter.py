@@ -18,7 +18,7 @@ from ..models.res_lang import MODE_DATE, MODE_DATETIME, MODE_TIME
 class FormatterCase(TransactionCase):
     @classmethod
     def setUpClass(cls):
-        super(FormatterCase, cls).setUpClass()
+        super().setUpClass()
         cls.rl = cls.env["res.lang"]
         cls.bm = cls.rl.best_match()
         cls.dt = datetime.datetime.now()
@@ -52,7 +52,7 @@ class FormatterCase(TransactionCase):
 
     def test_datetime(self):
         """Format a datetime."""
-        self.format = "{} {}".format(self.d_fmt, self.t_fmt)
+        self.format = f"{self.d_fmt} {self.t_fmt}"
         self.kwargs = {"template": MODE_DATETIME}
 
     def test_date(self):
@@ -79,5 +79,5 @@ class FormatterCase(TransactionCase):
     def test_custom_separator(self):
         """Format a datetime with a custom separator."""
         sep = "T"
-        self.format = "{}{}{}".format(self.d_fmt, sep, self.t_fmt)
+        self.format = f"{self.d_fmt}{sep}{self.t_fmt}"
         self.kwargs = {"template": MODE_DATETIME, "separator": sep}
