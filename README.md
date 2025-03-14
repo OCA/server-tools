@@ -29,6 +29,7 @@ addon | version | maintainers | summary
 [base_exception](base_exception/) | 18.0.1.1.0 | [![hparfr](https://github.com/hparfr.png?size=30px)](https://github.com/hparfr) [![sebastienbeau](https://github.com/sebastienbeau.png?size=30px)](https://github.com/sebastienbeau) | This module provide an abstract model to manage customizable exceptions to be applied on different models (sale order, invoice, ...)
 [base_m2m_custom_field](base_m2m_custom_field/) | 18.0.1.0.0 |  | Customizations of Many2many
 [base_partition](base_partition/) | 18.0.1.0.0 |  | Base module that provide the partition method on all models
+[base_sparse_field_list_support](base_sparse_field_list_support/) | 18.0.1.0.0 |  | add list support to convert_to_cache()
 [base_technical_user](base_technical_user/) | 18.0.1.0.0 |  | Add a technical user parameter on the company
 [base_time_window](base_time_window/) | 18.0.1.0.0 |  | Base model to handle time windows
 [base_view_inheritance_extension](base_view_inheritance_extension/) | 18.0.1.0.0 |  | Adds more operators for view inheritance
