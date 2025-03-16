@@ -25,7 +25,6 @@ msgstr "自动升级模块"
 #. module: module_auto_update
 #. odoo-python
 #: code:addons/module_auto_update/models/module.py:0
-#, python-format
 msgid "Checksum upgrade complete."
 msgstr "校验升级完成。"
 
@@ -37,8 +36,12 @@ msgstr "模块"
 #. module: module_auto_update
 #. odoo-python
 #: code:addons/module_auto_update/models/module.py:0
-#, python-format
 msgid ""
 "No checksum change detected in installed modules and all modules installed, "
 "nothing to do."
 msgstr "未检测到已安装模块中的校验变更，并且所有模块均已安装，无需操作。"
+
+#. module: module_auto_update
+#: model:ir.model.fields,field_description:module_auto_update.field_ir_module_module__smart_search
+msgid "Smart Search"
+msgstr ""
