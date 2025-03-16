@@ -338,6 +338,11 @@ msgstr ""
 "dei backup desiderata."
 
 #. module: auto_backup
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__smart_search
+msgid "Smart Search"
+msgstr "Ricerca intelligente"
+
+#. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__name
 msgid "Summary of this backup process"
 msgstr "Riepilogo di questo processo di backup"
@@ -439,9 +444,6 @@ msgstr "zip (include filestore)"
 
 #~ msgid "Main Attachment"
 #~ msgstr "Allegato principale"
-
-#~ msgid "Smart Search"
-#~ msgstr "Ricerca intelligente"
 
 #~ msgid "The number of pending changes of this record"
 #~ msgstr "Numero di modifiche di questo record in attesa"

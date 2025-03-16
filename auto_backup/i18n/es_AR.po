@@ -340,6 +340,11 @@ msgstr ""
 "generar las copias de seguridad."
 
 #. module: auto_backup
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__smart_search
+msgid "Smart Search"
+msgstr "Búsqueda Inteligente"
+
+#. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__name
 msgid "Summary of this backup process"
 msgstr "Resumen del proceso de esta copia de seguridad"
@@ -443,9 +448,6 @@ msgstr "zip (incluye filestore)"
 
 #~ msgid "Main Attachment"
 #~ msgstr "Adjunto Principal"
-
-#~ msgid "Smart Search"
-#~ msgstr "Búsqueda Inteligente"
 
 #~ msgid "The number of pending changes of this record"
 #~ msgstr "El número de cambios pendientes de este registro"
