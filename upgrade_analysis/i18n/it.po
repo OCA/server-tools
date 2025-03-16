@@ -38,12 +38,11 @@ msgstr ""
 "\n"
 ".. include:: coverage_legend.rst\n"
 "\n"
-"+---------------------------------------------------+----------------------+-"
-"------------------------------------------------+\n"
+"+---------------------------------------------------+----------------------"
+"+-------------------------------------------------+\n"
 "| Modulo                                            | Stato               + "
 "Informazioni extra                               |\n"
-"+===================================================+======================+="
-"================================================+"
+"+===================================================+======================+=================================================+"
 
 #. module: upgrade_analysis
 #: model_terms:ir.ui.view,arch_db:upgrade_analysis.view_upgrade_install_wizard_form
@@ -401,6 +400,17 @@ msgid ""
 msgstr ""
 "Imposta a Crea se c'è un campo nuovo in questo modulo. Se questo modulo "
 "modifica l'attributo di un campo esistente, impostare a Modifica."
+
+#. module: upgrade_analysis
+#: model:ir.model.fields,field_description:upgrade_analysis.field_ir_module_module__smart_search
+#: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_analysis__smart_search
+#: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_attribute__smart_search
+#: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_comparison_config__smart_search
+#: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_generate_record_wizard__smart_search
+#: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_install_wizard__smart_search
+#: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_record__smart_search
+msgid "Smart Search"
+msgstr ""
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_analysis__state
