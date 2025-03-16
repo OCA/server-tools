@@ -59,5 +59,10 @@ msgstr "Anzahl Tage bevor eine Nachricht als gelesen gekennzeichnet wird"
 msgid "Number of days before removing an e-mail"
 msgstr ""
 
+#. module: mail_cleanup
+#: model:ir.model.fields,field_description:mail_cleanup.field_fetchmail_server__smart_search
+msgid "Smart Search"
+msgstr ""
+
 #~ msgid "POP/IMAP Server"
 #~ msgstr "POP/IMAP-Server"
