@@ -60,5 +60,7 @@ msgstr "Configuración Rpc"
 msgid "Rpc Config Edit"
 msgstr "Editar configuración Rpc"
 
-#~ msgid "Smart Search"
-#~ msgstr "Búsqueda inteligente"
+#. module: rpc_helper
+#: model:ir.model.fields,field_description:rpc_helper.field_ir_model__smart_search
+msgid "Smart Search"
+msgstr "Búsqueda inteligente"
