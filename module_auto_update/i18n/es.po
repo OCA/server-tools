@@ -29,7 +29,6 @@ msgstr "Módulos de actualización automática"
 #. module: module_auto_update
 #. odoo-python
 #: code:addons/module_auto_update/models/module.py:0
-#, python-format
 msgid "Checksum upgrade complete."
 msgstr "Actualización de la suma de comprobación completada."
 
@@ -41,7 +40,6 @@ msgstr "Módulo"
 #. module: module_auto_update
 #. odoo-python
 #: code:addons/module_auto_update/models/module.py:0
-#, python-format
 msgid ""
 "No checksum change detected in installed modules and all modules installed, "
 "nothing to do."
@@ -49,8 +47,10 @@ msgstr ""
 "No se ha detectado ningún cambio en la suma de comprobación de los módulos "
 "instalados y todos los módulos están instalados, no hay nada que hacer."
 
-#~ msgid "Smart Search"
-#~ msgstr "Búsqueda inteligente"
+#. module: module_auto_update
+#: model:ir.model.fields,field_description:module_auto_update.field_ir_module_module__smart_search
+msgid "Smart Search"
+msgstr "Búsqueda inteligente"
 
 #~ msgid "Module Upgrade"
 #~ msgstr "Actualización de módulo"

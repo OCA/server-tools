@@ -28,7 +28,6 @@ msgstr "Aggiorna Moduli Automaticamente"
 #. module: module_auto_update
 #. odoo-python
 #: code:addons/module_auto_update/models/module.py:0
-#, python-format
 msgid "Checksum upgrade complete."
 msgstr "Aggiornamento checksum completo."
 
@@ -40,7 +39,6 @@ msgstr "Modulo"
 #. module: module_auto_update
 #. odoo-python
 #: code:addons/module_auto_update/models/module.py:0
-#, python-format
 msgid ""
 "No checksum change detected in installed modules and all modules installed, "
 "nothing to do."
@@ -48,8 +46,10 @@ msgstr ""
 "Nessuna modifica del checksum rilevata nei moduli installati e tutti i "
 "moduli installati, niente da fare."
 
-#~ msgid "Smart Search"
-#~ msgstr "Ricerca intelligente"
+#. module: module_auto_update
+#: model:ir.model.fields,field_description:module_auto_update.field_ir_module_module__smart_search
+msgid "Smart Search"
+msgstr "Ricerca intelligente"
 
 #~ msgid "Display Name"
 #~ msgstr "Nome da visualizzare"
