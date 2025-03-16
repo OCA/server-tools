@@ -117,7 +117,6 @@ msgstr ""
 #. module: base_exception
 #. odoo-python
 #: code:addons/base_exception/models/base_exception_method.py:0
-#, python-format
 msgid ""
 "Error when evaluating the exception.rule rule:\n"
 " %(rule_name)s \n"
@@ -158,7 +157,7 @@ msgid "Exception Rule Setup"
 msgstr "Configuración de la Regla de Excepción"
 
 #. module: base_exception
-#: model:ir.actions.act_window,name:base_exception.action_exception_rule_tree
+#: model:ir.actions.act_window,name:base_exception.action_exception_rule_list
 #: model:ir.ui.menu,name:base_exception.menu_action_exception
 msgid "Exception Rules"
 msgstr "Reglas de Excepción"
@@ -242,7 +241,6 @@ msgstr "Método"
 #. module: base_exception
 #. odoo-python
 #: code:addons/base_exception/wizard/base_exception_confirm.py:0
-#, python-format
 msgid "Only 1 ID accepted, got %r."
 msgstr "Solo 1 ID aceptado, se obtuvieron %r."
 
@@ -282,9 +280,16 @@ msgid "Sequence"
 msgstr "Secuencia"
 
 #. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_base_exception__smart_search
+#: model:ir.model.fields,field_description:base_exception.field_base_exception_method__smart_search
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule__smart_search
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm__smart_search
+msgid "Smart Search"
+msgstr "Búsqueda Inteligente"
+
+#. module: base_exception
 #. odoo-python
 #: code:addons/base_exception/models/base_exception.py:0
-#, python-format
 msgid "The exceptions can not be ignored, because some of them are blocking."
 msgstr ""
 "Las excepciones no pueden ser ignoradas, porque algunas están bloqueadas."
@@ -292,7 +297,6 @@ msgstr ""
 #. module: base_exception
 #. odoo-python
 #: code:addons/base_exception/models/exception_rule.py:0
-#, python-format
 msgid ""
 "There is a problem of configuration, python code, domain or method is "
 "missing to match the exception type."
@@ -325,9 +329,6 @@ msgstr "Cuando está marcado la excepción no puede ser ignorada"
 
 #~ msgid "Last Modified on"
 #~ msgstr "Última modificación en"
-
-#~ msgid "Smart Search"
-#~ msgstr "Búsqueda Inteligente"
 
 #~ msgid "_Close"
 #~ msgstr "_Close"
