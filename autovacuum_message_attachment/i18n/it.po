@@ -509,6 +509,14 @@ msgid "Rules Used to delete message historic"
 msgstr "Regole utilizzate per cancellare la cronologia messaggi"
 
 #. module: autovacuum_message_attachment
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_autovacuum_mixin__smart_search
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_ir_attachment__smart_search
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_message__smart_search
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_vacuum_rule__smart_search
+msgid "Smart Search"
+msgstr "Ricerca intelligente"
+
+#. module: autovacuum_message_attachment
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_vacuum_rule__message_subtype_ids
 msgid "Subtypes"
 msgstr "Sottotipi"
@@ -583,9 +591,6 @@ msgstr "Notifica specifica utente"
 #, python-format
 #~ msgid "No inheritance of ir.attachment was found on model %s"
 #~ msgstr "Non è stata trovata l'ereditarietà da ir.attachment nel modello %s"
-
-#~ msgid "Smart Search"
-#~ msgstr "Ricerca intelligente"
 
 #~ msgid "The number of pending changes of this record"
 #~ msgstr "Numero di modifiche di questo record in attesa"

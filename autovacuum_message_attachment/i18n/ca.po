@@ -492,6 +492,14 @@ msgid "Rules Used to delete message historic"
 msgstr ""
 
 #. module: autovacuum_message_attachment
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_autovacuum_mixin__smart_search
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_ir_attachment__smart_search
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_message__smart_search
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_vacuum_rule__smart_search
+msgid "Smart Search"
+msgstr ""
+
+#. module: autovacuum_message_attachment
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_vacuum_rule__message_subtype_ids
 msgid "Subtypes"
 msgstr ""
