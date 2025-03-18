@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-11-08 10:06+0000\n"
+"PO-Revision-Date: 2025-03-18 10:38+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6.2\n"
+"X-Generator: Weblate 5.10.2\n"
 
 #. module: test_base_time_window
 #: model:ir.model,name:test_base_time_window.model_res_partner
@@ -65,7 +65,7 @@ msgstr "Partner"
 #: model:ir.model.fields,field_description:test_base_time_window.field_res_partner__smart_search
 #: model:ir.model.fields,field_description:test_base_time_window.field_test_partner_time_window__smart_search
 msgid "Smart Search"
-msgstr ""
+msgstr "Ricerca intelligente"
 
 #. module: test_base_time_window
 #: model:ir.model,name:test_base_time_window.model_test_partner_time_window
