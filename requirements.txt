@@ -5,4 +5,4 @@ dataclasses
 odoorpc
 openupgradelib
 pysftp
-sentry_sdk>=2.0.0
+sentry_sdk>=2.0.0,<=2.22.0
