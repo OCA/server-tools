@@ -56,7 +56,7 @@ def _convert_ir_ui_view_modifiers(self, record_node, extra_vals=None):
         if inherit:
             view_type = inherit.type
 
-        if view_type not in ("kanban", "tree", "form", "calendar", "setting", "search"):
+        if view_type not in ("kanban", "tree", "list", "form", "calendar", "setting", "search"):
             return
 
         # load previous arch
@@ -286,7 +286,7 @@ def convert_inherit_view(arch, root, env, model, view_type, ref, inherited_root)
                 # in tree view
                 parent_view_type = "form"
                 break
-            elif p.tag in ("tree", "form", "setting"):
+            elif p.tag in ("tree", "list", "form", "setting"):
                 parent_view_type = p.tag
                 break
 
@@ -427,7 +427,7 @@ def convert_inherit_attributes_inplace(spec, target_node, view_type):
                 raise ValueError(f'Can not convert "attrs": {value!r}') from error
         elif (
             attr == "invisible"
-            and view_type == "tree"
+            and view_type in ("tree", "list")
             and (
                 value in ("0", "1", "True", "False")
                 or (
@@ -627,7 +627,7 @@ def convert_node_modifiers_inplace(root, env, model, view_type, ref):
                 return True
 
     if model is not None:
-        if view_type == "tree":
+        if view_type in ("tree", "list"):
             # groupby from tree target the field as a subview (inside groupby is treated as form)
             for item in root.findall(".//groupby[@name]"):
                 f_name = item.get("name")
@@ -659,7 +659,7 @@ def convert_node_modifiers_inplace(root, env, model, view_type, ref):
                 continue
 
             # shortcut for views that do not use information from the python field
-            if view_type not in ("kanban", "tree", "form", "setting"):
+            if view_type not in ("kanban", "tree", "list", "form", "setting"):
                 expr_to_attr(item)
                 continue
 
@@ -944,6 +944,7 @@ def extract_node_modifiers(node, view_type, py_field_modifiers=None):
             for parent in node.iterancestors():
                 if parent.tag in (
                     "tree",
+                    "list",
                     "form",
                     "setting",
                     "kanban",
@@ -958,7 +959,7 @@ def extract_node_modifiers(node, view_type, py_field_modifiers=None):
                 ):  # list view element with form view behavior
                     parent_view_type = "form"
                     break
-            if parent_view_type == "tree":
+            if parent_view_type in ("tree", "list"):
                 modifier = "column_invisible"
 
         # previous_py_expr and py_expression must be OR-ed
