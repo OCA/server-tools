@@ -55,7 +55,7 @@ class IrModelFields(models.Model):
         custom_tracking = None
         if "custom_tracking" in vals:
             self.env.registry.clear_cache()
-            self.check_access_rights("write")
+            self.check_access("write")
             custom_tracking = vals.pop("custom_tracking")
             self._write({"custom_tracking": custom_tracking})
             self.invalidate_model(fnames=["custom_tracking"])
