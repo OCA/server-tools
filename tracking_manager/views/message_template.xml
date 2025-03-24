@@ -33,10 +33,10 @@
                                                 <t t-esc="change.get('name')" /> :
                                                 <t t-esc="change.get('old')" />
                                                 <div
-                                                    class="o_Message_trackingValueSeparator o_Message_trackingValueItem fa fa-long-arrow-right"
-                                                    title="Changed"
-                                                    role="img"
-                                                />
+                                                class="o_Message_trackingValueSeparator o_Message_trackingValueItem fa fa-long-arrow-right"
+                                                title="Changed"
+                                                role="img"
+                                            />
                                                 <t t-esc="change.get('new')" />
                                             </li>
                                         </t>
