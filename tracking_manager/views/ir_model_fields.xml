@@ -3,7 +3,6 @@
      @author Kévin Roche <kevin.roche@akretion.com>
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
-
     <record model="ir.actions.act_window" id="ir_model_fields_action">
         <field name="name">Trackable Fields</field>
         <field name="type">ir.actions.act_window</field>
@@ -42,12 +41,12 @@
         <field name="inherit_id" ref="base.view_model_fields_search" />
         <field name="arch" type="xml">
             <xpath expr="//filter[@name='translate']" position="after">
-            <filter
+                <filter
                     name="tracking_on"
                     string="Custom Tracking ON"
                     domain="[('custom_tracking','=', True)]"
                 />
-            <filter
+                <filter
                     name="tracking_off"
                     string="Custom Tracking OFF"
                     domain="[('custom_tracking','=', False)]"
@@ -55,5 +54,4 @@
             </xpath>
         </field>
     </record>
-
 </odoo>
