@@ -86,13 +86,6 @@ msgid "JS Code Quantity"
 msgstr "Quantità Codice JS"
 
 #. module: module_analysis
-#: model:ir.model.fields,field_description:module_analysis.field_ir_module_author____last_update
-#: model:ir.model.fields,field_description:module_analysis.field_ir_module_type____last_update
-#: model:ir.model.fields,field_description:module_analysis.field_ir_module_type_rule____last_update
-msgid "Last Modified on"
-msgstr "Ultima modifica il"
-
-#. module: module_analysis
 #: model:ir.model.fields,field_description:module_analysis.field_ir_module_author__write_uid
 #: model:ir.model.fields,field_description:module_analysis.field_ir_module_type__write_uid
 #: model:ir.model.fields,field_description:module_analysis.field_ir_module_type_rule__write_uid
@@ -214,7 +207,6 @@ msgstr "Tipologia e Autori"
 
 #. module: module_analysis
 #: model:ir.actions.server,name:module_analysis.cron_module_analysis_ir_actions_server
-#: model:ir.cron,cron_name:module_analysis.cron_module_analysis
 msgid "Update Module Analysis"
 msgstr "Aggiorna analisi modulo"
 
@@ -222,6 +214,9 @@ msgstr "Aggiorna analisi modulo"
 #: model:ir.model.fields,field_description:module_analysis.field_ir_module_module__xml_code_qty
 msgid "XML Code Quantity"
 msgstr "Quantità Codice XML"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"
 
 #~ msgid "Analyse Installed Modules"
 #~ msgstr "Analizza Moduli Installati"
