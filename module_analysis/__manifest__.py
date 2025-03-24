@@ -27,7 +27,7 @@
         "data/ir_cron.xml",
     ],
     "external_dependencies": {
-        "python": ["pygount"],
+        "python": ["pygount==1.4.0"],
     },
     "installable": True,
 }
