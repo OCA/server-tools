@@ -9,7 +9,6 @@
         <field name="inherit_id" ref="base.view_model_form" />
         <field name="arch" type="xml">
             <xpath expr="//sheet/group[1]" position="after">
-
                 <group string="Custom Tracking">
                     <group>
                         <field name="active_custom_tracking" string="Active" />
@@ -43,25 +42,22 @@
             </xpath>
 
             <xpath expr="//sheet/group[1]" position="before">
-                        <div class="oe_button_box" name="button_box">
-
-                <button
+                <div class="oe_button_box" name="button_box">
+                    <button
                         name="%(ir_model_fields_action)d"
                         type="action"
                         class="oe_stat_button"
                         icon="fa-server"
                         invisible="not active_custom_tracking"
                     >
-                            <field
+                        <field
                             name="tracked_field_count"
                             widget="statinfo"
                             string="Tracked Fields"
                         />
-                </button>
-            </div>
+                    </button>
+                </div>
             </xpath>
-
         </field>
     </record>
-
 </odoo>
