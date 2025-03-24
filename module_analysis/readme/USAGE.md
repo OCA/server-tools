@@ -2,6 +2,6 @@
 
 Open the stats to analyse the detail of the code installed
 
-> ![image](../static/description/analysis_pivot.png)
+> ![analysis_pivot](../static/description/analysis_pivot.png)
 >
-> ![image](../static/description/analysis_pie.png)
+> ![analysis_pie](../static/description/analysis_pie.png)

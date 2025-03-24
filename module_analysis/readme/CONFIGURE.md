@@ -5,12 +5,12 @@ it information.
 
 This module comes with default rules.
 
-> ![image](../static/description/default_module_type_rules.png)
+> ![default_module_type_rules](../static/description/default_module_type_rules.png)
 
 You can add your custom rules to identify the modules your team have
 developped for exemple,
 
-> ![image](../static/description/add_module_type_rules.png)
+> ![add_module_type_rules](../static/description/add_module_type_rules.png)
 
 to update the data manually, you have to :
 
@@ -53,7 +53,7 @@ class IrModuleModule(models.Model):
 Two parameters are availaible in 'Settings' / 'Technical' / 'Parameters'
 'System Parameters' :
 
-> ![image](../static/description/config_parameters.png)
+> ![config_parameters](../static/description/config_parameters.png)
 
 The list of folders and filename will be exclude from the analysis. You
 can change the default settings.
