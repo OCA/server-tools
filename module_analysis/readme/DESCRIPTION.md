@@ -9,19 +9,19 @@ This module can be usefull in the following cases :
 - To evaluate the amount to pay to odoo to upgrade your custom code, or
   the induced workload
 
-![image](../static/description/installed_modules_by_types.png)
+![installed_modules_by_types](../static/description/installed_modules_by_types.png)
 
 For that purpose, it adds new concepts
 
 - `ir.module.author`, based on the value `author` present in the
   manifest file.
 
-![image](../static/description/module_authors.png)
+![module_authors](../static/description/module_authors.png)
 
 - `ir.module.type`, populated by default with Odoo and OCA values.
 
-![image](../static/description/module_types.png)
+![module_types](../static/description/module_types.png)
 
 Each installed modules have extra data in the 'Technical Data' tab :
 
-![image](../static/description/module_form.png)
+![module_form](../static/description/module_form.png)
