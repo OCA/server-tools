@@ -6,7 +6,7 @@
 {
     "name": "IAP Alternative Provider",
     "summary": "Base module for providing alternative provider for iap apps",
-    "version": "17.0.1.0.0",
+    "version": "18.0.1.0.0",
     "category": "Tools",
     "website": "https://github.com/OCA/server-tools",
     "author": "Akretion, Odoo Community Association (OCA)",

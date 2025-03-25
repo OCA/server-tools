@@ -12,14 +12,18 @@ class IapAccount(models.Model):
 
     def _get_service_from_provider(self):
         """In case that the provider only propose one service you can
-        return the service_name in you module to simplify the user interface"""
+        return the service in your module to simplify the user interface"""
         return None
 
     def _set_service_from_provider(self):
         for record in self:
             service = record._get_service_from_provider()
-            if service and record.service_name != service:
-                record.service_name = service
+            if service and record.service_id != service:
+                record.service_id = service
+
+    @api.onchange("provider")
+    def onchange_provider(self):
+        self._set_service_from_provider()
 
     @api.model_create_multi
     def create(self, vals_list):
@@ -28,6 +32,6 @@ class IapAccount(models.Model):
         return record
 
     def write(self, vals):
-        super().write(vals)
+        res = super().write(vals)
         self._set_service_from_provider()
-        return True
+        return res
