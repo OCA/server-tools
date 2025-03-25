@@ -1,8 +1,9 @@
 [project]
 name = "odoo-addons-oca-server-tools"
-version = "17.0.20250312.0"
+version = "17.0.20250325.0"
 dependencies = [
     "odoo-addon-auditlog>=17.0dev,<17.1dev",
+    "odoo-addon-auto_backup>=17.0dev,<17.1dev",
     "odoo-addon-base_cron_exclusion>=17.0dev,<17.1dev",
     "odoo-addon-base_exception>=17.0dev,<17.1dev",
     "odoo-addon-base_m2m_custom_field>=17.0dev,<17.1dev",
