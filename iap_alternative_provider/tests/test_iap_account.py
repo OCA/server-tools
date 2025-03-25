@@ -8,46 +8,63 @@ from odoo.tests import TransactionCase
 
 
 class IapAccountCase(TransactionCase):
+    @classmethod
+    def setUpClass(cls):
+        res = super().setUpClass()
+
+        cls.lead_service = cls.env.ref("iap.iap_service_reveal")
+        cls.other_service = cls.env["iap.service"].create(
+            {
+                "name": "Other Service",
+                "technical_name": "other-service",
+                "description": "Other Service",
+                "unit_name": "Credits",
+                "integer_balance": True,
+            }
+        )
+
+        return res
+
     def test_create_odoo_iap(self):
         account = self.env["iap.account"].create(
             {
                 "name": "Odoo IAP",
                 "provider": "odoo",
-                "service_name": "some-service",
+                "service_id": self.lead_service.id,
             }
         )
-        self.assertEqual(account.service_name, "some-service")
+        self.assertEqual(account.service_id, self.lead_service)
 
     def test_create_with_mock(self):
         with mock.patch(
             "odoo.addons.iap_alternative_provider.models."
             "iap_account.IapAccount._get_service_from_provider",
-            return_value="other-service",
+            return_value=self.lead_service,
         ):
             account = self.env["iap.account"].create(
                 {
                     "name": "Odoo IAP",
                     "provider": "odoo",
-                    "service_name": "some-service",
+                    "service_id": self.other_service.id,
                 }
             )
-            self.assertEqual(account.service_name, "other-service")
+            self.assertEqual(account.service_id, self.lead_service)
 
     def test_write_odoo_iap(self):
         account = self.env["iap.account"].create(
             {
                 "name": "Odoo IAP",
                 "provider": "odoo",
-                "service_name": "",
+                "service_id": self.lead_service.id,
             }
         )
-        self.assertEqual(account.service_name, "")
-        account.write({"service_name": "some-service"})
-        self.assertEqual(account.service_name, "some-service")
+        account.write({"service_id": self.other_service.id})
+        self.assertEqual(account.service_id, self.other_service)
+        account.write({"service_id": self.lead_service.id})
         with mock.patch(
             "odoo.addons.iap_alternative_provider.models."
             "iap_account.IapAccount._get_service_from_provider",
-            return_value="other-service",
+            return_value=self.lead_service,
         ):
-            account.write({"service_name": "some-service-2"})
-            self.assertEqual(account.service_name, "other-service")
+            account.write({"service_id": self.other_service.id})
+            self.assertEqual(account.service_id, self.lead_service)
