@@ -96,12 +96,16 @@ class CleanupPurgeWizardTable(models.TransientModel):
     _name = "cleanup.purge.wizard.table"
     _description = "Purge tables"
 
+    blacklist = [
+        "endpoint_route",  # web-api/endpoint_route_handler
+    ]
+
     @api.model
     def find(self):
         """
         Search for tables and views that cannot be instantiated.
         """
-        known_tables = []
+        known_tables = list(self.blacklist)
         for model in self.env["ir.model"].search([]):
             if model.model not in self.env:
                 continue
