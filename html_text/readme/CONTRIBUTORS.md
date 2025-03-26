@@ -6,3 +6,4 @@
   - Jairo Llopis
   - Vicent Cubells
   - Víctor Martínez
+- Chau Le \<chaulb@trobz.com\>

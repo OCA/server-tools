@@ -111,6 +111,8 @@ Contributors
    -  Vicent Cubells
    -  Víctor Martínez
 
+-  Chau Le <chaulb@trobz.com>
+
 Maintainers
 -----------
 
