@@ -4,7 +4,7 @@
 {
     "name": "Text from HTML field",
     "summary": "Generate excerpts from any HTML field",
-    "version": "17.0.1.0.0",
+    "version": "18.0.1.0.0",
     "category": "Tools",
     "website": "https://github.com/OCA/server-tools",
     "author": "Grupo ESOC Ingeniería de Servicios, "

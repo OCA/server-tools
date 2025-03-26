@@ -8,10 +8,11 @@ from odoo.tools import mute_logger
 
 
 class ExtractorCase(TransactionCase):
-    def setUp(self):
-        super().setUp()
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
         # Shortcut
-        self.text_from_html = self.env["ir.fields.converter"].text_from_html
+        cls.text_from_html = cls.env["ir.fields.converter"].text_from_html
 
     def test_excerpts(self):
         """Text gets correctly extracted."""
