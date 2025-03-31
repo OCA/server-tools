@@ -689,19 +689,6 @@ def convert_node_modifiers_inplace(root, env, model, view_type, ref):
             # use python field to convert view <field>
             if item.get("readonly"):
                 expr_to_attr(item, field=field)
-            elif field.states:
-                readonly = bool(field.readonly)
-                fnames = [k for k, v in field.states.items() if v[0][1] != readonly]
-                if fnames:
-                    fnames.sort()
-                    dom = [("state", "not in" if readonly else "in", fnames)]
-                    expr_to_attr(
-                        item,
-                        py_field_modifiers={"readonly": domain_to_expression(dom)},
-                        field=field,
-                    )
-                else:
-                    expr_to_attr(item)
             elif field.readonly not in (True, False):
                 try:
                     readonly_expr = domain_to_expression(str(field.readonly))
