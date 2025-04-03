@@ -17,6 +17,10 @@ class AbstractCase:
         self._allow_user()
         self.attachment.with_user(self.user).unlink()
 
+    def test_restrict_custom_user_with_sudo(self):
+        self._set_restrict_mode("custom")
+        self.attachment.with_user(self.user).sudo().unlink()
+
     def test_restrict_custom_group(self):
         self._set_restrict_mode("custom")
         with self.assertRaises(ValidationError):
