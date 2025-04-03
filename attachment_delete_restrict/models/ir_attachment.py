@@ -64,6 +64,8 @@ class IrAttachment(models.Model):
             return self._raise_delete_attachment_error(allowed_users)
 
     def unlink(self):
+        if self.env.su:
+            return super().unlink()
         res_models = list(set(self.filtered("res_model").mapped("res_model")))
         if res_models:
             models = self.env["ir.model"].sudo().search([("model", "in", res_models)])
