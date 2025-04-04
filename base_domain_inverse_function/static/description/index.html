@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
@@ -9,10 +8,11 @@
 
 /*
 :Author: David Goodger (goodger@python.org)
-:Id: $Id: html4css1.css 8954 2022-01-20 10:10:25Z milde $
+:Id: $Id: html4css1.css 9511 2024-01-13 09:50:07Z milde $
 :Copyright: This stylesheet has been placed in the public domain.
 
 Default cascading style sheet for the HTML output of Docutils.
+Despite the name, some widely supported CSS2 features are used.
 
 See https://docutils.sourceforge.io/docs/howto/html-stylesheets.html for how to
 customize this style sheet.
@@ -275,7 +275,7 @@ pre.literal-block, pre.doctest-block, pre.math, pre.code {
   margin-left: 2em ;
   margin-right: 2em }
 
-pre.code .ln { color: grey; } /* line numbers */
+pre.code .ln { color: gray; } /* line numbers */
 pre.code, code { background-color: #eeeeee }
 pre.code .comment, code .comment { color: #5C6576 }
 pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
@@ -301,7 +301,7 @@ span.option {
 span.pre {
   white-space: pre }
 
-span.problematic {
+span.problematic, pre.problematic {
   color: red }
 
 span.section-subtitle {
@@ -369,10 +369,10 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !! source digest: sha256:a81ca0b04703b06652789206cbd2c5ea5d0217492ce4dcd32ed6b3b334c6ecf5
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Alpha" src="https://img.shields.io/badge/maturity-Alpha-red.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/server-tools/tree/16.0/base_domain_inverse_function"><img alt="OCA/server-tools" src="https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/server-tools-16-0/server-tools-16-0-base_domain_inverse_function"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/server-tools&amp;target_branch=16.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
-<p>This module provides functions to decompose normalized domains
-into domains operands, as these functions are the inverse of
-<cite>AND</cite> and <cite>OR</cite> functions available in <cite>odoo.osv.expression</cite>.</p>
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Alpha" src="https://img.shields.io/badge/maturity-Alpha-red.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/server-tools/tree/18.0/base_domain_inverse_function"><img alt="OCA/server-tools" src="https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/server-tools-18-0/server-tools-18-0-base_domain_inverse_function"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/server-tools&amp;target_branch=18.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
+<p>This module provides functions to decompose normalized domains into
+domains operands, as these functions are the inverse of AND and OR
+functions available in odoo.osv.expression.</p>
 <div class="admonition important">
 <p class="first admonition-title">Important</p>
 <p class="last">This is an alpha version, the data model and design can change at any time without warning.
@@ -399,8 +399,8 @@ Only for development or testing purpose, do not use in production.
 <p>If you have to decompose a complex domain to inject some conditions,
 this shows what you can do:</p>
 <pre class="code python literal-block">
-<span class="kn">from</span> <span class="nn">odoo.osv.expression</span> <span class="kn">import</span> <span class="n">AND</span><span class="p">,</span> <span class="n">OR</span><span class="w">
-</span><span class="kn">from</span> <span class="nn">odoo.addons.base_domain_inverse_function.expression</span> <span class="kn">import</span> <span class="n">inverse_AND</span><span class="p">,</span> <span class="n">inverse_OR</span><span class="w">
+<span class="kn">from</span><span class="w"> </span><span class="nn">odoo.osv.expression</span><span class="w"> </span><span class="kn">import</span> <span class="n">AND</span><span class="p">,</span> <span class="n">OR</span><span class="w">
+</span><span class="kn">from</span><span class="w"> </span><span class="nn">odoo.addons.base_domain_inverse_function.expression</span><span class="w"> </span><span class="kn">import</span> <span class="n">inverse_AND</span><span class="p">,</span> <span class="n">inverse_OR</span><span class="w">
 
 </span><span class="n">domain</span> <span class="o">=</span> <span class="n">AND</span><span class="p">([</span><span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="p">,</span> <span class="n">d3</span><span class="p">])</span><span class="w">
 </span><span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="p">,</span> <span class="n">d3</span> <span class="o">=</span> <span class="n">inverse_AND</span><span class="p">(</span><span class="n">domain</span><span class="p">)</span><span class="w">
@@ -412,7 +412,7 @@ this shows what you can do:</p>
 <div class="section" id="known-issues-roadmap">
 <h1><a class="toc-backref" href="#toc-entry-2">Known issues / Roadmap</a></h1>
 <ul class="simple">
-<li>Allow to inverse domains containing NOT <cite>‘!’</cite> operator</li>
+<li>Allow to inverse domains containing NOT ‘!’ operator</li>
 </ul>
 </div>
 <div class="section" id="bug-tracker">
@@ -420,7 +420,7 @@ this shows what you can do:</p>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/server-tools/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-<a class="reference external" href="https://github.com/OCA/server-tools/issues/new?body=module:%20base_domain_inverse_function%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+<a class="reference external" href="https://github.com/OCA/server-tools/issues/new?body=module:%20base_domain_inverse_function%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
@@ -447,18 +447,21 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 </div>
 <div class="section" id="other-credits">
 <h2><a class="toc-backref" href="#toc-entry-7">Other credits</a></h2>
-<p>The migration of this module from 13.0 to 16.0 was financially supported by Camptocamp</p>
+<p>The migration of this module from 13.0 to 16.0 was financially supported
+by Camptocamp</p>
 </div>
 <div class="section" id="maintainers">
 <h2><a class="toc-backref" href="#toc-entry-8">Maintainers</a></h2>
 <p>This module is maintained by the OCA.</p>
-<a class="reference external image-reference" href="https://odoo-community.org"><img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" /></a>
+<a class="reference external image-reference" href="https://odoo-community.org">
+<img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" />
+</a>
 <p>OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.</p>
 <p>Current <a class="reference external" href="https://odoo-community.org/page/maintainer-role">maintainer</a>:</p>
 <p><a class="reference external image-reference" href="https://github.com/grindtildeath"><img alt="grindtildeath" src="https://github.com/grindtildeath.png?size=40px" /></a></p>
-<p>This module is part of the <a class="reference external" href="https://github.com/OCA/server-tools/tree/16.0/base_domain_inverse_function">OCA/server-tools</a> project on GitHub.</p>
+<p>This module is part of the <a class="reference external" href="https://github.com/OCA/server-tools/tree/18.0/base_domain_inverse_function">OCA/server-tools</a> project on GitHub.</p>
 <p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
 </div>
 </div>

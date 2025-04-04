@@ -23,7 +23,7 @@ def inverse_combine(domain, operator):
     :return list: A list of domains
     """
     if operator not in DOMAIN_OPERATORS:
-        raise Exception("Unsupported operator parameter: %s" % operator)
+        raise Exception(f"Unsupported operator parameter: {operator}")
     operator_func = {AND_OPERATOR: AND, OR_OPERATOR: OR}
     other_operator = OR_OPERATOR if operator == AND_OPERATOR else AND_OPERATOR
     result = []
@@ -41,8 +41,10 @@ def inverse_combine(domain, operator):
             )
         if element in DOMAIN_OPERATORS:
             # 3. When we reach an operator:
-            # - pop the last item from the element stack to the corresponding operator stack
-            # - if such stack contains only one element, the actual operator applies to the two
+            # - pop the last item from the element stack to
+            # the corresponding operator stack
+            # - if such stack contains only one element,
+            # the actual operator applies to the two
             #   last items in the elements stack, so pop the penultimate item as well
             if element != operator:
                 if len(elements_stack) > 0:
@@ -62,8 +64,8 @@ def inverse_combine(domain, operator):
                         operator_elements_stack.append([elements_stack.pop()])
             last_element = element
         else:
-            # 4. If actual element is a tuple, but last element was an operator, empty the
-            # corresponding operator stack into the result
+            # 4. If actual element is a tuple, but last element was an operator,
+            # empty the corresponding operator stack into the result
             if last_element in DOMAIN_OPERATORS:
                 if last_element != operator:
                     result.append(operator_func[last_element](other_elements_stack))
