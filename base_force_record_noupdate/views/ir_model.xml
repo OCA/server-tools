@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-
     <record id="base_view_model_form_inherit" model="ir.ui.view">
         <field name="model">ir.model</field>
         <field name="inherit_id" ref="base.view_model_form" />
@@ -21,5 +20,4 @@ if records:
     records.toggle_force_noupdate()
         </field>
     </record>
-
 </odoo>
