@@ -1,11 +1,8 @@
 from . import models
 
 
-def post_init_hook(cr, registry):
+def post_init_hook(env):
     """Configure a list of models having ``force_noupdate`` set by default"""
-    from odoo import SUPERUSER_ID, api
-
-    env = api.Environment(cr, SUPERUSER_ID, {})
     mods = env["ir.model"].sudo()
     for model_name in [
         "res.lang",

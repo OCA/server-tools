@@ -1,12 +1,12 @@
 # Copyright 2024 Camptocamp (https://www.camptocamp.com).
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html)
 
-from odoo.tests import TransactionCase
+from odoo.addons.base.tests.common import BaseCommon
 
 MODULE = "base_force_record_noupdate"
 
 
-class TestBaseForceRecordNoupdate(TransactionCase):
+class TestBaseForceRecordNoupdate(BaseCommon):
     def test_00_test_model_create_noupdate_propagation(self):
         # NB: we're only testing models created through UI, the feature is not
         # supported yet for models created by the code itself

@@ -2,10 +2,10 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html)
 
 from odoo import api, fields, models
-from odoo.tools.cache import ormcache
+from odoo.tools import ormcache
 
 
-class Model(models.Model):
+class IrModel(models.Model):
     _inherit = "ir.model"
 
     force_noupdate = fields.Boolean("Force No-Update")
@@ -13,20 +13,20 @@ class Model(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         mods = super().create(vals_list)
-        type(self)._get_noupdate_model_ids.clear_cache(self.browse())
+        self.env.registry.clear_cache()
         self._propagate_noupdate_to_model_data()
         return mods
 
     def write(self, vals):
         res = super().write(vals)
         if "force_noupdate" in vals:
-            type(self)._get_noupdate_model_ids.clear_cache(self.browse())
+            self.env.registry.clear_cache()
             self._propagate_noupdate_to_model_data()
         return res
 
     def unlink(self):
         res = super().unlink()
-        type(self)._get_noupdate_model_ids.clear_cache(self.browse())
+        self.env.registry.clear_cache()
         return res
 
     def _get_noupdate_models(self):
