@@ -37,7 +37,6 @@ jobs:
         include:
           - container: ghcr.io/oca/oca-ci/py3.10-odoo17.0:latest
             include: "database_cleanup"
-            makepot: "true"
             name: Rebel test with Odoo
           - container: ghcr.io/oca/oca-ci/py3.10-ocb17.0:latest
             include: "database_cleanup"
@@ -49,7 +48,6 @@ jobs:
           - container: ghcr.io/oca/oca-ci/py3.10-ocb17.0:latest
             exclude: "database_cleanup"
             name: test with OCB
-            makepot: "true"
     services:
       postgres:
         image: postgres:12.0
