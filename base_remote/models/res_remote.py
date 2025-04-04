@@ -31,7 +31,7 @@ class ResRemote(models.Model):
         try:
             hostname, alias, ips = socket.gethostbyaddr(addr)
         except socket.herror:
-            logging.warning("Remote with ip %s could not be found" % addr)
+            logging.warning(f"Remote with ip {addr} could not be found")
             hostname = False
         remote = self.search([("name", "=ilike", hostname or addr)])
         if not remote:
