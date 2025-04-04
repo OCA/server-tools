@@ -11,7 +11,7 @@ class ResUsers(models.Model):
     _inherit = "res.users"
 
     @classmethod
-    def _auth_check_remote(cls, login, method):
+    def _auth_check_remote(cls, credential, method):
         """Force a method to raise an AccessDenied on falsey return."""
         with cls.pool.cursor() as cr:
             env = api.Environment(cr, SUPERUSER_ID, {})
@@ -26,17 +26,15 @@ class ResUsers(models.Model):
 
     # Override all auth-related core methods
     @classmethod
-    def _login(cls, db, login, password, user_agent_env):
+    def _login(cls, db, credential, user_agent_env):
         return cls._auth_check_remote(
-            login,
-            lambda: super(ResUsers, cls)._login(db, login, password, user_agent_env),
+            credential,
+            lambda: super(ResUsers, cls)._login(db, credential, user_agent_env),
         )
 
     @classmethod
-    def authenticate(cls, db, login, password, user_agent_env):
+    def authenticate(cls, db, credential, user_agent_env):
         return cls._auth_check_remote(
-            login,
-            lambda: super(ResUsers, cls).authenticate(
-                db, login, password, user_agent_env
-            ),
+            credential,
+            lambda: super(ResUsers, cls).authenticate(db, credential, user_agent_env),
         )
