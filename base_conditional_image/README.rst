@@ -109,6 +109,10 @@ Contributors
 
   - Son Ho <sonhd@trobz.com>
 
+- `Heliconia Solutions Pvt. Ltd. <https://www.heliconia.io>`__
+
+  - Bhavesh Heliconia
+
 Other credits
 -------------
 

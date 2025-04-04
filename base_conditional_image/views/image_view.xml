@@ -4,12 +4,12 @@
         <field name="name">conditional.image.tree</field>
         <field name="model">conditional.image</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name" />
                 <field name="model_name" />
                 <field name="company_id" />
                 <field name="selector" />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -48,7 +48,7 @@
     <record id="conditional_image_action" model="ir.actions.act_window">
         <field name="name">Conditional Images</field>
         <field name="res_model">conditional.image</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <record model="ir.ui.menu" id="conditional_image_menu">
