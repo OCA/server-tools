@@ -46,7 +46,7 @@ class ConditionalImageConsumerMixin(models.AbstractModel):
 
         for record in self:
             images_found = conditional_images.filtered(
-                lambda img: record._conditional_image_evaluate_selector(img)
+                lambda record, img: record._conditional_image_evaluate_selector(img)
             )
             values = {
                 "image_1920": False,
