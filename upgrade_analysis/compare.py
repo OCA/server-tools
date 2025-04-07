@@ -128,8 +128,10 @@ def fieldprint(old, new, field, text, reprs):
             text += f" [{old['table']}]"
         if field == "relation":
             text += " [nothing to do]"
-    reprs[module_map(old["module"])].append(f"{fullrepr}: {text}")
+    if field != "module":
+        reprs[module_map(new["module"])].append(f"{fullrepr}: {text}")
     if field == "module":
+        reprs[module_map(old["module"])].append(f"{fullrepr}: {text}")
         text = f"previously in module {old[field]}"
         fullrepr = "{:<12} / {:<24} / {:<30}".format(
             new["module"], old["model"], fieldrepr
@@ -210,9 +212,6 @@ def compare_sets(old_records, new_records):
     new_models = {column["model"] for column in new_records}
     old_models = {column["model"] for column in old_records}
 
-    matched_direct = 0
-    matched_other_module = 0
-    matched_other_type = 0
     in_obsolete_models = 0
 
     obsolete_models = []
@@ -244,6 +243,23 @@ def compare_sets(old_records, new_records):
         return count
 
     matched_direct = match(
+        ["module", "mode", "model", "field", "type"],
+        [
+            "relation",
+            "type",
+            "selection_keys",
+            "_inherits",
+            "stored",
+            "isfunction",
+            "isrelated",
+            "required",
+            "table",
+            "_order",
+        ],
+    )
+
+    # same module, other type
+    matched_other_type = match(
         ["module", "mode", "model", "field"],
         [
             "relation",
@@ -259,7 +275,7 @@ def compare_sets(old_records, new_records):
         ],
     )
 
-    # other module, same type and operation
+    # other module, same type
     matched_other_module = match(
         ["mode", "model", "field", "type"],
         [
@@ -276,10 +292,28 @@ def compare_sets(old_records, new_records):
         ],
     )
 
-    # other module, same operation, other type
-    matched_other_type = match(
-        ["module", "mode", "model", "field"],
+    # same module, other type
+    matched_other_type += match(
+        ["module", "model", "field"],
         [
+            "relation",
+            "type",
+            "selection_keys",
+            "_inherits",
+            "stored",
+            "isfunction",
+            "isrelated",
+            "required",
+            "table",
+            "_order",
+        ],
+    )
+
+    # other module, other type
+    matched_other_module_other_type = match(
+        ["mode", "model", "field"],
+        [
+            "module",
             "relation",
             "type",
             "selection_keys",
@@ -326,7 +360,7 @@ def compare_sets(old_records, new_records):
         )
         if extra_message:
             extra_message = " " + extra_message
-        fieldprint(column, "", "", "DEL" + extra_message, reprs)
+        fieldprint(column, column, "", "DEL" + extra_message, reprs)
 
     for column in new_records:
         if column["field"] == "_order":
@@ -350,13 +384,15 @@ def compare_sets(old_records, new_records):
         )
         if extra_message:
             extra_message = " " + extra_message
-        fieldprint(column, "", "", "NEW" + extra_message, reprs)
+        fieldprint(column, column, "", "NEW" + extra_message, reprs)
 
     for line in [
         "# %d fields matched," % (origlen - len(old_records)),
         "# Direct match: %d" % matched_direct,
         "# Found in other module: %d" % matched_other_module,
         "# Found with different type: %d" % matched_other_type,
+        "# Found in other module with different type: %d"
+        % matched_other_module_other_type,
         "# In obsolete models: %d" % in_obsolete_models,
         "# Not matched: %d" % len(old_records),
         "# New columns: %d" % len(new_records),
