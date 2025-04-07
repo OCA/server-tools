@@ -37,8 +37,12 @@ def model_rename_map(model):
     return apriori.renamed_models.get(model, model)
 
 
+def model_merge_map(model):
+    return apriori.merged_models.get(model, model)
+
+
 def model_map(model):
-    return apriori.renamed_models.get(model, apriori.merged_models.get(model, model))
+    return apriori.renamed_models.get(model, model_merge_map(model))
 
 
 def inv_model_map(model):
@@ -489,6 +493,15 @@ def compare_model_sets(old_records, new_records):
                     reprs[module_map(column["module"])].append(text)
                     reprs["general"].append(
                         f"obsolete model {model} "
+                        f"[module {module_map(column['module'])}]"
+                    )
+                elif model_merge_map(model) in new_models:
+                    text = f"obsolete model {model} (merged to {model_map(model)})"
+                    if column["model_type"]:
+                        text += f" [{column['model_type']}]"
+                    reprs[module_map(column["module"])].append(text)
+                    reprs["general"].append(
+                        f"obsolete model {model} (merged to {model_map(model)}) "
                         f"[module {module_map(column['module'])}]"
                     )
                 else:
