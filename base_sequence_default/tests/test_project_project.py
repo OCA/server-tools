@@ -2,16 +2,17 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl-3.0)
 
 
-from odoo.tests.common import Form, TransactionCase
+from odoo.tests.common import TransactionCase
 
 from ..models.base import SEQUENCE_PREFIX
 
 
 class BaseSequenceDefaultCase(TransactionCase):
-    def setUp(self):
-        super().setUp()
-        is_model = self.env["ir.sequence"]
-        self.partner_seqs = is_model.create(
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        is_model = cls.env["ir.sequence"]
+        cls.partner_seqs = is_model.create(
             [
                 {
                     "name": "Partner name",
@@ -34,10 +35,6 @@ class BaseSequenceDefaultCase(TransactionCase):
 
     def test_partner_default_field(self):
         """Test that new created partner has the correct default field values."""
-        partner_f = Form(self.env["res.partner"])
-        self.assertEqual(partner_f.name, False)
-        self.assertEqual(partner_f.mobile, False)
-        partner_f.name = "-"
-        partner = partner_f.save()
+        partner = self.env["res.partner"].create({"name": "-"})
         self.assertEqual(partner.name, "PN/001")
         self.assertEqual(partner.mobile, "+34 000000001")
