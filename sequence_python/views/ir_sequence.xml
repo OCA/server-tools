@@ -13,11 +13,11 @@
                             widget="ace"
                             options="{'mode': 'python'}"
                             placeholder="number"
-                            attrs="{'invisible': [('use_python_code', '=', False)]}"
+                            invisible="use_python_code == False"
                         />
                         <field
                             name="python_code_preview"
-                            attrs="{'invisible': [('use_python_code', '=', False)]}"
+                            invisible="use_python_code == False"
                         />
                     </group>
                     <div style="margin-top: 4px;">
