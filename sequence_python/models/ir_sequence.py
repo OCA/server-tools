@@ -47,6 +47,8 @@ class IrSequence(models.Model):
         ]
         wrap_uuid = wrap_module(uuid, uuid_elements)
         wrap_string = wrap_module(string, string.__all__)
+        if isinstance(number_next, tuple):
+            number_next = number_next[0]
         return {
             "number": number_next[0] if isinstance(number_next, tuple) else number_next,
             "number_padded": f"{number_next:0{self.padding}d}",
