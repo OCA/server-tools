@@ -17,32 +17,33 @@ Sequence from Python expression
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github
-    :target: https://github.com/OCA/server-tools/tree/16.0/sequence_python
+    :target: https://github.com/OCA/server-tools/tree/18.0/sequence_python
     :alt: OCA/server-tools
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/server-tools-16-0/server-tools-16-0-sequence_python
+    :target: https://translation.odoo-community.org/projects/server-tools-18-0/server-tools-18-0-sequence_python
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/server-tools&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/server-tools&target_branch=18.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module allows to generate a sequence by a Python formula expression.
+This module allows to generate a sequence by a Python formula
+expression.
 
-Besides common Python functions and operators, it provides several functions
-like 'random' and 'uuid' in the expression, as well as variables such as the
-next number in the sequence. These are also listed next to the input field
-on the sequence form view.
+Besides common Python functions and operators, it provides several
+functions like 'random' and 'uuid' in the expression, as well as
+variables such as the next number in the sequence. These are also listed
+next to the input field on the sequence form view.
 
-If you want to add more variables for use in the expression, you can extend
-this module.
+If you want to add more variables for use in the expression, you can
+extend this module.
 
 Use cases for this module could be:
 
 - You want to generate alphanumeric numbering
-- You want to apply some math to the number to prevent customers from knowing
-  their place in the sequence
+- You want to apply some math to the number to prevent customers from
+  knowing their place in the sequence
 - You want to use UUID
 
 **Table of contents**
@@ -55,14 +56,14 @@ Usage
 
 To use this module, you need to:
 
-* Go to the form view of an `ir.sequence` record
-* Go to the Python tab
-* Enable the 'Use Python' checkbox
-* Change the default 'number' expression to something more fancy.
+- Go to the form view of an ir.sequence record
+- Go to the Python tab
+- Enable the 'Use Python' checkbox
+- Change the default 'number' expression to something more fancy.
 
 Examples:
 
-.. code-block:: python
+.. code:: python
 
    # To separate the Odoo-generated number with hyphens eg. 0-0-0-0-1
    '-'.join(number_padded)
@@ -81,7 +82,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/server-tools/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/server-tools/issues/new?body=module:%20sequence_python%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/server-tools/issues/new?body=module:%20sequence_python%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -89,18 +90,18 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Sunflower IT
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Tom Blauwendraat <tom@sunflowerweb.nl>
-* Francesco Apruzzese <cescoap@gmail.com>
+- Tom Blauwendraat <tom@sunflowerweb.nl>
+- Francesco Apruzzese <cescoap@gmail.com>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -112,6 +113,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/16.0/sequence_python>`_ project on GitHub.
+This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/18.0/sequence_python>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
