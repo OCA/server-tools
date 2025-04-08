@@ -49,7 +49,7 @@ class IrSequence(models.Model):
         wrap_string = wrap_module(string, string.__all__)
         return {
             "number": number_next[0] if isinstance(number_next, tuple) else number_next,
-            "number_padded": "%%0%sd" % self.padding % number_next,
+            "number_padded": f"{number_next:0{self.padding}d}",
             "sequence": self,
             "random": wrap_random,
             "uuid": wrap_uuid,
@@ -82,4 +82,4 @@ class IrSequence(models.Model):
                 + interpolated_suffix
             )
         else:
-            return super(IrSequence, self).get_next_char(number_next)
+            return super().get_next_char(number_next)

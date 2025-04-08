@@ -26,24 +26,24 @@
                         >The expression you type here will be evaluated as the next number. The following variables can be used:</p>
                         <ul>
                             <li><code
-                                >number</code>: The next number of the sequence (integer)</li>
+                            >number</code>: The next number of the sequence (integer)</li>
                             <li><code
-                                >number_padded</code>: Padded string of the next number of the sequence</li>
+                            >number_padded</code>: Padded string of the next number of the sequence</li>
                             <li><code
-                                >sequence</code>: Odoo record of the sequence being used</li>
+                            >sequence</code>: Odoo record of the sequence being used</li>
                             <li><code
-                                >uuid</code>: The Python uuid module, eg. to use <code
-                                >uuid.uuid4()</code></li>
+                            >uuid</code>: The Python uuid module, eg. to use <code
+                            >uuid.uuid4()</code></li>
                             <li><code
-                                >random</code>: The Python random module, eg. to use <code
-                                >random.randint(0, 9)</code></li>
+                            >random</code>: The Python random module, eg. to use <code
+                            >random.randint(0, 9)</code></li>
                             <li><code
-                                >string</code>: The Python string module, eg. to use <code
-                                >random.choices(string.ascii_letters + string.digits, k=4)</code></li>
+                            >string</code>: The Python string module, eg. to use <code
+                            >random.choices(string.ascii_letters + string.digits, k=4)</code></li>
                         </ul>
                         <p>Aside from this, you may use several <a
-                                href="https://github.com/odoo/odoo/blob/13.0/odoo/tools/safe_eval.py#L271"
-                            >builtin Python functions</a></p>
+                            href="https://github.com/odoo/odoo/blob/13.0/odoo/tools/safe_eval.py#L271"
+                        >builtin Python functions</a></p>
                     </div>
                 </page>
             </xpath>
