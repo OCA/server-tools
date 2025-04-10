@@ -6,7 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2025-04-10 11:05+0000\n"
+"Last-Translator: Andrzej Gerasimuk <a.gerasimuk@archimedes.pl>\n"
 "Language-Team: none\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -14,82 +15,83 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: tracking_manager
 #: model_terms:ir.ui.view,arch_db:tracking_manager.track_o2m_m2m_template
 msgid "<b>Change :</b>"
-msgstr ""
+msgstr "<b>Zmiana :</b>"
 
 #. module: tracking_manager
 #: model_terms:ir.ui.view,arch_db:tracking_manager.track_o2m_m2m_template
 msgid "<b>Delete :</b>"
-msgstr ""
+msgstr "<b>Usunięcie :</b>"
 
 #. module: tracking_manager
 #: model_terms:ir.ui.view,arch_db:tracking_manager.track_o2m_m2m_template
 msgid "<b>New :</b>"
-msgstr ""
+msgstr "<b>Utworzono :</b>"
 
 #. module: tracking_manager
 #: model_terms:ir.ui.view,arch_db:tracking_manager.view_model_form
 msgid "Active"
-msgstr ""
+msgstr "Aktywny"
 
 #. module: tracking_manager
 #: model:ir.model.fields,field_description:tracking_manager.field_ir_model__active_custom_tracking
 msgid "Active Custom Tracking"
-msgstr ""
+msgstr "Aktywne śledzenie zmian"
 
 #. module: tracking_manager
 #: model:ir.model.fields,field_description:tracking_manager.field_ir_model__automatic_custom_tracking
 msgid "Automatic Custom Tracking"
-msgstr ""
+msgstr "Automatycznie śledzenie zmian"
 
 #. module: tracking_manager
 #: model_terms:ir.ui.view,arch_db:tracking_manager.view_model_form
 msgid "Automatic configuration"
-msgstr ""
+msgstr "Konfiguracja automatyczna"
 
 #. module: tracking_manager
 #: model:ir.model,name:tracking_manager.model_base
 msgid "Base"
-msgstr ""
+msgstr "Baza"
 
 #. module: tracking_manager
 #: model_terms:ir.ui.view,arch_db:tracking_manager.track_o2m_m2m_template
 msgid "Changed"
-msgstr ""
+msgstr "Zmienione"
 
 #. module: tracking_manager
 #: model:ir.model.fields,field_description:tracking_manager.field_ir_model_fields__custom_tracking
 #: model_terms:ir.ui.view,arch_db:tracking_manager.view_model_form
 msgid "Custom Tracking"
-msgstr ""
+msgstr "Śledzenie zmian"
 
 #. module: tracking_manager
 #: model_terms:ir.ui.view,arch_db:tracking_manager.view_model_track_fields_search
 msgid "Custom Tracking OFF"
-msgstr ""
+msgstr "Śledzenie zmian WYŁ"
 
 #. module: tracking_manager
 #: model_terms:ir.ui.view,arch_db:tracking_manager.view_model_track_fields_search
 msgid "Custom Tracking ON"
-msgstr ""
+msgstr "Śledzenie zmian WŁ"
 
 #. module: tracking_manager
 #: model:ir.model.fields,field_description:tracking_manager.field_ir_model__automatic_custom_tracking_domain
 msgid "Domain"
-msgstr ""
+msgstr "Domena"
 
 #. module: tracking_manager
 #: model:ir.model,name:tracking_manager.model_mail_thread
 msgid "Email Thread"
-msgstr ""
+msgstr "Wątek email"
 
 #. module: tracking_manager
 #: model:ir.model,name:tracking_manager.model_ir_model_fields
 msgid "Fields"
-msgstr ""
+msgstr "Pola"
 
 #. module: tracking_manager
 #: model:ir.model.fields,help:tracking_manager.field_ir_model__automatic_custom_tracking
@@ -97,48 +99,50 @@ msgid ""
 "If marked, the fields matching the matched by the domain below will be "
 "automatically tracked for this model."
 msgstr ""
+"Jeżeli zaznaczono, pola pasujące do domeny poniżej będą automatycznie "
+"śledzone dla tego modelu."
 
 #. module: tracking_manager
 #: model:ir.model,name:tracking_manager.model_mail_tracking_value
 msgid "Mail Tracking Value"
-msgstr ""
+msgstr "Wartość śledzenia poczty"
 
 #. module: tracking_manager
 #: model:ir.model,name:tracking_manager.model_ir_model
 msgid "Models"
-msgstr ""
+msgstr "Modele"
 
 #. module: tracking_manager
 #: model:ir.model.fields,field_description:tracking_manager.field_ir_model_fields__native_tracking
 msgid "Native Tracking"
-msgstr ""
+msgstr "Śledzenie natywne"
 
 #. module: tracking_manager
 #: model:ir.model.fields,field_description:tracking_manager.field_ir_model_fields__trackable
 msgid "Trackable"
-msgstr ""
+msgstr "Możliwe do śledzenia"
 
 #. module: tracking_manager
 #: model:ir.actions.act_window,name:tracking_manager.ir_model_fields_action
 msgid "Trackable Fields"
-msgstr ""
+msgstr "Pola możliwe do śledzenia"
 
 #. module: tracking_manager
 #: model:ir.model.fields,field_description:tracking_manager.field_ir_model__tracked_field_count
 msgid "Tracked Field Count"
-msgstr ""
+msgstr "Liczba pól śledzonych"
 
 #. module: tracking_manager
 #: model_terms:ir.ui.view,arch_db:tracking_manager.view_model_form
 msgid "Tracked Fields"
-msgstr ""
+msgstr "Śledzone pola"
 
 #. module: tracking_manager
 #: model_terms:ir.ui.view,arch_db:tracking_manager.view_model_form
 msgid "Update"
-msgstr ""
+msgstr "Aktualizuj"
 
 #. module: tracking_manager
 #: model_terms:ir.ui.view,arch_db:tracking_manager.view_model_form
 msgid "Update fields configuration"
-msgstr ""
+msgstr "Aktualizuj konfiguracje pól"
