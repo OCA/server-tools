@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright (C) 2022 Akretion (<http://www.akretion.com>).
+     @author Kévin Roche <kevin.roche@akretion.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_model_form" model="ir.ui.view">
+        <field name="name">tracking.ir.model form</field>
+        <field name="model">ir.model</field>
+        <field name="inherit_id" ref="base.view_model_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/group[1]" position="after">
+                <group string="Custom Tracking">
+                    <group>
+                        <field name="active_custom_tracking" string="Active" />
+                        <field
+                            name="automatic_custom_tracking"
+                            string="Automatic configuration"
+                            invisible="not active_custom_tracking"
+                        />
+                        <field
+                            name="automatic_custom_tracking_domain"
+                            invisible="not automatic_custom_tracking"
+                            required="automatic_custom_tracking"
+                            widget="domain"
+                            options="{'model': 'ir.model.fields', 'in_dialog': True, 'foldable': True}"
+                        />
+                        <label
+                            for="update_custom_tracking"
+                            string="Update fields configuration"
+                            invisible="not automatic_custom_tracking"
+                        />
+                        <button
+                            name="update_custom_tracking"
+                            string="Update"
+                            icon="fa-refresh"
+                            type="object"
+                            class="btn-secondary"
+                            invisible="not automatic_custom_tracking"
+                        />
+                    </group>
+                </group>
+            </xpath>
+
+            <xpath expr="//sheet/group[1]" position="before">
+                <div class="oe_button_box" name="button_box">
+                    <button
+                        name="%(ir_model_fields_action)d"
+                        type="action"
+                        class="oe_stat_button"
+                        icon="fa-server"
+                        invisible="not active_custom_tracking"
+                    >
+                        <field
+                            name="tracked_field_count"
+                            widget="statinfo"
+                            string="Tracked Fields"
+                        />
+                    </button>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
