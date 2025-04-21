@@ -49,6 +49,9 @@ class Base(models.AbstractModel):
         )
         for field_name, owner_field_name in self._tm_get_fields_to_notify():
             owner = self[field_name]
+            # Skip processing if the owner is not a valid Odoo recordset or is empty.
+            if not (owner and isinstance(owner, models.BaseModel)):
+                continue
             data[owner._name][owner.id][owner_field_name].append(
                 {
                     "mode": mode,
