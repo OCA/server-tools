@@ -22,7 +22,7 @@ msgid ""
 "(object.state in ('draft', 'sent') and 'Quotation - %s' % (object.name)) or "
 "'Order - %s' % (object.name)"
 msgstr ""
-"(object.state in ('draft', 'sent') y 'Presupuesto - %s' % (object.name)) o "
+"(object.state in ('draft', 'sent') and 'Presupuesto - %s' % (object.name)) or "
 "'Pedido - %s' % (object.name)"
 
 #. module: excel_import_export_demo
