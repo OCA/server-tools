@@ -2,13 +2,15 @@
 # Copyright 2016 Serpent Consulting Services Pvt. Ltd.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from odoo.osv import expression
-from odoo.tests.common import TransactionCase
 from odoo.tools.sql import SQL
 
+from odoo.addons.base.tests.common import BaseCommon
 
-class QueryGenerationCase(TransactionCase):
-    def setUp(self):
-        super().setUp()
+
+class QueryGenerationCase(BaseCommon):
+    @classmethod
+    def setUpClass(self):
+        super().setUpClass()
         self.ResPartner = self.env["res.partner"]
         self.TrgmIndex = self.env["trgm.index"]
         self.ResPartnerCategory = self.env["res.partner.category"]
@@ -22,7 +24,9 @@ class QueryGenerationCase(TransactionCase):
 
         # create new query with fuzzy search operator
         query = self.ResPartner._where_calc([("name", "%", "test")], active_test=False)
-        from_clause, where_clause, where_clause_params = query.get_sql()
+        from_clause = query.from_clause.code
+        where_clause = query.where_clause.code
+        where_clause_params = query.where_clause.params
 
         # the % parameter has to be escaped (%%) for the string replation
         self.assertEqual(where_clause, """("res_partner"."name" %% %s)""")
@@ -41,10 +45,12 @@ class QueryGenerationCase(TransactionCase):
     def test_fuzzy_where_generation_translatable(self):
         """Check the generation of the where clause for translatable fields."""
         # create new query with fuzzy search operator
-        query = self.ResPartnerCategory.with_context(lang="de_DE")._where_calc(
+        query = self.ResPartnerCategory.with_context(lang="en_US")._where_calc(
             [("name", "%", "Goschaeftlic")], active_test=False
         )
-        from_clause, where_clause, where_clause_params = query.get_sql()
+        from_clause = query.from_clause.code
+        where_clause = query.where_clause.code
+        where_clause_params = query.where_clause.params
 
         # the % parameter has to be escaped (%%) for the string replation
         self.assertIn(
