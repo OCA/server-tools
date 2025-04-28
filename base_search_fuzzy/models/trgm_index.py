@@ -12,7 +12,6 @@ _logger = logging.getLogger(__name__)
 
 
 class TrgmIndex(models.Model):
-
     """Model for Trigram Index."""
 
     _name = "trgm.index"
