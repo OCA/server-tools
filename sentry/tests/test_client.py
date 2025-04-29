@@ -253,3 +253,21 @@ class TestClientSetup(TransactionCase):
             RELEASE,
             "Failed to use 'sentry_release' parameter appropriately",
         )
+
+    def test_ignore_regex(self):
+        level, msg = (
+            logging.ERROR,
+            "ERROR: SerializationFailure('could not "
+            "serialize access due to concurrent update')",
+        )
+        self.log(level, msg)
+        self.assertEventCaptured(self.client, "error", msg)
+        self.patch_config(
+            {
+                "sentry_ignore_regex": "SerializationFailure",
+            }
+        )
+        client = initialize_sentry(config)._client
+        client.transport = InMemoryTransport({"dsn": self.dsn})
+        self.log(level, msg)
+        self.assertEventNotCaptured(client, "error", msg)
