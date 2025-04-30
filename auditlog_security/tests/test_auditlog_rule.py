@@ -1,7 +1,6 @@
 # Copyright 2024 Therp B.V.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from psycopg2.errors import UniqueViolation
 
 from odoo.tests.common import TransactionCase
 
@@ -21,6 +20,7 @@ class TestAuditlogRule(TransactionCase):
             {
                 "name": "Test Rule",
                 "model_id": cls.model.id,
+                "log_selected_fields_only": True,
             }
         )
         cls.field = cls.env["ir.model.fields"].create(
@@ -38,20 +38,6 @@ class TestAuditlogRule(TransactionCase):
                 "field_ids": [(6, 0, [cls.field.id])],
             }
         )
-
-    def test_unique_model_constraint(self):
-        """Test unique constraint on model_id field"""
-
-        # Attempting to create a rule with the same
-        # model_id should raise a UniqueViolation error
-
-        with self.assertRaises(UniqueViolation):
-            self.env["auditlog.rule"].create(
-                {
-                    "name": "Duplicate Rule",
-                    "model_id": self.model.id,
-                }
-            )
 
     def test_get_field_names_of_rule(self):
         """Test cached method _get_field_names_of_rule"""
@@ -112,18 +98,6 @@ class TestAuditlogRule(TransactionCase):
             "Cache should be recalculated and match expected values.",
         )
 
-    def test_onchange_model_id(self):
-        """Test that related access rules are removed when model_id is changed"""
-        access_rule = self.env["auditlog.line.access.rule"].create(
-            {
-                "name": "Access Rule",
-                "auditlog_rule_id": self.rule.id,
-            }
-        )
-        self.assertTrue(access_rule.exists())
-        self.rule.onchange_model_id()
-        self.assertFalse(access_rule.exists())
-
     def test_create_server_action(self):
         """Test the creation of server action linked to the audit log rule"""
         action = self.rule._create_server_action()
@@ -131,7 +105,8 @@ class TestAuditlogRule(TransactionCase):
         self.assertEqual(self.rule.server_action_id, action)
 
     def test_subscribe_method(self):
-        """Test the subscribe method with rule regeneration and server action creation"""
+
+        """Test the subscribe method with server action creation"""
         action_count_before = self.env["ir.actions.server"].search_count([])
         self.rule.subscribe()
         action_count_after = self.env["ir.actions.server"].search_count([])

@@ -1,24 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-     <record model="ir.ui.view" id="view_auditlog_log_tree">
-        <field name="name">auditlog.log.form</field>
-        <field name="model">auditlog.log</field>
-        <field name="inherit_id" ref="auditlog.view_auditlog_log_tree" />
-        <field name="arch" type="xml">
-            <xpath expr="//tree" position="attributes">
-                <attribute name="delete">false</attribute>
-            </xpath>
-        </field>
-     </record>
+
 
     <record model="ir.ui.view" id="view_auditlog_log_form">
         <field name="name">auditlog.log.form</field>
         <field name="model">auditlog.log</field>
         <field name="inherit_id" ref="auditlog.view_auditlog_log_form" />
         <field name="arch" type="xml">
-            <xpath expr="//form" position="attributes">
-                <attribute name="delete">false</attribute>
-            </xpath>
             <xpath
                 expr="//field[@name='line_ids']/form/group[2]/field[@name='old_value']"
                 position="before"
@@ -39,7 +27,7 @@
         <field name="name">auditlog.log.line.form</field>
         <field name="model">auditlog.log.line</field>
         <field name="arch" type="xml">
-                <form string="Log - Field updated" delete="0">
+                <form string="Log - Field updated">
                     <group>
                         <field name="field_id" readonly="1" />
                     </group>
@@ -59,13 +47,14 @@
         <field name="name">auditlog.log.line.tree</field>
         <field name="model">auditlog.log.line</field>
         <field name="arch" type="xml">
-            <tree delete="0">
+            <tree>
                 <field name="create_date" />
                 <field name="field_name" string="Changed" />
                 <field name="old_value_text" />
                 <field name="new_value_text" />
                 <field name="user_id" />
                 <field name="method" string="Type of operation" />
+                <field name="allowed_group_ids" invisible="1" />
             </tree>
         </field>
     </record>

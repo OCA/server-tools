@@ -1,8 +1,7 @@
 # Copyright 2021-2024 Therp B.V.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models, tools
-from odoo.exceptions import ValidationError
+from odoo import _, api, fields, models, modules, tools
 
 
 class AuditlogRule(models.Model):
@@ -16,14 +15,8 @@ class AuditlogRule(models.Model):
         "Server Action",
     )
     log_selected_fields_only = fields.Boolean(
-        default=True,
         help="Log only the selected fields, to save space avoid large DB data.",
     )
-
-    @api.constrains("model_id")
-    def unique_model(self):
-        if self.search_count([("model_id", "=", self.model_id.id)]) > 1:
-            raise ValidationError(_("A rule for this model already exists"))
 
     @api.model
     @tools.ormcache("model_name")
@@ -66,13 +59,13 @@ class AuditlogRule(models.Model):
         ]
         if any([field in values.keys() for field in cache_invalidating_fields]):
             # clear cache for all ormcache methods.
-            self.clear_caches()
-        return super(AuditlogRule, self).write(values)
+            modules.registry.Registry(self.env.cr.dbname).signal_changes()
+        return super().write(values)
 
     @api.onchange("model_id")
     def onchange_model_id(self):
         # if model changes we must wipe out all field ids
-        self.auditlog_line_access_rule_ids.unlink()
+        self.auditlog_line_access_rule_ids = False
 
     @api.model
     def _get_view_log_lines_action(self):
@@ -118,10 +111,7 @@ class AuditlogRule(models.Model):
         for rule in self:
             server_action = rule._create_server_action()
             server_action.create_action()
-        res = super(AuditlogRule, self).subscribe()
-        for rule in self:
-            rule.auditlog_line_access_rule_ids.regenerate_rules()
-        # rule now will have "View Log" Action, make that visible only for admin
+        res = super().subscribe()
         if res:
             self.action_id.write(
                 {"groups_id": [(6, 0, [self.env.ref("base.group_system").id])]}
@@ -130,7 +120,5 @@ class AuditlogRule(models.Model):
 
     def unsubscribe(self):
         for rule in self:
-            rule.auditlog_line_access_rule_ids.remove_rules()
-        for rule in self:
             rule.server_action_id.unlink()
-        return super(AuditlogRule, self).unsubscribe()
+        return super().unsubscribe()
