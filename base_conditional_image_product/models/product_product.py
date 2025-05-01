@@ -6,4 +6,4 @@ from odoo import models
 
 class ProductProduct(models.Model):
     _name = "product.product"
-    _inherit = ["product.product", "conditional.image.consumer.mixin"]
+    _inherit = ["conditional.image.consumer.mixin", "product.product"]
