@@ -6,7 +6,7 @@ from odoo import models
 
 class ResPartner(models.Model):
     _name = "res.partner"
-    _inherit = ["res.partner", "conditional.image.consumer.mixin"]
+    _inherit = ["conditional.image.consumer.mixin", "res.partner"]
 
     def _compute_images(self):
         result = super()._compute_images()
