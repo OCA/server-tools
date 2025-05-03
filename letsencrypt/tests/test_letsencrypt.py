@@ -382,6 +382,18 @@ class TestLetsencrypt(SingleTransactionCase):
         with open(cert_file, "wb") as file_:
             file_.write(cert.public_bytes(serialization.Encoding.PEM))
 
+    @classmethod
+    def _request_handler(cls, s, r, /, **kw):
+        if r.url.endswith("api.letsencrypt.org/directory"):
+            return type(
+                "DirectoryResponse",
+                (object,),
+                {
+                    "json": lambda: {},
+                },
+            )
+        return super()._request_handler(s, r, **kw)
+
     def tearDown(self):
         super().tearDown()
         shutil.rmtree(_get_data_dir(), ignore_errors=True)

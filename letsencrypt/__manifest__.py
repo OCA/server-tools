@@ -2,13 +2,13 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 {
     "name": "Let's Encrypt",
-    "version": "16.0.1.1.1",
+    "version": "17.0.1.0.0",
     "author": "Therp BV," "Tecnativa," "Acysos S.L," "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/server-tools",
     "license": "AGPL-3",
     "category": "Tools",
     "summary": "Request SSL certificates from letsencrypt.org",
-    "depends": ["base"],
+    "depends": ["base_setup"],
     "maintainers": ["hbrunn"],
     "data": [
         "data/ir_config_parameter.xml",
