@@ -25,6 +25,6 @@ class Letsencrypt(http.Controller):
         try:
             with open(path, encoding="utf-8") as key:
                 return key.read()
-        except IOError:
+        except OSError:
             _logger.exception(_("Error opening file %s"), path)
         raise request.not_found()

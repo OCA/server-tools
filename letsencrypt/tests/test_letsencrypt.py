@@ -112,7 +112,6 @@ class TestLetsencrypt(SingleTransactionCase):
     def test_dns_challenge(
         self, poll, new_order, new_account, answer_challenge, sleep, query, dnsupd
     ):
-
         record = None
 
         def register_update(challenge, domain, token):
