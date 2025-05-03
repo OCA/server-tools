@@ -369,9 +369,9 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !! source digest: sha256:cdcc2b718b9ac4d05dc0a5b5d624f71c7402f605b11447a79d1d9161938f2a2d
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/server-tools/tree/16.0/letsencrypt"><img alt="OCA/server-tools" src="https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/server-tools-16-0/server-tools-16-0-letsencrypt"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/server-tools&amp;target_branch=16.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
-<p>This module was written to have your Odoo installation request SSL certificates
-from <a class="reference external" href="https://letsencrypt.org">https://letsencrypt.org</a> automatically.</p>
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/server-tools/tree/17.0/letsencrypt"><img alt="OCA/server-tools" src="https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/server-tools-17-0/server-tools-17-0-letsencrypt"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/server-tools&amp;target_branch=17.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
+<p>This module was written to have your Odoo installation request SSL
+certificates from <a class="reference external" href="https://letsencrypt.org">https://letsencrypt.org</a> automatically.</p>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
@@ -385,9 +385,11 @@ from <a class="reference external" href="https://letsencrypt.org">https://letsen
 <li><a class="reference internal" href="#credits" id="toc-entry-6">Credits</a><ul>
 <li><a class="reference internal" href="#authors" id="toc-entry-7">Authors</a></li>
 <li><a class="reference internal" href="#contributors" id="toc-entry-8">Contributors</a></li>
-<li><a class="reference internal" href="#other-credits" id="toc-entry-9">Other credits</a></li>
+<li><a class="reference internal" href="#other-credits" id="toc-entry-9">Other credits</a><ul>
 <li><a class="reference internal" href="#acme-implementation" id="toc-entry-10">ACME implementation</a></li>
 <li><a class="reference internal" href="#icon" id="toc-entry-11">Icon</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#maintainers" id="toc-entry-12">Maintainers</a></li>
 </ul>
 </li>
@@ -395,66 +397,77 @@ from <a class="reference external" href="https://letsencrypt.org">https://letsen
 </div>
 <div class="section" id="installation">
 <h1><a class="toc-backref" href="#toc-entry-1">Installation</a></h1>
-<p>After installation, this module generates a private key for your account at
-letsencrypt.org automatically in <tt class="docutils literal">$data_dir/letsencrypt/account.key</tt>. If you
-want or need to use your own account key, replace the file.</p>
-<p>For certificate requests to work, your site needs to be accessible via plain
-HTTP, see below for configuration examples in case you force your clients to
-the SSL version.</p>
-<p>After installation, trigger the cronjob <cite>Update letsencrypt certificates</cite> and
-watch your log for messages.</p>
+<p>After installation, this module generates a private key for your account
+at letsencrypt.org automatically in
+<tt class="docutils literal">$data_dir/letsencrypt/account.key</tt>. If you want or need to use your
+own account key, replace the file.</p>
+<p>For certificate requests to work, your site needs to be accessible via
+plain HTTP, see below for configuration examples in case you force your
+clients to the SSL version.</p>
+<p>After installation, trigger the cronjob Update letsencrypt certificates
+and watch your log for messages.</p>
 </div>
 <div class="section" id="configuration">
 <h1><a class="toc-backref" href="#toc-entry-2">Configuration</a></h1>
-<p>This addons requests a certificate for the domain named in the configuration
-parameter <tt class="docutils literal">web.base.url</tt> - if this comes back as <tt class="docutils literal">localhost</tt> or the like,
-the module doesn’t request anything.</p>
-<p>Futher self-explanatory settings are in Settings -&gt; General Settings. There you
-can add further domains to the CSR, add a custom script that updates your DNS
-and add a script that will be used to reload your web server (if needed).
-The number of domains that can be added to a certificate is
-<a class="reference external" href="https://letsencrypt.org/docs/rate-limits/">capped at 100</a>. A wildcard
+<p>This addons requests a certificate for the domain named in the
+configuration parameter <tt class="docutils literal">web.base.url</tt> - if this comes back as
+<tt class="docutils literal">localhost</tt> or the like, the module doesn’t request anything.</p>
+<p>Futher self-explanatory settings are in Settings -&gt; General Settings.
+There you can add further domains to the CSR, add a custom script that
+updates your DNS and add a script that will be used to reload your web
+server (if needed). The number of domains that can be added to a
+certificate is <a class="reference external" href="https://letsencrypt.org/docs/rate-limits/">capped at
+100</a>. A wildcard
 certificate can be used to avoid that limit.</p>
-<p>Note that all those domains must be publicly reachable on port 80 via HTTP, and
-they must have an entry for <tt class="docutils literal"><span class="pre">.well-known/acme-challenge</span></tt> pointing to
-<tt class="docutils literal"><span class="pre">$datadir/letsencrypt/acme-challenge</span></tt> of your odoo instance.</p>
-<p>Since DNS changes can take some time to propagate, when we respond to a DNS challenge
-and the server tries to check our response, it might fail (and probably will).
-The solution to this is documented in <a class="reference external" href="https://tools.ietf.org/html/rfc8555#section-8.2">https://tools.ietf.org/html/rfc8555#section-8.2</a>
-and basically is a <tt class="docutils literal"><span class="pre">Retry-After</span></tt> header under which we can instruct the server to
-retry the challenge.
-At the time these lines were written, Boulder had not implemented this functionality.
-This prompted us to use <tt class="docutils literal">letsencrypt.backoff</tt> configuration parameter, which is the
-amount of minutes this module will try poll the server to retry validating the answer
-to our challenge, specifically it is the <tt class="docutils literal">deadline</tt> parameter of <tt class="docutils literal">poll_and_finalize</tt>.</p>
+<p>Note that all those domains must be publicly reachable on port 80 via
+HTTP, and they must have an entry for <tt class="docutils literal"><span class="pre">.well-known/acme-challenge</span></tt>
+pointing to <tt class="docutils literal"><span class="pre">$datadir/letsencrypt/acme-challenge</span></tt> of your odoo
+instance.</p>
+<p>Since DNS changes can take some time to propagate, when we respond to a
+DNS challenge and the server tries to check our response, it might fail
+(and probably will). The solution to this is documented in
+<a class="reference external" href="https://tools.ietf.org/html/rfc8555#section-8.2">https://tools.ietf.org/html/rfc8555#section-8.2</a> and basically is a
+<tt class="docutils literal"><span class="pre">Retry-After</span></tt> header under which we can instruct the server to retry
+the challenge. At the time these lines were written, Boulder had not
+implemented this functionality. This prompted us to use
+<tt class="docutils literal">letsencrypt.backoff</tt> configuration parameter, which is the amount of
+minutes this module will try poll the server to retry validating the
+answer to our challenge, specifically it is the <tt class="docutils literal">deadline</tt> parameter
+of <tt class="docutils literal">poll_and_finalize</tt>.</p>
 </div>
 <div class="section" id="usage">
 <h1><a class="toc-backref" href="#toc-entry-3">Usage</a></h1>
-<p>The module sets up a cronjob that requests and renews certificates automatically.</p>
-<p>Certificates are renewed a month before they expire. Renewal is then attempted
-every day until it succeeds.</p>
+<p>The module sets up a cronjob that requests and renews certificates
+automatically.</p>
+<p>Certificates are renewed a month before they expire. Renewal is then
+attempted every day until it succeeds.</p>
 <p>After the first run, you’ll find a file called <tt class="docutils literal">domain.crt</tt> in
-<tt class="docutils literal">$datadir/letsencrypt</tt>, configure your SSL proxy to use this file as certificate.</p>
+<tt class="docutils literal">$datadir/letsencrypt</tt>, configure your SSL proxy to use this file as
+certificate.</p>
 <div class="section" id="in-depth-configuration">
 <h2><a class="toc-backref" href="#toc-entry-4">In depth configuration</a></h2>
-<p>If you want to use multiple domains on your CSR then you have to configure them
-from Settings -&gt; General Settings. If you use a wildcard in any of those domains
-then letsencrypt will return a DNS challenge. In order for that challenge to be
-answered you will need to <strong>either</strong> provide a script (as seen in General Settings)
-or install a module that provides support for your DNS provider. In that module
-you will need to create a function in the letsencrypt model with the name
-<tt class="docutils literal">_respond_challenge_dns_$DNS_PROVIDER</tt> where <tt class="docutils literal">$DNS_PROVIDER</tt> is the name of your
-provider and can be any string with length greater than zero, and add the name
-of your DNS provider in the settings dns_provider selection field.</p>
-<p>In any case if a script path is inserted in the settings page, it will be run
-in case you want to update multiple DNS servers.</p>
-<p>A reload command can be set in the Settings as well in case you need to reload
-your web server. This by default is <tt class="docutils literal">sudo /usr/sbin/service nginx reload</tt></p>
+<p>If you want to use multiple domains on your CSR then you have to
+configure them from Settings -&gt; General Settings. If you use a wildcard
+in any of those domains then letsencrypt will return a DNS challenge. In
+order for that challenge to be answered you will need to <strong>either</strong>
+provide a script (as seen in General Settings) or install a module that
+provides support for your DNS provider. In that module you will need to
+create a function in the letsencrypt model with the name
+<tt class="docutils literal">_respond_challenge_dns_$DNS_PROVIDER</tt> where <tt class="docutils literal">$DNS_PROVIDER</tt> is the
+name of your provider and can be any string with length greater than
+zero, and add the name of your DNS provider in the settings dns_provider
+selection field.</p>
+<p>In any case if a script path is inserted in the settings page, it will
+be run in case you want to update multiple DNS servers.</p>
+<p>A reload command can be set in the Settings as well in case you need to
+reload your web server. This by default is
+<tt class="docutils literal">sudo /usr/sbin/service nginx reload</tt></p>
 <p>You’ll also need a matching sudo configuration, like:</p>
 <pre class="literal-block">
 your_odoo_user ALL = NOPASSWD: /usr/sbin/service nginx reload
 </pre>
-<p>Further, if you force users to https, you’ll need something like for nginx:</p>
+<p>Further, if you force users to https, you’ll need something like for
+nginx:</p>
 <pre class="literal-block">
 if ($scheme = &quot;http&quot;) {
     set $redirect_https 1;
@@ -473,18 +486,18 @@ RewriteCond %{HTTPS} !=on
 RewriteCond %{REQUEST_URI} &quot;!^/.well-known/&quot;
 RewriteRule ^/?(.*) https://%{SERVER_NAME}/$1 [R,L]
 </pre>
-<p>In case you need to redirect other nginx sites to your Odoo instance, declare
-an upstream for your odoo instance and do something like:</p>
+<p>In case you need to redirect other nginx sites to your Odoo instance,
+declare an upstream for your odoo instance and do something like:</p>
 <pre class="literal-block">
 location /.well-known {
     proxy_pass    http://yourodooupstream;
 }
 </pre>
-<p>If you’re using a multi-database installation (with or without dbfilter option)
-where /web/databse/selector returns a list of more than one database, then
-you need to add <tt class="docutils literal">letsencrypt</tt> addon to wide load addons list
-(by default, only <tt class="docutils literal">web</tt> addon), setting <tt class="docutils literal"><span class="pre">--load</span></tt> option.
-For example, <tt class="docutils literal"><span class="pre">--load=web,letsencrypt</span></tt></p>
+<p>If you’re using a multi-database installation (with or without dbfilter
+option) where /web/databse/selector returns a list of more than one
+database, then you need to add <tt class="docutils literal">letsencrypt</tt> addon to wide load addons
+list (by default, only <tt class="docutils literal">web</tt> addon), setting <tt class="docutils literal"><span class="pre">--load</span></tt> option. For
+example, <tt class="docutils literal"><span class="pre">--load=web,letsencrypt</span></tt></p>
 </div>
 </div>
 <div class="section" id="bug-tracker">
@@ -492,7 +505,7 @@ For example, <tt class="docutils literal"><span class="pre">--load=web,letsencry
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/server-tools/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-<a class="reference external" href="https://github.com/OCA/server-tools/issues/new?body=module:%20letsencrypt%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+<a class="reference external" href="https://github.com/OCA/server-tools/issues/new?body=module:%20letsencrypt%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
@@ -519,18 +532,18 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 </div>
 <div class="section" id="other-credits">
 <h2><a class="toc-backref" href="#toc-entry-9">Other credits</a></h2>
-</div>
 <div class="section" id="acme-implementation">
-<h2><a class="toc-backref" href="#toc-entry-10">ACME implementation</a></h2>
+<h3><a class="toc-backref" href="#toc-entry-10">ACME implementation</a></h3>
 <ul class="simple">
 <li><a class="reference external" href="https://github.com/certbot/certbot/tree/0.22.x/acme">https://github.com/certbot/certbot/tree/0.22.x/acme</a></li>
 </ul>
 </div>
 <div class="section" id="icon">
-<h2><a class="toc-backref" href="#toc-entry-11">Icon</a></h2>
+<h3><a class="toc-backref" href="#toc-entry-11">Icon</a></h3>
 <ul class="simple">
 <li><a class="reference external" href="https://helloworld.letsencrypt.org">https://helloworld.letsencrypt.org</a></li>
 </ul>
+</div>
 </div>
 <div class="section" id="maintainers">
 <h2><a class="toc-backref" href="#toc-entry-12">Maintainers</a></h2>
@@ -543,7 +556,7 @@ mission is to support the collaborative development of Odoo features and
 promote its widespread use.</p>
 <p>Current <a class="reference external" href="https://odoo-community.org/page/maintainer-role">maintainer</a>:</p>
 <p><a class="reference external image-reference" href="https://github.com/hbrunn"><img alt="hbrunn" src="https://github.com/hbrunn.png?size=40px" /></a></p>
-<p>This module is part of the <a class="reference external" href="https://github.com/OCA/server-tools/tree/16.0/letsencrypt">OCA/server-tools</a> project on GitHub.</p>
+<p>This module is part of the <a class="reference external" href="https://github.com/OCA/server-tools/tree/17.0/letsencrypt">OCA/server-tools</a> project on GitHub.</p>
 <p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
 </div>
 </div>
