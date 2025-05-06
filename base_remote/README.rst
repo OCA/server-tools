@@ -70,6 +70,16 @@ Contributors
 
    -  Bhavesh Heliconia
 
+-  Khoi (Kien Kim) <khoikk@trobz.com>
+
+Other credits
+-------------
+
+The backport of this module from 18.0 to 17.0 was financially supported
+by:
+
+-  Camptocamp
+
 Maintainers
 -----------
 
