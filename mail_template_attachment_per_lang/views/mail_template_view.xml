@@ -8,8 +8,18 @@
         <field name="inherit_id" ref="mail.email_template_form" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='attachment_ids']" position="after">
-                <group>
-                    <field name="ir_attachment_language_ids">
+                <group
+                    name="language_attachments"
+                    string="Language Attachments"
+                    class="oe_inline"
+                >
+                    <field name="ir_attachment_language_method" string="Method" />
+                    <field
+                        name="ir_attachment_language_ids"
+                        nolabel="1"
+                        colspan="2"
+                        attrs="{'invisible': [('ir_attachment_language_method', '=', False)]}"
+                    >
                         <tree editable="top">
                             <field name="lang" />
                             <field

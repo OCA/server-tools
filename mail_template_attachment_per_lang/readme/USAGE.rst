@@ -7,4 +7,6 @@ To use the functionality:
 #. Configure a template (e.g. the sale order mail template)
 #. go to a sale order;
 #. click *Send by Email*;
-#. the attachments are added based on the customer's language.
+#. the attachments are added based on the email's language or the customer's
+   language (which might not be the same), depending on the configuration of
+   the template.
