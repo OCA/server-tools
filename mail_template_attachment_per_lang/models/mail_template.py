@@ -7,6 +7,14 @@ from odoo import fields, models
 class MailTemplate(models.Model):
     _inherit = "mail.template"
 
+    ir_attachment_language_method = fields.Selection(
+        selection=[
+            ("partner_lang", "Partner Language"),
+            ("template_lang", "Template Language"),
+        ],
+        string="Language Attachment Method",
+        default="partner_lang",
+    )
     ir_attachment_language_ids = fields.One2many(
         string="Language Dependent Attachments",
         comodel_name="ir.attachment.language",
@@ -20,17 +28,22 @@ class MailTemplate(models.Model):
             res_ids = [res_ids]
             multi = False
         res = super().generate_email(res_ids, fields)
-        attached = []
+        lang_codes = dict(self._render_lang(res_ids))
         for res_id in res.keys():
-            mail = res[res_id]
-            partner_ids = "partner_ids" in mail and mail["partner_ids"] or False
-            if not partner_ids:
-                continue
-            for partner in self.env["res.partner"].browse(partner_ids):
+            attached = []
+            lang_code_list = []
+            if self.ir_attachment_language_method == "partner_lang":
+                mail = res[res_id]
+                partner_ids = "partner_ids" in mail and mail["partner_ids"] or False
+                partners = self.env["res.partner"].browse(partner_ids)
+                lang_code_list = [p.lang for p in partners]
+            elif self.ir_attachment_language_method == "template_lang":
+                lang_code_list = [lang_codes.get(res_id)]
+            for lang_code in lang_code_list:
                 for lang_attach in self.ir_attachment_language_ids.filtered(
-                    lambda a: a.lang == partner.lang
+                    lambda a: a.lang == lang_code
                 ):
-                    if lang_attach.attachment_id.id in attached:
+                    if lang_attach.id in attached:
                         continue
                     if not res[res_id].get("attachments"):
                         res[res_id]["attachments"] = []
