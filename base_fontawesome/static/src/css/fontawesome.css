@@ -1,6 +1,7 @@
 @font-face {
     font-family: "FontAwesome";
-    src: url("../../lib/fontawesome-6.5.1/webfonts/fa-solid-900.woff2?v=6.5.1")
+    src:
+        url("../../lib/fontawesome-6.5.1/webfonts/fa-solid-900.woff2?v=6.5.1")
             format("woff2"),
         url("../../lib/fontawesome-6.5.1/webfonts/fa-solid-900.ttf?v=6.5.1")
             format("truetype"),
