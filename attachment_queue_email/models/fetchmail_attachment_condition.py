@@ -1,38 +1,12 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import api, fields, models
-
-
-class FetchmailServer(models.Model):
-    _inherit = "fetchmail.server"
-
-    company_id = fields.Many2one(
-        "res.company",
-        string="Company",
-        required=True,
-        default=lambda self: self.env.company,
-    )
-    attachment_condition_ids = fields.One2many(
-        "fetchmail.attachment.condition",
-        "server_id",
-        string="Attachment Condition",
-        help="Files attached to the emails matching these conditions will be imported "
-        "in Odoo as 'Attachment Queue' objects",
-    )
-
-    @api.onchange("attachment_condition_ids")
-    def onchange_attachment_condition(self):
-        for server in self:
-            if server.attachment_condition_ids:
-                server.object_id = self.env["ir.model"].search(
-                    [("model", "=", "attachment.queue")]
-                )
-                server.attach = True
+from odoo import fields, models
 
 
 class FetchmailAttachmentCondition(models.Model):
     _name = "fetchmail.attachment.condition"
     _description = "Fetchmail Attachment Conditions"
+    _check_company_auto = True
 
     name = fields.Char(
         string="Condition Name",
@@ -42,6 +16,11 @@ class FetchmailAttachmentCondition(models.Model):
         help="If empty, catches the emails from every senders.\n"
         "Otherwise catches the emails where the sender's email contains the given "
         "characters",
+    )
+    email_to = fields.Char(
+        help="If empty, catches the email no matter the recipient.\n"
+        "Otherwise catches the emails where the recipients emails contains the given "
+        "characters.",
     )
     email_subject = fields.Char(
         help="If empty, catches the emails with every kind of Subjects.\n"
@@ -57,4 +36,10 @@ class FetchmailAttachmentCondition(models.Model):
         help="The 'file type' is transmited to the 'Attachment Queue' objects created "
         "from the selected emails attachments.\nIt will allow Odoo to recognize "
         "what do do with them once created.",
+    )
+    company_id = fields.Many2one(
+        "res.company",
+        string="Company",
+        required=True,
+        default=lambda self: self.env.company,
     )

@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="view_email_server_form">
+        <field name="model">fetchmail.server</field>
+        <field name="inherit_id" ref="mail.view_email_server_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='configuration']/.." position="after">
+                <group string="Attachment Conditions" name="conditions">
+                    <field name="attachment_condition_ids" colspan="4" nolabel="1" />
+      	        </group>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

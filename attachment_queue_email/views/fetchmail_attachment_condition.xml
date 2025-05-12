@@ -1,25 +1,6 @@
 <?xml version="1.0" ?>
 <odoo>
 
-    <record model="ir.ui.view" id="view_email_server_form">
-        <field name="model">fetchmail.server</field>
-        <field name="inherit_id" ref="mail.view_email_server_form" />
-        <field name="arch" type="xml">
-            <field name="date" position="after">
-                <field
-                    name="company_id"
-                    widget="selection"
-                    groups="base.group_multi_company"
-                />
-            </field>
-            <xpath expr="//field[@name='configuration']/.." position="after">
-                <group string="Attachment Conditions" name="conditions">
-                    <field name="attachment_condition_ids" colspan="4" nolabel="1" />
-      	        </group>
-            </xpath>
-        </field>
-    </record>
-
    <!-- Views and menus for the new object fetchmail.attachment.condition -->
     <record id="view_fetchmail_attachment_condition_tree" model="ir.ui.view">
         <field name="name">view_fetchmail_attachment_condition_tree</field>
@@ -28,9 +9,11 @@
             <tree>
                 <field name="name" />
                 <field name="email_from" />
+                <field name="email_to" />
                 <field name="email_subject" />
                 <field name="file_extension" />
                 <field name="server_id" invisible="1" />
+                <field name="company_id" />
             </tree>
        </field>
     </record>
@@ -48,7 +31,9 @@
                       </h1>
                   </div>
                     <group string="Requirements" class="col-12 col-lg-6">
+                        <field name="company_id" />
                         <field name="email_from" />
+                        <field name="email_to" />
                         <field name="email_subject" />
                         <field name="file_extension" />
                     </group>
