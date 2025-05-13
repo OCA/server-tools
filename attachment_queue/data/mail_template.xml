@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+
+        <record id="attachment_failure_notification" model="mail.template">
+            <field name="email_to">{{object.failure_emails}}</field>
+            <field name="name">Attachment Failure notification</field>
+            <field name="subject">The attachment {{object.name}} has failed</field>
+            <field name="model_id" ref="attachment_queue.model_attachment_queue" />
+            <field
+            name="body_html"
+        ><![CDATA[
+                <p style="margin:0px 0px 10px 0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;">Hello,<br><br></p>
+                <p style="margin:0px 0px 10px 0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;">The attachment ${object.name} has failed with the following error message : <br>${object.state_message}<br></p><p style="margin:0px 0px 10px 0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;"></p>
+                <p style="margin:0px 0px 10px 0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;">Regards,<br></p>
+            ]]></field>
+        </record>
+
+</odoo>

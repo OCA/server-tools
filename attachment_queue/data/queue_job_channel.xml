@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="attachment_queue_job_channel" model="queue.job.channel">
+        <field name="name">attachment_queue</field>
+        <field name="parent_id" ref="queue_job.channel_root" />
+    </record>
+</odoo>
