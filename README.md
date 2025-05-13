@@ -21,6 +21,7 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
+[attachment_queue](attachment_queue/) | 17.0.1.0.0 | [![florian-dacosta](https://github.com/florian-dacosta.png?size=30px)](https://github.com/florian-dacosta) [![sebastienbeau](https://github.com/sebastienbeau.png?size=30px)](https://github.com/sebastienbeau) | Base module adding the concept of queue for processing files
 [auditlog](auditlog/) | 17.0.1.0.4 |  | Audit Log
 [auto_backup](auto_backup/) | 17.0.1.0.0 |  | Backups database
 [base_cron_exclusion](base_cron_exclusion/) | 17.0.1.0.0 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) [![ChrisOForgeFlow](https://github.com/ChrisOForgeFlow.png?size=30px)](https://github.com/ChrisOForgeFlow) | Allow you to select scheduled actions that should not run simultaneously.
