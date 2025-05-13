@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-28 21:28+0000\n"
-"PO-Revision-Date: 2023-12-27 13:35+0000\n"
+"PO-Revision-Date: 2025-05-13 09:23+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-server-tools-8-0/"
 "language/it/)\n"
@@ -27,12 +27,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: auth_supplier
 #: view:website:auth_signup.fields
 msgid "Account Type"
-msgstr "Tipo account"
+msgstr "Tipo conto"
 
 #. module: auth_supplier
 #: model:ir.module.category,name:auth_supplier.module_auth_supplier
