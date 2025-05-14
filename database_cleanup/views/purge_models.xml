@@ -27,7 +27,9 @@
         <field name="inherit_id" ref="tree_purge_line" />
         <field name="mode">primary</field>
         <field name="arch" type="xml">
-            <data />
+            <button name="purge" position="attributes">
+                <attribute name="string">Purge this model</attribute>
+            </button>
         </field>
     </record>
 
