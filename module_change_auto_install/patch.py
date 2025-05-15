@@ -49,6 +49,11 @@ def _get_modules_dict_auto_install_config(config_value):
 
 def _overload_load_manifest(module, mod_path=None):
     res = _original_load_manifest(module, mod_path=None)
+    if not res:
+        # Specific case where a previously available module marked as auto installable
+        # is NOT available in the addons path.
+        # In that case, avoid to crash when trying to get 'depends' key.
+        return
     auto_install = res.get("auto_install", False)
 
     modules_auto_install_enabled_dict = _get_modules_dict_auto_install_config(
