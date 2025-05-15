@@ -1,1 +1,3 @@
+# place an upper bound on cryptography for compatibility with pyopenssl 19 in Odoo's requirements.txt
+cryptography<37
 odoo-test-helper
