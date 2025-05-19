@@ -6,10 +6,10 @@ from math import floor
 
 from odoo_test_helper import FakeModelLoader
 
-from odoo.tests.common import SavepointCase
+from odoo.tests.common import TransactionCase
 
 
-class TestOrderByRelated(SavepointCase):
+class TestOrderByRelated(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()

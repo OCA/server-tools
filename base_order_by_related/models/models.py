@@ -39,10 +39,6 @@ class BaseModel(models.AbstractModel):
                 related_fname2,
             )
             model, alias, field = related_model, related_alias, field.related_field
-        # handle the case where the field is translated
-        if field.translate is True:
-            return model._generate_translated_field(alias, related_fname2, query)
-        else:
             return '"%s"."%s"' % (alias, related_fname2)
 
     @api.model
