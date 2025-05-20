@@ -302,15 +302,18 @@ def compare_sets(old_records, new_records):
     for column in old_records:
         if column["field"] == "_order":
             continue
-        # we do not care about removed non stored function fields
+        # we do not care about removed non stored function/related fields
         if not column["stored"] and (column["isfunction"] or column["isrelated"]):
             continue
         if column["mode"] == "create":
             column["mode"] = ""
+        printkeys = printkeys_old.copy()
+        if not column["stored"]:
+            printkeys.extend(["stored"])
         extra_message = ", ".join(
             [
-                k + ": " + str(column[k]) if k != str(column[k]) else k
-                for k in printkeys_old
+                k + ": " + str(column[k] or False) if k != str(column[k]) else k
+                for k in printkeys
                 if column[k]
             ]
         )
@@ -321,7 +324,7 @@ def compare_sets(old_records, new_records):
     for column in new_records:
         if column["field"] == "_order":
             continue
-        # we do not care about newly added non stored function fields
+        # we do not care about newly added non stored function/related fields
         if not column["stored"] and (column["isfunction"] or column["isrelated"]):
             continue
         if column["mode"] == "create":
@@ -329,9 +332,11 @@ def compare_sets(old_records, new_records):
         printkeys = printkeys_new.copy()
         if column["isfunction"] or column["isrelated"]:
             printkeys.extend(["isfunction", "isrelated", "stored"])
+        if not column["stored"]:
+            printkeys.extend(["stored"])
         extra_message = ", ".join(
             [
-                k + ": " + str(column[k]) if k != str(column[k]) else k
+                k + ": " + str(column[k] or False) if k != str(column[k]) else k
                 for k in printkeys
                 if column[k]
             ]
