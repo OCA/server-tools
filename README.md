@@ -36,6 +36,7 @@ addon | version | maintainers | summary
 [base_deterministic_session_gc](base_deterministic_session_gc/) | 14.0.1.0.0 |  | Provide a deterministic session garbage collection instead of the default random one
 [base_exception](base_exception/) | 14.0.2.1.1 | [![hparfr](https://github.com/hparfr.png?size=30px)](https://github.com/hparfr) [![sebastienbeau](https://github.com/sebastienbeau.png?size=30px)](https://github.com/sebastienbeau) | This module provide an abstract model to manage customizable exceptions to be applied on different models (sale order, invoice, ...)
 [base_fontawesome](base_fontawesome/) | 14.0.5.15.5 |  | Up to date Fontawesome resources.
+[base_force_record_noupdate](base_force_record_noupdate/) | 14.0.1.0.0 |  | Manually force noupdate=True on models
 [base_future_response](base_future_response/) | 14.0.1.0.2 | [![sbidoul](https://github.com/sbidoul.png?size=30px)](https://github.com/sbidoul) | Backport Odoo 16 FutureReponse mechanism.
 [base_generate_code](base_generate_code/) | 14.0.1.1.1 | [![Kev-Roche](https://github.com/Kev-Roche.png?size=30px)](https://github.com/Kev-Roche) | Code Generator
 [base_import_odoo](base_import_odoo/) | 14.0.1.0.0 |  | Import records from another Odoo instance

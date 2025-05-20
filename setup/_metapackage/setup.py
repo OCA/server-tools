@@ -23,6 +23,7 @@ setuptools.setup(
         'odoo14-addon-base_deterministic_session_gc',
         'odoo14-addon-base_exception',
         'odoo14-addon-base_fontawesome',
+        'odoo14-addon-base_force_record_noupdate',
         'odoo14-addon-base_future_response',
         'odoo14-addon-base_generate_code',
         'odoo14-addon-base_import_odoo',
