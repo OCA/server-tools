@@ -548,6 +548,8 @@ class UpgradeAnalysis(models.Model):
 
         start_version = connection.version
         end_version = release.major_version
+        module_width = 51
+        description_width = 49
 
         all_modules = sorted(list(set(all_remote_modules + all_local_modules)))
         module_descriptions = {}
@@ -577,9 +579,9 @@ class UpgradeAnalysis(models.Model):
                 )
             elif module in no_changes_modules:
                 status += "No DB layout changes. "
-            module_descriptions[module_description.ljust(51, " ")] = status.ljust(
-                49, " "
-            )
+            module_descriptions[
+                module_description.ljust(module_width, " ")[0 : module_width - 1] + " "
+            ] = status.ljust(description_width, " ")[0 : description_width - 1] + " "
 
         rendered_text = self.env["ir.qweb"]._render(
             "upgrade_analysis.module_coverage",
