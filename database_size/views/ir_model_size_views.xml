@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="ir_model_size_view_search" model="ir.ui.view">
+        <field name="model">ir.model.size</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="model" />
+                <group expand="0" string="Group By">
+                    <filter
+                        string="Date of Measurement"
+                        name="group_measurement_date"
+                        context="{'group_by': 'measurement_date:day'}"
+                    />
+                    <filter
+                        string="Model"
+                        name="group_model"
+                        context="{'group_by': 'model'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="ir_model_size_view_tree" model="ir.ui.view">
+        <field name="model">ir.model.size</field>
+        <field name="arch" type="xml">
+            <list
+                edit="false"
+                create="false"
+                delete="false"
+                class="ir_model_size_wrap_header"
+            >
+                <field name="measurement_date" />
+                <field name="model" optional="hide" />
+                <field name="model_name" />
+                <field name="total_model_size" />
+                <field name="total_database_size" />
+                <field name="total_table_size" optional="hide" />
+                <field name="table_size" optional="hide" />
+                <field name="indexes_size" optional="hide" />
+                <field name="relations_size" optional="hide" />
+                <field name="attachment_size" />
+                <field name="tuples" />
+            </list>
+        </field>
+    </record>
+    <record id="ir_model_size_view_form" model="ir.ui.view">
+        <field name="model">ir.model.size</field>
+        <field name="arch" type="xml">
+            <form edit="false" create="false" delete="false">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="measurement_date" style="margin-right: 1em;" />
+                            <field name="model" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="total_model_size" />
+                            <field name="total_database_size" />
+                            <field name="attachment_size" />
+                            <field name="tuples" />
+                        </group>
+                        <group>
+                            <field name="total_table_size" />
+                            <field name="table_size" />
+                            <field name="indexes_size" />
+                            <field name="relations_size" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page
+                            name="indexes"
+                            string="Indexes"
+                            invisible="not ir_model_index_size_ids"
+                        >
+                            <field name="ir_model_index_size_ids" mode="list">
+                                <list editable="bottom">
+                                    <field name="name" />
+                                    <field name="size" />
+                                </list>
+                            </field>
+                        </page>
+                        <page
+                            name="relations"
+                            string="Many2many tables"
+                            invisible="not ir_model_relation_size_ids"
+                        >
+                            <field name="ir_model_relation_size_ids" mode="list">
+                                <list editable="bottom">
+                                    <field name="name" />
+                                    <field name="size" />
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="ir_model_size_action" model="ir.actions.act_window">
+        <field name="name">Database Size per Model</field>
+        <field name="res_model">ir.model.size</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_group_measurement_date': 1}</field>
+    </record>
+    <menuitem
+        groups="base.group_system"
+        id="database_size_menu"
+        name="Database Size"
+        parent="base.menu_custom"
+        sequence="50"
+    />
+    <menuitem
+        action="ir_model_size_action"
+        id="ir_model_size_menu"
+        name="Size per Model"
+        parent="database_size_menu"
+        sequence="10"
+    />
+</odoo>
