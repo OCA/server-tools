@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+server_action_input_box.access_server_action_input_box,access_server_action_input_box,server_action_input_box.model_server_action_input_box,base.group_user,1,1,1,1
+server_action_input_box.access_server_action_input_box_line,access_server_action_input_box_line,server_action_input_box.model_server_action_input_box_line,base.group_user,1,1,1,1
