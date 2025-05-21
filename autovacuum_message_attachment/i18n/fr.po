@@ -280,6 +280,7 @@ msgstr "Tous"
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_test_partner_time_window__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_time_weekday__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_time_window_mixin__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_trgm_index__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_upgrade_analysis__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_upgrade_attribute__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_upgrade_comparison_config__assigned_attachment_ids
