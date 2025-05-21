@@ -54,8 +54,7 @@
                         <page string="Help" name="help_info">
                             <div style="margin-top: 4px;">
                                 <h4>Predefined Variables</h4>
-                                <p
-                                >All variables allowed in a server action such as:</p>
+                                <p>All variables allowed in a server action such as:</p>
                                 <ul>
                                     <li><code
                                         >env</code>: Odoo environment in which the action is triggered.</li>
