@@ -349,13 +349,13 @@ def compare_sets(old_records, new_records):
         if column["mode"] == "create":
             column["mode"] = ""
         printkeys = printkeys_old.copy()
-        if not column["stored"]:
+        if not column["stored"] and not column["mode"]:
             printkeys.extend(["stored"])
         extra_message = ", ".join(
             [
                 k + ": " + str(column[k] or False) if k != str(column[k]) else k
                 for k in printkeys
-                if column[k]
+                if k == "stored" or column[k]
             ]
         )
         if extra_message:
@@ -373,13 +373,13 @@ def compare_sets(old_records, new_records):
         printkeys = printkeys_new.copy()
         if column["isfunction"] or column["isrelated"]:
             printkeys.extend(["isfunction", "isrelated", "stored"])
-        if not column["stored"]:
+        if not column["stored"] and not column["mode"]:
             printkeys.extend(["stored"])
         extra_message = ", ".join(
             [
                 k + ": " + str(column[k] or False) if k != str(column[k]) else k
                 for k in printkeys
-                if column[k]
+                if k == "stored" or column[k]
             ]
         )
         if extra_message:
