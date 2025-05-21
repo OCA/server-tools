@@ -4,7 +4,7 @@
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
-_DEFAUTL_CODE = _(
+_DEFAULT_CODE = (
     "# ---Predefined Variables--- #\n"
     "# All variables allowed in a server action such as:\n"
     "#  - env: Odoo environment in which the action is triggered.\n"
@@ -35,7 +35,7 @@ class ServerActionInputBox(models.Model):
         inverse_name="server_action_input_box_id",
         string="Parameter lines",
     )
-    code = fields.Text(string="Python code", default=_DEFAUTL_CODE)
+    code = fields.Text(string="Python code", default=_DEFAULT_CODE)
     cancel_button = fields.Boolean("Add cancel button", default=True)
     ir_action_server_id = fields.Many2one("ir.actions.server", string="Server action")
     model_id = fields.Many2one(
