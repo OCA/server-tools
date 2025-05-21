@@ -8,7 +8,6 @@
         />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='custom_tracking']" position="after">
-
                 <field name="model" column_invisible="1" />
                 <field
                     name="tracking_domain"
