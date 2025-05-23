@@ -37,8 +37,12 @@ def model_rename_map(model):
     return apriori.renamed_models.get(model, model)
 
 
+def model_merge_map(model):
+    return apriori.merged_models.get(model, model)
+
+
 def model_map(model):
-    return apriori.renamed_models.get(model, apriori.merged_models.get(model, model))
+    return apriori.renamed_models.get(model, model_merge_map(model))
 
 
 def inv_model_map(model):
@@ -61,7 +65,7 @@ def compare_records(dict_old, dict_new, fields):
     with respect to the keys in the 'fields' arguments.
     Take apriori knowledge into account for mapped modules or
     model names.
-    Return True of False.
+    Return True or False.
     """
     for field in fields:
         if field == "module":
@@ -69,6 +73,9 @@ def compare_records(dict_old, dict_new, fields):
                 return False
         elif field == "model":
             if model_rename_map(dict_old["model"]) != dict_new["model"]:
+                return False
+        elif field == "relation":
+            if model_map(dict_old["relation"]) != dict_new["relation"]:
                 return False
         elif field == "other_prefix":
             if (
@@ -121,8 +128,10 @@ def fieldprint(old, new, field, text, reprs):
             text += f" [{old['table']}]"
         if field == "relation":
             text += " [nothing to do]"
-    reprs[module_map(old["module"])].append(f"{fullrepr}: {text}")
+    if field != "module":
+        reprs[module_map(new["module"])].append(f"{fullrepr}: {text}")
     if field == "module":
+        reprs[module_map(old["module"])].append(f"{fullrepr}: {text}")
         text = f"previously in module {old[field]}"
         fullrepr = "{:<12} / {:<24} / {:<30}".format(
             new["module"], old["model"], fieldrepr
@@ -203,9 +212,6 @@ def compare_sets(old_records, new_records):
     new_models = {column["model"] for column in new_records}
     old_models = {column["model"] for column in old_records}
 
-    matched_direct = 0
-    matched_other_module = 0
-    matched_other_type = 0
     in_obsolete_models = 0
 
     obsolete_models = []
@@ -237,6 +243,23 @@ def compare_sets(old_records, new_records):
         return count
 
     matched_direct = match(
+        ["module", "mode", "model", "field", "type"],
+        [
+            "relation",
+            "type",
+            "selection_keys",
+            "_inherits",
+            "stored",
+            "isfunction",
+            "isrelated",
+            "required",
+            "table",
+            "_order",
+        ],
+    )
+
+    # same module, other type
+    matched_other_type = match(
         ["module", "mode", "model", "field"],
         [
             "relation",
@@ -252,7 +275,7 @@ def compare_sets(old_records, new_records):
         ],
     )
 
-    # other module, same type and operation
+    # other module, same type
     matched_other_module = match(
         ["mode", "model", "field", "type"],
         [
@@ -269,10 +292,28 @@ def compare_sets(old_records, new_records):
         ],
     )
 
-    # other module, same operation, other type
-    matched_other_type = match(
-        ["module", "mode", "model", "field"],
+    # same module, other type
+    matched_other_type += match(
+        ["module", "model", "field"],
         [
+            "relation",
+            "type",
+            "selection_keys",
+            "_inherits",
+            "stored",
+            "isfunction",
+            "isrelated",
+            "required",
+            "table",
+            "_order",
+        ],
+    )
+
+    # other module, other type
+    matched_other_module_other_type = match(
+        ["mode", "model", "field"],
+        [
+            "module",
             "relation",
             "type",
             "selection_keys",
@@ -319,7 +360,7 @@ def compare_sets(old_records, new_records):
         )
         if extra_message:
             extra_message = " " + extra_message
-        fieldprint(column, "", "", "DEL" + extra_message, reprs)
+        fieldprint(column, column, "", "DEL" + extra_message, reprs)
 
     for column in new_records:
         if column["field"] == "_order":
@@ -343,13 +384,15 @@ def compare_sets(old_records, new_records):
         )
         if extra_message:
             extra_message = " " + extra_message
-        fieldprint(column, "", "", "NEW" + extra_message, reprs)
+        fieldprint(column, column, "", "NEW" + extra_message, reprs)
 
     for line in [
         "# %d fields matched," % (origlen - len(old_records)),
         "# Direct match: %d" % matched_direct,
         "# Found in other module: %d" % matched_other_module,
         "# Found with different type: %d" % matched_other_type,
+        "# Found in other module with different type: %d"
+        % matched_other_module_other_type,
         "# In obsolete models: %d" % in_obsolete_models,
         "# Not matched: %d" % len(old_records),
         "# New columns: %d" % len(new_records),
@@ -489,6 +532,15 @@ def compare_model_sets(old_records, new_records):
                     reprs[module_map(column["module"])].append(text)
                     reprs["general"].append(
                         f"obsolete model {model} "
+                        f"[module {module_map(column['module'])}]"
+                    )
+                elif model_merge_map(model) in new_models:
+                    text = f"obsolete model {model} (merged to {model_map(model)})"
+                    if column["model_type"]:
+                        text += f" [{column['model_type']}]"
+                    reprs[module_map(column["module"])].append(text)
+                    reprs["general"].append(
+                        f"obsolete model {model} (merged to {model_map(model)}) "
                         f"[module {module_map(column['module'])}]"
                     )
                 else:
