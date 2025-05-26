@@ -100,6 +100,7 @@ class UpgradeRecord(models.Model):
             "isfunction",
             "isproperty",
             "isrelated",
+            "translate",
             "relation",
             "required",
             "stored",
