@@ -119,6 +119,12 @@ def isrelated(field):
     return ""
 
 
+def istranslate(field):
+    if field.translate:
+        return "translate"
+    return ""
+
+
 def _get_relation(field):
     if field.type in ("many2many", "many2one", "one2many"):
         return field.comodel_name
@@ -154,6 +160,7 @@ def log_model(model, local_registry):
             "isfunction": isfunction(field),
             "isproperty": isproperty(field),
             "isrelated": isrelated(field),
+            "translate": istranslate(field),
             "relation": _get_relation(field),
             "table": field.relation if field.type == "many2many" else "",
             "required": field.required and "required" or "",
