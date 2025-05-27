@@ -4,7 +4,7 @@
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
-_DEFAUTL_CODE = _(
+_DEFAULT_CODE = _(
     "# ---Predefined Variables--- #\n"
     "# All variables allowed in a server action such as:\n"
     "#  - env: Odoo environment in which the action is triggered.\n"
@@ -35,7 +35,7 @@ class ServerActionInputBox(models.Model):
         inverse_name="server_action_input_box_id",
         string="Parameter lines",
     )
-    code = fields.Text(string="Python code", default=_DEFAUTL_CODE)
+    code = fields.Text(string="Python code", default=_DEFAULT_CODE)
     cancel_button = fields.Boolean("Add cancel button", default=True)
     ir_action_server_id = fields.Many2one("ir.actions.server", string="Server action")
     model_id = fields.Many2one(
@@ -169,28 +169,32 @@ else:
         run_server = action_server.with_context(**new_context).sudo().run()
         return run_server
 
+    def _get_data_type_conversion(self):
+        return {
+            "string": lambda s: s,
+            "int": int,
+            "float": float,
+            "bool": lambda b: b,
+        }
+
+    def _get_raw_data(self, line, parameters):
+        raw_value = parameters.get(line.name)
+        return raw_value or 0 if line.data_type != "string" else raw_value
+
     def parsed_parameters(self, parameters):
         parsed_parameters_dict = {}
-        for line in self.server_action_input_box_line_ids:
-            try:
-                if line.data_type != "string":
-                    raw_data = parameters[line.name] or 0
-                else:
-                    raw_data = parameters[line.name]
+        data_type_conversion = self._get_data_type_conversion()
 
-                data_type_conversion = {
-                    "string": lambda s: s,
-                    "int": int,
-                    "float": float,
-                    "bool": lambda b: b,
-                }
+        for line in self.server_action_input_box_line_ids:
+            raw_data = self._get_raw_data(line, parameters)
+            try:
                 convert_data = data_type_conversion[line.data_type]
                 data = convert_data(raw_data)
-            except Exception as e:
+            except ValueError as e:
                 raise UserError(
                     _(
-                        "The value '%(param_value)s' for '%(param_name)s' is not of type "
-                        "'%(data_type)s'."
+                        "The value '%(param_value)s' for '%(param_name)s' "
+                        "is not of type '%(data_type)s'."
                     )
                     % {
                         "param_value": parameters.get(line.name),
@@ -198,7 +202,9 @@ else:
                         "data_type": line.data_type,
                     }
                 ) from e
+
             parsed_parameters_dict[line.name] = data
+
         return parsed_parameters_dict
 
     def write(self, vals):
