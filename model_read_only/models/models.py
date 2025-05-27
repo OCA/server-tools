@@ -1,6 +1,6 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, exceptions, fields, models
+from odoo import SUPERUSER_ID, _, api, exceptions, fields, models
 from odoo.tools.safe_eval import safe_eval
 
 
@@ -32,7 +32,7 @@ class BaseModel(models.AbstractModel):
 
     @api.model
     def check_access_rights(self, operation, raise_exception=True):
-        if operation != "read":
+        if operation != "read" and self.env.user.id != SUPERUSER_ID:
             model = self.env["ir.model"]._get(self._name)
             no_access = False
             for restr in model.sudo().readonly_restriction_ids:

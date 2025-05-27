@@ -1,3 +1,4 @@
+from odoo import SUPERUSER_ID
 from odoo.exceptions import AccessError
 from odoo.tests.common import SavepointCase
 
@@ -150,4 +151,8 @@ class TestIrModel(SavepointCase):
         self.assertFalse(
             test_record.check_access_rights("write", False),
             msg="Write access right should be prevented",
+        )
+
+        self.assertTrue(
+            test_record.with_user(SUPERUSER_ID).check_access_rights("write", True),
         )
