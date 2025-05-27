@@ -63,48 +63,48 @@ Installation
 #. Install the module in your Odoo instance.
 #. Configure module settings according to your business requirements.
 
-Usage
+Usage 
 =====
-
+ 
 Access the application from the menu: Technical > Actions > Actions with parameters.
 
-.. image:: https://raw.githubusercontent.com/OCA/server-tools/15.0/server_action_input_box/static/src/img/tree_view.jpg
+.. image:: static/src/img/tree_view.jpg
    :alt: Access the application from the menu
    :width: 800px
 
 Example of action to change the text case.
 
-.. image:: https://raw.githubusercontent.com/OCA/server-tools/15.0/server_action_input_box/static/src/img/use_case_b_config.jpg
+.. image:: static/src/img/use_case_b_config.jpg
    :alt: Example of action to change the text case
    :width: 800px
 
 Access the action from the model menu.
 
-.. image:: https://raw.githubusercontent.com/OCA/server-tools/15.0/server_action_input_box/static/src/img/action_menu.jpg
+.. image:: static/src/img/action_menu.jpg
    :alt: View of the configured action input box
    :width: 800px
 
 View of the configured action input box.
 
-.. image:: https://raw.githubusercontent.com/OCA/server-tools/15.0/server_action_input_box/static/src/img/use_case_b_result.jpg
+.. image:: static/src/img/use_case_b_result.jpg
    :alt: View of the configured action input box
    :width: 800px
 
 Optionally you can activate write confirmation. Check on "Ask for Confirmation" field.
 
-.. image:: https://raw.githubusercontent.com/OCA/server-tools/15.0/server_action_input_box/static/src/img/write_confirmation_result.jpg
+.. image:: static/src/img/write_confirmation_result.jpg
    :alt: Optionally you can activate write confirmation
    :width: 800px
 
 Check on "Apply to linked field lines" field to apply to records from an on2many field (ex.: Journal Items).
 
-.. image:: https://raw.githubusercontent.com/OCA/server-tools/15.0/server_action_input_box/static/src/img/use_case_a_config.jpg
+.. image:: static/src/img/use_case_a_config.jpg
    :alt: Set an action to apply to records in a one2many field
    :width: 800px
 
 View of the configured action input box.
 
-.. image:: https://raw.githubusercontent.com/OCA/server-tools/15.0/server_action_input_box/static/src/img/use_case_a_result.jpg
+.. image:: static/src/img/use_case_a_result.jpg
    :alt: View of the configured action input box
    :width: 800px
 
