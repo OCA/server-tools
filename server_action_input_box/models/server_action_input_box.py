@@ -175,7 +175,7 @@ else:
             "float": float,
             "bool": lambda b: b,
         }
-    
+
     def _get_raw_data(self, line, parameters):
         raw_value = parameters.get(line.name)
         return raw_value or 0 if line.data_type != "string" else raw_value
