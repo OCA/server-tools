@@ -5,10 +5,10 @@
     "name": "Server Action Input Box",
     "summary": """Shows a parameter input box in a server action
     under the 'Action' menu of the model.""",
-    "author": "Jesús Sánchez - jesanmor, " "Odoo Community Association (OCA)",
+    "author": "Jesús Sánchez - jesanmor, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/server-tools",
     "maintainers": ["jesanmor"],
-    "development_status": "Production/Stable",
+    "development_status": "Beta",
     "category": "technical",
     "version": "15.0.1.0.0",
     "depends": [
