@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo import _, api, fields, models
-from odoo.exceptions import UserError
+from odoo.exceptions import ValidationError
 
 
 class ServerActionInputBoxLine(models.Model):
@@ -27,29 +27,23 @@ class ServerActionInputBoxLine(models.Model):
         required=True,
     )
 
-    def write(self, vals):
-        if "name" in vals:
-            if not vals["name"].isidentifier():
-                raise UserError(
+    @api.constrains("name", "server_action_input_box_id")
+    def _check_name(self):
+        for line in self:
+            if not line.name.isidentifier():
+                raise ValidationError(
                     _(
                         "'%s' is not a valid parameter name. \
                     Remove spaces and special characters or numbers at the beginning.",
-                        vals["name"],
+                        line.name,
                     )
                 )
-        record = super(ServerActionInputBoxLine, self).write(vals)
-        return record
-
-    @api.model_create_multi
-    def create(self, vals):
-        record = super(ServerActionInputBoxLine, self).create(vals)
-        for rec in record:
-            if not rec.name.isidentifier():
-                raise UserError(
-                    _(
-                        "'%s' is not a valid parameter name. \
-                        Remove spaces and special characters or numbers at the beginning.",
-                        rec.name,
-                    )
+            domain = [
+                ("server_action_input_box_id", "=", line.server_action_input_box_id.id),
+                ("name", "=", line.name),
+                ("id", "!=", line.id),
+            ]
+            if self.search_count(domain):
+                raise ValidationError(
+                    _("the unique name '%s' cannot be duplicated", line.name)
                 )
-        return record

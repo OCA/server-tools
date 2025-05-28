@@ -63,9 +63,9 @@ Installation
 #. Install the module in your Odoo instance.
 #. Configure module settings according to your business requirements.
 
-Usage 
+Usage
 =====
- 
+
 Access the application from the menu: Technical > Actions > Actions with parameters.
 
 .. image:: static/src/img/tree_view.jpg
