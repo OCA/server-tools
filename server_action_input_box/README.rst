@@ -84,6 +84,7 @@ Installation
 Usage
 =====
 
+
 Access the application from the menu: Technical > Actions > Actions with parameters.
 
 .. image:: static/src/img/tree_view.jpg
@@ -125,7 +126,7 @@ View of the configured action input box.
 .. image:: static/src/img/use_case_a_result.jpg
    :alt: View of the configured action input box
    :width: 800px
-
+   
 Bug Tracker
 ===========
 
