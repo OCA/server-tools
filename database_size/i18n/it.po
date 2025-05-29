@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-05-24 15:27+0000\n"
-"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"PO-Revision-Date: 2025-05-29 11:25+0000\n"
+"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -33,8 +33,8 @@ msgid ""
 "Attachment Size in MB. Includes overlap of files that are also attached to "
 "other models."
 msgstr ""
-"Dimensione allegato in MB. Includela sovrapposizione di file che sono "
-"allegati ad altri modelli."
+"Dimensione allegato in MB. Include la sovrapposizione di file che sono "
+"allegati anche ad altri modelli."
 
 #. module: database_size
 #: model:ir.model.fields,field_description:database_size.field_ir_model_size__table_size
@@ -112,17 +112,17 @@ msgstr "Dettagli"
 #. module: database_size
 #: model:ir.model,name:database_size.model_ir_model_index_size
 msgid "Disk space usage of a single index"
-msgstr "Dimensione utilizzo disco per singolo indice"
+msgstr "Utilizzo spazio su disco per singolo indice"
 
 #. module: database_size
 #: model:ir.model,name:database_size.model_ir_model_relation_size
 msgid "Disk space usage of a single many2many table"
-msgstr "Utilizzo disco per una singola tabella many2many"
+msgstr "Utilizzo spazio su disco per una singola tabella many2many"
 
 #. module: database_size
 #: model:ir.model,name:database_size.model_ir_model_size
 msgid "Disk space usage per model"
-msgstr "Utilizzo disco per modello"
+msgstr "Utilizzo spazio su disco per modello"
 
 #. module: database_size
 #: model:ir.model.fields,field_description:database_size.field_ir_model_index_size__display_name
@@ -141,7 +141,7 @@ msgstr "Righe stimate"
 #. module: database_size
 #: model:ir.model.fields,help:database_size.field_ir_model_size__measurement_date
 msgid "For the exact time, check the record's write_date."
-msgstr "Per l'ora di estrazione, controlla la write_date del record."
+msgstr "Per l'orario esatto, controllare la write_date del record."
 
 #. module: database_size
 #: model_terms:ir.ui.view,arch_db:database_size.ir_model_size_view_search
@@ -405,4 +405,4 @@ msgstr "Dimensione totale tabella in MB. include gli indici e le tabelle toast"
 #. module: database_size
 #: model:ir.model.fields,help:database_size.field_ir_model_size__total_model_size
 msgid "Total model size in MB. This includes attachments."
-msgstr "Dimensione totale modello in MB. Inclusi gli allegati."
+msgstr "Dimensione totale modello in MB inclusi gli allegati."
