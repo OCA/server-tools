@@ -14,5 +14,6 @@
         "views/res_config_settings.xml",
         "views/res_users_views.xml",
     ],
+    "maintainers": ["yostashiro", "aungkokolin1997"],
     "installable": True,
 }

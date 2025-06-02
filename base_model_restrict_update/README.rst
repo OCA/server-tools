@@ -103,6 +103,17 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
+.. |maintainer-yostashiro| image:: https://github.com/yostashiro.png?size=40px
+    :target: https://github.com/yostashiro
+    :alt: yostashiro
+.. |maintainer-aungkokolin1997| image:: https://github.com/aungkokolin1997.png?size=40px
+    :target: https://github.com/aungkokolin1997
+    :alt: aungkokolin1997
+
+Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
+
+|maintainer-yostashiro| |maintainer-aungkokolin1997| 
+
 This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/16.0/base_model_restrict_update>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
