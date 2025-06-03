@@ -117,4 +117,5 @@ class BaseExceptionModel(models.AbstractModel):
         exception_ids = self.detect_exceptions()
         if exception_ids and self.env.context.get("raise_exception", True):
             exceptions = self.env["exception.rule"].browse(exception_ids)
-            raise ValidationError("\n".join(exceptions.mapped("name")))
+            msg_list = [f"{e.name}: {e.description}" for e in exceptions]
+            raise ValidationError("\n".join(msg_list))
