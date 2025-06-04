@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-03 10:08+0000\n"
-"PO-Revision-Date: 2025-05-20 09:26+0000\n"
+"PO-Revision-Date: 2025-06-04 16:26+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -421,7 +421,7 @@ msgstr "Numero di insieme di modifiche di questo record in attesa"
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__count_changesets
 msgid "The overall number of changesets of this record"
-msgstr "Il numero totale di insieme di modifiche di questo record"
+msgstr "Numero totale di insiemi di modifiche di questo record"
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__sftp_password
