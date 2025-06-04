@@ -22,7 +22,7 @@ Available addons
 addon | version | maintainers | summary
 --- | --- | --- | ---
 [attachment_base_synchronize](attachment_base_synchronize/) | 11.0.1.0.0 |  | This module enhances ir.attachment for better control of import and export of files
-[attachment_unindex_content](attachment_unindex_content/) | 11.0.1.0.0 | [![moylop260](https://github.com/moylop260.png?size=30px)](https://github.com/moylop260) [![ebirbe](https://github.com/ebirbe.png?size=30px)](https://github.com/ebirbe) | Disable indexing of attachments
+[attachment_unindex_content](attachment_unindex_content/) | 11.0.1.0.0 | <a href='https://github.com/moylop260'><img src='https://github.com/moylop260.png' width='32' height='32' style='border-radius:50%;' alt='moylop260'/></a> <a href='https://github.com/ebirbe'><img src='https://github.com/ebirbe.png' width='32' height='32' style='border-radius:50%;' alt='ebirbe'/></a> | Disable indexing of attachments
 [auditlog](auditlog/) | 11.0.1.0.1 |  | Audit Log
 [auto_backup](auto_backup/) | 11.0.1.2.0 |  | Backups database
 [base_cron_exclusion](base_cron_exclusion/) | 11.0.1.0.0 |  | Allow you to select scheduled actions that should not run simultaneously.
@@ -35,7 +35,7 @@ addon | version | maintainers | summary
 [base_search_fuzzy](base_search_fuzzy/) | 11.0.1.0.0 |  | Fuzzy search with the PostgreSQL trigram extension
 [base_technical_user](base_technical_user/) | 11.0.1.0.0 |  | Add a technical user parameter on the company
 [base_view_inheritance_extension](base_view_inheritance_extension/) | 11.0.1.0.0 |  | Adds more operators for view inheritance
-[company_country](company_country/) | 11.0.1.0.0 | [![moylop260](https://github.com/moylop260.png?size=30px)](https://github.com/moylop260) [![luisg123v](https://github.com/luisg123v.png?size=30px)](https://github.com/luisg123v) | Set country to main company
+[company_country](company_country/) | 11.0.1.0.0 | <a href='https://github.com/moylop260'><img src='https://github.com/moylop260.png' width='32' height='32' style='border-radius:50%;' alt='moylop260'/></a> <a href='https://github.com/luisg123v'><img src='https://github.com/luisg123v.png' width='32' height='32' style='border-radius:50%;' alt='luisg123v'/></a> | Set country to main company
 [configuration_helper](configuration_helper/) | 11.0.1.0.0 |  | Configuration Helper
 [database_cleanup](database_cleanup/) | 11.0.1.0.1 |  | Database cleanup
 [datetime_formatter](datetime_formatter/) | 11.0.1.0.0 |  | Helper functions to give correct format to date[time] fields
@@ -49,7 +49,7 @@ addon | version | maintainers | summary
 [letsencrypt](letsencrypt/) | 11.0.2.0.0 |  | Request SSL certificates from letsencrypt.org
 [mail_cleanup](mail_cleanup/) | 11.0.1.0.0 |  | Mark as read or delete mails after a set time
 [mail_template_attachment_i18n](mail_template_attachment_i18n/) | 11.0.1.0.0 |  | Set language specific attachments on mail templates.
-[module_auto_update](module_auto_update/) | 11.0.2.0.4 | [![sbidoul](https://github.com/sbidoul.png?size=30px)](https://github.com/sbidoul) | Automatically update Odoo modules
+[module_auto_update](module_auto_update/) | 11.0.2.0.4 | <a href='https://github.com/sbidoul'><img src='https://github.com/sbidoul.png' width='32' height='32' style='border-radius:50%;' alt='sbidoul'/></a> | Automatically update Odoo modules
 [nsca_client](nsca_client/) | 11.0.1.0.0 |  | Send passive alerts to monitor your Odoo application.
 [onchange_helper](onchange_helper/) | 11.0.1.0.0 |  | Technical module that ease execution of onchange in Python code
 [profiler](profiler/) | 11.0.2.0.0 |  | profiler
