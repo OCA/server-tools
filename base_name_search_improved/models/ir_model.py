@@ -241,3 +241,46 @@ class IrModel(models.Model):
         if "add_smart_search" in vals:
             self.env.registry.clear_cache("templates")
         return super().write(vals)
+
+    def _register_hook(self):
+        def make_smart_name_search(original_name_search):
+            def wrapper(
+                self, name="", args=None, operator="ilike", limit=100, **kwargs
+            ):
+                original_results = original_name_search(
+                    self, name, args, operator, limit, **kwargs
+                )
+                if not name or (limit and len(original_results) >= limit):
+                    return original_results
+                seen_ids = {res[0] for res in original_results}
+                remaining_limit = limit - len(original_results) if limit else None
+                smart_results = Base.name_search(
+                    self, name=name, args=args, operator=operator, limit=remaining_limit
+                )
+                additional_results = [
+                    (res_id, res_name)
+                    for res_id, res_name in smart_results
+                    if res_id not in seen_ids
+                ]
+                return original_results + additional_results
+
+            wrapper._is_smart_patched = True
+            wrapper.origin = original_name_search
+            wrapper._api = getattr(original_name_search, "_api", None)
+            return wrapper
+
+        model_records = self.env["ir.model"].search(
+            [("use_smart_name_search", "=", True)]
+        )
+        for model_record in model_records:
+            ModelClass = self.env.registry[model_record.model]
+            if not hasattr(ModelClass, "name_search"):
+                continue
+
+            original_name_search = ModelClass.name_search
+            if getattr(original_name_search, "_is_smart_patched", False):
+                continue
+
+            ModelClass.name_search = make_smart_name_search(original_name_search)
+
+        return super()._register_hook()
