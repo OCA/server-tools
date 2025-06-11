@@ -53,7 +53,7 @@ def _overload_load_manifest(module, mod_path=None):
         # Specific case where a previously available module marked as auto installable
         # is NOT available in the addons path.
         # In that case, avoid to crash when trying to get 'depends' key.
-        return
+        return res
     auto_install = res.get("auto_install", False)
 
     modules_auto_install_enabled_dict = _get_modules_dict_auto_install_config(
