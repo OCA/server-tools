@@ -27,3 +27,7 @@ class TestModule(TransactionCase):
     def test_config_parsing(self):
         for k, v in self._EXPECTED_RESULTS.items():
             self.assertEqual(_get_modules_dict_auto_install_config(k), v)
+
+    def test_get_module_info(self):
+        self.env["ir.module.module"].get_module_info("account").get("countries", [])
+        self.env["ir.module.module"].get_module_info("BlaBla").get("countries", [])
