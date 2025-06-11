@@ -1,4 +1,5 @@
-This module shows attachment information in chatter. Following data is displayed:
+This module shows attachment information in chatter. Following data is
+displayed:
 
 - User, who has created the attachment
 - Attachment creation date

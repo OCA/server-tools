@@ -1,4 +1,3 @@
-- Cetmix <cetmix.com>
-
+- Cetmix \<cetmix.com\>
   - Ivan Sokolov
   - Maksim Shurupov
