@@ -176,6 +176,13 @@ def report_generic(new, old, attrs, reprs):
                 else:
                     text = "not related anymore"
                 fieldprint(old, new, "", text, reprs)
+        elif attr == "translate":
+            if old[attr] != new[attr]:
+                if new[attr]:
+                    text = "now translatable"
+                else:
+                    text = "not translatable anymore"
+                fieldprint(old, new, "", text, reprs)
         elif attr == "table":
             if old[attr] != new[attr]:
                 fieldprint(old, new, attr, "", reprs)
@@ -269,6 +276,7 @@ def compare_sets(old_records, new_records):
             "stored",
             "isfunction",
             "isrelated",
+            "translate",
             "required",
             "table",
             "_order",
@@ -286,6 +294,7 @@ def compare_sets(old_records, new_records):
             "stored",
             "isfunction",
             "isrelated",
+            "translate",
             "required",
             "table",
             "_order",
@@ -303,6 +312,7 @@ def compare_sets(old_records, new_records):
             "stored",
             "isfunction",
             "isrelated",
+            "translate",
             "required",
             "table",
             "_order",
@@ -339,6 +349,7 @@ def compare_sets(old_records, new_records):
     # Info that is displayed for new fields
     printkeys_new = printkeys_old + [
         "hasdefault",
+        "translate",
     ]
     for column in old_records:
         if column["field"] == "_order":
