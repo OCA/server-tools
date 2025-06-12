@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-inherit="mail.AttachmentList" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('o-mail-AttachmentImage')]" position="attributes">
+            <attribute
+                name="class"
+                separator=" "
+                add="flex-column align-items-center"
+            />
+        </xpath>
+        <xpath expr="//div[contains(@t-if, 'attachment.uploading')]" position="before">
+            <small
+                t-if="attachment.create_date"
+                class="text-uppercase text-center text-muted"
+                t-esc="attachment.create_date"
+            />
+            <small
+                t-if="attachment.create_user"
+                class="text-uppercase text-center text-muted"
+                t-esc="attachment.create_user"
+            />
+        </xpath>
+        <xpath
+            expr="//t[@t-ref='nonImageMain']//div[hasclass('overflow-auto')]"
+            position="inside"
+        >
+            <div>
+                <small
+                    t-if="attachment.create_date"
+                    class="d-flex d-flex-column-1 text-uppercase text-center text-muted"
+                    t-esc="attachment.create_date"
+                />
+                <small
+                    t-if="attachment.create_user"
+                    class="d-flex d-flex-column-1 text-uppercase text-center text-muted"
+                    t-esc="attachment.create_user"
+                />
+            </div>
+        </xpath>
+    </t>
+</templates>
