@@ -14,7 +14,7 @@ class MailThread(models.AbstractModel):
         self, message, message_dict, model=None, thread_id=None, custom_values=None
     ):
         try:
-            res = super(MailThread, self).message_route(
+            res = super().message_route(
                 message,
                 message_dict,
                 model=model,
