@@ -7,6 +7,9 @@
         <field name="model">auditlog.log</field>
         <field name="inherit_id" ref="auditlog.view_auditlog_log_form" />
         <field name="arch" type="xml">
+            <xpath expr="//form" position="attributes">
+                <attribute name="delete">false</attribute>
+            </xpath>
             <xpath
                 expr="//field[@name='line_ids']/form/group[2]/field[@name='old_value']"
                 position="before"
@@ -19,6 +22,18 @@
                 position="before"
             >
                 <field name="user_id" />
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_auditlog_log_tree">
+        <field name="name">auditlog.log.tree</field>
+        <field name="model">auditlog.log</field>
+        <field name="inherit_id" ref="auditlog.view_auditlog_log_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="attributes">
+                <attribute name="delete">false</attribute>
+                <attribute name="create">false</attribute>
             </xpath>
         </field>
     </record>
