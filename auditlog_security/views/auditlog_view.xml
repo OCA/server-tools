@@ -47,7 +47,7 @@
         <field name="name">auditlog.log.line.tree</field>
         <field name="model">auditlog.log.line</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree create="false" delete="false">
                 <field name="create_date" />
                 <field name="field_name" string="Changed" />
                 <field name="old_value_text" />
