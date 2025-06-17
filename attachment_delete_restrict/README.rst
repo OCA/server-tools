@@ -87,7 +87,7 @@ Credits
 Authors
 -------
 
-* Quartile Limited
+* Quartile
 * Akretion
 
 Contributors

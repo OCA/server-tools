@@ -1,6 +1,6 @@
 # Copyright (C) 2022 Akretion (<http://www.akretion.com>).
 # @author Kévin Roche <kevin.roche@akretion.com>
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from ast import literal_eval
 

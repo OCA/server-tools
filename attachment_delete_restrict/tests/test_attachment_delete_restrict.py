@@ -1,6 +1,7 @@
 # Copyright 2021 Quartile Limited
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+from odoo import Command
 from odoo.exceptions import ValidationError
 from odoo.tests import TransactionCase, tagged
 
@@ -38,7 +39,7 @@ class AbstractCase:
         self._set_restrict_mode("owner")
         self.attachment.with_user(self.user_admin).unlink()
 
-    def test_restrict_owner_and_custom_user_forbiden(self):
+    def test_restrict_owner_and_custom_user_forbidden(self):
         self._set_restrict_mode("owner_custom")
         with self.assertRaises(ValidationError):
             self.attachment.with_user(self.user).unlink()
@@ -68,6 +69,8 @@ class AbstractCase:
 
 @tagged("post_install", "-at_install")
 class TestAttachmentDeleteAbstract(TransactionCase):
+    allow_inherited_tests_method = True
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -83,13 +86,11 @@ class TestAttachmentDeleteAbstract(TransactionCase):
                 "name": "test owner user",
                 "login": "test-owner@example.com",
                 "groups_id": [
-                    (
-                        6,
-                        0,
-                        (
+                    Command.set(
+                        [
                             cls.env.ref("base.group_user").id,
                             cls.env.ref("base.group_partner_manager").id,
-                        ),
+                        ]
                     )
                 ],
             }
@@ -99,13 +100,11 @@ class TestAttachmentDeleteAbstract(TransactionCase):
                 "name": "test user",
                 "login": "test2@example.com",
                 "groups_id": [
-                    (
-                        6,
-                        0,
-                        (
+                    Command.set(
+                        [
                             cls.env.ref("base.group_user").id,
                             cls.env.ref("base.group_partner_manager").id,
-                        ),
+                        ]
                     )
                 ],
             }
@@ -115,14 +114,12 @@ class TestAttachmentDeleteAbstract(TransactionCase):
                 "name": "User admin",
                 "login": "admin@example.com",
                 "groups_id": [
-                    (
-                        6,
-                        0,
-                        (
+                    Command.set(
+                        [
                             cls.env.ref("base.group_system").id,
                             cls.env.ref("base.group_user").id,
                             cls.env.ref("base.group_partner_manager").id,
-                        ),
+                        ]
                     )
                 ],
             }

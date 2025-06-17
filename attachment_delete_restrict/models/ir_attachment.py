@@ -1,5 +1,5 @@
-# Copyright 2021 Quartile Limited
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# Copyright 2021 Quartile (https://www.quartile.co)
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 
 from odoo import _, models
@@ -39,7 +39,7 @@ class IrAttachment(models.Model):
     def _check_owner_delete_attachment(self):
         if not (
             self.create_uid == self.env.user
-            or self.user_has_groups("base.group_system")
+            or self.env.user.has_group("base.group_system")
         ):
             return self._raise_delete_attachment_error(
                 self.create_uid | self.env.ref("base.group_system").users
@@ -73,7 +73,10 @@ class IrAttachment(models.Model):
             for rec in self:
                 if rec.res_model:
                     model = name2models[rec.res_model]
-                    if model.restrict_delete_attachment == "default":
+                    if (
+                        model.restrict_delete_attachment == "default"
+                        or not model.restrict_delete_attachment
+                    ):
                         rec.sudo()._check_delete_attachment()
                     else:
                         rec.sudo()._check_delete_attachment(model)
