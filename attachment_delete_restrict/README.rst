@@ -17,18 +17,19 @@ Restrict Deletion of Attachments
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github
-    :target: https://github.com/OCA/server-tools/tree/16.0/attachment_delete_restrict
+    :target: https://github.com/OCA/server-tools/tree/18.0/attachment_delete_restrict
     :alt: OCA/server-tools
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/server-tools-16-0/server-tools-16-0-attachment_delete_restrict
+    :target: https://translation.odoo-community.org/projects/server-tools-18-0/server-tools-18-0-attachment_delete_restrict
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/server-tools&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/server-tools&target_branch=18.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module provides the ability to restrict the deletion of the attachments at different levels.
+This module provides the ability to restrict the deletion of the
+attachments at different levels.
 
 **Table of contents**
 
@@ -39,31 +40,36 @@ Configuration
 =============
 
 Select level:
-=============
-#. Go to *Settings > General Settings> Permission section*.
-#. Choose the level of *Restrict Delete Attachment* for all models by default or for models with "default" restriction level.
+-------------
+
+1. Go to *Settings > General Settings> Permission section*.
+2. Choose the level of *Restrict Delete Attachment* for all models by
+   default or for models with "default" restriction level.
 
 Five levels:
-=============
-* Default : Use global configuration
-* Owner : Owner and admins only
-* Custom : Certain groups or users per related model.
-* Owner + Strict : Owner, admins and Certain groups or users per related model.
-* None : all users can delete them
+------------
+
+-  Default : Use global configuration
+-  Owner : Owner and admins only
+-  Custom : Certain groups or users per related model.
+-  Owner + Strict : Owner, admins and Certain groups or users per
+   related model.
+-  None : all users can delete them
 
 Only Owner and Custom + Strict need specific configuration on models.
 
 For Custom and Owner + Strict levels:
-======================================
-#. Go to *Settings > Technical > Database Structure > Models*.
-#. Open a model for which attachment deletion should be restricted.
-#. Select 'Restrict Attachment Deletion', and assign 'Attachment Deletion Groups' and/or
-   'Attachment Deletion Users' as necessary (if no assignment, no one can delete the
-   attachments of this model).
+-------------------------------------
 
-For assigning 'Attachment Deletion Groups'/'Attachment Deletion Users' to the model,
-you can alternatively add the model in the 'Attachment Deletion Models' tab in the
-respective group/user form.
+1. Go to *Settings > Technical > Database Structure > Models*.
+2. Open a model for which attachment deletion should be restricted.
+3. Select 'Restrict Attachment Deletion', and assign 'Attachment
+   Deletion Groups' and/or 'Attachment Deletion Users' as necessary (if
+   no assignment, no one can delete the attachments of this model).
+
+For assigning 'Attachment Deletion Groups'/'Attachment Deletion Users'
+to the model, you can alternatively add the model in the 'Attachment
+Deletion Models' tab in the respective group/user form.
 
 Bug Tracker
 ===========
@@ -71,7 +77,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/server-tools/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/server-tools/issues/new?body=module:%20attachment_delete_restrict%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/server-tools/issues/new?body=module:%20attachment_delete_restrict%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -79,20 +85,20 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Quartile Limited
 * Akretion
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Yoshi Tashiro <tashiro@quartile.co>
-* Kévin Roche <kevin.roche@akretion.com>
-* Sébastien BEAU <sebastien.beau@akretion.com>
+-  Yoshi Tashiro <tashiro@quartile.co>
+-  Kévin Roche <kevin.roche@akretion.com>
+-  Sébastien BEAU <sebastien.beau@akretion.com>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -115,6 +121,6 @@ Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-yostashiro| |maintainer-Kev-Roche| 
 
-This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/16.0/attachment_delete_restrict>`_ project on GitHub.
+This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/18.0/attachment_delete_restrict>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
