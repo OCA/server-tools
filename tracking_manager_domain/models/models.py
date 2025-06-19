@@ -33,7 +33,9 @@ class Base(models.AbstractModel):
             tracked_fields, initial_values
         )
         tracking_value_field_ids = [
-            tracking_value_id[2]["field_id"] for tracking_value_id in tracking_value_ids
+            tracking_value_id[2]["field_id"]
+            for tracking_value_id in tracking_value_ids
+            if "field_id" in tracking_value_id[2]
         ]
         if tracking_value_field_ids:
             all_tracking_domain_fields = self._all_tracking_domain_fields()[self._name]
