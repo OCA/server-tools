@@ -1,5 +1,8 @@
+from copy import deepcopy
+
 from odoo.tests import common, tagged
 
+from .. import compare, upgrade_log
 from ..odoo_patch.odoo_patch import OdooPatch
 
 
@@ -69,3 +72,48 @@ class TestUpgradeAnalysis(common.TransactionCase):
                 ]
             )
         )
+
+    def test_field_comparison(self):
+        """
+        Test we compare fields correctly
+        """
+        registry = {}
+        upgrade_log.log_model(self.env["upgrade.analysis"], registry)
+        upgrade_log.compare_registries(self.env.cr, "upgrade_analysis", {}, registry)
+        old_fields = self.env["upgrade.record"].field_dump()
+        new_fields = deepcopy(old_fields)
+
+        def assertInFieldComparison(comparison, field, needle):
+            self.assertIn(
+                needle,
+                "".join(
+                    line
+                    for line in comparison["upgrade_analysis"]
+                    if f"/ {field} (" in line
+                ),
+            )
+
+        state_field = [
+            field
+            for field in new_fields
+            if field["field"] == "state" and field["model"] == "upgrade.analysis"
+        ][0]
+
+        state_field["selection_keys"] = "['done', 'new']"
+        comparison = compare.compare_sets(old_fields, new_fields)
+        assertInFieldComparison(comparison, "state", "added: new")
+        assertInFieldComparison(comparison, "state", "removed: draft")
+
+        state_field["selection_keys"] = "['done', 'draft', 'new']"
+        comparison = compare.compare_sets(old_fields, new_fields)
+        assertInFieldComparison(comparison, "state", "added: new")
+        assertInFieldComparison(comparison, "state", "most likely nothing to do")
+        with self.assertRaises(AssertionError):
+            assertInFieldComparison(comparison, "state", "removed")
+
+        state_field["selection_keys"] = "function"
+        comparison = compare.compare_sets(old_fields, new_fields)
+        with self.assertRaises(AssertionError):
+            assertInFieldComparison(comparison, "state", "added: new")
+        with self.assertRaises(AssertionError):
+            assertInFieldComparison(comparison, "state", "removed")
