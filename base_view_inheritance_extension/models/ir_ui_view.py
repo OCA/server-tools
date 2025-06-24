@@ -4,14 +4,7 @@
 # Copyright 2023 Tecnativa - Carlos Dauden
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 import ast
-import logging
 import re
-
-try:
-    import astor
-except ImportError as err:  # pragma: no cover
-    _logger = logging.getLogger(__name__)
-    _logger.debug(err)
 
 from lxml import etree
 
@@ -34,11 +27,8 @@ def ast_dict_update(source, update):
         raise TypeError("`update` must be an AST dict")
 
     def ast_key_eq(k1, k2):
-        # python < 3.8 uses ast.Str; python >= 3.8 uses ast.Constant
-        if type(k1) != type(k2):
+        if type(k1) is not type(k2):
             return False
-        elif isinstance(k1, ast.Str):
-            return k1.s == k2.s
         elif isinstance(k1, ast.Constant):
             return k1.value == k2.value
 
@@ -130,11 +120,7 @@ class IrUiView(models.Model):
             # Update node ast dict
             source_ast = ast_dict_update(source_ast, update_ast)
             # Dump the ast back to source
-            # TODO: once odoo requires python >= 3.9; use `ast.unparse` instead
-            node.attrib[attr_name] = astor.to_source(
-                source_ast,
-                pretty_source=lambda s: "".join(s).strip(),
-            )
+            node.attrib[attr_name] = ast.unparse(source_ast).strip()
         return source
 
     @api.model
