@@ -143,9 +143,9 @@ def fieldprint(old, new, field, text, reprs):
                 removed = set(old_selection_keys) - set(new_selection_keys)
                 added = set(new_selection_keys) - set(old_selection_keys)
                 text = (
-                    f"{field} {added and ('added: ' + ', '.join(added)) or ''}"
-                    f"{added and ' ' or ''}"
-                    f"{removed and ('removed: ' + ', '.join(removed)) or ''}"
+                    f"{field} {added and ('added: [' + ', '.join(added) + ']') or ''}"
+                    f"{added and removed and ', ' or ''}"
+                    f"{removed and ('removed: [' + ', '.join(removed) + ']') or ''}"
                 )
                 if added and not removed:
                     text += " (most likely nothing to do)"
