@@ -101,12 +101,12 @@ class TestUpgradeAnalysis(common.TransactionCase):
 
         state_field["selection_keys"] = "['done', 'new']"
         comparison = compare.compare_sets(old_fields, new_fields)
-        assertInFieldComparison(comparison, "state", "added: new")
-        assertInFieldComparison(comparison, "state", "removed: draft")
+        assertInFieldComparison(comparison, "state", "added: [new]")
+        assertInFieldComparison(comparison, "state", "removed: [draft]")
 
         state_field["selection_keys"] = "['done', 'draft', 'new']"
         comparison = compare.compare_sets(old_fields, new_fields)
-        assertInFieldComparison(comparison, "state", "added: new")
+        assertInFieldComparison(comparison, "state", "added: [new]")
         assertInFieldComparison(comparison, "state", "most likely nothing to do")
         with self.assertRaises(AssertionError):
             assertInFieldComparison(comparison, "state", "removed")
@@ -114,6 +114,6 @@ class TestUpgradeAnalysis(common.TransactionCase):
         state_field["selection_keys"] = "function"
         comparison = compare.compare_sets(old_fields, new_fields)
         with self.assertRaises(AssertionError):
-            assertInFieldComparison(comparison, "state", "added: new")
+            assertInFieldComparison(comparison, "state", "added: [new]")
         with self.assertRaises(AssertionError):
             assertInFieldComparison(comparison, "state", "removed")
