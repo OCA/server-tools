@@ -7,10 +7,11 @@ from odoo.tools import mute_logger
 
 
 class ExtractorCase(TransactionCase):
-    def setUp(self):
-        super().setUp()
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
         # Shortcut
-        self.imgs_from_html = self.env["ir.fields.converter"].imgs_from_html
+        cls.imgs_from_html = cls.env["ir.fields.converter"].imgs_from_html
 
     def test_mixed_images_found(self):
         """Images correctly found in <img> elements and backgrounds."""
