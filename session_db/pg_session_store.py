@@ -2,9 +2,11 @@
 # @author Nicolas Seinlet
 # Copyright (c) ACSONE SA 2022
 # @author Stéphane Bidoul
+import base64
 import json
 import logging
 import os
+import re
 
 import psycopg2
 
@@ -66,6 +68,7 @@ class PGSessionStore(sessions.SessionStore):
         self._cr = None
         self._open_connection()
         self._setup_db()
+        self.prefix_binary = "base64::"
 
     def __del__(self):
         self._close_connection()
@@ -108,7 +111,8 @@ class PGSessionStore(sessions.SessionStore):
     @with_lock
     @with_cursor
     def save(self, session):
-        payload = json.dumps(dict(session))
+        json_session = self.session_to_str(dict(session))
+        payload = json.dumps(json_session)
         self._cr.execute(
             """
                 INSERT INTO http_sessions(sid, write_date, payload)
@@ -131,6 +135,7 @@ class PGSessionStore(sessions.SessionStore):
         self._cr.execute("SELECT payload FROM http_sessions WHERE sid=%s", (sid,))
         try:
             data = json.loads(self._cr.fetchone()[0])
+            data = self.str_to_session(data)
         except Exception:
             return self.new()
 
@@ -148,6 +153,73 @@ class PGSessionStore(sessions.SessionStore):
             "WHERE now() at time zone 'UTC' - write_date > %s",
             (f"{max_lifetime} seconds",),
         )
+
+    def _traverse_and_convert(self, data_node, conversion_func):
+        """Helper method that preserves keys while converting values."""
+        if isinstance(data_node, dict):
+            res = {}
+            for key, value in data_node.items():
+                # This is necessary because Odoo's core (ir_qweb) needs the 'debug' value as
+                # a string.
+                # The value for this key can be: "1", "assets", "True", "False", etc.
+                # Ref: https://github.com/Vauxoo/odoo/blob/d4d64d613800b8dc44c3262e13a2a81dbf3c742c/
+                # odoo/addons/base/models/ir_qweb.py#L912
+                # A test on an Odoo instance without the 'session_db' module confirmed
+                # that 'request.session.debug' value is always a string (str) type.
+                if key != "debug":
+                    key = self._traverse_and_convert(key, conversion_func)
+                    value = self._traverse_and_convert(value, conversion_func)
+                res.update({key: value})
+            return res
+        if isinstance(data_node, list):
+            return [
+                self._traverse_and_convert(item, conversion_func) for item in data_node
+            ]
+        return conversion_func(data_node)
+
+    def session_to_str(self, data):
+        """Converts binary values to prefixed strings."""
+
+        def convert(value):
+            if isinstance(value, bytes):
+                base64_string = base64.b64encode(value).decode("utf-8")
+                return self.prefix_binary + base64_string
+            return value
+
+        return self._traverse_and_convert(data, convert)
+
+    def str_to_session(self, data):
+        """Converts binary str to binary value again.
+        Converts int/float str values convert to their respective types.
+        """
+
+        def convert(value):
+            if not isinstance(value, str):
+                return value  # Only process strings
+            # 1. Check for binary
+            if value.startswith(self.prefix_binary):
+                base64_string = value[len(self.prefix_binary) :]
+                try:
+                    return base64.b64decode(base64_string)
+                except (ValueError, TypeError):
+                    pass
+            numeric_parsers = [
+                # 2. Check for float (positive or negative)
+                # This regex requires a decimal point.
+                (r"^-?\d+\.\d+$", float),
+                # 3. Check for integer (positive or negative)
+                # This regex matches only digits (with optional sign).
+                (r"^-?\d+$", int),
+            ]
+            for pattern, parser in numeric_parsers:
+                if re.match(pattern, value):
+                    try:
+                        return parser(value)
+                    except (ValueError, TypeError):
+                        pass
+            return value
+
+        return self._traverse_and_convert(data, convert)
 
 
 _original_session_store = http.root.__class__.session_store
