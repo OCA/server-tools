@@ -140,8 +140,8 @@ def fieldprint(old, new, field, text, reprs):
             if isinstance(old_selection_keys, tuple | list) and isinstance(
                 new_selection_keys, tuple | list
             ):
-                removed = set(old_selection_keys) - set(new_selection_keys)
-                added = set(new_selection_keys) - set(old_selection_keys)
+                removed = sorted(set(old_selection_keys) - set(new_selection_keys))
+                added = sorted(set(new_selection_keys) - set(old_selection_keys))
                 text = (
                     f"{field} {added and ('added: [' + ', '.join(added) + ']') or ''}"
                     f"{added and removed and ', ' or ''}"
