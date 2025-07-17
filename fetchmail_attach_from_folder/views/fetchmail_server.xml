@@ -19,7 +19,7 @@
                         <field name="folders_only" />
                     </group>
                     <field name="folder_ids" nolabel="1">
-                        <tree decoration-muted="active == False">
+                        <list decoration-muted="active == False">
                             <field name="active" column_invisible="True" />
                             <field name="sequence" widget="handle" />
                             <field name="path" />
@@ -30,7 +30,7 @@
                             <field name="model_field" />
                             <field name="mail_field" />
                             <field name="state" />
-                        </tree>
+                        </list>
                         <form>
                             <field name="state" invisible="1" />
                             <header>
