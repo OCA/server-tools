@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="view_attach_mail_manually">
         <field name="name">fetchmail.attach.mail.manually</field>
         <field name="model">fetchmail.attach.mail.manually</field>
@@ -28,16 +27,15 @@
                 </group>
                 <footer>
                     <button
-                        string="Save"
-                        type="object"
-                        name="attach_mails"
-                        class="oe_highlight"
-                    />
+                    string="Save"
+                    type="object"
+                    name="attach_mails"
+                    class="oe_highlight"
+                />
                     or
                     <button special="cancel" string="Cancel" class="oe_link" />
                 </footer>
             </form>
         </field>
     </record>
-
 </odoo>
