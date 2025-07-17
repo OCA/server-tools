@@ -23,6 +23,8 @@ class AuditlogLogLine(models.Model):
 
     def _auto_init(self):
         res = super()._auto_init()
+        if not self._name == "auditlog.log.line":
+            return res
         tools.create_index(
             self._cr,
             "auditlog_log__line_model_res_idx",
