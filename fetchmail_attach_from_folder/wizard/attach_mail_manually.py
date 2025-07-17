@@ -24,10 +24,10 @@ class AttachMailManually(models.TransientModel):
         return {
             "msgid": msgid,
             "subject": mail_message.get("subject", ""),
-            "date": mail_message.get("date", ""),
+            "date": mail_message.get("date") or False,
             "body": mail_message.get("body", ""),
             "email_from": mail_message.get("from", ""),
-            "object_id": "%s,-1" % folder.model_id.model,
+            "object_id": f"{folder.model_id.model},-1",
         }
 
     @api.model

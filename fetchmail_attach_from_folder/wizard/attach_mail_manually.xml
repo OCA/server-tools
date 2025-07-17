@@ -8,12 +8,12 @@
                 <group>
                     <field name="folder_id" invisible="1" />
                     <field name="mail_ids" nolabel="1" colspan="4">
-                        <tree create="0">
+                        <list create="0">
                             <field name="email_from" />
                             <field name="subject" />
                             <field name="date" />
                             <field name="object_id" />
-                        </tree>
+                        </list>
                         <form>
                             <group>
                                 <field name="email_from" />
