@@ -1,0 +1,7 @@
+<odoo>
+    <template id="vapi_integration_vapi_sdk" inherit_id="web.layout">
+        <xpath expr="//head" position="inside">
+            <script src="https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js" id="vapi-sdk" defer="defer" async="async"></script>
+        </xpath>
+    </template>
+</odoo>

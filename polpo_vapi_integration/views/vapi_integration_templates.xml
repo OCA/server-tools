@@ -1,0 +1,16 @@
+<odoo>
+    <template id="vapi_integration_floating_button" name="Vapi Widget Button" inherit_id="web.layout">
+        <xpath expr="//body" position="inside">
+            <t t-if="request.session.uid and not (request.httprequest.path.startswith('/web/login') or
+                                                 request.httprequest.path.startswith('/my') or
+                                                 request.httprequest.path.startswith('/shop') or
+                                                 request.httprequest.path.startswith('/website'))">
+                <div id="vapi_integration_floating_button">
+                    <button class="vapi-integration-btn" title="Start Call">
+                        <i class="fa fa-microphone"></i>
+                    </button>
+                </div>
+            </t>
+        </xpath>
+    </template>
+</odoo>

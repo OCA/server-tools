@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!--Action to view call logs in the Vapi integration module.-->
+    <record id="action_vapi_log" model="ir.actions.act_window">
+        <field name="name">Call logs</field>
+        <field name="res_model">vapi.log</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p>
+                This view shows the logs of calls made through the Vapi integration.
+                You can see the details of each call, including the user who made it,
+                the start and end times, and the duration of the call.
+            </p>
+        </field>
+    </record>
+
+    <!--Menu items and views for the Vapi integration module, specifically for call logs.&ndash;&gt;-->
+    <menuitem id="menu_vapi_root"
+              name="Vapi Call"
+              sequence="90"
+              web_icon="polpo_vapi_integration,static/description/icon.svg"/>
+
+
+    <menuitem id="menu_vapi_log"
+              name="Call Logs"
+              parent="menu_vapi_root"
+              action="action_vapi_log"
+              sequence="10"/>
+
+    <!--Tree view for the call logs in the Vapi integration module.-->
+    <record id="view_vapi_log_tree" model="ir.ui.view">
+        <field name="name">vapi.tree</field>
+        <field name="model">vapi.log</field>
+        <field name="arch" type="xml">
+            <tree create="false">
+                <field name="user_id"/>
+                <field name="call_id" optional="hide"/>
+                <field name="start_time"/>
+                <field name="end_time" optional="hide"/>
+                <field name="duration" optional="hide"/>
+                <field name="duration_str"/>
+                <field name="last_active" optional="hide"/>
+                <field name="state" widget="badge"
+                       decoration-success="state == 'finished'"
+                       decoration-danger="state == 'error'"
+                       decoration-warning="state == 'started'"
+                       decoration-info="state == 'in_progress'"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="view_vapi_log_form" model="ir.ui.view">
+        <field name="name">vapi.form</field>
+        <field name="model">vapi.log</field>
+        <field name="arch" type="xml">
+            <form string="Call Log"
+                  edit="false" create="false" delete="false" duplicate="false">
+                <header>
+                    <field name="state"
+                           widget="statusbar"
+                           statusbar_visible="started,in_progress,finished,error"
+                           readonly="1"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="call_id" readonly="1"/>
+                            <field name="user_id" readonly="1"/>
+                            <field name="start_time" readonly="1"/>
+                            <field name="end_time" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="duration" readonly="1"/>
+                            <field name="last_active" readonly="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="ir_cron_close_stuck_calls" model="ir.cron">
+        <field name="name">Close stuck calls in Vapi</field>
+        <field name="model_id" ref="model_vapi_log"/>
+        <field name="state">code</field>
+        <field name="code">model.cron_close_stuck_calls()</field>
+        <field name="interval_number">10</field>
+        <field name="interval_type">minutes</field>
+        <field name="numbercall">-1</field>
+        <field name="active">True</field>
+    </record>
+
+
+    <record id="action_vapi_settings" model="ir.actions.act_window">
+        <field name="name">Ajustes</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+        <field name="context">{'module' : 'polpo_vapi_integration', 'bin_size': False}</field>
+    </record>
+
+
+
+    <menuitem id="menu_vapi_settings"
+              name="Configuración"
+              parent="menu_vapi_root"
+              action="action_vapi_settings"
+              sequence="99"/>
+</odoo>

@@ -1,0 +1,254 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* polpo_vapi_integration
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-07-15 15:31+0000\n"
+"PO-Revision-Date: 2025-07-15 15:31+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: polpo_vapi_integration
+#: model_terms:ir.ui.view,arch_db:polpo_vapi_integration.res_config_settings_view_form_inherit_vapi
+msgid "<span class=\"o_form_label\">Assistant ID</span>"
+msgstr ""
+
+#. module: polpo_vapi_integration
+#: model_terms:ir.ui.view,arch_db:polpo_vapi_integration.res_config_settings_view_form_inherit_vapi
+msgid "<span class=\"o_form_label\">Vapi Api Key</span>"
+msgstr ""
+
+#. module: polpo_vapi_integration
+#: model_terms:ir.ui.view,arch_db:polpo_vapi_integration.res_config_settings_view_form_inherit_vapi
+msgid "Assistant ID is a unique identifier for your Vapi assistant."
+msgstr ""
+
+#. module: polpo_vapi_integration
+#: model_terms:ir.ui.view,arch_db:polpo_vapi_integration.view_vapi_log_form
+msgid "Call Log"
+msgstr ""
+
+#. module: polpo_vapi_integration
+#: model:ir.ui.menu,name:polpo_vapi_integration.menu_vapi_log
+msgid "Call Logs"
+msgstr ""
+
+#. module: polpo_vapi_integration
+#: model:ir.model.fields,field_description:polpo_vapi_integration.field_vapi_log__state
+msgid "Call Status"
+msgstr ""
+
+#. module: polpo_vapi_integration
+#: model:ir.model.fields,help:polpo_vapi_integration.field_vapi_log__duration
+msgid "Call duration in seconds, 0 if not ended"
+msgstr ""
+
+#. module: polpo_vapi_integration
+#: model:ir.actions.act_window,name:polpo_vapi_integration.action_vapi_log
+msgid "Call logs"
+msgstr ""
+
+#. module: polpo_vapi_integration
+#: model:ir.actions.server,name:polpo_vapi_integration.ir_cron_close_stuck_calls_ir_actions_server
+#: model:ir.cron,cron_name:polpo_vapi_integration.ir_cron_close_stuck_calls
+msgid "Close stuck calls in Vapi"
+msgstr ""
+
+#. module: polpo_vapi_integration
+#: model:ir.model,name:polpo_vapi_integration.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: polpo_vapi_integration
+#: model:ir.model.fields,field_description:polpo_vapi_integration.field_vapi_log__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: polpo_vapi_integration
+#: model:ir.model.fields,field_description:polpo_vapi_integration.field_vapi_log__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: polpo_vapi_integration
+#: model:ir.model.fields,help:polpo_vapi_integration.field_vapi_log__last_active
+msgid ""
+"Date and time of the last activity in the call, used to determine if the "
+"call is stuck"
+msgstr ""
+
+#. module: polpo_vapi_integration
+#: model:ir.model.fields,help:polpo_vapi_integration.field_vapi_log__end_time
+msgid "Date and time when the call ended"
+msgstr ""
+
+#. module: polpo_vapi_integration
+#: model:ir.model.fields,help:polpo_vapi_integration.field_vapi_log__start_time
+msgid "Date and time when the call started"
+msgstr ""
+
+#. module: polpo_vapi_integration
+#: model:ir.model.fields,field_description:polpo_vapi_integration.field_vapi_log__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: polpo_vapi_integration
+#: model:ir.model.fields,field_description:polpo_vapi_integration.field_vapi_log__duration_str
+msgid "Duration"
+msgstr ""
+
+#. module: polpo_vapi_integration
+#: model:ir.model.fields,field_description:polpo_vapi_integration.field_vapi_log__duration
+msgid "Duration (sec.)"
+msgstr ""
+
+#. module: polpo_vapi_integration
+#: model:ir.model.fields,field_description:polpo_vapi_integration.field_vapi_log__end_time
+msgid "End"
+msgstr ""
+
+#. module: polpo_vapi_integration
+#: model:ir.model.fields.selection,name:polpo_vapi_integration.selection__vapi_log__state__finished
+msgid "Ended"
+msgstr ""
+
+#. module: polpo_vapi_integration
+#: model:ir.model.fields.selection,name:polpo_vapi_integration.selection__vapi_log__state__error
+msgid "Error"
+msgstr ""
+
+#. module: polpo_vapi_integration
+#: model_terms:ir.ui.view,arch_db:polpo_vapi_integration.res_config_settings_view_form_inherit_vapi
+msgid ""
+"From your Vapi.ai account, you can find your API key in the settings "
+"section."
+msgstr ""
+
+#. module: polpo_vapi_integration
+#: model:ir.model.fields,field_description:polpo_vapi_integration.field_vapi_log__id
+msgid "ID"
+msgstr ""
+
+#. module: polpo_vapi_integration
+#: model:ir.model.fields.selection,name:polpo_vapi_integration.selection__vapi_log__state__in_progress
+msgid "In Progress"
+msgstr ""
+
+#. module: polpo_vapi_integration
+#: model:ir.model.fields,field_description:polpo_vapi_integration.field_vapi_log____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: polpo_vapi_integration
+#: model:ir.model.fields,field_description:polpo_vapi_integration.field_vapi_log__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: polpo_vapi_integration
+#: model:ir.model.fields,field_description:polpo_vapi_integration.field_vapi_log__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: polpo_vapi_integration
+#: model:ir.model.fields,field_description:polpo_vapi_integration.field_vapi_log__last_active
+msgid "Last activity"
+msgstr ""
+
+#. module: polpo_vapi_integration
+#: model:ir.model.fields,field_description:polpo_vapi_integration.field_vapi_log__call_id
+msgid "Odoo Call ID"
+msgstr ""
+
+#. module: polpo_vapi_integration
+#: model_terms:ir.ui.view,arch_db:polpo_vapi_integration.res_config_settings_view_form_inherit_vapi
+msgid "Parámetros Vapi"
+msgstr ""
+
+#. module: polpo_vapi_integration
+#: model:ir.model.fields,field_description:polpo_vapi_integration.field_res_config_settings__smart_search
+#: model:ir.model.fields,field_description:polpo_vapi_integration.field_res_users__smart_search
+#: model:ir.model.fields,field_description:polpo_vapi_integration.field_vapi_log__smart_search
+msgid "Smart Search"
+msgstr ""
+
+#. module: polpo_vapi_integration
+#: model:ir.model.fields,field_description:polpo_vapi_integration.field_vapi_log__start_time
+msgid "Start"
+msgstr ""
+
+#. module: polpo_vapi_integration
+#: model:ir.model.fields.selection,name:polpo_vapi_integration.selection__vapi_log__state__started
+msgid "Started"
+msgstr ""
+
+#. module: polpo_vapi_integration
+#: model:ir.model.fields,help:polpo_vapi_integration.field_vapi_log__state
+msgid ""
+"The current status of the call. 'Started' when initiated, 'In Progress' "
+"during the call, 'Ended' when completed, and 'Error' if there was an issue."
+msgstr ""
+
+#. module: polpo_vapi_integration
+#: model:ir.model.fields,help:polpo_vapi_integration.field_vapi_log__user_id
+msgid "The user who made the call"
+msgstr ""
+
+#. module: polpo_vapi_integration
+#: model_terms:ir.actions.act_window,help:polpo_vapi_integration.action_vapi_log
+msgid ""
+"This view shows the logs of calls made through the Vapi integration.\n"
+"                You can see the details of each call, including the user who made it,\n"
+"                the start and end times, and the duration of the call."
+msgstr ""
+
+#. module: polpo_vapi_integration
+#: model:ir.model.fields,help:polpo_vapi_integration.field_vapi_log__call_id
+msgid "Unique identifier for the call"
+msgstr ""
+
+#. module: polpo_vapi_integration
+#: model:ir.model,name:polpo_vapi_integration.model_res_users
+#: model:ir.model.fields,field_description:polpo_vapi_integration.field_vapi_log__user_id
+msgid "User"
+msgstr ""
+
+#. module: polpo_vapi_integration
+#: model:ir.model.fields,field_description:polpo_vapi_integration.field_res_users__vapi_api_key
+msgid "User Vapi API Key"
+msgstr ""
+
+#. module: polpo_vapi_integration
+#: model:ir.model.constraint,message:polpo_vapi_integration.constraint_res_users_vapi_api_key_unique
+msgid "User Vapi API Key tiene que ser unico de cada usuario."
+msgstr ""
+
+#. module: polpo_vapi_integration
+#: model:ir.model.fields,field_description:polpo_vapi_integration.field_res_config_settings__vapi_api_key
+msgid "Vapi API Key"
+msgstr ""
+
+#. module: polpo_vapi_integration
+#: model:ir.model.fields,field_description:polpo_vapi_integration.field_res_config_settings__vapi_assistant_id
+msgid "Vapi Assistant ID"
+msgstr ""
+
+#. module: polpo_vapi_integration
+#: model_terms:ir.ui.view,arch_db:polpo_vapi_integration.res_config_settings_view_form_inherit_vapi
+msgid "Vapi Integration"
+msgstr ""
+
+#. module: polpo_vapi_integration
+#: model:ir.model,name:polpo_vapi_integration.model_vapi_log
+msgid "Vapi call log"
+msgstr ""
+
+#. module: polpo_vapi_integration
+#: model:ir.ui.menu,name:polpo_vapi_integration.menu_vapi_root
+msgid "Vapi Call"
+msgstr ""

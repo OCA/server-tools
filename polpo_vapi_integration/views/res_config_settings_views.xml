@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="res_config_settings_view_form_inherit_vapi" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit.vapi</field>
+            <field name="model">res.config.settings</field>
+            <field name="priority" eval="30"/>
+            <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[hasclass('settings')]" position="inside">
+                    <div class="app_settings_block" data-string="Vapi Parameters" string="Vapi Integration"
+                         data-key="vapi_config">
+                        <h2>Parámetros Vapi</h2>
+                        <div class="row mt16 o_settings_container">
+                            <div class="col-12 col-lg-6 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <span class="o_form_label">Vapi Api Key</span>
+                                    <div class="text-muted">
+                                        From your Vapi.ai account, you can find your API key in the settings section.
+                                    </div>
+                                    <div class="text-muted content-group">
+                                        <field name="vapi_api_key" class="w-100"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt16 o_settings_container">
+                            <div class="col-12 col-lg-6 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <span class="o_form_label">Assistant ID</span>
+                                    <div class="text-muted">
+                                        Assistant ID is a unique identifier for your Vapi assistant.
+                                    </div>
+                                    <div class="text-muted content-group">
+                                        <field name="vapi_assistant_id" class="w-100"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
