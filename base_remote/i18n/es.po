@@ -1,0 +1,165 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* base_remote
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2023-10-12 09:39+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: base_remote
+#: model:ir.model,name:base_remote.model_base
+msgid "Base"
+msgstr "Base"
+
+#. module: base_remote
+#: model:ir.model.fields,field_description:base_remote.field_res_remote__changeset_change_ids
+#: model:ir.model.fields,field_description:base_remote.field_res_users__changeset_change_ids
+msgid "Changeset Changes"
+msgstr "Cambios en el conjunto de modificaciones"
+
+#. module: base_remote
+#: model:ir.model.fields,field_description:base_remote.field_res_remote__changeset_ids
+#: model:ir.model.fields,field_description:base_remote.field_res_users__changeset_ids
+msgid "Changesets"
+msgstr "Conjuntos de cambios"
+
+#. module: base_remote
+#: model:ir.model.fields,field_description:base_remote.field_res_remote__count_changesets
+#: model:ir.model.fields,field_description:base_remote.field_res_users__count_changesets
+msgid "Count Changesets"
+msgstr ""
+
+#. module: base_remote
+#: model:ir.model.fields,field_description:base_remote.field_res_remote__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:base_remote.field_res_users__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr "Contar los cambios del conjunto de cambios pendientes"
+
+#. module: base_remote
+#: model:ir.model.fields,field_description:base_remote.field_res_remote__count_pending_changesets
+#: model:ir.model.fields,field_description:base_remote.field_res_users__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr "Contar conjuntos de cambios pendientes"
+
+#. module: base_remote
+#: model:ir.model.fields,field_description:base_remote.field_res_remote__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: base_remote
+#: model:ir.model.fields,field_description:base_remote.field_res_remote__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: base_remote
+#: model:ir.model.fields,field_description:base_remote.field_res_remote__display_name
+msgid "Display Name"
+msgstr "Nombre a mostrar"
+
+#. module: base_remote
+#: model:ir.model.fields,field_description:base_remote.field_res_remote__name
+msgid "Hostname"
+msgstr "Nombre del host"
+
+#. module: base_remote
+#: model:ir.model.constraint,message:base_remote.constraint_res_remote_name_unique
+msgid "Hostname must be unique"
+msgstr "El nombre del host debe ser único"
+
+#. module: base_remote
+#: model:ir.model.fields,field_description:base_remote.field_res_remote__id
+msgid "ID"
+msgstr "ID"
+
+#. module: base_remote
+#: model:ir.model.fields,field_description:base_remote.field_res_remote__in_network
+msgid "In Network"
+msgstr "En la Red local"
+
+#. module: base_remote
+#: model:ir.model.fields,field_description:base_remote.field_res_remote__ip
+msgid "Ip"
+msgstr "IP"
+
+#. module: base_remote
+#: model:ir.model.fields,field_description:base_remote.field_res_remote____last_update
+msgid "Last Modified on"
+msgstr "Última actualización por"
+
+#. module: base_remote
+#: model:ir.model.fields,field_description:base_remote.field_res_remote__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: base_remote
+#: model:ir.model.fields,field_description:base_remote.field_res_remote__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: base_remote
+#: model_terms:ir.ui.view,arch_db:base_remote.res_remote_form
+msgid "Remote"
+msgstr "Remoto"
+
+#. module: base_remote
+#: model:ir.actions.act_window,name:base_remote.res_remote_action
+#: model:ir.model,name:base_remote.model_res_remote
+#: model:ir.ui.menu,name:base_remote.res_remote_menu
+msgid "Remotes"
+msgstr "Remotos"
+
+#. module: base_remote
+#: model:ir.model.fields,help:base_remote.field_res_remote__in_network
+msgid "Shows if the remote can be found through the socket"
+msgstr "Muestra si el remoto se pudo encontrar a través del socket"
+
+#. module: base_remote
+#: model:ir.model.fields,field_description:base_remote.field_res_remote__smart_search
+#: model:ir.model.fields,field_description:base_remote.field_res_users__smart_search
+msgid "Smart Search"
+msgstr ""
+
+#. module: base_remote
+#: model:ir.model.fields,help:base_remote.field_res_remote__count_pending_changeset_changes
+#: model:ir.model.fields,help:base_remote.field_res_users__count_pending_changeset_changes
+msgid "The number of pending changes of this record"
+msgstr ""
+
+#. module: base_remote
+#: model:ir.model.fields,help:base_remote.field_res_remote__count_pending_changesets
+#: model:ir.model.fields,help:base_remote.field_res_users__count_pending_changesets
+msgid "The number of pending changesets of this record"
+msgstr ""
+
+#. module: base_remote
+#: model:ir.model.fields,help:base_remote.field_res_remote__count_changesets
+#: model:ir.model.fields,help:base_remote.field_res_users__count_changesets
+msgid "The overall number of changesets of this record"
+msgstr ""
+
+#. module: base_remote
+#: model:ir.model,name:base_remote.model_res_users
+msgid "User"
+msgstr ""
+
+#. module: base_remote
+#: model:ir.model.fields,field_description:base_remote.field_res_remote__user_can_see_changeset
+#: model:ir.model.fields,field_description:base_remote.field_res_users__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr "Usuario puede ver conjunto de cambios"
+
+#~ msgid "Users"
+#~ msgstr "Usuarios"
+
+#~ msgid "base"
+#~ msgstr "base"
