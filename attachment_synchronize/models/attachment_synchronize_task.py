@@ -102,7 +102,7 @@ class AttachmentSynchronizeTask(models.Model):
     def _compute_count_state(self):
         for record in self:
             for state in ["failed", "pending", "done"]:
-                record["count_attachment_{}".format(state)] = len(
+                record[f"count_attachment_{state}"] = len(
                     record.attachment_ids.filtered(lambda r: r.state == state)
                 )
 
@@ -121,16 +121,14 @@ class AttachmentSynchronizeTask(models.Model):
         try:
             template = mako_template_env.from_string(tools.ustr(template))
         except Exception:
-            _logger.exception("Failed to load template '{}'".format(template))
+            _logger.exception(f"Failed to load template '{template}'")
 
         variables = {"obj": record}
         try:
             render_result = template.render(variables)
         except Exception:
             _logger.exception(
-                "Failed to render template '{}'' using values '{}'".format(
-                    template, variables
-                )
+                f"Failed to render template '{template}'' using values '{variables}'"
             )
             render_result = ""
         if render_result == "False":
@@ -155,7 +153,7 @@ class AttachmentSynchronizeTask(models.Model):
 
     def run(self):
         for record in self:
-            method = "run_{}".format(record.method_type)
+            method = f"run_{record.method_type}"
             if not hasattr(self, method):
                 raise NotImplementedError
             else:
@@ -220,7 +218,7 @@ class AttachmentSynchronizeTask(models.Model):
                     file_name, file_path, attachment
                 )
                 total_import += 1
-        _logger.info("Run import complete! Imported {} files".format(total_import))
+        _logger.info(f"Run import complete! Imported {total_import} files")
 
     def _filter_duplicates(self, file_path_names):
         fs = self.backend_id.fs
