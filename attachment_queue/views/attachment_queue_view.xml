@@ -40,23 +40,21 @@
                 </group>
             </group>
             <xpath expr="//sheet" position="after">
-                <div class="oe_chatter">
-                    <field name="activity_ids" widget="mail_activity" />
-                </div>
+                <chatter />
             </xpath>
         </field>
     </record>
 
-    <record id="view_attachment_queue_tree" model="ir.ui.view">
+    <record id="view_attachment_queue_list" model="ir.ui.view">
         <field name="model">attachment.queue</field>
         <field name="arch" type="xml">
-            <tree default_order='create_date desc'>
+            <list default_order='create_date desc'>
                 <field name="create_date" />
                 <field name="name" />
                 <field name="file_type" />
                 <field name="type" />
                 <field name="state" />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -144,15 +142,16 @@
         <field name="name">Attachments Queue</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">attachment.queue</field>
-        <field name="view_mode">tree,form</field>
+        <field name="path">attachment-queue</field>
+        <field name="view_mode">list,form</field>
         <field name="view_id" eval="False" />
         <field name="search_view_id" ref="view_attachment_queue_search" />
     </record>
 
-    <record id="act_open_attachment_que_view_tree" model="ir.actions.act_window.view">
+    <record id="act_open_attachment_que_view_list" model="ir.actions.act_window.view">
         <field eval="10" name="sequence" />
-        <field name="view_mode">tree</field>
-        <field name="view_id" ref="view_attachment_queue_tree" />
+        <field name="view_mode">list</field>
+        <field name="view_id" ref="view_attachment_queue_list" />
         <field name="act_window_id" ref="action_attachment_queue" />
     </record>
 
