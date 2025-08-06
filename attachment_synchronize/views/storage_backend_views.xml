@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-
     <record id="view_fs_storage_form" model="ir.ui.view">
         <field name="model">fs.storage</field>
         <field name="inherit_id" ref="fs_storage.fs_storage_form_view" />
@@ -30,5 +29,4 @@
             </xpath>
         </field>
     </record>
-
 </odoo>
