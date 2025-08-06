@@ -4,8 +4,8 @@ from unittest import mock
 
 from odoo_test_helper import FakeModelLoader
 
-from odoo import registry
 from odoo.exceptions import UserError
+from odoo.modules.registry import Registry
 from odoo.tools import mute_logger
 
 from odoo.addons.base.tests.common import BaseCommon
@@ -64,7 +64,7 @@ class TestAttachmentBaseQueue(BaseCommon):
         retry later
         """
         attachment = self.env.ref("attachment_queue.dummy_attachment_queue")
-        with registry(self.env.cr.dbname).cursor() as new_cr:
+        with Registry(self.env.cr.dbname).cursor() as new_cr:
             new_cr.execute(
                 """
                 SELECT id
@@ -81,7 +81,7 @@ class TestAttachmentBaseQueue(BaseCommon):
         """If an attachment is already running, and a user tries to run it manually,
         raise error window"""
         attachment = self.env.ref("attachment_queue.dummy_attachment_queue")
-        with registry(self.env.cr.dbname).cursor() as new_cr:
+        with Registry(self.env.cr.dbname).cursor() as new_cr:
             new_cr.execute(
                 """
                 SELECT id

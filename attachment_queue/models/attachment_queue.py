@@ -5,7 +5,7 @@ import logging
 import psycopg2
 from psycopg2 import OperationalError
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 from odoo.service.model import PG_CONCURRENCY_ERRORS_TO_RETRY
 
@@ -95,7 +95,7 @@ class AttachmentQueue(models.Model):
                 (self.id,),
             )
         except psycopg2.OperationalError as exc:
-            raise UserError(_(STR_ERR_ATTACHMENT_RUNNING)) from exc
+            raise UserError(self.env._(STR_ERR_ATTACHMENT_RUNNING)) from exc
         if self.state != "done":
             self.run()
 
@@ -171,5 +171,13 @@ class AttachmentQueue(models.Model):
         """
         Manually set to done
         """
-        message = "Manually set to done by %s" % self.env.user.name
-        self.write({"state_message": message, "state": "done"})
+        message = self.env._(
+            "Manually set to done by %(name)s", name=self.env.user.name
+        )
+        self.write(
+            {
+                "state_message": message,
+                "state": "done",
+                "date_done": fields.Datetime.now(),
+            }
+        )
