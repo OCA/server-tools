@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-
     <record id="view_attachment_queue_form" model="ir.ui.view">
         <field name="model">attachment.queue</field>
         <field name="inherit_id" ref="base.view_attachment_form" />
@@ -62,75 +61,83 @@
     </record>
 
     <record id="view_attachment_queue_search" model="ir.ui.view">
-    <field name="model">attachment.queue</field>
-    <field name="arch" type="xml">
-        <search string="Attachments">
-            <field
+        <field name="model">attachment.queue</field>
+        <field name="arch" type="xml">
+            <search string="Attachments">
+                <field
                     name="name"
                     filter_domain="[('name','ilike',self)]"
                     string="Attachment"
                 />
-            <field name="create_date" />
-            <filter name="url" string="URL" domain="[('type','=','url')]" />
-            <filter name="binary" string="Binary" domain="[('type','=','binary')]" />
-            <separator />
-            <filter
+                <field name="create_date" />
+                <filter name="url" string="URL" domain="[('type','=','url')]" />
+                <filter
+                    name="binary"
+                    string="Binary"
+                    domain="[('type','=','binary')]"
+                />
+                <separator />
+                <filter
                     name="my_documents_filter"
                     string="My Document(s)"
                     domain="[('create_uid','=',uid)]"
                     help="Filter on my documents"
                 />
-            <field name="create_uid" />
-            <field name="type" />
-            <filter
+                <field name="create_uid" />
+                <field name="type" />
+                <filter
                     string="Pending"
                     name="pending"
                     domain="[('state', '=', 'pending')]"
                 />
-            <filter string="Failed" name="failed" domain="[('state', '=', 'failed')]" />
-            <filter string="Done" name="done" domain="[('state', '=', 'done')]" />
-            <group expand="0" string="Group By">
                 <filter
+                    string="Failed"
+                    name="failed"
+                    domain="[('state', '=', 'failed')]"
+                />
+                <filter string="Done" name="done" domain="[('state', '=', 'done')]" />
+                <group expand="0" string="Group By">
+                    <filter
                         string="Owner"
                         name="owner"
                         domain="[]"
                         context="{'group_by':'create_uid'}"
                     />
-                <filter
+                    <filter
                         string="Type"
                         name="type"
                         domain="[]"
                         context="{'group_by':'type'}"
                         groups="base.group_no_one"
                     />
-                <filter
+                    <filter
                         string="Company"
                         name="company"
                         domain="[]"
                         context="{'group_by':'company_id'}"
                         groups="base.group_multi_company"
                     />
-                <filter
+                    <filter
                         string="Creation Month"
                         name="creation_month"
                         domain="[]"
                         context="{'group_by':'create_date'}"
                     />
-                <filter
+                    <filter
                         string="State"
                         name="state"
                         domain="[]"
                         context="{'group_by': 'state'}"
                     />
-                <filter
+                    <filter
                         string="File type"
                         name="file_type"
                         domain="[]"
                         context="{'group_by': 'file_type'}"
                     />
-            </group>
-        </search>
-    </field>
+                </group>
+            </search>
+        </field>
     </record>
 
     <record id="action_attachment_queue" model="ir.actions.act_window">
@@ -162,5 +169,4 @@
         sequence="20"
         action="action_attachment_queue"
     />
-
 </odoo>
