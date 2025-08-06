@@ -26,7 +26,7 @@ class AuditLogRuleCommon(TransactionCase):
 
         # Assert no patched methods remain
         for model in cls.models:
-            for method in ["create", "read", "write", "unlink"]:
+            for method in ["create", "read", "write", "unlink", "export_data"]:
                 assert not hasattr(
                     getattr(cls.env[model], method), "origin"
                 ), f"{model} {method} still patched"

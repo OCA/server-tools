@@ -300,6 +300,36 @@ class TestAuditlogFull(AuditLogRuleCommon, AuditlogCommon):
         )
 
 
+class TestAuditlogExportData(AuditLogRuleCommon):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.groups_model_id = cls.env.ref("base.model_res_groups").id
+        cls.groups_rule = cls.create_rule(
+            {
+                "name": "testrule for groups",
+                "model_id": cls.groups_model_id,
+                "log_export_data": True,
+            }
+        )
+
+    def test_LogExport(self):
+        self.groups_rule.subscribe()
+        auditlog_log = self.env["auditlog.log"]
+        self.env["res.groups"].search([]).export_data(["name"])
+        created_log = auditlog_log.search(
+            [
+                ("model_id", "=", self.groups_model_id),
+                ("method", "=", "export_data"),
+            ]
+        ).ensure_one()
+        self.assertTrue(created_log)
+        action = created_log.show_res_ids()
+        domain = action["domain"]  # [('id', 'in', [1, 2, ...])]
+        self.assertIsInstance(domain, list)
+        self.assertIsInstance(domain[0][2], list)
+
+
 class TestAuditlogFast(AuditLogRuleCommon, AuditlogCommon):
     @classmethod
     def setUpClass(cls):
