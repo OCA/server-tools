@@ -38,7 +38,7 @@ class AttachmentQueue(models.Model):
     )
     date_done = fields.Datetime()
     state = fields.Selection(
-        [("pending", "Pending"), ("failed", "Failed"), ("done", "Done")],
+        [("pending", "Pending"), ("done", "Done"), ("failed", "Failed")],
         readonly=False,
         required=True,
         default="pending",
