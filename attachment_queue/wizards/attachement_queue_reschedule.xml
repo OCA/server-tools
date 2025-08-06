@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record id="view_reschedule_attachment" model="ir.ui.view">
         <field name="name">Reschedule Attachments</field>
         <field name="model">attachment.queue.reschedule</field>
@@ -30,5 +29,4 @@
         <field name="target">new</field>
         <field name="binding_model_id" ref="attachment_queue.model_attachment_queue" />
     </record>
-
 </odoo>
