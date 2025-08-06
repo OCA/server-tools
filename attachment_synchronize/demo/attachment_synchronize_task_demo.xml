@@ -56,5 +56,4 @@
         <field name="name">attachment_queue_imported_demo.doc</field>
         <field name="task_id" ref="import_from_filestore" />
     </record>
-
 </odoo>

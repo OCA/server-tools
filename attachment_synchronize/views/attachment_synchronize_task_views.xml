@@ -190,7 +190,6 @@
         </field>
     </record>
 
-
     <!-- Attachments Import Tasks Menu -->
     <record id="action_attachment_import_task" model="ir.actions.act_window">
         <field name="name">Attachments Import Tasks</field>
@@ -232,5 +231,4 @@
         sequence="22"
         action="action_attachment_export_task"
     />
-
 </odoo>
