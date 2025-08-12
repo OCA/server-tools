@@ -384,6 +384,16 @@ msgid "Warning:"
 msgstr "警告："
 
 #. module: auto_backup
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__website_message_ids
+msgid "Website Messages"
+msgstr "网站消息"
+
+#. module: auto_backup
+#: model:ir.model.fields,help:auto_backup.field_db_backup__website_message_ids
+msgid "Website communication history"
+msgstr "网站沟通记录"
+
+#. module: auto_backup
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "john"
 msgstr "约翰"
@@ -412,12 +422,6 @@ msgstr "zip（包括文件存储）"
 
 #~ msgid "Main Attachment"
 #~ msgstr "主要附件"
-
-#~ msgid "Website Messages"
-#~ msgstr "网站消息"
-
-#~ msgid "Website communication history"
-#~ msgstr "网站沟通记录"
 
 #~ msgid "Number of messages which requires an action"
 #~ msgstr "需要操作的消息数量"
