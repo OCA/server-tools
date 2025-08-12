@@ -10,16 +10,14 @@ from contextlib import contextmanager
 from datetime import datetime, timedelta
 from unittest.mock import PropertyMock, patch
 
+import pysftp
+
 from odoo import tools
 from odoo.exceptions import UserError
 
 from odoo.addons.base.tests.common import BaseCommon
 
 _logger = logging.getLogger(__name__)
-try:
-    import pysftp
-except ImportError:  # pragma: no cover
-    _logger.debug("Cannot import pysftp")
 
 
 model = "odoo.addons.auto_backup.models.db_backup"

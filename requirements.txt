@@ -5,6 +5,7 @@ dataclasses
 mako
 odoorpc
 openupgradelib
+paramiko<4.0.0
 pygount==1.4.0
 pysftp
 sentry_sdk<=1.9.0
