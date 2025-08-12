@@ -65,25 +65,26 @@ Size.
 
 The data that is gathered and that is displayed are:
 
-- Model Name - The name of the model to which the data is related
-- Estimated Rows - The number of estimated rows according to the
-  Postgresql query planner. For performance reasons, taking the data
-  from the planner is preferred over doing an actual count, although the
-  results may be imprecise.
-- Bare Table Size - The disk usage of the model table without indexes
-  etc.
-- Index Size - The disk usage of the indexes in the model table.
-- Many2many Tables Size - The disk usage of related many2many tables,
-  including their indexes. To prevent double counts, many2many tables
-  are only correlated with one of their tables (the largest of the two).
-- Attachment Size - The disk usage of the attachments linked to the
-  model records. Because Odoo will deduplicate attachments by content,
-  attachments with the same content may be counted double in the
-  attachment size of other models, but will not be counted double when
-  linked to records of the same model more than once.
-- Total Table Size - Bare Table Size + Index Size
-- Total Database Size - Total Table Size + Many2many Tables Size
-- Total Model Size - Total Database Size + Attachment Size
+-  Model Name - The name of the model to which the data is related
+-  Estimated Rows - The number of estimated rows according to the
+   Postgresql query planner. For performance reasons, taking the data
+   from the planner is preferred over doing an actual count, although
+   the results may be imprecise.
+-  Bare Table Size - The disk usage of the model table without indexes
+   etc.
+-  Index Size - The disk usage of the indexes in the model table.
+-  Many2many Tables Size - The disk usage of related many2many tables,
+   including their indexes. To prevent double counts, many2many tables
+   are only correlated with one of their tables (the largest of the
+   two).
+-  Attachment Size - The disk usage of the attachments linked to the
+   model records. Because Odoo will deduplicate attachments by content,
+   attachments with the same content may be counted double in the
+   attachment size of other models, but will not be counted double when
+   linked to records of the same model more than once.
+-  Total Table Size - Bare Table Size + Index Size
+-  Total Database Size - Total Table Size + Many2many Tables Size
+-  Total Model Size - Total Database Size + Attachment Size
 
 If you click on individual records, you can inspect the sizes of each
 index and many2many table.
@@ -127,7 +128,7 @@ Authors
 Contributors
 ------------
 
-- Stefan Rijnhart <stefan@opener.amsterdam>
+-  Stefan Rijnhart <stefan@opener.amsterdam>
 
 Maintainers
 -----------
