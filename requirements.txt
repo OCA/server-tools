@@ -4,5 +4,6 @@ cryptography
 dataclasses
 odoorpc
 openupgradelib
+paramiko<4.0.0
 pysftp
 sentry_sdk>=2.0.0,<=2.22.0
