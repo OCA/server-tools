@@ -53,7 +53,7 @@ def before_send(event, hint):
         if qualified_name in const.DEFAULT_IGNORED_EXCEPTIONS:
             return None
 
-    if event.setdefault("tags", {})["include_context"]:
+    if event.setdefault("tags", {}).get("include_context"):
         cxtest = get_extra_context(odoo.http.request)
         info_request = ["tags", "user", "extra", "request"]
 
