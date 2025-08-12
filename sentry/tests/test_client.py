@@ -13,7 +13,7 @@ from odoo.tests import TransactionCase
 from odoo.tools import config
 
 from ..const import to_int_if_defined
-from ..hooks import initialize_sentry
+from ..hooks import before_send, initialize_sentry
 
 GIT_SHA = "d670460b4b4aece5915caf5c68d12f560a9fe3e4"
 RELEASE = "test@1.2.3"
@@ -44,12 +44,13 @@ class InMemoryTransport(HttpTransport):
         self.envelopes.append(envelope)
 
     def has_event(self, event_level, event_msg):
-        for event in self.envelopes:
+        for envelope in self.envelopes:
+            event = envelope.get_event()
             if (
-                event.get_event().get("level") == event_level
-                and event.get_event().get("logentry", {}).get("message") == event_msg
+                event.get("level") == event_level
+                and event.get("logentry", {}).get("message") == event_msg
             ):
-                return True
+                return event
         return False
 
     def flush(self, *args, **kwargs):
@@ -146,6 +147,22 @@ class TestClientSetup(TransactionCase):
         self.log(level, msg, exc_info)
         level = "error"
         self.assertEventCaptured(self.client, level, msg)
+
+    def test_capture_events_no_tags(self):
+        """Our 'before_send' can handle events without tags"""
+        level, msg = logging.ERROR, "Test event, can be ignored exception"
+        try:
+            raise TestException(msg)
+        except TestException:
+            exc_info = sys.exc_info()
+        self.log(level, msg, exc_info)
+        level = "error"
+        event = self.client.transport.has_event(level, msg)
+        self.assertTrue(event)
+        # Offer an event without tags to the before_send hook
+        if "tags" in event:
+            del event["tags"]
+        self.assertTrue(before_send(event, {}))
 
     def test_ignore_exceptions(self):
         self.patch_config(
