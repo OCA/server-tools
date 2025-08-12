@@ -24,5 +24,5 @@
         "view/db_backup_view.xml",
     ],
     "installable": True,
-    "external_dependencies": {"python": ["pysftp", "cryptography"]},
+    "external_dependencies": {"python": ["paramiko<4.0.0", "pysftp", "cryptography"]},
 }
