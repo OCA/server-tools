@@ -1,6 +1,6 @@
 [project]
 name = "odoo-addons-oca-server-tools"
-version = "18.0.20250722.0"
+version = "18.0.20250814.0"
 dependencies = [
     "odoo-addon-attachment_unindex_content==18.0.*",
     "odoo-addon-auditlog==18.0.*",
@@ -34,6 +34,7 @@ dependencies = [
     "odoo-addon-session_db==18.0.*",
     "odoo-addon-test_base_time_window==18.0.*",
     "odoo-addon-tracking_manager==18.0.*",
+    "odoo-addon-tracking_manager_domain==18.0.*",
     "odoo-addon-upgrade_analysis==18.0.*",
 ]
 classifiers=[
