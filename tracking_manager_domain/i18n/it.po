@@ -1,0 +1,41 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* tracking_manager_domain
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2025-04-08 06:44+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10.4\n"
+
+#. module: tracking_manager_domain
+#: model:ir.model.fields,help:tracking_manager_domain.field_ir_model_fields__tracking_domain
+msgid ""
+"Add a domain filter to only track changes when certain condition apply on "
+"the parent record."
+msgstr ""
+"Aggiungere un filtro di dominio per tracciare le modifiche solo quando si "
+"applicano determinate condizioni al record padre."
+
+#. module: tracking_manager_domain
+#: model:ir.model,name:tracking_manager_domain.model_base
+msgid "Base"
+msgstr "Base"
+
+#. module: tracking_manager_domain
+#: model:ir.model,name:tracking_manager_domain.model_ir_model_fields
+msgid "Fields"
+msgstr "Campi"
+
+#. module: tracking_manager_domain
+#: model:ir.model.fields,field_description:tracking_manager_domain.field_ir_model_fields__tracking_domain
+msgid "Tracking Domain"
+msgstr "Dominio tracciamento"
