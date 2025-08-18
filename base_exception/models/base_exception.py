@@ -31,12 +31,14 @@ class ExceptionRule(models.Model):
         selection=[
             ("by_domain", "By domain"),
             ("by_py_code", "By python code"),
+            ("by_py_code_batch", "By python code batch"),
             ("by_method", "By method"),
         ],
         string="Exception Type",
         required=True,
         default="by_py_code",
-        help="By python code: allow to define any arbitrary check\n"
+        help="By python code: allow to define any arbitrary check on a single record\n"
+        "By python code batch: allow to define any arbitrary check on all records\n"
         "By domain: limited to a selection by an odoo domain:\n"
         "           performance can be better when exceptions"
         "           are evaluated with several records\n"
@@ -60,6 +62,7 @@ class ExceptionRule(models.Model):
         for rule in self:
             if (
                 (rule.exception_type == "by_py_code" and not rule.code)
+                or (rule.exception_type == "by_py_code_batch" and not rule.code)
                 or (rule.exception_type == "by_domain" and not rule.domain)
                 or (rule.exception_type == "by_method" and not rule.method)
             ):
@@ -173,6 +176,8 @@ class BaseExceptionMethod(models.AbstractModel):
     def _detect_exceptions(self, rule):
         if rule.exception_type == "by_py_code":
             return self._detect_exceptions_by_py_code(rule)
+        elif rule.exception_type == "by_py_code_batch":
+            return self._detect_exceptions_by_py_code_batch(rule)
         elif rule.exception_type == "by_domain":
             return self._detect_exceptions_by_domain(rule)
         elif rule.exception_type == "by_method":
@@ -192,6 +197,16 @@ class BaseExceptionMethod(models.AbstractModel):
             if self._rule_eval(rule, record):
                 records_with_exception |= record
         return records_with_exception
+
+    def _detect_exceptions_by_py_code_batch(self, rule):
+        """
+        Find exceptions found on self.
+        """
+        domain = self._get_base_domain()
+        records = self.search(domain)
+        records_with_exception = self._rule_eval(rule, records)
+
+        return records_with_exception or self.browse()
 
     def _detect_exceptions_by_domain(self, rule):
         """
