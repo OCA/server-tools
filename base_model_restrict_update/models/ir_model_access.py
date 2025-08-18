@@ -1,4 +1,4 @@
-# Copyright 2021-2024 Quartile
+# Copyright 2021-2024 Quartile (https://www.quartile.co)
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
 from odoo import api, models
@@ -49,8 +49,10 @@ class IrModelAccess(models.Model):
             """
             SELECT gurel.uid
             FROM ir_model m
-            LEFT JOIN ir_model_res_groups_update_allowed_rel mgrel ON m.id = mgrel.ir_model_id
-            LEFT JOIN res_groups_users_rel gurel ON mgrel.res_groups_id = gurel.gid
+            LEFT JOIN ir_model_res_groups_update_allowed_rel mgrel
+                ON m.id = mgrel.ir_model_id
+            LEFT JOIN res_groups_users_rel gurel
+                ON mgrel.res_groups_id = gurel.gid
             WHERE m.model = %s
               AND m.restrict_update = true
             """,
@@ -68,7 +70,8 @@ class IrModelAccess(models.Model):
             if self._test_readonly(model) or self._test_restrict_update(model):
                 raise AccessError(
                     _(
-                        "You are only allowed to read this record. (%(model)s - %(mode)s)"
+                        "You are only allowed to read this record. "
+                        "(%(model)s - %(mode)s)"
                     )
                     % {"model": model, "mode": mode}
                 )
