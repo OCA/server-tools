@@ -106,3 +106,31 @@ class TestBaseException(SavepointCase):
             self.po.button_confirm()
         self.assertTrue(self.po.exception_ids)
         self.assertTrue(self.po.exceptions_summary)
+
+    def test_fail_by_py_batch(self):
+        self.exception_rule.write(
+            {
+                "code": "failed = self.filtered(lambda po: not po.partner_id.zip)",
+                "exception_type": "by_py_code_batch",
+            }
+        )
+        po2 = self.po.copy()
+        pos = self.po | po2
+
+        with self.assertRaises(ValidationError):
+            pos.button_confirm()
+
+        self.assertEqual(self.po.exception_ids, self.exception_rule)
+        self.assertEqual(po2.exception_ids, self.exception_rule)
+
+        self.exception_rule.write(
+            {
+                "code": "raise Exception(sorted(self, key=lambda po: po.id))",
+            }
+        )
+
+        with self.assertRaises(UserError) as e:
+            pos.detect_exceptions()
+
+        # Ensure that the code is really called with all orders as self
+        self.assertIn(str(sorted(pos, key=lambda po: po.id)), str(e.exception))

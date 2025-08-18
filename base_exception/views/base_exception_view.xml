@@ -56,7 +56,7 @@
                         <page
                             name="code"
                             string="Python Code"
-                            attrs="{'invisible': [('exception_type','!=','by_py_code')], 'required': [('exception_type','=','by_py_code')]}"
+                            attrs="{'invisible': [('exception_type','not in',['by_py_code', 'by_py_code_batch'])], 'required': [('exception_type','not in',['by_py_code', 'by_py_code_batch'])]}"
                         >
                             <field
                                 name="code"
@@ -68,7 +68,7 @@
                         <page
                             name="help"
                             string="Help"
-                            attrs="{'invisible': [('exception_type','!=','by_py_code')]}"
+                            attrs="{'invisible': [('exception_type','not in',['by_py_code', 'by_py_code_batch'])]}"
                         >
                             <group>
                                 <div style="margin-top: 4px;">
@@ -76,10 +76,18 @@
                                     <p
                                     >Various fields may use Python code or Python expressions. The following variables can be used:</p>
                                     <ul>
-                                        <li><code
-                                            >self</code>: Record on which the rule is evaluated.</li>
-                                        <li>To block the exception use: <code
-                                            >failed = True</code></li>
+                                        <li>
+                                            <code
+                                            >self</code>: Record(s) on which the rule is evaluated.
+                                        </li>
+                                        <li>
+                                            To block the exception for a single record use:
+                                            <code>failed = True</code>
+                                        </li>
+                                        <li>
+                                            To block the exception for multiple records assign the failed records, e.g.
+                                            <code>failed = self.filtered(...)</code>
+                                        </li>
                                     </ul>
                                     <p
                                     >As well as all the libraries provided in safe_eval.</p>
