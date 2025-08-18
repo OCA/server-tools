@@ -17,21 +17,22 @@ Update Restrict Model
     :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
     :alt: License: LGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github
-    :target: https://github.com/OCA/server-tools/tree/16.0/base_model_restrict_update
+    :target: https://github.com/OCA/server-tools/tree/17.0/base_model_restrict_update
     :alt: OCA/server-tools
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/server-tools-16-0/server-tools-16-0-base_model_restrict_update
+    :target: https://translation.odoo-community.org/projects/server-tools-17-0/server-tools-17-0-base_model_restrict_update
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/server-tools&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/server-tools&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
 This module adds the following features:
 
-* The ability to limit the update permissions for a model to certain groups
-* The ability to revoke update permissions for specific users
+-  The ability to limit the update permissions for a model to certain
+   groups
+-  The ability to revoke update permissions for specific users
 
 **Table of contents**
 
@@ -41,20 +42,22 @@ This module adds the following features:
 Configuration
 =============
 
-When you want to limit the update permissions of a model to certain groups:
+When you want to limit the update permissions of a model to certain
+groups:
 
-#. Go to *Settings > Techinical > Database Structure > Models*
-#. Open the form view of the model, and select **Update Restrict Model**
-#. Assign the groups that should be exempt from the restriction to **Update-allowed Groups**
-
+1. Go to *Settings > Techinical > Database Structure > Models*
+2. Open the form view of the model, and select **Update Restrict Model**
+3. Assign the groups that should be exempt from the restriction to
+   **Update-allowed Groups**
 
 When you want revoke update permissions for a specific user:
 
-#. Go to *Settings > Users & Companies > Users*
-#. Open the user's form view and click the **Read-only** smart button
-#. In case you wish to exclude some models from being read-only, go to *Settings >
-   General Settings* and update **Excluded Models from Read-only** under the Permissions
-   section by listing the models separated by commas (e.g., `sale.order,sale.order.line`).
+1. Go to *Settings > Users & Companies > Users*
+2. Open the user's form view and click the **Read-only** smart button
+3. In case you wish to exclude some models from being read-only, go to
+   *Settings > General Settings* and update **Excluded Models from
+   Read-only** under the Permissions section by listing the models
+   separated by commas (e.g., sale.order,sale.order.line).
 
 Bug Tracker
 ===========
@@ -62,7 +65,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/server-tools/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/server-tools/issues/new?body=module:%20base_model_restrict_update%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/server-tools/issues/new?body=module:%20base_model_restrict_update%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -70,28 +73,29 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Quartile
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* `Quartile <https://www.quartile.co>`__:
+-  `Quartile <https://www.quartile.co>`__:
 
-  * Yoshi Tashiro <tashiro@quartile.co>
+   -  Yoshi Tashiro <tashiro@quartile.co>
 
-* Ecosoft
+-  Ecosoft
 
-  * Kitti U. <kittiu@ecosoft.co.th>
+   -  Kitti U. <kittiu@ecosoft.co.th>
 
 Other credits
-~~~~~~~~~~~~~
+-------------
 
-* This module borrows the idea from 'Moises Lopez <https://odoo-community.org/groups/contributors-15/contributors-161807>'
+-  This module borrows the idea from 'Moises Lopez
+   <https://odoo-community.org/groups/contributors-15/contributors-161807>'
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -114,6 +118,6 @@ Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-yostashiro| |maintainer-aungkokolin1997| 
 
-This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/16.0/base_model_restrict_update>`_ project on GitHub.
+This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/17.0/base_model_restrict_update>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
