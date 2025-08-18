@@ -1,8 +1,8 @@
-# Copyright 2021-2024 Quartile
+# Copyright 2021-2024 Quartile (https://www.quartile.co)
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 {
     "name": "Update Restrict Model",
-    "version": "16.0.1.0.0",
+    "version": "17.0.1.0.0",
     "depends": ["base_setup"],
     "website": "https://github.com/OCA/server-tools",
     "author": "Odoo Community Association (OCA), Quartile",
