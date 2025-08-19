@@ -49,7 +49,6 @@ jobs:
           - container: ghcr.io/oca/oca-ci/py3.10-ocb17.0:latest
             exclude: "database_cleanup"
             name: test with OCB
-            makepot: "true"
     services:
       postgres:
         image: postgres:12.0
