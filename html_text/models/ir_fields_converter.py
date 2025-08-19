@@ -42,6 +42,8 @@ class IrFieldsConverter(models.AbstractModel):
             will be returned on failure.
         """
         # Parse HTML
+        logging.info("Parsing HTML content to extract text")
+        logging.debug("HTML content:\n%s", html_content)
         try:
             doc = html.fromstring(html_content)
         except (TypeError, etree.XMLSyntaxError, etree.ParserError):
@@ -53,7 +55,7 @@ class IrFieldsConverter(models.AbstractModel):
 
         # Get words
         words = "".join(doc.xpath("//text()")).split()
-
+        logging.info("Extracted words from HTML content", words)
         # Truncate words
         suffix = max_words and len(words) > max_words
         if max_words:
@@ -61,7 +63,7 @@ class IrFieldsConverter(models.AbstractModel):
 
         # Get text
         text = " ".join(words)
-
+        logging.info("Extracted text from HTML content: %s", text)
         # Truncate text
         suffix = suffix or max_chars and len(text) > max_chars
         if max_chars:
