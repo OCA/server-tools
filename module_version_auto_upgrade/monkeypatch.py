@@ -30,7 +30,6 @@ def get_upgradeable_modules(registry):
             # DB is not initialized, skip auto-upgrade
             return False
         if tools.config["update"] or tools.config["init"]:
-            _logger.info(f"Checking database `{cr.dbname}` for modules to auto-upgrade")
             # do not trigger auto-upgrade if an upgrade/install is already requested
             return False
 
