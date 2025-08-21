@@ -12,7 +12,7 @@ class Base(models.AbstractModel):
     _inherit = "base"
 
     @tools.ormcache()
-    def _all_tracking_domain_fields(self):
+    def _tm_all_tracking_domain_fields(self):
         cr = self._cr
         cr.execute(
             """
@@ -28,6 +28,37 @@ class Base(models.AbstractModel):
             result[row["model"]][row["name"]] = row
         return result
 
+    def _tm_post_message(self, data):
+        for model_name, model_data in data.items():
+            all_tracking_domain_fields = self._tm_all_tracking_domain_fields()[
+                model_name
+            ]
+            # check if any fields with tracking_domain
+            if not all_tracking_domain_fields:
+                continue
+            record_to_remove = []
+            for record_id, messages_by_field in model_data.items():
+                fields_to_remove = []
+                record = self.env[model_name].browse(record_id)
+                if not record.exists():
+                    # if a record have been modify and then deleted
+                    # it's not need to track the change so skip it
+                    continue
+                for field_name, _messages in messages_by_field.items():
+                    field_data = all_tracking_domain_fields.get(field_name, False)
+                    if field_data and not record.filtered_domain(
+                        literal_eval(field_data["tracking_domain"])
+                    ):
+                        fields_to_remove.append(field_name)
+                for field_name in fields_to_remove:
+                    del model_data[record_id][field_name]
+                if not model_data[record_id]:
+                    record_to_remove.append(record_id)
+
+            for record_id in record_to_remove:
+                del model_data[record_id]
+        return super()._tm_post_message(data)
+
     def _mail_track(self, tracked_fields, initial_values):
         changes, tracking_value_ids = super()._mail_track(
             tracked_fields, initial_values
@@ -38,7 +69,9 @@ class Base(models.AbstractModel):
             if "field_id" in tracking_value_id[2]
         ]
         if tracking_value_field_ids:
-            all_tracking_domain_fields = self._all_tracking_domain_fields()[self._name]
+            all_tracking_domain_fields = self._tm_all_tracking_domain_fields()[
+                self._name
+            ]
 
             if all_tracking_domain_fields:
                 # remove entries that are not matching the tracking_domain of the field
