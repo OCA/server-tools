@@ -9,13 +9,13 @@
 - Default : Use global configuration
 - Owner : Owner and admins only
 - Custom : Certain groups or users per related model.
-- Owner + Strict : Owner, admins and Certain groups or users per related
+- Owner + Custom : Owner, admins and Certain groups or users per related
   model.
 - None : all users can delete them
 
-Only Owner and Custom + Strict need specific configuration on models.
+Only Custom and Owner + Custom need specific configuration on models.
 
-## For Custom and Owner + Strict levels:
+## For Custom and Owner + Custom levels:
 
 1.  Go to *Settings \> Technical \> Database Structure \> Models*.
 2.  Open a model for which attachment deletion should be restricted.
