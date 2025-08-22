@@ -14,7 +14,6 @@ def load_modules(registry, force_demo=False, status=None, update_module=False):
     # load_modules is a good spot to hook, because modules __init__.py are called
     # before this, but the registry is not yet fully loaded (so we avoid some weird
     # issues with .mapped() and computed fields).
-    _logger.info("#######")
     modules_to_upgrade = get_upgradeable_modules(registry)
     if modules_to_upgrade:
         tools.config["update"].update({k: 1 for k in modules_to_upgrade})
