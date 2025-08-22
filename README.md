@@ -31,6 +31,7 @@ addon | version | maintainers | summary
 [base_m2m_custom_field](base_m2m_custom_field/) | 17.0.1.0.0 |  | Customizations of Many2many
 [base_partition](base_partition/) | 17.0.1.0.0 |  | Base module that provide the partition method on all models
 [base_search_fuzzy](base_search_fuzzy/) | 17.0.1.0.0 |  | Fuzzy search with the PostgreSQL trigram extension
+[base_sequence_option](base_sequence_option/) | 17.0.1.0.0 | <a href='https://github.com/kittiu'><img src='https://github.com/kittiu.png' width='32' height='32' style='border-radius:50%;' alt='kittiu'/></a> | Alternative sequence options for specific models
 [base_sparse_field_list_support](base_sparse_field_list_support/) | 17.0.1.0.0 |  | add list support to convert_to_cache()
 [base_technical_user](base_technical_user/) | 17.0.1.0.0 |  | Add a technical user parameter on the company
 [base_view_inheritance_extension](base_view_inheritance_extension/) | 17.0.1.0.2 |  | Adds more operators for view inheritance
