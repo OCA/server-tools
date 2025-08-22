@@ -3,6 +3,7 @@ astor
 cryptography
 dataclasses
 mako
+odoo_test_helper
 odoorpc
 openupgradelib
 paramiko<4.0.0
