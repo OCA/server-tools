@@ -18,7 +18,7 @@ class TestBaseException(TestBaseExceptionCommon):
     def test_fail_by_py(self):
         with self.assertRaises(ValidationError):
             self.po.button_confirm()
-        self.assertTrue(self.po.exception_ids)
+        self.assertEqual(self.po.exception_ids, self.exception_rule)
 
     def test_fail_by_domain(self):
         self.exception_rule.write(
@@ -29,7 +29,8 @@ class TestBaseException(TestBaseExceptionCommon):
         )
         with self.assertRaises(ValidationError):
             self.po.button_confirm()
-        self.assertTrue(self.po.exception_ids)
+        self.assertEqual(self.po.exception_ids, self.exception_rule)
+        self.assertIn(self.exception_rule.description, self.po.exceptions_summary)
 
     def test_fail_by_method(self):
         self.exception_rule.write(
@@ -40,14 +41,14 @@ class TestBaseException(TestBaseExceptionCommon):
         )
         with self.assertRaises(ValidationError):
             self.po.button_confirm()
-        self.assertTrue(self.po.exception_ids)
+        self.assertEqual(self.po.exception_ids, self.exception_rule)
 
     def test_ignorable_exception(self):
         # Block because of exception during validation
         with self.assertRaises(ValidationError):
             self.po.button_confirm()
         # Test that we have linked exceptions
-        self.assertTrue(self.po.exception_ids)
+        self.assertEqual(self.po.exception_ids, self.exception_rule)
         # Test ignore exeception make possible for the po to validate
         self.po.action_ignore_exceptions()
         self.assertTrue(self.po.ignore_exception)
@@ -61,7 +62,7 @@ class TestBaseException(TestBaseExceptionCommon):
         with self.assertRaises(ValidationError):
             self.po.button_confirm()
         # Test that we have linked exceptions
-        self.assertTrue(self.po.exception_ids)
+        self.assertEqual(self.po.exception_ids, self.exception_rule)
         self.assertTrue(self.po.exceptions_summary)
         # Test cannot ignore blocked exception
         with self.assertRaises(UserError):
@@ -69,5 +70,5 @@ class TestBaseException(TestBaseExceptionCommon):
         self.assertFalse(self.po.ignore_exception)
         with self.assertRaises(ValidationError):
             self.po.button_confirm()
-        self.assertTrue(self.po.exception_ids)
+        self.assertEqual(self.po.exception_ids, self.exception_rule)
         self.assertTrue(self.po.exceptions_summary)

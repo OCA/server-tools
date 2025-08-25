@@ -1,5 +1,6 @@
 # Copyright 2016 Akretion Mourad EL HADJ MIMOUNE
 # Copyright 2020 Hibou Corp.
+# Copyright 2025 Raumschmiede GmbH
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 from odoo import api, fields, models
 
@@ -15,7 +16,6 @@ class ExceptionRule(models.Model):
         selection_add=[("base.exception.test.purchase", "Purchase Test")],
         ondelete={"base.exception.test.purchase": "cascade"},
     )
-    test_purchase_ids = fields.Many2many("base.exception.test.purchase")
 
 
 class PurchaseTest(models.Model):

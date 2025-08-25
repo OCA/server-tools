@@ -33,6 +33,7 @@ class TestBaseExceptionCommon(SavepointCase):
         cls.exception_rule = cls.env["exception.rule"].create(
             {
                 "name": "No ZIP code on destination",
+                "description": "Plz set ZIP code on destination",
                 "sequence": 10,
                 "model": "base.exception.test.purchase",
                 "code": "if not self.partner_id.zip: failed=True",
