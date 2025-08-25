@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 17.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -29,9 +29,16 @@ msgid "Archive Path"
 msgstr ""
 
 #. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually__assigned_attachment_ids
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__assigned_attachment_ids
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server__assigned_attachment_ids
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__assigned_attachment_ids
+msgid "Assigned Attachments"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
 #. odoo-python
 #: code:addons/fetchmail_attach_from_folder/wizard/attach_mail_manually.py:0
-#, python-format
 msgid "Attach emails manually"
 msgstr ""
 
@@ -83,7 +90,6 @@ msgstr ""
 #. module: fetchmail_attach_from_folder
 #. odoo-python
 #: code:addons/fetchmail_attach_from_folder/models/fetchmail_server.py:0
-#, python-format
 msgid "Confirm connection first."
 msgstr ""
 
@@ -95,28 +101,24 @@ msgstr ""
 #. module: fetchmail_attach_from_folder
 #. odoo-python
 #: code:addons/fetchmail_attach_from_folder/models/fetchmail_server_folder.py:0
-#, python-format
 msgid "Could not create archive folder %(folder)s on server %(server)s"
 msgstr ""
 
 #. module: fetchmail_attach_from_folder
 #. odoo-python
 #: code:addons/fetchmail_attach_from_folder/models/fetchmail_server_folder.py:0
-#, python-format
 msgid "Could not fetch %(msgid)s in folder %(folder)s on server %(server)s"
 msgstr ""
 
 #. module: fetchmail_attach_from_folder
 #. odoo-python
 #: code:addons/fetchmail_attach_from_folder/models/fetchmail_server_folder.py:0
-#, python-format
 msgid "Could not open folder %(folder)s on server %(server)s"
 msgstr ""
 
 #. module: fetchmail_attach_from_folder
 #. odoo-python
 #: code:addons/fetchmail_attach_from_folder/models/fetchmail_server_folder.py:0
-#, python-format
 msgid "Could not search folder %(folder)s on server %(server)s"
 msgstr ""
 
@@ -279,7 +281,6 @@ msgstr ""
 #. module: fetchmail_attach_from_folder
 #. odoo-python
 #: code:addons/fetchmail_attach_from_folder/models/fetchmail_server_folder.py:0
-#, python-format
 msgid "Invalid folder %s!"
 msgstr ""
 
@@ -403,6 +404,19 @@ msgid "Server Type"
 msgstr ""
 
 #. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server__x_server_type_env_default
+msgid "Server Type Env Default"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually__smart_search
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__smart_search
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server__smart_search
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__smart_search
+msgid "Smart Search"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__state
 msgid "Status"
 msgstr ""
@@ -461,7 +475,6 @@ msgstr ""
 #. module: fetchmail_attach_from_folder
 #. odoo-python
 #: code:addons/fetchmail_attach_from_folder/models/fetchmail_server.py:0
-#, python-format
 msgid "Unable to retrieve folders."
 msgstr ""
 
