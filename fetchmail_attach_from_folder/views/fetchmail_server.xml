@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="view_email_server_form">
+        <field name="name">fetchmail.server.form</field>
+        <field name="model">fetchmail.server</field>
+        <field name="inherit_id" ref="mail.view_email_server_form" />
+        <field name="arch" type="xml">
+            <field name="object_id" position="attributes">
+                <attribute
+                    name="required"
+                >server_type not in ('imap', 'outlook')</attribute>
+            </field>
+            <xpath expr="//notebook" position="inside">
+                <page
+                    string="Folders to monitor"
+                    invisible="server_type not in ('imap', 'outlook')"
+                >
+                    <group>
+                        <field name="folders_only" />
+                    </group>
+                    <field name="folder_ids" nolabel="1">
+                        <list decoration-muted="active == False">
+                            <field name="active" column_invisible="True" />
+                            <field name="sequence" widget="handle" />
+                            <field name="path" />
+                            <field name="archive_path" />
+                            <field name="model_id" />
+                            <field name="action_id" />
+                            <field name="match_algorithm" />
+                            <field name="model_field" />
+                            <field name="mail_field" />
+                            <field name="state" />
+                        </list>
+                        <form>
+                            <field name="state" invisible="1" />
+                            <header>
+                                <button
+                                    type="object"
+                                    name="button_confirm_folder"
+                                    string="Test &amp; Confirm"
+                                    invisible="state != 'draft'"
+                                />
+                                <button
+                                    type="object"
+                                    name="button_attach_mail_manually"
+                                    string="Attach mail manually"
+                                    invisible="state != 'done'"
+                                />
+                                <button
+                                    type="object"
+                                    name="fetch_mail"
+                                    string="Fetch folder now"
+                                    invisible="state != 'done'"
+                                />
+                                <button
+                                    string="Reset Confirmation"
+                                    type="object"
+                                    name="set_draft"
+                                    invisible="state != 'done'"
+                                />
+                            </header>
+                            <group colspan="4" col="2">
+                                <group>
+                                    <field name="path" placeholder="INBOX.subfolder1" />
+                                    <field name="model_id" />
+                                    <field name="action_id" />
+                                    <field name="match_algorithm" />
+                                </group>
+                                <group
+                                    name="group_email_match"
+                                    invisible="match_algorithm == 'odoo_standard'"
+                                >
+                                    <field
+                                        name="model_field"
+                                        placeholder="email"
+                                        required="match_algorithm in ['email_exact', 'email_domain']"
+                                    />
+                                    <field
+                                        name="mail_field"
+                                        placeholder="to,from"
+                                        required="match_algorithm in ['email_exact', 'email_domain']"
+                                    />
+                                    <field name="match_first" />
+                                    <field
+                                        name="domain"
+                                        placeholder="[('state', '=', 'open')]"
+                                    />
+                                    <field
+                                        name="model_order"
+                                        placeholder="name asc"
+                                        readonly="not match_first"
+                                        required="match_first"
+                                    />
+                                    <field name="flag_nonmatching" />
+                                </group>
+                                <group>
+                                    <field name="active" />
+                                    <field name="archive_path" />
+                                    <field name="delete_matching" />
+                                    <field name="fetch_unseen_only" />
+                                    <field name="msg_state" />
+                                </group>
+                            </group>
+                        </form>
+                    </field>
+                    <separator string="Folders available on server" colspan="6" />
+                    <field name="folders_available" readonly="1" />
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

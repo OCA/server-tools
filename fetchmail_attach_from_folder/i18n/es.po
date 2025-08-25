@@ -1,0 +1,603 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * fetchmail_attach_from_folder
+#
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: server-tools (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-09-29 11:14+0000\n"
+"PO-Revision-Date: 2015-09-18 13:55+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: Spanish (http://www.transifex.com/oca/OCA-server-tools-8-0/"
+"language/es/)\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__action_id
+msgid "Action"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__active
+msgid "Active"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__archive_path
+msgid "Archive Path"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually__assigned_attachment_ids
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__assigned_attachment_ids
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server__assigned_attachment_ids
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__assigned_attachment_ids
+msgid "Assigned Attachments"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#. odoo-python
+#: code:addons/fetchmail_attach_from_folder/wizard/attach_mail_manually.py:0
+#, python-format
+msgid "Attach emails manually"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model_terms:ir.ui.view,arch_db:fetchmail_attach_from_folder.view_attach_mail_manually
+#: model_terms:ir.ui.view,arch_db:fetchmail_attach_from_folder.view_email_server_form
+msgid "Attach mail manually"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model,name:fetchmail_attach_from_folder.model_fetchmail_attach_mail_manually
+msgid "Attach mail to selected documents."
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model,name:fetchmail_attach_from_folder.model_fetchmail_attach_mail_manually_mail
+msgid "Attach single mail to selected documents."
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server__folders_available
+msgid "Available folders"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__body
+msgid "Body"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server_folder__fetch_unseen_only
+msgid ""
+"By default all undeleted emails are searched. Checking this field adds the "
+"unread condition."
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model_terms:ir.ui.view,arch_db:fetchmail_attach_from_folder.view_attach_mail_manually
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually__changeset_change_ids
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__changeset_change_ids
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server__changeset_change_ids
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__changeset_change_ids
+msgid "Changeset Changes"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually__changeset_ids
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__changeset_ids
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server__changeset_ids
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__changeset_ids
+msgid "Changesets"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server__folders_only
+msgid ""
+"Check this field to leave imap inbox alone and only retrieve mail from "
+"configured folders."
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#. odoo-python
+#: code:addons/fetchmail_attach_from_folder/models/fetchmail_server.py:0
+#, python-format
+msgid "Confirm connection first."
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields.selection,name:fetchmail_attach_from_folder.selection__fetchmail_server_folder__state__done
+msgid "Confirmed"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#. odoo-python
+#: code:addons/fetchmail_attach_from_folder/models/fetchmail_server_folder.py:0
+#, python-format
+msgid "Could not create archive folder %(folder)s on server %(server)s"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#. odoo-python
+#: code:addons/fetchmail_attach_from_folder/models/fetchmail_server_folder.py:0
+#, python-format
+msgid "Could not fetch %(msgid)s in folder %(folder)s on server %(server)s"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#. odoo-python
+#: code:addons/fetchmail_attach_from_folder/models/fetchmail_server_folder.py:0
+#, python-format
+msgid "Could not open folder %(folder)s on server %(server)s"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#. odoo-python
+#: code:addons/fetchmail_attach_from_folder/models/fetchmail_server_folder.py:0
+#, python-format
+msgid "Could not search folder %(folder)s on server %(server)s"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually__count_changesets
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__count_changesets
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server__count_changesets
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__count_changesets
+msgid "Count Changesets"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually__count_pending_changesets
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__count_pending_changesets
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server__count_pending_changesets
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server__object_id
+msgid "Create a New Record"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually__create_uid
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__create_uid
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually__create_date
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__create_date
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__date
+msgid "Date"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model,name:fetchmail_attach_from_folder.model_fetchmail_server_folder
+msgid "Define folders (IMAP mailboxes) from which to fetch mail."
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server_folder__delete_matching
+msgid "Delete matched emails from server"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__delete_matching
+msgid "Delete matches"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually__display_name
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__display_name
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__domain
+msgid "Domain"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields.selection,name:fetchmail_attach_from_folder.selection__fetchmail_server_folder__match_algorithm__email_domain
+msgid "Domain of email address"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually__mail_ids
+msgid "Emails"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields.selection,name:fetchmail_attach_from_folder.selection__fetchmail_server_folder__match_algorithm__email_exact
+msgid "Exact mailadress"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__fetch_unseen_only
+msgid "Fetch Unseen Only"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model_terms:ir.ui.view,arch_db:fetchmail_attach_from_folder.view_email_server_form
+msgid "Fetch folder now"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__mail_field
+msgid "Field (email)"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__model_field
+msgid "Field (model)"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server_folder__model_order
+msgid ""
+"Field(s) to order by, this mostly useful in conjunction with 'Use 1st match'"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server_folder__domain
+msgid "Fill in a search filter to narrow down objects to match"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__flag_nonmatching
+msgid "Flag Nonmatching"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server_folder__flag_nonmatching
+msgid "Flag emails in the server that don't match any object in Odoo"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually__folder_id
+msgid "Folder"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server__folder_ids
+msgid "Folders"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model_terms:ir.ui.view,arch_db:fetchmail_attach_from_folder.view_email_server_form
+msgid "Folders available on server"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model_terms:ir.ui.view,arch_db:fetchmail_attach_from_folder.view_email_server_form
+msgid "Folders to monitor"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__email_from
+msgid "From"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually__id
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__id
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__id
+msgid "ID"
+msgstr "ID"
+
+#. module: fetchmail_attach_from_folder
+#: model_terms:ir.ui.view,arch_db:fetchmail_attach_from_folder.view_email_server_form
+msgid "INBOX.subfolder1"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server_folder__match_first
+msgid ""
+"If there are multiple matches, use the first one. If not checked, multiple "
+"matches count as no match at all"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model,name:fetchmail_attach_from_folder.model_fetchmail_server
+msgid "Incoming Mail Server"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#. odoo-python
+#: code:addons/fetchmail_attach_from_folder/models/fetchmail_server_folder.py:0
+#, python-format
+msgid "Invalid folder %s!"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually____last_update
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail____last_update
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder____last_update
+#, fuzzy
+msgid "Last Modified on"
+msgstr "Última actualización en"
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually__write_uid
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__write_uid
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización de"
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually__write_date
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__write_date
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__write_date
+msgid "Last Updated on"
+msgstr "Última actualización en"
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__match_algorithm
+msgid "Match Algorithm"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__msgid
+msgid "Message id"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__msg_state
+msgid "Message state"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__model_id
+msgid "Model"
+msgstr "Modelo"
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually__name
+msgid "Name"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields.selection,name:fetchmail_attach_from_folder.selection__fetchmail_server_folder__state__draft
+msgid "Not Confirmed"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__object_id
+msgid "Object"
+msgstr "Objeto"
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields.selection,name:fetchmail_attach_from_folder.selection__fetchmail_server_folder__match_algorithm__odoo_standard
+msgid "Odoo standard"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server__folders_only
+msgid "Only folders, not inbox"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server_folder__action_id
+msgid ""
+"Optional custom server action to trigger for each incoming mail, on the "
+"record that was created or updated by this mail"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__model_order
+msgid "Order (model)"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__path
+msgid "Path"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server__object_id
+msgid ""
+"Process each incoming mail as part of a conversation corresponding to this "
+"document type. This will create new documents for new conversations, or "
+"attach follow-up emails to the existing conversations (documents)."
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields.selection,name:fetchmail_attach_from_folder.selection__fetchmail_server_folder__msg_state__received
+msgid "Received"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model_terms:ir.ui.view,arch_db:fetchmail_attach_from_folder.view_email_server_form
+msgid "Reset Confirmation"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model_terms:ir.ui.view,arch_db:fetchmail_attach_from_folder.view_attach_mail_manually
+msgid "Save"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields.selection,name:fetchmail_attach_from_folder.selection__fetchmail_server_folder__msg_state__sent
+msgid "Sent"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__server_id
+msgid "Server"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server__server_type
+msgid "Server Type"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually__smart_search
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__smart_search
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server__smart_search
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__smart_search
+msgid "Smart Search"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__state
+msgid "Status"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__subject
+msgid "Subject"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model_terms:ir.ui.view,arch_db:fetchmail_attach_from_folder.view_email_server_form
+msgid "Test & Confirm"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server_folder__match_algorithm
+msgid "The algorithm used to determine which object an email matches."
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server_folder__mail_field
+msgid ""
+"The field in the email used for matching. Typically this is 'to' or 'from'"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server_folder__model_field
+msgid ""
+"The field in your model that contains the field to match against.\n"
+"Examples:\n"
+"'email' if your model is res.partner, or 'partner_id.email' if you're "
+"matching sale orders"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server_folder__model_id
+msgid "The model to attach emails to"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually__count_pending_changeset_changes
+#: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__count_pending_changeset_changes
+#: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server__count_pending_changeset_changes
+#: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server_folder__count_pending_changeset_changes
+msgid "The number of pending changes of this record"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually__count_pending_changesets
+#: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__count_pending_changesets
+#: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server__count_pending_changesets
+#: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server_folder__count_pending_changesets
+msgid "The number of pending changesets of this record"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually__count_changesets
+#: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__count_changesets
+#: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server__count_changesets
+#: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server_folder__count_changesets
+msgid "The overall number of changesets of this record"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server_folder__path
+msgid ""
+"The path to your mail folder. Typically would be something like 'INBOX."
+"myfolder'"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server_folder__archive_path
+msgid "The path where successfully retrieved messages will be stored."
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server_folder__msg_state
+msgid "The state messages fetched from this folder should be assigned in Odoo"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#. odoo-python
+#: code:addons/fetchmail_attach_from_folder/models/fetchmail_server.py:0
+#, python-format
+msgid "Unable to retrieve folders."
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__match_first
+msgid "Use 1st match"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually__user_can_see_changeset
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__user_can_see_changeset
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server__user_can_see_changeset
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__wizard_id
+msgid "Wizard"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model_terms:ir.ui.view,arch_db:fetchmail_attach_from_folder.view_email_server_form
+msgid "[('state', '=', 'open')]"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model_terms:ir.ui.view,arch_db:fetchmail_attach_from_folder.view_email_server_form
+msgid "email"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model_terms:ir.ui.view,arch_db:fetchmail_attach_from_folder.view_email_server_form
+msgid "name asc"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model_terms:ir.ui.view,arch_db:fetchmail_attach_from_folder.view_attach_mail_manually
+msgid "or"
+msgstr "o"
+
+#. module: fetchmail_attach_from_folder
+#: model_terms:ir.ui.view,arch_db:fetchmail_attach_from_folder.view_email_server_form
+msgid "to,from"
+msgstr ""
