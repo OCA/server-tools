@@ -60,7 +60,7 @@ def _extend_name_results(self, domain, results, limit):
     result_count = len(results)
     if result_count < limit:
         domain += [("id", "not in", results)]
-        rec_ids = self._search(
+        rec_ids = self.with_context(skip_smart_name_search=True)._search(
             domain,
             limit=limit - result_count,
         )
@@ -93,6 +93,10 @@ class Base(models.AbstractModel):
     @api.model
     def _search_display_name(self, operator, value):
         domain = super()._search_display_name(operator, value)
+        # Avoid applying smart search logic during a recursive call.
+        if self.env.context.get("skip_smart_name_search"):
+            return domain
+
         if self.env.context.get(
             "force_smart_name_search", False
         ) or _get_use_smart_name_search(self.sudo()):
