@@ -82,36 +82,17 @@ class Base(models.AbstractModel):
     @api.model
     def _search_smart_search(self, operator, value):
         if value and operator in ALLOWED_OPS:
-            matching_records = self.with_context(
-                force_smart_name_search=True
-            ).name_search(name=value, operator=operator)
-            if matching_records:
-                record_ids = [record[0] for record in matching_records]
-                return [("id", "in", record_ids)]
-        return [("id", "=", False)]
-
-    @api.model
-    def _search_display_name(self, operator, value):
-        domain = super()._search_display_name(operator, value)
-        if self.env.context.get(
-            "force_smart_name_search", False
-        ) or _get_use_smart_name_search(self.sudo()):
             all_names = _get_rec_names(self.sudo())
-            additional_domain = _get_name_search_domain(self.sudo())
-
+            domain = _get_name_search_domain(self.sudo())
             for word in value.split():
                 word_domain = []
                 for rec_name in all_names:
                     word_domain = (
                         word_domain and ["|"] + word_domain or word_domain
                     ) + [(rec_name, operator, word)]
-                additional_domain = (
-                    additional_domain and ["&"] + additional_domain or additional_domain
-                ) + word_domain
-
-            return expression.OR([additional_domain, domain])
-
-        return domain
+                domain = (domain and ["&"] + domain or domain) + word_domain
+            return domain
+        return []
 
     @api.model
     def name_search(self, name="", args=None, operator="ilike", limit=100):
