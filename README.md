@@ -45,7 +45,7 @@ addon | version | maintainers | summary
 [fetchmail_notify_error_to_sender](fetchmail_notify_error_to_sender/) | 18.0.1.0.0 |  | If fetching mails gives error, send an email to sender
 [html_text](html_text/) | 18.0.1.0.0 |  | Generate excerpts from any HTML field
 [jsonifier](jsonifier/) | 18.0.1.1.0 |  | JSON-ify data for all models
-[mail_cleanup](mail_cleanup/) | 18.0.1.0.0 |  | Mark as read or delete mails after a set time
+[mail_cleanup](mail_cleanup/) | 18.0.1.0.1 |  | Mark as read or delete mails after a set time
 [module_auto_update](module_auto_update/) | 18.0.1.0.0 |  | Automatically update Odoo modules
 [module_change_auto_install](module_change_auto_install/) | 18.0.1.0.3 | <a href='https://github.com/legalsylvain'><img src='https://github.com/legalsylvain.png' width='32' height='32' style='border-radius:50%;' alt='legalsylvain'/></a> | Customize auto installables modules by configuration
 [onchange_helper](onchange_helper/) | 18.0.1.0.0 |  | Technical module that ease execution of onchange in Python code
