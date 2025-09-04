@@ -2,16 +2,16 @@
 # © 2018 Pieter Paulussen <pieter_paulussen@me.com>
 # © 2021 Stefan Rijnhart <stefan@opener.amsterdam>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo.tests.common import TransactionCase
 
 from odoo.addons.base.models.ir_model import MODULE_UNINSTALL_FLAG
 from odoo.addons.base.models.res_users import name_boolean_group
+
+from .common import AuditLogRuleCommon
 
 
 class AuditlogCommon:
     def test_LogCreation(self):
         """First test, caching some data."""
-        self.groups_rule.subscribe()
         group = self.env["res.groups"].create({"name": "testgroup1"})
         self.assertEqual(
             self.env["auditlog.log"].search_count(
@@ -26,9 +26,6 @@ class AuditlogCommon:
 
     def test_LogCreation2(self):
         """Second test, using cached data of the first one."""
-
-        self.groups_rule.subscribe()
-
         auditlog_log = self.env["auditlog.log"]
         testgroup2 = self.env["res.groups"].create({"name": "testgroup2"})
         self.assertTrue(
@@ -47,8 +44,6 @@ class AuditlogCommon:
         of a 'write' log with a deleted resource (so with no text
         representation).
         """
-
-        self.groups_rule.subscribe()
         auditlog_log = self.env["auditlog.log"]
         testgroup3 = self.env["res.groups"].create({"name": "testgroup3"})
         testgroup4 = self.env["res.groups"].create({"name": "testgroup4"})
@@ -92,9 +87,6 @@ class AuditlogCommon:
         feature starting from Odoo 12) and check that the same number of logs
         has been generated.
         """
-
-        self.groups_rule.subscribe()
-
         auditlog_log = self.env["auditlog.log"]
         groups_vals = [
             {"name": "testgroup1"},
@@ -121,8 +113,6 @@ class AuditlogCommon:
         has been generated. And then delete it, check that it has created log
         with 0 fields updated.
         """
-        self.groups_rule.subscribe()
-
         auditlog_log = self.env["auditlog.log"]
         testgroup5 = self.env["res.groups"].create({"name": "testgroup5"})
         self.assertTrue(
@@ -151,8 +141,6 @@ class AuditlogCommon:
         has been generated. And then delete it, check that it has created log
         with x fields updated as per rule
         """
-        self.groups_rule.subscribe()
-
         auditlog_log = self.env["auditlog.log"]
         testgroup6 = self.env["res.groups"].create({"name": "testgroup6"})
         self.assertTrue(
@@ -181,8 +169,6 @@ class AuditlogCommon:
 
         Check that creation goes as planned (no error coming from ``deepcopy``)
         """
-        self.groups_rule.subscribe()
-
         auditlog_log = self.env["auditlog.log"]
         cat = self.env["ir.module.category"].create({"name": "Test Category"})
         groups_vals = [
@@ -209,7 +195,6 @@ class AuditlogCommon:
 
     def test_LogUpdate(self):
         """Tests write results with different M2O values."""
-        self.groups_rule.subscribe()
         testgroup3 = self.env["res.groups"].create({"name": "testgroup3"})
         testgroup4 = self.env["res.groups"].create({"name": "testgroup4"})
         group = self.env["res.groups"].create(
@@ -256,7 +241,6 @@ class AuditlogCommon:
 
     def test_LogDelete(self):
         """Tests unlink results"""
-        self.groups_rule.subscribe()
         group = self.env["res.groups"].create({"name": "testgroup1"})
         group.unlink()
         self.assertEqual(
@@ -271,14 +255,15 @@ class AuditlogCommon:
         )
 
 
-class TestAuditlogFull(TransactionCase, AuditlogCommon):
-    def setUp(self):
-        super().setUp()
-        self.groups_model_id = self.env.ref("base.model_res_groups").id
-        self.groups_rule = self.env["auditlog.rule"].create(
+class TestAuditlogFull(AuditLogRuleCommon, AuditlogCommon):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.groups_model_id = cls.env.ref("base.model_res_groups").id
+        cls.groups_rule = cls.create_rule(
             {
                 "name": "testrule for groups",
-                "model_id": self.groups_model_id,
+                "model_id": cls.groups_model_id,
                 "log_read": True,
                 "log_create": True,
                 "log_write": True,
@@ -286,31 +271,24 @@ class TestAuditlogFull(TransactionCase, AuditlogCommon):
                 "log_type": "full",
             }
         )
-
-    def tearDown(self):
-        self.groups_rule.unlink()
-        super().tearDown()
+        cls.groups_rule.subscribe()
 
 
-class TestAuditlogExportData(TransactionCase):
-    def setUp(self):
-        super().setUp()
-        self.groups_model_id = self.env.ref("base.model_res_groups").id
-        self.groups_rule = self.env["auditlog.rule"].create(
+class TestAuditlogExportData(AuditLogRuleCommon):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.groups_model_id = cls.env.ref("base.model_res_groups").id
+        cls.groups_rule = cls.env["auditlog.rule"].create(
             {
                 "name": "testrule for groups",
-                "model_id": self.groups_model_id,
+                "model_id": cls.groups_model_id,
                 "log_export_data": True,
             }
         )
-
-    def tearDown(self):
-        self.groups_rule.unlink()
-        super().tearDown()
+        cls.groups_rule.subscribe()
 
     def test_LogExport(self):
-        self.groups_rule.subscribe()
-
         auditlog_log = self.env["auditlog.log"]
         self.env["res.groups"].search([]).export_data(["name"])
         created_log = auditlog_log.search(
@@ -326,14 +304,15 @@ class TestAuditlogExportData(TransactionCase):
         self.assertIsInstance(domain[0][2], list)
 
 
-class TestAuditlogFast(TransactionCase, AuditlogCommon):
-    def setUp(self):
-        super().setUp()
-        self.groups_model_id = self.env.ref("base.model_res_groups").id
-        self.groups_rule = self.env["auditlog.rule"].create(
+class TestAuditlogFast(AuditLogRuleCommon, AuditlogCommon):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.groups_model_id = cls.env.ref("base.model_res_groups").id
+        cls.groups_rule = cls.create_rule(
             {
                 "name": "testrule for groups",
-                "model_id": self.groups_model_id,
+                "model_id": cls.groups_model_id,
                 "log_read": True,
                 "log_create": True,
                 "log_write": True,
@@ -341,20 +320,13 @@ class TestAuditlogFast(TransactionCase, AuditlogCommon):
                 "log_type": "fast",
             }
         )
-
-    def tearDown(self):
-        self.groups_rule.unlink()
-        super().tearDown()
+        cls.groups_rule.subscribe()
 
 
-class TestFieldRemoval(TransactionCase):
+class TestFieldRemoval(AuditLogRuleCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-
-        # Clear all existing logging lines
-        existing_audit_logs = cls.env["auditlog.log"].search([])
-        existing_audit_logs.unlink()
 
         # Create a test model to remove
         cls.test_model = (
@@ -382,18 +354,16 @@ class TestFieldRemoval(TransactionCase):
             )
         )
         # Setup auditlog rule
-        cls.auditlog_rule = cls.env["auditlog.rule"].create(
-            [
-                {
-                    "name": "test.model",
-                    "model_id": cls.test_model.id,
-                    "log_type": "fast",
-                    "log_read": False,
-                    "log_create": True,
-                    "log_write": True,
-                    "log_unlink": False,
-                }
-            ]
+        cls.auditlog_rule = cls.create_rule(
+            {
+                "name": "test.model",
+                "model_id": cls.test_model.id,
+                "log_type": "fast",
+                "log_read": False,
+                "log_create": True,
+                "log_write": True,
+                "log_unlink": False,
+            }
         )
 
         cls.auditlog_rule.subscribe()
@@ -441,14 +411,15 @@ class TestFieldRemoval(TransactionCase):
         self.assertFalse(self.auditlog_rule.model_id)
 
 
-class TestAuditlogFullCaptureRecord(TransactionCase, AuditlogCommon):
-    def setUp(self):
-        super().setUp()
-        self.groups_model_id = self.env.ref("base.model_res_groups").id
-        self.groups_rule = self.env["auditlog.rule"].create(
+class TestAuditlogFullCaptureRecord(AuditLogRuleCommon, AuditlogCommon):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.groups_model_id = cls.env.ref("base.model_res_groups").id
+        cls.groups_rule = cls.create_rule(
             {
                 "name": "testrule for groups with capture unlink record",
-                "model_id": self.groups_model_id,
+                "model_id": cls.groups_model_id,
                 "log_read": True,
                 "log_create": True,
                 "log_write": True,
@@ -457,13 +428,10 @@ class TestAuditlogFullCaptureRecord(TransactionCase, AuditlogCommon):
                 "capture_record": True,
             }
         )
-
-    def tearDown(self):
-        self.groups_rule.unlink()
-        super().tearDown()
+        cls.groups_rule.subscribe()
 
 
-class AuditLogRuleTestForUserFields(TransactionCase):
+class AuditLogRuleTestForUserFields(AuditLogRuleCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -504,21 +472,17 @@ class AuditLogRuleTestForUserFields(TransactionCase):
         cls.users_to_exclude_ids = cls.user.id
 
         # creating auditlog.rule
-        cls.auditlog_rule = (
-            cls.env["auditlog.rule"]
-            .with_context(tracking_disable=True)
-            .create(
-                {
-                    "name": "testrule 01",
-                    "model_id": cls.contact_model_id,
-                    "log_read": True,
-                    "log_create": True,
-                    "log_write": True,
-                    "log_unlink": True,
-                    "log_type": "full",
-                    "capture_record": True,
-                }
-            )
+        cls.auditlog_rule = cls.create_rule(
+            {
+                "name": "testrule 01",
+                "model_id": cls.contact_model_id,
+                "log_read": True,
+                "log_create": True,
+                "log_write": True,
+                "log_unlink": True,
+                "log_type": "full",
+                "capture_record": True,
+            }
         )
 
         # Updating phone in fields_to_exclude_ids
@@ -570,9 +534,6 @@ class AuditLogRuleTestForUserFields(TransactionCase):
 
         # Checking log lines not created for phone
         self.assertTrue("phone" not in field_names)
-
-        # Removing created log record
-        create_log_record.unlink()
 
     def test_02_AuditlogFull_field_exclude_write_log(self):
         # Checking fields_to_exclude_ids
@@ -651,11 +612,8 @@ class AuditLogRuleTestForUserFields(TransactionCase):
         # Checking log lines are created
         self.assertTrue(delete_log_record)
 
-        # Removing auditlog_rule
-        self.auditlog_rule.unlink()
 
-
-class AuditLogRuleTestForUserModel(TransactionCase):
+class AuditLogRuleTestForUserModel(AuditLogRuleCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -663,21 +621,17 @@ class AuditLogRuleTestForUserModel(TransactionCase):
         cls.user_model_id = cls.env["ir.model"].search([("model", "=", "res.users")]).id
 
         # creating auditlog.rule
-        cls.auditlog_rule = (
-            cls.env["auditlog.rule"]
-            .with_context(tracking_disable=True)
-            .create(
-                {
-                    "name": "testrule 01",
-                    "model_id": cls.user_model_id,
-                    "log_read": True,
-                    "log_create": True,
-                    "log_write": True,
-                    "log_unlink": True,
-                    "log_type": "full",
-                    "capture_record": True,
-                }
-            )
+        cls.auditlog_rule = cls.create_rule(
+            {
+                "name": "testrule 01",
+                "model_id": cls.user_model_id,
+                "log_read": True,
+                "log_create": True,
+                "log_write": True,
+                "log_unlink": True,
+                "log_type": "full",
+                "capture_record": True,
+            }
         )
 
         # Create user id
@@ -732,7 +686,7 @@ class AuditLogRuleTestForUserModel(TransactionCase):
         self.assertTrue(write_log_record)
 
 
-class AuditlogFast_excluded_fields(TransactionCase):
+class AuditlogFast_excluded_fields(AuditLogRuleCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -748,21 +702,17 @@ class AuditlogFast_excluded_fields(TransactionCase):
             .id
         )
         # creating auditlog.rule
-        cls.auditlog_rule = (
-            cls.env["auditlog.rule"]
-            .with_context(tracking_disable=True)
-            .create(
-                {
-                    "name": "testrule 01",
-                    "model_id": cls.contact_model_id,
-                    "log_read": True,
-                    "log_create": True,
-                    "log_write": True,
-                    "log_unlink": True,
-                    "log_type": "fast",
-                    "capture_record": True,
-                }
-            )
+        cls.auditlog_rule = cls.create_rule(
+            {
+                "name": "testrule 01",
+                "model_id": cls.contact_model_id,
+                "log_read": True,
+                "log_create": True,
+                "log_write": True,
+                "log_unlink": True,
+                "log_type": "fast",
+                "capture_record": True,
+            }
         )
 
         # Updating phone in fields_to_exclude_ids

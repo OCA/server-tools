@@ -2,16 +2,14 @@ from unittest.mock import patch
 
 from odoo.fields import Command
 from odoo.models import BaseModel
-from odoo.tests.common import TransactionCase
+
+from .common import AuditLogRuleCommon
 
 
-class TestMultiCompany(TransactionCase):
+class TestMultiCompany(AuditLogRuleCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        # Disarm any existing auditing rules.
-        cls.env["auditlog.rule"].search([]).unlink()
-        cls.env["auditlog.log"].search([]).unlink()
         # Set up a group with two share users from different companies
         cls.company1 = cls.env["res.company"].create({"name": "c1"})
         cls.company2 = cls.env["res.company"].create({"name": "c2"})
@@ -94,21 +92,17 @@ class TestMultiCompany(TransactionCase):
 
     def test_group_set_users_with_auditlog(self):
         """Repeat the test above with an auditlog on the groups model"""
-        rule = (
-            self.env["auditlog.rule"]
-            .sudo()
-            .create(
-                {
-                    "name": "Test rule for groups",
-                    "model_id": self.env["ir.model"]._get("res.groups").id,
-                    "log_read": False,
-                    "log_create": False,
-                    "log_write": True,
-                    "log_unlink": False,
-                    "log_type": "full",
-                    "state": "subscribed",
-                }
-            )
+        rule = self.create_rule(
+            {
+                "name": "Test rule for groups",
+                "model_id": self.env["ir.model"]._get("res.groups").id,
+                "log_read": False,
+                "log_create": False,
+                "log_write": True,
+                "log_unlink": False,
+                "log_type": "full",
+                "state": "subscribed",
+            }
         )
         try:
             self.test_group_set_users()
