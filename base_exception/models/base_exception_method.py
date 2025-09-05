@@ -3,6 +3,7 @@
 # Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
 # Copyright 2020 Hibou Corp.
 # Copyright 2023 ACSONE SA/NV (http://acsone.eu)
+# Copyright 2025 Raumschmiede GmbH
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 import logging
@@ -27,6 +28,13 @@ class BaseExceptionMethod(models.AbstractModel):
         write these exceptions on the sale order, so they are visible.
         """
         return self
+
+    def _get_sub_exception_field_names(self):
+        """
+        Use this to check exceptions on underlying records and the
+        detected exceptions need to be added to the current record
+        """
+        return []
 
     def _rule_domain(self):
         """Filter exception.rules.
@@ -64,23 +72,18 @@ class BaseExceptionMethod(models.AbstractModel):
             rules_to_add[rule_info.id] |= to_add
             if records_with_exception:
                 all_exception_ids.append(rule_info.id)
-        # Cumulate all the records to attach to the rule
-        # before linking. We don't want to call "rule.write()"
-        # which would:
-        # * write on write_date so lock the exception.rule
-        # * trigger the recomputation of "main_exception_id" on
-        #   all the sale orders related to the rule, locking them all
-        #   and preventing concurrent writes
-        # Reversing the write by writing on SaleOrder instead of
-        # ExceptionRule fixes the 2 kinds of unexpected locks.
-        # It should not result in more queries than writing on ExceptionRule:
-        # the "to remove" part generates one DELETE per rule on the relation
-        # table
-        # and the "to add" part generates one INSERT (with unnest) per rule.
+
         for rule_id, records in rules_to_remove.items():
             records.write({"exception_ids": [(3, rule_id)]})
         for rule_id, records in rules_to_add.items():
             records.write({"exception_ids": [(4, rule_id)]})
+
+        # Detect exceptions on underlying sub-records if needed. If the sub-records'
+        # model defines the current model in _get_main_records,
+        # the exceptions detected are added to the current record
+        for field in self._get_sub_exception_field_names():
+            all_exception_ids += self.mapped(field).detect_exceptions()
+
         return all_exception_ids
 
     @api.model

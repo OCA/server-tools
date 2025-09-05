@@ -72,3 +72,51 @@ class TestBaseException(TestBaseExceptionCommon):
             self.po.button_confirm()
         self.assertEqual(self.po.exception_ids, self.exception_rule)
         self.assertTrue(self.po.exceptions_summary)
+
+    def test_exception_in_sub_records(self):
+        self.exception_rule.active = False
+        line = self.po.line_ids[0]
+        line.amount = 90
+
+        self.po.detect_exceptions()
+
+        self.assertEqual(self.po.exception_ids, self.sub_exception_rule)
+        # Even if the exception was not raised by self.po, its description must still
+        # be in the summary of it
+        self.assertIn(self.sub_exception_rule.description, self.po.exceptions_summary)
+
+        self.assertEqual(line.main_exception_id, self.sub_exception_rule)
+        self.assertEqual(line.exception_ids, self.sub_exception_rule)
+        self.assertIn(
+            self.sub_exception_rule.description,
+            line.exceptions_summary,
+        )
+        # self.po has 2 lines, the exception is detected only on the 1st line.
+        # The 2nd line must not have any exception assigned or summary set
+        self.assertFalse(self.po.line_ids[1].exception_ids)
+        self.assertFalse(self.po.line_ids[1].exceptions_summary)
+
+        self.exception_rule.active = True
+
+        self.po.detect_exceptions()
+
+        # Now both exceptions must be assigned to the record, in the right order
+        self.assertEqual(self.po.exception_ids[0], self.sub_exception_rule)
+        self.assertEqual(self.po.exception_ids[1], self.exception_rule)
+
+        self.po.line_ids[1].amount = 80
+        self.po.detect_exceptions()
+
+        self.assertEqual(line.exception_ids, self.sub_exception_rule)
+        self.assertEqual(self.po.line_ids[1].exception_ids, self.sub_exception_rule)
+        self.assertIn(
+            self.sub_exception_rule.description,
+            self.po.line_ids[1].exceptions_summary,
+        )
+
+        line.amount = 200
+        line.detect_exceptions()
+
+        # Updating sub-exceptions must update exceptions on parent
+        self.assertFalse(line.exception_ids)
+        self.assertEqual(self.po.exception_ids, self.exception_rule)
