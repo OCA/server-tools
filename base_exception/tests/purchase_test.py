@@ -13,8 +13,14 @@ class ExceptionRule(models.Model):
         selection_add=[("exception_method_no_zip", "Purchase exception no zip")]
     )
     model = fields.Selection(
-        selection_add=[("base.exception.test.purchase", "Purchase Test")],
-        ondelete={"base.exception.test.purchase": "cascade"},
+        selection_add=[
+            ("base.exception.test.purchase", "Purchase Test"),
+            ("base.exception.test.purchase.line", "Purchase Test Line"),
+        ],
+        ondelete={
+            "base.exception.test.purchase": "cascade",
+            "base.exception.test.purchase.line": "cascade",
+        },
     )
 
 
@@ -69,6 +75,9 @@ class PurchaseTest(models.Model):
     def button_cancel(self):
         self.write({"state": "cancel"})
 
+    def _get_sub_exception_field_names(self):
+        return ["line_ids"]
+
     def exception_method_no_zip(self):
         records_fail = self.env["base.exception.test.purchase"]
         for rec in self:
@@ -78,6 +87,7 @@ class PurchaseTest(models.Model):
 
 
 class LineTest(models.Model):
+    _inherit = "base.exception"
     _name = "base.exception.test.purchase.line"
     _description = "Base Exception Test Model Line"
 
@@ -85,3 +95,12 @@ class LineTest(models.Model):
     lead_id = fields.Many2one("base.exception.test.purchase", ondelete="cascade")
     qty = fields.Float()
     amount = fields.Float()
+
+    def _get_main_records(self):
+        return self.lead_id
+
+    def _detect_exceptions(self, rule):
+        records = super()._detect_exceptions(rule)
+        (self - records).exception_ids = [(3, rule.id)]
+        records.exception_ids = [(4, rule.id)]
+        return records.mapped("lead_id")
