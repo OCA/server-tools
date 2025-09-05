@@ -16,10 +16,12 @@ class ExceptionRule(models.Model):
         selection_add=[
             ("base.exception.test.purchase", "Purchase Test"),
             ("base.exception.test.purchase.line", "Purchase Test Line"),
+            ("base.exception.method.test.purchase.line", "Purchase Test Method Line"),
         ],
         ondelete={
             "base.exception.test.purchase": "cascade",
             "base.exception.test.purchase.line": "cascade",
+            "base.exception.method.test.purchase.line": "cascade",
         },
     )
 
@@ -46,6 +48,9 @@ class PurchaseTest(models.Model):
     active = fields.Boolean(default=True)
     partner_id = fields.Many2one("res.partner", string="Partner")
     line_ids = fields.One2many("base.exception.test.purchase.line", "lead_id")
+    line_method_ids = fields.One2many(
+        "base.exception.method.test.purchase.line", "lead_id"
+    )
     amount_total = fields.Float(compute="_compute_amount_total", store=True)
 
     @api.depends("line_ids")
@@ -54,7 +59,7 @@ class PurchaseTest(models.Model):
             for line in record.line_ids:
                 record.amount_total += line.amount * line.qty
 
-    @api.constrains("ignore_exception", "line_ids", "state")
+    @api.constrains("ignore_exception", "line_ids", "line_method_ids", "state")
     def test_purchase_check_exception(self):
         orders = self.filtered(lambda s: s.state == "purchase")
         if orders:
@@ -76,7 +81,7 @@ class PurchaseTest(models.Model):
         self.write({"state": "cancel"})
 
     def _get_sub_exception_field_names(self):
-        return ["line_ids"]
+        return ["line_ids", "line_method_ids"]
 
     def exception_method_no_zip(self):
         records_fail = self.env["base.exception.test.purchase"]
@@ -99,8 +104,21 @@ class LineTest(models.Model):
     def _get_main_records(self):
         return self.lead_id
 
-    def _detect_exceptions(self, rule):
-        records = super()._detect_exceptions(rule)
-        (self - records).exception_ids = [(3, rule.id)]
-        records.exception_ids = [(4, rule.id)]
-        return records.mapped("lead_id")
+
+class LineTestMethod(models.Model):
+    _inherit = "base.exception.method"
+    _name = "base.exception.method.test.purchase.line"
+    _description = "Base Exception Test Model Line"
+
+    name = fields.Char()
+    lead_id = fields.Many2one("base.exception.test.purchase", ondelete="cascade")
+    qty = fields.Float()
+    amount = fields.Float()
+
+    # Models inheriting from .method must implement this field as their records
+    # are filtered based on this field
+    ignore_exception = fields.Boolean("Ignore Exceptions", copy=False)
+
+    # This model here must override _get_main_records as it has no exception_ids
+    def _get_main_records(self):
+        return self.lead_id

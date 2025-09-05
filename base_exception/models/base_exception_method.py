@@ -60,7 +60,9 @@ class BaseExceptionMethod(models.AbstractModel):
             records_with_rule_in_exceptions = main_records.filtered(
                 lambda r, rule_id=rule_info.id: rule_id in r.exception_ids.ids
             )
-            records_with_exception = self._detect_exceptions(rule_info)
+            records_with_exception = self._detect_exceptions(
+                rule_info
+            )._get_main_records()
             to_remove = records_with_rule_in_exceptions - records_with_exception
             to_add = records_with_exception - records_with_rule_in_exceptions
             # we expect to always work on the same model type
