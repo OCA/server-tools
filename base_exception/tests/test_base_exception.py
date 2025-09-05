@@ -120,3 +120,23 @@ class TestBaseException(TestBaseExceptionCommon):
         # Updating sub-exceptions must update exceptions on parent
         self.assertFalse(line.exception_ids)
         self.assertEqual(self.po.exception_ids, self.exception_rule)
+
+    def test_exception_in_sub_record_method(self):
+        self.exception_rule.active = False
+
+        self.po.line_method_ids.amount = 90
+        # Model has no exception_ids and returns self.lead_id in _get_main_records,
+        # that's why the exceptions are added to the parent
+        self.po.line_method_ids.detect_exceptions()
+
+        self.assertEqual(self.po.exception_ids, self.sub_exception_rule_method)
+        self.assertIn(
+            self.sub_exception_rule_method.description,
+            self.po.exceptions_summary,
+        )
+
+        self.po.line_method_ids.amount = 200
+        self.po.detect_exceptions()
+        # Parent implemented line_method_ids in _get_sub_exception_field_names,
+        # that's why the exceptions were detected on child records but none was found
+        self.assertFalse(self.po.exception_ids)
