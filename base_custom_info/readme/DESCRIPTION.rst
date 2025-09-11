@@ -1,7 +1,9 @@
 This module allows you to attach custom information to records without the need
 to alter the database structure too much.
 
-This module defines several concepts that you have to understand : templates with properties sorted in categories. (properties are like fields and will contains values).
+This module defines several concepts that you have to understand : templates with 
+properties sorted in categories. (properties are like fields and will contains 
+values).
 
 Templates
 ---------
