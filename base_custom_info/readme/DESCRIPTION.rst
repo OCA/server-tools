@@ -49,12 +49,11 @@ I.e., the "Smart partners" *template* has the following *properties*:
 When you set that template to any partner, you will then be able to fill these
 *properties* with *values*.
 
-
 Categories
 ----------
 
 *Properties* can also belong to a *category*, which allows you to sort them in
-a logical way, and makes further development easier. These are not required.
+a logical way, and makes further development easier. Categories are not required.
 
 For example, the ``website_sale_custom_info`` old addon uses these to display a
 technical datasheet per product in your online shop, sorted and separated by
