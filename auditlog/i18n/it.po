@@ -143,6 +143,13 @@ msgid "Draft"
 msgstr "Bozza"
 
 #. module: auditlog
+#. odoo-python
+#: code:addons/auditlog/models/log.py:0
+#: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_log_form
+msgid "Exported Records"
+msgstr ""
+
+#. module: auditlog
 #: model:ir.model.fields.selection,name:auditlog.selection__auditlog_log__log_type__fast
 #: model:ir.model.fields.selection,name:auditlog.selection__auditlog_rule__log_type__fast
 msgid "Fast log"
@@ -280,6 +287,11 @@ msgid "Log Deletes"
 msgstr "Log eliminazioni"
 
 #. module: auditlog
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__log_export_data
+msgid "Log Exports"
+msgstr ""
+
+#. module: auditlog
 #: model:ir.actions.act_window,name:auditlog.action_auditlog_line
 #: model:ir.ui.menu,name:auditlog.menu_auditlog_line
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_line_search
@@ -401,6 +413,11 @@ msgid "Resource ID"
 msgstr "ID Risorsa"
 
 #. module: auditlog
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log__res_ids
+msgid "Resource IDs"
+msgstr ""
+
+#. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log__name
 msgid "Resource Name"
 msgstr "Nome risorsa"
@@ -450,6 +467,12 @@ msgid ""
 msgstr ""
 "Selezionare se si vuole tenere traccia dell'eliminazione di qualsiasi record "
 "del modello di questa regola"
+
+#. module: auditlog
+#: model:ir.model.fields,help:auditlog.field_auditlog_rule__log_export_data
+msgid ""
+"Select this if you want to keep track of exports of the model of this rule"
+msgstr ""
 
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule__log_write
