@@ -50,9 +50,9 @@ class IrModelAccess(models.Model):
             SELECT gurel.uid
             FROM ir_model m
             LEFT JOIN ir_model_res_groups_update_allowed_rel mgrel
-                ON m.id = mgrel.ir_model_id
+              ON m.id = mgrel.ir_model_id
             LEFT JOIN res_groups_users_rel gurel
-                ON mgrel.res_groups_id = gurel.gid
+              ON mgrel.res_groups_id = gurel.gid
             WHERE m.model = %s
               AND m.restrict_update = true
             """,
@@ -65,14 +65,14 @@ class IrModelAccess(models.Model):
     def check(self, model, mode="read", raise_exception=True):
         if self.env.su:
             return True
-        res = super().check(model, mode, raise_exception)
-        if mode != "read" and raise_exception:
-            if self._test_readonly(model) or self._test_restrict_update(model):
-                raise AccessError(
-                    _(
-                        "You are only allowed to read this record. "
-                        "(%(model)s - %(mode)s)"
-                    )
-                    % {"model": model, "mode": mode}
-                )
+        res = super().check(model, mode=mode, raise_exception=raise_exception)
+        if mode == "read":
+            return res
+        if self._test_readonly(model) or self._test_restrict_update(model):
+            if not raise_exception:
+                return False
+            raise AccessError(
+                _("You are only allowed to read this record. (%(model)s - %(mode)s)")
+                % {"model": model, "mode": mode}
+            )
         return res
