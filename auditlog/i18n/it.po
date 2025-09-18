@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-26 01:45+0000\n"
-"PO-Revision-Date: 2024-04-17 14:35+0000\n"
+"PO-Revision-Date: 2025-09-18 15:42+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__action_id
@@ -147,7 +147,7 @@ msgstr "Bozza"
 #: code:addons/auditlog/models/log.py:0
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_log_form
 msgid "Exported Records"
-msgstr ""
+msgstr "Record esportati"
 
 #. module: auditlog
 #: model:ir.model.fields.selection,name:auditlog.selection__auditlog_log__log_type__fast
@@ -289,7 +289,7 @@ msgstr "Log eliminazioni"
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__log_export_data
 msgid "Log Exports"
-msgstr ""
+msgstr "Esportazione registro"
 
 #. module: auditlog
 #: model:ir.actions.act_window,name:auditlog.action_auditlog_line
@@ -415,7 +415,7 @@ msgstr "ID Risorsa"
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log__res_ids
 msgid "Resource IDs"
-msgstr ""
+msgstr "ID risorse"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log__name
@@ -473,6 +473,8 @@ msgstr ""
 msgid ""
 "Select this if you want to keep track of exports of the model of this rule"
 msgstr ""
+"Selezionarlo se si vuole tenere traccia delle esportazioni del modello di "
+"questa regola"
 
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule__log_write
