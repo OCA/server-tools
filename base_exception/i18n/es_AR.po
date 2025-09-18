@@ -151,16 +151,13 @@ msgstr ""
 "disponible en la pestaña de Ayuda de este documento."
 
 #. module: base_exception
-#: code:addons/base_exception/models/base_exception.py:0
+#: code:addons/base_exception/models/base_exception_method.py:0
 #, python-format
 msgid ""
 "Error when evaluating the exception.rule rule:\n"
-" %s \n"
-"(%s)"
+" %(rule_name)s \n"
+"(%(error)s)"
 msgstr ""
-"Erro al evaluar la regla exception.rule:\n"
-" %s \n"
-"(%s)"
 
 #. module: base_exception
 #: model:ir.model,name:base_exception.model_base_exception
@@ -254,8 +251,8 @@ msgstr "Ignorar Excepciones"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule__is_blocking
-msgid "Is blocking"
-msgstr "Está Bloqueado"
+msgid "Is Blocking"
+msgstr ""
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_base_exception____last_update
@@ -342,7 +339,7 @@ msgstr ""
 "Las excepciones no pueden ser ignoradas, porque algunas están bloqueadas."
 
 #. module: base_exception
-#: code:addons/base_exception/models/base_exception.py:0
+#: code:addons/base_exception/models/exception_rule.py:0
 #, python-format
 msgid ""
 "There is a problem of configuration, python code, domain or method is "
@@ -382,6 +379,19 @@ msgstr "Cuando está marcado la excepción no puede ser ignorada"
 #: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_confirm
 msgid "_Close"
 msgstr "_Close"
+
+#, python-format
+#~ msgid ""
+#~ "Error when evaluating the exception.rule rule:\n"
+#~ " %s \n"
+#~ "(%s)"
+#~ msgstr ""
+#~ "Erro al evaluar la regla exception.rule:\n"
+#~ " %s \n"
+#~ "(%s)"
+
+#~ msgid "Is blocking"
+#~ msgstr "Está Bloqueado"
 
 #~ msgid "Exceptions Rules"
 #~ msgstr "Reglas de Excepciones"
