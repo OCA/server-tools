@@ -1,50 +1,15 @@
 # Copyright 2016 Akretion Mourad EL HADJ MIMOUNE
 # Copyright 2020 Hibou Corp.
+# Copyright 2025 Raumschmiede GmbH
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 
-from odoo_test_helper import FakeModelLoader
-
 from odoo.exceptions import UserError, ValidationError
-from odoo.tests import SavepointCase
+
+from .common import TestBaseExceptionCommon
 
 
-class TestBaseException(SavepointCase):
-    @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
-
-        cls.loader = FakeModelLoader(cls.env, cls.__module__)
-        cls.loader.backup_registry()
-        from .purchase_test import ExceptionRule, LineTest, PurchaseTest
-
-        cls.loader.update_registry((ExceptionRule, LineTest, PurchaseTest))
-
-        cls.partner = cls.env["res.partner"].create({"name": "Foo"})
-        cls.po = cls.env["base.exception.test.purchase"].create(
-            {
-                "name": "Test base exception to basic purchase",
-                "partner_id": cls.partner.id,
-                "line_ids": [
-                    (0, 0, {"name": "line test", "amount": 120.0, "qty": 1.5})
-                ],
-            }
-        )
-        cls.exception_rule = cls.env["exception.rule"].create(
-            {
-                "name": "No ZIP code on destination",
-                "sequence": 10,
-                "model": "base.exception.test.purchase",
-                "code": "if not self.partner_id.zip: failed=True",
-                "exception_type": "by_py_code",
-            }
-        )
-
-    @classmethod
-    def tearDownClass(cls):
-        cls.loader.restore_registry()
-        super().tearDownClass()
-
+class TestBaseException(TestBaseExceptionCommon):
     def test_valid(self):
         self.exception_rule.active = False
         self.po.button_confirm()
@@ -53,7 +18,7 @@ class TestBaseException(SavepointCase):
     def test_fail_by_py(self):
         with self.assertRaises(ValidationError):
             self.po.button_confirm()
-        self.assertTrue(self.po.exception_ids)
+        self.assertEqual(self.po.exception_ids, self.exception_rule)
 
     def test_fail_by_domain(self):
         self.exception_rule.write(
@@ -64,7 +29,8 @@ class TestBaseException(SavepointCase):
         )
         with self.assertRaises(ValidationError):
             self.po.button_confirm()
-        self.assertTrue(self.po.exception_ids)
+        self.assertEqual(self.po.exception_ids, self.exception_rule)
+        self.assertIn(self.exception_rule.description, self.po.exceptions_summary)
 
     def test_fail_by_method(self):
         self.exception_rule.write(
@@ -75,14 +41,14 @@ class TestBaseException(SavepointCase):
         )
         with self.assertRaises(ValidationError):
             self.po.button_confirm()
-        self.assertTrue(self.po.exception_ids)
+        self.assertEqual(self.po.exception_ids, self.exception_rule)
 
     def test_ignorable_exception(self):
         # Block because of exception during validation
         with self.assertRaises(ValidationError):
             self.po.button_confirm()
         # Test that we have linked exceptions
-        self.assertTrue(self.po.exception_ids)
+        self.assertEqual(self.po.exception_ids, self.exception_rule)
         # Test ignore exeception make possible for the po to validate
         self.po.action_ignore_exceptions()
         self.assertTrue(self.po.ignore_exception)
@@ -96,7 +62,7 @@ class TestBaseException(SavepointCase):
         with self.assertRaises(ValidationError):
             self.po.button_confirm()
         # Test that we have linked exceptions
-        self.assertTrue(self.po.exception_ids)
+        self.assertEqual(self.po.exception_ids, self.exception_rule)
         self.assertTrue(self.po.exceptions_summary)
         # Test cannot ignore blocked exception
         with self.assertRaises(UserError):
@@ -104,5 +70,5 @@ class TestBaseException(SavepointCase):
         self.assertFalse(self.po.ignore_exception)
         with self.assertRaises(ValidationError):
             self.po.button_confirm()
-        self.assertTrue(self.po.exception_ids)
+        self.assertEqual(self.po.exception_ids, self.exception_rule)
         self.assertTrue(self.po.exceptions_summary)
