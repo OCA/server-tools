@@ -52,28 +52,112 @@ class BaseExceptionModel(models.AbstractModel):
             else:
                 rec.main_exception_id = False
 
-    @api.depends("exception_ids", "ignore_exception")
+    @api.depends(
+        "exception_ids",
+        "exception_ids.name",
+        "exception_ids.description",
+        "exception_ids.description_text_type",
+        "exception_ids.is_blocking",
+        "ignore_exception",
+    )
     def _compute_exceptions_summary(self):
         for rec in self:
             if rec.exception_ids and not rec.ignore_exception:
-                rec.exceptions_summary = "<ul>%s</ul>" % "".join(
-                    [
-                        "<li>%s: <i>%s</i> <b>%s<b></li>"
-                        % tuple(
-                            map(
-                                html.escape,
-                                (
-                                    e.name,
-                                    e.description or "",
-                                    _("(Blocking exception)") if e.is_blocking else "",
-                                ),
-                            )
-                        )
-                        for e in rec.exception_ids
-                    ]
-                )
+                rec.exceptions_summary = rec._get_exceptions_summary()
             else:
                 rec.exceptions_summary = False
+
+    def _get_exceptions_summary(self):
+        self.ensure_one()
+
+        summaries = []
+        for exception in self.exception_ids:
+            summaries += self._get_exceptions_summaries_by_exception(exception)
+
+        return self._get_pretty_exceptions_summary_from_summaries(summaries)
+
+    def _get_exceptions_summaries_by_exception(self, exception):
+        self.ensure_one()
+
+        # True if the description is e.g. empty or flagged as plain description. We
+        # expect that no record is used to render the description, that's why self can
+        # be used to get the description. Even if exception.model is not self._name
+        if not exception.description_needs_rendering():
+            return [self._get_pretty_summary_for_exception(exception)]
+
+        # If the exception needs to be rendered, we have to get the records on which
+        # the exception was detected on to use them for rendering. If the exception
+        # model is self._name or the exception was detected on a sub-record whose model
+        # inherits from base.exception.method, records will the same as self.
+        records = self._get_records_for_description_rendering(exception)
+
+        summaries = []
+        for record in records:
+            # Even with rendering it can happen that multiple records return the same
+            # rendered description, e.g. if the description is plain text but its type
+            # is set to Jinja. The same description will be added multiple times to the
+            # final summary. With that the user knows that multiple sub-records have
+            # the same exception assigned and were rendered
+            summary = record._get_pretty_summary_for_exception(exception)
+            summaries.append(summary)
+
+        return summaries
+
+    def _get_records_for_description_rendering(self, exception):
+        self.ensure_one()
+
+        if exception.model == self._name:
+            # Exception needs the current record to render
+            return self
+
+        sub_record_ids = []
+        # Collect all sub-records that have the exception
+        for field in self._get_sub_exception_field_names():
+            sub_records = self.mapped(field)
+
+            if exception.model != sub_records._name:
+                continue
+
+            for sub_record in sub_records:
+                # For models that inherit from base.exception.method this is always
+                # False. Only for base.exception models it can be True
+                if sub_record._has_exception_rule_assigned(exception):
+                    sub_record_ids.append(sub_record.id)
+
+        if sub_record_ids:
+            return self.env[exception.model].browse(sub_record_ids)
+
+        # If there are no sub-records that have the exception assigned, possible
+        # because their model inherits from base.exception.method, self is returned
+        # to use it to render the description. This means it is not possible to
+        # use the same model in the description syntax as the model on which the
+        # exception was detected on
+        return self
+
+    def _get_pretty_summary_for_exception(self, exception):
+        self.ensure_one()
+
+        args = list(
+            map(
+                html.escape,
+                (
+                    exception.name,
+                    exception.render_description(self),
+                ),
+            )
+        )
+
+        if exception.is_blocking:
+            args.append(_(" <b>(Blocking exception)</b>"))
+        else:
+            args.append("")
+
+        return "%s: <i>%s</i>%s" % tuple(args)
+
+    def _get_pretty_exceptions_summary_from_summaries(self, summaries):
+        return "<ul>%s</ul>" % "".join(
+            map(lambda summary: f"<li>{summary}</li>", summaries)
+        )
 
     def _popup_exceptions(self):
         action = self._get_popup_action().sudo().read()[0]
@@ -94,6 +178,12 @@ class BaseExceptionModel(models.AbstractModel):
 
     def _add_detected_exceptions_to_self(self):
         return self != self._get_main_records()
+
+    def _has_exception_rule_assigned(self, exception):
+        # Models inheriting from base.exception have exception_ids as field. Records of
+        # this model can be checked to have exceptions. Because of this the record can
+        # be used to render the exception description
+        return exception in self.exception_ids
 
     def _detect_exceptions(self, rule):
         records = super()._detect_exceptions(rule)

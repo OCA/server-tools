@@ -43,6 +43,14 @@ class BaseExceptionMethod(models.AbstractModel):
         """
         return [("model", "=", self._name), ("active", "=", True)]
 
+    def _has_exception_rule_assigned(self, exception):
+        # If a model inherits from base.exception.method, the models' records return
+        # False as the exception is not saved on them as they have no exception_ids.
+        # Because of this the records cannot be used to render the description as it
+        # is not possible to determine on which of them the exception was detected on.
+        # _detect_exceptions could be called but this is bad for performance
+        return False
+
     def detect_exceptions(self):
         """List all exception_ids applied on self
         Exception ids are also written on records

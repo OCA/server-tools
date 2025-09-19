@@ -8,6 +8,7 @@
                 <field name="sequence" widget="handle" />
                 <field name="name" />
                 <field name="description" />
+                <field name="description_text_type" />
                 <field name="model" />
                 <field name="active" widget="boolean_toggle" />
             </tree>
@@ -37,6 +38,7 @@
                         <group>
                             <field name="active" invisible="1" />
                             <field name="description" />
+                            <field name="description_text_type" />
                         </group>
                     </group>
                     <group>
