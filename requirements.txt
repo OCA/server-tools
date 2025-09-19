@@ -6,6 +6,6 @@ odoo_test_helper
 odoorpc
 openupgradelib
 paramiko<4.0.0
-pygount==1.4.0
+pygount
 pysftp
 sentry_sdk<=1.9.0
