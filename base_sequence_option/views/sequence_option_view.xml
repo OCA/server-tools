@@ -2,18 +2,16 @@
 <!-- Copyright 2021 Ecosoft Co., Ltd. (http://ecosoft.co.th)
      License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html). -->
 <odoo>
-
-
     <record id="view_ir_sequence_option_tree" model="ir.ui.view">
         <field name="name">view.ir.sequence.option.tree</field>
         <field name="model">ir.sequence.option</field>
         <field name="arch" type="xml">
-            <tree create="1" delete="1">
+            <list create="1" delete="1">
                 <field name="name" />
                 <field name="model" />
                 <field name="use_sequence_option" />
                 <field name="company_id" groups="base.group_multi_company" />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -21,13 +19,13 @@
         <field name="name">view.ir.sequence.option.line.tree</field>
         <field name="model">ir.sequence.option.line</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name" />
                 <field name="sequence_id" />
                 <field name="prefix" />
                 <field name="suffix" />
                 <field name="implementation" />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -49,7 +47,7 @@
                     </group>
                 </group>
                 <field name="option_ids">
-                    <tree>
+                    <list>
                         <field name="name" />
                         <field name="model" column_invisible="1" />
                         <field name="filter_domain" string="Matching Domain" />
@@ -58,7 +56,7 @@
                         <field name="suffix" readonly="1" />
                         <field name="implementation" readonly="1" />
                         <field name="company_id" column_invisible="1" />
-                    </tree>
+                    </list>
                     <form>
                         <group>
                             <group>
@@ -84,7 +82,7 @@
     <record id="action_ir_sequence_option" model="ir.actions.act_window">
         <field name="name">Manage Sequence Options</field>
         <field name="res_model">ir.sequence.option</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="view_id" ref="view_ir_sequence_option_tree" />
     </record>
 
@@ -95,5 +93,4 @@
         parent="base.next_id_5"
         sequence="20"
     />
-
 </odoo>
