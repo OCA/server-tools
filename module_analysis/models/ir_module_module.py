@@ -53,11 +53,11 @@ class IrModuleModule(models.Model):
         field_name: Odoo field name to store the analysis
         """
         return {
-            ".py": {"code": "python_code_qty"},
-            ".xml": {"code": "xml_code_qty"},
-            ".js": {"code": "js_code_qty"},
-            ".css": {"code": "css_code_qty"},
-            ".scss": {"code": "scss_code_qty"},
+            ".py": {"code_count": "python_code_qty"},
+            ".xml": {"code_count": "xml_code_qty"},
+            ".js": {"code_count": "js_code_qty"},
+            ".css": {"code_count": "css_code_qty"},
+            ".scss": {"code_count": "scss_code_qty"},
         }
 
     @api.model
