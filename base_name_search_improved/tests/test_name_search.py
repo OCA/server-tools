@@ -71,7 +71,7 @@ class NameSearchCase(TransactionCase):
 
     def test_MustHonorDomain(self):
         """Must also honor a provided Domain"""
-        res = self.Partner.name_search("+351", args=[("vat", "=", "3333")])
+        res = self.Partner.name_search("+351", domain=[("vat", "=", "3333")])
         gambulputty = self.partner3.id
         self.assertEqual(len(res), 1)
         self.assertEqual(res[0][0], gambulputty)
@@ -105,7 +105,7 @@ class NameSearchCase(TransactionCase):
                 "ttype": "char",
                 "model_id": self.model_partner.id,
                 "model": self.model_partner.model,
-                "translate": True,
+                "translate": "standard",
             }
         )
         self.model_partner.name_search_ids = [(4, translatable_field.id)]
