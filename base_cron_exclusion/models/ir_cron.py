@@ -3,7 +3,7 @@
 
 import logging
 
-from odoo import api, fields, models
+from odoo import api, fields, models, sql_db
 from odoo.exceptions import ValidationError
 
 _logger = logging.getLogger(__name__)
@@ -32,6 +32,7 @@ class IrCron(models.Model):
 
     @staticmethod
     def _lock_mutually_exclusive_cron(db, job_id):
+        db = sql_db.db_connect(db)
         lock_cr = db.cursor()
         lock_cr.execute(
             """
@@ -59,10 +60,10 @@ class IrCron(models.Model):
         return lock_cr
 
     @classmethod
-    def _process_job(cls, db, cron_cr, job):
-        locked_crons = cls._lock_mutually_exclusive_cron(db, job["id"])
+    def _process_job(cls, cron_cr, job) -> None:
+        locked_crons = cls._lock_mutually_exclusive_cron(cron_cr.dbname, job["id"])
         try:
-            res = super()._process_job(db, cron_cr, job)
+            res = super()._process_job(cron_cr, job)
         finally:
             locked_crons.close()
             _logger.debug("released blocks for cron job %s", job["cron_name"])
