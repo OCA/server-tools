@@ -8,8 +8,6 @@ from odoo.addons.module_change_auto_install.patch import (
     _get_modules_dict_auto_install_config,
 )
 
-# from ..models.base import disable_changeset
-
 
 class TestModule(TransactionCase):
     _EXPECTED_RESULTS = {
