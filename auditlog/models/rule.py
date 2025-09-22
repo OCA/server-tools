@@ -100,6 +100,15 @@ class AuditlogRule(models.Model):
             "record of the model of this rule"
         ),
     )
+    log_export_data = fields.Boolean(
+        "Log Exports",
+        default=True,
+        help=(
+            "Select this if you want to keep track of exports "
+            "of the model of this rule"
+        ),
+        states={"subscribed": [("readonly", True)]},
+    )
     log_type = fields.Selection(
         [("full", "Full log"), ("fast", "Fast log")],
         string="Type",
