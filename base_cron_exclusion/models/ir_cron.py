@@ -18,8 +18,7 @@ class IrCron(models.Model):
             if item in item.mutually_exclusive_cron_ids:
                 raise ValidationError(
                     self.env._(
-                        "You can not mutually exclude a scheduled actions with "
-                        "itself."
+                        "You can not mutually exclude a scheduled actions with itself."
                     )
                 )
 
