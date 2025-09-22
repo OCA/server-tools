@@ -1,10 +1,10 @@
 - Edit your `odoo.cfg` configuration file:
 - Add the module `module_change_auto_install` in the
   `server_wide_modules` list.
-- (optional) Add a new entry `modules_auto_install_disabled` to mark a
+- (optional) Add a new entry `modules_disabled` beneath a new section `[module_change_auto_install]` to mark a
   list of modules as NOT auto installable.
   The environment variable ``ODOO_MODULES_AUTO_INSTALL_DISABLED`` can also be set.
-- (optional) Add a new entry `modules_auto_install_enabled` to mark a
+- (optional) Add a new entry `modules_enabled` beneath a new section `[module_change_auto_install]` to mark a
   list of modules as auto installable. This feature can be usefull for
   companies that are hosting a lot of Odoo instances for many customers,
   and want some modules to be always installed.
@@ -18,12 +18,13 @@ values.
 ``` cfg
 server_wide_modules = web,module_change_auto_install
 
-modules_auto_install_disabled =
+[module_change_auto_install]
+modules_disabled =
     partner_autocomplete,
     iap,
     mail_bot
 
-modules_auto_install_enabled =
+modules_enabled =
     web_responsive:web,
     base_technical_features,
     disable_odoo_online,
@@ -53,7 +54,8 @@ INFO db_name odoo.modules.loading: 42 modules loaded in 0.32s, 0 queries (+0 ext
 if your `odoo.cfg` file contains the following configuration:
 
 ``` cfg
-modules_auto_install_enabled =
+[module_change_auto_install]
+modules_enabled =
     account_usability,
     web_responsive:web,
     base_technical_features:,
