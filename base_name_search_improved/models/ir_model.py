@@ -8,14 +8,14 @@ from lxml import etree
 
 from odoo import api, fields, models, tools
 from odoo.exceptions import ValidationError
-from odoo.osv import expression
+from odoo.fields import Domain
 
 _logger = logging.getLogger(__name__)
 # Extended name search is only used on some operators
 ALLOWED_OPS = {"ilike", "like"}
 
 
-@tools.ormcache(skiparg=0)
+@tools.ormcache()
 def _get_rec_names(self):
     "List of fields to search into"
     model = self.env["ir.model"].search([("model", "=", str(self._name))])
@@ -24,7 +24,7 @@ def _get_rec_names(self):
     return rec_name + other_names
 
 
-@tools.ormcache(skiparg=0)
+@tools.ormcache()
 def _get_use_smart_name_search(self):
     return (
         self.env["ir.model"]
@@ -33,7 +33,7 @@ def _get_use_smart_name_search(self):
     )
 
 
-@tools.ormcache(skiparg=0)
+@tools.ormcache()
 def _get_add_smart_search(self):
     "Add Smart Search on search views"
     model = self.env["ir.model"].search([("model", "=", str(self._name))])
@@ -43,7 +43,7 @@ def _get_add_smart_search(self):
     return False
 
 
-@tools.ormcache(skiparg=0)
+@tools.ormcache()
 def _get_name_search_domain(self):
     "Add Smart Search on search views"
     name_search_domain = (
@@ -95,27 +95,27 @@ class Base(models.AbstractModel):
         return []
 
     @api.model
-    def name_search(self, name="", args=None, operator="ilike", limit=100):
+    def name_search(self, name="", domain=None, operator="ilike", limit=100):
         if not name or not (
             self.env.context.get("force_smart_name_search", False)
             or _get_use_smart_name_search(self.sudo())
         ):
-            return super().name_search(name, args, operator, limit)
+            return super().name_search(name, domain, operator, limit)
 
         # Support a list of fields to search on
         all_names = _get_rec_names(self.sudo())
-        base_domain = args or []
+        base_domain = domain or []
         limit = limit or 0
         results = []
 
         # Try regular search on each additional search field
         for rec_name in all_names:
-            domain = expression.AND([base_domain, [(rec_name, operator, name)]])
+            domain = Domain.AND([base_domain, [(rec_name, operator, name)]])
             results = _extend_name_results(self, domain, results, limit)
 
         # Try ordered word search on each of the search fields
         for rec_name in all_names:
-            domain = expression.AND(
+            domain = Domain.AND(
                 [base_domain, [(rec_name, operator, name.replace(" ", "%"))]]
             )
             results = _extend_name_results(self, domain, results, limit)
@@ -126,16 +126,16 @@ class Base(models.AbstractModel):
         if " " in name:
             unordered_domain = []
             for word in name.split():
-                word_domain = expression.OR(
+                word_domain = Domain.OR(
                     [[(rec_name, operator, word)] for rec_name in all_names]
                 )
                 unordered_domain = (
-                    expression.AND([unordered_domain, word_domain])
+                    Domain.AND([unordered_domain, word_domain])
                     if unordered_domain
                     else word_domain
                 )
             results = _extend_name_results(
-                self, expression.AND([base_domain, unordered_domain]), results, limit
+                self, Domain.AND([base_domain, unordered_domain]), results, limit
             )
 
         results = results[:limit]
@@ -211,7 +211,7 @@ class IrModel(models.Model):
                 RecursionError,
             ) as e:
                 raise ValidationError(
-                    self.env._("Couldn't eval Name Search Domain (%s)") % e
+                    self.env._("Couldn't eval Name Search Domain (%s)", e)
                 ) from e
             if not isinstance(name_search_domain, list):
                 raise ValidationError(
@@ -226,17 +226,26 @@ class IrModel(models.Model):
     def _register_hook(self):
         def make_smart_name_search(original_name_search):
             def wrapper(
-                self, name="", args=None, operator="ilike", limit=100, **kwargs
+                self, name="", domain=None, operator="ilike", limit=100, **kwargs
             ):
                 original_results = original_name_search(
-                    self, name, args, operator, limit, **kwargs
+                    self,
+                    name=name,
+                    domain=domain,
+                    operator=operator,
+                    limit=limit,
+                    **kwargs,
                 )
                 if not name or (limit and len(original_results) >= limit):
                     return original_results
                 seen_ids = {res[0] for res in original_results}
                 remaining_limit = limit - len(original_results) if limit else None
                 smart_results = Base.name_search(
-                    self, name=name, args=args, operator=operator, limit=remaining_limit
+                    self,
+                    name=name,
+                    domain=domain,
+                    operator=operator,
+                    limit=remaining_limit,
                 )
                 additional_results = [
                     (res_id, res_name)
