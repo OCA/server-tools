@@ -374,7 +374,7 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !! source digest: sha256:162ad195483bc21079128fc8075e1cf29eba3e177cffd0fbfa8d42f28a27ceab
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/license-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/server-tools/tree/18.0/module_change_auto_install"><img alt="OCA/server-tools" src="https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/server-tools-18-0/server-tools-18-0-module_change_auto_install"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/server-tools&amp;target_branch=18.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/license-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/server-tools/tree/19.0/module_change_auto_install"><img alt="OCA/server-tools" src="https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/server-tools-19-0/server-tools-19-0-module_change_auto_install"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/server-tools&amp;target_branch=19.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
 <p>In odoo, by default some modules are marked as auto installable by the
 <tt class="docutils literal">auto_install</tt> key present in the manifest.</p>
 <ul class="simple">
@@ -421,13 +421,15 @@ following the “Configure” section</li>
 <li>Edit your <tt class="docutils literal">odoo.cfg</tt> configuration file:</li>
 <li>Add the module <tt class="docutils literal">module_change_auto_install</tt> in the
 <tt class="docutils literal">server_wide_modules</tt> list.</li>
-<li>(optional) Add a new entry <tt class="docutils literal">modules_auto_install_disabled</tt> to mark a
-list of modules as NOT auto installable. The environment variable
+<li>(optional) Add a new entry <tt class="docutils literal">modules_disabled</tt> beneath a new section
+<tt class="docutils literal">[module_change_auto_install]</tt> to mark a list of modules as NOT
+auto installable. The environment variable
 <tt class="docutils literal">ODOO_MODULES_AUTO_INSTALL_DISABLED</tt> can also be set.</li>
-<li>(optional) Add a new entry <tt class="docutils literal">modules_auto_install_enabled</tt> to mark a
-list of modules as auto installable. This feature can be usefull for
-companies that are hosting a lot of Odoo instances for many customers,
-and want some modules to be always installed. The environment variable
+<li>(optional) Add a new entry <tt class="docutils literal">modules_enabled</tt> beneath a new section
+<tt class="docutils literal">[module_change_auto_install]</tt> to mark a list of modules as auto
+installable. This feature can be usefull for companies that are
+hosting a lot of Odoo instances for many customers, and want some
+modules to be always installed. The environment variable
 <tt class="docutils literal">ODOO_MODULES_AUTO_INSTALL_ENABLED</tt> can also be set.</li>
 </ul>
 <p>The values in the configuration file takes precedence over the
@@ -436,12 +438,13 @@ environment variable values.</p>
 <pre class="code cfg literal-block">
 <span class="na">server_wide_modules</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">web,module_change_auto_install</span><span class="w">
 
-</span><span class="na">modules_auto_install_disabled</span><span class="w"> </span><span class="o">=</span><span class="w">
+</span><span class="k">[module_change_auto_install]</span><span class="w">
+</span><span class="na">modules_disabled</span><span class="w"> </span><span class="o">=</span><span class="w">
     </span><span class="na">partner_autocomplete,</span><span class="w">
     </span><span class="na">iap,</span><span class="w">
     </span><span class="na">mail_bot</span><span class="w">
 
-</span><span class="na">modules_auto_install_enabled</span><span class="w"> </span><span class="o">=</span><span class="w">
+</span><span class="na">modules_enabled</span><span class="w"> </span><span class="o">=</span><span class="w">
     </span><span class="na">web_responsive</span><span class="o">:</span><span class="s">web,</span><span class="w">
     </span><span class="na">base_technical_features,</span><span class="w">
     </span><span class="na">disable_odoo_online,</span><span class="w">
@@ -463,7 +466,8 @@ INFO<span class="w"> </span>db_name<span class="w"> </span>odoo.addons.module_ch
 <p><strong>Advanced Configuration Possibilities</strong></p>
 <p>if your <tt class="docutils literal">odoo.cfg</tt> file contains the following configuration:</p>
 <pre class="code cfg literal-block">
-<span class="na">modules_auto_install_enabled</span><span class="w"> </span><span class="o">=</span><span class="w">
+<span class="k">[module_change_auto_install]</span><span class="w">
+</span><span class="na">modules_enabled</span><span class="w"> </span><span class="o">=</span><span class="w">
     </span><span class="na">account_usability,</span><span class="w">
     </span><span class="na">web_responsive</span><span class="o">:</span><span class="s">web,</span><span class="w">
     </span><span class="na">base_technical_features</span><span class="o">:</span><span class="s">,</span><span class="w">
@@ -497,7 +501,7 @@ new modules.</p>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/server-tools/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-<a class="reference external" href="https://github.com/OCA/server-tools/issues/new?body=module:%20module_change_auto_install%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+<a class="reference external" href="https://github.com/OCA/server-tools/issues/new?body=module:%20module_change_auto_install%0Aversion:%2019.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
@@ -529,7 +533,7 @@ mission is to support the collaborative development of Odoo features and
 promote its widespread use.</p>
 <p>Current <a class="reference external" href="https://odoo-community.org/page/maintainer-role">maintainer</a>:</p>
 <p><a class="reference external image-reference" href="https://github.com/legalsylvain"><img alt="legalsylvain" src="https://github.com/legalsylvain.png?size=40px" /></a></p>
-<p>This module is part of the <a class="reference external" href="https://github.com/OCA/server-tools/tree/18.0/module_change_auto_install">OCA/server-tools</a> project on GitHub.</p>
+<p>This module is part of the <a class="reference external" href="https://github.com/OCA/server-tools/tree/19.0/module_change_auto_install">OCA/server-tools</a> project on GitHub.</p>
 <p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
 </div>
 </div>
