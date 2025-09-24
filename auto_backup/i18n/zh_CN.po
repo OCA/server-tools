@@ -63,7 +63,6 @@ msgstr "备份格式"
 
 #. module: auto_backup
 #: model:ir.actions.server,name:auto_backup.ir_cron_backup_scheduler_0_ir_actions_server
-#: model:ir.cron,cron_name:auto_backup.ir_cron_backup_scheduler_0
 msgid "Backup Scheduler"
 msgstr "备份计划"
 
@@ -90,16 +89,6 @@ msgid "Cannot duplicate a configuration."
 msgstr "无法复制配置。"
 
 #. module: auto_backup
-#: model:ir.model.fields,field_description:auto_backup.field_db_backup__changeset_change_ids
-msgid "Changeset Changes"
-msgstr ""
-
-#. module: auto_backup
-#: model:ir.model.fields,field_description:auto_backup.field_db_backup__changeset_ids
-msgid "Changesets"
-msgstr ""
-
-#. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__backup_format
 msgid "Choose the format for this backup."
 msgstr "选择这个备份的格式."
@@ -108,13 +97,6 @@ msgstr "选择这个备份的格式."
 #: model:ir.model.fields,help:auto_backup.field_db_backup__method
 msgid "Choose the storage method for this backup."
 msgstr "选择这个备份的存储方法."
-
-#. module: auto_backup
-#. odoo-python
-#: code:addons/auto_backup/models/db_backup.py:0
-#, python-format
-msgid "Cleanup of old database backups failed."
-msgstr "清除旧数据库备份失败."
 
 #. module: auto_backup
 #. odoo-python
@@ -129,21 +111,6 @@ msgstr "连接测试失败！"
 #, python-format
 msgid "Connection Test Succeeded!"
 msgstr "连接测试成功！"
-
-#. module: auto_backup
-#: model:ir.model.fields,field_description:auto_backup.field_db_backup__count_changesets
-msgid "Count Changesets"
-msgstr ""
-
-#. module: auto_backup
-#: model:ir.model.fields,field_description:auto_backup.field_db_backup__count_pending_changeset_changes
-msgid "Count Pending Changeset Changes"
-msgstr ""
-
-#. module: auto_backup
-#: model:ir.model.fields,field_description:auto_backup.field_db_backup__count_pending_changesets
-msgid "Count Pending Changesets"
-msgstr ""
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__create_uid
@@ -161,10 +128,7 @@ msgid "Database Backup"
 msgstr "数据库备份"
 
 #. module: auto_backup
-#. odoo-python
-#: code:addons/auto_backup/models/db_backup.py:0
 #: model:mail.message.subtype,description:auto_backup.mail_message_subtype_failure
-#, python-format
 msgid "Database backup failed."
 msgstr "数据库备份失败。"
 
@@ -261,11 +225,6 @@ msgid "Is Follower"
 msgstr "是关注者"
 
 #. module: auto_backup
-#: model:ir.model.fields,field_description:auto_backup.field_db_backup____last_update
-msgid "Last Modified on"
-msgstr "最后修改时间"
-
-#. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__write_uid
 msgid "Last Updated by"
 msgstr "最后更新者"
@@ -279,11 +238,6 @@ msgstr "最后更新时间"
 #: model:ir.model.fields.selection,name:auto_backup.selection__db_backup__method__local
 msgid "Local disk"
 msgstr "本地磁盘"
-
-#. module: auto_backup
-#: model:ir.model.fields,field_description:auto_backup.field_db_backup__message_main_attachment_id
-msgid "Main Attachment"
-msgstr "主要附件"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__message_has_error
@@ -402,21 +356,6 @@ msgid ""
 msgstr "远程服务器的主机名或IP地址。例如192.168.0.1"
 
 #. module: auto_backup
-#: model:ir.model.fields,help:auto_backup.field_db_backup__count_pending_changeset_changes
-msgid "The number of pending changes of this record"
-msgstr ""
-
-#. module: auto_backup
-#: model:ir.model.fields,help:auto_backup.field_db_backup__count_pending_changesets
-msgid "The number of pending changesets of this record"
-msgstr ""
-
-#. module: auto_backup
-#: model:ir.model.fields,help:auto_backup.field_db_backup__count_changesets
-msgid "The overall number of changesets of this record"
-msgstr ""
-
-#. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__sftp_password
 msgid ""
 "The password for the SFTP connection. If you specify a private key file, "
@@ -445,11 +384,6 @@ msgstr ""
 "在设置的目录下面。"
 
 #. module: auto_backup
-#: model:ir.model.fields,field_description:auto_backup.field_db_backup__user_can_see_changeset
-msgid "User Can See Changeset"
-msgstr ""
-
-#. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__sftp_user
 msgid "Username in the SFTP Server"
 msgstr "SFTP服务器中的用户名"
@@ -458,16 +392,6 @@ msgstr "SFTP服务器中的用户名"
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "Warning:"
 msgstr "警告："
-
-#. module: auto_backup
-#: model:ir.model.fields,field_description:auto_backup.field_db_backup__website_message_ids
-msgid "Website Messages"
-msgstr "网站消息"
-
-#. module: auto_backup
-#: model:ir.model.fields,help:auto_backup.field_db_backup__website_message_ids
-msgid "Website communication history"
-msgstr "网站沟通记录"
 
 #. module: auto_backup
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
@@ -488,6 +412,22 @@ msgstr "sftp.example.com"
 #: model:ir.model.fields.selection,name:auto_backup.selection__db_backup__backup_format__zip
 msgid "zip (includes filestore)"
 msgstr "zip（包括文件存储）"
+
+#, python-format
+#~ msgid "Cleanup of old database backups failed."
+#~ msgstr "清除旧数据库备份失败."
+
+#~ msgid "Last Modified on"
+#~ msgstr "最后修改时间"
+
+#~ msgid "Main Attachment"
+#~ msgstr "主要附件"
+
+#~ msgid "Website Messages"
+#~ msgstr "网站消息"
+
+#~ msgid "Website communication history"
+#~ msgstr "网站沟通记录"
 
 #~ msgid "Number of messages which requires an action"
 #~ msgstr "需要操作的消息数量"
