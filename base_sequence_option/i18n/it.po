@@ -100,12 +100,6 @@ msgid "Implementation"
 msgstr "Implementazione"
 
 #. module: base_sequence_option
-#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option____last_update
-#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option_line____last_update
-msgid "Last Modified on"
-msgstr "Ultima modifica il"
-
-#. module: base_sequence_option
 #: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option__write_uid
 #: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option_line__write_uid
 msgid "Last Updated by"
@@ -215,3 +209,6 @@ msgstr ""
 "nell'assegnamento, ci possono essere dei salti nella sequenza se i record "
 "vengono cancellati. L'implementazione 'senza salti' è più lenta di quella "
 "standard."
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"
