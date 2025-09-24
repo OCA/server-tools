@@ -17,11 +17,6 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 
 #. module: iap_alternative_provider
-#: model:ir.model.fields,field_description:iap_alternative_provider.field_iap_account__assigned_attachment_ids
-msgid "Assigned Attachments"
-msgstr "Allegati assegnati"
-
-#. module: iap_alternative_provider
 #: model:ir.model,name:iap_alternative_provider.model_iap_account
 msgid "IAP Account"
 msgstr "Account IAP"
@@ -30,11 +25,6 @@ msgstr "Account IAP"
 #: model_terms:ir.ui.view,arch_db:iap_alternative_provider.iap_account_view_form
 msgid "Info"
 msgstr "Informazioni"
-
-#. module: iap_alternative_provider
-#: model:ir.model.fields,field_description:iap_alternative_provider.field_iap_account__name
-msgid "Name"
-msgstr "Nome"
 
 #. module: iap_alternative_provider
 #: model:ir.model.fields.selection,name:iap_alternative_provider.selection__iap_account__provider__odoo
@@ -50,3 +40,9 @@ msgstr "Provider"
 #: model:ir.model.fields,field_description:iap_alternative_provider.field_iap_account__smart_search
 msgid "Smart Search"
 msgstr "Ricerca intelligente"
+
+#~ msgid "Assigned Attachments"
+#~ msgstr "Allegati assegnati"
+
+#~ msgid "Name"
+#~ msgstr "Nome"

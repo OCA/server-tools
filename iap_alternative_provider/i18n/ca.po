@@ -15,11 +15,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #. module: iap_alternative_provider
-#: model:ir.model.fields,field_description:iap_alternative_provider.field_iap_account__assigned_attachment_ids
-msgid "Assigned Attachments"
-msgstr ""
-
-#. module: iap_alternative_provider
 #: model:ir.model,name:iap_alternative_provider.model_iap_account
 msgid "IAP Account"
 msgstr ""
@@ -27,11 +22,6 @@ msgstr ""
 #. module: iap_alternative_provider
 #: model_terms:ir.ui.view,arch_db:iap_alternative_provider.iap_account_view_form
 msgid "Info"
-msgstr ""
-
-#. module: iap_alternative_provider
-#: model:ir.model.fields,field_description:iap_alternative_provider.field_iap_account__name
-msgid "Name"
 msgstr ""
 
 #. module: iap_alternative_provider
