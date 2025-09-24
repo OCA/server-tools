@@ -70,6 +70,12 @@ msgstr ""
 "Establezca aquí la plantilla que se usará para enviar un aviso al remitente "
 "cuando se produzcan errores al obtener el correo electrónico"
 
+#. module: fetchmail_notify_error_to_sender
+#: model:ir.model.fields,field_description:fetchmail_notify_error_to_sender.field_fetchmail_server__smart_search
+#: model:ir.model.fields,field_description:fetchmail_notify_error_to_sender.field_mail_thread__smart_search
+msgid "Smart Search"
+msgstr ""
+
 #~ msgid ""
 #~ "<div style=\"margin: 0px; padding: 0px;\">\n"
 #~ "                <p style=\"margin: 0px; padding: 0px; font-size: 13px;"

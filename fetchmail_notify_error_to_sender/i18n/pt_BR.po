@@ -73,3 +73,9 @@ msgid ""
 msgstr ""
 "Defina aqui o modelo a ser usado para enviar um aviso ao remetente quando "
 "ocorrerem erros ao buscar email"
+
+#. module: fetchmail_notify_error_to_sender
+#: model:ir.model.fields,field_description:fetchmail_notify_error_to_sender.field_fetchmail_server__smart_search
+#: model:ir.model.fields,field_description:fetchmail_notify_error_to_sender.field_mail_thread__smart_search
+msgid "Smart Search"
+msgstr ""

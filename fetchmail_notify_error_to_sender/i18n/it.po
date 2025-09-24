@@ -41,8 +41,8 @@ msgstr ""
 "<div style=\"margin: 0px; padding: 0px;\">\n"
 "                <p style=\"margin: 0px; padding: 0px; font-size: 13px;\">\n"
 "                <div>\n"
-"                <p>Salve <t t-out=\"ctx.get('sender_message').get('from')\""
-"></t>,</p>\n"
+"                <p>Salve <t t-out=\"ctx.get('sender_message')."
+"get('from')\"></t>,</p>\n"
 "                <p>c'è un problema con la sua e-mail: <i><t t-out=\"ctx."
 "get('sender_message').get('subject')\"></t></i></p>\n"
 "                <p>Forse è stato utilizzato un destinatario erratp??</p>\n"
@@ -87,3 +87,9 @@ msgid ""
 msgstr ""
 "Imposta qui il template da usare per inviare una notifica al mittente quando "
 "si verificano errori durante il recupero dell'e-mail"
+
+#. module: fetchmail_notify_error_to_sender
+#: model:ir.model.fields,field_description:fetchmail_notify_error_to_sender.field_fetchmail_server__smart_search
+#: model:ir.model.fields,field_description:fetchmail_notify_error_to_sender.field_mail_thread__smart_search
+msgid "Smart Search"
+msgstr ""

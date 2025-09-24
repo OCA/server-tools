@@ -71,3 +71,9 @@ msgid ""
 "Set here the template to use to send notice to sender when errors occur "
 "while fetching email"
 msgstr "在此处设置模板，用于在获取电子邮件时发生错误时向发件人发送通知"
+
+#. module: fetchmail_notify_error_to_sender
+#: model:ir.model.fields,field_description:fetchmail_notify_error_to_sender.field_fetchmail_server__smart_search
+#: model:ir.model.fields,field_description:fetchmail_notify_error_to_sender.field_mail_thread__smart_search
+msgid "Smart Search"
+msgstr ""
