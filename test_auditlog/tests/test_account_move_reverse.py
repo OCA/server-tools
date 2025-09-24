@@ -2,10 +2,11 @@ from odoo import fields
 from odoo.tests import tagged
 
 from odoo.addons.account.tests.common import AccountTestInvoicingCommon
+from odoo.addons.auditlog.tests.common import AuditLogRuleCommon
 
 
 @tagged("post_install", "-at_install")
-class TestAccountMoveReverse(AccountTestInvoicingCommon):
+class TestAccountMoveReverse(AccountTestInvoicingCommon, AuditLogRuleCommon):
     @classmethod
     def setUpClass(cls):
         # Class setup taken from account/tests/test_account_move_in_invoice.py
@@ -143,10 +144,6 @@ class TestAccountMoveReverse(AccountTestInvoicingCommon):
             }
         )
         self.rule.subscribe()
-
-    def tearDown(self):
-        self.rule.unsubscribe()
-        super().tearDown()
 
     def test_in_invoice_create_refund(self):
         """Test creating a refund from a vendor bill.
