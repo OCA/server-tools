@@ -70,8 +70,8 @@ msgid ""
 "By method: allow to select an existing check method"
 msgstr ""
 "通过Python代码：允许定义任意检查\n"
-"通过domain：限制使用Odoo domain进行选择：当对多条记录计算异常时，"
-"性能可能更优\n"
+"通过domain：限制使用Odoo domain进行选择：当对多条记录计算异常时，性能可能更"
+"优\n"
 "通过方法：允许选择一个现有的检查方法"
 
 #. module: base_exception
@@ -276,6 +276,14 @@ msgstr "相关模型"
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule__sequence
 msgid "Sequence"
 msgstr "序列"
+
+#. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_base_exception__smart_search
+#: model:ir.model.fields,field_description:base_exception.field_base_exception_method__smart_search
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule__smart_search
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm__smart_search
+msgid "Smart Search"
+msgstr ""
 
 #. module: base_exception
 #. odoo-python
