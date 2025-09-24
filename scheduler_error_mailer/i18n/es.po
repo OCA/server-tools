@@ -45,8 +45,8 @@ msgid ""
 "<ul>\n"
 "<li>Model : <t t-out=\"object.model_id.name or ''\"/></li>\n"
 "<li>Python code : <code><t t-out=\"object.code or ''\"/></code></li>\n"
-"<li>Interval : <t t-out=\"object.interval_number or '0'\"/> <t t-out="
-"\"object.interval_type or ''\"/></li>\n"
+"<li>Interval : <t t-out=\"object.interval_number or '0'\"/> <t t-"
+"out=\"object.interval_type or ''\"/></li>\n"
 "<li>Number of calls : <t t-out=\"object.numbercall or '0'\"/></li>\n"
 "<li>Repeat missed : <t t-out=\"object.doall\"/></li>\n"
 "<li>User : <t t-out=\"object.user_id.name or ''\"/></li>\n"
@@ -122,6 +122,11 @@ msgstr ""
 "este planificador."
 
 #. module: scheduler_error_mailer
+#: model:ir.model.fields,field_description:scheduler_error_mailer.field_ir_cron__smart_search
+msgid "Smart Search"
+msgstr "Búsqueda inteligente"
+
+#. module: scheduler_error_mailer
 #. odoo-python
 #: code:addons/scheduler_error_mailer/models/ir_cron.py:0
 #, python-format
@@ -137,9 +142,6 @@ msgstr "Programador de pruebas Error Mailer"
 #: model:mail.template,subject:scheduler_error_mailer.scheduler_error_mailer
 msgid "[DB {{ctx.get('dbname')}}] Scheduler '{{object.name or ''}}' FAILED"
 msgstr "[DB {{ctx.get('dbname')}}] Programador '{{object.name or ''}}' FALLÓ"
-
-#~ msgid "Smart Search"
-#~ msgstr "Búsqueda inteligente"
 
 #, fuzzy
 #~ msgid "Email Template"

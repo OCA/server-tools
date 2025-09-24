@@ -45,8 +45,8 @@ msgid ""
 "<ul>\n"
 "<li>Model : <t t-out=\"object.model_id.name or ''\"/></li>\n"
 "<li>Python code : <code><t t-out=\"object.code or ''\"/></code></li>\n"
-"<li>Interval : <t t-out=\"object.interval_number or '0'\"/> <t t-out="
-"\"object.interval_type or ''\"/></li>\n"
+"<li>Interval : <t t-out=\"object.interval_number or '0'\"/> <t t-"
+"out=\"object.interval_type or ''\"/></li>\n"
 "<li>Number of calls : <t t-out=\"object.numbercall or '0'\"/></li>\n"
 "<li>Repeat missed : <t t-out=\"object.doall\"/></li>\n"
 "<li>User : <t t-out=\"object.user_id.name or ''\"/></li>\n"
@@ -82,6 +82,11 @@ msgstr ""
 msgid "Select the email template that will be sent when this scheduler fails."
 msgstr ""
 "Selecione o modelo de email que será enviado quando o agendador falhar."
+
+#. module: scheduler_error_mailer
+#: model:ir.model.fields,field_description:scheduler_error_mailer.field_ir_cron__smart_search
+msgid "Smart Search"
+msgstr ""
 
 #. module: scheduler_error_mailer
 #. odoo-python
