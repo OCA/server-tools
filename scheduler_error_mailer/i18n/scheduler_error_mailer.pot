@@ -69,6 +69,11 @@ msgid "Select the email template that will be sent when this scheduler fails."
 msgstr ""
 
 #. module: scheduler_error_mailer
+#: model:ir.model.fields,field_description:scheduler_error_mailer.field_ir_cron__smart_search
+msgid "Smart Search"
+msgstr ""
+
+#. module: scheduler_error_mailer
 #. odoo-python
 #: code:addons/scheduler_error_mailer/models/ir_cron.py:0
 #, python-format
