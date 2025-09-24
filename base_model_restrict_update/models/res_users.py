@@ -1,7 +1,7 @@
 # Copyright 2021-2024 Quartile (https://www.quartile.co)
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 
 
@@ -14,8 +14,11 @@ class ResUsers(models.Model):
         "records.",
     )
 
-    @api.constrains("is_readonly_user", "groups_id")
+    @api.constrains("is_readonly_user", "group_ids")
     def _check_is_readonly_user(self):
         for user in self:
-            if user.has_group("base.group_system") and user.is_readonly_user:
-                raise UserError(_("You cannot make the admin user read-only."))
+            if (
+                user in self.env.ref("base.group_system").user_ids
+                and user.is_readonly_user
+            ):
+                raise UserError(self.env._("You cannot make the admin user read-only."))

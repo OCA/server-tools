@@ -3,7 +3,6 @@
 
 from odoo import api, models
 from odoo.exceptions import AccessError
-from odoo.tools.translate import _
 
 
 class IrModelAccess(models.Model):
@@ -38,28 +37,28 @@ class IrModelAccess(models.Model):
             .sudo()
             .get_param("base_model_restrict_update.excluded_models_from_readonly", "")
         )
-        if model in models_to_exclude:
+        if model in [m.strip() for m in models_to_exclude.split(",")]:
             return False
         return True
 
     @api.model
     def _test_restrict_update(self, model):
-        # Get the IDs of unresticted users for the model if it's restricted
         self.env.cr.execute(
             """
-            SELECT gurel.uid
+            SELECT mgrel.res_groups_id
             FROM ir_model m
             LEFT JOIN ir_model_res_groups_update_allowed_rel mgrel
               ON m.id = mgrel.ir_model_id
-            LEFT JOIN res_groups_users_rel gurel
-              ON mgrel.res_groups_id = gurel.gid
             WHERE m.model = %s
               AND m.restrict_update = true
             """,
             (model,),
         )
         query_res = self.env.cr.fetchall()
-        return bool(query_res) and (self.env.uid,) not in query_res
+        if not query_res:
+            return False
+        allowed_group_ids = {gid for (gid,) in query_res if gid}
+        return not allowed_group_ids & set(self.env.user.all_group_ids.ids)
 
     @api.model
     def check(self, model, mode="read", raise_exception=True):
@@ -72,7 +71,10 @@ class IrModelAccess(models.Model):
             if not raise_exception:
                 return False
             raise AccessError(
-                _("You are only allowed to read this record. (%(model)s - %(mode)s)")
-                % {"model": model, "mode": mode}
+                self.env._(
+                    "You are only allowed to read this record. (%(model)s - %(mode)s)",
+                    model=model,
+                    mode=mode,
+                )
             )
         return res

@@ -15,7 +15,20 @@ class TestBaseModelRestrictUpdate(common.TransactionCase):
         cls.group_partner_update = cls.env["res.groups"].create(
             {"name": "Partner Update Group"}
         )
-        cls.test_user = cls.env["res.users"].create({"name": "test", "login": "test"})
+        cls.test_user = cls.env["res.users"].create(
+            {
+                "name": "test",
+                "login": "test",
+                "group_ids": [
+                    Command.set(
+                        [
+                            cls.env.ref("base.group_user").id,
+                            cls.env.ref("base.group_partner_manager").id,
+                        ]
+                    )
+                ],
+            }
+        )
         cls.partner_model_with_test_user = cls.env["res.partner"].with_user(
             cls.test_user.id
         )
@@ -43,7 +56,7 @@ class TestBaseModelRestrictUpdate(common.TransactionCase):
             self.test_partner_with_test_user.write({"name": "baz"})
         with self.assertRaises(AccessError):
             self.test_partner_with_test_user.unlink()
-        self.test_user.groups_id = [Command.link(self.group_partner_update.id)]
+        self.test_user.group_ids = [Command.link(self.group_partner_update.id)]
         self.partner_model_with_test_user.create({"name": "bar"})
         self.test_partner_with_test_user.write({"name": "baz"})
         self.test_partner_with_test_user.unlink()
@@ -59,7 +72,7 @@ class TestBaseModelRestrictUpdate(common.TransactionCase):
         # To confirm that is_readonly_user prevails
         self.model_partner.restrict_update = True
         self.model_partner.update_allowed_group_ids = self.group_partner_update
-        self.test_user.groups_id = [Command.link(self.group_partner_update.id)]
+        self.test_user.group_ids = [Command.link(self.group_partner_update.id)]
         with self.assertRaises(AccessError):
             self.partner_model_with_test_user.create({"name": "bar"})
         with self.assertRaises(AccessError):
@@ -80,12 +93,33 @@ class TestBaseModelRestrictUpdate(common.TransactionCase):
         self.test_partner_with_test_user.write({"name": "qux"})
         self.test_partner_with_test_user.unlink()
 
+    def test_with_model_restriction_implied_group(self):
+        self.model_partner.restrict_update = True
+        self.model_partner.update_allowed_group_ids = self.group_partner_update
+        parent_group = self.env["res.groups"].create(
+            {
+                "name": "Partner Update Parent",
+                "implied_ids": [Command.link(self.group_partner_update.id)],
+            }
+        )
+        self.test_user.group_ids = [Command.link(parent_group.id)]
+        self.assertNotIn(self.test_user, self.group_partner_update.user_ids)
+        self.test_partner_with_test_user.write({"name": "baz"})
+
+    def test_check_raise_exception(self):
+        self.model_partner.restrict_update = True
+        self.env.flush_all()
+        access = self.env["ir.model.access"].with_user(self.test_user)
+        self.assertFalse(access.check("res.partner", "write", raise_exception=False))
+        with self.assertRaises(AccessError):
+            access.check("res.partner", "write")
+
     def test_set_user_readonly(self):
         group_system_id = self.env.ref("base.group_system").id
-        self.test_user.groups_id = [Command.link(group_system_id)]
+        self.test_user.group_ids = [Command.link(group_system_id)]
         with self.assertRaises(UserError):
             self.test_user.is_readonly_user = True
-        self.test_user.groups_id = [Command.unlink(group_system_id)]
+        self.test_user.group_ids = [Command.unlink(group_system_id)]
         self.test_user.is_readonly_user = True
         with self.assertRaises(UserError):
-            self.test_user.groups_id = [Command.link(group_system_id)]
+            self.test_user.group_ids = [Command.link(group_system_id)]
