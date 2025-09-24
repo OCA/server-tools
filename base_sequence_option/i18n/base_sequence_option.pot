@@ -161,6 +161,13 @@ msgid "Sequence Options"
 msgstr ""
 
 #. module: base_sequence_option
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence__smart_search
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option__smart_search
+#: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option_line__smart_search
+msgid "Smart Search"
+msgstr ""
+
+#. module: base_sequence_option
 #: model:ir.model.fields,field_description:base_sequence_option.field_ir_sequence_option_line__suffix
 msgid "Suffix"
 msgstr ""
