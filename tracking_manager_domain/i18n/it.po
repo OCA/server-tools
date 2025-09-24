@@ -36,6 +36,11 @@ msgid "Fields"
 msgstr "Campi"
 
 #. module: tracking_manager_domain
+#: model:ir.model.fields,field_description:tracking_manager_domain.field_ir_model_fields__smart_search
+msgid "Smart Search"
+msgstr ""
+
+#. module: tracking_manager_domain
 #: model:ir.model.fields,field_description:tracking_manager_domain.field_ir_model_fields__tracking_domain
 msgid "Tracking Domain"
 msgstr "Dominio tracciamento"
