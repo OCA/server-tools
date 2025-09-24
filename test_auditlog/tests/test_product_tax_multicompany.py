@@ -2,10 +2,11 @@ from odoo import fields
 from odoo.tests import tagged
 
 from odoo.addons.account.tests.common import AccountTestInvoicingCommon
+from odoo.addons.auditlog.tests.common import AuditLogRuleCommon
 
 
 @tagged("post_install", "-at_install")
-class TestProductTaxMulticompany(AccountTestInvoicingCommon):
+class TestProductTaxMulticompany(AccountTestInvoicingCommon, AuditLogRuleCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -34,10 +35,6 @@ class TestProductTaxMulticompany(AccountTestInvoicingCommon):
             }
         )
         self.rule.subscribe()
-
-    def tearDown(self):
-        self.rule.unsubscribe()
-        super().tearDown()
 
     def test_cache_accesserror(self):
         """No AccessError occurs reading the product after writing taxes.
