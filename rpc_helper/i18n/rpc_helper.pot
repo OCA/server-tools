@@ -54,3 +54,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:rpc_helper.field_ir_model__rpc_config_edit
 msgid "Rpc Config Edit"
 msgstr ""
+
+#. module: rpc_helper
+#: model:ir.model.fields,field_description:rpc_helper.field_ir_model__smart_search
+msgid "Smart Search"
+msgstr ""
