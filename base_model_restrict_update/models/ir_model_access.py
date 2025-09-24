@@ -3,7 +3,6 @@
 
 from odoo import api, models
 from odoo.exceptions import AccessError
-from odoo.tools.translate import _
 
 
 class IrModelAccess(models.Model):
@@ -38,7 +37,7 @@ class IrModelAccess(models.Model):
             .sudo()
             .get_param("base_model_restrict_update.excluded_models_from_readonly", "")
         )
-        if model in models_to_exclude:
+        if model in [m.strip() for m in models_to_exclude.split(",")]:
             return False
         return True
 
@@ -72,7 +71,10 @@ class IrModelAccess(models.Model):
             if not raise_exception:
                 return False
             raise AccessError(
-                _("You are only allowed to read this record. (%(model)s - %(mode)s)")
-                % {"model": model, "mode": mode}
+                self.env._(
+                    "You are only allowed to read this record. (%(model)s - %(mode)s)"
+                ),
+                model=model,
+                mode=mode,
             )
         return res

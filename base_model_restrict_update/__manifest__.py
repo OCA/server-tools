@@ -2,7 +2,9 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 {
     "name": "Update Restrict Model",
-    "version": "18.0.1.0.0",
+    "summary": "Restrict create/write/unlink on models for read-only or "
+    "non-allowed users.",
+    "version": "19.0.1.0.0",
     "depends": ["base_setup"],
     "website": "https://github.com/OCA/server-tools",
     "author": "Odoo Community Association (OCA), Quartile",
