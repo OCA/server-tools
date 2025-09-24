@@ -56,6 +56,14 @@ msgid ""
 msgstr ""
 
 #. module: base_model_restrict_update
+#: model:ir.model.fields,field_description:base_model_restrict_update.field_ir_model__smart_search
+#: model:ir.model.fields,field_description:base_model_restrict_update.field_ir_model_access__smart_search
+#: model:ir.model.fields,field_description:base_model_restrict_update.field_res_config_settings__smart_search
+#: model:ir.model.fields,field_description:base_model_restrict_update.field_res_users__smart_search
+msgid "Smart Search"
+msgstr ""
+
+#. module: base_model_restrict_update
 #: model:ir.model.fields,help:base_model_restrict_update.field_res_config_settings__excluded_models_from_readonly
 #: model_terms:ir.ui.view,arch_db:base_model_restrict_update.res_config_settings_view_form
 msgid ""
