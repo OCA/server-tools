@@ -155,7 +155,8 @@ msgstr "如果设置，将对字段值应用特定解析器"
 msgid ""
 "If set, will set the lang to False when exporting lines without lang, "
 "otherwise it uses the lang in the given context to export these fields"
-msgstr "如果设置，在导出不包含语言信息的行时，会将语言(lang)设置为False；否则，它会使"
+msgstr ""
+"如果设置，在导出不包含语言信息的行时，会将语言(lang)设置为False；否则，它会使"
 "用给定上下文中的语言来导出这些字段"
 
 #. module: jsonifier
@@ -199,6 +200,13 @@ msgstr "名称和别名必须具有相同的层次结构深度"
 #: model:ir.model.fields,field_description:jsonifier.field_ir_exports_resolver__python_code
 msgid "Python Code"
 msgstr "Python代码"
+
+#. module: jsonifier
+#: model:ir.model.fields,field_description:jsonifier.field_ir_exports__smart_search
+#: model:ir.model.fields,field_description:jsonifier.field_ir_exports_line__smart_search
+#: model:ir.model.fields,field_description:jsonifier.field_ir_exports_resolver__smart_search
+msgid "Smart Search"
+msgstr ""
 
 #. module: jsonifier
 #: model:ir.model.fields,field_description:jsonifier.field_ir_exports_line__target

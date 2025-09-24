@@ -204,6 +204,13 @@ msgid "Python Code"
 msgstr "Codice Python"
 
 #. module: jsonifier
+#: model:ir.model.fields,field_description:jsonifier.field_ir_exports__smart_search
+#: model:ir.model.fields,field_description:jsonifier.field_ir_exports_line__smart_search
+#: model:ir.model.fields,field_description:jsonifier.field_ir_exports_resolver__smart_search
+msgid "Smart Search"
+msgstr ""
+
+#. module: jsonifier
 #: model:ir.model.fields,field_description:jsonifier.field_ir_exports_line__target
 msgid "Target"
 msgstr "Obiettivo"
@@ -211,8 +218,8 @@ msgstr "Obiettivo"
 #. module: jsonifier
 #: model:ir.model.fields,help:jsonifier.field_ir_exports_line__target
 msgid ""
-"The complete path to the field where you can specify a target on the step as"
-" field:target"
+"The complete path to the field where you can specify a target on the step as "
+"field:target"
 msgstr ""
 "Il percorso completo al campo dove si può indicare un obiettivo sul "
 "passaggio come field:target"
