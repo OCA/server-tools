@@ -77,11 +77,6 @@ msgid "Index Type"
 msgstr "Tipo de índice"
 
 #. module: base_search_fuzzy
-#: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index____last_update
-msgid "Last Modified on"
-msgstr "Última atualização em"
-
-#. module: base_search_fuzzy
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index__write_uid
 msgid "Last Updated by"
 msgstr "Última atualização por"
@@ -127,6 +122,9 @@ msgstr "Índice Trigram"
 #: model:ir.model.fields,help:base_search_fuzzy.field_trgm_index__field_id
 msgid "You can either select a field of type \"text\" or \"char\"."
 msgstr "Você pode selecionar um campo do tipo \"texto\" ou \"caractere\"."
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última atualização em"
 
 #~ msgid ""
 #~ "Cite from PostgreSQL documentation: \"As a rule of thumb, a GIN index is "

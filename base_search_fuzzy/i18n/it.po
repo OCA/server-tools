@@ -77,11 +77,6 @@ msgid "Index Type"
 msgstr "Tipo indice"
 
 #. module: base_search_fuzzy
-#: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index____last_update
-msgid "Last Modified on"
-msgstr "Ultima modifica il"
-
-#. module: base_search_fuzzy
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index__write_uid
 msgid "Last Updated by"
 msgstr "Ultimo aggiornamento di"
@@ -127,6 +122,9 @@ msgstr "Indice trigramma"
 #: model:ir.model.fields,help:base_search_fuzzy.field_trgm_index__field_id
 msgid "You can either select a field of type \"text\" or \"char\"."
 msgstr "Si può selezionare un campo di tipo \"text\" o \"char\"."
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"
 
 #~ msgid "Models"
 #~ msgstr "Modelli"
