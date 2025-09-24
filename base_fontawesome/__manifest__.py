@@ -17,8 +17,8 @@
                 "web/static/src/libs/fontawesome/css/font-awesome.css",
                 "base_fontawesome/static/src/css/fontawesome.css",
             ),
-            "base_fontawesome/static/lib/fontawesome-6.5.1/css/all.css",
-            "base_fontawesome/static/lib/fontawesome-6.5.1/css/v4-shims.css",
+            "base_fontawesome/static/lib/fontawesome-6.7.2/css/all.css",
+            "base_fontawesome/static/lib/fontawesome-6.7.2/css/v4-shims.css",
         ],
         "web.assets_frontend": [
             (
@@ -26,8 +26,8 @@
                 "web/static/src/libs/fontawesome/css/font-awesome.css",
                 "base_fontawesome/static/src/css/fontawesome.css",
             ),
-            "base_fontawesome/static/lib/fontawesome-6.5.1/css/all.css",
-            "base_fontawesome/static/lib/fontawesome-6.5.1/css/v4-shims.css",
+            "base_fontawesome/static/lib/fontawesome-6.7.2/css/all.css",
+            "base_fontawesome/static/lib/fontawesome-6.7.2/css/v4-shims.css",
         ],
         "web.report_assets_common": [
             (
@@ -35,8 +35,8 @@
                 "web/static/src/libs/fontawesome/css/font-awesome.css",
                 "base_fontawesome/static/src/css/fontawesome.css",
             ),
-            "base_fontawesome/static/lib/fontawesome-6.5.1/css/all.css",
-            "base_fontawesome/static/lib/fontawesome-6.5.1/css/v4-shims.css",
+            "base_fontawesome/static/lib/fontawesome-6.7.2/css/all.css",
+            "base_fontawesome/static/lib/fontawesome-6.7.2/css/v4-shims.css",
         ],
     },
 }
