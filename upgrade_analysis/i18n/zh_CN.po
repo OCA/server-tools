@@ -368,8 +368,20 @@ msgstr "服务器"
 msgid ""
 "Set to Create if a field is newly created in this module. If this module "
 "modifies an attribute of an existing field, set to Modify."
-msgstr "如果字段是在此模块中新创建的，则设置为“创建”。如果此模块修改现有字段的属性，"
+msgstr ""
+"如果字段是在此模块中新创建的，则设置为“创建”。如果此模块修改现有字段的属性，"
 "则设置为“修改”。"
+
+#. module: upgrade_analysis
+#: model:ir.model.fields,field_description:upgrade_analysis.field_ir_module_module__smart_search
+#: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_analysis__smart_search
+#: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_attribute__smart_search
+#: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_comparison_config__smart_search
+#: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_generate_record_wizard__smart_search
+#: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_install_wizard__smart_search
+#: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_record__smart_search
+msgid "Smart Search"
+msgstr ""
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_analysis__state
@@ -395,8 +407,8 @@ msgid ""
 "Odoo's --upgrade-path command line option or the 'scripts' subdirectory in "
 "the openupgrade_scripts addon."
 msgstr ""
-"保存Odoo模块分析文件的基本文件路径。该路径取自Odoo命令行选项`--upgrade-"
-"path`或`openupgrade_scripts`附加组件中的`scripts`子目录。"
+"保存Odoo模块分析文件的基本文件路径。该路径取自Odoo命令行选项`--upgrade-path`"
+"或`openupgrade_scripts`附加组件中的`scripts`子目录。"
 
 #. module: upgrade_analysis
 #: model_terms:ir.ui.view,arch_db:upgrade_analysis.view_upgrade_install_wizard_form
@@ -415,7 +427,8 @@ msgstr "这将在数据库上安装所选模块。最好不要在生产环境数
 msgid ""
 "This will reinitialize all the modules installed on this database. Do not "
 "continue if you use this database in production."
-msgstr "这将重新初始化安装在此数据库上的所有模块。最好不要在生产环境数据库中使用。"
+msgstr ""
+"这将重新初始化安装在此数据库上的所有模块。最好不要在生产环境数据库中使用。"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields,field_description:upgrade_analysis.field_upgrade_record__type
@@ -508,7 +521,8 @@ msgstr "外部ID"
 msgid ""
 "You are correctly connected to the server %(server)s (version %(version)s) "
 "with the user %(user_name)s"
-msgstr "您已成功通过用户 %(user_name)s连接到服务器 %(server)s（版本 %(version)s）"
+msgstr ""
+"您已成功通过用户 %(user_name)s连接到服务器 %(server)s（版本 %(version)s）"
 
 #. module: upgrade_analysis
 #: model:ir.model.fields.selection,name:upgrade_analysis.selection__upgrade_analysis__state__draft
