@@ -24,3 +24,8 @@ msgstr ""
 #, fuzzy
 msgid "Fields Converter"
 msgstr "ir.documentos.conversor"
+
+#. module: html_text
+#: model:ir.model.fields,field_description:html_text.field_ir_fields_converter__smart_search
+msgid "Smart Search"
+msgstr ""

@@ -20,3 +20,8 @@ msgstr ""
 #: model:ir.model,name:html_text.model_ir_fields_converter
 msgid "Fields Converter"
 msgstr "字段转换器"
+
+#. module: html_text
+#: model:ir.model.fields,field_description:html_text.field_ir_fields_converter__smart_search
+msgid "Smart Search"
+msgstr ""
