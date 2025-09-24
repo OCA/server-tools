@@ -37,14 +37,6 @@ msgid "Archive Path"
 msgstr ""
 
 #. module: fetchmail_attach_from_folder
-#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually__assigned_attachment_ids
-#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__assigned_attachment_ids
-#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server__assigned_attachment_ids
-#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__assigned_attachment_ids
-msgid "Assigned Attachments"
-msgstr ""
-
-#. module: fetchmail_attach_from_folder
 #. odoo-python
 #: code:addons/fetchmail_attach_from_folder/wizard/attach_mail_manually.py:0
 #, fuzzy, python-format
@@ -88,22 +80,6 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:fetchmail_attach_from_folder.view_attach_mail_manually
 msgid "Cancel"
 msgstr "Cancelar"
-
-#. module: fetchmail_attach_from_folder
-#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually__changeset_change_ids
-#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__changeset_change_ids
-#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server__changeset_change_ids
-#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__changeset_change_ids
-msgid "Changeset Changes"
-msgstr "Mudanças no conjunto de alterações"
-
-#. module: fetchmail_attach_from_folder
-#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually__changeset_ids
-#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__changeset_ids
-#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server__changeset_ids
-#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__changeset_ids
-msgid "Changesets"
-msgstr "Conjunto de alterações"
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server__folders_only
@@ -150,30 +126,6 @@ msgstr ""
 #: code:addons/fetchmail_attach_from_folder/models/fetchmail_server_folder.py:0
 #, python-format
 msgid "Could not search folder %(folder)s on server %(server)s"
-msgstr ""
-
-#. module: fetchmail_attach_from_folder
-#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually__count_changesets
-#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__count_changesets
-#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server__count_changesets
-#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__count_changesets
-msgid "Count Changesets"
-msgstr ""
-
-#. module: fetchmail_attach_from_folder
-#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually__count_pending_changeset_changes
-#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__count_pending_changeset_changes
-#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server__count_pending_changeset_changes
-#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__count_pending_changeset_changes
-msgid "Count Pending Changeset Changes"
-msgstr ""
-
-#. module: fetchmail_attach_from_folder
-#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually__count_pending_changesets
-#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__count_pending_changesets
-#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server__count_pending_changesets
-#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__count_pending_changesets
-msgid "Count Pending Changesets"
 msgstr ""
 
 #. module: fetchmail_attach_from_folder
@@ -344,14 +296,6 @@ msgid "Invalid folder %s!"
 msgstr ""
 
 #. module: fetchmail_attach_from_folder
-#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually____last_update
-#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail____last_update
-#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder____last_update
-#, fuzzy
-msgid "Last Modified on"
-msgstr "Última atualização em"
-
-#. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually__write_uid
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__write_uid
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__write_uid
@@ -519,30 +463,6 @@ msgid "The model to attach emails to"
 msgstr "O modelo para anexar emails ao"
 
 #. module: fetchmail_attach_from_folder
-#: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually__count_pending_changeset_changes
-#: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__count_pending_changeset_changes
-#: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server__count_pending_changeset_changes
-#: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server_folder__count_pending_changeset_changes
-msgid "The number of pending changes of this record"
-msgstr ""
-
-#. module: fetchmail_attach_from_folder
-#: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually__count_pending_changesets
-#: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__count_pending_changesets
-#: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server__count_pending_changesets
-#: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server_folder__count_pending_changesets
-msgid "The number of pending changesets of this record"
-msgstr ""
-
-#. module: fetchmail_attach_from_folder
-#: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually__count_changesets
-#: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__count_changesets
-#: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server__count_changesets
-#: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server_folder__count_changesets
-msgid "The overall number of changesets of this record"
-msgstr "O número total de conjuntos de alterações deste registro"
-
-#. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,help:fetchmail_attach_from_folder.field_fetchmail_server_folder__path
 msgid ""
 "The path to your mail folder. Typically would be something like 'INBOX."
@@ -575,14 +495,6 @@ msgid "Use 1st match"
 msgstr "Use a 1a combinação"
 
 #. module: fetchmail_attach_from_folder
-#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually__user_can_see_changeset
-#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__user_can_see_changeset
-#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server__user_can_see_changeset
-#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__user_can_see_changeset
-msgid "User Can See Changeset"
-msgstr ""
-
-#. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__wizard_id
 msgid "Wizard"
 msgstr ""
@@ -611,6 +523,19 @@ msgstr "ou"
 #: model_terms:ir.ui.view,arch_db:fetchmail_attach_from_folder.view_email_server_form
 msgid "to,from"
 msgstr "para,de"
+
+#~ msgid "Changeset Changes"
+#~ msgstr "Mudanças no conjunto de alterações"
+
+#~ msgid "Changesets"
+#~ msgstr "Conjunto de alterações"
+
+#, fuzzy
+#~ msgid "Last Modified on"
+#~ msgstr "Última atualização em"
+
+#~ msgid "The overall number of changesets of this record"
+#~ msgstr "O número total de conjuntos de alterações deste registro"
 
 #~ msgid "Flag nonmatching"
 #~ msgstr "Sinal sem correspondente"
