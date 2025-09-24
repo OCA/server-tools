@@ -112,6 +112,14 @@ msgid "Native Tracking"
 msgstr ""
 
 #. module: tracking_manager
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model__smart_search
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model_fields__smart_search
+#: model:ir.model.fields,field_description:tracking_manager.field_mail_thread__smart_search
+#: model:ir.model.fields,field_description:tracking_manager.field_mail_tracking_value__smart_search
+msgid "Smart Search"
+msgstr ""
+
+#. module: tracking_manager
 #: model:ir.model.fields,field_description:tracking_manager.field_ir_model_fields__trackable
 msgid "Trackable"
 msgstr ""
