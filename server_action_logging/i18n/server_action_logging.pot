@@ -29,3 +29,8 @@ msgstr ""
 #: model:ir.model,name:server_action_logging.model_ir_actions_server
 msgid "Server Action"
 msgstr ""
+
+#. module: server_action_logging
+#: model:ir.model.fields,field_description:server_action_logging.field_ir_actions_server__smart_search
+msgid "Smart Search"
+msgstr ""
