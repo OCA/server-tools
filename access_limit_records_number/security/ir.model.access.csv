@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_limit_records_number_model_access_right_admin,access_limit_records_number_model_access_right_admin,model_base_limit_records_number,group_control_limits_on_records_number,1,1,1,1
+access_limit_records_number_read,access_limit_records_number_read,model_base_limit_records_number,,1,0,0,0
