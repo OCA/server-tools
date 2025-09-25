@@ -1,8 +1,7 @@
 # Copyright 2018 Ivan Yelizariev <https://it-projects.info/team/yelizariev>
 # License MIT (https://opensource.org/licenses/MIT).
+from odoo import exceptions
 from odoo.tests import common
-from odoo import fields, models
-
 
 
 @common.tagged("post_install", "-at_install")
@@ -22,7 +21,7 @@ class TestBase(common.TransactionCase):
         )
 
         # limit 1 is reached
-        with self.assertRaises(Exception):
-            self.env["base.limit.records_number.test"].with_user(demo_user).sudo().create(
-                {"name": "r2"}
-            )
+        with self.assertRaises(exceptions.UserError):
+            self.env["base.limit.records_number.test"].with_user(
+                demo_user
+            ).sudo().create({"name": "r2"})
