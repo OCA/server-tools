@@ -1,4 +1,5 @@
 # Copyright 2018 Ivan Yelizariev <https://it-projects.info/team/yelizariev>
+# Miguel Martinez Lopez
 # License MIT (https://opensource.org/licenses/MIT).
 from odoo import exceptions
 from odoo.tests import common
@@ -13,15 +14,15 @@ class TestBase(common.TransactionCase):
             {"name": "Test Rule", "model_id": model_id, "max_records": 1}
         )
 
-        demo_user = self.env.ref("base.user_demo")
+        admin_user = self.env.ref("base.user_admin")
 
         # ok
-        self.env["base.limit.records_number.test"].with_user(demo_user).sudo().create(
+        self.env["base.limit.records_number.test"].with_user(admin_user).sudo().create(
             {"name": "r1"}
         )
 
         # limit 1 is reached
         with self.assertRaises(exceptions.UserError):
             self.env["base.limit.records_number.test"].with_user(
-                demo_user
+                admin_user
             ).sudo().create({"name": "r2"})
