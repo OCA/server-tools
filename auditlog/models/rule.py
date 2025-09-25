@@ -3,7 +3,8 @@
 
 import copy
 
-from odoo import Command, _, api, fields, models
+from odoo import Command, api, fields, models
+from odoo.api import NewId
 from odoo.exceptions import UserError
 
 FIELDS_BLACKLIST = [
@@ -104,8 +105,7 @@ class AuditlogRule(models.Model):
         "Log Exports",
         default=True,
         help=(
-            "Select this if you want to keep track of exports "
-            "of the model of this rule"
+            "Select this if you want to keep track of exports of the model of this rule"
         ),
     )
     log_type = fields.Selection(
@@ -146,16 +146,11 @@ class AuditlogRule(models.Model):
         string="Fields to Exclude",
     )
 
-    _sql_constraints = [
-        (
-            "model_uniq",
-            "unique(model_id)",
-            (
-                "There is already a rule defined on this model\n"
-                "You cannot define another: please edit the existing one."
-            ),
-        )
-    ]
+    _model_uniq = models.Constraint(
+        "unique(model_id)",
+        "There is already a rule defined on this model\nYou cannot define another: "
+        "please edit the existing one.",
+    )
 
     def _register_hook(self):
         """Get all rules and apply them to log method calls."""
@@ -245,7 +240,7 @@ class AuditlogRule(models.Model):
         """Update the registry when a new rule is created."""
         for vals in vals_list:
             if "model_id" not in vals or not vals["model_id"]:
-                raise UserError(_("No model defined to create line."))
+                raise UserError(self.env._("No model defined to create line."))
             model = self.env["ir.model"].sudo().browse(vals["model_id"])
             vals.update({"model_name": model.name, "model_model": model.model})
         new_records = super().create(vals_list)
@@ -258,7 +253,7 @@ class AuditlogRule(models.Model):
         """Update the registry when existing rules are updated."""
         if "model_id" in vals:
             if not vals["model_id"]:
-                raise UserError(_("Field 'model_id' cannot be empty."))
+                raise UserError(self.env._("Field 'model_id' cannot be empty."))
             model = self.env["ir.model"].sudo().browse(vals["model_id"])
             vals.update({"model_name": model.name, "model_model": model.model})
         res = super().write(vals)
@@ -291,7 +286,6 @@ class AuditlogRule(models.Model):
         users_to_exclude = self.mapped("users_to_exclude_ids")
 
         @api.model_create_multi
-        @api.returns("self", lambda value: value.id)
         def create_full(self, vals_list, **kwargs):
             self = self.with_context(auditlog_disabled=True)
             rule_model = self.env["auditlog.rule"]
@@ -324,7 +318,6 @@ class AuditlogRule(models.Model):
             return new_records
 
         @api.model_create_multi
-        @api.returns("self", lambda value: value.id)
         def create_fast(self, vals_list, **kwargs):
             self = self.with_context(auditlog_disabled=True)
             rule_model = self.env["auditlog.rule"]
@@ -398,7 +391,7 @@ class AuditlogRule(models.Model):
             self = self.with_context(auditlog_disabled=True)
             rule_model = self.env["auditlog.rule"]
             fields_list = rule_model.get_auditlog_fields(self)
-            records_write = self.filtered(lambda r: not isinstance(r.id, models.NewId))
+            records_write = self.filtered(lambda r: not isinstance(r.id, NewId))
             if not records_write:
                 return write_full.origin(self, vals, **kwargs)
             old_values = {
@@ -408,8 +401,6 @@ class AuditlogRule(models.Model):
                 .read(fields_list)
             }
             # invalidate_recordset method must be called with existing fields
-            if self._name == "res.users":
-                vals = self._remove_reified_groups(vals)
             # Prevent the cache of modified fields from being poisoned by
             # x2many items inaccessible to the current user.
             self.invalidate_recordset(vals.keys())
@@ -775,7 +766,7 @@ class AuditlogRule(models.Model):
                 f"[('model_id', '=', {rule.model_id.id}), ('res_id', '=', active_id)]"
             )
             vals = {
-                "name": _("View logs"),
+                "name": self.env._("View logs"),
                 "res_model": "auditlog.log",
                 "binding_model_id": rule.model_id.id,
                 "domain": domain,

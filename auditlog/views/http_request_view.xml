@@ -41,7 +41,7 @@
                 <field name="name" />
                 <field name="user_id" />
                 <field name="http_session_id" />
-                <group expand="0" string="Group By...">
+                <group>
                     <filter
                         name="group_by_root_url"
                         string="Root URL"

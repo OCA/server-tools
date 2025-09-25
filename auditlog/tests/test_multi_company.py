@@ -2,10 +2,11 @@ from unittest.mock import patch
 
 from odoo.fields import Command
 from odoo.models import BaseModel
-from odoo.tests.common import TransactionCase
+
+from odoo.addons.base.tests.common import TransactionCaseWithUserDemo
 
 
-class TestMultiCompany(TransactionCase):
+class TestMultiCompany(TransactionCaseWithUserDemo):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -20,39 +21,40 @@ class TestMultiCompany(TransactionCase):
             {
                 "name": "u1",
                 "login": "u1",
-                "groups_id": [Command.set(cls.group.ids)],
+                "group_ids": [Command.set(cls.group.ids)],
                 "company_ids": [Command.set(cls.company1.ids)],
                 "company_id": cls.company1.id,
+                "notification_type": "email",
             }
         )
         cls.user2 = cls.env["res.users"].create(
             {
                 "name": "u2",
                 "login": "u2",
-                "groups_id": [Command.set(cls.group.ids)],
+                "group_ids": [Command.set(cls.group.ids)],
                 "company_ids": [Command.set(cls.company2.ids)],
                 "company_id": cls.company2.id,
+                "notification_type": "email",
             }
         )
         # We will test with a user that has access to only one of the companies
-        cls.user_demo = cls.env.ref("base.user_demo")
         cls.user_demo.write(
             {
                 "company_ids": [Command.set(cls.company2.ids)],
                 "company_id": cls.company2.id,
-                "groups_id": [Command.link(cls.env.ref("base.group_system").id)],
+                "group_ids": [Command.link(cls.env.ref("base.group_system").id)],
             }
         )
 
     def test_group_set_users(self):  # pylint: disable=missing-return
         """Writing x2many values does not wipe values from inaccessible companies."""
         self.assertEqual(
-            self.group.users,
+            self.group.user_ids,
             self.user1 + self.user2,
         )
         self.group.invalidate_recordset()
         group_with_user = self.group.with_user(self.user_demo)
-        self.assertEqual(group_with_user.users, self.user2)
+        self.assertEqual(group_with_user.user_ids, self.user2)
 
         # The issue arises when `users` is missing from the cache and is first
         # read as the superuser when fetching the full values for the auditlog.
@@ -68,7 +70,7 @@ class TestMultiCompany(TransactionCase):
         # trickery but this module does not depend on the product module so the
         # model is not available.
         self.group.read()
-        self.group.invalidate_recordset(["users"])
+        self.group.invalidate_recordset(["user_ids"])
 
         def write(self, vals):
             """Avoid the cache invalidation in this particular override.
@@ -83,12 +85,12 @@ class TestMultiCompany(TransactionCase):
         with patch.object(
             self.env["res.groups"].__class__, "write", side_effect=write, autospec=True
         ):
-            group_with_user.write({"users": [Command.set(self.user2.ids)]})
-        self.assertEqual(group_with_user.users, self.user2)
+            group_with_user.write({"user_ids": [Command.set(self.user2.ids)]})
+        self.assertEqual(group_with_user.user_ids, self.user2)
         # Ensure that the users of the other companies are still there.
         self.env.invalidate_all()
         self.assertEqual(
-            self.group.users,
+            self.group.user_ids,
             self.user1 + self.user2,
         )
 
