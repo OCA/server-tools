@@ -61,7 +61,7 @@ class BaseLimitRecordsNumber(models.Model):
     def verify_table(self):
         """Get parameters and verify. Raise exception if limit"""
         model_name = self.env.context["active_model"]
-        for automation in self.search([("model_id.model", "=", model_name), ()]):
+        for automation in self.search([("model_id.model", "=", model_name)]):
             if automation.domain:
                 domain = safe_eval(automation.domain)
             else:
