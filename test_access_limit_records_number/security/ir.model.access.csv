@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+test_access_limit_records_number.access_base_limit_records_number_test,access_base_limit_records_number_test,test_access_limit_records_number.model_base_limit_records_number_test,base.user_demo,1,1,1,1

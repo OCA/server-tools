@@ -8,6 +8,7 @@
     "license": "AGPL-3",
     "website": "https://github.com/OCA/server-tools",
     "depends": ["access_limit_records_number"],
+    "data": ["security/ir.model.access.csv"],
     "installable": True,
     "auto_install": False,
 }
