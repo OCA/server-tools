@@ -8,7 +8,6 @@ import odoorpc
 
 from odoo import api, fields, models
 from odoo.exceptions import UserError
-from odoo.tools.translate import _
 
 
 class UpgradeComparisonConfig(models.Model):
@@ -45,8 +44,11 @@ class UpgradeComparisonConfig(models.Model):
             remote = odoorpc.ODOO(self.server, port=self.port)
         except URLError as exc:
             raise UserError(
-                _("Could not connect the Odoo server at %(server)s:%(port)s")
-                % {"server": self.server, "port": self.port}
+                self.env._(
+                    "Could not connect the Odoo server at %(server)s:%(port)s",
+                    server=self.server,
+                    port=self.port,
+                )
             ) from exc
         remote.login(self.database, self.username, self.password)
         self.version = remote.version
@@ -60,17 +62,15 @@ class UpgradeComparisonConfig(models.Model):
             ids = user_model.search([("login", "=", "admin")])
             user_info = user_model.read([ids[0]], ["name"])[0]
         except Exception as e:
-            raise UserError(_("Connection failed.\n\nDETAIL: %s") % e) from e
+            raise UserError(self.env._("Connection failed.\n\nDETAIL: %s", e)) from e
         return {
             "type": "ir.actions.client",
             "tag": "display_notification",
             "params": {
                 "type": "info",
-                "message": _(
+                "message": self.env._(
                     "You are correctly connected to the server %(server)s"
-                    " (version %(version)s) with the user %(user_name)s"
-                )
-                % dict(
+                    " (version %(version)s) with the user %(user_name)s",
                     server=self.server,
                     version=self.version,
                     user_name=user_info["name"],

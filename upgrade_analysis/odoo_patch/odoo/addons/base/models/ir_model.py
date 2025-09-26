@@ -1,3 +1,4 @@
+# ruff: noqa
 from odoo import models
 
 from odoo.addons.base.models import ir_model
@@ -11,27 +12,22 @@ class IrModelConstraintPatch(OdooPatch):
     method_names = ["_reflect_model"]
 
     def _reflect_model(self, model):
-        """Reflect the _sql_constraints of the given model."""
-
-        def cons_text(txt):
-            return txt.lower().replace(", ", ",").replace(" (", "(")
-
-        # map each constraint on the name of the module where it is defined
-        constraint_module = {
-            constraint[0]: cls._module
-            for cls in reversed(self.env.registry[model._name].mro())
-            if models.is_definition_class(cls)
-            for constraint in getattr(cls, "_local_sql_constraints", ())
-        }
-
+        """Reflect the _table_objects of the given model."""
         data_list = []
-        for key, definition, message in model._sql_constraints:
-            conname = f"{model._table}_{key}"
-            module = constraint_module.get(key)
+        for conname, cons in model._table_objects.items():
+            module = cons._module
+            if not conname or not module:
+                _logger.warning("Missing module or constraint name for %s", cons)
+                continue
+            definition = cons.get_definition(model.pool)
+            message = cons.message
+            if not isinstance(message, str) or not message:
+                message = None
+            typ = "i" if isinstance(cons, models.Index) else "u"
             record = self._reflect_constraint(
-                model, conname, "u", cons_text(definition), module, message
+                model, conname, typ, definition, module, message
             )
-            xml_id = f"{module}.constraint_{conname}"
+            xml_id = "%s.constraint_%s" % (module, conname)
             if record:
                 data_list.append(dict(xml_id=xml_id, record=record))
             else:

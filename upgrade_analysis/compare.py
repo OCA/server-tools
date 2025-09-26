@@ -419,15 +419,15 @@ def compare_sets(old_records, new_records):
         fieldprint(column, column, "", "NEW" + extra_message, reprs)
 
     for line in [
-        "# %d fields matched," % (origlen - len(old_records)),
-        "# Direct match: %d" % matched_direct,
-        "# Found in other module: %d" % matched_other_module,
-        "# Found with different type: %d" % matched_other_type,
-        "# Found in other module with different type: %d"
-        % matched_other_module_other_type,
-        "# In obsolete models: %d" % in_obsolete_models,
-        "# Not matched: %d" % len(old_records),
-        "# New columns: %d" % len(new_records),
+        f"# {origlen - len(old_records)} fields matched,",
+        f"# Direct match: {matched_direct}",
+        f"# Found in other module: {matched_other_module}",
+        f"# Found with different type: {matched_other_type}",
+        "# Found in other module with different type: "
+        f"{matched_other_module_other_type}",
+        f"# In obsolete models: {in_obsolete_models}",
+        f"# Not matched: {len(old_records)}",
+        f"# New columns: {len(new_records)}",
     ]:
         reprs["general"].append(line)
     return reprs

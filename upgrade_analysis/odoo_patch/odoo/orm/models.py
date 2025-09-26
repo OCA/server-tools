@@ -1,7 +1,8 @@
+# noqa
 from odoo import api, models
 
-from ... import upgrade_log
-from ..odoo_patch import OdooPatch
+from .... import upgrade_log
+from ...odoo_patch import OdooPatch
 
 
 class BaseModelPatch(OdooPatch):
@@ -9,11 +10,11 @@ class BaseModelPatch(OdooPatch):
     method_names = ["_convert_records"]
 
     @api.model
-    def _convert_records(self, records, log=lambda a: None):
+    def _convert_records(self, records, *, log=lambda a: None, savepoint):
         """Log data ids that are imported with `load`"""
         current_module = self.env.context["module"]
         for res in BaseModelPatch._convert_records._original_method(
-            self, records, log=log
+            self, records, log=log, savepoint=savepoint
         ):
             _id, xid, _record, _info = res
             if xid:

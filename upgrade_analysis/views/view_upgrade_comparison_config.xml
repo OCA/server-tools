@@ -62,7 +62,7 @@
     </record>
 
     <record id="action_upgrade_comparison_config_tree" model="ir.actions.act_window">
-        <field name="name">upgrade Comparison Configs</field>
+        <field name="name">Upgrade Comparison Configs</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">upgrade.comparison.config</field>
     </record>
