@@ -1,5 +1,5 @@
 - Stefan Rijnhart \<<stefan@opener.amsterdam>\>
-- Holger Brunn \<<hbrunn@therp.nl>\>
+- Holger Brunn \<<mail@hunki-enterprises.com>\>
 - Ferdinand Gassauer \<<gass@cc-l-12.chircar.at>\>
 - Florent Xicluna \<<florent.xicluna@gmail.com>\>
 - Miquel Raïch \<<miquel.raich@forgeflow.com>\>
