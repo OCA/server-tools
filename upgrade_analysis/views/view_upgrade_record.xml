@@ -65,7 +65,7 @@
     </record>
 
     <record id="action_upgrade_record_tree" model="ir.actions.act_window">
-        <field name="name">upgrade Records</field>
+        <field name="name">Upgrade Records</field>
         <field name="res_model">upgrade.record</field>
     </record>
 

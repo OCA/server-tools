@@ -4,7 +4,7 @@
 
 from threading import current_thread
 
-from odoo import _, fields, models
+from odoo import fields, models
 from odoo.exceptions import UserError
 from odoo.modules.registry import Registry
 
@@ -34,8 +34,10 @@ class GenerateWizard(models.TransientModel):
         )
         if modules:
             raise UserError(
-                _("Cannot seem to install or upgrade modules %s")
-                % (", ".join([module.name for module in modules]))
+                self.env._(
+                    "Cannot seem to install or upgrade modules %s",
+                    ", ".join([module.name for module in modules]),
+                )
             )
         # Now reinitialize all installed modules
         self.env["ir.module.module"].search([("state", "=", "installed")]).write(

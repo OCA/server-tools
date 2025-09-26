@@ -16,7 +16,6 @@ from odoo.exceptions import ValidationError
 from odoo.modules import get_module_path
 from odoo.tools import config
 from odoo.tools.convert import nodeattr2bool
-from odoo.tools.translate import _
 
 try:
     from odoo.addons.openupgrade_scripts.apriori import merged_modules, renamed_modules
@@ -33,6 +32,7 @@ _IGNORE_MODULES = ["openupgrade_records", "upgrade_analysis"]
 class UpgradeAnalysis(models.Model):
     _name = "upgrade.analysis"
     _description = "Upgrade Analyses"
+    _rec_name = "analysis_date"
 
     analysis_date = fields.Datetime(readonly=True)
 
@@ -65,11 +65,14 @@ class UpgradeAnalysis(models.Model):
         """Return the --upgrade-path configuration option or the `scripts`
         directory in `openupgrade_scripts` if available
         """
-        res = config.get("upgrade_path", False)
-        if not res:
+        res = False
+        upgrade_path = config.get("upgrade_path", [])
+        if not upgrade_path:
             module_path = get_module_path("openupgrade_scripts", display_warning=False)
             if module_path:
                 res = os.path.join(module_path, "scripts")
+        else:
+            res = upgrade_path[0]
         self.upgrade_path = res
 
     def _get_remote_model(self, connection, model):
@@ -446,8 +449,11 @@ class UpgradeAnalysis(models.Model):
             root_node_noupdate = nodeattr2bool(root_node, "noupdate", False)
             if root_node.tag not in ("openerp", "odoo", "data"):
                 raise ValidationError(
-                    _("Unexpected root Element: %(root)s in file: %(file)s")
-                    % {"root": root_node.getroot(), "file": xml_file}
+                    self.env._(
+                        "Unexpected root Element: %(root)s in file: %(file)s",
+                        root=root_node.getroot(),
+                        file=xml_file,
+                    )
                 )
             for node in root_node:
                 if node.tag == "data":
