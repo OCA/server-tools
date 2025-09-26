@@ -243,9 +243,7 @@ class UpgradeAnalysis(models.Model):
                 general_log += contents
                 continue
             if compare.module_map(key) not in modules:
-                general_log += (
-                    "ERROR: module not in list of installed modules:\n" + contents
-                )
+                general_log += f"---Probably obsolete module {key}---\n" + contents
                 continue
             if key not in modules:
                 # no need to log in full log the merged/renamed modules
