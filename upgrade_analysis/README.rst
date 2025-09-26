@@ -89,7 +89,7 @@ Contributors
 
 -  Stefan Rijnhart <stefan@opener.amsterdam>
 
--  Holger Brunn <hbrunn@therp.nl>
+-  Holger Brunn <mail@hunki-enterprises.com>
 
 -  Ferdinand Gassauer <gass@cc-l-12.chircar.at>
 
