@@ -4,7 +4,7 @@
 
 from odoo import api, fields, models
 from odoo.modules.registry import Registry
-from odoo.osv.expression import AND
+from odoo.orm.domains import Domain
 
 from ..blacklist import (
     BLACKLIST_MODULES,
@@ -33,13 +33,14 @@ class UpgradeInstallWizard(models.TransientModel):
 
     @api.model
     def _module_ids_domain(self, extra_domain=None):
-        domain = [
-            "&",
-            ("state", "not in", ["installed", "uninstallable", "unknown"]),
-            ("name", "not in", BLACKLIST_MODULES),
-        ]
+        domain = Domain(
+            [
+                ("state", "not in", ["installed", "uninstallable", "unknown"]),
+                ("name", "not in", BLACKLIST_MODULES),
+            ]
+        )
         if extra_domain:
-            domain = AND([domain, extra_domain])
+            domain = Domain.AND(domain, extra_domain)
         modules = self.env["ir.module.module"].search(domain)
 
         for start_pattern in BLACKLIST_MODULES_STARTS_WITH:
