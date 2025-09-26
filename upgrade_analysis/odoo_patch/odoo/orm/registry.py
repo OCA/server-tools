@@ -1,3 +1,4 @@
+# noqa
 import logging
 from threading import current_thread
 

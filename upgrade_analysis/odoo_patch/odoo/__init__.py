@@ -1,4 +1,3 @@
 from . import addons
-from . import models
-from . import modules
+from . import orm
 from . import tools
