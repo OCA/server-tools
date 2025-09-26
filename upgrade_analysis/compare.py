@@ -470,7 +470,8 @@ def compare_xml_sets(old_records, new_records):
                 column["domain"] = False
                 found["definition"] = (
                     column["definition"]
-                    and column["definition"] != found["definition"]
+                    and str(column["definition"]).lower().replace(" ", "")
+                    != str(found["definition"]).lower().replace(" ", "")
                     and "is now '{}' ('{}')".format(
                         found["definition"], column["definition"]
                     )
