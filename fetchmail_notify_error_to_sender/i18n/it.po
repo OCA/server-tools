@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-06 02:25+0000\n"
-"PO-Revision-Date: 2024-12-28 14:06+0000\n"
+"PO-Revision-Date: 2025-09-28 14:40+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6.2\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: fetchmail_notify_error_to_sender
 #: model:mail.template,body_html:fetchmail_notify_error_to_sender.email_template_error_notice
@@ -92,4 +92,4 @@ msgstr ""
 #: model:ir.model.fields,field_description:fetchmail_notify_error_to_sender.field_fetchmail_server__smart_search
 #: model:ir.model.fields,field_description:fetchmail_notify_error_to_sender.field_mail_thread__smart_search
 msgid "Smart Search"
-msgstr ""
+msgstr "Ricerca intelligente"
