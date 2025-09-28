@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-07-08 10:58+0000\n"
+"PO-Revision-Date: 2025-09-28 14:40+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6.2\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: server_action_logging
 #: model:ir.model.fields,field_description:server_action_logging.field_ir_actions_server__enable_sql_debug
@@ -36,4 +36,4 @@ msgstr "Azione server"
 #. module: server_action_logging
 #: model:ir.model.fields,field_description:server_action_logging.field_ir_actions_server__smart_search
 msgid "Smart Search"
-msgstr ""
+msgstr "Ricerca intelligente"
