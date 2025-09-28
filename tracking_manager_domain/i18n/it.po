@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-04-08 06:44+0000\n"
+"PO-Revision-Date: 2025-09-28 14:40+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -38,7 +38,7 @@ msgstr "Campi"
 #. module: tracking_manager_domain
 #: model:ir.model.fields,field_description:tracking_manager_domain.field_ir_model_fields__smart_search
 msgid "Smart Search"
-msgstr ""
+msgstr "Ricerca intelligente"
 
 #. module: tracking_manager_domain
 #: model:ir.model.fields,field_description:tracking_manager_domain.field_ir_model_fields__tracking_domain
