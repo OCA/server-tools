@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-01-16 16:06+0000\n"
+"PO-Revision-Date: 2025-09-28 14:40+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6.2\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: attachment_queue
 #: model:mail.template,body_html:attachment_queue.attachment_failure_notification
@@ -550,7 +550,7 @@ msgstr "URL"
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__voice_ids
 msgid "Voice"
-msgstr ""
+msgstr "Voce"
 
 #. module: attachment_queue
 #: model:ir.model,name:attachment_queue.model_attachment_queue_reschedule
