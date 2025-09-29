@@ -35,7 +35,7 @@ class ImDispatch(odoo.addons.bus.models.bus.ImDispatch):
         polling threads/greenlets"""
         connection_info = _connection_info_for("postgres")
         _logger.info(
-            "Bus.loop listen imbus on db postgres " "(via %(host)s:%(port)s)",
+            "Bus.loop listen imbus on db postgres (via %(host)s:%(port)s)",
             connection_info,
         )
         conn = psycopg2.connect(**connection_info)
