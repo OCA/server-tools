@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-09-28 14:40+0000\n"
+"PO-Revision-Date: 2025-09-29 15:35+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -65,7 +65,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_model_restrict_update.field_res_config_settings__smart_search
 #: model:ir.model.fields,field_description:base_model_restrict_update.field_res_users__smart_search
 msgid "Smart Search"
-msgstr "Ricerca Intelligente"
+msgstr "Ricerca intelligente"
 
 #. module: base_model_restrict_update
 #: model:ir.model.fields,help:base_model_restrict_update.field_res_config_settings__excluded_models_from_readonly
@@ -113,4 +113,4 @@ msgstr "Si è abilitati solo a leggere questo record. (%(model)s - %(mode)s)"
 #: code:addons/base_model_restrict_update/models/res_users.py:0
 #, python-format
 msgid "You cannot make the admin user read-only."
-msgstr "L'utente admin nonpuò essere sola lettura."
+msgstr "L'utente admin non può essere sola lettura."
