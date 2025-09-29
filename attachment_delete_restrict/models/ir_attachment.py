@@ -1,8 +1,7 @@
 # Copyright 2021 Quartile (https://www.quartile.co)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-
-from odoo import _, models
+from odoo import SUPERUSER_ID, models
 from odoo.exceptions import ValidationError
 
 
@@ -29,7 +28,7 @@ class IrAttachment(models.Model):
 
     def _raise_delete_attachment_error(self, allowed_users):
         raise ValidationError(
-            _(
+            self.env._(
                 "You are not allowed to delete this attachment.\n\nUsers with "
                 "the delete permission:\n%s"
             )
@@ -42,7 +41,7 @@ class IrAttachment(models.Model):
             or self.env.user.has_group("base.group_system")
         ):
             return self._raise_delete_attachment_error(
-                self.create_uid | self.env.ref("base.group_system").users
+                self.create_uid | self.env.ref("base.group_system").user_ids
             )
 
     def _check_custom_delete_attachment(self, model=None, allow_owner_and_admin=False):
@@ -59,12 +58,12 @@ class IrAttachment(models.Model):
         if allow_owner_and_admin:
             users += self.create_uid
             groups += self.env.ref("base.group_system")
-        allowed_users = groups.users | users
+        allowed_users = groups.user_ids | users
         if self.env.user not in allowed_users:
             return self._raise_delete_attachment_error(allowed_users)
 
     def unlink(self):
-        if self.env.su:
+        if self.env.uid == SUPERUSER_ID:
             return super().unlink()
         res_models = list(set(self.filtered("res_model").mapped("res_model")))
         if res_models:

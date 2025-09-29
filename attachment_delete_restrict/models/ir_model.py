@@ -1,7 +1,7 @@
 # Copyright 2021 Quartile (https://www.quartile.co)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import fields, models
+from odoo import api, fields, models
 
 RESTRICT_DELETE_ATTACH = [
     ("default", "Use global configuration"),
@@ -43,6 +43,7 @@ class IrModel(models.Model):
         "model.",
     )
 
+    @api.onchange("restrict_delete_attachment")
     def _onchange_restrict_delete_attachment(self):
         if self.restrict_delete_attachment not in ["custom", "owner_custom"]:
             self.delete_attachment_group_ids = False

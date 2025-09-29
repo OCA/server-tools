@@ -1,7 +1,7 @@
 # Copyright 2021 Quartile Limited
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import Command
+from odoo import SUPERUSER_ID, Command
 from odoo.exceptions import ValidationError
 from odoo.tests import TransactionCase, tagged
 
@@ -18,9 +18,9 @@ class AbstractCase:
         self._allow_user()
         self.attachment.with_user(self.user).unlink()
 
-    def test_restrict_custom_user_with_sudo(self):
+    def test_restrict_custom_user_with_superuser(self):
         self._set_restrict_mode("custom")
-        self.attachment.with_user(self.user).sudo().unlink()
+        self.attachment.with_user(SUPERUSER_ID).unlink()
 
     def test_restrict_custom_group(self):
         self._set_restrict_mode("custom")
@@ -85,7 +85,7 @@ class TestAttachmentDeleteAbstract(TransactionCase):
             {
                 "name": "test owner user",
                 "login": "test-owner@example.com",
-                "groups_id": [
+                "group_ids": [
                     Command.set(
                         [
                             cls.env.ref("base.group_user").id,
@@ -99,7 +99,7 @@ class TestAttachmentDeleteAbstract(TransactionCase):
             {
                 "name": "test user",
                 "login": "test2@example.com",
-                "groups_id": [
+                "group_ids": [
                     Command.set(
                         [
                             cls.env.ref("base.group_user").id,
@@ -113,7 +113,7 @@ class TestAttachmentDeleteAbstract(TransactionCase):
             {
                 "name": "User admin",
                 "login": "admin@example.com",
-                "groups_id": [
+                "group_ids": [
                     Command.set(
                         [
                             cls.env.ref("base.group_system").id,

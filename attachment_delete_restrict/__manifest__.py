@@ -2,7 +2,9 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
     "name": "Restrict Deletion of Attachments",
-    "version": "18.0.1.0.0",
+    "summary": "Restrict deletion of attachments based on model and "
+    "user/group settings",
+    "version": "19.0.1.0.0",
     "depends": [
         "base",
         "base_setup",
