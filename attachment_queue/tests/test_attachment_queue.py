@@ -109,8 +109,11 @@ class TestAttachmentBaseQueue(BaseCommon):
 
     def test_run_fails(self):
         """Attachment queue should have correct state/error message"""
-        with mock.patch.object(
-            type(self.aq_model), "_run", self.env["attachment.queue"].mock_run_fail
+        with (
+            mock.patch.object(
+                type(self.aq_model), "_run", self.env["attachment.queue"].mock_run_fail
+            ),
+            mute_logger("odoo.addons.attachment_queue.models.attachment_queue"),
         ):
             attachment = self._create_dummy_attachment(no_job=True)
             self.assertEqual(attachment.state, "failed")
@@ -119,10 +122,13 @@ class TestAttachmentBaseQueue(BaseCommon):
     def test_run_fails_rollback(self):
         """In case of failure, no side effects should occur"""
         partners_initial = len(self.env["res.partner"].search([]))
-        with mock.patch.object(
-            type(self.aq_model),
-            "_run",
-            self.env["attachment.queue"].mock_run_create_partners_and_fail,
+        with (
+            mock.patch.object(
+                type(self.aq_model),
+                "_run",
+                self.env["attachment.queue"].mock_run_create_partners_and_fail,
+            ),
+            mute_logger("odoo.addons.attachment_queue.models.attachment_queue"),
         ):
             self._create_dummy_attachment(no_job=True)
             partners_after = len(self.env["res.partner"].search([]))
