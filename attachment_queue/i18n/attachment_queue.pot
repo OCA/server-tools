@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 17.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -16,10 +16,9 @@ msgstr ""
 #. module: attachment_queue
 #: model:mail.template,body_html:attachment_queue.attachment_failure_notification
 msgid ""
-"\n"
-"                <p style=\"margin:0px 0px 10px 0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;\">Hello,<br><br></p>\n"
-"                <p style=\"margin:0px 0px 10px 0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;\">The attachment ${object.name} has failed with the following error message : <br>${object.state_message}<br></p><p style=\"margin:0px 0px 10px 0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;\"></p>\n"
-"                <p style=\"margin:0px 0px 10px 0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;\">Regards,<br></p>\n"
+"<p style=\"margin:0px 0px 10px 0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;\">Hello,<br/><br/></p>\n"
+"                <p style=\"margin:0px 0px 10px 0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;\">The attachment ${object.name} has failed with the following error message : <br/>${object.state_message}<br/></p><p style=\"margin:0px 0px 10px 0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;\"/>\n"
+"                <p style=\"margin:0px 0px 10px 0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;\">Regards,<br/></p>\n"
 "            "
 msgstr ""
 
@@ -51,6 +50,12 @@ msgstr ""
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__activity_type_icon
 msgid "Activity Type Icon"
+msgstr ""
+
+#. module: attachment_queue
+#: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__assigned_attachment_ids
+#: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue_reschedule__assigned_attachment_ids
+msgid "Assigned Attachments"
 msgstr ""
 
 #. module: attachment_queue
@@ -256,7 +261,6 @@ msgstr ""
 
 #. module: attachment_queue
 #: model:ir.model.fields,help:attachment_queue.field_attachment_queue__message_has_error
-#: model:ir.model.fields,help:attachment_queue.field_attachment_queue__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
 
@@ -310,6 +314,12 @@ msgstr ""
 #. module: attachment_queue
 #: model_terms:ir.ui.view,arch_db:attachment_queue.view_attachment_queue_form
 msgid "Manual run"
+msgstr ""
+
+#. module: attachment_queue
+#. odoo-python
+#: code:addons/attachment_queue/models/attachment_queue.py:0
+msgid "Manually set to done by %(name)s"
 msgstr ""
 
 #. module: attachment_queue
@@ -435,13 +445,14 @@ msgid "Responsible User"
 msgstr ""
 
 #. module: attachment_queue
-#: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__message_has_sms_error
-msgid "SMS Delivery error"
+#: model_terms:ir.ui.view,arch_db:attachment_queue.view_attachment_queue_form
+msgid "Set to Done"
 msgstr ""
 
 #. module: attachment_queue
-#: model_terms:ir.ui.view,arch_db:attachment_queue.view_attachment_queue_form
-msgid "Set to Done"
+#: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__smart_search
+#: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue_reschedule__smart_search
+msgid "Smart Search"
 msgstr ""
 
 #. module: attachment_queue
@@ -513,6 +524,16 @@ msgid "Voice"
 msgstr ""
 
 #. module: attachment_queue
+#: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: attachment_queue
+#: model:ir.model.fields,help:attachment_queue.field_attachment_queue__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: attachment_queue
 #: model:ir.model,name:attachment_queue.model_attachment_queue_reschedule
 msgid "Wizard to reschedule a selection of attachments"
 msgstr ""
@@ -527,7 +548,5 @@ msgstr ""
 #. module: attachment_queue
 #. odoo-python
 #: code:addons/attachment_queue/tests/test_models.py:0
-#: code:addons/attachment_queue/tests/test_models.py:0
-#, python-format
 msgid "boom"
 msgstr ""
