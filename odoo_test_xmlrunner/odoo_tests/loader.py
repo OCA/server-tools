@@ -1,5 +1,4 @@
 import os
-from unittest.mock import patch
 
 from odoo.tools import config
 
@@ -21,17 +20,21 @@ if config["test_enable"]:
 
         # Suite run method will be called by the XMLTestRunner,
         # so we need to run the original run method
-        with patch.object(self, "run", lambda result: unpatched_run(self, result)):
-            # Override : XMLTestRunner to run the tests and generate XML reports
+        unpatched_sub_run = self.run
+        self.run = lambda result, debug=False: unpatched_run(self, result, debug)
+        # Override : XMLTestRunner to run the tests and generate XML reports
+        try:
             results = XMLTestRunner(
                 output=test_result_directory,
                 verbosity=2,
             ).run(self)
+        finally:
+            self.run = unpatched_sub_run
 
         result.update(results)
         return result
 
-    patch("odoo.tests.suite.OdooSuite.run", run).start()
+    OdooSuite.run = run
 
     unpatched_update = OdooTestResult.update
 
@@ -45,4 +48,4 @@ if config["test_enable"]:
         else:
             unpatched_update(self, other)
 
-    patch("odoo.tests.result.OdooTestResult.update", update).start()
+    OdooTestResult.update = update
