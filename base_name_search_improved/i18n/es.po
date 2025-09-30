@@ -319,6 +319,13 @@ msgstr "¿Búsqueda inteligente por nombre activada?"
 #: model:ir.model.fields,field_description:base_name_search_improved.field_phone_blacklist__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_phone_blacklist_remove__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_publisher_warranty_contract__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_queue_job__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_queue_job_channel__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_queue_job_function__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_queue_job_lock__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_queue_jobs_to_cancelled__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_queue_jobs_to_done__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_queue_requeue_job__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_report_base_report_irmodulereference__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_report_layout__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_report_paperformat__smart_search
