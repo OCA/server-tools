@@ -1,14 +1,15 @@
 import os
 from unittest.mock import patch
 
-from xmlrunner import XMLTestRunner
-from xmlrunner.result import _XMLTestResult
-
-from odoo.tests.result import OdooTestResult
-from odoo.tests.suite import OdooSuite
 from odoo.tools import config
 
 if config["test_enable"]:
+    from xmlrunner import XMLTestRunner
+    from xmlrunner.result import _XMLTestResult
+
+    from odoo.tests.result import OdooTestResult
+    from odoo.tests.suite import OdooSuite
+
     unpatched_run = OdooSuite.run
 
     def run(self, result):
