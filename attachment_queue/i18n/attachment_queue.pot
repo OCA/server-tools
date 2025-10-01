@@ -524,6 +524,16 @@ msgid "Voice"
 msgstr ""
 
 #. module: attachment_queue
+#: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: attachment_queue
+#: model:ir.model.fields,help:attachment_queue.field_attachment_queue__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: attachment_queue
 #: model:ir.model,name:attachment_queue.model_attachment_queue_reschedule
 msgid "Wizard to reschedule a selection of attachments"
 msgstr ""
