@@ -47,6 +47,41 @@ class DictDiffer:
         return {o for o in self.intersect if self.past_dict[o] == self.current_dict[o]}
 
 
+class ThrowAwayCache:
+    """Context manager to read values using a disposable cache.
+
+    This allows you to fetch field values as superuser without poisoning the
+    cache with values not accessible to the current user.
+
+    It also allows you to fetch fresh values from the database without throwing
+    out unsaved values from the current user's cache during a write.
+    """
+
+    def __init__(self, env):
+        self._transaction = env.transaction
+
+    def __enter__(self):
+        """Replace the cache on all envs and on the transaction.
+
+        It is not enough to replace the cache on the current env, because once
+        a sudo is executed under the scope of this context manager, another new
+        or existing env is fetched which will have the original cache if we
+        don't swap them all out here.
+        """
+        self._original_cache = self._transaction.cache
+        temporary_cache = api.Cache()
+        for env in self._transaction.envs:
+            env.cache = temporary_cache
+        self._transaction.cache = temporary_cache
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        """Restore the original cache wherever it was replaced."""
+        for env in self._transaction.envs:
+            env.cache = self._original_cache
+        self._transaction.cache = self._original_cache
+
+
 class AuditlogRule(models.Model):
     _name = "auditlog.rule"
     _description = "Auditlog - Rule"
@@ -287,14 +322,17 @@ class AuditlogRule(models.Model):
             # their values exist in cache.
             new_values = {}
             fields_list = rule_model.get_auditlog_fields(self)
-            for new_record in new_records.sudo():
-                new_values.setdefault(new_record.id, {})
-                for fname, field in new_record._fields.items():
-                    if fname not in fields_list:
-                        continue
-                    new_values[new_record.id][fname] = field.convert_to_read(
-                        new_record[fname], new_record
-                    )
+
+            with ThrowAwayCache(self.env):
+                for new_record in new_records.sudo():
+                    new_values.setdefault(new_record.id, {})
+                    for fname, field in new_record._fields.items():
+                        if fname not in fields_list:
+                            continue
+                        new_values[new_record.id][fname] = field.convert_to_read(
+                            new_record[fname], new_record
+                        )
+
             if self.env.user in users_to_exclude:
                 return new_records
             rule_model.sudo().create_logs(
@@ -383,30 +421,27 @@ class AuditlogRule(models.Model):
             self = self.with_context(auditlog_disabled=True)
             rule_model = self.env["auditlog.rule"]
             fields_list = rule_model.get_auditlog_fields(self)
-            records_write = self.filtered(lambda r: not isinstance(r.id, models.NewId))
+            records_write = (
+                self.filtered(lambda r: not isinstance(r.id, models.NewId))
+                .sudo()
+                .with_context(prefetch_fields=False)
+            )
             if not records_write:
                 return write_full.origin(self, vals, **kwargs)
-            old_values = {
-                d["id"]: d
-                for d in records_write.sudo()
-                .with_context(prefetch_fields=False)
-                .read(fields_list)
-            }
-            # invalidate_recordset method must be called with existing fields
+
+            with ThrowAwayCache(self.env):
+                old_values = {d["id"]: d for d in records_write.read(fields_list)}
+
             if self._name == "res.users":
                 vals = self._remove_reified_groups(vals)
-            # Prevent the cache of modified fields from being poisoned by
-            # x2many items inaccessible to the current user.
-            self.invalidate_recordset(vals.keys())
             result = write_full.origin(self, vals, **kwargs)
-            new_values = {
-                d["id"]: d
-                for d in records_write.sudo()
-                .with_context(prefetch_fields=False)
-                .read(fields_list)
-            }
+            self.flush_recordset()
             if self.env.user in users_to_exclude:
                 return result
+
+            with ThrowAwayCache(self.env):
+                new_values = {d["id"]: d for d in records_write.read(fields_list)}
+
             rule_model.sudo().create_logs(
                 self.env.uid,
                 self._name,
