@@ -409,6 +409,16 @@ msgid "Warning:"
 msgstr "Advertencia:"
 
 #. module: auto_backup
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__website_message_ids
+msgid "Website Messages"
+msgstr "Mensajes del Sitio Web"
+
+#. module: auto_backup
+#: model:ir.model.fields,help:auto_backup.field_db_backup__website_message_ids
+msgid "Website communication history"
+msgstr "Historial de la comunicación del sitio web"
+
+#. module: auto_backup
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "john"
 msgstr "john"
@@ -454,12 +464,6 @@ msgstr "zip (incluye almacén de archivos)"
 
 #~ msgid "User Can See Changeset"
 #~ msgstr "El Usuario Puede Ver el Conjunto de Cambios"
-
-#~ msgid "Website Messages"
-#~ msgstr "Mensajes del Sitio Web"
-
-#~ msgid "Website communication history"
-#~ msgstr "Historial de la comunicación del sitio web"
 
 #~ msgid "Number of messages which requires an action"
 #~ msgstr "Número de mensajes que requieren un acción"

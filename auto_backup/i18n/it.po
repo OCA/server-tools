@@ -405,6 +405,16 @@ msgid "Warning:"
 msgstr "Attenzione:"
 
 #. module: auto_backup
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__website_message_ids
+msgid "Website Messages"
+msgstr "Messaggi sito web"
+
+#. module: auto_backup
+#: model:ir.model.fields,help:auto_backup.field_db_backup__website_message_ids
+msgid "Website communication history"
+msgstr "Cronologia comunicazioni sito web"
+
+#. module: auto_backup
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "john"
 msgstr "john"
@@ -460,12 +470,6 @@ msgstr "zip (include filestore)"
 
 #~ msgid "User Can See Changeset"
 #~ msgstr "L'utente può vedere l'insieme delle modifiche"
-
-#~ msgid "Website Messages"
-#~ msgstr "Messaggi sito web"
-
-#~ msgid "Website communication history"
-#~ msgstr "Cronologia comunicazioni sito web"
 
 #~ msgid "Number of messages which requires an action"
 #~ msgstr "Numero di messaggi che richiedono un'azione"
