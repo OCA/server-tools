@@ -553,6 +553,16 @@ msgid "Voice"
 msgstr ""
 
 #. module: attachment_queue
+#: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__website_message_ids
+msgid "Website Messages"
+msgstr "Mensajes de la Página Web"
+
+#. module: attachment_queue
+#: model:ir.model.fields,help:attachment_queue.field_attachment_queue__website_message_ids
+msgid "Website communication history"
+msgstr "Historial de la comunicación del sitio web"
+
+#. module: attachment_queue
 #: model:ir.model,name:attachment_queue.model_attachment_queue_reschedule
 msgid "Wizard to reschedule a selection of attachments"
 msgstr "Asistente para reprogramar una selección de anexos"
@@ -584,9 +594,3 @@ msgstr "auge"
 
 #~ msgid "Next Activity Calendar Event"
 #~ msgstr "Próximo Evento del Calendario de Actividades"
-
-#~ msgid "Website Messages"
-#~ msgstr "Mensajes de la Página Web"
-
-#~ msgid "Website communication history"
-#~ msgstr "Historial de la comunicación del sitio web"

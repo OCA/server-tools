@@ -553,6 +553,16 @@ msgid "Voice"
 msgstr "Voce"
 
 #. module: attachment_queue
+#: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__website_message_ids
+msgid "Website Messages"
+msgstr "Messaggi sito web"
+
+#. module: attachment_queue
+#: model:ir.model.fields,help:attachment_queue.field_attachment_queue__website_message_ids
+msgid "Website communication history"
+msgstr "Cronologia comunicazioni sito web"
+
+#. module: attachment_queue
 #: model:ir.model,name:attachment_queue.model_attachment_queue_reschedule
 msgid "Wizard to reschedule a selection of attachments"
 msgstr "Procedura guidata per riprogrammare una selezione di allegati"
@@ -611,9 +621,3 @@ msgstr "boom"
 
 #~ msgid "User Can See Changeset"
 #~ msgstr "L'utente può vedere l'insieme delle modifiche"
-
-#~ msgid "Website Messages"
-#~ msgstr "Messaggi sito web"
-
-#~ msgid "Website communication history"
-#~ msgstr "Cronologia comunicazioni sito web"
