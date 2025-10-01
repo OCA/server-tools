@@ -147,3 +147,8 @@ class TestBaseException(TransactionCase):
         self.po.with_context(raise_exception=False).button_confirm()
         self.assertTrue(self.po.exception_ids)
         self.assertTrue(self.po.exceptions_summary)
+
+    def test_filtered_domain(self):
+        self.exception_rule.filter_domain = "['|', ('partner_id.country_id', '=', False), ('partner_id.country_id.zip_required', '=', True)]"  # noqa
+        self.partner.country_id = self.env.ref("base.bz")
+        self.po.button_confirm()
