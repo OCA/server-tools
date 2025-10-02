@@ -10,18 +10,19 @@
                 <field
                     name="task_id"
                     domain="[('method_type', '!=', 'import')]"
-                    attrs="{'required': [('file_type', '=', 'export')], 'readonly': [('method_type', '=', 'import')]}"
+                    required="file_type == 'export'"
+                    readonly="method_type == 'import'"
                 />
                 <field name="fs_storage_id" />
             </xpath>
         </field>
     </record>
 
-    <record id="view_attachment_queue_tree" model="ir.ui.view">
+    <record id="view_attachment_queue_list" model="ir.ui.view">
         <field name="model">attachment.queue</field>
-        <field name="inherit_id" ref="attachment_queue.view_attachment_queue_tree" />
+        <field name="inherit_id" ref="attachment_queue.view_attachment_queue_list" />
         <field name="arch" type="xml">
-            <xpath expr="//tree" position="attributes">
+            <xpath expr="//list" position="attributes">
                 <attribute name="decoration-muted">state == 'done'</attribute>
             </xpath>
             <xpath expr="//field[@name='file_type']" position="after">
@@ -45,7 +46,8 @@
         <field name="name">Attachments Queue</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">attachment.queue</field>
-        <field name="view_mode">tree,form</field>
+        <field name="path">attachment-task-queue</field>
+        <field name="view_mode">list,form</field>
         <field name="view_id" eval="False" />
         <field name="domain">[('task_id', '=', active_id)]</field>
         <field

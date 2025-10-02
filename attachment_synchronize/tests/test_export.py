@@ -14,15 +14,16 @@ def raising_side_effect(*args, **kwargs):
 
 
 class TestExport(SyncCommon):
-    def setUp(self):
-        super().setUp()
-        self.task = self.env.ref("attachment_synchronize.export_to_filestore")
-        self.attachment = self.env["attachment.queue"].create(
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.task = cls.env.ref("attachment_synchronize.export_to_filestore")
+        cls.attachment = cls.env["attachment.queue"].create(
             {
                 "name": "foo.txt",
-                "task_id": self.task.id,
+                "task_id": cls.task.id,
                 "file_type": "export",
-                "datas": self.filedata,
+                "datas": cls.filedata,
             }
         )
 

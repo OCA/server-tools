@@ -26,28 +26,30 @@ class SyncCommon(TransactionCase):
         with fs.open(path, "wb") as f:
             f.write(self.filedata)
 
-    def setUp(self):
-        super().setUp()
-        self.backend = self.env.ref("fs_storage.default_fs_storage")
-        self.filedata = base64.b64encode(b"This is a simple file")
-        self.directory_input = "test_import"
-        self.directory_output = "test_export"
-        self.directory_archived = "test_archived"
-        self._clean_testing_directory()
-        self._create_test_file()
-        self.task = self.env.ref("attachment_synchronize.import_from_filestore")
-        self.task_delete = self.env.ref(
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.backend = cls.env.ref("fs_storage.fs_storage_demo")
+        cls.filedata = base64.b64encode(b"This is a simple file")
+        cls.directory_input = "test_import"
+        cls.directory_output = "test_export"
+        cls.directory_archived = "test_archived"
+        cls.task = cls.env.ref("attachment_synchronize.import_from_filestore")
+        cls.task_delete = cls.env.ref(
             "attachment_synchronize.import_from_filestore_delete"
         )
-        self.task_move = self.env.ref(
-            "attachment_synchronize.import_from_filestore_move"
-        )
-        self.task_rename = self.env.ref(
+        cls.task_move = cls.env.ref("attachment_synchronize.import_from_filestore_move")
+        cls.task_rename = cls.env.ref(
             "attachment_synchronize.import_from_filestore_rename"
         )
-        self.task_move_rename = self.env.ref(
+        cls.task_move_rename = cls.env.ref(
             "attachment_synchronize.import_from_filestore_move_rename"
         )
+
+    def setUp(self):
+        super().setUp()
+        self._clean_testing_directory()
+        self._create_test_file()
 
     def tearDown(self):
         self._clean_testing_directory()
