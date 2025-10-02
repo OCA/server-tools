@@ -4,7 +4,7 @@ import base64
 import datetime
 import logging
 
-from odoo import api, fields, models, tools
+from odoo import api, fields, models
 from odoo.osv import expression
 
 _logger = logging.getLogger(__name__)
@@ -103,7 +103,7 @@ class AttachmentSynchronizeTask(models.Model):
         for record in self:
             for state in ["failed", "pending", "done"]:
                 record[f"count_attachment_{state}"] = len(
-                    record.attachment_ids.filtered(lambda r: r.state == state)
+                    record.attachment_ids.filtered(lambda r, st=state: r.state == st)
                 )
 
     def _prepare_attachment_vals(self, data, filename):
@@ -119,7 +119,7 @@ class AttachmentSynchronizeTask(models.Model):
     @api.model
     def _template_render(self, template, record):
         try:
-            template = mako_template_env.from_string(tools.ustr(template))
+            template = mako_template_env.from_string(template)
         except Exception:
             _logger.exception(f"Failed to load template '{template}'")
 
@@ -148,7 +148,9 @@ class AttachmentSynchronizeTask(models.Model):
                 # log exception and continue in order to no block all task from all
                 # remote servers one is unavailable
                 _logger.warning(
-                    "Task import %s failed with error %s" % (task.name, str(e))
+                    "Task import %(name)s failed with error %(err)s",
+                    name=task.name,
+                    err=str(e),
                 )
 
     def run(self):
