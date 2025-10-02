@@ -11,7 +11,7 @@
                         string="Run"
                         class="oe_read_only oe_highlight"
                         icon="fa-play-circle"
-                        attrs="{'invisible': [('active','=', False)]}"
+                        invisible="not active"
                     />
                 </header>
                 <sheet>
@@ -20,7 +20,7 @@
                         name="web_ribbon"
                         title="Archived"
                         bg_color="bg-danger"
-                        attrs="{'invisible': [('active', '=', True)]}"
+                        invisible="active"
                     />
                     <div class="oe_button_box" name="button_box">
                         <button
@@ -91,32 +91,31 @@
                             name="method_type"
                             widget="radio"
                             options="{'horizontal': true}"
-                            attrs="{'readonly':[('create_date', '!=', False)]}"
+                            readonly="create_date"
                         />
                     </div>
                     <group string="Storage Location" class="col-12 col-lg-6">
                         <field name="backend_id" />
                         <field name="filepath" />
-                        <field
-                            name="pattern"
-                            attrs="{'invisible':[('method_type','!=','import')]}"
-                        />
+                        <field name="pattern" invisible="method_type != 'import'" />
                     </group>
                     <group
                         name="action"
                         string="Importation"
-                        attrs="{'invisible':[('method_type','!=','import')]}"
+                        invisible="method_type != 'import'"
                         class="col-12 col-lg-6"
                     >
                         <field name="avoid_duplicated_files" />
                         <field name="after_import" />
                         <field
                             name="move_path"
-                            attrs="{'invisible':[('after_import','not in',('move', 'move_rename'))], 'required': [('after_import', 'in', ('move', 'move_rename'))]}"
+                            invisible="after_import not in ('move', 'move_rename')"
+                            required="after_import in ('move', 'move_rename')"
                         />
                         <field
                             name="new_name"
-                            attrs="{'invisible': [('after_import','not in',('rename', 'move_rename'))], 'required': [('after_import', 'in', ('rename', 'move_rename'))]}"
+                            invisible="after_import not in ('rename', 'move_rename')"
+                            required="after_import in ('rename', 'move_rename')"
                         />
                         <field name="file_type" />
                     </group>
@@ -128,10 +127,10 @@
         </field>
     </record>
 
-    <record id="view_attachment_task_tree" model="ir.ui.view">
+    <record id="view_attachment_task_list" model="ir.ui.view">
         <field name="model">attachment.synchronize.task</field>
         <field name="arch" type="xml">
-            <tree decoration-muted="active == False">
+            <list decoration-muted="active == False">
                 <field name="name" select="1" />
                 <field name="backend_id" />
                 <field name="filepath" />
@@ -167,7 +166,7 @@
                     icon="fa-clone"
                     title="Duplicate"
                 />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -195,7 +194,8 @@
         <field name="name">Attachments Import Tasks</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">attachment.synchronize.task</field>
-        <field name="view_mode">tree,form</field>
+        <field name="path">attachment-import-task</field>
+        <field name="view_mode">list,form</field>
         <field name="view_id" eval="False" />
         <field name="search_view_id" ref="view_attachment_task_search" />
         <field name="domain">[('method_type', '=', 'import')]</field>
@@ -215,8 +215,9 @@
     <record id="action_attachment_export_task" model="ir.actions.act_window">
         <field name="name">Attachments Export Tasks</field>
         <field name="type">ir.actions.act_window</field>
+        <field name="path">attachment-export-task</field>
         <field name="res_model">attachment.synchronize.task</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="view_id" eval="False" />
         <field name="search_view_id" ref="view_attachment_task_search" />
         <field name="domain">[('method_type', '=', 'export')]</field>
