@@ -4,9 +4,7 @@
         <field name='name'>Run attachment tasks import</field>
         <field name='interval_number'>30</field>
         <field name='interval_type'>minutes</field>
-        <field name="numbercall">-1</field>
         <field name="active">False</field>
-        <field name="doall" eval="False" />
         <field name="model_id" ref="model_attachment_synchronize_task" />
         <field name="state">code</field>
         <field name="code">model.run_task_import_scheduler()</field>

@@ -10,7 +10,7 @@
                     <button
                         class="oe_stat_button"
                         type="object"
-                        attrs="{'invisible': [('import_task_count', '&lt;', 1)]}"
+                        invisible="import_task_count &lt; 1"
                         name="action_related_import_task"
                         icon="fa-download"
                     >
@@ -19,7 +19,7 @@
                     <button
                         class="oe_stat_button"
                         type="object"
-                        attrs="{'invisible': [('export_task_count', '&lt;', 1)]}"
+                        invisible="export_task_count &lt; 1"
                         name="action_related_export_task"
                         icon="fa-upload"
                     >
