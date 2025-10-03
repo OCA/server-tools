@@ -20,4 +20,9 @@
     ],
     "demo": ["demo/attachment_queue.xml"],
     "installable": True,
+    "external_dependencies": {
+        "python": [
+            "openupgradelib",
+        ],
+    },
 }
