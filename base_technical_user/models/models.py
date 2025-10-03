@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 
-from odoo import _, models
+from odoo import models
 from odoo.exceptions import UserError
 
 
@@ -29,8 +29,9 @@ class Base(models.AbstractModel):
                 )
         elif raise_if_missing:
             raise UserError(
-                _("The technical user is missing in the company {}").format(
-                    self.env.company.name
+                self.env._(
+                    "The technical user is missing in the company %s",
+                    self.env.company.name,
                 )
             )
         return self_sudoer
