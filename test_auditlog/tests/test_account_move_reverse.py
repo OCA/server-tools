@@ -143,6 +143,20 @@ class TestAccountMoveReverse(AccountTestInvoicingCommon, AuditLogRuleCommon):
         )
         self.rule.subscribe()
 
+    def test_in_invoice_stored_related_field(self):
+        """Stored related fields are computed properly"""
+        self.invoice.name = "TEST"
+        line = self.env["account.move.line"].create(
+            {
+                "display_type": "line_note",
+                "name": __name__,
+                "move_id": self.invoice.id,
+            }
+        )
+        self.assertEqual(line.move_name, "TEST")
+        self.invoice.name = "TEST2"
+        self.assertEqual(line.move_name, "TEST2")
+
     def test_in_invoice_create_refund(self):
         """Test creating a refund from a vendor bill.
 
