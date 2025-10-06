@@ -2,9 +2,11 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import copy
+from collections import defaultdict
 
 from odoo import Command, _, api, fields, models
 from odoo.exceptions import UserError
+from odoo.tools.misc import OrderedSet
 
 FIELDS_BLACKLIST = [
     "id",
@@ -61,7 +63,7 @@ class ThrowAwayCache:
         self._transaction = env.transaction
 
     def __enter__(self):
-        """Replace the cache on all envs and on the transaction.
+        """Replace the cache + tocompute on all envs and on the transaction.
 
         It is not enough to replace the cache on the current env, because once
         a sudo is executed under the scope of this context manager, another new
@@ -69,6 +71,12 @@ class ThrowAwayCache:
         don't swap them all out here.
         """
         self._original_cache = self._transaction.cache
+        # Copy the sets of records, which are popped on recompute but do not
+        # copy the keys because they do not match the original field object
+        # afterwards.
+        self._original_tocompute = defaultdict(OrderedSet)
+        for key, value in self._transaction.tocompute.items():
+            self._original_tocompute[key] = OrderedSet(value)
         temporary_cache = api.Cache()
         for env in self._transaction.envs:
             env.cache = temporary_cache
@@ -80,6 +88,7 @@ class ThrowAwayCache:
         for env in self._transaction.envs:
             env.cache = self._original_cache
         self._transaction.cache = self._original_cache
+        self._transaction.tocompute = self._original_tocompute
 
 
 class AuditlogRule(models.Model):
