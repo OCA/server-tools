@@ -1,0 +1,490 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * access_limit_records_number
+#
+# Translators:
+# charles paul requena palomino <rcharles84@gmail.com>, 2018
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-04-26 19:17+0000\n"
+"PO-Revision-Date: 2018-04-26 19:17+0000\n"
+"Last-Translator: charles paul requena palomino <rcharles84@gmail.com>, 2018\n"
+"Language-Team: Spanish (https://www.transifex.com/it-projects-llc/"
+"teams/76080/es/)\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,field_description:access_limit_records_number.field_base_limit_records_number__help
+msgid "Action Description"
+msgstr ""
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,field_description:access_limit_records_number.field_base_limit_records_number__name
+msgid "Action Name"
+msgstr ""
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,field_description:access_limit_records_number.field_base_limit_records_number__state
+msgid "Action To Do"
+msgstr ""
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,field_description:access_limit_records_number.field_base_limit_records_number__type
+msgid "Action Type"
+msgstr ""
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,field_description:access_limit_records_number.field_base_limit_records_number__active
+msgid "Active"
+msgstr "Activo"
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,field_description:access_limit_records_number.field_base_limit_records_number__activity_type_id
+#, fuzzy
+msgid "Activity"
+msgstr "Activo"
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,field_description:access_limit_records_number.field_base_limit_records_number__activity_user_type
+msgid "Activity User Type"
+msgstr ""
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,field_description:access_limit_records_number.field_base_limit_records_number__channel_ids
+msgid "Add Channels"
+msgstr ""
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,field_description:access_limit_records_number.field_base_limit_records_number__partner_ids
+msgid "Add Followers"
+msgstr "Añadir seguidores"
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,field_description:access_limit_records_number.field_base_limit_records_number__filter_domain
+msgid "Apply on"
+msgstr ""
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,field_description:access_limit_records_number.field_base_limit_records_number__action_rule_id
+#, fuzzy
+msgid "Base Automation"
+msgstr "Regla de acción base"
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,field_description:access_limit_records_number.field_base_limit_records_number__filter_pre_domain
+msgid "Before Update Domain"
+msgstr "Antes de actualizar el dominio"
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,field_description:access_limit_records_number.field_base_limit_records_number__binding_model_id
+msgid "Binding Model"
+msgstr ""
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,field_description:access_limit_records_number.field_base_limit_records_number__binding_type
+msgid "Binding Type"
+msgstr ""
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,field_description:access_limit_records_number.field_base_limit_records_number__child_ids
+msgid "Child Actions"
+msgstr ""
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,help:access_limit_records_number.field_base_limit_records_number__child_ids
+msgid ""
+"Child server actions that will be executed. Note that the last return "
+"returned action value will be used as global return value."
+msgstr ""
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,help:access_limit_records_number.field_base_limit_records_number__on_change_fields
+msgid "Comma-separated list of field names that triggers the onchange."
+msgstr ""
+"Lista de nombres de campo separados por comas que desencadena el cambio."
+
+#. module: access_limit_records_number
+#: model:res.groups,name:access_limit_records_number.group_control_limits_on_records_number
+msgid "Control limits on records number"
+msgstr "Límites de control en el número de registros."
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,field_description:access_limit_records_number.field_base_limit_records_number__crud_model_id
+msgid "Create/Write Target Model"
+msgstr ""
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,field_description:access_limit_records_number.field_base_limit_records_number__create_uid
+#: model:ir.model.fields,field_description:access_limit_records_number.field_base_limit_records_number_test__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,field_description:access_limit_records_number.field_base_limit_records_number__create_date
+#: model:ir.model.fields,field_description:access_limit_records_number.field_base_limit_records_number_test__create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,help:access_limit_records_number.field_base_limit_records_number__trg_date_range
+msgid ""
+"Delay after the trigger date.\n"
+"                                    You can put a negative number if you "
+"need a delay before the\n"
+"                                    trigger date, like sending a reminder 15 "
+"minutes before a meeting."
+msgstr ""
+"Retraso después de la fecha de activación\n"
+"Puede poner un número negativo si necesita un retraso antes del\n"
+"fecha de activación, como enviar un recordatorio 15 minutos antes de una "
+"reunión."
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,field_description:access_limit_records_number.field_base_limit_records_number__trg_date_range
+msgid "Delay after trigger date"
+msgstr "Retraso después de la fecha de activación"
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,field_description:access_limit_records_number.field_base_limit_records_number__trg_date_range_type
+msgid "Delay type"
+msgstr "Tipo de retraso"
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,field_description:access_limit_records_number.field_base_limit_records_number__display_name
+#: model:ir.model.fields,field_description:access_limit_records_number.field_base_limit_records_number_test__display_name
+msgid "Display Name"
+msgstr "Nombre para mostrar"
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,field_description:access_limit_records_number.field_base_limit_records_number__domain
+msgid "Domain"
+msgstr "Dominio"
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,field_description:access_limit_records_number.field_base_limit_records_number__activity_date_deadline_range
+msgid "Due Date In"
+msgstr ""
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,field_description:access_limit_records_number.field_base_limit_records_number__activity_date_deadline_range_type
+#, fuzzy
+msgid "Due type"
+msgstr "Tipo de retraso"
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,field_description:access_limit_records_number.field_base_limit_records_number__template_id
+msgid "Email Template"
+msgstr ""
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,field_description:access_limit_records_number.field_base_limit_records_number__xml_id
+msgid "External ID"
+msgstr ""
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,field_description:access_limit_records_number.field_base_limit_records_number__id
+#: model:ir.model.fields,field_description:access_limit_records_number.field_base_limit_records_number_test__id
+msgid "ID"
+msgstr "ID"
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,help:access_limit_records_number.field_base_limit_records_number__filter_domain
+msgid ""
+"If present, this condition must be satisfied before executing the action "
+"rule."
+msgstr ""
+"Si está presente, esta condición debe cumplirse antes de ejecutar la regla "
+"de acción."
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,help:access_limit_records_number.field_base_limit_records_number__filter_pre_domain
+msgid ""
+"If present, this condition must be satisfied before the update of the record."
+msgstr ""
+"Si está presente, esta condición debe cumplirse antes de la actualización "
+"del registro."
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,field_description:access_limit_records_number.field_base_limit_records_number____last_update
+#: model:ir.model.fields,field_description:access_limit_records_number.field_base_limit_records_number_test____last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,field_description:access_limit_records_number.field_base_limit_records_number__last_run
+#, fuzzy
+msgid "Last Run"
+msgstr "Última Ejecución "
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,field_description:access_limit_records_number.field_base_limit_records_number__write_uid
+#: model:ir.model.fields,field_description:access_limit_records_number.field_base_limit_records_number_test__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,field_description:access_limit_records_number.field_base_limit_records_number__write_date
+#: model:ir.model.fields,field_description:access_limit_records_number.field_base_limit_records_number_test__write_date
+msgid "Last Updated on"
+msgstr "Ultima actualizacion en"
+
+#. module: access_limit_records_number
+#: model:ir.module.category,name:access_limit_records_number.module_access_limit_records_number_category
+msgid "Limit records number"
+msgstr "Número de límite registro"
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,field_description:access_limit_records_number.field_base_limit_records_number__link_field_id
+msgid "Link using field"
+msgstr ""
+
+#. module: access_limit_records_number
+#: code:addons/access_limit_records_number/models.py:32
+#, python-format
+msgid ""
+"Maximimum allowed records in table \"%(model_name)s\" is %(max_records)s, "
+"while after this update you would have %(records_count)s"
+msgstr ""
+"Maximimum allowed records in table \"%(model_name)s\" is%(max_records)s , "
+"while after this update you would have  %(records_count)s"
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,field_description:access_limit_records_number.field_base_limit_records_number__max_records
+msgid "Maximum Records"
+msgstr "Registros máximos"
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,field_description:access_limit_records_number.field_base_limit_records_number__model_id
+msgid "Model"
+msgstr "Modelo"
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,field_description:access_limit_records_number.field_base_limit_records_number__model_name
+#, fuzzy
+msgid "Model Name"
+msgstr "Modelo"
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,help:access_limit_records_number.field_base_limit_records_number__crud_model_id
+msgid ""
+"Model for record creation / update. Set this field only to specify a "
+"different model than the base model."
+msgstr ""
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,help:access_limit_records_number.field_base_limit_records_number__model_id
+msgid "Model on which the server action runs."
+msgstr ""
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,field_description:access_limit_records_number.field_base_limit_records_number_test__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,field_description:access_limit_records_number.field_base_limit_records_number__activity_note
+msgid "Note"
+msgstr ""
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,field_description:access_limit_records_number.field_base_limit_records_number__on_change_fields
+msgid "On Change Fields Trigger"
+msgstr ""
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,help:access_limit_records_number.field_base_limit_records_number__help
+msgid ""
+"Optional help text for the users with a description of the target view, such "
+"as its usage and purpose."
+msgstr ""
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,help:access_limit_records_number.field_base_limit_records_number__link_field_id
+msgid ""
+"Provide the field used to link the newly created record on the record on "
+"used by the server action."
+msgstr ""
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,field_description:access_limit_records_number.field_base_limit_records_number__code
+msgid "Python Code"
+msgstr ""
+
+#. module: access_limit_records_number
+#: model_terms:ir.ui.view,arch_db:access_limit_records_number.base_limit_view_form
+#: model_terms:ir.ui.view,arch_db:access_limit_records_number.base_limit_view_search
+msgid "Records Number"
+msgstr ""
+
+#. module: access_limit_records_number
+#: model:ir.actions.act_window,name:access_limit_records_number.base_limit_act
+#: model:ir.ui.menu,name:access_limit_records_number.menu_base_limit_act
+msgid "Records Number Limits"
+msgstr ""
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,field_description:access_limit_records_number.field_base_limit_records_number__activity_user_id
+msgid "Responsible"
+msgstr ""
+
+#. module: access_limit_records_number
+#: model:ir.model,name:access_limit_records_number.model_base_limit_records_number
+msgid "Restrictions for number of records"
+msgstr ""
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,field_description:access_limit_records_number.field_base_limit_records_number__sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,field_description:access_limit_records_number.field_base_limit_records_number__action_server_id
+msgid "Server Actions"
+msgstr ""
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,help:access_limit_records_number.field_base_limit_records_number__binding_model_id
+msgid ""
+"Setting a value makes this action available in the sidebar for the given "
+"model."
+msgstr ""
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,field_description:access_limit_records_number.field_base_limit_records_number__activity_summary
+msgid "Summary"
+msgstr ""
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,field_description:access_limit_records_number.field_base_limit_records_number__crud_model_name
+msgid "Target Model"
+msgstr ""
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,help:access_limit_records_number.field_base_limit_records_number__activity_user_field_name
+msgid "Technical name of the user on the record"
+msgstr ""
+
+#. module: access_limit_records_number
+#: model:base.automation,name:access_limit_records_number.test_rule_base_automation
+#: model:base.limit.records_number,name:access_limit_records_number.test_rule
+msgid "Test Rule"
+msgstr ""
+
+#. module: access_limit_records_number
+#: model:ir.model,name:access_limit_records_number.model_base_limit_records_number_test
+msgid "Test model to test access"
+msgstr ""
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,field_description:access_limit_records_number.field_base_limit_records_number__trigger
+msgid "Trigger Condition"
+msgstr ""
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,field_description:access_limit_records_number.field_base_limit_records_number__trg_date_id
+msgid "Trigger Date"
+msgstr ""
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,help:access_limit_records_number.field_base_limit_records_number__state
+msgid ""
+"Type of server action. The following values are available:\n"
+"- 'Execute Python Code': a block of python code that will be executed\n"
+"- 'Create or Copy a new Record': create a new record with new values, or "
+"copy an existing record in your database\n"
+"- 'Write on a Record': update the values of a record\n"
+"- 'Execute several actions': define an action that triggers several other "
+"server actions\n"
+"- 'Add Followers': add followers to a record (available in Discuss)\n"
+"- 'Send Email': automatically send an email (available in email_template)"
+msgstr ""
+
+#. module: access_limit_records_number
+#: model_terms:ir.ui.view,arch_db:access_limit_records_number.base_limit_view_search
+msgid "Unlimited Table"
+msgstr ""
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,field_description:access_limit_records_number.field_base_limit_records_number__usage
+msgid "Usage"
+msgstr ""
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,help:access_limit_records_number.field_base_limit_records_number__activity_user_type
+msgid ""
+"Use 'Specific User' to always assign the same user on the next activity. Use "
+"'Generic User From Record' to specify the field name of the user to choose "
+"on the record."
+msgstr ""
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,field_description:access_limit_records_number.field_base_limit_records_number__trg_date_calendar_id
+msgid "Use Calendar"
+msgstr ""
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,field_description:access_limit_records_number.field_base_limit_records_number__activity_user_field_name
+msgid "User field name"
+msgstr ""
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,field_description:access_limit_records_number.field_base_limit_records_number__fields_lines
+msgid "Value Mapping"
+msgstr ""
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,help:access_limit_records_number.field_base_limit_records_number__trg_date_calendar_id
+msgid ""
+"When calculating a day-based timed condition, it is possible to use a "
+"calendar to compute the date based on working days."
+msgstr ""
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,help:access_limit_records_number.field_base_limit_records_number__sequence
+msgid ""
+"When dealing with multiple actions, the execution order is based on the "
+"sequence. Low number means high priority."
+msgstr ""
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,help:access_limit_records_number.field_base_limit_records_number__trg_date_id
+msgid ""
+"When should the condition be triggered.\n"
+"                                  If present, will be checked by the "
+"scheduler. If empty, will be checked at creation and update."
+msgstr ""
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,help:access_limit_records_number.field_base_limit_records_number__active
+msgid "When unchecked, the rule is hidden and will not be executed."
+msgstr ""
+
+#. module: access_limit_records_number
+#: model:ir.model.fields,help:access_limit_records_number.field_base_limit_records_number__code
+msgid ""
+"Write Python code that the action will execute. Some variables are available "
+"for use; help about python expression is given in the help tab."
+msgstr ""
+
+#~ msgid "Before Update Filter"
+#~ msgstr "Antes de actualizar el filtro"
+
+#~ msgid "Check Records Number"
+#~ msgstr "Compruebe el número de registros"
+
+#~ msgid "Examples: email reminders, call object service, etc."
+#~ msgstr ""
+#~ "Ejemplos: recordatorios de correo electrónico, servicio de objeto de "
+#~ "llamada, etc."
+
+#~ msgid "Filter"
+#~ msgstr "Filtrar"
+
+#~ msgid "Gives the sequence order when displaying a list of rules."
+#~ msgstr "Da el orden de secuencia al mostrar una lista de reglas."

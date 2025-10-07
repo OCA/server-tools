@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record model="ir.module.category" id="module_access_limit_records_number_category">
+        <field name="name">Limit records number</field>
+        <field name="sequence">17</field>
+    </record>
+    <record id="group_control_limits_on_records_number" model="res.groups">
+        <field name="name">Control limits on records number</field>
+        <field name="category_id" ref="module_access_limit_records_number_category" />
+    </record>
+    <data noupdate="1">
+        <record id="base.user_admin" model="res.users">
+            <field
+                name="groups_id"
+                eval="[Command.link(ref('group_control_limits_on_records_number'))]"
+            />
+        </record>
+    </data>
+</odoo>
