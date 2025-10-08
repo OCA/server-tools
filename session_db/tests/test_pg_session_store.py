@@ -33,7 +33,10 @@ def _make_postgres_uri(
 class TestPGSessionStore(TransactionCase):
     def setUp(self):
         super().setUp()
-        _, connection_info = connection_info_for(config["db_name"])
+        db_name = config["db_name"]
+        if isinstance(db_name, list):
+            db_name = db_name[0]
+        _, connection_info = connection_info_for(db_name)
         self.session_store = PGSessionStore(
             _make_postgres_uri(**connection_info), session_class=http.Session
         )

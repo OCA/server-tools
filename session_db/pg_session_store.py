@@ -2,6 +2,7 @@
 # @author Nicolas Seinlet
 # Copyright (c) ACSONE SA 2022
 # @author Stéphane Bidoul
+import functools
 import json
 import logging
 import os
@@ -11,7 +12,6 @@ import psycopg2
 import odoo
 from odoo import http
 from odoo.tools._vendor import sessions
-from odoo.tools.func import lazy_property
 
 _logger = logging.getLogger(__name__)
 
@@ -153,7 +153,7 @@ class PGSessionStore(sessions.SessionStore):
 _original_session_store = http.root.__class__.session_store
 
 
-@lazy_property
+@functools.cached_property
 def session_store(self):
     session_db_uri = os.environ.get("SESSION_DB_URI")
     if session_db_uri:
