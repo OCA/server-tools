@@ -293,6 +293,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_name_search_improved.field_ir_qweb_field_many2many__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_ir_qweb_field_many2one__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_ir_qweb_field_monetary__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_ir_qweb_field_one2many__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_ir_qweb_field_qweb__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_ir_qweb_field_relative__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_ir_qweb_field_selection__smart_search
