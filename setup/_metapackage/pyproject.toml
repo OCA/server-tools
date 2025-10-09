@@ -1,6 +1,6 @@
 [project]
 name = "odoo-addons-oca-server-tools"
-version = "18.0.20251001.0"
+version = "18.0.20251009.0"
 dependencies = [
     "odoo-addon-attachment_queue==18.0.*",
     "odoo-addon-attachment_unindex_content==18.0.*",
@@ -28,6 +28,7 @@ dependencies = [
     "odoo-addon-fetchmail_attach_from_folder==18.0.*",
     "odoo-addon-fetchmail_notify_error_to_sender==18.0.*",
     "odoo-addon-html_text==18.0.*",
+    "odoo-addon-iap_alternative_provider==18.0.*",
     "odoo-addon-jsonifier==18.0.*",
     "odoo-addon-mail_cleanup==18.0.*",
     "odoo-addon-module_auto_update==18.0.*",
