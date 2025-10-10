@@ -1,6 +1,6 @@
 [project]
 name = "odoo-addons-oca-server-tools"
-version = "17.0.20251001.0"
+version = "17.0.20251010.0"
 dependencies = [
     "odoo-addon-attachment_queue>=17.0dev,<17.1dev",
     "odoo-addon-auditlog>=17.0dev,<17.1dev",
@@ -35,6 +35,7 @@ dependencies = [
     "odoo-addon-sentry>=17.0dev,<17.1dev",
     "odoo-addon-server_action_logging>=17.0dev,<17.1dev",
     "odoo-addon-session_db>=17.0dev,<17.1dev",
+    "odoo-addon-slow_statement_logger>=17.0dev,<17.1dev",
     "odoo-addon-test_auditlog>=17.0dev,<17.1dev",
     "odoo-addon-tracking_manager>=17.0dev,<17.1dev",
     "odoo-addon-tracking_manager_domain>=17.0dev,<17.1dev",
