@@ -2,6 +2,7 @@
 # @author Nicolas Seinlet
 # Copyright (c) ACSONE SA 2022
 # @author Stéphane Bidoul
+import functools
 import json
 import logging
 import os
@@ -11,7 +12,6 @@ import psycopg2
 import odoo
 from odoo import http
 from odoo.tools._vendor import sessions
-from odoo.tools.func import lazy_property
 
 _logger = logging.getLogger(__name__)
 
@@ -136,9 +136,12 @@ class PGSessionStore(sessions.SessionStore):
 
         return self.session_class(data, sid, False)
 
-    # This method is not part of the Session interface but is called nevertheless,
-    # so let's get it from FilesystemSessionStore.
+    # Odoo's FileSystemSessionStore has a few additional methods that are independent
+    # of the actual storage backend. We reuse them here.
     rotate = http.FilesystemSessionStore.rotate
+    generate_key = http.FilesystemSessionStore.generate_key
+    is_valid_key = http.FilesystemSessionStore.is_valid_key
+    delete_old_sessions = http.FilesystemSessionStore.delete_old_sessions
 
     @with_lock
     @with_cursor
@@ -149,11 +152,54 @@ class PGSessionStore(sessions.SessionStore):
             (f"{max_lifetime} seconds",),
         )
 
+    @with_lock
+    @with_cursor
+    def get_missing_session_identifiers(self, identifiers: list[str]) -> set[str]:
+        """
+        :param identifiers: session identifiers whose file existence must be checked
+                            identifiers are a part session sid (first 42 chars)
+        :type identifiers: iterable
+        :return: the identifiers which are not present on the filesystem
+        :rtype: set
+
+        Note 1:
+        Working with identifiers 42 characters long means that
+        we don't have to work with the entire sid session,
+        while maintaining sufficient entropy to avoid collisions.
+        See details in ``generate_key``.
+
+        Note 2:
+        Scans the session store for inactive (GC'd) sessions.
+        Performance is acceptable for an infrequent background job.
+        """
+        missing_identifiers = set()
+        for identifier in identifiers:
+            self._cr.execute(
+                "SELECT sid FROM http_sessions WHERE sid LIKE %s||'%%' LIMIT 1",
+                (identifier,),
+            )
+            if self._cr.rowcount == 0:
+                missing_identifiers.add(identifier)
+        return missing_identifiers
+
+    @with_lock
+    @with_cursor
+    def delete_from_identifiers(self, identifiers: list[str]) -> None:
+        for identifier in identifiers:
+            if not http._session_identifier_re.match(identifier):
+                raise ValueError(
+                    "Identifier format incorrect, "
+                    "did you pass in a string instead of a list?"
+                )
+            self._cr.execute(
+                "DELETE FROM http_sessions WHERE sid LIKE %s||'%%'", (identifier,)
+            )
+
 
 _original_session_store = http.root.__class__.session_store
 
 
-@lazy_property
+@functools.cached_property
 def session_store(self):
     session_db_uri = os.environ.get("SESSION_DB_URI")
     if session_db_uri:
@@ -165,5 +211,6 @@ def session_store(self):
 # Monkey patch of standard methods
 _logger.debug("Monkey patching session store")
 http.root.__class__.session_store = session_store
+http.root.__class__.session_store.__set_name__(http.root.__class__, "session_store")
 # Reset the lazy property cache
 vars(http.root).pop("session_store", None)

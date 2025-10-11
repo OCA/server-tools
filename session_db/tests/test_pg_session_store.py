@@ -5,7 +5,7 @@ import psycopg2
 
 from odoo import http
 from odoo.sql_db import connection_info_for
-from odoo.tests.common import TransactionCase
+from odoo.tests import TransactionCase
 from odoo.tools import config
 
 from odoo.addons.session_db.pg_session_store import PGSessionStore
@@ -33,7 +33,7 @@ def _make_postgres_uri(
 class TestPGSessionStore(TransactionCase):
     def setUp(self):
         super().setUp()
-        _, connection_info = connection_info_for(config["db_name"])
+        _, connection_info = connection_info_for(config["db_name"][0])
         self.session_store = PGSessionStore(
             _make_postgres_uri(**connection_info), session_class=http.Session
         )
@@ -79,8 +79,8 @@ class TestPGSessionStore(TransactionCase):
             # get fails, and a RuntimeError is raised when trying to reconnect
             try:
                 self.session_store.get("abc")
-            except RuntimeError:  # pylint: disable=except-pass
-                pass
+            except RuntimeError as e:  # pylint: disable=except-pass
+                assert str(e) == "connection failed"
             else:
                 # We don't use self.assertRaises because Odoo is overriding
                 # in a way that interferes with the Cursor.execute mock
@@ -100,3 +100,31 @@ class TestPGSessionStore(TransactionCase):
         assert "postgres://test:PASSWORD@localhost:5432/test" == _make_postgres_uri(
             **connection_info
         )
+
+    def test_get_missing_session_identifiers(self):
+        session1 = self.session_store.new()
+        session2 = self.session_store.new()
+        self.session_store.save(session1)
+        self.session_store.save(session2)
+        missing = self.session_store.get_missing_session_identifiers(
+            [session1.sid[:42], session2.sid[:42], "nonexistentsessionid"]
+        )
+        self.assertEqual(missing, {"nonexistentsessionid"})
+        self.session_store.delete(session1)
+        missing = self.session_store.get_missing_session_identifiers(
+            [session1.sid[:42], session2.sid[:42], "nonexistentsessionid"]
+        )
+        self.assertEqual(missing, {session1.sid[:42], "nonexistentsessionid"})
+
+    def test_delete_from_identifiers(self):
+        session1 = self.session_store.new()
+        session2 = self.session_store.new()
+        self.session_store.save(session1)
+        self.session_store.save(session2)
+        self.session_store.delete_from_identifiers([session1.sid[:42], "f" * 42])
+        self.assertNotEqual(self.session_store.get(session1.sid).sid, session1.sid)
+        self.assertEqual(self.session_store.get(session2.sid).sid, session2.sid)
+
+    def test_delete_from_identifiers_invalid_format(self):
+        with self.assertRaises(ValueError):
+            self.session_store.delete_from_identifiers("xxx")
