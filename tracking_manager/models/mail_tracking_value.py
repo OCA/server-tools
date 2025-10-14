@@ -66,3 +66,37 @@ class MailTracking(models.Model):
                     ),
                 }
             raise
+        except TypeError:
+            # remove when https://github.com/odoo/odoo/pull/214121 is merged
+            field = self.env["ir.model.fields"]._get(record._name, col_name)
+            model_name = self.env._(self.env["ir.model"]._get(field.model).display_name)
+            values = {"field_id": field.id}
+            if col_info["type"] in {"one2many", "many2many"}:
+                values.update(
+                    {
+                        "old_value_char": ", ".join(
+                            value.display_name
+                            or self.env._(
+                                "Unnamed %(record_model_name)s (%(record_id)s)",
+                                record_model_name=model_name,
+                                record_id=value.id,
+                            )
+                            for value in initial_value
+                        )
+                        if initial_value
+                        else "",
+                        "new_value_char": ", ".join(
+                            value.display_name
+                            or self.env._(
+                                "Unnamed %(record_model_name)s (%(record_id)s)",
+                                record_model_name=model_name,
+                                record_id=value.id,
+                            )
+                            for value in new_value
+                        )
+                        if new_value
+                        else "",
+                    }
+                )
+                return values
+            raise
