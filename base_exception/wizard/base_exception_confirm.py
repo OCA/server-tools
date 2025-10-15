@@ -3,7 +3,7 @@
 # Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
 # Copyright 2020 Hibou Corp.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -24,7 +24,7 @@ class ExceptionRuleConfirm(models.AbstractModel):
         model_except_obj = self.env[current_model]
         active_ids = self.env.context.get("active_ids")
         if len(active_ids) > 1:
-            raise ValidationError(_("Only 1 ID accepted, got %r.") % active_ids)
+            raise ValidationError(self.env._("Only 1 ID accepted, got %r.", active_ids))
         active_id = active_ids[0]
         related_model_except = model_except_obj.browse(active_id)
         exception_ids = related_model_except.exception_ids.ids

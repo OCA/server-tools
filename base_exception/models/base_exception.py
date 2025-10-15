@@ -7,7 +7,7 @@
 
 import logging
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError, ValidationError
 from odoo.tools import html_escape
 
@@ -33,7 +33,7 @@ class BaseExceptionModel(models.AbstractModel):
     def action_ignore_exceptions(self):
         if any(self.exception_ids.mapped("is_blocking")):
             raise UserError(
-                _(
+                self.env._(
                     "The exceptions can not be ignored, because "
                     "some of them are blocking."
                 )
