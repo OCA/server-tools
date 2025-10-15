@@ -2,9 +2,8 @@
 # Copyright 2020 Hibou Corp.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo_test_helper import FakeModelLoader
-
 from odoo.exceptions import UserError, ValidationError
+from odoo.orm.model_classes import add_to_registry
 from odoo.tests import TransactionCase
 
 
@@ -12,12 +11,31 @@ class TestBaseException(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.originExceptionRuleClasses = cls.registry["exception.rule"]._base_classes__
 
-        cls.loader = FakeModelLoader(cls.env, cls.__module__)
-        cls.loader.backup_registry()
-        from .purchase_test import ExceptionRule, LineTest, PurchaseTest, WizardTest
+        from . import purchase_test
 
-        cls.loader.update_registry((ExceptionRule, LineTest, PurchaseTest, WizardTest))
+        for model_class in [
+            purchase_test.ExceptionRule,
+            purchase_test.LineTest,
+            purchase_test.PurchaseTest,
+            purchase_test.WizardTest,
+        ]:
+            add_to_registry(cls.registry, model_class)
+
+        test_models = [
+            "base.exception.test.purchase.line",
+            "base.exception.test.purchase",
+            "exception.rule.confirm.test.purchase",
+        ]
+        cls.registry._setup_models__(cls.env.cr, test_models + ["exception.rule"])
+        cls.registry.init_models(
+            cls.env.cr, test_models + ["exception.rule"], {"models_to_check": True}
+        )
+        for model_name in test_models:
+            cls.addClassCleanup(cls.registry.__delitem__, model_name)
+        cls.addClassCleanup(cls.restore_exception_rule)
+
         cls.partner = cls.env["res.partner"].create({"name": "Foo"})
         cls.po = cls.env["base.exception.test.purchase"].create(
             {
@@ -48,9 +66,8 @@ class TestBaseException(TransactionCase):
         )
 
     @classmethod
-    def tearDownClass(cls):
-        cls.loader.restore_registry()
-        return super().tearDownClass()
+    def restore_exception_rule(cls):
+        cls.registry["exception.rule"]._base_classes__ = cls.originExceptionRuleClasses
 
     def test_valid(self):
         self.partner.write({"zip": "00000"})

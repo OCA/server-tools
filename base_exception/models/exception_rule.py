@@ -7,7 +7,7 @@
 
 import logging
 
-from odoo import _, api, fields, models, tools
+from odoo import api, fields, models, tools
 from odoo.exceptions import ValidationError
 from odoo.tools.safe_eval import safe_eval
 
@@ -59,7 +59,7 @@ class ExceptionRule(models.Model):
                 or (rule.exception_type == "by_method" and not rule.method)
             ):
                 raise ValidationError(
-                    _(
+                    self.env._(
                         "There is a problem of configuration, python code, "
                         "domain or method is missing to match the exception "
                         "type."
@@ -81,7 +81,7 @@ class ExceptionRule(models.Model):
         return self._get_cached_rules_for_domain(tuple(domain))
 
     @api.model
-    @tools.ormcache_context("domain", keys=("lang",))
+    @tools.ormcache("domain", "self.env.lang")
     def _get_cached_rules_for_domain(self, domain):
         """This method is used to get the rules that match the domain.
 
