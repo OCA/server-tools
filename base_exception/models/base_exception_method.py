@@ -7,9 +7,9 @@
 import logging
 from collections import defaultdict
 
-from odoo import _, api, models
+from odoo import api, models
 from odoo.exceptions import UserError
-from odoo.osv import expression
+from odoo.fields import Domain
 from odoo.tools.safe_eval import safe_eval
 
 _logger = logging.getLogger(__name__)
@@ -103,17 +103,16 @@ class BaseExceptionMethod(models.AbstractModel):
         expr = rule_info.code
         space = self._exception_rule_eval_context(rec)
         try:
-            safe_eval(
-                expr, space, mode="exec", nocopy=True
-            )  # nocopy allows to return 'result'
+            safe_eval(expr, space, mode="exec")
         except Exception as e:
             _logger.exception(e)
             raise UserError(
-                _(
+                self.env._(
                     "Error when evaluating the exception.rule"
-                    " rule:\n %(rule_name)s \n(%(error)s)"
+                    " rule:\n %(rule_name)s \n(%(error)s)",
+                    rule_name=rule_info.name,
+                    error=e,
                 )
-                % {"rule_name": rule_info.name, "error": e}
             ) from e
         return space.get("failed", False)
 
@@ -146,7 +145,7 @@ class BaseExceptionMethod(models.AbstractModel):
         """
         base_domain = self._get_base_domain()
         rule_domain = rule_info.domain
-        domain = expression.AND([base_domain, rule_domain])
+        domain = Domain.AND([base_domain, rule_domain])
         return self.filtered_domain(domain)
 
     def _detect_exceptions_by_method(self, rule_info):

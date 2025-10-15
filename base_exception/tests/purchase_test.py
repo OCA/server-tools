@@ -23,7 +23,7 @@ class PurchaseTest(models.Model):
     _name = "base.exception.test.purchase"
     _description = "Base Exception Test Model"
 
-    name = fields.Char(required=True)
+    name = fields.Char()
     user_id = fields.Many2one("res.users", string="Responsible")
     state = fields.Selection(
         [
