@@ -148,6 +148,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_fetchmail_server__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_format_address_mixin__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_format_vat_label_mixin__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_fs_storage__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_fs_test_connection__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_html_field_history_mixin__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_iap_account__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_iap_enrich_api__assigned_attachment_ids
