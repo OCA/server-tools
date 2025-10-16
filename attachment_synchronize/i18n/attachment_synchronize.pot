@@ -1,0 +1,440 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* attachment_synchronize
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: attachment_synchronize
+#: model_terms:ir.ui.view,arch_db:attachment_synchronize.view_attachment_task_form
+msgid "<span class=\"o_stat_text\">Fail</span>"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model_terms:ir.ui.view,arch_db:attachment_synchronize.view_attachment_task_form
+msgid "<span class=\"o_stat_text\">Pending</span>"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model_terms:ir.ui.view,arch_db:attachment_synchronize.view_attachment_task_form
+msgid "<span class=\"o_stat_text\">Success</span>"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields,help:attachment_synchronize.field_attachment_synchronize_task__after_import
+msgid "Action after import a file"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__after_import
+msgid "After Import"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model_terms:ir.ui.view,arch_db:attachment_synchronize.view_attachment_task_form
+msgid "Archived"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_queue__assigned_attachment_ids
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__assigned_attachment_ids
+#: model:ir.model.fields,field_description:attachment_synchronize.field_fs_storage__assigned_attachment_ids
+msgid "Assigned Attachments"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__attachment_ids
+msgid "Attachment"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model,name:attachment_synchronize.model_attachment_queue
+msgid "Attachment Queue"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model_terms:ir.ui.view,arch_db:attachment_synchronize.view_attachment_task_search
+msgid "Attachment Task"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model,name:attachment_synchronize.model_attachment_synchronize_task
+msgid "Attachment synchronize task"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model_terms:ir.ui.view,arch_db:attachment_synchronize.view_attachment_task_search
+msgid "Attachments"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.actions.act_window,name:attachment_synchronize.action_attachment_export_task
+#: model:ir.ui.menu,name:attachment_synchronize.menu_attachment_export_task
+msgid "Attachments Export Tasks"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.actions.act_window,name:attachment_synchronize.action_attachment_import_task
+#: model:ir.ui.menu,name:attachment_synchronize.menu_attachment_import_task
+msgid "Attachments Import Tasks"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.actions.act_window,name:attachment_synchronize.action_attachment_queue_related
+msgid "Attachments Queue"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__avoid_duplicated_files
+msgid "Avoid importing duplicated files"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__backend_id
+#: model_terms:ir.ui.view,arch_db:attachment_synchronize.view_attachment_task_search
+msgid "Backend"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_queue__changeset_change_ids
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__changeset_change_ids
+#: model:ir.model.fields,field_description:attachment_synchronize.field_fs_storage__changeset_change_ids
+msgid "Changeset Changes"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_queue__changeset_ids
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__changeset_ids
+#: model:ir.model.fields,field_description:attachment_synchronize.field_fs_storage__changeset_ids
+msgid "Changesets"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__count_attachment_done
+msgid "Count Attachment Done"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__count_attachment_failed
+msgid "Count Attachment Failed"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__count_attachment_pending
+msgid "Count Attachment Pending"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_queue__count_changesets
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__count_changesets
+#: model:ir.model.fields,field_description:attachment_synchronize.field_fs_storage__count_changesets
+msgid "Count Changesets"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_queue__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:attachment_synchronize.field_fs_storage__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_queue__count_pending_changesets
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__count_pending_changesets
+#: model:ir.model.fields,field_description:attachment_synchronize.field_fs_storage__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields.selection,name:attachment_synchronize.selection__attachment_synchronize_task__after_import__delete
+msgid "Delete"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model_terms:ir.ui.view,arch_db:attachment_synchronize.view_attachment_task_form
+#: model_terms:ir.ui.view,arch_db:attachment_synchronize.view_attachment_task_tree
+msgid "Done attachments"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model_terms:ir.ui.view,arch_db:attachment_synchronize.view_attachment_task_tree
+msgid "Duplicate"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__active
+msgid "Enabled"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields.selection,name:attachment_synchronize.selection__attachment_queue__file_type__export
+msgid "Export File (External location)"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields.selection,name:attachment_synchronize.selection__attachment_synchronize_task__method_type__export
+msgid "Export Task"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields,field_description:attachment_synchronize.field_fs_storage__export_task_count
+msgid "Export Tasks"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model,name:attachment_synchronize.model_fs_storage
+msgid "FS Storage"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model_terms:ir.ui.view,arch_db:attachment_synchronize.view_attachment_task_form
+#: model_terms:ir.ui.view,arch_db:attachment_synchronize.view_attachment_task_tree
+msgid "Failed attachments"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__failure_emails
+msgid "Failure Emails"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__filepath
+msgid "File Path"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_queue__file_type
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__file_type
+msgid "File Type"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_queue__fs_storage_id
+msgid "Filestore Storage"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__id
+msgid "ID"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields,help:attachment_synchronize.field_attachment_synchronize_task__avoid_duplicated_files
+msgid ""
+"If checked, a file will not be imported if an Attachment Queue with the same"
+" name already exists."
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields.selection,name:attachment_synchronize.selection__attachment_synchronize_task__method_type__import
+msgid "Import Task"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields,field_description:attachment_synchronize.field_fs_storage__import_task_count
+msgid "Import Tasks"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model_terms:ir.ui.view,arch_db:attachment_synchronize.view_attachment_task_form
+msgid "Importation"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields,help:attachment_synchronize.field_attachment_synchronize_task__move_path
+msgid "Imported File will be moved to this path"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields,help:attachment_synchronize.field_attachment_synchronize_task__new_name
+msgid ""
+"Imported File will be renamed to this name.\n"
+"New Name can use 'mako' template where 'obj' is the original file's name.\n"
+"For instance : ${obj.name}-${obj.create_date}.csv"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_queue__method_type
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__method_type
+msgid "Method Type"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields.selection,name:attachment_synchronize.selection__attachment_synchronize_task__after_import__move
+msgid "Move"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields.selection,name:attachment_synchronize.selection__attachment_synchronize_task__after_import__move_rename
+msgid "Move & Rename"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__move_path
+msgid "Move Path"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__name
+#: model_terms:ir.ui.view,arch_db:attachment_synchronize.view_attachment_task_form
+msgid "Name"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__new_name
+msgid "New Name"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model_terms:ir.ui.view,arch_db:attachment_synchronize.view_attachment_task_form
+msgid "Notification"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields,help:attachment_synchronize.field_attachment_synchronize_task__filepath
+msgid "Path to imported/exported files in the Backend"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields,help:attachment_synchronize.field_attachment_synchronize_task__pattern
+msgid ""
+"Pattern used to select the files to be imported following the 'fnmatch' special characters (e.g. '*.txt' to catch all the text files).\n"
+"If empty, import all the files found in 'File Path'."
+msgstr ""
+
+#. module: attachment_synchronize
+#: model_terms:ir.ui.view,arch_db:attachment_synchronize.view_attachment_task_form
+#: model_terms:ir.ui.view,arch_db:attachment_synchronize.view_attachment_task_tree
+msgid "Pending attachments"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields.selection,name:attachment_synchronize.selection__attachment_synchronize_task__after_import__rename
+msgid "Rename"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model_terms:ir.ui.view,arch_db:attachment_synchronize.view_attachment_task_form
+#: model_terms:ir.ui.view,arch_db:attachment_synchronize.view_attachment_task_tree
+msgid "Run"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.actions.server,name:attachment_synchronize.cronjob_run_attachment_synchronize_task_import_ir_actions_server
+#: model:ir.cron,cron_name:attachment_synchronize.cronjob_run_attachment_synchronize_task_import
+msgid "Run attachment tasks import"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__pattern
+msgid "Selection Pattern"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_queue__smart_search
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__smart_search
+#: model:ir.model.fields,field_description:attachment_synchronize.field_fs_storage__smart_search
+msgid "Smart Search"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model_terms:ir.ui.view,arch_db:attachment_synchronize.view_attachment_task_form
+msgid "Storage Location"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_queue__task_id
+msgid "Task"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields,field_description:attachment_synchronize.field_fs_storage__synchronize_task_ids
+msgid "Tasks"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields,help:attachment_synchronize.field_attachment_queue__file_type
+msgid ""
+"The file type determines an import method to be used to parse and transform "
+"data before their import in ERP or an export"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields,help:attachment_synchronize.field_attachment_queue__count_pending_changeset_changes
+#: model:ir.model.fields,help:attachment_synchronize.field_attachment_synchronize_task__count_pending_changeset_changes
+#: model:ir.model.fields,help:attachment_synchronize.field_fs_storage__count_pending_changeset_changes
+msgid "The number of pending changes of this record"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields,help:attachment_synchronize.field_attachment_queue__count_pending_changesets
+#: model:ir.model.fields,help:attachment_synchronize.field_attachment_synchronize_task__count_pending_changesets
+#: model:ir.model.fields,help:attachment_synchronize.field_fs_storage__count_pending_changesets
+msgid "The number of pending changesets of this record"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields,help:attachment_synchronize.field_attachment_queue__count_changesets
+#: model:ir.model.fields,help:attachment_synchronize.field_attachment_synchronize_task__count_changesets
+#: model:ir.model.fields,help:attachment_synchronize.field_fs_storage__count_changesets
+msgid "The overall number of changesets of this record"
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields,help:attachment_synchronize.field_attachment_synchronize_task__failure_emails
+msgid ""
+"Used to fill the 'Failure Emails' field in the 'Attachments Queues' related to this task.\n"
+"An alert will be sent to these emails if any operation on these Attachment Queue's file type fails."
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields,help:attachment_synchronize.field_attachment_synchronize_task__file_type
+msgid ""
+"Used to fill the 'File Type' field in the imported 'Attachments Queues'.\n"
+"Further operations will be realized on these Attachments Queues depending on their 'File Type' value."
+msgstr ""
+
+#. module: attachment_synchronize
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_queue__user_can_see_changeset
+#: model:ir.model.fields,field_description:attachment_synchronize.field_attachment_synchronize_task__user_can_see_changeset
+#: model:ir.model.fields,field_description:attachment_synchronize.field_fs_storage__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr ""

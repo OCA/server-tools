@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="import_from_filestore" model="attachment.synchronize.task">
+        <field name="name">TEST Import</field>
+        <field name="backend_id" ref="fs_storage.fs_storage_demo" />
+        <field name="method_type">import</field>
+        <field name="filepath">test_import</field>
+        <field name="avoid_duplicated_files" eval="True" />
+    </record>
+
+    <record id="import_from_filestore_delete" model="attachment.synchronize.task">
+        <field name="name">TEST Import then delete</field>
+        <field name="backend_id" ref="fs_storage.fs_storage_demo" />
+        <field name="method_type">import</field>
+        <field name="after_import">delete</field>
+        <field name="filepath">test_import</field>
+    </record>
+
+    <record id="import_from_filestore_rename" model="attachment.synchronize.task">
+        <field name="name">TEST Import then rename</field>
+        <field name="backend_id" ref="fs_storage.fs_storage_demo" />
+        <field name="method_type">import</field>
+        <field name="after_import">rename</field>
+        <field name="filepath">test_import</field>
+        <field name="new_name">test-${obj.name}</field>
+    </record>
+
+    <record id="import_from_filestore_move" model="attachment.synchronize.task">
+        <field name="name">TEST Import then move</field>
+        <field name="backend_id" ref="fs_storage.fs_storage_demo" />
+        <field name="method_type">import</field>
+        <field name="after_import">move</field>
+        <field name="filepath">test_import</field>
+        <field name="move_path">test_archived</field>
+    </record>
+
+    <record id="import_from_filestore_move_rename" model="attachment.synchronize.task">
+        <field name="name">TEST Import then move and rename</field>
+        <field name="backend_id" ref="fs_storage.fs_storage_demo" />
+        <field name="method_type">import</field>
+        <field name="after_import">move_rename</field>
+        <field name="filepath">test_import</field>
+        <field name="move_path">test_archived</field>
+        <field name="new_name">foo.txt</field>
+    </record>
+
+    <record id="export_to_filestore" model="attachment.synchronize.task">
+        <field name="name">TEST Export</field>
+        <field name="backend_id" ref="fs_storage.fs_storage_demo" />
+        <field name="method_type">export</field>
+        <field name="filepath">test_export</field>
+    </record>
+
+    <record id="attachment_queue_imported_demo" model="attachment.queue">
+        <field name="datas">bWlncmF0aW9uIHRlc3Q=</field>
+        <field name="name">attachment_queue_imported_demo.doc</field>
+        <field name="task_id" ref="import_from_filestore" />
+    </record>
+</odoo>
