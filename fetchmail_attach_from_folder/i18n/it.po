@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-29 11:14+0000\n"
-"PO-Revision-Date: 2025-09-18 15:42+0000\n"
+"PO-Revision-Date: 2025-10-16 11:43+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-server-tools-8-0/"
 "language/it/)\n"
@@ -314,7 +314,7 @@ msgstr "Cartelle da monitorare"
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__email_from
 msgid "From"
-msgstr "Dal"
+msgstr "Da"
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually__id
@@ -497,7 +497,7 @@ msgstr "Stato"
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__subject
 msgid "Subject"
-msgstr "Soggetto"
+msgstr "Oggetto"
 
 #. module: fetchmail_attach_from_folder
 #: model_terms:ir.ui.view,arch_db:fetchmail_attach_from_folder.view_email_server_form
