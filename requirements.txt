@@ -5,5 +5,7 @@ mako
 odoo_test_helper
 odoorpc
 openupgradelib
+paramiko<4.0.0
+pygount==1.4.0
 pysftp
-sentry_sdk>=2.0.0,<=2.22.0
+sentry_sdk>=2.0.0,<=2.42.0
