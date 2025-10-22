@@ -187,11 +187,11 @@ class Vector(fields.Field):
         if not isinstance(value, VectorValue):
             value = VectorValue(value, dimensions=self.dimensions, autopad=self.autopad)
         if self.autopad and value.dimensions < self.dimensions:
-
             value = value.pad(self.dimensions)
         if validate and value.dimensions != self.dimensions:
             raise ValueError(
-                f"Invalid vector size for {self.name}: {value.dimensions} != {self.dimensions}"
+                f"Invalid vector size for {self.name}: {value.dimensions} != "
+                f"{self.dimensions}"
             )
         return value
 
