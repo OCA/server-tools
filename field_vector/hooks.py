@@ -1,12 +1,12 @@
 # Copyright 2025 ACSONE SA/NV
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
-from odoo import _
 from odoo.exceptions import MissingError
 
 
-def pre_init_hook(cr):
+def pre_init_hook(env):
     """setup vector"""
+    cr = env.cr
     cr.execute(
         """
         SELECT
@@ -28,7 +28,7 @@ def pre_init_hook(cr):
         )
     except Exception as exc:
         raise MissingError(
-            _(
+            env._(
                 "Error, can not automatically initialize vector"
                 " support. Database user may have to be superuser and"
                 " pgvector extensions  to be installed. If you do not"

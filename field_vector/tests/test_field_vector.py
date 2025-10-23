@@ -1,8 +1,9 @@
 # Copyright 2025 ACSONE SA/NV
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 import numpy as np
-from odoo_test_helper import FakeModelLoader
 from psycopg2.extensions import AsIs
+
+from odoo.orm.model_classes import add_to_registry
 
 from odoo.addons.base.tests.common import BaseCommon
 
@@ -13,14 +14,18 @@ class TestFieldVector(BaseCommon):
     @classmethod
     def setUpClass(cls):
         res = super().setUpClass()
-        cls.loader = FakeModelLoader(cls.env, cls.__module__)
-        cls.loader.backup_registry()
-        cls.addClassCleanup(cls.loader.restore_registry)
 
         # pylint: disable=import-outside-toplevel
         from .models import TestModel
 
-        cls.loader.update_registry([TestModel])
+        add_to_registry(cls.registry, TestModel)
+        cls.registry._setup_models__(cls.env.cr, ["vector.model"])
+        cls.registry.init_models(
+            cls.env.cr,
+            ["vector.model"],
+            {"models_to_check": True},
+        )
+        cls.addClassCleanup(cls.registry.__delitem__, "vector.model")
 
         cls.TestModel = cls.env[TestModel._name]
 
