@@ -13,6 +13,11 @@
                         />
                         <field name="index_name" />
                         <field name="index_type" />
+                        <field
+                            name="lang"
+                            invisible="not field_id.translate"
+                            required="field_id.translate"
+                        />
                     </group>
                 </sheet>
             </form>

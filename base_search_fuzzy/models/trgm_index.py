@@ -11,6 +11,11 @@ from odoo import _, api, exceptions, fields, models
 _logger = logging.getLogger(__name__)
 
 
+@api.model
+def _lang_get(self):
+    return self.env["res.lang"].get_installed()
+
+
 class TrgmIndex(models.Model):
     """Model for Trigram Index."""
 
@@ -43,6 +48,11 @@ class TrgmIndex(models.Model):
         help="Cite from PostgreSQL documentation: GIN indexes are "
         "the preferred text search index type."
         "See: https://www.postgresql.org/docs/current/textsearch-indexes.html",
+    )
+    lang = fields.Selection(
+        _lang_get,
+        string="Language",
+        help="You will need one index per installed language.",
     )
 
     def _trgm_extension_exists(self):
@@ -130,17 +140,31 @@ class TrgmIndex(models.Model):
 
         table_name = self.env[self.field_id.model_id.model]._table
         column_name = self.field_id.name
+        is_translate = self.field_id.translate
         index_type = self.index_type
-        index_name = f"{column_name}_{index_type}_idx"
-        index_exists, index_name = self.get_not_used_index(index_name, table_name)
+        lang = self.lang
 
+        if is_translate:
+            index_name = f"{column_name}_{lang}_{index_type}_idx"
+        else:
+            index_name = f"{column_name}_{index_type}_idx"
+
+        index_exists, index_name = self.get_not_used_index(index_name, table_name)
         if not index_exists:
+            if is_translate:
+                if lang == "en_US":
+                    column_name = f"({column_name}->>'en_US')"
+                else:
+                    # Search are always done with a fallback on en_US
+                    column_name = (
+                        f"COALESCE({column_name}->>'{lang}', {column_name}->>'en_US')"
+                    )
             self.env.cr.execute(
                 """
-            CREATE INDEX %(index)s
-            ON %(table)s
-            USING %(indextype)s (%(column)s %(indextype)s_trgm_ops);
-            """,
+                CREATE INDEX %(index)s
+                ON %(table)s
+                USING %(indextype)s (%(column)s %(indextype)s_trgm_ops);
+                """,
                 {
                     "table": AsIs(table_name),
                     "index": AsIs(index_name),
