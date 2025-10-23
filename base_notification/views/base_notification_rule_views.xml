@@ -1,0 +1,83 @@
+<odoo>
+    <!-- ACTION FIRST -->
+    <record id="action_notification_rule" model="ir.actions.act_window">
+        <field name="name">Notification Rules</field>
+        <field name="res_model">base.notification.rule</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- MENUS -->
+    <menuitem
+        id="menu_notification_root"
+        name="Notifications"
+        parent="base.menu_custom"
+        sequence="50"
+    />
+
+    <menuitem
+        id="menu_notification_rule"
+        name="Notification Rules"
+        parent="menu_notification_root"
+        action="action_notification_rule"
+    />
+
+    <!-- VIEWS -->
+    <record id="view_notification_rule_tree" model="ir.ui.view">
+        <field name="name">base.notification.rule.tree</field>
+        <field name="model">base.notification.rule</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="model_id" />
+                <field name="trigger" />
+                <field name="method_name" />
+                <field name="active" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_notification_rule_form" model="ir.ui.view">
+        <field name="name">base.notification.rule.form</field>
+        <field name="model">base.notification.rule</field>
+        <field name="arch" type="xml">
+            <form string="Notification Rule">
+                <sheet>
+                    <group>
+                        <field name="name" />
+                        <field name="active" />
+                    </group>
+                    <group>
+                        <field name="model_id" />
+                        <field name="model" invisible="1" />
+                        <field name="trigger" />
+                        <field
+                            name="method_name"
+                            attrs="{'invisible': [('trigger', '!=', 'on_method_call')]}"
+                        />
+                    </group>
+                    <group>
+                        <field
+                            name="domain"
+                            widget="domain"
+                            options="{'model': 'model'}"
+                        />
+                        <field name="notify_mode" />
+                    </group>
+                    <group>
+                        <field name="partner_ids" widget="many2many_tags" />
+                        <field name="message_type" />
+                    </group>
+                    <notebook>
+                        <page string="Python Code" name='code'>
+                            <field
+                                name="python_code"
+                                widget="ace"
+                                options="{'mode': 'python'}"
+                            />
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>
