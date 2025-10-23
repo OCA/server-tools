@@ -67,6 +67,11 @@ msgid "Index Type"
 msgstr ""
 
 #. module: base_search_fuzzy
+#: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index__lang
+msgid "Language"
+msgstr ""
+
+#. module: base_search_fuzzy
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index__write_uid
 msgid "Last Updated by"
 msgstr ""
@@ -106,4 +111,9 @@ msgstr ""
 #. module: base_search_fuzzy
 #: model:ir.model.fields,help:base_search_fuzzy.field_trgm_index__field_id
 msgid "You can either select a field of type \"text\" or \"char\"."
+msgstr ""
+
+#. module: base_search_fuzzy
+#: model:ir.model.fields,help:base_search_fuzzy.field_trgm_index__lang
+msgid "You will need one index per installed language."
 msgstr ""

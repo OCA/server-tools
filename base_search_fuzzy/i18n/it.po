@@ -77,9 +77,9 @@ msgid "Index Type"
 msgstr "Tipo indice"
 
 #. module: base_search_fuzzy
-#: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index____last_update
-msgid "Last Modified on"
-msgstr "Ultima modifica il"
+#: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index__lang
+msgid "Language"
+msgstr ""
 
 #. module: base_search_fuzzy
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index__write_uid
@@ -112,7 +112,6 @@ msgstr ""
 #. module: base_search_fuzzy
 #. odoo-python
 #: code:addons/base_search_fuzzy/models/trgm_index.py:0
-#, python-format
 msgid "The pg_trgm extension does not exists or cannot be installed."
 msgstr "L'estensione pg_trgm non esiste o non può essere installata."
 
@@ -127,6 +126,14 @@ msgstr "Indice trigramma"
 #: model:ir.model.fields,help:base_search_fuzzy.field_trgm_index__field_id
 msgid "You can either select a field of type \"text\" or \"char\"."
 msgstr "Si può selezionare un campo di tipo \"text\" o \"char\"."
+
+#. module: base_search_fuzzy
+#: model:ir.model.fields,help:base_search_fuzzy.field_trgm_index__lang
+msgid "You will need one index per installed language."
+msgstr ""
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"
 
 #~ msgid "Models"
 #~ msgstr "Modelli"

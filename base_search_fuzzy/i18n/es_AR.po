@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2017-01-14 04:21+0000\n"
 "PO-Revision-Date: 2022-03-15 06:17+0000\n"
 "Last-Translator: Ignacio Buioli <ibuioli@gmail.com>\n"
-"Language-Team: Spanish (Argentina) (https://www.transifex.com/oca/"
-"teams/23907/es_AR/)\n"
+"Language-Team: Spanish (Argentina) (https://www.transifex.com/oca/teams/"
+"23907/es_AR/)\n"
 "Language: es_AR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,8 +28,8 @@ msgid ""
 "indexes.html"
 msgstr ""
 "Cita de la documentación de PostgreSQL: Los índices GIN son el tipo de "
-"índice de búsqueda de texto preferido. Consulte más: https://www.postgresql."
-"org/docs/current/textsearch-indexes.html"
+"índice de búsqueda de texto preferido. Consulte más: https://"
+"www.postgresql.org/docs/current/textsearch-indexes.html"
 
 #. module: base_search_fuzzy
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index__create_uid
@@ -77,9 +77,9 @@ msgid "Index Type"
 msgstr "Tipo de Índice"
 
 #. module: base_search_fuzzy
-#: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index____last_update
-msgid "Last Modified on"
-msgstr "Última modificación en"
+#: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index__lang
+msgid "Language"
+msgstr ""
 
 #. module: base_search_fuzzy
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index__write_uid
@@ -112,7 +112,6 @@ msgstr ""
 #. module: base_search_fuzzy
 #. odoo-python
 #: code:addons/base_search_fuzzy/models/trgm_index.py:0
-#, python-format
 msgid "The pg_trgm extension does not exists or cannot be installed."
 msgstr "La extensión pg_trgm no existe o no puede ser instalada."
 
@@ -127,3 +126,11 @@ msgstr "Índice de Trigramas"
 #: model:ir.model.fields,help:base_search_fuzzy.field_trgm_index__field_id
 msgid "You can either select a field of type \"text\" or \"char\"."
 msgstr "Puede seleccionar un campo de tipo \"text\" o \"char\"."
+
+#. module: base_search_fuzzy
+#: model:ir.model.fields,help:base_search_fuzzy.field_trgm_index__lang
+msgid "You will need one index per installed language."
+msgstr ""
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última modificación en"

@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2017-01-14 04:21+0000\n"
 "PO-Revision-Date: 2022-02-01 20:33+0000\n"
 "Last-Translator: Rodrigo Macedo <rmsolucoeseminformatica@protonmail.com>\n"
-"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/"
-"teams/23907/pt_BR/)\n"
+"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/"
+"23907/pt_BR/)\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -77,9 +77,9 @@ msgid "Index Type"
 msgstr "Tipo de índice"
 
 #. module: base_search_fuzzy
-#: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index____last_update
-msgid "Last Modified on"
-msgstr "Última atualização em"
+#: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index__lang
+msgid "Language"
+msgstr ""
 
 #. module: base_search_fuzzy
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index__write_uid
@@ -112,7 +112,6 @@ msgstr ""
 #. module: base_search_fuzzy
 #. odoo-python
 #: code:addons/base_search_fuzzy/models/trgm_index.py:0
-#, python-format
 msgid "The pg_trgm extension does not exists or cannot be installed."
 msgstr "A extensão pg_trgm não existe ou não pode ser instalada."
 
@@ -127,6 +126,14 @@ msgstr "Índice Trigram"
 #: model:ir.model.fields,help:base_search_fuzzy.field_trgm_index__field_id
 msgid "You can either select a field of type \"text\" or \"char\"."
 msgstr "Você pode selecionar um campo do tipo \"texto\" ou \"caractere\"."
+
+#. module: base_search_fuzzy
+#: model:ir.model.fields,help:base_search_fuzzy.field_trgm_index__lang
+msgid "You will need one index per installed language."
+msgstr ""
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última atualização em"
 
 #~ msgid ""
 #~ "Cite from PostgreSQL documentation: \"As a rule of thumb, a GIN index is "
