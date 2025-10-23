@@ -382,20 +382,19 @@ store and manage vector into your Odoo database.</p>
 <ul class="simple">
 <li><a class="reference internal" href="#use-cases-context" id="toc-entry-1">Use Cases / Context</a></li>
 <li><a class="reference internal" href="#installation" id="toc-entry-2">Installation</a></li>
-<li><a class="reference internal" href="#configuration" id="toc-entry-3">Configuration</a></li>
-<li><a class="reference internal" href="#usage" id="toc-entry-4">Usage</a><ul>
-<li><a class="reference internal" href="#field-declaration" id="toc-entry-5">Field declaration</a></li>
-<li><a class="reference internal" href="#field-usage" id="toc-entry-6">Field usage</a></li>
-<li><a class="reference internal" href="#plain-sql-queries" id="toc-entry-7">Plain SQL queries</a></li>
+<li><a class="reference internal" href="#usage" id="toc-entry-3">Usage</a><ul>
+<li><a class="reference internal" href="#field-declaration" id="toc-entry-4">Field declaration</a></li>
+<li><a class="reference internal" href="#field-usage" id="toc-entry-5">Field usage</a></li>
+<li><a class="reference internal" href="#plain-sql-queries" id="toc-entry-6">Plain SQL queries</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#known-issues-roadmap" id="toc-entry-8">Known issues / Roadmap</a></li>
-<li><a class="reference internal" href="#bug-tracker" id="toc-entry-9">Bug Tracker</a></li>
-<li><a class="reference internal" href="#credits" id="toc-entry-10">Credits</a><ul>
-<li><a class="reference internal" href="#authors" id="toc-entry-11">Authors</a></li>
-<li><a class="reference internal" href="#contributors" id="toc-entry-12">Contributors</a></li>
-<li><a class="reference internal" href="#other-credits" id="toc-entry-13">Other credits</a></li>
-<li><a class="reference internal" href="#maintainers" id="toc-entry-14">Maintainers</a></li>
+<li><a class="reference internal" href="#known-issues-roadmap" id="toc-entry-7">Known issues / Roadmap</a></li>
+<li><a class="reference internal" href="#bug-tracker" id="toc-entry-8">Bug Tracker</a></li>
+<li><a class="reference internal" href="#credits" id="toc-entry-9">Credits</a><ul>
+<li><a class="reference internal" href="#authors" id="toc-entry-10">Authors</a></li>
+<li><a class="reference internal" href="#contributors" id="toc-entry-11">Contributors</a></li>
+<li><a class="reference internal" href="#other-credits" id="toc-entry-12">Other credits</a></li>
+<li><a class="reference internal" href="#maintainers" id="toc-entry-13">Maintainers</a></li>
 </ul>
 </li>
 </ul>
@@ -415,23 +414,8 @@ allows for efficient similarity comparisons.</p>
 <a class="reference external" href="https://github.com/pgvector/pgvector">pgvector</a> extension is
 installed and available in your PostgreSQL instance.</p>
 </div>
-<div class="section" id="configuration">
-<h2><a class="toc-backref" href="#toc-entry-3">Configuration</a></h2>
-<p>[ This file is not always required; it should explain <strong>how to configure
-the module before using it</strong>; it is aimed at users with administration
-privileges.</p>
-<p>Please be detailed on the path to configuration (eg: do you need to
-activate developer mode?), describe step by step configurations and the
-use of screenshots is strongly recommended.]</p>
-<p>To configure this module, you need to:</p>
-<ul class="simple">
-<li>Go to <em>App</em> &gt; Menu &gt; Menu item</li>
-<li>Activate boolean… &gt; save</li>
-<li>…</li>
-</ul>
-</div>
 <div class="section" id="usage">
-<h2><a class="toc-backref" href="#toc-entry-4">Usage</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-3">Usage</a></h2>
 <blockquote>
 <div class="line-block">
 <div class="line"><strong>⚠️ Warning</strong></div>
@@ -447,7 +431,7 @@ are not comparable with the default ‘==’ or ‘!=’ operators.</div>
 manage vector data in their Odoo database when they develop their own
 modules.</p>
 <div class="section" id="field-declaration">
-<h3><a class="toc-backref" href="#toc-entry-5">Field declaration</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-4">Field declaration</a></h3>
 <p>To declare a field of type vector, you can use the following syntax:</p>
 <pre class="code python literal-block">
 <span class="kn">from</span><span class="w"> </span><span class="nn">odoo.addons.field_vector.fields</span><span class="w"> </span><span class="kn">import</span> <span class="n">Vector</span><span class="w">
@@ -485,7 +469,7 @@ padded but if the vector is shorter than the specified dimensions an
 error will be raised.</p>
 </div>
 <div class="section" id="field-usage">
-<h3><a class="toc-backref" href="#toc-entry-6">Field usage</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-5">Field usage</a></h3>
 <p>The vector field can be used like any other field in Odoo. When
 accessing the field, it will always return an
 <tt class="docutils literal">odoo.addons.field_vector.fields.VectorValue</tt> object, which is a
@@ -518,7 +502,7 @@ database into the vector format.</p>
 </pre>
 </div>
 <div class="section" id="plain-sql-queries">
-<h3><a class="toc-backref" href="#toc-entry-7">Plain SQL queries</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-6">Plain SQL queries</a></h3>
 <p>When reading the field in plain SQL queries, the field will be returned
 as a <tt class="docutils literal">VectorValue</tt> object. You can use the <tt class="docutils literal">value</tt> property to get
 the value of the vector as a numpy array.</p>
@@ -539,7 +523,7 @@ or a list of values or a VectorValue object as the value of the field
 </div>
 </div>
 <div class="section" id="known-issues-roadmap">
-<h2><a class="toc-backref" href="#toc-entry-8">Known issues / Roadmap</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-7">Known issues / Roadmap</a></h2>
 <ul class="simple">
 <li>allows the use of specific operators into domain filters to search for
 similar vectors.</li>
@@ -547,7 +531,7 @@ similar vectors.</li>
 </ul>
 </div>
 <div class="section" id="bug-tracker">
-<h2><a class="toc-backref" href="#toc-entry-9">Bug Tracker</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-8">Bug Tracker</a></h2>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/server-tools/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
@@ -555,28 +539,28 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
-<h2><a class="toc-backref" href="#toc-entry-10">Credits</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-9">Credits</a></h2>
 <div class="section" id="authors">
-<h3><a class="toc-backref" href="#toc-entry-11">Authors</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-10">Authors</a></h3>
 <ul class="simple">
 <li>ACSONE SA/NV</li>
 </ul>
 </div>
 <div class="section" id="contributors">
-<h3><a class="toc-backref" href="#toc-entry-12">Contributors</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-11">Contributors</a></h3>
 <ul class="simple">
 <li>Laurent Mignon <a class="reference external" href="mailto:laurent.mignon&#64;acsone.eu">laurent.mignon&#64;acsone.eu</a> (<a class="reference external" href="https://www.acsone.eu">https://www.acsone.eu</a>)</li>
 </ul>
 </div>
 <div class="section" id="other-credits">
-<h3><a class="toc-backref" href="#toc-entry-13">Other credits</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-12">Other credits</a></h3>
 <p>The development of this module has been financially supported by:</p>
 <ul class="simple">
 <li><a class="reference external" href="https://www.alcyonbelux.be/">Alcyon Belux</a></li>
 </ul>
 </div>
 <div class="section" id="maintainers">
-<h3><a class="toc-backref" href="#toc-entry-14">Maintainers</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-13">Maintainers</a></h3>
 <p>This module is maintained by the OCA.</p>
 <a class="reference external image-reference" href="https://odoo-community.org">
 <img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" />
