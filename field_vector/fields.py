@@ -2,7 +2,6 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 from __future__ import annotations
 
-import re
 from operator import attrgetter
 
 import numpy as np
@@ -150,10 +149,15 @@ class Vector(fields.Field):
             "SELECT pg_typeof(%s)::text FROM %s LIMIT 1;", (AsIs(column), AsIs(table))
         )
         result = cr.fetchone()
-        if result and result[0]:
-            match = re.search(r"vector\((\d+)\)", result[0])
-            if match:
-                return int(match.group(1))
+        if result and result[0] == "vector":
+            cr.execute(
+                "SELECT vector_dims(%s) FROM %s"
+                " WHERE vector_dims(%s) IS NOT NULL LIMIT 1;",
+                (AsIs(column), AsIs(table), AsIs(column)),
+            )
+            result = cr.fetchone()
+            if result and result[0]:
+                return int(result[0])
         return None
 
     def update_db_column(self, model, column):
