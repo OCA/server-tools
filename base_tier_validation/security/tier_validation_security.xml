@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="0">
+    <record id="tier_definition_comp_rule" model="ir.rule">
+        <field name="name">Tier Definition multi-company</field>
+        <field name="model_id" ref="model_tier_definition" />
+        <field name="global" eval="True" />
+        <field name="domain_force">[('company_id', 'in', company_ids + [False])]</field>
+    </record>
+    <record id="tier_review_comp_rule" model="ir.rule">
+        <field name="name">Tier Review multi-company</field>
+        <field name="model_id" ref="model_tier_review" />
+        <field name="global" eval="True" />
+        <field name="domain_force">[('company_id', 'in', company_ids + [False])]</field>
+    </record>
+</odoo>

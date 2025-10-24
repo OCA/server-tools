@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2017-19 ForgeFlow S.L. (https://www.forgeflow.com)
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="tier_definition_view_tree" model="ir.ui.view">
+        <field name="name">tier.definition.list</field>
+        <field name="model">tier.definition</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="sequence" widget="handle" />
+                <field name="model_id" />
+                <field name="name" />
+                <field name="review_type" />
+                <field name="reviewer_id" />
+                <field name="reviewer_group_id" />
+                <field name="reviewer_field_id" />
+                <field name="notify_on_create" optional="show" />
+                <field name="notify_on_pending" optional="show" />
+                <field name="has_comment" optional="hide" />
+                <field
+                    name="company_id"
+                    groups="base.group_multi_company"
+                    optional="hide"
+                />
+                <field name="active" />
+            </list>
+        </field>
+    </record>
+    <record id="tier_definition_view_form" model="ir.ui.view">
+        <field name="name">tier.definition.form</field>
+        <field name="model">tier.definition</field>
+        <field name="arch" type="xml">
+            <form string="Tier Definition">
+                <sheet>
+                    <div class="o_form_label" name="button_box" />
+                    <widget
+                        name="web_ribbon"
+                        title="Archived"
+                        bg_color="bg-danger"
+                        invisible="active"
+                    />
+                    <div class="oe_title">
+                        <span class="oe_edit_only">Name</span>
+                        <h1>
+                            <field
+                                name="name"
+                                required="1"
+                                placeholder="e.g. Tier Validation for..."
+                            />
+                        </h1>
+                    </div>
+                    <group>
+                        <group name="left">
+                            <field name="model_id" options="{'no_create': True}" />
+                            <field name="model" invisible="1" />
+                            <field name="review_type" />
+                            <field name="allow_write_for_reviewer" />
+                            <field
+                                name="reviewer_id"
+                                invisible="review_type != 'individual'"
+                            />
+                            <field
+                                name="reviewer_group_id"
+                                invisible="review_type != 'group'"
+                            />
+                            <field
+                                name="reviewer_field_id"
+                                invisible="review_type != 'field'"
+                                options="{'no_create': True}"
+                            />
+                        </group>
+                        <group name="right">
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                                options="{'no_create': True}"
+                            />
+                            <field name="sequence" />
+                            <field name="approve_sequence" />
+                            <label
+                                for="approve_sequence_bypass"
+                                class="o_form_label"
+                                invisible="not approve_sequence"
+                            />
+                            <div
+                                name="approve_sequence_bypass_div"
+                                class="o_wrap_field d-flex d-sm-contents flex-column mb-3 mb-sm-0"
+                                invisible="not approve_sequence"
+                            >
+                                <field name="approve_sequence_bypass" />
+                                <span
+                                >Bypass, if previous tier was validated by same reviewer</span>
+                            </div>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="apply" string="Apply On">
+                            <group name="bottom">
+                                <field name="definition_type" />
+                                <field
+                                    name="definition_domain"
+                                    widget="domain"
+                                    options="{'model': 'model'}"
+                                    invisible="definition_type != 'domain'"
+                                />
+                            </group>
+                        </page>
+                        <page name="options" string="More Options">
+                            <group name="more_option">
+                                <group name="notify">
+                                    <field name="notify_on_create" />
+                                    <field name="notify_on_pending" />
+                                    <field name="notify_on_accepted" />
+                                    <field name="notify_on_rejected" />
+                                    <field name="notify_on_restarted" />
+                                    <field name="has_comment" />
+                                    <field name="notify_reminder_delay" />
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="tier_definition_view_search" model="ir.ui.view">
+        <field name="name">tier.definition.search</field>
+        <field name="model">tier.definition</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="model_id" />
+                <field name="reviewer_id" />
+                <field name="reviewer_group_id" />
+                <field name="active" />
+                <separator />
+                <filter
+                    string="All"
+                    name="all"
+                    domain="[('active', 'in', (False, True))]"
+                />
+                <group>
+                    <filter
+                        string="Model"
+                        name="model_id"
+                        domain="[]"
+                        context="{'group_by':'model_id'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="tier_definition_action" model="ir.actions.act_window">
+        <field name="name">Tier Definition</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">tier.definition</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_all': 1}</field>
+    </record>
+    <menuitem
+        id="menu_tier_confirmation"
+        name="Tier Validations"
+        parent="base.menu_custom"
+    />
+    <menuitem
+        id="menu_tier_definition"
+        parent="menu_tier_confirmation"
+        action="tier_definition_action"
+        sequence="10"
+    />
+</odoo>

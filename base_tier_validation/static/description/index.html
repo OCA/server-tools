@@ -1,0 +1,657 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils: https://docutils.sourceforge.io/" />
+<title>README.rst</title>
+<style type="text/css">
+
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id: html4css1.css 9511 2024-01-13 09:50:07Z milde $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+Despite the name, some widely supported CSS2 features are used.
+
+See https://docutils.sourceforge.io/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+.subscript {
+  vertical-align: sub;
+  font-size: smaller }
+
+.superscript {
+  vertical-align: super;
+  font-size: smaller }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+object[type="image/svg+xml"], object[type="application/x-shockwave-flash"] {
+  overflow: hidden;
+}
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title, .code .error {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left, .figure.align-left, object.align-left, table.align-left {
+  clear: left ;
+  float: left ;
+  margin-right: 1em }
+
+img.align-right, .figure.align-right, object.align-right, table.align-right {
+  clear: right ;
+  float: right ;
+  margin-left: 1em }
+
+img.align-center, .figure.align-center, object.align-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+table.align-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.align-left {
+  text-align: left }
+
+.align-center {
+  clear: both ;
+  text-align: center }
+
+.align-right {
+  text-align: right }
+
+/* reset inner alignment in figures */
+div.align-right {
+  text-align: inherit }
+
+/* div.align-center * { */
+/*   text-align: left } */
+
+.align-top    {
+  vertical-align: top }
+
+.align-middle {
+  vertical-align: middle }
+
+.align-bottom {
+  vertical-align: bottom }
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font: inherit }
+
+pre.literal-block, pre.doctest-block, pre.math, pre.code {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+pre.code .ln { color: gray; } /* line numbers */
+pre.code, code { background-color: #eeeeee }
+pre.code .comment, code .comment { color: #5C6576 }
+pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
+pre.code .literal.string, code .literal.string { color: #0C5404 }
+pre.code .name.builtin, code .name.builtin { color: #352B84 }
+pre.code .deleted, code .deleted { background-color: #DEB0A1}
+pre.code .inserted, code .inserted { background-color: #A3D289}
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic, pre.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+/* "booktabs" style (no vertical lines) */
+table.docutils.booktabs {
+  border: 0px;
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+  border-collapse: collapse;
+}
+table.docutils.booktabs * {
+  border: 0px;
+}
+table.docutils.booktabs th {
+  border-bottom: thin solid;
+  text-align: left;
+}
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+</head>
+<body>
+<div class="document">
+
+
+<a class="reference external image-reference" href="https://odoo-community.org/get-involved?utm_source=readme">
+<img alt="Odoo Community Association" src="https://odoo-community.org/readme-banner-image" />
+</a>
+<div class="section" id="base-tier-validation">
+<h1>Base Tier Validation</h1>
+<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!! This file is generated by oca-gen-addon-readme !!
+!! changes will be overwritten.                   !!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!! source digest: sha256:6d11975caf64405a5a43026ff242109052744ce42ab068f3e50f93dd016d1208
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Mature" src="https://img.shields.io/badge/maturity-Mature-brightgreen.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/license-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/server-tools/tree/19.0/base_tier_validation"><img alt="OCA/server-tools" src="https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/server-tools-19-0/server-tools-19-0-base_tier_validation"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/server-tools&amp;target_branch=19.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
+<p>Validating some operations is a common need across different areas in a
+company and sometimes it also involves several people and stages in the
+process. With this module you will be able to define your custom
+validation workflows for any Odoo document.</p>
+<p>This module does not provide a functionality by itself but an abstract
+model to implement a validation process based on tiers on other models
+(e.g. purchase orders, sales orders, budgets, expenses…).</p>
+<p><strong>Note:</strong> To be able to use this module in a new model you will need
+some development.</p>
+<p>See
+<a class="reference external" href="https://github.com/OCA/purchase-workflow">purchase_tier_validation</a>
+as an example of implementation.</p>
+<p>Additionally, if your state field is a (stored) computed field, you need
+to set <tt class="docutils literal">_tier_validation_state_field_is_computed</tt> to <tt class="docutils literal">True</tt> in your
+model Python file, and you will want to add the dependent fields of the
+compute method in <tt class="docutils literal">_get_after_validation_exceptions</tt> and
+<tt class="docutils literal">_get_under_validation_exceptions</tt>.</p>
+<p><strong>Table of contents</strong></p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#configuration" id="toc-entry-1">Configuration</a></li>
+<li><a class="reference internal" href="#known-issues-roadmap" id="toc-entry-2">Known issues / Roadmap</a></li>
+<li><a class="reference internal" href="#changelog" id="toc-entry-3">Changelog</a><ul>
+<li><a class="reference internal" href="#section-1" id="toc-entry-4">17.0.1.0.0 (2024-01-10)</a></li>
+<li><a class="reference internal" href="#section-2" id="toc-entry-5">14.0.1.0.0 (2020-11-19)</a></li>
+<li><a class="reference internal" href="#section-3" id="toc-entry-6">13.0.1.2.2 (2020-08-30)</a></li>
+<li><a class="reference internal" href="#section-4" id="toc-entry-7">12.0.3.3.1 (2019-12-02)</a></li>
+<li><a class="reference internal" href="#section-5" id="toc-entry-8">12.0.3.3.0 (2019-11-27)</a></li>
+<li><a class="reference internal" href="#section-6" id="toc-entry-9">12.0.3.2.1 (2019-11-26)</a></li>
+<li><a class="reference internal" href="#section-7" id="toc-entry-10">12.0.3.2.0 (2019-11-25)</a></li>
+<li><a class="reference internal" href="#section-8" id="toc-entry-11">12.0.3.1.0 (2019-07-08)</a></li>
+<li><a class="reference internal" href="#section-9" id="toc-entry-12">12.0.3.0.0 (2019-12-02)</a></li>
+<li><a class="reference internal" href="#section-10" id="toc-entry-13">12.0.2.1.0 (2019-05-29)</a></li>
+<li><a class="reference internal" href="#section-11" id="toc-entry-14">12.0.2.0.0 (2019-05-28)</a></li>
+<li><a class="reference internal" href="#section-12" id="toc-entry-15">12.0.1.0.0 (2019-02-18)</a></li>
+<li><a class="reference internal" href="#section-13" id="toc-entry-16">11.0.1.0.0 (2018-05-09)</a></li>
+<li><a class="reference internal" href="#section-14" id="toc-entry-17">10.0.1.0.0 (2018-03-26)</a></li>
+<li><a class="reference internal" href="#section-15" id="toc-entry-18">9.0.1.0.0 (2017-12-02)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#bug-tracker" id="toc-entry-19">Bug Tracker</a></li>
+<li><a class="reference internal" href="#credits" id="toc-entry-20">Credits</a><ul>
+<li><a class="reference internal" href="#authors" id="toc-entry-21">Authors</a></li>
+<li><a class="reference internal" href="#contributors" id="toc-entry-22">Contributors</a></li>
+<li><a class="reference internal" href="#other-credits" id="toc-entry-23">Other credits</a></li>
+<li><a class="reference internal" href="#maintainers" id="toc-entry-24">Maintainers</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="configuration">
+<h2><a class="toc-backref" href="#toc-entry-1">Configuration</a></h2>
+<p>To configure this module, you need to:</p>
+<ol class="arabic simple">
+<li>Go to <em>Settings &gt; Technical &gt; Tier Validations &gt; Tier Definition</em>.</li>
+<li>Create as many tiers as you want for any model having tier validation
+functionality.</li>
+</ol>
+<p><strong>Note:</strong></p>
+<ul class="simple">
+<li>If check <em>Notify Reviewers on Creation</em>, all possible reviewers will
+be notified by email when this definition is triggered.</li>
+<li>If check <em>Notify reviewers on reaching pending</em> if you want to send a
+notification when pending status is reached. This is usefull in a
+approve by sequence scenario to only notify reviewers when it is their
+turn in the sequence.</li>
+<li>If check <em>Comment</em>, reviewers can comment after click Validate or
+Reject.</li>
+<li>If check <em>Approve by sequence</em>, reviewers is forced to review by
+specified sequence.</li>
+</ul>
+<p>To configure Tier Validation Exceptions, you need to:</p>
+<ol class="arabic simple">
+<li>Go to <em>Settings &gt; Technical &gt; Tier Validations &gt; Tier Validation
+Exceptions</em>.</li>
+<li>Create as many tiers validation exceptions as you want for any model
+having tier validation functionality.</li>
+<li>Add desired fields to be checked in <em>Fields</em>.</li>
+<li>Add desired groups that can use this Exception in <em>Groups</em>.</li>
+<li>You must check <em>Write under Validation</em>, <em>Write after Validation</em> or
+both.</li>
+</ol>
+<p><strong>Note:</strong></p>
+<ul class="simple">
+<li>If you don’t create any exception, the Validated record will be
+readonly and cannot be modified.</li>
+<li>If check <em>Write under Validation</em>, records will be able to be modified
+only in the defined fields when the Validation process is ongoing.</li>
+<li>If check <em>Write after Validation</em>, records will be able to be modified
+only in the defined fields when the Validation process is finished.</li>
+<li>If check <em>Write after Validation</em> and <em>Write under Validation</em>,
+records will be able to be modified defined fields always.</li>
+</ul>
+</div>
+<div class="section" id="known-issues-roadmap">
+<h2><a class="toc-backref" href="#toc-entry-2">Known issues / Roadmap</a></h2>
+<p>This is the list of known issues for this module. Any proposal for
+improvement will be very valuable.</p>
+<ul>
+<li><p class="first"><strong>Issue:</strong></p>
+<p>When using approve_sequence option in any tier.definition there can be
+inconsistencies in the systray notifications.</p>
+<p><strong>Description:</strong></p>
+<p>Field can_review in tier.review is used to filter out, in the systray
+notifications, the reviews a user can approve. This can_review field
+is updated <strong>in the database</strong> in method review_user_count, this can
+make it very inconsistent for databases with a lot of users and
+recurring updates that can change the expected behavior.</p>
+</li>
+<li><p class="first"><strong>Migration to 15.0:</strong></p>
+<p>The parameter _tier_validation_manual_config will become False, on
+14.0, the default value is True, as the change is applied after the
+migration. In order to use the new behavior we need to modify the
+value on our expected model.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="changelog">
+<h2><a class="toc-backref" href="#toc-entry-3">Changelog</a></h2>
+<div class="section" id="section-1">
+<h3><a class="toc-backref" href="#toc-entry-4">17.0.1.0.0 (2024-01-10)</a></h3>
+<p>Migrated to Odoo 17. Merged module with tier_validation_waiting. To
+support sending messages in a validation sequence when it is their turn
+to validate.</p>
+</div>
+<div class="section" id="section-2">
+<h3><a class="toc-backref" href="#toc-entry-5">14.0.1.0.0 (2020-11-19)</a></h3>
+<p>Migrated to Odoo 14.</p>
+</div>
+<div class="section" id="section-3">
+<h3><a class="toc-backref" href="#toc-entry-6">13.0.1.2.2 (2020-08-30)</a></h3>
+<p>Fixes:</p>
+<ul class="simple">
+<li>When using approve_sequence option in any tier.definition there can be
+inconsistencies in the systray notifications</li>
+<li>When using approve_sequence, still not approve only the needed
+sequence, but also other sequence for the same approver</li>
+</ul>
+</div>
+<div class="section" id="section-4">
+<h3><a class="toc-backref" href="#toc-entry-7">12.0.3.3.1 (2019-12-02)</a></h3>
+<p>Fixes:</p>
+<ul class="simple">
+<li>Show comment on Reviews Table.</li>
+<li>Edit notification with approve_sequence.</li>
+</ul>
+</div>
+<div class="section" id="section-5">
+<h3><a class="toc-backref" href="#toc-entry-8">12.0.3.3.0 (2019-11-27)</a></h3>
+<p>New features:</p>
+<ul class="simple">
+<li>Add comment on Reviews Table.</li>
+<li>Approve by sequence.</li>
+</ul>
+</div>
+<div class="section" id="section-6">
+<h3><a class="toc-backref" href="#toc-entry-9">12.0.3.2.1 (2019-11-26)</a></h3>
+<p>Fixes:</p>
+<ul class="simple">
+<li>Remove message_subscribe_users</li>
+</ul>
+</div>
+<div class="section" id="section-7">
+<h3><a class="toc-backref" href="#toc-entry-10">12.0.3.2.0 (2019-11-25)</a></h3>
+<p>New features:</p>
+<ul class="simple">
+<li>Notify reviewers</li>
+</ul>
+</div>
+<div class="section" id="section-8">
+<h3><a class="toc-backref" href="#toc-entry-11">12.0.3.1.0 (2019-07-08)</a></h3>
+<p>Fixes:</p>
+<ul class="simple">
+<li>Singleton error</li>
+</ul>
+</div>
+<div class="section" id="section-9">
+<h3><a class="toc-backref" href="#toc-entry-12">12.0.3.0.0 (2019-12-02)</a></h3>
+<p>Fixes:</p>
+<ul class="simple">
+<li>Edit Reviews Table</li>
+</ul>
+</div>
+<div class="section" id="section-10">
+<h3><a class="toc-backref" href="#toc-entry-13">12.0.2.1.0 (2019-05-29)</a></h3>
+<p>Fixes:</p>
+<ul class="simple">
+<li>Edit drop-down style width and position</li>
+</ul>
+</div>
+<div class="section" id="section-11">
+<h3><a class="toc-backref" href="#toc-entry-14">12.0.2.0.0 (2019-05-28)</a></h3>
+<p>New features:</p>
+<ul class="simple">
+<li>Pass parameters as functions.</li>
+<li>Add Systray.</li>
+</ul>
+</div>
+<div class="section" id="section-12">
+<h3><a class="toc-backref" href="#toc-entry-15">12.0.1.0.0 (2019-02-18)</a></h3>
+<p>Migrated to Odoo 12.</p>
+</div>
+<div class="section" id="section-13">
+<h3><a class="toc-backref" href="#toc-entry-16">11.0.1.0.0 (2018-05-09)</a></h3>
+<p>Migrated to Odoo 11.</p>
+</div>
+<div class="section" id="section-14">
+<h3><a class="toc-backref" href="#toc-entry-17">10.0.1.0.0 (2018-03-26)</a></h3>
+<p>Migrated to Odoo 10.</p>
+</div>
+<div class="section" id="section-15">
+<h3><a class="toc-backref" href="#toc-entry-18">9.0.1.0.0 (2017-12-02)</a></h3>
+<p>First version.</p>
+</div>
+</div>
+<div class="section" id="bug-tracker">
+<h2><a class="toc-backref" href="#toc-entry-19">Bug Tracker</a></h2>
+<p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/server-tools/issues">GitHub Issues</a>.
+In case of trouble, please check there if your issue has already been reported.
+If you spotted it first, help us to smash it by providing a detailed and welcomed
+<a class="reference external" href="https://github.com/OCA/server-tools/issues/new?body=module:%20base_tier_validation%0Aversion:%2019.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+<p>Do not contact contributors directly about support or help with technical issues.</p>
+</div>
+<div class="section" id="credits">
+<h2><a class="toc-backref" href="#toc-entry-20">Credits</a></h2>
+<div class="section" id="authors">
+<h3><a class="toc-backref" href="#toc-entry-21">Authors</a></h3>
+<ul class="simple">
+<li>ForgeFlow</li>
+</ul>
+</div>
+<div class="section" id="contributors">
+<h3><a class="toc-backref" href="#toc-entry-22">Contributors</a></h3>
+<ul class="simple">
+<li>Lois Rilo &lt;<a class="reference external" href="mailto:lois.rilo&#64;forgeflow.com">lois.rilo&#64;forgeflow.com</a>&gt;</li>
+<li>Naglis Jonaitis &lt;<a class="reference external" href="mailto:naglis&#64;versada.eu">naglis&#64;versada.eu</a>&gt;</li>
+<li>Adrià Gil Sorribes &lt;<a class="reference external" href="mailto:adria.gil&#64;forgeflow.com">adria.gil&#64;forgeflow.com</a>&gt;</li>
+<li>Pimolnat Suntian &lt;<a class="reference external" href="mailto:pimolnats&#64;ecosoft.co.th">pimolnats&#64;ecosoft.co.th</a>&gt;</li>
+<li>Pedro Gonzalez &lt;<a class="reference external" href="mailto:pedro.gonzalez&#64;pesol.es">pedro.gonzalez&#64;pesol.es</a>&gt;</li>
+<li>Kitti U. &lt;<a class="reference external" href="mailto:kittiu&#64;ecosoft.co.th">kittiu&#64;ecosoft.co.th</a>&gt;</li>
+<li>Saran Lim. &lt;<a class="reference external" href="mailto:saranl&#64;ecosoft.co.th">saranl&#64;ecosoft.co.th</a>&gt;</li>
+<li>Carlos Lopez &lt;<a class="reference external" href="mailto:celm1990&#64;gmail.com">celm1990&#64;gmail.com</a>&gt;</li>
+<li>Javier Colmeiro &lt;<a class="reference external" href="mailto:javier.colmeiro&#64;braintec.com">javier.colmeiro&#64;braintec.com</a>&gt;</li>
+<li>bosd</li>
+<li>Evan Soh &lt;<a class="reference external" href="mailto:evan.soh&#64;omnisoftsolution.com">evan.soh&#64;omnisoftsolution.com</a>&gt;</li>
+<li>Manuel Regidor &lt;<a class="reference external" href="mailto:manuel.regidor&#64;sygel.es">manuel.regidor&#64;sygel.es</a>&gt;</li>
+<li>Eduardo de Miguel &lt;<a class="reference external" href="mailto:edu&#64;moduon.team">edu&#64;moduon.team</a>&gt;</li>
+<li><a class="reference external" href="https://xcg-consulting.fr">XCG Consulting</a>:<ul>
+<li>Houzéfa Abbasbhay</li>
+</ul>
+</li>
+<li>Stefan Rijnhart &lt;<a class="reference external" href="mailto:stefan&#64;opener.amsterdam">stefan&#64;opener.amsterdam</a>&gt;</li>
+<li>Kevin Khao &lt;<a class="reference external" href="mailto:kevinkhao&#64;gmail.com">kevinkhao&#64;gmail.com</a>&gt;</li>
+<li>Do Anh Duy &lt;<a class="reference external" href="mailto:duyda&#64;trobz.com">duyda&#64;trobz.com</a>&gt;</li>
+</ul>
+</div>
+<div class="section" id="other-credits">
+<h3><a class="toc-backref" href="#toc-entry-23">Other credits</a></h3>
+<p>The migration of this module from 17.0 to 18.0 was financially supported
+by Camptocamp.</p>
+</div>
+<div class="section" id="maintainers">
+<h3><a class="toc-backref" href="#toc-entry-24">Maintainers</a></h3>
+<p>This module is maintained by the OCA.</p>
+<a class="reference external image-reference" href="https://odoo-community.org">
+<img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" />
+</a>
+<p>OCA, or the Odoo Community Association, is a nonprofit organization whose
+mission is to support the collaborative development of Odoo features and
+promote its widespread use.</p>
+<p>Current <a class="reference external" href="https://odoo-community.org/page/maintainer-role">maintainer</a>:</p>
+<p><a class="reference external image-reference" href="https://github.com/LoisRForgeFlow"><img alt="LoisRForgeFlow" src="https://github.com/LoisRForgeFlow.png?size=40px" /></a></p>
+<p>This module is part of the <a class="reference external" href="https://github.com/OCA/server-tools/tree/19.0/base_tier_validation">OCA/server-tools</a> project on GitHub.</p>
+<p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

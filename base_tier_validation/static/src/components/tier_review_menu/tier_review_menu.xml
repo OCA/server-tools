@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+
+<t t-name="base_tier_validation.TierReviewMenu">
+        <Dropdown
+            position="'bottom-end'"
+            state="dropdown"
+            beforeOpen.bind="fetchSystrayReviewer"
+            menuClass="discussSystray.menuClass"
+        >
+            <button>
+                <i
+                    class="fa fa-lg fa-pencil-square-o"
+                    role="img"
+                    aria-label="Reviews"
+                />
+                <span
+                    t-if="store.tierReviewCounter"
+                    class="o-mail-ActivityMenu-counter badge rounded-pill"
+                >
+                    <t t-out="store.tierReviewCounter" />
+                </span>
+            </button>
+            <t t-set-slot="content">
+                <div t-att-class="`${discussSystray.contentClass} o-mail-ActivityMenu`">
+                    <div
+                        t-if="store.tierReviewCounter === 0"
+                        class="o-mail-ActivityMenu-empty align-items-center text-muted p-2 opacity-50 d-flex justify-content-center"
+                    >
+                        <span>No reviews to do.</span>
+                    </div>
+                    <div
+                        class="d-flex flex-column list-group-flush"
+                        name="reviewGroups"
+                    >
+                        <t
+                            t-foreach="store.tierReviewGroups"
+                            t-as="review"
+                            t-key="review_index"
+                            name="reviewGroupLoop"
+                        >
+                            <div
+                                class="o-mail-ActivityGroup list-group-item list-group-item-action d-flex p-2 cursor-pointer"
+                                t-att-data-model_name="review.model"
+                                t-on-click="() => this.openReviewGroup(review)"
+                            >
+                                <img alt="Review" t-att-src="review.icon" />
+                                <div class="flex-grow-1 overflow-hidden">
+                                    <div
+                                        class="d-flex px-2"
+                                        name="reviewTitle"
+                                        t-out="review.name"
+                                    />
+                                    <div class="d-flex">
+                                        <span
+                                            t-attf-class="#{review.pending_count ? 'btn btn-link' : 'text-muted'} py-0 px-2 text-truncate"
+                                            t-on-click.stop="() => this.openReviewGroup(review)"
+                                        >
+                                        <t t-out="review.pending_count" /> Pending
+                                    </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+                </div>
+            </t>
+        </Dropdown>
+    </t>
+
+</templates>

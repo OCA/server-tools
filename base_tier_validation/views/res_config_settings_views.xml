@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Uncomment me when related modules are migrated-->
+
+    <record id="res_config_settings_view_form_budget" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.budget</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="25" />
+        <field name="inherit_id" ref="base_setup.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='companies']" position="after">
+                <div id="base_tier_validation">
+                    <block
+                        title="Tier Validation"
+                        name="base_tier_validation_option_setting_container"
+                    >
+                        <setting id="module_base_tier_validation_formula">
+                            <field name="module_base_tier_validation_formula" />
+                            <div class="text-muted">
+                                Option to use python formula to get reviewers and find documents
+                            </div>
+                        </setting>
+                        <!-- <setting
+                            id="module_base_tier_validation_server_action"
+                        >
+                            <field
+                                name="module_base_tier_validation_server_action"
+                            />
+                            <div class="text-muted">
+                                Option to trigger server actions on completion of tier reviews
+                            </div>
+                        </setting> -->
+                        <!-- <setting
+                            id="module_base_tier_validation_forward"
+                        >
+                            <field name="module_base_tier_validation_forward"/>
+                            <div class="text-muted">
+                                Option to forward a tier validation to other reviewer, and backward
+                            </div>
+                        </setting> -->
+                        <!-- <setting
+                            id="module_base_tier_validation_report"
+                        >
+                            <field name="module_base_tier_validation_report" />
+                            <div class="text-muted">
+                                More reports about tier validations, i.e., summary of all my reviews
+                            </div>
+                        </setting> -->
+                    </block>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

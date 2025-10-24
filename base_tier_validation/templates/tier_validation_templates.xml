@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="tier_validation_buttons">
+        <div>
+            <field name="validation_status" invisible="1" />
+            <button
+                name="request_validation"
+                string="Request Validation"
+                t-attf-invisible="not need_validation or validation_status == 'rejected' or hide_reviews"
+                type="object"
+            />
+            <button
+                name="restart_validation"
+                string="Restart Validation"
+                invisible="not review_ids or hide_reviews"
+                type="object"
+            />
+        </div>
+    </template>
+    <template id="tier_validation_label">
+        <div>
+            <div
+                class="alert alert-warning mb-0"
+                role="alert"
+                t-attf-invisible="validation_status == 'validated' or hide_reviews or validation_status == 'rejected' or not review_ids"
+            >
+                <p class="mb-1">
+                <i class="fa fa-lg fa-info-circle" />
+                This Record needs to be
+                validated.
+                <button
+                    name="validate_tier"
+                    string="Validate"
+                    invisible="not can_review"
+                    type="object"
+                    class="btn-icon me-1 btn-success"
+                    icon="fa-thumbs-up"
+                />
+                <button
+                    name="reject_tier"
+                    string="Reject"
+                    invisible="not can_review"
+                    type="object"
+                    class="btn-icon btn-danger"
+                    icon="fa-thumbs-down"
+                />
+                <br /><field name="next_review" readonly="1" />
+            </p>
+            </div>
+            <div
+                class="alert alert-success mb-0"
+                role="alert"
+                t-attf-invisible="validation_status != 'validated' or hide_reviews or not review_ids"
+            >
+                <p class="mb-1">
+                <i class="fa fa-lg fa-thumbs-up" />
+                Operation has been
+                <b>validated</b>
+                !
+            </p>
+            </div>
+            <div
+                class="alert alert-danger mb-0"
+                role="alert"
+                t-attf-invisible="validation_status != 'rejected' or hide_reviews or not review_ids"
+            >
+                <p class="mb-1">
+                <i class="fa fa-lg fa-thumbs-down" />
+                Operation has been
+                <b>rejected</b>
+                .
+            </p>
+            </div>
+        </div>
+    </template>
+    <template id="tier_validation_reviews">
+        <field
+            name="review_ids"
+            widget="tier_validation"
+            invisible="not review_ids"
+            class="w-100 mt-1"
+        >
+            <list>
+                <field name="name" />
+                <field name="sequence" />
+                <field name="requested_by" />
+                <field name="status" />
+                <field name="display_status" />
+                <field name="todo_by" />
+                <field name="done_by" />
+                <field name="reviewed_date" />
+                <field name="reviewed_formated_date" />
+                <field name="comment" />
+            </list>
+        </field>
+    </template>
+</odoo>

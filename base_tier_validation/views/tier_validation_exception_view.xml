@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 Moduon Team (https://www.moduon.team)
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="tier_validation_exception_tree" model="ir.ui.view">
+        <field name="name">tier.validation.exception.list</field>
+        <field name="model">tier.validation.exception</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name" />
+                <field name="model_id" />
+                <field name="field_ids" widget="many2many_tags" optional="show" />
+                <field name="company_id" groups="base.group_multi_company" />
+                <field name="allowed_to_write_under_validation" />
+                <field name="allowed_to_write_after_validation" />
+                <field name="group_ids" widget="many2many_tags" />
+            </list>
+        </field>
+    </record>
+
+    <record id="tier_validation_exception_form" model="ir.ui.view">
+        <field name="name">tier.validation.exception.form</field>
+        <field name="model">tier.validation.exception</field>
+        <field name="arch" type="xml">
+            <form string="Tier Validation Exception">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" />
+                        <h1>
+                            <field name="name" nolabel="1" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group name="left">
+                            <field
+                                name="model_id"
+                                options="{'no_create': True, 'no_open': True}"
+                            />
+                            <field
+                                name="field_ids"
+                                widget="many2many_tags"
+                                options="{'no_create': True}"
+                            />
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                            />
+                        </group>
+                        <group name="right">
+                            <field name="group_ids" widget="many2many_tags" />
+                            <field name="allowed_to_write_under_validation" />
+                            <field name="allowed_to_write_after_validation" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="tier_validation_exception_search" model="ir.ui.view">
+        <field name="name">tier.validation.exception.search</field>
+        <field name="model">tier.validation.exception</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="model_id" />
+                <field name="field_ids" />
+                <field name="company_id" groups="base.group_multi_company" />
+                <field name="group_ids" />
+                <separator />
+                <filter
+                    string="Write under validation"
+                    name="flt_allowed_to_write_under_validation_true"
+                    domain="[('allowed_to_write_under_validation', '=', True)]"
+                />
+                <filter
+                    string="Write after validation"
+                    name="flt_allowed_to_write_after_validation_true"
+                    domain="[('allowed_to_write_after_validation', '=', True)]"
+                />
+                <group>
+                    <filter
+                        string="Model"
+                        name="grp_model"
+                        domain="[]"
+                        context="{'group_by': 'model_id'}"
+                    />
+                    <filter
+                        string="Company"
+                        name="grp_company"
+                        domain="[]"
+                        context="{'group_by': 'company_id'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="tier_validation_exception_action" model="ir.actions.act_window">
+        <field name="name">Tier Validation Exception</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">tier.validation.exception</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p
+                class="o_view_nocontent_smiling_face"
+            >Create a new Validation Exception!</p>
+            <p
+            >Once created, you can decide which fields you want to be editable when the record:</p>
+            <ul>
+                <li>It's in the validation process</li>
+                <li>It's fully validated</li>
+            </ul>
+        </field>
+    </record>
+
+    <menuitem
+        id="menu_tier_validation_exception"
+        parent="menu_tier_confirmation"
+        action="tier_validation_exception_action"
+        sequence="20"
+    />
+</odoo>

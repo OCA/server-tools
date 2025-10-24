@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates>
+    <t t-name="base_tier_validation.Collapse">
+        <div class="o_form_sheet panel-group">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a
+                            class="o_info_btn"
+                            data-toggle="state.collapse"
+                            href="#"
+                            data-target="#collapse1"
+                            t-on-click="onToggleCollapse"
+                        >
+                            Reviews
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapse1" class="panel-collapse collapse active">
+                    <div class="panel-body o_review">
+                        <table class="oe_mt32 table table-condensed">
+                            <thead>
+                                <tr>
+                                    <th
+                                        name="th_sequence"
+                                        class="text-center"
+                                    >Sequence</th>
+                                    <th
+                                        name="th_requested_by"
+                                        class="text-start"
+                                    >Requested by</th>
+                                    <th name="th_name" class="text-end">Description</th>
+                                    <th
+                                        name="th_display_status"
+                                        class="text-end"
+                                    >Status</th>
+                                    <th name="th_todo_by" class="text-end">Todo by</th>
+                                    <th name="th_done_by" class="text-end">Done by</th>
+                                    <th
+                                        name="th_reviewed_date"
+                                        class="text-end"
+                                    >Validation Date</th>
+                                    <th name="th_comment" class="text-end">Comment</th>
+                                </tr>
+                            </thead>
+                            <tbody class="sale_tbody">
+                                <t
+                                    t-foreach="_getReviewData()"
+                                    t-as="review"
+                                    t-key="review.sequence"
+                                >
+                                    <t
+                                        t-if="review.status == 'waiting'"
+                                        t-set="status_class"
+                                        t-value="'text-muted'"
+                                    />
+                                    <t
+                                        t-if="review.status == 'pending'"
+                                        t-set="status_class"
+                                        t-value=""
+                                    />
+                                    <t
+                                        t-if="review.status == 'approved'"
+                                        t-set="status_class"
+                                        t-value="'alert alert-success'"
+                                    />
+                                    <t
+                                        t-if="review.status == 'rejected'"
+                                        t-set="status_class"
+                                        t-value="'alert alert-danger'"
+                                    />
+                                    <tr t-att-class="status_class">
+                                        <td name="td_sequence" class="text-center">
+                                            <span t-out="review.sequence" />
+                                        </td>
+                                        <td name="td_requested_by" class="text-start">
+                                            <span t-out="review.requested_by_name" />
+                                        </td>
+                                        <td name="td_name" class="text-end">
+                                            <span t-out="review.name" />
+                                        </td>
+                                        <td name="td_display_status" class="text-end">
+                                            <span t-out="review.display_status" />
+                                        </td>
+                                        <td name="td_todo_by" class="text-end">
+                                            <span t-out="review.todo_by" />
+                                        </td>
+                                        <td name="td_done_by" class="text-end">
+                                            <span t-out="review.done_by_name" />
+                                        </td>
+                                        <td name="td_reviewed_date" class="text-end">
+                                            <t t-if="review.reviewed_formated_date">
+                                                <span
+                                                    t-out="review.reviewed_formated_date"
+                                                />
+                                            </t>
+                                        </td>
+                                        <td name="td_comment" class="text-start">
+                                            <t t-if="review.comment">
+                                                <span t-out="review.comment" />
+                                            </t>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

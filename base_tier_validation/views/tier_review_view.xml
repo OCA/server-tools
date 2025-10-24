@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2017-19 ForgeFlow S.L. (https://www.forgeflow.com)
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="tier_review_view_tree" model="ir.ui.view">
+        <field name="name">tier.review.list</field>
+        <field name="model">tier.review</field>
+        <field name="arch" type="xml">
+            <list
+                decoration-danger="status=='rejected'"
+                decoration-success="status=='approved'"
+            >
+                <field name="sequence" />
+                <field name="requested_by" />
+                <field name="review_type" />
+                <field name="name" />
+                <field name="status" />
+                <field name="todo_by" />
+                <field name="done_by" />
+                <field name="reviewed_date" />
+                <field name="comment" />
+            </list>
+        </field>
+    </record>
+</odoo>
