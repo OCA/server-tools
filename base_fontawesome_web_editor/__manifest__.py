@@ -5,7 +5,7 @@
     "name": "Base Fontawesome Web Editor",
     "summary": """Integration between base_fontawesome and web_editor """
     """for FontAwesome >= 6.7.2 support.""",
-    "version": "17.0.1.0.1",
+    "version": "18.0.1.0.0",
     "license": "LGPL-3",
     "website": "https://github.com/OCA/server-tools",
     "author": "Heligràfics Fotogrametría S.L., Odoo Community Association (OCA)",
@@ -17,6 +17,9 @@
         ],
         "web.assets_backend": [
             "base_fontawesome_web_editor/static/src/js/wysiwyg/fonts.esm.js",
+        ],
+        "html_editor.assets_media_dialog": [
+            "base_fontawesome_web_editor/static/src/js/utils/fonts.esm.js",
         ],
     },
 }

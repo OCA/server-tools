@@ -1,4 +1,4 @@
-import {fonts} from "@web_editor/js/wysiwyg/fonts";
+import {fonts} from "@html_editor/utils/fonts";
 import {patch} from "@web/core/utils/patch";
 
 patch(fonts, {
