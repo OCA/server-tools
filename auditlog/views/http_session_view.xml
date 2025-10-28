@@ -22,7 +22,7 @@
         <field name="name">auditlog.http.session.tree</field>
         <field name="model">auditlog.http.session</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree create="false">
                 <field name="user_id" />
                 <field name="create_date" />
                 <field name="name" />
