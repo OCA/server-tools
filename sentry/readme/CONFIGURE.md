@@ -7,7 +7,7 @@ Other [client
 arguments](https://docs.sentry.io/platforms/python/configuration/) can
 be configured by prepending the argument name with *sentry\_* in your
 Odoo config file. Currently supported additional client arguments are:
-`with_locals, max_breadcrumbs, release, environment, server_name, shutdown_timeout, in_app_include, in_app_exclude, default_integrations, dist, sample_rate, send_default_pii, http_proxy, https_proxy, request_bodies, debug, attach_stacktrace, ca_certs, propagate_traces, traces_sample_rate, auto_enabling_integrations`.
+`with_locals, max_breadcrumbs, release, environment, server_name, shutdown_timeout, in_app_include, in_app_exclude, default_integrations, dist, sample_rate, send_default_pii, http_proxy, https_proxy, request_bodies, debug, attach_stacktrace, ca_certs, propagate_traces, traces_sample_rate, auto_enabling_integrations, max_value_length`.
 
 ## Example Odoo configuration
 

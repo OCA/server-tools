@@ -112,6 +112,9 @@ def get_sentry_options():
         SentryOption(
             "max_request_body_size", DEFAULT_OPTIONS["max_request_body_size"], None
         ),
+        SentryOption(
+            "max_value_length", DEFAULT_OPTIONS["max_value_length"], to_int_if_defined
+        ),
         SentryOption("attach_stacktrace", DEFAULT_OPTIONS["attach_stacktrace"], None),
         SentryOption("ca_certs", DEFAULT_OPTIONS["ca_certs"], None),
         SentryOption("propagate_traces", DEFAULT_OPTIONS["propagate_traces"], None),
