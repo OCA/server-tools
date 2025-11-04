@@ -51,7 +51,6 @@ class FetchmailServer(models.Model):
         expiration_date = datetime.date.today()
         expiration_date -= relativedelta(days=server.cleanup_days)
         search_text = expiration_date.strftime("(UNSEEN BEFORE %d-%b-%Y)")
-        imap_server.select()
         result, data = imap_server.search(None, search_text)
         for num in data[0].split():
             try:
@@ -86,7 +85,6 @@ class FetchmailServer(models.Model):
         purge_date = datetime.date.today()
         purge_date -= relativedelta(days=server.purge_days)
         search_text = purge_date.strftime("(BEFORE %d-%b-%Y)")
-        imap_server.select()
         result, data = imap_server.search(None, search_text)
         for num in data[0].split():
             try:
@@ -122,6 +120,7 @@ class FetchmailServer(models.Model):
             if server.server_type == "imap":
                 try:
                     imap_server = server.connect()
+                    imap_server.select()
                     if server.cleanup_days > 0:
                         self._cleanup_fetchmail_server(server, imap_server)
                     if server.purge_days > 0:
