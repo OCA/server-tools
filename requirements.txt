@@ -4,6 +4,7 @@ cryptography
 dataclasses
 odoo_test_helper
 odoorpc
+openpyxl
 openupgradelib
 paramiko<4.0.0
 pysftp
