@@ -5,6 +5,7 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 import ast
 import re
+import warnings
 
 from lxml import etree
 
@@ -29,8 +30,17 @@ def ast_dict_update(source, update):
     def ast_key_eq(k1, k2):
         if type(k1) is not type(k2):
             return False
-        elif isinstance(k1, ast.Constant):
+        # python < 3.8 uses ast.Str; python >= 3.8 uses ast.Constant
+        try:
             return k1.value == k2.value
+        except AttributeError:
+            # ast.Str is deprecated and will be removed in python 3.14
+            # ignore the warning and keep backward compatibility
+            with warnings.catch_warnings():
+                warnings.filterwarnings(
+                    "ignore", category=DeprecationWarning, module="ast"
+                )
+                return k1.s == k2.s
 
     toadd_uidx = []
     for uidx, ukey in enumerate(update.keys):
