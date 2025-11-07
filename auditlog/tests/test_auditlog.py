@@ -746,3 +746,66 @@ class AuditlogFast_excluded_fields(AuditLogRuleCommon):
                 ]
             )
         )
+
+
+class AuditLogRuleBulkActions(AuditLogRuleCommon):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.rule_country = cls.create_rule(
+            {
+                "name": "Country bulk rule",
+                "model_id": cls.env.ref("base.model_res_country").id,
+                "log_read": False,
+                "log_create": True,
+                "log_write": True,
+                "log_unlink": True,
+                "log_type": "fast",
+            }
+        )
+        cls.rule_state = cls.create_rule(
+            {
+                "name": "State bulk rule",
+                "model_id": cls.env.ref("base.model_res_country_state").id,
+                "log_read": False,
+                "log_create": True,
+                "log_write": True,
+                "log_unlink": True,
+                "log_type": "fast",
+            }
+        )
+        cls.rules = cls.rule_country | cls.rule_state
+
+    def test_01_bulk_subscribe(self):
+        self.rules.action_server_bulk_unsubscribe()
+
+        action_result = self.rules.action_server_bulk_subscribe()
+
+        self.assertEqual(
+            action_result, {"type": "ir.actions.client", "tag": "soft_reload"}
+        )
+        self.rules.invalidate_recordset()
+        self.assertTrue(all(rule.state == "subscribed" for rule in self.rules))
+        for rule in self.rules:
+            self.assertTrue(rule.action_id)
+            self.assertEqual(rule.action_id.binding_model_id, rule.model_id)
+
+    def test_02_bulk_unsubscribe(self):
+        self.rules.action_server_bulk_unsubscribe()
+        self.rules.action_server_bulk_subscribe()
+        self.rules.invalidate_recordset()
+        action_ids = self.rules.mapped("action_id.id")
+        self.assertTrue(action_ids)
+
+        action_result = self.rules.action_server_bulk_unsubscribe()
+
+        self.assertEqual(
+            action_result, {"type": "ir.actions.client", "tag": "soft_reload"}
+        )
+        self.rules.invalidate_recordset()
+        self.assertTrue(all(rule.state == "draft" for rule in self.rules))
+        self.assertFalse(any(self.rules.mapped("action_id")))
+        remaining_actions = self.env["ir.actions.act_window"].search(
+            [("id", "in", action_ids)]
+        )
+        self.assertFalse(remaining_actions)
