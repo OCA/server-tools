@@ -1,7 +1,8 @@
 {
     'name': 'Dependency & Impact Map View',
     'version': '18.0.1.0.0',
-    'summary': 'Interactive visual graph view for analyzing record dependencies and relationships',
+    'summary': ('Interactive visual graph view for analyzing record dependencies and '
+                'relationships'),
     'description': """
         Dependency & Impact Map View
         =============================
