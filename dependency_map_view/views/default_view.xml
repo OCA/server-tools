@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record id="view_dependency_map_default" model="ir.ui.view">
         <field name="name">dependency.map.default</field>
