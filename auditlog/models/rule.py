@@ -794,6 +794,15 @@ class AuditlogRule(models.Model):
                 act_window.unlink()
         return self.write({"state": "draft"})
 
+    def action_server_bulk_subscribe(self):
+        """Bulk subscribe rules"""
+        self.subscribe()
+        return {"type": "ir.actions.client", "tag": "soft_reload"}
+
+    def action_server_bulk_unsubscribe(self):
+        self.unsubscribe()
+        return {"type": "ir.actions.client", "tag": "soft_reload"}
+
     @api.model
     def _update_vals_list(self, vals_list):
         # Odoo supports empty recordset assignment (while it doesn't handle
