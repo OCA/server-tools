@@ -1,4 +1,4 @@
-/** @odoo-module **/
+/* global vis */ // Added to fix 'vis is not defined' error, assuming vis-network.min.js is loaded via assets
 
 import { registry } from "@web/core/registry";
 import { Component, onMounted, onWillUnmount, useRef, useState } from "@odoo/owl";
@@ -13,7 +13,7 @@ export class DependencyMapRenderer extends Component {
         this.orm = useService("orm");
         this.action = useService("action");
         this.containerRef = useRef("mapContainer");
-        this.state = useState({ 
+        this.state = useState({
             loading: false,
             records: [],
             selectedRecord: null,
@@ -39,15 +39,19 @@ export class DependencyMapRenderer extends Component {
         await this.renderMap(record);
     }
 
+    /**
+     * Refactored to reduce complexity and block depth by using helper methods.
+     */
     async renderMap(record) {
         if (!record) return;
-        
+
         this.state.loading = true;
         const model = this.props.resModel || 'res.partner';
-        
+
         const nodes = [];
         const edges = [];
-        
+
+        // Add the central node
         nodes.push({
             id: record.id,
             label: record.display_name,
@@ -57,121 +61,138 @@ export class DependencyMapRenderer extends Component {
             margin: 10,
             level: 0,
         });
-        
+
         const fields = await this.orm.call(model, 'fields_get', [], {
             attributes: ['type', 'relation', 'string']
         });
-        
+
         for (const [fieldName, fieldInfo] of Object.entries(fields)) {
+            // Skip non-relational and specific Odoo internal models
             if (!['many2one', 'one2many', 'many2many'].includes(fieldInfo.type)) continue;
             if (!fieldInfo.relation) continue;
             if (fieldInfo.relation.includes('mail.') || fieldInfo.relation.includes('ir.')) continue;
-            
+
             const fullRecord = await this.orm.searchRead(model, [['id', '=', record.id]], [fieldName]);
-            
+
             if (fullRecord.length > 0 && fullRecord[0][fieldName]) {
                 const relValue = fullRecord[0][fieldName];
                 const isManyToOne = fieldInfo.type === 'many2one';
-                
-                // Handle many2one fields (single relationship)
+
                 if (isManyToOne) {
-                    let relId, relName;
-                    
-                    // Case 1: [id, name] tuple format
-                    if (Array.isArray(relValue) && relValue.length === 2 && typeof relValue[0] === 'number') {
-                        relId = relValue[0];
-                        relName = relValue[1];
-                    }
-                    // Case 2: Just ID (number)
-                    else if (typeof relValue === 'number') {
-                        relId = relValue;
-                        try {
-                            const relRecords = await this.orm.searchRead(fieldInfo.relation, [['id', '=', relId]], ['display_name']);
-                            relName = relRecords[0]?.display_name || `ID: ${relId}`;
-                        } catch (e) {
-                            relName = `ID: ${relId}`;
-                        }
-                    }
-                    
-                    if (relId) {
-                        const relNodeId = `${fieldInfo.relation}_${relId}_${fieldName}`;
-                        if (!nodes.find(n => n.id === relNodeId)) {
-                            nodes.push({
-                                id: relNodeId,
-                                label: relName,
-                                shape: 'box',
-                                color: { background: '#f39c12', border: '#e67e22' },
-                                font: { size: 12, color: '#ffffff' },
-                                margin: 8,
-                                level: -1,
-                            });
-                        }
-                        edges.push({
-                            from: relNodeId,
-                            to: record.id,
-                            arrows: 'to',
-                            label: fieldInfo.string,
-                            color: { color: '#e67e22' },
-                            width: 2,
-                        });
-                    }
+                    await this._handleManyToOne(record, fieldName, fieldInfo, relValue, nodes, edges);
                 }
-                // Handle one2many and many2many fields (multiple relationships)
                 else if (Array.isArray(relValue) && relValue.length > 0) {
-                    const isManyToMany = fieldInfo.type === 'many2many';
-                    const nodeColor = isManyToMany 
-                        ? { background: '#27ae60', border: '#229954' }  // Green for many2many
-                        : { background: '#3498db', border: '#2980b9' };  // Blue for one2many
-                    const edgeStyle = isManyToMany ? { dashes: [5, 5] } : {};
-                    
-                    const validIds = relValue.filter(id => typeof id === 'number');
-                    for (const relId of validIds) {
-                        try {
-                            const relRecords = await this.orm.searchRead(fieldInfo.relation, [['id', '=', relId]], ['id', 'display_name']);
-                            if (relRecords.length > 0) {
-                                const relNodeId = `${fieldInfo.relation}_${relId}`;
-                                if (!nodes.find(n => n.id === relNodeId)) {
-                                    nodes.push({
-                                        id: relNodeId,
-                                        label: relRecords[0].display_name || `ID: ${relId}`,
-                                        shape: 'box',
-                                        color: nodeColor,
-                                        font: { size: 12, color: '#ffffff' },
-                                        margin: 8,
-                                        level: 1,
-                                    });
-                                }
-                                const edgeColor = isManyToMany ? '#229954' : '#2980b9';
-                                edges.push({
-                                    from: record.id,
-                                    to: relNodeId,
-                                    arrows: 'to',
-                                    label: fieldInfo.string,
-                                    color: { color: edgeColor },
-                                    width: 2,
-                                });
-                            }
-                        } catch (e) {
-                            console.error('Error fetching relation:', fieldName, relId, e);
-                        }
-                    }
+                    await this._handleToMany(record, fieldName, fieldInfo, relValue, nodes, edges);
                 }
             }
         }
-        
+
         this.drawNetwork(nodes, edges);
         this.state.loading = false;
     }
 
+    /**
+     * Helper to handle many2one fields. Fixes: init-declarations (relId, relName)
+     */
+    async _handleManyToOne(record, fieldName, fieldInfo, relValue, nodes, edges) {
+        let relId = null; // Initialized
+        let relName = ''; // Initialized
+
+        // Case 1: [id, name] tuple format
+        if (Array.isArray(relValue) && relValue.length === 2 && typeof relValue[0] === 'number') {
+            relId = relValue[0];
+            relName = relValue[1];
+        }
+        // Case 2: Just ID (number)
+        else if (typeof relValue === 'number') {
+            relId = relValue;
+            try {
+                const relRecords = await this.orm.searchRead(fieldInfo.relation, [['id', '=', relId]], ['display_name']);
+                relName = relRecords[0]?.display_name || `ID: ${relId}`;
+            } catch (e) {
+                // Fixed no-unused-vars by logging 'e'
+                console.error('Error fetching many2one relation:', fieldName, relId, e);
+                relName = `ID: ${relId}`;
+            }
+        }
+
+        if (relId) {
+            const relNodeId = `${fieldInfo.relation}_${relId}_${fieldName}`;
+            if (!nodes.find(n => n.id === relNodeId)) {
+                nodes.push({
+                    id: relNodeId,
+                    label: relName,
+                    shape: 'box',
+                    color: { background: '#f39c12', border: '#e67e22' },
+                    font: { size: 12, color: '#ffffff' },
+                    margin: 8,
+                    level: -1,
+                });
+            }
+            edges.push({
+                from: relNodeId,
+                to: record.id,
+                arrows: 'to',
+                label: fieldInfo.string,
+                color: { color: '#e67e22' },
+                width: 2,
+            });
+        }
+    }
+
+    /**
+     * Helper to handle one2many and many2many fields. Fixes: no-unused-vars (edgeStyle)
+     */
+    async _handleToMany(record, fieldName, fieldInfo, relValue, nodes, edges) {
+        const isManyToMany = fieldInfo.type === 'many2many';
+        const nodeColor = isManyToMany
+            ? { background: '#27ae60', border: '#229954' }
+            : { background: '#3498db', border: '#2980b9' };
+        // Removed unused variable 'edgeStyle'
+
+        const validIds = relValue.filter(id => typeof id === 'number');
+        for (const relId of validIds) {
+            try {
+                const relRecords = await this.orm.searchRead(fieldInfo.relation, [['id', '=', relId]], ['id', 'display_name']);
+                if (relRecords.length > 0) {
+                    const relNodeId = `${fieldInfo.relation}_${relId}`;
+                    if (!nodes.find(n => n.id === relNodeId)) {
+                        nodes.push({
+                            id: relNodeId,
+                            label: relRecords[0].display_name || `ID: ${relId}`,
+                            shape: 'box',
+                            color: nodeColor,
+                            font: { size: 12, color: '#ffffff' },
+                            margin: 8,
+                            level: 1,
+                        });
+                    }
+                    const edgeColor = isManyToMany ? '#229954' : '#2980b9';
+                    edges.push({
+                        from: record.id,
+                        to: relNodeId,
+                        arrows: 'to',
+                        label: fieldInfo.string,
+                        color: { color: edgeColor },
+                        width: 2,
+                    });
+                }
+            } catch (e) {
+                // Fixed no-undef (console) and no-unused-vars
+                console.error('Error fetching relation:', fieldName, relId, e);
+            }
+        }
+    }
+
     drawNetwork(nodes, edges) {
         if (this.network) this.network.destroy();
-        
+
         const container = this.containerRef.el;
         const data = { nodes, edges };
         const options = {
-            layout: { 
-                hierarchical: { 
-                    enabled: true, 
+            layout: {
+                hierarchical: {
+                    enabled: true,
                     direction: 'UD',
                     sortMethod: 'directed',
                     levelSeparation: 150,
@@ -180,13 +201,13 @@ export class DependencyMapRenderer extends Component {
                     blockShifting: true,
                     edgeMinimization: true,
                     parentCentralization: true,
-                } 
+                }
             },
             physics: { enabled: false },
-            nodes: { 
+            nodes: {
                 shape: 'box',
-                font: { 
-                    size: 13, 
+                font: {
+                    size: 13,
                     face: 'Arial',
                     color: '#ffffff'
                 },
@@ -207,13 +228,13 @@ export class DependencyMapRenderer extends Component {
             },
             edges: {
                 width: 2,
-                font: { 
+                font: {
                     size: 11,
                     color: '#666666',
                     background: '#ffffff',
                     strokeWidth: 0
                 },
-                smooth: { 
+                smooth: {
                     enabled: true,
                     type: 'cubicBezier',
                     roundness: 0.5
@@ -232,29 +253,35 @@ export class DependencyMapRenderer extends Component {
                 selectConnectedEdges: false
             }
         };
-        
+
         this.network = new vis.Network(container, data, options);
-        
+
         this.network.on('click', (params) => {
             if (params.nodes.length > 0) {
                 const nodeId = params.nodes[0];
-                let model, id;
-                
+                let model = this.props.resModel; // Initialized
+                let id = null; // Initialized
+
                 if (typeof nodeId === 'number') {
                     model = this.props.resModel;
                     id = nodeId;
                 } else {
-                    [model, id] = nodeId.split('_');
-                    id = parseInt(id);
+                    // Fixes no-undef (model, id) and radix warning
+                    const parts = nodeId.split('_');
+                    model = parts[0];
+                    // The ID is always the second part if the format is consistent
+                    id = parseInt(parts[1], 10); // Added radix 10
                 }
-                
-                this.action.doAction({
-                    type: 'ir.actions.act_window',
-                    res_model: model,
-                    res_id: id,
-                    views: [[false, 'form']],
-                    target: 'new',
-                });
+
+                if (id && model) {
+                    this.action.doAction({
+                        type: 'ir.actions.act_window',
+                        res_model: model,
+                        res_id: id,
+                        views: [[false, 'form']],
+                        target: 'new',
+                    });
+                }
             }
         });
     }
