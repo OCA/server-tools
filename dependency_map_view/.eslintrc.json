@@ -1,0 +1,1 @@
+{"rules": {"complexity": "off", "max-depth": "off", "no-inline-comments": "off", "init-declarations": "off", "no-unused-vars": "off", "radix": "off"}}
