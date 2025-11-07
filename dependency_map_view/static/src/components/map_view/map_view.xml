@@ -5,7 +5,6 @@
             <DependencyMapRenderer resModel="props.resModel"/>
         </Layout>
     </t>
-
     <t t-name="dependency_map_view.MapView">
         <div class="o_dependency_map_container">
             <div class="o_map_sidebar">
