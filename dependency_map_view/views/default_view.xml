@@ -5,7 +5,7 @@
         <field name="model">base</field>
         <field name="type">dependency_map</field>
         <field name="arch" type="xml">
-            <dependency_map/>
+            <dependency_map />
         </field>
     </record>
 </odoo>
