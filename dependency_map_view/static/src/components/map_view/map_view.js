@@ -1,11 +1,11 @@
 /** @odoo-module **/
 
-import { registry } from "@web/core/registry";
-import { Component, onMounted, onWillUnmount, useRef, useState } from "@odoo/owl";
-import { useService } from "@web/core/utils/hooks";
-import { Layout } from "@web/search/layout";
+const { registry } = require("@web/core/registry");
+const { Component, onMounted, onWillUnmount, useRef, useState } = require("@odoo/owl");
+const { useService } = require("@web/core/utils/hooks");
+const { Layout } = require("@web/search/layout");
 
-export class DependencyMapRenderer extends Component {
+class DependencyMapRenderer extends Component {
     static template = "dependency_map_view.MapView";
     static props = ["*"];
 
@@ -260,13 +260,13 @@ export class DependencyMapRenderer extends Component {
     }
 }
 
-export class DependencyMapController extends Component {
+class DependencyMapController extends Component {
     static template = "dependency_map_view.MapController";
     static components = { Layout, DependencyMapRenderer };
     static props = ["*"];
 }
 
-export const dependencyMapView = {
+const dependencyMapView = {
     type: "dependency_map",
     display_name: "Dependency Map",
     icon: "fa fa-code-fork",

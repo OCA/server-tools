@@ -28,7 +28,7 @@
     """,
     'category': 'Productivity/Tools',
     'author': 'Faizan Lodhi',
-    'website': 'https://axiomworld.net',
+    'website': 'https://github.com/OCA/server-tools',
     'depends': ['base', 'web'],
     'data': [
         'views/default_view.xml',
