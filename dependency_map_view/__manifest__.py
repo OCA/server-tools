@@ -6,7 +6,6 @@
     'description': """
         Dependency & Impact Map View
         =============================
-
         Features:
         ---------
         * Visual graph representation of record relationships
