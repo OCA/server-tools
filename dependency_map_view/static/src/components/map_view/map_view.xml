@@ -5,7 +5,6 @@
             <DependencyMapRenderer resModel="props.resModel"/>
         </Layout>
     </t>
-
     <t t-name="dependency_map_view.MapView">
         <div class="o_dependency_map_container">
             <div class="o_map_sidebar">
@@ -20,7 +19,7 @@
                     </t>
                     <t t-else="">
                         <t t-foreach="state.records" t-as="record" t-key="record.id">
-                            <div class="record_item" 
+                            <div class="record_item"
                                  t-att-class="{ 'active': state.selectedRecord?.id === record.id }"
                                  t-on-click="() => this.selectRecord(record)">
                                 <i class="fa fa-circle me-2"/>
@@ -66,7 +65,7 @@
                             Dashed = Many2One/Many2Many
                         </small>
                     </div>
-                    
+
                     <div t-ref="mapContainer" class="o_map_canvas"/>
                 </t>
             </div>
