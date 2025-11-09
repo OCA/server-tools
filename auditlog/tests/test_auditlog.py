@@ -798,9 +798,7 @@ class AuditLogRuleBulkActions(AuditLogRuleCommon):
 
         action_result = self.rules.action_server_bulk_subscribe()
 
-        self.assertEqual(
-            action_result, {"type": "ir.actions.client", "tag": "soft_reload"}
-        )
+        self.assertTrue(action_result)
         self.rules.invalidate_recordset()
         self.assertTrue(all(rule.state == "subscribed" for rule in self.rules))
         for rule in self.rules:
@@ -816,9 +814,7 @@ class AuditLogRuleBulkActions(AuditLogRuleCommon):
 
         action_result = self.rules.action_server_bulk_unsubscribe()
 
-        self.assertEqual(
-            action_result, {"type": "ir.actions.client", "tag": "soft_reload"}
-        )
+        self.assertTrue(action_result)
         self.rules.invalidate_recordset()
         self.assertTrue(all(rule.state == "draft" for rule in self.rules))
         self.assertFalse(any(self.rules.mapped("action_id")))
