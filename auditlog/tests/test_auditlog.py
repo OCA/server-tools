@@ -752,10 +752,20 @@ class AuditLogRuleBulkActions(AuditLogRuleCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        country_model = cls.env.ref("base.model_res_country")
+        state_model = cls.env.ref("base.model_res_country_state")
+
+        existing_rules = cls.env["auditlog.rule"].search(
+            [("model_id", "in", (country_model.id, state_model.id))]
+        )
+        if existing_rules:
+            existing_rules.action_server_bulk_unsubscribe()
+            existing_rules.unlink()
+
         cls.rule_country = cls.create_rule(
             {
                 "name": "Country bulk rule",
-                "model_id": cls.env.ref("base.model_res_country").id,
+                "model_id": country_model.id,
                 "log_read": False,
                 "log_create": True,
                 "log_write": True,
@@ -766,7 +776,7 @@ class AuditLogRuleBulkActions(AuditLogRuleCommon):
         cls.rule_state = cls.create_rule(
             {
                 "name": "State bulk rule",
-                "model_id": cls.env.ref("base.model_res_country_state").id,
+                "model_id": state_model.id,
                 "log_read": False,
                 "log_create": True,
                 "log_write": True,
@@ -775,6 +785,13 @@ class AuditLogRuleBulkActions(AuditLogRuleCommon):
             }
         )
         cls.rules = cls.rule_country | cls.rule_state
+
+    @classmethod
+    def tearDownClass(cls):
+        if cls.rules:
+            cls.rules.action_server_bulk_unsubscribe()
+            cls.rules.unlink()
+        super().tearDownClass()
 
     def test_01_bulk_subscribe(self):
         self.rules.action_server_bulk_unsubscribe()
