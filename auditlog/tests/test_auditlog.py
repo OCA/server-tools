@@ -758,9 +758,8 @@ class AuditLogRuleBulkActions(AuditLogRuleCommon):
         existing_rules = cls.env["auditlog.rule"].search(
             [("model_id", "in", (country_model.id, state_model.id))]
         )
-        if existing_rules:
-            existing_rules.action_server_bulk_unsubscribe()
-            existing_rules.unlink()
+        existing_rules.action_server_bulk_unsubscribe()
+        existing_rules.unlink()
 
         cls.rule_country = cls.create_rule(
             {
