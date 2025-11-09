@@ -796,12 +796,12 @@ class AuditlogRule(models.Model):
 
     def action_server_bulk_subscribe(self):
         """Bulk subscribe rules"""
-        self.subscribe()
-        return {"type": "ir.actions.client", "tag": "soft_reload"}
+        self.filtered(lambda rule: rule.state != "subscribed").subscribe()
+        return True
 
     def action_server_bulk_unsubscribe(self):
-        self.unsubscribe()
-        return {"type": "ir.actions.client", "tag": "soft_reload"}
+        self.filtered(lambda rule: rule.state == "subscribed").unsubscribe()
+        return True
 
     @api.model
     def _update_vals_list(self, vals_list):
