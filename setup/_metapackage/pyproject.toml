@@ -1,0 +1,11 @@
+[project]
+name = "odoo-addons-oca-server-tools"
+version = "19.0.20251111.0"
+dependencies = [
+    "odoo-addon-session_db==19.0.*",
+]
+classifiers=[
+    "Programming Language :: Python",
+    "Framework :: Odoo",
+    "Framework :: Odoo :: 19.0",
+]
