@@ -271,6 +271,25 @@ class AuditlogCommon:
             1,
         )
 
+    def test_LogSkipped(self):
+        """Tests environment variable to skip the logs results"""
+        self.groups_rule.subscribe()
+        group = (
+            self.env["res.groups"]
+            .with_context(auditlog_skip=True)
+            .create({"name": "testgroup1"})
+        )
+        group.with_context(auditlog_skip=True).unlink()
+        self.assertEqual(
+            self.env["auditlog.log"].search_count(
+                [
+                    ("model_id", "=", self.groups_model_id),
+                    ("res_id", "=", group.id),
+                ]
+            ),
+            0,
+        )
+
 
 class TestAuditlogFull(AuditLogRuleCommon, AuditlogCommon):
     @classmethod

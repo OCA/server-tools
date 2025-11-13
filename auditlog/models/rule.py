@@ -588,6 +588,8 @@ class AuditlogRule(models.Model):
         """Create logs. `old_values` and `new_values` are dictionaries, e.g:
         {RES_ID: {'FIELD': VALUE, ...}}
         """
+        if self.env.context.get("auditlog_skip", False):
+            return None
         if old_values is None:
             old_values = EMPTY_DICT
         if new_values is None:
