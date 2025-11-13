@@ -27,9 +27,6 @@ class AuditlogtHTTPSession(models.Model):
                 fields.Datetime.to_string(tz_create_date),
             )
 
-    def name_get(self):
-        return [(session.id, session.display_name) for session in self]
-
     @api.model
     def current_http_session(self):
         """Create a log corresponding to the current HTTP user session, and
