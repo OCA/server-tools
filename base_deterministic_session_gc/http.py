@@ -1,6 +1,7 @@
 # Copyright 2019 Trobz <https://trobz.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+import glob
 import logging
 import os
 import time
@@ -27,7 +28,7 @@ def deterministic_session_gc(session_store, session_expiry_delay=None):
         "Deleting all sessions inactive since %s",
         datetime.fromtimestamp(expired_time).strftime(DEFAULT_SERVER_DATETIME_FORMAT),
     )
-    for fname in os.listdir(session_store.path):
+    for fname in glob.iglob(os.path.join(session_store.path, "*")):
         path = os.path.join(session_store.path, fname)
         try:
             if os.path.getmtime(path) < expired_time:
