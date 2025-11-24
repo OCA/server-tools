@@ -1,6 +1,9 @@
 # Copyright 2025 glueckkanja AG (<https://www.glueckkanja.com>) - Christopher Rogos
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+from unittest.mock import patch
+
+from odoo import Command
 from odoo.tests.common import TransactionCase
 
 
@@ -48,3 +51,36 @@ class TestMailTrack(TransactionCase):
         # Check if changes and tracking_value_ids are empty when domain does not match
         self.assertEqual(len(changes), 0)
         self.assertEqual(len(tracking_value_ids), 0)
+
+    # TODO: add properties support on domain filters
+    def test_mail_track_lead_properties_noerror(self):
+        # arrange
+        person = self.env.ref("base.res_partner_12")
+        tracked_fields = {
+            "lead_properties": {"string": "Properties", "type": "properties"}
+        }
+        initial_values = {"3f32dd2678757113": False}
+
+        patch_changes = {1234: "lead_properties"}
+        patch_tracking_value_ids = [
+            Command.create(
+                {
+                    "old_value_integer": 15,
+                    "new_value_integer": 10,
+                    "old_value_char": "Azure Interior",
+                    "new_value_char": "Deco Addict",
+                    "field_info": {
+                        "desc": "Properties: Ev",
+                        "name": "lead_properties",
+                        "type": "many2one",
+                    },
+                }
+            )
+        ]
+
+        with patch(
+            "odoo.addons.tracking_manager.models.models.Base._mail_track",
+            return_value=(patch_changes, patch_tracking_value_ids),
+        ):
+            # act
+            person._mail_track(tracked_fields, initial_values)
