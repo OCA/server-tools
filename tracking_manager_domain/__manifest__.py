@@ -9,7 +9,7 @@
     "version": "18.0.1.0.0",
     "category": "Tools",
     "website": "https://github.com/OCA/server-tools",
-    "author": "Akretion, Odoo Community Association (OCA)",
+    "author": "glueckkanja AG, Odoo Community Association (OCA)",
     "maintainers": ["CRogos"],
     "license": "AGPL-3",
     "application": False,
