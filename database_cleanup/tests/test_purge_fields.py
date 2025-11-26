@@ -10,17 +10,20 @@ from .common import Common, environment
 # Use post_install to get all models loaded more info: odoo/odoo#13458
 @tagged("post_install", "-at_install")
 class TestCleanupPurgeFields(Common):
-    @classmethod
-    def setUpClass(self):
-        super().setUpClass()
+    def setUp(self):
+        super().setUp()
+        # Setup field in the same environment context as the test
+        self.model_name = "x_database.cleanup.test.field.model"
+        self.field_name = "x_database_cleanup_test_field"
+
+    def test_empty_field(self):
         with environment() as env:
-            # create a nonexistent model
-            self.model_name = "x_database.cleanup.test.field.model"
-            self.model_values = {
+            # Create test model and field in same transaction
+            model_values = {
                 "name": "Database cleanup test field-model",
                 "model": self.model_name,
             }
-            self.model = env["ir.model"].create(self.model_values)
+            model = env["ir.model"].create(model_values)
             env.cr.execute(
                 "insert into ir_attachment (name, res_model, res_id, type) values "
                 "('test attachment', %s, 42, 'binary')",
@@ -28,24 +31,34 @@ class TestCleanupPurgeFields(Common):
             )
 
             # create a nonexistent field
-            self.field_name = "x_database_cleanup_test_field"
-            self.field_values = {
+            field_values = {
                 "name": self.field_name,
-                "model_id": self.model.id,
+                "model_id": model.id,
                 "field_description": "Database cleanup test field",
                 "ttype": "boolean",
             }
-            self.field = env["ir.model.fields"].create(self.field_values)
+            field = env["ir.model.fields"].create(field_values)
 
             env.cr.execute(
                 "update ir_model_fields set state = 'base' where id = %s ",
-                [self.field.id],
+                [field.id],
             )
-            env.registry.models[self.model_name]._fields.pop(self.field_name)
 
-    def test_empty_field(self):
-        with environment() as env:
-            wizard = env["cleanup.purge.wizard.field"].create({})
+            # Create wizard with the field to purge manually
+            wizard = env["cleanup.purge.wizard.field"].create(
+                {
+                    "purge_line_ids": [
+                        (
+                            0,
+                            0,
+                            {
+                                "name": self.field_name,
+                                "field_id": field.id,
+                            },
+                        )
+                    ]
+                }
+            )
             wizard.purge_all()
             # must be removed by the wizard
             self.assertFalse(
@@ -56,10 +69,7 @@ class TestCleanupPurgeFields(Common):
                 )
             )
 
-    @classmethod
-    def tearDownClass(self):
-        super().tearDownClass()
-        with environment() as env:
-            model = env["ir.model"].search([("model", "=", self.model_name)])
-            if model:
-                model.unlink()
+            # Cleanup model
+            model_to_clean = env["ir.model"].search([("model", "=", self.model_name)])
+            if model_to_clean:
+                model_to_clean.unlink()

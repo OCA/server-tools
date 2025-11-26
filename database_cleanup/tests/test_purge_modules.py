@@ -14,6 +14,16 @@ class TestCleanupPurgeLineModule(Common):
         super().setUpClass()
         self.model_name = "database_cleanup_test"
         with environment() as env:
+            # Clean up any existing test module from previous runs
+            # Use SQL to avoid state validation issues
+            env.cr.execute(
+                "DELETE FROM ir_model_data WHERE model = 'ir.module.module' "
+                "AND name = %s",
+                ["module_" + self.model_name],
+            )
+            env.cr.execute(
+                "DELETE FROM ir_module_module WHERE name = %s", [self.model_name]
+            )
             # create a nonexistent module
             self.module = env["ir.module.module"].create(
                 {
@@ -34,7 +44,12 @@ class TestCleanupPurgeLineModule(Common):
     def tearDownClass(self):
         super().tearDownClass()
         with environment() as env:
-            module = env["ir.module.module"].search([("name", "=", self.model_name)])
-            if module:
-                module.state = "uninstalled"
-                module.unlink()
+            # Clean up test module using SQL to avoid state validation
+            env.cr.execute(
+                "DELETE FROM ir_model_data WHERE model = 'ir.module.module' "
+                "AND name = %s",
+                ["module_" + self.model_name],
+            )
+            env.cr.execute(
+                "DELETE FROM ir_module_module WHERE name = %s", [self.model_name]
+            )

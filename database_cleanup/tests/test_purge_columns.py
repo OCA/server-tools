@@ -15,6 +15,10 @@ class TestCleanupPurgeLineColumn(Common):
         super().setUp()
         with environment() as env:
             # create an orphaned column
+            # First, drop it if it exists from previous runs
+            env.cr.execute(
+                "alter table res_partner drop column if exists database_cleanup_test"
+            )
             env.cr.execute(
                 "alter table res_partner add column database_cleanup_test int"
             )

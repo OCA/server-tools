@@ -1,7 +1,7 @@
 # Copyright 2014-2016 Therp BV <http://therp.nl>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 # pylint: disable=consider-merging-classes-inherited
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 
 from odoo.addons.base.models.ir_model import MODULE_UNINSTALL_FLAG
@@ -45,7 +45,7 @@ class CleanupPurgeLineField(models.TransientModel):
             objs = self
         else:
             objs = self.env["cleanup.purge.line.action"].browse(
-                self._context.get("active_ids")
+                self.env.context.get("active_ids")
             )
         to_unlink = objs.filtered(lambda x: not x.purged and x.field_id)
         self.logger.info("Purging field entries:")
@@ -122,7 +122,7 @@ class CleanupPurgeWizardField(models.TransientModel):
                     )
                 )
         if not res:
-            raise UserError(_("No orphaned fields found"))
+            raise UserError(self.env._("No orphaned fields found"))
         return res
 
     purge_line_ids = fields.One2many(

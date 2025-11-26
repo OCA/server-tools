@@ -4,36 +4,12 @@
 # pylint: disable=consider-merging-classes-inherited
 import logging
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 
 from odoo.addons.base.models.ir_model import MODULE_UNINSTALL_FLAG
 
 _logger = logging.getLogger(__name__)
-
-
-class IrModel(models.Model):
-    _inherit = "ir.model"
-
-    def _drop_table(self):
-        """this function crashes for undefined models"""
-        self = self.filtered(lambda x: x.model in self.env)
-        return super()._drop_table()
-
-    @api.depends()
-    def _inherited_models(self):
-        """this function crashes for undefined models"""
-        self = self.filtered(lambda x: x.model in self.env)
-        return super()._inherited_models()
-
-
-class IrModelFields(models.Model):
-    _inherit = "ir.model.fields"
-
-    def _prepare_update(self):
-        """this function crashes for undefined models"""
-        self = self.filtered(lambda x: x.model in self.env)
-        return super()._prepare_update()
 
 
 class CleanupPurgeLineModel(models.TransientModel):
@@ -58,7 +34,7 @@ class CleanupPurgeLineModel(models.TransientModel):
             objs = self
         else:
             objs = self.env["cleanup.purge.line.model"].browse(
-                self._context.get("active_ids")
+                self.env.context.get("active_ids")
             )
         for line in objs:
             self.env.cr.execute(
@@ -123,7 +99,7 @@ class CleanupPurgeWizardModel(models.TransientModel):
             if model not in self.env:
                 res.append((0, 0, {"name": model}))
         if not res:
-            raise UserError(_("No orphaned models found"))
+            raise UserError(self.env._("No orphaned models found"))
         return res
 
     purge_line_ids = fields.One2many(

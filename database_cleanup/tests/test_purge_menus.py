@@ -12,6 +12,12 @@ class TestCleanupPurgeLineMenu(Common):
     def setUp(self):
         super().setUp()
         with environment() as env:
+            # Clean up any existing test menus from previous runs
+            existing_menus = env["ir.ui.menu"].search(
+                [("name", "=", "database_cleanup_test")]
+            )
+            if existing_menus:
+                existing_menus.unlink()
             # create a new empty menu
             self.menu = env["ir.ui.menu"].create({"name": "database_cleanup_test"})
 

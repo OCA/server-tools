@@ -14,6 +14,10 @@ class TestCleanupPurgeLineColumn(Common):
         with environment() as env:
             # create a nonexistent model
             self.model_name = "x_database.cleanup.test.model"
+            # Clean up any existing test model from previous runs
+            existing = env["ir.model"].search([("model", "=", self.model_name)])
+            if existing:
+                existing.unlink()
             self.model_values = {
                 "name": "Database cleanup test model",
                 "model": self.model_name,

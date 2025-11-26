@@ -2,7 +2,7 @@
 # Copyright 2021 Camptocamp <https://camptocamp.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 # pylint: disable=consider-merging-classes-inherited
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 
 from ..identifier_adapter import IdentifierAdapter
@@ -26,7 +26,7 @@ class CleanupPurgeLineColumn(models.TransientModel):
             objs = self
         else:
             objs = self.env["cleanup.purge.line.column"].browse(
-                self._context.get("active_ids")
+                self.env.context.get("active_ids")
             )
         for line in objs:
             if line.purged:
@@ -113,7 +113,7 @@ class CleanupPurgeWizardColumn(models.TransientModel):
 
         # mapping of tables to tuples (model id, [pool1, pool2, ...])
         table2model = {}
-
+        # pylint: disable=no-search-all
         for model in self.env["ir.model"].search([]):
             if model.model not in self.env:
                 continue
@@ -128,7 +128,7 @@ class CleanupPurgeWizardColumn(models.TransientModel):
             for column in self.get_orphaned_columns(model_spec[1]):
                 res.append((0, 0, {"name": column, "model_id": model_spec[0]}))
         if not res:
-            raise UserError(_("No orphaned columns found"))
+            raise UserError(self.env._("No orphaned columns found"))
         return res
 
     purge_line_ids = fields.One2many(

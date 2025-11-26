@@ -4,7 +4,7 @@
 # pylint: disable=consider-merging-classes-inherited
 from psycopg2.extensions import AsIs
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 
 from ..identifier_adapter import IdentifierAdapter
@@ -33,7 +33,7 @@ class CleanupPurgeLineTable(models.TransientModel):
             objs = self
         else:
             objs = self.env["cleanup.purge.line.table"].browse(
-                self._context.get("active_ids")
+                self.env.context.get("active_ids")
             )
         tables = objs.mapped("name")
         for line in objs:
@@ -106,6 +106,7 @@ class CleanupPurgeWizardTable(models.TransientModel):
         Search for tables and views that cannot be instantiated.
         """
         known_tables = list(self.blacklist)
+        # pylint: disable=no-search-all
         for model in self.env["ir.model"].search([]):
             if model.model not in self.env:
                 continue
@@ -137,7 +138,7 @@ class CleanupPurgeWizardTable(models.TransientModel):
             for row in self.env.cr.fetchall()
         ]
         if not res:
-            raise UserError(_("No orphaned tables found"))
+            raise UserError(self.env._("No orphaned tables found"))
         return res
 
     purge_line_ids = fields.One2many(

@@ -2,7 +2,7 @@
 # Copyright 2021 Camptocamp <https://camptocamp.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 # pylint: disable=consider-merging-classes-inherited
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 
 
@@ -22,7 +22,7 @@ class CleanupPurgeLineMenu(models.TransientModel):
             objs = self
         else:
             objs = self.env["cleanup.purge.line.menu"].browse(
-                self._context.get("active_ids")
+                self.env.context.get("active_ids")
             )
         to_unlink = objs.filtered(lambda x: not x.purged and x.menu_id)
         self.logger.info("Purging menu entries: %s", to_unlink.mapped("name"))
@@ -60,7 +60,7 @@ class CleanupPurgeWizardMenu(models.TransientModel):
                     )
                 )
         if not res:
-            raise UserError(_("No dangling menu entries found"))
+            raise UserError(self.env._("No dangling menu entries found"))
         return res
 
     purge_line_ids = fields.One2many(

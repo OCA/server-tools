@@ -17,7 +17,7 @@ def environment():
     """
     registry = odoo.modules.registry.Registry(common.get_db_name())
     with registry.cursor() as cr:
-        yield odoo.api.Environment(cr, ADMIN_USER_ID, {})
+        yield odoo.api.Environment(cr, ADMIN_USER_ID, {"testing_purge_wizard": True})
 
 
 # Use post_install to get all models loaded more info: odoo/odoo#13458

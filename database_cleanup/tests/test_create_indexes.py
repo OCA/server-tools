@@ -13,7 +13,7 @@ class TestCreateIndexesLine(Common):
         super().setUp()
         with environment() as env:
             # delete some index and check if our module recreated it
-            env.cr.execute("drop index res_partner__name_index")
+            env.cr.execute("drop index if exists res_partner__name_index")
 
     def test_deleted_index(self):
         with environment() as env:
