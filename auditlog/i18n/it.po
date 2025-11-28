@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-17 03:34+0000\n"
-"PO-Revision-Date: 2024-04-17 14:35+0000\n"
+"PO-Revision-Date: 2025-11-28 10:42+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-server-tools-8-0/"
 "language/it/)\n"
@@ -24,7 +24,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: auditlog
 #: field:auditlog.rule,action_id:0
@@ -389,7 +389,7 @@ msgstr ""
 #: view:auditlog.log:auditlog.view_auditlog_log_search
 #: field:auditlog.log,res_id:0
 msgid "Resource ID"
-msgstr "ID Risorsa"
+msgstr "ID risorsa"
 
 #. module: auditlog
 #: field:auditlog.log,name:0
