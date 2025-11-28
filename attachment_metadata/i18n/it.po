@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-24 04:14+0000\n"
-"PO-Revision-Date: 2023-12-29 17:38+0000\n"
+"PO-Revision-Date: 2025-11-28 10:42+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-server-tools-8-0/"
 "language/it/)\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: attachment_metadata
 #: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_search
@@ -223,7 +223,7 @@ msgstr ""
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,res_id:0
 msgid "Resource ID"
-msgstr "ID Risorsa"
+msgstr "ID risorsa"
 
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,res_model:0
