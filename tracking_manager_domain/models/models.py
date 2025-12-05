@@ -63,8 +63,12 @@ class Base(models.AbstractModel):
         changes, tracking_value_ids = super()._mail_track(
             tracked_fields, initial_values
         )
+
+        # TODO: add properties support on domain filters
         tracking_value_field_ids = [
-            tracking_value_id[2]["field_id"] for tracking_value_id in tracking_value_ids
+            tracking_value_id[2]["field_id"]
+            for tracking_value_id in tracking_value_ids
+            if "field_id" in tracking_value_id[2]
         ]
         if tracking_value_field_ids:
             all_tracking_domain_fields = self._tm_all_tracking_domain_fields()[
