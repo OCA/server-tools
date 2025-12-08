@@ -470,8 +470,38 @@ msgid "Purge tables"
 msgstr ""
 
 #. module: database_cleanup
-#: model_terms:ir.ui.view,arch_db:database_cleanup.tree_purge_line
+#: model_terms:ir.ui.view,arch_db:database_cleanup.purge_column_line_tree
+msgid "Purge this column"
+msgstr ""
+
+#. module: database_cleanup
+#: model_terms:ir.ui.view,arch_db:database_cleanup.purge_field_line_tree
+msgid "Purge this field"
+msgstr ""
+
+#. module: database_cleanup
+#: model_terms:ir.ui.view,arch_db:database_cleanup.purge_menu_line_tree
+msgid "Purge this menu"
+msgstr ""
+
+#. module: database_cleanup
+#: model_terms:ir.ui.view,arch_db:database_cleanup.purge_model_line_tree
 msgid "Purge this model"
+msgstr ""
+
+#. module: database_cleanup
+#: model_terms:ir.ui.view,arch_db:database_cleanup.purge_module_line_tree
+msgid "Purge this module"
+msgstr ""
+
+#. module: database_cleanup
+#: model_terms:ir.ui.view,arch_db:database_cleanup.tree_purge_line
+msgid "Purge this record"
+msgstr ""
+
+#. module: database_cleanup
+#: model_terms:ir.ui.view,arch_db:database_cleanup.purge_table_line_tree
+msgid "Purge this table"
 msgstr ""
 
 #. module: database_cleanup
