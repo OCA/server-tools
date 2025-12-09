@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="purge_columns_view" model="ir.ui.view">
+        <field name="model">cleanup.purge.wizard.column</field>
+        <field name="inherit_id" ref="form_purge_wizard" />
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="model_id" />
+            </field>
+        </field>
+    </record>
+
+    <record id="action_purge_columns" model="ir.actions.server">
+        <field name="name">Purge columns</field>
+        <field name="type">ir.actions.server</field>
+        <field name="state">code</field>
+        <field
+            name="model_id"
+            ref="database_cleanup.model_cleanup_purge_wizard_column"
+        />
+        <field name="code">
+            action = env.get('cleanup.purge.wizard.column').get_wizard_action()
+        </field>
+    </record>
+</odoo>
