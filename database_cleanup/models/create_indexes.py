@@ -58,8 +58,7 @@ class CreateIndexesWizard(models.TransientModel):
             model = self.env[field.model]
             name = f"{model._table}__{field.name}_index"
             self.env.cr.execute(
-                "select indexname from pg_indexes "
-                "where indexname=%s and tablename=%s",
+                "select indexname from pg_indexes where indexname=%s and tablename=%s",
                 (name, model._table),
             )
             if self.env.cr.rowcount:
