@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-03 10:08+0000\n"
-"PO-Revision-Date: 2025-03-18 10:38+0000\n"
+"PO-Revision-Date: 2025-12-09 12:42+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.2\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: database_cleanup
 #: model:ir.model,name:database_cleanup.model_cleanup_create_indexes_line
@@ -472,17 +472,17 @@ msgstr "Pulisci tabelle"
 #. module: database_cleanup
 #: model_terms:ir.ui.view,arch_db:database_cleanup.purge_column_line_tree
 msgid "Purge this column"
-msgstr ""
+msgstr "Elimina questa colonna"
 
 #. module: database_cleanup
 #: model_terms:ir.ui.view,arch_db:database_cleanup.purge_field_line_tree
 msgid "Purge this field"
-msgstr ""
+msgstr "Elimina questo file"
 
 #. module: database_cleanup
 #: model_terms:ir.ui.view,arch_db:database_cleanup.purge_menu_line_tree
 msgid "Purge this menu"
-msgstr ""
+msgstr "Elimina questo menu"
 
 #. module: database_cleanup
 #: model_terms:ir.ui.view,arch_db:database_cleanup.purge_model_line_tree
@@ -492,17 +492,17 @@ msgstr "Pulisci questo modello"
 #. module: database_cleanup
 #: model_terms:ir.ui.view,arch_db:database_cleanup.purge_module_line_tree
 msgid "Purge this module"
-msgstr ""
+msgstr "Elimina questo modulo"
 
 #. module: database_cleanup
 #: model_terms:ir.ui.view,arch_db:database_cleanup.tree_purge_line
 msgid "Purge this record"
-msgstr ""
+msgstr "Elimina questo record"
 
 #. module: database_cleanup
 #: model_terms:ir.ui.view,arch_db:database_cleanup.purge_table_line_tree
 msgid "Purge this table"
-msgstr ""
+msgstr "Elimina questa tabella"
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line__purged
