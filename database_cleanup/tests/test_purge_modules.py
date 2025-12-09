@@ -10,15 +10,25 @@ from .common import Common, environment
 @tagged("post_install", "-at_install")
 class TestCleanupPurgeLineModule(Common):
     @classmethod
-    def setUpClass(self):
+    def setUpClass(cls):
         super().setUpClass()
-        self.model_name = "database_cleanup_test"
+        cls.model_name = "database_cleanup_test"
         with environment() as env:
             # create a nonexistent module
-            self.module = env["ir.module.module"].create(
+            cls.module = env["ir.module.module"].create(
                 {
-                    "name": self.model_name,
+                    "name": cls.model_name,
                     "state": "to upgrade",
+                }
+            )
+            # create an ir.model.data pointing to a non-existent field
+            cls.orphan_field_data = env["ir.model.data"].create(
+                {
+                    "name": "x_orphan_field",
+                    "module": cls.model_name,
+                    "model": "ir.model.fields",
+                    "res_id": 999999,  # nonexistent record
+                    "noupdate": True,
                 }
             )
 
@@ -29,6 +39,22 @@ class TestCleanupPurgeLineModule(Common):
                 lambda x: not x.purged
             ).mapped("name")
             self.assertTrue(self.model_name in module_names)
+
+    def test_module_data_uninstall_removes_orphans(self):
+        with environment() as env:
+            IrModelData = env["ir.model.data"]
+
+            self.assertTrue(
+                IrModelData.browse(self.orphan_field_data.id).exists(),
+                "orphan field data should exist before uninstall",
+            )
+
+            IrModelData._module_data_uninstall([self.model_name])
+
+            self.assertFalse(
+                IrModelData.browse(self.orphan_field_data.id).exists(),
+                "orphan field data should be removed after uninstall",
+            )
 
     @classmethod
     def tearDownClass(self):

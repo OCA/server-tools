@@ -9,22 +9,23 @@ from .common import Common, environment
 # Use post_install to get all models loaded more info: odoo/odoo#13458
 @tagged("post_install", "-at_install")
 class TestCleanupPurgeLineColumn(Common):
-    def setUp(self):
-        super().setUp()
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
         with environment() as env:
             # create a nonexistent model
-            self.model_name = "x_database.cleanup.test.model"
-            self.model_values = {
+            cls.model_name = "x_database.cleanup.test.model"
+            cls.model_values = {
                 "name": "Database cleanup test model",
-                "model": self.model_name,
+                "model": cls.model_name,
             }
-            self.model = env["ir.model"].create(self.model_values)
+            cls.model = env["ir.model"].create(cls.model_values)
             env.cr.execute(
                 "insert into ir_attachment (name, res_model, res_id, type) values "
                 "('test attachment', %s, 42, 'binary')",
-                [self.model_name],
+                [cls.model_name],
             )
-            env.registry.models.pop(self.model_name)
+            env.registry.models.pop(cls.model_name)
 
     def test_empty_model(self):
         with environment() as env:

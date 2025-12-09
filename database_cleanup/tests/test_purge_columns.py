@@ -11,8 +11,9 @@ from .common import Common, environment
 # Use post_install to get all models loaded more info: odoo/odoo#13458
 @tagged("post_install", "-at_install")
 class TestCleanupPurgeLineColumn(Common):
-    def setUp(self):
-        super().setUp()
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
         with environment() as env:
             # create an orphaned column
             env.cr.execute(
@@ -25,7 +26,16 @@ class TestCleanupPurgeLineColumn(Common):
             partner_model = env["ir.model"].search(
                 [("model", "=", "res.partner")], limit=1
             )
-            wizard = env["cleanup.purge.wizard.column"].create(
+            wizard = env["cleanup.purge.wizard.column"].create({})
+            result = wizard.find()
+            self.assertTrue(result, "find() should return at least one orphaned column")
+            found_column_names = [line[2]["name"] for line in result]
+            self.assertIn(
+                "database_cleanup_test",
+                found_column_names,
+                "The test orphaned column should be found by find()",
+            )
+            wizard.write(
                 {
                     "purge_line_ids": [
                         (

@@ -11,37 +11,37 @@ from .common import Common, environment
 @tagged("post_install", "-at_install")
 class TestCleanupPurgeFields(Common):
     @classmethod
-    def setUpClass(self):
+    def setUpClass(cls):
         super().setUpClass()
         with environment() as env:
             # create a nonexistent model
-            self.model_name = "x_database.cleanup.test.field.model"
-            self.model_values = {
+            cls.model_name = "x_database.cleanup.test.field.model"
+            cls.model_values = {
                 "name": "Database cleanup test field-model",
-                "model": self.model_name,
+                "model": cls.model_name,
             }
-            self.model = env["ir.model"].create(self.model_values)
+            cls.model = env["ir.model"].create(cls.model_values)
             env.cr.execute(
                 "insert into ir_attachment (name, res_model, res_id, type) values "
                 "('test attachment', %s, 42, 'binary')",
-                [self.model_name],
+                [cls.model_name],
             )
 
             # create a nonexistent field
-            self.field_name = "x_database_cleanup_test_field"
-            self.field_values = {
-                "name": self.field_name,
-                "model_id": self.model.id,
+            cls.field_name = "x_database_cleanup_test_field"
+            cls.field_values = {
+                "name": cls.field_name,
+                "model_id": cls.model.id,
                 "field_description": "Database cleanup test field",
                 "ttype": "boolean",
             }
-            self.field = env["ir.model.fields"].create(self.field_values)
+            cls.field = env["ir.model.fields"].create(cls.field_values)
 
             env.cr.execute(
                 "update ir_model_fields set state = 'base' where id = %s ",
-                [self.field.id],
+                [cls.field.id],
             )
-            env.registry.models[self.model_name]._fields.pop(self.field_name)
+            env.registry.models[cls.model_name]._fields__.pop(cls.field_name)
 
     def test_empty_field(self):
         with environment() as env:
