@@ -73,7 +73,7 @@ class CleanupPurgeLineModel(models.TransientModel):
             )
             if attachments:
                 self.env.cr.execute(
-                    "UPDATE ir_attachment SET res_model = NULL " "WHERE id in %s",
+                    "UPDATE ir_attachment SET res_model = NULL WHERE id in %s",
                     (tuple(attachments.ids),),
                 )
             self.env["ir.model.constraint"].search(
