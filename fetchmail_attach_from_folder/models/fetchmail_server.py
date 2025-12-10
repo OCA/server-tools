@@ -71,10 +71,10 @@ class FetchmailServer(models.Model):
         self.state = "draft"
         return result
 
-    def fetch_mail(self):
+    def fetch_mail(self, **kwargs):
         result = True
         for this in self:
             if not this.folders_only:
-                result = result and super(FetchmailServer, this).fetch_mail()
+                result = result and super(FetchmailServer, this).fetch_mail(**kwargs)
             this.folder_ids.fetch_mail()
         return result
