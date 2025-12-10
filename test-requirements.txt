@@ -1,1 +1,2 @@
 odoo-test-helper
+odoo-addon-auto_backup @ git+https://github.com/OCA/server-tools.git@refs/pull/3461/head#subdirectory=auto_backup
