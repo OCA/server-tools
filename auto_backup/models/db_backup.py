@@ -7,11 +7,13 @@ import logging
 import os
 import shutil
 import traceback
+from base64 import decodebytes
 from contextlib import contextmanager
 from datetime import datetime, timedelta
 from glob import iglob
 
 import pysftp
+from paramiko import DSSKey, ECDSAKey, Ed25519Key, HostKeys, RSAKey
 
 from odoo import _, api, exceptions, fields, models, tools
 from odoo.exceptions import UserError
@@ -92,6 +94,17 @@ class DbBackup(models.Model):
         ],
         default="zip",
         help="Choose the format for this backup.",
+    )
+
+    host_public_key = fields.Text(
+        help=(
+            "Public key of the remote SFTP server "
+            "(SSH RSA/ED25519 key in OpenSSH format). "
+            "If set, verifies the server identity to prevent "
+            "man-in-the-middle attacks. "
+            "Leave empty for no verification (less secure). "
+            "Can be obtained with e.g. 'ssh-keyscan 202.54.1.5'"
+        ),
     )
 
     @api.model
@@ -283,21 +296,52 @@ class DbBackup(models.Model):
         )
 
     def sftp_connection(self):
-        """Return a new SFTP connection with found parameters."""
-        self.ensure_one()
-        params = {
-            "host": self.sftp_host,
-            "username": self.sftp_user,
-            "port": self.sftp_port,
-        }
-        _logger.debug(
-            "Trying to connect to sftp://%(username)s@%(host)s:%(port)d", extra=params
-        )
-        if self.sftp_private_key:
-            params["private_key"] = self.sftp_private_key
-            if self.sftp_password:
-                params["private_key_pass"] = self.sftp_password
+        cnopts = pysftp.CnOpts()
+        if self.host_public_key:
+            # Strict mode: Load only the provided key (no default known_hosts)
+            try:
+                parts = self.host_public_key.strip().split(None, 2)
+                if len(parts) < 2:
+                    raise UserError(
+                        _(
+                            "Invalid host public key format. "
+                            "Expected: 'ssh-rsa AAAAB3Nza...'"
+                        )
+                    )
+                key_type = parts[0]
+                key_b64 = parts[1]
+                data = decodebytes(key_b64.encode("ascii"))
+                if key_type == "ssh-rsa":
+                    key = RSAKey(data=data)
+                elif key_type == "ssh-dss":
+                    key = DSSKey(data=data)
+                elif key_type.startswith("ecdsa-sha2-nistp"):
+                    key = ECDSAKey(data=data)
+                elif key_type == "ssh-ed25519":
+                    key = Ed25519Key(data=data)
+                else:
+                    raise ValueError(_("Unsupported key type: %s") % key_type)
+                # Use Paramiko's HostKeys directly (pysftp-compatible)
+                cnopts.hostkeys = HostKeys()
+                cnopts.hostkeys.add(self.sftp_host, key_type, key)
+            except Exception as e:
+                raise UserError(_("Error loading host public key: %s") % str(e)) from e
         else:
-            params["password"] = self.sftp_password
-
-        return pysftp.Connection(**params)
+            # Disable checking explicitly to avoid known_hosts warnings
+            cnopts.hostkeys = None
+        if self.sftp_private_key:
+            return pysftp.Connection(
+                host=self.sftp_host,
+                username=self.sftp_user,
+                port=self.sftp_port or 22,
+                private_key=self.sftp_private_key,
+                private_key_pass=self.sftp_password or None,
+                cnopts=cnopts,
+            )
+        return pysftp.Connection(
+            host=self.sftp_host,
+            username=self.sftp_user,
+            port=self.sftp_port or 22,
+            password=self.sftp_password,
+            cnopts=cnopts,
+        )
