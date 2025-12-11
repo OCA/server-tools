@@ -75,7 +75,7 @@ conditional changes**
 Known issues / Roadmap
 ======================
 
-- Support an ``eval`` attribute for our new node types.
+-  Support an ``eval`` attribute for our new node types.
 
 Bug Tracker
 ===========
@@ -98,19 +98,19 @@ Authors
 Contributors
 ------------
 
-- Holger Brunn <hbrunn@therp.nl>
-- Ronald Portier <rportier@therp.nl>
-- `Tecnativa <https://www.tecnativa.com>`__:
+-  Holger Brunn <hbrunn@therp.nl>
+-  Ronald Portier <rportier@therp.nl>
+-  `Tecnativa <https://www.tecnativa.com>`__:
 
-  - Sergio Teruel
-  - Carlos Dauden
+   -  Sergio Teruel
+   -  Carlos Dauden
 
-- `Trobz <https://www.trobz.com>`__:
+-  `Trobz <https://www.trobz.com>`__:
 
-  - Nhan Tran <nhant@trobz.com>
+   -  Nhan Tran <nhant@trobz.com>
 
-- Iván Todorovich <ivan.todorovich@camptocamp.com>
-- Frederic Grall <fgr@apik.cloud>
+-  Iván Todorovich <ivan.todorovich@camptocamp.com>
+-  Frederic Grall <fgr@apik.cloud>
 
 Maintainers
 -----------
