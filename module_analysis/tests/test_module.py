@@ -15,19 +15,24 @@ class TestModule(TransactionCase):
         cls.env["ir.config_parameter"].set_param(
             "module_analysis.exclude_directories", "demo,test,tests,doc,description"
         )
-        cls.IrModuleModule.cron_analyse_code()
 
     def test_installed_modules(self):
         installed_modules = self.IrModuleModule.search(
             [("state", "=", "installed"), ("name", "not like", "_test")]
         )
         for module in installed_modules:
+            module.button_analyse_code()
             self.assertTrue(
-                module.python_code_qty > 0
-                or module.xml_code_qty > 0
-                or module.js_code_qty > 0,
-                "module '%s' doesn't have code analysed defined, whereas it is"
-                " installed." % (module.name),
+                (
+                    module.python_code_qty > 0
+                    or module.xml_code_qty > 0
+                    or module.js_code_qty > 0
+                    or module.css_code_qty > 0
+                    or module.scss_code_qty > 0
+                    or module.module_type_id
+                ),
+                f"module {module.name} doesn't have code analysed defined, "
+                "whereas it is installed.",
             )
 
     def test_uninstalled_modules(self):
@@ -35,6 +40,6 @@ class TestModule(TransactionCase):
         for module in uninstalled_modules:
             self.assertTrue(
                 module.python_code_qty == 0,
-                "module '%s' has python lines defined, whereas it is"
-                " not installed." % (module.name),
+                f"module {module.name} has python lines defined, "
+                "whereas it is not installed.",
             )

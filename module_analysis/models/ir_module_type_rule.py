@@ -6,7 +6,7 @@ from odoo import fields, models
 from odoo.tools.safe_eval import safe_eval
 
 
-class IrModuleType(models.Model):
+class IrModuleTypeRule(models.Model):
     _name = "ir.module.type.rule"
     _description = "Modules Types Rules"
     _order = "sequence"
