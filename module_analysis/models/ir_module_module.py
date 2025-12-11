@@ -26,7 +26,7 @@ class IrModuleModule(models.Model):
     )
 
     module_type_id = fields.Many2one(
-        string="Module Type", comodel_name="ir.module.type", readonly=True
+        string="Analysed Module Type", comodel_name="ir.module.type", readonly=True
     )
 
     python_code_qty = fields.Integer(string="Python Code Quantity", readonly=True)
@@ -108,7 +108,7 @@ class IrModuleModule(models.Model):
         exclude_files = [x.strip() for x in val.split(",") if x.strip()]
 
         for module in self:
-            _logger.info("Analysing Code for module %s ..." % (module.name))
+            _logger.info(f"Analysing Code for module {module.name} ...")
 
             # Update Authors, based on manifest key
             authors = []
