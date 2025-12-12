@@ -23,8 +23,7 @@ class BaseKanbanStage(models.Model):
         default=1,
         required=True,
         index=True,
-        help="Order of stage in relation to other stages available for the"
-        " same model",
+        help="Order of stage in relation to other stages available for the same model",
     )
     legend_priority = fields.Text(
         string="Priority Explanation",
@@ -60,7 +59,7 @@ class BaseKanbanStage(models.Model):
     )
     fold = fields.Boolean(
         string="Collapse?",
-        help="Determines whether this stage will be collapsed down in Kanban" " views",
+        help="Determines whether this stage will be collapsed down in Kanban views",
     )
     res_model_id = fields.Many2one(
         string="Associated Model",

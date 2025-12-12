@@ -40,7 +40,7 @@ class TestBaseKanbanAbstract(TransactionCase):
         return model
 
     def setUp(self):
-        super(TestBaseKanbanAbstract, self).setUp()
+        super().setUp()
 
         self.registry.enter_test_mode(self.cr)
         self.old_cursor = self.cr
@@ -77,7 +77,7 @@ class TestBaseKanbanAbstract(TransactionCase):
         self.cr = self.old_cursor
         self.env = api.Environment(self.cr, self.uid, {})
 
-        super(TestBaseKanbanAbstract, self).tearDown()
+        super().tearDown()
 
     def test_default_stage_id_no_stages(self):
         """It should return empty recordset when model has no stages"""
