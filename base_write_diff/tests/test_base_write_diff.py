@@ -3,9 +3,8 @@
 
 from logging import getLogger
 
-from odoo_test_helper import FakeModelLoader
-
 from odoo import api, fields, models
+from odoo.orm.model_classes import add_to_registry
 from odoo.tests import TransactionCase
 from odoo.tools.misc import mute_logger
 
@@ -24,9 +23,6 @@ class TestRecordDiffCommon(TransactionCase):
         cls.env["base"]._register_hook()
 
         # Load test model
-        cls.loader = FakeModelLoader(cls.env, cls.__module__)
-        cls.loader.backup_registry()
-
         class BWDTestModel(models.Model):
             _name = "bwd.test.model"
             _description = "Base Write Diff - Test Model"
@@ -43,7 +39,7 @@ class TestRecordDiffCommon(TransactionCase):
             # ``perimeter``: computed, stored field that depends on stored fields
             # ``area``: computed, non-stored field that depends on stored fields
             # ``volume``: computed, non-stored field that depends on non-stored fields
-            length = fields.Integer()  # pylint: disable=W8105  (Pylint complains this?)
+            length = fields.Integer()  # pylint: disable=attribute-deprecated
             width = fields.Integer()
             height = fields.Integer()
             perimeter = fields.Integer(compute="_compute_perimeter", store=True)
@@ -68,12 +64,12 @@ class TestRecordDiffCommon(TransactionCase):
                 for rec in self:
                     rec.volume = rec.area * rec.height
 
-        cls.loader.update_registry([BWDTestModel])
-
-    @classmethod
-    def tearDownClass(cls):
-        cls.loader.restore_registry()
-        super().tearDownClass()
+        add_to_registry(cls.registry, BWDTestModel)
+        cls.registry._setup_models__(cls.env.cr, ["bwd.test.model"])
+        cls.registry.init_models(
+            cls.env.cr, ["bwd.test.model"], {"models_to_check": True}
+        )
+        cls.addClassCleanup(cls.registry.__delitem__, "bwd.test.model")
 
     def _create_records(self, count=1):
         records = self.env["bwd.test.model"].create([{} for _ in range(1, count + 1)])
