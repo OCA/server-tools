@@ -1,7 +1,7 @@
 # © 2020 Acsone (http://www.acsone.eu)
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
-from odoo import _, models
+from odoo import models
 from odoo.exceptions import UserError
 
 
@@ -45,7 +45,7 @@ class Base(models.AbstractModel):
         """Yield successive batches of size batch_size, or ."""
         if not (batch_size or "_default_batch_size" in dir(self)):
             raise UserError(
-                _(
+                self.env._(
                     "Either set up a '_default_batch_size' on the model"
                     " or provide a batch_size parameter."
                 )
