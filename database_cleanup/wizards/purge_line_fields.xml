@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="purge_field_line_tree" model="ir.ui.view">
+        <field name="model">cleanup.purge.line.field</field>
+        <field name="inherit_id" ref="tree_purge_line" />
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="field_id" />
+                <field name="model_id" />
+                <field name="model_name" />
+            </field>
+            <button name="purge" position="attributes">
+                <attribute name="string">Purge this field</attribute>
+            </button>
+        </field>
+    </record>
+
+    <record id="action_purge_field_line" model="ir.actions.server">
+        <field name="name">Purge</field>
+        <field name="type">ir.actions.server</field>
+        <field name="state">code</field>
+        <field name="model_id" ref="database_cleanup.model_cleanup_purge_line_field" />
+        <field name="code">records.purge()</field>
+        <field
+            name="binding_model_id"
+            ref="database_cleanup.model_cleanup_purge_line_field"
+        />
+    </record>
+</odoo>

@@ -1,0 +1,35 @@
+# Copyright 2014-2016 Therp BV <http://therp.nl>
+# Copyright 2021 Camptocamp SA <https://camptocamp.com>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+{
+    "name": "Database cleanup",
+    "version": "19.0.1.0.0",
+    "author": "Therp BV,Odoo Community Association (OCA)",
+    "website": "https://github.com/OCA/server-tools",
+    "depends": ["base"],
+    "license": "AGPL-3",
+    "category": "Tools",
+    "data": [
+        "security/ir.model.access.csv",
+        "views/purge_wizard.xml",
+        "views/purge_line.xml",
+        "wizards/purge_menus.xml",
+        "wizards/purge_line_menus.xml",
+        "wizards/purge_modules.xml",
+        "wizards/purge_line_modules.xml",
+        "wizards/purge_models.xml",
+        "wizards/purge_line_models.xml",
+        "wizards/purge_fields.xml",
+        "wizards/purge_line_fields.xml",
+        "wizards/purge_columns.xml",
+        "wizards/purge_line_columns.xml",
+        "wizards/purge_tables.xml",
+        "wizards/purge_line_tables.xml",
+        "wizards/purge_data.xml",
+        "wizards/purge_line_data.xml",
+        "wizards/create_indexes.xml",
+        "wizards/create_indexes_line.xml",
+        "views/menu.xml",
+    ],
+    "installable": True,
+}

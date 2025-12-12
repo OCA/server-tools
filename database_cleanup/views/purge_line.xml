@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="tree_purge_line" model="ir.ui.view">
+        <field name="model">cleanup.purge.line</field>
+        <field name="arch" type="xml">
+            <list delete="false" create="false">
+                <field name="name" />
+                <field name="purged" />
+                <button
+                    type="object"
+                    name="purge"
+                    icon="fa-times-circle text-danger"
+                    string="Purge this record"
+                    invisible="purged"
+                />
+            </list>
+        </field>
+    </record>
+</odoo>
