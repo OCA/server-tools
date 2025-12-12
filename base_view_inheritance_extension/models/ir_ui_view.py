@@ -9,7 +9,7 @@ import re
 from lxml import etree
 
 from odoo import api, models
-from odoo.osv import expression
+from odoo.fields import Domain
 
 
 def ast_dict_update(source, update):
@@ -163,9 +163,9 @@ class IrUiView(models.Model):
                     self._var2str_domain_text(attribute_node.text.strip())
                 )
                 if join_operator == "OR":
-                    new_value = str(expression.OR([old_domain, new_domain]))
+                    new_value = str(Domain.OR([old_domain, new_domain]))
                 else:
-                    new_value = str(expression.AND([old_domain, new_domain]))
+                    new_value = str(Domain.AND([old_domain, new_domain]))
                 new_value = self._str2var_domain_text(new_value)
                 old_value = "".join(old_value.splitlines())
             else:

@@ -13,10 +13,33 @@ class TestBaseViewInheritanceExtension(TransactionCase):
     def setUpClass(cls):
         super().setUpClass()
         cls.maxDiff = None
+        cls.view = cls.env["ir.ui.view"].create(
+            {
+                "name": "Test Partner Simple Form Override",
+                "type": "form",
+                "model": "res.partner",
+                "inherit_id": cls.env.ref("base.view_partner_simple_form").id,
+                "arch": """
+                <data>
+                    <xpath expr="." position="attributes">
+                        <attribute name="string">Partner form</attribute>
+                    </xpath>
+
+                    <field name="parent_id" position="attributes">
+                        <attribute name="context" operation="update">
+                            {
+                                "default_email": "info@odoo-community.org",
+                                "default_company_id": allowed_company_ids[0]
+                            }
+                        </attribute>
+                    </field>
+                </data>
+            """,
+            }
+        )
 
     def test_base_view_inheritance_extension(self):
-        view_id = self.env.ref("base.view_partner_simple_form").id
-        arch, _ = self.env["res.partner"]._get_view(view_id=view_id)
+        arch, _ = self.env["res.partner"]._get_view(view_id=self.view.id)
         # Verify normal attributes work
         self.assertEqual(arch.xpath("//form")[0].get("string"), "Partner form")
         # Verify our extra context key worked
