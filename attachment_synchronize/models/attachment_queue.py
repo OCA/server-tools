@@ -47,6 +47,11 @@ class AttachmentQueue(models.Model):
                     str(err) or type(err).__name__,
                     seconds=self._timeout_retry_seconds(),
                 ) from err
+            except ConnectionResetError as err:
+                raise RetryableJobError(
+                    str(err) or type(err).__name__,
+                    seconds=self._timeout_retry_seconds(),
+                ) from err
         return res
 
     def _timeout_retry_seconds(self):
