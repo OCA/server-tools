@@ -98,7 +98,7 @@ class RecomputeField(models.Model):
                     field_ = records._fields[field]
                     self.env.add_to_compute(field_, records)
 
-                records.recompute()
+                records.flush_recordset()
                 last_id = records[-1].id
                 tasks.last_id = last_id
                 self.env.cr.commit()  # pylint: disable=E8102
