@@ -66,7 +66,7 @@ class RecomputeField(models.Model):
         # Group tasks by compute method to avoid computing multifields computes multiple times
 
         def group_key(task):
-            return task.model, self.env[task.model]._fields[task.field].compute
+            return task.model, str(self.env[task.model]._fields[task.field].compute)
 
         model_tasks = groupby(
             self.sorted(key=group_key),
