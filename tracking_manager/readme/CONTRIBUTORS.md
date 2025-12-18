@@ -1,3 +1,4 @@
 - Kévin Roche \<<kevin.roche@akretion.com>\>
 - Sébastien BEAU \<<sebastien.beau@akretion.com>\>
 - Christopher Rogos \<<crogos@gmail.com>\>
+- Michel Guiheneuf \<<mgu@apik.cloud>\>

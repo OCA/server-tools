@@ -43,7 +43,7 @@ class TestTrackingManager(TransactionCase):
         return cls.partner_model.field_id.filtered(lambda s: s.name in fields_list)
 
     def test_not_tracked(self):
-        field = self._get_fields(["mobile"])[0]
+        field = self._get_fields(["phone"])[0]
         self.assertFalse(field.native_tracking)
         self.assertFalse(field.custom_tracking)
 
@@ -53,8 +53,8 @@ class TestTrackingManager(TransactionCase):
         self.assertTrue(field.custom_tracking)
 
     def test_update_tracked(self):
-        field = self._get_fields(["mobile"])[0]
-        self.assertFalse(field.native_tracking)
+        field = self._get_fields(["phone"])[0]
+        self.assertTrue(field.native_tracking)
         self.partner_model.automatic_custom_tracking = True
         self.partner_model.update_custom_tracking()
         self.assertTrue(field.custom_tracking)
@@ -175,7 +175,7 @@ class TestTrackingManager(TransactionCase):
                         Command.UPDATE,
                         self.partner.user_ids[0].id,
                         {
-                            "groups_id": [
+                            "group_ids": [
                                 (
                                     6,
                                     0,

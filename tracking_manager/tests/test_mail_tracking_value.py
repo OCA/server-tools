@@ -64,7 +64,7 @@ class TestMailTracking(BaseCommon):
             initial_value = values[p_name][0]
             new_value = values[p_name][1]
             res = self.MailTracking._create_tracking_values_property(
-                initial_value, new_value, "title", col_info, self.partner
+                initial_value, new_value, "name", col_info, self.partner
             )
             del res["field_info"]
             f_name = property_type_mapped[col_info["type"]]
@@ -133,10 +133,6 @@ class TestMailTracking(BaseCommon):
             "property_09": (False, self.partner.id),
             "property_10": (False, [self.partner.id, partner_extra.id]),
         }
-        # Test all the property types using as fake title field because there is no
-        # property field in base to test.
-        # We do not want to create a FakeModel and add the property field in partner
-        # because the partner_property module could have conflicts.
         # 1- Test the case that all the initial values were empty and now have a value
         self._test_create_tracking_values_property(test_properties_01)
         # 2- Test the case that all the initial values had something set and now have
