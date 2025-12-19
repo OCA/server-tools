@@ -53,6 +53,23 @@ class InMemoryTransport(HttpTransport):
                 return event
         return False
 
+    def has_log_item(self, log_level: str, log_msg: str) -> bool:
+        for envelope in self.envelopes:
+            log_items = filter(
+                lambda envelope_item: envelope_item.data_category == "log_item",
+                envelope.items,
+            )
+            payload_items = []
+            for item in log_items:
+                payload_items.extend(item.payload.json["items"])
+            if any(
+                (item["level"] == log_level and item["body"] == log_msg)
+                for item in payload_items
+            ):
+                return True
+
+        return False
+
     def flush(self, *args, **kwargs):
         pass
 
@@ -121,6 +138,13 @@ class TestClientSetup(TransactionCase):
         self.assertFalse(
             client.transport.has_event(event_level, event_msg),
             msg=f"Event: {event_msg} was captured",
+        )
+
+    def assertLogCaptured(self, client, log_level: str, log_msg: str):
+        client.flush()
+        self.assertTrue(
+            client.transport.has_log_item(log_level, log_msg),
+            msg=f"Log item: {log_msg} was not captured",
         )
 
     def test_initialize_raven_sets_dsn(self):
@@ -223,6 +247,19 @@ class TestClientSetup(TransactionCase):
         # Revert ignored logger so it doesn't affect other tests
         remove_handler_ignore(self.logger.name)
         self.assertEventNotCaptured(client, level, msg)
+
+    def test_enable_logs(self):
+        self.patch_config(
+            {
+                "sentry_enable_logs": True,
+            }
+        )
+        client = initialize_sentry(config)._client
+        client.transport = InMemoryTransport({"dsn": self.dsn})
+        level, msg = logging.WARNING, "Test log sending is enabled"
+        self.log(level, msg)
+        level = "warn"
+        self.assertLogCaptured(client, level, msg)
 
     def test_invalid_logging_level(self):
         self.patch_config(

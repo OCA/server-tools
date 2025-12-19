@@ -19,6 +19,7 @@ options:
     sentry_enabled = true
     sentry_logging_level = warn
     sentry_exclude_loggers = werkzeug
+    sentry_enable_logs = true
     sentry_ignore_exceptions = odoo.exceptions.AccessDenied,
         odoo.exceptions.AccessError,odoo.exceptions.MissingError,
         odoo.exceptions.RedirectWarning,odoo.exceptions.UserError,
