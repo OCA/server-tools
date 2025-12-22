@@ -1,10 +1,8 @@
 # Copyright 2016-2017 LasLabs Inc.
-# Copyright 2019 ForgeFlow.
+# Copyright 2025 ForgeFlow.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
-from collections import deque
-
-from odoo import api, models
+from odoo import models
 from odoo.tests.common import TransactionCase
 
 
@@ -12,42 +10,38 @@ class BaseKanbanAbstractTester(models.Model):
     _name = "base.kanban.abstract.tester"
     _description = "base kanban abstract tester"
     _inherit = "base.kanban.abstract"
+    _order = "id asc"
 
 
 class TestBaseKanbanAbstract(TransactionCase):
-    def _init_test_model(self, model_cls):
-        model_cls._build_model(self.registry, self.cr)
-        model = self.env[model_cls._name]
-        # setup_models():
-        model._prepare_setup()
-        model._setup_base()
-        model._setup_fields()
-        model._setup_complete()
-        # init_models():
-        self.registry._post_init_queue = deque()
-        self.registry._foreign_keys = {}
-        model._auto_init()
-        model.init()
-        self.env["ir.model"]._reflect_models([model._name])
-        self.env["ir.model.fields"]._reflect_fields([model._name])
-        self.env["ir.model.fields.selection"]._reflect_selections([model._name])
-        self.env["ir.model.constraint"]._reflect_constraints([model._name])
-        while self.registry._post_init_queue:
-            func = self.registry._post_init_queue.popleft()
-            func()
-        del self.registry._post_init_queue
-        del self.registry._foreign_keys
-        return model
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+
+        # Manually register and build the test model
+        from odoo.orm import model_classes
+
+        registry = cls.env.registry
+        cr = cls.env.cr
+
+        # Build the model if not already in registry
+        if BaseKanbanAbstractTester._name not in registry.models:
+            # Add the model definition to registry
+            model_classes.add_to_registry(registry, BaseKanbanAbstractTester)
+
+            # Setup models
+            registry._setup_models__(cr, [BaseKanbanAbstractTester._name])
+
+            # Initialize the model
+            with cls.muted_registry_logger:
+                registry.init_models(
+                    cr, [BaseKanbanAbstractTester._name], {}, install=False
+                )
+
+        cls.test_model = cls.env[BaseKanbanAbstractTester._name]
 
     def setUp(self):
         super().setUp()
-
-        self.registry.enter_test_mode(self.cr)
-        self.old_cursor = self.cr
-        self.cr = self.registry.cursor()
-        self.env = api.Environment(self.cr, self.uid, {})
-        self.test_model = self._init_test_model(BaseKanbanAbstractTester)
-
         test_model_record = self.env["ir.model"].search(
             [
                 ("model", "=", self.test_model._name),
@@ -71,12 +65,8 @@ class TestBaseKanbanAbstract(TransactionCase):
         )
 
     def tearDown(self):
-        self.registry.leave_test_mode()
         self.registry[self.test_model._name]._abstract = True
         self.registry[self.test_model._name]._auto = False
-        self.cr = self.old_cursor
-        self.env = api.Environment(self.cr, self.uid, {})
-
         super().tearDown()
 
     def test_default_stage_id_no_stages(self):
@@ -99,12 +89,11 @@ class TestBaseKanbanAbstract(TransactionCase):
     def test_read_group_stage_ids(self):
         """It should return all corresponding stages in requested sort order"""
         result = self.test_model._read_group_stage_ids(
-            self.env["base.kanban.stage"], None, "id"
+            self.env["base.kanban.stage"], None
         )
 
         expected = self.env["base.kanban.stage"].search(
             [("res_model_id.model", "=", self.test_model._name)],
-            order="id",
         )
         self.assertEqual(result[0], expected[0])
         self.assertEqual(result[1], expected[1])

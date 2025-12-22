@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-    Copyright 2019 Eficent Business and IT Consulting Services S.L.
+    Copyright 2025 ForgeFlow S.L.
     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 -->
 <odoo>
@@ -11,7 +11,7 @@
             <field name="transient" position="after">
                 <field
                     name="is_kanban"
-                    attrs="{'readonly': [('state','!=', 'manual')]}"
+                    readonly="state != 'manual'"
                     groups="base.group_no_one"
                 />
             </field>

@@ -16,9 +16,6 @@ class BaseKanbanAbstract(models.AbstractModel):
     _name = "base.kanban.abstract"
     _description = "Kanban Abstract"
     _order = "kanban_priority desc, kanban_sequence"
-    _group_by_full = {
-        "stage_id": lambda s, *a, **k: s._read_group_stage_ids(*a, **k),
-    }
 
     @api.model
     def _default_stage_id(self):
@@ -111,6 +108,6 @@ class BaseKanbanAbstract(models.AbstractModel):
         # allow tracking on models inheriting from 'base.kanban.stage'
         return name == "tracking" or super()._valid_field_parameter(field, name)
 
-    def _read_group_stage_ids(self, stages, domain, order):
+    def _read_group_stage_ids(self, stages, domain):
         search_domain = [("res_model_id.model", "=", self._name)]
-        return stages.search(search_domain, order=order)
+        return stages.search(search_domain)
