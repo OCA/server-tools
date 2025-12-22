@@ -32,11 +32,11 @@
         <field name="name">Kanban Stages - Tree View</field>
         <field name="model">base.kanban.stage</field>
         <field name="arch" type="xml">
-            <tree name="Kanban Stages">
+            <list name="Kanban Stages">
                 <field name="name" />
                 <field name="res_model_id" />
                 <field name="sequence" />
-            </tree>
+            </list>
         </field>
     </record>
     <record id="base_kanban_stage_view_search" model="ir.ui.view">
@@ -54,7 +54,7 @@
         <field name="name">Kanban Stages</field>
         <field name="res_model">base.kanban.stage</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
     <menuitem
         id="base_kanban_stage_root_menu"
