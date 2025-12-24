@@ -12,6 +12,8 @@ from odoo.exceptions import UserError
 from odoo.osv import expression
 from odoo.tools.safe_eval import safe_eval
 
+from ..exceptions import BaseExceptionError
+
 _logger = logging.getLogger(__name__)
 
 
@@ -71,6 +73,7 @@ class BaseExceptionMethod(models.AbstractModel):
         Exception ids are also written on records
         """
         all_exception_ids, rules_to_remove, rules_to_add = self._get_exceptions()
+        # TODO: Remove outdated comment?
         # Cumulate all the records to attach to the rule
         # before linking. We don't want to call "rule.write()"
         # which would:
@@ -84,10 +87,18 @@ class BaseExceptionMethod(models.AbstractModel):
         # the "to remove" part generates one DELETE per rule on the relation
         # table
         # and the "to add" part generates one INSERT (with unnest) per rule.
-        for rule_id, records in rules_to_remove.items():
-            records.write({"exception_ids": [(3, rule_id)]})
-        for rule_id, records in rules_to_add.items():
-            records.write({"exception_ids": [(4, rule_id)]})
+        if rules_to_add or rules_to_remove:
+            raise BaseExceptionError(
+                "Exception on records",
+                {
+                    rule_id: (records._name, records.ids)
+                    for rule_id, records in rules_to_add.items()
+                },
+                {
+                    rule_id: (records._name, records.ids)
+                    for rule_id, records in rules_to_remove.items()
+                },
+            )
         return all_exception_ids
 
     @api.model
