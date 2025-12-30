@@ -6,7 +6,7 @@ import json
 import logging
 import os
 
-from odoo import _, api, exceptions, models, tools
+from odoo import api, exceptions, models, tools
 from odoo.modules.module import get_module_path
 
 from ..addon_hash import addon_hash
@@ -31,7 +31,7 @@ def ensure_module_state(env, modules, state):
     if not modules:
         return
     env.cr.execute(
-        "SELECT name FROM ir_module_module " "WHERE id IN %s AND state != %s",
+        "SELECT name FROM ir_module_module WHERE id IN %s AND state != %s",
         (tuple(modules.ids), state),
     )
     names = [r[0] for r in env.cr.fetchall()]
@@ -53,6 +53,7 @@ class Module(models.Model):
             DEFAULT_EXCLUDE_PATTERNS,
         )
         exclude_patterns = [p.strip() for p in exclude_patterns.split(",")]
+        # pylint: disable=no-search-all
         keep_langs = self.env["res.lang"].search([]).mapped("code")
 
         module_path = get_module_path(self.name)
@@ -144,7 +145,7 @@ class Module(models.Model):
                 "type": "ir.actions.client",
                 "tag": "display_notification",
                 "params": {
-                    "message": _(
+                    "message": self.env._(
                         "No checksum change detected in installed modules "
                         "and all modules installed, nothing to do."
                     ),
@@ -188,7 +189,7 @@ class Module(models.Model):
             "type": "ir.actions.client",
             "tag": "display_notification",
             "params": {
-                "message": _("Checksum upgrade complete."),
+                "message": self.env._("Checksum upgrade complete."),
                 "type": "success",
                 "sticky": False,
             },

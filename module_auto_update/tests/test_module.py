@@ -17,19 +17,20 @@ MODULE_NAME = "module_auto_update"
 
 
 class TestModule(TransactionCase):
-    def setUp(self):
-        super().setUp()
-        self.own_module = self.env["ir.module.module"].search(
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.own_module = cls.env["ir.module.module"].search(
             [("name", "=", MODULE_NAME)]
         )
-        self.own_dir_path = get_module_path(MODULE_NAME)
-        keep_langs = self.env["res.lang"].search([]).mapped("code")
-        self.own_checksum = addon_hash(
-            self.own_dir_path,
+        cls.own_dir_path = get_module_path(MODULE_NAME)
+        keep_langs = cls.env["res.lang"].search([]).mapped("code")
+        cls.own_checksum = addon_hash(
+            cls.own_dir_path,
             exclude_patterns=DEFAULT_EXCLUDE_PATTERNS.split(","),
             keep_langs=keep_langs,
         )
-        self.own_writeable = os.access(self.own_dir_path, os.W_OK)
+        cls.own_writeable = os.access(cls.own_dir_path, os.W_OK)
 
     def test_compute_checksum_dir(self):
         """It should compute the directory's SHA-1 hash"""
@@ -82,18 +83,19 @@ class TestModule(TransactionCase):
 
 @odoo.tests.tagged("post_install", "-at_install")
 class TestModuleAfterInstall(TransactionCase):
-    def setUp(self):
-        super().setUp()
-        Imm = self.env["ir.module.module"]
-        self.own_module = Imm.search([("name", "=", MODULE_NAME)])
-        self.base_module = Imm.search([("name", "=", "base")])
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        Imm = cls.env["ir.module.module"]
+        cls.own_module = Imm.search([("name", "=", MODULE_NAME)])
+        cls.base_module = Imm.search([("name", "=", "base")])
 
     def test_get_modules_partially_installed(self):
         Imm = self.env["ir.module.module"]
         self.assertTrue(self.own_module not in Imm._get_modules_partially_installed())
         self.own_module.button_upgrade()
         self.assertTrue(self.own_module in Imm._get_modules_partially_installed())
-        self.own_module.button_upgrade_cancel()
+        self.own_module.button_reset_state()
         self.assertTrue(self.own_module not in Imm._get_modules_partially_installed())
 
     def test_upgrade_changed_checksum(self):
@@ -175,7 +177,7 @@ class TestModuleAfterInstall(TransactionCase):
             finally:
                 Bmu.upgrade_module = origin
 
-    def test_incomplete_upgrade_no_checkusm(self):
+    def test_incomplete_upgrade_no_checksum(self):
         Imm = self.env["ir.module.module"]
         Bmu = type(self.env["base.module.upgrade"])
 
