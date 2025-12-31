@@ -12,6 +12,12 @@ from odoo.tools.safe_eval import safe_eval, wrap_module
 _logger = logging.getLogger(__name__)
 
 
+# Pre-compute UUID safe members to avoid recomputation on each call
+_UUID_SAFE_MEMBERS = [
+    name for name, _ in getmembers(uuid, lambda m: isfunction(m) or isclass(m))
+]
+
+
 DEFAULT_PYTHON_CODE = "number_padded"
 
 
@@ -42,10 +48,7 @@ class IrSequence(models.Model):
         :return: dict
         """
         wrap_random = wrap_module(random, random.__all__)
-        uuid_elements = [e[0] for e in getmembers(uuid, isfunction)] + [
-            e[0] for e in getmembers(uuid, isclass)
-        ]
-        wrap_uuid = wrap_module(uuid, uuid_elements)
+        wrap_uuid = wrap_module(uuid, _UUID_SAFE_MEMBERS)
         wrap_string = wrap_module(string, string.__all__)
         if isinstance(number_next, tuple):
             number_next = number_next[0]
