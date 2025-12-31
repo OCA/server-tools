@@ -39,7 +39,7 @@ class IrSequence(models.Model):
         Get the eval context to evaluate the Python code with.
         The format is (variable name, description, value)
         You can inherit this in your custom module.
-        :return: tuple
+        :return: dict
         """
         wrap_random = wrap_module(random, random.__all__)
         uuid_elements = [e[0] for e in getmembers(uuid, isfunction)] + [
@@ -50,7 +50,7 @@ class IrSequence(models.Model):
         if isinstance(number_next, tuple):
             number_next = number_next[0]
         return {
-            "number": number_next[0] if isinstance(number_next, tuple) else number_next,
+            "number": number_next,
             "number_padded": f"{number_next:0{self.padding}d}",
             "sequence": self,
             "random": wrap_random,
