@@ -37,3 +37,23 @@ class TestIrSequence(TransactionCase):
         self.assertEqual(next_number, "AB01C")
         next_number = self.sequence._next()
         self.assertEqual(next_number, "AB02C")
+
+    def test_python_code_returns_int(self):
+        # Create a separate sequence for this test to avoid interference
+        seq = self.Sequence.create(
+            {
+                "name": "Test sequence for int",
+                "implementation": "standard",
+                "code": "test.python.sequence.int",
+                "prefix": "A",
+                "padding": 0,  # No padding for this test
+                "number_next": 1,
+                "number_increment": 1,
+                "company_id": False,
+                "use_python_code": True,
+                "python_code": "number",  # This returns an integer
+            }
+        )
+        self.assertEqual(seq.python_code_preview, "A1")
+        next_number = seq._next()
+        self.assertEqual(next_number, "A1")
