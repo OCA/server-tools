@@ -57,3 +57,7 @@ class TestIrSequence(TransactionCase):
         self.assertEqual(seq.python_code_preview, "A1")
         next_number = seq._next()
         self.assertEqual(next_number, "A1")
+
+    def test_python_code_with_error(self):
+        self.sequence.write({"python_code": "1 / 0"})
+        self.assertIn("division by zero", self.sequence.python_code_preview)
