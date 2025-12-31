@@ -78,10 +78,10 @@ class IrSequence(models.Model):
     def get_next_char(self, number_next):
         if self.use_python_code:
             interpolated_prefix, interpolated_suffix = self._get_prefix_suffix()
-            return (
-                interpolated_prefix
-                + self._get_python_value(number_next)
-                + interpolated_suffix
-            )
+            result = self._get_python_value(number_next)
+            # Convert to string to prevent TypeError when concatenating with strings
+            # Only convert if it's not already a string to preserve original behavior
+            result_str = str(result) if not isinstance(result, str) else result
+            return interpolated_prefix + result_str + interpolated_suffix
         else:
             return super().get_next_char(number_next)
