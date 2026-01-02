@@ -84,6 +84,13 @@ class DbBackup(models.Model):
         help="Path to the private key file. Only the Odoo user should have "
         "read permissions for that file.",
     )
+    sftp_ignore_hostkey = fields.Boolean(
+        "Ignore Host Key Verification",
+        default=False,
+        help="If enabled, the SFTP connection will not verify the server's "
+        "host key. This is less secure but useful when the server's host key "
+        "is not available in the known_hosts file.",
+    )
 
     backup_format = fields.Selection(
         [
@@ -278,6 +285,15 @@ class DbBackup(models.Model):
             "username": self.sftp_user,
             "port": self.sftp_port,
         }
+        # Optionally disable host key verification
+        if self.sftp_ignore_hostkey:
+            cnopts = pysftp.CnOpts()
+            cnopts.hostkeys = None
+            params["cnopts"] = cnopts
+            _logger.warning(
+                "SFTP host key verification disabled for %s - this is less secure",
+                self.sftp_host,
+            )
         _logger.debug(
             "Trying to connect to sftp://%(username)s@%(host)s:%(port)d", extra=params
         )
