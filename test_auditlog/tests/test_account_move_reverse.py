@@ -125,7 +125,7 @@ class TestAccountMoveReverse(AccountTestInvoicingCommon, AuditLogRuleCommon):
             "amount_tax": 168.0,
             "amount_total": 1128.0,
         }
-        cls.env.user.groups_id += cls.env.ref("uom.group_uom")
+        cls.env.user.group_ids += cls.env.ref("uom.group_uom")
 
     def setUp(self):
         super().setUp()
