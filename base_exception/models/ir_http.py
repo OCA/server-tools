@@ -3,6 +3,7 @@
 
 from odoo import models
 from odoo.api import Environment
+from odoo.fields import Command
 from odoo.http import request
 from odoo.modules.registry import Registry
 
@@ -31,10 +32,10 @@ class IrHttp(models.AbstractModel):
                 to_remove = err.rules_to_remove
                 new_env.cr.rollback()
 
-        for rule_id, (model, res_ids) in to_add.items():
-            old_env[model].browse(res_ids).write({"exception_ids": [(4, rule_id)]})
         for rule_id, (model, res_ids) in to_remove.items():
-            old_env[model].browse(res_ids).write({"exception_ids": [(4, rule_id)]})
+            old_env[model].browse(res_ids).write({"exception_ids": [Command.unlink(rule_id)]})
+        for rule_id, (model, res_ids) in to_add.items():
+            old_env[model].browse(res_ids).write({"exception_ids": [Command.link(rule_id)]})
 
         request.env = old_env
         return res
