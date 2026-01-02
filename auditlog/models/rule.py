@@ -150,8 +150,7 @@ class AuditlogRule(models.Model):
         "Log Exports",
         default=True,
         help=(
-            "Select this if you want to keep track of exports "
-            "of the model of this rule"
+            "Select this if you want to keep track of exports of the model of this rule"
         ),
     )
     log_type = fields.Selection(
