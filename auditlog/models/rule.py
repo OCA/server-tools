@@ -2,11 +2,11 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import copy
-from collections import defaultdict
 
-from odoo import Command, _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
-from odoo.tools.misc import OrderedSet
+from odoo.fields import Command
+from odoo.orm.identifiers import NewId
 
 FIELDS_BLACKLIST = [
     "id",
@@ -59,38 +59,64 @@ class ThrowAwayCache:
     out unsaved values from the current user's cache during a write.
     """
 
+    # List of attributes of the transaction object that need to be set aside for
+    # a (temporary) clean slate.
+    transaction_attributes = [
+        "field_data",
+        "field_data_patches",
+        "field_dirty",
+        "protected",
+        "tocompute",
+    ]
+
     def __init__(self, env):
         self._transaction = env.transaction
 
     def __enter__(self):
-        """Replace the cache + tocompute on all envs and on the transaction.
+        """Replace the cache data storage of the transaction.
 
-        It is not enough to replace the cache on the current env, because once
-        a sudo is executed under the scope of this context manager, another new
-        or existing env is fetched which will have the original cache if we
-        don't swap them all out here.
+        Environments share a common cache that is stored in various properties
+        of the shared transaction. The transaction object itself is also linked
+        to the cursor, so if we want to keep using the same cursor, we need to
+        patch out these properties.
         """
-        self._original_cache = self._transaction.cache
-        # Also swap out the list of fields to recompute. Their compute methods
-        # may depend on fields in the cache that are not yet flushed, and as is
-        # the case with account.bank.statement.line's _compute_internal_index,
-        # may not be resilient to some of the values (c.q. 'date') missing.
-        self._original_tocompute = self._transaction.tocompute
-        self._transaction.tocompute = defaultdict(OrderedSet)
-        for key, value in self._transaction.tocompute.items():
-            self._original_tocompute[key] = OrderedSet(value)
-        temporary_cache = api.Cache()
+        for attribute in self.transaction_attributes:
+            instance = getattr(self._transaction, attribute)
+            setattr(
+                self,
+                f"_original_{attribute}",
+                instance,
+            )
+            # Create an empty copy of the container instance
+            replacement = copy.copy(instance)
+            replacement.clear()
+            setattr(
+                self._transaction,
+                attribute,
+                replacement,
+            )
+
+        # Store a copy of the field cache memo of each env. This is slightly more
+        # elaborate because its value is different for each env.
+        self._original_field_cache_memos = {}
         for env in self._transaction.envs:
-            env.cache = temporary_cache
-        self._transaction.cache = temporary_cache
+            self._original_field_cache_memos[env] = dict(env._field_cache_memo)
+            env._field_cache_memo.clear()
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
-        """Restore the original cache wherever it was replaced."""
+        """Restore the original cache data storage of the transaction."""
+        for attribute in self.transaction_attributes:
+            attr = getattr(self, f"_original_{attribute}")
+            setattr(self._transaction, attribute, attr)
+
+        # Restore the contents of the field_cache_memo of each env. Environments
+        # are read-only objects, so we cannot patch back the actual stashed copies.
         for env in self._transaction.envs:
-            env.cache = self._original_cache
-        self._transaction.cache = self._original_cache
-        self._transaction.tocompute = self._original_tocompute
+            env._field_cache_memo.clear()
+            if cache_memo := self._original_field_cache_memos.get(env):
+                for key, value in cache_memo.items():
+                    env._field_cache_memo[key] = value
 
 
 class AuditlogRule(models.Model):
@@ -191,16 +217,11 @@ class AuditlogRule(models.Model):
         string="Fields to Exclude",
     )
 
-    _sql_constraints = [
-        (
-            "model_uniq",
-            "unique(model_id)",
-            (
-                "There is already a rule defined on this model\n"
-                "You cannot define another: please edit the existing one."
-            ),
-        )
-    ]
+    _model_uniq = models.Constraint(
+        "unique(model_id)",
+        "There is already a rule defined on this model.\n"
+        "You cannot define another: please edit the existing one.",
+    )
 
     def _register_hook(self):
         """Get all rules and apply them to log method calls."""
@@ -290,7 +311,7 @@ class AuditlogRule(models.Model):
         """Update the registry when a new rule is created."""
         for vals in vals_list:
             if "model_id" not in vals or not vals["model_id"]:
-                raise UserError(_("No model defined to create line."))
+                raise UserError(self.env._("No model defined to create line."))
             model = self.env["ir.model"].sudo().browse(vals["model_id"])
             vals.update({"model_name": model.name, "model_model": model.model})
         new_records = super().create(vals_list)
@@ -303,7 +324,7 @@ class AuditlogRule(models.Model):
         """Update the registry when existing rules are updated."""
         if "model_id" in vals:
             if not vals["model_id"]:
-                raise UserError(_("Field 'model_id' cannot be empty."))
+                raise UserError(self.env._("Field 'model_id' cannot be empty."))
             model = self.env["ir.model"].sudo().browse(vals["model_id"])
             vals.update({"model_name": model.name, "model_model": model.model})
         res = super().write(vals)
@@ -336,7 +357,6 @@ class AuditlogRule(models.Model):
         users_to_exclude = self.mapped("users_to_exclude_ids")
 
         @api.model_create_multi
-        @api.returns("self", lambda value: value.id)
         def create_full(self, vals_list, **kwargs):
             self = self.with_context(auditlog_disabled=True)
             rule_model = self.env["auditlog.rule"]
@@ -372,7 +392,6 @@ class AuditlogRule(models.Model):
             return new_records
 
         @api.model_create_multi
-        @api.returns("self", lambda value: value.id)
         def create_fast(self, vals_list, **kwargs):
             self = self.with_context(auditlog_disabled=True)
             rule_model = self.env["auditlog.rule"]
@@ -447,7 +466,7 @@ class AuditlogRule(models.Model):
             rule_model = self.env["auditlog.rule"]
             fields_list = rule_model.get_auditlog_fields(self)
             records_write = (
-                self.filtered(lambda r: not isinstance(r.id, models.NewId))
+                self.filtered(lambda r: not isinstance(r.id, NewId))
                 .sudo()
                 .with_context(prefetch_fields=False)
             )
@@ -457,8 +476,6 @@ class AuditlogRule(models.Model):
             with ThrowAwayCache(self.env):
                 old_values = {d["id"]: d for d in records_write.read(fields_list)}
 
-            if self._name == "res.users":
-                vals = self._remove_reified_groups(vals)
             result = write_full.origin(self, vals, **kwargs)
             self.flush_recordset()
             if self.env.user in users_to_exclude:
@@ -820,7 +837,7 @@ class AuditlogRule(models.Model):
                 f"[('model_id', '=', {rule.model_id.id}), ('res_id', '=', active_id)]"
             )
             vals = {
-                "name": _("View logs"),
+                "name": self.env._("View logs"),
                 "res_model": "auditlog.log",
                 "binding_model_id": rule.model_id.id,
                 "domain": domain,

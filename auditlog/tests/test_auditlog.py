@@ -3,8 +3,9 @@
 # © 2021 Stefan Rijnhart <stefan@opener.amsterdam>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
+from odoo.fields import Command
+
 from odoo.addons.base.models.ir_model import MODULE_UNINSTALL_FLAG
-from odoo.addons.base.models.res_users import name_boolean_group
 
 from .common import AuditLogRuleCommon
 
@@ -44,7 +45,7 @@ class AuditlogCommon:
 
     def test_LogCreation3(self):
         """Third test, two groups, the latter being the parent of the former.
-        Then we remove it right after (with (2, X) tuple) to test the creation
+        Then we remove it right after (with Command.delete) to test the creation
         of a 'write' log with a deleted resource (so with no text
         representation).
         """
@@ -56,10 +57,13 @@ class AuditlogCommon:
         testgroup5 = self.env["res.groups"].create(
             {
                 "name": "testgroup5",
-                "implied_ids": [(4, testgroup3.id), (4, testgroup4.id)],
+                "implied_ids": [
+                    Command.link(testgroup3.id),
+                    Command.link(testgroup4.id),
+                ],
             }
         )
-        testgroup5.write({"implied_ids": [(2, testgroup3.id)]})
+        testgroup5.write({"implied_ids": [Command.delete(testgroup3.id)]})
         self.assertTrue(
             auditlog_log.search(
                 [
@@ -186,17 +190,20 @@ class AuditlogCommon:
 
         auditlog_log = self.env["auditlog.log"]
         cat = self.env["ir.module.category"].create({"name": "Test Category"})
+        privilege = self.env["res.groups.privilege"].create(
+            {"name": "Test Privilege", "category_id": cat.id},
+        )
         groups_vals = [
             {"name": "testgroup1"},
-            {"name": "testgroup3", "category_id": cat.browse()},
-            {"name": "testgroup2", "category_id": False},
-            {"name": "testgroup4", "category_id": cat.id},
+            {"name": "testgroup3", "privilege_id": self.env["res.groups.privilege"]},
+            {"name": "testgroup2", "privilege_id": False},
+            {"name": "testgroup4", "privilege_id": privilege.id},
         ]
         groups = self.env["res.groups"].create(groups_vals)
 
-        # Ensure ``category_id`` field has the correct values
-        expected_ids = [False, False, False, cat.id]
-        self.assertEqual([g.category_id.id for g in groups], expected_ids)
+        # Ensure ``privilege_id`` field has the correct values
+        expected_ids = [False, False, False, privilege.id]
+        self.assertEqual([g.privilege_id.id for g in groups], expected_ids)
 
         # Ensure the correct number of logs have been created
         logs = auditlog_log.search(
@@ -216,14 +223,20 @@ class AuditlogCommon:
         group = self.env["res.groups"].create(
             {
                 "name": "testgroup1",
-                "implied_ids": [(4, testgroup3.id), (4, testgroup4.id)],
+                "implied_ids": [
+                    Command.link(testgroup3.id),
+                    Command.link(testgroup4.id),
+                ],
             }
         )
         cat = self.env["ir.module.category"].create({"name": "Test Category"})
+        privilege = self.env["res.groups.privilege"].create(
+            {"name": "Test Privilege", "category_id": cat.id},
+        )
         group.write(
             {
                 "name": "Testgroup1",
-                "category_id": False,
+                "privilege_id": False,
             }
         )
         log1 = self.env["auditlog.log"].search(
@@ -234,7 +247,7 @@ class AuditlogCommon:
             ]
         )
         self.assertEqual(len(log1), 1)
-        group.write({"name": "Testgroup2", "category_id": cat.id})
+        group.write({"name": "Testgroup2", "privilege_id": privilege.id})
         log2 = self.env["auditlog.log"].search(
             [
                 ("model_id", "=", self.groups_model_id),
@@ -244,7 +257,7 @@ class AuditlogCommon:
             ]
         )
         self.assertEqual(len(log2), 1)
-        group.write({"name": "Testgroup3", "category_id": False})
+        group.write({"name": "Testgroup3", "privilege_id": False})
         log3 = self.env["auditlog.log"].search(
             [
                 ("model_id", "=", self.groups_model_id),
@@ -470,6 +483,10 @@ class AuditLogRuleTestForUserFields(AuditLogRuleCommon):
                 {
                     "name": "Test User",
                     "login": "testuser",
+                    "group_ids": [
+                        Command.link(cls.env.ref("base.group_user").id),
+                        Command.link(cls.env.ref("base.group_partner_manager").id),
+                    ],
                 }
             )
         )
@@ -480,6 +497,10 @@ class AuditLogRuleTestForUserFields(AuditLogRuleCommon):
                 {
                     "name": "Test User2",
                     "login": "testuser2",
+                    "group_ids": [
+                        Command.link(cls.env.ref("base.group_user").id),
+                        Command.link(cls.env.ref("base.group_partner_manager").id),
+                    ],
                 }
             )
         )
@@ -669,26 +690,7 @@ class AuditLogRuleTestForUserModel(AuditLogRuleCommon):
     def test_01_AuditlogFull_field_group_write_log(self):
         """Change group and check successfully created log"""
         self.user.with_context(tracking_disable=True).write(
-            {"groups_id": [(4, self.group.id)]}
-        )
-        # Checking log is created for testpartner1
-        write_log_record = self.auditlog_log.search(
-            [
-                ("model_id", "=", self.auditlog_rule.model_id.id),
-                ("method", "=", "write"),
-                ("res_id", "=", self.user.id),
-            ]
-        ).ensure_one()
-        self.assertTrue(write_log_record)
-
-    def test_02_AuditlogFull_field_group_write_log(self):
-        """Change group and check successfully created log, but using reified fields"""
-        fname = name_boolean_group(self.group.id)
-
-        self.user.with_context(tracking_disable=True).write(
-            {
-                fname: True,
-            }
+            {"group_ids": [Command.link(self.group.id)]}
         )
         # Checking log is created for testpartner1
         write_log_record = self.auditlog_log.search(
