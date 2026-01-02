@@ -130,7 +130,7 @@ class TestAccountMoveReverse(AccountTestInvoicingCommon, AuditLogRuleCommon):
     def setUp(self):
         super().setUp()
         rules = self.env["auditlog.rule"].search([])
-        rules.unsubscribe()
+        rules.set_to_confirmed()
         rules.unlink()
         self.rule = self.env["auditlog.rule"].create(
             {
@@ -143,7 +143,7 @@ class TestAccountMoveReverse(AccountTestInvoicingCommon, AuditLogRuleCommon):
                 "log_type": "full",
             }
         )
-        self.rule.subscribe()
+        self.rule.set_to_confirmed()
 
     def test_in_invoice_stored_related_field(self):
         """Stored related fields are computed properly"""

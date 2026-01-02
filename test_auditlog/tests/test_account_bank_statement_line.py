@@ -19,7 +19,7 @@ class TestAccountBankStatementLine(AccountTestInvoicingCommon, AuditLogRuleCommo
                 "log_type": "full",
             }
         )
-        self.rule.subscribe()
+        self.rule.set_to_confirmed()
 
     def test_create_statement_line(self):
         """Statement line can be created with logging on journal entries enabled.

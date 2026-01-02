@@ -21,7 +21,7 @@ class TestProductTaxMulticompany(AccountTestInvoicingCommon, AuditLogRuleCommon)
     def setUp(self):
         super().setUp()
         rules = self.env["auditlog.rule"].search([])
-        rules.unsubscribe()
+        rules.set_to_draft()
         rules.unlink()
         self.rule = self.env["auditlog.rule"].create(
             {
@@ -34,7 +34,7 @@ class TestProductTaxMulticompany(AccountTestInvoicingCommon, AuditLogRuleCommon)
                 "log_type": "full",
             }
         )
-        self.rule.subscribe()
+        self.rule.set_to_confirmed()
 
     def test_cache_accesserror(self):
         """No AccessError occurs reading the product after writing taxes.
