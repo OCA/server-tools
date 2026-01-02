@@ -33,9 +33,13 @@ class IrHttp(models.AbstractModel):
                 new_env.cr.rollback()
 
         for rule_id, (model, res_ids) in to_remove.items():
-            old_env[model].browse(res_ids).write({"exception_ids": [Command.unlink(rule_id)]})
+            old_env[model].browse(res_ids).write(
+                {"exception_ids": [Command.unlink(rule_id)]}
+            )
         for rule_id, (model, res_ids) in to_add.items():
-            old_env[model].browse(res_ids).write({"exception_ids": [Command.link(rule_id)]})
+            old_env[model].browse(res_ids).write(
+                {"exception_ids": [Command.link(rule_id)]}
+            )
 
         request.env = old_env
         return res
