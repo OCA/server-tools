@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="view_auditlog_log_form">
+        <field name="name">auditlog.log.form</field>
+        <field name="model">auditlog.log</field>
+        <field name="arch" type="xml">
+            <form string="Log">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button
+                            name="show_res_ids"
+                            type="object"
+                            class="oe_stat_button"
+                            invisible="not res_ids"
+                            icon="fa-external-link"
+                            string="Exported Records"
+                        />
+                    </div>
+                    <group string="Log">
+                        <group colspan="1">
+                            <field name="create_date" readonly="1" />
+                            <field name="user_id" readonly="1" />
+                            <field name="method" readonly="1" />
+                            <field name="log_type" readonly="1" />
+                        </group>
+                        <group colspan="1">
+                            <field name="model_id" readonly="1" />
+                            <field
+                                name="model_name"
+                                invisible="model_id != False"
+                                readonly="1"
+                            />
+                            <field
+                                name="model_model"
+                                invisible="model_id != False"
+                                readonly="1"
+                            />
+                            <field name="res_id" readonly="1" invisible="not res_id" />
+                            <field
+                                name="res_ids"
+                                readonly="1"
+                                invisible="not res_ids"
+                            />
+                            <field name="name" readonly="1" />
+                        </group>
+                    </group>
+                    <group string="HTTP Context">
+                        <field name="http_session_id" />
+                        <field name="http_request_id" />
+                    </group>
+                    <group string="Fields updated">
+                        <field name="line_ids" readonly="1" nolabel="1" colspan="2">
+                            <form string="Log - Field updated">
+                                <group>
+                                    <field name="field_id" readonly="1" />
+                                    <field
+                                        name="field_name"
+                                        invisible="field_id != False"
+                                        readonly="1"
+                                    />
+                                </group>
+                                <group string="Values" col="4">
+                                    <field name="old_value" readonly="1" />
+                                    <field name="new_value" readonly="1" />
+                                    <field name="old_value_text" readonly="1" />
+                                    <field name="new_value_text" readonly="1" />
+                                </group>
+                            </form>
+                            <list>
+                                <field name="field_description" />
+                                <field name="field_name" />
+                                <!--<field name="old_value"/>-->
+                                <field name="old_value_text" />
+                                <!--<field name="new_value"/>-->
+                                <field name="new_value_text" />
+                            </list>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_auditlog_log_tree">
+        <field name="name">auditlog.log.list</field>
+        <field name="model">auditlog.log</field>
+        <field name="arch" type="xml">
+            <list create="false">
+                <field name="create_date" />
+                <field name="name" />
+                <field name="model_id" />
+                <field name="res_id" />
+                <field name="method" />
+                <field name="user_id" />
+            </list>
+        </field>
+    </record>
+    <record id="view_auditlog_log_search" model="ir.ui.view">
+        <field name="name">auditlog.log.search</field>
+        <field name="model">auditlog.log</field>
+        <field name="arch" type="xml">
+            <search string="Logs">
+                <field name="name" />
+                <field name="model_id" />
+                <field name="res_id" />
+                <field name="user_id" />
+                <group>
+                    <filter
+                        name="group_by_user_id"
+                        string="User"
+                        domain="[]"
+                        context="{'group_by':'user_id'}"
+                    />
+                    <filter
+                        name="group_by_model_id"
+                        string="Model"
+                        domain="[]"
+                        context="{'group_by':'model_id'}"
+                    />
+                    <filter
+                        name="group_by_res_id"
+                        string="Resource ID"
+                        domain="[]"
+                        context="{'group_by':'res_id'}"
+                    />
+                    <filter
+                        name="group_by_create_date"
+                        string="Date"
+                        domain="[]"
+                        context="{'group_by':'create_date'}"
+                    />
+                    <filter
+                        name="group_by_http_session"
+                        string="User session"
+                        domain="[]"
+                        context="{'group_by':'http_session_id'}"
+                    />
+                    <filter
+                        name="group_by_http_request"
+                        string="HTTP Request"
+                        domain="[]"
+                        context="{'group_by':'http_request_id'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_auditlog_log_tree">
+        <field name="name">Logs</field>
+        <field name="res_model">auditlog.log</field>
+        <field name="search_view_id" ref="view_auditlog_log_search" />
+    </record>
+    <menuitem
+        id="menu_audit_logs"
+        name="Logs"
+        parent="menu_audit"
+        action="action_auditlog_log_tree"
+        sequence="20"
+    />
+</odoo>

@@ -19,7 +19,7 @@ class TestAuditlogHTTPSession(common.TransactionCase):
 
     def test_no_request_returns_false(self):
         """When no HTTP request object exists, should return False."""
-        with patch("odoo.addons.auditlog.models.http_session.request", None):
+        with patch("odoo.addons.auditlog.models.auditlog_http_session.request", None):
             result = self.session_model.current_http_session()
             self.assertFalse(
                 result,
@@ -31,7 +31,9 @@ class TestAuditlogHTTPSession(common.TransactionCase):
         mock_request = MagicMock()
         mock_request.env = self.env
         mock_request.session = None
-        with patch("odoo.addons.auditlog.models.http_session.request", mock_request):
+        with patch(
+            "odoo.addons.auditlog.models.auditlog_http_session.request", mock_request
+        ):
             result = self.session_model.current_http_session()
             self.assertFalse(
                 result,
@@ -56,7 +58,9 @@ class TestAuditlogHTTPSession(common.TransactionCase):
             }
         )
 
-        with patch("odoo.addons.auditlog.models.http_session.request", mock_request):
+        with patch(
+            "odoo.addons.auditlog.models.auditlog_http_session.request", mock_request
+        ):
             result = self.session_model.current_http_session()
 
         self.assertEqual(
@@ -75,7 +79,9 @@ class TestAuditlogHTTPSession(common.TransactionCase):
         mock_request.env = self.env
         mock_request.session.sid = "NEWSESSION456"
 
-        with patch("odoo.addons.auditlog.models.http_session.request", mock_request):
+        with patch(
+            "odoo.addons.auditlog.models.auditlog_http_session.request", mock_request
+        ):
             result = self.session_model.current_http_session()
 
         created = self.session_model.browse(result)
@@ -115,7 +121,9 @@ class TestAuditlogHTTPSession(common.TransactionCase):
         mock_request.env = self.env
         mock_request.session.sid = "SID_DUPLICATE"
 
-        with patch("odoo.addons.auditlog.models.http_session.request", mock_request):
+        with patch(
+            "odoo.addons.auditlog.models.auditlog_http_session.request", mock_request
+        ):
             result = self.session_model.current_http_session()
 
         created = self.session_model.browse(result)
