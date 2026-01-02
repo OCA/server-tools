@@ -10,6 +10,12 @@ from .common import AuditLogRuleCommon
 
 
 class AuditlogCommon:
+    """Base case with basic log creation tests"""
+
+    # Ensure that test cases that inherit from this class run the methods
+    # that it provides.
+    allow_inherited_tests_method = True
+
     def test_LogCreation(self):
         """First test, caching some data."""
         self.groups_rule.subscribe()
