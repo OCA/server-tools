@@ -59,9 +59,9 @@ class AuditlogHTTPRequest(models.Model):
             vals = {
                 "name": httprequest.path,
                 "root_url": httprequest.url_root,
-                "user_id": request.uid,
+                "user_id": request.env.uid,
                 "http_session_id": http_session_model.current_http_session(),
-                "user_context": request.context,
+                "user_context": request.env.context,
             }
             httprequest.auditlog_http_request_id = self.create(vals).id
             return httprequest.auditlog_http_request_id
