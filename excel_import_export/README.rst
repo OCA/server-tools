@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ==========================
 Excel Import/Export/Report
 ==========================
@@ -17,7 +13,7 @@ Excel Import/Export/Report
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github
@@ -230,6 +226,9 @@ Contributors
 - Kitti Upariphutthiphong. <kittiu@gmail.com> (http://ecosoft.co.th)
 - Saran Lim. <saranl@ecosoft.co.th> (http://ecosoft.co.th)
 - Do Anh Duy <duyda@trobz.com>
+- `Heliconia Solutions Pvt. Ltd. <https://www.heliconia.io>`__
+
+  - Bhavesh Heliconia
 
 Maintainers
 -----------
