@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Documentation for the base_sparse_field_jsonb Odoo module">
+    <meta name="keywords" content="base_sparse_field_jsonb, Odoo, module, documentation">
+    <title>base_sparse_field_jsonb Documentation</title>
+    <!-- Bootstrap CSS from CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- highlight.js CSS from CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/default.min.css"
+        integrity="sha256-KMAHCDsQR0wz2x4eM5sMo/2l2YIEnETnClf6xQDo2oI=" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+
+        .container {
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            margin-bottom: 1.5rem;
+        }
+
+        .card-header {
+            font-weight: bold;
+        }
+
+        pre code.hljs {
+            border-radius: 0.375rem;
+            /* Match Bootstrap's border-radius */
+        }
+
+        .mermaid {
+            text-align: center;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">base_sparse_field_jsonb Documentation</div>
+            <div class="card-body">
+                <h2>Introduction</h2>
+                <p>This module upgrades the <code>base_sparse_field</code> module to use PostgreSQL’s native
+                    JSONB column type instead of TEXT for serialized fields.</p>
+                <p><strong>Why JSONB?</strong></p>
+                <p>The standard <code>base_sparse_field</code> stores serialized attributes as JSON text in a
+                    TEXT column. While functional, this has limitations:</p>
+                <ul>
+                    <li>No database-level indexing on JSON content</li>
+                    <li>Filtering requires fetching all records and processing in Python</li>
+                    <li>Less efficient storage (text vs binary)</li>
+                </ul>
+                <p><strong>What this module provides:</strong></p>
+                <ul>
+                    <li><strong>JSONB Storage</strong>: Serialized fields use PostgreSQL JSONB column type</li>
+                    <li><strong>GIN Indexes</strong>: Automatic creation of GIN indexes for fast key/value lookups</li>
+                    <li><strong>Transparent Upgrade</strong>: Drop-in replacement, no code changes needed</li>
+                    <li><strong>Migration Support</strong>: Automatically converts existing TEXT columns to JSONB</li>
+                </ul>
+                <p><strong>Performance Benefits:</strong></p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Operation</th>
+                            <th>TEXT (before)</th>
+                            <th>JSONB (after)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Key existence check</td>
+                            <td>Python loop</td>
+                            <td>GIN index O(log n)</td>
+                        </tr>
+                        <tr>
+                            <td>Value filtering</td>
+                            <td>Full table scan + Python</td>
+                            <td>Index-assisted</td>
+                        </tr>
+                        <tr>
+                            <td>Storage size</td>
+                            <td>~30% larger</td>
+                            <td>Binary compressed</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>This module is particularly beneficial when used with <code>attribute_set</code> and
+                    <code>product_attribute_set</code> for managing dynamic product attributes on e-commerce
+                    websites where filtering performance is critical.
+                </p>
+                <h2>Configuration</h2>
+                <p>No configuration is required. The module works automatically upon installation.</p>
+                <h2>Optional: Verify Installation</h2>
+                <p>After installation, you can verify JSONB columns exist:</p>
+                <pre lang="sql"><code>SELECT column_name, data_type
+FROM information_schema.columns
+WHERE table_name = 'product_template'
+  AND column_name LIKE 'x_custom%';
+</code></pre>
+                <p>Expected output:</p>
+                <pre><code>      column_name       | data_type
+------------------------+-----------
+ x_custom_json_attrs    | jsonb
+</code></pre>
+                <h2>Optional: Verify GIN Index</h2>
+                <pre lang="sql"><code>SELECT indexname, indexdef
+FROM pg_indexes
+WHERE tablename = 'product_template'
+  AND indexname LIKE '%gin%';
+</code></pre>
+                <h2>Usage</h2>
+                <h2>Installation</h2>
+                <p>Simply install this module. It will:</p>
+                <ol>
+                    <li>Override the <code>Serialized</code> field class to use JSONB</li>
+                    <li>Migrate any existing TEXT columns to JSONB</li>
+                    <li>Create GIN indexes on all serialized field columns</li>
+                </ol>
+                <p>No configuration is required.</p>
+                <h2>Compatibility</h2>
+                <p>This module is compatible with:</p>
+                <ul>
+                    <li><code>attribute_set</code> - Dynamic attributes for any model</li>
+                    <li><code>product_attribute_set</code> - Product-specific attributes</li>
+                    <li><code>website_attribute_set</code> - E-commerce attribute display and filtering</li>
+                </ul>
+                <p>All modules using <code>base_sparse_field</code> automatically benefit from JSONB storage.</p>
+                <h2>Technical Details</h2>
+                <h3>Column Type Change</h3>
+                <p>Before:</p>
+                <pre lang="sql"><code>x_custom_json_attrs TEXT
+</code></pre>
+                <p>After:</p>
+                <pre lang="sql"><code>x_custom_json_attrs JSONB
+</code></pre>
+                <h3>GIN Index</h3>
+                <p>The module creates GIN indexes for fast lookups:</p>
+                <pre lang="sql"><code>CREATE INDEX idx_product_template_x_custom_json_attrs_gin
+ON product_template USING GIN (x_custom_json_attrs);
+</code></pre>
+                <h3>Querying JSONB (Advanced)</h3>
+                <p>With JSONB, you can use PostgreSQL’s native JSON operators in raw SQL:</p>
+                <pre lang="sql"><code>-- Find products where x_capacity &gt; 5000
+SELECT * FROM product_template
+WHERE x_custom_json_attrs-&gt;&gt;'x_capacity' &gt; '5000';
+
+-- Find products with a specific attribute
+SELECT * FROM product_template
+WHERE x_custom_json_attrs ? 'x_fire_suppression_system';
+
+-- Find products matching multiple criteria
+SELECT * FROM product_template
+WHERE x_custom_json_attrs @&gt; '{&quot;x_power_type&quot;: &quot;electric&quot;}';
+</code></pre>
+                <h2>Migration from TEXT</h2>
+                <p>If you have existing data in TEXT format, the post-install hook automatically
+                    handles the migration:</p>
+                <pre lang="sql"><code>ALTER TABLE product_template
+ALTER COLUMN x_custom_json_attrs TYPE jsonb
+USING x_custom_json_attrs::jsonb;
+</code></pre>
+                <p>Empty strings and NULL values are handled gracefully.</p>
+                <h2>Roadmap</h2>
+                <h2>Planned Enhancements</h2>
+                <h3>ORM Search Integration</h3>
+                <p>Currently, sparse field filtering is done in Python after fetching records.
+                    Future versions may include ORM-level search operators that translate to
+                    PostgreSQL JSON queries:</p>
+                <pre lang="python"><code># Future: Direct ORM filtering on sparse fields
+products = env['product.template'].search([
+    ('x_capacity', '&gt;', 5000),  # Translated to JSONB query
+])
+</code></pre>
+                <h3>Dynamic Index Creation</h3>
+                <p>Add support for creating targeted indexes on frequently filtered attributes:</p>
+                <pre lang="python"><code># Future: Per-attribute index
+attribute.create_search_index()
+</code></pre>
+                <h3>Search Panel Integration</h3>
+                <p>Native integration with Odoo’s search panel widget for attribute filtering
+                    on website product listings.</p>
+                <h2>Contributors</h2>
+                <ul>
+                    <li>OBS Solutions B.V. <a href="https://www.obs-solutions.com">https://www.obs-solutions.com</a>
+                    </li>
+                </ul>
+                <h2>Credits</h2>
+                <h2>Development</h2>
+                <p>This module was developed based on discussions and research from:</p>
+                <ul>
+                    <li><a href="https://github.com/OCA/odoo-pim/issues/153">OCA/odoo-pim Issue #153</a> - Storage and
+                        search optimization</li>
+                    <li><a href="https://github.com/akretion/ak-odoo-incubator/issues/62">Akretion Issue #62</a> -
+                        base_sparse_field evolution</li>
+                </ul>
+
+
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap JS Bundle from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <!-- highlight.js from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/lib/common.min.js"
+        integrity="sha384-2ylqO2Q3fssN/2wV2p5J1DFwbjK5m3lI3k2yQ2E2T/qT2TNAk53Hxlh2Lw1T3d2i"
+        crossorigin="anonymous"></script>
+    <!-- Mermaid JS from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.0/dist/mermaid.min.js"
+        integrity="sha384-BCSLYw/mmh3oG+8B/6B2Mh2fGlIot3Hh/T2aMPJ0H4Yp/UqOCFBZt2sU3Ptcg77a"
+        crossorigin="anonymous"></script>
+    <script>mermaid.initialize({ startOnLoad: true });</script>
+    <script>
+        // Initialize highlight.js
+        document.addEventListener('DOMContentLoaded', (event) => {
+            hljs.highlightAll();
+        });
+    </script>
+</body>
+
+</html>
