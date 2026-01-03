@@ -22,9 +22,13 @@ class TestCleanupPurgeFields(Common):
             }
             cls.model = env["ir.model"].create(cls.model_values)
             env.cr.execute(
-                "insert into ir_attachment (name, res_model, res_id, type) values "
-                "('test attachment', %s, 42, 'binary')",
-                [cls.model_name],
+                """
+                insert into ir_attachment
+                (name, res_model, res_id, store_fname, type)
+                values
+                ('test attachment', %(model_name)s, 42, 'dummy', 'binary');
+                """,
+                {"model_name": cls.model_name},
             )
 
             # create a nonexistent field
