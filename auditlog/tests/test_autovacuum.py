@@ -17,7 +17,7 @@ class TestAuditlogAutovacuum(AuditLogRuleCommon):
                 "log_create": True,
                 "log_write": True,
                 "log_unlink": True,
-                "state": "subscribed",
+                "state": "confirmed",
                 "log_type": "full",
             }
         )
