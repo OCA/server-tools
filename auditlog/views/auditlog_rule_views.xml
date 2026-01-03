@@ -22,36 +22,55 @@
                     <field name="state" widget="statusbar" />
                 </header>
                 <sheet>
-                    <group string="Rule">
-                        <group colspan="1">
-                            <field name="name" readonly="state == 'subscribed'" />
-                            <field name="model_id" readonly="state == 'subscribed'" />
-                            <field name="log_type" readonly="state == 'subscribed'" />
+                    <div class="oe_title">
+                        <h1>
                             <field
-                                name="action_id"
+                                name="name"
+                                placeholder="Description..."
                                 readonly="state == 'subscribed'"
-                                groups="base.group_no_one"
+                            />
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="General">
+                            <field
+                                name="model_id"
+                                options="{'no_create': True}"
+                                readonly="state == 'subscribed'"
+                            />
+                            <field
+                                name="log_type"
+                                widget="radio"
+                                readonly="state == 'subscribed'"
                             />
                             <field
                                 name="capture_record"
+                                readonly="state == 'subscribed'"
                                 invisible="log_type != 'full' or log_unlink != True"
                             />
                             <field
                                 name="users_to_exclude_ids"
                                 widget="many2many_tags"
+                                options="{'no_create': True}"
                                 readonly="state == 'subscribed'"
                             />
                             <field
                                 name="fields_to_exclude_ids"
                                 widget="many2many_tags"
+                                options="{'no_create': True}"
                                 readonly="state == 'subscribed'"
                             />
+                            <field
+                                name="action_id"
+                                readonly="True"
+                                groups="base.group_no_one"
+                            />
                         </group>
-                        <group colspan="1">
+                        <group string="Logging">
+                            <field name="log_create" readonly="state == 'subscribed'" />
                             <field name="log_read" readonly="state == 'subscribed'" />
                             <field name="log_write" readonly="state == 'subscribed'" />
                             <field name="log_unlink" readonly="state == 'subscribed'" />
-                            <field name="log_create" readonly="state == 'subscribed'" />
                             <field
                                 name="log_export_data"
                                 readonly="state == 'subscribed'"
