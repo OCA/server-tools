@@ -7,17 +7,17 @@
             <form string="Rule">
                 <header>
                     <button
-                        string="Subscribe"
-                        name="subscribe"
+                        string="Confirm"
+                        name="set_to_confirmed"
                         type="object"
                         invisible="state != 'draft'"
                         class="oe_highlight"
                     />
                     <button
-                        string="Unsubscribe"
-                        name="unsubscribe"
+                        string="Set to Draft"
+                        name="set_to_draft"
                         type="object"
-                        invisible="state != 'subscribed'"
+                        invisible="state != 'confirmed'"
                     />
                     <field name="state" widget="statusbar" />
                 </header>
@@ -27,7 +27,7 @@
                             <field
                                 name="name"
                                 placeholder="Description..."
-                                readonly="state == 'subscribed'"
+                                readonly="state == 'confirmed'"
                             />
                         </h1>
                     </div>
@@ -36,29 +36,29 @@
                             <field
                                 name="model_id"
                                 options="{'no_create': True}"
-                                readonly="state == 'subscribed'"
+                                readonly="state == 'confirmed'"
                             />
                             <field
                                 name="log_type"
                                 widget="radio"
-                                readonly="state == 'subscribed'"
+                                readonly="state == 'confirmed'"
                             />
                             <field
                                 name="capture_record"
-                                readonly="state == 'subscribed'"
+                                readonly="state == 'confirmed'"
                                 invisible="log_type != 'full' or log_unlink != True"
                             />
                             <field
                                 name="users_to_exclude_ids"
                                 widget="many2many_tags"
                                 options="{'no_create': True}"
-                                readonly="state == 'subscribed'"
+                                readonly="state == 'confirmed'"
                             />
                             <field
                                 name="fields_to_exclude_ids"
                                 widget="many2many_tags"
                                 options="{'no_create': True}"
-                                readonly="state == 'subscribed'"
+                                readonly="state == 'confirmed'"
                             />
                             <field
                                 name="action_id"
@@ -67,13 +67,13 @@
                             />
                         </group>
                         <group string="Logging">
-                            <field name="log_create" readonly="state == 'subscribed'" />
-                            <field name="log_read" readonly="state == 'subscribed'" />
-                            <field name="log_write" readonly="state == 'subscribed'" />
-                            <field name="log_unlink" readonly="state == 'subscribed'" />
+                            <field name="log_create" readonly="state == 'confirmed'" />
+                            <field name="log_read" readonly="state == 'confirmed'" />
+                            <field name="log_write" readonly="state == 'confirmed'" />
+                            <field name="log_unlink" readonly="state == 'confirmed'" />
                             <field
                                 name="log_export_data"
-                                readonly="state == 'subscribed'"
+                                readonly="state == 'confirmed'"
                             />
                         </group>
                     </group>
@@ -87,7 +87,7 @@
         <field name="arch" type="xml">
             <list
                 decoration-info="state == 'draft'"
-                decoration-bf="state == 'subscribed'"
+                decoration-bf="state == 'confirmed'"
             >
                 <field name="name" />
                 <field name="model_id" />
@@ -113,9 +113,9 @@
                     string="Draft"
                 />
                 <filter
-                    name="state_subscribed"
-                    domain="[('state','=','subscribed')]"
-                    string="Subscribed"
+                    name="state_confirmed"
+                    domain="[('state', '=', 'confirmed')]"
+                    string="Confirmed"
                 />
                 <field name="model_id" />
                 <group>

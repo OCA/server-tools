@@ -20,7 +20,7 @@ class AuditLogRuleCommon(TransactionCase):
     def tearDownClass(cls):
         for rule in cls.env["auditlog.rule"].search([]):
             try:
-                rule.unsubscribe()
+                rule.set_to_draft()
             except KeyError:  # pragma: no cover
                 continue  # Model not loaded yet
 

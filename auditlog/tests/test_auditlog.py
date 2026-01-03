@@ -13,7 +13,7 @@ from .common import AuditLogRuleCommon
 class AuditlogCommon:
     def test_LogCreation(self):
         """First test, caching some data."""
-        self.groups_rule.subscribe()
+        self.groups_rule.set_to_confirmed()
         group = self.env["res.groups"].create({"name": "testgroup1"})
         self.assertEqual(
             self.env["auditlog.log"].search_count(
@@ -29,7 +29,7 @@ class AuditlogCommon:
     def test_LogCreation2(self):
         """Second test, using cached data of the first one."""
 
-        self.groups_rule.subscribe()
+        self.groups_rule.set_to_confirmed()
 
         auditlog_log = self.env["auditlog.log"]
         testgroup2 = self.env["res.groups"].create({"name": "testgroup2"})
@@ -50,7 +50,7 @@ class AuditlogCommon:
         representation).
         """
 
-        self.groups_rule.subscribe()
+        self.groups_rule.set_to_confirmed()
         auditlog_log = self.env["auditlog.log"]
         testgroup3 = self.env["res.groups"].create({"name": "testgroup3"})
         testgroup4 = self.env["res.groups"].create({"name": "testgroup4"})
@@ -98,7 +98,7 @@ class AuditlogCommon:
         has been generated.
         """
 
-        self.groups_rule.subscribe()
+        self.groups_rule.set_to_confirmed()
 
         auditlog_log = self.env["auditlog.log"]
         groups_vals = [
@@ -126,7 +126,7 @@ class AuditlogCommon:
         has been generated. And then delete it, check that it has created log
         with 0 fields updated.
         """
-        self.groups_rule.subscribe()
+        self.groups_rule.set_to_confirmed()
 
         auditlog_log = self.env["auditlog.log"]
         testgroup5 = self.env["res.groups"].create({"name": "testgroup5"})
@@ -156,7 +156,7 @@ class AuditlogCommon:
         has been generated. And then delete it, check that it has created log
         with x fields updated as per rule
         """
-        self.groups_rule.subscribe()
+        self.groups_rule.set_to_confirmed()
 
         auditlog_log = self.env["auditlog.log"]
         testgroup6 = self.env["res.groups"].create({"name": "testgroup6"})
@@ -186,7 +186,7 @@ class AuditlogCommon:
 
         Check that creation goes as planned (no error coming from ``deepcopy``)
         """
-        self.groups_rule.subscribe()
+        self.groups_rule.set_to_confirmed()
 
         auditlog_log = self.env["auditlog.log"]
         cat = self.env["ir.module.category"].create({"name": "Test Category"})
@@ -217,7 +217,7 @@ class AuditlogCommon:
 
     def test_LogUpdate(self):
         """Tests write results with different M2O values."""
-        self.groups_rule.subscribe()
+        self.groups_rule.set_to_confirmed()
         testgroup3 = self.env["res.groups"].create({"name": "testgroup3"})
         testgroup4 = self.env["res.groups"].create({"name": "testgroup4"})
         group = self.env["res.groups"].create(
@@ -270,7 +270,7 @@ class AuditlogCommon:
 
     def test_LogDelete(self):
         """Tests unlink results"""
-        self.groups_rule.subscribe()
+        self.groups_rule.set_to_confirmed()
         group = self.env["res.groups"].create({"name": "testgroup1"})
         group.unlink()
         self.assertEqual(
@@ -317,7 +317,7 @@ class TestAuditlogExportData(AuditLogRuleCommon):
         )
 
     def test_LogExport(self):
-        self.groups_rule.subscribe()
+        self.groups_rule.set_to_confirmed()
 
         auditlog_log = self.env["auditlog.log"]
         self.env["res.groups"].search([]).export_data(["name"])
@@ -395,7 +395,7 @@ class TestFieldRemoval(AuditLogRuleCommon):
             }
         )
 
-        cls.auditlog_rule.subscribe()
+        cls.auditlog_rule.set_to_confirmed()
         # Trigger log creation
         rec = cls.env["x_test.model"].create({"x_test_field": "test value"})
         rec.write({"x_test_field": "test value 2"})
@@ -528,7 +528,7 @@ class AuditLogRuleTestForUserFields(AuditLogRuleCommon):
         cls.auditlog_rule.users_to_exclude_ids = [[4, cls.users_to_exclude_ids]]
 
         # Subscribe auditlog.rule
-        cls.auditlog_rule.subscribe()
+        cls.auditlog_rule.set_to_confirmed()
 
         cls.auditlog_log = cls.env["auditlog.log"]
 
@@ -685,7 +685,7 @@ class AuditLogRuleTestForUserModel(AuditLogRuleCommon):
 
         cls.auditlog_log = cls.env["auditlog.log"]
         # Subscribe auditlog.rule
-        cls.auditlog_rule.subscribe()
+        cls.auditlog_rule.set_to_confirmed()
 
     def test_01_AuditlogFull_field_group_write_log(self):
         """Change group and check successfully created log"""
@@ -736,7 +736,7 @@ class AuditlogFast_excluded_fields(AuditLogRuleCommon):
         cls.auditlog_rule.fields_to_exclude_ids = [[4, cls.fields_to_exclude_ids]]
 
         # Subscribe auditlog.rule
-        cls.auditlog_rule.subscribe()
+        cls.auditlog_rule.set_to_confirmed()
 
         cls.auditlog_log = cls.env["auditlog.log"]
 

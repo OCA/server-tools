@@ -195,7 +195,7 @@ class AuditlogRule(models.Model):
     )
 
     state = fields.Selection(
-        [("draft", "Draft"), ("subscribed", "Subscribed")],
+        [("draft", "Draft"), ("confirmed", "Confirmed")],
         required=True,
         default="draft",
     )
@@ -238,7 +238,7 @@ class AuditlogRule(models.Model):
         if not hasattr(self.pool, "_auditlog_model_cache"):
             self.pool._auditlog_model_cache = {}
         if not self:
-            self = self.search([("state", "=", "subscribed")])
+            self = self.search([("state", "=", "confirmed")])
         return self._patch_methods()
 
     def _patch_method(self, model, method_name, check_attr):
@@ -266,7 +266,7 @@ class AuditlogRule(models.Model):
         updated = False
         model_cache = self.pool._auditlog_model_cache
         for rule in self:
-            if rule.state != "subscribed" or not self.pool.get(
+            if rule.state != "confirmed" or not self.pool.get(
                 rule.model_id.model or rule.model_model
             ):
                 continue
@@ -340,8 +340,8 @@ class AuditlogRule(models.Model):
         return res
 
     def unlink(self):
-        """Unsubscribe rules before removing them."""
-        self.unsubscribe()
+        """Set rules to draft before removing them."""
+        self.set_to_draft()
         return super().unlink()
 
     @api.model
@@ -833,8 +833,8 @@ class AuditlogRule(models.Model):
             ]
         return vals
 
-    def subscribe(self):
-        """Subscribe Rule for auditing changes on model and apply shortcut
+    def set_to_confirmed(self):
+        """Confirm Rule for auditing changes on model and apply shortcut
         to view logs on that model.
         """
         act_window_model = self.env["ir.actions.act_window"]
@@ -850,11 +850,11 @@ class AuditlogRule(models.Model):
                 "domain": domain,
             }
             act_window = act_window_model.sudo().create(vals)
-            rule.write({"state": "subscribed", "action_id": act_window.id})
+            rule.write({"state": "confirmed", "action_id": act_window.id})
         return True
 
-    def unsubscribe(self):
-        """Unsubscribe Auditing Rule on model."""
+    def set_to_draft(self):
+        """Reset Auditlog Rules state to draft."""
         # Revert patched methods
         self._revert_methods()
         for rule in self:
