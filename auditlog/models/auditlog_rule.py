@@ -185,11 +185,12 @@ class AuditlogRule(models.Model):
         required=True,
         default="full",
         help=(
-            "Full log: make a diff between the data before and after "
-            "the operation (log more info like computed fields which were "
-            "updated, but it is slower)\n"
-            "Fast log: only log the changes made through the create and "
-            "write operations (less information, but it is faster)"
+            "Full log: the previous values of updated fields are retrieved and "
+            "stored on the log lines. This includes stored computed fields on "
+            "the updated records that may be affected by the new values of other "
+            "fields.\n"
+            "Fast log: only log the new values assigned through the create and "
+            "write operations (less information, but it is faster)."
         ),
     )
 
@@ -203,17 +204,23 @@ class AuditlogRule(models.Model):
         string="Action",
     )
     capture_record = fields.Boolean(
-        help="Select this if you want to keep track of Unlink Record",
+        string="Log values on deletion",
+        help=(
+            "In case of full logging, also log all values of records at the "
+            "time of deletion."
+        ),
     )
     users_to_exclude_ids = fields.Many2many(
         "res.users",
         string="Users to Exclude",
+        help="Changes made by these users are not logged.",
         context={"active_test": False},
     )
 
     fields_to_exclude_ids = fields.Many2many(
         "ir.model.fields",
         domain="[('model_id', '=', model_id)]",
+        help="Changes made to these fields are not logged.",
         string="Fields to Exclude",
     )
 
