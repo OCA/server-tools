@@ -1,6 +1,6 @@
 [project]
 name = "odoo-addons-oca-server-tools"
-version = "19.0.20260104.0"
+version = "19.0.20260104.1"
 dependencies = [
     "odoo-addon-base_exception==19.0.*",
     "odoo-addon-base_technical_user==19.0.*",
@@ -9,6 +9,7 @@ dependencies = [
     "odoo-addon-database_cleanup==19.0.*",
     "odoo-addon-module_change_auto_install==19.0.*",
     "odoo-addon-session_db==19.0.*",
+    "odoo-addon-upgrade_analysis==19.0.*",
 ]
 classifiers=[
     "Programming Language :: Python",
