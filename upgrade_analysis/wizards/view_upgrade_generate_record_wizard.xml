@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_upgrade_generate_record_wizard_form" model="ir.ui.view">
+        <field name="model">upgrade.generate.record.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="state" widget="statusbar" />
+                </header>
+                <group invisible="state != 'draft'">
+                    <p
+                        colspan="2"
+                    >This will reinitialize all the modules installed on this database. Do not continue if you use this database in production.</p>
+                </group>
+                <group invisible="state != 'done'">
+                    <p>Modules initialized and record created</p>
+                    <p colspan="2">Modules initialized and record created</p>
+                </group>
+                <footer>
+                    <button
+                        string="Continue"
+                        name="generate"
+                        type="object"
+                        invisible="state != 'draft'"
+                        class="btn-primary"
+                    />
+                    <button special="cancel" string="Close" class="btn-default" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_upgrade_generate_record_wizard" model="ir.actions.act_window">
+        <field name="name">Generate Records Wizard</field>
+        <field name="res_model">upgrade.generate.record.wizard</field>
+        <field name="view_mode">form,list</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem
+        name="Generate Records Wizard"
+        id="menu_upgrade_generate_record"
+        parent="menu_upgrade"
+        action="action_upgrade_generate_record_wizard"
+        sequence="15"
+    />
+</odoo>
