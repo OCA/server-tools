@@ -1,0 +1,202 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* base_autocomplete_template
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-01-05 15:40+0000\n"
+"PO-Revision-Date: 2026-01-05 15:40+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: base_autocomplete_template
+#: model:ir.model.fields,field_description:base_autocomplete_template.field_data_autocomplete_template__active
+msgid "Active"
+msgstr "Activo"
+
+#. module: base_autocomplete_template
+#: model_terms:ir.ui.view,arch_db:base_autocomplete_template.view_data_wizard_template_create_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: base_autocomplete_template
+#: model:ir.model.fields,field_description:base_autocomplete_template.field_data_autocomplete_template__company_id
+#: model:ir.model.fields,field_description:base_autocomplete_template.field_data_wizard_template_create__company_id
+msgid "Company"
+msgstr "Compañía"
+
+#. module: base_autocomplete_template
+#: model:ir.model,name:base_autocomplete_template.model_data_wizard_template_create
+msgid "Create Template"
+msgstr "Crear plantilla"
+
+#. module: base_autocomplete_template
+#: model:ir.model.fields,field_description:base_autocomplete_template.field_data_autocomplete_template__create_uid
+#: model:ir.model.fields,field_description:base_autocomplete_template.field_data_wizard_template_create__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: base_autocomplete_template
+#: model:ir.model.fields,field_description:base_autocomplete_template.field_data_autocomplete_template__create_date
+#: model:ir.model.fields,field_description:base_autocomplete_template.field_data_wizard_template_create__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: base_autocomplete_template
+#: model_terms:ir.ui.view,arch_db:base_autocomplete_template.view_data_autocomplete_template_form
+msgid "Data Autocomplete Template"
+msgstr "Plantilla de autocompletado de datos"
+
+#. module: base_autocomplete_template
+#: model:ir.actions.act_window,name:base_autocomplete_template.action_data_autocomplete_template
+msgid "Data Autocomplete Templates"
+msgstr "Plantillas de autocompletado de datos"
+
+#. module: base_autocomplete_template
+#: model:ir.model,name:base_autocomplete_template.model_data_autocomplete_template
+msgid "Data Autocomplete template (JSON defaults)"
+msgstr "Plantilla de autocompletado de datos (valores JSON por defecto)"
+
+#. module: base_autocomplete_template
+#: model:ir.model.fields,field_description:base_autocomplete_template.field_data_autocomplete_template__display_name
+#: model:ir.model.fields,field_description:base_autocomplete_template.field_data_wizard_template_create__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: base_autocomplete_template
+#: model:ir.model.fields,field_description:base_autocomplete_template.field_data_autocomplete_template__id
+#: model:ir.model.fields,field_description:base_autocomplete_template.field_data_wizard_template_create__id
+msgid "ID"
+msgstr "ID"
+
+#. module: base_autocomplete_template
+#: model:ir.model.fields,help:base_autocomplete_template.field_data_wizard_template_create__is_personal
+msgid "If enabled, only you will see this template."
+msgstr "Si está activado, solo tú podrás ver esta plantilla."
+
+#. module: base_autocomplete_template
+#: model:ir.model.fields,help:base_autocomplete_template.field_data_autocomplete_template__user_id
+msgid "If set, only this user can see/update it (unless admin)."
+msgstr "Si se establece, solo este usuario puede verla o actualizarla (salvo el administrador)."
+
+#. module: base_autocomplete_template
+#: model:ir.model.fields,field_description:base_autocomplete_template.field_data_autocomplete_template__write_uid
+#: model:ir.model.fields,field_description:base_autocomplete_template.field_data_wizard_template_create__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: base_autocomplete_template
+#: model:ir.model.fields,field_description:base_autocomplete_template.field_data_autocomplete_template__write_date
+#: model:ir.model.fields,field_description:base_autocomplete_template.field_data_wizard_template_create__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: base_autocomplete_template
+#: model:ir.model.fields,field_description:base_autocomplete_template.field_data_autocomplete_template__model
+#: model:ir.model.fields,field_description:base_autocomplete_template.field_data_autocomplete_template__model_id
+#: model:ir.model.fields,field_description:base_autocomplete_template.field_data_wizard_template_create__model_id
+msgid "Model"
+msgstr "Modelo"
+
+#. module: base_autocomplete_template
+#: model:ir.model.fields,field_description:base_autocomplete_template.field_data_autocomplete_template__name
+#: model:ir.model.fields,field_description:base_autocomplete_template.field_data_wizard_template_create__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: base_autocomplete_template
+#. odoo-python
+#: code:addons/base_autocomplete_template/wizards/data_autocomplete_create_wizard.py:0
+#, python-format
+msgid "No active record found to build the template."
+msgstr "No se encontró ningún registro activo para construir la plantilla."
+
+#. module: base_autocomplete_template
+#. odoo-python
+#: code:addons/base_autocomplete_template/models/data_autocomplete_template.py:0
+#, python-format
+msgid "No template selected."
+msgstr "No se ha seleccionado ninguna plantilla."
+
+#. module: base_autocomplete_template
+#: model:ir.model.fields,field_description:base_autocomplete_template.field_data_autocomplete_template__user_id
+msgid "Owner"
+msgstr "Propietario"
+
+#. module: base_autocomplete_template
+#: model:ir.model.fields,field_description:base_autocomplete_template.field_data_wizard_template_create__is_personal
+msgid "Personal template"
+msgstr "Plantilla personal"
+
+#. module: base_autocomplete_template
+#: model_terms:ir.ui.view,arch_db:base_autocomplete_template.view_data_wizard_template_create_form
+msgid "Save"
+msgstr "Guardar"
+
+#. module: base_autocomplete_template
+#. odoo-python
+#: code:addons/base_autocomplete_template/models/data_autocomplete_template.py:0
+#: model_terms:ir.ui.view,arch_db:base_autocomplete_template.view_data_wizard_template_create_form
+#, python-format
+msgid "Save as Template"
+msgstr "Guardar como plantilla"
+
+#. module: base_autocomplete_template
+#: model:ir.model.fields,field_description:base_autocomplete_template.field_data_template_mixin__template_id
+msgid "Template"
+msgstr "Plantilla"
+
+#. module: base_autocomplete_template
+#: model:ir.model,name:base_autocomplete_template.model_data_template_mixin
+msgid "Template Mixin (JSON)"
+msgstr "Mixin de plantilla (JSON)"
+
+#. module: base_autocomplete_template
+#. odoo-python
+#: code:addons/base_autocomplete_template/models/data_autocomplete_template.py:0
+#: code:addons/base_autocomplete_template/models/data_autocomplete_template.py:0
+#, python-format
+msgid "Template model mismatch."
+msgstr "El modelo de la plantilla no coincide."
+
+#. module: base_autocomplete_template
+#. odoo-python
+#: code:addons/base_autocomplete_template/wizards/data_autocomplete_create_wizard.py:0
+#, python-format
+msgid "The source record no longer exists."
+msgstr "El registro de origen ya no existe."
+
+#. module: base_autocomplete_template
+#: model_terms:ir.ui.view,arch_db:base_autocomplete_template.view_data_autocomplete_template_form
+msgid "Values (JSON)"
+msgstr "Valores (JSON)"
+
+#. module: base_autocomplete_template
+#: model:ir.model.fields,field_description:base_autocomplete_template.field_data_autocomplete_template__values_json
+msgid "Values Json"
+msgstr "Valores JSON"
+
+#. module: base_autocomplete_template
+#. odoo-python
+#: code:addons/base_autocomplete_template/models/data_autocomplete_template.py:0
+#, python-format
+msgid "You cannot update a personal template owned by another user."
+msgstr "No puedes actualizar una plantilla personal que pertenece a otro usuario."
+
+#. module: base_autocomplete_template
+#. odoo-python
+#: code:addons/base_autocomplete_template/models/data_autocomplete_template.py:0
+#, python-format
+msgid "You must select a template to update it."
+msgstr "Debes seleccionar una plantilla para poder actualizarla."
+
+#. module: base_autocomplete_template
+#: model_terms:ir.ui.view,arch_db:base_autocomplete_template.view_data_wizard_template_create_form
+msgid "e.g. Monthly Close - Default"
+msgstr "p. ej. Cierre mensual - Por defecto"
