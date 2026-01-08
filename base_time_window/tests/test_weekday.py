@@ -1,5 +1,6 @@
 # Copyright 2024 Camptocamp SA
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
+
 from odoo.fields import Date
 from odoo.tests.common import TransactionCase
 

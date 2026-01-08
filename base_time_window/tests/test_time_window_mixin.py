@@ -1,6 +1,5 @@
-from odoo_test_helper import FakeModelLoader
-
 from odoo.exceptions import ValidationError
+from odoo.orm.model_classes import add_to_registry
 from odoo.tests.common import TransactionCase
 
 
@@ -16,16 +15,22 @@ class TestTimeWindowMixin(TransactionCase):
         cls.weekday1 = cls.env["time.weekday"].search([("name", "=", "1")])
         cls.weekday2 = cls.env["time.weekday"].search([("name", "=", "2")])
 
-        cls.loader = FakeModelLoader(cls.env, cls.__module__)
-        cls.loader.backup_registry()
         from .test_models import TestTimeWindowModel
 
-        cls.loader.update_registry((TestTimeWindowModel,))
-
-    @classmethod
-    def tearDownClass(cls):
-        cls.loader.restore_registry()
-        super().tearDownClass()
+        add_to_registry(cls.registry, TestTimeWindowModel)
+        cls.registry._setup_models__(
+            cls.env.cr,
+            [TestTimeWindowModel._name],
+        )
+        cls.registry.init_models(
+            cls.env.cr,
+            [TestTimeWindowModel._name],
+            {"models_to_check": True},
+        )
+        cls.addClassCleanup(
+            cls.registry.__delitem__,
+            TestTimeWindowModel._name,
+        )
 
     def test_time_window_no_overlap(self):
         with self.assertRaises(ValidationError):
