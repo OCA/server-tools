@@ -20,7 +20,10 @@ class TimeWeekday(models.Model):
         ],
         required=True,
     )
-    _sql_constraints = [("name_uniq", "UNIQUE(name)", ("Name must be unique"))]
+    _name_uniq = models.Constraint(
+        "UNIQUE(name)",
+        "Name must be unique",
+    )
 
     @api.depends("name")
     def _compute_display_name(self):
