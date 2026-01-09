@@ -63,10 +63,9 @@ class TestProfiling(HttpCase):
     def test_profile_creation_http(self):
         """We are testing the creation of a profile based on HTTP calls."""
         db = get_db_name()
-        login = "admin"
-        password = "admin"
         session_id = "1234567890"
-        admin_user = self.env["res.users"].search([("login", "=", login)])
+        admin_user = self.env.ref("base.user_admin")
+        password = "admin"
         uid = admin_user.id
         with patch("odoo.http.request") as request:
             request.uid = uid
@@ -94,3 +93,6 @@ class TestProfiling(HttpCase):
             )
             profile.disable()
             self.assertEqual(len(profile.sudo().py_request_lines), 1)
+            self.assertTrue(profile.py_request_lines.display_name)
+            self.assertTrue(profile.py_request_lines.attachment_id)
+            profile.action_view_attachment()
