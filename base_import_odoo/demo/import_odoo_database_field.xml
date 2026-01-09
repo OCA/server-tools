@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo noupdate="1">
+    <record id="mapping_partner_id_admin" model="import.odoo.database.field">
+        <field name="database_id" ref="demodb" />
+        <field name="mapping_type">fixed</field>
+        <field name="model_id" ref="base.model_res_partner" />
+        <field name="local_id" ref="base.partner_admin" />
+        <field name="remote_id" ref="base.partner_admin" />
+    </record>
+    <record id="mapping_partner_id_company" model="import.odoo.database.field">
+        <field name="database_id" ref="demodb" />
+        <field name="mapping_type">fixed</field>
+        <field name="model_id" ref="base.model_res_partner" />
+        <field name="local_id" ref="base.main_partner" />
+        <field name="remote_id" ref="base.main_partner" />
+    </record>
+    <record id="mapping_partner_id_root" model="import.odoo.database.field">
+        <field name="database_id" ref="demodb" />
+        <field name="mapping_type">fixed</field>
+        <field name="model_id" ref="base.model_res_partner" />
+        <field name="local_id" ref="base.partner_root" />
+        <field name="remote_id" ref="base.partner_root" />
+    </record>
+    <record id="mapping_user_admin" model="import.odoo.database.field">
+        <field name="database_id" ref="demodb" />
+        <field name="mapping_type">fixed</field>
+        <field name="model_id" ref="base.model_res_users" />
+        <field name="local_id" ref="mapped_admin" />
+        <field name="remote_id" ref="base.user_admin" />
+    </record>
+    <record id="mapping_user_root" model="import.odoo.database.field">
+        <field name="database_id" ref="demodb" />
+        <field name="mapping_type">fixed</field>
+        <field name="model_id" ref="base.model_res_users" />
+        <field name="local_id" ref="base.user_root" />
+        <field name="remote_id" ref="base.user_root" />
+    </record>
+    <record id="mapping_company_id" model="import.odoo.database.field">
+        <field name="database_id" ref="demodb" />
+        <field name="mapping_type">fixed</field>
+        <field name="model_id" ref="base.model_res_company" />
+        <field name="local_id" ref="base.main_company" />
+        <field name="remote_id" ref="base.main_company" />
+    </record>
+    <record id="mapping_login" model="import.odoo.database.field">
+        <field name="database_id" ref="demodb" />
+        <field name="mapping_type">unique</field>
+        <field name="model_id" ref="base.model_res_users" />
+        <field name="field_ids" eval="[(4, ref('base.field_res_users__login'))]" />
+    </record>
+    <record id="mapping_models" model="import.odoo.database.field">
+        <field name="database_id" ref="demodb" />
+        <field name="mapping_type">by_field</field>
+        <field name="model_id" ref="base.model_ir_model" />
+        <field name="field_ids" eval="[(4, ref('base.field_ir_model__name'))]" />
+    </record>
+    <record id="mapping_groups" model="import.odoo.database.field">
+        <field name="database_id" ref="demodb" />
+        <field name="mapping_type">by_field</field>
+        <field name="model_id" ref="base.model_res_groups" />
+        <field name="field_ids" eval="[(4, ref('base.field_res_groups__name'))]" />
+    </record>
+    <record id="mapping_attachment" model="import.odoo.database.field">
+        <field name="database_id" ref="demodb" />
+        <field name="mapping_type">by_reference</field>
+        <field name="model_id" ref="base.model_ir_attachment" />
+        <field name="model_field_id" ref="base.field_ir_attachment__res_model" />
+        <field name="id_field_id" ref="base.field_ir_attachment__res_id" />
+    </record>
+    <record id="mapping_mail_alias_name" model="import.odoo.database.field">
+        <field name="database_id" ref="demodb" />
+        <field name="mapping_type">by_field</field>
+        <field name="model_id" ref="mail.model_mail_alias" />
+        <field
+            name="field_ids"
+            eval="[(4, ref('mail.field_mail_alias__alias_name'))]"
+        />
+    </record>
+</odoo>
