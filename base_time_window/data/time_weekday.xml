@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<!-- Copyright 2020 ACSONE SA/NV
-     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<!--
+    Copyright 2020 ACSONE SA/NV
+    License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl)
+-->
 <odoo noupdate="1">
     <record model="time.weekday" id="time_weekday_monday">
         <field name="name">0</field>
