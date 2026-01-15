@@ -40,7 +40,7 @@ class UpgradeInstallWizard(models.TransientModel):
             ]
         )
         if extra_domain:
-            domain = Domain.AND(domain, extra_domain)
+            domain = Domain.AND([domain, extra_domain])
         modules = self.env["ir.module.module"].search(domain)
 
         for start_pattern in BLACKLIST_MODULES_STARTS_WITH:
