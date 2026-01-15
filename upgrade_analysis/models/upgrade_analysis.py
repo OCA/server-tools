@@ -26,7 +26,12 @@ except ImportError:
 from .. import compare
 
 _logger = logging.getLogger(__name__)
-_IGNORE_MODULES = ["openupgrade_records", "upgrade_analysis"]
+_IGNORE_MODULES = [
+    "openupgrade_records",
+    "upgrade_analysis",
+    "openupgrade_framework",
+    "openupgrade_scripts",
+]
 
 
 class UpgradeAnalysis(models.Model):
@@ -181,7 +186,7 @@ class UpgradeAnalysis(models.Model):
             remote_model_records, local_model_records
         )
 
-        affected_modules = sorted(
+        affected_modules = list(
             {
                 record["module"]
                 for record in remote_records
@@ -194,7 +199,7 @@ class UpgradeAnalysis(models.Model):
         )
         if "base" in affected_modules:
             try:
-                pass
+                from odoo.addons.openupgrade_scripts import apriori  # noqa: F401
             except ImportError:
                 _logger.error(
                     "You are using upgrade_analysis on core modules without "
@@ -205,20 +210,18 @@ class UpgradeAnalysis(models.Model):
                 )
 
         # reorder and output the result
-        keys = ["general"] + affected_modules
         modules = {
             module["name"]: module
             for module in self.env["ir.module.module"].search(
                 [("state", "=", "installed")]
             )
         }
+        keys = ["general"] + sorted(
+            (set(affected_modules) | set(modules.keys())) - set(_IGNORE_MODULES)
+        )
         general_log = ""
 
         no_changes_modules = []
-
-        for ignore_module in _IGNORE_MODULES:
-            if ignore_module in keys:
-                keys.remove(ignore_module)
 
         for key in keys:
             contents = f"---Models in module '{key}'---\n"
@@ -245,8 +248,8 @@ class UpgradeAnalysis(models.Model):
             if compare.module_map(key) not in modules:
                 general_log += f"---Probably obsolete module {key}---\n" + contents
                 continue
-            if key not in modules:
-                # no need to log in full log the merged/renamed modules
+            if key not in modules or key in no_changes_modules:
+                # no need to log in full log the merged/renamed/unchanged modules
                 continue
             if self.write_files:
                 error = self._write_file(key, modules[key].installed_version, contents)
@@ -264,12 +267,13 @@ class UpgradeAnalysis(models.Model):
                 general_log,
                 "upgrade_general_log.txt",
             )
-
+        noupdate_modules = []
         try:
-            self.generate_noupdate_changes()
+            noupdate_modules = self.generate_noupdate_changes()
         except Exception as e:
             _logger.exception(f"Error generating noupdate changes: {e}")
             general_log += "ERROR: error when generating noupdate changes: {e}\n"
+        no_changes_modules = list(set(no_changes_modules) - set(noupdate_modules))
         try:
             self.generate_module_coverage_file(no_changes_modules)
         except Exception as e:
@@ -480,6 +484,7 @@ class UpgradeAnalysis(models.Model):
         local_record_obj = self.env["upgrade.record"]
         local_modules = local_record_obj.list_modules()
         all_remote_modules = remote_record_obj.list_modules()
+        changed_modules = []
         for local_module in local_modules:
             remote_files = []
             remote_modules = []
@@ -508,13 +513,14 @@ class UpgradeAnalysis(models.Model):
                 module = self.env["ir.module.module"].search(
                     [("name", "=", local_module)]
                 )
+                changed_modules.append(local_module)
                 self._write_file(
                     local_module,
                     module.installed_version,
                     diff,
                     filename="noupdate_changes.xml",
                 )
-        return True
+        return changed_modules
 
     def generate_module_coverage_file(self, no_changes_modules):
         self.ensure_one()
@@ -522,19 +528,14 @@ class UpgradeAnalysis(models.Model):
         module_coverage_file_folder = config.get("module_coverage_file_folder", False)
 
         if not module_coverage_file_folder:
-            return
+            return False
 
         module_domain = [
             ("state", "=", "installed"),
             (
                 "name",
                 "not in",
-                [
-                    "upgrade_analysis",
-                    "openupgrade_records",
-                    "openupgrade_scripts",
-                    "openupgrade_framework",
-                ],
+                _IGNORE_MODULES,
             ),
         ]
 

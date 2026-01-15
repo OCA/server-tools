@@ -80,7 +80,7 @@ class UpgradeComparisonConfig(models.Model):
 
     def new_analysis(self):
         self.ensure_one()
-        analysis = self.env["upgrade.analysis"].create({"config_id": self.id})
+        analysis = self.env["upgrade.analysis"].create([{"config_id": self.id}])
         return {
             "name": analysis._description,
             "view_mode": "form",
