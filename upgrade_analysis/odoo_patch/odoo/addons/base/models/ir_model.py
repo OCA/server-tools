@@ -1,3 +1,5 @@
+import logging
+
 # ruff: noqa
 from odoo import models
 
@@ -5,6 +7,8 @@ from odoo.addons.base.models import ir_model
 
 from ...... import upgrade_log
 from .....odoo_patch import OdooPatch
+
+_logger = logging.getLogger(__name__)
 
 
 class IrModelConstraintPatch(OdooPatch):
