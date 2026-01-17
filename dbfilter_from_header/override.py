@@ -17,7 +17,7 @@ def db_filter(dbs, host=None):
     httprequest = http.request.httprequest
     db_filter_hdr = httprequest.environ.get("HTTP_X_ODOO_DBFILTER")
     if db_filter_hdr:
-        dbs = [db for db in dbs if re.match(db_filter_hdr, db)]
+        dbs = [db for db in dbs if re.fullmatch(db_filter_hdr, db)]
     return dbs
 
 
