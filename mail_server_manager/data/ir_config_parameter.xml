@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- These parameters use noupdate="0" so they get created if missing -->
+    <function model="ir.config_parameter" name="set_param">
+        <value>mail_server_manager.mail_domain</value>
+        <value>figacycles.com</value>
+    </function>
+    <function model="ir.config_parameter" name="set_param">
+        <value>mail_server_manager.config_path</value>
+        <value>/etc/odoo/mail_config</value>
+    </function>
+    <function model="ir.config_parameter" name="set_param">
+        <value>mail_server_manager.smtp_host</value>
+        <value>mail</value>
+    </function>
+    <function model="ir.config_parameter" name="set_param">
+        <value>mail_server_manager.auto_create</value>
+        <value>False</value>
+    </function>
+    <function model="ir.config_parameter" name="set_param">
+        <value>mail_server_manager.smtp_port</value>
+        <value>587</value>
+    </function>
+    <function model="ir.config_parameter" name="set_param">
+        <value>mail_server_manager.smtp_encryption</value>
+        <value>starttls</value>
+    </function>
+    <function model="ir.config_parameter" name="set_param">
+        <value>mail_server_manager.imap_host</value>
+        <value>mail</value>
+    </function>
+    <function model="ir.config_parameter" name="set_param">
+        <value>mail_server_manager.imap_port</value>
+        <value>993</value>
+    </function>
+    <function model="ir.config_parameter" name="set_param">
+        <value>mail_server_manager.imap_encryption</value>
+        <value>ssl</value>
+    </function>
+    <function model="ir.config_parameter" name="set_param">
+        <value>mail_server_manager.daily_email_limit</value>
+        <value>100</value>
+    </function>
+</odoo>
