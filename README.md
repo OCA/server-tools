@@ -85,7 +85,7 @@ addon | version | maintainers | summary
 [module_change_auto_install](module_change_auto_install/) | 14.0.1.0.3 | <a href='https://github.com/legalsylvain'><img src='https://github.com/legalsylvain.png' width='32' height='32' style='border-radius:50%;' alt='legalsylvain'/></a> | Customize auto installables modules by configuration
 [module_prototyper](module_prototyper/) | 14.0.1.0.1 |  | Prototype your module.
 [nsca_client](nsca_client/) | 14.0.1.0.2 |  | Send passive alerts to monitor your Odoo application.
-[onchange_helper](onchange_helper/) | 14.0.1.0.3 |  | Technical module that ease execution of onchange in Python code
+[onchange_helper](onchange_helper/) | 14.0.1.0.4 |  | Technical module that ease execution of onchange in Python code
 [profiler](profiler/) | 14.0.1.0.0 | <a href='https://github.com/thomaspaulb'><img src='https://github.com/thomaspaulb.png' width='32' height='32' style='border-radius:50%;' alt='thomaspaulb'/></a> | profiler
 [rpc_helper](rpc_helper/) | 14.0.1.2.0 | <a href='https://github.com/simahawk'><img src='https://github.com/simahawk.png' width='32' height='32' style='border-radius:50%;' alt='simahawk'/></a> | Helpers for disabling RPC calls
 [scheduler_error_mailer](scheduler_error_mailer/) | 14.0.1.2.1 |  | Scheduler Error Mailer
