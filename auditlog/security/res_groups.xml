@@ -1,0 +1,32 @@
+<odoo>
+    <record model="ir.module.category" id="security_auditlog_groups">
+        <field name="name">Auditlog Rights</field>
+    </record>
+
+    <record model="res.groups.privilege" id="res_groups_privilege_auditlog">
+        <field name="name">Auditlog Rights</field>
+        <field name="category_id" ref="security_auditlog_groups" />
+        <field name="sequence">99</field>
+    </record>
+
+    <record model="res.groups" id="group_auditlog_user">
+        <field name="name">Auditlog User</field>
+        <field name="privilege_id" ref="res_groups_privilege_auditlog" />
+    </record>
+
+    <record model="res.groups" id="group_auditlog_manager">
+        <field name="name">Auditlog Manager</field>
+        <field name="privilege_id" ref="res_groups_privilege_auditlog" />
+        <field
+            name="implied_ids"
+            eval="[Command.link(ref('auditlog.group_auditlog_user'))]"
+        />
+    </record>
+
+    <record id="base.group_system" model="res.groups">
+        <field
+            name="implied_ids"
+            eval="[Command.link(ref('auditlog.group_auditlog_manager'))]"
+        />
+    </record>
+</odoo>

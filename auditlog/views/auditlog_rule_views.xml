@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="view_auditlog_rule_form">
+        <field name="name">auditlog.rule.form</field>
+        <field name="model">auditlog.rule</field>
+        <field name="arch" type="xml">
+            <form string="Rule">
+                <header>
+                    <button
+                        string="Confirm"
+                        name="set_to_confirmed"
+                        type="object"
+                        invisible="state != 'draft'"
+                        class="oe_highlight"
+                    />
+                    <button
+                        string="Set to Draft"
+                        name="set_to_draft"
+                        type="object"
+                        invisible="state != 'confirmed'"
+                    />
+                    <field name="state" widget="statusbar" />
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field
+                                name="name"
+                                placeholder="Description..."
+                                readonly="state == 'confirmed'"
+                            />
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="General">
+                            <field
+                                name="model_id"
+                                options="{'no_create': True}"
+                                readonly="state == 'confirmed'"
+                            />
+                            <field
+                                name="log_type"
+                                widget="radio"
+                                readonly="state == 'confirmed'"
+                            />
+                            <field
+                                name="capture_record"
+                                readonly="state == 'confirmed'"
+                                invisible="log_type != 'full' or log_unlink != True"
+                            />
+                            <field
+                                name="users_to_exclude_ids"
+                                widget="many2many_tags"
+                                options="{'no_create': True}"
+                                readonly="state == 'confirmed'"
+                            />
+                            <field
+                                name="fields_to_exclude_ids"
+                                widget="many2many_tags"
+                                options="{'no_create': True}"
+                                readonly="state == 'confirmed'"
+                            />
+                            <field
+                                name="action_id"
+                                readonly="True"
+                                groups="base.group_no_one"
+                            />
+                        </group>
+                        <group string="Logging">
+                            <field name="log_create" readonly="state == 'confirmed'" />
+                            <field name="log_read" readonly="state == 'confirmed'" />
+                            <field name="log_write" readonly="state == 'confirmed'" />
+                            <field name="log_unlink" readonly="state == 'confirmed'" />
+                            <field
+                                name="log_export_data"
+                                readonly="state == 'confirmed'"
+                            />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_auditlog_rule_tree">
+        <field name="name">auditlog.rule.list</field>
+        <field name="model">auditlog.rule</field>
+        <field name="arch" type="xml">
+            <list
+                decoration-info="state == 'draft'"
+                decoration-bf="state == 'confirmed'"
+            >
+                <field name="name" />
+                <field name="model_id" />
+                <field name="log_type" />
+                <field name="log_read" />
+                <field name="log_write" />
+                <field name="log_unlink" />
+                <field name="log_create" />
+                <field name="log_export_data" />
+                <field name="state" />
+            </list>
+        </field>
+    </record>
+    <record id="view_auditlog_rule_search" model="ir.ui.view">
+        <field name="name">auditlog.rule.search</field>
+        <field name="model">auditlog.rule</field>
+        <field name="arch" type="xml">
+            <search string="Rules">
+                <field name="name" />
+                <filter
+                    name="state_draft"
+                    domain="[('state','=','draft')]"
+                    string="Draft"
+                />
+                <filter
+                    name="state_confirmed"
+                    domain="[('state', '=', 'confirmed')]"
+                    string="Confirmed"
+                />
+                <field name="model_id" />
+                <group>
+                    <filter
+                        name="group_by_state"
+                        string="State"
+                        domain="[]"
+                        context="{'group_by':'state'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_auditlog_rule_tree">
+        <field name="name">Rules</field>
+        <field name="res_model">auditlog.rule</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{}</field>
+        <field name="search_view_id" ref="view_auditlog_rule_search" />
+    </record>
+    <menuitem
+        id="menu_action_auditlog_rule_tree"
+        parent="menu_audit"
+        action="action_auditlog_rule_tree"
+        sequence="10"
+    />
+</odoo>
