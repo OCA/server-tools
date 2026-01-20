@@ -42,7 +42,7 @@ jobs:
             makepot: "true"
     services:
       postgres:
-        image: postgres:13
+        image: pgvector/pgvector:pg13
         env:
           POSTGRES_USER: odoo
           POSTGRES_PASSWORD: odoo
