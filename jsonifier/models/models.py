@@ -10,7 +10,6 @@ import logging
 from odoo import api, fields, models, tools
 from odoo.exceptions import UserError
 from odoo.tools.misc import format_duration
-from odoo.tools.translate import _
 
 from ..exceptions import SwallableException
 from .utils import convert_simple_to_full_parser
@@ -28,7 +27,9 @@ class Base(models.AbstractModel):
 
     @api.model
     def _jsonify_bad_parser_error(self, field_name):
-        raise UserError(_("Wrong parser configuration for field: `%s`") % field_name)
+        raise UserError(
+            self.env._("Wrong parser configuration for field: `%s`", field_name)
+        )
 
     def _function_value(self, record, function, field_name):
         if function in dir(record):
