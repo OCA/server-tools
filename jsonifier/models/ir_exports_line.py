@@ -1,7 +1,7 @@
 # Copyright 2017 ACSONE SA/NV
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -32,7 +32,7 @@ class IrExportsLine(models.Model):
     def _check_function_resolver(self):
         for rec in self:
             if rec.resolver_id and rec.instance_method_name:
-                msg = _("Either set a function or a resolver, not both.")
+                msg = self.env._("Either set a function or a resolver, not both.")
                 raise ValidationError(msg)
 
     @api.constrains("target", "name")
@@ -44,15 +44,15 @@ class IrExportsLine(models.Model):
             names_with_target = rec.target.split("/")
             if len(names) != len(names_with_target):
                 raise ValidationError(
-                    _("Name and Target must have the same hierarchy depth")
+                    self.env._("Name and Target must have the same hierarchy depth")
                 )
             for name, name_with_target in zip(names, names_with_target, strict=True):
                 field_name = name_with_target.split(":")[0]
                 if name != field_name:
                     raise ValidationError(
-                        _(
+                        self.env._(
                             "The target must reference the same field as in "
                             "name '%(name)s' not in '%(name_with_target)s'"
-                        )
-                        % dict(name=name, name_with_target=name_with_target)
+                        ),
+                        dict(name=name, name_with_target=name_with_target),
                     )
