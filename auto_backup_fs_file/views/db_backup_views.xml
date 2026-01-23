@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2025 Binhex
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record model="ir.ui.view" id="view_backup_conf_form">
+        <field name="model">db.backup</field>
+        <field name="inherit_id" ref="auto_backup.view_backup_conf_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('oe_title')]" position="before">
+                <div name="button_box" class="oe_button_box">
+                    <button
+                        class="oe_stat_button"
+                        name="action_open_fs_backups_view"
+                        invisible="fs_file_backup_count == 0"
+                        type="object"
+                        icon="fa-archive"
+                    >
+                                <field
+                            string="Backups"
+                            name="fs_file_backup_count"
+                            widget="statinfo"
+                        />
+                </button>
+                </div>
+            </xpath>
+            <field name="backup_format" position="after">
+                <field name="responsible_id" />
+            </field>
+        </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="view_backup_conf_tree">
+        <field name="model">db.backup</field>
+        <field name="inherit_id" ref="auto_backup.view_backup_conf_tree" />
+        <field name="arch" type="xml">
+            <field name="days_to_keep" position="after">
+                <field name="fs_file_backup_ids" />
+            </field>
+        </field>
+    </record>
+
+</odoo>
