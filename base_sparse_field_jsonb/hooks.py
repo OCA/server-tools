@@ -1,5 +1,8 @@
 """Installation hooks for base_sparse_field_jsonb.
 
+The pre_init_hook handles:
+1. Dropping existing GIN indexes on TEXT columns (they can't be converted)
+
 The post_init_hook handles:
 1. Migration of existing TEXT columns to JSONB
 2. Creation of GIN indexes on JSONB columns for fast filtering
@@ -20,6 +23,101 @@ KNOWN_SERIALIZED_TABLES = [
     "res_partner",
     # Add more tables as needed
 ]
+
+
+def drop_gin_indexes_on_text_columns(cr):
+    """Drop all GIN indexes on TEXT columns that look like serialized fields.
+
+    This function can be called from pre_init_hook or directly from
+    other modules to ensure GIN indexes on TEXT columns are dropped
+    before any TEXT-to-JSONB conversion is attempted.
+
+    Args:
+        cr: Database cursor
+    """
+    _logger.info("Checking for GIN indexes on TEXT columns...")
+
+    # Find ALL GIN indexes on TEXT columns (not just serialized field patterns)
+    # This is more comprehensive to catch all potential issues
+    cr.execute(
+        """
+        SELECT
+            t.relname AS table_name,
+            a.attname AS column_name,
+            i.relname AS index_name,
+            pg_get_indexdef(ix.indexrelid) AS index_def
+        FROM pg_index ix
+        JOIN pg_class t ON t.oid = ix.indrelid
+        JOIN pg_class i ON i.oid = ix.indexrelid
+        JOIN pg_attribute a ON a.attrelid = t.oid
+        JOIN pg_am am ON am.oid = i.relam
+        JOIN information_schema.columns c
+            ON c.table_name = t.relname
+            AND c.column_name = a.attname
+        WHERE am.amname = 'gin'
+          AND c.data_type = 'text'
+          AND a.attnum = ANY(ix.indkey)
+          AND t.relkind = 'r'
+        ORDER BY t.relname, a.attname
+        """
+    )
+    indexes_to_drop = cr.fetchall()
+
+    if not indexes_to_drop:
+        _logger.info("No GIN indexes on TEXT columns found.")
+        return 0
+
+    dropped_count = 0
+    for table_name, column_name, index_name, _index_def in indexes_to_drop:
+        _logger.warning(
+            "Found GIN index '%s' on TEXT column %s.%s - dropping before conversion",
+            index_name,
+            table_name,
+            column_name,
+        )
+        try:
+            drop_query = sql.SQL("DROP INDEX IF EXISTS {index}").format(
+                index=sql.Identifier(index_name),
+            )
+            cr.execute(drop_query)
+            dropped_count += 1
+            _logger.info("Successfully dropped GIN index %s", index_name)
+        except Psycopg2Error as e:
+            _logger.error(
+                "Could not drop GIN index %s: %s",
+                index_name,
+                e,
+            )
+
+    _logger.info(
+        "Dropped %d GIN indexes from TEXT columns.",
+        dropped_count,
+    )
+    return dropped_count
+
+
+def pre_init_hook(env):
+    """Pre-installation hook to drop GIN indexes on TEXT columns.
+
+    GIN indexes on TEXT columns will fail when Odoo tries to convert
+    the column to JSONB. We need to drop them first, then recreate
+    them on JSONB columns in post_init_hook.
+    """
+    cr = env.cr
+
+    _logger.info("base_sparse_field_jsonb: Running pre_init_hook...")
+
+    # Use the comprehensive function to drop ALL GIN indexes on TEXT columns
+    dropped_count = drop_gin_indexes_on_text_columns(cr)
+
+    if dropped_count > 0:
+        _logger.info(
+            "base_sparse_field_jsonb: Dropped %d GIN indexes from TEXT columns. "
+            "They will be recreated on JSONB columns in post_init_hook.",
+            dropped_count,
+        )
+    else:
+        _logger.info("base_sparse_field_jsonb: No GIN indexes on TEXT columns found.")
 
 
 def post_init_hook(env):
@@ -45,6 +143,8 @@ def post_init_hook(env):
     index_count = 0
 
     for table_name, column_name, data_type in columns_to_migrate:
+        current_type = data_type
+
         # Migrate TEXT to JSONB if needed
         if data_type == "text":
             _logger.info(
@@ -71,6 +171,7 @@ def post_init_hook(env):
                 )
                 cr.execute(alter_query)
                 migrated_count += 1
+                current_type = "jsonb"
                 _logger.info(
                     "Successfully migrated %s.%s to JSONB", table_name, column_name
                 )
@@ -78,8 +179,18 @@ def post_init_hook(env):
                 _logger.warning(
                     "Could not migrate %s.%s to JSONB: %s", table_name, column_name, e
                 )
-                cr.rollback()
+                # Don't try to create GIN index on TEXT column
                 continue
+
+        # Only create GIN index on JSONB columns (never on TEXT)
+        if current_type != "jsonb":
+            _logger.debug(
+                "Skipping GIN index on %s.%s - column is %s, not jsonb",
+                table_name,
+                column_name,
+                current_type,
+            )
+            continue
 
         # Create GIN index if not exists
         index_name = f"idx_{table_name}_{column_name}_gin"
