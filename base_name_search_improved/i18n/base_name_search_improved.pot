@@ -225,6 +225,9 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_name_search_improved.field_discuss_voice_metadata__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_fetchmail_server__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_format_address_mixin__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_fs_file_gc__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_fs_storage__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_fs_test_connection__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_google_gmail_mixin__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_html_field_history_mixin__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_iap_account__smart_search
@@ -476,6 +479,9 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_name_search_improved.field_resource_mixin__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_resource_resource__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_sequence_mixin__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_server_config__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_server_env_mixin__smart_search
+#: model:ir.model.fields,field_description:base_name_search_improved.field_server_env_techname_mixin__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_sms_composer__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_sms_resend__smart_search
 #: model:ir.model.fields,field_description:base_name_search_improved.field_sms_resend_recipient__smart_search
