@@ -638,8 +638,7 @@ class AuditlogRule(models.Model):
             return log_model.create(vals)
 
         for res_id in res_ids:
-            res = model_model.browse(res_id)
-            log_vals = {**vals, "name": res.display_name, "res_id": res_id}
+            log_vals = {**vals, "res_id": res_id}
 
             diff = DictDiffer(
                 new_values.get(res_id, EMPTY_DICT), old_values.get(res_id, EMPTY_DICT)
@@ -667,6 +666,9 @@ class AuditlogRule(models.Model):
                     fields_to_exclude,
                 )
             if method == "unlink" or log_vals.get("line_ids", {}):
+                res = model_model.browse(res_id)
+                res.fetch(["display_name"])
+                log_vals.update({"name": res.display_name})
                 log_model.create(log_vals)
 
     def _get_field(self, model_id, field_name):
