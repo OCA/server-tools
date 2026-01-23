@@ -40,8 +40,8 @@ msgstr ""
 "\">Salce,<br><br></p>\n"
 "                <p style=\"margin:0px 0px 10px 0px;font-size:13px;font-"
 "family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;"
-"\">l'allegato ${object.name} ha un errore con il segente messaggio : "
-"<br>${object.state_message}<br></p><p style=\"margin:0px 0px 10px 0px;font-"
+"\">l'allegato ${object.name} ha un errore con il segente messaggio : <br>$"
+"{object.state_message}<br></p><p style=\"margin:0px 0px 10px 0px;font-"
 "size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, "
 "sans-serif;\"></p>\n"
 "                <p style=\"margin:0px 0px 10px 0px;font-size:13px;font-"
@@ -216,6 +216,11 @@ msgid "File Content (raw)"
 msgstr "Contenuto file (raw)"
 
 #. module: attachment_queue
+#: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__fs_filename
+msgid "File Name into the filesystem storage"
+msgstr ""
+
+#. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__file_size
 msgid "File Size"
 msgstr "Dimensione file"
@@ -229,6 +234,26 @@ msgstr "Tipo file"
 #: model_terms:ir.ui.view,arch_db:attachment_queue.view_attachment_queue_search
 msgid "File type"
 msgstr "Tipo file"
+
+#. module: attachment_queue
+#: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__fs_storage_id
+msgid "Filesystem Storage"
+msgstr ""
+
+#. module: attachment_queue
+#: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__fs_storage_code
+msgid "Filesystem Storage Code"
+msgstr ""
+
+#. module: attachment_queue
+#: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__fs_url
+msgid "Filesystem URL"
+msgstr ""
+
+#. module: attachment_queue
+#: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__fs_url_path
+msgid "Filesystem URL Path"
+msgstr ""
 
 #. module: attachment_queue
 #: model_terms:ir.ui.view,arch_db:attachment_queue.view_attachment_queue_search
@@ -306,6 +331,11 @@ msgstr "Larghezza immagine"
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__index_content
 msgid "Indexed Content"
 msgstr "Contenuto indicizzato"
+
+#. module: attachment_queue
+#: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__internal_url
+msgid "Internal URL"
+msgstr ""
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__message_is_follower
@@ -507,6 +537,26 @@ msgid "Stored Filename"
 msgstr "Nome file memorizzato"
 
 #. module: attachment_queue
+#: model:ir.model.fields,help:attachment_queue.field_attachment_queue__fs_storage_code
+msgid ""
+"Technical code used to identify the storage backend into the code.This code "
+"must be unique. This code is used for example to define the storage backend "
+"to store the attachments via the configuration parameter "
+"'ir_attachment.storage.force.database' when the module 'fs_attachment' is "
+"installed."
+msgstr ""
+
+#. module: attachment_queue
+#: model:ir.model.fields,help:attachment_queue.field_attachment_queue__fs_url
+msgid "The URL to access the file from the filesystem storage."
+msgstr ""
+
+#. module: attachment_queue
+#: model:ir.model.fields,help:attachment_queue.field_attachment_queue__internal_url
+msgid "The URL to access the file from the server."
+msgstr ""
+
+#. module: attachment_queue
 #: model:mail.template,subject:attachment_queue.attachment_failure_notification
 msgid "The attachment {{object.name}} has failed"
 msgstr "L'allegato {{object.name}} ha un errore"
@@ -522,9 +572,27 @@ msgstr ""
 "l'esportazione"
 
 #. module: attachment_queue
+#: model:ir.model.fields,help:attachment_queue.field_attachment_queue__fs_filename
+msgid ""
+"The name of the file in the filesystem storage.To preserve the mimetype and "
+"the meaning of the filenamethe filename is computed from the name and the "
+"extension"
+msgstr ""
+
+#. module: attachment_queue
+#: model:ir.model.fields,help:attachment_queue.field_attachment_queue__fs_url_path
+msgid "The path to access the file from the filesystem storage."
+msgstr ""
+
+#. module: attachment_queue
 #: model_terms:ir.ui.view,arch_db:attachment_queue.view_reschedule_attachment
 msgid "The selected attachments will be rescheduled."
 msgstr "L'allegato selezionato verrà riprogrammato."
+
+#. module: attachment_queue
+#: model:ir.model.fields,help:attachment_queue.field_attachment_queue__fs_storage_id
+msgid "The storage where the file is stored."
+msgstr ""
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__type
