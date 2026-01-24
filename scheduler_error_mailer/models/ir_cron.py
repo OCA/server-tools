@@ -18,8 +18,7 @@ class IrCron(models.Model):
         comodel_name="mail.template",
         domain=[("model_id.model", "=", "ir.cron")],
         string="Error E-mail Template",
-        help="Select the email template that will be sent when "
-        "this scheduler fails.",
+        help="Select the email template that will be sent when this scheduler fails.",
         default=lambda self: self.env.ref(
             "scheduler_error_mailer.scheduler_error_mailer", False
         ),
