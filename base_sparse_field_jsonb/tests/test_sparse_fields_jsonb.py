@@ -8,13 +8,24 @@ https://github.com/odoo/odoo/blob/19.0/addons/base_sparse_field/tests/test_spars
 """
 
 import json
+import logging
+
+from psycopg2.extras import Json
 
 from odoo import fields, models
 from odoo.orm.model_classes import add_to_registry
 from odoo.tests import TransactionCase
 
 from ..hooks import drop_gin_indexes_on_text_columns, post_init_hook, pre_init_hook
-from ..models.fields import SerializedJsonb
+from ..models.base_model import _drop_gin_indexes_on_text_columns_for_table
+from ..models.fields import SerializedJsonb, _drop_gin_indexes_on_column
+
+# Logger names used by the module (for muting during tests)
+_LOGGERS_TO_MUTE = [
+    "odoo.addons.base_sparse_field_jsonb.models.fields",
+    "odoo.addons.base_sparse_field_jsonb.models.base_model",
+    "odoo.addons.base_sparse_field_jsonb.hooks",
+]
 
 
 class SparseFieldsTestModel(models.Model):
@@ -574,3 +585,312 @@ class TestSerializedJsonbField(TransactionCase):
     def test_serialized_class_is_replaced(self):
         """Test that fields.Serialized is now SerializedJsonb."""
         self.assertIs(fields.Serialized, SerializedJsonb)
+
+    def test_convert_to_column_insert_with_dict(self):
+        """Test convert_to_column_insert wraps dict in Json."""
+        field = SerializedJsonb()
+        record = self.env["res.partner"].browse()
+
+        result = field.convert_to_column_insert({"key": "value"}, record)
+        self.assertIsInstance(result, Json)
+
+    def test_convert_to_column_update_with_dict(self):
+        """Test convert_to_column_update wraps dict in Json."""
+        field = SerializedJsonb()
+        record = self.env["res.partner"].browse()
+
+        result = field.convert_to_column_update({"key": "value"}, record)
+        self.assertIsInstance(result, Json)
+
+
+class TestDropGinIndexes(TransactionCase):
+    """Test GIN index dropping functionality."""
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        # Mute loggers that emit warnings during GIN index tests
+        cls._muted_loggers = []
+        for logger_name in _LOGGERS_TO_MUTE:
+            logger = logging.getLogger(logger_name)
+            cls._muted_loggers.append((logger, logger.level))
+            logger.setLevel(logging.CRITICAL)
+
+    @classmethod
+    def tearDownClass(cls):
+        # Restore logger levels
+        for logger, level in cls._muted_loggers:
+            logger.setLevel(level)
+        super().tearDownClass()
+
+    def test_drop_gin_indexes_on_column_no_indexes(self):
+        """Test _drop_gin_indexes_on_column when no indexes exist."""
+        # Should return 0 when no indexes exist
+        count = _drop_gin_indexes_on_column(
+            self.env.cr, "res_partner", "nonexistent_column"
+        )
+        self.assertEqual(count, 0)
+
+    def test_drop_gin_indexes_on_text_columns_for_table_no_serialized(self):
+        """Test function returns 0 when table has no serialized columns."""
+        # res_partner doesn't have x_custom_json* columns by default
+        count = _drop_gin_indexes_on_text_columns_for_table(self.env.cr, "res_partner")
+        self.assertEqual(count, 0)
+
+    def test_drop_gin_indexes_on_text_columns_for_table_with_serialized(self):
+        """Test function when table has serialized columns but no GIN indexes."""
+        # Create test table with serialized column pattern
+        self.env.cr.execute(
+            """
+            CREATE TABLE IF NOT EXISTS test_serialized_table (
+                id SERIAL PRIMARY KEY,
+                x_custom_json_attrs JSONB
+            )
+            """
+        )
+
+        # Should return 0 (no GIN indexes to drop)
+        count = _drop_gin_indexes_on_text_columns_for_table(
+            self.env.cr, "test_serialized_table"
+        )
+        self.assertEqual(count, 0)
+
+        # Cleanup
+        self.env.cr.execute("DROP TABLE IF EXISTS test_serialized_table")
+
+    def test_drop_gin_indexes_with_existing_gin_index(self):
+        """Test dropping GIN index when one exists."""
+        # Create test table with GIN index
+        self.env.cr.execute(
+            """
+            CREATE TABLE IF NOT EXISTS test_gin_drop (
+                id SERIAL PRIMARY KEY,
+                x_custom_json_data JSONB
+            )
+            """
+        )
+        self.env.cr.execute(
+            """
+            CREATE INDEX IF NOT EXISTS idx_test_gin_drop_data
+            ON test_gin_drop USING GIN (x_custom_json_data)
+            """
+        )
+
+        # Drop should return 1
+        count = _drop_gin_indexes_on_text_columns_for_table(
+            self.env.cr, "test_gin_drop"
+        )
+        self.assertEqual(count, 1)
+
+        # Verify index is gone
+        self.env.cr.execute(
+            """
+            SELECT indexname FROM pg_indexes
+            WHERE tablename = 'test_gin_drop'
+              AND indexname = 'idx_test_gin_drop_data'
+            """
+        )
+        self.assertIsNone(self.env.cr.fetchone())
+
+        # Cleanup
+        self.env.cr.execute("DROP TABLE IF EXISTS test_gin_drop")
+
+    def test_drop_gin_indexes_on_column_with_gin_index(self):
+        """Test _drop_gin_indexes_on_column drops existing index."""
+        # Create test table with GIN index
+        self.env.cr.execute(
+            """
+            CREATE TABLE IF NOT EXISTS test_col_gin (
+                id SERIAL PRIMARY KEY,
+                data JSONB
+            )
+            """
+        )
+        self.env.cr.execute(
+            """
+            CREATE INDEX IF NOT EXISTS idx_test_col_gin
+            ON test_col_gin USING GIN (data)
+            """
+        )
+
+        # Drop should return 1
+        count = _drop_gin_indexes_on_column(self.env.cr, "test_col_gin", "data")
+        self.assertEqual(count, 1)
+
+        # Cleanup
+        self.env.cr.execute("DROP TABLE IF EXISTS test_col_gin")
+
+
+class TestPostInitHookMigration(TransactionCase):
+    """Test post_init_hook TEXT to JSONB migration."""
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        # Mute loggers that emit warnings during migration tests
+        cls._muted_loggers = []
+        for logger_name in _LOGGERS_TO_MUTE:
+            logger = logging.getLogger(logger_name)
+            cls._muted_loggers.append((logger, logger.level))
+            logger.setLevel(logging.CRITICAL)
+
+    @classmethod
+    def tearDownClass(cls):
+        # Restore logger levels
+        for logger, level in cls._muted_loggers:
+            logger.setLevel(level)
+        super().tearDownClass()
+
+    def test_post_init_hook_migrates_text_to_jsonb(self):
+        """Test post_init_hook migrates TEXT columns to JSONB."""
+        # Create test table with TEXT column matching pattern
+        self.env.cr.execute(
+            """
+            CREATE TABLE IF NOT EXISTS test_migrate_text (
+                id SERIAL PRIMARY KEY,
+                x_custom_json_migrate TEXT
+            )
+            """
+        )
+
+        # Insert test data
+        self.env.cr.execute(
+            """
+            INSERT INTO test_migrate_text (x_custom_json_migrate)
+            VALUES ('{"key": "value"}')
+            """
+        )
+
+        # Run post_init_hook
+        post_init_hook(self.env)
+
+        # Verify column is now JSONB
+        self.env.cr.execute(
+            """
+            SELECT data_type FROM information_schema.columns
+            WHERE table_name = 'test_migrate_text'
+              AND column_name = 'x_custom_json_migrate'
+            """
+        )
+        result = self.env.cr.fetchone()
+        self.assertEqual(result[0], "jsonb")
+
+        # Verify data is preserved
+        self.env.cr.execute(
+            """
+            SELECT x_custom_json_migrate->>'key' FROM test_migrate_text
+            """
+        )
+        result = self.env.cr.fetchone()
+        self.assertEqual(result[0], "value")
+
+        # Cleanup
+        self.env.cr.execute("DROP TABLE IF EXISTS test_migrate_text")
+
+    def test_post_init_hook_skips_existing_gin_index(self):
+        """Test post_init_hook skips GIN index creation if exists."""
+        # Create test table with JSONB and existing GIN index with expected name
+        self.env.cr.execute(
+            """
+            CREATE TABLE IF NOT EXISTS test_existing_gin (
+                id SERIAL PRIMARY KEY,
+                x_custom_json_existing JSONB
+            )
+            """
+        )
+        # Use the exact name pattern that post_init_hook uses
+        expected_index = "idx_test_existing_gin_x_custom_json_existing_gin"
+        self.env.cr.execute(
+            f"""
+            CREATE INDEX {expected_index}
+            ON test_existing_gin USING GIN (x_custom_json_existing)
+            """
+        )
+
+        # Run post_init_hook - should not fail and should skip creating index
+        post_init_hook(self.env)
+
+        # Verify the specific index still exists (wasn't duplicated or removed)
+        self.env.cr.execute(
+            """
+            SELECT 1 FROM pg_indexes
+            WHERE tablename = 'test_existing_gin'
+              AND indexname = %s
+            """,
+            (expected_index,),
+        )
+        result = self.env.cr.fetchone()
+        self.assertIsNotNone(result)
+
+        # Cleanup
+        self.env.cr.execute("DROP TABLE IF EXISTS test_existing_gin")
+
+    def test_post_init_hook_handles_empty_string(self):
+        """Test post_init_hook handles empty string in TEXT column."""
+        # Create test table with TEXT column
+        self.env.cr.execute(
+            """
+            CREATE TABLE IF NOT EXISTS test_empty_string (
+                id SERIAL PRIMARY KEY,
+                x_custom_json_empty TEXT
+            )
+            """
+        )
+
+        # Insert empty string
+        self.env.cr.execute(
+            """
+            INSERT INTO test_empty_string (x_custom_json_empty)
+            VALUES ('')
+            """
+        )
+
+        # Run post_init_hook
+        post_init_hook(self.env)
+
+        # Verify empty string becomes empty object
+        self.env.cr.execute(
+            """
+            SELECT x_custom_json_empty FROM test_empty_string
+            """
+        )
+        result = self.env.cr.fetchone()
+        self.assertEqual(result[0], {})
+
+        # Cleanup
+        self.env.cr.execute("DROP TABLE IF EXISTS test_empty_string")
+
+    def test_post_init_hook_handles_null(self):
+        """Test post_init_hook handles NULL in TEXT column."""
+        # Create test table with TEXT column
+        self.env.cr.execute(
+            """
+            CREATE TABLE IF NOT EXISTS test_null_value (
+                id SERIAL PRIMARY KEY,
+                x_custom_json_null TEXT
+            )
+            """
+        )
+
+        # Insert NULL
+        self.env.cr.execute(
+            """
+            INSERT INTO test_null_value (x_custom_json_null)
+            VALUES (NULL)
+            """
+        )
+
+        # Run post_init_hook
+        post_init_hook(self.env)
+
+        # Verify NULL remains NULL
+        self.env.cr.execute(
+            """
+            SELECT x_custom_json_null FROM test_null_value
+            """
+        )
+        result = self.env.cr.fetchone()
+        self.assertIsNone(result[0])
+
+        # Cleanup
+        self.env.cr.execute("DROP TABLE IF EXISTS test_null_value")
