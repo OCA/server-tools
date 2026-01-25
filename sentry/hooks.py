@@ -128,6 +128,9 @@ def initialize_sentry(config):
     # Remove logging_level, since in sentry_sdk is include in 'integrations'
     del options["logging_level"]
 
+    if config.get("sentry_enable_logs", False):
+        options["enable_logs"] = True
+
     client = sentry_sdk.init(**options)
 
     sentry_sdk.set_tag("include_context", config.get("sentry_include_context", True))
