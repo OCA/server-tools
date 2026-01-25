@@ -12,7 +12,7 @@ class TestPartnerDomains(TransactionCase):
         super().setUpClass()
         cls.partner_model = cls.env["res.partner"]
         cls.partner_domains = [
-            [("display_name", "ilike", "Deco")],
+            [("display_name", "ilike", "Acme")],
             [("email", "ilike", "example.com")],
             [("country_id", "=", cls.env.ref("base.us").id)],
         ]
