@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -34,7 +34,6 @@ msgid "Created on"
 msgstr ""
 
 #. module: base_report_auto_create_qweb
-#: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report__display_name
 #: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report_duplicate__display_name
 msgid "Display Name"
 msgstr ""
@@ -55,13 +54,11 @@ msgid "Duplicate Report"
 msgstr ""
 
 #. module: base_report_auto_create_qweb
-#: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report__id
 #: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report_duplicate__id
 msgid "ID"
 msgstr ""
 
 #. module: base_report_auto_create_qweb
-#: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report____last_update
 #: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report_duplicate____last_update
 msgid "Last Modified on"
 msgstr ""
@@ -99,6 +96,7 @@ msgid "Suffix"
 msgstr ""
 
 #. module: base_report_auto_create_qweb
+#. odoo-python
 #: code:addons/base_report_auto_create_qweb/models/report_xml.py:0
 #, python-format
 msgid "Template Name must contain at least a dot in it's name"
