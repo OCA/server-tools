@@ -54,6 +54,10 @@ class MockConnection:
     def close(self):
         pass
 
+    def expunge(self):
+        """Mock an IMAP4.expunge action"""
+        return ("OK", None)
+
 
 class TestMatchAlgorithms(TransactionCase):
     @classmethod
