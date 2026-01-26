@@ -10,7 +10,18 @@ from odoo.addons.scheduler_error_mailer.hooks import post_init_hook
 class TestSchedulerErrorMailer(BaseCommon):
     def setUp(self):
         super().setUp()
-        self.cron = self.env.ref("scheduler_error_mailer.test_scheduler_error_mailer")
+        self.cron = self.env["ir.cron"].create(
+            {
+                "name": "Test Scheduler Error Mailer",
+                "active": False,
+                "user_id": self.env.ref("base.user_root").id,
+                "interval_number": 1,
+                "interval_type": "hours",
+                "model_id": self.env.ref("base.model_ir_cron").id,
+                "state": "code",
+                "code": "model._test_scheduler_failure()",
+            }
+        )
 
     def test_error_cron(self):
         with (

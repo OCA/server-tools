@@ -29,7 +29,10 @@ class IrCron(models.Model):
         if self.email_template_id:
             # we put the job_exception in context to be able to print it inside
             # the email template
-            context = {"job_exception": str(job_exception), "dbname": self._cr.dbname}
+            context = {
+                "job_exception": str(job_exception),
+                "dbname": self.env.cr.dbname,
+            }
 
             _logger.debug("Sending scheduler error email with context=%s", context)
 
@@ -39,7 +42,9 @@ class IrCron(models.Model):
     @api.model
     def _test_scheduler_failure(self):
         """This function is used to test and debug this module."""
-        raise UserError(self.env._("Task failure with UID = %(uid)d.", uid=self._uid))
+        raise UserError(
+            self.env._("Task failure with UID = %(uid)d.", uid=self.env.uid)
+        )
 
     @api.model
     def _callback(self, cron_name, server_action_id):
