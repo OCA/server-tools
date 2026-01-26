@@ -251,6 +251,7 @@ class TestAttachMailManually(TransactionCase):
         mock_conn = MagicMock()
         mock_conn.select.return_value = ("OK",)
         mock_conn.search.return_value = ("OK", [b"1"])
+        mock_conn.uid.return_value = ("OK", [b"1"])
         mock_conn.fetch.return_value = (
             "OK",
             [(b"1 (RFC822 {123}", b"Mocked raw email content")],
@@ -261,7 +262,7 @@ class TestAttachMailManually(TransactionCase):
         )
         return mock_conn
 
-    def _mock_fetch_msg(self, connection, msgid):
+    def _mock_fetch_msg(self, connection, message_uid):
         """Return a tuple like the real fetch_msg: (dict, bytes)"""
         mail_message = {
             "subject": "Test",
@@ -282,7 +283,9 @@ class TestAttachMailManually(TransactionCase):
             patch.object(
                 self.folder.__class__, "fetch_msg", side_effect=self._mock_fetch_msg
             ),
-            patch.object(self.folder.__class__, "get_msgids", return_value=[b"1"]),
+            patch.object(
+                self.folder.__class__, "get_message_uids", return_value=[b"1"]
+            ),
             patch.object(self.folder.__class__, "get_criteria", return_value="ALL"),
         ):
             wizard = self.Wizard.with_context(folder_id=self.folder.id).create({})
@@ -297,7 +300,7 @@ class TestAttachMailManually(TransactionCase):
         with patch.object(
             self.folder.__class__,
             "fetch_msg",
-            side_effect=lambda conn, msgid: (
+            side_effect=lambda conn, message_uid: (
                 {
                     "subject": "With Object",
                     "date": "2025-07-23",
@@ -315,7 +318,7 @@ class TestAttachMailManually(TransactionCase):
                             0,
                             0,
                             {
-                                "msgid": "1",
+                                "message_uid": "1",
                                 "subject": "No Object",
                                 "object_id": False,
                             },
@@ -324,7 +327,7 @@ class TestAttachMailManually(TransactionCase):
                             0,
                             0,
                             {
-                                "msgid": "2",
+                                "message_uid": "2",
                                 "subject": "With Object",
                                 "object_id": f"res.partner,{self.partner.id}",
                             },
@@ -342,7 +345,7 @@ class TestAttachMailManually(TransactionCase):
     def test_prepare_mail_returns_expected_dict(self):
         """Test _prepare_mail returns correct structure."""
         folder = self.folder
-        msgid = "123"
+        message_uid = "123"
         mail_message = {
             "subject": "Test",
             "date": "2025-07-23",
@@ -350,9 +353,9 @@ class TestAttachMailManually(TransactionCase):
             "body": "<p>Body</p>",
         }
 
-        result = self.Wizard._prepare_mail(folder, msgid, mail_message)
+        result = self.Wizard._prepare_mail(folder, message_uid, mail_message)
         expected = {
-            "msgid": "123",
+            "message_uid": "123",
             "subject": "Test",
             "date": "2025-07-23",
             "body": "<p>Body</p>",
@@ -366,7 +369,9 @@ class TestAttachMailManually(TransactionCase):
         with (
             patch.object(FetchmailServer, "connect", return_value=MagicMock()),
             patch.object(self.folder.__class__, "fetch_msg", return_value=({}, b"raw")),
-            patch.object(self.folder.__class__, "get_msgids", return_value=[b"1"]),
+            patch.object(
+                self.folder.__class__, "get_message_uids", return_value=[b"1"]
+            ),
             patch.object(self.folder.__class__, "get_criteria", return_value="ALL"),
         ):
             wizard = self.Wizard.with_context(folder_id=self.folder.id).create({})
