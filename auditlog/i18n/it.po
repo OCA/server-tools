@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-26 01:45+0000\n"
-"PO-Revision-Date: 2024-04-17 14:36+0000\n"
+"PO-Revision-Date: 2025-11-28 10:42+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__action_id
@@ -144,6 +144,11 @@ msgid "Draft"
 msgstr "Bozza"
 
 #. module: auditlog
+#: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_log_form
+msgid "Exported Records"
+msgstr "Record esportati"
+
+#. module: auditlog
 #: model:ir.model.fields.selection,name:auditlog.selection__auditlog_log__log_type__fast
 #: model:ir.model.fields.selection,name:auditlog.selection__auditlog_rule__log_type__fast
 msgid "Fast log"
@@ -188,8 +193,8 @@ msgid ""
 "Fast log: only log the changes made through the create and write operations "
 "(less information, but it is faster)"
 msgstr ""
-"Log completo: verifica differenze tra i dati prima e dopo l'operazione ("
-"registra più info come campi calcolati che sono stati aggiornati, ma è più "
+"Log completo: verifica differenze tra i dati prima e dopo l'operazione "
+"(registra più info come campi calcolati che sono stati aggiornati, ma è più "
 "lento)\n"
 "Log rapido: registra solo le modifiche fatte tramite le operazioni crea e "
 "scrivi (meno info, ma più veloce)"
@@ -291,6 +296,11 @@ msgstr "Log creazioni"
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__log_unlink
 msgid "Log Deletes"
 msgstr "Log eliminazioni"
+
+#. module: auditlog
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__log_export_data
+msgid "Log Exports"
+msgstr "Esportazione registro"
 
 #. module: auditlog
 #: model:ir.actions.act_window,name:auditlog.action_auditlog_line
@@ -414,7 +424,12 @@ msgstr "Res"
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_line_search
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_log_search
 msgid "Resource ID"
-msgstr "ID Risorsa"
+msgstr "ID risorsa"
+
+#. module: auditlog
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log__res_ids
+msgid "Resource IDs"
+msgstr "ID risorse"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log__name
@@ -466,6 +481,14 @@ msgid ""
 msgstr ""
 "Selezionare se si vuole tenere traccia dell'eliminazione di qualsiasi record "
 "del modello di questa regola"
+
+#. module: auditlog
+#: model:ir.model.fields,help:auditlog.field_auditlog_rule__log_export_data
+msgid ""
+"Select this if you want to keep track of exports of the model of this rule"
+msgstr ""
+"Selezionarlo se si vuole tenere traccia delle esportazioni del modello di "
+"questa regola"
 
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule__log_write
@@ -611,6 +634,20 @@ msgid "View logs"
 msgstr "Visualizza log"
 
 #. module: auditlog
+#. odoo-python
+#: code:addons/auditlog/models/rule.py:0
+#, python-format
+msgid "exception in name_get()"
+msgstr "eccezione in name_get()"
+
+#. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule__user_ids
 msgid "if  User is not added then it will applicable for all users"
 msgstr "se l'utente non è aggiunto, sarà applicabile per tutti gli utenti"
+
+#. module: auditlog
+#. odoo-python
+#: code:addons/auditlog/models/rule.py:0
+#, python-format
+msgid "record no longer exists"
+msgstr "il record non esiste più"

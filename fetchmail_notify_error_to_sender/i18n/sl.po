@@ -1,0 +1,105 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * fetchmail_notify_error_to_sender
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-12-01 02:10+0000\n"
+"PO-Revision-Date: 2017-12-01 02:10+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
+"Language: sl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3);\n"
+
+#. module: fetchmail_notify_error_to_sender
+#: model:mail.template,body_html:fetchmail_notify_error_to_sender.email_template_error_notice
+msgid ""
+"<div style=\"margin: 0px; padding: 0px;\">\n"
+"                <p style=\"margin: 0px; padding: 0px; font-size: 13px;\">\n"
+"                <div>\n"
+"                <p>Hello <t t-out=\"ctx.get('sender_message').get('from')\"/"
+">,</p>\n"
+"                <p>we got a problem with your email: <i><t t-out=\"ctx."
+"get('sender_message').get('subject')\"/></i></p>\n"
+"                <p>Maybe you used a wrong recipient address?</p>\n"
+"                <p><br/></p>\n"
+"                <p>Technical details:</p>\n"
+"                <p><i><t t-out=\"ctx.get('route_exception')\"/></i></p>\n"
+"                </div>\n"
+"                </p>\n"
+"            </div>\n"
+"        "
+msgstr ""
+
+#. module: fetchmail_notify_error_to_sender
+#: model:ir.model.fields,field_description:fetchmail_notify_error_to_sender.field_fetchmail_server__changeset_change_ids
+#: model:ir.model.fields,field_description:fetchmail_notify_error_to_sender.field_mail_thread__changeset_change_ids
+msgid "Changeset Changes"
+msgstr ""
+
+#. module: fetchmail_notify_error_to_sender
+#: model:ir.model.fields,field_description:fetchmail_notify_error_to_sender.field_fetchmail_server__changeset_ids
+#: model:ir.model.fields,field_description:fetchmail_notify_error_to_sender.field_mail_thread__changeset_ids
+msgid "Changesets"
+msgstr ""
+
+#. module: fetchmail_notify_error_to_sender
+#: model:ir.model.fields,field_description:fetchmail_notify_error_to_sender.field_fetchmail_server__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:fetchmail_notify_error_to_sender.field_mail_thread__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr ""
+
+#. module: fetchmail_notify_error_to_sender
+#: model:ir.model.fields,field_description:fetchmail_notify_error_to_sender.field_fetchmail_server__count_pending_changesets
+#: model:ir.model.fields,field_description:fetchmail_notify_error_to_sender.field_mail_thread__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr ""
+
+#. module: fetchmail_notify_error_to_sender
+#: model:ir.model,name:fetchmail_notify_error_to_sender.model_mail_thread
+msgid "Email Thread"
+msgstr ""
+
+#. module: fetchmail_notify_error_to_sender
+#: model:ir.model.fields,field_description:fetchmail_notify_error_to_sender.field_fetchmail_server__error_notice_template_id
+msgid "Error notice template"
+msgstr ""
+
+#. module: fetchmail_notify_error_to_sender
+#: model:mail.template,name:fetchmail_notify_error_to_sender.email_template_error_notice
+msgid "Fetchmail - error notice"
+msgstr ""
+
+#. module: fetchmail_notify_error_to_sender
+#: model:ir.model,name:fetchmail_notify_error_to_sender.model_fetchmail_server
+msgid "Incoming Mail Server"
+msgstr ""
+
+#. module: fetchmail_notify_error_to_sender
+#: model:mail.template,subject:fetchmail_notify_error_to_sender.email_template_error_notice
+msgid "Receiving error with: {{ctx.get('sender_message').get('subject')}}"
+msgstr ""
+
+#. module: fetchmail_notify_error_to_sender
+#: model:ir.model.fields,help:fetchmail_notify_error_to_sender.field_fetchmail_server__error_notice_template_id
+msgid ""
+"Set here the template to use to send notice to sender when errors occur "
+"while fetching email"
+msgstr ""
+
+#. module: fetchmail_notify_error_to_sender
+#: model:ir.model.fields,field_description:fetchmail_notify_error_to_sender.field_fetchmail_server__user_can_see_changeset
+#: model:ir.model.fields,field_description:fetchmail_notify_error_to_sender.field_mail_thread__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr ""
+
+#~ msgid "POP/IMAP Server"
+#~ msgstr "POP/IMAP strežnik"

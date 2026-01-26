@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+
+    <t t-inherit="mail.AttachmentImage" t-inherit-mode="extension">
+        <div t-ref="root" position="inside">
+            <t t-esc="attachmentImage.attachment.create_user" /><br />
+            <t t-esc="attachmentImage.attachment.create_date" />
+        </div>
+    </t>
+
+</templates>

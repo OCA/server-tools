@@ -1,0 +1,2 @@
+- it would be nice if the cronjob could detect some odoo-specific measure of "busyness" and only run if it is below some threshold
+- add some statistics in the model views about number of dead rows, last vacuum timestamp etc from https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-ALL-TABLES-VIEW

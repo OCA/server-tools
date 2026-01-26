@@ -12,8 +12,8 @@ msgstr ""
 "PO-Revision-Date: 2024-06-11 18:35+0000\n"
 "Last-Translator: Rodrigo Macedo <sottomaiormacedotec@users.noreply."
 "translation.odoo-community.org>\n"
-"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/"
-"23907/pt_BR/)\n"
+"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/"
+"teams/23907/pt_BR/)\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -143,6 +143,11 @@ msgstr "Nome para Mostrar"
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_rule_search
 msgid "Draft"
 msgstr "Rascunho"
+
+#. module: auditlog
+#: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_log_form
+msgid "Exported Records"
+msgstr ""
 
 #. module: auditlog
 #: model:ir.model.fields.selection,name:auditlog.selection__auditlog_log__log_type__fast
@@ -294,6 +299,11 @@ msgid "Log Deletes"
 msgstr "Histórico Excluído"
 
 #. module: auditlog
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__log_export_data
+msgid "Log Exports"
+msgstr ""
+
+#. module: auditlog
 #: model:ir.actions.act_window,name:auditlog.action_auditlog_line
 #: model:ir.ui.menu,name:auditlog.menu_auditlog_line
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_line_search
@@ -418,6 +428,11 @@ msgid "Resource ID"
 msgstr "Identificação do Recurso"
 
 #. module: auditlog
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log__res_ids
+msgid "Resource IDs"
+msgstr ""
+
+#. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log__name
 msgid "Resource Name"
 msgstr "Nome do Recurso"
@@ -467,6 +482,12 @@ msgid ""
 msgstr ""
 "Selecione este se quiser manter o rastreio de exclusão de qualquer registro "
 "do modelo desta regra"
+
+#. module: auditlog
+#: model:ir.model.fields,help:auditlog.field_auditlog_rule__log_export_data
+msgid ""
+"Select this if you want to keep track of exports of the model of this rule"
+msgstr ""
 
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule__log_write
@@ -612,7 +633,21 @@ msgid "View logs"
 msgstr "Ver Histórico"
 
 #. module: auditlog
+#. odoo-python
+#: code:addons/auditlog/models/rule.py:0
+#, python-format
+msgid "exception in name_get()"
+msgstr ""
+
+#. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule__user_ids
 msgid "if  User is not added then it will applicable for all users"
 msgstr ""
 "Se um usuário não é incluído, então ele será aplicado para todos os usuários"
+
+#. module: auditlog
+#. odoo-python
+#: code:addons/auditlog/models/rule.py:0
+#, python-format
+msgid "record no longer exists"
+msgstr ""

@@ -165,8 +165,8 @@ class Base(models.AbstractModel):
         return super().write(vals)
 
     @api.model_create_multi
-    def create(self, list_vals):
-        records = super().create(list_vals)
+    def create(self, vals_list):
+        records = super().create(vals_list)
         if self.is_tracked_by_o2m():
             records._tm_track_create_unlink("create")
         return records

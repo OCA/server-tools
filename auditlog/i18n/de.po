@@ -10,15 +10,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-09 11:43+0000\n"
-"PO-Revision-Date: 2025-02-19 16:06+0000\n"
-"Last-Translator: davidbeckercbl <becker@cbl-computer.de>\n"
+"PO-Revision-Date: 2025-09-18 09:42+0000\n"
+"Last-Translator: Bastian Günther <mail@bastian-guenther.de>\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6.2\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__action_id
@@ -142,6 +142,11 @@ msgstr "Anzeigename"
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_rule_search
 msgid "Draft"
 msgstr "Entwurf"
+
+#. module: auditlog
+#: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_log_form
+msgid "Exported Records"
+msgstr "Exportierte Datensätze"
 
 #. module: auditlog
 #: model:ir.model.fields.selection,name:auditlog.selection__auditlog_log__log_type__fast
@@ -293,6 +298,11 @@ msgid "Log Deletes"
 msgstr "Löschen protokollieren"
 
 #. module: auditlog
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__log_export_data
+msgid "Log Exports"
+msgstr "Log Export"
+
+#. module: auditlog
 #: model:ir.actions.act_window,name:auditlog.action_auditlog_line
 #: model:ir.ui.menu,name:auditlog.menu_auditlog_line
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_line_search
@@ -406,8 +416,9 @@ msgstr "Pfad"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__res_id
+#, fuzzy
 msgid "Res"
-msgstr ""
+msgstr "Res"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log__res_id
@@ -415,6 +426,11 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_log_search
 msgid "Resource ID"
 msgstr "Ressourcen-ID"
+
+#. module: auditlog
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log__res_ids
+msgid "Resource IDs"
+msgstr "Ressourcen-IDs"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log__name
@@ -468,6 +484,14 @@ msgid ""
 msgstr ""
 "Aktivieren Sie dies, wenn Sie die Lösch-Vorgänge aller Datensätze für das "
 "Modell protokollieren wollen"
+
+#. module: auditlog
+#: model:ir.model.fields,help:auditlog.field_auditlog_rule__log_export_data
+msgid ""
+"Select this if you want to keep track of exports of the model of this rule"
+msgstr ""
+"Wähle dies aus, wenn du die Exporte des Modells dieser Regel nachverfolgen "
+"möchtest"
 
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule__log_write
@@ -613,6 +637,20 @@ msgid "View logs"
 msgstr "Protokolle sichten"
 
 #. module: auditlog
+#. odoo-python
+#: code:addons/auditlog/models/rule.py:0
+#, python-format
+msgid "exception in name_get()"
+msgstr "Ausnahme in name_get()"
+
+#. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule__user_ids
 msgid "if  User is not added then it will applicable for all users"
 msgstr "Wenn User nicht angegeben, wirkt dies auf alle Anwender"
+
+#. module: auditlog
+#. odoo-python
+#: code:addons/auditlog/models/rule.py:0
+#, python-format
+msgid "record no longer exists"
+msgstr "Datensatz existiert nicht mehr"

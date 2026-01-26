@@ -45,7 +45,11 @@ class TestRemote(HttpCase):
                 "httprequest": type(
                     "obj",
                     (object,),
-                    {"remote_addr": self.remote_addr},
+                    {
+                        "remote_addr": self.remote_addr,
+                        "cookies": {},
+                        "path": "/",
+                    },
                 ),
             },
         )

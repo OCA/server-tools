@@ -114,11 +114,12 @@ class NscaServer(models.Model):
         self.write_config_file()
         return res
 
-    @api.model
-    def create(self, vals):
-        res = super(NscaServer, self).create(vals)
-        res.write_config_file()
-        return res
+    @api.model_create_multi
+    def create(self, vals_list):
+        records = super().create(vals_list)
+        for rec in records:
+            rec.write_config_file()
+        return records
 
     @api.model
     def current_status(self):

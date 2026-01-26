@@ -58,17 +58,22 @@ class NscaCheck(models.Model):
             res = super(NscaCheck, check).write(vals)
         return res
 
-    @api.model
-    def create(self, vals):
-        if not vals.get("model_id", False):
-            vals["model_id"] = (
-                self.env["ir.model"].search([("model", "=", self._name)]).id
-            )
-        if not vals.get("state", False):
-            vals["state"] = "code"
-        check = super(NscaCheck, self).create(vals)
-        check._force_values()
-        return check
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if not vals.get("model_id", False):
+                vals["model_id"] = (
+                    self.env["ir.model"].search([("model", "=", self._name)]).id
+                )
+            if not vals.get("state", False):
+                vals["state"] = "code"
+
+        checks = super().create(vals_list)
+
+        for check in checks:
+            check._force_values()
+
+        return checks
 
     def write(self, vals):
         res = super(NscaCheck, self).write(vals)

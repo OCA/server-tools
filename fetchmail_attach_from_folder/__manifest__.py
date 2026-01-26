@@ -3,7 +3,7 @@
 {
     "name": "Email gateway - folders",
     "summary": "Attach mails in an IMAP folder to existing objects",
-    "version": "16.0.1.5.0",
+    "version": "16.0.1.6.1",
     "author": "Therp BV,Odoo Community Association (OCA)",
     "maintainers": ["NL66278"],
     "website": "https://github.com/OCA/server-tools",

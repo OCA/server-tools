@@ -17,7 +17,8 @@ class Popen:
         self.stderr = stderr
 
     # flake8: noqa: B902
-    def communicate(_input):
+    # pylint: disable=redefined-builtin
+    def communicate(input=None, timeout=None):
         return ["test"]
 
 

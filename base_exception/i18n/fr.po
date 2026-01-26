@@ -100,6 +100,11 @@ msgid "Changesets"
 msgstr ""
 
 #. module: base_exception
+#: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_confirm
+msgid "Close"
+msgstr ""
+
+#. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_base_exception__count_changesets
 #: model:ir.model.fields,field_description:base_exception.field_base_exception_method__count_changesets
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule__count_changesets
@@ -412,10 +417,8 @@ msgstr ""
 msgid "When checked the exception can not be ignored"
 msgstr "Coché, la restriction ne peut être ignorée"
 
-#. module: base_exception
-#: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_confirm
-msgid "_Close"
-msgstr "_Close"
+#~ msgid "_Close"
+#~ msgstr "_Close"
 
 #, python-format
 #~ msgid ""

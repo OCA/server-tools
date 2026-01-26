@@ -134,6 +134,8 @@ msgstr "Tous"
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_base_import_tests_models_o2m__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_base_import_tests_models_o2m_child__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_base_import_tests_models_preview__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_base_kanban_abstract__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_base_kanban_stage__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_base_language_export__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_base_language_import__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_base_language_install__assigned_attachment_ids
@@ -205,6 +207,7 @@ msgstr "Tous"
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_ir_actions_actions__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_ir_actions_client__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_ir_actions_report__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_ir_actions_report_duplicate__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_ir_actions_server__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_ir_actions_todo__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_ir_asset__assigned_attachment_ids
@@ -273,6 +276,7 @@ msgstr "Tous"
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_ir_ui_view__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_ir_ui_view_custom__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_ir_websocket__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_kpi_provider__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_letsencrypt__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_activity__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_activity_mixin__assigned_attachment_ids
@@ -298,6 +302,8 @@ msgstr "Tous"
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_message_schedule__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_message_subtype__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_notification__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_performance_thread__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_performance_tracking__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_render_mixin__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_resend_message__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_resend_partner__assigned_attachment_ids
@@ -305,6 +311,31 @@ msgstr "Tous"
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_template__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_template_preview__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_template_reset__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_test_access__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_test_access_custo__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_test_activity__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_test_cc__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_test_composer_mixin__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_test_composer_source__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_test_container__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_test_container_mc__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_test_field_type__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_test_gateway__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_test_gateway_groups__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_test_lang__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_test_multi_company__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_test_multi_company_read__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_test_multi_company_with_activity__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_test_nothread__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_test_simple__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_test_ticket__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_test_ticket_el__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_test_ticket_mc__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_test_track__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_test_track_all__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_test_track_compute__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_test_track_monetary__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_test_track_selection__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_thread__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_thread_blacklist__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_thread_cc__assigned_attachment_ids
@@ -432,6 +463,12 @@ msgstr "Tous"
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_spreadsheet_dashboard__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_spreadsheet_dashboard_group__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_template_reset_mixin__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_test_performance_bacon__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_test_performance_base__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_test_performance_eggs__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_test_performance_line__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_test_performance_mozzarella__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_test_performance_tag__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_time_weekday__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_time_window_mixin__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_trgm_index__assigned_attachment_ids
@@ -770,8 +807,8 @@ msgstr ""
 #. module: autovacuum_message_attachment
 #: model:ir.model.fields,help:autovacuum_message_attachment.field_vacuum_rule__model_id
 msgid ""
-"Technical field used to set attributes (invisible/required, domain, etc..."
-"for other fields, like the domain filter"
+"Technical field used to set attributes (invisible/required, domain, "
+"etc...for other fields, like the domain filter"
 msgstr ""
 
 #. module: autovacuum_message_attachment

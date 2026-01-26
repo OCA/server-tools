@@ -9,15 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-06 03:40+0000\n"
-"PO-Revision-Date: 2025-02-19 13:06+0000\n"
-"Last-Translator: İsmail Çağan Yılmaz <ismail.cagan.yilmaz@gmail.com>\n"
+"PO-Revision-Date: 2025-09-25 18:42+0000\n"
+"Last-Translator: Betül Öğmen <betulo@eska.biz>\n"
 "Language-Team: Turkish (https://www.transifex.com/oca/teams/23907/tr/)\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Weblate 5.6.2\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__action_id
@@ -141,6 +141,11 @@ msgstr "Görünen İsim"
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_rule_search
 msgid "Draft"
 msgstr "Taslak"
+
+#. module: auditlog
+#: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_log_form
+msgid "Exported Records"
+msgstr "Dışa Aktarılan Kayıtlar"
 
 #. module: auditlog
 #: model:ir.model.fields.selection,name:auditlog.selection__auditlog_log__log_type__fast
@@ -291,6 +296,11 @@ msgid "Log Deletes"
 msgstr "Silme günlükleri"
 
 #. module: auditlog
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__log_export_data
+msgid "Log Exports"
+msgstr "Log Dışa Aktarılanlar"
+
+#. module: auditlog
 #: model:ir.actions.act_window,name:auditlog.action_auditlog_line
 #: model:ir.ui.menu,name:auditlog.menu_auditlog_line
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_line_search
@@ -415,6 +425,11 @@ msgid "Resource ID"
 msgstr "Kaynak ID"
 
 #. module: auditlog
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log__res_ids
+msgid "Resource IDs"
+msgstr "Kaynak ID'ler"
+
+#. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log__name
 msgid "Resource Name"
 msgstr "Kaynak Adı"
@@ -461,6 +476,13 @@ msgid ""
 "Select this if you want to keep track of deletion on any record of the model "
 "of this rule"
 msgstr "Bu modelde silinen her kayıt için günlük tutmak isterseniz bunu seçin"
+
+#. module: auditlog
+#: model:ir.model.fields,help:auditlog.field_auditlog_rule__log_export_data
+msgid ""
+"Select this if you want to keep track of exports of the model of this rule"
+msgstr ""
+"Bu kuralın modelinin dışa aktarımlarını takip etmek istiyorsanız bunu seçin"
 
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule__log_write
@@ -604,6 +626,20 @@ msgid "View logs"
 msgstr "Günlükleri göster"
 
 #. module: auditlog
+#. odoo-python
+#: code:addons/auditlog/models/rule.py:0
+#, python-format
+msgid "exception in name_get()"
+msgstr "name_get()'te istisna"
+
+#. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule__user_ids
 msgid "if  User is not added then it will applicable for all users"
 msgstr "Eğer kullanıcı eklenmediyse bütün kullanıcılar için geçerli olur"
+
+#. module: auditlog
+#. odoo-python
+#: code:addons/auditlog/models/rule.py:0
+#, python-format
+msgid "record no longer exists"
+msgstr "kayıt artık mevcut değil"

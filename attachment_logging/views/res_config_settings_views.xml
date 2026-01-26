@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="res_config_settings_form_view" model="ir.ui.view">
+        <field
+            name="name"
+        >res.config.settings.form.view.inherited.attachment_logging</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="mail.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <div id="emails" position="inside">
+                <div class="col-12 col-lg-6 o_setting_box">
+                    <div class="o_setting_left_pane">
+                        <field name="use_attachment_log" />
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <span class="o_form_label">Attachment Logging</span>
+                        <div class="text-muted col-md-12">
+                            Log a note in record chatter when an attachment is added or removed.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </field>
+    </record>
+
+</odoo>

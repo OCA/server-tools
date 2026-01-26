@@ -23,7 +23,7 @@
                 <footer>
                     <button
                         name="action_confirm"
-                        string="_Close"
+                        string="Close"
                         colspan="1"
                         type="object"
                         class="btn-primary"

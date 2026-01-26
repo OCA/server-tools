@@ -3,7 +3,7 @@
 
 {
     "name": "Remote Base",
-    "version": "16.0.1.0.2",
+    "version": "16.0.1.0.3",
     "category": "Generic Modules/Base",
     "author": "Creu Blanca, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/server-tools",

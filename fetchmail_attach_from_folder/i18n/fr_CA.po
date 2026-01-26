@@ -132,7 +132,8 @@ msgstr ""
 #. odoo-python
 #: code:addons/fetchmail_attach_from_folder/models/fetchmail_server_folder.py:0
 #, python-format
-msgid "Could not fetch %(msgid)s in folder %(folder)s on server %(server)s"
+msgid ""
+"Could not fetch %(message_uid)s in folder %(folder)s on server %(server)s"
 msgstr ""
 
 #. module: fetchmail_attach_from_folder
@@ -460,6 +461,11 @@ msgstr ""
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server__server_type
 msgid "Server Type"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server__server_type_env_default
+msgid "Server Type Env Default"
 msgstr ""
 
 #. module: fetchmail_attach_from_folder

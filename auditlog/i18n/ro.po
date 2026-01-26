@@ -143,6 +143,11 @@ msgid "Draft"
 msgstr "Schiță"
 
 #. module: auditlog
+#: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_log_form
+msgid "Exported Records"
+msgstr ""
+
+#. module: auditlog
 #: model:ir.model.fields.selection,name:auditlog.selection__auditlog_log__log_type__fast
 #: model:ir.model.fields.selection,name:auditlog.selection__auditlog_rule__log_type__fast
 msgid "Fast log"
@@ -292,6 +297,11 @@ msgid "Log Deletes"
 msgstr "Stergere registre"
 
 #. module: auditlog
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__log_export_data
+msgid "Log Exports"
+msgstr ""
+
+#. module: auditlog
 #: model:ir.actions.act_window,name:auditlog.action_auditlog_line
 #: model:ir.ui.menu,name:auditlog.menu_auditlog_line
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_line_search
@@ -416,6 +426,11 @@ msgid "Resource ID"
 msgstr "Resursa ID"
 
 #. module: auditlog
+#: model:ir.model.fields,field_description:auditlog.field_auditlog_log__res_ids
+msgid "Resource IDs"
+msgstr ""
+
+#. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log__name
 msgid "Resource Name"
 msgstr "Resursa Nume"
@@ -465,6 +480,12 @@ msgid ""
 msgstr ""
 "Selecteaza daca doresti sa te mentii informat cu eliminarea columnelor din "
 "acest model cu aceasta regula."
+
+#. module: auditlog
+#: model:ir.model.fields,help:auditlog.field_auditlog_rule__log_export_data
+msgid ""
+"Select this if you want to keep track of exports of the model of this rule"
+msgstr ""
 
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule__log_write
@@ -610,8 +631,22 @@ msgid "View logs"
 msgstr "Vizualizeaza registre"
 
 #. module: auditlog
+#. odoo-python
+#: code:addons/auditlog/models/rule.py:0
+#, python-format
+msgid "exception in name_get()"
+msgstr ""
+
+#. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule__user_ids
 msgid "if  User is not added then it will applicable for all users"
 msgstr ""
 "Daca un Utilizator nu este agregat atunci este aplicabil pentru toti "
 "utilizatorii."
+
+#. module: auditlog
+#. odoo-python
+#: code:addons/auditlog/models/rule.py:0
+#, python-format
+msgid "record no longer exists"
+msgstr ""

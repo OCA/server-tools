@@ -1,0 +1,108 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * mail_cleanup
+#
+# Translators:
+# Paolo Valier <paolo.valier@hotmail.it>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-11-26 01:46+0000\n"
+"PO-Revision-Date: 2025-10-02 22:42+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10.4\n"
+
+#. module: mail_cleanup
+#: model:ir.model.fields,field_description:mail_cleanup.field_fetchmail_server__assigned_attachment_ids
+msgid "Assigned Attachments"
+msgstr "Allegati assegnati"
+
+#. module: mail_cleanup
+#: model:ir.model.fields,field_description:mail_cleanup.field_fetchmail_server__changeset_change_ids
+msgid "Changeset Changes"
+msgstr "Modifiche dell'insieme di modifiche"
+
+#. module: mail_cleanup
+#: model:ir.model.fields,field_description:mail_cleanup.field_fetchmail_server__changeset_ids
+msgid "Changesets"
+msgstr "Insiemi di modifiche"
+
+#. module: mail_cleanup
+#: model:ir.model.fields,field_description:mail_cleanup.field_fetchmail_server__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr "Conteggio modifiche dell'insieme di modifiche in attesa"
+
+#. module: mail_cleanup
+#: model:ir.model.fields,field_description:mail_cleanup.field_fetchmail_server__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr "Conta insiemi di modifiche in attesa"
+
+#. module: mail_cleanup
+#: model:ir.model.fields,field_description:mail_cleanup.field_fetchmail_server__purge_days
+msgid "Deletion days"
+msgstr "Giorni cancellazione"
+
+#. module: mail_cleanup
+#: model:ir.model.fields,field_description:mail_cleanup.field_fetchmail_server__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: mail_cleanup
+#: model:ir.model.fields,field_description:mail_cleanup.field_fetchmail_server__cleanup_days
+msgid "Expiration days"
+msgstr "Giorni scadenza"
+
+#. module: mail_cleanup
+#: model:ir.model.fields,field_description:mail_cleanup.field_fetchmail_server__cleanup_folder
+msgid "Expiration folder"
+msgstr "Cartella scadenza"
+
+#. module: mail_cleanup
+#: model:ir.model.fields,help:mail_cleanup.field_fetchmail_server__cleanup_folder
+msgid "Folder where an e-mail marked as read will be moved."
+msgstr "Cartella dove verrà spostata una e-mail marcata come letta."
+
+#. module: mail_cleanup
+#: model:ir.model.fields,field_description:mail_cleanup.field_fetchmail_server__id
+msgid "ID"
+msgstr "ID"
+
+#. module: mail_cleanup
+#: model:ir.model,name:mail_cleanup.model_fetchmail_server
+msgid "Incoming Mail Server"
+msgstr "Server di posta in arrivo"
+
+#. module: mail_cleanup
+#: model:ir.model.fields,field_description:mail_cleanup.field_fetchmail_server____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: mail_cleanup
+#: model:ir.model.fields,help:mail_cleanup.field_fetchmail_server__cleanup_days
+msgid "Number of days before marking an e-mail as read"
+msgstr "Numero di giorni prima di marcare una e-mail come letta"
+
+#. module: mail_cleanup
+#: model:ir.model.fields,help:mail_cleanup.field_fetchmail_server__purge_days
+msgid "Number of days before removing an e-mail"
+msgstr "Numero di giorni prima di rimuovere una e-mail"
+
+#. module: mail_cleanup
+#: model:ir.model.fields,field_description:mail_cleanup.field_fetchmail_server__smart_search
+msgid "Smart Search"
+msgstr "Ricerca intelligente"
+
+#. module: mail_cleanup
+#: model:ir.model.fields,field_description:mail_cleanup.field_fetchmail_server__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr "L'utente può vedere l'insieme delle modifiche"
+
+#~ msgid "POP/IMAP Server"
+#~ msgstr "Server POP/IMAP"

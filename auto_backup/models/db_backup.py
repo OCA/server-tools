@@ -11,15 +11,13 @@ from contextlib import contextmanager
 from datetime import datetime, timedelta
 from glob import iglob
 
+import pysftp
+
 from odoo import _, api, exceptions, fields, models, tools
 from odoo.exceptions import UserError
 from odoo.service import db
 
 _logger = logging.getLogger(__name__)
-try:
-    import pysftp
-except ImportError:  # pragma: no cover
-    _logger.debug("Cannot import pysftp")
 
 
 class DbBackup(models.Model):
@@ -186,7 +184,7 @@ class DbBackup(models.Model):
                         with rec.sftp_connection() as remote:
                             # Directory must exist
                             try:
-                                remote.makedirs(rec.folder, exist_ok=True)
+                                remote.makedirs(rec.folder)
                             except pysftp.ConnectionException as exc:
                                 _logger.exception(
                                     "pysftp ConnectionException: %s" % exc

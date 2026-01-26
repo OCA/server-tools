@@ -1,0 +1,130 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* attachment_logging
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: attachment_logging
+#. odoo-python
+#: code:addons/attachment_logging/models/ir_attachment.py:0
+#, python-format
+msgid "<b>%(username)s</b> %(action)s a file: <i>%(filename)s</i>"
+msgstr ""
+
+#. module: attachment_logging
+#: model_terms:ir.ui.view,arch_db:attachment_logging.res_config_settings_form_view
+msgid "<span class=\"o_form_label\">Attachment Logging</span>"
+msgstr ""
+
+#. module: attachment_logging
+#: model:ir.model,name:attachment_logging.model_ir_attachment
+msgid "Attachment"
+msgstr ""
+
+#. module: attachment_logging
+#: model:mail.message.subtype,name:attachment_logging.mt_attachment
+msgid "Attachments"
+msgstr ""
+
+#. module: attachment_logging
+#: model:ir.model.fields,field_description:attachment_logging.field_ir_attachment__changeset_change_ids
+#: model:ir.model.fields,field_description:attachment_logging.field_res_config_settings__changeset_change_ids
+msgid "Changeset Changes"
+msgstr ""
+
+#. module: attachment_logging
+#: model:ir.model.fields,field_description:attachment_logging.field_ir_attachment__changeset_ids
+#: model:ir.model.fields,field_description:attachment_logging.field_res_config_settings__changeset_ids
+msgid "Changesets"
+msgstr ""
+
+#. module: attachment_logging
+#: model:ir.model,name:attachment_logging.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: attachment_logging
+#: model:ir.model.fields,field_description:attachment_logging.field_ir_attachment__count_changesets
+#: model:ir.model.fields,field_description:attachment_logging.field_res_config_settings__count_changesets
+msgid "Count Changesets"
+msgstr ""
+
+#. module: attachment_logging
+#: model:ir.model.fields,field_description:attachment_logging.field_ir_attachment__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:attachment_logging.field_res_config_settings__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr ""
+
+#. module: attachment_logging
+#: model:ir.model.fields,field_description:attachment_logging.field_ir_attachment__count_pending_changesets
+#: model:ir.model.fields,field_description:attachment_logging.field_res_config_settings__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr ""
+
+#. module: attachment_logging
+#: model_terms:ir.ui.view,arch_db:attachment_logging.res_config_settings_form_view
+msgid "Log a note in record chatter when an attachment is added or removed."
+msgstr ""
+
+#. module: attachment_logging
+#: model:ir.model.fields,help:attachment_logging.field_res_config_settings__use_attachment_log
+msgid "Log attachment operations in chatter"
+msgstr ""
+
+#. module: attachment_logging
+#: model:ir.model.fields,field_description:attachment_logging.field_ir_attachment__smart_search
+#: model:ir.model.fields,field_description:attachment_logging.field_res_config_settings__smart_search
+msgid "Smart Search"
+msgstr ""
+
+#. module: attachment_logging
+#: model:ir.model.fields,help:attachment_logging.field_ir_attachment__count_pending_changeset_changes
+#: model:ir.model.fields,help:attachment_logging.field_res_config_settings__count_pending_changeset_changes
+msgid "The number of pending changes of this record"
+msgstr ""
+
+#. module: attachment_logging
+#: model:ir.model.fields,help:attachment_logging.field_ir_attachment__count_pending_changesets
+#: model:ir.model.fields,help:attachment_logging.field_res_config_settings__count_pending_changesets
+msgid "The number of pending changesets of this record"
+msgstr ""
+
+#. module: attachment_logging
+#: model:ir.model.fields,help:attachment_logging.field_ir_attachment__count_changesets
+#: model:ir.model.fields,help:attachment_logging.field_res_config_settings__count_changesets
+msgid "The overall number of changesets of this record"
+msgstr ""
+
+#. module: attachment_logging
+#: model:ir.model.fields,field_description:attachment_logging.field_res_config_settings__use_attachment_log
+msgid "Use Attachment Log"
+msgstr ""
+
+#. module: attachment_logging
+#: model:ir.model.fields,field_description:attachment_logging.field_ir_attachment__user_can_see_changeset
+#: model:ir.model.fields,field_description:attachment_logging.field_res_config_settings__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr ""
+
+#. module: attachment_logging
+#. odoo-python
+#: code:addons/attachment_logging/models/ir_attachment.py:0
+#, python-format
+msgid "attached"
+msgstr ""
+
+#. module: attachment_logging
+#. odoo-python
+#: code:addons/attachment_logging/models/ir_attachment.py:0
+#, python-format
+msgid "unlinked"
+msgstr ""

@@ -94,6 +94,11 @@ msgid "Changesets"
 msgstr ""
 
 #. module: base_exception
+#: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_confirm
+msgid "Close"
+msgstr ""
+
+#. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_base_exception__count_changesets
 #: model:ir.model.fields,field_description:base_exception.field_base_exception_method__count_changesets
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule__count_changesets
@@ -391,10 +396,8 @@ msgstr "各种字段可能使用Python代码或Python表达式。可以使用以
 msgid "When checked the exception can not be ignored"
 msgstr ""
 
-#. module: base_exception
-#: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_confirm
-msgid "_Close"
-msgstr "关闭"
+#~ msgid "_Close"
+#~ msgstr "关闭"
 
 #, python-format
 #~ msgid ""

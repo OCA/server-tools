@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-29 11:14+0000\n"
-"PO-Revision-Date: 2024-12-15 14:06+0000\n"
+"PO-Revision-Date: 2025-10-16 11:42+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-server-tools-8-0/"
 "language/it/)\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6.2\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server_folder__action_id
@@ -137,9 +137,10 @@ msgstr "Impossibile creare la cartella %(folder)s nel server %(server)s"
 #. odoo-python
 #: code:addons/fetchmail_attach_from_folder/models/fetchmail_server_folder.py:0
 #, python-format
-msgid "Could not fetch %(msgid)s in folder %(folder)s on server %(server)s"
+msgid ""
+"Could not fetch %(message_uid)s in folder %(folder)s on server %(server)s"
 msgstr ""
-"Impossibile recuperare %(msgid)s nella cartella %(folder)s nel server "
+"Impossibile recuperare %(message_uid)s nella cartella %(folder)s nel server "
 "%(server)s"
 
 #. module: fetchmail_attach_from_folder
@@ -315,7 +316,7 @@ msgstr "Cartelle da monitorare"
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__email_from
 msgid "From"
-msgstr "Dal"
+msgstr "Da"
 
 #. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually__id
@@ -483,6 +484,11 @@ msgid "Server Type"
 msgstr "Tipo server"
 
 #. module: fetchmail_attach_from_folder
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server__server_type_env_default
+msgid "Server Type Env Default"
+msgstr "Tipo server ambiente predefinito"
+
+#. module: fetchmail_attach_from_folder
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually__smart_search
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__smart_search
 #: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_server__smart_search
@@ -631,3 +637,9 @@ msgstr "o"
 #: model_terms:ir.ui.view,arch_db:fetchmail_attach_from_folder.view_email_server_form
 msgid "to,from"
 msgstr "a,da"
+
+#, python-format
+#~ msgid "Could not fetch %(msgid)s in folder %(folder)s on server %(server)s"
+#~ msgstr ""
+#~ "Impossibile recuperare %(msgid)s nella cartella %(folder)s nel server "
+#~ "%(server)s"

@@ -51,7 +51,7 @@ jobs:
             name: test with OCB
     services:
       postgres:
-        image: postgres:12.0
+        image: pgvector/pgvector:pg12
         env:
           POSTGRES_USER: odoo
           POSTGRES_PASSWORD: odoo

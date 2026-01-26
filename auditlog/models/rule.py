@@ -2,9 +2,11 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import copy
+from collections import defaultdict
 
 from odoo import _, api, fields, models, modules
 from odoo.exceptions import UserError
+from odoo.tools.misc import OrderedSet
 
 FIELDS_BLACKLIST = [
     "id",
@@ -45,6 +47,61 @@ class DictDiffer(object):
 
     def unchanged(self):
         return {o for o in self.intersect if self.past_dict[o] == self.current_dict[o]}
+
+
+class ThrowAwayCache:
+    """Context manager to read values using a disposable cache.
+
+    This allows you to fetch field values as superuser without poisoning the
+    cache with values not accessible to the current user.
+
+    It also allows you to fetch fresh values from the database without throwing
+    out unsaved values from the current user's cache during a write.
+    """
+
+    def __init__(self, env):
+        self._transaction = env.transaction
+
+    def __enter__(self):
+        """Replace the cache + tocompute on all envs and on the transaction.
+
+        It is not enough to replace the cache on the current env, because once
+        a sudo is executed under the scope of this context manager, another new
+        or existing env is fetched which will have the original cache if we
+        don't swap them all out here.
+        """
+        self._original_cache = self._transaction.cache
+        # Copy the sets of records, which are popped on recompute but do not
+        # copy the keys because they do not match the original field object
+        # afterwards.
+        self._original_tocompute = defaultdict(OrderedSet)
+        for key, value in self._transaction.tocompute.items():
+            self._original_tocompute[key] = OrderedSet(value)
+        temporary_cache = api.Cache()
+        for env in self._transaction.envs:
+            env.cache = temporary_cache
+        self._transaction.cache = temporary_cache
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        """Restore the original cache wherever it was replaced."""
+        for env in self._transaction.envs:
+            env.cache = self._original_cache
+        self._transaction.cache = self._original_cache
+        self._transaction.tocompute = self._original_tocompute
+
+
+class _Sentinel:
+    """A falsy sentinel object as a placeholder for absent values."""
+
+    def __str__(self):
+        return ""
+
+    def __bool__(self):
+        return False
+
+
+_SENTINEL = _Sentinel()
 
 
 class AuditlogRule(models.Model):
@@ -103,6 +160,15 @@ class AuditlogRule(models.Model):
         help=(
             "Select this if you want to keep track of creation on any "
             "record of the model of this rule"
+        ),
+        states={"subscribed": [("readonly", True)]},
+    )
+    log_export_data = fields.Boolean(
+        "Log Exports",
+        default=True,
+        help=(
+            "Select this if you want to keep track of exports "
+            "of the model of this rule"
         ),
         states={"subscribed": [("readonly", True)]},
     )
@@ -206,6 +272,12 @@ class AuditlogRule(models.Model):
                 model_model._patch_method("unlink", rule._make_unlink())
                 setattr(type(model_model), check_attr, True)
                 updated = True
+            #   -> export_data
+            check_attr = "auditlog_ruled_export_data"
+            if rule.log_export_data and not hasattr(model_model, check_attr):
+                model_model._patch_method("export_data", rule._make_export_data())
+                setattr(type(model_model), check_attr, True)
+                updated = True
         return updated
 
     def _revert_methods(self):
@@ -213,7 +285,7 @@ class AuditlogRule(models.Model):
         updated = False
         for rule in self:
             model_model = self.env[rule.model_id.model or rule.model_model]
-            for method in ["create", "read", "write", "unlink"]:
+            for method in ["create", "read", "write", "unlink", "export_data"]:
                 if getattr(rule, "log_%s" % method) and hasattr(
                     getattr(model_model, method), "origin"
                 ):
@@ -267,6 +339,31 @@ class AuditlogRule(models.Model):
             if (not f.compute and not f.related) or f.store or f.company_dependent
         )
 
+    def _make_export_data(self):
+        """Instanciate a export method that log its calls."""
+        self.ensure_one()
+        log_type = self.log_type
+        users_to_exclude = self.mapped("users_to_exclude_ids")
+
+        def export_data(self, fields_to_export):
+            res = export_data.origin(self, fields_to_export)
+            self = self.with_context(auditlog_disabled=True)
+            rule_model = self.env["auditlog.rule"]
+            if self.env.user in users_to_exclude:
+                return res
+            rule_model.sudo().create_logs(
+                self.env.uid,
+                self._name,
+                self.ids,
+                "export_data",
+                None,
+                None,
+                {"log_type": log_type},
+            )
+            return res
+
+        return export_data
+
     def _make_create(self):
         """Instanciate a create method that log its calls."""
         self.ensure_one()
@@ -285,14 +382,17 @@ class AuditlogRule(models.Model):
             # their values exist in cache.
             new_values = {}
             fields_list = rule_model.get_auditlog_fields(self)
-            for new_record in new_records.sudo():
-                new_values.setdefault(new_record.id, {})
-                for fname, field in new_record._fields.items():
-                    if fname not in fields_list:
-                        continue
-                    new_values[new_record.id][fname] = field.convert_to_read(
-                        new_record[fname], new_record
-                    )
+
+            with ThrowAwayCache(self.env):
+                for new_record in new_records.sudo():
+                    new_values.setdefault(new_record.id, {})
+                    for fname, field in new_record._fields.items():
+                        if fname not in fields_list:
+                            continue
+                        new_values[new_record.id][fname] = field.convert_to_read(
+                            new_record[fname], new_record
+                        )
+
             if self.env.user in users_to_exclude:
                 return new_records
             rule_model.sudo().create_logs(
@@ -381,31 +481,32 @@ class AuditlogRule(models.Model):
             self = self.with_context(auditlog_disabled=True)
             rule_model = self.env["auditlog.rule"]
             fields_list = rule_model.get_auditlog_fields(self)
-            old_values = {
-                d["id"]: d
-                for d in self.sudo()
+            records_write = (
+                self.filtered(lambda r: not isinstance(r.id, models.NewId))
+                .sudo()
                 .with_context(prefetch_fields=False)
-                .read(fields_list)
-            }
-            # invalidate_recordset method must be called with existing fields
+            )
+            if not records_write:
+                return write_full.origin(self, vals, **kwargs)
+
+            with ThrowAwayCache(self.env):
+                old_values = {d["id"]: d for d in records_write.read(fields_list)}
+
             if self._name == "res.users":
                 vals = self._remove_reified_groups(vals)
-            # Prevent the cache of modified fields from being poisoned by
-            # x2many items inaccessible to the current user.
-            self.invalidate_recordset(vals.keys())
             result = write_full.origin(self, vals, **kwargs)
-            new_values = {
-                d["id"]: d
-                for d in self.sudo()
-                .with_context(prefetch_fields=False)
-                .read(fields_list)
-            }
             if self.env.user in users_to_exclude:
                 return result
+
+            self.flush_recordset([field_name for field_name in vals.keys()])
+
+            with ThrowAwayCache(self.env):
+                new_values = {d["id"]: d for d in records_write.read(fields_list)}
+
             rule_model.sudo().create_logs(
                 self.env.uid,
                 self._name,
-                self.ids,
+                records_write.ids,
                 "write",
                 old_values,
                 new_values,
@@ -420,7 +521,7 @@ class AuditlogRule(models.Model):
             # afterwards as it could not represent the real state
             # of the data in the database
             vals2 = dict(vals)
-            old_vals2 = dict.fromkeys(list(vals2.keys()), False)
+            old_vals2 = dict.fromkeys(list(vals2.keys()), _SENTINEL)
             old_values = {id_: old_vals2 for id_ in self.ids}
             new_values = {id_: vals2 for id_ in self.ids}
             result = write_fast.origin(self, vals, **kwargs)
@@ -510,20 +611,33 @@ class AuditlogRule(models.Model):
         model_id = self.pool._auditlog_model_cache[res_model]
         auditlog_rule = self.env["auditlog.rule"].search([("model_id", "=", model_id)])
         fields_to_exclude = auditlog_rule.fields_to_exclude_ids.mapped("name")
+
+        vals = {
+            "model_id": model_id,
+            "method": method,
+            "user_id": uid,
+            "http_request_id": http_request_model.current_http_request(),
+            "http_session_id": http_session_model.current_http_session(),
+        }
+        vals.update(additional_log_values or {})
+        if method == "export_data":
+            vals.update({"name": res_model, "res_ids": str(res_ids)})
+            return log_model.create(vals)
+
         for res_id in res_ids:
-            name = model_model.browse(res_id).name_get()
-            res_name = name and name[0] and name[0][1]
-            vals = {
-                "name": res_name,
-                "model_id": model_id,
-                "res_id": res_id,
-                "method": method,
-                "user_id": uid,
-                "http_request_id": http_request_model.current_http_request(),
-                "http_session_id": http_session_model.current_http_session(),
-            }
-            vals.update(additional_log_values or {})
-            log = log_model.create(vals)
+            # Safeguard against deleted records
+            rec = model_model.browse(res_id)
+            if rec.exists():
+                try:
+                    pairs = rec.name_get()
+                    res_name = pairs and pairs[0] and pairs[0][1]
+                except Exception:
+                    res_name = _("exception in name_get()")
+            else:
+                res_name = _("record no longer exists")
+            log_vals = {**vals, "name": res_name, "res_id": res_id}
+            log = log_model.create(log_vals)
+
             diff = DictDiffer(
                 new_values.get(res_id, EMPTY_DICT), old_values.get(res_id, EMPTY_DICT)
             )

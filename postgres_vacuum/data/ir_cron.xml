@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2025 Therp BV
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl-3.0) -->
+<data noupdate="True">
+    <record id="cronjob_analyze" model="ir.cron">
+        <field name="name">Analyze Postgresql Tables</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">weeks</field>
+        <field name="numbercall">-1</field>
+        <field name="model_id" ref="base.model_ir_cron" />
+        <field name="state">code</field>
+        <field
+            name="code"
+        >model._postgres_vacuum(max_minutes=120, full_vacuum=False)</field>
+    </record>
+    <record id="cronjob_vacuum" model="ir.cron">
+        <field name="name">Vacuum Postgresql Tables</field>
+        <field name="active" eval="False" />
+        <field name="interval_number">1</field>
+        <field name="interval_type">months</field>
+        <field name="numbercall">-1</field>
+        <field name="model_id" ref="base.model_ir_cron" />
+        <field name="state">code</field>
+        <field
+            name="code"
+        >model._postgres_vacuum(max_minutes=120, full_vacuum=True)</field>
+    </record>
+</data>
