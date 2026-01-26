@@ -275,13 +275,12 @@ class FetchmailServerFolder(models.Model):
         if result != "OK":
             raise UserError(
                 _(
-                    "Could not fetch %(message_uid)s in folder %(folder)s on server %(server)s"
+                    "Could not fetch %(message_uid)s in folder %(folder)s"
+                    " on server %(server)s",
+                    message_uid=message_uid,
+                    folder=self.path,
+                    server=self.server_id.name,
                 )
-                % {
-                    "message_uid": message_uid,
-                    "folder": self.path,
-                    "server": self.server_id.name,
-                }
             )
         message_org = msgdata[0][1]  # rfc822 message source
         return message_org
@@ -341,7 +340,8 @@ class FetchmailServerFolder(models.Model):
         matches = matcher.search_matches(self, message_dict)
         if not matches:
             _logger.info(
-                "No match found for message %(subject)s with message_uid %(message_uid)s",
+                "No match found for message %(subject)s"
+                " with message_uid %(message_uid)s",
                 {
                     "subject": message_dict.get("subject", "no subject"),
                     "message_uid": message_dict.get("message_id", "no message_uid"),
