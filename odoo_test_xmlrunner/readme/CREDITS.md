@@ -1,0 +1,4 @@
+- [Smile](https://smile.eu/fr):
+  - Martin Deconinck <martin.deconinck@smile.fr>
+- [Akretion](https://akretion.com):
+  - Florian Mounier <florian.mounier@akretion.com>
