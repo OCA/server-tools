@@ -146,7 +146,7 @@ Authors
 Contributors
 ~~~~~~~~~~~~
 
-* Holger Brunn <hbrunn@therp.nl>
+* Holger Brunn <mail@hunki-enterprises.com>
 * Ronald Portier <rportier@therp.nl>
 * `Tecnativa <https://www.tecnativa.com>`_:
 
@@ -168,6 +168,14 @@ This module is maintained by the OCA.
 OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
+
+.. |maintainer-hbrunn| image:: https://github.com/hbrunn.png?size=40px
+    :target: https://github.com/hbrunn
+    :alt: hbrunn
+
+Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
+
+|maintainer-hbrunn| 
 
 This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/16.0/base_view_inheritance_extension>`_ project on GitHub.
 
