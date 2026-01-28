@@ -1,5 +1,6 @@
 # Copyright - 2015-2018 Therp BV <https://acme.com>.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# pylint: disable=method-required-super
 from unittest.mock import MagicMock, patch
 
 from odoo.tests.common import TransactionCase
@@ -39,20 +40,37 @@ class MockConnection:
     def select(self, path=None):
         return ("OK",)
 
-    def store(self, msgid, msg_item, value):
+    def create(self, path):
+        """Mock creating a folder."""
+        return ("OK",)
+
+    def store(self, message_uid, msg_item, value):
         """Mock store command."""
         return "OK"
 
-    def fetch(self, msgid, parts):
+    def copy(self, message_uid, folder_path):
+        """Mock copy command."""
+        return "OK"
+
+    def fetch(self, message_uid, parts):
         """Return RFC822 formatted message."""
         return ("OK", MSG_BODY)
 
     def search(self, charset, criteria):
-        """Return some msgid's."""
+        """Return some message uid's."""
         return ("OK", ["123 456"])
 
     def close(self):
         pass
+
+    def expunge(self):
+        """Mock an IMAP4.expunge action"""
+        return ("OK", None)
+
+    def uid(self, command, *args):
+        """Return from the appropiate mocked method."""
+        method = getattr(self, command)
+        return method(*args)
 
 
 class TestMatchAlgorithms(TransactionCase):
@@ -144,12 +162,18 @@ class TestMatchAlgorithms(TransactionCase):
         folder = self.folder
         folder.match_algorithm = "email_exact"
         connection = MockConnection()
-        msgid = "<485a8041-d560-a981-5afc-d31c1f136748@acme.com>"
-        folder.apply_matching(connection, msgid)
+        message_uid = "<485a8041-d560-a981-5afc-d31c1f136748@acme.com>"
+        folder.apply_matching(connection, message_uid)
 
     def test_retrieve_imap_folder_domain(self):
         folder = self.folder
         folder.match_algorithm = "email_domain"
+        connection = MockConnection()
+        folder.retrieve_imap_folder(connection)
+
+    def test_archive_messages(self):
+        folder = self.folder
+        folder.archive_path = "archived_messages"
         connection = MockConnection()
         folder.retrieve_imap_folder(connection)
 
@@ -227,6 +251,7 @@ class TestAttachMailManually(TransactionCase):
         mock_conn = MagicMock()
         mock_conn.select.return_value = ("OK",)
         mock_conn.search.return_value = ("OK", [b"1"])
+        mock_conn.uid.return_value = ("OK", [b"1"])
         mock_conn.fetch.return_value = (
             "OK",
             [(b"1 (RFC822 {123}", b"Mocked raw email content")],
@@ -237,7 +262,7 @@ class TestAttachMailManually(TransactionCase):
         )
         return mock_conn
 
-    def _mock_fetch_msg(self, connection, msgid):
+    def _mock_fetch_msg(self, connection, message_uid):
         """Return a tuple like the real fetch_msg: (dict, bytes)"""
         mail_message = {
             "subject": "Test",
@@ -258,7 +283,9 @@ class TestAttachMailManually(TransactionCase):
             patch.object(
                 self.folder.__class__, "fetch_msg", side_effect=self._mock_fetch_msg
             ),
-            patch.object(self.folder.__class__, "get_msgids", return_value=[b"1"]),
+            patch.object(
+                self.folder.__class__, "get_message_uids", return_value=[b"1"]
+            ),
             patch.object(self.folder.__class__, "get_criteria", return_value="ALL"),
         ):
             wizard = self.Wizard.with_context(folder_id=self.folder.id).create({})
@@ -273,7 +300,7 @@ class TestAttachMailManually(TransactionCase):
         with patch.object(
             self.folder.__class__,
             "fetch_msg",
-            side_effect=lambda conn, msgid: (
+            side_effect=lambda conn, message_uid: (
                 {
                     "subject": "With Object",
                     "date": "2025-07-23",
@@ -291,7 +318,7 @@ class TestAttachMailManually(TransactionCase):
                             0,
                             0,
                             {
-                                "msgid": "1",
+                                "message_uid": "1",
                                 "subject": "No Object",
                                 "object_id": False,
                             },
@@ -300,7 +327,7 @@ class TestAttachMailManually(TransactionCase):
                             0,
                             0,
                             {
-                                "msgid": "2",
+                                "message_uid": "2",
                                 "subject": "With Object",
                                 "object_id": f"res.partner,{self.partner.id}",
                             },
@@ -318,7 +345,7 @@ class TestAttachMailManually(TransactionCase):
     def test_prepare_mail_returns_expected_dict(self):
         """Test _prepare_mail returns correct structure."""
         folder = self.folder
-        msgid = "123"
+        message_uid = "123"
         mail_message = {
             "subject": "Test",
             "date": "2025-07-23",
@@ -326,9 +353,9 @@ class TestAttachMailManually(TransactionCase):
             "body": "<p>Body</p>",
         }
 
-        result = self.Wizard._prepare_mail(folder, msgid, mail_message)
+        result = self.Wizard._prepare_mail(folder, message_uid, mail_message)
         expected = {
-            "msgid": "123",
+            "message_uid": "123",
             "subject": "Test",
             "date": "2025-07-23",
             "body": "<p>Body</p>",
@@ -342,7 +369,9 @@ class TestAttachMailManually(TransactionCase):
         with (
             patch.object(FetchmailServer, "connect", return_value=MagicMock()),
             patch.object(self.folder.__class__, "fetch_msg", return_value=({}, b"raw")),
-            patch.object(self.folder.__class__, "get_msgids", return_value=[b"1"]),
+            patch.object(
+                self.folder.__class__, "get_message_uids", return_value=[b"1"]
+            ),
             patch.object(self.folder.__class__, "get_criteria", return_value="ALL"),
         ):
             wizard = self.Wizard.with_context(folder_id=self.folder.id).create({})
