@@ -107,7 +107,8 @@ msgstr ""
 #. module: fetchmail_attach_from_folder
 #. odoo-python
 #: code:addons/fetchmail_attach_from_folder/models/fetchmail_server_folder.py:0
-msgid "Could not fetch %(msgid)s in folder %(folder)s on server %(server)s"
+msgid ""
+"Could not fetch %(message_uid)s in folder %(folder)s on server %(server)s"
 msgstr ""
 
 #. module: fetchmail_attach_from_folder
@@ -304,7 +305,7 @@ msgid "Match Algorithm"
 msgstr ""
 
 #. module: fetchmail_attach_from_folder
-#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__msgid
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__message_uid
 msgid "Message id"
 msgstr ""
 
