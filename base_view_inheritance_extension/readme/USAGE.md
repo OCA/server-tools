@@ -30,3 +30,36 @@ conditional changes**
     $domain_to_add
 </attribute>
 ```
+
+**Wrap loose text in an element for further processing**
+
+``` xml
+   <wraptext expr="//some/node" position="text" element="span" />
+   <wraptext expr="//some/node/other_node" position="tail" element="div" />
+```
+
+which transforms
+
+``` xml
+    <some>
+        <node>
+            plain text 1
+            <other_node />
+            plain text2
+        </node>
+    </some>
+```
+
+to
+
+``` xml
+    <some>
+        <node>
+            <span>plain text 1</span>
+            <other_node />
+            <div>plain text2</div>
+        </node>
+    </some>
+```
+
+making those texts accessible for further operations
