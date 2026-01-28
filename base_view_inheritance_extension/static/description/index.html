@@ -419,6 +419,32 @@ conditional changes</strong></p>
     </span>$domain_to_add<span class="w">
 </span><span class="nt">&lt;/attribute&gt;</span>
 </pre>
+<p><strong>Wrap loose text in an element for further processing</strong></p>
+<pre class="code xml literal-block">
+<span class="nt">&lt;wraptext</span><span class="w"> </span><span class="na">expr=</span><span class="s">&quot;//some/node&quot;</span><span class="w"> </span><span class="na">position=</span><span class="s">&quot;text&quot;</span><span class="w"> </span><span class="na">element=</span><span class="s">&quot;span&quot;</span><span class="w"> </span><span class="nt">/&gt;</span><span class="w">
+</span><span class="nt">&lt;wraptext</span><span class="w"> </span><span class="na">expr=</span><span class="s">&quot;//some/node/other_node&quot;</span><span class="w"> </span><span class="na">position=</span><span class="s">&quot;tail&quot;</span><span class="w"> </span><span class="na">element=</span><span class="s">&quot;div&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</pre>
+<p>which transforms</p>
+<pre class="code xml literal-block">
+<span class="nt">&lt;some&gt;</span><span class="w">
+    </span><span class="nt">&lt;node&gt;</span><span class="w">
+        </span>plain<span class="w"> </span>text<span class="w"> </span>1<span class="w">
+        </span><span class="nt">&lt;other_node</span><span class="w"> </span><span class="nt">/&gt;</span><span class="w">
+        </span>plain<span class="w"> </span>text2<span class="w">
+    </span><span class="nt">&lt;/node&gt;</span><span class="w">
+</span><span class="nt">&lt;/some&gt;</span>
+</pre>
+<p>to</p>
+<pre class="code xml literal-block">
+<span class="nt">&lt;some&gt;</span><span class="w">
+    </span><span class="nt">&lt;node&gt;</span><span class="w">
+        </span><span class="nt">&lt;span&gt;</span>plain<span class="w"> </span>text<span class="w"> </span>1<span class="nt">&lt;/span&gt;</span><span class="w">
+        </span><span class="nt">&lt;other_node</span><span class="w"> </span><span class="nt">/&gt;</span><span class="w">
+        </span><span class="nt">&lt;div&gt;</span>plain<span class="w"> </span>text2<span class="nt">&lt;/div&gt;</span><span class="w">
+    </span><span class="nt">&lt;/node&gt;</span><span class="w">
+</span><span class="nt">&lt;/some&gt;</span>
+</pre>
+<p>making those texts accessible for further operations</p>
 </div>
 <div class="section" id="known-issues-roadmap">
 <h2><a class="toc-backref" href="#toc-entry-2">Known issues / Roadmap</a></h2>
