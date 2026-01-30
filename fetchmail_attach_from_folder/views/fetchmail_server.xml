@@ -61,50 +61,69 @@
                                 />
                             </header>
                             <group colspan="4" col="2">
+                                <!-- Fetch Options -->
                                 <group>
-                                    <field name="path" placeholder="INBOX.subfolder1" />
-                                    <field name="model_id" />
-                                    <field name="action_id" />
-                                    <field name="match_algorithm" />
-                                </group>
-                                <group
-                                    name="group_email_match"
-                                    attrs="{'invisible':
-                                        [('match_algorithm','=','odoo_standard')]}"
-                                >
-                                    <field
-                                        name="model_field"
-                                        placeholder="email"
-                                        attrs="{'required':
-                                            [('match_algorithm','in',['email_exact','email_domain'])]}"
-                                    />
-                                    <field
-                                        name="mail_field"
-                                        placeholder="to,from"
-                                        attrs="{'required':
-                                            [('match_algorithm','in',['email_exact','email_domain'])]}"
-                                    />
-                                    <field name="match_first" />
-                                    <field
-                                        name="domain"
-                                        placeholder="[('state', '=', 'open')]"
-                                    />
-                                    <field
-                                        name="model_order"
-                                        placeholder="name asc"
-                                        attrs="{'readonly':
-                                            [('match_first','==',False)],
-                                            'required':
-                                            [('match_first','==',True)]}"
-                                    />
-                                    <field name="flag_nonmatching" />
-                                </group>
-                                <group>
+                                    <separator string="Fetch Options" />
                                     <field name="active" />
+                                    <field name="path" placeholder="INBOX.subfolder1" />
+                                    <field name="fetch_unseen_only" />
+                                    <field name="fetch_last_day_only" />
+                                </group>
+
+                                <!-- Matching Options -->
+                                <group>
+                                    <separator string="Matching Options" />
+                                    <group colspan="2">
+                                        <field
+                                            name="model_id"
+                                            widget="many2one"
+                                            options="{'no_create': True}"
+                                            nolabel="0"
+                                        />
+                                        <field name="match_algorithm" />
+                                    </group>
+                                    <group
+                                        attrs="{'invisible': [('match_algorithm','=','odoo_standard')]}"
+                                        colspan="2"
+                                    >
+                                        <field
+                                            name="model_field"
+                                            placeholder="email"
+                                            attrs="{'required': [('match_algorithm','in',['email_exact','email_domain'])]}"
+                                        />
+                                        <field
+                                            name="mail_field"
+                                            placeholder="to,from"
+                                            attrs="{'required': [('match_algorithm','in',['email_exact','email_domain'])]}"
+                                        />
+                                        <field
+                                            name="domain"
+                                            placeholder="[('state', '=', 'open')]"
+                                        />
+                                        <field name="match_first" />
+                                        <field
+                                            name="model_order"
+                                            placeholder="name asc"
+                                            attrs="{'readonly': [('match_first','==',False)],
+                                                    'required': [('match_first','==',True)]}"
+                                        />
+                                    </group>
+                                </group>
+
+                                <!-- Post-Processing Actions -->
+                                <group>
+                                    <separator string="Model Post-Processing Actions" />
+                                    <field name="action_id" />
+                                    <field name="msg_state" />
+                                </group>
+
+                                <!-- Post-Processing Actions -->
+                                <group>
+                                    <separator string="Email Post-Processing Actions" />
+                                    <field name="seen" />
                                     <field name="archive_path" />
                                     <field name="delete_matching" />
-                                    <field name="fetch_unseen_only" />
-                                    <field name="msg_state" />
+                                    <field name="flag_nonmatching" />
                                 </group>
                             </group>
                         </form>
