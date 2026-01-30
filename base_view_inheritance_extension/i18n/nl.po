@@ -17,21 +17,43 @@ msgstr ""
 "X-Generator: Weblate 5.10.4\n"
 
 #. module: base_view_inheritance_extension
-#: model_terms:ir.ui.view,arch_db:base_view_inheritance_extension.view_partner_simple_form
-msgid "Partner form"
-msgstr "Partner formulier"
+#: model:ir.model.fields,field_description:base_view_inheritance_extension.field_ir_ui_view__display_name
+msgid "Display Name"
+msgstr ""
 
 #. module: base_view_inheritance_extension
-#: model_terms:ir.ui.view,arch_db:base_view_inheritance_extension.view_partner_simple_form
-msgid "Phone numbers"
-msgstr "Telefoon nummers"
-
-#. module: base_view_inheritance_extension
-#: model:ir.model.fields,field_description:base_view_inheritance_extension.field_ir_ui_view__smart_search
-msgid "Smart Search"
-msgstr "Slim zoeken"
+#: model:ir.model.fields,field_description:base_view_inheritance_extension.field_ir_ui_view__id
+msgid "ID"
+msgstr ""
 
 #. module: base_view_inheritance_extension
 #: model:ir.model,name:base_view_inheritance_extension.model_ir_ui_view
 msgid "View"
 msgstr "Weergave"
+
+#. module: base_view_inheritance_extension
+#. odoo-python
+#: code:addons/base_view_inheritance_extension/models/ir_ui_view.py:0
+msgid "wraptext elements cannot have children"
+msgstr ""
+
+#. module: base_view_inheritance_extension
+#. odoo-python
+#: code:addons/base_view_inheritance_extension/models/ir_ui_view.py:0
+msgid "wraptext: nothing found for expression %r"
+msgstr ""
+
+#. module: base_view_inheritance_extension
+#. odoo-python
+#: code:addons/base_view_inheritance_extension/models/ir_ui_view.py:0
+msgid "wraptext: the only valid positions are 'text' or 'tail'"
+msgstr ""
+
+#~ msgid "Partner form"
+#~ msgstr "Partner formulier"
+
+#~ msgid "Phone numbers"
+#~ msgstr "Telefoon nummers"
+
+#~ msgid "Smart Search"
+#~ msgstr "Slim zoeken"
