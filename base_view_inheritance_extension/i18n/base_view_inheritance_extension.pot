@@ -27,3 +27,21 @@ msgstr ""
 #: model:ir.model,name:base_view_inheritance_extension.model_ir_ui_view
 msgid "View"
 msgstr ""
+
+#. module: base_view_inheritance_extension
+#. odoo-python
+#: code:addons/base_view_inheritance_extension/models/ir_ui_view.py:0
+msgid "wraptext elements cannot have children"
+msgstr ""
+
+#. module: base_view_inheritance_extension
+#. odoo-python
+#: code:addons/base_view_inheritance_extension/models/ir_ui_view.py:0
+msgid "wraptext: nothing found for expression %r"
+msgstr ""
+
+#. module: base_view_inheritance_extension
+#. odoo-python
+#: code:addons/base_view_inheritance_extension/models/ir_ui_view.py:0
+msgid "wraptext: the only valid positions are 'text' or 'tail'"
+msgstr ""
