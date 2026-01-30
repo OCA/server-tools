@@ -360,7 +360,7 @@ msgid "Match Algorithm"
 msgstr ""
 
 #. module: fetchmail_attach_from_folder
-#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__msgid
+#: model:ir.model.fields,field_description:fetchmail_attach_from_folder.field_fetchmail_attach_mail_manually_mail__message_uid
 msgid "Message id"
 msgstr ""
 
