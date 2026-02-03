@@ -1,4 +1,5 @@
 # generated from manifests external_dependencies
 cryptography
+odoo_test_helper
 paramiko<4.0.0
 pysftp
