@@ -1,5 +1,6 @@
 # generated from manifests external_dependencies
 dataclasses
 numpy
+odoo_test_helper
 odoorpc
 openupgradelib
