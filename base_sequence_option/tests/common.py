@@ -1,32 +1,35 @@
 # Copyright 2021 Ecosoft Co., Ltd. (http://ecosoft.co.th)
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
-from odoo_test_helper import FakeModelLoader
-
+from odoo.orm.model_classes import add_to_registry
 from odoo.tests import common
 
 
 class CommonBaseSequenceOption(common.TransactionCase):
-    def setUp(self):
-        super().setUp()
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
 
-        self.loader = FakeModelLoader(self.env, self.__module__)
-        self.loader.backup_registry()
         from .base_sequence_tester import BaseSequenceTester, IrSequenceOption
 
-        self.loader.update_registry((BaseSequenceTester, IrSequenceOption))
+        add_to_registry(cls.registry, BaseSequenceTester)
+        add_to_registry(cls.registry, IrSequenceOption)
+        model_name = "base.sequence.tester"
+        cls.registry._setup_models__(cls.env.cr, [model_name])
+        cls.registry.init_models(cls.env.cr, [model_name], {"models_to_check": True})
+        cls.addClassCleanup(cls.registry.__delitem__, model_name)
 
-        self.test_model = self.env[BaseSequenceTester._name]
+        cls.test_model = cls.env[BaseSequenceTester._name]
 
-        self.tester_model = self.env["ir.model"].search(
+        cls.tester_model = cls.env["ir.model"].search(
             [("model", "=", "base.sequence.tester")]
         )
 
         # Access record:
-        self.env["ir.model.access"].create(
+        cls.env["ir.model.access"].create(
             {
                 "name": "access.tester",
-                "model_id": self.tester_model.id,
+                "model_id": cls.tester_model.id,
                 "perm_read": 1,
                 "perm_write": 1,
                 "perm_create": 1,
@@ -35,8 +38,8 @@ class CommonBaseSequenceOption(common.TransactionCase):
         )
 
         # Create sequence for type A and type B
-        self.ir_sequence_obj = self.env["ir.sequence"]
-        self.ir_sequence_obj.create(
+        cls.ir_sequence_obj = cls.env["ir.sequence"]
+        cls.ir_sequence_obj.create(
             {
                 "name": "Default Sequence",
                 "code": "base.sequence.tester",
@@ -44,14 +47,14 @@ class CommonBaseSequenceOption(common.TransactionCase):
                 "prefix": "DEF/",
             }
         )
-        seq_a = self.ir_sequence_obj.create(
+        seq_a = cls.ir_sequence_obj.create(
             {
                 "name": "Type A",
                 "padding": 5,
                 "prefix": "TYPE-A/",
             }
         )
-        seq_b = self.ir_sequence_obj.create(
+        seq_b = cls.ir_sequence_obj.create(
             {
                 "name": "Type B",
                 "padding": 5,
@@ -60,32 +63,28 @@ class CommonBaseSequenceOption(common.TransactionCase):
         )
 
         # Create sequence options for model base.sequence.tester:
-        self.base_sequence_obj = self.env["ir.sequence.option"]
-        self.base_seq = self.base_sequence_obj.create(
+        cls.base_sequence_obj = cls.env["ir.sequence.option"]
+        cls.base_seq = cls.base_sequence_obj.create(
             {
                 "name": "Test Model",
                 "model": "base.sequence.tester",
                 "use_sequence_option": True,
             }
         )
-        self.sequence_obj = self.env["ir.sequence.option.line"]
-        self.sequence_obj.create(
+        cls.sequence_obj = cls.env["ir.sequence.option.line"]
+        cls.sequence_obj.create(
             {
-                "base_id": self.base_seq.id,
+                "base_id": cls.base_seq.id,
                 "name": "Option 1",
                 "filter_domain": [("test_type", "=", "a")],
                 "sequence_id": seq_a.id,
             }
         )
-        self.sequence_obj.create(
+        cls.sequence_obj.create(
             {
-                "base_id": self.base_seq.id,
+                "base_id": cls.base_seq.id,
                 "name": "Option 1",
                 "filter_domain": [("test_type", "=", "b")],
                 "sequence_id": seq_b.id,
             }
         )
-
-    def tearDown(self):
-        self.loader.restore_registry()
-        return super().tearDown()

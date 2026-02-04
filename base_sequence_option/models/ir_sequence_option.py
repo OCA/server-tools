@@ -1,7 +1,7 @@
 # Copyright 2021 Ecosoft Co., Ltd. (http://ecosoft.co.th)
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
-from odoo import _, fields, models
+from odoo import fields, models
 from odoo.exceptions import ValidationError
 from odoo.tools import safe_eval
 
@@ -113,7 +113,7 @@ class IrSequenceOptionLine(models.Model):
             if record.sudo().filtered_domain(domain):
                 if sequence:  # Do not allow > 1 match
                     raise ValidationError(
-                        _("Multiple optional sequences found for this model!")
+                        self.env._("Multiple optional sequences found for this model!")
                     )
                 sequence = option.sequence_id
         return sequence
