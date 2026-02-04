@@ -1,8 +1,7 @@
 # Copyright 2021 Ecosoft Co., Ltd. (http://ecosoft.co.th)
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
-from odoo_test_helper import FakeModelLoader
-
+from odoo.orm.model_classes import add_to_registry
 from odoo.tests import common
 
 
@@ -11,11 +10,14 @@ class CommonBaseSequenceOption(common.TransactionCase):
     def setUpClass(cls):
         super().setUpClass()
 
-        cls.loader = FakeModelLoader(cls.env, cls.__module__)
-        cls.loader.backup_registry()
         from .base_sequence_tester import BaseSequenceTester, IrSequenceOption
 
-        cls.loader.update_registry((BaseSequenceTester, IrSequenceOption))
+        add_to_registry(cls.registry, BaseSequenceTester)
+        add_to_registry(cls.registry, IrSequenceOption)
+        model_name = "base.sequence.tester"
+        cls.registry._setup_models__(cls.env.cr, [model_name])
+        cls.registry.init_models(cls.env.cr, [model_name], {"models_to_check": True})
+        cls.addClassCleanup(cls.registry.__delitem__, model_name)
 
         cls.test_model = cls.env[BaseSequenceTester._name]
 
@@ -86,8 +88,3 @@ class CommonBaseSequenceOption(common.TransactionCase):
                 "sequence_id": seq_b.id,
             }
         )
-
-    @classmethod
-    def tearDownClass(cls):
-        cls.loader.restore_registry()
-        return super().tearDownClass()
