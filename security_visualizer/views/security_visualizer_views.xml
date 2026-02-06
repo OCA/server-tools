@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Kobros-Tech Ltd (http://kobros-tech.com).
+License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html). -->
+<odoo>
+    <!-- Client Action for Main Visualizer -->
+    <record id="action_security_visualizer_client" model="ir.actions.client">
+        <field name="name">Security Visualizer</field>
+        <field name="tag">security_visualizer</field>
+        <field name="target">current</field>
+    </record>
+
+    <!-- Action for Quick Analyzer Wizard -->
+    <record id="action_security_quick_analyzer" model="ir.actions.act_window">
+        <field name="name">Quick Security Analyzer</field>
+        <field name="res_model">security.visualizer.analysis</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{
+            'default_operation': 'read',
+        }</field>
+    </record>
+
+    <!-- Form View for Quick Analyzer -->
+    <record id="view_security_visualizer_analysis_form" model="ir.ui.view">
+        <field name="name">security.visualizer.analysis.form</field>
+        <field name="model">security.visualizer.analysis</field>
+        <field name="arch" type="xml">
+            <form string="Security Analysis">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>Quick Security Analyzer</h1>
+                        <p
+                            class="text-muted"
+                        >Analyze access rights for a specific user and model</p>
+                    </div>
+                    <group string="Analysis Parameters">
+                        <group>
+                            <field
+                                name="target_user_id"
+                                options="{'no_create': True}"
+                                placeholder="Select user to analyze..."
+                            />
+                            <field
+                                name="target_model_id"
+                                options="{'no_create': True}"
+                                placeholder="Select model to check..."
+                            />
+                        </group>
+                        <group>
+                            <field name="operation" widget="radio" />
+                            <field
+                                name="target_record_id"
+                                placeholder="Optional: Specific record ID"
+                            />
+                        </group>
+                    </group>
+                    <group
+                        string="Analysis Results"
+                        attrs="{'invisible': [('analysis_result', '=', False)]}"
+                    >
+                        <group>
+                            <field name="has_access" readonly="1" widget="boolean" />
+                        </group>
+                        <group>
+                            <field
+                                name="analysis_summary_html"
+                                readonly="1"
+                                nolabel="1"
+                                colspan="2"
+                            />
+                        </group>
+                        <notebook>
+                            <page string="Detailed Analysis (JSON)">
+                                <field
+                                    name="analysis_result"
+                                    readonly="1"
+                                    widget="ace"
+                                    options="{'mode': 'json'}"
+                                    nolabel="1"
+                                />
+                            </page>
+                        </notebook>
+                    </group>
+                </sheet>
+                <footer>
+                    <button
+                        name="action_analyze"
+                        string="Analyze Access"
+                        type="object"
+                        class="btn-primary"
+                        icon="fa-search"
+                    />
+                    <button string="Close" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>

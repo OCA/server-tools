@@ -1,0 +1,49 @@
+/* Rule Explainer - Minimal Layout */
+
+/* Collapsible step headers */
+.step-header {
+    cursor: pointer;
+    user-select: none;
+}
+
+.step-header:hover {
+    background-color: #f0f0f0;
+}
+
+.step-chevron {
+    width: 1em;
+    text-align: center;
+    font-size: 0.8em;
+    color: #6c757d;
+}
+
+/* Rule display */
+.rule-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.rule-item {
+    background: #f8f9fa;
+    border-left: 3px solid var(--primary);
+    padding: 0.75rem 1rem;
+    border-radius: 0.25rem;
+}
+
+.rule-name {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.rule-domain {
+    background: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+    padding: 0.75rem;
+    margin: 0;
+    font-size: 0.85rem;
+    overflow-x: auto;
+    max-height: 300px;
+    overflow-y: auto;
+}
