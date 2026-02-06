@@ -4,11 +4,14 @@
 
 from odoo.tests.common import TransactionCase
 
+from .test_data_setup import JsonifierTestDataMixin
 
-class TestJsonifyHelpers(TransactionCase):
+
+class TestJsonifyHelpers(TransactionCase, JsonifierTestDataMixin):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.setUpClass_demo_data()
         cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
         cls.partner = cls.env["res.partner"].create(
             {

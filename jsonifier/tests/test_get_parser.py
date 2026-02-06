@@ -9,16 +9,18 @@ from odoo.exceptions import UserError
 from odoo.tests.common import TransactionCase
 
 from ..models.utils import convert_simple_to_full_parser
+from .test_data_setup import JsonifierTestDataMixin
 
 
 def jsonify_custom(self, field_name):
     return "yeah!"
 
 
-class TestParser(TransactionCase):
+class TestParser(TransactionCase, JsonifierTestDataMixin):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.setUpClass_demo_data()
         # disable tracking test suite wise
         cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
         cls.env.user.tz = "Europe/Brussels"
@@ -104,16 +106,8 @@ class TestParser(TransactionCase):
             "comment",
         ]
 
-        exporter = self.env.ref("jsonifier.ir_exp_partner")
-        parser = exporter.get_json_parser()
-        expected_full_parser = convert_simple_to_full_parser(expected_parser)
-        self.assertEqual(parser, expected_full_parser)
+        exporter = self.ir_exp_partner
 
-        # modify an ir.exports_line to put a target for a field
-        self.env.ref("jsonifier.category_id_name").write(
-            {"target": "category_id:category/name"}
-        )
-        expected_parser[4] = ("category_id:category", ["name"])
         parser = exporter.get_json_parser()
         expected_full_parser = convert_simple_to_full_parser(expected_parser)
         self.assertEqual(parser, expected_full_parser)

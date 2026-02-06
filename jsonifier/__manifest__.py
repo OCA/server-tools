@@ -18,9 +18,4 @@
         "views/ir_exports_view.xml",
         "views/ir_exports_resolver_view.xml",
     ],
-    "demo": [
-        "demo/resolver_demo.xml",
-        "demo/export_demo.xml",
-        "demo/ir.exports.line.csv",
-    ],
 }

@@ -52,7 +52,8 @@ class IrExportsLine(models.Model):
                     raise ValidationError(
                         self.env._(
                             "The target must reference the same field as in "
-                            "name '%(name)s' not in '%(name_with_target)s'"
-                        ),
-                        dict(name=name, name_with_target=name_with_target),
+                            "name '%(name)s' not in '%(name_with_target)s'",
+                            name=name,
+                            name_with_target=name_with_target,
+                        )
                     )
