@@ -25,10 +25,7 @@ class TestOdooCookieSanitizer(TransactionCase):
         http = result["request"]
         self.assertEqual(
             http["cookies"],
-            "website_lang=en_us;"
-            f"session_id={proc.MASK};"
-            f"Session_ID={proc.MASK};"
-            "foo=bar",
+            f"website_lang=en_us;session_id={proc.MASK};Session_ID={proc.MASK};foo=bar",
         )
 
     def test_cookie_as_string_with_partials(self):
