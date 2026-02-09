@@ -6,3 +6,4 @@
 - Iván Todorovich \<<ivan.todorovich@camptocamp.com>\>
 - Nguyen Minh Chien \<<chien@trobz.com>\>
 - Thien Vo \<<thienvh@trobz.com>\>
+- Mangono team \<<opensource@mangono.fr>\>

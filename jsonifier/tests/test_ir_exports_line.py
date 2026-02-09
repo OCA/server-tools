@@ -11,6 +11,7 @@ class TestIrExportsLine(TransactionCase, JsonifierTestDataMixin):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
         cls.setUpClass_demo_data()
 
     def test_target_constrains(self):

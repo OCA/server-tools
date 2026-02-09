@@ -263,12 +263,13 @@ Contributors
 - Iván Todorovich <ivan.todorovich@camptocamp.com>
 - Nguyen Minh Chien <chien@trobz.com>
 - Thien Vo <thienvh@trobz.com>
+- Mangono team <opensource@mangono.fr>
 
 Other credits
 -------------
 
-The migration of this module from 17.0 to 18.0 was financially supported
-by Camptocamp.
+The migration of this module from 18.0 to 19.0 was financially supported
+by Mangono.
 
 Maintainers
 -----------
