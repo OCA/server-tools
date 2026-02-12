@@ -4,8 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 18.0\n"
+"Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-13 04:26+0000\n"
+"PO-Revision-Date: 2026-02-13 04:26+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,4 +18,14 @@ msgstr ""
 #. module: attachment_unindex_content
 #: model:ir.model,name:attachment_unindex_content.model_ir_attachment
 msgid "Attachment"
+msgstr ""
+
+#. module: attachment_unindex_content
+#: model:ir.model.fields,field_description:attachment_unindex_content.field_ir_attachment__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: attachment_unindex_content
+#: model:ir.model.fields,field_description:attachment_unindex_content.field_ir_attachment__id
+msgid "ID"
 msgstr ""
