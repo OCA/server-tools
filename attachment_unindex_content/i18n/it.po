@@ -6,6 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-13 04:26+0000\n"
 "PO-Revision-Date: 2024-01-02 16:34+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
@@ -20,3 +21,13 @@ msgstr ""
 #: model:ir.model,name:attachment_unindex_content.model_ir_attachment
 msgid "Attachment"
 msgstr "Allegato"
+
+#. module: attachment_unindex_content
+#: model:ir.model.fields,field_description:attachment_unindex_content.field_ir_attachment__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: attachment_unindex_content
+#: model:ir.model.fields,field_description:attachment_unindex_content.field_ir_attachment__id
+msgid "ID"
+msgstr ""
