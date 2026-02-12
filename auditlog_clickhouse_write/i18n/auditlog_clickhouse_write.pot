@@ -1,0 +1,335 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* auditlog_clickhouse_write
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-05 18:40+0000\n"
+"PO-Revision-Date: 2026-03-05 18:40+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: auditlog_clickhouse_write
+#. odoo-python
+#: code:addons/auditlog_clickhouse_write/models/auditlog_clickhouse_config.py:0
+msgid ""
+"%s\n"
+"\n"
+"If you save this configuration as active, the currently active one will be deactivated:\n"
+"- %s"
+msgstr ""
+
+#. module: auditlog_clickhouse_write
+#: model_terms:ir.ui.view,arch_db:auditlog_clickhouse_write.view_auditlog_clickhouse_config_form
+msgid ""
+"As soon as this connection to ClickHouse is activated, all log\n"
+"                        entries from that moment will be stored in the configured\n"
+"                        ClickHouse database. Only one connection can be active at a\n"
+"                        time."
+msgstr ""
+
+#. module: auditlog_clickhouse_write
+#. odoo-python
+#: code:addons/auditlog_clickhouse_write/models/auditlog_clickhouse_config.py:0
+msgid ""
+"As soon as this connection to ClickHouse is activated, all log entries from that moment will be stored in the configured ClickHouse database.\n"
+"\n"
+" Only one connection can be active at a time."
+msgstr ""
+
+#. module: auditlog_clickhouse_write
+#: model:ir.model.fields,field_description:auditlog_clickhouse_write.field_auditlog_log_buffer__attempt_count
+msgid "Attempt Count"
+msgstr ""
+
+#. module: auditlog_clickhouse_write
+#: model:ir.model,name:auditlog_clickhouse_write.model_auditlog_rule
+msgid "Auditlog - Rule"
+msgstr ""
+
+#. module: auditlog_clickhouse_write
+#: model:ir.model,name:auditlog_clickhouse_write.model_auditlog_log_buffer
+msgid "Auditlog ClickHouse Buffer"
+msgstr ""
+
+#. module: auditlog_clickhouse_write
+#: model_terms:ir.ui.view,arch_db:auditlog_clickhouse_write.view_auditlog_clickhouse_config_form
+msgid "Auditlog ClickHouse Configuration"
+msgstr ""
+
+#. module: auditlog_clickhouse_write
+#: model:ir.model,name:auditlog_clickhouse_write.model_auditlog_clickhouse_config
+msgid "Auditlog ClickHouse Write Configuration"
+msgstr ""
+
+#. module: auditlog_clickhouse_write
+#: model:ir.actions.server,name:auditlog_clickhouse_write.ir_cron_auditlog_clickhouse_write_enqueue_flush_ir_actions_server
+msgid "Auditlog ClickHouse Write: enqueue buffer flush"
+msgstr ""
+
+#. module: auditlog_clickhouse_write
+#. odoo-python
+#: code:addons/auditlog_clickhouse_write/models/auditlog_clickhouse_config.py:0
+msgid "Auditlog tables were created (if they did not exist)."
+msgstr ""
+
+#. module: auditlog_clickhouse_write
+#: model:ir.model.fields,field_description:auditlog_clickhouse_write.field_auditlog_clickhouse_config__queue_batch_size
+msgid "Batch size"
+msgstr ""
+
+#. module: auditlog_clickhouse_write
+#: model:ir.model.fields,field_description:auditlog_clickhouse_write.field_auditlog_clickhouse_config__queue_channel_id
+msgid "Channel"
+msgstr ""
+
+#. module: auditlog_clickhouse_write
+#: model:ir.actions.act_window,name:auditlog_clickhouse_write.action_auditlog_clickhouse_config
+#: model_terms:ir.ui.view,arch_db:auditlog_clickhouse_write.view_auditlog_clickhouse_config_list
+msgid "ClickHouse Configuration"
+msgstr ""
+
+#. module: auditlog_clickhouse_write
+#. odoo-python
+#: code:addons/auditlog_clickhouse_write/models/auditlog_clickhouse_config.py:0
+msgid "ClickHouse activation"
+msgstr ""
+
+#. module: auditlog_clickhouse_write
+#: model:ir.ui.menu,name:auditlog_clickhouse_write.menu_auditlog_clickhouse_config
+msgid "ClickHouse configuration"
+msgstr ""
+
+#. module: auditlog_clickhouse_write
+#. odoo-python
+#: code:addons/auditlog_clickhouse_write/models/auditlog_clickhouse_config.py:0
+msgid "ClickHouse connection failed: %s"
+msgstr ""
+
+#. module: auditlog_clickhouse_write
+#: model:ir.model.fields,help:auditlog_clickhouse_write.field_auditlog_clickhouse_config__port
+msgid ""
+"ClickHouse native TCP port used by clickhouse-driver (default is 9000)."
+msgstr ""
+
+#. module: auditlog_clickhouse_write
+#: model:ir.model.fields,help:auditlog_clickhouse_write.field_auditlog_clickhouse_config__host
+msgid ""
+"ClickHouse server hostname or IP address. Must be reachable from the Odoo "
+"server."
+msgstr ""
+
+#. module: auditlog_clickhouse_write
+#: model:ir.model.fields,help:auditlog_clickhouse_write.field_auditlog_clickhouse_config__user
+msgid ""
+"ClickHouse user name used for INSERT operations into auditlog tables. "
+"Recommended: a dedicated user with INSERT-only privileges."
+msgstr ""
+
+#. module: auditlog_clickhouse_write
+#: model_terms:ir.ui.view,arch_db:auditlog_clickhouse_write.view_auditlog_clickhouse_config_form
+msgid "Configure action"
+msgstr ""
+
+#. module: auditlog_clickhouse_write
+#: model:ir.actions.act_window,name:auditlog_clickhouse_write.action_configure_auditlog_clickhouse_write_flush_cron
+msgid "Configure flush action"
+msgstr ""
+
+#. module: auditlog_clickhouse_write
+#: model_terms:ir.ui.view,arch_db:auditlog_clickhouse_write.view_auditlog_clickhouse_config_form
+msgid "Connection"
+msgstr ""
+
+#. module: auditlog_clickhouse_write
+#. odoo-python
+#: code:addons/auditlog_clickhouse_write/models/auditlog_clickhouse_config.py:0
+msgid "Connection to ClickHouse is OK."
+msgstr ""
+
+#. module: auditlog_clickhouse_write
+#: model_terms:ir.ui.view,arch_db:auditlog_clickhouse_write.view_auditlog_clickhouse_config_form
+msgid "Create Auditlog Tables"
+msgstr ""
+
+#. module: auditlog_clickhouse_write
+#: model:ir.model.fields,field_description:auditlog_clickhouse_write.field_auditlog_clickhouse_config__create_uid
+#: model:ir.model.fields,field_description:auditlog_clickhouse_write.field_auditlog_log_buffer__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: auditlog_clickhouse_write
+#: model:ir.model.fields,field_description:auditlog_clickhouse_write.field_auditlog_clickhouse_config__create_date
+#: model:ir.model.fields,field_description:auditlog_clickhouse_write.field_auditlog_log_buffer__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: auditlog_clickhouse_write
+#: model:ir.model.fields,field_description:auditlog_clickhouse_write.field_auditlog_clickhouse_config__database
+msgid "Database name"
+msgstr ""
+
+#. module: auditlog_clickhouse_write
+#: model:ir.model.fields,field_description:auditlog_clickhouse_write.field_auditlog_clickhouse_config__display_name
+#: model:ir.model.fields,field_description:auditlog_clickhouse_write.field_auditlog_log_buffer__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: auditlog_clickhouse_write
+#: model:ir.actions.act_window,name:auditlog_clickhouse_write.action_configure_auditlog_clickhouse_write_cron
+msgid "Edit buffer flush schedule"
+msgstr ""
+
+#. module: auditlog_clickhouse_write
+#. odoo-python
+#: code:addons/auditlog_clickhouse_write/models/auditlog_log_buffer.py:0
+msgid "Error"
+msgstr ""
+
+#. module: auditlog_clickhouse_write
+#: model:ir.model.fields,field_description:auditlog_clickhouse_write.field_auditlog_log_buffer__error_message
+msgid "Error Message"
+msgstr ""
+
+#. module: auditlog_clickhouse_write
+#: model_terms:ir.ui.view,arch_db:auditlog_clickhouse_write.view_auditlog_clickhouse_config_form
+msgid "Export Queue"
+msgstr ""
+
+#. module: auditlog_clickhouse_write
+#. odoo-python
+#: code:addons/auditlog_clickhouse_write/models/auditlog_clickhouse_config.py:0
+msgid "Failed to create ClickHouse tables: %s"
+msgstr ""
+
+#. module: auditlog_clickhouse_write
+#. odoo-python
+#: code:addons/auditlog_clickhouse_write/models/auditlog_log_buffer.py:0
+msgid "Flushed to ClickHouse but failed to delete buffer rows: %s"
+msgstr ""
+
+#. module: auditlog_clickhouse_write
+#: model:ir.model.fields,field_description:auditlog_clickhouse_write.field_auditlog_clickhouse_config__host
+msgid "Hostname or IP"
+msgstr ""
+
+#. module: auditlog_clickhouse_write
+#: model:ir.model.fields,field_description:auditlog_clickhouse_write.field_auditlog_clickhouse_config__id
+#: model:ir.model.fields,field_description:auditlog_clickhouse_write.field_auditlog_log_buffer__id
+msgid "ID"
+msgstr ""
+
+#. module: auditlog_clickhouse_write
+#: model:ir.model.fields,help:auditlog_clickhouse_write.field_auditlog_clickhouse_config__is_active
+msgid ""
+"If checked audit logs will be buffered locally and exported to ClickHouse. "
+"Only one configuration can be active at a time."
+msgstr ""
+
+#. module: auditlog_clickhouse_write
+#: model:ir.model.fields,field_description:auditlog_clickhouse_write.field_auditlog_clickhouse_config__is_active
+#: model_terms:ir.ui.view,arch_db:auditlog_clickhouse_write.view_auditlog_clickhouse_config_list
+msgid "Is Active"
+msgstr ""
+
+#. module: auditlog_clickhouse_write
+#: model:ir.model.fields,field_description:auditlog_clickhouse_write.field_auditlog_clickhouse_config__write_uid
+#: model:ir.model.fields,field_description:auditlog_clickhouse_write.field_auditlog_log_buffer__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: auditlog_clickhouse_write
+#: model:ir.model.fields,field_description:auditlog_clickhouse_write.field_auditlog_clickhouse_config__write_date
+#: model:ir.model.fields,field_description:auditlog_clickhouse_write.field_auditlog_log_buffer__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: auditlog_clickhouse_write
+#: model_terms:ir.ui.view,arch_db:auditlog_clickhouse_write.view_auditlog_clickhouse_config_form
+msgid ""
+"Logs are buffered in PostgreSQL and periodically flushed to\n"
+"                            ClickHouse by cron."
+msgstr ""
+
+#. module: auditlog_clickhouse_write
+#: model:ir.model.fields,help:auditlog_clickhouse_write.field_auditlog_clickhouse_config__queue_batch_size
+msgid "Maximum number of buffer rows processed per queue job run."
+msgstr ""
+
+#. module: auditlog_clickhouse_write
+#: model_terms:ir.ui.view,arch_db:auditlog_clickhouse_write.view_auditlog_clickhouse_config_form
+msgid "Notes"
+msgstr ""
+
+#. module: auditlog_clickhouse_write
+#: model:ir.model.fields,field_description:auditlog_clickhouse_write.field_auditlog_clickhouse_config__password
+msgid "Password"
+msgstr ""
+
+#. module: auditlog_clickhouse_write
+#: model:ir.model.fields,help:auditlog_clickhouse_write.field_auditlog_clickhouse_config__password
+msgid "Password for the ClickHouse user."
+msgstr ""
+
+#. module: auditlog_clickhouse_write
+#: model:ir.model.fields,field_description:auditlog_clickhouse_write.field_auditlog_log_buffer__payload_json
+msgid "Payload Json"
+msgstr ""
+
+#. module: auditlog_clickhouse_write
+#. odoo-python
+#: code:addons/auditlog_clickhouse_write/models/auditlog_log_buffer.py:0
+msgid "Pending"
+msgstr ""
+
+#. module: auditlog_clickhouse_write
+#. odoo-python
+#: code:addons/auditlog_clickhouse_write/models/clickhouse_client.py:0
+msgid ""
+"Python package 'clickhouse-driver' is not available. Install it in the Odoo "
+"environment to use ClickHouse storage."
+msgstr ""
+
+#. module: auditlog_clickhouse_write
+#: model:ir.model.fields,field_description:auditlog_clickhouse_write.field_auditlog_log_buffer__state
+msgid "State"
+msgstr ""
+
+#. module: auditlog_clickhouse_write
+#. odoo-python
+#: code:addons/auditlog_clickhouse_write/models/auditlog_clickhouse_config.py:0
+msgid "Success"
+msgstr ""
+
+#. module: auditlog_clickhouse_write
+#: model:ir.model.fields,field_description:auditlog_clickhouse_write.field_auditlog_clickhouse_config__port
+msgid "TCP Port"
+msgstr ""
+
+#. module: auditlog_clickhouse_write
+#: model:ir.model.fields,help:auditlog_clickhouse_write.field_auditlog_clickhouse_config__database
+msgid ""
+"Target ClickHouse database where auditlog tables exist (or will be created "
+"by the setup button)."
+msgstr ""
+
+#. module: auditlog_clickhouse_write
+#: model_terms:ir.ui.view,arch_db:auditlog_clickhouse_write.view_auditlog_clickhouse_config_form
+msgid "Test connection"
+msgstr ""
+
+#. module: auditlog_clickhouse_write
+#: model:ir.model.fields,field_description:auditlog_clickhouse_write.field_auditlog_clickhouse_config__user
+msgid "User"
+msgstr ""
+
+#. module: auditlog_clickhouse_write
+#: model:ir.model.fields,help:auditlog_clickhouse_write.field_auditlog_clickhouse_config__queue_channel_id
+msgid "queue_job channel used for export jobs."
+msgstr ""
