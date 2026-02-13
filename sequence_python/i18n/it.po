@@ -1,0 +1,126 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sequence_python
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-11-13 10:06+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.6.2\n"
+
+#. module: sequence_python
+#: model_terms:ir.ui.view,arch_db:sequence_python.sequence_view
+msgid "<code>number</code>: The next number of the sequence (integer)"
+msgstr "<code>number</code>: il numero successivo della sequenza (intero)"
+
+#. module: sequence_python
+#: model_terms:ir.ui.view,arch_db:sequence_python.sequence_view
+msgid ""
+"<code>number_padded</code>: Padded string of the next number of the sequence"
+msgstr ""
+"<code>number_padded</code>: stringa riempita del numero successivo della "
+"sequenza"
+
+#. module: sequence_python
+#: model_terms:ir.ui.view,arch_db:sequence_python.sequence_view
+msgid ""
+"<code>random</code>: The Python random module, eg. to use "
+"<code>random.randint(0, 9)</code>"
+msgstr ""
+"<code>random</code>: il modulo random Python, es. da usare <code>random."
+"randint(0, 9)</code>"
+
+#. module: sequence_python
+#: model_terms:ir.ui.view,arch_db:sequence_python.sequence_view
+msgid "<code>sequence</code>: Odoo record of the sequence being used"
+msgstr "<code>sequence</code>: record Odoo della sequenza in uso"
+
+#. module: sequence_python
+#: model_terms:ir.ui.view,arch_db:sequence_python.sequence_view
+msgid ""
+"<code>string</code>: The Python string module, eg. to use "
+"<code>random.choices(string.ascii_letters + string.digits, k=4)</code>"
+msgstr ""
+"<code>string</code>: il modulo stringa Python, es.da usare <code>random."
+"choices(string.ascii_letters + string.digits, k=4)</code>"
+
+#. module: sequence_python
+#: model_terms:ir.ui.view,arch_db:sequence_python.sequence_view
+msgid ""
+"<code>uuid</code>: The Python uuid module, eg. to use "
+"<code>uuid.uuid4()</code>"
+msgstr ""
+"<code>uuid</code>: il modulo uuid Python da usare, es. da usare <code>uuid."
+"uuid4()</code>"
+
+#. module: sequence_python
+#: model_terms:ir.ui.view,arch_db:sequence_python.sequence_view
+msgid "Aside from this, you may use several"
+msgstr "Oltre a questo, si possono usare diversi"
+
+#. module: sequence_python
+#: model_terms:ir.ui.view,arch_db:sequence_python.sequence_view
+msgid "Help with Python expressions"
+msgstr "Aiuto con espressioni Python"
+
+#. module: sequence_python
+#: model:ir.model.fields,field_description:sequence_python.field_ir_sequence__python_code_preview
+msgid "Preview"
+msgstr "Anteprima"
+
+#. module: sequence_python
+#: model_terms:ir.ui.view,arch_db:sequence_python.sequence_view
+msgid "Python Code"
+msgstr "Codice Python"
+
+#. module: sequence_python
+#: model:ir.model.fields,field_description:sequence_python.field_ir_sequence__python_code
+msgid "Python expression"
+msgstr "Espressione Python"
+
+#. module: sequence_python
+#: model:ir.model,name:sequence_python.model_ir_sequence
+msgid "Sequence"
+msgstr "Sequenza"
+
+#. module: sequence_python
+#: model:ir.model.fields,field_description:sequence_python.field_ir_sequence__smart_search
+msgid "Smart Search"
+msgstr "Ricerca intelligente"
+
+#. module: sequence_python
+#: model_terms:ir.ui.view,arch_db:sequence_python.sequence_view
+msgid ""
+"The expression you type here will be evaluated as the next number. The "
+"following variables can be used:"
+msgstr ""
+"L'espressione inserita qui verrà valutata come il numero successivo. Si "
+"possono usare le seguenti variabili:"
+
+#. module: sequence_python
+#: model:ir.model.fields,field_description:sequence_python.field_ir_sequence__use_python_code
+msgid "Use Python"
+msgstr "Usa Python"
+
+#. module: sequence_python
+#: model:ir.model.fields,help:sequence_python.field_ir_sequence__python_code
+msgid "Write Python code that generates the sequence body."
+msgstr "Scrivere il codice Python che genera il corpo della sequenza."
+
+#. module: sequence_python
+#: model_terms:ir.ui.view,arch_db:sequence_python.sequence_view
+msgid "builtin Python functions"
+msgstr "funzioni Python incorporate"
+
+#. module: sequence_python
+#: model_terms:ir.ui.view,arch_db:sequence_python.sequence_view
+msgid "number"
+msgstr "numero"
