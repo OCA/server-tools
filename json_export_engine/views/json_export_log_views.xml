@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <!-- Form View -->
+    <record id="json_export_log_form_view" model="ir.ui.view">
+        <field name="name">json.export.log.form</field>
+        <field name="model">json.export.log</field>
+        <field name="arch" type="xml">
+            <form string="JSON Export Log" create="false" edit="false">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="schema_id" />
+                            <field name="log_type" />
+                            <field name="status" />
+                            <field name="create_date" />
+                        </group>
+                        <group>
+                            <field name="records_count" />
+                            <field name="duration_ms" />
+                        </group>
+                    </group>
+                    <group
+                        string="Error"
+                        attrs="{'invisible': [('error_message', '=', False)]}"
+                    >
+                        <field name="error_message" nolabel="1" />
+                    </group>
+                    <group
+                        string="Request Details"
+                        attrs="{'invisible': [('request_info', '=', False)]}"
+                    >
+                        <field name="request_info" nolabel="1" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree View -->
+    <record id="json_export_log_tree_view" model="ir.ui.view">
+        <field name="name">json.export.log.tree</field>
+        <field name="model">json.export.log</field>
+        <field name="arch" type="xml">
+            <tree create="false" edit="false" default_order="create_date desc">
+                <field name="create_date" />
+                <field name="schema_id" />
+                <field name="log_type" />
+                <field
+                    name="status"
+                    decoration-success="status == 'success'"
+                    decoration-danger="status == 'error'"
+                    widget="badge"
+                />
+                <field name="records_count" />
+                <field name="duration_ms" string="Duration (ms)" />
+                <field name="error_message" optional="hide" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="json_export_log_search_view" model="ir.ui.view">
+        <field name="name">json.export.log.search</field>
+        <field name="model">json.export.log</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="schema_id" />
+                <filter
+                    name="success"
+                    string="Success"
+                    domain="[('status', '=', 'success')]"
+                />
+                <filter
+                    name="error"
+                    string="Errors"
+                    domain="[('status', '=', 'error')]"
+                />
+                <separator />
+                <filter
+                    name="api"
+                    string="API Calls"
+                    domain="[('log_type', '=', 'api')]"
+                />
+                <filter
+                    name="webhook"
+                    string="Webhooks"
+                    domain="[('log_type', '=', 'webhook')]"
+                />
+                <filter
+                    name="schedule"
+                    string="Scheduled"
+                    domain="[('log_type', '=', 'schedule')]"
+                />
+                <group expand="0" string="Group By">
+                    <filter
+                        name="group_schema"
+                        string="Schema"
+                        context="{'group_by': 'schema_id'}"
+                    />
+                    <filter
+                        name="group_type"
+                        string="Type"
+                        context="{'group_by': 'log_type'}"
+                    />
+                    <filter
+                        name="group_status"
+                        string="Status"
+                        context="{'group_by': 'status'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="json_export_log_action" model="ir.actions.act_window">
+        <field name="name">Export Logs</field>
+        <field name="res_model">json.export.log</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="json_export_log_search_view" />
+    </record>
+
+</odoo>
