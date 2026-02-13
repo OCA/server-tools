@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <!-- ir.exports record for res.partner -->
+    <record id="demo_ir_exp_partner" model="ir.exports">
+        <field name="name">Demo Partner Export</field>
+        <field name="resource">res.partner</field>
+    </record>
+
+    <!-- JSON Export Schema -->
+    <record id="demo_schema_partner" model="json.export.schema">
+        <field name="name">Demo Partners</field>
+        <field name="model_id" ref="base.model_res_partner" />
+        <field name="exporter_id" ref="demo_ir_exp_partner" />
+        <field name="domain">[]</field>
+        <field name="record_limit">100</field>
+        <field name="include_record_id" eval="True" />
+        <field name="preview_count">5</field>
+    </record>
+
+    <!-- REST Endpoint (no auth, for easy demo) -->
+    <record id="demo_endpoint_partner" model="json.export.endpoint">
+        <field name="name">Demo Partners API</field>
+        <field name="schema_id" ref="demo_schema_partner" />
+        <field name="route_path">demo-partners</field>
+        <field name="auth_type">none</field>
+        <field name="paginate" eval="True" />
+        <field name="page_size">50</field>
+        <field name="allow_filtering" eval="True" />
+        <field name="allow_sorting" eval="True" />
+        <field name="allow_field_selection" eval="True" />
+    </record>
+
+    <!-- Webhook (inactive so it won't fire during install) -->
+    <record id="demo_webhook_partner" model="json.export.webhook">
+        <field name="name">Demo Partner Webhook</field>
+        <field name="schema_id" ref="demo_schema_partner" />
+        <field name="active" eval="False" />
+        <field name="url">https://httpbin.org/post</field>
+        <field name="on_create" eval="True" />
+        <field name="on_write" eval="True" />
+        <field name="on_unlink" eval="False" />
+        <field name="max_retries">3</field>
+    </record>
+
+    <!-- Scheduled Export (inactive) -->
+    <record id="demo_schedule_partner" model="json.export.schedule">
+        <field name="name">Demo Partner Export</field>
+        <field name="schema_id" ref="demo_schema_partner" />
+        <field name="active" eval="False" />
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="destination_type">attachment</field>
+        <field name="file_format">json</field>
+        <field name="incremental" eval="True" />
+    </record>
+
+</odoo>
