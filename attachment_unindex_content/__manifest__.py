@@ -14,6 +14,6 @@
     ],
     "license": "AGPL-3",
     "category": "Tools",
-    "depends": ["base"],
+    "depends": ["attachment_indexation"],
     "post_init_hook": "post_init_hook",
 }
