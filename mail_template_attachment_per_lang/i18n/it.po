@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-02-04 18:09+0000\n"
+"PO-Revision-Date: 2026-02-17 10:09+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -65,7 +65,7 @@ msgstr "Conteggio insieme di modifiche in attesa"
 #. module: mail_template_attachment_i18n
 #: model:ir.model.fields,field_description:mail_template_attachment_i18n.field_ir_attachment_language__create_uid
 msgid "Created by"
-msgstr "Creata da"
+msgstr "Creato da"
 
 #. module: mail_template_attachment_i18n
 #: model:ir.model.fields,field_description:mail_template_attachment_i18n.field_ir_attachment_language__create_date
