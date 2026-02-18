@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="database_autovacuum_tuning_view_tree" model="ir.ui.view">
+        <field name="model">database.autovacuum.tuning</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="create_date" />
+                <field name="name" />
+                <field name="vacuum_threshold" />
+                <field name="analyze_threshold" />
+            </list>
+        </field>
+    </record>
+
+    <record id="databaseautovacuum_tuning_view_search" model="ir.ui.view">
+        <field name="model">database.autovacuum.tuning</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <group string="Group By">
+                    <filter
+                        name="group_by_name"
+                        string="Name"
+                        context="{'group_by': 'name'}"
+                    />
+                    <filter
+                        name="group_by_create_date"
+                        string="Create Date"
+                        context="{'group_by': 'create_date'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_model_autovacuum_tuning" model="ir.actions.act_window">
+        <field name="name">Database Vacuum Tuning</field>
+        <field name="res_model">database.autovacuum.tuning</field>
+        <field name="view_mode">list</field>
+        <field name="search_view_id" ref="databaseautovacuum_tuning_view_search" />
+    </record>
+
+    <record model="ir.ui.menu" id="menu_model_autovacuum_tuning">
+        <field name="name">Database Autovacuum Tuning</field>
+        <field name="sequence" eval="11" />
+        <field name="action" ref="action_model_autovacuum_tuning" />
+        <field name="parent_id" ref="base.next_id_9" />
+    </record>
+</odoo>
