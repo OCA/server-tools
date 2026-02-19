@@ -1,6 +1,7 @@
 from copy import deepcopy
 
 from odoo.tests import common, tagged
+from odoo.tools import mute_logger
 
 from .. import compare, upgrade_log
 from ..odoo_patch.odoo_patch import OdooPatch
@@ -62,7 +63,8 @@ class TestUpgradeAnalysis(common.TransactionCase):
                 ]
             )
         )
-        with OdooPatch():
+        # Mute Odoo's noisy model patch snitcher
+        with mute_logger("odoo.tests.common"), OdooPatch():
             self.env["ir.model.constraint"]._reflect_model(self.IrModuleModule)
         self.assertTrue(
             self.env["upgrade.record"].search(
