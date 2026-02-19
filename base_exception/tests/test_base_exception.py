@@ -9,26 +9,26 @@ from odoo.tests import TransactionCase
 
 
 class TestBaseException(TransactionCase):
-    @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
+    def setUp(self):
+        # FakeModelLoader must be used in setUp, not setUpClass
+        super().setUp()
 
-        cls.loader = FakeModelLoader(cls.env, cls.__module__)
-        cls.loader.backup_registry()
+        self.loader = FakeModelLoader(self.env, self.__module__)
+        self.loader.backup_registry()
         from .purchase_test import ExceptionRule, LineTest, PurchaseTest, WizardTest
 
-        cls.loader.update_registry((ExceptionRule, LineTest, PurchaseTest, WizardTest))
-        cls.partner = cls.env["res.partner"].create({"name": "Foo"})
-        cls.po = cls.env["base.exception.test.purchase"].create(
+        self.loader.update_registry((ExceptionRule, LineTest, PurchaseTest, WizardTest))
+        self.partner = self.env["res.partner"].create({"name": "Foo"})
+        self.po = self.env["base.exception.test.purchase"].create(
             {
                 "name": "Test base exception to basic purchase",
-                "partner_id": cls.partner.id,
+                "partner_id": self.partner.id,
                 "line_ids": [
                     (0, 0, {"name": "line test", "amount": 120.0, "qty": 1.5})
                 ],
             }
         )
-        cls.exception_rule = cls.env["exception.rule"].create(
+        self.exception_rule = self.env["exception.rule"].create(
             {
                 "name": "No ZIP code on destination",
                 "sequence": 10,
@@ -37,20 +37,19 @@ class TestBaseException(TransactionCase):
                 "exception_type": "by_py_code",
             }
         )
-        exception_rule_confirm_obj = cls.env["exception.rule.confirm.test.purchase"]
-        cls.exception_rule_confirm = exception_rule_confirm_obj.with_context(
-            active_model="base.exception.test.purchase", active_ids=cls.po.ids
+        exception_rule_confirm_obj = self.env["exception.rule.confirm.test.purchase"]
+        self.exception_rule_confirm = exception_rule_confirm_obj.with_context(
+            active_model="base.exception.test.purchase", active_ids=self.po.ids
         ).create(
             {
-                "related_model_id": cls.po.id,
+                "related_model_id": self.po.id,
                 "ignore": False,
             }
         )
 
-    @classmethod
-    def tearDownClass(cls):
-        cls.loader.restore_registry()
-        return super().tearDownClass()
+    def tearDown(self):
+        self.loader.restore_registry()
+        return super().tearDown()
 
     def test_valid(self):
         self.partner.write({"zip": "00000"})
