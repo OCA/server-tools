@@ -32,24 +32,19 @@ class TestAttachmentBaseQueue(BaseCommon):
             ).create(vals)
         return self.env["attachment.queue"].create(vals)
 
-    @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
-        cls.loader = FakeModelLoader(cls.env, cls.__module__)
-        cls.loader.backup_registry()
-        from .test_models import AttachmentQueue
-
-        cls.loader.update_registry((AttachmentQueue,))
-
-    @classmethod
-    def tearDownClass(cls):
-        super().tearDownClass()
-        cls.loader.restore_registry()
-        return super().tearDownClass()
-
     def setUp(self):
         super().setUp()
+        self.loader = FakeModelLoader(self.env, self.__module__)
+        self.loader.backup_registry()
+        from .test_models import AttachmentQueue
+
+        self.loader.update_registry((AttachmentQueue,))
         self.aq_model = self.env["attachment.queue"]
+
+    def tearDown(self):
+        super().tearDown()
+        self.loader.restore_registry()
+        return super().tearDown()
 
     def test_job_created(self):
         with trap_jobs() as trap:
