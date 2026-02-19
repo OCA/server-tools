@@ -18,7 +18,8 @@ class TestXMLRPC(common.HttpCase):
         cls.admin_uid = cls.env.ref("base.user_admin").id
 
     def _set_disable(self, val):
-        type(self.env["res.partner"])._disable_rpc = val
+        with mute_logger("odoo.test.common"):  # Mute test patch logging
+            type(self.env["res.partner"])._disable_rpc = val
 
     def _set_disable_on_model(self, val):
         self.env["ir.model"]._get("res.partner").rpc_config_edit = json.dumps(

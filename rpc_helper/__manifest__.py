@@ -5,7 +5,7 @@
 {
     "name": "Disable RPC",
     "summary": """Helpers for disabling RPC calls""",
-    "version": "18.0.1.0.1",
+    "version": "18.0.1.0.2",
     "development_status": "Beta",
     "license": "LGPL-3",
     "website": "https://github.com/OCA/server-tools",
