@@ -7,6 +7,7 @@ import math
 from odoo.exceptions import UserError
 from odoo.fields import Command
 from odoo.tests.common import TransactionCase
+from odoo.tools import mute_logger
 
 
 class TestPartition(TransactionCase):
@@ -119,9 +120,11 @@ class TestPartition(TransactionCase):
         with self.assertRaises(UserError):
             list(records.batch())
 
-        records.__class__._default_batch_size = batch_size
+        with mute_logger("odoo.tests.common"):
+            records.__class__._default_batch_size = batch_size
         batches_from_default = list(records.batch())
         self.assertEqual(batches_from_default, batches)
+        delattr(records.__class__, "_default_batch_size")
 
     def test_read_per_record(self):
         categories = self.c1 | self.c2 | self.c3
