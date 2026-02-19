@@ -1,7 +1,13 @@
 # © 2016 Daniel Reis
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo.tests.common import TransactionCase, tagged
+from odoo.tests.common import SETATTR_SOURCES, TransactionCase, tagged
+
+# Register our patching method in Odoo's test checker
+SETATTR_SOURCES["_register_hook"] = tuple(
+    list(SETATTR_SOURCES.get("_register_hook", []))
+    + ["/base_name_search_improved/models/ir_model.py"],
+)
 
 
 @tagged("post_install", "-at_install")
@@ -15,14 +21,6 @@ class NameSearchCase(TransactionCase):
         cls.address_field = cls.env.ref("base.field_res_partner__contact_address")
         cls.zip_field = cls.env.ref("base.field_res_partner__zip")
 
-        cls.model_partner = cls.env.ref("base.model_res_partner")
-        cls.model_partner.name_search_ids = cls.phone_field
-        cls.model_partner.add_smart_search = True
-        cls.model_partner.use_smart_name_search = True
-
-        # this use does not make muche sense but with base module we dont have
-        # much models to use for tests
-        cls.model_partner.name_search_domain = "[('parent_id', '=', False)]"
         cls.Partner = cls.env["res.partner"]
         cls.partner1 = cls.Partner.create(
             {"name": "Luigi Verconti", "vat": "1111", "phone": "+351 555 777 333"}
@@ -38,6 +36,29 @@ class NameSearchCase(TransactionCase):
                 "barcode": "1111",
             }
         )
+
+    def setUp(self):
+        super().setUp()
+        self.patched_models = [
+            model._name
+            for model in self.env.registry.values()
+            if "name_search" in vars(model)
+        ]
+        self.model_partner = self.env.ref("base.model_res_partner")
+        self.model_partner.name_search_ids = self.phone_field
+        self.model_partner.add_smart_search = True
+        self.model_partner.use_smart_name_search = True
+
+        # this use does not make muche sense but with base module we dont have
+        # much models to use for tests
+        self.model_partner.name_search_domain = "[('parent_id', '=', False)]"
+
+    def tearDown(self):
+        for model in self.env.registry.values():
+            if "name_search" in vars(model) and model._name not in self.patched_models:
+                delattr(model, "name_search")
+
+        super().tearDown()
 
     def test_RelevanceOrderedResults(self):
         """Return results ordered by relevance"""
