@@ -7,6 +7,7 @@
 from odoo import tools
 from odoo.exceptions import UserError
 from odoo.tests.common import TransactionCase
+from odoo.tools import mute_logger
 
 from ..models.utils import convert_simple_to_full_parser
 
@@ -291,7 +292,8 @@ class TestParser(TransactionCase):
         self.assertIn("Expected singleton", str(err.exception))
 
     def test_json_export_callable_parser(self):
-        self.partner.__class__.jsonify_custom = jsonify_custom
+        with mute_logger("odoo.tests.common"):  # Mute patch detector
+            self.partner.__class__.jsonify_custom = jsonify_custom
         parser = [
             # callable subparser
             ("name", lambda rec, fname: rec[fname] + " rocks!"),
@@ -368,7 +370,8 @@ class TestParser(TransactionCase):
         self.assertEqual(json, expected_json)
 
     def test_simple_export_with_function(self):
-        self.category.__class__.jsonify_custom = jsonify_custom
+        with mute_logger("odoo.tests.common"):  # Mute patch detector
+            self.category.__class__.jsonify_custom = jsonify_custom
         export = self.env["ir.exports"].create(
             {
                 "export_fields": [
@@ -379,6 +382,7 @@ class TestParser(TransactionCase):
 
         json = self.category.jsonify(export.get_json_parser())[0]
         self.assertEqual(json, {"name": "yeah!"})
+        del self.category.__class__.jsonify_custom
 
     def test_export_relational_display_names(self):
         """If we export a relational, we get its display_name in the json."""

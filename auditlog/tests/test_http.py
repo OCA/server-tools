@@ -1,9 +1,11 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo.tests.common import HttpCase, tagged
 
+from .common import AuditLogRuleCommon
+
 
 @tagged("post_install", "-at_install")
-class TestAuditlogHttp(HttpCase):
+class TestAuditlogHttp(HttpCase, AuditLogRuleCommon):
     def test_compute_display_name(self):
         self.authenticate("admin", "admin")
         rule = self.env["auditlog.rule"].create(

@@ -16,15 +16,16 @@ class TestTimeWindowMixin(TransactionCase):
         cls.weekday1 = cls.env["time.weekday"].search([("name", "=", "1")])
         cls.weekday2 = cls.env["time.weekday"].search([("name", "=", "2")])
 
-        cls.loader = FakeModelLoader(cls.env, cls.__module__)
-        cls.loader.backup_registry()
+    def setUp(self):
+        super().setUp()
+        self.loader = FakeModelLoader(self.env, self.__module__)
+        self.loader.backup_registry()
         from .test_models import TestTimeWindowModel
 
-        cls.loader.update_registry((TestTimeWindowModel,))
+        self.loader.update_registry((TestTimeWindowModel,))
 
-    @classmethod
-    def tearDownClass(cls):
-        cls.loader.restore_registry()
+    def tearDown(self):
+        self.loader.restore_registry()
         super().tearDownClass()
 
     def test_time_window_no_overlap(self):

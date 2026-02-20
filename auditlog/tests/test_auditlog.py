@@ -3,6 +3,8 @@
 # © 2021 Stefan Rijnhart <stefan@opener.amsterdam>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
+from odoo.tools import mute_logger
+
 from odoo.addons.base.models.ir_model import MODULE_UNINSTALL_FLAG
 from odoo.addons.base.models.res_users import name_boolean_group
 
@@ -388,13 +390,15 @@ class TestFieldRemoval(AuditLogRuleCommon):
             }
         )
 
-        cls.auditlog_rule.subscribe()
+    def setUp(self):
+        super().setUp()
+        self.auditlog_rule.subscribe()
         # Trigger log creation
-        rec = cls.env["x_test.model"].create({"x_test_field": "test value"})
+        rec = self.env["x_test.model"].create({"x_test_field": "test value"})
         rec.write({"x_test_field": "test value 2"})
 
-        cls.logs = cls.env["auditlog.log"].search(
-            [("res_id", "=", rec.id), ("model_id", "=", cls.test_model.id)]
+        self.logs = self.env["auditlog.log"].search(
+            [("res_id", "=", rec.id), ("model_id", "=", self.test_model.id)]
         )
 
     def assert_values(self):
@@ -418,13 +422,20 @@ class TestFieldRemoval(AuditLogRuleCommon):
         self.assert_values()
 
         # Remove the field
-        self.test_field.with_context(**{MODULE_UNINSTALL_FLAG: True}).unlink()
+        with mute_logger("odoo.api"):  # Mute 'Too many iterations for flushing fields'
+            self.test_field.with_context(**{MODULE_UNINSTALL_FLAG: True}).unlink()
         self.assert_values()
         # The field should not be linked
         self.assertFalse(self.logs.mapped("line_ids.field_id"))
 
         # Remove the model
-        self.test_model.with_context(**{MODULE_UNINSTALL_FLAG: True}).unlink()
+        with mute_logger(
+            # 'Too many iterations for flushing fields'
+            "odoo.api",
+            # 'The following fields were force-deleted .* x_name',
+            "odoo.addons.base.models.ir_model",
+        ):
+            self.test_model.with_context(**{MODULE_UNINSTALL_FLAG: True}).unlink()
         self.assert_values()
 
         # The model should not be linked
@@ -512,14 +523,16 @@ class AuditLogRuleTestForUserFields(AuditLogRuleCommon):
         # Updating users_to_exclude_ids
         cls.auditlog_rule.users_to_exclude_ids = [[4, cls.users_to_exclude_ids]]
 
-        # Subscribe auditlog.rule
-        cls.auditlog_rule.subscribe()
-
         cls.auditlog_log = cls.env["auditlog.log"]
 
-        # Creating new res.partner
-        cls.testpartner1 = (
-            cls.env["res.partner"]
+    def setUp(self):
+        super().setUp()
+        # Subscribe auditlog.rule
+        self.auditlog_rule.subscribe()
+
+        # Creating new partners to trigger log creation (or not)
+        self.testpartner1 = (
+            self.env["res.partner"]
             .with_context(tracking_disable=True)
             .create(
                 {
@@ -530,10 +543,10 @@ class AuditLogRuleTestForUserFields(AuditLogRuleCommon):
         )
 
         # Creating new res.partner from excluded user
-        cls.testpartner2 = (
-            cls.env["res.partner"]
+        self.testpartner2 = (
+            self.env["res.partner"]
             .with_context(tracking_disable=True)
-            .with_user(cls.user.id)
+            .with_user(self.user.id)
             .create(
                 {
                     "name": "testpartner2",
@@ -669,8 +682,11 @@ class AuditLogRuleTestForUserModel(AuditLogRuleCommon):
         cls.group = cls.env.ref("auditlog.group_auditlog_manager")
 
         cls.auditlog_log = cls.env["auditlog.log"]
+
+    def setUp(self):
+        super().setUp()
         # Subscribe auditlog.rule
-        cls.auditlog_rule.subscribe()
+        self.auditlog_rule.subscribe()
 
     def test_01_AuditlogFull_field_group_write_log(self):
         """Change group and check successfully created log"""
@@ -739,9 +755,6 @@ class AuditlogFast_excluded_fields(AuditLogRuleCommon):
         # Updating phone in fields_to_exclude_ids
         cls.auditlog_rule.fields_to_exclude_ids = [[4, cls.fields_to_exclude_ids]]
 
-        # Subscribe auditlog.rule
-        cls.auditlog_rule.subscribe()
-
         cls.auditlog_log = cls.env["auditlog.log"]
 
         # Creating new res.partner
@@ -755,6 +768,11 @@ class AuditlogFast_excluded_fields(AuditLogRuleCommon):
                 }
             )
         )
+
+    def setUp(self):
+        super().setUp()
+        # Subscribe auditlog.rule
+        self.auditlog_rule.subscribe()
 
     def test_01_AuditlogFast_field_exclude_write_log(self):
         # Checking fields_to_exclude_ids
