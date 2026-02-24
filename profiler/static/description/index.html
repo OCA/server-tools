@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Profiler</title>
+</head>
+<body>
+    <section class="oe_container">
+        <div class="oe_row oe_spaced">
+            <h2 class="oe_slogan">Profiler</h2>
+            <h3 class="oe_slogan">Performance profiling for Odoo</h3>
+            <div class="oe_span12">
+                <p class="oe_mt32">
+                    This module provides a decorator to profile Python functions using yappi
+                    (Yet Another Python Profiler) and store the results in the database for later analysis.
+                    Yappi is a tracing profiler that is thread-aware and provides more accurate timing
+                    information than cProfile, especially for multi-threaded applications like Odoo.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="oe_container oe_dark">
+        <div class="oe_row oe_spaced">
+            <h2 class="oe_slogan">Features</h2>
+            <div class="oe_span12">
+                <ul class="list-unstyled">
+                    <li><i class="fa fa-check-square-o text-primary"></i> Simple decorator to profile any method</li>
+                    <li><i class="fa fa-check-square-o text-primary"></i> Configurable sampling rate</li>
+                    <li><i class="fa fa-check-square-o text-primary"></i> Interactive call graph visualization</li>
+                    <li><i class="fa fa-check-square-o text-primary"></i> Statistical reports with P95/P99 metrics</li>
+                    <li><i class="fa fa-check-square-o text-primary"></i> Export to .pstats for external analysis</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="oe_container">
+        <div class="oe_row oe_spaced">
+            <h2 class="oe_slogan">Usage</h2>
+            <div class="oe_span12">
+                <p>Simply add the decorator to your methods:</p>
+                <pre>
+from odoo.addons.profiler.tools import profiled
+
+class MyModel(models.Model):
+    _name = "my.model"
+
+    @profiled()
+    def my_method(self):
+        # Your code here
+        pass
+                </pre>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

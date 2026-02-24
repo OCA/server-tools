@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Camptocamp SA
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_profiler_function_list" model="ir.ui.view">
+        <field name="name">profiler.function.list</field>
+        <field name="model">profiler.function</field>
+        <field name="arch" type="xml">
+            <list string="Profiled Functions">
+                <field name="name" />
+                <field name="python_path" />
+                <field name="sample_rate" />
+                <field name="active" />
+            </list>
+        </field>
+    </record>
+
+    <record id="view_profiler_function_form" model="ir.ui.view">
+        <field name="name">profiler.function.form</field>
+        <field name="model">profiler.function</field>
+        <field name="arch" type="xml">
+            <form string="Profiled Function">
+                <sheet>
+                    <group>
+                        <field name="name" />
+                        <field name="python_path" />
+                        <field name="sample_rate" />
+                        <field name="active" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_profiler_function_search" model="ir.ui.view">
+        <field name="name">profiler.function.search</field>
+        <field name="model">profiler.function</field>
+        <field name="arch" type="xml">
+            <search string="Profiled Functions">
+                <field name="name" />
+                <field name="python_path" />
+                <filter
+                    string="Active"
+                    name="active"
+                    domain="[('active', '=', True)]"
+                />
+                <group expand="0" string="Group By">
+                    <filter
+                        string="Active"
+                        name="group_by_active"
+                        context="{'group_by': 'active'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_profiler_function" model="ir.actions.act_window">
+        <field name="name">Profiled Functions</field>
+        <field name="res_model">profiler.function</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem
+        id="menu_profiler_functions"
+        name="Profiled Functions"
+        parent="profiler.menu_profiler_root"
+        action="action_profiler_function"
+        sequence="5"
+    />
+</odoo>

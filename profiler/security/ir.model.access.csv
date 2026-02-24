@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_profiler_result_user,access_profiler_result_user,model_profiler_result,base.group_user,1,0,0,0
+access_profiler_result_system,access_profiler_result_system,model_profiler_result,base.group_system,1,1,1,1
+access_profiler_report_user,access_profiler_report_user,model_profiler_report,base.group_user,1,0,0,0
+access_profiler_report_system,access_profiler_report_system,model_profiler_report,base.group_system,1,1,1,1
+access_profiler_function_user,access_profiler_function_user,model_profiler_function,base.group_user,1,0,0,0
+access_profiler_function_system,access_profiler_function_system,model_profiler_function,base.group_system,1,1,1,1
