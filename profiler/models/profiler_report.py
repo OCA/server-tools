@@ -12,12 +12,27 @@ class ProfilerReport(models.TransientModel):
     p95 = fields.Float(string="P95 Duration (s)", digits=(12, 6))
     p99 = fields.Float(string="P99 Duration (s)", digits=(12, 6))
     count = fields.Integer(string="Call Count")
-    days_back = fields.Integer(string="Number of days", default=1)
+
+    def _parse_time_delta(self, time_delta_str):
+        """Parse time delta string in format HH:MM:SS and return total seconds."""
+        try:
+            parts = time_delta_str.split(":")
+            if len(parts) != 3:
+                raise ValueError("Invalid format")
+            hours, minutes, seconds = map(int, parts)
+            return hours * 3600 + minutes * 60 + seconds
+        except Exception:
+            # Default to 24 hours if parsing fails
+            return 86400
 
     @api.model
-    def generate_report(self, days_back=1):
+    def generate_report(self):
         """Generate the profiler statistics report."""
         self.search([]).unlink()
+
+        # Get time_delta from context (format: "HH:MM:SS")
+        time_delta_str = self.env.context.get("time_delta", "24:00:00")
+        total_seconds = self._parse_time_delta(time_delta_str)
 
         query = """
             SELECT name,
@@ -25,13 +40,13 @@ class ProfilerReport(models.TransientModel):
                    percentile_disc(0.99) WITHIN GROUP (ORDER BY duration) AS p99,
                    count(*) AS count
             FROM profiler_result
-            WHERE create_date > now() - interval '%s day'
+            WHERE create_date > now() - interval '%s second'
             GROUP BY name
             ORDER BY p99 DESC
             LIMIT 20
         """
 
-        self.env.cr.execute(query, (days_back,))
+        self.env.cr.execute(query, (total_seconds,))
         results = self.env.cr.fetchall()
 
         report_records = []
@@ -42,7 +57,6 @@ class ProfilerReport(models.TransientModel):
                     "p95": row[1],
                     "p99": row[2],
                     "count": row[3],
-                    "days_back": days_back,
                 }
             )
 
@@ -55,10 +69,14 @@ class ProfilerReport(models.TransientModel):
             "res_model": "profiler.report",
             "view_mode": "list",
             "target": "current",
-            "context": {"create": False, "edit": False, "delete": False},
+            "context": {
+                "create": False,
+                "edit": False,
+                "delete": False,
+                "time_delta": time_delta_str,
+            },
         }
 
     def action_refresh(self):
         """Refresh the report with current data."""
-        days_back = self[0].days_back if self else 1
-        return self.generate_report(days_back=days_back)
+        return self.generate_report()

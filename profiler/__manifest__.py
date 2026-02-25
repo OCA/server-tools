@@ -11,7 +11,7 @@
     "website": "https://github.com/OCA/server-tools",
     "depends": ["base", "edi_exchange_template_oca"],
     "external_dependencies": {
-        "python": ["yappi", "cairosvg"],
+        "python": ["yappi", "cairosvg", "flameprof"],
     },
     "data": [
         "security/ir.model.access.csv",

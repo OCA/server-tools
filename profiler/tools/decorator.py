@@ -49,6 +49,10 @@ def profiled(sample_rate=0.05):
                 return func(*args, **kwargs)
 
             start_time = time.time()
+            previous_clock_type = yappi.get_clock_type()
+            use_wall_clock = previous_clock_type != "wall"
+            if use_wall_clock:
+                yappi.set_clock_type("wall")
             yappi.start()
             try:
                 result = func(*args, **kwargs)
@@ -67,6 +71,7 @@ def profiled(sample_rate=0.05):
 
                 # Save to pstats format (compatible with gprof2dot, snakeviz, etc.)
                 stats_binary = None
+                stats_callgrind = None
                 try:
                     # Create a temporary file to save stats
                     fd, temp_path = tempfile.mkstemp(suffix=".pstats")
@@ -81,13 +86,36 @@ def profiled(sample_rate=0.05):
                 except Exception as e:
                     _logger.warning("Failed to serialize pstats: %s", e)
 
+                try:
+                    fd, temp_path = tempfile.mkstemp(suffix=".callgrind")
+                    try:
+                        func_stats.save(temp_path, type="callgrind")
+                        with open(temp_path, "rb") as f:
+                            stats_callgrind = f.read()
+                    finally:
+                        os.close(fd)
+                        os.unlink(temp_path)
+                except Exception as e:
+                    _logger.warning("Failed to serialize callgrind: %s", e)
+
                 # Clear yappi stats for next profiling session
                 yappi.clear_stats()
+
+                if use_wall_clock:
+                    try:
+                        yappi.set_clock_type(previous_clock_type)
+                    except Exception as e:
+                        _logger.warning("Failed to restore yappi clock type: %s", e)
 
                 # Store in database
                 try:
                     _store_profile_in_db(
-                        func.__name__, stats_text, duration, args, stats_binary
+                        func.__name__,
+                        stats_text,
+                        duration,
+                        args,
+                        stats_binary,
+                        stats_callgrind,
                     )
                 except Exception as e:
                     _logger.error(
@@ -99,7 +127,9 @@ def profiled(sample_rate=0.05):
     return decorator
 
 
-def _store_profile_in_db(func_name, stats_text, duration, args, stats_binary=None):
+def _store_profile_in_db(
+    func_name, stats_text, duration, args, stats_binary=None, stats_callgrind=None
+):
     """Store profile data in database."""
     # Try to get the environment from function arguments
     env = None
@@ -125,6 +155,8 @@ def _store_profile_in_db(func_name, stats_text, duration, args, stats_binary=Non
             if stats_binary:
                 # Encode to base64 for Binary field storage
                 values["stats_binary"] = base64.b64encode(stats_binary)
+            if stats_callgrind:
+                values["stats_callgrind"] = base64.b64encode(stats_callgrind)
             new_env["profiler.result"].create(values)
         except Exception as e:
             _logger.error("Error storing profile: %s", e)

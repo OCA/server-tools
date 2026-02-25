@@ -30,6 +30,12 @@
                         class="btn-primary"
                         invisible="not stats_binary"
                     />
+                    <button
+                        name="action_download_callgrind"
+                        string="Download callgrind"
+                        type="object"
+                        invisible="not stats_callgrind"
+                    />
                 </header>
                 <sheet>
                     <group>
@@ -41,6 +47,7 @@
                             <field name="create_date" />
                             <field name="user_id" />
                             <field name="stats_binary" invisible="1" />
+                            <field name="stats_callgrind" invisible="1" />
                         </group>
                     </group>
                     <notebook>

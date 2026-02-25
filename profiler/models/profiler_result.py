@@ -14,13 +14,14 @@ class ProfilerResult(models.Model):
     stats_text = fields.Text(string="Profile Statistics", required=True)
     stats_json = fields.Text(string="Profile Statistics JSON")
     stats_binary = fields.Binary(string="Profile Binary Data", attachment=True)
+    stats_callgrind = fields.Binary(string="Profile Callgrind Data", attachment=True)
     duration = fields.Float(string="Duration (seconds)")
     create_date = fields.Datetime(string="Execution Date", readonly=True, index=True)
     user_id = fields.Many2one(
         "res.users", string="User", default=lambda self: self.env.user, readonly=True
     )
     flamegraph_html = fields.Html(
-        string="Flamegraph", compute="_compute_flamegraph_html", store=False
+        string="Flamegraph", compute="_compute_flamegraph_html", store=True
     )
 
     @api.depends("stats_binary")
@@ -258,5 +259,18 @@ class ProfilerResult(models.Model):
             "type": "ir.actions.act_url",
             "url": f"/web/content/profiler.result/{self.id}/"
             f"stats_binary/{self.name}.pstats?download=true",
+            "target": "new",
+        }
+
+    def action_download_callgrind(self):
+        """Download callgrind file for external analysis with qcachegrind."""
+        self.ensure_one()
+        if not self.stats_callgrind:
+            raise ValueError("No callgrind data available for this profile")
+
+        return {
+            "type": "ir.actions.act_url",
+            "url": f"/web/content/profiler.result/{self.id}/"
+            f"stats_callgrind/{self.name}.callgrind?download=true",
             "target": "new",
         }
