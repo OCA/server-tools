@@ -3,7 +3,7 @@ This module just adds a technical utility, but nothing for the end user.
 If you are a developer and need this utility for your module, see these
 examples and read the docs inside the code.
 
-Python example::
+Python example:
 
     @api.multi
     def some_method(self):
@@ -13,7 +13,7 @@ Python example::
             # Do stuff with those URLs
             pass
 
-QWeb example::
+QWeb example:
 
     <!-- Extract first image from a blog post -->
     <t t-foreach="env['ir.fields.converter']
