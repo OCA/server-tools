@@ -5,6 +5,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 # flake8: noqa: C901
 
+import ast
 import logging
 import os
 from copy import deepcopy
@@ -351,7 +352,8 @@ class UpgradeAnalysis(models.Model):
                     if record_remote_dict[key].tag == "field":
                         field_name = remote_record.xpath(key)[0].attrib.get("name")
                         if (
-                            field_name
+                            local_record.attrib["model"] not in self.env
+                            or field_name
                             not in self.env[local_record.attrib["model"]]._fields.keys()
                         ):
                             continue
@@ -360,6 +362,15 @@ class UpgradeAnalysis(models.Model):
                     for attr in ["eval", "ref"]:
                         if attr in attribs:
                             del attribs[attr]
+                    if record_remote_dict[key].tag == "field" and set(attribs) == {
+                        "name"
+                    }:
+                        # if previous version has set a field but current version
+                        # doesn't, set whatever the NULL value of the field is
+                        # (usually None)
+                        model = self.env[local_record.attrib["model"]]
+                        field = model._fields[attribs["name"]]
+                        attribs["eval"] = ast.unparse(ast.Constant(field.falsy_value))
                     element.append(etree.Element(record_remote_dict[key].tag, attribs))
                 else:
                     oldrepr = self._get_node_value(record_remote_dict[key])
