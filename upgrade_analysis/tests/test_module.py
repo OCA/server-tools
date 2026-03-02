@@ -1,5 +1,7 @@
 from copy import deepcopy
 
+from lxml import etree
+
 from odoo.tests import common, tagged
 
 from .. import compare, upgrade_log
@@ -117,3 +119,34 @@ class TestUpgradeAnalysis(common.TransactionCase):
             assertInFieldComparison(comparison, "state", "added: [new]")
         with self.assertRaises(AssertionError):
             assertInFieldComparison(comparison, "state", "removed")
+
+    def test_xml_comparison(self):
+        """
+        Test corner cases in noupdate_changes
+        """
+        # x2many field that was set in noupdate data in previous version,
+        # but not mentioned in noupdate data of current version
+        diff = self.env["upgrade.analysis"]._get_xml_diff(
+            {},
+            {
+                "some_xmlid": etree.fromstring(
+                    """
+                    <record id="some_xmlid" model="upgrade.install.wizard">
+                        <field
+                            name="module_ids"
+                            eval="[Command.set([ref('base.module_web')])]"
+                        />
+                    </record>
+                    """
+                ),
+            },
+            {},
+            {
+                "some_xmlid": etree.fromstring(
+                    """
+                    <record id="some_xmlid" model="upgrade.install.wizard" />
+                    """
+                ),
+            },
+        )
+        self.assertIn('<field name="module_ids" eval="None"/>', diff)
