@@ -61,6 +61,13 @@
         <field name="view_mode">list,form</field>
     </record>
 
+    <!-- Menu -->
+    <menuitem
+        id="menu_profiler_root"
+        name="Profiler"
+        parent="base.menu_administration"
+        sequence="100"
+    />
     <menuitem
         id="menu_profiler_functions"
         name="Profiled Functions"

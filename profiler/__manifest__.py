@@ -16,8 +16,8 @@
     "data": [
         "security/ir.model.access.csv",
         "views/profiler_function_views.xml",
-        "views/profiler_result_views.xml",
         "views/profiler_report_views.xml",
+        "views/profiler_result_views.xml",
     ],
     "installable": True,
     "development_status": "Alpha",

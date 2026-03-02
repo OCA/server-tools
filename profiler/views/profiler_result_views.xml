@@ -113,16 +113,11 @@
     </record>
 
     <!-- Menu -->
-    <menuitem
-        id="menu_profiler_root"
-        name="Profiler"
-        parent="base.menu_administration"
-        sequence="100"
-    />
+
     <menuitem
         id="menu_profiler_results"
         name="Profiler Results"
-        parent="menu_profiler_root"
+        parent="profiler.menu_profiler_root"
         action="action_profiler_result"
         sequence="10"
     />
