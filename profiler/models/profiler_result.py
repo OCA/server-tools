@@ -104,49 +104,16 @@ class ProfilerResult(models.Model):
                     if result.returncode != 0:
                         error_msg = result.stderr if result.stderr else "Unknown error"
                         _logger.warning(f"flameprof failed: {error_msg}")
-                        return f"""
-                        <div style="padding: 20px; background-color: #fff3cd;
-                            border: 1px solid #ffc107; border-radius: 4px;">
-                            <h4>⚠️ Flamegraph Generation Failed</h4>
-                            <p>Flameprof encountered an error processing this profile
-                            data.
-                            This is a known limitation with certain
-                            profiling data structures.</p>
-                            <details>
-                                <summary>Error Details</summary>
-                                <pre style="background: #f5f5f5; padding: 10px;
-                                overflow-x: auto;">{error_msg}</pre>
-                            </details>
-                            <p><strong>Alternative:</strong>
-                            Use the <em>Download .pstats</em>
-                            button and visualize with external tools:</p>
-                            <ul>
-                                <li><code>gprof2dot -f pstats profile.pstats
-                                | dot -Tpng -o output.png</code></li>
-                                <li><code>snakeviz profile.pstats</code></li>
-                            </ul>
-                        </div>
-                        """
+                        return self.env["ir.ui.view"]._render_template(
+                            "profiler.flamegraph_error",
+                            {"error_message": error_msg},
+                        )
 
                     svg_content = result.stdout
                 except FileNotFoundError:
-                    return """
-                    <div style="padding: 20px; background-color: #f8d7da;
-                        border: 1px solid #f5c6cb; border-radius: 4px;">
-                        <h4>❌ Flameprof Not Installed</h4>
-                        <p>The <code>flameprof</code> package is not installed
-                        in your environment.</p>
-                        <p><strong>To enable flamegraphs, install it:</strong></p>
-                        <pre style="background: #f5f5f5; padding: 10px;">
-                            pip install flameprof
-                        </pre>
-                        <p>
-                            <strong>Alternative:</strong>
-                            Use the <em>Download .pstats</em> button and visualize with
-                            other tools like gprof2dot or snakeviz.
-                        </p>
-                    </div>
-                    """
+                    return self.env["ir.ui.view"]._render_template(
+                        "profiler.flameprof_not_installed"
+                    )
                 except subprocess.TimeoutExpired:
                     return "<p>Flamegraph generation timed out (>30s)</p>"
                 except Exception as e:
@@ -169,57 +136,16 @@ class ProfilerResult(models.Model):
                     png_data = base64.b64encode(png_bytes).decode("utf-8")
 
                     # Embed PNG as data URL
-                    html = f"""
-                    <style>
-                        .flamegraph-wrapper {{
-                            width: 100%;
-                            overflow: auto;
-                            background: #ffffff;
-                            border: 1px solid #ddd;
-                            padding: 20px;
-                            box-sizing: border-box;
-                        }}
-                        .flamegraph-wrapper img {{
-                            display: block;
-                            max-width: 100%;
-                            height: auto;
-                        }}
-                    </style>
-                    <div class="flamegraph-wrapper">
-                        <img src="data:image/png;base64,{png_data}" alt="Flamegraph" />
-                    </div>
-                    """
-                    return html
+                    return self.env["ir.ui.view"]._render_template(
+                        "profiler.flamegraph_png", {"png_data": png_data}
+                    )
 
                 except ImportError:
                     _logger.warning("cairosvg not available, falling back to SVG")
                     # Fallback to SVG if cairosvg is not available
-
-                    html = f"""
-                    <style>
-                        .flamegraph-wrapper {{
-                            width: 100%;
-                            min-height: 800px;
-                            overflow: auto;
-                            background: #ffffff;
-                            border: 1px solid #ddd;
-                            padding: 20px;
-                            box-sizing: border-box;
-                        }}
-                        .flamegraph-wrapper svg {{
-                            display: block;
-                            max-width: 100%;
-                            height: auto;
-                        }}
-                        .flamegraph-wrapper .func_g {{
-                            cursor: pointer;
-                        }}
-                    </style>
-                    <div class="flamegraph-wrapper">
-                        {svg_content}
-                    </div>
-                    """
-                    return html
+                    return self.env["ir.ui.view"]._render_template(
+                        "profiler.flamegraph_svg", {"svg_content": svg_content}
+                    )
 
             finally:
                 # Cleanup temp files
