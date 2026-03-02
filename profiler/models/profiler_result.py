@@ -2,6 +2,8 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
 
+import subprocess
+
 from odoo import api, fields, models
 
 
@@ -41,7 +43,6 @@ class ProfilerResult(models.Model):
             import base64
             import logging
             import os
-            import subprocess
             import tempfile
 
             _logger = logging.getLogger(__name__)
@@ -86,13 +87,11 @@ class ProfilerResult(models.Model):
 
             # Create temp files
             fd, pstats_path = tempfile.mkstemp(suffix=".pstats")
-            svg_fd, svg_path = tempfile.mkstemp(suffix=".svg")
 
             try:
                 # Write pstats data to temp file
                 with os.fdopen(fd, "wb") as f:
                     f.write(stats_data)
-                os.close(svg_fd)
 
                 # Generate SVG flamegraph using flameprof
                 try:
@@ -129,8 +128,7 @@ class ProfilerResult(models.Model):
                         </div>
                         """
 
-                    with open(svg_path, "w") as svg_file:
-                        svg_file.write(result.stdout)
+                    svg_content = result.stdout
                 except FileNotFoundError:
                     return """
                     <div style="padding: 20px; background-color: #f8d7da;
@@ -157,27 +155,18 @@ class ProfilerResult(models.Model):
 
                 # Convert SVG to PNG using cairosvg to avoid SVG rendering issues
                 try:
-                    import cairosvg
+                    from importlib import import_module
 
-                    png_fd, png_path = tempfile.mkstemp(suffix=".png")
-                    os.close(png_fd)
-
-                    with open(svg_path) as svg_file:
-                        svg_content = svg_file.read()
+                    cairosvg = import_module("cairosvg")
 
                     # Convert SVG to PNG
-                    cairosvg.svg2png(
+                    png_bytes = cairosvg.svg2png(
                         bytestring=svg_content.encode("utf-8"),
-                        write_to=png_path,
                         output_width=1600,
                     )  # Set a reasonable width
 
                     # Read PNG and encode as base64 for embedding
-                    with open(png_path, "rb") as png_file:
-                        png_data = base64.b64encode(png_file.read()).decode("utf-8")
-
-                    # Clean up PNG temp file
-                    os.unlink(png_path)
+                    png_data = base64.b64encode(png_bytes).decode("utf-8")
 
                     # Embed PNG as data URL
                     html = f"""
@@ -205,8 +194,6 @@ class ProfilerResult(models.Model):
                 except ImportError:
                     _logger.warning("cairosvg not available, falling back to SVG")
                     # Fallback to SVG if cairosvg is not available
-                    with open(svg_path) as svg_file:
-                        svg_content = svg_file.read()
 
                     html = f"""
                     <style>
@@ -237,7 +224,6 @@ class ProfilerResult(models.Model):
             finally:
                 # Cleanup temp files
                 os.unlink(pstats_path)
-                os.unlink(svg_path)
 
         except ImportError:
             return (

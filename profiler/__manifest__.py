@@ -2,14 +2,14 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
 {
-    "name": "Profiler",
+    "name": "Queue Job and Thread Profiler (Yappi)",
     "version": "18.0.1.0.0",
     "category": "Tools",
     "summary": "yappi profiler decorator with database storage",
     "author": "Camptocamp, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "website": "https://github.com/OCA/server-tools",
-    "depends": ["base", "edi_exchange_template_oca"],
+    "depends": ["base"],
     "external_dependencies": {
         "python": ["yappi", "cairosvg", "flameprof"],
     },
@@ -20,4 +20,5 @@
         "views/profiler_report_views.xml",
     ],
     "installable": True,
+    "development_status": "Alpha",
 }

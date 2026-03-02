@@ -3,5 +3,4 @@
 
 from . import profiler_result
 from . import profiler_report
-from . import edi_exchange_template_output
 from . import profiler_function
