@@ -144,7 +144,8 @@ class ProfilerResult(models.Model):
                     _logger.warning("cairosvg not available, falling back to SVG")
                     # Fallback to SVG if cairosvg is not available
                     return self.env["ir.ui.view"]._render_template(
-                        "profiler.flamegraph_svg", {"svg_content": svg_content}
+                        "profiler.flamegraph_svg",
+                        {"svg_content": svg_content},
                     )
 
             finally:

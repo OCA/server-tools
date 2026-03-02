@@ -221,7 +221,7 @@
             }
         </style>
         <div class="flamegraph-wrapper">
-            <t t-out="svg_content" />
+            <t t-raw="svg_content" />
         </div>
     </template>
 </odoo>
