@@ -1,6 +1,8 @@
 # Copyright 2019 Ecosoft Co., Ltd (http://ecosoft.co.th/)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
 
+# pylint: disable=prefer-env-translation
+
 import csv
 import itertools
 import re
@@ -134,8 +136,7 @@ def get_line_max(line_field):
         try:
             if len(max_str) > 0:
                 return (line_field[:i], int(max_str))
-            else:
-                return (line_field, False)
+            return (line_field, False)
         except Exception:
             return (line_field, False)
     return (line_field, False)
@@ -213,10 +214,10 @@ def str_to_number(input_val):
         if " " not in input_val:
             if isdatetime(input_val):
                 return parse(input_val)
-            elif isinteger(input_val):
+            if isinteger(input_val):
                 if not (len(input_val) > 1 and input_val[:1] == "0"):
                     return int(input_val)
-            elif isfloat(input_val):
+            if isfloat(input_val):
                 if not (input_val.find(".") > 2 and input_val[:1] == "0"):
                     return float(input_val)
     return input_val

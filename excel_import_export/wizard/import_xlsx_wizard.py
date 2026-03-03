@@ -26,7 +26,6 @@ class ImportXLSXWizard(models.TransientModel):
     filename = fields.Char("Import File Name")
     template_id = fields.Many2one(
         "xlsx.template",
-        string="Template",
         required=True,
         ondelete="cascade",
         domain=lambda self: self._domain_template_id(),

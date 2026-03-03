@@ -9,7 +9,7 @@ from datetime import datetime as dt
 from io import BytesIO
 
 import xlrd
-import xlwt
+from openpyxl import Workbook
 
 from odoo import api, models
 from odoo.exceptions import UserError, ValidationError
@@ -31,7 +31,7 @@ class XLSXImport(models.AbstractModel):
             "datetime": dt,
             "date": date,
             "env": self.env,
-            "context": self._context,
+            "context": self.env.context,
             "value": False,
             "model": False,
         }
@@ -217,24 +217,29 @@ class XLSXImport(models.AbstractModel):
                     value = str(safe_eval(key_eval_cond, eval_context))
                 if val_eval_cond:
                     value = str(safe_eval(val_eval_cond, eval_context))
-                out_st.write(0, col_idx, field)  # Next Column
-                out_st.write(1, col_idx, value)  # Next Value
+                self._write_import_cell(out_st, 1, col_idx + 1, field)
+                self._write_import_cell(out_st, 2, col_idx + 1, value)
                 header_fields.append(field)
                 col_idx += 1
             # Line Items
             line_fields = filter(lambda x: x != "_HEAD_", worksheet)
             for line_field in line_fields:
                 vals = self._get_line_vals(st, worksheet, model, line_field, is_xlsx)
-                for field in vals:
+                for field, values in vals.items():
                     # Columns, i.e., line_ids/field_id
-                    out_st.write(0, col_idx, field)
+                    self._write_import_cell(out_st, 1, col_idx + 1, field)
                     header_fields.append(field)
                     # Data
                     i = 1
-                    for value in vals[field]:
-                        out_st.write(i, col_idx, value)
+                    for value in values:
+                        self._write_import_cell(out_st, i + 1, col_idx + 1, value)
                         i += 1
                     col_idx += 1
+
+    def _write_import_cell(self, sheet, row, column, value) -> None:
+        cell = sheet.cell(row=row, column=column, value=value)
+        if isinstance(value, str):
+            cell.data_type = "s"
 
     @api.model
     def _import_record_data(self, import_file, record, data_dict):
@@ -244,10 +249,11 @@ class XLSXImport(models.AbstractModel):
             model = record._name
             xml_id = self._generate_xml_id(record)
             decoded_data = base64.decodebytes(import_file)
-            out_wb = xlwt.Workbook()
-            out_st = out_wb.add_sheet("Sheet 1")
-            out_st.write(0, 0, "id")
-            out_st.write(1, 0, xml_id)
+            out_wb = Workbook()
+            out_st = out_wb.active
+            out_st.title = "Sheet 1"
+            self._write_import_cell(out_st, 1, 1, "id")
+            self._write_import_cell(out_st, 2, 1, xml_id)
             header_fields = ["id"]
             is_xlsx = self._is_xlsx_file()
             wb = self._load_workbook(decoded_data, is_xlsx)
@@ -304,8 +310,10 @@ class XLSXImport(models.AbstractModel):
             {
                 "res_model": model,
                 "file": xls_file,
-                "file_type": "application/vnd.ms-excel",
-                "file_name": "temp.xls",
+                "file_type": (
+                    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                ),
+                "file_name": "temp.xlsx",
             }
         )
 
