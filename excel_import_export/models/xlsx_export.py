@@ -38,7 +38,7 @@ class XLSXExport(models.AbstractModel):
             "object": record,
             "model": self.env[model],
             "env": self.env,
-            "context": self._context,
+            "context": self.env.context,
         }
         return eval_context
 

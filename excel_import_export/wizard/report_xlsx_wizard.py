@@ -1,9 +1,8 @@
 # Copyright 2019 Ecosoft Co., Ltd (http://ecosoft.co.th/)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
 
-from ast import literal_eval
-
 from odoo import fields, models
+from odoo.fields import Domain
 
 
 class ReportXLSXWizard(models.TransientModel):
@@ -14,10 +13,10 @@ class ReportXLSXWizard(models.TransientModel):
     domain = fields.Char(string="Search Criterias")
 
     def action_report(self):
-        action_id = self._context.get("report_action_id")
+        action_id = self.env.context.get("report_action_id")
         action = self.env["ir.actions.report"].browse(action_id)
         res = action.read()[0]
         return res
 
     def safe_domain(self, str_domain):
-        return literal_eval(str_domain or "[]")
+        return Domain(str_domain) or Domain()

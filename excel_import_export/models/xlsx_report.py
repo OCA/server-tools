@@ -18,7 +18,7 @@ class XLSXReport(models.AbstractModel):
         string="Template",
         required=True,
         ondelete="cascade",
-        domain=lambda self: self._context.get("template_domain", []),
+        domain=lambda self: self.env.context.get("template_domain", []),
     )
     choose_template = fields.Boolean(string="Allow Choose Template", default=False)
     state = fields.Selection(
@@ -30,7 +30,7 @@ class XLSXReport(models.AbstractModel):
 
     @api.model
     def default_get(self, fields):
-        template_domain = self._context.get("template_domain", [])
+        template_domain = self.env.context.get("template_domain", [])
         templates = self.env["xlsx.template"].search(template_domain)
         if not templates:
             raise ValidationError(self.env._("No template found"))

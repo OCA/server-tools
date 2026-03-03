@@ -6,8 +6,9 @@ import os
 from ast import literal_eval
 from os.path import join as opj
 
-from odoo import api, fields, models
+from odoo import Command, api, fields, models
 from odoo.exceptions import UserError, ValidationError
+from odoo.fields import Domain
 from odoo.modules.module import get_module_path
 
 from . import common as co
@@ -184,22 +185,23 @@ class XLSXTemplate(models.Model):
         return res
 
     def unlink(self):
-        self.env["ir.model.fields"].search(
-            [
-                ("model", "=", "report.xlsx.wizard"),
-                ("name", "=", self.mapped("result_field")),
-            ]
-        ).unlink()
+        domain = Domain("model", "in", ["report.xlsx.wizard"]) & Domain(
+            "name", "in", self.mapped("result_field")
+        )
+        self.env["ir.model.fields"].search(domain).unlink()
         return super().unlink()
 
     def _update_result_field_common_wizard(self):
         self.ensure_one()
-        _model = self.env["ir.model"].search([("model", "=", "report.xlsx.wizard")])
+        _model = self.env["ir.model"].search(
+            Domain("model", "in", ["report.xlsx.wizard"])
+        )
         _model.ensure_one()
         result_model = self.result_model_id.model
-        _field = self.env["ir.model.fields"].search(
-            [("model", "=", "report.xlsx.wizard"), ("name", "=", self.result_field)]
+        domain = Domain("model", "=", "report.xlsx.wizard") & Domain(
+            "name", "=", self.result_field
         )
+        _field = self.env["ir.model.fields"].search(domain)
         if not _field:
             _field = self.env["ir.model.fields"].create(
                 {
@@ -223,33 +225,32 @@ self[
 
     def _update_result_export_ids(self):
         self.ensure_one()
-        results = self.env["xlsx.template.export"].search(
-            [("template_id", "=", self.id), ("row_field", "=", self.result_field)]
+        domain = Domain("template_id", "in", [self.id]) & Domain(
+            "row_field", "in", [self.result_field]
         )
+        results = self.env["xlsx.template.export"].search(domain)
         if not results:
             self.export_ids.unlink()
             self.write(
                 {
                     "export_ids": [
-                        (0, 0, {"sequence": 10, "section_type": "sheet", "sheet": 1}),
-                        (
-                            0,
-                            0,
+                        Command.create(
+                            {"sequence": 10, "section_type": "sheet", "sheet": 1}
+                        ),
+                        Command.create(
                             {
                                 "sequence": 20,
                                 "section_type": "row",
                                 "row_field": self.result_field,
-                            },
+                            }
                         ),
-                        (
-                            0,
-                            0,
+                        Command.create(
                             {
                                 "sequence": 30,
                                 "section_type": "data",
                                 "excel_cell": "A1",
                                 "field_name": "id",
-                            },
+                            }
                         ),
                     ],
                 }
@@ -435,11 +436,14 @@ self[
             rec.instruction = inst_dict
 
     def _get_export_action_domain(self, model):
-        return [
-            ("binding_model_id", "=", model.id),
-            ("res_model", "=", "export.xlsx.wizard"),
-            ("name", "=", "Export Excel"),
-        ]
+        domain = Domain.AND(
+            [
+                Domain("binding_model_id", "in", [model.id]),
+                Domain("res_model", "in", ["export.xlsx.wizard"]),
+                Domain("name", "in", ["Export Excel"]),
+            ]
+        )
+        return domain
 
     def _get_export_action(self, model):
         export_action_domain = self._get_export_action_domain(model)
@@ -465,7 +469,9 @@ self[
 
     def add_export_action(self):
         self.ensure_one()
-        model = self.env["ir.model"].search([("model", "=", self.res_model)], limit=1)
+        model = self.env["ir.model"].search(
+            Domain("model", "in", [self.res_model]), limit=1
+        )
         export_action = self._get_export_action(model)
         if not export_action:
             export_action = self._create_export_action(model)
@@ -475,32 +481,30 @@ self[
         self.ensure_one()
         export_action = self.export_action_id
         self.export_action_id = False
-        if not self.search(
-            [
-                ("res_model", "=", self.res_model),
-                ("export_action_id", "=", export_action.id),
-            ]
-        ):
+        domain = Domain("res_model", "in", [self.res_model]) & Domain(
+            "export_action_id", "in", [export_action.id]
+        )
+        if not self.search(domain):
             export_action.unlink()
 
     def add_import_action(self):
         self.ensure_one()
+        model = self.env["ir.model"].search(
+            Domain("model", "in", [self.res_model]), limit=1
+        )
+        tmpl_domain = (
+            Domain("res_model", "in", [self.res_model])
+            & Domain("fname", "in", [self.fname])
+            & Domain("gname", "in", [False])
+        )
         vals = {
             "name": "Import Excel",
             "res_model": "import.xlsx.wizard",
-            "binding_model_id": self.env["ir.model"]
-            .search([("model", "=", self.res_model)])
-            .id,
+            "binding_model_id": model.id,
             "binding_type": "action",
             "target": "new",
             "view_mode": "form",
-            "context": {
-                "template_domain": [
-                    ("res_model", "=", self.res_model),
-                    ("fname", "=", self.fname),
-                    ("gname", "=", False),
-                ],
-            },
+            "context": {"template_domain": tmpl_domain},
         }
         action = self.env["ir.actions.act_window"].create(vals)
         self.import_action_id = action
@@ -590,7 +594,7 @@ class XLSXTemplateImport(models.Model):
 
     @api.model
     def _extract_field_name(self, vals):
-        if self._context.get("compute_from_input") and vals.get("field_name"):
+        if self.env.context.get("compute_from_input") and vals.get("field_name"):
             field_name, field_cond = co.get_field_condition(vals["field_name"])
             field_cond = field_cond and f"${{{field_cond or ''}}}" or False
             vals.update({"field_name": field_name, "field_cond": field_cond})
@@ -639,7 +643,7 @@ class XLSXTemplateExport(models.Model):
 
     @api.model
     def _extract_field_name(self, vals):
-        if self._context.get("compute_from_input") and vals.get("field_name"):
+        if self.env.context.get("compute_from_input") and vals.get("field_name"):
             field_name, field_cond = co.get_field_condition(vals["field_name"])
             field_cond = field_cond or 'value or ""'
             field_name, style = co.get_field_style(field_name)

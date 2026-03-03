@@ -3,6 +3,7 @@
 
 from odoo import api, fields, models
 from odoo.exceptions import UserError
+from odoo.fields import Domain
 
 
 class ReportAction(models.Model):
@@ -18,9 +19,10 @@ class ReportAction(models.Model):
             raise UserError(
                 self.env._("Only one id is allowed for excel_import_export")
             )
-        xlsx_template = self.env["xlsx.template"].search(
-            [("fname", "=", self.report_name), ("res_model", "=", self.model)]
+        domain = Domain("fname", "in", [self.report_name]) & Domain(
+            "res_model", "in", [self.model]
         )
+        xlsx_template = self.env["xlsx.template"].search(domain)
         if not xlsx_template or len(xlsx_template) != 1:
             raise UserError(
                 self.env._(
@@ -37,9 +39,8 @@ class ReportAction(models.Model):
         if res:
             return res
         report_obj = self.env["ir.actions.report"]
-        domain = [
-            ("report_type", "=", "excel"),
-            ("report_name", "=", report_name),
-        ]
+        domain = Domain("report_type", "in", ["excel"]) & Domain(
+            "report_name", "in", [report_name]
+        )
         context = self.env["res.users"].context_get()
         return report_obj.with_context(**context).search(domain, limit=1)

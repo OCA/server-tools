@@ -21,13 +21,13 @@ Excel Import/Export/Report
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github
-    :target: https://github.com/OCA/server-tools/tree/18.0/excel_import_export
+    :target: https://github.com/OCA/server-tools/tree/19.0/excel_import_export
     :alt: OCA/server-tools
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/server-tools-18-0/server-tools-18-0-excel_import_export
+    :target: https://translation.odoo-community.org/projects/server-tools-19-0/server-tools-19-0-excel_import_export
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/server-tools&target_branch=18.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/server-tools&target_branch=19.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
@@ -37,13 +37,13 @@ build excel import / export / report with ease.
 
 Without having to code to create excel file, developer do,
 
-- Create menu, action, wizard, model, view a normal Odoo development.
-- Design excel template using standard Excel application, e.g., colors,
-  fonts, formulas, etc.
-- Instruct how the data will be located in Excel with simple dictionary
-  instruction or from Odoo UI.
-- Odoo will combine instruction with excel template, and result in final
-  excel file.
+-  Create menu, action, wizard, model, view a normal Odoo development.
+-  Design excel template using standard Excel application, e.g., colors,
+   fonts, formulas, etc.
+-  Instruct how the data will be located in Excel with simple dictionary
+   instruction or from Odoo UI.
+-  Odoo will combine instruction with excel template, and result in
+   final excel file.
 
 **Table of contents**
 
@@ -78,12 +78,12 @@ importing and reporting easy.
 
 At the heart of this module, there are 2 main methods
 
-- ``self.env['xlsx.export'].export_xlsx(...)``
-- ``self.env['xlsx.import'].import_xlsx(...)``
+-  ``self.env['xlsx.export'].export_xlsx(...)``
+-  ``self.env['xlsx.import'].import_xlsx(...)``
 
 For reporting, also call export_xlsx(...) but through following method
 
-- ``self.env['xslx.report'].report_xlsx(...)``
+-  ``self.env['xslx.report'].report_xlsx(...)``
 
 After install this module, go to Settings > Technical > Excel
 Import/Export > XLSX Templates, this is where the key component located.
@@ -179,11 +179,11 @@ configuration only.
 2. On the new template, select "Easy Reporting" option, then select
    followings
 
-   - Report Model, this can be data model or data view we want to get
-     the results from.
-   - Click upload your file and add the excel template (.xlsx)
-   - Click Save, system will create sample export line, user can add
-     more fields according to results model.
+   -  Report Model, this can be data model or data view we want to get
+      the results from.
+   -  Click upload your file and add the excel template (.xlsx)
+   -  Click Save, system will create sample export line, user can add
+      more fields according to results model.
 
 3. Click Add Report Menu, the report menu will be created, user can
    change its location. Now the report is ready to use.
@@ -197,14 +197,14 @@ wizard.
 
    |image2|
 
-.. |image1| image:: https://raw.githubusercontent.com/OCA/server-tools/18.0/excel_import_export/static/description/xlsx_template.png
-.. |image2| image:: https://raw.githubusercontent.com/OCA/server-tools/18.0/excel_import_export/static/description/common_wizard.png
+.. |image1| image:: https://raw.githubusercontent.com/OCA/server-tools/19.0/excel_import_export/static/description/xlsx_template.png
+.. |image2| image:: https://raw.githubusercontent.com/OCA/server-tools/19.0/excel_import_export/static/description/common_wizard.png
 
 Known issues / Roadmap
 ======================
 
-- Module extension e.g., excel_import_export_async, that add ability to
-  execute as async process.
+-  Module extension e.g., excel_import_export_async, that add ability to
+   execute as async process.
 
 Bug Tracker
 ===========
@@ -212,7 +212,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/server-tools/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/server-tools/issues/new?body=module:%20excel_import_export%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/server-tools/issues/new?body=module:%20excel_import_export%0Aversion:%2019.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -227,9 +227,12 @@ Authors
 Contributors
 ------------
 
-- Kitti Upariphutthiphong. <kittiu@gmail.com> (http://ecosoft.co.th)
-- Saran Lim. <saranl@ecosoft.co.th> (http://ecosoft.co.th)
-- Do Anh Duy <duyda@trobz.com>
+-  Kitti Upariphutthiphong. <kittiu@gmail.com> (http://ecosoft.co.th)
+-  Saran Lim. <saranl@ecosoft.co.th> (http://ecosoft.co.th)
+-  Do Anh Duy <duyda@trobz.com>
+-  `Studio73, S.L. <https://www.studio73.es/>`__
+
+   -  Pablo Cortés
 
 Maintainers
 -----------
@@ -252,6 +255,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-kittiu| 
 
-This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/18.0/excel_import_export>`_ project on GitHub.
+This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/19.0/excel_import_export>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

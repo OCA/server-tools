@@ -44,9 +44,9 @@ class ExportXLSXWizard(models.TransientModel):
 
     @api.model
     def default_get(self, fields):
-        res_model = self._context.get("active_model", False)
-        res_ids = self._context.get("active_ids", False)
-        template_domain = self._context.get("template_domain", [])
+        res_model = self.env.context.get("active_model", False)
+        res_ids = self.env.context.get("active_ids", False)
+        template_domain = self.env.context.get("template_domain", [])
         templates = self.env["xlsx.template"].search(template_domain)
         if not templates:
             raise ValidationError(self.env._("No template found"))

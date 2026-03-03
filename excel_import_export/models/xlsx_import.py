@@ -31,7 +31,7 @@ class XLSXImport(models.AbstractModel):
             "datetime": dt,
             "date": date,
             "env": self.env,
-            "context": self._context,
+            "context": self.env.context,
             "value": False,
             "model": False,
         }
@@ -225,13 +225,13 @@ class XLSXImport(models.AbstractModel):
             line_fields = filter(lambda x: x != "_HEAD_", worksheet)
             for line_field in line_fields:
                 vals = self._get_line_vals(st, worksheet, model, line_field, is_xlsx)
-                for field in vals:
+                for field, values in vals.items():
                     # Columns, i.e., line_ids/field_id
                     out_st.write(0, col_idx, field)
                     header_fields.append(field)
                     # Data
                     i = 1
-                    for value in vals[field]:
+                    for value in values:
                         out_st.write(i, col_idx, value)
                         i += 1
                     col_idx += 1
