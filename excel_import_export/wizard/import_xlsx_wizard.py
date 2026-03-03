@@ -87,8 +87,7 @@ class ImportXLSXWizard(models.TransientModel):
                     valid = False
                     messages.append(
                         self.env._(
-                            "This import action is not usable "
-                            "in this document context"
+                            "This import action is not usable in this document context"
                         )
                     )
                     break

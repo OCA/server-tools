@@ -49,8 +49,7 @@ class ReportExcelController(ReportController):
             excelhttpheaders = [
                 (
                     "Content-Type",
-                    "application/vnd.openxmlformats-"
-                    "officedocument.spreadsheetml.sheet",
+                    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
                 ),
                 ("Content-Length", len(excel)),
                 ("Content-Disposition", content_disposition(report_name)),
