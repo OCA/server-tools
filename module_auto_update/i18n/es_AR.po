@@ -1,0 +1,49 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* module_auto_update
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2023-06-09 16:09+0000\n"
+"Last-Translator: Ignacio Buioli <ibuioli@gmail.com>\n"
+"Language-Team: none\n"
+"Language: es_AR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: module_auto_update
+#: model:ir.actions.server,name:module_auto_update.ir_module_module_upgrade_changed_checksum
+#: model:ir.ui.menu,name:module_auto_update.menu_ir_module_module_upgrade_changed_checksum
+msgid "Auto-Upgrade Modules"
+msgstr "Módulos Auto-Actualizables"
+
+#. module: module_auto_update
+#. odoo-python
+#: code:addons/module_auto_update/models/module.py:0
+msgid "Checksum upgrade complete."
+msgstr "Actualización de suma de comprobación completa."
+
+#. module: module_auto_update
+#: model:ir.model,name:module_auto_update.model_ir_module_module
+msgid "Module"
+msgstr "Módulo"
+
+#. module: module_auto_update
+#. odoo-python
+#: code:addons/module_auto_update/models/module.py:0
+msgid ""
+"No checksum change detected in installed modules and all modules installed, "
+"nothing to do."
+msgstr ""
+"No se detectó ningún cambio de suma de comprobación en los módulos "
+"instalados y todos los módulos instalados, nada que hacer."
+
+#. module: module_auto_update
+#: model:ir.model.fields,field_description:module_auto_update.field_ir_module_module__smart_search
+msgid "Smart Search"
+msgstr "Búsqueda Inteligente"
