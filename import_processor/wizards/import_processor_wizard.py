@@ -16,7 +16,7 @@ class ImporterProcessorWizard(models.TransientModel):
         domain='[("model_name", "=", model)]',
     )
     file_upload = fields.Binary()
-    message = fields.Text(readonly=True)
+    message = fields.Text()
 
     @api.onchange("model")
     def onchange_model(self):

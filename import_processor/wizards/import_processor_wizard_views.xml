@@ -13,7 +13,7 @@
                             required="1"
                         />
                         <field name="file_upload" required="1" />
-                        <field name="message" />
+                        <field name="message" readonly="True" />
                     </group>
                 </sheet>
                 <footer>

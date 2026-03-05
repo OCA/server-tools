@@ -24,7 +24,7 @@
                         <field name="file_type" />
                         <field
                             name="file_encoding"
-                            attrs="{'invisible': [('file_type', 'not in', ('csv', 'json'))]}"
+                            invisible="file_type not in ('csv', 'json')"
                         />
                         <field name="compression" />
                         <field name="chunk_size" />
@@ -33,7 +33,7 @@
                     <group
                         string="CSV Settings"
                         name="csv"
-                        attrs="{'invisible': [('file_type', '!=', 'csv')]}"
+                        invisible="file_type != 'csv'"
                     >
                         <field name="csv_delimiter" />
                         <field name="csv_quotechar" />
@@ -43,23 +43,17 @@
                     <group
                         string="JSON Settings"
                         name="csv"
-                        attrs="{'invisible': [('file_type', '!=', 'json')]}"
+                        invisible="file_type != 'json'"
                     >
-                        <field
-                            name="json_path_entry"
-                            attrs="{'required': [('file_type', '=', 'json')]}"
-                        />
+                        <field name="json_path_entry" required="file_type != 'json'" />
                     </group>
 
                     <group
                         string="XML Settings"
                         name="csv"
-                        attrs="{'invisible': [('file_type', '!=', 'xml')]}"
+                        invisible="file_type != 'xml'"
                     >
-                        <field
-                            name="xml_path_entry"
-                            attrs="{'required': [('file_type', '=', 'xml')]}"
-                        />
+                        <field name="xml_path_entry" required="file_type != 'xml'" />
                         <field
                             name="xml_namespaces"
                             widget="ace"
@@ -70,7 +64,7 @@
                     <group
                         string="Tabular Settings"
                         name="tabular"
-                        attrs="{'invisible': [('file_type', 'not in', ('xlsx',))]}"
+                        invisible="file_type not in ('xlsx', )"
                     >
                         <field name="tabular_sheet_name" />
                         <field name="tabular_sheet_index" />
@@ -106,7 +100,7 @@
                                     <h3>Help with Python expressions</h3>
                                     <p
                                     >Various fields may use Python code or Python expressions. The python environments are passed between the pre-processor, code, and post-processor. The following variables are additionally defined:</p>
-                                    <field name="help_text" />
+                                    <field name="help_text" readonly="True" />
                                 </div>
                             </group>
                         </page>

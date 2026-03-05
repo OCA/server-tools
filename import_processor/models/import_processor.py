@@ -120,7 +120,7 @@ class ImportProcessor(models.Model):
     processor = fields.Text(default=lambda self: self._get_default_code(True))
     preprocessor = fields.Text(default=_get_default_code)
     postprocessor = fields.Text(default=_get_default_code)
-    help_text = fields.Html(compute="_compute_help_text", readonly=True, store=False)
+    help_text = fields.Html(compute="_compute_help_text", store=False)
     file_encoding = fields.Char()
     compression = fields.Selection(_get_compression)
     chunk_size = fields.Integer(
@@ -281,7 +281,7 @@ class ImportProcessor(models.Model):
             header = next(backup)
 
         def prepare_line(line):
-            return dict(list(zip(header, line))[::-1])
+            return dict(list(zip(header, line, strict=False))[::-1])
 
         for data in chunking(map(prepare_line, backup), self.chunk_size):
             self.process_entry(process_uuid, data, localdict)
@@ -395,7 +395,9 @@ class ImportProcessor(models.Model):
             next(reader)
 
         def prepare_line(line):
-            entry = [(h, cell.value) for h, cell in zip(header, line[col:])]
+            entry = [
+                (h, cell.value) for h, cell in zip(header, line[col:], strict=False)
+            ]
             return dict(entry[::-1])
 
         # The next line is the field header. Afterwards parse every line
