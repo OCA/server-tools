@@ -1,11 +1,11 @@
 /** @odoo-module **/
 
-import core from 'web.core';
-import { DropdownItem } from "@web/core/dropdown/dropdown_item";
-import { registry } from "@web/core/registry";
-import { useService } from "@web/core/utils/hooks";
+import core from "web.core";
+import {DropdownItem} from "@web/core/dropdown/dropdown_item";
+import {registry} from "@web/core/registry";
+import {useService} from "@web/core/utils/hooks";
 
-const { Component } = owl;
+const {Component} = owl;
 const favoriteMenuRegistry = registry.category("favoriteMenu");
 
 const _t = core._t;
@@ -26,7 +26,7 @@ export class GenImportMenu extends Component {
      * @private
      */
     _onImportClick() {
-        const { context, resModel } = this.env.searchModel;
+        const {context, resModel} = this.env.searchModel;
         this.action.doAction({
             type: "ir.actions.act_window",
             name: _t("Import Processor"),
@@ -42,17 +42,17 @@ export class GenImportMenu extends Component {
 }
 
 GenImportMenu.template = "import_processor.ProcessorMenu";
-GenImportMenu.components = { DropdownItem };
+GenImportMenu.components = {DropdownItem};
 
 export const importerItem = {
     Component: GenImportMenu,
     groupNumber: 4,
-    isDisplayed: ({ config, isSmall }) =>
+    isDisplayed: ({config, isSmall}) =>
         !isSmall &&
         config.actionType === "ir.actions.act_window" &&
         ["kanban", "list"].includes(config.viewType) &&
-        !!JSON.parse(config.viewArch.getAttribute("import") || "1") &&
-        !!JSON.parse(config.viewArch.getAttribute("create") || "1"),
+        Boolean(JSON.parse(config.viewArch.getAttribute("import") || "1")) &&
+        Boolean(JSON.parse(config.viewArch.getAttribute("create") || "1")),
 };
 
-favoriteMenuRegistry.add("importer", importerItem, { sequence: 1 });
+favoriteMenuRegistry.add("importer", importerItem, {sequence: 1});
