@@ -1,9 +1,7 @@
-/** @odoo-module **/
-
-import core from "web.core";
 import {DropdownItem} from "@web/core/dropdown/dropdown_item";
 import {registry} from "@web/core/registry";
 import {useService} from "@web/core/utils/hooks";
+import core from "web.core";
 
 const {Component} = owl;
 const favoriteMenuRegistry = registry.category("favoriteMenu");
@@ -26,7 +24,7 @@ export class GenImportMenu extends Component {
      * @private
      */
     _onImportClick() {
-        const {context, resModel} = this.env.searchModel;
+        const {resModel} = this.env.searchModel;
         this.action.doAction({
             type: "ir.actions.act_window",
             name: _t("Import Processor"),

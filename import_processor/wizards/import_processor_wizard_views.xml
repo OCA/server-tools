@@ -6,7 +6,7 @@
             <form>
                 <sheet>
                     <group>
-                        <field name="model" invisible="1" />
+                        <field name="model" />
                         <field
                             name="processor_id"
                             options="{'no_create': True, 'no_open': True}"

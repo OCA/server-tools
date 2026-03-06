@@ -149,10 +149,10 @@ class ImportProcessor(models.Model):
     tabular_row_offset = fields.Integer("Sheet Row Offset", default=0)
 
     @api.model
-    def _name_search(
+    def _search_display_name(
         self, name="", args=None, operator="ilike", limit=100, name_get_uid=None
     ):
-        return super(ImportProcessor, self.sudo())._name_search(
+        return super(ImportProcessor, self.sudo())._search_display_name(
             name=name,
             args=args,
             operator=operator,
