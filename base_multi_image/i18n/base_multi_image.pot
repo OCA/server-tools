@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -24,15 +24,23 @@ msgid " image model for multiple image functionality "
 msgstr ""
 
 #. module: base_multi_image
-#: code:addons/base_multi_image/models/image.py:0
+#: model_terms:ir.ui.view,arch_db:base_multi_image.image_kanban_view
+msgid "<span class=\"float-end\">X</span>"
+msgstr ""
+
+#. module: base_multi_image
 #: model:ir.model.constraint,message:base_multi_image.constraint_base_multi_image_image_uniq_name_owner
-#, python-format
 msgid "A document can have only one image with the same name."
 msgstr ""
 
 #. module: base_multi_image
-#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__attachment_id
+#: model:ir.model.fields.selection,name:base_multi_image.selection__base_multi_image_image__storage__attachment
 msgid "Attachment"
+msgstr ""
+
+#. module: base_multi_image
+#: model_terms:ir.ui.view,arch_db:base_multi_image.image_form_view
+msgid "Basic Information"
 msgstr ""
 
 #. module: base_multi_image
@@ -82,7 +90,7 @@ msgid "Filestore"
 msgstr ""
 
 #. module: base_multi_image
-#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__image_main
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__image_1920
 msgid "Full-sized image"
 msgstr ""
 
@@ -92,8 +100,30 @@ msgid "ID"
 msgstr ""
 
 #. module: base_multi_image
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__attachment_image
 #: model_terms:ir.ui.view,arch_db:base_multi_image.image_form_view
+#: model_terms:ir.ui.view,arch_db:base_multi_image.image_tree_view
 msgid "Image"
+msgstr ""
+
+#. module: base_multi_image
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__image_1024
+msgid "Image 1024"
+msgstr ""
+
+#. module: base_multi_image
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__image_128
+msgid "Image 128"
+msgstr ""
+
+#. module: base_multi_image
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__image_256
+msgid "Image 256"
+msgstr ""
+
+#. module: base_multi_image
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__image_512
+msgid "Image 512"
 msgstr ""
 
 #. module: base_multi_image
@@ -105,6 +135,11 @@ msgstr ""
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__url
 msgid "Image remote URL"
+msgstr ""
+
+#. module: base_multi_image
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__attachment_id
+msgid "Image stored in Attachment"
 msgstr ""
 
 #. module: base_multi_image
@@ -123,11 +158,6 @@ msgid "Images"
 msgstr ""
 
 #. module: base_multi_image
-#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image____last_update
-msgid "Last Modified on"
-msgstr ""
-
-#. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__write_uid
 msgid "Last Updated by"
 msgstr ""
@@ -138,28 +168,10 @@ msgid "Last Updated on"
 msgstr ""
 
 #. module: base_multi_image
+#. odoo-python
 #: code:addons/base_multi_image/models/owner.py:0
-#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_owner__image_main
-#, python-format
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_owner__image_1920
 msgid "Main image"
-msgstr ""
-
-#. module: base_multi_image
-#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_owner__image_main_medium
-msgid "Medium image"
-msgstr ""
-
-#. module: base_multi_image
-#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__image_medium
-msgid "Medium-sized image"
-msgstr ""
-
-#. module: base_multi_image
-#: model:ir.model.fields,help:base_multi_image.field_base_multi_image_image__image_medium
-msgid ""
-"Medium-sized image. It is automatically resized as a 128 x 128 px image, "
-"with aspect ratio preserved, only when the image exceeds one of those sizes."
-" Use this field in form views or kanban views."
 msgstr ""
 
 #. module: base_multi_image
@@ -220,23 +232,6 @@ msgid "Show Technical"
 msgstr ""
 
 #. module: base_multi_image
-#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_owner__image_main_small
-msgid "Small image"
-msgstr ""
-
-#. module: base_multi_image
-#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__image_small
-msgid "Small-sized image"
-msgstr ""
-
-#. module: base_multi_image
-#: model:ir.model.fields,help:base_multi_image.field_base_multi_image_image__image_small
-msgid ""
-"Small-sized image. It is automatically resized as a 64 x 64 px image, with "
-"aspect ratio preserved. Use this field anywhere a small image is required."
-msgstr ""
-
-#. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__storage
 msgid "Storage"
 msgstr ""
@@ -247,25 +242,30 @@ msgid "URL"
 msgstr ""
 
 #. module: base_multi_image
+#. odoo-python
 #: code:addons/base_multi_image/models/image.py:0
-#, python-format
 msgid "You must provide a file path for the image."
 msgstr ""
 
 #. module: base_multi_image
+#. odoo-python
 #: code:addons/base_multi_image/models/image.py:0
-#, python-format
 msgid "You must provide an URL for the image."
 msgstr ""
 
 #. module: base_multi_image
+#. odoo-python
 #: code:addons/base_multi_image/models/image.py:0
-#, python-format
-msgid "You must provide an attached file for the image."
+msgid "You must upload image to store in database."
 msgstr ""
 
 #. module: base_multi_image
+#. odoo-python
 #: code:addons/base_multi_image/models/image.py:0
-#, python-format
-msgid "You must provide an attachment for the image."
+msgid "You must upload image."
+msgstr ""
+
+#. module: base_multi_image
+#: model_terms:ir.ui.view,arch_db:base_multi_image.image_kanban_view
+msgid "record.name"
 msgstr ""
