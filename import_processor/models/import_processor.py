@@ -13,7 +13,7 @@ import chardet
 from lxml import etree
 from pytz import timezone
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools import safe_eval
 
@@ -74,7 +74,7 @@ def chunking(items, size):
 
 class ImportProcessor(models.Model):
     _name = "import.processor"
-    _description = _("Generic Import Processor")
+    _description = "Generic Import Processor"
     _order = "name"
 
     def _get_file_types(self):
@@ -87,15 +87,15 @@ class ImportProcessor(models.Model):
 
     def _get_csv_delimiter(self):
         return [
-            ("comma", _("Comma")),
-            ("semicolon", _("Semicolon")),
-            ("tab", _("Tab")),
+            ("comma", self.env._("Comma")),
+            ("semicolon", self.env._("Semicolon")),
+            ("tab", self.env._("Tab")),
         ]
 
     def _get_compression(self):
         return [
-            ("zip_one", _("Zipped File")),
-            ("zip_all", _("Multiple Zipped Files")),
+            ("zip_one", self.env._("Zipped File")),
+            ("zip_all", self.env._("Multiple Zipped Files")),
         ]
 
     def _get_default_code(self, entry=False):
@@ -118,8 +118,8 @@ class ImportProcessor(models.Model):
     model_name = fields.Char(related="model_id.model", related_sudo=True)
     file_type = fields.Selection(_get_file_types, default="csv", required=True)
     processor = fields.Text(default=lambda self: self._get_default_code(True))
-    preprocessor = fields.Text(default=_get_default_code)
-    postprocessor = fields.Text(default=_get_default_code)
+    preprocessor = fields.Text(default=lambda self: self._get_default_code())
+    postprocessor = fields.Text(default=lambda self: self._get_default_code())
     help_text = fields.Html(compute="_compute_help_text", store=False)
     file_encoding = fields.Char()
     compression = fields.Selection(_get_compression)
@@ -168,7 +168,7 @@ class ImportProcessor(models.Model):
             lines.append(f"<li>{', '.join(sorted(var))}: {desc}</li>")
 
         desc = "\n".join(lines)
-        self.write({"help_text": f"<ul>{desc}</ul>"})
+        self.update({"help_text": f"<ul>{desc}</ul>"})
 
     def _get_eval_context(self):
         self.ensure_one()
@@ -230,7 +230,7 @@ class ImportProcessor(models.Model):
         localdict.update(self._get_eval_context())
         localdict.update({"entry": entry, "process_uuid": process_uuid, **kwargs})
 
-        safe_eval.safe_eval(self.processor, localdict, mode="exec", nocopy=True)
+        safe_eval.safe_eval(self.processor, localdict, mode="exec")
         localdict.pop("entry", None)
         for key in kwargs:
             localdict.pop(key, None)
@@ -243,14 +243,14 @@ class ImportProcessor(models.Model):
         if self.preprocessor:
             localdict["process_uuid"] = process_uuid
             localdict.update(self._get_eval_context())
-            safe_eval.safe_eval(self.preprocessor, localdict, mode="exec", nocopy=True)
+            safe_eval.safe_eval(self.preprocessor, localdict, mode="exec")
 
     def _post_process(self, process_uuid, localdict):
         # Reset the pre-defined values
         if self.postprocessor:
             localdict["process_uuid"] = process_uuid
             localdict.update(self._get_eval_context())
-            safe_eval.safe_eval(self.postprocessor, localdict, mode="exec", nocopy=True)
+            safe_eval.safe_eval(self.postprocessor, localdict, mode="exec")
 
     def _process_csv(self, process_uuid, file):
         if isinstance(file, bytes):
@@ -307,7 +307,7 @@ class ImportProcessor(models.Model):
         # Check and apply the JSONpath if module is available
         if self.json_path_entry and not jsonpath:
             raise UserError(
-                _(
+                self.env._(
                     "The JSONPath isn't available because the module jsonpath-ng is "
                     "missing. Please contact your administrator"
                 )
@@ -320,7 +320,7 @@ class ImportProcessor(models.Model):
             elif all(isinstance(x.path, jsonpath.Fields) for x in found):
                 root = {str(x.path): x.value for x in found}
             else:
-                raise UserError(_("Unexpected JSON file"))
+                raise UserError(self.env._("Unexpected JSON file"))
 
         if isinstance(root, dict):
             iterator = root.items()
@@ -359,7 +359,7 @@ class ImportProcessor(models.Model):
     def _process_xlsx(self, process_uuid, file):
         if not openpyxl:
             raise UserError(
-                _(
+                self.env._(
                     "The XLSX processing isn't available because openpyxl is "
                     "missing. Please contact your administrator"
                 )
@@ -431,7 +431,7 @@ class ImportProcessor(models.Model):
                     return method(process_uuid, file)
 
             if self.compression == "zip_one" and len(zipped.filelist) != 1:
-                raise UserError(_("Expected only 1 file."))
+                raise UserError(self.env._("Expected only 1 file."))
 
             result = self._get_model()
             for zipped_file in zipped.filelist:

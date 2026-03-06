@@ -3,12 +3,12 @@
 
 import base64
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 
 
 class ImporterProcessorWizard(models.TransientModel):
     _name = "import.processor.wizard"
-    _description = _("Import Processor Wizard")
+    _description = "Import Processor Wizard"
 
     model = fields.Char()
     processor_id = fields.Many2one(
@@ -34,13 +34,15 @@ class ImporterProcessorWizard(models.TransientModel):
         records = self.processor_id.process(base64.decodebytes(self.file_upload))
         return {
             "type": "ir.actions.act_window",
-            "name": _("Import Processor"),
+            "name": self.env._("Import Processor"),
             "target": "new",
             "view_mode": "form",
             "res_model": self._name,
             "context": {
                 "default_model": self.model,
-                "default_message": _("Imported %s record(s)") % len(records),
+                "default_message": self.env._(
+                    "Processed %(count)s record(s)", count=len(records)
+                ),
                 "default_processor_id": self.processor_id.id,
             },
         }

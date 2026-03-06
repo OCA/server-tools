@@ -5,7 +5,7 @@
     "name": "Import Processor",
     "summary": "Generic import processor",
     "license": "AGPL-3",
-    "version": "18.0.1.0.0",
+    "version": "19.0.1.0.0",
     "website": "https://github.com/OCA/server-tools",
     "application": True,
     "author": "initOS GmbH, Odoo Community Association (OCA)",
@@ -14,6 +14,11 @@
         "base",
         "web",
     ],
+    "external_dependencies": {
+        "python": [
+            "jsonpath_ng",
+        ],
+    },
     "data": [
         "security/ir.model.access.csv",
         "views/import_processor_views.xml",

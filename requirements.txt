@@ -1,5 +1,6 @@
 # generated from manifests external_dependencies
 dataclasses
+jsonpath_ng
 numpy
 odoorpc
 openupgradelib
