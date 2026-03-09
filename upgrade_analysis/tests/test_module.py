@@ -136,6 +136,7 @@ class TestUpgradeAnalysis(common.TransactionCase):
                             name="module_ids"
                             eval="[Command.set([ref('base.module_web')])]"
                         />
+                        <field name="display_name">some name</field>
                     </record>
                     """
                 ),
@@ -150,3 +151,4 @@ class TestUpgradeAnalysis(common.TransactionCase):
             },
         )
         self.assertIn('<field name="module_ids" eval="None"/>', diff)
+        self.assertIn('<field name="display_name"/>', diff)

@@ -370,7 +370,9 @@ class UpgradeAnalysis(models.Model):
                         # (usually None)
                         model = self.env[local_record.attrib["model"]]
                         field = model._fields[attribs["name"]]
-                        attribs["eval"] = ast.unparse(ast.Constant(field.falsy_value))
+                        eval_constant = ast.unparse(ast.Constant(field.falsy_value))
+                        if eval_constant != "''":
+                            attribs["eval"] = eval_constant
                     element.append(etree.Element(record_remote_dict[key].tag, attribs))
                 else:
                     oldrepr = self._get_node_value(record_remote_dict[key])
