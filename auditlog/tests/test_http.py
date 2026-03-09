@@ -31,7 +31,11 @@ class TestAuditlogHttp(HttpCase, AuditLogRuleCommon):
             },
         )
         logs = self.env["auditlog.log"].search(
-            [("model_id", "=", rule.model_id.id), ("res_id", "=", partner.id)]
+            [
+                ("model_id", "=", rule.model_id.id),
+                ("res_id", "=", partner.id),
+                ("line_ids.field_name", "=", "name"),
+            ]
         )
         self.assertEqual(len(logs), 1)
         http_request_id = logs[0]["http_request_id"]
