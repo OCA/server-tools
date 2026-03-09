@@ -221,6 +221,7 @@ class AuditlogRule(models.Model):
             new_method = self._make_create()
         elif method_name == "read":
             new_method = self._make_read()
+            new_method._readonly = False
         elif method_name == "write":
             new_method = self._make_write()
         elif method_name == "unlink":
