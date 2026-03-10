@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-06 02:24+0000\n"
-"PO-Revision-Date: 2023-12-29 17:36+0000\n"
+"PO-Revision-Date: 2026-03-10 11:45+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -18,17 +18,17 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: base_multi_image
 #: model:ir.model,name:base_multi_image.model_base_multi_image_owner
 msgid " Wizard for base multi image "
-msgstr ""
+msgstr " Procedura guidata per immagine multipla base "
 
 #. module: base_multi_image
 #: model:ir.model,name:base_multi_image.model_base_multi_image_image
 msgid " image model for multiple image functionality "
-msgstr ""
+msgstr " modello immagine per funzionalità immagine multipla "
 
 #. module: base_multi_image
 #: code:addons/base_multi_image/models/image.py:0
@@ -45,7 +45,7 @@ msgstr "Allegato"
 #. module: base_multi_image
 #: model_terms:ir.actions.act_window,help:base_multi_image.image_action
 msgid "Click to add an image attached to an specific record."
-msgstr ""
+msgstr "Fare clic per aggiungere una immagine allegata ad un record specifico."
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__comments
@@ -86,12 +86,12 @@ msgstr "Nome file"
 #. module: base_multi_image
 #: model:ir.model.fields.selection,name:base_multi_image.selection__base_multi_image_image__storage__filestore
 msgid "Filestore"
-msgstr ""
+msgstr "Filestore"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__image_main
 msgid "Full-sized image"
-msgstr ""
+msgstr "Immagine a pieno formato"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__id
@@ -154,12 +154,12 @@ msgstr "Immagine principale"
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_owner__image_main_medium
 msgid "Medium image"
-msgstr ""
+msgstr "Immagine media"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__image_medium
 msgid "Medium-sized image"
-msgstr ""
+msgstr "Immagine dimensione media"
 
 #. module: base_multi_image
 #: model:ir.model.fields,help:base_multi_image.field_base_multi_image_image__image_medium
@@ -168,6 +168,9 @@ msgid ""
 "with aspect ratio preserved, only when the image exceeds one of those sizes. "
 "Use this field in form views or kanban views."
 msgstr ""
+"Immagine dimensioni medie. Viene automaticamente ridimensionata a 128 x 128 "
+"px, mantenendo le proporzioni, solo quando l'immagine supera una di queste "
+"dimensioni. Utilizzare questo campo nelle visualizzazioni modulo o Kanban."
 
 #. module: base_multi_image
 #: model:ir.actions.act_window,name:base_multi_image.image_action
@@ -183,7 +186,7 @@ msgstr "Nome"
 #. module: base_multi_image
 #: model:ir.model.fields.selection,name:base_multi_image.selection__base_multi_image_image__storage__file
 msgid "OS file"
-msgstr ""
+msgstr "File SO"
 
 #. module: base_multi_image
 #: model_terms:ir.ui.view,arch_db:base_multi_image.image_form_view
@@ -199,7 +202,7 @@ msgstr "Proprietario"
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__owner_model
 msgid "Owner Model"
-msgstr ""
+msgstr "Modello proprietario"
 
 #. module: base_multi_image
 #: model_terms:ir.ui.view,arch_db:base_multi_image.image_form_view
@@ -214,7 +217,7 @@ msgstr "Immagini del Prodotto"
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__owner_ref_id
 msgid "Referenced Owner"
-msgstr ""
+msgstr "Riferimento proprietario"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__sequence
@@ -224,17 +227,17 @@ msgstr "Sequenza"
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__show_technical
 msgid "Show Technical"
-msgstr ""
+msgstr "Visualizza tecnica"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_owner__image_main_small
 msgid "Small image"
-msgstr ""
+msgstr "Immagine piccola"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__image_small
 msgid "Small-sized image"
-msgstr ""
+msgstr "Immagine dimensione piccola"
 
 #. module: base_multi_image
 #: model:ir.model.fields,help:base_multi_image.field_base_multi_image_image__image_small
@@ -242,11 +245,14 @@ msgid ""
 "Small-sized image. It is automatically resized as a 64 x 64 px image, with "
 "aspect ratio preserved. Use this field anywhere a small image is required."
 msgstr ""
+"Immagine di piccole dimensioni. Viene automaticamente ridimensionata a 64 x "
+"64 px, mantenendo le proporzioni. Utilizza questo campo ovunque sia "
+"richiesta un'immagine di piccole dimensioni."
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__storage
 msgid "Storage"
-msgstr ""
+msgstr "Deposito"
 
 #. module: base_multi_image
 #: model:ir.model.fields.selection,name:base_multi_image.selection__base_multi_image_image__storage__url
@@ -257,22 +263,22 @@ msgstr "URL"
 #: code:addons/base_multi_image/models/image.py:0
 #, python-format
 msgid "You must provide a file path for the image."
-msgstr ""
+msgstr "Bisogna fornire un percorso file per l'immagine."
 
 #. module: base_multi_image
 #: code:addons/base_multi_image/models/image.py:0
 #, python-format
 msgid "You must provide an URL for the image."
-msgstr ""
+msgstr "Bisogna fornire un URL per l'immagine."
 
 #. module: base_multi_image
 #: code:addons/base_multi_image/models/image.py:0
 #, python-format
 msgid "You must provide an attached file for the image."
-msgstr ""
+msgstr "Bisogna fornire un file allegato per l'immagine."
 
 #. module: base_multi_image
 #: code:addons/base_multi_image/models/image.py:0
 #, python-format
 msgid "You must provide an attachment for the image."
-msgstr ""
+msgstr "Bisogna fornite un allegato per l'immagine."
