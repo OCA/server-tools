@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 18.0\n"
+"Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -12,6 +12,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: base_time_window
+#. odoo-python
+#: code:addons/base_time_window/models/time_window_mixin.py:0
+msgid "%(days)s: From %(start)s to %(end)s"
+msgstr ""
 
 #. module: base_time_window
 #. odoo-python
@@ -43,6 +49,7 @@ msgstr ""
 
 #. module: base_time_window
 #: model:ir.model.fields,field_description:base_time_window.field_time_weekday__display_name
+#: model:ir.model.fields,field_description:base_time_window.field_time_window_mixin__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -64,6 +71,7 @@ msgstr ""
 
 #. module: base_time_window
 #: model:ir.model.fields,field_description:base_time_window.field_time_weekday__id
+#: model:ir.model.fields,field_description:base_time_window.field_time_window_mixin__id
 msgid "ID"
 msgstr ""
 
@@ -95,12 +103,6 @@ msgstr ""
 #. module: base_time_window
 #: model:ir.model.fields.selection,name:base_time_window.selection__time_weekday__name__5
 msgid "Saturday"
-msgstr ""
-
-#. module: base_time_window
-#: model:ir.model.fields,field_description:base_time_window.field_time_weekday__smart_search
-#: model:ir.model.fields,field_description:base_time_window.field_time_window_mixin__smart_search
-msgid "Smart Search"
 msgstr ""
 
 #. module: base_time_window
@@ -141,10 +143,4 @@ msgstr ""
 #. module: base_time_window
 #: model:ir.model.fields.selection,name:base_time_window.selection__time_weekday__name__2
 msgid "Wednesday"
-msgstr ""
-
-#. module: base_time_window
-#. odoo-python
-#: code:addons/base_time_window/models/time_window_mixin.py:0
-msgid "{days}: From {start} to {end}"
 msgstr ""
