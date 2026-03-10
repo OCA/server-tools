@@ -25,6 +25,7 @@ addon | version | maintainers | summary
 [base_exception](base_exception/) | 19.0.1.0.0 | <a href='https://github.com/hparfr'><img src='https://github.com/hparfr.png' width='32' height='32' style='border-radius:50%;' alt='hparfr'/></a> <a href='https://github.com/sebastienbeau'><img src='https://github.com/sebastienbeau.png' width='32' height='32' style='border-radius:50%;' alt='sebastienbeau'/></a> | This module provide an abstract model to manage customizable exceptions to be applied on different models (sale order, invoice, ...)
 [base_partition](base_partition/) | 19.0.1.0.0 |  | Base module that provide the partition method on all models
 [base_technical_user](base_technical_user/) | 19.0.1.0.0 |  | Add a technical user parameter on the company
+[base_time_window](base_time_window/) | 19.0.1.0.0 |  | Base model to handle time windows
 [base_view_inheritance_extension](base_view_inheritance_extension/) | 19.0.1.0.0 | <a href='https://github.com/hbrunn'><img src='https://github.com/hbrunn.png' width='32' height='32' style='border-radius:50%;' alt='hbrunn'/></a> | Adds more operators for view inheritance
 [bus_alt_connection](bus_alt_connection/) | 19.0.1.0.0 |  | Needed when using PgBouncer as a connection pooler
 [database_cleanup](database_cleanup/) | 19.0.1.0.1 |  | Database cleanup
