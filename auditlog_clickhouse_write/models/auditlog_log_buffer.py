@@ -39,6 +39,7 @@ class AuditlogLogBuffer(models.Model):
 
     STATE_PENDING = "pending"
     STATE_ERROR = "error"
+    EXISTING_ROWS_CHUNK_SIZE = 2000
 
     # Column order MUST match CREATE TABLE schema and inserted tuples.
     _CH_LOG_COLUMNS: tuple[str, ...] = (
@@ -184,12 +185,27 @@ class AuditlogLogBuffer(models.Model):
 
         return ", ".join(_q(v) for v in cleaned)
 
+    @staticmethod
+    def _chunk_values(values, chunk_size):
+        """Yield chunks from a sequence.
+
+        :param list values: Source values to split into chunks.
+        :param int chunk_size: Maximum size of one chunk.
+        :yield: Chunk of source values.
+        :rtype: list
+        """
+        for index in range(0, len(values), chunk_size):
+            yield values[index : index + chunk_size]
+
     def _filter_existing_rows(self, client, config, table_name, rows):
         """Filter out rows already present in ClickHouse by id.
 
         This helper makes inserts idempotent on retry: if part of a multi-table
         insert succeeds (e.g. auditlog_log) and another part fails (e.g. lines),
         the next retry must not re-insert already stored rows.
+
+        The existence check is executed in chunks to avoid oversized ClickHouse
+        queries caused by a very large ``IN (...)`` clause.
 
         :param client: ClickHouse client.
         :type client: clickhouse_driver.Client
@@ -205,16 +221,21 @@ class AuditlogLogBuffer(models.Model):
         if not rows:
             return rows
 
-        ids = [row[0] for row in rows]
-        in_list = self._ch_format_in_list(ids)
-        if not in_list:
+        ids = list(dict.fromkeys(row[0] for row in rows if row[0] is not None))
+        if not ids:
             return rows
 
-        query = (
-            f"SELECT id FROM {config.database}.{table_name} " f"WHERE id IN ({in_list})"
-        )
-        existing = client.execute(query) or []
-        existing_ids = {row[0] for row in existing}
+        existing_ids = set()
+        for ids_chunk in self._chunk_values(ids, self.EXISTING_ROWS_CHUNK_SIZE):
+            in_list = self._ch_format_in_list(ids_chunk)
+            if not in_list:
+                continue
+            query = (
+                f"SELECT id FROM {config.database}.{table_name} "
+                f"WHERE id IN ({in_list})"
+            )
+            existing = client.execute(query) or []
+            existing_ids.update(row[0] for row in existing)
         if not existing_ids:
             return rows
         return [row for row in rows if row[0] not in existing_ids]
@@ -433,10 +454,11 @@ class AuditlogLogBuffer(models.Model):
         """
         log_rows_to_insert = log_rows
         line_rows_to_insert = line_rows
-        if log_rows and line_rows:
+        if log_rows:
             log_rows_to_insert = self._filter_existing_rows(
                 client, config, "auditlog_log", log_rows
             )
+        if line_rows:
             line_rows_to_insert = self._filter_existing_rows(
                 client, config, "auditlog_log_line", line_rows
             )
