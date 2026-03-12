@@ -41,42 +41,6 @@ while this mode is active.
 .. contents::
    :local:
 
-Use Cases / Context
-===================
-
-Business need:
-
-In some deployments, audit logs grow quickly and become expensive to
-keep and query only in PostgreSQL. At the same time, auditors and
-administrators still need to review audit trails from the standard Odoo
-interface without learning new tools or getting direct access to
-external databases.
-
-This module is useful in environments where audit log storage is moved
-to ClickHouse, but end users must continue working with the standard
-Odoo Audit Log screens.
-
-Approach:
-
-The module keeps the usual Odoo audit log interface while changing the
-read source behind it. Instead of reading audit log data from local
-PostgreSQL audit tables, Odoo can read it through PostgreSQL foreign
-tables backed by ClickHouse.
-
-This allows administrators to keep the familiar menus, forms, filters,
-and grouping options while using ClickHouse as the effective source for
-audit log reads.
-
-Useful information:
-
-The module is especially useful in databases with high audit log volumes
-or in setups where audit data should be stored outside the main
-PostgreSQL audit tables.
-
-When FDW read mode is enabled, audit log records are read-only in Odoo.
-If needed, administrators can disable FDW read mode and restore reading
-from the local PostgreSQL audit log tables.
-
 Configuration
 =============
 
@@ -119,28 +83,30 @@ Important notes:
 - While FDW read is enabled, the active ClickHouse configuration cannot
   be deactivated, deleted, or changed for connection-related fields
   until FDW read is disabled.
+- While FDW read is enabled, do not update all Odoo modules and do not
+  update the ``auditlog`` module alone. Module updates may recreate or
+  alter auditlog PostgreSQL objects and break the FDW-based read setup.
+- Before running any module update that may affect auditlog objects,
+  first click *Disable FDW read*. After the update is completed, enable
+  FDW read again if needed.
 
 Usage
 =====
 
 To use this module, you need to:
 
-1. Go to *Settings > Technical > Auditlog > ClickHouse Configurations*.
+1. Click *Enable FDW read*.
 
-2. Open the active ClickHouse configuration.
-
-3. Click *Enable FDW read*.
-
-4. Open the standard audit log menus in Odoo:
+2. Open the standard audit log menus in Odoo:
 
    - *Settings > Technical > Audit > Logs*
 
-5. Review audit log records as usual from the standard Odoo interface.
+3. Review audit log records as usual from the standard Odoo interface.
 
-6. Use the existing search, filters, and group by options in audit log
+4. Use the existing search, filters, and group by options in audit log
    views to analyze audit data stored in ClickHouse.
 
-7. Open an audited record and use the standard *View Logs* action when
+5. Open an audited record and use the standard *View Logs* action when
    available. The action continues to open the related audit log entries
    through the standard Odoo interface.
 

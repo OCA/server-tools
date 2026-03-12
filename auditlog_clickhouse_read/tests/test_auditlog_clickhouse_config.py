@@ -48,7 +48,7 @@ class TestAuditlogClickhouseReadHelpers(AuditlogClickhouseReadCommon):
             type(self.config),
             "_relation_kind",
             autospec=True,
-            side_effect=["f", "f"],
+            side_effect=["f", "f", "f", "f"],
         ):
             self.assertEqual(self.config._get_auditlog_read_mode(), "fdw")
 
@@ -57,7 +57,7 @@ class TestAuditlogClickhouseReadHelpers(AuditlogClickhouseReadCommon):
             type(self.config),
             "_relation_kind",
             autospec=True,
-            side_effect=["r", "r"],
+            side_effect=["r", "r", "r", "r"],
         ):
             self.assertEqual(self.config._get_auditlog_read_mode(), "postgres")
 
@@ -66,7 +66,7 @@ class TestAuditlogClickhouseReadHelpers(AuditlogClickhouseReadCommon):
             type(self.config),
             "_relation_kind",
             autospec=True,
-            side_effect=["r", "f"],
+            side_effect=["r", "f", "r", "r"],
         ):
             self.assertEqual(self.config._get_auditlog_read_mode(), "mixed")
 
@@ -75,9 +75,16 @@ class TestAuditlogClickhouseReadHelpers(AuditlogClickhouseReadCommon):
             type(self.config),
             "_relation_kind",
             autospec=True,
-            side_effect=["r", "r", None, "r"],
+            side_effect=["r", "r", "r", "r"],
         ):
             self.assertTrue(self.config._backup_tables_exist())
+
+        with patch.object(
+            type(self.config),
+            "_relation_kind",
+            autospec=True,
+            side_effect=[None, None, "r", None],
+        ):
             self.assertTrue(self.config._any_backup_object_exists())
 
     def test_07_describe_relation_kind(self):
@@ -92,7 +99,7 @@ class TestAuditlogClickhouseReadHelpers(AuditlogClickhouseReadCommon):
             type(self.config),
             "_relation_kind",
             autospec=True,
-            side_effect=["r", "f", None, "r"],
+            side_effect=["r", "f", None, "r", "r", None, "f", None],
         ):
             with self.assertRaises(UserError) as err:
                 self.config._raise_inconsistent_schema_state()
@@ -103,6 +110,8 @@ class TestAuditlogClickhouseReadHelpers(AuditlogClickhouseReadCommon):
         )
         self.assertIn("auditlog_log", message)
         self.assertIn("auditlog_log_line", message)
+        self.assertIn("auditlog_http_session", message)
+        self.assertIn("auditlog_http_request", message)
 
     def test_09_raise_fdw_setup_error_privileges(self):
         with self.assertRaises(UserError) as err:
@@ -484,7 +493,7 @@ class TestAuditlogClickhouseReadDDLHelpers(AuditlogClickhouseReadCommon):
         with patch.object(self.env.cr, "execute") as execute:
             self.config._ensure_sequences()
 
-        self.assertEqual(execute.call_count, 2)
+        self.assertEqual(execute.call_count, 4)
 
     def test_07_create_foreign_tables(self):
         _ = self.config.database
@@ -492,7 +501,7 @@ class TestAuditlogClickhouseReadDDLHelpers(AuditlogClickhouseReadCommon):
         with patch.object(self.env.cr, "execute") as execute:
             self.config._create_foreign_tables("public")
 
-        self.assertEqual(execute.call_count, 2)
+        self.assertEqual(execute.call_count, 4)
 
     def test_08_recreate_auditlog_log_line_view(self):
         with (
@@ -548,8 +557,8 @@ class TestAuditlogClickhouseReadDDLHelpers(AuditlogClickhouseReadCommon):
         drop_view.assert_called_once_with(
             self.config, "public", "auditlog_log_line_view"
         )
-        self.assertEqual(drop_foreign.call_count, 2)
-        self.assertEqual(rename_table.call_count, 2)
+        self.assertEqual(drop_foreign.call_count, 4)
+        self.assertEqual(rename_table.call_count, 4)
         ensure_sequences.assert_called_once_with(self.config)
         create_foreign.assert_called_once_with(self.config, "public")
         recreate_view.assert_called_once_with(self.config, "public")
@@ -582,8 +591,8 @@ class TestAuditlogClickhouseReadDDLHelpers(AuditlogClickhouseReadCommon):
         drop_view.assert_called_once_with(
             self.config, "public", "auditlog_log_line_view"
         )
-        self.assertEqual(drop_foreign.call_count, 2)
-        self.assertEqual(rename_table.call_count, 2)
+        self.assertEqual(drop_foreign.call_count, 4)
+        self.assertEqual(rename_table.call_count, 4)
         recreate_view.assert_called_once_with(self.config, "public")
 
     def test_11_healthcheck_success(self):

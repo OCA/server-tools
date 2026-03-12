@@ -1,3 +1,2 @@
 odoo_test_helper
-odoo-addon-auditlog @ git+https://${RUNBOAT_GITHUB_TOKEN}@github.com/OCA/server-tools.git@18.0#subdirectory=auditlog
 odoo-addon-auditlog_clickhouse_write @ git+https://${RUNBOAT_GITHUB_TOKEN}@github.com/OCA/server-tools.git@refs/pull/3528/head#subdirectory=auditlog_clickhouse_write

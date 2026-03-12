@@ -37,3 +37,9 @@ Important notes:
 - While FDW read is enabled, the active ClickHouse configuration cannot be
   deactivated, deleted, or changed for connection-related fields until FDW read
   is disabled.
+- While FDW read is enabled, do not update all Odoo modules and do not update
+  the `auditlog` module alone. Module updates may recreate or alter auditlog
+  PostgreSQL objects and break the FDW-based read setup.
+- Before running any module update that may affect auditlog objects, first
+  click *Disable FDW read*. After the update is completed, enable FDW read
+  again if needed.

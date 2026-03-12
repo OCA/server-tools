@@ -32,6 +32,10 @@ class AuditlogClickhouseConfig(models.Model):
     LOG_TABLE_BACKUP = "auditlog_log_pg_backup"
     LOG_LINE_TABLE_BACKUP = "auditlog_log_line_pg_backup"
     LOG_LINE_VIEW = "auditlog_log_line_view"
+    HTTP_SESSION_TABLE = "auditlog_http_session"
+    HTTP_REQUEST_TABLE = "auditlog_http_request"
+    HTTP_SESSION_TABLE_BACKUP = "auditlog_http_session_pg_backup"
+    HTTP_REQUEST_TABLE_BACKUP = "auditlog_http_request_pg_backup"
 
     _FDW_LOCKED_FIELDS = {"host", "port", "database", "user", "password"}
 
@@ -184,12 +188,17 @@ class AuditlogClickhouseConfig(models.Model):
         :rtype: str
         """
         schema = self.AUDITLOG_SCHEMA
-        log_kind = self._relation_kind(schema, self.LOG_TABLE)
-        line_kind = self._relation_kind(schema, self.LOG_LINE_TABLE)
+        relation_names = (
+            self.LOG_TABLE,
+            self.LOG_LINE_TABLE,
+            self.HTTP_SESSION_TABLE,
+            self.HTTP_REQUEST_TABLE,
+        )
+        kinds = [self._relation_kind(schema, name) for name in relation_names]
 
-        if log_kind == "f" and line_kind == "f":
+        if all(kind == "f" for kind in kinds):
             return "fdw"
-        if log_kind == "r" and line_kind == "r":
+        if all(kind == "r" for kind in kinds):
             return "postgres"
         return "mixed"
 
@@ -201,10 +210,13 @@ class AuditlogClickhouseConfig(models.Model):
         :rtype: bool
         """
         schema = self.AUDITLOG_SCHEMA
-        return (
-            self._relation_kind(schema, self.LOG_TABLE_BACKUP) == "r"
-            and self._relation_kind(schema, self.LOG_LINE_TABLE_BACKUP) == "r"
+        backup_names = (
+            self.LOG_TABLE_BACKUP,
+            self.LOG_LINE_TABLE_BACKUP,
+            self.HTTP_SESSION_TABLE_BACKUP,
+            self.HTTP_REQUEST_TABLE_BACKUP,
         )
+        return all(self._relation_kind(schema, name) == "r" for name in backup_names)
 
     @api.model
     def _any_backup_object_exists(self):
@@ -217,10 +229,13 @@ class AuditlogClickhouseConfig(models.Model):
         :rtype: bool
         """
         schema = self.AUDITLOG_SCHEMA
-        return bool(
-            self._relation_kind(schema, self.LOG_TABLE_BACKUP)
-            or self._relation_kind(schema, self.LOG_LINE_TABLE_BACKUP)
+        backup_names = (
+            self.LOG_TABLE_BACKUP,
+            self.LOG_LINE_TABLE_BACKUP,
+            self.HTTP_SESSION_TABLE_BACKUP,
+            self.HTTP_REQUEST_TABLE_BACKUP,
         )
+        return any(self._relation_kind(schema, name) for name in backup_names)
 
     @api.model
     def _raise_inconsistent_schema_state(self):
@@ -239,11 +254,23 @@ class AuditlogClickhouseConfig(models.Model):
             self.LOG_LINE_TABLE: self._describe_relation_kind(
                 self._relation_kind(schema, self.LOG_LINE_TABLE)
             ),
+            self.HTTP_SESSION_TABLE: self._describe_relation_kind(
+                self._relation_kind(schema, self.HTTP_SESSION_TABLE)
+            ),
+            self.HTTP_REQUEST_TABLE: self._describe_relation_kind(
+                self._relation_kind(schema, self.HTTP_REQUEST_TABLE)
+            ),
             self.LOG_TABLE_BACKUP: self._describe_relation_kind(
                 self._relation_kind(schema, self.LOG_TABLE_BACKUP)
             ),
             self.LOG_LINE_TABLE_BACKUP: self._describe_relation_kind(
                 self._relation_kind(schema, self.LOG_LINE_TABLE_BACKUP)
+            ),
+            self.HTTP_SESSION_TABLE_BACKUP: self._describe_relation_kind(
+                self._relation_kind(schema, self.HTTP_SESSION_TABLE_BACKUP)
+            ),
+            self.HTTP_REQUEST_TABLE_BACKUP: self._describe_relation_kind(
+                self._relation_kind(schema, self.HTTP_REQUEST_TABLE_BACKUP)
             ),
         }
         raise UserError(
@@ -251,18 +278,30 @@ class AuditlogClickhouseConfig(models.Model):
                 "Auditlog read mode is in an inconsistent PostgreSQL state.\n\n"
                 "%(log_table)s: %(log_state)s\n"
                 "%(line_table)s: %(line_state)s\n"
+                "%(session_table)s: %(session_state)s\n"
+                "%(request_table)s: %(request_state)s\n"
                 "%(log_backup)s: %(log_backup_state)s\n"
-                "%(line_backup)s: %(line_backup_state)s\n\n"
+                "%(line_backup)s: %(line_backup_state)s\n"
+                "%(session_backup)s: %(session_backup_state)s\n"
+                "%(request_backup)s: %(request_backup_state)s\n\n"
                 "Fix the schema state manually or restore a consistent mode "
                 "before trying again.",
                 log_table=self.LOG_TABLE,
                 log_state=state[self.LOG_TABLE],
                 line_table=self.LOG_LINE_TABLE,
                 line_state=state[self.LOG_LINE_TABLE],
+                session_table=self.HTTP_SESSION_TABLE,
+                session_state=state[self.HTTP_SESSION_TABLE],
+                request_table=self.HTTP_REQUEST_TABLE,
+                request_state=state[self.HTTP_REQUEST_TABLE],
                 log_backup=self.LOG_TABLE_BACKUP,
                 log_backup_state=state[self.LOG_TABLE_BACKUP],
                 line_backup=self.LOG_LINE_TABLE_BACKUP,
                 line_backup_state=state[self.LOG_LINE_TABLE_BACKUP],
+                session_backup=self.HTTP_SESSION_TABLE_BACKUP,
+                session_backup_state=state[self.HTTP_SESSION_TABLE_BACKUP],
+                request_backup=self.HTTP_REQUEST_TABLE_BACKUP,
+                request_backup_state=state[self.HTTP_REQUEST_TABLE_BACKUP],
             )
         )
 
@@ -614,6 +653,12 @@ class AuditlogClickhouseConfig(models.Model):
         """
         self.env.cr.execute("CREATE SEQUENCE IF NOT EXISTS auditlog_log_id_seq")
         self.env.cr.execute("CREATE SEQUENCE IF NOT EXISTS auditlog_log_line_id_seq")
+        self.env.cr.execute(
+            "CREATE SEQUENCE IF NOT EXISTS auditlog_http_session_id_seq"
+        )
+        self.env.cr.execute(
+            "CREATE SEQUENCE IF NOT EXISTS auditlog_http_request_id_seq"
+        )
 
     def _create_foreign_tables(self, schema):
         """Create PostgreSQL foreign tables for auditlog data stored in ClickHouse.
@@ -624,6 +669,57 @@ class AuditlogClickhouseConfig(models.Model):
         :param str schema: PostgreSQL schema where foreign tables must be created.
         """
         db_opt = (self.database or "").strip() or self.DEFAULT_DB
+
+        self.env.cr.execute(
+            SQL(
+                """
+                CREATE FOREIGN TABLE %s.%s (
+                    id bigint,
+                    user_id integer,
+                    create_uid integer,
+                    write_uid integer,
+                    display_name text,
+                    name text,
+                    create_date timestamp,
+                    write_date timestamp
+                )
+                SERVER %s
+                OPTIONS (table_name %s, database %s)
+                """,
+                SQL.identifier(schema),
+                SQL.identifier(self.HTTP_SESSION_TABLE),
+                SQL.identifier(self.FDW_SERVER),
+                self.HTTP_SESSION_TABLE,
+                db_opt,
+            )
+        )
+
+        self.env.cr.execute(
+            SQL(
+                """
+                CREATE FOREIGN TABLE %s.%s (
+                    id bigint,
+                    user_id integer,
+                    http_session_id bigint,
+                    create_uid integer,
+                    write_uid integer,
+                    display_name text,
+                    name text,
+                    root_url text,
+                    user_context text,
+                    create_date timestamp,
+                    write_date timestamp
+                )
+                SERVER %s
+                OPTIONS (table_name %s, database %s)
+                """,
+                SQL.identifier(schema),
+                SQL.identifier(self.HTTP_REQUEST_TABLE),
+                SQL.identifier(self.FDW_SERVER),
+                self.HTTP_REQUEST_TABLE,
+                db_opt,
+            )
+        )
 
         self.env.cr.execute(
             SQL(
@@ -745,6 +841,8 @@ class AuditlogClickhouseConfig(models.Model):
         self._drop_view_if_exists(schema, self.LOG_LINE_VIEW)
         self._drop_foreign_table_if_exists(schema, self.LOG_LINE_TABLE)
         self._drop_foreign_table_if_exists(schema, self.LOG_TABLE)
+        self._drop_foreign_table_if_exists(schema, self.HTTP_REQUEST_TABLE)
+        self._drop_foreign_table_if_exists(schema, self.HTTP_SESSION_TABLE)
         self._rename_table_if_exists(
             schema,
             self.LOG_LINE_TABLE,
@@ -754,6 +852,16 @@ class AuditlogClickhouseConfig(models.Model):
             schema,
             self.LOG_TABLE,
             self.LOG_TABLE_BACKUP,
+        )
+        self._rename_table_if_exists(
+            schema,
+            self.HTTP_REQUEST_TABLE,
+            self.HTTP_REQUEST_TABLE_BACKUP,
+        )
+        self._rename_table_if_exists(
+            schema,
+            self.HTTP_SESSION_TABLE,
+            self.HTTP_SESSION_TABLE_BACKUP,
         )
         self._ensure_sequences()
         self._create_foreign_tables(schema)
@@ -770,6 +878,8 @@ class AuditlogClickhouseConfig(models.Model):
         self._drop_view_if_exists(schema, self.LOG_LINE_VIEW)
         self._drop_foreign_table_if_exists(schema, self.LOG_LINE_TABLE)
         self._drop_foreign_table_if_exists(schema, self.LOG_TABLE)
+        self._drop_foreign_table_if_exists(schema, self.HTTP_REQUEST_TABLE)
+        self._drop_foreign_table_if_exists(schema, self.HTTP_SESSION_TABLE)
         self._rename_table_if_exists(
             schema,
             self.LOG_LINE_TABLE_BACKUP,
@@ -779,6 +889,16 @@ class AuditlogClickhouseConfig(models.Model):
             schema,
             self.LOG_TABLE_BACKUP,
             self.LOG_TABLE,
+        )
+        self._rename_table_if_exists(
+            schema,
+            self.HTTP_REQUEST_TABLE_BACKUP,
+            self.HTTP_REQUEST_TABLE,
+        )
+        self._rename_table_if_exists(
+            schema,
+            self.HTTP_SESSION_TABLE_BACKUP,
+            self.HTTP_SESSION_TABLE,
         )
         self._recreate_auditlog_log_line_view(schema)
 
