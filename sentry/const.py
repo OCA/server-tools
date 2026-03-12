@@ -93,9 +93,7 @@ def get_sentry_options():
         SentryOption("release", _get_default("release"), None),
         SentryOption("environment", _get_default("environment"), None),
         SentryOption("server_name", _get_default("server_name"), None),
-        SentryOption(
-            "shutdown_timeout", _get_default("shutdown_timeout", 2), None
-        ),
+        SentryOption("shutdown_timeout", _get_default("shutdown_timeout", 2), None),
         SentryOption(
             "in_app_include",
             _get_default("in_app_include", []),
@@ -117,9 +115,7 @@ def get_sentry_options():
             _get_default("sample_rate", 1.0),
             to_float_if_defined,
         ),
-        SentryOption(
-            "send_default_pii", _get_default("send_default_pii", False), None
-        ),
+        SentryOption("send_default_pii", _get_default("send_default_pii", False), None),
         SentryOption("http_proxy", _get_default("http_proxy"), None),
         SentryOption("https_proxy", _get_default("https_proxy"), None),
         SentryOption("ignore_exceptions", DEFAULT_IGNORED_EXCEPTIONS, split_multiple),
@@ -137,9 +133,7 @@ def get_sentry_options():
             "attach_stacktrace", _get_default("attach_stacktrace", False), None
         ),
         SentryOption("ca_certs", _get_default("ca_certs"), None),
-        SentryOption(
-            "propagate_traces", _get_default("propagate_traces", True), None
-        ),
+        SentryOption("propagate_traces", _get_default("propagate_traces", True), None),
         SentryOption(
             "traces_sample_rate",
             _get_default("traces_sample_rate"),
