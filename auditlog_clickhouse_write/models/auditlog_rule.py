@@ -47,11 +47,40 @@ class _PayloadLine(TypedDict, total=False):
     create_uid: int
 
 
-class _Payload(TypedDict):
+class _PayloadHttpSession(TypedDict, total=False):
+    """Structured payload for auditlog_http_session row before buffering."""
+
+    id: int
+    name: str | None
+    user_id: int | None
+    create_date: str | None
+    create_uid: int | None
+    write_date: str | None
+    write_uid: int | None
+
+
+class _PayloadHttpRequest(TypedDict, total=False):
+    """Structured payload for auditlog_http_request row before buffering."""
+
+    id: int
+    name: str | None
+    root_url: str | None
+    user_id: int | None
+    http_session_id: int | None
+    user_context: Any | None
+    create_date: str | None
+    create_uid: int | None
+    write_date: str | None
+    write_uid: int | None
+
+
+class _Payload(TypedDict, total=False):
     """Full payload stored in auditlog.log.buffer."""
 
     log: _PayloadLog
     lines: list[_PayloadLine]
+    http_session: _PayloadHttpSession | None
+    http_request: _PayloadHttpRequest | None
 
 
 def _json_sanitize(obj):
@@ -160,6 +189,34 @@ class AuditlogRule(models.Model):
 
         cache[key] = (excluded, capture_record)
         return cache[key]
+
+    def _serialize_http_session(self, session_id):
+        """Serialize auditlog.http.session for ClickHouse buffering.
+
+        :param session_id: HTTP session record ID
+        :type session_id: Optional[int]
+        :return: Serialized HTTP session payload or None
+        :rtype: Optional[_PayloadHttpSession]
+        """
+        if not session_id:
+            return None
+        return (
+            self.env["auditlog.http.session"].sudo().get_clickhouse_payload(session_id)
+        )
+
+    def _serialize_http_request(self, request_id):
+        """Serialize auditlog.http.request for ClickHouse buffering.
+
+        :param request_id: HTTP request record ID
+        :type request_id: Optional[int]
+        :return: Serialized HTTP request payload or None
+        :rtype: Optional[_PayloadHttpRequest]
+        """
+        if not request_id:
+            return None
+        return (
+            self.env["auditlog.http.request"].sudo().get_clickhouse_payload(request_id)
+        )
 
     def _get_audit_model_id(self, res_model):
         """Resolve ir.model ID for given model name.
@@ -284,6 +341,7 @@ class AuditlogRule(models.Model):
                 **base_log,
             },
             "lines": [],
+            **self._build_http_related_payload(base_log),
         }
         buffer_model.create([{"payload_json": self._dump_payload_json(payload)}])
         _logger.debug(
@@ -373,13 +431,51 @@ class AuditlogRule(models.Model):
         values_src,
         include_lines_on_unlink,
     ):
-        """Build (log, lines) payloads for each record.
+        """Build buffered payload structures for each processed record.
 
-        :return: (payloads, total_lines)
-        :rtype: Tuple[List[Tuple[_PayloadLog, List[_PayloadLine]]], int]
+        Each returned item contains:
+          - log payload
+          - line payloads
+          - related HTTP payloads (session/request)
+
+        :param uid: User ID performing operation.
+        :type uid: int
+        :param res_model: Model technical name.
+        :type res_model: str
+        :param res_ids: Record IDs affected.
+        :type res_ids: Sequence[int]
+        :param method: ORM method name.
+        :type method: str
+        :param model_id: ir.model record ID.
+        :type model_id: int
+        :param model_rs: Target model recordset.
+        :type model_rs: odoo.models.BaseModel
+        :param log_type: Audit log type.
+        :type log_type: Any
+        :param now_iso: UTC ISO timestamp with milliseconds.
+        :type now_iso: str
+        :param base_log: Base log mapping.
+        :type base_log: Dict[str, Any]
+        :param fields_to_exclude_set: Field names excluded from logging.
+        :type fields_to_exclude_set: Set[str]
+        :param old_values: Values before change.
+        :type old_values: Mapping[int, Mapping[str, Any]]
+        :param new_values: Values after change.
+        :type new_values: Mapping[int, Mapping[str, Any]]
+        :param line_builder: Callback to build line values.
+        :type line_builder: Optional[Callable]
+        :param values_src: Source value mappings for line building.
+        :type values_src: Tuple
+        :param include_lines_on_unlink: Whether unlink should include lines.
+        :type include_lines_on_unlink: bool
+        :return: Tuple of payload tuples and total line count.
+        :rtype: Tuple[
+            List[Tuple[_PayloadLog, List[_PayloadLine], Dict[str, Any]]],
+            int,
+        ]
         """
         log_ids = self._next_ids("auditlog_log_id_seq", len(res_ids))
-        payloads: list[tuple[_PayloadLog, list[_PayloadLine]]] = []
+        payloads: list[tuple[_PayloadLog, list[_PayloadLine], dict[str, Any]]] = []
         total_lines = 0
 
         for idx, res_id in enumerate(res_ids):
@@ -444,7 +540,8 @@ class AuditlogRule(models.Model):
                         }
                     )
 
-            payloads.append((log, lines))
+            http_related = self._build_http_related_payload(log)
+            payloads.append((log, lines, http_related))
             total_lines += len(lines)
 
         return payloads, total_lines
@@ -458,20 +555,23 @@ class AuditlogRule(models.Model):
     ):
         """Assign line IDs and build buffer create vals.
 
-        :param payloads: List of (log, lines) payloads
-        :type payloads: List[Tuple[_PayloadLog, List[_PayloadLine]]]
-        :param total_lines: Total number of line items across all payloads
+        Line identifiers are allocated in one batch and injected into line payloads
+        before serializing the final JSON stored in ``auditlog.log.buffer``.
+
+        :param payloads: List of ``(log, lines, http_related)`` payload tuples.
+        :type payloads: List[Tuple[_PayloadLog, List[_PayloadLine], Dict[str, Any]]]
+        :param total_lines: Total number of line items across all payloads.
         :type total_lines: int
-        :param method: ORM method name
+        :param method: ORM method name.
         :type method: str
-        :return: Values list for auditlog.log.buffer.create()
+        :return: Values list for ``auditlog.log.buffer.create()``.
         :rtype: List[Dict[str, Any]]
         """
         line_ids: list[int] = self._next_ids("auditlog_log_line_id_seq", total_lines)
         pos = 0
 
         buffer_vals_list: list[dict[str, Any]] = []
-        for log, lines in payloads:
+        for log, lines, http_related in payloads:
             for line in lines:
                 line["id"] = int(line_ids[pos])
                 pos += 1
@@ -480,12 +580,31 @@ class AuditlogRule(models.Model):
                 buffer_vals_list.append(
                     {
                         "payload_json": self._dump_payload_json(
-                            {"log": log, "lines": lines}
+                            {
+                                "log": log,
+                                "lines": lines,
+                                **http_related,
+                            }
                         )
                     }
                 )
 
         return buffer_vals_list
+
+    def _build_http_related_payload(self, base_log):
+        """Build HTTP related payload blocks for current audit log entry.
+
+        :param base_log: Base log mapping
+        :type base_log: Dict[str, Any]
+        :return: Mapping with serialized http_session/http_request payloads
+        :rtype: Dict[str, Any]
+        """
+        http_session = self._serialize_http_session(base_log.get("http_session_id"))
+        http_request = self._serialize_http_request(base_log.get("http_request_id"))
+        return {
+            "http_session": http_session,
+            "http_request": http_request,
+        }
 
     def create_logs(
         self,

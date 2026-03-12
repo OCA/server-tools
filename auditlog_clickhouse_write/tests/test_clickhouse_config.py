@@ -65,3 +65,21 @@ class TestAuditlogClickhouseConfig(AuditLogClickhouseCommon):
         self.assertFalse(rec.error_message)
 
         self.assertFalse(dummy.calls)
+
+    def test_05_create_tables_includes_http_relations(self):
+        cfg = self.create_config(is_active=True)
+
+        with self._patched_clickhouse_client() as dummy:
+            cfg.action_create_auditlog_tables()
+
+        ddl_calls = [
+            q
+            for (q, _params) in dummy.calls
+            if "CREATE TABLE IF NOT EXISTS" in (q or "")
+        ]
+        ddl_sql = "\n".join(ddl_calls)
+
+        self.assertIn("auditlog_http_session", ddl_sql)
+        self.assertIn("auditlog_http_request", ddl_sql)
+        self.assertIn("auditlog_log", ddl_sql)
+        self.assertIn("auditlog_log_line", ddl_sql)

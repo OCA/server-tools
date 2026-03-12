@@ -17,6 +17,9 @@ class DummyClickHouseClient:
 
         self.calls = []  # list[(query, params)]
         self.log_ids = set()
+        self.line_ids = set()
+        self.http_session_ids = set()
+        self.http_request_ids = set()
 
     def _parse_in_ids(self, query):
         m = re.search(r"\bIN\s*\(([^)]*)\)", query, flags=re.IGNORECASE)
@@ -37,38 +40,87 @@ class DummyClickHouseClient:
                 ids.add(p)
         return ids
 
+    @staticmethod
+    def _is_select_ids_query(q_up, table_name):
+        return q_up.startswith("SELECT ID FROM") and table_name in q_up
+
+    @staticmethod
+    def _is_insert_query(q_up, table_name):
+        return "INSERT INTO" in q_up and table_name in q_up
+
+    def _select_existing_ids(self, query, stored_ids):
+        wanted = self._parse_in_ids(query)
+        existing = sorted(stored_ids.intersection(wanted))
+        return [(row_id,) for row_id in existing]
+
+    @staticmethod
+    def _collect_inserted_ids(params, target_set):
+        if not params:
+            return
+        for row in params:
+            target_set.add(row[0])
+
+    def _handle_select(self, q, q_up):
+        if q_up.startswith("SELECT 1"):
+            return [(1,)]
+
+        if self._is_select_ids_query(q_up, "AUDITLOG_HTTP_SESSION"):
+            return self._select_existing_ids(q, self.http_session_ids)
+
+        if self._is_select_ids_query(q_up, "AUDITLOG_HTTP_REQUEST"):
+            return self._select_existing_ids(q, self.http_request_ids)
+
+        if self._is_select_ids_query(q_up, "AUDITLOG_LOG_LINE"):
+            return self._select_existing_ids(q, self.line_ids)
+
+        if (
+            self._is_select_ids_query(q_up, "AUDITLOG_LOG")
+            and "AUDITLOG_LOG_LINE" not in q_up
+        ):
+            return self._select_existing_ids(q, self.log_ids)
+
+        return None
+
+    def _handle_insert(self, q_up, params):
+        if self.raise_on_insert and "INSERT INTO" in q_up:
+            raise Exception("Simulated ClickHouse insert error")
+
+        if self._is_insert_query(q_up, "AUDITLOG_LOG_LINE"):
+            if self.raise_on_line_insert_once and not self._line_failed_once:
+                self._line_failed_once = True
+                raise Exception("Simulated ClickHouse line insert error")
+            self._collect_inserted_ids(params, self.line_ids)
+            return []
+
+        if self._is_insert_query(q_up, "AUDITLOG_HTTP_SESSION"):
+            self._collect_inserted_ids(params, self.http_session_ids)
+            return []
+
+        if self._is_insert_query(q_up, "AUDITLOG_HTTP_REQUEST"):
+            self._collect_inserted_ids(params, self.http_request_ids)
+            return []
+
+        if (
+            self._is_insert_query(q_up, "AUDITLOG_LOG")
+            and "AUDITLOG_LOG_LINE" not in q_up
+        ):
+            self._collect_inserted_ids(params, self.log_ids)
+            return []
+
+        return None
+
     def execute(self, query, params=None):
         self.calls.append((query, params))
         q = (query or "").strip()
         q_up = q.upper()
 
-        if q_up.startswith("SELECT 1"):
-            return [(1,)]
+        select_result = self._handle_select(q, q_up)
+        if select_result is not None:
+            return select_result
 
-        if q_up.startswith("SELECT ID FROM") and "AUDITLOG_LOG" in q_up:
-            wanted = self._parse_in_ids(q)
-            existing = sorted(self.log_ids.intersection(wanted))
-            return [(x,) for x in existing]
-
-        if self.raise_on_insert and "INSERT INTO" in q_up:
-            raise Exception("Simulated ClickHouse insert error")
-
-        if "INSERT INTO" in q_up and "AUDITLOG_LOG_LINE" in q_up:
-            if self.raise_on_line_insert_once and not self._line_failed_once:
-                self._line_failed_once = True
-                raise Exception("Simulated ClickHouse line insert error")
-            return []
-
-        if (
-            "INSERT INTO" in q_up
-            and "AUDITLOG_LOG" in q_up
-            and "AUDITLOG_LOG_LINE" not in q_up
-        ):
-            # collect inserted ids (1st tuple element)
-            if params:
-                for row in params:
-                    self.log_ids.add(row[0])
-            return []
+        insert_result = self._handle_insert(q_up, params)
+        if insert_result is not None:
+            return insert_result
 
         return []
 

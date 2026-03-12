@@ -410,48 +410,81 @@ class AuditlogClickhouseConfig(models.Model):
 
         return [
             f"""
-            CREATE TABLE IF NOT EXISTS {db_name}.auditlog_log
-            (
-                id Int64,
-                name Nullable(String),
-                model_id Int32,
-                model_name Nullable(String),
-                model_model String,
-                res_id Nullable(Int64),
-                res_ids Nullable(String),
-                user_id Int32,
-                method String,
-                http_request_id Nullable(Int64),
-                http_session_id Nullable(Int64),
-                log_type Nullable(String),
-                create_date DateTime64(3, 'UTC'),
-                create_uid Int32,
-                write_date Nullable(DateTime64(3, 'UTC')),
-                write_uid Nullable(Int32)
-            )
-            ENGINE = MergeTree
-            ORDER BY (create_date, id)
-            """,
+                CREATE TABLE IF NOT EXISTS {db_name}.auditlog_http_session
+                (
+                    id Int64,
+                    user_id Nullable(Int32),
+                    create_uid Nullable(Int32),
+                    write_uid Nullable(Int32),
+                    display_name Nullable(String),
+                    name Nullable(String),
+                    create_date DateTime64(3, 'UTC'),
+                    write_date Nullable(DateTime64(3, 'UTC'))
+                )
+                ENGINE = MergeTree
+                ORDER BY (create_date, id)
+                """,
             f"""
-            CREATE TABLE IF NOT EXISTS {db_name}.auditlog_log_line
-            (
-                id Int64,
-                log_id Int64,
-                field_id Int32,
-                field_name Nullable(String),
-                field_description Nullable(String),
-                old_value Nullable(String),
-                new_value Nullable(String),
-                old_value_text Nullable(String),
-                new_value_text Nullable(String),
-                create_date DateTime64(3, 'UTC'),
-                create_uid Int32,
-                write_date Nullable(DateTime64(3, 'UTC')),
-                write_uid Nullable(Int32)
-            )
-            ENGINE = MergeTree
-            ORDER BY (create_date, id)
-            """,
+                CREATE TABLE IF NOT EXISTS {db_name}.auditlog_http_request
+                (
+                    id Int64,
+                    user_id Nullable(Int32),
+                    http_session_id Nullable(Int64),
+                    create_uid Nullable(Int32),
+                    write_uid Nullable(Int32),
+                    display_name Nullable(String),
+                    name Nullable(String),
+                    root_url Nullable(String),
+                    user_context Nullable(String),
+                    create_date DateTime64(3, 'UTC'),
+                    write_date Nullable(DateTime64(3, 'UTC'))
+                )
+                ENGINE = MergeTree
+                ORDER BY (create_date, id)
+                """,
+            f"""
+                CREATE TABLE IF NOT EXISTS {db_name}.auditlog_log
+                (
+                    id Int64,
+                    name Nullable(String),
+                    model_id Int32,
+                    model_name Nullable(String),
+                    model_model String,
+                    res_id Nullable(Int64),
+                    res_ids Nullable(String),
+                    user_id Int32,
+                    method String,
+                    http_request_id Nullable(Int64),
+                    http_session_id Nullable(Int64),
+                    log_type Nullable(String),
+                    create_date DateTime64(3, 'UTC'),
+                    create_uid Int32,
+                    write_date Nullable(DateTime64(3, 'UTC')),
+                    write_uid Nullable(Int32)
+                )
+                ENGINE = MergeTree
+                ORDER BY (create_date, id)
+                """,
+            f"""
+                CREATE TABLE IF NOT EXISTS {db_name}.auditlog_log_line
+                (
+                    id Int64,
+                    log_id Int64,
+                    field_id Int32,
+                    field_name Nullable(String),
+                    field_description Nullable(String),
+                    old_value Nullable(String),
+                    new_value Nullable(String),
+                    old_value_text Nullable(String),
+                    new_value_text Nullable(String),
+                    create_date DateTime64(3, 'UTC'),
+                    create_uid Int32,
+                    write_date Nullable(DateTime64(3, 'UTC')),
+                    write_uid Nullable(Int32)
+                )
+                ENGINE = MergeTree
+                ORDER BY (create_date, id)
+                """,
         ]
 
     @staticmethod

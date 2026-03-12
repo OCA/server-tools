@@ -61,6 +61,24 @@ class TestAuditlogClickhouseBuffer(AuditLogClickhouseCommon):
         self.assertEqual(payload["log"]["model_id"], self.groups_model_id)
         self.assertEqual(payload["log"]["res_id"], group.id)
 
+    def test_01b_create_payload_contains_http_related_data(self):
+        buf = self.env["auditlog.log.buffer"].sudo()
+
+        self.env["res.groups"].with_context(tracking_disable=True).create(
+            {"name": "ch_test_group_http_related"}
+        )
+
+        payload = buf.search([], order="id desc", limit=1).payload_json
+
+        self.assertIn("http_session", payload)
+        self.assertIn("http_request", payload)
+        self.assertTrue(
+            payload["http_session"] is None or isinstance(payload["http_session"], dict)
+        )
+        self.assertTrue(
+            payload["http_request"] is None or isinstance(payload["http_request"], dict)
+        )
+
     def test_02_write_creates_lines(self):
         buf = self.env["auditlog.log.buffer"].sudo()
         start_buf = buf.search_count([])
@@ -238,6 +256,9 @@ class TestAuditlogClickhouseQueueJobs(AuditLogClickhouseCommon):
             q for (q, _params) in dummy.calls if "INSERT INTO" in (q or "").upper()
         ]
         self.assertTrue(insert_calls, "Job must insert into ClickHouse")
+        insert_sql = "\n".join(insert_calls).upper()
+        self.assertIn("AUDITLOG_LOG", insert_sql)
+        self.assertIn("AUDITLOG_LOG_LINE", insert_sql)
 
     def test_05_job_invalid_payload_marks_error_and_keeps_row(self):
         buf = self.env["auditlog.log.buffer"].sudo()
@@ -270,9 +291,14 @@ class TestAuditlogClickhouseQueueJobs(AuditLogClickhouseCommon):
         partner.with_context(tracking_disable=True).write({"name": "Partial insert v2"})
 
         pending = buf.search([("state", "=", buf.STATE_PENDING)], order="id asc")
-        valid_buffers, invalid_buffers, log_rows, line_rows = (
-            buf._collect_rows_from_buffers(pending)
-        )
+        (
+            valid_buffers,
+            invalid_buffers,
+            http_session_rows,
+            http_request_rows,
+            log_rows,
+            line_rows,
+        ) = buf._collect_rows_from_buffers(pending)
 
         self.assertTrue(log_rows)
         self.assertTrue(line_rows)
@@ -287,6 +313,8 @@ class TestAuditlogClickhouseQueueJobs(AuditLogClickhouseCommon):
                 buf._insert_rows_to_clickhouse(
                     client=dummy,
                     config=self.config,
+                    http_session_rows=http_session_rows,
+                    http_request_rows=http_request_rows,
                     log_rows=log_rows,
                     line_rows=line_rows,
                     valid_buffers=valid_buffers,
@@ -296,6 +324,8 @@ class TestAuditlogClickhouseQueueJobs(AuditLogClickhouseCommon):
         buf._insert_rows_to_clickhouse(
             client=dummy,
             config=self.config,
+            http_session_rows=http_session_rows,
+            http_request_rows=http_request_rows,
             log_rows=log_rows,
             line_rows=line_rows,
             valid_buffers=valid_buffers,
@@ -311,6 +341,144 @@ class TestAuditlogClickhouseQueueJobs(AuditLogClickhouseCommon):
         self.assertEqual(
             len(log_inserts), 1, "Log rows must not be inserted twice on retry"
         )
+
+    def test_07_retry_does_not_duplicate_http_related_rows(self):
+        buf = self.env["auditlog.log.buffer"].sudo()
+        buf.search([]).unlink()
+
+        rec = buf.create(
+            {
+                "payload_json": {
+                    "http_session": {
+                        "id": 101,
+                        "name": "sess-101",
+                        "user_id": self.env.uid,
+                        "create_date": "2026-03-12T10:00:00+00:00",
+                        "create_uid": self.env.uid,
+                        "write_date": None,
+                        "write_uid": None,
+                    },
+                    "http_request": {
+                        "id": 201,
+                        "name": "/web",
+                        "root_url": "http://localhost:8069/",
+                        "user_id": self.env.uid,
+                        "http_session_id": 101,
+                        "user_context": "{}",
+                        "create_date": "2026-03-12T10:00:00+00:00",
+                        "create_uid": self.env.uid,
+                        "write_date": None,
+                        "write_uid": None,
+                    },
+                    "log": {
+                        "id": 301,
+                        "name": "Test log",
+                        "model_id": self.env.ref("base.model_res_partner").id,
+                        "model_name": "Contact",
+                        "model_model": "res.partner",
+                        "res_id": 1,
+                        "res_ids": None,
+                        "user_id": self.env.uid,
+                        "method": "write",
+                        "http_request_id": 201,
+                        "http_session_id": 101,
+                        "log_type": "full",
+                        "create_date": "2026-03-12T10:00:00+00:00",
+                        "create_uid": self.env.uid,
+                        "write_date": None,
+                        "write_uid": None,
+                    },
+                    "lines": [
+                        {
+                            "id": 401,
+                            "log_id": 301,
+                            "field_id": self.env["ir.model.fields"]
+                            .search(
+                                [("model", "=", "res.partner"), ("name", "=", "name")],
+                                limit=1,
+                            )
+                            .id,
+                            "field_name": "name",
+                            "field_description": "Name",
+                            "old_value": "Old",
+                            "new_value": "New",
+                            "old_value_text": None,
+                            "new_value_text": None,
+                            "create_date": "2026-03-12T10:00:00+00:00",
+                            "create_uid": self.env.uid,
+                            "write_date": None,
+                            "write_uid": None,
+                        }
+                    ],
+                },
+                "state": buf.STATE_PENDING,
+            }
+        )
+
+        pending = buf.search([("id", "=", rec.id), ("state", "=", buf.STATE_PENDING)])
+        (
+            valid_buffers,
+            invalid_buffers,
+            http_session_rows,
+            http_request_rows,
+            log_rows,
+            line_rows,
+        ) = buf._collect_rows_from_buffers(pending)
+
+        self.assertTrue(http_session_rows)
+        self.assertTrue(http_request_rows)
+        self.assertTrue(log_rows)
+        self.assertTrue(line_rows)
+
+        dummy = DummyClickHouseClient(raise_on_line_insert_once=True)
+
+        with mute_logger(
+            "odoo.addons.auditlog_clickhouse_write.models.auditlog_log_buffer"
+        ):
+            with self.assertRaises(RetryableJobError):
+                buf._insert_rows_to_clickhouse(
+                    client=dummy,
+                    config=self.config,
+                    http_session_rows=http_session_rows,
+                    http_request_rows=http_request_rows,
+                    log_rows=log_rows,
+                    line_rows=line_rows,
+                    valid_buffers=valid_buffers,
+                )
+
+        buf._insert_rows_to_clickhouse(
+            client=dummy,
+            config=self.config,
+            http_session_rows=http_session_rows,
+            http_request_rows=http_request_rows,
+            log_rows=log_rows,
+            line_rows=line_rows,
+            valid_buffers=valid_buffers,
+        )
+
+        session_inserts = [
+            q
+            for (q, _p) in dummy.calls
+            if "INSERT INTO" in (q or "").upper()
+            and "AUDITLOG_HTTP_SESSION" in (q or "").upper()
+        ]
+        request_inserts = [
+            q
+            for (q, _p) in dummy.calls
+            if "INSERT INTO" in (q or "").upper()
+            and "AUDITLOG_HTTP_REQUEST" in (q or "").upper()
+        ]
+        log_inserts = [
+            q
+            for (q, _p) in dummy.calls
+            if "INSERT INTO" in (q or "").upper()
+            and "AUDITLOG_LOG" in (q or "").upper()
+            and "AUDITLOG_LOG_LINE" not in (q or "").upper()
+        ]
+
+        self.assertEqual(len(session_inserts), 1)
+        self.assertEqual(len(request_inserts), 1)
+        self.assertEqual(len(log_inserts), 1)
 
 
 @tagged("-at_install", "post_install")

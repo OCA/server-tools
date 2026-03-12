@@ -75,6 +75,29 @@ class AuditlogLogBuffer(models.Model):
         "write_date",
         "write_uid",
     )
+    _CH_HTTP_SESSION_COLUMNS: tuple[str, ...] = (
+        "id",
+        "user_id",
+        "create_uid",
+        "write_uid",
+        "display_name",
+        "name",
+        "create_date",
+        "write_date",
+    )
+    _CH_HTTP_REQUEST_COLUMNS: tuple[str, ...] = (
+        "id",
+        "user_id",
+        "http_session_id",
+        "create_uid",
+        "write_uid",
+        "display_name",
+        "name",
+        "root_url",
+        "user_context",
+        "create_date",
+        "write_date",
+    )
 
     _INVALID_PAYLOAD_MESSAGE = (
         "Invalid payload structure (expected object with 'log' and 'lines')."
@@ -367,8 +390,14 @@ class AuditlogLogBuffer(models.Model):
 
         log_data = payload.get("log")
         lines_data = payload.get("lines")
+        http_session_data = payload.get("http_session")
+        http_request_data = payload.get("http_request")
 
         if not isinstance(log_data, dict) or not isinstance(lines_data, list):
+            return False
+        if http_session_data is not None and not isinstance(http_session_data, dict):
+            return False
+        if http_request_data is not None and not isinstance(http_request_data, dict):
             return False
 
         # Minimal required log fields (to avoid CH insert failures forever)
@@ -393,9 +422,25 @@ class AuditlogLogBuffer(models.Model):
 
         :param buffers: Buffer recordset
         :type buffers: AuditlogLogBuffer
-        :return: (valid_buffers, invalid_buffers, log_rows, line_rows)
-        :rtype: Tuple[AuditlogLogBuffer, AuditlogLogBuffer, List[ChRow], List[ChRow]]
+        :return: (
+            valid_buffers,
+            invalid_buffers,
+            http_session_rows,
+            http_request_rows,
+            log_rows,
+            line_rows,
+        )
+        :rtype: Tuple[
+            AuditlogLogBuffer,
+            AuditlogLogBuffer,
+            List[ChRow],
+            List[ChRow],
+            List[ChRow],
+            List[ChRow],
+        ]
         """
+        http_session_rows: list[ChRow] = []
+        http_request_rows: list[ChRow] = []
         log_rows: list[ChRow] = []
         line_rows: list[ChRow] = []
         invalid_buffers = self.browse()
@@ -407,15 +452,33 @@ class AuditlogLogBuffer(models.Model):
                 invalid_buffers |= rec
                 continue
 
+            http_session_data = payload.get("http_session")
+            http_request_data = payload.get("http_request")
             log_data = payload["log"]
             lines_data = payload["lines"]
+
+            if http_session_data:
+                http_session_rows.append(
+                    self._build_ch_http_session_row(http_session_data)
+                )
+            if http_request_data:
+                http_request_rows.append(
+                    self._build_ch_http_request_row(http_request_data)
+                )
 
             log_rows.append(self._build_ch_log_row(log_data))
             for line_data in lines_data:
                 line_rows.append(self._build_ch_line_row(line_data))
 
         valid_buffers = buffers - invalid_buffers
-        return valid_buffers, invalid_buffers, log_rows, line_rows
+        return (
+            valid_buffers,
+            invalid_buffers,
+            http_session_rows,
+            http_request_rows,
+            log_rows,
+            line_rows,
+        )
 
     def _mark_invalid_buffers(self, invalid_buffers, config):
         """Mark invalid payload buffers as error.
@@ -435,7 +498,14 @@ class AuditlogLogBuffer(models.Model):
         )
 
     def _insert_rows_to_clickhouse(
-        self, client, config, log_rows, line_rows, valid_buffers
+        self,
+        client,
+        config,
+        http_session_rows,
+        http_request_rows,
+        log_rows,
+        line_rows,
+        valid_buffers,
     ):
         """Insert prepared rows into ClickHouse.
 
@@ -452,8 +522,18 @@ class AuditlogLogBuffer(models.Model):
         :param valid_buffers: Successfully processed buffers
         :type valid_buffers: AuditlogLogBuffer
         """
+        http_session_rows_to_insert = http_session_rows
+        http_request_rows_to_insert = http_request_rows
         log_rows_to_insert = log_rows
         line_rows_to_insert = line_rows
+        if http_session_rows:
+            http_session_rows_to_insert = self._filter_existing_rows(
+                client, config, "auditlog_http_session", http_session_rows
+            )
+        if http_request_rows:
+            http_request_rows_to_insert = self._filter_existing_rows(
+                client, config, "auditlog_http_request", http_request_rows
+            )
         if log_rows:
             log_rows_to_insert = self._filter_existing_rows(
                 client, config, "auditlog_log", log_rows
@@ -463,7 +543,12 @@ class AuditlogLogBuffer(models.Model):
                 client, config, "auditlog_log_line", line_rows
             )
 
-        if not log_rows_to_insert and not line_rows_to_insert:
+        if (
+            not http_session_rows_to_insert
+            and not http_request_rows_to_insert
+            and not log_rows_to_insert
+            and not line_rows_to_insert
+        ):
             _logger.warning(
                 "auditlog_clickhouse_write: nothing to insert "
                 "(config_id=%s buffers=%s)",
@@ -473,6 +558,18 @@ class AuditlogLogBuffer(models.Model):
             return
 
         try:
+            if http_session_rows_to_insert:
+                client.execute(
+                    f"INSERT INTO {config.database}.auditlog_http_session ("
+                    f"{', '.join(self._CH_HTTP_SESSION_COLUMNS)}) VALUES",
+                    http_session_rows_to_insert,
+                )
+            if http_request_rows_to_insert:
+                client.execute(
+                    f"INSERT INTO {config.database}.auditlog_http_request ("
+                    f"{', '.join(self._CH_HTTP_REQUEST_COLUMNS)}) VALUES",
+                    http_request_rows_to_insert,
+                )
             if log_rows_to_insert:
                 client.execute(
                     f"INSERT INTO {config.database}.auditlog_log ("
@@ -600,9 +697,14 @@ class AuditlogLogBuffer(models.Model):
             )
             return
 
-        valid_buffers, invalid_buffers, log_rows, line_rows = (
-            self._collect_rows_from_buffers(pending_buffers)
-        )
+        (
+            valid_buffers,
+            invalid_buffers,
+            http_session_rows,
+            http_request_rows,
+            log_rows,
+            line_rows,
+        ) = self._collect_rows_from_buffers(pending_buffers)
 
         # Nothing valid: just mark invalids and exit successfully.
         if not valid_buffers:
@@ -613,6 +715,8 @@ class AuditlogLogBuffer(models.Model):
         self._insert_rows_to_clickhouse(
             client=client,
             config=config,
+            http_session_rows=http_session_rows,
+            http_request_rows=http_request_rows,
             log_rows=log_rows,
             line_rows=line_rows,
             valid_buffers=valid_buffers,
@@ -628,6 +732,63 @@ class AuditlogLogBuffer(models.Model):
 
         # Continue draining queue
         self._enqueue_next_flush_job_if_needed(config, int(batch_size))
+
+    @classmethod
+    def _build_ch_http_session_row(cls, session_data):
+        """Convert payload['http_session'] dict to ClickHouse tuple.
+
+        :param session_data: HTTP session dictionary
+        :type session_data: Dict[str, Any]
+        :return: ClickHouse row tuple
+        :rtype: ChRow
+        """
+        return (
+            int(session_data.get("id") or 0),
+            int(session_data.get("user_id") or 0)
+            if session_data.get("user_id") is not None
+            else None,
+            int(session_data.get("create_uid") or 0)
+            if session_data.get("create_uid") is not None
+            else None,
+            int(session_data.get("write_uid") or 0)
+            if session_data.get("write_uid") is not None
+            else None,
+            cls._to_ch_nullable_string(session_data.get("display_name")),
+            cls._to_ch_nullable_string(session_data.get("name")),
+            cls._to_ch_datetime_utc(session_data.get("create_date")),
+            cls._to_ch_datetime_utc(session_data.get("write_date")),
+        )
+
+    @classmethod
+    def _build_ch_http_request_row(cls, request_data):
+        """Convert payload['http_request'] dict to ClickHouse tuple.
+
+        :param request_data: HTTP request dictionary
+        :type request_data: Dict[str, Any]
+        :return: ClickHouse row tuple
+        :rtype: ChRow
+        """
+        return (
+            int(request_data.get("id") or 0),
+            int(request_data.get("user_id") or 0)
+            if request_data.get("user_id") is not None
+            else None,
+            int(request_data.get("http_session_id") or 0)
+            if request_data.get("http_session_id") is not None
+            else None,
+            int(request_data.get("create_uid") or 0)
+            if request_data.get("create_uid") is not None
+            else None,
+            int(request_data.get("write_uid") or 0)
+            if request_data.get("write_uid") is not None
+            else None,
+            cls._to_ch_nullable_string(request_data.get("display_name")),
+            cls._to_ch_nullable_string(request_data.get("name")),
+            cls._to_ch_nullable_string(request_data.get("root_url")),
+            cls._to_ch_nullable_string(request_data.get("user_context")),
+            cls._to_ch_datetime_utc(request_data.get("create_date")),
+            cls._to_ch_datetime_utc(request_data.get("write_date")),
+        )
 
     @classmethod
     def _build_ch_log_row(cls, log_data):
