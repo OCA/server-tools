@@ -5,9 +5,9 @@
     "name": "Base Cron Exclusion",
     "summary": "Allow you to select scheduled actions that should not run "
     "simultaneously.",
-    "version": "18.0.1.0.1",
+    "version": "19.0.1.0.0",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
-    "maintainers": ["LoisRForgeFlow", "ChrisOForgeFlow"],
+    "maintainers": ["LoisRForgeFlow"],
     "development_status": "Production/Stable",
     "website": "https://github.com/OCA/server-tools",
     "category": "Tools",
