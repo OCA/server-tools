@@ -10,8 +10,7 @@ from unittest import mock
 import dns.resolver
 
 from odoo.exceptions import UserError, ValidationError
-from odoo.tests import SingleTransactionCase
-from odoo.tests.common import Form
+from odoo.tests import Form, SingleTransactionCase
 from odoo.tools.misc import mute_logger
 
 from ..models.letsencrypt import (
@@ -117,7 +116,7 @@ class TestLetsencrypt(SingleTransactionCase):
         def register_update(challenge, domain, token):
             nonlocal record
             record = mock.Mock()
-            record.to_text.return_value = '"%s"' % token
+            record.to_text.return_value = f'"{token}"'
             ret = mock.Mock()
             ret.challenge = challenge
             ret.domain = domain
@@ -378,7 +377,7 @@ class TestLetsencrypt(SingleTransactionCase):
             )
 
         cert = cert_builder.sign(key, hashes.SHA256(), default_backend())
-        cert_file = path.join(_get_data_dir(), "%s.crt" % common_name)
+        cert_file = path.join(_get_data_dir(), f"{common_name}.crt")
         with open(cert_file, "wb") as file_:
             file_.write(cert.public_bytes(serialization.Encoding.PEM))
 

@@ -13,7 +13,7 @@ import re
 import subprocess
 import time
 import urllib.parse
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 
 import requests
 
@@ -84,7 +84,7 @@ class Letsencrypt(models.AbstractModel):
         for dom in domains:
             self._validate_domain(dom)
 
-        cert_file = os.path.join(_get_data_dir(), "%s.crt" % main_domain)
+        cert_file = os.path.join(_get_data_dir(), f"{main_domain}.crt")
         if not self._should_run(cert_file, domains):
             return
 
@@ -150,8 +150,8 @@ class Letsencrypt(models.AbstractModel):
 
         with open(cert_file, "rb") as file_:
             cert = x509.load_pem_x509_certificate(file_.read(), default_backend())
-        expiry = cert.not_valid_after
-        remaining = expiry - datetime.now()
+        expiry = cert.not_valid_after_utc
+        remaining = expiry - datetime.utcnow().replace(tzinfo=timezone(timedelta(0)))
         if remaining < timedelta():
             _logger.warning(
                 "Certificate expired on %s, which was %d days ago!",
@@ -260,7 +260,7 @@ class Letsencrypt(models.AbstractModel):
 
     def _get_authorization_resource(self, client, main_domain, domains):
         """Get acme authorization_resource."""
-        domain_key = self._get_key("%s.key" % main_domain)
+        domain_key = self._get_key(f"{main_domain}.key")
         _logger.info("Making CSR for the following domains: %s", domains)
         csr = acme.crypto_util.make_csr(private_key_pem=domain_key, domains=domains)
         return client.new_order(csr)
