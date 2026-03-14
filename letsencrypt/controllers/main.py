@@ -4,6 +4,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 # pylint: disable=too-few-public-methods,no-self-use
 """This controller handles the acme challenge call from Letsencrypt."""
+
 import logging
 import os
 

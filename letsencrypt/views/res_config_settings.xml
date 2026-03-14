@@ -22,7 +22,6 @@
                                 widget="text"
                                 class="w-100"
                             />
-
                         </setting>
                         <setting>
                             <label for="letsencrypt_reload_command" />
