@@ -103,7 +103,7 @@ To use this module, you need to:
 
 3. Review audit log records as usual from the standard Odoo interface.
 
-4. Use the existing search, filters, and group by options in audit log
+4. Use the existing search, filters, and group-by options in audit log
    views to analyze audit data stored in ClickHouse.
 
 5. Open an audited record and use the standard *View Logs* action when

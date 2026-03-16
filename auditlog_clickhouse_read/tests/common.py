@@ -59,8 +59,7 @@ class AuditlogClickhouseReadCommon(BaseCommon):
             .search([])
         )
         if configs:
-            configs.write({"fdw_enabled": False})
-            configs.write({"is_active": False})
+            configs.write({"fdw_enabled": False, "is_active": False})
 
     @classmethod
     def create_config(cls, **vals):
