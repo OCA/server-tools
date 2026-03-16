@@ -18,7 +18,7 @@
                         name="ir_attachment_language_ids"
                         nolabel="1"
                         colspan="2"
-                        attrs="{'invisible': [('ir_attachment_language_method', '=', False)]}"
+                        invisible="not ir_attachment_language_method"
                     >
                         <tree editable="top">
                             <field name="lang" />
