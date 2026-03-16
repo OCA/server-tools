@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ===========================================
 Mail Template Language Specific Attachments
 ===========================================
@@ -17,33 +13,35 @@ Mail Template Language Specific Attachments
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github
-    :target: https://github.com/OCA/server-tools/tree/16.0/mail_template_attachment_i18n
+    :target: https://github.com/OCA/server-tools/tree/17.0/mail_template_attachment_i18n
     :alt: OCA/server-tools
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/server-tools-16-0/server-tools-16-0-mail_template_attachment_i18n
+    :target: https://translation.odoo-community.org/projects/server-tools-17-0/server-tools-17-0-mail_template_attachment_i18n
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/server-tools&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/server-tools&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
 This module extends the functionality of mail templates.
 
-It allows you to configure attachments based on the language of the partner
-or the language configured in the mail template (which is some times different
-from the partner's language).
+It allows you to configure attachments based on the language of the
+partner or the language configured in the mail template (which is some
+times different from the partner's language).
 
-- The email template's language could be ``{{ object.partner_id.lang }}`` or
-  ``{{ object.user_id.lang }}``, where in the first case we want to send the
-  email in the partner's language and in the second case we want to send the
-  email in the user's language.
+-  The email template's language could be
+   ``{{ object.partner_id.lang }}`` or ``{{ object.user_id.lang }}``,
+   where in the first case we want to send the email in the partner's
+   language and in the second case we want to send the email in the
+   user's language.
 
-For example you can use it to localize your company's terms of agreements.
+For example you can use it to localize your company's terms of
+agreements.
 
 **Table of contents**
 
@@ -55,27 +53,29 @@ Configuration
 
 To configure a language dependent attachment:
 
-#. Activate the developer mode;
-#. go to *Settings > Technical > Email > Templates*;
-#. go to the form view of the template you want to change;
-#. choose the *Language Attachment Method* you want to use;
-#. change the field *Language Dependent Attachments* to what you want.
+1. Activate the developer mode;
+2. go to *Settings > Technical > Email > Templates*;
+3. go to the form view of the template you want to change;
+4. choose the *Language Attachment Method* you want to use;
+5. change the field *Language Dependent Attachments* to what you want.
 
 Usage
 =====
 
-When a template is selected in the mail composer, the attachments will be automatically added based on the recipients language.
-The language of the recipients can be configured on the Partner form view.
-When partners with different languages are selected all attachments of the partners languages will be added.
+When a template is selected in the mail composer, the attachments will
+be automatically added based on the recipients language. The language of
+the recipients can be configured on the Partner form view. When partners
+with different languages are selected all attachments of the partners
+languages will be added.
 
 To use the functionality:
 
-#. Configure a template (e.g. the sale order mail template)
-#. go to a sale order;
-#. click *Send by Email*;
-#. the attachments are added based on the email's language or the customer's
-   language (which might not be the same), depending on the configuration of
-   the template.
+1. Configure a template (e.g. the sale order mail template)
+2. go to a sale order;
+3. click *Send by Email*;
+4. the attachments are added based on the email's language or the
+   customer's language (which might not be the same), depending on the
+   configuration of the template.
 
 Bug Tracker
 ===========
@@ -83,7 +83,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/server-tools/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/server-tools/issues/new?body=module:%20mail_template_attachment_i18n%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/server-tools/issues/new?body=module:%20mail_template_attachment_i18n%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -91,17 +91,17 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Onestein
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Dennis Sluijk <d.sluijk@onestein.nl>
+-  Dennis Sluijk <d.sluijk@onestein.nl>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -113,6 +113,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/16.0/mail_template_attachment_i18n>`_ project on GitHub.
+This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/17.0/mail_template_attachment_i18n>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
