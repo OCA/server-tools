@@ -70,4 +70,11 @@
         <field name="action" ref="action_purge_property" />
         <field name="parent_id" ref="menu_database_cleanup" />
     </record>
+
+    <record model="ir.ui.menu" id="menu_purge_attachments">
+        <field name="name">Purge orphaned attachments</field>
+        <field name="sequence" eval="85" />
+        <field name="action" ref="action_purge_attachments" />
+        <field name="parent_id" ref="menu_database_cleanup" />
+    </record>
 </odoo>

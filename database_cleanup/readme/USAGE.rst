@@ -1,9 +1,13 @@
 After installation of this module, go to the Settings menu -> Technical ->
 Database cleanup. This menu is only available to members of the *Access Rights*
-group. Go through the modules, models, columns and tables
+group. Go through the modules, models, columns, tables and attachment
 entries under this menu (in that order) and find out if there is orphaned data
 in your database. You can either delete entries by line, or sweep all entries
 in one big step (if you are *really* confident).
+
+On databases with a very large number of attachments, opening
+*Purge orphaned attachments* scans stored files in batches and may take
+longer than the other cleanup wizards.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
     :alt: Try me on Runbot

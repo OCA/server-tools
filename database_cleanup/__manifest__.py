@@ -20,6 +20,7 @@
         "views/purge_data.xml",
         "views/create_indexes.xml",
         "views/purge_properties.xml",
+        "views/purge_attachments.xml",
         "views/menu.xml",
         "security/ir.model.access.csv",
     ],

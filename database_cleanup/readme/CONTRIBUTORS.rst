@@ -4,3 +4,6 @@
 * Mark Schuit <mark@gig.solutions>
 * `360ERP <https://www.360erp.com>`_:
    *  Andrea Stirpe
+* `Cetmix <https://cetmix.com/>`_:
+  * Ivan Sokolov
+  * George Smirnov

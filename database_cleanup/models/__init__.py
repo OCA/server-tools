@@ -4,6 +4,7 @@ from . import purge_models
 from . import purge_fields
 from . import purge_columns
 from . import purge_tables
+from . import purge_attachments
 from . import purge_data
 from . import purge_menus
 from . import create_indexes
