@@ -100,7 +100,7 @@ class AuditlogClickhouseConfig(models.Model):
                 )
             )
 
-        if vals.get("is_active") is True:
+        if vals.get("is_active"):
             other_fdw_config = self.search(
                 [
                     ("id", "not in", self.ids),
@@ -138,12 +138,6 @@ class AuditlogClickhouseConfig(models.Model):
         :return: Relation kind code, or ``None`` if the relation does not exist.
         :rtype: str | None
         """
-        self.env.cr.execute("SELECT to_regclass(%s)", (f"{schema}.{name}",))
-        row = self.env.cr.fetchone()
-        regclass_name = row[0] if row else None
-        if not regclass_name:
-            return None
-
         self.env.cr.execute(
             """
             SELECT c.relkind
@@ -409,10 +403,12 @@ class AuditlogClickhouseConfig(models.Model):
         :return: ``None``
         :rtype: None
         """
+        self.ensure_one()
         if self.fdw_enabled == enabled:
             return
         super().write({"fdw_enabled": enabled})
 
+    @api.model
     def _ensure_pg_clickhouse_extension(self):
         """Ensure the ``pg_clickhouse`` extension exists in PostgreSQL.
 
@@ -434,6 +430,7 @@ class AuditlogClickhouseConfig(models.Model):
 
         :raises UserError: If host is missing or the server DDL fails.
         """
+        self.ensure_one()
         driver = "binary"
         host = (self.host or "").strip()
         if not host:
@@ -495,6 +492,7 @@ class AuditlogClickhouseConfig(models.Model):
 
         :raises UserError: If PostgreSQL fails to create or update the mapping.
         """
+        self.ensure_one()
         ch_user = (self.user or "default").strip() or "default"
         ch_password = self.password or ""
 
