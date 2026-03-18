@@ -1,47 +1,49 @@
-from odoo.tools import config as odoo_config
-from dataclasses import dataclass
-from typing import Dict, Optional
-import os
-
 import logging
+import os
+from dataclasses import dataclass
+from typing import Optional
+
+from odoo.tools import config as odoo_config
 
 _logger = logging.getLogger(__name__)
 
 
 PROTO_GRPC_AVAILABLE = False
 try:
-    from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import (
-        OTLPSpanExporter as OTLPSpanExporterGRPC,
+    from opentelemetry.exporter.otlp.proto.grpc._log_exporter import (
+        OTLPLogExporter as OTLPLogExporterGRPC,  # noqa: F401
     )
     from opentelemetry.exporter.otlp.proto.grpc.metric_exporter import (
-        OTLPMetricExporter as OTLPMetricExporterGRPC,
+        OTLPMetricExporter as OTLPMetricExporterGRPC,  # noqa: F401
     )
-    from opentelemetry.exporter.otlp.proto.grpc._log_exporter import (
-        OTLPLogExporter as OTLPLogExporterGRPC,
+    from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import (
+        OTLPSpanExporter as OTLPSpanExporterGRPC,  # noqa: F401
     )
 
     PROTO_GRPC_AVAILABLE = True
 except Exception:
+    _logger.info("gRPC OTLP exporter not available, gRPC support disabled")
     pass
 
 PROTO_HTTP_AVAILABLE = False
 try:
-    from opentelemetry.exporter.otlp.proto.http.trace_exporter import (
-        OTLPSpanExporter as OTLPSpanExporterHTTP,
+    from opentelemetry.exporter.otlp.proto.http._log_exporter import (
+        OTLPLogExporter as OTLPLogExporterHTTP,  # noqa: F401
     )
     from opentelemetry.exporter.otlp.proto.http.metric_exporter import (
-        OTLPMetricExporter as OTLPMetricExporterHTTP,
+        OTLPMetricExporter as OTLPMetricExporterHTTP,  # noqa: F401
     )
-    from opentelemetry.exporter.otlp.proto.http._log_exporter import (
-        OTLPLogExporter as OTLPLogExporterHTTP,
+    from opentelemetry.exporter.otlp.proto.http.trace_exporter import (
+        OTLPSpanExporter as OTLPSpanExporterHTTP,  # noqa: F401
     )
 
     PROTO_HTTP_AVAILABLE = True
 except Exception:
+    _logger.info("HTTP OTLP exporter not available, HTTP support disabled")
     pass
 
 
-def _parse_keyvals(keyvals_str: Optional[str]) -> Dict[str, str]:
+def _parse_keyvals(keyvals_str: str | None) -> dict[str, str]:
     """Helper to parse key=value,key=value strings into a dict"""
     keyvals = {}
     if keyvals_str:
@@ -55,7 +57,7 @@ def _parse_keyvals(keyvals_str: Optional[str]) -> Dict[str, str]:
     return keyvals
 
 
-def _normalise_protocol(protocol: str) -> Optional[str]:
+def _normalise_protocol(protocol: str) -> str | None:
     """Map protocol options to standard values"""
     if protocol == "grpc":
         return "grpc"
@@ -65,7 +67,7 @@ def _normalise_protocol(protocol: str) -> Optional[str]:
     return None
 
 
-def _get_config(key: str, default: Optional[str] = None) -> Optional[str]:
+def _get_config(key: str, default: str | None = None) -> str | None:
     """Helper to get config values, checking env first, then Odoo config"""
     key_env = key
     key_conf = key[5:].lower()  # strip OTEL_ and lower
@@ -77,8 +79,8 @@ def _get_config(key: str, default: Optional[str] = None) -> Optional[str]:
 class OTelExporterConfig:
     protocol: str
     endpoint: str
-    headers: Dict[str, str]
-    grpc_insecure: Optional[bool] = None
+    headers: dict[str, str]
+    grpc_insecure: bool | None = None
 
     @staticmethod
     def load(
@@ -86,11 +88,11 @@ class OTelExporterConfig:
         default_protocol: str,
         default_endpoint_http: str,
         default_endpoint_grpc: str,
-        default_headers: Dict[str, str],
+        default_headers: dict[str, str],
     ) -> Optional["OTelExporterConfig"]:
         sig = signal.upper()
 
-        enable = _get_config(f"OTEL_EXPORTER_OTLP_{sig}_ENABLE", False)
+        enable = _get_config(f"OTEL_EXPORTER_OTLP_{sig}_ENABLE", True)
         if not enable:
             return None
 
@@ -99,7 +101,8 @@ class OTelExporterConfig:
         )
         if proto == "grpc" and not PROTO_GRPC_AVAILABLE:
             _logger.error(
-                f"gRPC selected for {signal} but dependency is not installed. Hint:\n - pip install opentelemetry-exporter-otlp-proto-grpc"
+                f"gRPC selected for {signal} but dependency is not installed. Hint:\n"
+                "- pip install opentelemetry-exporter-otlp-proto-grpc"
             )
             return None
 
@@ -139,11 +142,13 @@ class OTelExporterConfig:
 
 @dataclass(frozen=True)
 class OTelConfig:
+    # TODO: OTEL_SPAN_PROCESSOR (span/simple - let the user configure it)
+
     enable: bool
-    resource_attributes: Dict[str, str]
-    traces_exporter: Optional[OTelExporterConfig]
-    logs_exporter: Optional[OTelExporterConfig]
-    metrics_exporter: Optional[OTelExporterConfig]
+    resource_attributes: dict[str, str]
+    traces_exporter: OTelExporterConfig | None
+    logs_exporter: OTelExporterConfig | None
+    metrics_exporter: OTelExporterConfig | None
 
     @staticmethod
     def disabled() -> "OTelConfig":
@@ -166,7 +171,6 @@ class OTelConfig:
             return OTelConfig.disabled()
 
         enable = _get_config("OTEL_ENABLE", False)
-        resource_attrs = _parse_keyvals(_get_config("OTEL_RESOURCE_ATTRIBUTES", ""))
         default_protocol = _normalise_protocol(
             _get_config("OTEL_EXPORTER_OTLP_PROTOCOL", "http/protobuf")
         )
@@ -202,8 +206,24 @@ class OTelConfig:
 
         return OTelConfig(
             enable=enable,
-            resource_attributes=resource_attrs,
+            resource_attributes=OTelConfig.load_resource_attributes(),
             traces_exporter=traces_exporter,
             logs_exporter=logs_exporter,
             metrics_exporter=metrics_exporter,
         )
+
+    @staticmethod
+    def load_resource_attributes() -> dict[str, str]:
+        attributes = _parse_keyvals(_get_config("OTEL_RESOURCE_ATTRIBUTES", ""))
+        service_name = _get_config("OTEL_RESOURCE_ATTRIBUTES_SERVICE_NAME", "")
+        if service_name:
+            attributes["service.name"] = service_name
+        service_version = _get_config("OTEL_RESOURCE_ATTRIBUTES_SERVICE_VERSION", "")
+        if service_version:
+            attributes["service.version"] = service_version
+        deployment_environment = _get_config(
+            "OTEL_RESOURCE_ATTRIBUTES_DEPLOYMENT_ENVIRONMENT", ""
+        )
+        if deployment_environment:
+            attributes["deployment.environment"] = deployment_environment
+        return attributes

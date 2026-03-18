@@ -1,1 +1,2 @@
-from .bootstrap import init_otel
+from .post_load import post_load
+from . import controllers

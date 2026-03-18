@@ -1,10 +1,11 @@
-from .config import OTelConfig
+import logging
 
 from opentelemetry import trace
 from opentelemetry.sdk.resources import Resource
 from opentelemetry.sdk.trace import TracerProvider
 from opentelemetry.sdk.trace.export import BatchSpanProcessor, SimpleSpanProcessor
-import logging
+
+from .config import OTelConfig
 
 _logger = logging.getLogger(__name__)
 
@@ -15,7 +16,7 @@ def _build_resource(resource_attributes: dict) -> Resource:
 
 def _init_tracing(config: OTelConfig):
     if not config.traces_exporter:
-        _logger.info("OpenTelemetry tracing is not configured, skipping")
+        # _logger.info("OpenTelemetry tracing is not configured, skipping")
         return
 
     resource = _build_resource(config.resource_attributes)
@@ -54,7 +55,7 @@ def _init_tracing(config: OTelConfig):
 
 def _init_metrics(config: OTelConfig):
     if not config.metrics_exporter:
-        _logger.info("OpenTelemetry metrics export is not configured, skipping")
+        # _logger.info("OpenTelemetry metrics export is not configured, skipping")
         return
 
     _logger.warning(
@@ -64,10 +65,16 @@ def _init_metrics(config: OTelConfig):
 
 def _init_logs(config: OTelConfig):
     if not config.logs_exporter:
-        _logger.info("OpenTelemetry logs export is not configured, skipping")
+        # _logger.info("OpenTelemetry logs export is not configured, skipping")
         return
 
     _logger.warning("OpenTelemetry logs export is configured but not implemented yet")
+
+
+def _init_psycopg2():
+    from opentelemetry.instrumentation.psycopg2 import Psycopg2Instrumentor
+
+    Psycopg2Instrumentor().instrument()
 
 
 _OTEL_INITIALIZED = False
@@ -86,5 +93,8 @@ def init_otel():
     _init_tracing(config)
     _init_metrics(config)
     _init_logs(config)
+    _init_psycopg2()
 
     _OTEL_INITIALIZED = True
+
+    _logger.info("OpenTelemetry initialized")
