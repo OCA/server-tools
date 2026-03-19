@@ -181,7 +181,7 @@ class TestEncryptedFieldOnModel(TransactionCase):
         self.assertEqual(field.mask, "full")
         self.assertTrue(field.audit)
         self.assertIsNone(field.encrypt_groups)
-        self.assertIsNone(field.format)
+        self.assertIsNone(field.format_pattern)
 
     def test_field_copy_default_false(self):
         """Test that copy defaults to False via kwargs."""

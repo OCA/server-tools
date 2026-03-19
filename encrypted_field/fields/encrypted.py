@@ -268,7 +268,7 @@ class Encrypted(fields.Char):
         self.encrypt_groups = encrypt_groups
         self.mask = mask
         self.audit = audit
-        self.format_pattern_pattern = format_pattern
+        self.format_pattern = format_pattern
         # Disable tracking by default - don't log sensitive data in chatter
         kwargs.setdefault("tracking", False)
         # Disable copy by default - don't duplicate sensitive data
