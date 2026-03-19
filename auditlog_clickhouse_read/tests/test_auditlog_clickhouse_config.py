@@ -32,16 +32,12 @@ class TestAuditlogClickhouseReadHelpers(AuditlogClickhouseReadCommon):
     def test_02_relation_kind_returns_pg_class_kind(self):
         with (
             patch.object(self.env.cr, "execute") as execute,
-            patch.object(
-                self.env.cr,
-                "fetchone",
-                side_effect=[("public.auditlog_log",), ("f",)],
-            ),
+            patch.object(self.env.cr, "fetchone", return_value=("f",)),
         ):
             kind = self.config._relation_kind("public", "auditlog_log")
 
         self.assertEqual(kind, "f")
-        self.assertEqual(execute.call_count, 2)
+        self.assertEqual(execute.call_count, 1)
 
     def test_03_get_auditlog_read_mode_fdw(self):
         with patch.object(
