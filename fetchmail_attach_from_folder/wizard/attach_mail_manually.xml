@@ -10,6 +10,7 @@
                     <field name="folder_id" />
                     <field name="mail_ids" nolabel="1" colspan="4">
                         <tree create="0">
+                            <field name="message_uid" invisible="1" />
                             <field name="email_from" />
                             <field name="subject" />
                             <field name="date" />
@@ -17,6 +18,7 @@
                         </tree>
                         <form>
                             <group>
+                                <field name="message_uid" invisible="1" />
                                 <field name="email_from" />
                                 <field name="subject" />
                                 <field name="date" />
