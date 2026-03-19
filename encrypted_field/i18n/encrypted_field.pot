@@ -1,0 +1,180 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * encrypted_field
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-19 13:18+0000\n"
+"PO-Revision-Date: 2026-03-19 13:18+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. module: encrypted_field
+msgid "Access Time"
+msgstr ""
+
+#. module: encrypted_field
+msgid "Audit Log Entry"
+msgstr ""
+
+#. module: encrypted_field
+msgid "Close"
+msgstr ""
+
+#. module: encrypted_field
+msgid "Day"
+msgstr ""
+
+#. module: encrypted_field
+msgid "Encrypt Existing Data"
+msgstr ""
+
+#. module: encrypted_field
+msgid "Encrypt Selected"
+msgstr ""
+
+#. module: encrypted_field
+msgid "Encrypted Field Audit Log"
+msgstr ""
+
+#. module: encrypted_field
+msgid "Encryption Complete\\n\" \"===================\\n\\n\" \"Results:\\n%s\\n\\n\" \"Total: %d records encrypted, %d failed"
+msgstr ""
+
+#. module: encrypted_field
+msgid "Encryption Preview\\n\" \"==================\\n\\n\" \"Fields to process:\\n%s\\n\\n\" \"Total unencrypted records: %d\\n\\n\" \"This will encrypt all plaintext values in-place.\\n\" \"Already-encrypted values will be skipped."
+msgstr ""
+
+#. module: encrypted_field
+msgid "Failed to decrypt value. The encryption key may have changed."
+msgstr ""
+
+#. module: encrypted_field
+msgid "Field"
+msgstr ""
+
+#. module: encrypted_field
+msgid "Field '%s' does not exist on model '%s'"
+msgstr ""
+
+#. module: encrypted_field
+msgid "Field '%s' is not an encrypted field"
+msgstr ""
+
+#. module: encrypted_field
+msgid "Group By"
+msgstr ""
+
+#. module: encrypted_field
+msgid "Invalid encryption key in configuration. \" \"Key must be a valid Fernet key (32 url-safe base64-encoded bytes). \" \"Error: %s"
+msgstr ""
+
+#. module: encrypted_field
+msgid "Invalid encryption key: %s"
+msgstr ""
+
+#. module: encrypted_field
+msgid "Invalid key format: %s"
+msgstr ""
+
+#. module: encrypted_field
+msgid "Key Rotation"
+msgstr ""
+
+#. module: encrypted_field
+msgid "Key Rotation Complete\\n\" \"=====================\\n\\n\" \"Results:\\n%s\\n\\n\" \"Total: %d records rotated, %d failed\\n\\n\" \"%s\\n\\n\" \"The new key is now active in memory. No restart required."
+msgstr ""
+
+#. module: encrypted_field
+msgid "Key Rotation FAILED\\n\" \"===================\\n\\n\" \"Errors occurred during rotation. Database has been rolled back.\\n\" \"Your original key is still valid.\\n\\n\" \"Results:\\n%s\\n\\n\" \"Total: %d attempted, %d failed\\n\\n\" \"Fix the errors and try again."
+msgstr ""
+
+#. module: encrypted_field
+msgid "Key Rotation Preview\\n\" \"====================\\n\\n\" \"Encrypted fields found:\\n%s\\n\\n\" \"Total records to process: %d\\n\\n\" \"The wizard will:\\n\" \"1. Re-encrypt all data with the new key\\n\" \"2. Update odoo.conf with the new key\\n\" \"3. Activate the new key in memory (no restart needed)\\n\\n\" \"WARNING: Back up your database before proceeding!"
+msgstr ""
+
+#. module: encrypted_field
+msgid "Last 30 Days"
+msgstr ""
+
+#. module: encrypted_field
+msgid "Last 7 Days"
+msgstr ""
+
+#. module: encrypted_field
+msgid "Model"
+msgstr ""
+
+#. module: encrypted_field
+msgid "No encrypted fields found in the database."
+msgstr ""
+
+#. module: encrypted_field
+msgid "No encryption key configured in odoo.conf"
+msgstr ""
+
+#. module: encrypted_field
+msgid "No encryption key configured. Add 'encryption_key' to your \" \"Odoo configuration file."
+msgstr ""
+
+#. module: encrypted_field
+msgid "No encryption key configured. Add 'encryption_key' to your \" \"Odoo configuration file. Generate a key with: \" \"python -c \\\"from cryptography.fernet import Fernet; \" \"print(Fernet.generate_key().decode())\\\""
+msgstr ""
+
+#. module: encrypted_field
+msgid "No fields selected."
+msgstr ""
+
+#. module: encrypted_field
+msgid "Please select at least one field to encrypt."
+msgstr ""
+
+#. module: encrypted_field
+msgid "Preview"
+msgstr ""
+
+#. module: encrypted_field
+msgid "Rotate Keys"
+msgstr ""
+
+#. module: encrypted_field
+msgid "Search Audit Log"
+msgstr ""
+
+#. module: encrypted_field
+msgid "Search operations are not allowed on encrypted field '%s'. \" \"Encrypted fields cannot be used in filters or search domains."
+msgstr ""
+
+#. module: encrypted_field
+msgid "The 'cryptography' package is required for encrypted fields. \" \"Install it with: pip install cryptography"
+msgstr ""
+
+#. module: encrypted_field
+msgid "The 'cryptography' package is required. \" \"Install it with: pip install cryptography"
+msgstr ""
+
+#. module: encrypted_field
+msgid "To Encrypt"
+msgstr ""
+
+#. module: encrypted_field
+msgid "Today"
+msgstr ""
+
+#. module: encrypted_field
+msgid "User"
+msgstr ""
+
+#. module: encrypted_field
+msgid "You don't have access to view the unmasked value of '%s'. \" \"Required groups: %s"
+msgstr ""
+
+#. module: encrypted_field
+msgid "cryptography package not installed"
+msgstr ""
+

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Audit Log Tree View -->
+    <record id="view_audit_log_tree" model="ir.ui.view">
+        <field name="name">pb.encrypted.audit.log.tree</field>
+        <field name="model">pb.encrypted.audit.log</field>
+        <field name="arch" type="xml">
+            <tree string="Encrypted Field Audit Log" create="0" edit="0" delete="0">
+                <field name="create_date" string="Access Time"/>
+                <field name="user_id"/>
+                <field name="model_name"/>
+                <field name="field_name"/>
+                <field name="record_id"/>
+                <field name="action"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Audit Log Form View -->
+    <record id="view_audit_log_form" model="ir.ui.view">
+        <field name="name">pb.encrypted.audit.log.form</field>
+        <field name="model">pb.encrypted.audit.log</field>
+        <field name="arch" type="xml">
+            <form string="Audit Log Entry" create="0" edit="0" delete="0">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="create_date" string="Access Time"/>
+                            <field name="user_id"/>
+                            <field name="action"/>
+                        </group>
+                        <group>
+                            <field name="model_name"/>
+                            <field name="field_name"/>
+                            <field name="record_id"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Audit Log Search View -->
+    <record id="view_audit_log_search" model="ir.ui.view">
+        <field name="name">pb.encrypted.audit.log.search</field>
+        <field name="model">pb.encrypted.audit.log</field>
+        <field name="arch" type="xml">
+            <search string="Search Audit Log">
+                <field name="user_id"/>
+                <field name="model_name"/>
+                <field name="field_name"/>
+                <filter string="Today" name="today"
+                        domain="[('create_date', '>=', datetime.datetime.combine(context_today(), datetime.time(0,0,0)))]"/>
+                <filter string="Last 7 Days" name="week"
+                        domain="[('create_date', '>=', (datetime.datetime.now() - datetime.timedelta(days=7)).strftime('%Y-%m-%d'))]"/>
+                <filter string="Last 30 Days" name="month"
+                        domain="[('create_date', '>=', (datetime.datetime.now() - datetime.timedelta(days=30)).strftime('%Y-%m-%d'))]"/>
+                <separator/>
+                <group expand="0" string="Group By">
+                    <filter string="User" name="user" context="{'group_by': 'user_id'}"/>
+                    <filter string="Model" name="model" context="{'group_by': 'model_name'}"/>
+                    <filter string="Field" name="field" context="{'group_by': 'field_name'}"/>
+                    <filter string="Day" name="day" context="{'group_by': 'create_date:day'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Audit Log Action -->
+    <record id="action_audit_log" model="ir.actions.act_window">
+        <field name="name">Encryption Audit Log</field>
+        <field name="res_model">pb.encrypted.audit.log</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_audit_log_search"/>
+        <field name="context">{'search_default_week': 1}</field>
+    </record>
+
+    <!-- Scheduled Action: Cleanup old audit logs -->
+    <record id="ir_cron_cleanup_audit_logs" model="ir.cron">
+        <field name="name">Encryption: Cleanup Old Audit Logs</field>
+        <field name="model_id" ref="model_pb_encrypted_audit_log"/>
+        <field name="state">code</field>
+        <field name="code">model.cleanup_old_logs()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">weeks</field>
+        <field name="numbercall">-1</field>
+        <field name="active">True</field>
+    </record>
+</odoo>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Demo: Add encryption groups to demo user -->
+    <record id="base.user_demo" model="res.users">
+        <field name="groups_id" eval="[(4, ref('encrypted_field.group_encryption_auditor'))]"/>
+    </record>
+</odoo>

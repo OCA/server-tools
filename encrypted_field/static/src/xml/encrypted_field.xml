@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="encrypted_field.EncryptedField">
+        <div class="d-flex align-items-center gap-2">
+            <t t-if="state.editing">
+                <!-- Editable input when editing -->
+                <input type="text"
+                       class="o_input"
+                       t-att-value="state.unmaskedValue or ''"
+                       t-on-change="onInputChange"
+                       t-on-input="onInputChange"/>
+            </t>
+            <t t-elif="!props.record.data[props.name] and !props.readonly">
+                <!-- Empty field placeholder - click to add -->
+                <span class="o_field_char_encrypted text-muted fst-italic"
+                      t-on-click="onAddClick"
+                      style="cursor: pointer;">
+                    Click to add...
+                </span>
+            </t>
+            <t t-else="">
+                <!-- Masked readonly display -->
+                <span class="o_field_char_encrypted">
+                    <t t-esc="displayValue"/>
+                </span>
+            </t>
+            <!-- Reveal/Hide button (only for existing values) -->
+            <button t-if="props.record.data[props.name]"
+                    class="btn btn-sm btn-link p-0 ms-1"
+                    t-att-class="{ 'text-muted': state.loading }"
+                    t-on-click="onRevealClick"
+                    t-att-disabled="state.loading"
+                    t-att-title="state.revealed ? 'Hide' : 'Reveal'">
+                <i t-if="state.loading" class="fa fa-spinner fa-spin"/>
+                <i t-elif="state.revealed" class="fa fa-eye-slash"/>
+                <i t-else="" class="fa fa-eye"/>
+            </button>
+        </div>
+    </t>
+
+</templates>
