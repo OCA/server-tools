@@ -5,7 +5,7 @@
         <field name="name">pb.encrypted.audit.log.tree</field>
         <field name="model">pb.encrypted.audit.log</field>
         <field name="arch" type="xml">
-            <tree string="Encrypted Field Audit Log" create="0" edit="0" delete="0">
+            <tree create="0" edit="0" delete="0">
                 <field name="create_date" string="Access Time"/>
                 <field name="user_id"/>
                 <field name="model_name"/>

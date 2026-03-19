@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import logging
 
 from odoo import _, api, models
@@ -36,7 +35,9 @@ class EncryptionKeyMixin(models.AbstractModel):
             Fernet(key.encode() if isinstance(key, str) else key)
             return True
         except Exception as e:
-            raise UserError(_("Invalid encryption key: %s") % str(e))
+            raise UserError(
+                _("Invalid encryption key: %(error)s") % {"error": str(e)}
+            ) from e
 
     @api.model
     def _generate_encryption_key(self):
@@ -45,13 +46,13 @@ class EncryptionKeyMixin(models.AbstractModel):
             from cryptography.fernet import Fernet
 
             return Fernet.generate_key().decode()
-        except ImportError:
+        except ImportError as err:
             raise UserError(
                 _(
                     "The 'cryptography' package is required. "
                     "Install it with: pip install cryptography"
                 )
-            )
+            ) from err
 
     @api.model
     def check_encryption_configured(self):

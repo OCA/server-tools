@@ -1,25 +1,8 @@
-# -*- coding: utf-8 -*-
 {
     "name": "Encrypted Field",
     "version": "17.0.1.0.0",
     "category": "Technical",
     "summary": "Encrypted field types for sensitive data storage",
-    "description": """
-        Provides encrypted field types for storing sensitive data like SSN,
-        credit card numbers, medical IDs, etc.
-
-        Features:
-        - Encrypted field wrapper for any field type
-        - AES encryption via Fernet
-        - Field-level masking (show last 4 digits, etc.)
-        - Group-based access control
-        - Audit logging of decryption access
-        - Key rotation wizard
-        - Migration tool for encrypting existing data
-
-        WARNING: If you lose your encryption key, encrypted data is
-        PERMANENTLY UNRECOVERABLE. Back up your key separately from your database.
-    """,
     "author": "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/server-tools",
     "maintainers": ["jimkring"],

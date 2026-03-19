@@ -75,7 +75,7 @@ Field Parameters
 +-----------------+---------------+-----------+-----------------------------------------------+
 | ``audit``       | bool          | True      | Log access to decrypted values                |
 +-----------------+---------------+-----------+-----------------------------------------------+
-| ``format``      | str           | None      | Format pattern: ``ssn``, ``ein``, ``phone``   |
+| ``format_pattern`` | str        | None      | Format pattern: ``ssn``, ``ein``, ``phone``   |
 +-----------------+---------------+-----------+-----------------------------------------------+
 
 Built-in Format Patterns
@@ -125,7 +125,7 @@ Adding a NEW encrypted field
             string='SSN',
             encrypt_groups='hr.group_hr_manager',
             mask='last4',
-            format='ssn',
+            format_pattern='ssn',
         )
 
 Then add it to the view with the ``encrypted`` widget:

@@ -1,11 +1,11 @@
-/** @odoo-module **/
+/** @odoo-module */
 
-import { registry } from "@web/core/registry";
-import { CharField, charField } from "@web/views/fields/char/char_field";
-import { useService } from "@web/core/utils/hooks";
-import { _t } from "@web/core/l10n/translation";
+import {registry} from "@web/core/registry";
+import {CharField, charField} from "@web/views/fields/char/char_field";
+import {useService} from "@web/core/utils/hooks";
+import {_t} from "@web/core/l10n/translation";
 
-const { useState, onWillUpdateProps } = owl;
+const {useState, onWillUpdateProps} = owl;
 
 export class EncryptedField extends CharField {
     static template = "encrypted_field.EncryptedField";
@@ -72,7 +72,7 @@ export class EncryptedField extends CharField {
         } catch (error) {
             this.notification.add(
                 error.data?.message || _t("You don't have access to view this value."),
-                { type: "danger" }
+                {type: "danger"}
             );
         } finally {
             this.state.loading = false;
@@ -84,7 +84,7 @@ export class EncryptedField extends CharField {
         this.state.unmaskedValue = newValue;
         this.state.hasLocalEdit = true;
         // Update the record with the new value
-        this.props.record.update({ [this.props.name]: newValue });
+        this.props.record.update({[this.props.name]: newValue});
     }
 
     onAddClick() {

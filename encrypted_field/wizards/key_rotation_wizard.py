@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import logging
 import re
 
@@ -16,12 +15,10 @@ class KeyRotationWizard(models.TransientModel):
     _description = "Encryption Key Rotation Wizard"
 
     new_key = fields.Char(
-        string="New Key",
         required=True,
         help="The new encryption key to rotate to",
     )
     generate_new_key = fields.Boolean(
-        string="Generate New Key",
         default=True,
         help="Automatically generate a secure new key",
     )
@@ -52,7 +49,7 @@ class KeyRotationWizard(models.TransientModel):
 
                 res["new_key"] = Fernet.generate_key().decode()
             except ImportError:
-                pass
+                _logger.warning("cryptography package not installed")
         return res
 
     def _get_current_key(self):
@@ -69,8 +66,8 @@ class KeyRotationWizard(models.TransientModel):
                 from cryptography.fernet import Fernet
 
                 self.new_key = Fernet.generate_key().decode()
-            except ImportError:
-                raise UserError(_("cryptography package not installed"))
+            except ImportError as err:
+                raise UserError(_("cryptography package not installed")) from err
 
     def _get_encrypted_fields(self):
         """Find all encrypted fields in all models."""
@@ -104,7 +101,9 @@ class KeyRotationWizard(models.TransientModel):
             Fernet(old_key.encode())  # Validate old key
             Fernet(self.new_key.encode())  # Validate new key
         except Exception as e:
-            raise UserError(_("Invalid key format: %s") % str(e))
+            raise UserError(
+                _("Invalid key format: %(error)s") % {"error": str(e)}
+            ) from e
 
         # Find all encrypted fields
         encrypted_fields = self._get_encrypted_fields()
@@ -142,14 +141,17 @@ class KeyRotationWizard(models.TransientModel):
         self.preview_info = _(
             "Key Rotation Preview\n"
             "====================\n\n"
-            "Encrypted fields found:\n%s\n\n"
-            "Total records to process: %d\n\n"
+            "Encrypted fields found:\n%(fields)s\n\n"
+            "Total records to process: %(total)d\n\n"
             "The wizard will:\n"
             "1. Re-encrypt all data with the new key\n"
             "2. Update odoo.conf with the new key\n"
             "3. Activate the new key in memory (no restart needed)\n\n"
             "WARNING: Back up your database before proceeding!"
-        ) % ("\n".join(preview_lines) if preview_lines else "  None", total_records)
+        ) % {
+            "fields": "\n".join(preview_lines) if preview_lines else "  None",
+            "total": total_records,
+        }
 
         self.state = "preview"
         return self._reopen()
@@ -201,7 +203,9 @@ class KeyRotationWizard(models.TransientModel):
             old_fernet = Fernet(old_key.encode())
             new_fernet = Fernet(self.new_key.encode())
         except Exception as e:
-            raise UserError(_("Invalid key format: %s") % str(e))
+            raise UserError(
+                _("Invalid key format: %(error)s") % {"error": str(e)}
+            ) from e
 
         encrypted_fields = self._get_encrypted_fields()
         results = []
@@ -274,18 +278,21 @@ class KeyRotationWizard(models.TransientModel):
                 "===================\n\n"
                 "Errors occurred during rotation. Database has been rolled back.\n"
                 "Your original key is still valid.\n\n"
-                "Results:\n%s\n\n"
-                "Total: %d attempted, %d failed\n\n"
+                "Results:\n%(results)s\n\n"
+                "Total: %(attempted)d attempted, %(failed)d failed\n\n"
                 "Fix the errors and try again."
-            ) % (
-                "\n".join(results) if results else "  No fields processed",
-                total_success + total_failed,
-                total_failed,
-            )
+            ) % {
+                "results": "\n".join(results) if results else "  No fields processed",
+                "attempted": total_success + total_failed,
+                "failed": total_failed,
+            }
             self.state = "done"
             return self._reopen()
 
         # Commit database changes first
+        # pylint: disable=invalid-commit
+        # Key rotation requires explicit commit to ensure data is persisted
+        # before updating config file with the new key
         self.env.cr.commit()
 
         # Clear ORM caches
@@ -308,16 +315,16 @@ class KeyRotationWizard(models.TransientModel):
         self.result_info = _(
             "Key Rotation Complete\n"
             "=====================\n\n"
-            "Results:\n%s\n\n"
-            "Total: %d records rotated, %d failed\n\n"
-            "%s\n\n"
+            "Results:\n%(results)s\n\n"
+            "Total: %(rotated)d records rotated, %(failed)d failed\n\n"
+            "%(config_msg)s\n\n"
             "The new key is now active in memory. No restart required."
-        ) % (
-            "\n".join(results) if results else "  No records processed",
-            total_success,
-            total_failed,
-            config_msg,
-        )
+        ) % {
+            "results": "\n".join(results) if results else "  No records processed",
+            "rotated": total_success,
+            "failed": total_failed,
+            "config_msg": config_msg,
+        }
 
         self.state = "done"
         return self._reopen()

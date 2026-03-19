@@ -1,9 +1,12 @@
-# -*- coding: utf-8 -*-
 from odoo import _, api, models
 from odoo.exceptions import AccessError
 
-from ..fields.encrypted import (Encrypted, apply_format, decrypt_value,
-                                is_encrypted_value)
+from ..fields.encrypted import (
+    Encrypted,
+    apply_format,
+    decrypt_value,
+    is_encrypted_value,
+)
 
 
 class Base(models.AbstractModel):
@@ -13,12 +16,13 @@ class Base(models.AbstractModel):
     def _get_encrypted_fields(self):
         """Return list of encrypted field names on this model."""
         return [
-            name for name, field in self._fields.items() if isinstance(field, Encrypted)
+            name
+            for name, field in self._fields.items()
+            if isinstance(field, Encrypted)
         ]
 
     def get_unmasked_value(self, field_name):
-        """
-        Get the unmasked (decrypted) value of an encrypted field.
+        """Get the unmasked (decrypted) value of an encrypted field.
 
         Only users with access to the field's encrypt_groups can call this.
         Access is logged to the audit log.
@@ -37,20 +41,24 @@ class Base(models.AbstractModel):
         field = self._fields.get(field_name)
         if not field:
             raise ValueError(
-                _("Field '%s' does not exist on model '%s'") % (field_name, self._name)
+                _("Field '%(field)s' does not exist on model '%(model)s'")
+                % {"field": field_name, "model": self._name}
             )
 
         if not isinstance(field, Encrypted):
-            raise ValueError(_("Field '%s' is not an encrypted field") % field_name)
+            raise ValueError(
+                _("Field '%(field)s' is not an encrypted field")
+                % {"field": field_name}
+            )
 
         # Check access
         if not field._user_has_access(self.env):
             raise AccessError(
                 _(
-                    "You don't have access to view the unmasked value of '%s'. "
-                    "Required groups: %s"
+                    "You don't have access to view the unmasked value of "
+                    "'%(field)s'. Required groups: %(groups)s"
                 )
-                % (field_name, field.encrypt_groups or "None")
+                % {"field": field_name, "groups": field.encrypt_groups or "None"}
             )
 
         # Log access
@@ -63,7 +71,9 @@ class Base(models.AbstractModel):
         # If not in cache, read from database and decrypt
         if value is None:
             self.env.cr.execute(
-                f'SELECT "{field_name}" FROM "{self._table}" WHERE id = %s', [self.id]
+                'SELECT "%(field)s" FROM "%(table)s" WHERE id = %%(id)s'
+                % {"field": field_name, "table": self._table},
+                {"id": self.id},
             )
             row = self.env.cr.fetchone()
             if row and row[0]:
@@ -74,7 +84,7 @@ class Base(models.AbstractModel):
                     value = db_value
 
         # Apply formatting if configured
-        if value and field.format:
-            value = apply_format(value, field.format)
+        if value and field.format_pattern:
+            value = apply_format(value, field.format_pattern)
 
         return value

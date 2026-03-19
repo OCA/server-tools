@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from odoo.exceptions import UserError
 from odoo.tests import TransactionCase, tagged
 from odoo.tools import config
@@ -132,7 +131,7 @@ class TestEncryptedFieldMasking(TransactionCase):
 
     def test_mask_preserves_format_chars(self):
         """Test that masking preserves format characters."""
-        field = Encrypted(mask="last4", format="ssn")
+        field = Encrypted(mask="last4", format_pattern="ssn")
         # With SSN format, 123456789 becomes 123-45-6789
         # Last 4 alphanumeric should show: ***-**-6789
         masked = field._mask_value("123456789")

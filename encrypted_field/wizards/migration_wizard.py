@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import logging
 
 from odoo import _, api, fields, models
@@ -99,13 +98,17 @@ class MigrationWizard(models.TransientModel):
                     # Count unencrypted records
                     try:
                         table = model._table
+                        # pylint: disable=sql-injection
+                        # Table and field names come from Odoo's model registry,
+                        # not user input, so SQL injection is not possible here
                         self.env.cr.execute(
-                            f"""
-                            SELECT COUNT(*) FROM "{table}"
-                            WHERE "{field_name}" IS NOT NULL
-                              AND "{field_name}" != ''
-                              AND "{field_name}" NOT LIKE 'gA%%'
+                            """
+                            SELECT COUNT(*) FROM "%(table)s"
+                            WHERE "%(field)s" IS NOT NULL
+                              AND "%(field)s" != ''
+                              AND "%(field)s" NOT LIKE 'gA%%%%'
                         """
+                            % {"table": table, "field": field_name}
                         )
                         count = self.env.cr.fetchone()[0]
                     except Exception as e:
@@ -182,11 +185,11 @@ class MigrationWizard(models.TransientModel):
         self.preview_info = _(
             "Encryption Preview\n"
             "==================\n\n"
-            "Fields to process:\n%s\n\n"
-            "Total unencrypted records: %d\n\n"
+            "Fields to process:\n%(fields)s\n\n"
+            "Total unencrypted records: %(total)d\n\n"
             "This will encrypt all plaintext values in-place.\n"
             "Already-encrypted values will be skipped."
-        ) % ("\n".join(preview_lines), total_records)
+        ) % {"fields": "\n".join(preview_lines), "total": total_records}
 
         self.state = "preview"
         return self._reopen()
@@ -212,14 +215,18 @@ class MigrationWizard(models.TransientModel):
             try:
                 table = self.env[model_name]._table
 
+                # pylint: disable=sql-injection
+                # Table and field names come from Odoo's model registry,
+                # not user input, so SQL injection is not possible here
                 # Fetch unencrypted records
                 self.env.cr.execute(
-                    f"""
-                    SELECT id, "{field_name}" FROM "{table}"
-                    WHERE "{field_name}" IS NOT NULL
-                      AND "{field_name}" != ''
-                      AND "{field_name}" NOT LIKE 'gA%%'
+                    """
+                    SELECT id, "%(field)s" FROM "%(table)s"
+                    WHERE "%(field)s" IS NOT NULL
+                      AND "%(field)s" != ''
+                      AND "%(field)s" NOT LIKE 'gA%%%%'
                 """
+                    % {"table": table, "field": field_name}
                 )
                 rows = self.env.cr.fetchall()
 
@@ -230,8 +237,10 @@ class MigrationWizard(models.TransientModel):
                     try:
                         encrypted = encrypt_value(str(plaintext_value))
                         self.env.cr.execute(
-                            f'UPDATE "{table}" SET "{field_name}" = %s WHERE id = %s',
-                            [encrypted, record_id],
+                            'UPDATE "%(table)s" SET "%(field)s" = %%(value)s '
+                            "WHERE id = %%(id)s"
+                            % {"table": table, "field": field_name},
+                            {"value": encrypted, "id": record_id},
                         )
                         success += 1
                     except Exception as e:
@@ -261,6 +270,8 @@ class MigrationWizard(models.TransientModel):
                 _logger.error("Failed to process %s.%s: %s", model_name, field_name, e)
 
         # Commit changes
+        # pylint: disable=invalid-commit
+        # Migration requires explicit commit to ensure data is persisted
         self.env.cr.commit()
 
         # Clear caches
@@ -269,13 +280,13 @@ class MigrationWizard(models.TransientModel):
         self.result_info = _(
             "Encryption Complete\n"
             "===================\n\n"
-            "Results:\n%s\n\n"
-            "Total: %d records encrypted, %d failed"
-        ) % (
-            "\n".join(results) if results else "  No fields processed",
-            total_success,
-            total_failed,
-        )
+            "Results:\n%(results)s\n\n"
+            "Total: %(success)d records encrypted, %(failed)d failed"
+        ) % {
+            "results": "\n".join(results) if results else "  No fields processed",
+            "success": total_success,
+            "failed": total_failed,
+        }
 
         self.state = "done"
         return self._reopen()

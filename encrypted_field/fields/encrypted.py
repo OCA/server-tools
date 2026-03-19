@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import logging
 
 from odoo import _, fields
@@ -74,13 +73,13 @@ def _get_fernet():
 
     try:
         from cryptography.fernet import Fernet
-    except ImportError:
+    except ImportError as err:
         raise UserError(
             _(
                 "The 'cryptography' package is required for encrypted fields. "
                 "Install it with: pip install cryptography"
             )
-        )
+        ) from err
 
     if not key:
         raise UserError(
@@ -100,10 +99,10 @@ def _get_fernet():
             _(
                 "Invalid encryption key in configuration. "
                 "Key must be a valid Fernet key (32 url-safe base64-encoded bytes). "
-                "Error: %s"
+                "Error: %(error)s"
             )
-            % str(e)
-        )
+            % {"error": str(e)}
+        ) from e
 
     return _fernet
 
@@ -136,7 +135,7 @@ def decrypt_value(value):
         _logger.error("Failed to decrypt value: %s", e)
         raise UserError(
             _("Failed to decrypt value. The encryption key may have changed.")
-        )
+        ) from e
 
 
 def is_encrypted_value(value):
@@ -255,7 +254,7 @@ class Encrypted(fields.Char):
     encrypt_groups = None
     mask = "full"
     audit = True
-    format = None
+    format_pattern = None
 
     def __init__(
         self,
@@ -263,13 +262,13 @@ class Encrypted(fields.Char):
         encrypt_groups=None,
         mask="full",
         audit=True,
-        format=None,
+        format_pattern=None,
         **kwargs
     ):
         self.encrypt_groups = encrypt_groups
         self.mask = mask
         self.audit = audit
-        self.format = format
+        self.format_pattern_pattern = format_pattern
         # Disable tracking by default - don't log sensitive data in chatter
         kwargs.setdefault("tracking", False)
         # Disable copy by default - don't duplicate sensitive data
@@ -278,15 +277,15 @@ class Encrypted(fields.Char):
 
     def _format_value(self, value):
         """Apply formatting to a value for display."""
-        if not value or not self.format:
+        if not value or not self.format_pattern:
             return value
-        return apply_format(value, self.format)
+        return apply_format(value, self.format_pattern)
 
     def _strip_format(self, value):
         """Strip formatting from a value for storage."""
-        if not value or not self.format:
+        if not value or not self.format_pattern:
             return value
-        return strip_format(value, self.format)
+        return strip_format(value, self.format_pattern)
 
     def _user_has_access(self, env):
         """Check if current user has access to decrypted values."""
@@ -329,7 +328,7 @@ class Encrypted(fields.Char):
             # Now mask from the start
             chars_to_show = unmasked_count if unmasked_count <= 4 else 4
             shown = 0
-            for i, char in enumerate(reversed(formatted)):
+            for char in reversed(formatted):
                 if char.isalnum():
                     shown += 1
                     if shown <= chars_to_show:
@@ -456,8 +455,9 @@ class Encrypted(fields.Char):
                 self._log_access(
                     record.env, record.id, self.name, record._name, action="export"
                 )
-            except Exception:
-                pass  # Don't fail export if audit logging fails
+            except Exception as e:
+                # Don't fail export if audit logging fails
+                _logger.warning("Failed to log export access: %s", e)
 
         # Always export masked value - prevents data leakage via export
         return self._mask_value(value)

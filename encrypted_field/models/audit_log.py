@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from odoo import api, fields, models
 
 
@@ -12,25 +11,21 @@ class EncryptedAuditLog(models.Model):
 
     user_id = fields.Many2one(
         "res.users",
-        string="User",
         required=True,
         index=True,
         readonly=True,
     )
     model_name = fields.Char(
-        string="Model",
         required=True,
         index=True,
         readonly=True,
     )
     field_name = fields.Char(
-        string="Field",
         required=True,
         index=True,
         readonly=True,
     )
     record_id = fields.Integer(
-        string="Record ID",
         required=True,
         index=True,
         readonly=True,
@@ -40,7 +35,6 @@ class EncryptedAuditLog(models.Model):
             ("decrypt", "Decrypted"),
             ("export", "Exported"),
         ],
-        string="Action",
         required=True,
         readonly=True,
         default="decrypt",

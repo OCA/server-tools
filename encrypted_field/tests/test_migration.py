@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from odoo.exceptions import UserError
 from odoo.tests import TransactionCase, tagged
 from odoo.tools import config
