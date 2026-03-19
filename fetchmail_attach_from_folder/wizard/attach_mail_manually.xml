@@ -9,6 +9,7 @@
                     <field name="folder_id" invisible="1" />
                     <field name="mail_ids" nolabel="1" colspan="4">
                         <list create="0">
+                            <field name="message_uid" invisible="1" />
                             <field name="email_from" />
                             <field name="subject" />
                             <field name="date" />
@@ -16,6 +17,7 @@
                         </list>
                         <form>
                             <group>
+                                <field name="message_uid" invisible="1" />
                                 <field name="email_from" />
                                 <field name="subject" />
                                 <field name="date" />

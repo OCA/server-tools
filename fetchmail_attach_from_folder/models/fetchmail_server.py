@@ -1,9 +1,9 @@
-# Copyright - 2013-2024 Therp BV <https://therp.nl>.
+# Copyright - 2013-2026 Therp BV <https://therp.nl>.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 import logging
 import re
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 
 _logger = logging.getLogger(__name__)
@@ -29,16 +29,16 @@ class FetchmailServer(models.Model):
 
         for this in self:
             if this.state != "done":
-                this.folders_available = _("Confirm connection first.")
+                this.folders_available = self.env._("Confirm connection first.")
                 continue
             try:
-                connection = this.connect()
+                connection = this._connect__()
             except UserError:
-                this.folders_available = _("Confirm connection first.")
+                this.folders_available = self.env._("Confirm connection first.")
                 continue
             list_result = connection.list()
             if list_result[0] != "OK":
-                this.folders_available = _("Unable to retrieve folders.")
+                this.folders_available = self.env._("Unable to retrieve folders.")
                 continue
             folders_available = []
             for folder_entry in list_result[1]:

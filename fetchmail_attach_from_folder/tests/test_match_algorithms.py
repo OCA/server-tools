@@ -9,39 +9,11 @@ from odoo.fields import Command
 from odoo.tests.common import TransactionCase
 
 from ..match_algorithm import email_domain
+from .common import get_message_body
 
 TEST_EMAIL = "reynaert@dutchsagas.nl"
 TEST_SUBJECT = "Test subject"
 MAIL_MESSAGE = {"subject": TEST_SUBJECT, "to": "demo@yourcompany.example.com"}
-
-
-def get_message_body(email, subject):
-    """Get Message Body, as returned by fetch() from connection.
-
-    fetch returns a list of tuples with the message information.
-    """
-    return [
-        (
-            "1 (RFC822 {1149}",
-            "Return-Path: <ronald@acme.com>\r\n"
-            "Delivered-To: demo@yourcompany.example.com\r\n"
-            "Received: from localhost (localhost [127.0.0.1])\r\n"
-            "\tby vanaheim.acme.com (Postfix) with ESMTP id 14A3183163\r\n"
-            "\tfor <demo@yourcompany.example.com>;"
-            " Mon, 26 Mar 2018 16:03:52 +0200 (CEST)\r\n"
-            "To: Test User <nonexistingemail@yourcompany.example.com>\r\n"
-            f"From: Reynaert de Vos <{email}>\r\n"
-            f"Subject: {subject}\r\n"
-            "Message-ID: <485a8041-d560-a981-5afc-d31c1f136748@acme.com>\r\n"
-            "Date: Mon, 26 Mar 2018 16:03:51 +0200\r\n"
-            "User-Agent: Mock Test\r\n"
-            "MIME-Version: 1.0\r\n"
-            "Content-Type: text/plain; charset=utf-8\r\n"
-            "Content-Language: en-US\r\n"
-            "Content-Transfer-Encoding: 7bit\r\n\r\n"
-            "Hallo Wereld!\r\n",
-        )
-    ]
 
 
 class MockConnection:
@@ -94,8 +66,10 @@ class TestMatchAlgorithms(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.partner_model = cls.env["res.partner"]
-        cls.test_partner = cls.partner_model.with_context(tracking_disable=True).create(
+        cls.PartnerCategory = cls.env["res.partner.category"]
+        cls.partner_category = cls.PartnerCategory.create({"name": "Test Partners"})
+        cls.Partner = cls.env["res.partner"]
+        cls.test_partner = cls.Partner.with_context(tracking_disable=True).create(
             {
                 "name": "Reynaert de Vos",
                 "email": TEST_EMAIL,
@@ -128,11 +102,10 @@ class TestMatchAlgorithms(TransactionCase):
         )
         cls.partner_ir_model = cls.env["ir.model"].search(
             [
-                ("model", "=", cls.partner_model._name),
+                ("model", "=", cls.Partner._name),
             ],
             limit=1,
         )
-        cls.partner_category = cls.env.ref("base.res_partner_category_12")
         cls.server_action = cls.env["ir.actions.server"].create(
             {
                 "name": "Action Set Active Partner",
@@ -229,7 +202,7 @@ class TestMatchAlgorithms(TransactionCase):
         """Test the button_confirm_folder method."""
         folder = self.folder
         with patch.object(
-            self.server.__class__, "connect", return_value=MockConnection()
+            self.server.__class__, "_connect__", return_value=MockConnection()
         ):
             folder.active = False
             folder.button_confirm_folder()

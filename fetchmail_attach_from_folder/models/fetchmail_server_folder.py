@@ -5,7 +5,7 @@ import email.policy
 import logging
 from xmlrpc import client as xmlrpclib
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError, ValidationError
 from odoo.tools.mail import decode_message_header, email_split_and_format
 
@@ -136,10 +136,12 @@ class FetchmailServerFolder(models.Model):
         for this in self:
             if not this.active:
                 continue
-            connection = this.server_id.connect()
+            connection = this.server_id._connect__()
             connection.select()
             if connection.select(this.path)[0] != "OK":
-                raise ValidationError(_("Invalid folder %s!") % this.path)
+                raise ValidationError(
+                    self.env._("Invalid folder %(path)s!", path=this.path)
+                )
             connection.close()
             this.write({"state": "done"})
 
@@ -169,7 +171,7 @@ class FetchmailServerFolder(models.Model):
             connection = None
             try:
                 # New connection per folder
-                connection = this.server_id.connect()
+                connection = this.server_id._connect__()
                 this.check_imap_archive_folder(connection)
                 this.retrieve_imap_folder(connection)
                 connection.close()
@@ -199,8 +201,12 @@ class FetchmailServerFolder(models.Model):
             connection.create(self.archive_path)
             if connection.select(self.archive_path)[0] != "OK":
                 raise UserError(
-                    _("Could not create archive folder %(folder)s on server %(server)s")
-                    % {"folder": self.archive_path, "server": server.name}
+                    self.env._(
+                        "Could not create archive folder %(folder)s"
+                        " on server %(server)s",
+                        folder=self.archive_path,
+                        server=server.name,
+                    )
                 )
 
     def get_criteria(self):
@@ -243,15 +249,21 @@ class FetchmailServerFolder(models.Model):
         )
         if connection.select(self.path)[0] != "OK":
             raise UserError(
-                _("Could not open folder %(folder)s on server %(server)s")
-                % {"folder": self.path, "server": server.name}
+                self.env._(
+                    "Could not open folder %(folder)s on server %(server)s",
+                    folder=self.path,
+                    server=server.name,
+                )
             )
         charset = None  # Generally we do not need to set a charset.
         result, message_uids = connection.uid("search", charset, criteria)
         if result != "OK":
             raise UserError(
-                _("Could not search folder %(folder)s on server %(server)s")
-                % {"folder": self.path, "server": server.name}
+                self.env._(
+                    "Could not search folder %(folder)s on server %(server)s",
+                    folder=self.path,
+                    server=server.name,
+                )
             )
         _logger.info(
             "finished checking for emails in folder %(folder)s on server %(server)s",
@@ -310,7 +322,7 @@ class FetchmailServerFolder(models.Model):
         result, msgdata = connection.uid("fetch", message_uid, command)
         if result != "OK":
             raise UserError(
-                _(
+                self.env._(
                     "Could not fetch %(message_uid)s in folder %(folder)s"
                     " on server %(server)s",
                     message_uid=message_uid,
@@ -430,25 +442,20 @@ class FetchmailServerFolder(models.Model):
         )
         return None
 
+    @api.model
     def attach_mail(self, match_object, message_dict):
         """Attach mail to match_object."""
-        self.ensure_one()
-        partner = False
-        model_name = self.model_id.model
-        if model_name == "res.partner":
-            partner = match_object
-        elif "partner_id" in self.env[model_name]._fields:
-            partner = match_object.partner_id
         message_model = self.env["mail.message"]
         msg_values = {
             key: val
             for key, val in message_dict.items()
             if key in message_model._fields
         }
+        partner = self._get_partner_from_object(match_object)
         msg_values.update(
             {
                 "author_id": partner and partner.id or False,
-                "model": model_name,
+                "model": match_object._name,
                 "res_id": match_object.id,
                 "message_type": "email",
             }
@@ -463,10 +470,19 @@ class FetchmailServerFolder(models.Model):
         message = message_model.create(msg_values)
         _logger.debug(
             "Message with id %(message_id)s created"
-            " for %(model_name)s with id %(thread_id)s",
+            " for %(match_object._name)s with id %(thread_id)s",
             {
                 "message_id": message.id,
-                "model_name": model_name,
+                "match_object._name": match_object._name,
                 "thread_id": match_object.id,
             },
         )
+
+    @api.model
+    def _get_partner_from_object(self, match_object):
+        """Get partner from object."""
+        if match_object._name == "res.partner":
+            return match_object
+        if "partner_id" in match_object._fields:
+            return match_object.partner_id
+        return False
