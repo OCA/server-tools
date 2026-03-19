@@ -298,6 +298,38 @@ class Encrypted(fields.Char):
                 return True
         return False
 
+    def _mask_last4(self, formatted):
+        """Mask all but last 4 alphanumeric characters."""
+        if len(formatted) <= 4:
+            return formatted
+        # Count non-format characters from the end
+        unmasked_count = sum(1 for c in formatted if c.isalnum())
+        chars_to_show = min(unmasked_count, 4)
+        # Build result from end
+        result = []
+        shown = 0
+        for char in reversed(formatted):
+            if char.isalnum():
+                shown += 1
+                result.append(char if shown <= chars_to_show else "*")
+            else:
+                result.append(char)
+        return "".join(reversed(result))
+
+    def _mask_first4(self, formatted):
+        """Mask all but first 4 alphanumeric characters."""
+        if len(formatted) <= 4:
+            return formatted
+        result = []
+        shown = 0
+        for char in formatted:
+            if char.isalnum():
+                shown += 1
+                result.append(char if shown <= 4 else "*")
+            else:
+                result.append(char)
+        return "".join(result)
+
     def _mask_value(self, value):
         """Apply masking to a value (with formatting preserved)."""
         if value is None:
@@ -314,47 +346,10 @@ class Encrypted(fields.Char):
             return self.mask(formatted)
 
         if self.mask == "last4":
-            if len(formatted) <= 4:
-                return formatted
-            # Mask everything except last 4 characters (preserving format chars)
-            result = []
-            unmasked_count = 0
-            # Count non-format characters from the end
-            for char in reversed(formatted):
-                if char.isalnum():
-                    unmasked_count += 1
-                if unmasked_count > 4:
-                    break
-            # Now mask from the start
-            chars_to_show = unmasked_count if unmasked_count <= 4 else 4
-            shown = 0
-            for char in reversed(formatted):
-                if char.isalnum():
-                    shown += 1
-                    if shown <= chars_to_show:
-                        result.append(char)
-                    else:
-                        result.append("*")
-                else:
-                    # Keep format characters (dashes, etc.)
-                    result.append(char)
-            return "".join(reversed(result))
+            return self._mask_last4(formatted)
 
         if self.mask == "first4":
-            if len(formatted) <= 4:
-                return formatted
-            result = []
-            shown = 0
-            for char in formatted:
-                if char.isalnum():
-                    shown += 1
-                    if shown <= 4:
-                        result.append(char)
-                    else:
-                        result.append("*")
-                else:
-                    result.append(char)
-            return "".join(result)
+            return self._mask_first4(formatted)
 
         # Default: full mask (but preserve format characters)
         return "".join("*" if c.isalnum() else c for c in formatted)

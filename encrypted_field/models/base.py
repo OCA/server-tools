@@ -71,8 +71,7 @@ class Base(models.AbstractModel):
         # If not in cache, read from database and decrypt
         if value is None:
             self.env.cr.execute(
-                'SELECT "%(field)s" FROM "%(table)s" WHERE id = %%(id)s'
-                % {"field": field_name, "table": self._table},
+                f'SELECT "{field_name}" FROM "{self._table}" WHERE id = %(id)s',
                 {"id": self.id},
             )
             row = self.env.cr.fetchone()

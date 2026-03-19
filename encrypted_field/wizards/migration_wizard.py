@@ -102,13 +102,12 @@ class MigrationWizard(models.TransientModel):
                         # Table and field names come from Odoo's model registry,
                         # not user input, so SQL injection is not possible here
                         self.env.cr.execute(
-                            """
-                            SELECT COUNT(*) FROM "%(table)s"
-                            WHERE "%(field)s" IS NOT NULL
-                              AND "%(field)s" != ''
-                              AND "%(field)s" NOT LIKE 'gA%%%%'
+                            f"""
+                            SELECT COUNT(*) FROM "{table}"
+                            WHERE "{field_name}" IS NOT NULL
+                              AND "{field_name}" != ''
+                              AND "{field_name}" NOT LIKE 'gA%%'
                         """
-                            % {"table": table, "field": field_name}
                         )
                         count = self.env.cr.fetchone()[0]
                     except Exception as e:
@@ -220,13 +219,12 @@ class MigrationWizard(models.TransientModel):
                 # not user input, so SQL injection is not possible here
                 # Fetch unencrypted records
                 self.env.cr.execute(
-                    """
-                    SELECT id, "%(field)s" FROM "%(table)s"
-                    WHERE "%(field)s" IS NOT NULL
-                      AND "%(field)s" != ''
-                      AND "%(field)s" NOT LIKE 'gA%%%%'
+                    f"""
+                    SELECT id, "{field_name}" FROM "{table}"
+                    WHERE "{field_name}" IS NOT NULL
+                      AND "{field_name}" != ''
+                      AND "{field_name}" NOT LIKE 'gA%%'
                 """
-                    % {"table": table, "field": field_name}
                 )
                 rows = self.env.cr.fetchall()
 
@@ -237,9 +235,8 @@ class MigrationWizard(models.TransientModel):
                     try:
                         encrypted = encrypt_value(str(plaintext_value))
                         self.env.cr.execute(
-                            'UPDATE "%(table)s" SET "%(field)s" = %%(value)s '
-                            "WHERE id = %%(id)s"
-                            % {"table": table, "field": field_name},
+                            f'UPDATE "{table}" SET "{field_name}" = %(value)s '
+                            "WHERE id = %(id)s",
                             {"value": encrypted, "id": record_id},
                         )
                         success += 1
