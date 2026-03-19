@@ -8,7 +8,7 @@ from odoo.tests.result import OdooTestResult
 from odoo.tools import config
 
 
-def new_run_suite(suite, module_name=None):
+def new_run_suite(suite, module_name=None, global_report=None):
     # Override : Get and create a config dir
     test_result_directory = config.get("test_result_directory", "test_results")
     # create test result directory if not exists
