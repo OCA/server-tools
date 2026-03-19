@@ -2,7 +2,7 @@
 # © 2018 Pieter Paulussen <pieter_paulussen@me.com>
 # © 2021 Stefan Rijnhart <stefan@opener.amsterdam>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-
+from odoo.tests import tagged
 from odoo.tools import mute_logger
 
 from odoo.addons.base.models.ir_model import MODULE_UNINSTALL_FLAG
@@ -280,6 +280,7 @@ class AuditlogCommon:
         )
 
 
+@tagged("-at_install", "post_install")
 class TestAuditlogFull(AuditLogRuleCommon, AuditlogCommon):
     @classmethod
     def setUpClass(cls):
@@ -298,6 +299,7 @@ class TestAuditlogFull(AuditLogRuleCommon, AuditlogCommon):
         )
 
 
+@tagged("-at_install", "post_install")
 class TestAuditlogExportData(AuditLogRuleCommon):
     @classmethod
     def setUpClass(cls):
@@ -329,6 +331,7 @@ class TestAuditlogExportData(AuditLogRuleCommon):
         self.assertIsInstance(domain[0][2], list)
 
 
+@tagged("-at_install", "post_install")
 class TestAuditlogFast(AuditLogRuleCommon, AuditlogCommon):
     @classmethod
     def setUpClass(cls):
@@ -347,6 +350,7 @@ class TestAuditlogFast(AuditLogRuleCommon, AuditlogCommon):
         )
 
 
+@tagged("-at_install", "post_install")
 class TestFieldRemoval(AuditLogRuleCommon):
     @classmethod
     def setUpClass(cls):
@@ -444,6 +448,7 @@ class TestFieldRemoval(AuditLogRuleCommon):
         self.assertFalse(self.auditlog_rule.model_id)
 
 
+@tagged("-at_install", "post_install")
 class TestAuditlogFullCaptureRecord(AuditLogRuleCommon, AuditlogCommon):
     @classmethod
     def setUpClass(cls):
@@ -463,6 +468,7 @@ class TestAuditlogFullCaptureRecord(AuditLogRuleCommon, AuditlogCommon):
         )
 
 
+@tagged("-at_install", "post_install")
 class AuditLogRuleTestForUserFields(AuditLogRuleCommon):
     @classmethod
     def setUpClass(cls):
@@ -647,6 +653,7 @@ class AuditLogRuleTestForUserFields(AuditLogRuleCommon):
         self.assertTrue(delete_log_record)
 
 
+@tagged("-at_install", "post_install")
 class AuditLogRuleTestForUserModel(AuditLogRuleCommon):
     @classmethod
     def setUpClass(cls):
@@ -723,6 +730,7 @@ class AuditLogRuleTestForUserModel(AuditLogRuleCommon):
         self.assertTrue(write_log_record)
 
 
+@tagged("-at_install", "post_install")
 class AuditlogFast_excluded_fields(AuditLogRuleCommon):
     @classmethod
     def setUpClass(cls):

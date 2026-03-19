@@ -2,9 +2,12 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 import time
 
+from odoo.tests import tagged
+
 from .common import AuditLogRuleCommon
 
 
+@tagged("-at_install", "post_install")
 class TestAuditlogAutovacuum(AuditLogRuleCommon):
     def setUp(self):
         super().setUp()
