@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record id="view_key_rotation_wizard_form" model="ir.ui.view">
         <field name="name">pb.key.rotation.wizard.form</field>
@@ -11,28 +11,38 @@
                         A new key has been auto-generated below.
                     </p>
                     <group>
-                        <field name="new_key" password="True"/>
-                        <field name="generate_new_key"/>
+                        <field name="new_key" password="True" />
+                        <field name="generate_new_key" />
                     </group>
                 </div>
 
                 <div invisible="state != 'preview'" class="mt-3">
-                    <pre><field name="preview_info" nolabel="1" readonly="1"/></pre>
+                    <pre><field name="preview_info" nolabel="1" readonly="1" /></pre>
                 </div>
 
                 <div invisible="state != 'done'" class="mt-3">
-                    <pre><field name="result_info" nolabel="1" readonly="1"/></pre>
+                    <pre><field name="result_info" nolabel="1" readonly="1" /></pre>
                 </div>
 
-                <field name="state" invisible="1"/>
+                <field name="state" invisible="1" />
 
                 <footer>
-                    <button string="Preview" name="action_preview" type="object"
-                            class="btn-primary" invisible="state != 'draft'"/>
-                    <button string="Rotate Keys" name="action_rotate" type="object"
-                            class="btn-danger" invisible="state != 'preview'"
-                            confirm="This will re-encrypt all data with the new key. This cannot be undone. Continue?"/>
-                    <button string="Close" class="btn-secondary" special="cancel"/>
+                    <button
+                        string="Preview"
+                        name="action_preview"
+                        type="object"
+                        class="btn-primary"
+                        invisible="state != 'draft'"
+                    />
+                    <button
+                        string="Rotate Keys"
+                        name="action_rotate"
+                        type="object"
+                        class="btn-danger"
+                        invisible="state != 'preview'"
+                        confirm="This will re-encrypt all data with the new key. This cannot be undone. Continue?"
+                    />
+                    <button string="Close" class="btn-secondary" special="cancel" />
                 </footer>
             </form>
         </field>

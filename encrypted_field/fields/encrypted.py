@@ -86,8 +86,8 @@ def _get_fernet():
             _(
                 "No encryption key configured. Add 'encryption_key' to your "
                 "Odoo configuration file. Generate a key with: "
-                "python -c \"from cryptography.fernet import Fernet; "
-                "print(Fernet.generate_key().decode())\""
+                'python -c "from cryptography.fernet import Fernet; '
+                'print(Fernet.generate_key().decode())"'
             )
         )
 
@@ -263,7 +263,7 @@ class Encrypted(fields.Char):
         mask="full",
         audit=True,
         format_pattern=None,
-        **kwargs
+        **kwargs,
     ):
         self.encrypt_groups = encrypt_groups
         self.mask = mask

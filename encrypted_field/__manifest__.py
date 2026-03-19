@@ -24,7 +24,7 @@
     ],
     "assets": {
         "web.assets_backend": [
-            "encrypted_field/static/src/js/encrypted_field.js",
+            "encrypted_field/static/src/js/encrypted_field.esm.js",
             "encrypted_field/static/src/xml/encrypted_field.xml",
         ],
     },

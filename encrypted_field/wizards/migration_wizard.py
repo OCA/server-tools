@@ -148,9 +148,9 @@ class MigrationWizard(models.TransientModel):
 
     def action_select_all(self):
         """Select all fields with unencrypted data."""
-        self.line_ids.filtered(
-            lambda line: line.unencrypted_count > 0
-        ).write({"selected": True})
+        self.line_ids.filtered(lambda line: line.unencrypted_count > 0).write(
+            {"selected": True}
+        )
         return self._reopen()
 
     def action_select_none(self):

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record id="view_migration_wizard_form" model="ir.ui.view">
         <field name="name">pb.encryption.migration.wizard.form</field>
@@ -11,43 +11,69 @@
                             Select the encrypted fields you want to process. Fields with unencrypted data are pre-selected.
                         </p>
                         <div class="mb-2">
-                            <button name="action_select_all" type="object" class="btn-sm btn-secondary me-1">
+                            <button
+                                name="action_select_all"
+                                type="object"
+                                class="btn-sm btn-secondary me-1"
+                            >
                                 Select All
                             </button>
-                            <button name="action_select_none" type="object" class="btn-sm btn-secondary me-1">
+                            <button
+                                name="action_select_none"
+                                type="object"
+                                class="btn-sm btn-secondary me-1"
+                            >
                                 Select None
                             </button>
-                            <button name="action_refresh" type="object" class="btn-sm btn-secondary">
-                                <i class="fa fa-refresh"/> Refresh
+                            <button
+                                name="action_refresh"
+                                type="object"
+                                class="btn-sm btn-secondary"
+                            >
+                                <i class="fa fa-refresh" /> Refresh
                             </button>
                         </div>
                         <field name="line_ids" nolabel="1">
                             <tree editable="bottom" create="false" delete="false">
-                                <field name="selected" widget="boolean_toggle"/>
-                                <field name="model_name"/>
-                                <field name="field_name"/>
-                                <field name="unencrypted_count" string="To Encrypt"/>
+                                <field name="selected" widget="boolean_toggle" />
+                                <field name="model_name" />
+                                <field name="field_name" />
+                                <field name="unencrypted_count" string="To Encrypt" />
                             </tree>
                         </field>
                     </div>
 
                     <div invisible="state != 'preview'" class="mt-3">
-                        <pre><field name="preview_info" nolabel="1" readonly="1"/></pre>
+                        <pre><field
+                                name="preview_info"
+                                nolabel="1"
+                                readonly="1"
+                            /></pre>
                     </div>
 
                     <div invisible="state != 'done'" class="mt-3">
-                        <pre><field name="result_info" nolabel="1" readonly="1"/></pre>
+                        <pre><field name="result_info" nolabel="1" readonly="1" /></pre>
                     </div>
 
-                    <field name="state" invisible="1"/>
+                    <field name="state" invisible="1" />
                 </sheet>
                 <footer>
-                    <button string="Preview" name="action_preview" type="object"
-                            class="btn-primary" invisible="state != 'draft'"/>
-                    <button string="Encrypt Selected" name="action_migrate" type="object"
-                            class="btn-danger" invisible="state != 'preview'"
-                            confirm="This will encrypt all plaintext values in-place. Continue?"/>
-                    <button string="Close" class="btn-secondary" special="cancel"/>
+                    <button
+                        string="Preview"
+                        name="action_preview"
+                        type="object"
+                        class="btn-primary"
+                        invisible="state != 'draft'"
+                    />
+                    <button
+                        string="Encrypt Selected"
+                        name="action_migrate"
+                        type="object"
+                        class="btn-danger"
+                        invisible="state != 'preview'"
+                        confirm="This will encrypt all plaintext values in-place. Continue?"
+                    />
+                    <button string="Close" class="btn-secondary" special="cancel" />
                 </footer>
             </form>
         </field>

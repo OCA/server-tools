@@ -16,9 +16,7 @@ class Base(models.AbstractModel):
     def _get_encrypted_fields(self):
         """Return list of encrypted field names on this model."""
         return [
-            name
-            for name, field in self._fields.items()
-            if isinstance(field, Encrypted)
+            name for name, field in self._fields.items() if isinstance(field, Encrypted)
         ]
 
     def get_unmasked_value(self, field_name):
@@ -47,8 +45,7 @@ class Base(models.AbstractModel):
 
         if not isinstance(field, Encrypted):
             raise ValueError(
-                _("Field '%(field)s' is not an encrypted field")
-                % {"field": field_name}
+                _("Field '%(field)s' is not an encrypted field") % {"field": field_name}
             )
 
         # Check access

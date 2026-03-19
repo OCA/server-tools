@@ -1,9 +1,9 @@
 /** @odoo-module **/
 
-import {registry} from "@web/core/registry";
 import {CharField, charField} from "@web/views/fields/char/char_field";
-import {useService} from "@web/core/utils/hooks";
 import {_t} from "@web/core/l10n/translation";
+import {registry} from "@web/core/registry";
+import {useService} from "@web/core/utils/hooks";
 
 const {useState, onWillUpdateProps} = owl;
 

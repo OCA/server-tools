@@ -163,7 +163,7 @@ class KeyRotationWizard(models.TransientModel):
             return False, "No config file path found"
 
         try:
-            with open(config_file, "r") as f:
+            with open(config_file) as f:
                 content = f.read()
 
             # Replace existing encryption_key or add it

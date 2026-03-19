@@ -2,9 +2,14 @@ from odoo.exceptions import UserError
 from odoo.tests import TransactionCase, tagged
 from odoo.tools import config
 
-from ..fields.encrypted import (Encrypted, apply_format, decrypt_value,
-                                encrypt_value, is_encrypted_value,
-                                strip_format)
+from ..fields.encrypted import (
+    Encrypted,
+    apply_format,
+    decrypt_value,
+    encrypt_value,
+    is_encrypted_value,
+    strip_format,
+)
 
 
 @tagged("post_install", "-at_install")

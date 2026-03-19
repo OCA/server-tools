@@ -57,9 +57,9 @@ class TestMigrationWizard(TransactionCase):
         )
         wizard.action_select_all()
         self.assertTrue(
-            wizard.line_ids.filtered(
-                lambda line: line.unencrypted_count > 0
-            ).mapped("selected")
+            wizard.line_ids.filtered(lambda line: line.unencrypted_count > 0).mapped(
+                "selected"
+            )
         )
 
     def test_wizard_select_none(self):
