@@ -1,15 +1,15 @@
-/** @odoo-module **/
+/** @odoo-module */
 
 /* Copyright 2026 KOBROS-TECH LTD (https://kobros-tech.com).
  @author Mohamed Alkobrosli <mohamed@kobros-tech.com>
  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). */
 
-import {ExportDataDialog} from "@web/views/view_dialogs/export_data_dialog";
-import {Many2OneField} from "@web/views/fields/many2one/many2one_field";
+import {Many2OneField, many2OneField} from "@web/views/fields/many2one/many2one_field";
+import {_t} from "@web/core/l10n/translation";
+import {rpc} from "@web/core/network/rpc";
 import {registry} from "@web/core/registry";
 import {useService} from "@web/core/utils/hooks";
-
-const {onWillDestroy} = owl;
+import {ExportDataDialog} from "@web/views/view_dialogs/export_data_dialog";
 
 class JsonExportDialog extends ExportDataDialog {
     setup() {
@@ -17,20 +17,12 @@ class JsonExportDialog extends ExportDataDialog {
         Object.assign(this.state, {
             showApplyTemplateButton: false,
         });
-        this.title = this.env._t("Select Fields for JSON Export");
-        // Swap the model from props to load the correct export fields
-        // for the schema's target model, not the schema model itself.
-        this.swapResModel = this.props.root.resModel;
-        this.props.root.resModel = this.props.context.resModel;
+        this.title = _t("Select Fields for JSON Export");
         if (this.props.context.exporter_id && this.props.context.exporter_id[0]) {
             this.state.templateId = this.props.context.exporter_id[0];
         } else {
             this.state.templateId = "new_template";
         }
-        // Restore original model when dialog is destroyed
-        onWillDestroy(() => {
-            this.props.root.resModel = this.swapResModel;
-        });
     }
 
     async onChangeExportList(ev) {
@@ -105,7 +97,6 @@ JsonExportDialog.template = "json_export_engine.JsonExportDialog";
 class JsonExportFieldSelector extends Many2OneField {
     setup() {
         super.setup();
-        this.rpc = useService("rpc");
         this.orm = useService("orm");
         this.dialogService = useService("dialog");
         this.quickOverlap = (templ) => {
@@ -121,9 +112,11 @@ class JsonExportFieldSelector extends Many2OneField {
     }
 
     async getExportedFields(model, import_compat, parentParams) {
-        return await this.rpc("/web/export/get_fields", {
+        const domain = [];
+        return await rpc("/web/export/get_fields", {
             ...parentParams,
-            model,
+            model: this.props.record.data.model_name,
+            domain,
             import_compat,
         });
     }
@@ -154,8 +147,10 @@ class JsonExportFieldSelector extends Many2OneField {
 
 JsonExportFieldSelector.template = "json_export_engine.JsonExportFieldSelector";
 JsonExportFieldSelector.supportedTypes = ["many2one"];
-JsonExportFieldSelector.fieldDependencies = {
-    model_name: {type: "char"},
+
+export const jsonExportFieldSelector = {
+    ...many2OneField,
+    component: JsonExportFieldSelector,
 };
 
-registry.category("fields").add("json_export_field_selector", JsonExportFieldSelector);
+registry.category("fields").add("json_export_field_selector", jsonExportFieldSelector);

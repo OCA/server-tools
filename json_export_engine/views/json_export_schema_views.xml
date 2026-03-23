@@ -36,7 +36,7 @@
                         name="web_ribbon"
                         title="Archived"
                         bg_color="bg-danger"
-                        attrs="{'invisible': [('active', '=', True)]}"
+                        invisible="active"
                     />
                     <div class="oe_title">
                         <h1>
@@ -91,29 +91,21 @@
                                 class="o_field_text"
                             />
                         </page>
-                        <page
-                            string="Endpoints"
-                            name="endpoints"
-                            attrs="{'invisible': [('id', '=', False)]}"
-                        >
+                        <page string="Endpoints" name="endpoints" invisible="not id">
                             <field name="endpoint_ids" nolabel="1">
-                                <tree editable="bottom">
+                                <list editable="bottom">
                                     <field name="name" />
                                     <field name="route_path" />
                                     <field name="full_url" widget="url" />
                                     <field name="schema_url" widget="url" />
                                     <field name="auth_type" />
                                     <field name="active" />
-                                </tree>
+                                </list>
                             </field>
                         </page>
-                        <page
-                            string="Webhooks"
-                            name="webhooks"
-                            attrs="{'invisible': [('id', '=', False)]}"
-                        >
+                        <page string="Webhooks" name="webhooks" invisible="not id">
                             <field name="webhook_ids" nolabel="1">
-                                <tree>
+                                <list>
                                     <field name="name" />
                                     <field name="url" />
                                     <field name="on_create" />
@@ -121,23 +113,19 @@
                                     <field name="on_unlink" />
                                     <field name="state" />
                                     <field name="last_call_date" />
-                                </tree>
+                                </list>
                             </field>
                         </page>
-                        <page
-                            string="Schedules"
-                            name="schedules"
-                            attrs="{'invisible': [('id', '=', False)]}"
-                        >
+                        <page string="Schedules" name="schedules" invisible="not id">
                             <field name="schedule_ids" nolabel="1">
-                                <tree>
+                                <list>
                                     <field name="name" />
                                     <field name="interval_number" />
                                     <field name="interval_type" />
                                     <field name="destination_type" />
                                     <field name="last_run_date" />
                                     <field name="last_run_status" />
-                                </tree>
+                                </list>
                             </field>
                         </page>
                     </notebook>
@@ -146,17 +134,17 @@
         </field>
     </record>
 
-    <!-- Tree View -->
+    <!-- List View -->
     <record id="json_export_schema_tree_view" model="ir.ui.view">
-        <field name="name">json.export.schema.tree</field>
+        <field name="name">json.export.schema.list</field>
         <field name="model">json.export.schema</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name" />
                 <field name="model_name" />
                 <field name="exporter_id" />
                 <field name="active" />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -193,7 +181,7 @@
     <record id="json_export_schema_action" model="ir.actions.act_window">
         <field name="name">Export Schemas</field>
         <field name="res_model">json.export.schema</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="search_view_id" ref="json_export_schema_search_view" />
         <field name="context">{'search_default_active': 1}</field>
     </record>

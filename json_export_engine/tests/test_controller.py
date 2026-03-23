@@ -139,7 +139,7 @@ class TestJsonExportController(HttpCase):
 
     def _get(self, path, headers=None):
         """Helper to perform a GET request."""
-        url = "/api/json_export/%s" % path
+        url = f"/api/json_export/{path}"
         return self.url_open(url, headers=headers or {})
 
     # -- No auth tests --

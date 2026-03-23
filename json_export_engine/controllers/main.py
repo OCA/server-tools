@@ -229,7 +229,7 @@ class JsonExportController(http.Controller):
         model = request.env[schema.model_name].sudo()
         total = model.search_count(domain)
 
-        base_path = "/api/json_export/%s" % path.strip("/")
+        base_path = f"/api/json_export/{path.strip('/')}"
         preserved_qs = self._build_preserved_query_string(params)
 
         if endpoint.paginate:
@@ -251,17 +251,15 @@ class JsonExportController(http.Controller):
             )
 
             nav = {
-                "first": "%s?page=1%s" % (base_path, preserved_qs),
-                "last": "%s?page=%d%s" % (base_path, total_pages, preserved_qs),
+                "first": f"{base_path}?page=1{preserved_qs}",
+                "last": f"{base_path}?page={total_pages}{preserved_qs}",
                 "next": (
-                    "%s?page=%d%s" % (base_path, page + 1, preserved_qs)
+                    f"{base_path}?page={page + 1}{preserved_qs}"
                     if page < total_pages
                     else None
                 ),
                 "prev": (
-                    "%s?page=%d%s" % (base_path, page - 1, preserved_qs)
-                    if page > 1
-                    else None
+                    f"{base_path}?page={page - 1}{preserved_qs}" if page > 1 else None
                 ),
             }
         else:

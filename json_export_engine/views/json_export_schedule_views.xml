@@ -31,7 +31,8 @@
                             <field name="destination_type" />
                             <field
                                 name="destination_url"
-                                attrs="{'invisible': [('destination_type', '!=', 'http_post')], 'required': [('destination_type', '=', 'http_post')]}"
+                                invisible="destination_type != 'http_post'"
+                                required="destination_type == 'http_post'"
                                 widget="url"
                             />
                             <field name="file_format" />
@@ -39,10 +40,7 @@
                             <field name="async_export" />
                         </group>
                     </group>
-                    <group
-                        string="Last Run"
-                        attrs="{'invisible': [('last_run_date', '=', False)]}"
-                    >
+                    <group string="Last Run" invisible="last_run_date == False">
                         <group>
                             <field name="last_run_date" />
                             <field name="last_run_status" />
@@ -51,7 +49,7 @@
                         <group>
                             <field
                                 name="last_run_error"
-                                attrs="{'invisible': [('last_run_status', '!=', 'error')]}"
+                                invisible="last_run_status != 'error'"
                             />
                         </group>
                     </group>
@@ -63,12 +61,12 @@
         </field>
     </record>
 
-    <!-- Tree View -->
+    <!-- List View -->
     <record id="json_export_schedule_tree_view" model="ir.ui.view">
-        <field name="name">json.export.schedule.tree</field>
+        <field name="name">json.export.schedule.list</field>
         <field name="model">json.export.schedule</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name" />
                 <field name="schema_id" />
                 <field name="interval_number" />
@@ -84,7 +82,7 @@
                     widget="badge"
                 />
                 <field name="active" />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -92,6 +90,6 @@
     <record id="json_export_schedule_action" model="ir.actions.act_window">
         <field name="name">Scheduled Exports</field>
         <field name="res_model">json.export.schedule</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>

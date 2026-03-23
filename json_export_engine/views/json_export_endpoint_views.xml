@@ -11,7 +11,7 @@
                         name="web_ribbon"
                         title="Archived"
                         bg_color="bg-danger"
-                        attrs="{'invisible': [('active', '=', True)]}"
+                        invisible="active == True"
                     />
                     <group>
                         <group string="Endpoint">
@@ -26,12 +26,12 @@
                             <field name="auth_type" />
                             <field
                                 name="api_key"
-                                attrs="{'invisible': [('auth_type', '!=', 'api_key')]}"
+                                invisible="auth_type != 'api_key'"
                                 widget="CopyClipboardChar"
                             />
                             <field
                                 name="api_key_generated_at"
-                                attrs="{'invisible': [('auth_type', '!=', 'api_key')]}"
+                                invisible="auth_type != 'api_key'"
                             />
                             <button
                                 name="action_generate_api_key"
@@ -39,7 +39,7 @@
                                 type="object"
                                 class="btn-link"
                                 icon="fa-refresh"
-                                attrs="{'invisible': [('auth_type', '!=', 'api_key')]}"
+                                invisible="auth_type != 'api_key'"
                                 confirm="This will invalidate the current API key. Continue?"
                             />
                         </group>
@@ -47,10 +47,7 @@
                     <group>
                         <group string="Pagination">
                             <field name="paginate" />
-                            <field
-                                name="page_size"
-                                attrs="{'invisible': [('paginate', '=', False)]}"
-                            />
+                            <field name="page_size" invisible="paginate == False" />
                         </group>
                         <group string="CORS">
                             <field
@@ -69,11 +66,11 @@
                             <field name="rate_limit" />
                             <field
                                 name="rate_limit_count"
-                                attrs="{'invisible': [('rate_limit', '=', False)]}"
+                                invisible="rate_limit == False"
                             />
                             <field
                                 name="rate_limit_window"
-                                attrs="{'invisible': [('rate_limit', '=', False)]}"
+                                invisible="rate_limit == False"
                             />
                         </group>
                     </group>
@@ -82,19 +79,19 @@
         </field>
     </record>
 
-    <!-- Tree View -->
+    <!-- List View -->
     <record id="json_export_endpoint_tree_view" model="ir.ui.view">
-        <field name="name">json.export.endpoint.tree</field>
+        <field name="name">json.export.endpoint.list</field>
         <field name="model">json.export.endpoint</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name" />
                 <field name="schema_id" />
                 <field name="route_path" />
                 <field name="full_url" widget="url" />
                 <field name="auth_type" />
                 <field name="active" />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -102,6 +99,6 @@
     <record id="json_export_endpoint_action" model="ir.actions.act_window">
         <field name="name">REST Endpoints</field>
         <field name="res_model">json.export.endpoint</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>

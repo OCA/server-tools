@@ -4,8 +4,10 @@
 
 {
     "name": "JSON Export Engine",
-    "summary": "Universal JSON schema builder, REST API, webhooks and scheduled exports",
-    "version": "16.0.1.0.0",
+    "summary": (
+        "Universal JSON schema builder, REST API, webhooks and" " scheduled exports"
+    ),
+    "version": "18.0.1.0.0",
     "category": "Tools",
     "website": "https://github.com/OCA/server-tools",
     "author": "kobros-tech, Odoo Community Association (OCA)",

@@ -120,8 +120,8 @@ class JsonExportEndpoint(models.Model):
         for rec in self:
             if rec.route_path:
                 path = rec.route_path.strip("/")
-                rec.full_url = "%s/api/json_export/%s" % (base_url, path)
-                rec.schema_url = "%s/api/json_export/%s/schema" % (base_url, path)
+                rec.full_url = f"{base_url}/api/json_export/{path}"
+                rec.schema_url = f"{base_url}/api/json_export/{path}/schema"
             else:
                 rec.full_url = ""
                 rec.schema_url = ""

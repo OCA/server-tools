@@ -26,13 +26,13 @@ class TestJsonExportEndpoint(JsonExportTestCase):
     def test_compute_full_url(self):
         """Data URL is correctly computed."""
         base_url = self.env["ir.config_parameter"].sudo().get_param("web.base.url")
-        expected = "%s/api/json_export/test-partners" % base_url
+        expected = f"{base_url}/api/json_export/test-partners"
         self.assertEqual(self.endpoint.full_url, expected)
 
     def test_compute_schema_url(self):
         """Schema URL is correctly computed."""
         base_url = self.env["ir.config_parameter"].sudo().get_param("web.base.url")
-        expected = "%s/api/json_export/test-partners/schema" % base_url
+        expected = f"{base_url}/api/json_export/test-partners/schema"
         self.assertEqual(self.endpoint.schema_url, expected)
 
     def test_compute_url_empty_path(self):
@@ -55,7 +55,7 @@ class TestJsonExportEndpoint(JsonExportTestCase):
         for path in ["products", "my-products", "v1/products", "under_score"]:
             endpoint = self.env["json.export.endpoint"].create(
                 {
-                    "name": "Valid %s" % path,
+                    "name": f"Valid {path}",
                     "schema_id": self.schema.id,
                     "route_path": path,
                     "auth_type": "none",

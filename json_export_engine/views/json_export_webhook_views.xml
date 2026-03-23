@@ -12,7 +12,7 @@
                         string="Reset to Active"
                         type="object"
                         class="oe_highlight"
-                        attrs="{'invisible': [('state', '=', 'active')]}"
+                        invisible="state == 'active'"
                     />
                     <field
                         name="state"
@@ -48,10 +48,10 @@
                     <notebook>
                         <page string="Custom Headers" name="headers">
                             <field name="header_ids" nolabel="1">
-                                <tree editable="bottom">
+                                <list editable="bottom">
                                     <field name="key" />
                                     <field name="value" />
-                                </tree>
+                                </list>
                             </field>
                         </page>
                     </notebook>
@@ -60,12 +60,12 @@
         </field>
     </record>
 
-    <!-- Tree View -->
+    <!-- List View -->
     <record id="json_export_webhook_tree_view" model="ir.ui.view">
-        <field name="name">json.export.webhook.tree</field>
+        <field name="name">json.export.webhook.list</field>
         <field name="model">json.export.webhook</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name" />
                 <field name="schema_id" />
                 <field name="url" />
@@ -81,7 +81,7 @@
                 />
                 <field name="last_call_date" />
                 <field name="active" />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -89,6 +89,6 @@
     <record id="json_export_webhook_action" model="ir.actions.act_window">
         <field name="name">Webhooks</field>
         <field name="res_model">json.export.webhook</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>

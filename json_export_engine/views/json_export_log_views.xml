@@ -19,16 +19,10 @@
                             <field name="duration_ms" />
                         </group>
                     </group>
-                    <group
-                        string="Error"
-                        attrs="{'invisible': [('error_message', '=', False)]}"
-                    >
+                    <group string="Error" invisible="error_message == False">
                         <field name="error_message" nolabel="1" />
                     </group>
-                    <group
-                        string="Request Details"
-                        attrs="{'invisible': [('request_info', '=', False)]}"
-                    >
+                    <group string="Request Details" invisible="request_info == False">
                         <field name="request_info" nolabel="1" />
                     </group>
                 </sheet>
@@ -36,12 +30,12 @@
         </field>
     </record>
 
-    <!-- Tree View -->
+    <!-- List View -->
     <record id="json_export_log_tree_view" model="ir.ui.view">
-        <field name="name">json.export.log.tree</field>
+        <field name="name">json.export.log.list</field>
         <field name="model">json.export.log</field>
         <field name="arch" type="xml">
-            <tree create="false" edit="false" default_order="create_date desc">
+            <list create="false" edit="false" default_order="create_date desc">
                 <field name="create_date" />
                 <field name="schema_id" />
                 <field name="log_type" />
@@ -54,7 +48,7 @@
                 <field name="records_count" />
                 <field name="duration_ms" string="Duration (ms)" />
                 <field name="error_message" optional="hide" />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -116,7 +110,7 @@
     <record id="json_export_log_action" model="ir.actions.act_window">
         <field name="name">Export Logs</field>
         <field name="res_model">json.export.log</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="search_view_id" ref="json_export_log_search_view" />
     </record>
 </odoo>

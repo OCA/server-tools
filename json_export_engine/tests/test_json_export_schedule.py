@@ -4,6 +4,7 @@
 
 import base64
 import json
+import logging
 from unittest import mock
 
 from .common import JsonExportTestCase
@@ -154,7 +155,11 @@ class TestJsonExportSchedule(JsonExportTestCase):
             "requests.post",
             side_effect=req.ConnectionError("Connection refused"),
         ):
-            self.schedule._run_scheduled_export()
+            logging.disable(logging.CRITICAL)
+            try:
+                self.schedule._run_scheduled_export()
+            finally:
+                logging.disable(logging.NOTSET)
         self.assertEqual(self.schedule.last_run_status, "error")
         self.assertTrue(self.schedule.last_run_error)
 
@@ -191,6 +196,8 @@ class TestJsonExportSchedule(JsonExportTestCase):
         self.schedule.async_export = True
         # Mock with_delay to raise AttributeError to simulate non-queue_job install
         schedule_class = type(self.schedule)
-        with mock.patch.object(schedule_class, "with_delay", new=_MissingAttribute()):
+        with mock.patch.object(
+            schedule_class, "with_delay", new=_MissingAttribute(), create=True
+        ):
             self.env["json.export.schedule"]._cron_run_export(self.schedule.id)
             self.assertEqual(self.schedule.last_run_status, "success")

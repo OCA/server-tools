@@ -114,18 +114,16 @@ class JsonExportSchedule(models.Model):
         """Create or update the ir.cron record for this schedule."""
         self.ensure_one()
         cron_vals = {
-            "name": "JSON Export: %s" % self.name,
+            "name": f"JSON Export: {self.name}",
             "model_id": self.env["ir.model"]
             .sudo()
             .search([("model", "=", self._name)], limit=1)
             .id,
             "state": "code",
-            "code": "model._cron_run_export(%d)" % self.id,
+            "code": f"model._cron_run_export({self.id})",
             "interval_number": self.interval_number,
             "interval_type": self.interval_type,
-            "numbercall": -1,
             "active": self.active,
-            "doall": False,
         }
         if self.cron_id:
             self.cron_id.sudo().write(cron_vals)
@@ -140,7 +138,7 @@ class JsonExportSchedule(models.Model):
         if schedule.exists() and schedule.active:
             if schedule.async_export and hasattr(schedule, "with_delay"):
                 schedule.with_delay(
-                    description="Scheduled Export: %s" % schedule.name,
+                    description=f"Scheduled Export: {schedule.name}",
                 )._run_scheduled_export()
             else:
                 schedule._run_scheduled_export()
@@ -176,10 +174,9 @@ class JsonExportSchedule(models.Model):
 
             # Deliver
             if self.destination_type == "attachment":
-                filename = "scheduled_%s_%s.%s" % (
-                    schema.model_name.replace(".", "_"),
-                    fields.Datetime.now().strftime("%Y%m%d_%H%M%S"),
-                    ext,
+                filename = (
+                    f"scheduled_{schema.model_name.replace('.', '_')}_"
+                    f"{fields.Datetime.now().strftime('%Y%m%d_%H%M%S')}.{ext}"
                 )
                 self.env["ir.attachment"].create(
                     {

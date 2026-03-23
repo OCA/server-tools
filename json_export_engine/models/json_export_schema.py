@@ -28,13 +28,17 @@ class JsonExportSchema(models.Model):
     active = fields.Boolean(default=True)
     model_id = fields.Many2one(
         "ir.model",
-        string="Model",
+        string="Model Reference",
         required=True,
         ondelete="cascade",
         domain=[("transient", "=", False)],
     )
     model_name = fields.Char(
-        related="model_id.model", store=True, readonly=True, index=True
+        string="Model Name",
+        related="model_id.model",
+        store=True,
+        readonly=True,
+        index=True,
     )
     exporter_id = fields.Many2one("ir.exports", string="Field Selector")
     domain = fields.Char(string="Record Filter", default="[]")
@@ -130,11 +134,9 @@ class JsonExportSchema(models.Model):
     def _wrap_api_response_schema(self, record_schema, endpoint=None):
         """Wrap a record-level schema in the full API response envelope."""
         nullable_string = {"anyOf": [{"type": "string"}, {"type": "null"}]}
-        description = (
-            "%s Supports ?page=N to navigate pages "
-            "and ?page=last to jump to the last page."
-            % record_schema.get("description", "")
-        )
+        desc = record_schema.get("description", "")
+        description = f"{desc} Supports ?page=N to navigate pages "
+        description += "and ?page=last to jump to the last page."
         if endpoint:
             if endpoint.allow_filtering:
                 description += (
@@ -152,7 +154,7 @@ class JsonExportSchema(models.Model):
                 )
         return {
             "$schema": "http://json-schema.org/draft-07/schema#",
-            "title": "%s — API Response" % record_schema.get("title", "Export"),
+            "title": f"{record_schema.get('title', 'Export')} — API Response",
             "description": description,
             "type": "object",
             "required": ["success", "data", "pagination", "meta"],
@@ -249,7 +251,7 @@ class JsonExportSchema(models.Model):
         }
 
     def _generate_json_schema(self):
-        """Generate a JSON Schema (draft-07) from the resolved parser and model fields."""
+        """Generate a JSON Schema from the resolved parser and model fields."""
         self.ensure_one()
         parser = self._get_parser()
         model = self.env[self.model_name]
@@ -257,8 +259,7 @@ class JsonExportSchema(models.Model):
         return {
             "$schema": "http://json-schema.org/draft-07/schema#",
             "title": self.name,
-            "description": "Auto-generated schema for %s (%s)"
-            % (self.name, self.model_name),
+            "description": f"Auto-generated schema for {self.name} ({self.model_name})",
             "type": "object",
             "properties": properties,
             "required": required,
@@ -383,7 +384,9 @@ class JsonExportSchema(models.Model):
             raise UserError(_("Please select a field selector (exporter) first."))
         # Remove broken export lines (e.g. name=False) before parsing,
         # otherwise jsonifier's get_json_parser() crashes on .split("/")
-        bad_lines = self.exporter_id.export_fields.filtered(lambda l: not l.name)
+        bad_lines = self.exporter_id.export_fields.filtered(
+            lambda field: not field.name
+        )
         if bad_lines:
             bad_lines.unlink()
         raw_parser = self.exporter_id.get_json_parser()
@@ -471,9 +474,9 @@ class JsonExportSchema(models.Model):
             raw_value = params[key]
 
             if field_name not in allowed_fields:
-                raise ValueError("Filtering on field '%s' is not allowed." % field_name)
+                raise ValueError(f"Filtering on field '{field_name}' is not allowed.")
             if operator not in self.FILTER_OPERATORS:
-                raise ValueError("Unknown filter operator '%s'." % operator)
+                raise ValueError(f"Unknown filter operator '{operator}'.")
 
             odoo_op = self.FILTER_OPERATORS[operator]
             value = self._coerce_filter_value(field_name, operator, raw_value)
@@ -507,18 +510,18 @@ class JsonExportSchema(models.Model):
             try:
                 return int(raw)
             except (ValueError, TypeError) as err:
-                raise ValueError("Expected integer value, got '%s'." % raw) from err
+                raise ValueError(f"Expected integer value, got '{raw}'.") from err
         elif field_type in ("float", "monetary"):
             try:
                 return float(raw)
             except (ValueError, TypeError) as err:
-                raise ValueError("Expected numeric value, got '%s'." % raw) from err
+                raise ValueError(f"Expected numeric value, got '{raw}'.") from err
         elif field_type == "boolean":
             if raw.lower() in ("true", "1", "yes"):
                 return True
             elif raw.lower() in ("false", "0", "no"):
                 return False
-            raise ValueError("Expected boolean value, got '%s'." % raw)
+            raise ValueError(f"Expected boolean value, got '{raw}'.")
         return raw
 
     def _build_sort_order(self, sort_param, allowed_fields):
@@ -541,8 +544,8 @@ class JsonExportSchema(models.Model):
                 field_name = token
                 direction = "asc"
             if field_name not in allowed_fields:
-                raise ValueError("Sorting on field '%s' is not allowed." % field_name)
-            parts.append("%s %s" % (field_name, direction))
+                raise ValueError(f"Sorting on field '{field_name}' is not allowed.")
+            parts.append(f"{field_name} {direction}")
         return ", ".join(parts)
 
     def _filter_parser(self, fields_param):
@@ -558,7 +561,7 @@ class JsonExportSchema(models.Model):
         invalid = requested - allowed
         if invalid:
             raise ValueError(
-                "Field selection on '%s' is not allowed." % "', '".join(sorted(invalid))
+                f"Field selection on '{', '.join(sorted(invalid))}' is not allowed."
             )
         full_parser = self._get_parser()
         filtered = []
@@ -583,9 +586,9 @@ class JsonExportSchema(models.Model):
             records = self._get_records()
             data = self._serialize_records(records)
             content = json.dumps(data, indent=2, ensure_ascii=False)
-            filename = "export_%s_%s.json" % (
-                self.model_name.replace(".", "_"),
-                fields.Datetime.now().strftime("%Y%m%d_%H%M%S"),
+            filename = (
+                f"export_{self.model_name.replace('.', '_')}_"
+                f"{fields.Datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
             )
             attachment = self.env["ir.attachment"].create(
                 {
@@ -601,7 +604,7 @@ class JsonExportSchema(models.Model):
             self._create_log("manual", "success", len(records), duration)
             return {
                 "type": "ir.actions.act_url",
-                "url": "/web/content/%s?download=true" % attachment.id,
+                "url": f"/web/content/{attachment.id}?download=true",
                 "target": "new",
             }
         except Exception as e:
@@ -616,7 +619,7 @@ class JsonExportSchema(models.Model):
             "type": "ir.actions.act_window",
             "name": _("Export Logs"),
             "res_model": "json.export.log",
-            "view_mode": "tree,form",
+            "view_mode": "list,form",
             "domain": [("schema_id", "=", self.id)],
             "context": {"default_schema_id": self.id},
         }

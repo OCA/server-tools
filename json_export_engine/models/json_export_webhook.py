@@ -69,7 +69,7 @@ class JsonExportWebhook(models.Model):
     @api.model
     def _fire_for_model(self, model_name, event_type, records):
         """Find matching webhooks and fire them for the given model and event."""
-        event_field = "on_%s" % event_type
+        event_field = f"on_{event_type}"
         webhooks = self.search(
             [
                 ("active", "=", True),
@@ -115,7 +115,7 @@ class JsonExportWebhook(models.Model):
             # Async delivery via queue_job when available
             if self.async_delivery and hasattr(self, "with_delay"):
                 self.with_delay(
-                    description="Webhook: %s (%s)" % (self.name, event_type),
+                    description=f"Webhook: {self.name} ({event_type})",
                 )._send_payload(payload, delivery_id=delivery_id)
                 duration = int((time.time() - start_time) * 1000)
                 self.sudo().write(
@@ -168,7 +168,7 @@ class JsonExportWebhook(models.Model):
             self.sudo().write(
                 {
                     "last_call_date": fields.Datetime.now(),
-                    "last_call_status": "error: %s" % str(e)[:200],
+                    "last_call_status": f"error: {str(e)[:200]}",
                     "state": "error",
                 }
             )

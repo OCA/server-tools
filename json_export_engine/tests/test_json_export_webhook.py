@@ -5,6 +5,7 @@
 import hashlib
 import hmac
 import json
+import logging
 import uuid
 from unittest import mock
 
@@ -161,14 +162,22 @@ class TestJsonExportWebhook(JsonExportTestCase):
     def test_send_payload_retry_on_failure(self):
         """Retries up to max_retries on HTTP error."""
         with self._mock_post_failure() as mock_post, mock.patch("time.sleep"):
-            with self.assertRaises(requests.RequestException):
-                self.webhook._send_payload({"test": True})
-            self.assertEqual(mock_post.call_count, self.webhook.max_retries)
+            logging.disable(logging.CRITICAL)
+            try:
+                with self.assertRaises(requests.RequestException):
+                    self.webhook._send_payload({"test": True})
+                self.assertEqual(mock_post.call_count, self.webhook.max_retries)
+            finally:
+                logging.disable(logging.NOTSET)
 
     def test_send_payload_state_on_error(self):
         """State changes to 'error' after all retries fail."""
         with self._mock_post_failure(), mock.patch("time.sleep"):
-            self.webhook._trigger_webhook("create", self.partner1)
+            logging.disable(logging.CRITICAL)
+            try:
+                self.webhook._trigger_webhook("create", self.partner1)
+            finally:
+                logging.disable(logging.NOTSET)
         self.assertEqual(self.webhook.state, "error")
 
     # -- Delivery ID / deduplication tests --
@@ -203,10 +212,14 @@ class TestJsonExportWebhook(JsonExportTestCase):
 
         with mock.patch("requests.post", side_effect=capture_post):
             with mock.patch("time.sleep"):
-                with self.assertRaises(requests.RequestException):
-                    self.webhook._send_payload(
-                        {"test": True}, delivery_id="fixed-id-123"
-                    )
+                logging.disable(logging.CRITICAL)
+                try:
+                    with self.assertRaises(requests.RequestException):
+                        self.webhook._send_payload(
+                            {"test": True}, delivery_id="fixed-id-123"
+                        )
+                finally:
+                    logging.disable(logging.NOTSET)
         self.assertEqual(len(delivery_ids_seen), self.webhook.max_retries)
         self.assertTrue(all(d == "fixed-id-123" for d in delivery_ids_seen))
 
@@ -245,7 +258,9 @@ class TestJsonExportWebhook(JsonExportTestCase):
         self.webhook.async_delivery = True
         # Mock with_delay to raise AttributeError to simulate non-queue_job install
         webhook_class = type(self.webhook)
-        with mock.patch.object(webhook_class, "with_delay", new=_MissingAttribute()):
+        with mock.patch.object(
+            webhook_class, "with_delay", new=_MissingAttribute(), create=True
+        ):
             with self._mock_post_success() as mock_post:
                 self.webhook._trigger_webhook("create", self.partner1)
                 mock_post.assert_called_once()
