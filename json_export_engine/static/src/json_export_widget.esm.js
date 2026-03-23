@@ -5,7 +5,6 @@
  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). */
 
 import {Many2OneField, many2OneField} from "@web/views/fields/many2one/many2one_field";
-import {_t} from "@web/core/l10n/translation";
 import {rpc} from "@web/core/network/rpc";
 import {registry} from "@web/core/registry";
 import {useService} from "@web/core/utils/hooks";
@@ -13,23 +12,65 @@ import {ExportDataDialog} from "@web/views/view_dialogs/export_data_dialog";
 
 class JsonExportDialog extends ExportDataDialog {
     setup() {
+        const exporter_id =
+            this.props.root.data.exporter_id && this.props.root.data.exporter_id[0];
         super.setup();
         Object.assign(this.state, {
             showApplyTemplateButton: false,
         });
-        this.title = _t("Select Fields for JSON Export");
-        if (this.props.context.exporter_id && this.props.context.exporter_id[0]) {
-            this.state.templateId = this.props.context.exporter_id[0];
+        // Set templateId BEFORE parent's onWillStart runs
+        if (exporter_id) {
+            this.state.templateId = exporter_id;
         } else {
             this.state.templateId = "new_template";
         }
     }
 
+    async loadExportList(value) {
+        this.state.templateId = value === "new_template" ? value : Number(value);
+        this.state.isEditingTemplate = value === "new_template";
+        if (!value || value === "new_template") {
+            this.state.exportList = [];
+            return;
+        }
+        // Read ir.exports.line records directly instead of using RPC
+        // This avoids backend assumptions about "name" field
+        try {
+            const exportRecord = await this.orm.read(
+                "ir.exports",
+                [Number(value)],
+                ["export_fields"]
+            );
+            if (
+                exportRecord.length &&
+                exportRecord[0].export_fields &&
+                exportRecord[0].export_fields.length
+            ) {
+                const lineRecords = await this.orm.read(
+                    "ir.exports.line",
+                    exportRecord[0].export_fields,
+                    ["name"]
+                );
+
+                // Convert to format expected by exportList (with id property)
+                this.state.exportList = lineRecords.map((line) => ({
+                    id: line.name,
+                    string: line.name,
+                }));
+            } else {
+                this.state.exportList = [];
+            }
+        } catch {
+            this.state.exportList = [];
+        }
+    }
+
     async onChangeExportList(ev) {
-        this.loadExportList(ev.target.value);
+        this.state.templateId = ev.target.value;
+        await this.loadExportList(ev.target.value);
         // Show "Apply" button when user selects a different saved template
         const currentId =
-            this.props.context.exporter_id && this.props.context.exporter_id[0];
+            this.props.root.data.exporter_id && this.props.root.data.exporter_id[0];
         if (
             this.state.templateId === currentId ||
             this.state.templateId === "new_template"
@@ -52,39 +93,12 @@ class JsonExportDialog extends ExportDataDialog {
     }
 
     async onUpdateExportTemplate() {
-        const oldRec = await this.orm.read(
-            "ir.exports",
-            [this.state.templateId],
-            ["name", "export_fields"]
-        );
-        let oldLines = [];
-        if (
-            oldRec.length &&
-            oldRec[0].export_fields &&
-            oldRec[0].export_fields.length
-        ) {
-            oldLines = await this.orm.read("ir.exports.line", oldRec[0].export_fields, [
-                "name",
-            ]);
-        }
-        const newFieldNames = this.state.exportList.map((field) => field.id);
-        const oldFieldMap = Object.fromEntries(
-            oldLines.map((line) => [line.name, line.id])
-        );
         const fieldCommands = [];
-        // Keep existing or create new lines
+        // [5] clears all existing export_fields records - simpler and more robust
+        fieldCommands.push([5]);
+        // Create new lines for all selected fields
         for (const field of this.state.exportList) {
-            if (oldFieldMap[field.id]) {
-                fieldCommands.push([4, oldFieldMap[field.id]]);
-            } else {
-                fieldCommands.push([0, 0, {name: field.id}]);
-            }
-        }
-        // Unlink removed fields
-        for (const oldLine of oldLines) {
-            if (!newFieldNames.includes(oldLine.name)) {
-                fieldCommands.push([3, oldLine.id]);
-            }
+            fieldCommands.push([0, 0, {name: field.id}]);
         }
         await this.orm.write("ir.exports", [this.state.templateId], {
             export_fields: fieldCommands,
@@ -127,11 +141,14 @@ class JsonExportFieldSelector extends Many2OneField {
             // Model not selected yet - cannot open field selector
             return;
         }
+        const exporter_id = this.props.record.data.exporter_id
+            ? this.props.record.data.exporter_id[0]
+            : false;
         const dialogProps = {
             context: {
                 ...this.props.record.context,
                 resModel: modelName,
-                exporter_id: this.props.value || false,
+                exporter_id: exporter_id,
                 overlap: (templ) => {
                     this.quickOverlap(templ);
                 },
