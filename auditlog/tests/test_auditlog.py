@@ -216,6 +216,44 @@ class AuditlogCommon:
         )
         self.assertEqual(len(logs), len(groups))
 
+
+    def test_AuditlogDisabledContextSkipsCreateWriteUnlinkLogs(self):
+        self.groups_rule.subscribe()
+        auditlog_log = self.env["auditlog.log"]
+        group = self.env["res.groups"].with_context(auditlog_disabled=True).create(
+            {"name": "nologgroup"}
+        )
+        self.assertFalse(
+            auditlog_log.search(
+                [
+                    ("model_id", "=", self.groups_model_id),
+                    ("method", "=", "create"),
+                    ("res_id", "=", group.id),
+                ]
+            )
+        )
+        group.with_context(auditlog_disabled=True).write({"name": "nologgroup2"})
+        self.assertFalse(
+            auditlog_log.search(
+                [
+                    ("model_id", "=", self.groups_model_id),
+                    ("method", "=", "write"),
+                    ("res_id", "=", group.id),
+                ]
+            )
+        )
+        gid = group.id
+        group.with_context(auditlog_disabled=True).unlink()
+        self.assertFalse(
+            auditlog_log.search(
+                [
+                    ("model_id", "=", self.groups_model_id),
+                    ("method", "=", "unlink"),
+                    ("res_id", "=", gid),
+                ]
+            )
+        )
+
     def test_LogUpdate(self):
         """Tests write results with different M2O values."""
         self.groups_rule.subscribe()

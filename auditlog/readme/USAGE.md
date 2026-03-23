@@ -28,3 +28,18 @@ first is the Auditlog User group. This group has read-only access to the
 auditlogs of individual records through the View Logs action. The second
 group is the Auditlog Manager group. This group additionally has the
 right to configure the auditlog configuration rules.
+
+
+To temporarily disable audit logging for a specific flow, call the target
+method with the context flag `auditlog_disabled=True`.
+
+Example:
+
+```python
+self.env["account.chart.template"].with_context(
+    auditlog_disabled=True,
+).try_loading(template_code, company=company)
+```
+
+When this context key is present, auditlog will bypass logging for the
+patched CRUD/export methods and execute the original ORM method directly.

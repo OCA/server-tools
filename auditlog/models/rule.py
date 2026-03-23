@@ -337,6 +337,8 @@ class AuditlogRule(models.Model):
         @api.model_create_multi
         @api.returns("self", lambda value: value.id)
         def create_full(self, vals_list, **kwargs):
+            if self.env.context.get("auditlog_disabled"):
+                return create_full.origin(self, vals_list, **kwargs)
             self = self.with_context(auditlog_disabled=True)
             rule_model = self.env["auditlog.rule"]
             new_records = create_full.origin(self, vals_list, **kwargs)
@@ -373,6 +375,8 @@ class AuditlogRule(models.Model):
         @api.model_create_multi
         @api.returns("self", lambda value: value.id)
         def create_fast(self, vals_list, **kwargs):
+            if self.env.context.get("auditlog_disabled"):
+                return create_fast.origin(self, vals_list, **kwargs)
             self = self.with_context(auditlog_disabled=True)
             rule_model = self.env["auditlog.rule"]
             vals_list = rule_model._update_vals_list(vals_list)
@@ -442,6 +446,8 @@ class AuditlogRule(models.Model):
         users_to_exclude = self.mapped("users_to_exclude_ids")
 
         def write_full(self, vals, **kwargs):
+            if self.env.context.get("auditlog_disabled"):
+                return write_full.origin(self, vals, **kwargs)
             self = self.with_context(auditlog_disabled=True)
             rule_model = self.env["auditlog.rule"]
             fields_list = rule_model.get_auditlog_fields(self)
@@ -478,6 +484,8 @@ class AuditlogRule(models.Model):
             return result
 
         def write_fast(self, vals, **kwargs):
+            if self.env.context.get("auditlog_disabled"):
+                return write_fast.origin(self, vals, **kwargs)
             self = self.with_context(auditlog_disabled=True)
             rule_model = self.env["auditlog.rule"]
             # Log the user input only, no matter if the `vals` is updated
@@ -510,6 +518,8 @@ class AuditlogRule(models.Model):
         users_to_exclude = self.mapped("users_to_exclude_ids")
 
         def unlink_full(self, **kwargs):
+            if self.env.context.get("auditlog_disabled"):
+                return unlink_full.origin(self, **kwargs)
             self = self.with_context(auditlog_disabled=True)
             rule_model = self.env["auditlog.rule"]
             fields_list = rule_model.get_auditlog_fields(self)
@@ -533,6 +543,8 @@ class AuditlogRule(models.Model):
             return unlink_full.origin(self, **kwargs)
 
         def unlink_fast(self, **kwargs):
+            if self.env.context.get("auditlog_disabled"):
+                return unlink_fast.origin(self, **kwargs)
             self = self.with_context(auditlog_disabled=True)
             rule_model = self.env["auditlog.rule"]
             if self.env.user in users_to_exclude:
@@ -557,6 +569,8 @@ class AuditlogRule(models.Model):
         users_to_exclude = self.mapped("users_to_exclude_ids")
 
         def export_data(self, fields_to_export):
+            if self.env.context.get("auditlog_disabled"):
+                return export_data.origin(self, fields_to_export)
             res = export_data.origin(self, fields_to_export)
             self = self.with_context(auditlog_disabled=True)
             rule_model = self.env["auditlog.rule"]
