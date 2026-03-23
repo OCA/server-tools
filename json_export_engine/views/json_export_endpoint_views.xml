@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-
     <!-- Form View -->
     <record id="json_export_endpoint_form_view" model="ir.ui.view">
         <field name="name">json.export.endpoint.form</field>
@@ -105,5 +104,4 @@
         <field name="res_model">json.export.endpoint</field>
         <field name="view_mode">tree,form</field>
     </record>
-
 </odoo>

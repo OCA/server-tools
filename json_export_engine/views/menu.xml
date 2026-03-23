@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-
     <!-- Top Menu -->
     <menuitem
         id="menu_json_export_engine_root"
@@ -63,5 +62,4 @@
         action="json_export_log_action"
         sequence="10"
     />
-
 </odoo>

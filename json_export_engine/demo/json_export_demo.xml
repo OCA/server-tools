@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-
     <!-- ir.exports record for res.partner -->
     <record id="demo_ir_exp_partner" model="ir.exports">
         <field name="name">Demo Partner Export</field>
@@ -54,5 +53,4 @@
         <field name="file_format">json</field>
         <field name="incremental" eval="True" />
     </record>
-
 </odoo>

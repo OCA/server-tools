@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-
     <record id="module_category_json_export_engine" model="ir.module.category">
         <field name="name">JSON Export Engine</field>
         <field name="sequence">100</field>
@@ -20,5 +19,4 @@
             eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
         />
     </record>
-
 </odoo>
