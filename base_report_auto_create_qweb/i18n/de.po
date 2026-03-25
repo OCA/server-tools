@@ -1,0 +1,129 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * base_report_auto_create_qweb
+#
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: server-tools (9.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-10-04 09:42+0000\n"
+"PO-Revision-Date: 2018-09-07 14:25+0000\n"
+"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
+"Language-Team: German (http://www.transifex.com/oca/OCA-server-tools-9-0/"
+"language/de/)\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.1.1\n"
+
+#. module: base_report_auto_create_qweb
+#: model_terms:ir.ui.view,arch_db:base_report_auto_create_qweb.report_duplicate_form_view
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#. module: base_report_auto_create_qweb
+#: model_terms:ir.ui.view,arch_db:base_report_auto_create_qweb.report_form_view
+msgid "Create QWeb view"
+msgstr "QWeb-Ansicht anlegen"
+
+#. module: base_report_auto_create_qweb
+#: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report_duplicate__create_uid
+msgid "Created by"
+msgstr "Erstellt von"
+
+#. module: base_report_auto_create_qweb
+#: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report_duplicate__create_date
+msgid "Created on"
+msgstr "Erstellt am:"
+
+#. module: base_report_auto_create_qweb
+#: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report__display_name
+#: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report_duplicate__display_name
+msgid "Display Name"
+msgstr "Anzeigename"
+
+#. module: base_report_auto_create_qweb
+#: model_terms:ir.ui.view,arch_db:base_report_auto_create_qweb.report_duplicate_form_view
+msgid "Duplicate"
+msgstr "Duplizieren"
+
+#. module: base_report_auto_create_qweb
+#: model:ir.model,name:base_report_auto_create_qweb.model_ir_actions_report_duplicate
+msgid "Duplicate Qweb report"
+msgstr ""
+
+#. module: base_report_auto_create_qweb
+#: model_terms:ir.ui.view,arch_db:base_report_auto_create_qweb.report_form_view
+msgid "Duplicate Report"
+msgstr "Report duplizierung"
+
+#. module: base_report_auto_create_qweb
+#: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report__id
+#: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report_duplicate__id
+msgid "ID"
+msgstr "ID"
+
+#. module: base_report_auto_create_qweb
+#: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report____last_update
+#: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report_duplicate____last_update
+msgid "Last Modified on"
+msgstr "Zuletzt geändert am"
+
+#. module: base_report_auto_create_qweb
+#: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report_duplicate__write_uid
+msgid "Last Updated by"
+msgstr "Zuletzt aktualisiert von"
+
+#. module: base_report_auto_create_qweb
+#: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report_duplicate__write_date
+msgid "Last Updated on"
+msgstr "Zuletzt aktualisiert am"
+
+#. module: base_report_auto_create_qweb
+#: model:ir.model,name:base_report_auto_create_qweb.model_ir_actions_report
+msgid "Report Action"
+msgstr ""
+
+#. module: base_report_auto_create_qweb
+#: model:ir.actions.act_window,name:base_report_auto_create_qweb.report_duplicate_action
+#: model_terms:ir.ui.view,arch_db:base_report_auto_create_qweb.report_duplicate_form_view
+msgid "Report duplication"
+msgstr "Reportduplizierung"
+
+#. module: base_report_auto_create_qweb
+#: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report__smart_search
+#: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report_duplicate__smart_search
+msgid "Smart Search"
+msgstr ""
+
+#. module: base_report_auto_create_qweb
+#: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report_duplicate__suffix
+#, fuzzy
+msgid "Suffix"
+msgstr "Suffix"
+
+#. module: base_report_auto_create_qweb
+#: code:addons/base_report_auto_create_qweb/models/report_xml.py:0
+#, python-format
+msgid "Template Name must contain at least a dot in it's name"
+msgstr "Die Vorlagenbezeichnung muss mindestens einen Punkt im Namen haben"
+
+#. module: base_report_auto_create_qweb
+#: model:ir.model.fields,help:base_report_auto_create_qweb.field_ir_actions_report_duplicate__suffix
+msgid "This suffix will be added to the report"
+msgstr "Dieses Suffix wird der Reportbezeichnung angehängt"
+
+#. module: base_report_auto_create_qweb
+#: model_terms:ir.ui.view,arch_db:base_report_auto_create_qweb.report_duplicate_form_view
+msgid "or"
+msgstr "oder"
+
+#~ msgid "ir.actions.report.xml"
+#~ msgstr "ir.actions.report.xml"
+
+#, fuzzy
+#~ msgid "ir.actions.report.xml.duplicate"
+#~ msgstr "ir.actions.report.xml.duplicate"
