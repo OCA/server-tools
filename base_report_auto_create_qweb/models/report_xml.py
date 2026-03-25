@@ -51,8 +51,8 @@ class IrActionsReport(models.Model):
                 _("Template Name must contain at least a dot in it's name")
             )
         if not self.env.context.get("enable_duplication", False):
-            return super(IrActionsReport, self).create(values)
-        report_xml = super(IrActionsReport, self).create(values)
+            return super().create(values)
+        report_xml = super().create(values)
         if values.get("report_type") in ["qweb-pdf", "qweb-html"]:
             report_view_ids = self.env.context.get("report_views", False)
             suffix = self.env.context.get("suffix") or "copy"
@@ -64,7 +64,7 @@ class IrActionsReport(models.Model):
             for report_view in self.env["ir.ui.view"].browse(report_view_ids):
                 origin_name = report_name.replace(("_%s" % suffix), "")
                 origin_module = module.replace(("_%s" % suffix), "")
-                new_report_name = "{}_{}".format(origin_name, suffix)
+                new_report_name = f"{origin_name}_{suffix}"
                 qweb_name = report_view.name.replace(origin_name, new_report_name)
                 arch = report_view.arch.replace(origin_name, new_report_name).replace(
                     origin_module + ".", module + "."
@@ -77,14 +77,14 @@ class IrActionsReport(models.Model):
 
     def copy(self, default=None):
         if not self.env.context.get("enable_duplication", False):
-            return super(IrActionsReport, self).copy(default=default)
+            return super().copy(default=default)
         if default is None:
             default = {}
         suffix = self.env.context.get("suffix") or "copy"
-        default["name"] = "{} ({})".format(self.name, suffix)
+        default["name"] = f"{self.name} ({suffix})"
         module = "{}_{}".format(self.report_name.split(".")[0], suffix.lower())
         report = "{}_{}".format(self.report_name.split(".")[1], suffix.lower())
-        default["report_name"] = "{}.{}".format(module, report)
+        default["report_name"] = f"{module}.{report}"
         report_views_domain = self.associated_view()["domain"]
         report_views = self.env["ir.ui.view"].search(report_views_domain)
         return super(

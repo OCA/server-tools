@@ -7,7 +7,7 @@ from odoo import exceptions
 
 class TestBaseReportAutoQwebCreate(common.TransactionCase):
     def setUp(self):
-        super(TestBaseReportAutoQwebCreate, self).setUp()
+        super().setUp()
         self.report_model = self.env["ir.actions.report"]
         self.duplicate_model = self.env["ir.actions.report.duplicate"]
         self.view_model = self.env["ir.ui.view"]
