@@ -20,7 +20,7 @@
                     name="button_create_qweb"
                     string="Create QWeb view"
                     icon="fa-plus-square-o"
-                    attrs="{'invisible':[('report_type', 'not in', ['qweb-pdf', 'qweb-html'])]}"
+                    invisible="report_type not in ('qweb-pdf', 'qweb-html')"
                 />
             </button>
         </field>

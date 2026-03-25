@@ -30,6 +30,8 @@ class TestBaseReportAutoQwebCreate(common.TransactionCase):
         )
         self.assertNotEqual(view_num, 0, "There are not related views")
         self.assertEqual(view_num, 1, "Only one view must be created.")
+        report_html2 = report_html.with_context(enable_duplication=True).copy()
+        self.assertEqual(report_html2.name, "Test 1 (copy)", "Bad report copy.")
 
     def test_creation_duplicate_pdf(self):
         report_pdf = self.report_model.create(

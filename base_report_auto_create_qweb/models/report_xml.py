@@ -12,8 +12,7 @@ class IrActionsReport(models.Model):
 
     def _format_template_name(self, text):
         text = unidecode(text)
-        text.lower()
-        return text
+        return text.lower()
 
     def _prepare_qweb_view_data(self, qweb_name, arch):
         return {
@@ -37,43 +36,48 @@ class IrActionsReport(models.Model):
         model_data_data = self._prepare_model_data_data(qweb_name, module, qweb_view)
         self.env["ir.model.data"].create(model_data_data)
 
-    @api.model
-    def create(self, values):
-        values["report_name"] = self._format_template_name(
-            values.get("report_name", "")
-        )
-        if (
-            values.get("report_type") in ["qweb-pdf", "qweb-html"]
-            and values.get("report_name")
-            and values["report_name"].find(".") == -1
-        ):
-            raise exceptions.UserError(
-                _("Template Name must contain at least a dot in it's name")
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            vals["report_name"] = self._format_template_name(
+                vals.get("report_name", "")
             )
+            if (
+                vals.get("report_type") in ["qweb-pdf", "qweb-html"]
+                and vals.get("report_name")
+                and "." not in vals["report_name"]
+            ):
+                raise exceptions.UserError(
+                    _("Template Name must contain at least a dot in it's name")
+                )
         if not self.env.context.get("enable_duplication", False):
-            return super().create(values)
-        report_xml = super().create(values)
-        if values.get("report_type") in ["qweb-pdf", "qweb-html"]:
+            return super().create(vals_list)
+        records = super().create(vals_list)
+        for record, vals in zip(records, vals_list, strict=False):
+            if vals.get("report_type") not in ["qweb-pdf", "qweb-html"]:
+                continue
             report_view_ids = self.env.context.get("report_views", False)
             suffix = self.env.context.get("suffix") or "copy"
-            name = values["name"]
-            model = values["model"]
-            report = values["report_name"]
+            name = vals["name"]
+            model = vals["model"]
+            report = vals["report_name"]
             module = report.split(".")[0]
             report_name = report.split(".")[1]
             for report_view in self.env["ir.ui.view"].browse(report_view_ids):
-                origin_name = report_name.replace(("_%s" % suffix), "")
-                origin_module = module.replace(("_%s" % suffix), "")
+                origin_name = report_name.replace(f"_{suffix}", "")
+                origin_module = module.replace(f"_{suffix}", "")
+
                 new_report_name = f"{origin_name}_{suffix}"
                 qweb_name = report_view.name.replace(origin_name, new_report_name)
+
                 arch = report_view.arch.replace(origin_name, new_report_name).replace(
-                    origin_module + ".", module + "."
+                    f"{origin_module}.", f"{module}."
                 )
-                report_xml._create_qweb(name, qweb_name, module, model, arch)
+                record._create_qweb(name, qweb_name, module, model, arch)
             if not report_view_ids:
-                arch = '<?xml version="1.0"?>\n' '<t t-name="%s">\n</t>' % report_name
-                report_xml._create_qweb(name, report_name, module, model, arch)
-        return report_xml
+                arch = f'<?xml version="1.0"?>\n<t t-name="{report_name}">\n</t>'
+                record._create_qweb(name, report_name, module, model, arch)
+        return records
 
     def copy(self, default=None):
         if not self.env.context.get("enable_duplication", False):
@@ -96,6 +100,6 @@ class IrActionsReport(models.Model):
         self.ensure_one()
         module = self.report_name.split(".")[0]
         report_name = self.report_name.split(".")[1]
-        arch = '<?xml version="1.0"?>\n' '<t t-name="%s">\n</t>' % self.report_name
+        arch = f'<?xml version="1.0"?>\n<t t-name="{self.report_name}">\n</t>'
         self._create_qweb(self.name, report_name, module, self.model, arch)
         self.associated_view()
