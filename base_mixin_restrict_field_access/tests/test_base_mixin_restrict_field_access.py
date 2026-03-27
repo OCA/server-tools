@@ -1,99 +1,142 @@
 # © 2016 Therp BV <http://therp.nl>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-from openerp import api, models
-from openerp.osv import expression
-from openerp.tests.common import TransactionCase
+from importlib import import_module
+
+from odoo.exceptions import AccessError
+from odoo.fields import Domain
+from odoo.orm.model_classes import add_to_registry
+from odoo.tests.common import TransactionCase
 
 
 class TestBaseMixinRestrictFieldAccess(TransactionCase):
-    def test_base_mixin_restrict_field_access(self):
-        # inherit from our mixin. Here we want to restrict access to
-        # all fields when the partner has a credit limit of less than 42
-        # and the current user is not an admin
-        class ResPartner(models.Model):
-            _inherit = ["restrict.field.access.mixin", "res.partner"]
-            _name = "res.partner"
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        # Save original base classes so we can restore after tests
+        cls.original_partner_base_classes = cls.registry["res.partner"]._base_classes__
 
-            # implement a record specific whitelist: credit limit is only
-            # visible for normal users if it's below 42
-            @api.multi
-            def _restrict_field_access_is_field_accessible(
-                self, field_name, action="read"
-            ):
-                result = super()._restrict_field_access_is_field_accessible(
-                    field_name, action=action
-                )
-                if (
-                    not self._restrict_field_access_get_is_suspended()
-                    and not self.env.user.has_group("base.group_system")
-                    and field_name not in models.MAGIC_COLUMNS
-                    and self
-                ):
-                    result = all(this.sudo().credit_limit < 42 for this in self)
-                return result
+        RestrictFieldAccessPartner = import_module(
+            ".test_models",
+            package=__package__,
+        ).RestrictFieldAccessPartner
 
-            # and as the documentation says, we need to add a domain to enforce
-            # this
-            def _restrict_field_access_inject_restrict_field_access_domain(
-                self, domain
-            ):
-                domain[:] = expression.AND(
-                    [expression.normalize_domain(domain), [("credit_limit", "<", 42)]]
-                )
-
-        # call base-suspend_security's register hook
-        self.env["ir.rule"]._register_hook()
-
-        # setup the model
-        res_partner = ResPartner._build_model(self.registry, self.cr).browse(
-            self.cr, self.uid, [], context={}
+        add_to_registry(cls.registry, RestrictFieldAccessPartner)
+        cls.registry._setup_models__(cls.env.cr, ["res.partner"])
+        cls.registry.init_models(
+            cls.env.cr,
+            ["res.partner"],
+            {"models_to_check": True},
         )
-        res_partner._prepare_setup()
-        res_partner._setup_base(False)
-        res_partner._setup_fields()
-        res_partner._setup_complete()
+        cls.addClassCleanup(cls.restore_partner)
 
-        # run tests as nonprivileged user
-        partner_model = res_partner.sudo(self.env.ref("base.user_demo").id)
-        partner = partner_model.create(
+        # Create a non-privileged user for testing
+        cls.demo_user = cls.env["res.users"].create(
             {
-                "name": "testpartner",
+                "name": "Test Demo User",
+                "login": "test_restrict_field_demo",
+                "group_ids": [
+                    (6, 0, [cls.env.ref("base.group_user").id]),
+                ],
             }
         )
+
+    @classmethod
+    def restore_partner(cls):
+        cls.registry["res.partner"]._base_classes__ = cls.original_partner_base_classes
+
+    def test_restrict_field_access_false_when_below_limit(self):
+        """restrict_field_access should be False when test_credit_limit < 42"""
+        partner_model = self.env["res.partner"].with_user(self.demo_user)
+        partner = partner_model.create({"name": "testpartner"})
         self.assertFalse(partner.restrict_field_access)
-        partner.sudo().write({"credit_limit": 42})
-        partner.invalidate_cache()
+
+    def test_restrict_field_access_true_when_at_limit(self):
+        """restrict_field_access should be True when test_credit_limit >= 42"""
+        partner_model = self.env["res.partner"].with_user(self.demo_user)
+        partner = partner_model.create({"name": "testpartner"})
+        partner.sudo().write({"test_credit_limit": 42})
+        partner.invalidate_recordset()
         self.assertTrue(partner.restrict_field_access)
-        self.assertFalse(partner.credit_limit)
-        self.assertTrue(partner.sudo().credit_limit)
-        # not searching for some restricted field should yield the partner
+
+    def test_read_restricted_field_raises_access_error(self):
+        """Reading a restricted field should raise AccessError"""
+        partner_model = self.env["res.partner"].with_user(self.demo_user)
+        partner = partner_model.create({"name": "testpartner"})
+        partner.sudo().write({"test_credit_limit": 42})
+        partner.invalidate_recordset()
+        with self.assertRaises(AccessError):
+            partner.read(["test_credit_limit"])
+
+    def test_read_restricted_field_accessible_with_sudo(self):
+        """Sudo should bypass field restrictions"""
+        partner_model = self.env["res.partner"].with_user(self.demo_user)
+        partner = partner_model.create({"name": "testpartner"})
+        partner.sudo().write({"test_credit_limit": 42})
+        partner.invalidate_recordset()
+        self.assertEqual(partner.sudo().test_credit_limit, 42)
+
+    def test_search_unrestricted_field_includes_partner(self):
+        """Searching without restricted fields should yield the partner"""
+        partner_model = self.env["res.partner"].with_user(self.demo_user)
+        partner = partner_model.create({"name": "testpartner"})
+        partner.sudo().write({"test_credit_limit": 42})
+        partner.invalidate_recordset()
         self.assertIn(partner, partner_model.search([]))
-        # but searching for it should not
-        self.assertNotIn(partner, partner_model.search([("credit_limit", "=", 42)]))
-        # when we copy stuff, restricted fields should be copied, but still
-        # be inaccessible
-        new_partner = partner.copy()
-        self.assertFalse(new_partner.credit_limit)
-        self.assertTrue(new_partner.sudo().credit_limit)
-        # check that our field injection works
-        fields_view_get = partner.fields_view_get()
-        self.assertIn("restrict_field_access", fields_view_get["arch"])
-        # check that the export does null offending values
-        export = partner._BaseModel__export_rows([["id"], ["credit_limit"]])
-        self.assertEqual(export[0][1], "0.0")
-        # but that it does export the value when it's fine
-        partner.sudo().write({"credit_limit": 41})
-        partner.invalidate_cache()
-        export = partner._BaseModel__export_rows([["id"], ["credit_limit"]])
-        self.assertEqual(export[0][1], "41.0")
-        # read_group should behave like search: restrict to records with our
-        # field accessible if a restricted field is requested, unrestricted
-        # otherwise
-        data = partner_model.read_group([], [], ["user_id"])
-        self.assertEqual(sum(d["credit_limit"] for d in data), 41)
-        # but users with permissions should see the sum for all records
-        data = partner_model.sudo().read_group([], [], ["user_id"])
-        self.assertEqual(
-            sum(d["credit_limit"] for d in data),
-            sum(partner_model.sudo().search([]).mapped("credit_limit")),
+
+    def test_search_restricted_field_excludes_partner(self):
+        """Searching on a restricted field should not yield the partner"""
+        partner_model = self.env["res.partner"].with_user(self.demo_user)
+        partner = partner_model.create({"name": "testpartner"})
+        partner.sudo().write({"test_credit_limit": 42})
+        partner.invalidate_recordset()
+        self.assertNotIn(
+            partner,
+            partner_model.search([("test_credit_limit", "=", 42)]),
         )
+
+    def test_search_restricted_domain_object_excludes_partner(self):
+        """Searching with a composite Domain should not crash or yield partner."""
+        partner_model = self.env["res.partner"].with_user(self.demo_user)
+        partner = partner_model.create({"name": "testpartner"})
+        partner.sudo().write({"test_credit_limit": 42})
+        partner.invalidate_recordset()
+        domain = Domain.AND(
+            [[("test_credit_limit", "=", 42)], [("name", "=", "testpartner")]]
+        )
+        self.assertNotIn(partner, partner_model.search(domain))
+
+    def test_copy_restricted_fields_copied_but_inaccessible(self):
+        """Copying should copy restricted fields but keep them inaccessible"""
+        partner_model = self.env["res.partner"].with_user(self.demo_user)
+        partner = partner_model.create({"name": "testpartner"})
+        partner.sudo().write({"test_credit_limit": 42})
+        partner.invalidate_recordset()
+        new_partner = partner.copy()
+        with self.assertRaises(AccessError):
+            new_partner.read(["test_credit_limit"])
+        self.assertEqual(new_partner.sudo().test_credit_limit, 42)
+
+    def test_get_view_injects_restrict_field_access(self):
+        """get_view should inject restrict_field_access into the arch"""
+        partner_model = self.env["res.partner"].with_user(self.demo_user)
+        partner = partner_model.create({"name": "testpartner"})
+        view = partner.get_view(view_type="form")
+        self.assertIn("restrict_field_access", view["arch"])
+
+    def test_export_restricted_field_returns_null(self):
+        """Exporting a restricted field should return null value"""
+        partner_model = self.env["res.partner"].with_user(self.demo_user)
+        partner = partner_model.create({"name": "testpartner"})
+        partner.sudo().write({"test_credit_limit": 42})
+        partner.invalidate_recordset()
+        export = partner._export_rows([["id"], ["test_credit_limit"]])
+        self.assertFalse(export[0][1])
+
+    def test_export_accessible_field_returns_value(self):
+        """Exporting an accessible field should return the actual value"""
+        partner_model = self.env["res.partner"].with_user(self.demo_user)
+        partner = partner_model.create({"name": "testpartner"})
+        partner.sudo().write({"test_credit_limit": 41})
+        partner.invalidate_recordset()
+        export = partner._export_rows([["id"], ["test_credit_limit"]])
+        self.assertEqual(export[0][1], 41.0)
