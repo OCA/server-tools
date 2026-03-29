@@ -264,7 +264,7 @@ class IrModel(models.Model):
 
             wrapper._is_smart_patched = True
             wrapper.origin = original_name_search
-            wrapper._api = getattr(original_name_search, "_api", None)
+            wrapper._api_model = getattr(original_name_search, "_api_model", False)
             return wrapper
 
         model_records = self.env["ir.model"].search(
