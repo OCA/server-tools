@@ -96,9 +96,13 @@ class Base(models.AbstractModel):
 
     @api.model
     def name_search(self, name="", domain=None, operator="ilike", limit=100):
-        if not name or not (
-            self.env.context.get("force_smart_name_search", False)
-            or _get_use_smart_name_search(self.sudo())
+        if (
+            not name
+            or not isinstance(name, str)
+            or not (
+                self.env.context.get("force_smart_name_search", False)
+                or _get_use_smart_name_search(self.sudo())
+            )
         ):
             return super().name_search(name, domain, operator, limit)
 
@@ -236,7 +240,11 @@ class IrModel(models.Model):
                     limit=limit,
                     **kwargs,
                 )
-                if not name or (limit and len(original_results) >= limit):
+                if (
+                    not name
+                    or not isinstance(name, str)
+                    or (limit and len(original_results) >= limit)
+                ):
                     return original_results
                 seen_ids = {res[0] for res in original_results}
                 remaining_limit = limit - len(original_results) if limit else None

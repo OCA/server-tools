@@ -61,9 +61,9 @@ added on searches that would normally yield results.
 But if not enough results are found, then additional search methods are
 tried. The specific methods used are:
 
--  Try regular search on each of the additional fields
--  Try ordered word search on each of the search fields
--  Try unordered word search on each of the search fields
+- Try regular search on each of the additional fields
+- Try ordered word search on each of the search fields
+- Try unordered word search on each of the search fields
 
 All results found are presented in that order, hopefully presenting them
 in order of relevance.
@@ -98,20 +98,20 @@ Just type into any related field, such as Customer on a Sale Order.
 Known issues / Roadmap
 ======================
 
--  Also use fuzzy search, such as the Levenshtein distance:
-   `https://www.postgresql.org/docs/9.5/static/fuzzystrmatch.html <https://www.postgresql.org/docs/9.5/static/fuzzystrmatch.html>`__
--  The list of additional fields to search could benefit from caching,
-   for efficiency.
--  This feature could also be implemented for regular ``search`` on the
-   ``name`` field.
--  While adding m2o or other related field that also have an improved
-   name search, that improved name search is not used (while if
-   name_search is customizend on a module and you add a field of that
-   model on another model it works ok). Esto por ejemplo es en productos
-   si agregamos campo "categoría pública" y a categoría pública le
-   ponemos "parent_id". Entonces vamos a ver que si buscamos por una
-   categoría padre no busca nada, en vez si hacemos esa lógica en
-   name_search de modulo si funciona
+- Also use fuzzy search, such as the Levenshtein distance:
+  https://www.postgresql.org/docs/9.5/static/fuzzystrmatch.html
+- The list of additional fields to search could benefit from caching,
+  for efficiency.
+- This feature could also be implemented for regular ``search`` on the
+  ``name`` field.
+- While adding m2o or other related field that also have an improved
+  name search, that improved name search is not used (while if
+  name_search is customizend on a module and you add a field of that
+  model on another model it works ok). Esto por ejemplo es en productos
+  si agregamos campo "categoría pública" y a categoría pública le
+  ponemos "parent_id". Entonces vamos a ver que si buscamos por una
+  categoría padre no busca nada, en vez si hacemos esa lógica en
+  name_search de modulo si funciona
 
 Bug Tracker
 ===========
@@ -135,17 +135,16 @@ Authors
 Contributors
 ------------
 
--  Daniel Reis
-   <`https://github.com/dreispt <https://github.com/dreispt>`__>
--  Kitti U. <kittiu@ecosoft.co.th> (migrate to v14)
--  Radovan Skolnik <radovan@skolnik.info>
+- Daniel Reis <https://github.com/dreispt>
+- Kitti U. <kittiu@ecosoft.co.th> (migrate to v14)
+- Radovan Skolnik <radovan@skolnik.info>
 
 Other credits
 -------------
 
 The development of this module has been financially supported by:
 
--  Odoo Community Association
+- Odoo Community Association
 
 Maintainers
 -----------
