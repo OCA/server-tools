@@ -8,10 +8,11 @@
     "version": "18.0.1.0.0",
     "category": "tools",
     "license": "AGPL-3",
-    "summary": "Keep history of url for products & categories",
+    "summary": "Abstract module/mixin to manage clean url on odoo record",
     "author": "Akretion, ACSONE SA/NV, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/server-tools",
     "depends": ["base", "base_sparse_field_list_support"],
+    "maintainers": ["sebastienbeau"],
     "external_dependencies": {"python": ["python-slugify"]},
     "data": [
         "views/url_view.xml",
