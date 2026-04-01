@@ -8,7 +8,7 @@
     "version": "18.0.1.0.0",
     "category": "tools",
     "license": "AGPL-3",
-    "summary": "Keep history of url for products & categories  ",
+    "summary": "Keep history of url for products & categories",
     "author": "Akretion, ACSONE SA/NV, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/server-tools",
     "depends": ["base", "base_sparse_field_list_support"],

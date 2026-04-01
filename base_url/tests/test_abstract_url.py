@@ -8,32 +8,30 @@ from odoo.tests import TransactionCase
 
 
 class TestAbstractUrl(TransactionCase, FakeModelLoader):
-    @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
-        cls.loader = FakeModelLoader(cls.env, cls.__module__)
-        cls.loader.backup_registry()
+    def setUp(self):
+        super().setUp()
+        self.loader = FakeModelLoader(self.env, self.__module__)
+        self.loader.backup_registry()
         from .models import FakeCateg, FakeProduct
 
-        cls.loader.update_registry([FakeProduct, FakeCateg])
+        self.loader.update_registry([FakeProduct, FakeCateg])
 
-        cls.lang_en = cls.env.ref("base.lang_en")
-        cls.lang_fr = cls.env.ref("base.lang_fr")
-        cls.lang_fr.active = True
-        cls.product = (
-            cls.env["fake.product"]
+        self.lang_en = self.env.ref("base.lang_en")
+        self.lang_fr = self.env.ref("base.lang_fr")
+        self.lang_fr.active = True
+        self.product = (
+            self.env["fake.product"]
             .with_context(lang="en_US")
             .create({"name": "My Product"})
         )
-        cls.product.with_context(lang="fr_FR").name = "Mon Produit"
+        self.product.with_context(lang="fr_FR").name = "Mon Produit"
 
     def _expect_url_for_lang(self, lang, url_key):
         self.assertEqual(self.product._get_main_url("global", lang).key, url_key)
 
-    @classmethod
-    def tearDownClass(cls):
-        cls.loader.restore_registry()
-        super().tearDownClass()
+    def tearDown(self):
+        self.loader.restore_registry()
+        super().tearDown()
 
     def test_update_url_key(self):
         self.product._update_url_key("global", "en_US")
@@ -123,7 +121,8 @@ class TestAbstractUrl(TransactionCase, FakeModelLoader):
             mocked_redirect.assert_called_once()
 
     def test_update_twice_write_once(self):
-        """"
+        (
+            """"
         When we update twice the same record, the write method should be called
         only once. This is important because for example, by default, in
         shopinvader_search_engine_update, when the method write is called,
@@ -133,7 +132,9 @@ class TestAbstractUrl(TransactionCase, FakeModelLoader):
         times the _update_url_key method. The first time, if every time the
         method make a write on the record, the record will end up with the
         state to_recompute.
-        """ ""
+        """
+            ""
+        )
 
         # we mock the write method to check the number of call but we want the
         # method to be executed

@@ -19,12 +19,18 @@ class UrlUrl(models.Model):
     res_id = fields.Many2oneReference(
         string="Record ID",
         help="ID of the target record in the database",
-        model_field="res_model",
+        model_field="res_model_field",
         readonly=True,
         index=True,
     )
     res_model = fields.Selection(
         selection=lambda s: s._get_model_with_url_selection(), readonly=True, index=True
+    )
+    res_model_field = fields.Char(
+        string="Model Name",
+        compute="_compute_res_model_field",
+        readonly=True,
+        store=True,
     )
     redirect = fields.Boolean(help="If tick this url is a redirection to the new url")
     referential = fields.Selection(
@@ -33,7 +39,7 @@ class UrlUrl(models.Model):
         default="global",
         required=True,
     )
-    lang_id = fields.Many2one("res.lang", "Lang", index=True, required=True)
+    lang_id = fields.Many2one("res.lang", string="Lang", index=True, required=True)
     need_refresh = fields.Boolean()
 
     _sql_constraints = [
@@ -64,6 +70,11 @@ class UrlUrl(models.Model):
                 and not self.env[model]._transient
             )
         ]
+
+    @api.depends("res_model")
+    def _compute_res_model_field(self):
+        for record in self:
+            record.res_model_field = record.res_model
 
     def _get_all_referential(self):
         """Return the list of referential for your url, by default it's global

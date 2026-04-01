@@ -57,9 +57,9 @@ class AbstractUrl(models.AbstractModel):
             groupby=["res_id"],
             aggregates=["__count"],
         )
-        id2count = {item["res_id"]: item["res_id_count"] for item in res}
+        mapped_data = {item: count for item, count in res}
         for record in self:
-            record.count_url = id2count.get(record.id, 0)
+            record.count_url = mapped_data.get(record.id, 0)
 
     def _compute_url_need_refresh_depends(self):
         return self._get_keyword_fields()
@@ -83,7 +83,8 @@ class AbstractUrl(models.AbstractModel):
     def _get_keyword_fields(self):
         """This method return a list of field that will be concatenated
         with '-' to generate the url
-        Ex: if you return ['name', 'code'] the url will be f"{record.name}-{record.code}"
+        Ex: if you return ['name', 'code'] the url will be
+        f"{record.name}-{record.code}"
 
         Note: the self already include in the context the lang of the record
         Note: you can return key like in depends ex: ["categ_id.name", "code"]
@@ -133,7 +134,7 @@ class AbstractUrl(models.AbstractModel):
             "res_model": self._name,
             "res_id": self.id,
             "referential": referential,
-            "lang_id": self.env["res.lang"]._lang_get_id(lang),
+            "lang_id": self.env["res.lang"]._lang_get(lang).id,
             "manual": False,
         }
 
