@@ -24,7 +24,7 @@ class VectorValue:
     """
 
     def __init__(self, value: list | tuple | np.ndarray, dimensions=None, autopad=True):
-        if not isinstance(value, (list, tuple, np.ndarray)):
+        if not isinstance(value, list | tuple | np.ndarray):
             raise ValueError(
                 f"Invalid type '{type(value)}' for VectorValue: "
                 "Only list, tuple or np.ndarray are allowed."
@@ -124,9 +124,9 @@ class Vector(fields.Field):
 
     def __init__(
         self,
-        dimensions=fields.Default,
-        autopad=fields.Default,
-        string=fields.Default,
+        dimensions=fields.SENTINEL,
+        autopad=fields.SENTINEL,
+        string=fields.SENTINEL,
         **kwargs,
     ):
         super().__init__(
@@ -136,7 +136,7 @@ class Vector(fields.Field):
     def _setup_attrs(self, model_class, name):
         res = super()._setup_attrs(model_class, name)
         if (
-            self.dimensions == fields.Default
+            self.dimensions == fields.SENTINEL
             or self.dimensions is None
             or not isinstance(self.dimensions, int)
         ):
@@ -179,7 +179,7 @@ class Vector(fields.Field):
     def convert_to_cache(self, value, record, validate=True):
         if value is None or value is False:
             return None
-        if not isinstance(value, (list, tuple, np.ndarray, VectorValue)):
+        if not isinstance(value, list | tuple | np.ndarray | VectorValue):
             raise ValueError(
                 f"Invalid type '{type(value)}' for {self.name}: "
                 "Only np.ndarray or list of floats/int are allowed."
@@ -190,14 +190,15 @@ class Vector(fields.Field):
             value = value.pad(self.dimensions)
         if validate and value.dimensions != self.dimensions:
             raise ValueError(
-                f"Invalid vector size for {self.name}: {value.dimensions} != {self.dimensions}"
+                f"Invalid vector size for {self.name}: "
+                f"{value.dimensions} != {self.dimensions}"
             )
         return value
 
     def convert_to_record(self, value, record):
         if value is None or value is False:
             return None
-        if not isinstance(value, (list, tuple, np.ndarray, VectorValue)):
+        if not isinstance(value, list | tuple | np.ndarray | VectorValue):
             raise ValueError(
                 f"Invalid type '{type(value)}' for {self.name}: "
                 "Only np.ndarray, list of floats/int or VectorValue are allowed."

@@ -1,13 +1,10 @@
 # Copyright 2025 ACSONE SA/NV
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
-from odoo import _
-from odoo.exceptions import MissingError
 
-
-def pre_init_hook(cr):
+def pre_init_hook(env):
     """setup vector"""
-    cr.execute(
+    env.cr.execute(
         """
         SELECT
             tablename
@@ -17,24 +14,23 @@ def pre_init_hook(cr):
             tablename='spatial_ref_sys';
     """
     )
-    check = cr.fetchone()
+    check = env.cr.fetchone()
     if check:
         return {}
     try:
-        cr.execute(
+        env.cr.execute(
             """
         CREATE EXTENSION IF NOT EXISTS vector;
     """
         )
-    except Exception as exc:
-        raise MissingError(
-            _(
-                "Error, can not automatically initialize vector"
-                " support. Database user may have to be superuser and"
-                " pgvector extensions  to be installed. If you do not"
-                " want Odoo to connect with a super user you can manually"
-                " prepare your database. To dothis, open a client to your"
-                " database using a super user and run:\n"
-                "CREATE EXTENSION vector;\n"
-            )
-        ) from exc
+    except Exception:
+        import logging
+
+        _logger = logging.getLogger(__name__)
+        _logger.warning(
+            "Could not automatically initialize pgvector support. "
+            "Database user may need superuser privileges and pgvector "
+            "extension must be installed. To manually prepare your "
+            "database, run as superuser:\n"
+            "CREATE EXTENSION vector;"
+        )
