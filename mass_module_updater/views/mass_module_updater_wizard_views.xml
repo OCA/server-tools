@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record id="mass_module_updater_wizard_view_form" model="ir.ui.view">
         <field name="name">mass.module.updater.wizard.view.form</field>
@@ -6,12 +6,22 @@
         <field name="arch" type="xml">
             <form string="Mass Module Updater">
                 <group>
-                    <field name="module_names" placeholder="e.g. sale, hr, account"/>
+                    <field name="module_names" placeholder="e.g. sale, hr, account" />
                 </group>
                 <footer>
-                    <button name="action_install_modules" string="Install Modules" type="object" class="btn-primary"/>
-                    <button name="action_update_modules" string="Update Modules" type="object" class="btn-primary"/>
-                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    <button
+                        name="action_install_modules"
+                        string="Install Modules"
+                        type="object"
+                        class="btn-primary"
+                    />
+                    <button
+                        name="action_update_modules"
+                        string="Update Modules"
+                        type="object"
+                        class="btn-primary"
+                    />
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
                 </footer>
             </form>
         </field>
@@ -29,5 +39,6 @@
         name="Mass Module Updater"
         parent="base.menu_management"
         action="mass_module_updater_wizard_action"
-        sequence="100"/>
+        sequence="100"
+    />
 </odoo>
