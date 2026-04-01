@@ -24,4 +24,9 @@
         "views/base_exception_view.xml",
     ],
     "installable": True,
+    "assets": {
+        "web.assets_backend": [
+            "base_exception/static/src/js/base_exception.js",
+        ],
+    },
 }

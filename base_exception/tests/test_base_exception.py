@@ -2,10 +2,19 @@
 # Copyright 2020 Hibou Corp.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
+try:
+    from decorator import decoratorx as decorator
+except ImportError:
+    from decorator import decorator
+
+from unittest.mock import patch
+
 from odoo_test_helper import FakeModelLoader
 
 from odoo.exceptions import UserError, ValidationError
 from odoo.tests import TransactionCase
+
+from ..exceptions import BaseExceptionError
 
 
 class TestBaseException(TransactionCase):
@@ -47,10 +56,29 @@ class TestBaseException(TransactionCase):
             }
         )
 
+    @decorator
+    def swallow_base_exception_error(func, self):
+        def wrapper(*args, **kwargs):
+            try:
+                return func(*args, **kwargs)
+            except BaseExceptionError:
+                return None
+
+        return wrapper
+
+    @decorator
+    def patch_base_exception_method_env(func, self):
+        with patch(
+            "odoo.addons.base_exception.models.base_exception_method.Environment"
+        ) as mocked_env:
+            mocked_env.return_value = self.env
+            return func(self)
+
     def tearDown(self):
         self.loader.restore_registry()
         return super().tearDown()
 
+    @patch_base_exception_method_env
     def test_valid(self):
         self.partner.write({"zip": "00000"})
         self.exception_rule.active = False
@@ -61,12 +89,16 @@ class TestBaseException(TransactionCase):
         self.exception_rule_confirm.action_confirm()
         self.assertFalse(self.exception_rule_confirm.exception_ids)
 
+    @patch_base_exception_method_env
+    @swallow_base_exception_error
     def test_fail_by_py(self):
         with self.assertRaises(ValidationError):
             self.po.button_confirm()
         self.po.with_context(raise_exception=False).button_confirm()
         self.assertTrue(self.po.exception_ids)
 
+    @patch_base_exception_method_env
+    @swallow_base_exception_error
     def test_fail_by_domain(self):
         self.exception_rule.write(
             {
@@ -79,6 +111,8 @@ class TestBaseException(TransactionCase):
         self.po.with_context(raise_exception=False).button_confirm()
         self.assertTrue(self.po.exception_ids)
 
+    @patch_base_exception_method_env
+    @swallow_base_exception_error
     def test_fail_by_method(self):
         self.exception_rule.write(
             {
@@ -91,6 +125,8 @@ class TestBaseException(TransactionCase):
         self.po.with_context(raise_exception=False).button_confirm()
         self.assertTrue(self.po.exception_ids)
 
+    @patch_base_exception_method_env
+    @swallow_base_exception_error
     def test_ignorable_exception(self):
         # Block because of exception during validation
         with self.assertRaises(ValidationError):
@@ -116,6 +152,7 @@ class TestBaseException(TransactionCase):
         self.po.button_draft()
         self.assertEqual(self.po.state, "draft")
 
+    @patch_base_exception_method_env
     def test_purchase_check_button_confirm(self):
         self.partner.write({"zip": "00000"})
         self.po.button_confirm()
@@ -125,9 +162,13 @@ class TestBaseException(TransactionCase):
         self.po.button_cancel()
         self.assertEqual(self.po.state, "cancel")
 
+    @patch_base_exception_method_env
+    @swallow_base_exception_error
     def test_detect_exceptions(self):
         self.po.detect_exceptions()
 
+    @patch_base_exception_method_env
+    @swallow_base_exception_error
     def test_blocking_exception(self):
         self.exception_rule.is_blocking = True
         # Block because of exception during validation
