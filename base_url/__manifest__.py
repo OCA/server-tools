@@ -5,13 +5,12 @@
 
 {
     "name": "Base Url",
-    "version": "16.0.1.0.3",
+    "version": "18.0.1.0.0",
     "category": "tools",
     "license": "AGPL-3",
-    "summary": "keep history of url for products & categories  ",
-    "author": "Akretion, ACSONE SA/NV",
-    "website": "https://github.com/shopinvader/odoo-shopinvader",
-    # any module necessary for this one to work correctly
+    "summary": "Keep history of url for products & categories  ",
+    "author": "Akretion, ACSONE SA/NV, Odoo Community Association (OCA)",
+    "website": "https://github.com/OCA/server-tools",
     "depends": ["base", "base_sparse_field_list_support"],
     "external_dependencies": {"python": ["python-slugify"]},
     "data": [
@@ -19,6 +18,5 @@
         "security/res_groups.xml",
         "security/ir.model.access.csv",
     ],
-    "url": "",
     "installable": True,
 }

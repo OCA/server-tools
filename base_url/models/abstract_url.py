@@ -49,13 +49,13 @@ class AbstractUrl(models.AbstractModel):
     )
 
     def _compute_count_url(self):
-        res = self.env["url.url"].read_group(
+        res = self.env["url.url"]._read_group(
             domain=[
                 ("res_id", "in", self.ids),
                 ("res_model", "=", self._name),
             ],
-            fields=["res_id"],
             groupby=["res_id"],
+            aggregates=["__count"],
         )
         id2count = {item["res_id"]: item["res_id_count"] for item in res}
         for record in self:
