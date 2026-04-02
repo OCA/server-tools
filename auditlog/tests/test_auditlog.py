@@ -3,7 +3,6 @@
 # © 2021 Stefan Rijnhart <stefan@opener.amsterdam>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from datetime import timedelta
 
 from odoo import fields
 
@@ -276,9 +275,10 @@ class AuditlogCommon:
         )
 
     def test_http_session(self):
-        display_name = self.env["auditlog.http.session"].new().display_name
-        now_plus_one_hour = fields.Datetime.now() + timedelta(hours=1)
-        expected_time_str = now_plus_one_hour.strftime("%Y-%m-%d %H:%M:%S")
+        display_name = (
+            self.env["auditlog.http.session"].new().with_context(tz="UTC").display_name
+        )
+        expected_time_str = fields.Datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         self.assertEqual(display_name, "? (" + expected_time_str + ")")
 
 
