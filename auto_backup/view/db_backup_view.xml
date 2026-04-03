@@ -33,7 +33,7 @@
                             <field name="sftp_host" placeholder="sftp.example.com" />
                             <field name="sftp_port" />
                             <field name="sftp_user" placeholder="john" />
-                            <field name="sftp_password" />
+                            <field name="sftp_password" password="1" />
                             <field
                                 name="sftp_private_key"
                                 placeholder="/home/odoo/.ssh/id_rsa"
