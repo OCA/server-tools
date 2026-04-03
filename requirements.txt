@@ -1,6 +1,9 @@
 # generated from manifests external_dependencies
+cryptography
 dataclasses
 numpy
 odoorpc
 openupgradelib
+paramiko<4.0.0
+pysftp
 sentry_sdk>=2.0.0,<=2.22.0

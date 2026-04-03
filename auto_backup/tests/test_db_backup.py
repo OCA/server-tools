@@ -87,7 +87,7 @@ class TestDbBackup(common.TransactionCase):
             rec_id.write(
                 {
                     "folder": (
-                        f"{tools.config.filestore(self.env.cr.dbname)}" "/another/path"
+                        f"{tools.config.filestore(self.env.cr.dbname)}/another/path"
                     ),
                 }
             )
