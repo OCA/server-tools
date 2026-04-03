@@ -6,6 +6,7 @@
 
 import logging
 import os
+import shutil
 from contextlib import contextmanager
 from datetime import datetime, timedelta
 from unittest.mock import PropertyMock, patch
@@ -32,6 +33,10 @@ class TestDbBackup(common.TransactionCase):
     def setUp(self):
         super().setUp()
         self.Model = self.env["db.backup"]
+        # Cleanup the backup directory to avoid pollution between tests
+        backup_dir = self.Model._default_folder()
+        if os.path.exists(backup_dir):
+            shutil.rmtree(backup_dir)
 
     @contextmanager
     def mock_assets(self):
@@ -92,14 +97,13 @@ class TestDbBackup(common.TransactionCase):
                 }
             )
 
-    @patch(f"{model}._")
-    def test_action_sftp_test_connection_success(self, _):
-        """It should raise connection succeeded warning"""
+    def test_action_sftp_test_connection_success(self):
+        """It should raise connection succeeded notification"""
         with patch(f"{class_name}.sftp_connection", new_callable=PropertyMock):
             rec_id = self.new_record()
-            with self.assertRaises(UserError):
-                rec_id.action_sftp_test_connection()
-        _.assert_called_once_with("Connection Test Succeeded!")
+            res = rec_id.action_sftp_test_connection()
+            self.assertEqual(res["tag"], "display_notification")
+            self.assertIn("Connection Test Succeeded!", res["params"]["message"])
 
     @patch(f"{model}._")
     def _test_action_sftp_test_connection_fail(self, _):
@@ -122,14 +126,20 @@ class TestDbBackup(common.TransactionCase):
     def test_action_backup_local_cleanup(self):
         """Backup local database and cleanup old databases"""
         rec_id = self.new_record("local")
+        # 1. Generate an initial backup for today
+        rec_id.action_backup()
+
+        # 2. Generate a backup from 3 days ago
         old_date = datetime.now() - timedelta(days=3)
         filename = rec_id.filename(old_date)
         with patch(f"{model}.datetime") as mock_date:
             mock_date.now.return_value = old_date
             rec_id.action_backup()
+        # Should have 2 backups now (today's and 3-days-ago)
         generated_backup = [f for f in os.listdir(rec_id.folder) if f >= filename]
         self.assertEqual(2, len(generated_backup))
 
+        # 3. Generate a backup today, which should trigger cleanup of the 3-day-old one
         filename = rec_id.filename(datetime.now())
         rec_id.action_backup()
         generated_backup = [f for f in os.listdir(rec_id.folder) if f >= filename]

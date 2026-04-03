@@ -7,3 +7,5 @@
 - Simone Vanin \<<simone.vanin@agilebg.com>\>
 - Vu Nguyen Anh \<<vuna2004@gmail.com>\>
 - Alex Comba \<<alex.comba@agilebg.com>\>
+- [Heliconia Solutions Pvt. Ltd.](https://www.heliconia.io)
+  - Bhavesh Heliconia
