@@ -655,3 +655,73 @@ class TestEncryptedFieldCustomInit(TransactionCase):
         field = Encrypted(string="Test", copy=True, tracking=True)
         self.assertTrue(field.args.get("copy"))
         self.assertTrue(field.args.get("tracking"))
+
+
+@tagged("post_install", "-at_install")
+class TestConvertToCacheDecryptError(TransactionCase):
+    """Test convert_to_cache decrypt error handling."""
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        if not config.get("encryption_key"):
+            from cryptography.fernet import Fernet
+
+            config["encryption_key"] = Fernet.generate_key().decode()
+
+    def test_convert_to_cache_invalid_encrypted_returns_none(self):
+        """Test that convert_to_cache returns None for invalid encrypted data."""
+        field = Encrypted(string="Test")
+        # Create invalid encrypted value (looks encrypted but isn't valid)
+        invalid = "gA" + "B" * 100  # Looks like Fernet but invalid
+        result = field.convert_to_cache(invalid, None, True)
+        # Should return None on decrypt error
+        self.assertIsNone(result)
+
+
+@tagged("post_install", "-at_install")
+class TestConvertToRecordDecryptError(TransactionCase):
+    """Test convert_to_record decrypt error handling."""
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        if not config.get("encryption_key"):
+            from cryptography.fernet import Fernet
+
+            config["encryption_key"] = Fernet.generate_key().decode()
+
+    def test_convert_to_record_invalid_encrypted_returns_none(self):
+        """Test that convert_to_record returns None for invalid encrypted."""
+        field = Encrypted(string="Test")
+        invalid = "gA" + "C" * 100
+        result = field.convert_to_record(invalid, None)
+        self.assertIsNone(result)
+
+
+@tagged("post_install", "-at_install")
+class TestConvertToExportDecryptError(TransactionCase):
+    """Test convert_to_export decrypt error handling."""
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        if not config.get("encryption_key"):
+            from cryptography.fernet import Fernet
+
+            config["encryption_key"] = Fernet.generate_key().decode()
+
+    def test_convert_to_export_invalid_encrypted_returns_empty(self):
+        """Test that convert_to_export returns empty for invalid encrypted."""
+        field = Encrypted(string="Test", audit=False)
+        invalid = "gA" + "D" * 100
+        result = field.convert_to_export(invalid, None)
+        self.assertEqual(result, "")
+
+    def test_convert_to_export_decrypts_valid(self):
+        """Test export with valid encrypted value."""
+        field = Encrypted(string="Test", mask="last4", audit=False)
+        encrypted = encrypt_value("123456789")
+        result = field.convert_to_export(encrypted, None)
+        # Should return masked value
+        self.assertEqual(result, "*****6789")
