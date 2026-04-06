@@ -20,25 +20,44 @@ patch(FormController.prototype, {
     },
 });
 
+function getActiveRecordInfo(controller) {
+    const model = controller.model;
+    const root = model?.root;
+    return {
+        root,
+        resModel: root?.resModel,
+        resId: root?.resId,
+    };
+}
+
+async function popUpException() {
+    const controller = activeForm.controller;
+    const orm = controller.env.services.orm;
+
+    const {resModel, resId} = getActiveRecordInfo(controller);
+    if (!resModel || !resId) return false;
+    const actionService = controller.env.services.action;
+    const action = await orm.call(resModel, "action_popup_exceptions", [[resId]]);
+    if (!action) return false;
+
+    await actionService.doAction(action);
+
+    return true;
+}
+
 async function refreshExceptionIdsField() {
     const controller = activeForm.controller;
     if (!controller) return false;
 
-    const model = controller.model;
-    const root = model?.root;
-    const resModel = root?.resModel;
-    const resId = root?.resId;
-
+    const {root, resModel, resId} = getActiveRecordInfo(controller);
     if (!resModel || !resId) return false;
-
-    // Use services from the controller's env (OWL environment)
     const orm = controller.env.services.orm;
 
     // Read the latest value for just that field
     await orm.read(resModel, [resId], ["exception_ids"]);
-
     // Reload the record; OWL will re-render the field
     await root.load();
+
     return true;
 }
 
@@ -52,11 +71,10 @@ patch(rpc, {
                 "odoo.addons.base_exception.exceptions.BaseExceptionError"
             ) {
                 await refreshExceptionIdsField();
-                // Swallow the error so no stacktrace dialog appears.
-                // Return a never-resolving promise to stop further handling cleanly
-                return new Promise(() => {});
+                await popUpException();
+            } else {
+                throw error;
             }
-            throw error;
         }
     },
 });
