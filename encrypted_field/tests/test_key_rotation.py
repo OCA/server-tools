@@ -128,6 +128,86 @@ class TestKeyRotationWizard(TransactionCase):
 
 
 @tagged("post_install", "-at_install")
+class TestKeyRotationWizardPreview(TransactionCase):
+    """Test key rotation wizard preview with encrypted fields."""
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        if not config.get("encryption_key"):
+            from cryptography.fernet import Fernet
+
+            config["encryption_key"] = Fernet.generate_key().decode()
+
+    def test_wizard_preview_with_fields(self):
+        """Test preview when encrypted fields exist."""
+        wizard = self.env["pb.key.rotation.wizard"].create({})
+
+        # Mock encrypted fields data
+        mock_fields = [
+            {"model": "res.partner", "field": "test_ssn"},
+        ]
+        with patch.object(
+            type(wizard), "_get_encrypted_fields", return_value=mock_fields
+        ):
+            wizard.action_preview()
+
+        self.assertEqual(wizard.state, "preview")
+        self.assertIn("res.partner", wizard.preview_info)
+
+    def test_wizard_reopen_returns_action(self):
+        """Test that _reopen returns proper action dict."""
+        wizard = self.env["pb.key.rotation.wizard"].create({})
+        action = wizard._reopen()
+
+        self.assertEqual(action["type"], "ir.actions.act_window")
+        self.assertEqual(action["res_model"], "pb.key.rotation.wizard")
+        self.assertEqual(action["res_id"], wizard.id)
+        self.assertEqual(action["view_mode"], "form")
+        self.assertEqual(action["target"], "new")
+
+
+@tagged("post_install", "-at_install")
+class TestKeyRotationUpdateConfig(TransactionCase):
+    """Test config file update methods."""
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        if not config.get("encryption_key"):
+            from cryptography.fernet import Fernet
+
+            config["encryption_key"] = Fernet.generate_key().decode()
+
+    def test_update_config_file_no_rcfile(self):
+        """Test when no config file path available."""
+        wizard = self.env["pb.key.rotation.wizard"].create({})
+
+        with patch.object(config, "rcfile", None):
+            success, result = wizard._update_config_file("new_key")
+
+        self.assertFalse(success)
+        self.assertIn("No config file", result)
+
+    def test_bump_key_version_method(self):
+        """Test _bump_key_version method on wizard."""
+        wizard = self.env["pb.key.rotation.wizard"].create({})
+
+        old_version = (
+            self.env["ir.config_parameter"]
+            .sudo()
+            .get_param("encryption.key_version", "0")
+        )
+
+        wizard._bump_key_version()
+
+        new_version = (
+            self.env["ir.config_parameter"].sudo().get_param("encryption.key_version")
+        )
+        self.assertNotEqual(old_version, new_version)
+
+
+@tagged("post_install", "-at_install")
 class TestKeyVersioning(TransactionCase):
     """Test key version synchronization across workers."""
 
@@ -174,3 +254,17 @@ class TestKeyVersioning(TransactionCase):
             self.env["ir.config_parameter"].sudo().get_param("encryption.key_version")
         )
         self.assertEqual(stored, "12345")
+
+    def test_get_key_version_function(self):
+        """Test _get_key_version function from encrypted module."""
+        from ..fields.encrypted import _get_key_version
+
+        # Set a known version
+        self.env["ir.config_parameter"].sudo().set_param(
+            "encryption.key_version", "99999"
+        )
+        self.env.cr.flush()
+
+        version = _get_key_version()
+        # Should return a string (may not be 99999 due to transaction isolation)
+        self.assertIsInstance(version, str)

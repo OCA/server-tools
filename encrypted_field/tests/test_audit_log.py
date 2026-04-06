@@ -203,6 +203,55 @@ class TestAuditLog(TransactionCase):
         )
         self.assertTrue(len(logs) >= 1)
 
+    def test_get_access_report_with_field_filter(self):
+        """Test access report filtered by field name."""
+        self.AuditLog.sudo().create(
+            {
+                "user_id": self.admin_user.id,
+                "model_name": "res.partner",
+                "field_name": "ssn",
+                "record_id": 1,
+                "action": "decrypt",
+            }
+        )
+        self.AuditLog.sudo().create(
+            {
+                "user_id": self.admin_user.id,
+                "model_name": "res.partner",
+                "field_name": "vat",
+                "record_id": 2,
+                "action": "decrypt",
+            }
+        )
+
+        logs = self.AuditLog.sudo().get_access_report(field_name="ssn")
+        for log in logs:
+            self.assertEqual(log.field_name, "ssn")
+
+    def test_get_access_report_combined_filters(self):
+        """Test access report with multiple filters."""
+        self.AuditLog.sudo().create(
+            {
+                "user_id": self.admin_user.id,
+                "model_name": "res.partner",
+                "field_name": "ssn",
+                "record_id": 1,
+                "action": "decrypt",
+            }
+        )
+
+        date_from = datetime.now() - timedelta(days=1)
+        logs = self.AuditLog.sudo().get_access_report(
+            model_name="res.partner",
+            field_name="ssn",
+            user_id=self.admin_user.id,
+            date_from=date_from,
+        )
+        self.assertTrue(len(logs) >= 1)
+        for log in logs:
+            self.assertEqual(log.model_name, "res.partner")
+            self.assertEqual(log.field_name, "ssn")
+
 
 @tagged("post_install", "-at_install")
 class TestAuditLogRetentionConfig(TransactionCase):

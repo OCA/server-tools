@@ -250,3 +250,247 @@ class TestEncryptedFieldAccessControl(TransactionCase):
         env_basic = self.env(user=self.basic_user)
         # Basic user has base.group_user
         self.assertTrue(field._user_has_access(env_basic))
+
+
+@tagged("post_install", "-at_install")
+class TestEncryptedFieldConversions(TransactionCase):
+    """Test field conversion methods."""
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        if not config.get("encryption_key"):
+            from cryptography.fernet import Fernet
+
+            config["encryption_key"] = Fernet.generate_key().decode()
+
+    def test_convert_to_column_with_value(self):
+        """Test converting value to database column format."""
+        field = Encrypted(string="Test")
+        # Mock record with minimal interface
+        encrypted = field.convert_to_column("secret123", None, None, True)
+        self.assertTrue(is_encrypted_value(encrypted))
+        # Verify can decrypt back
+        self.assertEqual(decrypt_value(encrypted), "secret123")
+
+    def test_convert_to_column_none(self):
+        """Test converting None returns None."""
+        field = Encrypted(string="Test")
+        self.assertIsNone(field.convert_to_column(None, None, None, True))
+
+    def test_convert_to_column_false(self):
+        """Test converting False returns None."""
+        field = Encrypted(string="Test")
+        self.assertIsNone(field.convert_to_column(False, None, None, True))
+
+    def test_convert_to_column_integer(self):
+        """Test converting integer to string then encrypting."""
+        field = Encrypted(string="Test")
+        encrypted = field.convert_to_column(12345, None, None, True)
+        self.assertTrue(is_encrypted_value(encrypted))
+        self.assertEqual(decrypt_value(encrypted), "12345")
+
+    def test_convert_to_column_strips_format(self):
+        """Test that formatting is stripped before encryption."""
+        field = Encrypted(string="Test", format_pattern="ssn")
+        encrypted = field.convert_to_column("123-45-6789", None, None, True)
+        # Should store as 123456789 (stripped)
+        decrypted = decrypt_value(encrypted)
+        self.assertEqual(decrypted, "123456789")
+
+    def test_convert_to_cache_encrypted_value(self):
+        """Test converting encrypted value from database to cache."""
+        field = Encrypted(string="Test")
+        encrypted = encrypt_value("myvalue")
+        decrypted = field.convert_to_cache(encrypted, None, True)
+        self.assertEqual(decrypted, "myvalue")
+
+    def test_convert_to_cache_none(self):
+        """Test converting None returns None."""
+        field = Encrypted(string="Test")
+        self.assertIsNone(field.convert_to_cache(None, None, True))
+
+    def test_convert_to_cache_false(self):
+        """Test converting False returns None."""
+        field = Encrypted(string="Test")
+        self.assertIsNone(field.convert_to_cache(False, None, True))
+
+    def test_convert_to_cache_plain_value(self):
+        """Test that non-encrypted values pass through."""
+        field = Encrypted(string="Test")
+        # Short value that doesn't look encrypted
+        result = field.convert_to_cache("plain", None, True)
+        self.assertEqual(result, "plain")
+
+    def test_convert_to_cache_non_string(self):
+        """Test that non-string values pass through."""
+        field = Encrypted(string="Test")
+        result = field.convert_to_cache(12345, None, True)
+        self.assertEqual(result, 12345)
+
+    def test_convert_to_record_masks_value(self):
+        """Test that convert_to_record returns masked value."""
+        field = Encrypted(string="Test", mask="last4")
+        result = field.convert_to_record("123456789", None)
+        self.assertEqual(result, "*****6789")
+
+    def test_convert_to_record_none(self):
+        """Test converting None returns None."""
+        field = Encrypted(string="Test")
+        self.assertIsNone(field.convert_to_record(None, None))
+
+    def test_convert_to_record_decrypts_then_masks(self):
+        """Test that encrypted values are decrypted then masked."""
+        field = Encrypted(string="Test", mask="last4")
+        encrypted = encrypt_value("123456789")
+        result = field.convert_to_record(encrypted, None)
+        self.assertEqual(result, "*****6789")
+
+    def test_convert_to_read(self):
+        """Test convert_to_read delegates to convert_to_record."""
+        field = Encrypted(string="Test", mask="full")
+        result = field.convert_to_read("secret", None, True)
+        self.assertEqual(result, "******")
+
+    def test_convert_to_write_value(self):
+        """Test convert_to_write passes value through."""
+        field = Encrypted(string="Test")
+        result = field.convert_to_write("myvalue", None)
+        self.assertEqual(result, "myvalue")
+
+    def test_convert_to_write_none(self):
+        """Test convert_to_write with None."""
+        field = Encrypted(string="Test")
+        self.assertIsNone(field.convert_to_write(None, None))
+
+    def test_convert_to_write_false(self):
+        """Test convert_to_write with False."""
+        field = Encrypted(string="Test")
+        self.assertIsNone(field.convert_to_write(False, None))
+
+    def test_convert_to_export_masks_value(self):
+        """Test that export returns masked value."""
+        field = Encrypted(string="Test", mask="last4", audit=False)
+        result = field.convert_to_export("123456789", None)
+        self.assertEqual(result, "*****6789")
+
+    def test_convert_to_export_none(self):
+        """Test export with None returns empty string."""
+        field = Encrypted(string="Test")
+        self.assertEqual(field.convert_to_export(None, None), "")
+
+    def test_convert_to_display_name(self):
+        """Test convert_to_display_name masks value."""
+        field = Encrypted(string="Test", mask="full")
+        result = field.convert_to_display_name("secret", None)
+        self.assertEqual(result, "******")
+
+
+@tagged("post_install", "-at_install")
+class TestEncryptedFieldSearchBlock(TransactionCase):
+    """Test that search operations are blocked."""
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        if not config.get("encryption_key"):
+            from cryptography.fernet import Fernet
+
+            config["encryption_key"] = Fernet.generate_key().decode()
+
+    def test_determine_domain_raises_error(self):
+        """Test that search on encrypted field raises error."""
+        field = Encrypted(string="Test")
+        field.name = "test_field"  # Set name for error message
+        with self.assertRaises(UserError) as cm:
+            field.determine_domain(None, "=", "value")
+        self.assertIn("Search operations are not allowed", str(cm.exception))
+        self.assertIn("test_field", str(cm.exception))
+
+
+@tagged("post_install", "-at_install")
+class TestEncryptedFieldMaskingEdgeCases(TransactionCase):
+    """Test masking edge cases."""
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        if not config.get("encryption_key"):
+            from cryptography.fernet import Fernet
+
+            config["encryption_key"] = Fernet.generate_key().decode()
+
+    def test_mask_empty_string(self):
+        """Test masking empty string returns empty."""
+        field = Encrypted(mask="full")
+        self.assertEqual(field._mask_value(""), "")
+
+    def test_mask_short_value_first4(self):
+        """Test masking value shorter than 4 chars with first4."""
+        field = Encrypted(mask="first4")
+        self.assertEqual(field._mask_value("12"), "12")
+
+    def test_mask_exactly_4_chars_last4(self):
+        """Test masking exactly 4 char value with last4."""
+        field = Encrypted(mask="last4")
+        self.assertEqual(field._mask_value("1234"), "1234")
+
+    def test_mask_exactly_4_chars_first4(self):
+        """Test masking exactly 4 char value with first4."""
+        field = Encrypted(mask="first4")
+        self.assertEqual(field._mask_value("1234"), "1234")
+
+    def test_mask_with_special_chars(self):
+        """Test masking preserves non-alphanumeric chars."""
+        field = Encrypted(mask="full")
+        result = field._mask_value("123-456")
+        self.assertEqual(result, "***-***")
+
+    def test_mask_last4_with_format(self):
+        """Test last4 mask with format pattern applied."""
+        field = Encrypted(mask="last4", format_pattern="phone")
+        # Input: 1234567890 -> formatted: (123) 456-7890
+        # Last 4 alphanumeric shown: (***) ***-7890
+        result = field._mask_value("1234567890")
+        self.assertIn("7890", result)
+        self.assertIn(")", result)  # Format chars preserved
+
+
+@tagged("post_install", "-at_install")
+class TestFormatPatternsEdgeCases(TransactionCase):
+    """Test format pattern edge cases."""
+
+    def test_strip_format_no_pattern(self):
+        """Test strip with no format_name."""
+        self.assertEqual(strip_format("123-45-6789", None), "123-45-6789")
+        self.assertEqual(strip_format("123-45-6789", ""), "123-45-6789")
+
+    def test_apply_format_no_pattern(self):
+        """Test apply with no format_name."""
+        self.assertEqual(apply_format("123456789", None), "123456789")
+        self.assertEqual(apply_format("123456789", ""), "123456789")
+
+    def test_apply_format_value_longer_than_pattern(self):
+        """Test formatting when value is longer than pattern."""
+        # EIN pattern is ##-####### (9 digits)
+        # Value with 12 digits
+        result = apply_format("123456789012", "ein")
+        # Should apply pattern and append remainder
+        self.assertTrue(result.startswith("12-3456789"))
+
+    def test_apply_format_value_shorter_than_pattern(self):
+        """Test formatting when value is shorter than pattern."""
+        # SSN pattern is ###-##-#### (9 digits)
+        # Value with 5 digits
+        result = apply_format("12345", "ssn")
+        self.assertEqual(result, "123-45")
+
+    def test_credit_card_strip(self):
+        """Test credit card format stripping."""
+        result = strip_format("1234-5678-9012-3456", "credit_card")
+        self.assertEqual(result, "1234567890123456")
+
+    def test_ein_strip(self):
+        """Test EIN format stripping."""
+        result = strip_format("12-3456789", "ein")
+        self.assertEqual(result, "123456789")

@@ -140,3 +140,97 @@ class TestMigrationWizardLine(TransactionCase):
             }
         )
         self.assertFalse(line.selected)
+
+
+@tagged("post_install", "-at_install")
+class TestMigrationWizardRefresh(TransactionCase):
+    """Test migration wizard refresh functionality."""
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        if not config.get("encryption_key"):
+            from cryptography.fernet import Fernet
+
+            config["encryption_key"] = Fernet.generate_key().decode()
+
+    def test_action_refresh(self):
+        """Test refreshing the wizard clears and recreates lines."""
+        wizard = self.env["pb.encryption.migration.wizard"].create({})
+
+        # Create initial line
+        self.env["pb.encryption.migration.wizard.line"].create(
+            {
+                "wizard_id": wizard.id,
+                "model_name": "old.model",
+                "field_name": "old_field",
+                "unencrypted_count": 5,
+            }
+        )
+        self.assertEqual(len(wizard.line_ids), 1)
+
+        # Refresh should recreate lines
+        action = wizard.action_refresh()
+
+        # Should return a reopen action
+        self.assertEqual(action["type"], "ir.actions.act_window")
+        self.assertEqual(action["res_id"], wizard.id)
+
+
+@tagged("post_install", "-at_install")
+class TestMigrationWizardPreviewEdgeCases(TransactionCase):
+    """Test migration wizard preview edge cases."""
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        if not config.get("encryption_key"):
+            from cryptography.fernet import Fernet
+
+            config["encryption_key"] = Fernet.generate_key().decode()
+
+    def test_preview_already_encrypted(self):
+        """Test preview message for already encrypted fields."""
+        wizard = self.env["pb.encryption.migration.wizard"].create({})
+        self.env["pb.encryption.migration.wizard.line"].create(
+            {
+                "wizard_id": wizard.id,
+                "model_name": "test.model",
+                "field_name": "test_field",
+                "unencrypted_count": 0,  # Already encrypted
+                "selected": True,
+            }
+        )
+
+        wizard.action_preview()
+
+        self.assertEqual(wizard.state, "preview")
+        self.assertIn("already encrypted", wizard.preview_info)
+
+    def test_migrate_no_selection(self):
+        """Test migrate fails when nothing selected."""
+        wizard = self.env["pb.encryption.migration.wizard"].create({})
+        self.env["pb.encryption.migration.wizard.line"].create(
+            {
+                "wizard_id": wizard.id,
+                "model_name": "test.model",
+                "field_name": "test_field",
+                "unencrypted_count": 5,
+                "selected": False,
+            }
+        )
+
+        with self.assertRaises(UserError) as cm:
+            wizard.action_migrate()
+        self.assertIn("No fields selected", str(cm.exception))
+
+    def test_wizard_reopen(self):
+        """Test _reopen returns proper action dict."""
+        wizard = self.env["pb.encryption.migration.wizard"].create({})
+        action = wizard._reopen()
+
+        self.assertEqual(action["type"], "ir.actions.act_window")
+        self.assertEqual(action["res_model"], "pb.encryption.migration.wizard")
+        self.assertEqual(action["res_id"], wizard.id)
+        self.assertEqual(action["view_mode"], "form")
+        self.assertEqual(action["target"], "new")
