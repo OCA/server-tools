@@ -494,3 +494,164 @@ class TestFormatPatternsEdgeCases(TransactionCase):
         """Test EIN format stripping."""
         result = strip_format("12-3456789", "ein")
         self.assertEqual(result, "123456789")
+
+
+@tagged("post_install", "-at_install")
+class TestEncryptedFieldLogging(TransactionCase):
+    """Test audit logging functionality on encrypted fields."""
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        if not config.get("encryption_key"):
+            from cryptography.fernet import Fernet
+
+            config["encryption_key"] = Fernet.generate_key().decode()
+
+        cls.admin_user = cls.env.ref("base.user_admin")
+
+    def test_log_access_creates_audit_entry(self):
+        """Test that _log_access creates audit log entry."""
+        field = Encrypted(string="Test", audit=True)
+        field._log_access(self.env, 1, "test_field", "res.partner", "decrypt")
+
+        # Verify log was created
+        log = self.env["pb.encrypted.audit.log"].search(
+            [
+                ("model_name", "=", "res.partner"),
+                ("field_name", "=", "test_field"),
+                ("record_id", "=", 1),
+            ],
+            limit=1,
+        )
+        self.assertTrue(log)
+
+    def test_log_access_disabled(self):
+        """Test that _log_access does nothing when audit=False."""
+        field = Encrypted(string="Test", audit=False)
+        # Should not raise and should not create log
+        field._log_access(self.env, 999, "no_audit_field", "test.model", "decrypt")
+
+        log = self.env["pb.encrypted.audit.log"].search(
+            [
+                ("field_name", "=", "no_audit_field"),
+                ("record_id", "=", 999),
+            ],
+            limit=1,
+        )
+        self.assertFalse(log)
+
+
+@tagged("post_install", "-at_install")
+class TestEncryptedFieldFormatting(TransactionCase):
+    """Test field formatting methods."""
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        if not config.get("encryption_key"):
+            from cryptography.fernet import Fernet
+
+            config["encryption_key"] = Fernet.generate_key().decode()
+
+    def test_format_value_with_pattern(self):
+        """Test _format_value with SSN pattern."""
+        field = Encrypted(string="Test", format_pattern="ssn")
+        result = field._format_value("123456789")
+        self.assertEqual(result, "123-45-6789")
+
+    def test_format_value_no_pattern(self):
+        """Test _format_value without pattern."""
+        field = Encrypted(string="Test")
+        result = field._format_value("123456789")
+        self.assertEqual(result, "123456789")
+
+    def test_format_value_none(self):
+        """Test _format_value with None."""
+        field = Encrypted(string="Test", format_pattern="ssn")
+        result = field._format_value(None)
+        self.assertIsNone(result)
+
+    def test_strip_format_with_pattern(self):
+        """Test _strip_format with SSN pattern."""
+        field = Encrypted(string="Test", format_pattern="ssn")
+        result = field._strip_format("123-45-6789")
+        self.assertEqual(result, "123456789")
+
+    def test_strip_format_no_pattern(self):
+        """Test _strip_format without pattern."""
+        field = Encrypted(string="Test")
+        result = field._strip_format("123-45-6789")
+        self.assertEqual(result, "123-45-6789")
+
+    def test_strip_format_none(self):
+        """Test _strip_format with None."""
+        field = Encrypted(string="Test", format_pattern="ssn")
+        result = field._strip_format(None)
+        self.assertIsNone(result)
+
+
+@tagged("post_install", "-at_install")
+class TestEncryptionKeyHandling(TransactionCase):
+    """Test encryption key handling and error cases."""
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        if not config.get("encryption_key"):
+            from cryptography.fernet import Fernet
+
+            config["encryption_key"] = Fernet.generate_key().decode()
+
+    def test_decrypt_invalid_encrypted_value(self):
+        """Test decrypting corrupted encrypted value."""
+        # Create a value that looks encrypted but is invalid
+        invalid_encrypted = "gA" + "x" * 100
+        with self.assertRaises(UserError):
+            decrypt_value(invalid_encrypted)
+
+    def test_encrypt_empty_string(self):
+        """Test encrypting empty string."""
+        result = encrypt_value("")
+        # Empty string should still be encrypted
+        self.assertTrue(is_encrypted_value(result))
+        self.assertEqual(decrypt_value(result), "")
+
+    def test_is_encrypted_short_ga_string(self):
+        """Test that short 'gA' strings are not considered encrypted."""
+        # Less than 50 chars should not be considered encrypted
+        self.assertFalse(is_encrypted_value("gA12345"))
+        self.assertFalse(is_encrypted_value("gA"))
+
+
+@tagged("post_install", "-at_install")
+class TestEncryptedFieldCustomInit(TransactionCase):
+    """Test Encrypted field initialization options."""
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        if not config.get("encryption_key"):
+            from cryptography.fernet import Fernet
+
+            config["encryption_key"] = Fernet.generate_key().decode()
+
+    def test_field_with_all_options(self):
+        """Test creating field with all custom options."""
+        field = Encrypted(
+            string="Custom Field",
+            encrypt_groups="base.group_system",
+            mask="last4",
+            audit=False,
+            format_pattern="phone",
+        )
+        self.assertEqual(field.encrypt_groups, "base.group_system")
+        self.assertEqual(field.mask, "last4")
+        self.assertFalse(field.audit)
+        self.assertEqual(field.format_pattern, "phone")
+
+    def test_field_override_copy_tracking(self):
+        """Test that copy and tracking can be overridden."""
+        field = Encrypted(string="Test", copy=True, tracking=True)
+        self.assertTrue(field.args.get("copy"))
+        self.assertTrue(field.args.get("tracking"))
