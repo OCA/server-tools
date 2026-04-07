@@ -78,8 +78,12 @@ msgstr ""
 
 #. module: model_read_only
 #: model:ir.model.fields,field_description:model_read_only.field_model_readonly_restriction__model_id
-#: model:ir.model.fields,field_description:model_read_only.field_model_readonly_restriction__model_name
 msgid "Model"
+msgstr ""
+
+#. module: model_read_only
+#: model:ir.model.fields,field_description:model_read_only.field_model_readonly_restriction__model_name
+msgid "Model Name"
 msgstr ""
 
 #. module: model_read_only
