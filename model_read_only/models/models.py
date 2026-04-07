@@ -9,7 +9,7 @@ class ModelReadonlyRestriction(models.Model):
     _description = "Model Readonly Restriction"
 
     model_id = fields.Many2one("ir.model")
-    model_name = fields.Char(related="model_id.model")
+    model_name = fields.Char(related="model_id.model", string="Model Name")
     restriction_domain = fields.Char(
         "Domain", help="If empty - restriction is applied always."
     )
