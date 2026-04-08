@@ -4,6 +4,7 @@
 # Copyright 2020 Hibou Corp.
 # Copyright 2023 ACSONE SA/NV (http://acsone.eu)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+import json
 import logging
 from collections import defaultdict
 
@@ -107,8 +108,16 @@ class BaseExceptionMethod(models.AbstractModel):
             if rules_to_add or self_new_env._must_raise_exception_after_detection():
                 raise_exception = True
         if raise_exception:
-            raise BaseExceptionError("Exceptions detected")
+            raise BaseExceptionError(
+                json.dumps(self._detect_exception_get_exc_class_values())
+            )
         return all_exception_ids
+
+    def _detect_exception_get_exc_class_values(self):
+        return {
+            "src_model": self._name,
+            "target_model": self._name,
+        }
 
     def _must_raise_exception_after_detection(self):
         main_records = self._get_main_records()
