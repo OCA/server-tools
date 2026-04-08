@@ -26,7 +26,7 @@
     "installable": True,
     "assets": {
         "web.assets_backend": [
-            "base_exception/static/src/js/base_exception.js",
+            "base_exception/static/src/js/base_exception.esm.js",
         ],
     },
 }
