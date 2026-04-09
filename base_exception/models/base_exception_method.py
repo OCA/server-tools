@@ -12,6 +12,7 @@ from odoo import Command, _, api, models
 from odoo.api import Environment
 from odoo.exceptions import UserError
 from odoo.osv import expression
+from odoo.tools import config
 from odoo.tools.safe_eval import safe_eval
 
 from ..exceptions import BaseExceptionError
@@ -89,10 +90,17 @@ class BaseExceptionMethod(models.AbstractModel):
         # table
         # and the "to add" part generates one INSERT (with unnest) per rule.
         raise_exception = False
+        test_mode = config["test_enable"] and not self.env.context.get(
+            "test_base_exception"
+        )
         # Write exceptions in a new transaction to be committed so that we can
         #  rollback the ongoing one while keeping the exceptions stored
         with self.env.registry.cursor() as new_cr:
-            new_env = Environment(new_cr, self.env.uid, self.env.context)
+            new_env = (
+                Environment(new_cr, self.env.uid, self.env.context)
+                if not test_mode
+                else self.env
+            )
             for rule_id, records in rules_to_remove.items():
                 records.with_env(new_env).write(
                     {"exception_ids": [Command.unlink(rule_id)]}
