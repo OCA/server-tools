@@ -192,14 +192,16 @@ class AbstractUrl(models.AbstractModel):
             else:
                 raise UserError(
                     _(
-                        "Url_key already exist in other model"
-                        "\n- name: %(model_name)s\n - id: %(model_id)s\n"
-                        "- url_key: %(url_key)s\n - url_key_id %(url_id)s"
+                        "Url_key already exists in other model\n"
+                        "- Model name: %(model_name)s\n"
+                        "- Record ID: %(record_id)s\n"
+                        "- Url Key: %(url_key)s\n"
+                        "- Url ID: %(url_id)s"
                     )
                     % dict(
-                        model_name=existing_url.model_id.name,
-                        model_id=existing_url.model_id.id,
-                        url_key=existing_url.url_key,
+                        model_name=existing_url.res_model,
+                        record_id=existing_url.res_id,
+                        url_key=existing_url.key,
                         url_id=existing_url.id,
                     )
                 )
