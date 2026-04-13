@@ -241,7 +241,7 @@ class AbstractUrl(models.AbstractModel):
 
     def open_url(self):
         self.ensure_one()
-        action = self.env.ref("shopinvader_base_url.base_url_action_view").read()[0]
+        action = self.env.ref("base_url.base_url_action_view").read()[0]
         action["domain"] = [("res_model", "=", self._name), ("res_id", "in", self.ids)]
         action["context"] = {
             "hide_res_model": True,
