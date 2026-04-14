@@ -15,8 +15,11 @@ _odoo_environments_ctx = ContextVar("odoo.environments", default=())
 
 @classproperty
 def contextvars_envs(_cls):
-    # Look in _local in case we use this while the non patched context manager is active
-    return _odoo_environments_ctx.get() or getattr(_cls._local, "environments", ())
+    result = _odoo_environments_ctx.get() or getattr(_cls._local, "environments", None)
+    if not result:
+        result = Environments()
+        _odoo_environments_ctx.set(result)
+    return result
 
 
 @classmethod  # type: ignore
@@ -36,7 +39,7 @@ def contextvars_manage(_cls):
             yield
         finally:
             _logger.debug("envs manage end")
-            _odoo_environments_ctx.set(())
+            _odoo_environments_ctx.set(None)
 
 
 @classmethod  # type: ignore
