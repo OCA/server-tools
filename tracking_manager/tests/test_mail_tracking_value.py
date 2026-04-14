@@ -1,5 +1,7 @@
 # Copyright 2025 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+from odoo import models
+
 from odoo.addons.base.tests.common import BaseCommon
 
 
@@ -63,10 +65,10 @@ class TestMailTracking(BaseCommon):
         for p_name, col_info in test_properties_info.items():
             initial_value = values[p_name][0]
             new_value = values[p_name][1]
-            res = self.MailTracking._create_tracking_values_property(
-                initial_value, new_value, "title", col_info, self.partner
+            res = self.MailTracking._create_tracking_values(
+                initial_value, new_value, "name", col_info, self.partner
             )
-            del res["field_info"]
+            del res["field_id"]
             f_name = property_type_mapped[col_info["type"]]
             expected_old_value = initial_value
             expected_new_value = new_value
@@ -82,33 +84,36 @@ class TestMailTracking(BaseCommon):
                 expected_new_value = values[p_name][3]
             elif col_info["type"] == "tags":
                 expected_old_value = (
-                    ", ".join(value for value in expected_old_value)
+                    ", ".join(value[1] for value in expected_old_value)
                     if expected_old_value
                     else ""
                 )
                 expected_new_value = (
-                    ", ".join(value for value in expected_new_value)
+                    ", ".join(value[1] for value in expected_new_value)
                     if expected_new_value
                     else ""
                 )
             elif col_info["type"] == "many2one":
                 del res["old_value_char"]
                 del res["new_value_char"]
-            elif col_info["type"] == "many2many":
-                comodel = self.env[col_info["comodel"]]
                 expected_old_value = (
-                    comodel.browse(expected_old_value) if expected_old_value else False
+                    expected_old_value.id
+                    if isinstance(expected_old_value, models.BaseModel)
+                    else False
                 )
                 expected_new_value = (
-                    comodel.browse(expected_new_value) if expected_new_value else False
+                    expected_new_value.id
+                    if isinstance(expected_new_value, models.BaseModel)
+                    else False
                 )
+            elif col_info["type"] == "many2many":
                 expected_old_value = (
-                    ", ".join(expected_old_value.mapped("display_name"))
+                    ", ".join(value[1] for value in expected_old_value)
                     if expected_old_value
                     else ""
                 )
                 expected_new_value = (
-                    ", ".join(expected_new_value.mapped("display_name"))
+                    ", ".join(value[1] for value in expected_new_value)
                     if expected_new_value
                     else ""
                 )
@@ -129,9 +134,15 @@ class TestMailTracking(BaseCommon):
             "property_05": (False, "2025-01-01"),
             "property_06": (False, "2025-01-01 00:00:00"),
             "property_07": (False, "key1", "", "value1"),
-            "property_08": (False, ["tag1", "tag2"]),
-            "property_09": (False, self.partner.id),
-            "property_10": (False, [self.partner.id, partner_extra.id]),
+            "property_08": (False, [(1, "tag1"), (2, "tag2")]),
+            "property_09": (False, self.partner),
+            "property_10": (
+                False,
+                [
+                    (self.partner.id, self.partner.display_name),
+                    (partner_extra.id, partner_extra.display_name),
+                ],
+            ),
         }
         # Test all the property types using as fake title field because there is no
         # property field in base to test.
@@ -150,17 +161,15 @@ class TestMailTracking(BaseCommon):
             "property_05": ("2025-01-01", "2025-01-02"),
             "property_06": ("2025-01-01 00:00:00", "2025-01-02 00:00:00"),
             "property_07": ("key1", "key2", "value1", "value2"),
-            "property_08": (
-                ["tag1", "tag2"],
-                [
-                    "tag1",
-                ],
-            ),
-            "property_09": (self.partner.id, partner_extra.id),
+            "property_08": ([(1, "tag1"), (2, "tag2")], [(1, "tag1")]),
+            "property_09": (self.partner, partner_extra),
             "property_10": (
-                [self.partner.id, partner_extra.id],
                 [
-                    self.partner.id,
+                    (self.partner.id, self.partner.display_name),
+                    (partner_extra.id, partner_extra.display_name),
+                ],
+                [
+                    (self.partner.id, self.partner.display_name),
                 ],
             ),
         }
@@ -176,8 +185,14 @@ class TestMailTracking(BaseCommon):
             "property_05": ("2025-01-02", False),
             "property_06": ("2025-01-02 00:00:00", False),
             "property_07": ("key1", False, "value1", ""),
-            "property_08": (["tag1", "tag2"], False),
-            "property_09": (self.partner.id, False),
-            "property_10": ([self.partner.id, partner_extra.id], False),
+            "property_08": ([(1, "tag1"), (2, "tag2")], False),
+            "property_09": (self.partner, False),
+            "property_10": (
+                [
+                    (self.partner.id, self.partner.display_name),
+                    (partner_extra.id, partner_extra.display_name),
+                ],
+                False,
+            ),
         }
         self._test_create_tracking_values_property(test_properties_03)
