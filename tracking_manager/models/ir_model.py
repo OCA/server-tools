@@ -5,7 +5,7 @@
 from ast import literal_eval
 
 from odoo import api, fields, models, tools
-from odoo.osv import expression
+from odoo.fields import Domain
 
 
 class IrModel(models.Model):
@@ -135,7 +135,7 @@ class IrModel(models.Model):
             automatic_custom_tracking_domain = rules.get(record.model) or rules.get(
                 "default_automatic_rule", []
             )
-            automatic_custom_tracking_domain = expression.AND(
+            automatic_custom_tracking_domain = Domain.AND(
                 [automatic_custom_tracking_domain, [("model", "=", record.model)]]
             )
             record.automatic_custom_tracking_domain = str(
