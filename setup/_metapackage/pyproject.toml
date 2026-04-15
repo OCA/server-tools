@@ -1,6 +1,6 @@
 [project]
 name = "odoo-addons-oca-server-tools"
-version = "17.0.20260125.0"
+version = "17.0.20260415.0"
 dependencies = [
     "odoo-addon-attachment_logging>=17.0dev,<17.1dev",
     "odoo-addon-attachment_queue>=17.0dev,<17.1dev",
@@ -30,6 +30,7 @@ dependencies = [
     "odoo-addon-html_text>=17.0dev,<17.1dev",
     "odoo-addon-iap_alternative_provider>=17.0dev,<17.1dev",
     "odoo-addon-jsonifier>=17.0dev,<17.1dev",
+    "odoo-addon-mail_template_attachment_per_lang>=17.0dev,<17.1dev",
     "odoo-addon-module_analysis>=17.0dev,<17.1dev",
     "odoo-addon-module_auto_update>=17.0dev,<17.1dev",
     "odoo-addon-module_change_auto_install>=17.0dev,<17.1dev",
