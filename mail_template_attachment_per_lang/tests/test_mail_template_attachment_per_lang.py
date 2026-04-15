@@ -9,7 +9,7 @@ from odoo.addons.mail.tests.common import MailCommon
 
 
 @tagged("mail_template", "-at_install", "post_install")
-class TestMailTemplateAttachmentI18n(MailCommon):
+class TestMailTemplateAttachmentPerLang(MailCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
