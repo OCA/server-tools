@@ -1,6 +1,6 @@
 {
     "name": "Unittest xUnit reports",
-    "version": "18.0.1.0.0",
+    "version": "19.0.1.0.0",
     "depends": ["base"],
     "author": "Smile, Odoo Community Association (OCA)",
     "license": "AGPL-3",
@@ -12,6 +12,7 @@
     "sequence": 20,
     "installable": True,
     "application": False,
+    "maintainers": ["yajo", "rafaelbn"],
     "external_dependencies": {
         "python": ["unittest-xml-reporting"],
     },
