@@ -1,0 +1,1 @@
+from . import test_mail_template_attachment_per_lang

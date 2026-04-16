@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2018 Onestein
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="mail_template_form" model="ir.ui.view">
+        <field name="name">mail.template.form</field>
+        <field name="model">mail.template</field>
+        <field name="inherit_id" ref="mail.email_template_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[field[@name='attachment_ids']]" position="after">
+                <group
+                    name="language_attachments"
+                    string="Language Attachments"
+                    class="oe_inline"
+                >
+                    <field name="ir_attachment_language_method" string="Method" />
+                    <field
+                        name="ir_attachment_language_ids"
+                        nolabel="1"
+                        colspan="2"
+                        invisible="not ir_attachment_language_method"
+                    >
+                        <list editable="top">
+                            <field name="lang" />
+                            <field
+                                name="attachment_id"
+                                domain="[('type', '=', 'binary')]"
+                            />
+                        </list>
+                    </field>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
