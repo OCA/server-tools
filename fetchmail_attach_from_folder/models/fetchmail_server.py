@@ -75,13 +75,25 @@ class FetchmailServer(models.Model):
         result = True
         for this in self:
             if not this.folders_only:
-                # In Odoo 18, fetch_mail accepts raise_exception parameter
-                # Don't pass it unless explicitly provided
-                super_kwargs = {
-                    k: v for k, v in kwargs.items() if k != "raise_exception"
-                }
-                result = result and super(FetchmailServer, this).fetch_mail(
-                    **super_kwargs
-                )
+                # Forward kwargs as-is so supported parent implementations
+                # honor the caller's raise_exception value. Fall back for
+                # older versions that don't accept that keyword.
+                try:
+                    result = result and super(FetchmailServer, this).fetch_mail(
+                        **kwargs
+                    )
+                except TypeError as err:
+                    if (
+                        "raise_exception" not in kwargs
+                        or "raise_exception" not in str(err)
+                        or "unexpected keyword" not in str(err)
+                    ):
+                        raise
+                    super_kwargs = {
+                        k: v for k, v in kwargs.items() if k != "raise_exception"
+                    }
+                    result = result and super(FetchmailServer, this).fetch_mail(
+                        **super_kwargs
+                    )
             this.folder_ids.fetch_mail()
         return result
