@@ -75,6 +75,13 @@ class FetchmailServer(models.Model):
         result = True
         for this in self:
             if not this.folders_only:
-                result = result and super(FetchmailServer, this).fetch_mail(**kwargs)
+                # In Odoo 18, fetch_mail accepts raise_exception parameter
+                # Don't pass it unless explicitly provided
+                super_kwargs = {
+                    k: v for k, v in kwargs.items() if k != "raise_exception"
+                }
+                result = result and super(FetchmailServer, this).fetch_mail(
+                    **super_kwargs
+                )
             this.folder_ids.fetch_mail()
         return result
