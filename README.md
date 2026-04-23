@@ -56,7 +56,7 @@ addon | version | maintainers | summary
 [html_text](html_text/) | 18.0.1.0.0 |  | Generate excerpts from any HTML field
 [iap_alternative_provider](iap_alternative_provider/) | 18.0.1.0.0 | <a href='https://github.com/sebastienbeau'><img src='https://github.com/sebastienbeau.png' width='32' height='32' style='border-radius:50%;' alt='sebastienbeau'/></a> | Base module for providing alternative provider for iap apps
 [jsonifier](jsonifier/) | 18.0.1.1.1 |  | JSON-ify data for all models
-[mail_cleanup](mail_cleanup/) | 18.0.1.0.1 |  | Mark as read or delete mails after a set time
+[mail_cleanup](mail_cleanup/) | 18.0.1.0.2 |  | Mark as read or delete mails after a set time
 [mail_template_attachment_per_lang](mail_template_attachment_per_lang/) | 18.0.1.0.0 |  | Set language specific attachments on mail templates.
 [module_analysis](module_analysis/) | 18.0.1.0.0 | <a href='https://github.com/legalsylvain'><img src='https://github.com/legalsylvain.png' width='32' height='32' style='border-radius:50%;' alt='legalsylvain'/></a> | Add analysis tools regarding installed modules to know which installed modules comes from Odoo Core, OCA, or are custom modules
 [module_auto_update](module_auto_update/) | 18.0.1.0.1 |  | Automatically update Odoo modules
