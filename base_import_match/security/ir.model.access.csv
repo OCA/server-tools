@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_base_import_match_system,base_import.match (system),model_base_import_match,base.group_system,1,1,1,1
+access_base_import_match_user,base_import.match (user),model_base_import_match,base.group_user,1,0,0,0

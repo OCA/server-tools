@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <menuitem
+        id="menu_base_import_match_root"
+        name="Import"
+        parent="base.menu_custom"
+        sequence="93"
+        groups="base.group_system"
+    />
+    <menuitem
+        id="menu_base_import_match"
+        name="Import Match Configurations"
+        parent="base_import_match.menu_base_import_match_root"
+        action="base_import_match.action_base_import_match"
+        sequence="10"
+        groups="base.group_system"
+    />
+</odoo>

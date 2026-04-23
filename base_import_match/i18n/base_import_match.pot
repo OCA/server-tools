@@ -1,0 +1,213 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* base_import_match
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-04-23 12:17+0000\n"
+"PO-Revision-Date: 2026-04-23 12:17+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: base_import_match
+#: model_terms:ir.actions.act_window,help:base_import_match.action_base_import_match
+msgid ""
+"<strong>Example:</strong> to update e-commerce category\n"
+"                descriptions, create a configuration for\n"
+"                <em>product.public.category</em> using fields\n"
+"                <em>name</em> and <em>seo_name</em>."
+msgstr ""
+
+#. module: base_import_match
+#: model_terms:ir.ui.view,arch_db:base_import_match.view_base_import_match_form
+msgid "<strong>How it works</strong>"
+msgstr ""
+
+#. module: base_import_match
+#: model_terms:ir.ui.view,arch_db:base_import_match.view_base_import_match_form
+msgid ""
+"<strong>Multiple matches</strong> — the row is\n"
+"                                skipped and a warning is written to the server\n"
+"                                log to avoid ambiguous updates."
+msgstr ""
+
+#. module: base_import_match
+#: model_terms:ir.ui.view,arch_db:base_import_match.view_base_import_match_form
+msgid ""
+"<strong>No match</strong> — a new record is\n"
+"                                created."
+msgstr ""
+
+#. module: base_import_match
+#: model_terms:ir.ui.view,arch_db:base_import_match.view_base_import_match_form
+msgid ""
+"<strong>Unique match</strong> — the existing\n"
+"                                record is updated with the imported values."
+msgstr ""
+
+#. module: base_import_match
+#: model:ir.model.fields,field_description:base_import_match.field_base_import_match__active
+msgid "Active"
+msgstr ""
+
+#. module: base_import_match
+#: model_terms:ir.ui.view,arch_db:base_import_match.view_base_import_match_form
+msgid ""
+"All selected fields must match simultaneously\n"
+"                                (AND). For <em>many2one</em> fields, the\n"
+"                                related record is resolved by its display\n"
+"                                name."
+msgstr ""
+
+#. module: base_import_match
+#: model_terms:ir.ui.view,arch_db:base_import_match.view_base_import_match_form
+msgid "Archived"
+msgstr ""
+
+#. module: base_import_match
+#. odoo-python
+#: code:addons/base_import_match/models/base_import_match.py:0
+msgid "At least one match field must be selected in configuration '%(name)s'."
+msgstr ""
+
+#. module: base_import_match
+#: model:ir.model,name:base_import_match.model_base_import_import
+msgid "Base Import"
+msgstr ""
+
+#. module: base_import_match
+#: model_terms:ir.actions.act_window,help:base_import_match.action_base_import_match
+msgid ""
+"Configure which fields to use to identify existing records\n"
+"                during import, instead of relying on the External ID."
+msgstr ""
+
+#. module: base_import_match
+#: model_terms:ir.actions.act_window,help:base_import_match.action_base_import_match
+msgid "Create a new import match configuration"
+msgstr ""
+
+#. module: base_import_match
+#: model:ir.model.fields,field_description:base_import_match.field_base_import_match__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: base_import_match
+#: model:ir.model.fields,field_description:base_import_match.field_base_import_match__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: base_import_match
+#: model:ir.model.fields,field_description:base_import_match.field_base_import_match__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: base_import_match
+#: model_terms:ir.ui.view,arch_db:base_import_match.view_base_import_match_form
+msgid ""
+"Do <em>not</em> include an\n"
+"                            <code>id</code> (External ID) or\n"
+"                            <code>.id</code> (Database ID) column in your\n"
+"                            import file; the module resolves those\n"
+"                            automatically."
+msgstr ""
+
+#. module: base_import_match
+#: model:ir.model.fields,help:base_import_match.field_base_import_match__sequence
+msgid ""
+"Evaluation order when several configurations exist for the same model. The "
+"first one that returns a unique record is applied."
+msgstr ""
+
+#. module: base_import_match
+#: model:ir.model.fields,help:base_import_match.field_base_import_match__field_ids
+msgid ""
+"Fields used to look up existing records. All selected fields must match "
+"simultaneously (AND). For many2one fields the related record is resolved by "
+"display name."
+msgstr ""
+
+#. module: base_import_match
+#: model:ir.model.fields,help:base_import_match.field_base_import_match__name
+msgid "Human-readable label for this match configuration."
+msgstr ""
+
+#. module: base_import_match
+#: model:ir.model.fields,field_description:base_import_match.field_base_import_match__id
+msgid "ID"
+msgstr ""
+
+#. module: base_import_match
+#: model:ir.ui.menu,name:base_import_match.menu_base_import_match_root
+msgid "Import"
+msgstr ""
+
+#. module: base_import_match
+#: model:ir.model,name:base_import_match.model_base_import_match
+#: model_terms:ir.ui.view,arch_db:base_import_match.view_base_import_match_form
+msgid "Import Match Configuration"
+msgstr ""
+
+#. module: base_import_match
+#: model:ir.actions.act_window,name:base_import_match.action_base_import_match
+#: model:ir.ui.menu,name:base_import_match.menu_base_import_match
+#: model_terms:ir.ui.view,arch_db:base_import_match.view_base_import_match_list
+msgid "Import Match Configurations"
+msgstr ""
+
+#. module: base_import_match
+#: model:ir.model.fields,field_description:base_import_match.field_base_import_match__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: base_import_match
+#: model:ir.model.fields,field_description:base_import_match.field_base_import_match__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: base_import_match
+#: model:ir.model.fields,field_description:base_import_match.field_base_import_match__field_ids
+#: model_terms:ir.ui.view,arch_db:base_import_match.view_base_import_match_form
+msgid "Match Fields"
+msgstr ""
+
+#. module: base_import_match
+#: model:ir.model.fields,field_description:base_import_match.field_base_import_match__model_id
+msgid "Model"
+msgstr ""
+
+#. module: base_import_match
+#: model:ir.model.fields,field_description:base_import_match.field_base_import_match__name
+msgid "Name"
+msgstr ""
+
+#. module: base_import_match
+#: model:ir.model.fields,help:base_import_match.field_base_import_match__model_id
+msgid "Odoo model to which this configuration applies."
+msgstr ""
+
+#. module: base_import_match
+#: model:ir.model.fields,field_description:base_import_match.field_base_import_match__sequence
+msgid "Priority"
+msgstr ""
+
+#. module: base_import_match
+#: model_terms:ir.ui.view,arch_db:base_import_match.view_base_import_match_form
+msgid "Settings"
+msgstr ""
+
+#. module: base_import_match
+#: model:ir.model.fields,field_description:base_import_match.field_base_import_match__model_name
+msgid "Technical Model Name"
+msgstr ""
+
+#. module: base_import_match
+#: model_terms:ir.ui.view,arch_db:base_import_match.view_base_import_match_form
+msgid "e.g. E-commerce categories by name + seo_name"
+msgstr ""

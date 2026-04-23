@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- List view -->
+    <record id="view_base_import_match_list" model="ir.ui.view">
+        <field name="name">base.import.match.list</field>
+        <field name="model">base_import.match</field>
+        <field name="arch" type="xml">
+            <list string="Import Match Configurations" decoration-muted="not active">
+                <field name="sequence" widget="handle" />
+                <field name="name" />
+                <field name="model_id" />
+                <field name="field_ids" widget="many2many_tags" />
+                <field name="active" column_invisible="True" />
+            </list>
+        </field>
+    </record>
+
+    <!-- Form view -->
+    <record id="view_base_import_match_form" model="ir.ui.view">
+        <field name="name">base.import.match.form</field>
+        <field name="model">base_import.match</field>
+        <field name="arch" type="xml">
+            <form string="Import Match Configuration">
+                <sheet>
+                    <widget
+                        name="web_ribbon"
+                        title="Archived"
+                        bg_color="text-bg-danger"
+                        invisible="active"
+                    />
+                    <div class="oe_title">
+                        <h1>
+                            <field
+                                name="name"
+                                placeholder="e.g. E-commerce categories by name + seo_name"
+                            />
+                        </h1>
+                    </div>
+
+                    <group>
+                        <group string="Settings">
+                            <field name="model_id" />
+                            <field name="model_name" invisible="1" />
+                            <field name="sequence" />
+                            <field name="active" widget="boolean_toggle" />
+                        </group>
+                        <group string="Match Fields">
+                            <field
+                                name="field_ids"
+                                widget="many2many_tags"
+                                nolabel="1"
+                                options="{'no_create': True}"
+                                domain="[
+                                    ('model_id', '=', model_id),
+                                    ('ttype', 'not in',
+                                     ['one2many', 'many2many',
+                                      'binary', 'html']),
+                                    ('store', '=', True)
+                                ]"
+                            />
+                            <p class="text-muted small mt-1" colspan="2">
+                                All selected fields must match simultaneously
+                                (AND). For <em>many2one</em> fields, the
+                                related record is resolved by its display
+                                name.
+                            </p>
+                        </group>
+                    </group>
+
+                    <div class="alert alert-info mt-2" role="alert">
+                        <strong>How it works</strong>
+                        <ul class="mb-0 mt-1">
+                            <li>
+                                <strong>Unique match</strong> — the existing
+                                record is updated with the imported values.
+                            </li>
+                            <li>
+                                <strong>No match</strong> — a new record is
+                                created.
+                            </li>
+                            <li>
+                                <strong>Multiple matches</strong> — the row is
+                                skipped and a warning is written to the server
+                                log to avoid ambiguous updates.
+                            </li>
+                        </ul>
+                        <p class="mt-1 mb-0 text-muted small">
+                            Do <em>not</em> include an
+                            <code>id</code> (External ID) or
+                            <code>.id</code> (Database ID) column in your
+                            import file; the module resolves those
+                            automatically.
+                        </p>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_base_import_match" model="ir.actions.act_window">
+        <field name="name">Import Match Configurations</field>
+        <field name="res_model">base_import.match</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{"active_test": False}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new import match configuration
+            </p>
+            <p>
+                Configure which fields to use to identify existing records
+                during import, instead of relying on the External ID.
+            </p>
+            <p>
+                <strong>Example:</strong> to update e-commerce category
+                descriptions, create a configuration for
+                <em>product.public.category</em> using fields
+                <em>name</em> and <em>seo_name</em>.
+            </p>
+        </field>
+    </record>
+</odoo>
