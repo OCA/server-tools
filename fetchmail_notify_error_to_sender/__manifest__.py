@@ -6,14 +6,13 @@
 {
     "name": "Fetchmail Notify Error to Sender",
     "summary": "If fetching mails gives error, send an email to sender",
-    "version": "18.0.1.0.0",
+    "version": "19.0.1.0.0",
     "category": "Tools",
     "author": "Agile Business Group,ForgeFlow,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/server-tools",
     "license": "AGPL-3",
     "depends": ["mail"],
     "data": ["views/fetchmail_view.xml", "data/email_template_data.xml"],
-    "qweb": [],
     "installable": True,
     "application": False,
 }
