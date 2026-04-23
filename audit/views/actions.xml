@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- The Dashboard is where we start -->
+        <record model="ir.actions.client" id="audit.dashboard_action">
+            <field name="name">Dashboard</field>
+            <field name="tag">audit.dashboard</field>
+        </record>
+
+        <!-- Auditable Items are the things we can audit -->
+        <record model="ir.actions.act_window" id="audit.design_action">
+            <field name="name">Audit Design</field>
+            <field name="res_model">audit.domain</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+        <!-- Conducting audits creates Snapshot instances-->
+        <record model="ir.actions.act_window" id="audit.create_snapshot_action">
+            <field name="name">Conduct Audits</field>
+            <field name="res_model">audit.snapshot</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+        <!-- Action to view Snapshot Questions-->
+        <record id="action_snapshot_questions_view" model="ir.actions.client">
+            <field name="name">Snapshot Questions</field>
+            <field name="tag">audit.snapshot_questions_view</field>
+        </record>
+
+        <!--Action when user clicks on 'Back To Snapshots' so that Snapshot List View is called-->
+        <record id="action_audit_snapshots_list" model="ir.actions.act_window">
+            <field name="name">Audit Snapshots</field>
+            <field name="res_model">audit.snapshot</field>
+            <field name="view_mode">list,form</field>
+            <field name="target">current</field>
+        </record>
+
+        <!-- Server Actions with Access Control Logic, passing logged-in user ID -->
+        <!-- Must have ref="audit.model_audit_menu_access_control", for anything else a different set of rules-->
+        <!-- will be called before the custom rules inside each action can be called-->
+        <record id="teams_menu_action" model="ir.actions.server">
+            <field name="name">teams_menu_action (with Access Control)</field>
+            <field name="model_id" ref="audit.model_audit_menu_access_control" />
+            <field name="state">code</field>
+            <field name="code">action = model.teams_menu_action(user_id=env.uid)</field>
+        </record>
+
+        <!-- Inspectors menu action -->
+        <record id="inspectors_menu_action" model="ir.actions.server">
+            <field name="name">inspectors_menu_action (with Access Control)</field>
+            <field name="model_id" ref="audit.model_audit_menu_access_control" />
+            <field name="state">code</field>
+            <field name="code">action = model.inspectors_menu_action(user_id=env.uid)</field>
+        </record>
+
+        <!-- Snapshot menu action -->
+        <record id="snapshots_menu_action" model="ir.actions.server">
+            <field name="name">snapshots_menu_action (with Access Control)</field>
+            <field name="model_id" ref="audit.model_audit_menu_access_control" />
+            <field name="state">code</field>
+            <field name="code">action = model.snapshots_menu_action(user_id=env.uid)</field>
+        </record>
+
+        <!-- Snapshot Sections menu action -->
+        <record id="snapshot_sections_menu_action" model="ir.actions.server">
+            <field name="name">snapshot_sections_menu_action (with Access Control)</field>
+            <field name="model_id" ref="audit.model_audit_menu_access_control" />
+            <field name="state">code</field>
+            <field name="code">action = model.snapshot_sections_menu_action(user_id=env.uid)</field>
+        </record>
+
+        <!-- Archived Snapshots menu action -->
+        <record id="archived_snapshots_menu_action" model="ir.actions.server">
+            <field name="name">archived_snapshots_menu_action (with Access Control)</field>
+            <field name="model_id" ref="audit.model_audit_menu_access_control" />
+            <field name="state">code</field>
+            <field name="code">action = model.archived_snapshots_menu_action(user_id=env.uid)</field>
+        </record>
+
+        <!-- Snapshot Questions menu action -->
+        <record id="snapshot_questions_menu_action" model="ir.actions.server">
+            <field name="name">snapshot_questions_menu_action (with Access Control)</field>
+            <field name="model_id" ref="audit.model_audit_menu_access_control" />
+            <field name="state">code</field>
+            <field name="code">action = model.snapshot_questions_menu_action(user_id=env.uid)</field>
+        </record>
+
+        <!-- audit.target action -->
+        <record id="audit.target_action" model="ir.actions.act_window">
+            <field name="name">Audit Targets</field>
+            <field name="res_model">audit.target</field>
+            <field name="view_mode">list,form</field>
+            <field name="view_id" ref="audit.target_tree_view" />
+        </record>
+
+    </data>
+</odoo>

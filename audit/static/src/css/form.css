@@ -1,0 +1,754 @@
+/* Reset */
+
+.vec_img_centre {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.vec_audit_top_box {
+    width: 33%;
+    border-top: 1px solid;
+    padding: 5px 5px 5px 5px;
+}
+
+/* Question section */
+
+.vec_audit_question {
+    border: 1px solid;
+    margin-top: 10px;
+}
+
+.vec_audit_question_label {
+    width: 80%;
+}
+
+:is(.vec_audit_question_label, .vec_audit_question_label_half, .vec_audit_question_notes) :is(b, p) {
+    margin-left: 3px;
+    margin-top: 1px;
+}
+
+.vec_audit_question_yn {
+    width: 20%;
+    border: 1px solid;
+    margin: -1px -1px -1px -1px;
+}
+
+/**
+ * This is applied to the div that Odoo wraps the actual <input> element with
+ * The goal is to center the checkbox inside the box defined above
+ */
+.vec_audit_question_yn_field {
+    width: 100%;
+    height: 100%;
+}
+
+.vec_audit_question_yn_field div.form-check {
+    padding-left: 0px;
+    margin-left: 15%;
+    position: relative;
+    width: 70%;
+    margin-top: 10px;
+    height: 25px;
+}
+
+.vec_audit_question_half {
+    border: 1px solid;
+    margin-top: 10px;
+}
+
+.vec_audit_question_label_half {
+    width: 40%;
+    border: 1px solid;
+    margin: -1px -1px -1px -1px;
+}
+
+.vec_audit_question_yn_half {
+    width: 10%;
+    border: 1px solid;
+    margin: -1px -1px -1px -1px;
+}
+
+.vec_audit_question_notes {
+    width: 100%;
+    border: 1px solid;
+    margin: -1px -1px -1px -1px;
+}
+/**
+ * This is the only way to target a checkbox, since Odoo applies any classes
+ * on the <field> element to a wrapper div.  It also produces a label for us
+ * so we can also target this for custom viewing
+ */
+:is(.vec_audit_question_yn, .vec_audit_question_yn_half) input[type="checkbox"] {
+    display: none;
+}
+
+:is(.vec_audit_question_yn, .vec_audit_question_yn_half) input[type="checkbox"] + label {
+    transform: skew(-10deg);
+    transition: all 0.5s ease;
+    border-radius: 5px;
+    border: 1px;
+    width: 100%;
+    height: 100%;
+    background-color: #de3b36;
+    color: #eeeeee;
+    /* font-weight: bold; */
+    opacity: 0.9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+:is(.vec_audit_question_yn, .vec_audit_question_yn_half) input[type="checkbox"] + label::after {
+    content: "FAILED";
+}
+
+:is(.vec_audit_question_yn, .vec_audit_question_yn_half) input[type="checkbox"]:checked + label {
+    background-color: #48a858;
+}
+
+:is(.vec_audit_question_yn, .vec_audit_question_yn_half) input[type="checkbox"]:checked + label::after {
+    content: "PASSED";
+}
+
+/* Snapshot page */
+.o_action_manager {
+    overflow-y: scroll !important;
+}
+
+input[type="range"] {
+    /* removing default appearance */
+    -webkit-appearance: none;
+    appearance: none;
+    /* creating a custom design */
+    width: 100%;
+    cursor: pointer;
+    outline: none;
+    /*  slider progress trick  */
+    overflow: hidden;
+    border-radius: 16px;
+}
+
+/* Styling the slider, first we style the `track` */
+input[type="range"]::-webkit-slider-runnable-track {
+    /* removing default appearance */
+    -webkit-appearance: none;
+    appearance: none;
+    /* creating a custom design */
+    cursor: pointer;
+    outline: none;
+    height: 10px;
+    max-width: 180px;
+    background: #0c2d57;
+    border-radius: 16px;
+}
+
+/* Now we style the thumb */
+input[type="range"]::-webkit-slider-thumb {
+    /* removing default appearance */
+    -webkit-appearance: none;
+    appearance: none;
+    /* creating a custom design */
+    height: 170px;
+    width: 15px;
+    background-color: #fc6736;
+    border-radius: 50%;
+}
+
+.questions-form-body {
+    overflow-y: auto;
+    /*This calc is super important, if not present the scrolling area will be the entire page so some data won't show*/
+    height: calc(100% - 50px);
+    min-height: 150px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border-style: hidden;
+
+    @media screen and (max-width: 288px) {
+        height: auto;
+    }
+}
+
+.summary-question-body {
+    border-style: solid !important;
+    border-width: 2px;
+    border-radius: 10px;
+    border-color: lightslategray !important;
+}
+
+.questions-form {
+    overflow-y: auto;
+    height: 100% !important;
+}
+
+.comment-text-box {
+    background-color: RGBA(177, 179, 188);
+    border-style: hidden;
+    border-radius: 5px;
+    max-width: 500px;
+    height: 32px;
+
+    @media screen and (max-width: 600px) {
+        margin-left: 5px;
+    }
+}
+
+.question-answers-select {
+    max-width: 100px;
+    background: #0c2d57 !important;
+    color: aquamarine !important;
+    border-radius: 5px !important;
+    font-weight: 500 !important;
+}
+
+.file-upload-box {
+    max-width: 180px;
+    border-radius: 5px !important;
+    border-style: ridge !important;
+    border-width: 3px !important;
+    background-color: #0c2d57 !important;
+    color: aquamarine !important;
+    font-size: smaller !important;
+}
+
+.questions-container {
+    max-width: 1000px;
+}
+
+.individual-question-card {
+    margin-bottom: 15px;
+    border-radius: 5px !important;
+    border-style: hidden !important;
+}
+
+.question-card-footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: fit-content;
+    margin-top: 10px;
+    border-style: hidden !important;
+    border-radius: 5px !important;
+
+    @media screen and (max-width: 600px) {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.edit-button {
+    border-color: #00bbf0 !important;
+    color: #00bbf0 !important;
+}
+
+.edit-button:hover {
+    background-color: #0c2d57 !important;
+}
+
+.question-applicable {
+    background-color: #0c2d57 !important;
+    min-width: 48px;
+}
+
+.upload-picture-form {
+    @media screen and (max-width: 600px) {
+        margin-left: 5px;
+    }
+}
+
+.form-switch {
+    display: flex !important;
+    flex-direction: row;
+    margin-top: auto;
+    margin-right: 220px;
+}
+
+.form-check-input {
+    margin-right: 5px;
+}
+
+.form-check-label {
+    margin-right: 5px;
+}
+
+.question-header {
+    border-style: hidden !important;
+    margin-bottom: 10px !important;
+}
+
+.question-score {
+    display: flex;
+    justify-content: center;
+    min-width: 40px;
+    border-radius: 30px;
+    border-style: solid;
+    border-width: thin;
+    border-color: #48a858;
+    background: transparent;
+    color: #00a09d;
+    font-weight: bold;
+    font-size: smaller;
+}
+
+.question-prompt {
+    margin-bottom: 8px;
+    border-radius: 5px !important;
+    max-width: 400px;
+    background: #00bbf0 !important;
+    color: #22313f !important;
+
+    @media screen and (max-width: 600px) {
+        max-width: 300px;
+    }
+}
+
+.back-to-snapshots {
+    width: fit-content;
+    margin: 10px 0 6px 14px;
+    border-radius: 5px !important;
+    border-color: gold !important;
+    color: gold !important;
+}
+
+.back-to-snapshots:hover {
+    background-color: #0c2d57 !important;
+}
+
+.submit-snapshot-btn {
+    display: flex !important;
+    flex-direction: row !important;
+    width: fit-content;
+    margin: 10px 0 6px 14px;
+    border-radius: 5px !important;
+    border-color: gold !important;
+    color: gold !important;
+}
+
+.submit-snapshot-btn:hover {
+    background-color: #0c2d57 !important;
+}
+
+.questions-font {
+    font-weight: bold;
+}
+
+.image-thumbnail {
+    width: 100px;
+    height: 100px;
+    border-radius: 5px;
+}
+
+.summary-image-thumbnail {
+    display: block;
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+}
+
+.locked-icon {
+    font-size: small;
+    color: #fe0000;
+}
+
+.unlocked-icon {
+    font-size: small;
+    color: #6eccaf;
+}
+
+.slider {
+    display: flex;
+    flex-direction: row;
+}
+
+.slider-value {
+    font-weight: bold;
+    margin: 0 0 0 4px;
+}
+
+.snapshot-header-footer {
+    max-width: 497px;
+}
+
+.question-and-icon {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
+
+.submit-snapshot-modal-header {
+    background-color: crimson;
+}
+
+.submit-snapshot-modal-body {
+    background-color: #f1f2f3;
+}
+
+.submit-snapshot-modal-footer {
+    background-color: #f1f2f3;
+}
+
+.cancel-button {
+    border-style: solid !important;
+    border-width: thin !important;
+    border-color: #0fc9e7 !important;
+    background-color: midnightblue !important;
+    color: aliceblue !important;
+}
+
+.confirm-button {
+    border-style: solid !important;
+    border-width: thin !important;
+    border-color: #03c988 !important;
+    background-color: #00cc66 !important;
+    color: aliceblue !important;
+}
+
+/* Audit Dashboard page */
+.search-bar {
+    display: flex;
+    max-width: fit-content;
+    max-height: 20px;
+    margin-top: 10px;
+}
+
+.create-snapshot {
+    border-radius: 5px !important;
+    border-style: groove !important;
+    border-color: #5fbdff !important;
+    border-width: 3px !important;
+    background-color: #1e56a0 !important;
+    margin: 10px 10px 10px 30px;
+
+    @media screen and (max-width: 600px) {
+        font-size: 9px !important;
+    }
+}
+
+.card-text {
+    @media screen and (max-width: 600px) {
+        display: flex;
+        max-width: fit-content;
+    }
+
+    .actions-column {
+        display: flex;
+        flex-direction: row;
+        /*actions-column has its own media styling*/
+        @media screen and (max-width: 600px) {
+            display: flex !important;
+            flex-direction: row-reverse;
+            flex-wrap: wrap;
+        }
+
+        /*Targeting the save-button nested deep inside the div of `actions-column`*/
+        #save-button {
+            @media screen and (max-width: 600px) {
+                margin-right: 5px;
+            }
+        }
+    }
+}
+
+.snapshot-list-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    @media screen and (max-width: 600px) {
+        .view-questions {
+            height: 35px;
+        }
+    }
+}
+
+.snapshot-pagination {
+    max-width: fit-content !important;
+    margin-left: 23px !important;
+    font-weight: 800 !important;
+}
+
+/* Create new Snapshot page */
+
+.create-snapshot-form-body {
+    display: flex;
+    justify-content: center;
+}
+
+.create-snapshot-form {
+    width: 900px;
+    max-height: fit-content;
+    margin: 80px;
+    position: relative;
+}
+
+.section-card-body {
+    display: inline-grid;
+}
+
+.submit-and-create-btn {
+    display: flex;
+    flex-direction: row-reverse;
+    margin-top: 20px;
+}
+
+.inspector-body-box {
+    display: flex;
+    align-items: baseline;
+}
+
+.inspector-inputs {
+    max-width: fit-content;
+    margin-left: 8px;
+}
+
+.inspector-first-last-name-labels {
+    margin-left: 8px;
+}
+
+.answer-questions-btn {
+    display: flex !important;
+    flex-direction: row !important;
+    margin-bottom: 20px;
+    border-radius: 5px;
+
+    .answer-questions-icon {
+        margin-right: 4px;
+        padding-top: inherit;
+    }
+
+    .answer-questions-spinner {
+        margin-left: 8px;
+        font-size: large;
+    }
+}
+
+.btn-general {
+    .btn {
+        border-radius: 5px;
+        font-size: 9px;
+        font-weight: bold;
+    }
+    @media screen and (max-width: 600px) {
+        display: flex;
+        flex: auto;
+        font-size: 9px !important;
+    }
+}
+
+.create-back-to-snapshots {
+    border-color: gold !important;
+    border-radius: 5px !important;
+    color: gold !important;
+    margin-left: 14px;
+    margin-top: 14px;
+}
+
+.create-back-to-snapshots:hover {
+    background-color: #0c2d57 !important;
+}
+
+/* Snapshot List page */
+
+.snapshot-list-table {
+    /* Add some height to get the overflow-y working */
+    height: fit-content;
+    overflow-y: auto;
+
+    /* Targeting `screens` up to a maximum width of 650px, any more will be treated as height: fit-content */
+    @media (max-width: 1210px) {
+        height: calc(100% - 50px);
+        th {
+            display: none;
+        }
+        td:first-child {
+            padding-top: 2rem;
+        }
+        td:last-child {
+            padding-bottom: 2rem;
+        }
+        td {
+            display: block;
+        }
+        td::before {
+            content: attr(data-cell) " - ";
+            font-weight: 700;
+            text-transform: capitalize;
+        }
+    }
+
+    .snapshot-list-table-body {
+        max-width: fit-content;
+        overflow-x: auto;
+    }
+}
+
+.view-questions {
+    height: 30px;
+    @media screen and (max-width: 600px) {
+        font-size: 9px !important;
+    }
+}
+
+.view-questions-button {
+    border-color: deepskyblue !important;
+    border-radius: 32px !important;
+    color: deepskyblue !important;
+    background: #0c2d57 !important;
+    font-weight: bold !important;
+}
+
+.summary-button {
+    background-color: #f5f7f8 !important;
+    border-color: #186f65 !important;
+    border-radius: 32px !important;
+    border-width: 2px !important;
+    color: #22a39f !important;
+}
+
+.question-count-badge {
+    display: flex !important;
+    max-width: fit-content !important;
+    position: relative;
+    left: 70px;
+    top: -27px !important;
+    background: #f96d00 !important;
+    border-style: solid;
+    border-width: medium;
+    font-size: 10px !important;
+
+    @media screen and (max-width: 600px) {
+        position: relative;
+        top: -35px !important;
+        left: 42px;
+        font-size: 8px !important;
+    }
+}
+
+.question-count-badge-value {
+    margin-left: 2px;
+    font-weight: 800;
+    color: #062743;
+}
+
+.section-header {
+    background: #89c4ff !important;
+    border: #113f67 !important;
+    border-radius: 5px !important;
+    color: #38598b !important;
+}
+
+.locks-in-span {
+    background-color: #163020 !important;
+    border-radius: 50%;
+    display: inline-block;
+    height: 22px !important;
+    width: 24px !important;
+    text-align: center;
+}
+
+.snapshot-list-percentage-display {
+    font-weight: 600;
+    font-size: smaller;
+    text-align: center;
+}
+
+/* Summary Page */
+.summary-page {
+    overflow-y: auto;
+    /*This calc is super important, if not present the scrolling area will be the entire page so some data won't show*/
+    height: calc(100% - 50px);
+}
+
+.summary-card-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    max-width: 440px !important;
+
+    @media screen and (max-width: 380px) {
+        max-width: 300px;
+    }
+}
+
+.summary-table {
+    @media screen and (max-width: 600px) {
+        display: block;
+    }
+}
+
+.summary-question {
+    display: flex;
+    flex-direction: column;
+    font-size: smaller;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 120px;
+}
+
+.snapshot-summary-card {
+    border-style: hidden !important;
+    background: dimgrey !important;
+    border-radius: 5px !important;
+    margin: 0 8px 13px 13px;
+    max-width: 440px;
+
+    @media screen and (max-width: 600px) {
+        max-width: 385px;
+    }
+}
+
+.section-score {
+    font-size: small !important;
+    background-color: #0962ea !important;
+    border-radius: 5px !important;
+    color: aliceblue !important;
+    min-width: min-content !important;
+    max-height: 20px;
+}
+
+.final-snapshot-score {
+    font-size: small !important;
+    background-color: #e70000 !important;
+    border-radius: 5px !important;
+    color: aliceblue !important;
+}
+
+.snapshot-final-score-footer {
+    margin: 0 0 13px 13px;
+    max-width: 440px;
+    border-style: hidden;
+    min-width: 400px;
+
+    @media screen and (max-width: 414px) {
+        max-width: 355px !important;
+        min-width: 385px;
+    }
+}
+
+/* xml pages styling */
+.view_snapshot_tree {
+    display: inline-flex;
+    border-style: solid;
+    border-radius: 10px;
+    border-color: darkturquoise;
+    max-width: fit-content;
+    padding-left: 5px;
+    padding-right: 5px;
+    color: darkslateblue;
+}
+
+/* Red border for scores below 90% */
+.view_snapshot_tree.text-danger {
+    border-color: #dc3545 !important;
+    border-width: 3px !important;
+    color: #dc3545 !important;
+}
+
+/* Green border for scores 90% and above */
+.view_snapshot_tree.text-success {
+    border-color: #28a745 !important;
+    border-width: 3px !important;
+    color: #28a745 !important;
+}
