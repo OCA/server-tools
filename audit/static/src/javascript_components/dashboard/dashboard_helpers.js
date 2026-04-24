@@ -308,6 +308,6 @@ export class PageComponent extends Component {
         } else {
             this.store.searchPage = pageNumber;
         }
-        this.store.executeSearch(this);
+        this.store.executeSearch(this, {immediate: true});
     }
 }

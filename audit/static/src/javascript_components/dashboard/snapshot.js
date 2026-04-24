@@ -313,7 +313,7 @@ export class Snapshot extends Component {
     }
 
     async backToAuditDashboard() {
-        await this.store.executeSearch(this);
+        await this.store.executeSearch(this, {immediate: true});
         this.props.parentState.pageName = "auditHomePage";
     }
 
@@ -385,7 +385,7 @@ export class Snapshot extends Component {
                 await submit(this.state.questions, true, {orm: this.orm});
                 // Refresh the search
                 this.store.resetSearchFields();
-                this.store.executeSearch({orm: this.orm});
+                this.store.executeSearch({orm: this.orm}, {immediate: true});
                 // Set the page of the parent component (dashboard.js) to `auditHomePage`
                 this.props.parentState.pageName = "auditHomePage";
             } catch (e) {
