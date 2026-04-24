@@ -412,7 +412,7 @@ class Snapshot(models.Model):
         if search_object.get("searchText"):
             search_query.append(
                 (
-                    "search_text",
+                    "name",
                     "ilike",
                     "%" + str(search_object.get("searchText")) + "%",
                 )
@@ -432,7 +432,7 @@ class Snapshot(models.Model):
         snapshot_count = self.env["audit.snapshot"].search_count(search_query)
         page_count = ceil(snapshot_count / self.PAGE_SIZE)
         # If page number submitted is too high, fix that
-        page_number = search_object.get("searchPage")
+        page_number = search_object.get("searchPage") or 1
         if page_number > page_count > 0:
             page_number = page_count
 

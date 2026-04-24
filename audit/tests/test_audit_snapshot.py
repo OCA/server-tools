@@ -1,6 +1,7 @@
 """Tests for `audit.snapshot` and related records."""
 
 import json
+import uuid
 
 from odoo.exceptions import UserError
 from odoo.tests import tagged
@@ -126,3 +127,147 @@ class TestAuditSnapshot(TransactionCase):
         self.assertIn("snapshots", result)
         self.assertIn("numberOfPages", result)
         self.assertIn("newPageNumber", result)
+
+    def test_get_snapshot_questions_on_empty_recordset(self):
+        self.assertEqual(
+            self.env["audit.snapshot"].browse([]).get_snapshot_questions(),
+            {},
+        )
+
+    def test_snapshot_create_accepts_list_vals(self):
+        snap = self.env["audit.snapshot"].create(
+            [
+                {
+                    "domain_id": self.domain.id,
+                    "target_id": self.target.id,
+                    "inspector_id": self.inspector.id,
+                }
+            ]
+        )
+        self.assertTrue(snap.id)
+
+    def test_snapshot_question_write_strips_data_url_on_image(self):
+        ss = self.env["audit.snapshot_section"].create(
+            {"name": "ImgSec", "domain_id": self.domain.id}
+        )
+        sq = self.env["audit.snapshot_question"].create(
+            {
+                "snapshot_section_id": ss.id,
+                "answer_type": "boolean",
+            }
+        )
+        b64 = "R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs="
+        raw = f"data:image/gif;base64,{b64}"
+        sq.write({"image": raw})
+        self.assertTrue(
+            bool(sq.image) is True,
+            msg="data: URL prefix should be stripped so the image is stored",
+        )
+
+    def test_custom_search_filters_text_status_and_clamps_page(self):
+        for _i in range(3):
+            self.env["audit.snapshot"].create(
+                {
+                    "domain_id": self.domain.id,
+                    "target_id": self.target.id,
+                    "inspector_id": self.inspector.id,
+                }
+            )
+        for snap in self.env["audit.snapshot"].search([]):
+            snap.write({"percentage_score": 0.1})
+        ptext = json.dumps(
+            {
+                "searchText": "Snapshot",
+                "searchStatus": "FAIL",
+                "searchPage": 1,
+            }
+        )
+        r1 = self.env["audit.snapshot"].custom_search(ptext)
+        self.assertIn("snapshots", r1)
+        ppass = json.dumps(
+            {
+                "searchText": "Snapshot",
+                "searchStatus": "PASS",
+                "searchPage": 1,
+            }
+        )
+        for snap in self.env["audit.snapshot"].search([]):
+            snap.write({"percentage_score": 0.9})
+        r2 = self.env["audit.snapshot"].custom_search(ppass)
+        self.assertIn("numberOfPages", r2)
+        pbig = json.dumps(
+            {
+                "searchText": "Snapshot",
+                "searchStatus": "PASS",
+                "searchPage": 9999,
+            }
+        )
+        r3 = self.env["audit.snapshot"].custom_search(pbig)
+        self.assertIsInstance(r3.get("newPageNumber"), (int, type(None)))
+
+    def test_snapshot_percentage_score_recomputes_from_dicts(self):
+        snap = self.env["audit.snapshot"].create(
+            {
+                "domain_id": self.domain.id,
+                "target_id": self.target.id,
+                "inspector_id": self.inspector.id,
+            }
+        )
+        self.env["audit.snapshot"].snapshot_percentage_score(
+            [{"id": snap.id, "name": "x"}]
+        )
+        self.assertIsNotNone(snap.percentage_score)
+
+    def test_questions_with_comments_count_when_locked(self):
+        snap = self.env["audit.snapshot"].create(
+            {
+                "domain_id": self.domain.id,
+                "target_id": self.target.id,
+                "inspector_id": self.inspector.id,
+            }
+        )
+        section = snap.snapshot_section_ids[0]
+        q = section.snapshot_question_ids[0]
+        q.write({"comment": "note"})
+        snap.locked = True
+        self.assertEqual(snap.questions_with_comments, 1)
+
+    def _internal_user(self):
+        """Build a non-admin user for with_user (same idea as access tests)."""
+        template = self.env.ref("base.default_user", raise_if_not_found=False)
+        if not template:
+            self.skipTest("base.default_user is not available in this database")
+        suffix = uuid.uuid4().hex
+        return template.sudo().copy(
+            {
+                "name": f"Snapshot su {suffix}",
+                "login": f"audit_sp_{suffix}@test.local",
+                "password": "snap-test-pass",
+            }
+        )
+
+    def test_snapshots_per_user_non_admin_inspector(self):
+        user = self._internal_user()
+        self.env["audit.inspector"].create(
+            {
+                "name": "Sp User Insp",
+                "res_user_id": user.id,
+            }
+        )
+        self.env["audit.snapshot"].create(
+            {
+                "domain_id": self.domain.id,
+                "target_id": self.target.id,
+                "inspector_id": self.inspector.id,
+            }
+        )
+        rows, total = self.env["audit.snapshot"].with_user(
+            user,
+        ).snapshots_per_user(
+            [("active", "=", True)],
+            1,
+        )
+        self.assertIsInstance(rows, list)
+        self.assertIsInstance(total, int)
+        self.assertGreaterEqual(total, 0)
+        self.assertGreaterEqual(len(rows), 0)

@@ -55,3 +55,32 @@ class TestAuditDomain(TransactionCase):
         self.assertEqual(len(new_domains), 1)
         self.assertTrue(new_domains.section_ids)
         self.assertTrue(new_domains.section_ids.question_ids)
+
+    def test_action_duplicate_domain_links_each_target_id(self):
+        domain = self.env["audit.domain"].create(
+            {"name": "Multi-target domain duplicate"},
+        )
+        self.env["audit.target"].create(
+            {
+                "name": "T multi A",
+                "domain_id": domain.id,
+            }
+        )
+        self.env["audit.target"].create(
+            {
+                "name": "T multi B",
+                "domain_id": domain.id,
+            }
+        )
+        self.env["audit.section"].create(
+            {
+                "name": "S multi",
+                "domain_id": domain.id,
+            }
+        )
+        action = domain.action_duplicate_domain()
+        self.assertEqual(action.get("type"), "ir.actions.client")
+        dup = self.env["audit.domain"].search(
+            [("name", "ilike", "Multi-target domain duplicate - Duplicate_")],
+        )
+        self.assertEqual(len(dup.target_rel_ids), 2)

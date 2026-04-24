@@ -34,3 +34,9 @@ class TestAuditInspector(TransactionCase):
     def test_create_without_partner_uses_generic_when_no_parts(self):
         inspector = self.env["audit.inspector"].create({})
         self.assertEqual(inspector.name, "Inspector")
+
+    def test_full_name_uses_record_name_when_no_partner_or_forename(self):
+        inspector = self.env["audit.inspector"].create(
+            {"name": "Display Only Name"},
+        )
+        self.assertEqual(inspector.full_name, "Display Only Name")

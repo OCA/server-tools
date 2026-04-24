@@ -100,7 +100,7 @@ class Inspector(models.Model):
                 elif vals.get("inspector_email"):
                     # Use email as fallback name
                     vals["name"] = vals["inspector_email"]
-                else:
+                elif not vals.get("name"):
                     # Last resort - use a generic name
                     vals["name"] = "Inspector"
 
