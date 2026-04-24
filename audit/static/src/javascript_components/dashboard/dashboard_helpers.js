@@ -232,13 +232,13 @@ export class PageComponent extends Component {
     static template = xml`
     <nav aria-label="Page navigation">
       <ul class="pagination justify-content-center snapshot-pagination">
-      
+
         <!-- 'Previous' page Button-->
         <li t-attf-class="page-item {{ store.searchPage === 1 ? 'disabled' : '' }}">
-          <a class="page-link" 
+          <a class="page-link"
              t-on-click="this.updateCurrentPage('previous')">Previous</a>
         </li>
-        
+
           <!--Not showing all pages, overflow of pages displayed as an elipse-->
           <t t-foreach="store.visiblePages" t-as="page" t-key="page_index">
             <t t-if="page === '...'">
@@ -257,10 +257,10 @@ export class PageComponent extends Component {
                 </li>
             </t>
           </t>
-          
+
         <!-- 'Next' page Button-->
         <li t-attf-class="page-item {{ store.searchPage === store.numberOfPages ? 'disabled' : '' }}">
-          <a class="page-link" 
+          <a class="page-link"
              t-on-click="this.updateCurrentPage('next')">Next</a>
         </li>
       </ul>

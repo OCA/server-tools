@@ -20,7 +20,7 @@ export class Snapshot extends Component {
                 <i class="fa-regular fa-circle-left" style="margin-right: 6px" />Back To Snapshots
             </button>
         </div>
-        
+
         <div class="questions-form-body">
             <div class="questions-form">
               <div class="row m-2">
@@ -148,7 +148,7 @@ export class Snapshot extends Component {
                                                   t-on-change="event => { this.onChangeAttach(event, {...question}), this.convertBase64ToFile(event, question) }"
                                                   name="image-upload"
                                                   accept="image/*"/>
-                                              
+
                                             </form>
                                         </p>
 

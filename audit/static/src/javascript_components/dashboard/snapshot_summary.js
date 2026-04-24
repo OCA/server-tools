@@ -6,12 +6,12 @@ import { store } from "../../store";
 export class SnapshotSummary extends Component {
     static template = xml`
         <div class="snapshot-header-footer">
-            <button class="btn btn-outline-warning back-to-snapshots" 
+            <button class="btn btn-outline-warning back-to-snapshots"
                     t-on-click="() => this.backToAuditDashboard()">
                 <i class="fa-regular fa-circle-left" style="margin-right: 6px" />Back To Snapshots
             </button>
         </div>
-        
+
         <!-- A table to display details regarding each question in the snapshot -->
         <div class="summary-page">
             <t t-foreach="state.questionsWithComments"
@@ -26,7 +26,7 @@ export class SnapshotSummary extends Component {
                             Score: <t t-esc="this.calculateSectionScore(entry) + '%'" />
                         </span>
                     </h5>
-                    
+
                     <!-- Card body and text contains details for each question in the snapshot-->
                     <div class="card-text">
                         <body class="questions-form-body summary-question-body">
@@ -42,7 +42,7 @@ export class SnapshotSummary extends Component {
                                         </tr>
                                     </thead>
                                 </t>
-                                
+
                                 <tbody>
                                     <tr
                                       t-foreach="entry.questions"
@@ -78,14 +78,14 @@ export class SnapshotSummary extends Component {
                                       </t>
                                     </tr>
                                 </tbody>
-                                
+
                             </table>
                         </body>
                     </div>
                   </div>
                 </div>
             </t>
-            
+
             <!--Finally display the snapshot score-->
             <div class="card snapshot-final-score-footer">
               <div class="card-body" style="max-height: 45px; background-color: #0C2D57 !important; border-radius: 5px !important;">

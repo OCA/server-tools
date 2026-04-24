@@ -46,7 +46,7 @@ export class CreateSnapShot extends Component {
                         </ul>
                       </div>
                     </div>
-                    
+
                     <!--The Domain selected will display on the card below-->
                     <t t-if="state.domainName">
                         <div class="mb-3">
@@ -61,15 +61,15 @@ export class CreateSnapShot extends Component {
                     </t>
                   </div>
               </div>
-              
+
               <!--Target Selector switch or Create a new Target-->
               <div class="card">
                   <div class="card-body">
                     <div class="mb-3">
                       <div class="dropdown">
-                        <button t-attf-class="btn btn-secondary dropdown-toggle {{ state.domainName ? '' : 'disabled' }}" 
-                                type="button" 
-                                data-bs-toggle="dropdown" 
+                        <button t-attf-class="btn btn-secondary dropdown-toggle {{ state.domainName ? '' : 'disabled' }}"
+                                type="button"
+                                data-bs-toggle="dropdown"
                                 aria-expanded="false">
                           Select Target
                         </button>
@@ -85,7 +85,7 @@ export class CreateSnapShot extends Component {
                         </ul>
                       </div>
                     </div>
-                    
+
                     <!--The existing target selected will display in the card below-->
                     <t t-if="state.targetName">
                         <div class="mb-3">
@@ -100,7 +100,7 @@ export class CreateSnapShot extends Component {
                     </t>
                   </div>
               </div>
-              
+
               <!--Inspector Details-->
               <div class="card">
                   <div class="card-body">
@@ -123,7 +123,7 @@ export class CreateSnapShot extends Component {
                         </ul>
                       </div>
                     </div>
-                    
+
                     <!-- If an existing inspector was selected it will show on the below card-->
                     <t t-if="state.firstName">
                         <div class="mb-3">
@@ -138,7 +138,7 @@ export class CreateSnapShot extends Component {
                     </t>
                   </div>
               </div>
-              
+
               <!-- Section Selector switch-->
               <t t-if="state.domainName and state.targetName">
                   <div class="card-footer text-body-secondary submit-and-create-btn">
@@ -150,7 +150,7 @@ export class CreateSnapShot extends Component {
                         <button t-attf-class="btn btn-outline-danger answer-questions-btn {{ state.submitClicked === true ? 'disabled' : '' }}"
                           t-on-click="() => this.createNewSnapShot()">
                           <i class="fa-solid fa-circle-play answer-questions-icon" />Answer Questions
-                          
+
                           <!-- Adding a spinner/loader while the Snapshot is being created and the user redirected to the questions-->
                           <t t-if="state.submitClicked">
                             <div class="d-flex align-items-center text-danger answer-questions-spinner">
