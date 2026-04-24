@@ -352,7 +352,14 @@ class Snapshot(models.Model):
                     if question.applicable:
                         snapshot.actual_score += question.value
 
-    @api.depends("actual_score", "maximum_score")
+    @api.depends(
+        "snapshot_section_ids",
+        "snapshot_section_ids.snapshot_question_ids",
+        "snapshot_section_ids.snapshot_question_ids.applicable",
+        "snapshot_section_ids.snapshot_question_ids.answer_yn",
+        "snapshot_section_ids.snapshot_question_ids.answer_star",
+        "snapshot_section_ids.snapshot_question_ids.answer_perc",
+    )
     def _compute_percentage_score(self):
         for snapshot in self:
             if snapshot.maximum_score == 0:
@@ -365,10 +372,11 @@ class Snapshot(models.Model):
 
     def snapshot_percentage_score(self, snapshots: list):
         """
-        Re-run score computes for a subset of snapshot dicts (dashboard RPC).
+        Re-run score computes for a subset of snapshot dicts.
 
-        Calls the same compute methods the ORM would use, for records selected
-        in the UI.
+        For explicit invalidation; do not call from read-only RPCs: flushing
+        stored ``percentage_score`` on every list load caused concurrent
+        ``UPDATE`` storms under parallel dashboard requests.
         """
         for snapshot in snapshots:
             # Find the snapshot object
@@ -442,9 +450,6 @@ class Snapshot(models.Model):
         logged_in_user_snapshosts, logged_in_user_snapshosts_count = (
             self.snapshots_per_user(search_query=search_query, page_number=page_number)
         )
-
-        # Update the snapshots in question before returning them
-        self.snapshot_percentage_score(logged_in_user_snapshosts)
 
         return {
             "snapshots": logged_in_user_snapshosts,
