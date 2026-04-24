@@ -124,18 +124,14 @@ class TestAuditMenuAccessControl(TransactionCase):
 
     def test_get_inspector_based_domain_for_admin(self):
         self.assertEqual(
-            self.Access._get_inspector_based_domain(
-                self.admin_user, "inspector_id"
-            ),
+            self.Access._get_inspector_based_domain(self.admin_user, "inspector_id"),
             [],
         )
 
     def test_get_inspector_based_domain_no_inspector(self):
         internal = self._internal_user()
         self.assertEqual(
-            self.Access._get_inspector_based_domain(
-                internal, "inspector_id"
-            ),
+            self.Access._get_inspector_based_domain(internal, "inspector_id"),
             [("id", "=", False)],
         )
 
@@ -148,9 +144,7 @@ class TestAuditMenuAccessControl(TransactionCase):
             }
         )
         self.assertEqual(
-            self.Access._get_inspector_based_domain(
-                internal, "inspector_id"
-            ),
+            self.Access._get_inspector_based_domain(internal, "inspector_id"),
             [("inspector_id", "=", u_ins.id)],
         )
 

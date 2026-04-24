@@ -154,7 +154,7 @@ class Target(models.Model):
                 if matching_target.domain_id:
                     self.link_to_domain(matching_target.domain_id.id, self.id)
                 matching_target.unlink()
-        self.domain_id = 0
+        self.domain_id = False
 
     def write(self, vals):
         """Update domain from related fields and block duplicate target names."""

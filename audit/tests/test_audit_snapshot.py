@@ -261,11 +261,15 @@ class TestAuditSnapshot(TransactionCase):
                 "inspector_id": self.inspector.id,
             }
         )
-        rows, total = self.env["audit.snapshot"].with_user(
-            user,
-        ).snapshots_per_user(
-            [("active", "=", True)],
-            1,
+        rows, total = (
+            self.env["audit.snapshot"]
+            .with_user(
+                user,
+            )
+            .snapshots_per_user(
+                [("active", "=", True)],
+                1,
+            )
         )
         self.assertIsInstance(rows, list)
         self.assertIsInstance(total, int)

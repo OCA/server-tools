@@ -167,7 +167,9 @@ class Snapshot(models.Model):
     )
 
     locked = fields.Boolean(default=False)
-    name = fields.Text(compute="_compute_name")
+    # Stored so `custom_search` can filter with SQL (`ilike` on computed-only fields
+    # raises "not stored" in Odoo 19+).
+    name = fields.Text(compute="_compute_name", store=True)
     maximum_score = fields.Float(compute="_compute_maximum_score")
     actual_score = fields.Float(compute="_compute_actual_score")
     # Overall score for each section combined; cannot exceed 100%.
