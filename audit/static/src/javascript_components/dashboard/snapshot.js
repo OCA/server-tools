@@ -393,10 +393,13 @@ export class Snapshot extends Component {
                 // set the page of the parent component (dashboard.js) to `auditHomePage`
                 this.props.parentState.pageName = "auditHomePage";
             } catch (e) {
-                console.log("snapshot.js::submitSnapshot::")
-                throw new Error(`Something went wrong while trying to submit the snapshot: , ${e}`)
+                console.log("snapshot.js::submitSnapshot::");
+                throw new Error(
+                    `Something went wrong while trying to submit the snapshot: , ${e}`
+                );
             }
         } else {
+            // eslint-disable-next-line no-alert -- simple validation message for the dashboard
             window.alert("Some of the required fields in red have not been completed!");
         }
     }

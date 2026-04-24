@@ -204,10 +204,15 @@ const config = [{
     },
 }, {
     files: ["audit/static/src/**/*.js"],
-
     languageOptions: {
         ecmaVersion: 2024,
         sourceType: "module",
+    },
+    rules: {
+        // `/** @odoo-module **/` is not a standard JSDoc tag
+        "jsdoc/check-tag-names": "off",
+        "no-inline-comments": "off",
+        "sort-imports": "off",
     },
 }];
 

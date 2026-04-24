@@ -4,43 +4,6 @@ import {useService} from "@web/core/utils/hooks";
 import {store} from "../../store";
 
 /**
- * This method runs when we click "Answer Questions", it will call the ORM, audit.snapshot class,
- * which will create a new Snapshot Instance.
- * @param {*} data
- * @param {*} api
- * @returns
- */
-export async function createSnapshotInstance(data, api) {
-    try {
-        const orm = api.orm;
-        const [snapshotId] = await orm.create("audit.snapshot", [data]);
-
-        // Validate response
-        if (!snapshotId) {
-            throw new Error("Failed to create snapshot (no ID returned)");
-        }
-
-        // Fetch newly created Snapshot
-        const snapshot = await orm.searchRead(
-            "audit.snapshot",
-            [["id", "=", snapshotId]],
-            []
-        );
-
-        // Validate snapshot
-        if (!snapshot || snapshot.length === 0) {
-            throw new Error(`Created snapshot not found in database with ID: ${snapshotId}`);
-        } else {
-            return await orderCurrentSnapshotInstanceData(snapshot, api);
-        }
-
-    } catch (error) {
-        console.error("dashboard_helpers.js::createSnapshotInstance > Error creating snapshot:", error);
-        throw error;
-    }
-}
-
-/**
  * This method runs when we click "View Questions" so we can load all the sections and questions
  * for the snapshot being viewed.
  * @param {*} data
@@ -67,14 +30,15 @@ export async function orderCurrentSnapshotInstanceData(data, api) {
             ["res_model", "=", "audit.snapshot_question"],
             ["res_field", "=", "image"],
         ],
-        ["id", "res_id", "res_model", "res_field", "name", "mimetype", "file_size"], // Exclude binary data fields
+        // Exclude binary data fields
+        ["id", "res_id", "res_model", "res_field", "name", "mimetype", "file_size"],
     );
     // Add number, and join attachments
     questions.forEach((question) => {
         question["number"] = question.id;
         question["img_src"] = null;
         attachments.forEach((attachment) => {
-            if (attachment.res_id == question.id) {
+            if (attachment.res_id === question.id) {
                 // Construct the image URL using the attachment ID instead of binary data
                 question["img_src"] = `/web/image/${attachment.id}`;
             }
@@ -103,6 +67,46 @@ export async function orderCurrentSnapshotInstanceData(data, api) {
 }
 
 /**
+ * This method runs when we click "Answer Questions", it will call the ORM, audit.snapshot class,
+ * which will create a new Snapshot Instance.
+ * @param {*} data
+ * @param {*} api
+ * @returns
+ */
+export async function createSnapshotInstance(data, api) {
+    try {
+        const orm = api.orm;
+        const [snapshotId] = await orm.create("audit.snapshot", [data]);
+
+        // Validate response
+        if (!snapshotId) {
+            throw new Error("Failed to create snapshot (no ID returned)");
+        }
+
+        // Fetch newly created Snapshot
+        const snapshot = await orm.searchRead(
+            "audit.snapshot",
+            [["id", "=", snapshotId]],
+            []
+        );
+
+        // Validate snapshot
+        if (!snapshot || snapshot.length === 0) {
+            throw new Error(
+                `Created snapshot not found in database with ID: ${snapshotId}`
+            );
+        }
+        return await orderCurrentSnapshotInstanceData(snapshot, api);
+    } catch (error) {
+        console.error(
+            "dashboard_helpers.js::createSnapshotInstance > Error creating snapshot:",
+            error
+        );
+        throw error;
+    }
+}
+
+/**
  * Call the audit.snapshot class's `write` function to update a specific Snapshot instance
  * @param {*} sectionsWithQuestions
  * @param {*} submitSnapshot
@@ -112,10 +116,12 @@ export async function orderCurrentSnapshotInstanceData(data, api) {
 export async function submit(sectionsWithQuestions, submitSnapshot, api) {
     // If this is a submit request, first lock the snapshot
     if (submitSnapshot) {
-        api.orm.call("audit.snapshot", "write", [sectionsWithQuestions[0].snapshot_id], { vals: { locked: true } });
-        return true
+        await api.orm.call("audit.snapshot", "write", [sectionsWithQuestions[0].snapshot_id], {
+            vals: { locked: true },
+        });
+        return true;
     }
-    return false
+    return false;
 }
 
 /**
@@ -170,8 +176,9 @@ export async function getSectionSnapshotQuestions(section_ids, api) {
  */
 export async function prepareAllSnapshotQuestions(allSnapshots, api) {
     for (const snapshot of allSnapshots) {
-        const section_ids = snapshot["snapshot_section_ids"];
-        snapshot["questions"] = await getSectionSnapshotQuestions(section_ids, api);
+        const sectionIds = snapshot.snapshot_section_ids;
+        const questions = await getSectionSnapshotQuestions(sectionIds, api);
+        Object.assign(snapshot, { questions });
     }
     return allSnapshots;
 }
@@ -190,34 +197,34 @@ export function autoSaveQuestionChanges(question, image, api) {
         .then(() => {
             let new_values = {};
             // Have to do a fresh lookup of the question because we don't know if the internal `save` has been called on it
-            api.orm.searchRead("audit.snapshot_question", [["id", "=", question.id]], []).then((updated_question) => {
-                updated_question = updated_question[0];
-                // First update the question with refreshed data, but only the comment and the image
-                if (question["comment"] === updated_question.comment) {
-                    // eslint-disable-next-line no-self-assign
-                    question["comment"] = question["comment"];
-                } else if (
-                    question["comment"] &&
-                    updated_question.comment &&
-                    question["comment"] !== updated_question.comment
-                ) {
-                    question["comment"] = updated_question.comment;
-                }
-                question["image"] = updated_question.image;
+            api.orm
+                .searchRead("audit.snapshot_question", [["id", "=", question.id]], [])
+                .then((rows) => {
+                    const row = rows[0];
+                    if (question.comment === row.comment) {
+                        // eslint-disable-next-line no-self-assign
+                        question.comment = question.comment;
+                    } else if (
+                        question.comment &&
+                        row.comment &&
+                        question.comment !== row.comment
+                    ) {
+                        question.comment = row.comment;
+                    }
+                    question.image = row.image;
 
-                // If no `image`, perhaps the question already has an uploaded image, rather keep it, don't overwrite with blank
-                new_values = {
-                    comment: question["comment"],
-                    answer_yn: question["answer_yn"],
-                    answer_star: question["answer_star"],
-                    answer_perc: question["answer_perc"],
-                    image: image ? image : question["image"],
-                };
+                    new_values = {
+                        comment: question.comment,
+                        answer_yn: question.answer_yn,
+                        answer_star: question.answer_star,
+                        answer_perc: question.answer_perc,
+                        image: image ? image : question.image,
+                    };
 
-                api.orm.call("audit.snapshot_question", "write", [question.id], {
-                    vals: new_values,
+                    api.orm.call("audit.snapshot_question", "write", [question.id], {
+                        vals: new_values,
+                    });
                 });
-            });
         });
 }
 
@@ -269,16 +276,13 @@ export class PageComponent extends Component {
     }
 
     updateCurrentPage(pageNumber) {
-        return (() => {
-            if (pageNumber === "previous") {
-                this.store.searchPage -= 1;
-            } else if (pageNumber === "next") {
-                this.store.searchPage += 1;
-            } else {
-                this.store.searchPage = pageNumber;
-            }
-            // Go fetch the page of results
-            this.store.executeSearch(this);
-        }).bind(this);
+        if (pageNumber === "previous") {
+            this.store.searchPage -= 1;
+        } else if (pageNumber === "next") {
+            this.store.searchPage += 1;
+        } else {
+            this.store.searchPage = pageNumber;
+        }
+        this.store.executeSearch(this);
     }
 }

@@ -137,7 +137,7 @@ export class SnapshotSummary extends Component {
 
     getQuestions(data) {
         let id = 0;
-        for (const [key, value] of Object.entries(data[0].questions)) {
+        for (const [, value] of Object.entries(data[0].questions)) {
             const questions = [];
             const sectionQuestions = value;
             // Skip sections with no questions (handles empty arrays on subsequent calls)
@@ -169,9 +169,11 @@ export class SnapshotSummary extends Component {
         let questionElement = {};
         for (const entry of this.state.questionsWithComments) {
             if (entry.questions) {
-                entry.questions.forEach((value) => {
-                    value.id === question.id ? (questionElement = value) : "";
-                });
+                for (const value of entry.questions) {
+                    if (value.id === question.id) {
+                        questionElement = value;
+                    }
+                }
             }
         }
         const uploadedImage = document.getElementById(questionElement.id);
