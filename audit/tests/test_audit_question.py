@@ -4,6 +4,7 @@ import psycopg2.errors
 
 from odoo.tests import tagged
 from odoo.tests.common import TransactionCase
+from odoo.tools import mute_logger
 
 
 @tagged("audit_models", "audit_model_question")
@@ -30,7 +31,10 @@ class TestAuditQuestion(TransactionCase):
         self.assertEqual(question.name, prompt)
 
     def test_required_answer_type(self):
-        with self.assertRaises(psycopg2.errors.NotNullViolation):
+        with (
+            mute_logger("odoo.sql_db"),
+            self.assertRaises(psycopg2.errors.NotNullViolation),
+        ):
             self.env["audit.question"].create(
                 {"prompt": "Missing type", "section_id": self.section.id}
             )

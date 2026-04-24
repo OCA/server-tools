@@ -7,6 +7,7 @@ import psycopg2.errors
 from odoo.exceptions import ValidationError
 from odoo.tests import tagged
 from odoo.tests.common import TransactionCase
+from odoo.tools import mute_logger
 
 
 @tagged("audit_models", "audit_model_domain")
@@ -16,10 +17,11 @@ class TestAuditDomain(TransactionCase):
     def test_domain_name_unique(self):
         name = f"Unique Domain {uuid.uuid4().hex}"
         self.env["audit.domain"].create({"name": name})
-        try:
-            self.env["audit.domain"].create({"name": name})
-        except (ValidationError, psycopg2.errors.UniqueViolation):
-            return
+        with mute_logger("odoo.sql_db"):
+            try:
+                self.env["audit.domain"].create({"name": name})
+            except (ValidationError, psycopg2.errors.UniqueViolation):
+                return
         self.fail("expected duplicate domain name to be rejected")
 
     def test_compute_all_target_rel_ids_merges_one2many_and_many2many(self):

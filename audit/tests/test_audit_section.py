@@ -4,6 +4,7 @@ import psycopg2.errors
 
 from odoo.tests import tagged
 from odoo.tests.common import TransactionCase
+from odoo.tools import mute_logger
 
 
 @tagged("audit_models", "audit_model_section")
@@ -22,5 +23,8 @@ class TestAuditSection(TransactionCase):
         self.assertEqual(section.domain_id, self.domain)
 
     def test_domain_id_required(self):
-        with self.assertRaises(psycopg2.errors.NotNullViolation):
+        with (
+            mute_logger("odoo.sql_db"),
+            self.assertRaises(psycopg2.errors.NotNullViolation),
+        ):
             self.env["audit.section"].create({"name": "Orphan section"})

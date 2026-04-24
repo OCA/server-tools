@@ -129,16 +129,14 @@ class SnapshotQuestion(models.Model):
 
     def write(self, vals):
         """
-        When images are added to Snapshot questions via the Snapshot Dashboard
-        they have to be base64 encoded.
+        Strip ``data:<mime>;base64,`` prefix from dashboard data URLs; pass through
+        other values unchanged.
         """
-        try:
-            vals["image"] = str(vals.get("image", "")).split(",")[1]
-        except (IndexError, KeyError) as error:
-            _logger.error(
-                "SnapshotQuestion::write > Error updating snapshot question: %s", error
-            )
-            return super().write(vals)
+        if "image" in vals and vals.get("image") is not False and vals.get("image"):
+            image_val = str(vals["image"])
+            if image_val.lstrip().startswith("data:") and "," in image_val:
+                vals = dict(vals)
+                vals["image"] = image_val.split(",", 1)[1]
         return super().write(vals)
 
 

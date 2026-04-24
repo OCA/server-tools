@@ -7,6 +7,7 @@ import psycopg2.errors
 from odoo.exceptions import ValidationError
 from odoo.tests import tagged
 from odoo.tests.common import TransactionCase
+from odoo.tools import mute_logger
 
 
 @tagged("audit_models", "audit_model_team")
@@ -22,10 +23,11 @@ class TestAuditTeam(TransactionCase):
     def test_team_name_must_be_unique(self):
         name = f"North Island {uuid.uuid4().hex}"
         self.env["audit.team"].create({"name": name})
-        try:
-            self.env["audit.team"].create({"name": name})
-        except (ValidationError, psycopg2.errors.UniqueViolation):
-            return
+        with mute_logger("odoo.sql_db"):
+            try:
+                self.env["audit.team"].create({"name": name})
+            except (ValidationError, psycopg2.errors.UniqueViolation):
+                return
         self.fail("expected duplicate team name to be rejected")
 
     def test_members_and_leaders_many2many(self):
