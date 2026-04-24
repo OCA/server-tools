@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
 """Classes and backend functionality for Audit module"""
 
-from datetime import datetime
 import json
 import logging
+from datetime import datetime
 from math import ceil
 
 from odoo import api, fields, models
@@ -13,7 +12,9 @@ _logger = logging.getLogger(__name__)
 
 
 class SnapshotSection(models.Model):
-    """SnapshotSection class, a SnapshotSection is made from every Section of an audit."""
+    """
+    Section copy: each `audit.section` in a domain becomes a snapshot section.
+    """
 
     _name = "audit.snapshot_section"
     _description = "Copy of AuditSection"
@@ -30,8 +31,8 @@ class SnapshotSection(models.Model):
         comodel_name="audit.snapshot", string="Audit Snapshot"
     )
 
-    # If each section counts their questions correct, we can pass these up to compute overall score
-    # as well as section score
+    # If each section counts their questions correct, we can pass these up to
+    # compute overall score and section score
     maximum_section_score = fields.Float(
         compute="_compute_maximum_section_score", store=True
     )
@@ -137,8 +138,8 @@ class SnapshotQuestion(models.Model):
             _logger.error(
                 "SnapshotQuestion::write > Error updating snapshot question: %s", error
             )
-            return super(SnapshotQuestion, self).write(vals)
-        return super(SnapshotQuestion, self).write(vals)
+            return super().write(vals)
+        return super().write(vals)
 
 
 class Snapshot(models.Model):
@@ -171,9 +172,9 @@ class Snapshot(models.Model):
     name = fields.Text(compute="_compute_name")
     maximum_score = fields.Float(compute="_compute_maximum_score")
     actual_score = fields.Float(compute="_compute_actual_score")
-    # percentage_score, a combination of overall score for each section - can never be more than 100%
+    # Overall score for each section combined; cannot exceed 100%.
     percentage_score = fields.Float(compute="_compute_percentage_score", store=True)
-    # Calculate how many of the snapshot questions for this snapshot had comments added to them
+    # Count of snapshot questions on this snapshot that have comments
     questions_with_comments = fields.Integer(compute="_compute_questions_with_comments")
     # Instances with status as active have not been archived
     active = fields.Boolean(default=True)
@@ -193,10 +194,9 @@ class Snapshot(models.Model):
         )
         _sections_and_questions = {}
         for snapshot_question in snapshot_questions:
-            if snapshot_question["snapshot_section_id"][1] not in _sections_and_questions:
-                _sections_and_questions[
-                    snapshot_question["snapshot_section_id"][1]
-                ] = []
+            section_label = snapshot_question["snapshot_section_id"][1]
+            if section_label not in _sections_and_questions:
+                _sections_and_questions[section_label] = []
 
         for snapshot_question in snapshot_questions:
             _sections_and_questions.get(
@@ -239,8 +239,8 @@ class Snapshot(models.Model):
             team_id = team.id if team else None
 
         try:
-            # Create the snapshot and then create and link snapshot_sections & snapshot_questions
-            new_snapshot = super(Snapshot, self).create(
+            # Create snapshot, then snapshot_sections and snapshot_questions
+            new_snapshot = super().create(
                 {
                     "domain_id": domain_id,
                     "target_id": target_id,
@@ -256,7 +256,7 @@ class Snapshot(models.Model):
             if not current_sections:
                 raise UserError(
                     self.env._(
-                        "The chosen domain has no sections. Create sections and questions "
+                        "The chosen domain has no sections. Add sections and questions "
                         "for domain_id %(domain_id)s first.",
                         domain_id=domain_id,
                     )
@@ -295,8 +295,8 @@ class Snapshot(models.Model):
                     )
 
             # pylint: disable=protected-access
-            # Snapshot sections & Snapshot questions created, calculate new snapshot's maximum score
-            # This will not get triggered by the listeners
+            # Sections and questions are created; compute the snapshot maximum score
+            # (not triggered by the listeners)
             new_snapshot._compute_maximum_score()
             _logger.info(
                 "Snapshot::create > After _compute_maximum_score %s", new_snapshot
@@ -324,7 +324,7 @@ class Snapshot(models.Model):
         "snapshot_section_ids.snapshot_question_ids",
         "snapshot_section_ids.snapshot_question_ids.applicable",
     )
-    def _compute_maximum_score(self):  # pylint: disable=no-self-use
+    def _compute_maximum_score(self):
         """
         Loop records explicitly to avoid computing on unrelated snapshots
         and triggering singleton issues.
@@ -341,7 +341,7 @@ class Snapshot(models.Model):
         "snapshot_section_ids.snapshot_question_ids",
         "snapshot_section_ids.snapshot_question_ids.value",
     )
-    def _compute_actual_score(self):  # pylint: disable=no-self-use
+    def _compute_actual_score(self):
         """
         Add up only correct answers.
         """
@@ -375,7 +375,7 @@ class Snapshot(models.Model):
             snapshot: object = self.env["audit.snapshot"].search(
                 [("id", "=", snapshot.get("id"))]
             )
-            # Calculate the maximum score & actual_score for the snapshot to avoid divisions by zero
+            # Recompute max and actual score so we never divide by zero
             # pylint: disable=protected-access
             snapshot._compute_actual_score()
             snapshot._compute_maximum_score()
@@ -476,7 +476,7 @@ class Snapshot(models.Model):
                 limit=self.PAGE_SIZE,
                 offset=(page_number - 1) * self.PAGE_SIZE,
                 order="date_conducted desc",
-            ), self.env["audit.snapshot"].search_count(([("active", "=", True)]))
+            ), self.env["audit.snapshot"].search_count([("active", "=", True)])
 
         # Find inspector by system user or partner; otherwise no data.
         inspector = self.env["audit.inspector"].search(
@@ -516,16 +516,14 @@ class Snapshot(models.Model):
                     offset=(page_number - 1) * self.PAGE_SIZE,
                     order="date_conducted desc",
                 ), self.env["audit.snapshot"].search_count(
-                    (
-                        [
-                            ("active", "=", True),
-                            (
-                                "inspector_id",
-                                "in",
-                                set(team_members.ids + team_leader.ids),
-                            ),
-                        ]
-                    )
+                    [
+                        ("active", "=", True),
+                        (
+                            "inspector_id",
+                            "in",
+                            set(team_members.ids + team_leader.ids),
+                        ),
+                    ]
                 )
 
             if inspector.id not in team_leader.ids:  # Logged-in user not a team leader
@@ -535,7 +533,7 @@ class Snapshot(models.Model):
                     offset=(page_number - 1) * self.PAGE_SIZE,
                     order="date_conducted desc",
                 ), self.env["audit.snapshot"].search_count(
-                    ([("active", "=", True), ("inspector_id", "=", inspector.id)])
+                    [("active", "=", True), ("inspector_id", "=", inspector.id)]
                 )
 
             return [], 0
@@ -547,7 +545,7 @@ class Snapshot(models.Model):
                 offset=(page_number - 1) * self.PAGE_SIZE,
                 order="date_conducted desc",
             ), self.env["audit.snapshot"].search_count(
-                ([("active", "=", True), ("inspector_id", "=", inspector.id)])
+                [("active", "=", True), ("inspector_id", "=", inspector.id)]
             )
 
         return [], 0

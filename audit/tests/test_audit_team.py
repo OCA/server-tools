@@ -1,12 +1,12 @@
-# -*- coding: utf-8 -*-
 """Tests for `audit.team`."""
+
 import uuid
 
 import psycopg2.errors
 
+from odoo.exceptions import ValidationError
 from odoo.tests import tagged
 from odoo.tests.common import TransactionCase
-from odoo.exceptions import ValidationError
 
 
 @tagged("audit_models", "audit_model_team")

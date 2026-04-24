@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Audit Team class for the Audit module."""
 
 from odoo import fields, models

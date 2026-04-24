@@ -2,6 +2,8 @@ var globals = require('globals');
 jsdoc = require("eslint-plugin-jsdoc");
 
 const config = [{
+    ignores: ["audit/static/src/css/fontawesome.js"],
+}, {
     plugins: {
       jsdoc,
     },
@@ -195,6 +197,13 @@ const config = [{
 
 }, {
     files: ["**/*.esm.js", "**/*test.js"],
+
+    languageOptions: {
+        ecmaVersion: 2024,
+        sourceType: "module",
+    },
+}, {
+    files: ["audit/static/src/**/*.js"],
 
     languageOptions: {
         ecmaVersion: 2024,

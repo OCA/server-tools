@@ -1,10 +1,10 @@
-# -*- coding: utf-8 -*-
 """Tests for audit menu access (TransientModel) actions."""
+
 import uuid
 
+from odoo import Command
 from odoo.tests import tagged
 from odoo.tests.common import TransactionCase
-from odoo import Command
 
 
 @tagged("audit_models", "audit_model_access_control")
@@ -19,7 +19,7 @@ class TestAuditMenuAccessControl(TransactionCase):
         cls.inspector = cls.env["audit.inspector"].create({"name": "IC Access"})
 
     def _internal_user(self):
-        """Non-admin user for access checks (Odoo 19 ``res.users`` create rules vary by edition)."""
+        """Return a non-admin user (``res.users`` create rules differ by edition)."""
         template = self.env.ref("base.default_user", raise_if_not_found=False)
         if not template:
             self.skipTest(

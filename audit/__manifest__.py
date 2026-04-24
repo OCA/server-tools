@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # pylint: disable=missing-module-docstring,pointless-statement
 {
     "name": "Audit",
@@ -7,10 +6,10 @@
         "and team-based access control."
     ),
     "author": "AMV Limited, Odoo Community Association (OCA)",
-    "website": "https://vapo.co.nz",
+    "website": "https://github.com/OCA/server-tools",
     "category": "Services",
     "version": "19.0.1.0.0",
-    "license": "Other proprietary",
+    "license": "LGPL-3",
     "application": True,
     "depends": [
         "base",

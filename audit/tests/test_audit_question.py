@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
 """Tests for `audit.question`."""
+
 import psycopg2.errors
 
 from odoo.tests import tagged

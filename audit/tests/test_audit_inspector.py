@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
 """Tests for `audit.inspector`."""
+
 from odoo.tests import tagged
 from odoo.tests.common import TransactionCase
 

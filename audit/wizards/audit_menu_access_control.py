@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Classes and backend functionality for Audit module menu access control."""
 
 import logging

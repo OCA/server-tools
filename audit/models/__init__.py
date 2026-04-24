@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Module docstring for init file."""
 
 from . import audit_question

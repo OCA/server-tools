@@ -1,10 +1,10 @@
-# -*- coding: utf-8 -*-
 """Tests for `audit.snapshot` and related records."""
+
 import json
 
+from odoo.exceptions import UserError
 from odoo.tests import tagged
 from odoo.tests.common import TransactionCase
-from odoo.exceptions import UserError
 
 
 @tagged("audit_models", "audit_model_snapshot")

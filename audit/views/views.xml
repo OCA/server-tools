@@ -1,7 +1,6 @@
 <odoo>
-    <data>
-        <!-- audit.domain list view -->
-        <record model="ir.ui.view" id="audit.view_domain_tree">
+    <!-- audit.domain list view -->
+    <record model="ir.ui.view" id="view_domain_tree">
             <field name="name">Audit Domains</field>
             <field name="model">audit.domain</field>
             <field name="arch" type="xml">
@@ -12,7 +11,7 @@
         </record>
 
         <!-- Audit domain form view-->
-        <record model="ir.ui.view" id="audit.view_domain_form">
+    <record model="ir.ui.view" id="view_domain_form">
             <field name="name">Audit Domains</field>
             <field name="model">audit.domain</field>
             <field name="type">form</field>
@@ -43,7 +42,7 @@
         </record>
 
         <!-- audit.inspector list view -->
-        <record id="audit.view_inspector_tree" model="ir.ui.view">
+    <record id="view_inspector_tree" model="ir.ui.view">
             <field name="name">audit.inspector.tree</field>
             <field name="model">audit.inspector</field>
             <field name="arch" type="xml">
@@ -58,7 +57,7 @@
         </record>
 
         <!-- audit.inspector form view-->
-        <record id="audit.view_inspector_form" model="ir.ui.view">
+    <record id="view_inspector_form" model="ir.ui.view">
             <field name="name">audit.inspector.form</field>
             <field name="model">audit.inspector</field>
             <field name="arch" type="xml">
@@ -86,7 +85,7 @@
         </record>
 
         <!-- audit.team list view -->
-        <record id="view_audit_team_tree" model="ir.ui.view">
+    <record id="view_audit_team_tree" model="ir.ui.view">
             <field name="name">audit.team.tree</field>
             <field name="model">audit.team</field>
             <field name="arch" type="xml">
@@ -99,7 +98,7 @@
         </record>
 
         <!-- audit.team form view -->
-        <record id="view_audit_team_form" model="ir.ui.view">
+    <record id="view_audit_team_form" model="ir.ui.view">
             <field name="name">audit.team.form</field>
             <field name="model">audit.team</field>
             <field name="arch" type="xml">
@@ -116,7 +115,7 @@
         </record>
 
         <!-- audit.section list view-->
-        <record model="ir.ui.view" id="audit.view_section_tree">
+    <record model="ir.ui.view" id="view_section_tree">
             <field name="name">Section</field>
             <field name="model">audit.section</field>
             <field name="arch" type="xml">
@@ -128,7 +127,7 @@
         </record>
 
         <!-- audit.section form view-->
-        <record model="ir.ui.view" id="audit.view_section_form">
+    <record model="ir.ui.view" id="view_section_form">
             <field name="name">Section</field>
             <field name="model">audit.section</field>
             <field name="type">form</field>
@@ -154,7 +153,7 @@
         </record>
 
         <!-- audit.question list view -->
-        <record model="ir.ui.view" id="audit.view_question_tree">
+    <record model="ir.ui.view" id="view_question_tree">
             <field name="name">Question</field>
             <field name="model">audit.question</field>
             <field name="arch" type="xml">
@@ -165,7 +164,7 @@
         </record>
 
         <!-- audit.question form view -->
-        <record model="ir.ui.view" id="audit.view_question_form">
+    <record model="ir.ui.view" id="view_question_form">
             <field name="name">Question</field>
             <field name="model">audit.question</field>
             <field name="type">form</field>
@@ -187,7 +186,7 @@
         </record>
 
         <!-- audit.snapshot list view -->
-        <record model="ir.ui.view" id="audit.view_snapshot_tree">
+    <record model="ir.ui.view" id="view_snapshot_tree">
             <field name="name">Audit Snapshots</field>
             <field name="model">audit.snapshot</field>
             <field name="arch" type="xml">
@@ -209,7 +208,7 @@
         </record>
 
         <!-- audit.snapshot form view -->
-        <record model="ir.ui.view" id="audit.view_snapshot_form">
+    <record model="ir.ui.view" id="view_snapshot_form">
             <field name="name">Audit Form</field>
             <field name="model">audit.snapshot</field>
             <field name="type">form</field>
@@ -236,7 +235,7 @@
         </record>
 
         <!-- audit.snapshot_section form view -->
-        <record model="ir.ui.view" id="audit.view_snapshot_snapshot_section_form">
+    <record model="ir.ui.view" id="view_snapshot_snapshot_section_form">
             <field name="name">Audit Form</field>
             <field name="model">audit.snapshot_section</field>
             <field name="type">form</field>
@@ -253,7 +252,7 @@
         </record>
 
         <!-- audit.snapshot_section list view -->
-        <record model="ir.ui.view" id="audit.snapshot_section_tree_view">
+    <record model="ir.ui.view" id="snapshot_section_tree_view">
             <field name="name">Snapshot Section</field>
             <field name="model">audit.snapshot_section</field>
             <field name="arch" type="xml">
@@ -266,10 +265,10 @@
             </field>
         </record>
 
-        <!-- audit.snapshot_question list view -->
-        <record model="ir.ui.view" id="audit.view_question_tree">
-            <field name="name">Question</field>
-            <field name="model">audit.snapshot_question</field>
+    <!-- audit.snapshot_question list view -->
+    <record model="ir.ui.view" id="view_snapshot_question_tree">
+        <field name="name">Question</field>
+        <field name="model">audit.snapshot_question</field>
             <field name="arch" type="xml">
                 <list>
                     <field name="snapshot_id" />
@@ -283,7 +282,7 @@
         </record>
 
         <!-- audit.snapshot_question form view -->
-        <record model="ir.ui.view" id="audit.view_snapshot_question_form">
+    <record model="ir.ui.view" id="view_snapshot_question_form">
             <field name="name">Question</field>
             <field name="model">audit.snapshot_question</field>
             <field name="type">form</field>
@@ -319,7 +318,7 @@
         </record>
 
         <!-- audit.target list view -->
-        <record id="audit.target_tree_view" model="ir.ui.view">
+    <record id="target_tree_view" model="ir.ui.view">
             <field name="name">audit.target.tree</field>
             <field name="model">audit.target</field>
             <field name="arch" type="xml">
@@ -331,7 +330,7 @@
         </record>
 
         <!-- audit.target from view -->
-        <record id="audit.target_form_view" model="ir.ui.view">
+    <record id="target_form_view" model="ir.ui.view">
             <field name="name">audit.target.form</field>
             <field name="model">audit.target</field>
             <field name="arch" type="xml">
@@ -349,5 +348,4 @@
                 </form>
             </field>
         </record>
-    </data>
 </odoo>

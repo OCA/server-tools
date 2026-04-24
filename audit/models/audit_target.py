@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Classes and backend functionality for Audit module"""
 
 import logging
@@ -10,7 +9,7 @@ _logger = logging.getLogger(__name__)
 
 
 class DomainTargetRel(models.Model):
-    """Intermediate table to link audit domains and targets without duplicating targets."""
+    """M2M link between audit domains and targets (one target per domain row)."""
 
     _name = "audit.domain_target_rel"
     _description = "Audit Domain Target Relation"
@@ -90,7 +89,7 @@ class Target(models.Model):
 
     @api.model
     def create(self, vals_list):
-        """Ensure domain_id is set before creating and restrict duplicate target names."""
+        """Set ``domain_id`` if missing; reject duplicate target names."""
         # Handle both single dict and list of dicts
         if not isinstance(vals_list, list):
             vals_list = [vals_list]
@@ -120,7 +119,7 @@ class Target(models.Model):
                 )
 
         # Call parent create method with the processed vals_list
-        return super(Target, self).create(vals_list)
+        return super().create(vals_list)
 
     def link_to_domain(self, domain_id, target_id):
         """
@@ -178,7 +177,7 @@ class Target(models.Model):
                 )
 
         # Ensure domain_id is assigned if missing
-        res = super(Target, self).write(vals)
+        res = super().write(vals)
         for record in self:
             if not record.domain_id and record.all_domain_rel_ids:
                 record.domain_id = record.all_domain_rel_ids[0]

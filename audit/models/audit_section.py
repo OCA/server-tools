@@ -1,7 +1,7 @@
-# -*- coding: utf-8 -*-
 """Classes and backend functionality for Audit module"""
 
 import logging
+
 from odoo import fields, models
 
 _logger = logging.getLogger(__name__)

@@ -1,13 +1,13 @@
-# -*- coding: utf-8 -*-
 """Tests for `audit.target`."""
+
+from odoo.exceptions import ValidationError
 from odoo.tests import tagged
 from odoo.tests.common import TransactionCase
-from odoo.exceptions import ValidationError
 
 
 @tagged("audit_models", "audit_model_target")
 class TestAuditTarget(TransactionCase):
-    """Tests for ``audit.target`` and ``audit.domain_target_rel`` (``models/audit_target.py``)."""
+    """Tests for `audit.target` and `audit.domain_target_rel`."""
 
     @classmethod
     def setUpClass(cls):
@@ -59,9 +59,7 @@ class TestAuditTarget(TransactionCase):
         )
 
     def test_write_rejects_duplicate_name(self):
-        self.env["audit.target"].create(
-            {"name": "Alpha", "domain_id": self.domain.id}
-        )
+        self.env["audit.target"].create({"name": "Alpha", "domain_id": self.domain.id})
         beta = self.env["audit.target"].create(
             {"name": "Beta", "domain_id": self.domain.id}
         )
