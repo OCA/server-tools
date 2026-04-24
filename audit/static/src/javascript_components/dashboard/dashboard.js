@@ -1,13 +1,12 @@
 /** @odoo-module **/
-import { registry } from "@web/core/registry";
-import { Component, onWillStart, useState, xml } from "@odoo/owl";
-import { useService } from "@web/core/utils/hooks";
-import { SnapshotList } from "./snapshot_list";
-import { Snapshot } from "./snapshot";
-import { CreateSnapShot } from "./create_snapshot";
-import { SnapshotSummary } from "./snapshot_summary";
-import { store } from "../../store";
-
+import {registry} from "@web/core/registry";
+import {Component, onWillStart, useState, xml} from "@odoo/owl";
+import {useService} from "@web/core/utils/hooks";
+import {SnapshotList} from "./snapshot_list";
+import {Snapshot} from "./snapshot";
+import {CreateSnapShot} from "./create_snapshot";
+import {SnapshotSummary} from "./snapshot_summary";
+import {store} from "../../store";
 
 class AuditDashboard extends Component {
     static template = xml`
@@ -82,7 +81,6 @@ class AuditDashboard extends Component {
         onWillStart(async () => {
             this.store.executeSearch(this);
         });
-
     }
 
     selectAndCompleteAudit() {

@@ -23,7 +23,12 @@
     width: 80%;
 }
 
-:is(.vec_audit_question_label, .vec_audit_question_label_half, .vec_audit_question_notes) :is(b, p) {
+:is(
+        .vec_audit_question_label,
+        .vec_audit_question_label_half,
+        .vec_audit_question_notes
+    )
+    :is(b, p) {
     margin-left: 3px;
     margin-top: 1px;
 }
@@ -83,7 +88,9 @@
     display: none;
 }
 
-:is(.vec_audit_question_yn, .vec_audit_question_yn_half) input[type="checkbox"] + label {
+:is(.vec_audit_question_yn, .vec_audit_question_yn_half)
+    input[type="checkbox"]
+    + label {
     transform: skew(-10deg);
     transition: all 0.5s ease;
     border-radius: 5px;
@@ -100,15 +107,21 @@
     box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
 }
 
-:is(.vec_audit_question_yn, .vec_audit_question_yn_half) input[type="checkbox"] + label::after {
+:is(.vec_audit_question_yn, .vec_audit_question_yn_half)
+    input[type="checkbox"]
+    + label::after {
     content: "FAILED";
 }
 
-:is(.vec_audit_question_yn, .vec_audit_question_yn_half) input[type="checkbox"]:checked + label {
+:is(.vec_audit_question_yn, .vec_audit_question_yn_half)
+    input[type="checkbox"]:checked
+    + label {
     background-color: #48a858;
 }
 
-:is(.vec_audit_question_yn, .vec_audit_question_yn_half) input[type="checkbox"]:checked + label::after {
+:is(.vec_audit_question_yn, .vec_audit_question_yn_half)
+    input[type="checkbox"]:checked
+    + label::after {
     content: "PASSED";
 }
 

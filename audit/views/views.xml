@@ -1,351 +1,409 @@
 <odoo>
     <!-- audit.domain list view -->
     <record model="ir.ui.view" id="view_domain_tree">
-            <field name="name">Audit Domains</field>
-            <field name="model">audit.domain</field>
-            <field name="arch" type="xml">
-                <list>
-                    <field name="name" string="Domains" />
-                </list>
-            </field>
-        </record>
+        <field name="name">Audit Domains</field>
+        <field name="model">audit.domain</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name" string="Domains" />
+            </list>
+        </field>
+    </record>
 
-        <!-- Audit domain form view-->
+    <!-- Audit domain form view-->
     <record model="ir.ui.view" id="view_domain_form">
-            <field name="name">Audit Domains</field>
-            <field name="model">audit.domain</field>
-            <field name="type">form</field>
-            <field name="arch" type="xml">
-                <form>
-                    <header>
-                        <button name="action_duplicate_domain"
-                            type="object"
-                            string="Duplicate"
-                            invisible="not id"
-                            class="oe_highlight" />
-                    </header>
-                    <sheet>
-                        <notebook>
-                            <page name="Domain Design">
-                                <group>
-                                    <field name="name" string="Domain Name" />
-                                </group>
-                                <field name="section_ids" />
-                            </page>
-                            <page name="Targets in Domain">
-                                <field name="all_target_rel_ids" />
-                            </page>
-                        </notebook>
-                    </sheet>
-                </form>
-            </field>
-        </record>
+        <field name="name">Audit Domains</field>
+        <field name="model">audit.domain</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button
+                        name="action_duplicate_domain"
+                        type="object"
+                        string="Duplicate"
+                        invisible="not id"
+                        class="oe_highlight"
+                    />
+                </header>
+                <sheet>
+                    <notebook>
+                        <page name="Domain Design">
+                            <group>
+                                <field name="name" string="Domain Name" />
+                            </group>
+                            <field name="section_ids" />
+                        </page>
+                        <page name="Targets in Domain">
+                            <field name="all_target_rel_ids" />
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
 
-        <!-- audit.inspector list view -->
+    <!-- audit.inspector list view -->
     <record id="view_inspector_tree" model="ir.ui.view">
-            <field name="name">audit.inspector.tree</field>
-            <field name="model">audit.inspector</field>
-            <field name="arch" type="xml">
-                <list>
-                    <field name="name" />
-                    <field name="forename" />
-                    <field name="surname" />
-                    <field name="inspector_email" />
-                    <field name="active" />
-                </list>
-            </field>
-        </record>
+        <field name="name">audit.inspector.tree</field>
+        <field name="model">audit.inspector</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name" />
+                <field name="forename" />
+                <field name="surname" />
+                <field name="inspector_email" />
+                <field name="active" />
+            </list>
+        </field>
+    </record>
 
-        <!-- audit.inspector form view-->
+    <!-- audit.inspector form view-->
     <record id="view_inspector_form" model="ir.ui.view">
-            <field name="name">audit.inspector.form</field>
-            <field name="model">audit.inspector</field>
-            <field name="arch" type="xml">
-                <form string="Inspector">
-                    <!-- Boxed layout for identity fields -->
-                    <div class="o_group o_inner_group card p-3 mb-4"
-                         style="margin-bottom: 80px !important; max-width: 600px;">
-                        <group>
-                            <field name="res_user_id" />
-                            <field name="forename" widget="text" />
-                            <field name="surname" widget="text" />
-                            <field name="inspector_email" widget="email" />
-                        </group>
-                    </div>
-                    <!-- Other inspector-related fields -->
+        <field name="name">audit.inspector.form</field>
+        <field name="model">audit.inspector</field>
+        <field name="arch" type="xml">
+            <form string="Inspector">
+                <!-- Boxed layout for identity fields -->
+                <div
+                    class="o_group o_inner_group card p-3 mb-4"
+                    style="margin-bottom: 80px !important; max-width: 600px;"
+                >
                     <group>
-                        <field name="snapshot_ids" />
-                        <field name="active" />
+                        <field name="res_user_id" />
+                        <field name="forename" widget="text" />
+                        <field name="surname" widget="text" />
+                        <field name="inspector_email" widget="email" />
                     </group>
-                    <group>
-                        <field name="team_ids" widget="many2many_tags" readonly="1" />
-                    </group>
-                </form>
-            </field>
-        </record>
+                </div>
+                <!-- Other inspector-related fields -->
+                <group>
+                    <field name="snapshot_ids" />
+                    <field name="active" />
+                </group>
+                <group>
+                    <field name="team_ids" widget="many2many_tags" readonly="1" />
+                </group>
+            </form>
+        </field>
+    </record>
 
-        <!-- audit.team list view -->
+    <!-- audit.team list view -->
     <record id="view_audit_team_tree" model="ir.ui.view">
-            <field name="name">audit.team.tree</field>
-            <field name="model">audit.team</field>
-            <field name="arch" type="xml">
-                <list>
-                    <field name="name" string="Team Name" />
-                    <field name="team_leader_ids" widget="many2many_tags" />
-                    <field name="team_member_ids" widget="many2many_tags" />
-                </list>
-            </field>
-        </record>
+        <field name="name">audit.team.tree</field>
+        <field name="model">audit.team</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name" string="Team Name" />
+                <field name="team_leader_ids" widget="many2many_tags" />
+                <field name="team_member_ids" widget="many2many_tags" />
+            </list>
+        </field>
+    </record>
 
-        <!-- audit.team form view -->
+    <!-- audit.team form view -->
     <record id="view_audit_team_form" model="ir.ui.view">
-            <field name="name">audit.team.form</field>
-            <field name="model">audit.team</field>
-            <field name="arch" type="xml">
-                <form string="Audit Team">
-                    <sheet>
-                        <group>
-                            <field name="name" string="Team Name" class="audit_team_name_field" />
-                            <field name="team_leader_ids" />
-                            <field name="team_member_ids" />
-                        </group>
-                    </sheet>
-                </form>
-            </field>
-        </record>
+        <field name="name">audit.team.form</field>
+        <field name="model">audit.team</field>
+        <field name="arch" type="xml">
+            <form string="Audit Team">
+                <sheet>
+                    <group>
+                        <field
+                            name="name"
+                            string="Team Name"
+                            class="audit_team_name_field"
+                        />
+                        <field name="team_leader_ids" />
+                        <field name="team_member_ids" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
 
-        <!-- audit.section list view-->
+    <!-- audit.section list view-->
     <record model="ir.ui.view" id="view_section_tree">
-            <field name="name">Section</field>
-            <field name="model">audit.section</field>
-            <field name="arch" type="xml">
-                <list>
-                    <field name="name" string="Section Name" />
-                    <field name="question_ids" string="Questions Recorded" />
-                </list>
-            </field>
-        </record>
+        <field name="name">Section</field>
+        <field name="model">audit.section</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name" string="Section Name" />
+                <field name="question_ids" string="Questions Recorded" />
+            </list>
+        </field>
+    </record>
 
-        <!-- audit.section form view-->
+    <!-- audit.section form view-->
     <record model="ir.ui.view" id="view_section_form">
-            <field name="name">Section</field>
-            <field name="model">audit.section</field>
-            <field name="type">form</field>
-            <field name="arch" type="xml">
-                <form>
-                    <sheet>
-                        <group>
-                            <field name="domain_id" string="Domain Name" />
-                            <field name="name" string="Section Name" />
-                        </group>
-                        <group>
-                            <!-- Each instance of Section can have many instances of Question, each Question has a
+        <field name="name">Section</field>
+        <field name="model">audit.section</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="domain_id" string="Domain Name" />
+                        <field name="name" string="Section Name" />
+                    </group>
+                    <group>
+                        <!-- Each instance of Section can have many instances of Question, each Question has a
                             field `prompt`.  This then a way to show a field for a One2many field. -->
-                            <field name="question_ids">
-                                <list>
-                                    <field name="prompt" />
-                                </list>
-                            </field>
-                        </group>
-                    </sheet>
-                </form>
-            </field>
-        </record>
+                        <field name="question_ids">
+                            <list>
+                                <field name="prompt" />
+                            </list>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
 
-        <!-- audit.question list view -->
+    <!-- audit.question list view -->
     <record model="ir.ui.view" id="view_question_tree">
-            <field name="name">Question</field>
-            <field name="model">audit.question</field>
-            <field name="arch" type="xml">
-                <list>
-                    <field name="prompt" string="Question" />
-                </list>
-            </field>
-        </record>
+        <field name="name">Question</field>
+        <field name="model">audit.question</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="prompt" string="Question" />
+            </list>
+        </field>
+    </record>
 
-        <!-- audit.question form view -->
+    <!-- audit.question form view -->
     <record model="ir.ui.view" id="view_question_form">
-            <field name="name">Question</field>
-            <field name="model">audit.question</field>
-            <field name="type">form</field>
-            <field name="arch" type="xml">
-                <form>
-                    <sheet>
+        <field name="name">Question</field>
+        <field name="model">audit.question</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
                         <group>
-                            <group>
-                                <field name="section_id" string="Section" />
-                            </group>
-                            <group>
-                                <field name="prompt" string="Question Prompt" />
-                                <field name="answer_type" string="Answer Type" />
-                            </group>
+                            <field name="section_id" string="Section" />
                         </group>
-                    </sheet>
-                </form>
-            </field>
-        </record>
+                        <group>
+                            <field name="prompt" string="Question Prompt" />
+                            <field name="answer_type" string="Answer Type" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
 
-        <!-- audit.snapshot list view -->
+    <!-- audit.snapshot list view -->
     <record model="ir.ui.view" id="view_snapshot_tree">
-            <field name="name">Audit Snapshots</field>
-            <field name="model">audit.snapshot</field>
-            <field name="arch" type="xml">
-                <list create="false" edit="false">
-                    <field name="name" />
-                    <field name="inspector_id" />
-                    <field name="domain_id" />
-                    <field name="target_id" />
-                    <field name="locked" />
-                    <!-- A quick and easy way to style an element by using attribute `decoration-danger` or `decoration-success`-->
-                    <field name="percentage_score"
-                        widget="percentage"
-                        class="view_snapshot_tree pass-fail-score"
-                        decoration-danger="percentage_score &lt; 0.85"
-                        decoration-success="percentage_score &gt;= 0.85" />
-                    <field name="date_conducted" />
-                </list>
-            </field>
-        </record>
+        <field name="name">Audit Snapshots</field>
+        <field name="model">audit.snapshot</field>
+        <field name="arch" type="xml">
+            <list create="false" edit="false">
+                <field name="name" />
+                <field name="inspector_id" />
+                <field name="domain_id" />
+                <field name="target_id" />
+                <field name="locked" />
+                <!-- A quick and easy way to style an element by using attribute `decoration-danger` or `decoration-success`-->
+                <field
+                    name="percentage_score"
+                    widget="percentage"
+                    class="view_snapshot_tree pass-fail-score"
+                    decoration-danger="percentage_score &lt; 0.85"
+                    decoration-success="percentage_score &gt;= 0.85"
+                />
+                <field name="date_conducted" />
+            </list>
+        </field>
+    </record>
 
-        <!-- audit.snapshot form view -->
+    <!-- audit.snapshot form view -->
     <record model="ir.ui.view" id="view_snapshot_form">
-            <field name="name">Audit Form</field>
-            <field name="model">audit.snapshot</field>
-            <field name="type">form</field>
-            <field name="arch" type="xml">
-                <form>
-                    <sheet>
-                        <group>
-                            <field name="domain_id" readonly="1" />
-                            <field name="target_id" />
-                            <field name="inspector_id" />
-                            <field name="date_conducted" />
-                        </group>
-                        <group>
-                            <field name="snapshot_section_ids" />
-                        </group>
-                        <group>
-                            <field name="actual_score" />
-                            <field name="maximum_score" />
-                            <field name="percentage_score" widget="percentage" />
-                        </group>
-                    </sheet>
-                </form>
-            </field>
-        </record>
+        <field name="name">Audit Form</field>
+        <field name="model">audit.snapshot</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="domain_id" readonly="1" />
+                        <field name="target_id" />
+                        <field name="inspector_id" />
+                        <field name="date_conducted" />
+                    </group>
+                    <group>
+                        <field name="snapshot_section_ids" />
+                    </group>
+                    <group>
+                        <field name="actual_score" />
+                        <field name="maximum_score" />
+                        <field name="percentage_score" widget="percentage" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
 
-        <!-- audit.snapshot_section form view -->
+    <!-- audit.snapshot_section form view -->
     <record model="ir.ui.view" id="view_snapshot_snapshot_section_form">
-            <field name="name">Audit Form</field>
-            <field name="model">audit.snapshot_section</field>
-            <field name="type">form</field>
-            <field name="arch" type="xml">
-                <form>
-                    <sheet>
-                        <group>
-                            <field name="name" string="Section" readonly="1" />
-                            <field name="snapshot_question_ids" string="Questions" readonly="0" />
-                        </group>
-                    </sheet>
-                </form>
-            </field>
-        </record>
+        <field name="name">Audit Form</field>
+        <field name="model">audit.snapshot_section</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name" string="Section" readonly="1" />
+                        <field
+                            name="snapshot_question_ids"
+                            string="Questions"
+                            readonly="0"
+                        />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
 
-        <!-- audit.snapshot_section list view -->
+    <!-- audit.snapshot_section list view -->
     <record model="ir.ui.view" id="snapshot_section_tree_view">
-            <field name="name">Snapshot Section</field>
-            <field name="model">audit.snapshot_section</field>
-            <field name="arch" type="xml">
-                <list>
-                    <field name="snapshot_id" string="Snapshot" />
-                    <field name="name" string="Section" readonly="1" />
-                    <field name="domain_id" string="Domain" />
-                    <field name="snapshot_question_ids" string="Questions" readonly="0" />
-                </list>
-            </field>
-        </record>
+        <field name="name">Snapshot Section</field>
+        <field name="model">audit.snapshot_section</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="snapshot_id" string="Snapshot" />
+                <field name="name" string="Section" readonly="1" />
+                <field name="domain_id" string="Domain" />
+                <field name="snapshot_question_ids" string="Questions" readonly="0" />
+            </list>
+        </field>
+    </record>
 
     <!-- audit.snapshot_question list view -->
     <record model="ir.ui.view" id="view_snapshot_question_tree">
         <field name="name">Question</field>
         <field name="model">audit.snapshot_question</field>
-            <field name="arch" type="xml">
-                <list>
-                    <field name="snapshot_id" />
-                    <field name="snapshot_section_id" string="Snapshot Section" />
-                    <field name="prompt" string="Question" />
-                    <field name="comment" string="Comments" />
-                    <field name="image" widget="image" class="oe_avatar" options="{&apos;size&apos;: [120, 120]}" />
-                    <field name="value" string="Question Score" widget="percentage" class="view_snapshot_tree" />
-                </list>
-            </field>
-        </record>
+        <field name="arch" type="xml">
+            <list>
+                <field name="snapshot_id" />
+                <field name="snapshot_section_id" string="Snapshot Section" />
+                <field name="prompt" string="Question" />
+                <field name="comment" string="Comments" />
+                <field
+                    name="image"
+                    widget="image"
+                    class="oe_avatar"
+                    options="{&apos;size&apos;: [120, 120]}"
+                />
+                <field
+                    name="value"
+                    string="Question Score"
+                    widget="percentage"
+                    class="view_snapshot_tree"
+                />
+            </list>
+        </field>
+    </record>
 
-        <!-- audit.snapshot_question form view -->
+    <!-- audit.snapshot_question form view -->
     <record model="ir.ui.view" id="view_snapshot_question_form">
-            <field name="name">Question</field>
-            <field name="model">audit.snapshot_question</field>
-            <field name="type">form</field>
-            <field name="arch" type="xml">
-                <form>
-                    <sheet>
+        <field name="name">Question</field>
+        <field name="model">audit.snapshot_question</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
                         <group>
-                            <group>
-                                <field name="snapshot_id" string="Snapshot" readonly="1" />
-                                <field name="snapshot_section_id" string="Section" readonly="1" />
-                                <field name="original_question_id" string="Original Question" readonly="1" />
-                            </group>
-                            <group>
-                                <field name="prompt" string="Question Prompt" readonly="1" />
-                                <field name="answer_type" invisible="1" />
-                                <field name="answer_yn" string="Yes/No Answer" readonly="0" invisible="answer_type != 'boolean'" />
-                                <field name="answer_star"
-                                    string="Star Rating Answer"
-                                    readonly="0"
-                                    invisible="answer_type != 'integer'" />
-                                <field name="answer_perc"
-                                    string="Percentage Answer"
-                                    readonly="0"
-                                    invisible="answer_type != 'float'" />
-                                <field name="image" widget="image" options="{&apos;size&apos;: [120, 120]}" />
-                                <field name="comment" string="Write a comment" />
-                                <field name="applicable" string="Applicable" />
-                            </group>
+                            <field name="snapshot_id" string="Snapshot" readonly="1" />
+                            <field
+                                name="snapshot_section_id"
+                                string="Section"
+                                readonly="1"
+                            />
+                            <field
+                                name="original_question_id"
+                                string="Original Question"
+                                readonly="1"
+                            />
                         </group>
-                    </sheet>
-                </form>
-            </field>
-        </record>
+                        <group>
+                            <field
+                                name="prompt"
+                                string="Question Prompt"
+                                readonly="1"
+                            />
+                            <field name="answer_type" invisible="1" />
+                            <field
+                                name="answer_yn"
+                                string="Yes/No Answer"
+                                readonly="0"
+                                invisible="answer_type != 'boolean'"
+                            />
+                            <field
+                                name="answer_star"
+                                string="Star Rating Answer"
+                                readonly="0"
+                                invisible="answer_type != 'integer'"
+                            />
+                            <field
+                                name="answer_perc"
+                                string="Percentage Answer"
+                                readonly="0"
+                                invisible="answer_type != 'float'"
+                            />
+                            <field
+                                name="image"
+                                widget="image"
+                                options="{&apos;size&apos;: [120, 120]}"
+                            />
+                            <field name="comment" string="Write a comment" />
+                            <field name="applicable" string="Applicable" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
 
-        <!-- audit.target list view -->
+    <!-- audit.target list view -->
     <record id="target_tree_view" model="ir.ui.view">
-            <field name="name">audit.target.tree</field>
-            <field name="model">audit.target</field>
-            <field name="arch" type="xml">
-                <list>
-                    <field name="name" />
-                    <field name="all_domain_rel_ids" string="Linked Domains" widget="many2many_tags" />
-                </list>
-            </field>
-        </record>
+        <field name="name">audit.target.tree</field>
+        <field name="model">audit.target</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name" />
+                <field
+                    name="all_domain_rel_ids"
+                    string="Linked Domains"
+                    widget="many2many_tags"
+                />
+            </list>
+        </field>
+    </record>
 
-        <!-- audit.target from view -->
+    <!-- audit.target from view -->
     <record id="target_form_view" model="ir.ui.view">
-            <field name="name">audit.target.form</field>
-            <field name="model">audit.target</field>
-            <field name="arch" type="xml">
-                <form>
-                    <header>
-                        <button name="merge" class="btn-primary" string="Merge" type="object" />
-                    </header>
-                    <sheet>
-                        <group>
-                            <field name="name" string="Name" />
-                            <field name="all_domain_rel_ids" string="Linked Domains" />
-                            <field name="snapshot_ids" string="Audit Snapshots" />
-                        </group>
-                    </sheet>
-                </form>
-            </field>
-        </record>
+        <field name="name">audit.target.form</field>
+        <field name="model">audit.target</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button
+                        name="merge"
+                        class="btn-primary"
+                        string="Merge"
+                        type="object"
+                    />
+                </header>
+                <sheet>
+                    <group>
+                        <field name="name" string="Name" />
+                        <field name="all_domain_rel_ids" string="Linked Domains" />
+                        <field name="snapshot_ids" string="Audit Snapshots" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
 </odoo>

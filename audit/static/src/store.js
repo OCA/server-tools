@@ -1,5 +1,5 @@
 /** @odoo-module **/
-import { reactive } from "@odoo/owl";
+import {reactive} from "@odoo/owl";
 
 /**
  * This allows central storage of state
@@ -90,7 +90,9 @@ class Store {
      * This will submit the search to the backend, and update the relevant data
      */
     async executeSearch(api) {
-        const results = await api.orm.call("audit.snapshot", "custom_search", [this.searchString]);
+        const results = await api.orm.call("audit.snapshot", "custom_search", [
+            this.searchString,
+        ]);
         console.log(`store::executeSearch > results: `, results);
         this.numberOfPages = results.numberOfPages;
         this.searchPage = results.newPageNumber; // Deal with if we submit a page number too high

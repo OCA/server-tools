@@ -1,13 +1,9 @@
 /** @odoo-module **/
-import { Component, onWillStart, onWillUpdateProps, useState, xml } from "@odoo/owl";
-//In order to get data from our database we need a service, hence the import of useService below
-import { useService } from "@web/core/utils/hooks";
-import { store } from "../../store";
-import {
-    autoSaveQuestionChanges,
-    questionApplicable,
-    submit
-} from "./dashboard_helpers";
+import {Component, onWillStart, onWillUpdateProps, useState, xml} from "@odoo/owl";
+// In order to get data from our database we need a service, hence the import of useService below
+import {useService} from "@web/core/utils/hooks";
+import {store} from "../../store";
+import {autoSaveQuestionChanges, questionApplicable, submit} from "./dashboard_helpers";
 
 export class Snapshot extends Component {
     static template = xml`
@@ -287,7 +283,7 @@ export class Snapshot extends Component {
                 const snapshot = await this.orm.searchRead(
                     "audit.snapshot",
                     [["id", "=", this.props.data[0].snapshot_id]],
-                    [],
+                    []
                 );
                 if (snapshot) {
                     const result = snapshot[0];
@@ -318,7 +314,7 @@ export class Snapshot extends Component {
 
     async backToAuditDashboard() {
         await this.store.executeSearch(this);
-        this.props.parentState.pageName = "auditHomePage"
+        this.props.parentState.pageName = "auditHomePage";
     }
 
     convertFileToBase64 = (file) => {
@@ -338,7 +334,7 @@ export class Snapshot extends Component {
 
     convertBase64ToFile(event, question) {
         const uploadedImage = document.getElementById(question.id);
-        const blob = new Blob([event.target.files[0]], { type: "image/jpeg" });
+        const blob = new Blob([event.target.files[0]], {type: "image/jpeg"});
         const blobURL = URL.createObjectURL(blob);
         // Have to have `.style.display = block` here and not in the css else the thumbnail won't show
         uploadedImage.style.display = "block";
@@ -357,7 +353,7 @@ export class Snapshot extends Component {
 
     // Select between Applicable and Excluded for a particular question
     async questionApplicable(question) {
-        await questionApplicable(question, {orm: this.orm})
+        await questionApplicable(question, {orm: this.orm});
     }
 
     autoSaveQuestion(question, image) {
@@ -366,7 +362,7 @@ export class Snapshot extends Component {
 
     async submitSnapshot() {
         // Before we allow a submit we must check that relevant fields have been completed
-        let errors = document.querySelectorAll(".needs-validation");
+        const errors = document.querySelectorAll(".needs-validation");
         let amountOfErrors = errors.length;
 
         errors.forEach((error) => {
@@ -390,7 +386,7 @@ export class Snapshot extends Component {
                 // Refresh the search
                 this.store.resetSearchFields();
                 this.store.executeSearch({orm: this.orm});
-                // set the page of the parent component (dashboard.js) to `auditHomePage`
+                // Set the page of the parent component (dashboard.js) to `auditHomePage`
                 this.props.parentState.pageName = "auditHomePage";
             } catch (e) {
                 console.log("snapshot.js::submitSnapshot::");

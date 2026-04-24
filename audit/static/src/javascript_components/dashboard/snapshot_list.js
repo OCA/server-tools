@@ -1,9 +1,13 @@
 /** @odoo-module **/
-import { Component, useState, onWillStart, onWillUpdateProps, xml } from "@odoo/owl";
-//In order to get data from our database we need a service, hence the import of useService below
-import { useService } from "@web/core/utils/hooks";
-import {orderCurrentSnapshotInstanceData, PageComponent, prepareAllSnapshotQuestions} from "./dashboard_helpers";
-import { store } from "../../store";
+import {Component, useState, onWillStart, onWillUpdateProps, xml} from "@odoo/owl";
+// In order to get data from our database we need a service, hence the import of useService below
+import {useService} from "@web/core/utils/hooks";
+import {
+    orderCurrentSnapshotInstanceData,
+    PageComponent,
+    prepareAllSnapshotQuestions,
+} from "./dashboard_helpers";
+import {store} from "../../store";
 
 export class SnapshotList extends Component {
     static template = xml`
@@ -80,7 +84,7 @@ export class SnapshotList extends Component {
             <PageComponent pages="state.pages" currentPage="state.currentPage" />
         </div>
     `;
-    static components = { PageComponent };
+    static components = {PageComponent};
 
     store = useState(store);
 
@@ -109,18 +113,23 @@ export class SnapshotList extends Component {
 
     async viewSnapShotQuestions(snapshot) {
         // Emit event, Dashboard will pick up and handle it
-        const orderedData = await orderCurrentSnapshotInstanceData(snapshot, {orm: this.orm});
+        const orderedData = await orderCurrentSnapshotInstanceData(snapshot, {
+            orm: this.orm,
+        });
         setTimeout(() => {
-            this.props.parentState.pageData = orderedData
+            this.props.parentState.pageData = orderedData;
             this.props.parentState.pageName = "SnapShotInstance";
         }, 800);
     }
 
     async viewSnapshotSummary(snapshotInstance) {
         // Prepare the data the parent component (dashboard.js) is going to need
-        this.props.parentState.pageData = await prepareAllSnapshotQuestions([snapshotInstance], {orm: this.orm})
+        this.props.parentState.pageData = await prepareAllSnapshotQuestions(
+            [snapshotInstance],
+            {orm: this.orm}
+        );
         // Change page to 'SnapshotSummary'
-        this.props.parentState.pageName = "SnapshotSummary"
+        this.props.parentState.pageName = "SnapshotSummary";
     }
 
     showPassOrFail(snapshot) {
@@ -128,8 +137,7 @@ export class SnapshotList extends Component {
             return "PASS - ";
         } else if (snapshot.percentage_score * 100 < 85 && snapshot.locked) {
             return "FAIL - ";
-        } else {
-            return "";
         }
+        return "";
     }
 }

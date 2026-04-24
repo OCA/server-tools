@@ -1,7 +1,7 @@
 /** @odoo-module **/
-import { Component, useState, onWillStart, xml } from "@odoo/owl";
-import { useService } from "@web/core/utils/hooks";
-import { createSnapshotInstance } from "./dashboard_helpers";
+import {Component, useState, onWillStart, xml} from "@odoo/owl";
+import {useService} from "@web/core/utils/hooks";
+import {createSnapshotInstance} from "./dashboard_helpers";
 
 export class CreateSnapShot extends Component {
     static template = xml`
@@ -224,7 +224,7 @@ export class CreateSnapShot extends Component {
     }
 
     getAllDomainInstances() {
-        //return this.orm.searchRead('audit.domain', [], [])
+        // Return this.orm.searchRead('audit.domain', [], [])
         return this.orm.searchRead("audit.domain", [], []).then((result) => {
             return result.map((domain) => {
                 // Ensure target_ids is populated
@@ -246,7 +246,11 @@ export class CreateSnapShot extends Component {
 
     async getTargetIDInstances(targetIDS) {
         this.state.domainTargetNames = [];
-        const targetInstances = await this.orm.read("audit.target", targetIDS, ["name", "domain_id", "snapshot_ids"]);
+        const targetInstances = await this.orm.read("audit.target", targetIDS, [
+            "name",
+            "domain_id",
+            "snapshot_ids",
+        ]);
         targetInstances.forEach((entry) => {
             this.state.domainTargetNames.push(entry.name);
         });
@@ -258,17 +262,22 @@ export class CreateSnapShot extends Component {
         this.state.domainSectionQuestions = [];
 
         // First, get (search) the snapshot_section ids we are interested in
-        const sectionIDs = await this.orm.search("audit.snapshot_section", [["domain_id", "=", domainID]]);
+        const sectionIDs = await this.orm.search("audit.snapshot_section", [
+            ["domain_id", "=", domainID],
+        ]);
 
         // Secondly, see (read) only the attribute values we need for each snapshot_section we are interested in
-        const snapshot_sections = await this.orm.read("audit.snapshot_section", sectionIDs, [
-            "display_name",
-            "snapshot_question_ids",
-        ]);
+        const snapshot_sections = await this.orm.read(
+            "audit.snapshot_section",
+            sectionIDs,
+            ["display_name", "snapshot_question_ids"]
+        );
 
         for (const snapshot_section of snapshot_sections) {
             if (
-                !this.state.domainSectionNames.some((section) => section.sectionName === snapshot_section.display_name)
+                !this.state.domainSectionNames.some(
+                    (section) => section.sectionName === snapshot_section.display_name
+                )
             ) {
                 this.state.domainSectionNames.push({
                     sectionName: snapshot_section.display_name,
@@ -277,10 +286,11 @@ export class CreateSnapShot extends Component {
 
                 const questionIDs = snapshot_section.snapshot_question_ids;
                 if (questionIDs.length > 0) {
-                    const questions = await this.orm.read("audit.snapshot_question", questionIDs, [
-                        "prompt",
-                        "snapshot_section_id",
-                    ]);
+                    const questions = await this.orm.read(
+                        "audit.snapshot_question",
+                        questionIDs,
+                        ["prompt", "snapshot_section_id"]
+                    );
 
                     questions.forEach((question) => {
                         const question_data = {
@@ -308,8 +318,15 @@ export class CreateSnapShot extends Component {
             this.state.sectionName = "";
             // Now start adding new data
             this.state.domainName = value;
-            const domainInstance = this.state.allDomainInstances.find((element) => element.name === value);
-            const combinedTargetIDs = [...new Set([...domainInstance.target_ids, ...domainInstance.target_rel_ids])];
+            const domainInstance = this.state.allDomainInstances.find(
+                (element) => element.name === value
+            );
+            const combinedTargetIDs = [
+                ...new Set([
+                    ...domainInstance.target_ids,
+                    ...domainInstance.target_rel_ids,
+                ]),
+            ];
             // Call the relevant function to retrieve the Target instances if there were any target id's for this domain
             this.getTargetIDInstances(combinedTargetIDs);
             // Call the relevant function to retrieve the Snapshot section instances for the selected Domain
@@ -337,15 +354,19 @@ export class CreateSnapShot extends Component {
 
         // Find domain object
         const domainObject = this.state.allDomainInstances.find(
-            (domain) => domain.display_name === this.state.domainName,
+            (domain) => domain.display_name === this.state.domainName
         );
 
         // Find target object, if not found then new target to be created
-        const targetObject = this.state.allTargetInstances.find((target) => target.name === this.state.targetName);
+        const targetObject = this.state.allTargetInstances.find(
+            (target) => target.name === this.state.targetName
+        );
 
         // Find inspector object, if none, a new inspector is to be created
         const inspectorObject = this.state.allInspectorInstances.find(
-            (inspector) => inspector.forename === this.state.firstName && inspector.surname === this.state.lastName,
+            (inspector) =>
+                inspector.forename === this.state.firstName &&
+                inspector.surname === this.state.lastName
         );
 
         // Setting state data object which will be sent to the controller to create the new Snapshot Instance
@@ -361,15 +382,20 @@ export class CreateSnapShot extends Component {
         };
 
         // Call createSnapshotInstance from dashboard_helpers.js to take care of the snapshot creation
-        const newSnapshot = await createSnapshotInstance(this.state.newSnapShotData, { orm: this.orm })
+        const newSnapshot = await createSnapshotInstance(this.state.newSnapShotData, {
+            orm: this.orm,
+        });
 
         setTimeout(() => {
-                // Update the props of the `snapshot` component
-                console.log("dashboard.js::createSnapshot > state.PageData props ", newSnapshot);
-                this.state.pageData = newSnapshot;
-                // Change page to 'SnapShotInstance' to start answering the questions
-                this.state.pageName = "SnapShotInstance";
-            }, 3000);
+            // Update the props of the `snapshot` component
+            console.log(
+                "dashboard.js::createSnapshot > state.PageData props ",
+                newSnapshot
+            );
+            this.state.pageData = newSnapshot;
+            // Change page to 'SnapShotInstance' to start answering the questions
+            this.state.pageName = "SnapShotInstance";
+        }, 3000);
         // Set the correct page in the `dashboard.js/parent` component and also give it the new snapshot data
         this.props.parentState.pageData = newSnapshot;
         this.props.parentState.pageName = "SnapShotInstance";

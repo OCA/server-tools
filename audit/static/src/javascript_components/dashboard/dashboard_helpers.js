@@ -13,12 +13,14 @@ import {store} from "../../store";
 export async function orderCurrentSnapshotInstanceData(data, api) {
     const sectionsAndQuestions = [];
 
-    const sectionIDs = data[0] ? data[0].snapshot_section_ids : data.snapshot_section_ids;
+    const sectionIDs = data[0]
+        ? data[0].snapshot_section_ids
+        : data.snapshot_section_ids;
     // Find updated associated snapshot_questions for each snapshot_section_id
     const questions = await api.orm.searchRead(
         "audit.snapshot_question",
         [["snapshot_section_id", "in", sectionIDs]],
-        [],
+        []
     );
 
     // Fetch any attachments as necessary
@@ -31,21 +33,23 @@ export async function orderCurrentSnapshotInstanceData(data, api) {
             ["res_field", "=", "image"],
         ],
         // Exclude binary data fields
-        ["id", "res_id", "res_model", "res_field", "name", "mimetype", "file_size"],
+        ["id", "res_id", "res_model", "res_field", "name", "mimetype", "file_size"]
     );
     // Add number, and join attachments
     questions.forEach((question) => {
-        question["number"] = question.id;
-        question["img_src"] = null;
+        question.number = question.id;
+        question.img_src = null;
         attachments.forEach((attachment) => {
             if (attachment.res_id === question.id) {
                 // Construct the image URL using the attachment ID instead of binary data
-                question["img_src"] = `/web/image/${attachment.id}`;
+                question.img_src = `/web/image/${attachment.id}`;
             }
         });
     });
     let snapshotSectionNames = questions.map((entry) => entry.snapshot_section_id[1]);
-    snapshotSectionNames = snapshotSectionNames.filter((value, index) => snapshotSectionNames.indexOf(value) === index);
+    snapshotSectionNames = snapshotSectionNames.filter(
+        (value, index) => snapshotSectionNames.indexOf(value) === index
+    );
 
     // For each snapshot_section_name we want the questions belonging to it
     let snapshotSectionQuestions = [];
@@ -116,9 +120,14 @@ export async function createSnapshotInstance(data, api) {
 export async function submit(sectionsWithQuestions, submitSnapshot, api) {
     // If this is a submit request, first lock the snapshot
     if (submitSnapshot) {
-        await api.orm.call("audit.snapshot", "write", [sectionsWithQuestions[0].snapshot_id], {
-            vals: { locked: true },
-        });
+        await api.orm.call(
+            "audit.snapshot",
+            "write",
+            [sectionsWithQuestions[0].snapshot_id],
+            {
+                vals: {locked: true},
+            }
+        );
         return true;
     }
     return false;
@@ -132,7 +141,12 @@ export async function submit(sectionsWithQuestions, submitSnapshot, api) {
  * @returns
  */
 export async function questionApplicable(question, api) {
-    const result = await api.orm.call("audit.snapshot_question", "toggle_not_applicable", [question.id], {});
+    const result = await api.orm.call(
+        "audit.snapshot_question",
+        "toggle_not_applicable",
+        [question.id],
+        {}
+    );
     question.applicable = result.applicable;
 }
 
@@ -157,7 +171,7 @@ export async function getSectionSnapshotQuestions(section_ids, api) {
         const section_id_questions = await api.orm.searchRead(
             "audit.snapshot_question",
             [["snapshot_section_id", "=", sectionId]],
-            [],
+            []
         );
 
         if (section_id_questions) {
@@ -178,7 +192,7 @@ export async function prepareAllSnapshotQuestions(allSnapshots, api) {
     for (const snapshot of allSnapshots) {
         const sectionIds = snapshot.snapshot_section_ids;
         const questions = await getSectionSnapshotQuestions(sectionIds, api);
-        Object.assign(snapshot, { questions });
+        Object.assign(snapshot, {questions});
     }
     return allSnapshots;
 }
@@ -193,7 +207,11 @@ export async function prepareAllSnapshotQuestions(allSnapshots, api) {
 export function autoSaveQuestionChanges(question, image, api) {
     // We will update a snapshot whether it is locked or not - Sam's request
     api.orm
-        .searchRead("audit.snapshot", [["snapshot_section_ids", "in", question.snapshot_section_id[0]]], [])
+        .searchRead(
+            "audit.snapshot",
+            [["snapshot_section_ids", "in", question.snapshot_section_id[0]]],
+            []
+        )
         .then(() => {
             let new_values = {};
             // Have to do a fresh lookup of the question because we don't know if the internal `save` has been called on it

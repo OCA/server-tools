@@ -1,7 +1,7 @@
 /** @odoo-module **/
-import { Component, useState, onWillStart, onMounted, xml } from "@odoo/owl";
-import { useService } from "@web/core/utils/hooks";
-import { store } from "../../store";
+import {Component, useState, onWillStart, onMounted, xml} from "@odoo/owl";
+import {useService} from "@web/core/utils/hooks";
+import {store} from "../../store";
 
 export class SnapshotSummary extends Component {
     static template = xml`
@@ -102,12 +102,12 @@ export class SnapshotSummary extends Component {
 
     static props = {
         data: {},
-        parentState: "",  // parentState is the parents (dashboard.js) state, received here by the child component
+        parentState: "", // ParentState is the parents (dashboard.js) state, received here by the child component
     };
 
     setup() {
-        this.store = useState(store)
-        this.orm = useService("orm")
+        this.store = useState(store);
+        this.orm = useService("orm");
 
         this.state = useState({
             pageName: "SnapshotSummary",
@@ -186,7 +186,7 @@ export class SnapshotSummary extends Component {
         let totalWeight = 0;
         let totalValue = 0;
         entry.questions.forEach((question) => {
-            totalWeight += 1
+            totalWeight += 1;
             totalValue += question.value;
         });
         return ((totalValue / totalWeight) * 100).toFixed(2);
@@ -209,7 +209,7 @@ export class SnapshotSummary extends Component {
     }
 
     displayQuestionScore(question) {
-        return `${question.value * 100}%`
+        return `${question.value * 100}%`;
     }
 
     resizeImage(questionID) {

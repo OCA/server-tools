@@ -1,13 +1,16 @@
 # Audit module — technical documentation
 
-This module provides a **generic audit/checklist engine** with a **dashboard-driven workflow** to:
+This module provides a **generic audit/checklist engine** with a **dashboard-driven
+workflow** to:
 
 - design an audit (domain → sections → questions),
 - link the audit to auditable items (“targets”),
-- conduct audits and store the result as immutable-ish “snapshots” (with scoring, comments, and optional images),
+- conduct audits and store the result as immutable-ish “snapshots” (with scoring,
+  comments, and optional images),
 - browse results with search + pagination and a summary view.
 
-The backend is standard Odoo ORM models; the UI entry point is an Odoo backend client action implemented in Owl/JS.
+The backend is standard Odoo ORM models; the UI entry point is an Odoo backend client
+action implemented in Owl/JS.
 
 ## Contents
 
@@ -31,33 +34,46 @@ The backend is standard Odoo ORM models; the UI entry point is an Odoo backend c
 - **Depends on**:
   - `base`
   - `web`
-- **Backend assets**: all files under `audit/static/src/**/*` are included in `web.assets_backend`.
+- **Backend assets**: all files under `audit/static/src/**/*` are included in
+  `web.assets_backend`.
 
 ## Concepts
 
-- **Domain** (`audit.domain`): a *type/class* of audit (e.g. “Retail Store H&S”, “Warehouse Safety”, “ISO 27001”).
-- **Target** (`audit.target`): a *specific auditable item* within a domain (e.g. “Store #12”, “Warehouse Auckland”).
-- **Section** (`audit.section`): groups questions within a domain (e.g. “Fire safety”, “Staff training”).
+- **Domain** (`audit.domain`): a _type/class_ of audit (e.g. “Retail Store H&S”,
+  “Warehouse Safety”, “ISO 27001”).
+- **Target** (`audit.target`): a _specific auditable item_ within a domain (e.g. “Store
+  #12”, “Warehouse Auckland”).
+- **Section** (`audit.section`): groups questions within a domain (e.g. “Fire safety”,
+  “Staff training”).
 - **Question** (`audit.question`): a question template (prompt + answer type).
-- **Inspector** (`audit.inspector`): the person conducting the audit (can be linked to `res.partner`).
+- **Inspector** (`audit.inspector`): the person conducting the audit (can be linked to
+  `res.partner`).
 - **Team** (`audit.team`): groups inspectors; leaders can see team members’ snapshots.
-- **Snapshot** (`audit.snapshot`): a conducted audit instance for a target at a point in time.
-- **Snapshot Section** (`audit.snapshot_section`): a copy of each section template stored on a snapshot.
-- **Snapshot Question** (`audit.snapshot_question`): a copy of each question template stored on a snapshot, plus answers/comments/images.
+- **Snapshot** (`audit.snapshot`): a conducted audit instance for a target at a point in
+  time.
+- **Snapshot Section** (`audit.snapshot_section`): a copy of each section template
+  stored on a snapshot.
+- **Snapshot Question** (`audit.snapshot_question`): a copy of each question template
+  stored on a snapshot, plus answers/comments/images.
 
 ## Data model
 
 ### `audit.domain` (Audit Domain)
 
-- **Purpose**: defines an audit “template” boundary (sections, questions, and allowed targets).
+- **Purpose**: defines an audit “template” boundary (sections, questions, and allowed
+  targets).
 - **Key fields**:
   - `name` (Text)
   - `section_ids` (One2many → `audit.section`)
-  - `target_ids` (One2many → `audit.target` via `audit.target.domain_id`) — legacy/simple linkage
-  - `target_rel_ids` (Many2many → `audit.target` via relation table `audit_domain_target_rel`) — primary linkage used by UI
-  - `all_target_rel_ids` (computed/inverse Many2many) — merges `target_ids` + `target_rel_ids` for a unified UI field
+  - `target_ids` (One2many → `audit.target` via `audit.target.domain_id`) —
+    legacy/simple linkage
+  - `target_rel_ids` (Many2many → `audit.target` via relation table
+    `audit_domain_target_rel`) — primary linkage used by UI
+  - `all_target_rel_ids` (computed/inverse Many2many) — merges `target_ids` +
+    `target_rel_ids` for a unified UI field
   - **Key methods**:
-  - `action_duplicate_domain()`: duplicates a domain and deep-copies sections + questions; links existing targets to the new domain.
+  - `action_duplicate_domain()`: duplicates a domain and deep-copies sections +
+    questions; links existing targets to the new domain.
 
 ### `audit.section` (Audit Section)
 
@@ -83,14 +99,17 @@ The backend is standard Odoo ORM models; the UI entry point is an Odoo backend c
   - `name` (Text)
   - `domain_id` (Many2one → `audit.domain`, optional)
   - `domain_rel_ids` (Many2many → `audit.domain` via `audit_domain_target_rel`)
-  - `all_domain_rel_ids` (computed/inverse Many2many) — merges `domain_id` + `domain_rel_ids`
+  - `all_domain_rel_ids` (computed/inverse Many2many) — merges `domain_id` +
+    `domain_rel_ids`
   - `snapshot_ids` (One2many → `audit.snapshot`)
   - **Key methods**:
-  - `merge()`: consolidates targets with the same name by re-pointing snapshots and deleting duplicates.
+  - `merge()`: consolidates targets with the same name by re-pointing snapshots and
+    deleting duplicates.
 
 ### `audit.domain_target_rel` (Domain ↔ Target relation)
 
-- **Purpose**: intermediate model/table used by the domain/target Many2many relationship.
+- **Purpose**: intermediate model/table used by the domain/target Many2many
+  relationship.
 - **Key fields**:
   - `domain_id` (Many2one → `audit.domain`, required)
   - `target_id` (Many2one → `audit.target`, required)
@@ -124,28 +143,35 @@ The backend is standard Odoo ORM models; the UI entry point is an Odoo backend c
   - `inspector_id` (Many2one → `audit.inspector`, required)
   - `date_conducted` (Datetime, default: now)
   - `snapshot_section_ids` (One2many → `audit.snapshot_section`, required)
-  - `locked` (Boolean): UI uses this to prevent “submit” again; backend does not strictly enforce immutability
+  - `locked` (Boolean): UI uses this to prevent “submit” again; backend does not
+    strictly enforce immutability
   - `active` (Boolean): used for archive/unarchive semantics
   - `percentage_score` (Float, computed): overall score in decimal form \(0.00–1.00\)
-  - `questions_with_comments` (Integer, computed): count of snapshot questions with comments (computed only when locked)
+  - `questions_with_comments` (Integer, computed): count of snapshot questions with
+    comments (computed only when locked)
   - `team_id` (Many2one → `audit.team`, optional)
   - **Creation behavior**:
-  - `create()` is overridden to auto-generate `audit.snapshot_section` records for every `audit.section` in the chosen domain and `audit.snapshot_question` records for every `audit.question` in each section.
+  - `create()` is overridden to auto-generate `audit.snapshot_section` records for every
+    `audit.section` in the chosen domain and `audit.snapshot_question` records for every
+    `audit.question` in each section.
 
 ### `audit.snapshot_section` (Snapshot Section)
 
-- **Purpose**: stores a copy of the domain’s section structure at the time of snapshot creation.
+- **Purpose**: stores a copy of the domain’s section structure at the time of snapshot
+  creation.
 - **Key fields**:
   - `name` (Text)
   - `original_section_id` (Many2one → `audit.section`)
   - `domain_id` (Many2one → `audit.domain`, required)
   - `snapshot_id` (Many2one → `audit.snapshot`)
   - `snapshot_question_ids` (One2many → `audit.snapshot_question`)
-  - `maximum_section_score`, `actual_section_score`, `percentage_section_score` (computed)
+  - `maximum_section_score`, `actual_section_score`, `percentage_section_score`
+    (computed)
 
 ### `audit.snapshot_question` (Snapshot Question)
 
-- **Purpose**: stores a copy of each question, plus answer/comment/image fields for the specific snapshot.
+- **Purpose**: stores a copy of each question, plus answer/comment/image fields for the
+  specific snapshot.
 - **Key fields**:
   - `snapshot_id` (Many2one → `audit.snapshot`)
   - `snapshot_section_id` (Many2one → `audit.snapshot_section`, required)
@@ -156,13 +182,16 @@ The backend is standard Odoo ORM models; the UI entry point is an Odoo backend c
     - `answer_yn` (Selection): `"0"`/`"1"`
     - `answer_star` (Selection): `"1"`..`"4"`
     - `answer_perc` (Float): \(0–100\)
-  - `applicable` (Boolean, default `True`): excludes the question from snapshot maximum/actual scoring when `False`
+  - `applicable` (Boolean, default `True`): excludes the question from snapshot
+    maximum/actual scoring when `False`
   - `comment` (Text)
   - `image` (Image): can be set from the dashboard using a base64 data URL payload
   - `value` (Float, computed): normalized score used by snapshot scoring
   - **Key methods**:
-  - `toggle_not_applicable(id)`: flips `applicable` and returns `{id, applicable}` (used by the dashboard)
-  - `write(vals)`: if `image` is provided as `data:<mime>;base64,<payload>`, it strips the prefix and stores only the base64 payload.
+  - `toggle_not_applicable(id)`: flips `applicable` and returns `{id, applicable}` (used
+    by the dashboard)
+  - `write(vals)`: if `image` is provided as `data:<mime>;base64,<payload>`, it strips
+    the prefix and stores only the base64 payload.
 
 ## Security and access control
 
@@ -185,7 +214,9 @@ The backend is standard Odoo ORM models; the UI entry point is an Odoo backend c
 
 ### Menu access control (server actions)
 
-The menus for Teams/Inspectors/Snapshots/Snapshot Sections/Snapshot Questions are wired to **server actions** (`views/actions.xml`) that call methods on `audit.menu.access.control`.
+The menus for Teams/Inspectors/Snapshots/Snapshot Sections/Snapshot Questions are wired
+to **server actions** (`views/actions.xml`) that call methods on
+`audit.menu.access.control`.
 
 Those methods return an `ir.actions.act_window` with a dynamic **domain**:
 
@@ -193,7 +224,10 @@ Those methods return an `ir.actions.act_window` with a dynamic **domain**:
 - **Team leaders**: see records for inspectors in teams they lead.
 - **Non-leaders**: see only their own records.
 
-Important: this logic relies on an “inspector ↔ user” link. Parts of the implementation reference `audit.inspector.res_user_id`, which is not currently defined on `audit.inspector` in this module. See [Operational notes and known constraints](#operational-notes-and-known-constraints).
+Important: this logic relies on an “inspector ↔ user” link. Parts of the implementation
+reference `audit.inspector.res_user_id`, which is not currently defined on
+`audit.inspector` in this module. See
+[Operational notes and known constraints](#operational-notes-and-known-constraints).
 
 ## Audit lifecycle
 
@@ -205,12 +239,14 @@ Important: this logic relies on an “inspector ↔ user” link. Parts of the i
   - boolean (Yes/No)
   - integer (1–4 stars)
   - float (0–100% slider)
-- Optionally duplicate an existing domain via **Duplicate** on the domain form (deep-copies sections + questions).
+- Optionally duplicate an existing domain via **Duplicate** on the domain form
+  (deep-copies sections + questions).
 
 ### 2) Define auditable items (Targets)
 
 - Create `audit.target` records.
-- Link targets to domains using the `audit_domain_target_rel` relationship (exposed in the domain “Targets in Domain” page and target “Linked Domains” fields).
+- Link targets to domains using the `audit_domain_target_rel` relationship (exposed in
+  the domain “Targets in Domain” page and target “Linked Domains” fields).
 
 ### 3) Set up inspectors and teams
 
@@ -227,7 +263,8 @@ From **Audit Dashboard**:
 The snapshot creation process copies the current audit design into the snapshot:
 
 - `audit.snapshot_section` rows are generated from `audit.section` rows for the domain.
-- `audit.snapshot_question` rows are generated from `audit.question` rows for each section.
+- `audit.snapshot_question` rows are generated from `audit.question` rows for each
+  section.
 
 ### 5) Answer questions (auto-save)
 
@@ -238,15 +275,18 @@ In the “View Questions” screen:
   - integer → star rating dropdown (1–4)
   - float → percentage slider (0–100)
 - Comments are saved immediately when edited.
-- Images can be uploaded; the dashboard sends a base64 data URL which the backend stores.
-- A question can be toggled **Applicable / Excluded**; excluded questions are removed from overall snapshot scoring.
+- Images can be uploaded; the dashboard sends a base64 data URL which the backend
+  stores.
+- A question can be toggled **Applicable / Excluded**; excluded questions are removed
+  from overall snapshot scoring.
 
 ### 6) Submit the snapshot (lock)
 
 Submitting a snapshot sets `audit.snapshot.locked = True`.
 
 - The dashboard prevents double-submission and visually indicates locked snapshots.
-- The backend does not strictly block edits to locked snapshots; “locked” is currently used as a workflow flag rather than a hard data integrity constraint.
+- The backend does not strictly block edits to locked snapshots; “locked” is currently
+  used as a workflow flag rather than a hard data integrity constraint.
 
 ### 7) View summary
 
@@ -275,44 +315,54 @@ Implementation (current):
 
 Important: the compute currently adds all three components:
 
-\[
-value = float(answer\_yn) + \frac{float(answer\_star)}{4} + \frac{answer\_perc}{100}
-\]
+\[ value = float(answer_yn) + \frac{float(answer_star)}{4} + \frac{answer_perc}{100} \]
 
-This works as intended **only if non-selected answer fields are empty-but-coercible to 0**, and only one answer input is used per question (as enforced by the UI).
+This works as intended **only if non-selected answer fields are empty-but-coercible to
+0**, and only one answer input is used per question (as enforced by the UI).
 
 ### Snapshot overall score (`audit.snapshot.percentage_score`)
 
-- **Maximum score**: counts **applicable** snapshot questions, with a weight of 1 per question.
+- **Maximum score**: counts **applicable** snapshot questions, with a weight of 1 per
+  question.
 - **Actual score**: sum of `value` for **applicable** snapshot questions.
-- **Percentage score**: `round(actual_score / maximum_score, 2)` stored as a decimal \(0.00–1.00\).
+- **Percentage score**: `round(actual_score / maximum_score, 2)` stored as a decimal
+  \(0.00–1.00\).
 
-The dashboard displays \(percentage\_score \times 100\%\).
+The dashboard displays \(percentage_score \times 100\%\).
 
 ### Pass/Fail threshold
 
 - Backend constant: `PASS_THRESHOLD = 0.85`
-- UI uses the same effective threshold (85%) when rendering PASS/FAIL in the snapshot list.
+- UI uses the same effective threshold (85%) when rendering PASS/FAIL in the snapshot
+  list.
 
 ### Section scoring note
 
-`audit.snapshot_section` computes per-section scores, but the current implementation does **not** exclude `applicable = False` questions from section maximum/actual computations. Overall snapshot scoring does exclude them.
+`audit.snapshot_section` computes per-section scores, but the current implementation
+does **not** exclude `applicable = False` questions from section maximum/actual
+computations. Overall snapshot scoring does exclude them.
 
 ## UI / dashboard implementation
 
 ### Entry point (menu → client action)
 
 - Menu: `views/menus.xml` defines the top-level menu “Audit Dashboard”.
-- Action: `views/actions.xml` registers an `ir.actions.client` with tag `audit.dashboard`.
-- Client action: `static/src/javascript_components/dashboard/dashboard.js` registers the Owl component in the action registry.
+- Action: `views/actions.xml` registers an `ir.actions.client` with tag
+  `audit.dashboard`.
+- Client action: `static/src/javascript_components/dashboard/dashboard.js` registers the
+  Owl component in the action registry.
 
 ### Components
 
 - `AuditDashboard` (`dashboard.js`): router-like parent; switches between pages.
-- `SnapshotList` (`snapshot_list.js`): table of searched snapshots; provides buttons to view questions and summary.
-- `CreateSnapShot` (`create_snapshot.js`): selects domain/target/inspector and creates a snapshot.
-- `Snapshot` (`snapshot.js`): renders sections/questions and implements auto-save + submission.
-- `SnapshotSummary` (`snapshot_summary.js`): summary of commented questions and images for a locked snapshot.
+- `SnapshotList` (`snapshot_list.js`): table of searched snapshots; provides buttons to
+  view questions and summary.
+- `CreateSnapShot` (`create_snapshot.js`): selects domain/target/inspector and creates a
+  snapshot.
+- `Snapshot` (`snapshot.js`): renders sections/questions and implements auto-save +
+  submission.
+- `SnapshotSummary` (`snapshot_summary.js`): summary of commented questions and images
+  for a locked snapshot.
 
 ### Shared store
 
@@ -325,7 +375,8 @@ The dashboard displays \(percentage\_score \times 100\%\).
 
 ## Backend API used by the dashboard
 
-The dashboard calls backend methods using the standard `orm` service (RPC to Odoo models).
+The dashboard calls backend methods using the standard `orm` service (RPC to Odoo
+models).
 
 ### Snapshot search
 
@@ -357,17 +408,20 @@ The dashboard calls backend methods using the standard `orm` service (RPC to Odo
 The frontend typically loads questions by:
 
 - reading the snapshot (for `snapshot_section_ids`),
-- then `searchRead` on `audit.snapshot_question` for `snapshot_section_id in snapshot_section_ids`,
+- then `searchRead` on `audit.snapshot_question` for
+  `snapshot_section_id in snapshot_section_ids`,
 - then grouping by `snapshot_section_id[1]` (section display name).
 
-For image thumbnails, the UI searches `ir.attachment` records for the `audit.snapshot_question.image` field and uses `/web/image/<attachment_id>` as a URL.
+For image thumbnails, the UI searches `ir.attachment` records for the
+`audit.snapshot_question.image` field and uses `/web/image/<attachment_id>` as a URL.
 
 ### Auto-save answers/comments/images
 
 - **Method**: `audit.snapshot_question.write([id], {vals})`
 - **Called by**: `autoSaveQuestionChanges()` in `dashboard_helpers.js`
 - **Notes**:
-  - if `vals.image` is a base64 data URL, backend `write()` strips the prefix before saving.
+  - if `vals.image` is a base64 data URL, backend `write()` strips the prefix before
+    saving.
 
 ### Mark question not applicable
 
@@ -385,46 +439,59 @@ For image thumbnails, the UI searches `ir.attachment` records for the `audit.sna
 In `models/audit_snapshot.py`:
 
 - `PAGE_SIZE = 10`: number of snapshot rows per page returned by `custom_search()`
-- `PASS_THRESHOLD = 0.85`: pass/fail cutoff used by `custom_search()` filtering and the list decorations
+- `PASS_THRESHOLD = 0.85`: pass/fail cutoff used by `custom_search()` filtering and the
+  list decorations
 
 ## Operational notes and known constraints
 
-These are important when deploying or extending the module; they affect correctness and/or permissions.
+These are important when deploying or extending the module; they affect correctness
+and/or permissions.
 
 - **Inspector ↔ User linking is incomplete**
-  - Menu access control uses `audit.inspector.res_user_id`, but `audit.inspector` does not define `res_user_id` in this module.
-  - Snapshot visibility in `audit.snapshot.snapshots_per_user()` tries to locate an inspector by either `res_user_id` or `partner_id`; only `partner_id` exists here.
-  - Practical impact: non-admin users may see “no records” and/or menu actions may not filter as expected unless your deployment adds this link elsewhere.
+  - Menu access control uses `audit.inspector.res_user_id`, but `audit.inspector` does
+    not define `res_user_id` in this module.
+  - Snapshot visibility in `audit.snapshot.snapshots_per_user()` tries to locate an
+    inspector by either `res_user_id` or `partner_id`; only `partner_id` exists here.
+  - Practical impact: non-admin users may see “no records” and/or menu actions may not
+    filter as expected unless your deployment adds this link elsewhere.
 
 - **Search fields are partially implemented**
   - The frontend submits `searchDate`, but the backend does not filter by date.
-  - The backend attempts a `searchText` filter against a field named `search_text`, which is not defined on `audit.snapshot` in this module.
+  - The backend attempts a `searchText` filter against a field named `search_text`,
+    which is not defined on `audit.snapshot` in this module.
 
 - **“Locked” is a workflow flag, not a hard constraint**
   - UI disables the submit button and indicates locking state.
-  - Backend does not prevent `write()` on `audit.snapshot_question` (auto-save continues to work even if locked).
+  - Backend does not prevent `write()` on `audit.snapshot_question` (auto-save continues
+    to work even if locked).
 
 - **Section scoring differs from snapshot scoring**
   - Snapshot scoring excludes `applicable = False`.
   - Snapshot section scoring currently does not.
 
 - **Uniqueness constraints**
-  - Some models declare constraints using `models.Constraint(...)` instead of Odoo’s standard `_sql_constraints`. Depending on your Odoo version/config, the uniqueness guarantees described here may not be enforced at the database level.
+  - Some models declare constraints using `models.Constraint(...)` instead of Odoo’s
+    standard `_sql_constraints`. Depending on your Odoo version/config, the uniqueness
+    guarantees described here may not be enforced at the database level.
 
 ## Extending the module
 
 - **Add a new question answer type**
   - Backend:
     - update `audit.question.QUESTION_OPTIONS` in `models/audit_question.py`
-    - add fields and scoring logic to `audit.snapshot_question` in `models/audit_snapshot.py`
+    - add fields and scoring logic to `audit.snapshot_question` in
+      `models/audit_snapshot.py`
   - Frontend:
-    - update rendering and validation in `static/src/javascript_components/dashboard/snapshot.js`
-    - update auto-save payload generation in `static/src/javascript_components/dashboard/dashboard_helpers.js`
+    - update rendering and validation in
+      `static/src/javascript_components/dashboard/snapshot.js`
+    - update auto-save payload generation in
+      `static/src/javascript_components/dashboard/dashboard_helpers.js`
 
 - **Enforce immutability after submit**
-  - Add backend guards in `audit.snapshot_question.write()` and/or `audit.snapshot.write()` to block edits when the parent snapshot is locked (except for admin/system users).
+  - Add backend guards in `audit.snapshot_question.write()` and/or
+    `audit.snapshot.write()` to block edits when the parent snapshot is locked (except
+    for admin/system users).
 
 - **Make visibility rules robust**
-  - Add an explicit link from `audit.inspector` to `res.users` (e.g. `res_user_id`) and standardize all access-control code to use the same link.
-
-
+  - Add an explicit link from `audit.inspector` to `res.users` (e.g. `res_user_id`) and
+    standardize all access-control code to use the same link.
