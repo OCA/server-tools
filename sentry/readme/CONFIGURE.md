@@ -15,6 +15,10 @@ Below is an example of Odoo configuration file with *Odoo Sentry*
 options:
 
     [options]
+    (...)
+    server_wide_modules = web,sentry
+
+    [sentry]
     sentry_dsn = https://<public_key>:<secret_key>@sentry.example.com/<project id>
     sentry_enabled = true
     sentry_logging_level = warn

@@ -81,6 +81,10 @@ options:
 ::
 
    [options]
+   (...)
+   server_wide_modules = web,sentry
+
+   [sentry]
    sentry_dsn = https://<public_key>:<secret_key>@sentry.example.com/<project id>
    sentry_enabled = true
    sentry_logging_level = warn
@@ -110,17 +114,17 @@ are necessary.
 Known issues / Roadmap
 ======================
 
--  **No database separation** -- This module functions by intercepting
-   all Odoo logging records in a running Odoo process. This means that
-   once installed in one database, it will intercept and report errors
-   for all Odoo databases, which are used on that Odoo server.
--  **Frontend integration** -- In the future, it would be nice to add
-   Odoo client-side error reporting to this module as well, by
-   integrating `raven-js <https://github.com/getsentry/raven-js>`__.
-   Additionally, `Sentry user feedback
-   form <https://docs.sentry.io/learn/user-feedback/>`__ could be
-   integrated into the Odoo client error dialog window to allow users
-   shortly describe what they were doing when things went wrong.
+- **No database separation** -- This module functions by intercepting
+  all Odoo logging records in a running Odoo process. This means that
+  once installed in one database, it will intercept and report errors
+  for all Odoo databases, which are used on that Odoo server.
+- **Frontend integration** -- In the future, it would be nice to add
+  Odoo client-side error reporting to this module as well, by
+  integrating `raven-js <https://github.com/getsentry/raven-js>`__.
+  Additionally, `Sentry user feedback
+  form <https://docs.sentry.io/learn/user-feedback/>`__ could be
+  integrated into the Odoo client error dialog window to allow users
+  shortly describe what they were doing when things went wrong.
 
 Bug Tracker
 ===========
@@ -146,19 +150,19 @@ Authors
 Contributors
 ------------
 
--  Mohammed Barsi <barsintod@gmail.com>
--  Andrius Preimantas <andrius@versada.eu>
--  Naglis Jonaitis <naglis@versada.eu>
--  Atte Isopuro <atte.isopuro@avoin.systems>
--  Florian Mounier <florian.mounier@akretion.com>
--  Jon Ashton <jon@monkeyinferno.com>
--  Mark Schuit <mark@gig.solutions>
--  Atchuthan <atchuthan@sodexis.com>
+- Mohammed Barsi <barsintod@gmail.com>
+- Andrius Preimantas <andrius@versada.eu>
+- Naglis Jonaitis <naglis@versada.eu>
+- Atte Isopuro <atte.isopuro@avoin.systems>
+- Florian Mounier <florian.mounier@akretion.com>
+- Jon Ashton <jon@monkeyinferno.com>
+- Mark Schuit <mark@gig.solutions>
+- Atchuthan <atchuthan@sodexis.com>
 
 Other credits
 -------------
 
--  Vauxoo
+- Vauxoo
 
 Maintainers
 -----------

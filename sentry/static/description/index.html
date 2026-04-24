@@ -428,6 +428,10 @@ are:
 options:</p>
 <pre class="literal-block">
 [options]
+(...)
+server_wide_modules = web,sentry
+
+[sentry]
 sentry_dsn = https://&lt;public_key&gt;:&lt;secret_key&gt;&#64;sentry.example.com/&lt;project id&gt;
 sentry_enabled = true
 sentry_logging_level = warn
