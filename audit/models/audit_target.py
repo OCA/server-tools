@@ -154,7 +154,14 @@ class Target(models.Model):
                 if matching_target.domain_id:
                     self.link_to_domain(matching_target.domain_id.id, self.id)
                 matching_target.unlink()
-        self.domain_id = False
+        # Clear primary domain and M2M links, otherwise `write` below re-fills
+        # ``domain_id`` from ``all_domain_rel_ids`` when only ``domain_id`` is cleared.
+        self.write(
+            {
+                "domain_id": False,
+                "domain_rel_ids": [(5, 0, 0)],
+            }
+        )
 
     def write(self, vals):
         """Update domain from related fields and block duplicate target names."""
