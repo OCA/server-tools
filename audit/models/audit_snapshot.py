@@ -12,9 +12,7 @@ _logger = logging.getLogger(__name__)
 
 
 class SnapshotSection(models.Model):
-    """
-    Section copy: each `audit.section` in a domain becomes a snapshot section.
-    """
+    """Section copy: each source section in a domain becomes a snapshot section."""
 
     _name = "audit.snapshot_section"
     _description = "Copy of AuditSection"
@@ -372,11 +370,10 @@ class Snapshot(models.Model):
 
     def snapshot_percentage_score(self, snapshots: list):
         """
-        Re-run score computes for a subset of snapshot dicts.
+        Re-run score compute methods for snapshot dicts (e.g. tests, manual refresh).
 
-        For explicit invalidation; do not call from read-only RPCs: flushing
-        stored ``percentage_score`` on every list load caused concurrent
-        ``UPDATE`` storms under parallel dashboard requests.
+        Do not use from read-only list RPCs; that flushed stored fields and caused
+        concurrent update errors under parallel dashboard calls.
         """
         for snapshot in snapshots:
             # Find the snapshot object
@@ -412,10 +409,7 @@ class Snapshot(models.Model):
 
     @api.model
     def custom_search(self, search_string):
-        """
-        This helps search for audits
-        """
-        _logger.info(search_string)
+        """Search and paginate audit snapshots (read-only, no result-side writes)."""
         search_object = json.loads(search_string)
         search_query = [("active", "=", True)]
         # Search name
@@ -461,16 +455,7 @@ class Snapshot(models.Model):
     def snapshots_per_user(
         self, search_query: list, page_number: int
     ) -> tuple[list, int]:
-        """
-        Return Snapshots according to the following logic:
-
-            1. Logged-in user is an Admin user -> return all snapshots
-            2. Logged-in user is a team leader -> return snapshots done by
-               inspectors and leaders of the team leader's team
-            3. Logged-in user is not a team leader -> return snapshots for the
-               logged-in user only
-            4. Logged-in user has no team and no inspector object -> no snapshots
-        """
+        """Return snapshots for the current user (admin, team scoping, or self)."""
         logged_in_user = self.env.user
         admin_user = logged_in_user.has_group("base.group_system")
 

@@ -86,17 +86,44 @@ class Store {
         this.searchPage = 1;
     }
 
+    _searchRequestId = 0;
+    _searchInFlight = null;
+    _searchInFlightKey = null;
+
     /**
-     * This will submit the search to the backend, and update the relevant data
+     * Submit the search to the backend and update list state. Coalesces identical
+     * concurrent calls; discards responses superseded by a newer request.
      */
     async executeSearch(api) {
-        const results = await api.orm.call("audit.snapshot", "custom_search", [
-            this.searchString,
-        ]);
-        console.log(`store::executeSearch > results: `, results);
-        this.numberOfPages = results.numberOfPages;
-        this.searchPage = results.newPageNumber; // Deal with if we submit a page number too high
-        this.searchedSnapshots = results.snapshots;
+        const key = this.searchString;
+        if (this._searchInFlight && this._searchInFlightKey === key) {
+            return this._searchInFlight;
+        }
+        this._searchInFlightKey = key;
+        const orm = api?.orm;
+        if (!orm?.call) {
+            this._searchInFlightKey = null;
+            return;
+        }
+        const run = (async () => {
+            const reqId = ++this._searchRequestId;
+            const results = await orm.call("audit.snapshot", "custom_search", [key]);
+            if (reqId !== this._searchRequestId) {
+                return;
+            }
+            this.numberOfPages = results.numberOfPages;
+            this.searchPage = results.newPageNumber;
+            this.searchedSnapshots = results.snapshots;
+        })();
+        this._searchInFlight = run;
+        try {
+            await run;
+        } finally {
+            if (this._searchInFlight === run) {
+                this._searchInFlight = null;
+                this._searchInFlightKey = null;
+            }
+        }
     }
 }
 

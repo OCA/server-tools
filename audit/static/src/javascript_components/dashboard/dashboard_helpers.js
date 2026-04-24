@@ -269,7 +269,7 @@ export class PageComponent extends Component {
                 <li t-attf-class="page-item {{ store.searchPage === page ? 'active' : '' }}">
                     <a class="page-link"
                        href="#"
-                       t-on-click="updateCurrentPage(page)">
+                       t-on-click="(ev) => this.onPageNumberClick(page, ev)">
                         <t t-esc="page"/>
                     </a>
                 </li>
@@ -291,6 +291,13 @@ export class PageComponent extends Component {
     setup() {
         this.orm = useService("orm");
         this.state = useState({pageName: "SnapShotList"});
+    }
+
+    onPageNumberClick(page, ev) {
+        if (ev) {
+            ev.preventDefault();
+        }
+        this.updateCurrentPage(page);
     }
 
     updateCurrentPage(pageNumber) {
