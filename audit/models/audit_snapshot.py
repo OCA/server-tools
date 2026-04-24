@@ -4,11 +4,29 @@ import json
 import logging
 from datetime import datetime
 from math import ceil
+from zoneinfo import ZoneInfo
 
 from odoo import api, fields, models
 from odoo.exceptions import UserError
 
 _logger = logging.getLogger(__name__)
+
+
+def convert_nz_to_utc(date_str):
+    """Map YYYY-MM-DD in Pacific/Auckland to UTC day bounds (string datetimes for the domain)."""
+    time_format = "%Y-%m-%d %H:%M:%S.%f"
+    nz_tz = ZoneInfo("Pacific/Auckland")
+    utc_tz = ZoneInfo("UTC")
+    nz_start = datetime.strptime(date_str + " 00:00:00.999", time_format).replace(
+        tzinfo=nz_tz
+    )
+    nz_end = datetime.strptime(date_str + " 23:59:59.999", time_format).replace(
+        tzinfo=nz_tz
+    )
+    return {
+        "utc_start_time": nz_start.astimezone(utc_tz).strftime(time_format),
+        "utc_end_time": nz_end.astimezone(utc_tz).strftime(time_format),
+    }
 
 
 class SnapshotSection(models.Model):
@@ -146,7 +164,7 @@ class Snapshot(models.Model):
     _order = "date_conducted desc"
 
     # Maximum amount of Snapshot instances displayed on each page of the Dashboard
-    PAGE_SIZE = 10
+    PAGE_SIZE = 15
     # Score a Snapshot must achieve before it will display as `Passed`, else `Fail`
     PASS_THRESHOLD = 0.85
 
@@ -168,6 +186,7 @@ class Snapshot(models.Model):
     # Stored so `custom_search` can filter with SQL (`ilike` on computed-only fields
     # raises "not stored" in Odoo 19+).
     name = fields.Text(compute="_compute_name", store=True)
+    search_text = fields.Char(compute="_compute_search_text", store=True)
     maximum_score = fields.Float(compute="_compute_maximum_score")
     actual_score = fields.Float(compute="_compute_actual_score")
     # Overall score for each section combined; cannot exceed 100%.
@@ -317,6 +336,36 @@ class Snapshot(models.Model):
             else:
                 record.name = "Unnamed Snapshot"
 
+    @api.depends("domain_id", "target_id", "inspector_id")
+    def _compute_search_text(self):
+        for record in self:
+            try:
+                record.search_text = ""
+                if record.domain_id:
+                    domain_name = record.domain_id.name
+                    if isinstance(domain_name, bool):
+                        domain_name = str(domain_name)
+                    record.search_text += str(domain_name)
+                if record.target_id:
+                    target_name = record.target_id.name
+                    if isinstance(target_name, bool):
+                        target_name = str(target_name)
+                    record.search_text += str(target_name)
+                if record.inspector_id:
+                    inspector_name = record.inspector_id.name
+                    if isinstance(inspector_name, bool):
+                        inspector_name = str(inspector_name)
+                    record.search_text += str(inspector_name)
+            except Exception as e:
+                _logger.error(
+                    "Snapshot _compute_search_text failed for %s: %s",
+                    record.id,
+                    str(e),
+                )
+                raise UserError(
+                    f"Failed to compute search text for snapshot {record.id}: {e!s}"
+                ) from e
+
     @api.depends(
         "snapshot_section_ids",
         "snapshot_section_ids.snapshot_question_ids",
@@ -369,12 +418,7 @@ class Snapshot(models.Model):
                 )
 
     def snapshot_percentage_score(self, snapshots: list):
-        """
-        Re-run score compute methods for snapshot dicts (e.g. tests, manual refresh).
-
-        Do not use from read-only list RPCs; that flushed stored fields and caused
-        concurrent update errors under parallel dashboard calls.
-        """
+        """Recompute scores for snapshot dicts (used by custom_search and tests)."""
         for snap in snapshots:
             rec = self.env["audit.snapshot"].search([("id", "=", snap.get("id"))])
             # Recompute max and actual score so we never divide by zero
@@ -406,41 +450,41 @@ class Snapshot(models.Model):
 
     @api.model
     def custom_search(self, search_string):
-        """Search and paginate audit snapshots (read-only, no result-side writes)."""
+        """Search and paginate audit snapshots (search_text + optional date/status)."""
         search_object = json.loads(search_string)
         search_query = [("active", "=", True)]
-        # Search name
         if search_object.get("searchText"):
             search_query.append(
                 (
-                    "name",
+                    "search_text",
                     "ilike",
                     "%" + str(search_object.get("searchText")) + "%",
                 )
             )
-        # Search status
         if search_object.get("searchStatus"):
             if str(search_object.get("searchStatus")) == "PASS":
                 search_query.append(("percentage_score", ">=", self.PASS_THRESHOLD))
             elif str(search_object.get("searchStatus")) == "FAIL":
                 search_query.append(("percentage_score", "<", self.PASS_THRESHOLD))
+        if search_object.get("searchDate"):
+            utc_dates = convert_nz_to_utc(search_object.get("searchDate"))
+            search_query.append(("date_conducted", ">=", utc_dates["utc_start_time"]))
+            search_query.append(("date_conducted", "<=", utc_dates["utc_end_time"]))
 
-        # We need to make these conditions overlapping, so all must be met to filter.
         for _i in range(0, len(search_query) - 1):
             search_query.insert(0, "&")
 
-        # Get count (to compute page number)
         snapshot_count = self.env["audit.snapshot"].search_count(search_query)
         page_count = ceil(snapshot_count / self.PAGE_SIZE)
-        # If page number submitted is too high, fix that
         page_number = search_object.get("searchPage") or 1
         if page_number > page_count > 0:
             page_number = page_count
 
-        # Get data
         logged_in_user_snapshosts, logged_in_user_snapshosts_count = (
             self.snapshots_per_user(search_query=search_query, page_number=page_number)
         )
+
+        self.snapshot_percentage_score(logged_in_user_snapshosts)
 
         return {
             "snapshots": logged_in_user_snapshosts,
