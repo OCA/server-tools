@@ -11,9 +11,9 @@ _logger = logging.getLogger(__name__)
 # We can add things that can be audited here
 class Domain(models.Model):
     """
-    Domain class, every Audit must have a unique Domain.
-    This represents a class of things that can be audited.  Such as
-    retail stores, or software security.  Within a domain we can audit individual items.
+    Domain model: each audit has a unique domain.
+    This groups the kind of thing that can be audited, for example
+    retail stores or software security. Within a domain we audit individual records.
     """
 
     _name = "audit.domain"

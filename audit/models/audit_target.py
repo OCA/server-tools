@@ -37,8 +37,8 @@ class DomainTargetRel(models.Model):
 
 class Target(models.Model):
     """
-    Target class, every Audit will have one or many targets linked to its Domain.
-    A specific item within a domain that is being audited
+    Target model: an audit can have one or more targets per domain.
+    A specific business subject within a domain that is being audited.
     """
 
     _name = "audit.target"

@@ -1,8 +1,6 @@
 /** @odoo-module **/
 import {reactive} from "@odoo/owl";
 
-const SEARCH_DEBOUNCE_MS = 200;
-
 /**
  * This allows central storage of state
  */
@@ -19,6 +17,21 @@ class Store {
 
     _cacheVisibleKey = null;
     _cacheVisible = null;
+
+    _normEmpty(value) {
+        if (value === "" || value === undefined) {
+            return null;
+        }
+        return value;
+    }
+
+    _normPage(value) {
+        const p = Number(value);
+        if (Number.isFinite(p) && p >= 1) {
+            return p;
+        }
+        return 1;
+    }
 
     /**
      * A helper function to determine which pages to display by the pagination component
@@ -78,14 +91,15 @@ class Store {
     }
 
     /**
-     * This will return the string that we send to the search endpoint
+     * Stable JSON for the search RPC. Normalizes null/"" so t-model and the server
+     * do not produce a different string on every render (which caused RPC storms).
      */
     get searchString() {
         return JSON.stringify({
-            searchText: this.searchText,
-            searchDate: this.searchDate,
-            searchStatus: this.searchStatus,
-            searchPage: this.searchPage,
+            searchText: this._normEmpty(this.searchText),
+            searchDate: this._normEmpty(this.searchDate),
+            searchStatus: this._normEmpty(this.searchStatus),
+            searchPage: this._normPage(this.searchPage),
         });
     }
 
@@ -105,71 +119,22 @@ class Store {
     _searchInFlightKey = null;
     _lastServedSearchKey = null;
 
-    _searchDebounceHandle = null;
-    _pendingDebouncedApi = null;
-    _debouncedResultPromise = null;
-    _resolveDebouncedResult = null;
-
-    _clearSearchDebounce() {
-        if (this._searchDebounceHandle) {
-            clearTimeout(this._searchDebounceHandle);
-            this._searchDebounceHandle = null;
-        }
-        this._pendingDebouncedApi = null;
-        if (this._resolveDebouncedResult) {
-            this._resolveDebouncedResult();
-            this._resolveDebouncedResult = null;
-        }
-        this._debouncedResultPromise = null;
-    }
-
     /**
      * @param {object} api
-     * @param {{ immediate?: boolean }} [options] Use `immediate: true` for initial load, pagination, and
-     *  navigations where the UI must not wait for debounce; leave default for the date filter to avoid
-     *  a storm of duplicate RPCs (spurious `change` after re-renders, etc.).
+     * @param {{ force?: boolean }} [options] Pass `force: true` when the same filter key must be
+     *  refetched (e.g. returning to the dashboard after editing a snapshot).
      * Coalesces identical in-flight key; discards responses superseded by a newer request.
      */
-    async executeSearch(api, {immediate = false} = {}) {
-        if (immediate) {
-            this._clearSearchDebounce();
-            return this._doExecuteSearch(api, {fromImmediate: true});
-        }
-        this._pendingDebouncedApi = api;
-        if (!this._debouncedResultPromise) {
-            this._debouncedResultPromise = new Promise((resolve) => {
-                this._resolveDebouncedResult = resolve;
-            });
-        }
-        if (this._searchDebounceHandle) {
-            clearTimeout(this._searchDebounceHandle);
-        }
-        this._searchDebounceHandle = setTimeout(() => {
-            this._searchDebounceHandle = null;
-            const api0 = this._pendingDebouncedApi;
-            this._pendingDebouncedApi = null;
-            const resolve0 = this._resolveDebouncedResult;
-            this._resolveDebouncedResult = null;
-            this._debouncedResultPromise = null;
-            (async () => {
-                try {
-                    await this._doExecuteSearch(api0, {fromImmediate: false});
-                } finally {
-                    if (resolve0) {
-                        resolve0();
-                    }
-                }
-            })();
-        }, SEARCH_DEBOUNCE_MS);
-        return this._debouncedResultPromise;
+    async executeSearch(api, {force = false} = {}) {
+        return this._doExecuteSearch(api, {force});
     }
 
-    async _doExecuteSearch(api, {fromImmediate}) {
+    async _doExecuteSearch(api, {force}) {
         const key = this.searchString;
         if (this._searchInFlight && this._searchInFlightKey === key) {
             return this._searchInFlight;
         }
-        if (!fromImmediate && key === this._lastServedSearchKey) {
+        if (!force && key === this._lastServedSearchKey) {
             return;
         }
         this._searchInFlightKey = key;
@@ -185,9 +150,9 @@ class Store {
                 return;
             }
             this.numberOfPages = results.numberOfPages;
-            this.searchPage = results.newPageNumber;
+            this.searchPage = this._normPage(results.newPageNumber);
             this.searchedSnapshots = results.snapshots;
-            this._lastServedSearchKey = key;
+            this._lastServedSearchKey = this.searchString;
         })();
         this._searchInFlight = run;
         try {

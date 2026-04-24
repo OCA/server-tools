@@ -8,7 +8,7 @@ _logger = logging.getLogger(__name__)
 
 
 class Section(models.Model):
-    """Section class, every Audit can have many sections."""
+    """Section model: an audit has many sections."""
 
     _name = "audit.section"
     _description = "To group questions"

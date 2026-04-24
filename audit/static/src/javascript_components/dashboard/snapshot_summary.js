@@ -204,7 +204,7 @@ export class SnapshotSummary extends Component {
     }
 
     async backToAuditDashboard() {
-        await this.store.executeSearch(this, {immediate: true});
+        await this.store.executeSearch(this, {force: true});
         this.props.parentState.pageName = "auditHomePage";
     }
 

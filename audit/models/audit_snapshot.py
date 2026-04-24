@@ -142,7 +142,7 @@ class Snapshot(models.Model):
     """Records one completed audit (scores, sections, and questions) for a target."""
 
     _name = "audit.snapshot"
-    _description = "Performing an audit creates a 'snapshot' of the item being audited."
+    _description = "Performing an audit creates a snapshot of the record being audited."
     _order = "date_conducted desc"
 
     # Maximum amount of Snapshot instances displayed on each page of the Dashboard
@@ -375,16 +375,13 @@ class Snapshot(models.Model):
         Do not use from read-only list RPCs; that flushed stored fields and caused
         concurrent update errors under parallel dashboard calls.
         """
-        for snapshot in snapshots:
-            # Find the snapshot object
-            snapshot: object = self.env["audit.snapshot"].search(
-                [("id", "=", snapshot.get("id"))]
-            )
+        for snap in snapshots:
+            rec = self.env["audit.snapshot"].search([("id", "=", snap.get("id"))])
             # Recompute max and actual score so we never divide by zero
             # pylint: disable=protected-access
-            snapshot._compute_actual_score()
-            snapshot._compute_maximum_score()
-            snapshot._compute_percentage_score()
+            rec._compute_actual_score()
+            rec._compute_maximum_score()
+            rec._compute_percentage_score()
             # pylint: enable=protected-access
 
     @api.depends("snapshot_section_ids")

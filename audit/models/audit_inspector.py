@@ -8,7 +8,7 @@ _logger = logging.getLogger(__name__)
 
 
 class Inspector(models.Model):
-    """Audit Inspector class and functionality."""
+    """Inspector model: links partners and users for audit access."""
 
     _name = "audit.inspector"
     _description = "Audit Inspector"

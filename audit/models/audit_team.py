@@ -1,10 +1,10 @@
-"""Audit Team class for the Audit module."""
+"""Audit team models for the audit app."""
 
 from odoo import fields, models
 
 
 class AuditTeam(models.Model):
-    """Audit Team class for the Audit module."""
+    """Represents a team of inspectors and leaders for audits."""
 
     _name = "audit.team"
     _description = "Audit Team"

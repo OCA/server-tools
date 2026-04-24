@@ -79,7 +79,7 @@ class AuditDashboard extends Component {
         this.orm = useService("orm");
 
         onWillStart(async () => {
-            this.store.executeSearch(this, {immediate: true});
+            this.store.executeSearch(this);
         });
     }
 
