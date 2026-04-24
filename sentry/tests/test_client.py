@@ -13,8 +13,8 @@ from sentry_sdk.transport import HttpTransport
 import odoo.http
 from odoo import exceptions
 from odoo.tests import TransactionCase
-from odoo.tools import config
 
+from .. import hooks as sentry_hooks
 from ..const import to_int_if_defined
 from ..hooks import before_send, initialize_sentry
 
@@ -87,7 +87,7 @@ class TestClientSetup(TransactionCase):
                 "sentry_logging_level": "error",
             }
         )
-        self.client = initialize_sentry(config)._client
+        self.client = initialize_sentry(sentry_hooks.sentry_config)._client
         self.client.transport = InMemoryTransport({"dsn": self.dsn})
 
         # Setup our own logger so we don't flood stderr with error logs
@@ -101,11 +101,11 @@ class TestClientSetup(TransactionCase):
 
     def patch_config(self, options: dict):
         """
-        Patch Odoo's config with the given `options`, ensuring that the patch
+        Patch sentry_config with the given `options`, ensuring that the patch
         is undone when the test completes.
         """
         _config_patcher = patch.dict(
-            in_dict=config.options,
+            in_dict=sentry_hooks.sentry_config,
             values=options,
         )
         _config_patcher.start()
@@ -173,7 +173,7 @@ class TestClientSetup(TransactionCase):
                 "sentry_ignore_exceptions": "odoo.exceptions.UserError",
             }
         )
-        client = initialize_sentry(config)._client
+        client = initialize_sentry(sentry_hooks.sentry_config)._client
         client.transport = InMemoryTransport({"dsn": self.dsn})
         level, msg = logging.ERROR, "Test exception"
         try:
@@ -187,7 +187,7 @@ class TestClientSetup(TransactionCase):
     def test_capture_exceptions_with_no_exc_info(self):
         """A UserError that isn't in the DEFAULT_IGNORED_EXCEPTIONS list is captured
         (there is no exc_info in the ValidationError exception)."""
-        client = initialize_sentry(config)._client
+        client = initialize_sentry(sentry_hooks.sentry_config)._client
         client.transport = InMemoryTransport({"dsn": self.dsn})
         level, msg = logging.ERROR, "Test exception"
 
@@ -201,7 +201,7 @@ class TestClientSetup(TransactionCase):
     def test_ignore_exceptions_with_no_exc_info(self):
         """A UserError that is in the DEFAULT_IGNORED_EXCEPTIONS is not captured
         (there is no exc_info in the ValidationError exception)."""
-        client = initialize_sentry(config)._client
+        client = initialize_sentry(sentry_hooks.sentry_config)._client
         client.transport = InMemoryTransport({"dsn": self.dsn})
         level, msg = logging.ERROR, "Test exception"
 
@@ -218,7 +218,7 @@ class TestClientSetup(TransactionCase):
                 "sentry_exclude_loggers": self.logger.name,
             }
         )
-        client = initialize_sentry(config)._client
+        client = initialize_sentry(sentry_hooks.sentry_config)._client
         client.transport = InMemoryTransport({"dsn": self.dsn})
         level, msg = logging.ERROR, f"Test exclude logger {__name__}"
         self.log(level, msg)
@@ -233,7 +233,7 @@ class TestClientSetup(TransactionCase):
                 "sentry_logging_level": "foo_bar",
             }
         )
-        client = initialize_sentry(config)._client
+        client = initialize_sentry(sentry_hooks.sentry_config)._client
         client.transport = InMemoryTransport({"dsn": self.dsn})
         level, msg = logging.WARNING, "Test we use the default"
         self.log(level, msg)
@@ -246,7 +246,7 @@ class TestClientSetup(TransactionCase):
     @patch("odoo.addons.sentry.hooks.get_odoo_commit", return_value=GIT_SHA)
     def test_config_odoo_dir(self, get_odoo_commit):
         self.patch_config({"sentry_odoo_dir": "/opt/odoo/core"})
-        client = initialize_sentry(config)._client
+        client = initialize_sentry(sentry_hooks.sentry_config)._client
 
         self.assertEqual(
             client.options["release"],
@@ -262,7 +262,7 @@ class TestClientSetup(TransactionCase):
                 "sentry_release": RELEASE,
             }
         )
-        client = initialize_sentry(config)._client
+        client = initialize_sentry(sentry_hooks.sentry_config)._client
 
         self.assertEqual(
             client.options["release"],
@@ -291,7 +291,7 @@ class TestClientSetup(TransactionCase):
                 patch("odoo.addons.sentry.hooks.server", new=None),
                 patch("odoo.addons.sentry.hooks._ORIGINAL_APPLICATION_CALL", new=None),
             ):
-                initialize_sentry(config)
+                initialize_sentry(sentry_hooks.sentry_config)
             self.assertTrue(inspect.isclass(odoo.http.Application))
             self.assertIs(odoo.http.root, dummy_root)
             self.assertTrue(hasattr(odoo.http.root, "session_store"))
@@ -327,7 +327,7 @@ class TestClientSetup(TransactionCase):
                 patch("odoo.addons.sentry.hooks.server", new=dummy_server),
                 patch("odoo.addons.sentry.hooks._ORIGINAL_APPLICATION_CALL", new=None),
             ):
-                initialize_sentry(config)
+                initialize_sentry(sentry_hooks.sentry_config)
             self.assertIsInstance(dummy_server.app, SentryWsgiMiddleware)
             self.assertTrue(inspect.isclass(odoo.http.Application))
             self.assertIs(odoo.http.root, dummy_root)

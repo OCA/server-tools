@@ -4,10 +4,11 @@
 import logging
 import warnings
 from collections import abc
+from configparser import ConfigParser
 
 import odoo.http
 from odoo.service.server import server
-from odoo.tools import config as odoo_config
+from odoo.tools import config
 
 from . import const
 from .logutils import (
@@ -18,6 +19,23 @@ from .logutils import (
 )
 
 _logger = logging.getLogger(__name__)
+
+try:
+    from odoo.addons.server_environment import serv_config
+
+    if serv_config.has_section("sentry"):
+        sentry_config = serv_config["sentry"]
+    else:
+        sentry_config = {}
+except ImportError:
+    sentry_config = {}
+    cfg_path = config.get("config")
+    if cfg_path:
+        cp = ConfigParser(interpolation=None)
+        cp.read(cfg_path)
+        if cp.has_section("sentry"):
+            sentry_config = dict(cp["sentry"])
+
 HAS_SENTRY_SDK = True
 _ORIGINAL_APPLICATION_CALL = None
 try:
@@ -169,4 +187,4 @@ def initialize_sentry(config):
 
 
 def post_load():
-    initialize_sentry(odoo_config)
+    initialize_sentry(sentry_config)
