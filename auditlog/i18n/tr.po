@@ -9,20 +9,20 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-06 03:40+0000\n"
-"PO-Revision-Date: 2026-01-15 16:43+0000\n"
-"Last-Translator: Betül Öğmen <betulo@eska.biz>\n"
+"PO-Revision-Date: 2026-04-27 00:45+0000\n"
+"Last-Translator: Ediz Duman <neps1192@gmail.com>\n"
 "Language-Team: Turkish (https://www.transifex.com/oca/teams/23907/tr/)\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Weblate 5.10.4\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__action_id
 msgid "Action"
-msgstr "Eylem"
+msgstr "Aksiyon"
 
 #. module: auditlog
 #: model:ir.ui.menu,name:auditlog.menu_audit
@@ -37,23 +37,23 @@ msgstr "Denetim Günlüğü - Eski günlükleri sil"
 #. module: auditlog
 #: model:ir.model,name:auditlog.model_auditlog_http_session
 msgid "Auditlog - HTTP User session log"
-msgstr "Denetim Günlüğü - HTTP kullanıcı oturum logu"
+msgstr "Denetim Günlüğü - HTTP kullanıcı oturum günlüğü"
 
 #. module: auditlog
 #: model:ir.model,name:auditlog.model_auditlog_http_request
 msgid "Auditlog - HTTP request log"
-msgstr "Denetim Günlüğü - HTTP istek geçmişi"
+msgstr "Denetim Günlüğü - HTTP istek günlüğü"
 
 #. module: auditlog
 #: model:ir.model,name:auditlog.model_auditlog_log
 msgid "Auditlog - Log"
-msgstr "Denetim Günlüğü - geçmiş"
+msgstr "Denetim Günlüğü - Günlük"
 
 #. module: auditlog
 #: model:ir.model,name:auditlog.model_auditlog_log_line
 #: model:ir.model,name:auditlog.model_auditlog_log_line_view
 msgid "Auditlog - Log details (fields updated)"
-msgstr "Denetim Günlüğü - Günlük detatları (güncellenen alanlar) "
+msgstr "Denetim Günlüğü - Günlük detayları (güncellenen alanlar)"
 
 #. module: auditlog
 #: model:ir.model,name:auditlog.model_auditlog_rule
@@ -68,7 +68,7 @@ msgstr "Denetim Günlüğü Yöneticisi"
 #. module: auditlog
 #: model:ir.module.category,name:auditlog.security_auditlog_groups
 msgid "Auditlog Rights"
-msgstr "Denetim Günlüğü Hakları"
+msgstr "Denetim Günlüğü Yetkileri"
 
 #. module: auditlog
 #: model:res.groups,name:auditlog.group_auditlog_user
@@ -78,7 +78,7 @@ msgstr "Denetim Günlüğü Kullanıcısı"
 #. module: auditlog
 #: model:ir.actions.server,name:auditlog.ir_cron_auditlog_autovacuum_ir_actions_server
 msgid "Auto-vacuum audit logs"
-msgstr "Otomatik vakum denetim günlüğü"
+msgstr "Denetim günlüklerini otomatik temizle"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__capture_record
@@ -112,7 +112,7 @@ msgstr "Oluşturan"
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_http_request_search
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_http_session_search
 msgid "Created on"
-msgstr "Oluşturuldu"
+msgstr "Oluşturulma"
 
 #. module: auditlog
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_line_search
@@ -133,7 +133,7 @@ msgstr "Açıklama"
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__display_name
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__display_name
 msgid "Display Name"
-msgstr "Görünen İsim"
+msgstr "Görünen Ad"
 
 #. module: auditlog
 #: model:ir.model.fields.selection,name:auditlog.selection__auditlog_rule__state__draft
@@ -176,7 +176,7 @@ msgstr "Hariç Tutulacak Alanlar"
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log__line_ids
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_log_form
 msgid "Fields updated"
-msgstr "Alanlar güncellendi"
+msgstr "Güncellenen Alanlar"
 
 #. module: auditlog
 #: model:ir.model.fields.selection,name:auditlog.selection__auditlog_log__log_type__full
@@ -192,10 +192,11 @@ msgid ""
 "Fast log: only log the changes made through the create and write operations "
 "(less information, but it is faster)"
 msgstr ""
-"Tam Günlük: İşlemden önceki ve sonraki verinin farkını bulur. (hesaplanan "
-"alanlar gibi bilgileri saklar ama daha yavaş çalışır)\n"
-"Hızlı Günlük: Sadece oluştur ve yaz işlemleri ile yapılanları kaydeder. "
-"(daha az bilgi içerir ama daha hızlıdır)"
+"Tam Günlük: İşlem öncesi ve sonrası veriler arasındaki farkı bulur "
+"(güncellenen hesaplanan alanlar gibi daha fazla bilgi kaydeder, ancak daha "
+"yavaştır)\n"
+"Hızlı Günlük: Yalnızca oluşturma ve yazma işlemleriyle yapılan "
+"değişiklikleri kaydeder (daha az bilgi, ancak daha hızlıdır)"
 
 #. module: auditlog
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_http_request_search
@@ -204,7 +205,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_log_search
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_rule_search
 msgid "Group By..."
-msgstr "Grupla..."
+msgstr "Gruplandır..."
 
 #. module: auditlog
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_log_form
@@ -218,7 +219,7 @@ msgstr "HTTP Bağlamı"
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_line_search
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_log_search
 msgid "HTTP Request"
-msgstr "HTTP isteği"
+msgstr "HTTP İsteği"
 
 #. module: auditlog
 #: model:ir.actions.act_window,name:auditlog.action_auditlog_http_request_tree
@@ -227,7 +228,7 @@ msgstr "HTTP isteği"
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_http_request_search
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_http_session_form
 msgid "HTTP Requests"
-msgstr "HTTP isteği"
+msgstr "HTTP İstekleri"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_autovacuum__id
@@ -249,7 +250,7 @@ msgstr "ID"
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__write_uid
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__write_uid
 msgid "Last Updated by"
-msgstr "Son güncellendi"
+msgstr "Son Güncelleyen"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_autovacuum__write_date
@@ -260,34 +261,34 @@ msgstr "Son güncellendi"
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__write_date
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__write_date
 msgid "Last Updated on"
-msgstr "Son güncellenme"
+msgstr "Son Güncelleme"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line__log_id
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__log_id
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_log_form
 msgid "Log"
-msgstr "günlük"
+msgstr "Günlük"
 
 #. module: auditlog
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_log_form
 msgid "Log - Field updated"
-msgstr "Günlük - Güncellenen alan"
+msgstr "Günlük - Güncellenen Alan"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__log_create
 msgid "Log Creates"
-msgstr "Oluşturma günlükleri"
+msgstr "Oluşturmaları Günlükle"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__log_unlink
 msgid "Log Deletes"
-msgstr "Silme günlükleri"
+msgstr "Silmeleri Günlükle"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__log_export_data
 msgid "Log Exports"
-msgstr "Log Dışa Aktarımları"
+msgstr "Dışa Aktarma Günlükle"
 
 #. module: auditlog
 #: model:ir.actions.act_window,name:auditlog.action_auditlog_line
@@ -299,12 +300,12 @@ msgstr "Günlük Satırları"
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__log_read
 msgid "Log Reads"
-msgstr "Okuma günlükleri"
+msgstr "Okumaları Günlükle"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__log_write
 msgid "Log Writes"
-msgstr "Yazma günlükleri"
+msgstr "Yazmaları Günlükle"
 
 #. module: auditlog
 #: model:ir.actions.act_window,name:auditlog.action_auditlog_log_tree
@@ -313,13 +314,13 @@ msgstr "Yazma günlükleri"
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_http_request_form
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_log_search
 msgid "Logs"
-msgstr "günlükler"
+msgstr "Günlükler"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log__method
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__method
 msgid "Method"
-msgstr "Method"
+msgstr "Yöntem"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log__model_id
@@ -328,12 +329,12 @@ msgstr "Method"
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_line_search
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_log_search
 msgid "Model"
-msgstr "Alan"
+msgstr "Model"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__model_model
 msgid "Model Model"
-msgstr ""
+msgstr "Model Modeli"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log__model_name
@@ -348,7 +349,7 @@ msgstr "Model Adı"
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__name
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__name
 msgid "Name"
-msgstr "Adı"
+msgstr "Ad"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line__new_value
@@ -360,7 +361,7 @@ msgstr "Yeni Değer"
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line__new_value_text
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__new_value_text
 msgid "New value Text"
-msgstr "Yeni değer metni"
+msgstr "Yeni Değer Metni"
 
 #. module: auditlog
 #. odoo-python
@@ -390,7 +391,7 @@ msgstr "Eski Değer"
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line__old_value_text
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__old_value_text
 msgid "Old value Text"
-msgstr "Eski değer Metni"
+msgstr "Eski Değer Metni"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_http_request__name
@@ -401,7 +402,7 @@ msgstr "Yol"
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__res_id
 msgid "Res"
-msgstr ""
+msgstr "Kaynak"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log__res_id
@@ -413,7 +414,7 @@ msgstr "Kaynak ID"
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log__res_ids
 msgid "Resource IDs"
-msgstr ""
+msgstr "Kaynak ID"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log__name
@@ -446,7 +447,7 @@ msgstr "Günlük oluşturmak istediğiniz modeli seçin."
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule__capture_record
 msgid "Select this if you want to keep track of Unlink Record"
-msgstr "Silme kayıtlarını takip etmek için bunu seçiniz"
+msgstr "Silinen kayıtları takip etmek istiyorsanız bunu seçin"
 
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule__log_create
@@ -454,14 +455,16 @@ msgid ""
 "Select this if you want to keep track of creation on any record of the model "
 "of this rule"
 msgstr ""
-"bu modelde oluşturulan her kayıt için günlük tutmak isterseniz bunu seçin."
+"Bu kuralın modelinde oluşturulan kayıtları takip etmek istiyorsanız bunu "
+"seçin"
 
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule__log_unlink
 msgid ""
 "Select this if you want to keep track of deletion on any record of the model "
 "of this rule"
-msgstr "bu modelde silinen her kayıt için günlük tutmak isterseniz bunu seçin."
+msgstr ""
+"Bu kuralın modelinde silinen kayıtları takip etmek istiyorsanız bunu seçin"
 
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule__log_export_data
@@ -476,7 +479,8 @@ msgid ""
 "Select this if you want to keep track of modification on any record of the "
 "model of this rule"
 msgstr ""
-"bu modelde değiştirilen her kayıt için günlük tutmak isterseniz bunu seçin."
+"Bu kuralın modelinde değiştirilen kayıtları takip etmek istiyorsanız bunu "
+"seçin"
 
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule__log_read
@@ -484,7 +488,8 @@ msgid ""
 "Select this if you want to keep track of read/open on any record of the "
 "model of this rule"
 msgstr ""
-"bu modelde okunan/açılan her kayıt için günlük tutmak isterseniz bunu seçin."
+"Bu kuralın modelinde okunan/açılan kayıtları takip etmek istiyorsanız bunu "
+"seçin"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_http_request__http_session_id
@@ -507,13 +512,13 @@ msgstr "Durum"
 #. module: auditlog
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_rule_form
 msgid "Subscribe"
-msgstr "Üye ol"
+msgstr "Abone Ol"
 
 #. module: auditlog
 #: model:ir.model.fields.selection,name:auditlog.selection__auditlog_rule__state__subscribed
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_rule_search
 msgid "Subscribed"
-msgstr "Üye oldu"
+msgstr "Abone Olundu"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log__model_model
@@ -525,7 +530,7 @@ msgstr "Teknik Model Adı"
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line__field_name
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__field_name
 msgid "Technical name"
-msgstr "Teknik İsim"
+msgstr "Teknik Ad"
 
 #. module: auditlog
 #. odoo-python
@@ -545,8 +550,8 @@ msgid ""
 "There is already a rule defined on this model\n"
 "You cannot define another: please edit the existing one."
 msgstr ""
-"Bu model için zaten bir kural tanımlanmış\n"
-"başka kural tanımlayamazsınız: lütfen olan kaydı güncelleyin."
+"Bu model için zaten bir kural tanımlanmış.\n"
+"Başka bir kural tanımlayamazsınız: lütfen mevcut kuralı düzenleyin."
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log__log_type
@@ -558,7 +563,7 @@ msgstr "Tür"
 #. module: auditlog
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_rule_form
 msgid "Unsubscribe"
-msgstr "Takibi bırak"
+msgstr "Abonelikten Ayrıl"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_http_request__user_id
@@ -578,14 +583,14 @@ msgstr "Kullanıcı"
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_line_search
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_log_search
 msgid "User session"
-msgstr "Kullanıcı oturumu"
+msgstr "Kullanıcı Oturumu"
 
 #. module: auditlog
 #: model:ir.actions.act_window,name:auditlog.action_auditlog_http_session_tree
 #: model:ir.ui.menu,name:auditlog.menu_action_auditlog_http_session_tree
 #: model_terms:ir.ui.view,arch_db:auditlog.view_auditlog_http_session_search
 msgid "User sessions"
-msgstr "kullanıcı oturumları"
+msgstr "Kullanıcı Oturumları"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__user_ids
@@ -606,12 +611,12 @@ msgstr "Değerler"
 #. odoo-python
 #: code:addons/auditlog/models/rule.py:0
 msgid "View logs"
-msgstr "Günlükleri göster"
+msgstr "Günlükleri Görüntüle"
 
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule__user_ids
 msgid "if no user is added then it will applicable for all users"
-msgstr "Eğer kullanıcı eklenmediyse bütün kullanıcılar için geçerli olur"
+msgstr "Kullanıcı eklenmezse tüm kullanıcılar için geçerli olur"
 
 #~ msgid "Last Modified on"
 #~ msgstr "Son değişiklik"
