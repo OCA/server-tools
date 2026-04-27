@@ -279,9 +279,10 @@ class Snapshot(models.Model):
                 )
                 raise UserError(
                     self.env._(
-                        "Failed to compute search text for snapshot %(id)s: %(err)s"
+                        "Failed to compute search text for snapshot %s: %s",
+                        record.id,
+                        str(e),
                     )
-                    % {"id": record.id, "err": str(e)}
                 ) from e
 
     # Create snapshot sections and questions from the domain's template.
