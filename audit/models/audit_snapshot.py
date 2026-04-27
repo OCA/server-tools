@@ -1,14 +1,13 @@
 """Classes and backend functionality for Audit module"""
 
-import asyncio
-from datetime import datetime
 import json
 import logging
+from datetime import datetime
 from math import ceil
 
 import pytz
 
-from odoo import models, fields, api
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 
 _logger = logging.getLogger(__name__)
@@ -54,7 +53,7 @@ def convert_nz_to_utc(date_str):
 
 
 class SnapshotSection(models.Model):
-    """SnapshotSection class, a SnapshotSection is made from every Section of an audit."""
+    """Snapshot section: a copy of each section when an audit snapshot is created."""
 
     _name = "audit.snapshot_section"
     _description = "We copy the section at the time the audit snapshot is created"
@@ -73,8 +72,7 @@ class SnapshotSection(models.Model):
         comodel_name="audit.snapshot", string="Audit Snapshot"
     )
 
-    # If each section counts their questions correct, we can pass these up to compute overall score
-    # as well as section score
+    # If each section counts their questions, pass values up for overall and section score
     maximum_section_score = fields.Float(
         compute="_compute_maximum_section_score", store=True
     )
@@ -83,7 +81,7 @@ class SnapshotSection(models.Model):
     def _compute_maximum_section_score(self):
         for record in self:
             record.maximum_section_score = 0.0
-            for question in record.snapshot_question_ids:
+            for _question in record.snapshot_question_ids:
                 record.maximum_section_score += 1
 
     actual_section_score = fields.Float(
@@ -113,7 +111,7 @@ class SnapshotSection(models.Model):
 
 
 class SnapshotQuestion(models.Model):
-    """SnapshotQuestion class, a SnapshotQuestion is created for every Question class of an Audit."""
+    """A snapshot of each question on the audit (one per Question on the template)."""
 
     _name = "audit.snapshot_question"
     _description = "Copy of the question"
@@ -174,7 +172,7 @@ class SnapshotQuestion(models.Model):
 
 
 class Snapshot(models.Model):
-    """Snapshot class, when an Audit instance is audit, a Snapshot instance is created for that Audit."""
+    """A snapshot of an audit run: one record is created for each time an audit is performed."""
 
     _name = "audit.snapshot"
     _description = "Performing an audit creates a 'snapshot' of the item being audited."
@@ -200,12 +198,12 @@ class Snapshot(models.Model):
     name = fields.Text(compute="_compute_name")
     maximum_score = fields.Float(compute="_compute_maximum_score")
     actual_score = fields.Float(compute="_compute_actual_score")
-    # percentage_score, a combination of overall score for each section - can never be more than 100%
+    # Per-section overall score, capped in logic so it does not exceed 100%.
     percentage_score = fields.Float(compute="_compute_percentage_score", store=True)
-    # Calculate how many of the snapshot questions for this snapshot had comments added to them
+    # Count of snapshot questions on this snapshot that have a comment.
     questions_with_comments = fields.Integer(compute="_compute_questions_with_comments")
-    # Instances with status as active have not been archived
-    active = fields.Boolean("Active", default=True)
+    # Active records are not archived.
+    active = fields.Boolean(default=True)
 
     search_text = fields.Char(compute="_compute_search_text", store=True)
     team_id = fields.Many2one(
@@ -245,11 +243,11 @@ class Snapshot(models.Model):
 
     @api.depends("domain_id", "target_id")
     def _compute_search_text(self):
-        """
-        Computed property for searching might seem like a good idea until unrelated things break.
-        Please do not remove the str() conversions, this property fires during the creation
-        process of a new snapshot, it's totally unrelated, but it causes the snapshot creation
-        process to break in odoo-test and odoo-prod - Locally, no issues
+        r"""
+        Search text compute: do not remove str() conversions.
+
+        This runs during new snapshot creation; removing str() breaks snapshot creation
+        in odoo-test and odoo-prod (not reproduced locally).
         """
         for record in self:
             try:
@@ -275,22 +273,23 @@ class Snapshot(models.Model):
 
             except Exception as e:
                 _logger.error(
-                    "Snapshot::_compute_search_text > Error computing search text for record %s: %s",
+                    "Snapshot::_compute_search_text: error for record %s: %s",
                     record.id,
                     str(e),
                 )
-                # Raise the exception to make the error visible
                 raise UserError(
-                    f"Failed to compute search text for snapshot {record.id}: {str(e)}"
+                    self.env._(
+                        "Failed to compute search text for snapshot %(id)s: %(err)s"
+                    )
+                    % {"id": record.id, "err": str(e)}
                 ) from e
 
-    # What we'll do here, is, loop through all sections and questions, and copy them into the snapshot
+    # Create snapshot sections and questions from the domain's template.
     @api.model
     def create(self, vals):
         """Overriding the create function."""
-        # Handle both single dict and list of dicts
         if isinstance(vals, list):
-            # If it's a list, process the first item (should only be one for this use case)
+            # List create: use first item only (expected for this use case)
             vals = vals[0] if vals else {}
 
         # We can supply existing links
@@ -302,9 +301,9 @@ class Snapshot(models.Model):
         new_inspector_name = vals.get("new_inspector_name", None)
 
         if domain_id is None:
-            raise UserError("Must supply domain")
+            raise UserError(self.env._("Must supply domain"))
         if target_id is None and new_target_name is None:
-            raise UserError("Must supply target or target name")
+            raise UserError(self.env._("Must supply target or target name"))
         if target_id is None and new_target_name is not None:
             target = self.env["audit.target"].create(
                 {
@@ -314,7 +313,9 @@ class Snapshot(models.Model):
             )
             target_id = target.id
         if inspector_id is None and new_inspector_name is None:
-            raise UserError("Must supply inspector or inspector name")
+            raise UserError(
+                self.env._("Must supply inspector or inspector name")
+            )
         if inspector_id is None and new_inspector_name is not None:
             inspector = self.env["audit.inspector"].create(
                 {
@@ -324,14 +325,14 @@ class Snapshot(models.Model):
             )
             inspector_id = inspector.id
 
-        # Create the snapshot and then create and link snapshot_sections & snapshot_questions
-        # Get team_id from original vals, or use first available team as fallback
+        # Create snapshot, then link snapshot sections and questions.
+        # team_id: from vals, else first available team
         team_id = vals.get("team_id")
         if not team_id:
             team = self.env["audit.team"].search([], limit=1)
             team_id = team.id if team else None
 
-        new_snapshot = super(Snapshot, self).create(
+        new_snapshot = super().create(
             {
                 "domain_id": domain_id,
                 "target_id": target_id,
@@ -369,8 +370,7 @@ class Snapshot(models.Model):
                 )
 
         # pylint: disable=protected-access
-        # Snapshot sections & Snapshot questions created, calculate new snapshot's maximum score
-        # This will not get triggered by the listeners
+        # Sections and questions are created; compute max score (not from listeners)
         new_snapshot._compute_maximum_score()
         _logger.info(f"Snapshot::create > After _compute_maximum_score {new_snapshot}")
         return new_snapshot
@@ -391,10 +391,9 @@ class Snapshot(models.Model):
         "snapshot_section_ids.snapshot_question_ids.applicable",
     )
     def _compute_maximum_score(snapshots):  # pylint disable=no-self-use
-        """
-        Without you knowing, this computed property will retrieve every snapshot there is and try and compute
-        it's `maximum_score` and thus confuse itself.  Hence why this ugly looping business takes place in order
-        to avoid `Singleton` errors.
+        r"""
+        Avoid Odoo re-evaluating on all records: loop snapshots explicitly to prevent
+        Singleton errors when computing `maximum_score`.
         """
         for snapshot in snapshots:
             snapshot.maximum_score = 0
@@ -425,22 +424,22 @@ class Snapshot(models.Model):
             if snapshot.maximum_score == 0:
                 snapshot.percentage_score = 0
             else:
-                # This field is displayed by a widget, the widget converts correctly between decimal and float
+                # Shown in UI via a widget that maps decimal to float
                 snapshot.percentage_score = round(
                     (snapshot.actual_score / snapshot.maximum_score), 2
                 )
 
     def snapshot_percentage_score(self, snapshots: list):
         """
-        Combined public method of `_compute_actual_score`, `_compute_maximum_score` & `_compute_percentage_score`.
-        We trigger this from the front-end to only update the ones we want.
+        Recompute actual, max, and percentage score for the given snapshot dicts.
+        Called from the frontend to refresh only the rows in view.
         """
         for snapshot in snapshots:
             # Find the snapshot object
             snapshot: object = self.env["audit.snapshot"].search(
                 [("id", "=", snapshot.get("id"))]
             )
-            # Calculate the maximum score & actual_score for the snapshot to avoid divisions by zero
+            # Recompute scores first to avoid division by zero in percentage
             # pylint: disable=protected-access
             snapshot._compute_actual_score()
             snapshot._compute_maximum_score()
@@ -449,7 +448,7 @@ class Snapshot(models.Model):
 
     @api.depends("snapshot_section_ids")
     def _compute_questions_with_comments(snapshots):  # pylint disable=no-self-use
-        """For a Snapshot, if submitted, calculate how many of its questions had comments added to them."""
+        """If locked, count how many questions have a non-empty comment."""
         for snapshot in snapshots:
             snapshot.questions_with_comments = 0
 
@@ -467,9 +466,7 @@ class Snapshot(models.Model):
                     if snapshot_question.read()[0]["comment"]:
                         snapshot.questions_with_comments += 1
 
-    # We need a search API to help drive the frontend.  It needs to be quite flexible but also efficient.
-    # Any search will only ever return paginated data.  The parameters it gets is a stringified json object
-    # of search terms
+    # JSON search API for the dashboard: flexible filters, always paginated.
     PAGE_SIZE = 15
     PASS_THRESHOLD = 0.85
 
@@ -497,9 +494,7 @@ class Snapshot(models.Model):
             elif str(search_object.get("searchStatus")) == "FAIL":
                 search_query.append(("percentage_score", "<", self.PASS_THRESHOLD))
         if search_object.get("searchDate"):
-            # Convert to UTC start and end dates.
-            # Because NZ days start and end at midnight to midnight, so UTC equivalent is halfway
-            # between the days
+            # NZ local day [00:00, 24:00) to UTC (Pacific/Auckland).
             utc_dates = convert_nz_to_utc(search_object.get("searchDate"))
             search_query.append(("date_conducted", ">=", utc_dates["utc_start_time"]))
             search_query.append(("date_conducted", "<=", utc_dates["utc_end_time"]))
@@ -535,12 +530,11 @@ class Snapshot(models.Model):
         self, search_query: list, page_number: int
     ) -> tuple[list, int]:
         """
-        Return Snapshots according to the following logic:
-
-            1. Logged-in user is an Admin user -> return all snapshots
-            2. Logged-in user is a team leader -> return snapshots done by inspectors and leaders of the team leaders team
-            3. Logged-in user is not a team leader -> return snapshots done by the logged-in user
-            4. Logged-in user has no team and no inspector object -> return no snapshots
+        Visibility rules for snapshot search:
+        1) Admin: all active snapshots
+        2) Team leader: own team's inspectors and leaders
+        3) Other inspector: own snapshots
+        4) No inspector profile: none
         """
         logged_in_user = self.env.user
         admin_user = logged_in_user.has_group(
@@ -554,9 +548,9 @@ class Snapshot(models.Model):
                 limit=self.PAGE_SIZE,
                 offset=offset,
                 order="date_conducted desc",
-            ), self.env["audit.snapshot"].search_count(([("active", "=", True)]))
+            ), self.env["audit.snapshot"].search_count([("active", "=", True)])
 
-        # Try and find an inspector that has a res.user or res.partner object linked to the logged-in user
+        # Find inspector row for this user (res.user or partner).
         inspector = self.env["audit.inspector"].search(
             [
                 "|",
@@ -570,7 +564,13 @@ class Snapshot(models.Model):
         if not inspector:
             return [], 0
 
-        team = inspector and self.env["audit.team"].search(["|", ("team_member_ids", "in", inspector.id), ("team_leader_ids", "in", inspector.id)])
+        team = inspector and self.env["audit.team"].search(
+            [
+                "|",
+                ("team_member_ids", "in", inspector.id),
+                ("team_leader_ids", "in", inspector.id),
+            ]
+        )
         team_leader = team and team.team_leader_ids
         team_members = team and team.team_member_ids
 
@@ -588,16 +588,14 @@ class Snapshot(models.Model):
                     offset=offset,
                     order="date_conducted desc",
                 ), self.env["audit.snapshot"].search_count(
-                    (
-                        [
-                            ("active", "=", True),
-                            (
-                                "inspector_id",
-                                "in",
-                                set(team_members.ids + team_leader.ids),
-                            ),
-                        ]
-                    )
+                    [
+                        ("active", "=", True),
+                        (
+                            "inspector_id",
+                            "in",
+                            set(team_members.ids + team_leader.ids),
+                        ),
+                    ]
                 )
 
             if inspector.id not in team_leader.ids:  # Logged-in user not a team leader
@@ -607,7 +605,7 @@ class Snapshot(models.Model):
                     offset=offset,
                     order="date_conducted desc",
                 ), self.env["audit.snapshot"].search_count(
-                    ([("active", "=", True), ("inspector_id", "=", inspector.id)])
+                    [("active", "=", True), ("inspector_id", "=", inspector.id)]
                 )
 
             return [], 0
@@ -619,7 +617,7 @@ class Snapshot(models.Model):
                 offset=offset,
                 order="date_conducted desc",
             ), self.env["audit.snapshot"].search_count(
-                ([("active", "=", True), ("inspector_id", "=", inspector.id)])
+                [("active", "=", True), ("inspector_id", "=", inspector.id)]
             )
 
         return [], 0

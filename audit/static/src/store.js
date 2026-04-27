@@ -75,7 +75,9 @@ class Store {
         this.numberOfPages = results.numberOfPages;
         const returnedPage = results.newPageNumber;
         this.searchPage =
-            returnedPage != null && returnedPage > 0 ? returnedPage : 1;
+            returnedPage !== null && returnedPage !== undefined && returnedPage > 0
+                ? returnedPage
+                : 1;
         this.searchedSnapshots = results.snapshots;
     }
 }

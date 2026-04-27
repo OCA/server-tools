@@ -322,14 +322,12 @@ export class PageComponent extends Component {
 
     updateCurrentPage(pageNumber) {
         const cur = this.store.searchPage;
-        let next;
-        if (pageNumber === "previous") {
-            next = Math.max(1, cur - 1);
-        } else if (pageNumber === "next") {
-            next = Math.min(this.store.numberOfPages, cur + 1);
-        } else {
-            next = pageNumber;
-        }
+        const next =
+            pageNumber === "previous"
+                ? Math.max(1, cur - 1)
+                : pageNumber === "next"
+                  ? Math.min(this.store.numberOfPages, cur + 1)
+                  : pageNumber;
         if (next === cur) {
             return;
         }
