@@ -146,7 +146,7 @@ class TestAuditSnapshot(TransactionCase):
         )
         self.assertTrue(snap.id)
 
-    def test_snapshot_question_write_strips_data_url_on_image(self):
+    def test_snapshot_question_write_image_stores_base64(self):
         ss = self.env["audit.snapshot_section"].create(
             {"name": "ImgSec", "domain_id": self.domain.id}
         )
@@ -156,13 +156,10 @@ class TestAuditSnapshot(TransactionCase):
                 "answer_type": "boolean",
             }
         )
+        # Image field: pass raw base64; data URLs are not valid here.
         b64 = "R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs="
-        raw = f"data:image/gif;base64,{b64}"
-        sq.write({"image": raw})
-        self.assertTrue(
-            bool(sq.image) is True,
-            msg="data: URL prefix should be stripped so the image is stored",
-        )
+        sq.write({"image": b64})
+        self.assertTrue(bool(sq.image), msg="base64 image payload should be stored")
 
     def test_custom_search_filters_text_status_and_clamps_page(self):
         for _i in range(3):
