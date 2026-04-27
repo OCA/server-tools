@@ -72,7 +72,7 @@ class SnapshotSection(models.Model):
         comodel_name="audit.snapshot", string="Audit Snapshot"
     )
 
-    # If each section counts their questions, pass values up for overall and section score
+    # Section scores roll up to overall and per-section scores.
     maximum_section_score = fields.Float(
         compute="_compute_maximum_section_score", store=True
     )
@@ -172,7 +172,7 @@ class SnapshotQuestion(models.Model):
 
 
 class Snapshot(models.Model):
-    """A snapshot of an audit run: one record is created for each time an audit is performed."""
+    """One record per completed audit (a snapshot of that run)."""
 
     _name = "audit.snapshot"
     _description = "Performing an audit creates a 'snapshot' of the item being audited."
@@ -313,9 +313,7 @@ class Snapshot(models.Model):
             )
             target_id = target.id
         if inspector_id is None and new_inspector_name is None:
-            raise UserError(
-                self.env._("Must supply inspector or inspector name")
-            )
+            raise UserError(self.env._("Must supply inspector or inspector name"))
         if inspector_id is None and new_inspector_name is not None:
             inspector = self.env["audit.inspector"].create(
                 {

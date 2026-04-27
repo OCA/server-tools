@@ -254,9 +254,7 @@ export function autoSaveQuestionChanges(question, image, api) {
                         answer_yn: question.answer_yn,
                         answer_star: question.answer_star,
                         answer_perc: question.answer_perc,
-                        image: image
-                            ? imageValueForOdooWrite(image)
-                            : question.image,
+                        image: image ? imageValueForOdooWrite(image) : question.image,
                     };
 
                     api.orm.call("audit.snapshot_question", "write", [question.id], {

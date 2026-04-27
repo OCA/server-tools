@@ -1,5 +1,5 @@
 /** @odoo-module **/
-import { reactive } from "@odoo/owl";
+import {reactive} from "@odoo/owl";
 
 /**
  * This allows central storage of state
@@ -34,15 +34,7 @@ class Store {
             return [1, 2, 3, 4, 5, "...", total];
         }
         if (current >= total - 3) {
-            return [
-                1,
-                "...",
-                total - 4,
-                total - 3,
-                total - 2,
-                total - 1,
-                total,
-            ];
+            return [1, "...", total - 4, total - 3, total - 2, total - 1, total];
         }
         return [1, "...", current - 1, current, current + 1, "...", total];
     }
@@ -71,7 +63,9 @@ class Store {
      * This will submit the search to the backend, and update the relevant data
      */
     async executeSearch(api) {
-        const results = await api.orm.call("audit.snapshot", "custom_search", [this.searchString]);
+        const results = await api.orm.call("audit.snapshot", "custom_search", [
+            this.searchString,
+        ]);
         this.numberOfPages = results.numberOfPages;
         const returnedPage = results.newPageNumber;
         this.searchPage =
