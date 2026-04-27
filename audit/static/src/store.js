@@ -1,5 +1,5 @@
 /** @odoo-module **/
-import {reactive} from "@odoo/owl";
+import { reactive } from "@odoo/owl";
 
 /**
  * This allows central storage of state
@@ -15,94 +15,49 @@ class Store {
     numberOfPages = 1;
     searchedSnapshots = [];
 
-    _cacheVisibleKey = null;
-    _cacheVisible = null;
-
-    _normEmpty(value) {
-        if (value === "" || value === undefined) {
-            return null;
-        }
-        return value;
-    }
-
-    _normPage(value) {
-        const p = Number(value);
-        if (Number.isFinite(p) && p >= 1) {
-            return p;
-        }
-        return 1;
-    }
-
     /**
-     * A helper function to determine which pages to display by the pagination component
+     * Page numbers (and "..." entries) for pagination, derived from numberOfPages and searchPage.
      */
     get visiblePages() {
         const total = this.numberOfPages;
         const current = this.searchPage;
-        const k = `${total}|${current}`;
-        if (this._cacheVisibleKey === k && this._cacheVisible) {
-            return this._cacheVisible;
+        if (total < 1) {
+            return [];
         }
-
-        if (!total || total < 1) {
-            this._cacheVisibleKey = k;
-            this._cacheVisible = [];
-            return this._cacheVisible;
+        if (total === 1) {
+            return [1];
         }
-        const pages = [];
-        // Always show first page
-        pages.push(1);
-
-        // Near the start
-        if (current <= 3) {
-            for (let i = 2; i <= Math.min(3, total - 1); i++) {
-                pages.push(i);
-            }
-            if (total > 4) {
-                pages.push("...");
-            }
+        if (total <= 7) {
+            return Array.from({length: total}, (_, i) => i + 1);
         }
-        // Near the end
-        else if (current >= total - 2) {
-            if (total > 4) {
-                pages.push("...");
-            }
-            for (let i = Math.max(2, total - 2); i < total; i++) {
-                pages.push(i);
-            }
+        if (current <= 4) {
+            return [1, 2, 3, 4, 5, "...", total];
         }
-        // Middle
-        else {
-            pages.push("...");
-            pages.push(current - 1);
-            pages.push(current);
-            pages.push(current + 1);
-            pages.push("...");
+        if (current >= total - 3) {
+            return [
+                1,
+                "...",
+                total - 4,
+                total - 3,
+                total - 2,
+                total - 1,
+                total,
+            ];
         }
-
-        // Always show the last page if more than 1 page
-        if (total > 1) {
-            pages.push(total);
-        }
-
-        this._cacheVisibleKey = k;
-        this._cacheVisible = pages;
-        return pages;
+        return [1, "...", current - 1, current, current + 1, "...", total];
     }
 
     /**
-     * Stable JSON for the search RPC. Normalizes null/"" so t-model and the server
-     * do not produce a different string on every render (which caused RPC storms).
+     * This will return the string that we send to the search endpoint
      */
     get searchString() {
         return JSON.stringify({
-            searchText: this._normEmpty(this.searchText),
-            searchDate: this._normEmpty(this.searchDate),
-            searchStatus: this._normEmpty(this.searchStatus),
-            searchPage: this._normPage(this.searchPage),
+            searchText: this.searchText,
+            searchDate: this.searchDate,
+            searchStatus: this.searchStatus,
+            searchPage: this.searchPage,
         });
     }
-
     /**
      * Revert back to defaults
      */
@@ -111,58 +66,17 @@ class Store {
         this.searchDate = null;
         this.searchStatus = null;
         this.searchPage = 1;
-        this._lastServedSearchKey = null;
     }
-
-    _searchRequestId = 0;
-    _searchInFlight = null;
-    _searchInFlightKey = null;
-    _lastServedSearchKey = null;
-
     /**
-     * @param {object} api
-     * @param {{ force?: boolean }} [options] Pass `force: true` when the same filter key must be
-     *  refetched (e.g. returning to the dashboard after editing a snapshot).
-     * Coalesces identical in-flight key; discards responses superseded by a newer request.
+     * This will submit the search to the backend, and update the relevant data
      */
-    async executeSearch(api, {force = false} = {}) {
-        return this._doExecuteSearch(api, {force});
-    }
-
-    async _doExecuteSearch(api, {force}) {
-        const key = this.searchString;
-        if (this._searchInFlight && this._searchInFlightKey === key) {
-            return this._searchInFlight;
-        }
-        if (!force && key === this._lastServedSearchKey) {
-            return;
-        }
-        this._searchInFlightKey = key;
-        const orm = api?.orm;
-        if (!orm?.call) {
-            this._searchInFlightKey = null;
-            return;
-        }
-        const run = (async () => {
-            const reqId = ++this._searchRequestId;
-            const results = await orm.call("audit.snapshot", "custom_search", [key]);
-            if (reqId !== this._searchRequestId) {
-                return;
-            }
-            this.numberOfPages = results.numberOfPages;
-            this.searchPage = this._normPage(results.newPageNumber);
-            this.searchedSnapshots = results.snapshots;
-            this._lastServedSearchKey = this.searchString;
-        })();
-        this._searchInFlight = run;
-        try {
-            await run;
-        } finally {
-            if (this._searchInFlight === run) {
-                this._searchInFlight = null;
-                this._searchInFlightKey = null;
-            }
-        }
+    async executeSearch(api) {
+        const results = await api.orm.call("audit.snapshot", "custom_search", [this.searchString]);
+        this.numberOfPages = results.numberOfPages;
+        const returnedPage = results.newPageNumber;
+        this.searchPage =
+            returnedPage != null && returnedPage > 0 ? returnedPage : 1;
+        this.searchedSnapshots = results.snapshots;
     }
 }
 

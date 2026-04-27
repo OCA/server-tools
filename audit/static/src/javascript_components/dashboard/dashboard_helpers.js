@@ -198,6 +198,24 @@ export async function prepareAllSnapshotQuestions(allSnapshots, api) {
 }
 
 /**
+ * `readAsDataURL()` produces `data:<mime>;base64,<payload>`. Odoo `Image` fields expect
+ * a plain base64 string; the server rejects a full data URL.
+ * @param {string|boolean|undefined} value
+ * @returns {string|boolean|undefined}
+ */
+function imageValueForOdooWrite(value) {
+    if (!value || typeof value !== "string" || !value.startsWith("data:")) {
+        return value;
+    }
+    const marker = ";base64,";
+    const index = value.indexOf(marker);
+    if (index === -1) {
+        return value;
+    }
+    return value.slice(index + marker.length);
+}
+
+/**
  * Whenever any part of a Snapshot Question changes or is updated, the change is immediately saved.
  * The purpose of this function is to take care of auto saving Snapshot Questions.
  * @param {*} question
@@ -236,7 +254,9 @@ export function autoSaveQuestionChanges(question, image, api) {
                         answer_yn: question.answer_yn,
                         answer_star: question.answer_star,
                         answer_perc: question.answer_perc,
-                        image: image ? image : question.image,
+                        image: image
+                            ? imageValueForOdooWrite(image)
+                            : question.image,
                     };
 
                     api.orm.call("audit.snapshot_question", "write", [question.id], {
@@ -254,7 +274,7 @@ export class PageComponent extends Component {
         <!-- 'Previous' page Button-->
         <li t-attf-class="page-item {{ store.searchPage === 1 ? 'disabled' : '' }}">
           <a class="page-link"
-             t-on-click="this.updateCurrentPage('previous')">Previous</a>
+             t-on-click="() => this.updateCurrentPage('previous')">Previous</a>
         </li>
 
           <!--Not showing all pages, overflow of pages displayed as an elipse-->
@@ -279,7 +299,7 @@ export class PageComponent extends Component {
         <!-- 'Next' page Button-->
         <li t-attf-class="page-item {{ store.searchPage === store.numberOfPages ? 'disabled' : '' }}">
           <a class="page-link"
-             t-on-click="this.updateCurrentPage('next')">Next</a>
+             t-on-click="() => this.updateCurrentPage('next')">Next</a>
         </li>
       </ul>
     </nav>
@@ -301,13 +321,19 @@ export class PageComponent extends Component {
     }
 
     updateCurrentPage(pageNumber) {
+        const cur = this.store.searchPage;
+        let next;
         if (pageNumber === "previous") {
-            this.store.searchPage -= 1;
+            next = Math.max(1, cur - 1);
         } else if (pageNumber === "next") {
-            this.store.searchPage += 1;
+            next = Math.min(this.store.numberOfPages, cur + 1);
         } else {
-            this.store.searchPage = pageNumber;
+            next = pageNumber;
         }
+        if (next === cur) {
+            return;
+        }
+        this.store.searchPage = next;
         this.store.executeSearch(this);
     }
 }
