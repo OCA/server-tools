@@ -1,0 +1,66 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* rpc_helper
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2023-09-03 00:15+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: rpc_helper
+#: model:ir.model.fields,help:rpc_helper.field_ir_model__rpc_config_edit
+msgid ""
+"Configure RPC config via JSON. Value must be a list of methods to disable "
+"wrapped by a dict with key `disable`. Eg: {'disable': ['search', 'do_this']}"
+"To disable all methods, use `{'disable: ['all']}`"
+msgstr ""
+"Configurar RPC vía JSON. El valor debe ser una lista de métodos a "
+"deshabilitar envueltos por un dict con la clave `disable`. Ej: {'disable': "
+"['search', 'do_this']}Para deshabilitar todos los métodos, usa `{'disable: "
+"['all']}`"
+
+#. module: rpc_helper
+#: model:ir.model,name:rpc_helper.model_ir_model
+msgid "Models"
+msgstr "Modelos"
+
+#. module: rpc_helper
+#. odoo-python
+#: code:addons/rpc_helper/patch.py:0
+msgid "Object %s doesn't exist"
+msgstr "El objeto %s no existe"
+
+#. module: rpc_helper
+#. odoo-python
+#: code:addons/rpc_helper/patch.py:0
+msgid "RPC call on %s is not allowed"
+msgstr "La llamada RPC en %s no está permitida"
+
+#. module: rpc_helper
+#: model_terms:ir.ui.view,arch_db:rpc_helper.view_model_form
+msgid "RPC config"
+msgstr "Configuración RPC"
+
+#. module: rpc_helper
+#: model:ir.model.fields,field_description:rpc_helper.field_ir_model__rpc_config
+msgid "Rpc Config"
+msgstr "Configuración Rpc"
+
+#. module: rpc_helper
+#: model:ir.model.fields,field_description:rpc_helper.field_ir_model__rpc_config_edit
+msgid "Rpc Config Edit"
+msgstr "Editar configuración Rpc"
+
+#. module: rpc_helper
+#: model:ir.model.fields,field_description:rpc_helper.field_ir_model__smart_search
+msgid "Smart Search"
+msgstr "Búsqueda inteligente"

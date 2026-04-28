@@ -1,0 +1,59 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* rpc_helper
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: rpc_helper
+#: model:ir.model.fields,help:rpc_helper.field_ir_model__rpc_config_edit
+msgid ""
+"Configure RPC config via JSON. Value must be a list of methods to disable "
+"wrapped by a dict with key `disable`. Eg: {'disable': ['search', "
+"'do_this']}To disable all methods, use `{'disable: ['all']}`"
+msgstr ""
+
+#. module: rpc_helper
+#: model:ir.model,name:rpc_helper.model_ir_model
+msgid "Models"
+msgstr ""
+
+#. module: rpc_helper
+#. odoo-python
+#: code:addons/rpc_helper/patch.py:0
+msgid "Object %s doesn't exist"
+msgstr ""
+
+#. module: rpc_helper
+#. odoo-python
+#: code:addons/rpc_helper/patch.py:0
+msgid "RPC call on %s is not allowed"
+msgstr ""
+
+#. module: rpc_helper
+#: model_terms:ir.ui.view,arch_db:rpc_helper.view_model_form
+msgid "RPC config"
+msgstr ""
+
+#. module: rpc_helper
+#: model:ir.model.fields,field_description:rpc_helper.field_ir_model__rpc_config
+msgid "Rpc Config"
+msgstr ""
+
+#. module: rpc_helper
+#: model:ir.model.fields,field_description:rpc_helper.field_ir_model__rpc_config_edit
+msgid "Rpc Config Edit"
+msgstr ""
+
+#. module: rpc_helper
+#: model:ir.model.fields,field_description:rpc_helper.field_ir_model__smart_search
+msgid "Smart Search"
+msgstr ""
