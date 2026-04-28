@@ -42,3 +42,9 @@ class IrModel(models.Model):
     def _get_rpc_config(self, model):
         rec = self._get(model)
         return rec.rpc_config or {}
+
+    def write(self, vals):
+        res = super().write(vals)
+        if "rpc_config_edit" in vals:
+            self.env.registry.clear_cache()
+        return res

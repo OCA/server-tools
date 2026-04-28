@@ -36,9 +36,10 @@ class TestXMLRPC(common.HttpCase):
     def _rpc_call(self, method, vals=None):
         o = self.xmlrpc_object
         db_name = common.get_db_name()
-        return o.execute(
-            db_name, self.admin_uid, "admin", "res.partner", method, vals or []
-        )
+        with mute_logger("odoo.addons.rpc.controllers.xmlrpc"):
+            return o.execute(
+                db_name, self.admin_uid, "admin", "res.partner", method, vals or []
+            )
 
     def test_xmlrpc_search_normal(self):
         res = self._rpc_call("search")
