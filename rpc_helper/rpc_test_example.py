@@ -6,7 +6,7 @@ HOST = "127.0.0.1"
 PORT = 8069
 DB_NAME = "odoodb"
 
-url = "http://%s:%d/xmlrpc/2/" % (HOST, PORT)
+url = f"http://{HOST}:{PORT}/xmlrpc/2/"
 xmlrpc_common = client.ServerProxy(url + "common")
 xmlrpc_db = client.ServerProxy(url + "db")
 xmlrpc_object = client.ServerProxy(url + "object")
