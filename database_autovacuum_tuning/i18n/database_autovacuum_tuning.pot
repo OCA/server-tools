@@ -1,0 +1,122 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* database_autovacuum_tuning
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: database_autovacuum_tuning
+#: model:ir.model.fields,field_description:database_autovacuum_tuning.field_database_autovacuum_tuning__analyze_threshold
+msgid "Analyze Threshold"
+msgstr ""
+
+#. module: database_autovacuum_tuning
+#: model:ir.model.fields,field_description:database_autovacuum_tuning.field_res_config_settings__autovacuum_vacuum_analyze_max_threshold
+msgid "Autovacuum Vacuum Analyze Max Threshold"
+msgstr ""
+
+#. module: database_autovacuum_tuning
+#: model:ir.model.fields,field_description:database_autovacuum_tuning.field_res_config_settings__autovacuum_vacuum_max_threshold
+msgid "Autovacuum Vacuum Max Threshold"
+msgstr ""
+
+#. module: database_autovacuum_tuning
+#: model:ir.model,name:database_autovacuum_tuning.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: database_autovacuum_tuning
+#: model_terms:ir.ui.view,arch_db:database_autovacuum_tuning.databaseautovacuum_tuning_view_search
+msgid "Create Date"
+msgstr ""
+
+#. module: database_autovacuum_tuning
+#: model:ir.model.fields,field_description:database_autovacuum_tuning.field_database_autovacuum_tuning__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: database_autovacuum_tuning
+#: model:ir.model.fields,field_description:database_autovacuum_tuning.field_database_autovacuum_tuning__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: database_autovacuum_tuning
+#: model:ir.actions.server,name:database_autovacuum_tuning.cron_database_autovacuum_tuning_ir_actions_server
+#: model:ir.model,name:database_autovacuum_tuning.model_database_autovacuum_tuning
+#: model:ir.ui.menu,name:database_autovacuum_tuning.menu_model_autovacuum_tuning
+msgid "Database Autovacuum Tuning"
+msgstr ""
+
+#. module: database_autovacuum_tuning
+#: model:ir.actions.act_window,name:database_autovacuum_tuning.action_model_autovacuum_tuning
+msgid "Database Vacuum Tuning"
+msgstr ""
+
+#. module: database_autovacuum_tuning
+#: model:ir.model.fields,field_description:database_autovacuum_tuning.field_database_autovacuum_tuning__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: database_autovacuum_tuning
+#: model_terms:ir.ui.view,arch_db:database_autovacuum_tuning.databaseautovacuum_tuning_view_search
+msgid "Group By"
+msgstr ""
+
+#. module: database_autovacuum_tuning
+#: model:ir.model.fields,field_description:database_autovacuum_tuning.field_database_autovacuum_tuning__id
+msgid "ID"
+msgstr ""
+
+#. module: database_autovacuum_tuning
+#: model:ir.model.fields,field_description:database_autovacuum_tuning.field_database_autovacuum_tuning__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: database_autovacuum_tuning
+#: model:ir.model.fields,field_description:database_autovacuum_tuning.field_database_autovacuum_tuning__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: database_autovacuum_tuning
+#: model:ir.model.fields,field_description:database_autovacuum_tuning.field_database_autovacuum_tuning__name
+#: model_terms:ir.ui.view,arch_db:database_autovacuum_tuning.databaseautovacuum_tuning_view_search
+msgid "Name"
+msgstr ""
+
+#. module: database_autovacuum_tuning
+#: model:ir.model.fields,field_description:database_autovacuum_tuning.field_database_autovacuum_tuning__smart_search
+#: model:ir.model.fields,field_description:database_autovacuum_tuning.field_res_config_settings__smart_search
+msgid "Smart Search"
+msgstr ""
+
+#. module: database_autovacuum_tuning
+#: model:ir.model.fields,help:database_autovacuum_tuning.field_database_autovacuum_tuning__name
+msgid "Table name"
+msgstr ""
+
+#. module: database_autovacuum_tuning
+#: model_terms:ir.ui.view,arch_db:database_autovacuum_tuning.res_config_settings_view_form
+msgid ""
+"The maximum number of tuples that can be updated or deleted before a vacuum "
+"analyze is triggered."
+msgstr ""
+
+#. module: database_autovacuum_tuning
+#: model_terms:ir.ui.view,arch_db:database_autovacuum_tuning.res_config_settings_view_form
+msgid ""
+"The maximum number of tuples that can be updated or deleted before a vacuum "
+"is triggered."
+msgstr ""
+
+#. module: database_autovacuum_tuning
+#: model:ir.model.fields,field_description:database_autovacuum_tuning.field_database_autovacuum_tuning__vacuum_threshold
+msgid "Vacuum Threshold"
+msgstr ""
