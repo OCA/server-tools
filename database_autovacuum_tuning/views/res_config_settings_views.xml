@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">Database Autovacuum Tuning Settings</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base_setup.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <block name="performance" position="inside">
+                <setting
+                    name="autovacuum_vacuum_max_threshold"
+                    help="The maximum number of tuples that can be updated or deleted before a vacuum is triggered."
+                >
+                    <field name="autovacuum_vacuum_max_threshold" />
+                </setting>
+                <setting
+                    name="autovacuum_vacuum_analyze_max_threshold"
+                    help="The maximum number of tuples that can be updated or deleted before a vacuum analyze is triggered."
+                >
+                    <field name="autovacuum_vacuum_analyze_max_threshold" />
+                </setting>
+            </block>
+        </field>
+    </record>
+</odoo>
