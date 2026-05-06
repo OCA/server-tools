@@ -267,3 +267,11 @@ class TestBaseViewInheritanceExtension(TransactionCase):
             inherited_view.write(
                 {"arch": '<wraptext expr="//some/node" position="other" />'}
             )
+
+    def test_locate_failure_error_message(self):
+        """Be sure there is a helpful error message when locating nodes fails"""
+        source = etree.fromstring("<form />")
+        specs = etree.fromstring('<nonexistent position="inside" />')
+        with self.assertRaisesRegex(ValueError, "nonexistent.*parent view") as caught:
+            self.env["ir.ui.view"].apply_inheritance_specs(source, specs)
+        self.assertTrue(caught.exception.context)
