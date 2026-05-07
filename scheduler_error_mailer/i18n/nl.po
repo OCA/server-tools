@@ -6,13 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-05-07 13:13+0000\n"
+"Last-Translator: Bosd <c5e2fd43-d292-4c90-9d1f-74ff3436329a@anonaddy.me>\n"
 "Language-Team: none\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: scheduler_error_mailer
 #: model:mail.template,body_html:scheduler_error_mailer.scheduler_error_mailer
@@ -48,45 +50,48 @@ msgstr ""
 #. module: scheduler_error_mailer
 #: model:ir.model.fields,field_description:scheduler_error_mailer.field_ir_cron__assigned_attachment_ids
 msgid "Assigned Attachments"
-msgstr ""
+msgstr "Toegewezen bijlagen"
 
 #. module: scheduler_error_mailer
 #: model:ir.model.fields,field_description:scheduler_error_mailer.field_ir_cron__email_template_id
 msgid "Error E-mail Template"
-msgstr ""
+msgstr "E-mailsjabloon voor fouten"
 
 #. module: scheduler_error_mailer
 #: model:ir.model,name:scheduler_error_mailer.model_ir_cron
 msgid "Scheduled Actions"
-msgstr ""
+msgstr "Geplande acties"
 
 #. module: scheduler_error_mailer
 #: model:mail.template,name:scheduler_error_mailer.scheduler_error_mailer
 msgid "Scheduler Error"
-msgstr ""
+msgstr "Fout in geplande actie"
 
 #. module: scheduler_error_mailer
 #: model:ir.model.fields,help:scheduler_error_mailer.field_ir_cron__email_template_id
 msgid "Select the email template that will be sent when this scheduler fails."
 msgstr ""
+"Selecteer het e-mailsjabloon dat wordt verzonden wanneer deze geplande actie "
+"mislukt."
 
 #. module: scheduler_error_mailer
 #: model:ir.model.fields,field_description:scheduler_error_mailer.field_ir_cron__smart_search
 msgid "Smart Search"
-msgstr ""
+msgstr "Slim zoeken"
 
 #. module: scheduler_error_mailer
 #. odoo-python
 #: code:addons/scheduler_error_mailer/models/ir_cron.py:0
 msgid "Task failure with UID = %(uid)d."
-msgstr ""
+msgstr "Taak mislukt met UID = %(uid)d."
 
 #. module: scheduler_error_mailer
 #: model:ir.actions.server,name:scheduler_error_mailer.test_scheduler_error_mailer_ir_actions_server
 msgid "Test Scheduler Error Mailer"
-msgstr ""
+msgstr "Test 'Scheduler Error Mailer'"
 
 #. module: scheduler_error_mailer
 #: model:mail.template,subject:scheduler_error_mailer.scheduler_error_mailer
 msgid "[DB {{ctx.get('dbname')}}] Scheduler '{{object.name or ''}}' FAILED"
 msgstr ""
+"[DB {{ctx.get('dbname')}}] Geplande actie '{{object.name or ''}}' MISLUKT"
