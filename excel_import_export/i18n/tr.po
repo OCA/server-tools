@@ -6,13 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-05-08 09:45+0000\n"
+"Last-Translator: Betül Öğmen <betulo@eska.biz>\n"
 "Language-Team: none\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -23,7 +25,7 @@ msgstr ""
 #. odoo-python
 #: code:addons/excel_import_export/models/common.py:0
 msgid "'%s' sheet not found"
-msgstr ""
+msgstr "'%s' sayfa bulunamadı"
 
 #. module: excel_import_export
 #: model:ir.model.fields,help:excel_import_export.field_export_xlsx_wizard__state
@@ -33,11 +35,13 @@ msgid ""
 "* Choose: wizard show in user selection mode\n"
 "* Get: wizard show results from user action"
 msgstr ""
+"* Seç: sihirbaz kullanıcı seçim modunda göster\n"
+"* Al: sihirbaz kullanıcı eyleminden sonuçları gösterir"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "<b>Cell</b>: Location of data in excel sheet (e.g., A1, B1, ...)"
-msgstr ""
+msgstr "<b>Bölüm</b>: Excel sayfasındaki verilerin konumu (e.g., A1, B1, ...)"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -45,6 +49,8 @@ msgid ""
 "<b>Continue</b>: If not selected, start rolling with specified first row "
 "cells. If selected, continue from previous one2many field"
 msgstr ""
+"<b>Devam Et</b>: Seçili değilse, belirtilen ilk satır bölümleriyle "
+"yuvarlamaya başla. Seçiliyse, önceki one2many alanından devam et"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -52,6 +58,8 @@ msgid ""
 "<b>Extend</b>: If selected, extend one row after one data row in order to "
 "preserve the sum line"
 msgstr ""
+"<b>Genişlet</b>: Seçiliyse, toplam satırını korumak için bir veri satırından "
+"sonra bir satırı genişlet"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -74,7 +82,7 @@ msgstr ""
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "<b>Field</b>: Field of the record to be imported to, e.g., product_id"
-msgstr ""
+msgstr "<b>Alan</b>: İçeri aktarılacak kaydın alanı, örneğin, product_id"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -82,6 +90,8 @@ msgid ""
 "<b>Field</b>: Field of the record, e.g., product_id.uom_id.name. They are "
 "orm compliant."
 msgstr ""
+"<b>Alan</b>: Kaydın Alanı, örneğin, product_id.uom_id.name. Bunlar orm "
+"uyumludur."
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -89,11 +99,13 @@ msgid ""
 "<b>No Delete</b>: By default, all one2many lines will be deleted before "
 "import. Select this, to avoid deletion"
 msgstr ""
+"<b>Silme Olmasın</b>: Varsayılan olarak, bütün one2many satırları içe "
+"aktarmadan önce silinecektir. Silinmeyi önlemek için, bunu seçin"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "<b>Note:</b>"
-msgstr ""
+msgstr "<b>Notlar:</b>"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -101,6 +113,8 @@ msgid ""
 "<b>Row Field</b>: Use _HEAD_ for the record itself, and one2many field "
 "(e.g., line_ids) for row data"
 msgstr ""
+"<b>Satır Alanı</b>: Kaydın kendisi için _HEAD_ ve satır verileri için "
+"one2many alanı (e.g., line_ids) kullanın"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -109,11 +123,17 @@ msgid ""
 "row data, e.g., order_line, line_ids<code>[max_row]</code> where "
 "<code>[max_row]</code> is optional number of rows to import"
 msgstr ""
+"<b>Satır Alanı</b>: Kaydın kendisi için _HEAD_, ve satır verileri için "
+"one2many alanını kullanın, örneğin, order_line, line_ids<code>[max_row]</"
+"code> where <code>[max_row]</code> içe aktarılacak satırların isteğe bağlı "
+"sayısıdır"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "<b>Sheet</b>: Name (e.g., Sheet 1) or index (e.g., 1) of excel sheet"
 msgstr ""
+"<b>Sayfa</b>: Excel sayfasının İsmi (örneğin, Sayfa 1) veya indeksi "
+"(örneğin, 1)"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -121,6 +141,8 @@ msgid ""
 "<b>Sheet</b>: Name (e.g., Sheet 1) or index (e.g., 1) of excel sheet to "
 "export data to"
 msgstr ""
+"<b>Sayfa</b>: Verilerin aktarılacağı excel sayfasının adı (örneğin, Sayfa 1) "
+"veya indeksi (e.g., 1)"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -207,27 +229,27 @@ msgstr ""
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "Add Export Action"
-msgstr ""
+msgstr "Dışa Aktarma İşlemi Ekle"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "Add Import Action"
-msgstr ""
+msgstr "İçe Aktarma İşlemi Ekle"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "Add Report Menu"
-msgstr ""
+msgstr "Rapor Menüsü Ekle"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "Add data column"
-msgstr ""
+msgstr "Veri sütunu ekle"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "Add header section"
-msgstr ""
+msgstr "Veri başlığı ekle"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
