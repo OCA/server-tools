@@ -4,6 +4,7 @@ from unittest import mock
 
 from odoo_test_helper import FakeModelLoader
 
+from odoo.exceptions import UserError
 from odoo.tests import TransactionCase
 
 
@@ -121,8 +122,7 @@ class TestAbstractUrl(TransactionCase, FakeModelLoader):
             mocked_redirect.assert_called_once()
 
     def test_update_twice_write_once(self):
-        (
-            """"
+        """
         When we update twice the same record, the write method should be called
         only once. This is important because for example, by default, in
         shopinvader_search_engine_update, when the method write is called,
@@ -133,8 +133,6 @@ class TestAbstractUrl(TransactionCase, FakeModelLoader):
         method make a write on the record, the record will end up with the
         state to_recompute.
         """
-            ""
-        )
 
         # we mock the write method to check the number of call but we want the
         # method to be executed
@@ -144,3 +142,17 @@ class TestAbstractUrl(TransactionCase, FakeModelLoader):
             self.product._update_url_key("global", "en_US")
             self.product._update_url_key("global", "en_US")
             mocked_write.assert_called_once()
+
+    def test_update_url_key_not_existing(self):
+        self.env["url.url"].create(
+            {
+                "manual": True,
+                "key": "my-product",
+                "lang_id": self.lang_en.id,
+                "res_id": self.env.ref("base.partner_demo").id,
+                "res_model": "res.partner",
+                "referential": "global",
+            }
+        )
+        with self.assertRaisesRegex(UserError, "Url_key already exists in other model"):
+            self.product._update_url_key("global", "en_US")

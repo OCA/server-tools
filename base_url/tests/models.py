@@ -7,6 +7,7 @@ from odoo import fields, models
 class FakeProduct(models.Model):
     _inherit = ["abstract.url"]
     _name = "fake.product"
+    _description = "Fake Product"
 
     code = fields.Char()
     name = fields.Char(translate=True)
