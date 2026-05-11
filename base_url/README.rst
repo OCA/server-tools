@@ -28,22 +28,48 @@ Base Url
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-The aim of the module is to provide a generic mixin for building url on
-record.
+The aim of this module is to provide a generic mixin for building urls
+on records.
 
-Natively odoo implementation of url is based on having an "id" in the
-url, this module provide an alternative way of doing. Url are generated
-and stored in an uniq table (to ensure unicity). Redirection are also
-managed.
+The native odoo implementation of a record url is based on having an
+"id" in the url, this module provides an alternative way of doing it.
+Urls are generated and stored in an unique table (to ensure unicity).
+Redirections are also managed in case of url changes.
 
-This project was initial build for shopinvader as we need to have uniq
-url for the connected webshop. But this concept can be reuse in other
-case and even replace the odoo url implementation.
+This project was initial build for shopinvader as we need to have unique
+url for the connected webshop. But this concept can be reused in other
+cases and even replace the odoo url implementation.
 
 **Table of contents**
 
 .. contents::
    :local:
+
+Development
+===========
+
+To use this module, you need to inherit the ``abstract.url`` model and
+override the ``_get_keyword_fields`` method to include your custom url
+fields. By default, the ``_get_keyword_fields`` method returns the
+record ``name``.
+
+Here is an example of how to override the ``_get_keyword_fields`` method
+to include the ``default_code`` field for ``product.template`` records:
+
+.. code:: python
+
+
+   class ProductTemplate(models.Model):
+       _inherit = ["product.template", "abstract.url"]
+       _name = "product.template"
+
+       def _get_keyword_fields(self):
+           return super()._get_keyword_fields() + ["default_code"]
+
+Your product template records will now have an ``url_key`` field that is
+generated from the ``name`` and ``default_code`` fields and a
+``redirect_url_key`` field that will contain a list of redirect URLs
+(old ``url_key`` field values).
 
 Bug Tracker
 ===========
@@ -69,6 +95,7 @@ Contributors
 
 - Sebastien Beau sebastien.beau@akretion.com
 - Laurent Mignon laurent.mignon@acsone.eu
+- Florian Mounier florian.mounier@akretion.com
 
 Maintainers
 -----------

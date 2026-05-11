@@ -20,5 +20,6 @@ class FakeProduct(models.Model):
 
 class FakeCateg(models.Model):
     _name = "fake.categ"
+    _description = "Fake Category"
 
     name = fields.Char()

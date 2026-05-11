@@ -1,24 +1,17 @@
-#    Copyright (C) 2016 Akretion (http://www.akretion.com)
-#    @author EBII MonsieurB <monsieurb@saaslys.com>
+# Copyright (C) 2016 Akretion (http://www.akretion.com)
+# @author EBII MonsieurB <monsieurb@saaslys.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import logging
 
 from lxml import etree
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
-
-from odoo.addons.base_sparse_field.models.fields import Serialized
 
 DEFAULT_LANG = "en_US"
 
 _logger = logging.getLogger(__name__)
-
-try:
-    from slugify import slugify
-except ImportError:
-    _logger.debug("Cannot `import slugify`.")
 
 
 SMART_BUTTON = """
@@ -44,8 +37,9 @@ class AbstractUrl(models.AbstractModel):
     )
     count_url = fields.Integer(compute="_compute_count_url")
     url_key = fields.Char(compute="_compute_url_key")
-    redirect_url_key = Serialized(
-        compute="_compute_url_key", string="Redirect Url Keys"
+    redirect_url_key = fields.Json(
+        compute="_compute_url_key",
+        string="Redirect Url Keys",
     )
 
     def _compute_count_url(self):
@@ -104,7 +98,7 @@ class AbstractUrl(models.AbstractModel):
             return value
 
         self.ensure_one()
-        return slugify(
+        return self.env["ir.http"]._slugify(
             "-".join([get(self, k) for k in self._get_keyword_fields() if get(self, k)])
         )
 
@@ -191,8 +185,8 @@ class AbstractUrl(models.AbstractModel):
                 self._reuse_url(existing_url)
             else:
                 raise UserError(
-                    _(
-                        "Url_key already exists in other model\n"
+                    self.env._(
+                        "Url Key already exists in other model\n"
                         "- Model name: %(model_name)s\n"
                         "- Record ID: %(record_id)s\n"
                         "- Url Key: %(url_key)s\n"

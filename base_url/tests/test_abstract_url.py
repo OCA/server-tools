@@ -29,6 +29,7 @@ class TestAbstractUrl(TransactionCase, FakeModelLoader):
 
     def _expect_url_for_lang(self, lang, url_key):
         self.assertEqual(self.product._get_main_url("global", lang).key, url_key)
+        self.assertEqual(self.product.with_context(lang=lang).url_key, url_key)
 
     def tearDown(self):
         self.loader.restore_registry()
@@ -67,6 +68,18 @@ class TestAbstractUrl(TransactionCase, FakeModelLoader):
         redirects = self.product._get_redirect_urls("global", "fr_FR")
         self.assertEqual(len(redirects), 1)
         self._expect_url_for_lang("fr_FR", "mon-produit-1234")
+        self.assertEqual(
+            self.product.with_context(lang="en_US").redirect_url_key,
+            [
+                "my-product",
+            ],
+        )
+        self.assertEqual(
+            self.product.with_context(lang="fr_FR").redirect_url_key,
+            [
+                "mon-produit",
+            ],
+        )
 
     def test_update_translatable_field(self):
         self.product._update_url_key("global", "en_US")
@@ -154,5 +167,5 @@ class TestAbstractUrl(TransactionCase, FakeModelLoader):
                 "referential": "global",
             }
         )
-        with self.assertRaisesRegex(UserError, "Url_key already exists in other model"):
+        with self.assertRaisesRegex(UserError, "Url Key already exists in other model"):
             self.product._update_url_key("global", "en_US")
