@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_remote_odoo_instance_admin,remote.odoo.instance admin,model_remote_odoo_instance,base.group_system,1,1,1,1
+access_remote_odoo_instance_user,remote.odoo.instance user,model_remote_odoo_instance,base.group_user,1,0,0,0
+access_remote_odoo_match_config_admin,remote.odoo.match.config admin,model_remote_odoo_match_config,base.group_system,1,1,1,1
+access_remote_odoo_match_config_user,remote.odoo.match.config user,model_remote_odoo_match_config,base.group_user,1,0,0,0
+access_remote_odoo_export_wizard,remote.odoo.export.wizard,model_remote_odoo_export_wizard,base.group_user,1,1,1,1
