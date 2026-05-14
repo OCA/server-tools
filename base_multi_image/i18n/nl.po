@@ -9,47 +9,50 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-01 02:10+0000\n"
-"PO-Revision-Date: 2017-12-01 02:10+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2026-05-14 14:45+0000\n"
+"Last-Translator: Bosd <c5e2fd43-d292-4c90-9d1f-74ff3436329a@anonaddy.me>\n"
 "Language-Team: Dutch (https://www.transifex.com/oca/teams/23907/nl/)\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: base_multi_image
 #: model:ir.model,name:base_multi_image.model_base_multi_image_owner
 msgid " Wizard for base multi image "
-msgstr ""
+msgstr " Wizard voor basis multi-afbeeldingen "
 
 #. module: base_multi_image
 #: model:ir.model,name:base_multi_image.model_base_multi_image_image
 msgid " image model for multiple image functionality "
-msgstr ""
+msgstr " afbeeldingsmodel voor multi-afbeelding functionaliteit "
 
 #. module: base_multi_image
 #: code:addons/base_multi_image/models/image.py:0
 #: model:ir.model.constraint,message:base_multi_image.constraint_base_multi_image_image_uniq_name_owner
 #, python-format
 msgid "A document can have only one image with the same name."
-msgstr ""
+msgstr "Een document kan slechts één afbeelding met dezelfde naam hebben."
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__attachment_id
 msgid "Attachment"
-msgstr ""
+msgstr "Bijlage"
 
 #. module: base_multi_image
 #: model_terms:ir.actions.act_window,help:base_multi_image.image_action
 msgid "Click to add an image attached to an specific record."
 msgstr ""
+"Klik om een afbeelding toe te voegen die is gekoppeld aan een specifiek "
+"record."
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__comments
 #: model_terms:ir.ui.view,arch_db:base_multi_image.image_form_view
 msgid "Comments"
-msgstr ""
+msgstr "Opmerkingen"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__create_uid
@@ -64,32 +67,32 @@ msgstr "Aangemaakt op"
 #. module: base_multi_image
 #: model:ir.model.fields.selection,name:base_multi_image.selection__base_multi_image_image__storage__db
 msgid "Database"
-msgstr ""
+msgstr "Database"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__display_name
 msgid "Display Name"
-msgstr "Te tonen naam"
+msgstr "Schermnaam"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__extension
 msgid "File extension"
-msgstr ""
+msgstr "Bestandsextensie"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__filename
 msgid "Filename"
-msgstr ""
+msgstr "Bestandsnaam"
 
 #. module: base_multi_image
 #: model:ir.model.fields.selection,name:base_multi_image.selection__base_multi_image_image__storage__filestore
 msgid "Filestore"
-msgstr ""
+msgstr "Bestandsopslag"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__image_main
 msgid "Full-sized image"
-msgstr ""
+msgstr "Volledige afbeelding"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__id
@@ -99,33 +102,33 @@ msgstr "ID"
 #. module: base_multi_image
 #: model_terms:ir.ui.view,arch_db:base_multi_image.image_form_view
 msgid "Image"
-msgstr ""
+msgstr "Afbeelding"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__path
 #: model:ir.model.fields,help:base_multi_image.field_base_multi_image_image__path
 msgid "Image path"
-msgstr ""
+msgstr "Afbeeldingspad"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__url
 msgid "Image remote URL"
-msgstr ""
+msgstr "Externe afbeeldings-URL"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__file_db_store
 msgid "Image stored in database"
-msgstr ""
+msgstr "Afbeelding opgeslagen in database"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__name
 msgid "Image title"
-msgstr ""
+msgstr "Afbeeldingstitel"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_owner__image_ids
 msgid "Images"
-msgstr ""
+msgstr "Afbeeldingen"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image____last_update
@@ -147,17 +150,17 @@ msgstr "Laatst bijgewerkt op"
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_owner__image_main
 #, python-format
 msgid "Main image"
-msgstr ""
+msgstr "Hoofdafbeelding"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_owner__image_main_medium
 msgid "Medium image"
-msgstr ""
+msgstr "Middelgrote afbeelding"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__image_medium
 msgid "Medium-sized image"
-msgstr ""
+msgstr "Middelgrote afbeelding"
 
 #. module: base_multi_image
 #: model:ir.model.fields,help:base_multi_image.field_base_multi_image_image__image_medium
@@ -171,7 +174,7 @@ msgstr ""
 #: model:ir.actions.act_window,name:base_multi_image.image_action
 #: model:ir.ui.menu,name:base_multi_image.image_menu
 msgid "Multi images"
-msgstr ""
+msgstr "Multi-afbeeldingen"
 
 #. module: base_multi_image
 #: model_terms:ir.ui.view,arch_db:base_multi_image.image_form_view
@@ -181,48 +184,48 @@ msgstr "Naam"
 #. module: base_multi_image
 #: model:ir.model.fields.selection,name:base_multi_image.selection__base_multi_image_image__storage__file
 msgid "OS file"
-msgstr ""
+msgstr "Besturingssysteembestand"
 
 #. module: base_multi_image
 #: model_terms:ir.ui.view,arch_db:base_multi_image.image_form_view
 msgid "Options"
-msgstr ""
+msgstr "Opties"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__owner_id
 #: model_terms:ir.ui.view,arch_db:base_multi_image.image_form_view
 msgid "Owner"
-msgstr ""
+msgstr "Eigenaar"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__owner_model
 msgid "Owner Model"
-msgstr ""
+msgstr "Eigenaarmodel"
 
 #. module: base_multi_image
 #: model_terms:ir.ui.view,arch_db:base_multi_image.image_form_view
 msgid "Preview"
-msgstr ""
+msgstr "Voorbeeld"
 
 #. module: base_multi_image
 #: model_terms:ir.ui.view,arch_db:base_multi_image.image_kanban_view
 msgid "Product Images"
-msgstr ""
+msgstr "Productafbeeldingen"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__owner_ref_id
 msgid "Referenced Owner"
-msgstr ""
+msgstr "Gerefereerde eigenaar"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__sequence
 msgid "Sequence"
-msgstr "Reeks"
+msgstr "Volgorde"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__show_technical
 msgid "Show Technical"
-msgstr ""
+msgstr "Toon technische details"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_owner__image_main_small
@@ -244,24 +247,24 @@ msgstr ""
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__storage
 msgid "Storage"
-msgstr ""
+msgstr "Opslag"
 
 #. module: base_multi_image
 #: model:ir.model.fields.selection,name:base_multi_image.selection__base_multi_image_image__storage__url
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #. module: base_multi_image
 #: code:addons/base_multi_image/models/image.py:0
 #, python-format
 msgid "You must provide a file path for the image."
-msgstr ""
+msgstr "U moet een bestandspad opgeven voor de afbeelding."
 
 #. module: base_multi_image
 #: code:addons/base_multi_image/models/image.py:0
 #, python-format
 msgid "You must provide an URL for the image."
-msgstr ""
+msgstr "U moet een URL opgeven voor de afbeelding."
 
 #. module: base_multi_image
 #: code:addons/base_multi_image/models/image.py:0
