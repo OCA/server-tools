@@ -76,9 +76,30 @@ class TestRemote(HttpCase):
         data1["password"] = "Failure!"
         self.assertFalse(
             self.xmlrpc_common.authenticate(
-                self.env.cr.dbname, data1["login"], data1["password"], {}
+                self.env.cr.dbname, data1["login"], data1["password"]
             )
         )
         with self.cursor() as cr:
             env = self.env(cr)
             self.assertTrue(env["res.remote"].search([("ip", "=", self.remote_addr)]))
+
+    def test_auth_check_remote_no_http_context(self, *args):
+        """_auth_check_remote must not crash when remote is empty.
+
+        When there is no HTTP context (e.g. some RPC paths), ``Base.remote``
+        returns an empty recordset. ``ResUsers._auth_check_remote`` must
+        tolerate this and allow authentication to proceed.
+        """
+
+        # Patch ``Base.remote`` to return an empty recordset for all calls
+        Base = self.env["base"].__class__
+        original_remote = Base.remote
+        try:
+            Base.remote = property(lambda self: self.env["res.remote"])
+            result = self.env["res.users"]._auth_check_remote(
+                None,
+                lambda: True,
+            )
+            self.assertTrue(result)
+        finally:
+            Base.remote = original_remote
