@@ -76,7 +76,7 @@ class TestRemote(HttpCase):
         data1["password"] = "Failure!"
         self.assertFalse(
             self.xmlrpc_common.authenticate(
-                self.env.cr.dbname, data1["login"], data1["password"]
+                self.env.cr.dbname, data1["login"], data1["password"], {}
             )
         )
         with self.cursor() as cr:
