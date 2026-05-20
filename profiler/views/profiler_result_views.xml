@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Camptocamp SA
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <!-- list View -->
+    <record id="view_profiler_result_list" model="ir.ui.view">
+        <field name="name">profiler.result.list</field>
+        <field name="model">profiler.result</field>
+        <field name="arch" type="xml">
+            <list string="Profiler Results">
+                <field name="create_date" />
+                <field name="name" />
+                <field name="duration" widget="float_time" />
+                <field name="user_id" />
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_profiler_result_form" model="ir.ui.view">
+        <field name="name">profiler.result.form</field>
+        <field name="model">profiler.result</field>
+        <field name="arch" type="xml">
+            <form string="Profiler Result">
+                <header>
+                    <button
+                        name="action_download_pstats"
+                        string="Download .pstats"
+                        type="object"
+                        class="btn-primary"
+                        invisible="not stats_binary"
+                    />
+                    <button
+                        name="action_download_callgrind"
+                        string="Download callgrind"
+                        type="object"
+                        invisible="not stats_callgrind"
+                    />
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" />
+                            <field name="duration" widget="float_time" />
+                        </group>
+                        <group>
+                            <field name="create_date" />
+                            <field name="user_id" />
+                            <field name="stats_binary" invisible="1" />
+                            <field name="stats_callgrind" invisible="1" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Flamegraph" name="flamegraph">
+                            <field name="flamegraph_html" widget="html" nolabel="1" />
+                        </page>
+                        <page string="Raw Statistics" name="raw_stats">
+                            <group string="Profile Statistics">
+                                <field name="stats_text" widget="text" nolabel="1" />
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_profiler_result_search" model="ir.ui.view">
+        <field name="name">profiler.result.search</field>
+        <field name="model">profiler.result</field>
+        <field name="arch" type="xml">
+            <search string="Profiler Results">
+                <field name="name" />
+                <field name="user_id" />
+                <filter
+                    string="Today"
+                    name="today"
+                    domain="[('create_date', '&gt;=', datetime.datetime.now().replace(hour=0, minute=0, second=0))]"
+                />
+                <filter
+                    string="Last 7 Days"
+                    name="last_7_days"
+                    domain="[('create_date', '&gt;=', (datetime.datetime.now() - datetime.timedelta(days=7)).strftime('%Y-%m-%d'))]"
+                />
+                <group expand="0" string="Group By">
+                    <filter
+                        string="Function"
+                        name="group_by_name"
+                        context="{'group_by': 'name'}"
+                    />
+                    <filter
+                        string="User"
+                        name="group_by_user"
+                        context="{'group_by': 'user_id'}"
+                    />
+                    <filter
+                        string="Date"
+                        name="group_by_date"
+                        context="{'group_by': 'create_date:day'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_profiler_result" model="ir.actions.act_window">
+        <field name="name">Profiler Results</field>
+        <field name="res_model">profiler.result</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_last_7_days': 1}</field>
+    </record>
+
+    <!-- Menu -->
+
+    <menuitem
+        id="menu_profiler_results"
+        name="Profiler Results"
+        parent="profiler.menu_profiler_root"
+        action="action_profiler_result"
+        sequence="10"
+    />
+
+    <!-- Qweb Templates for Flamegraph rendering -->
+    <template id="flamegraph_error">
+        <div
+            style="padding: 20px; background-color: #fff3cd;
+            border: 1px solid #ffc107; border-radius: 4px;"
+        >
+            <h4>⚠️ Flamegraph Generation Failed</h4>
+            <p>Flameprof encountered an error processing this profile
+            data.
+            This is a known limitation with certain
+            profiling data structures.</p>
+            <details>
+                <summary>Error Details</summary>
+                <pre
+                    style="background: #f5f5f5; padding: 10px;
+                overflow-x: auto;"
+                >
+                    <t t-out="error_message" />
+                </pre>
+            </details>
+            <p><strong>Alternative:</strong>
+            Use the <em>Download .pstats</em>
+            button and visualize with external tools:</p>
+            <ul>
+                <li>
+                    <code>gprof2dot -f pstats profile.pstats
+                | dot -Tpng -o output.png</code>
+                </li>
+                <li>
+                    <code>snakeviz profile.pstats</code>
+                </li>
+            </ul>
+        </div>
+    </template>
+
+    <template id="flameprof_not_installed">
+        <div
+            style="padding: 20px; background-color: #f8d7da;
+            border: 1px solid #f5c6cb; border-radius: 4px;"
+        >
+            <h4>❌ Flameprof Not Installed</h4>
+            <p>The <code>flameprof</code> package is not installed
+            in your environment.</p>
+            <p>
+                <strong>To enable flamegraphs, install it:</strong>
+            </p>
+            <pre style="background: #f5f5f5; padding: 10px;">
+                pip install flameprof
+            </pre>
+            <p>
+                <strong>Alternative:</strong>
+                Use the <em>Download .pstats</em> button and visualize with
+                other tools like gprof2dot or snakeviz.
+            </p>
+        </div>
+    </template>
+
+    <template id="flamegraph_png">
+        <style>
+            .flamegraph-wrapper {
+                width: 100%;
+                overflow: auto;
+                background: #ffffff;
+                border: 1px solid #ddd;
+                padding: 20px;
+                box-sizing: border-box;
+            }
+            .flamegraph-wrapper img {
+                display: block;
+                max-width: 100%;
+                height: auto;
+            }
+        </style>
+        <div class="flamegraph-wrapper">
+            <img t-att-src="'data:image/png;base64,' + png_data" alt="Flamegraph" />
+        </div>
+    </template>
+
+    <template id="flamegraph_svg">
+        <style>
+            .flamegraph-wrapper {
+                width: 100%;
+                min-height: 800px;
+                overflow: auto;
+                background: #ffffff;
+                border: 1px solid #ddd;
+                padding: 20px;
+                box-sizing: border-box;
+            }
+            .flamegraph-wrapper svg {
+                display: block;
+                max-width: 100%;
+                height: auto;
+            }
+            .flamegraph-wrapper .func_g {
+                cursor: pointer;
+            }
+        </style>
+        <div class="flamegraph-wrapper">
+            <t t-raw="svg_content" />
+        </div>
+    </template>
+</odoo>

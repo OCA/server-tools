@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Camptocamp SA
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <!-- list View -->
+    <record id="view_profiler_report_list" model="ir.ui.view">
+        <field name="name">profiler.report.list</field>
+        <field name="model">profiler.report</field>
+        <field name="arch" type="xml">
+            <list
+                string="Profiler Statistics"
+                create="false"
+                edit="false"
+                delete="false"
+            >
+                <field name="name" />
+                <field name="p95" widget="float_time" />
+                <field name="p99" widget="float_time" />
+                <field name="count" />
+            </list>
+        </field>
+    </record>
+
+    <!-- Graph View -->
+    <record id="view_profiler_report_graph" model="ir.ui.view">
+        <field name="name">profiler.report.graph</field>
+        <field name="model">profiler.report</field>
+        <field name="arch" type="xml">
+            <graph string="Profiler Statistics" type="bar">
+                <field name="name" />
+                <field name="p95" type="measure" />
+                <field name="p99" type="measure" />
+            </graph>
+        </field>
+    </record>
+
+    <!-- Pivot View -->
+    <record id="view_profiler_report_pivot" model="ir.ui.view">
+        <field name="name">profiler.report.pivot</field>
+        <field name="model">profiler.report</field>
+        <field name="arch" type="xml">
+            <pivot string="Profiler Statistics">
+                <field name="name" type="row" />
+                <field name="count" type="measure" />
+                <field name="p95" type="measure" />
+                <field name="p99" type="measure" />
+            </pivot>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_profiler_report_search" model="ir.ui.view">
+        <field name="name">profiler.report.search</field>
+        <field name="model">profiler.report</field>
+        <field name="arch" type="xml">
+            <search string="Profiler Statistics">
+                <filter
+                    string="Last Hour"
+                    name="time_delta_1h"
+                    domain="[]"
+                    context="{'time_delta': '01:00:00'}"
+                />
+                <filter
+                    string="Last 6 Hours"
+                    name="time_delta_6h"
+                    domain="[]"
+                    context="{'time_delta': '06:00:00'}"
+                />
+                <filter
+                    string="Last 12 Hours"
+                    name="time_delta_12h"
+                    domain="[]"
+                    context="{'time_delta': '12:00:00'}"
+                />
+                <filter
+                    string="Last 24 Hours"
+                    name="time_delta_24h"
+                    domain="[]"
+                    context="{'time_delta': '24:00:00'}"
+                />
+                <filter
+                    string="Last 7 Days"
+                    name="time_delta_7d"
+                    domain="[]"
+                    context="{'time_delta': '168:00:00'}"
+                />
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_profiler_report" model="ir.actions.act_window">
+        <field name="name">Profiler Statistics</field>
+        <field name="res_model">profiler.report</field>
+        <field name="view_mode">graph,pivot,list</field>
+        <field
+            name="context"
+        >{'create': False, 'edit': False, 'delete': False, 'time_delta': '24:00:00', 'search_default_time_delta_24h': 1}</field>
+    </record>
+
+    <!-- Menu -->
+    <menuitem
+        id="menu_profiler_statistics"
+        name="Statistics Report"
+        parent="profiler.menu_profiler_root"
+        action="action_profiler_report"
+        sequence="20"
+    />
+</odoo>

@@ -1,6 +1,8 @@
 # generated from manifests external_dependencies
+cairosvg
 cryptography
 dataclasses
+flameprof
 odoo_test_helper
 odoorpc
 openpyxl
@@ -10,3 +12,4 @@ pygount
 pysftp
 sentry_sdk>=2.0.0,<=2.22.0
 unittest-xml-reporting
+yappi

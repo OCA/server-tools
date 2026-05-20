@@ -1,0 +1,2 @@
+This module aims to help profle code executed in Odoo, and to analyze the results of the profiling. It is based on yappi profiler, which is a Python profiler that supports multi-threading and multi-processing.
+It's main use case is to profile function executed in queue jobs or executed a large amount of times in a short time, which is not possible with the default cProfile profiler used in Odoo. It also allows to store the results of the profiling in the database, and to analyze them in Odoo or with external tools like snakeviz or flameprof.
