@@ -71,7 +71,7 @@ class FetchmailServer(models.Model):
                 failed += 1
             count += 1
         _logger.info(
-            "Marked %d email(s) as read on %s server %s;" " %d succeeded, %d failed.",
+            "Marked %d email(s) as read on %s server %s; %d succeeded, %d failed.",
             count,
             server.server_type,
             server.name,
@@ -99,7 +99,7 @@ class FetchmailServer(models.Model):
                 failed += 1
             count += 1
         _logger.info(
-            "Removed %d email(s) on %s server %s;" " %d succeeded, %d failed.",
+            "Removed %d email(s) on %s server %s; %d succeeded, %d failed.",
             count,
             server.server_type,
             server.name,
