@@ -6,7 +6,7 @@
     "summary": "This module extends the tracking manager to"
     " allow to define a domain on fields to track changes "
     "only when certain conditions apply.",
-    "version": "18.0.1.0.1",
+    "version": "19.0.1.0.0",
     "category": "Tools",
     "website": "https://github.com/OCA/server-tools",
     "author": "glueckkanja AG, Odoo Community Association (OCA)",
