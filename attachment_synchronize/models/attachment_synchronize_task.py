@@ -5,7 +5,7 @@ import datetime
 import logging
 
 from odoo import api, fields, models
-from odoo.osv import expression
+from odoo.fields import Domain
 
 _logger = logging.getLogger(__name__)
 
@@ -139,7 +139,7 @@ class AttachmentSynchronizeTask(models.Model):
     def run_task_import_scheduler(self, domain=None):
         if domain is None:
             domain = []
-        domain = expression.AND([domain, [("method_type", "=", "import")]])
+        domain = Domain.AND([domain, [("method_type", "=", "import")]])
         for task in self.search(domain):
             try:
                 task.run_import()

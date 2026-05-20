@@ -2,22 +2,13 @@
 # @author Sébastien BEAU <sebastien.beau@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api
-
 from .common import SyncCommon
 
 
 class TestImport(SyncCommon):
-    def tearDown(self):
-        self.registry.leave_test_mode()
-        super().tearDown()
-
     def setUp(self):
         super().setUp()
-        self.registry.enter_test_mode(self.env.cr)
-        self.env = api.Environment(
-            self.registry.test_cr, self.env.uid, self.env.context
-        )
+        self.registry_enter_test_mode()
 
     @property
     def archived_files(self):
