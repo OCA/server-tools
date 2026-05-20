@@ -84,7 +84,7 @@ class AttachmentQueue(models.Model):
         Run the process for an individual attachment queue from a dedicated button
         """
         try:
-            self._cr.execute(
+            self.env.cr.execute(
                 """
                 SELECT id
                 FROM attachment_queue
@@ -101,7 +101,7 @@ class AttachmentQueue(models.Model):
     def run_as_job(self):
         """Run the process for an individual attachment queue from a async job"""
         try:
-            self._cr.execute(
+            self.env.cr.execute(
                 """
                 SELECT id
                 FROM attachment_queue
