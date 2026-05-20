@@ -1,0 +1,144 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* base_conditional_image
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-10-24 09:06+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.6.2\n"
+
+#. module: base_conditional_image
+#: model:ir.model.fields,field_description:base_conditional_image.field_conditional_image__company_id
+msgid "Company"
+msgstr "Azienda"
+
+#. module: base_conditional_image
+#: model:ir.model.fields,help:base_conditional_image.field_conditional_image__company_id
+msgid ""
+"Company related check. If inherited object does not have a `company_id` "
+"field, it will be ignored. The check will first take the records with a "
+"company then, if no match is found, the ones without a company."
+msgstr ""
+"Controllo correlato all'azienda. Se l'oggetto ereditato non ha un campo "
+"`company_id`, verrà ignorato. Il controllo prenderà prima i record con "
+"un'azienda, poi, se non viene trovata alcuna corrispondenza, quelli senza "
+"azienda."
+
+#. module: base_conditional_image
+#: model:ir.model,name:base_conditional_image.model_conditional_image
+#: model_terms:ir.ui.view,arch_db:base_conditional_image.view_conditional_image_form
+msgid "Conditional Image"
+msgstr "Immagine condizionale"
+
+#. module: base_conditional_image
+#: model:ir.actions.act_window,name:base_conditional_image.conditional_image_action
+#: model:ir.ui.menu,name:base_conditional_image.conditional_image_menu
+msgid "Conditional Images"
+msgstr "Immagini condizionali"
+
+#. module: base_conditional_image
+#: model:ir.model.fields,field_description:base_conditional_image.field_conditional_image__create_uid
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: base_conditional_image
+#: model:ir.model.fields,field_description:base_conditional_image.field_conditional_image__create_date
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: base_conditional_image
+#: model:ir.model.fields,field_description:base_conditional_image.field_conditional_image__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: base_conditional_image
+#: model:ir.model.fields,field_description:base_conditional_image.field_conditional_image__id
+msgid "ID"
+msgstr "ID"
+
+#. module: base_conditional_image
+#: model:ir.model.fields,field_description:base_conditional_image.field_conditional_image__image_1920
+#: model:ir.model.fields,field_description:base_conditional_image.field_conditional_image_consumer_mixin__image_1920
+msgid "Image"
+msgstr "Immagine"
+
+#. module: base_conditional_image
+#: model:ir.model.fields,field_description:base_conditional_image.field_conditional_image__image_1024
+#: model:ir.model.fields,field_description:base_conditional_image.field_conditional_image_consumer_mixin__image_1024
+msgid "Image 1024"
+msgstr "Immagine 1024"
+
+#. module: base_conditional_image
+#: model:ir.model.fields,field_description:base_conditional_image.field_conditional_image__image_128
+#: model:ir.model.fields,field_description:base_conditional_image.field_conditional_image_consumer_mixin__image_128
+msgid "Image 128"
+msgstr "Immagine 128"
+
+#. module: base_conditional_image
+#: model:ir.model.fields,field_description:base_conditional_image.field_conditional_image__image_256
+#: model:ir.model.fields,field_description:base_conditional_image.field_conditional_image_consumer_mixin__image_256
+msgid "Image 256"
+msgstr "Immagine 256"
+
+#. module: base_conditional_image
+#: model:ir.model.fields,field_description:base_conditional_image.field_conditional_image__image_512
+#: model:ir.model.fields,field_description:base_conditional_image.field_conditional_image_consumer_mixin__image_512
+msgid "Image 512"
+msgstr "Immagine 512"
+
+#. module: base_conditional_image
+#: model:ir.model.fields,field_description:base_conditional_image.field_conditional_image____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: base_conditional_image
+#: model:ir.model.fields,field_description:base_conditional_image.field_conditional_image__write_uid
+msgid "Last Updated by"
+msgstr "Ultimo aggiornamento di"
+
+#. module: base_conditional_image
+#: model:ir.model.fields,field_description:base_conditional_image.field_conditional_image__write_date
+msgid "Last Updated on"
+msgstr "Ultimo aggiornamento il"
+
+#. module: base_conditional_image
+#: model:ir.model,name:base_conditional_image.model_conditional_image_consumer_mixin
+msgid "Mixin for conditional images consumers"
+msgstr "Mixin per l'impiego delle immagini condizionale"
+
+#. module: base_conditional_image
+#: model:ir.model.fields,field_description:base_conditional_image.field_conditional_image__model_name
+msgid "Model Name"
+msgstr "Nome modello"
+
+#. module: base_conditional_image
+#: model:ir.model.fields,field_description:base_conditional_image.field_conditional_image__name
+msgid "Name"
+msgstr "Nome"
+
+#. module: base_conditional_image
+#: model:ir.model.fields,help:base_conditional_image.field_conditional_image__selector
+msgid ""
+"Python expression used as selector when multiple images are usedfor the same"
+" object. The variable `object` refers to the actual record on which the "
+"expression will be executed. An empty expression will always return `True`."
+msgstr ""
+"Espressione Python usata come selettore quando più immagini vengono usate "
+"per lo stesso oggetto. La variabile `object` si riferisce al record "
+"effettivo su cui verrà eseguita l'espressione. Un'espressione vuota "
+"restituirà sempre `True`."
+
+#. module: base_conditional_image
+#: model:ir.model.fields,field_description:base_conditional_image.field_conditional_image__selector
+#: model_terms:ir.ui.view,arch_db:base_conditional_image.view_conditional_image_form
+msgid "Selector"
+msgstr "Selettore"
