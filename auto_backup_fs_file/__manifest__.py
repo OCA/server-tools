@@ -4,7 +4,7 @@
 {
     "name": "Auto Backup Fs File",
     "summary": """Store backups using some FSSPEC implementation""",
-    "version": "17.0.1.0.0",
+    "version": "18.0.1.0.0",
     "license": "AGPL-3",
     "author": "Binhex,Odoo Community Association (OCA)",
     "category": "Tools",

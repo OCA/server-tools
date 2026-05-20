@@ -16,11 +16,7 @@
                         <field name="create_date" />
                     </group>
                 </sheet>
-                <div class="oe_chatter">
-                    <field name="message_follower_ids" widget="mail_followers" />
-                    <field name="activity_ids" widget="mail_activity" />
-                    <field name="message_ids" widget="mail_thread" />
-                </div>
+                <chatter />
             </form>
         </field>
     </record>
@@ -36,14 +32,14 @@
     </record>
 
     <record model="ir.ui.view" id="db_backup_fs_file_tree_view">
-        <field name="name">db.backup.fs.file.tree.view</field>
+        <field name="name">db.backup.fs.file.list.view</field>
         <field name="model">db.backup.fs.file</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name" />
                 <field name="db_backup_id" />
                 <field name="create_date" />
-            </tree>
+            </list>
         </field>
     </record>
 

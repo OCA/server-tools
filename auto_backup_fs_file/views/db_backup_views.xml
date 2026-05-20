@@ -29,9 +29,9 @@
         </field>
     </record>
 
-    <record model="ir.ui.view" id="view_backup_conf_tree">
+    <record model="ir.ui.view" id="view_backup_conf_list">
         <field name="model">db.backup</field>
-        <field name="inherit_id" ref="auto_backup.view_backup_conf_tree" />
+        <field name="inherit_id" ref="auto_backup.view_backup_conf_list" />
         <field name="arch" type="xml">
             <field name="days_to_keep" position="after">
                 <field name="fs_file_backup_ids" />
