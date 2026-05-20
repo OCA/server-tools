@@ -2,7 +2,6 @@
 <!-- Copyright 2025 Binhex
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
-
     <record model="ir.ui.view" id="db_backup_fs_file_form_view">
         <field name="name">db.backup.fs.file.form.view</field>
         <field name="model">db.backup.fs.file</field>
@@ -59,5 +58,4 @@
         <field name="action" ref="db_backup_fs_file_act_window" />
         <field name="sequence" eval="166" />
     </record>
-
 </odoo>

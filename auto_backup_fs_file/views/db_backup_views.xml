@@ -2,7 +2,6 @@
 <!-- Copyright 2025 Binhex
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
-
     <record model="ir.ui.view" id="view_backup_conf_form">
         <field name="model">db.backup</field>
         <field name="inherit_id" ref="auto_backup.view_backup_conf_form" />
@@ -16,12 +15,12 @@
                         type="object"
                         icon="fa-archive"
                     >
-                                <field
+                        <field
                             string="Backups"
                             name="fs_file_backup_count"
                             widget="statinfo"
                         />
-                </button>
+                    </button>
                 </div>
             </xpath>
             <field name="backup_format" position="after">
@@ -29,7 +28,6 @@
             </field>
         </field>
     </record>
-
 
     <record model="ir.ui.view" id="view_backup_conf_tree">
         <field name="model">db.backup</field>
@@ -40,5 +38,4 @@
             </field>
         </field>
     </record>
-
 </odoo>

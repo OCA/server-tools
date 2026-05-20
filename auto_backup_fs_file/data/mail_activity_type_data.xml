@@ -2,9 +2,9 @@
 <!-- Copyright 2025 Binhex
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo noupdate="1">
-        <record id="mail_act_download_backup" model="mail.activity.type">
-            <field name="name">Download Backup</field>
-            <field name="icon">fa-download</field>
-            <field name="res_model">db.backup.fs.file</field>
-        </record>
+    <record id="mail_act_download_backup" model="mail.activity.type">
+        <field name="name">Download Backup</field>
+        <field name="icon">fa-download</field>
+        <field name="res_model">db.backup.fs.file</field>
+    </record>
 </odoo>
