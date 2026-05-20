@@ -47,8 +47,7 @@ class AttachmentQueue(models.Model):
     state_message = fields.Text()
     failure_emails = fields.Char(
         compute="_compute_failure_emails",
-        help="Comma-separated list of email addresses to be notified in case of"
-        "failure",
+        help="Comma-separated list of email addresses to notify on failure",
     )
 
     def _job_attrs(self):
