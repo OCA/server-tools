@@ -49,7 +49,7 @@ class TestIrSequence(TransactionCase):
         self.sequence.write({"prefix": "%(year)s{test_code}"})
         prefix, _suffix = self.sequence._get_prefix_suffix()
         year = fields.Date.today().year
-        expected_result = "{year}{code}".format(year=year, code=self.test_code)
+        expected_result = f"{year}{self.test_code}"
         self.assertEqual(expected_result, prefix)
 
     def test_get_prefix_suffix2(self):
@@ -61,7 +61,7 @@ class TestIrSequence(TransactionCase):
         self.sequence.write({"prefix": "%(year)s"})
         prefix, _suffix = self.sequence._get_prefix_suffix()
         year = fields.Date.today().year
-        expected_result = "{year}".format(year=year)
+        expected_result = f"{year}"
         self.assertEqual(expected_result, prefix)
 
     def test_get_prefix_suffix3(self):
@@ -72,7 +72,7 @@ class TestIrSequence(TransactionCase):
         """
         self.sequence.write({"prefix": "{test_code}"})
         prefix, _suffix = self.sequence._get_prefix_suffix()
-        expected_result = "{code}".format(code=self.test_code)
+        expected_result = f"{self.test_code}"
         self.assertEqual(expected_result, prefix)
 
     def test_get_prefix_suffix4(self):
@@ -94,7 +94,7 @@ class TestIrSequence(TransactionCase):
         self.sequence.write({"prefix": "E%(year)sd{test_code}AB"})
         prefix, _suffix = self.sequence._get_prefix_suffix()
         year = fields.Date.today().year
-        expected_result = "E{year}d{code}AB".format(year=year, code=self.test_code)
+        expected_result = f"E{year}d{self.test_code}AB"
         self.assertEqual(expected_result, prefix)
 
     @mute_logger("odoo.addons.sequence_custom_data.models.ir_sequence")
