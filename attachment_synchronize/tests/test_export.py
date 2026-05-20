@@ -17,7 +17,7 @@ class TestExport(SyncCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.task = cls.env.ref("attachment_synchronize.export_to_filestore")
+        cls.task = cls.task_export
         cls.attachment = cls.env["attachment.queue"].create(
             {
                 "name": "foo.txt",
