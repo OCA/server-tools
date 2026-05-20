@@ -9,7 +9,7 @@
             name="body_html"
         ><![CDATA[
                 <p style="margin:0px 0px 10px 0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;">Hello,<br><br></p>
-                <p style="margin:0px 0px 10px 0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;">The attachment ${object.name} has failed with the following error message : <br>${object.state_message}<br></p><p style="margin:0px 0px 10px 0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;"></p>
+                <p style="margin:0px 0px 10px 0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;">The attachment {{object.name}} has failed with the following error message : <br>{{object.state_message}}<br></p><p style="margin:0px 0px 10px 0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;"></p>
                 <p style="margin:0px 0px 10px 0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;">Regards,<br></p>
             ]]></field>
     </record>

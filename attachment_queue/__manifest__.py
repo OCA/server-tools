@@ -3,7 +3,7 @@
 
 {
     "name": "Attachment Queue",
-    "version": "18.0.1.0.1",
+    "version": "19.0.1.0.0",
     "author": "Akretion,Odoo Community Association (OCA)",
     "summary": "Base module adding the concept of queue for processing files",
     "website": "https://github.com/OCA/server-tools",
