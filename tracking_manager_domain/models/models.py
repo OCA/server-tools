@@ -13,7 +13,7 @@ class Base(models.AbstractModel):
 
     @tools.ormcache()
     def _tm_all_tracking_domain_fields(self):
-        cr = self._cr
+        cr = self.env.cr
         cr.execute(
             """
             SELECT id, model, name, tracking_domain
