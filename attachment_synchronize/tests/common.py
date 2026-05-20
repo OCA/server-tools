@@ -29,21 +29,73 @@ class SyncCommon(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.backend = cls.env.ref("fs_storage.fs_storage_demo")
+        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
         cls.filedata = base64.b64encode(b"This is a simple file")
         cls.directory_input = "test_import"
         cls.directory_output = "test_export"
         cls.directory_archived = "test_archived"
-        cls.task = cls.env.ref("attachment_synchronize.import_from_filestore")
-        cls.task_delete = cls.env.ref(
-            "attachment_synchronize.import_from_filestore_delete"
+        # OCA CI does not load demo data; build fixtures inline.
+        cls.backend = cls.env["fs.storage"].create(
+            {
+                "name": "Test Storage (attachment_synchronize)",
+                "code": "attachment_synchronize_test",
+                "protocol": "file",
+                "directory_path": "/tmp/attachment_synchronize_test",
+            }
         )
-        cls.task_move = cls.env.ref("attachment_synchronize.import_from_filestore_move")
-        cls.task_rename = cls.env.ref(
-            "attachment_synchronize.import_from_filestore_rename"
+        AST = cls.env["attachment.synchronize.task"]
+        common_vals = {"backend_id": cls.backend.id, "method_type": "import"}
+        cls.task = AST.create(
+            {
+                **common_vals,
+                "name": "TEST Import",
+                "filepath": cls.directory_input,
+                "avoid_duplicated_files": True,
+            }
         )
-        cls.task_move_rename = cls.env.ref(
-            "attachment_synchronize.import_from_filestore_move_rename"
+        cls.task_delete = AST.create(
+            {
+                **common_vals,
+                "name": "TEST Import then delete",
+                "after_import": "delete",
+                "filepath": cls.directory_input,
+            }
+        )
+        cls.task_rename = AST.create(
+            {
+                **common_vals,
+                "name": "TEST Import then rename",
+                "after_import": "rename",
+                "filepath": cls.directory_input,
+                "new_name": "test-${obj.name}",
+            }
+        )
+        cls.task_move = AST.create(
+            {
+                **common_vals,
+                "name": "TEST Import then move",
+                "after_import": "move",
+                "filepath": cls.directory_input,
+                "move_path": cls.directory_archived,
+            }
+        )
+        cls.task_move_rename = AST.create(
+            {
+                **common_vals,
+                "name": "TEST Import then move and rename",
+                "after_import": "move_rename",
+                "filepath": cls.directory_input,
+                "move_path": cls.directory_archived,
+                "new_name": "foo.txt",
+            }
+        )
+        cls.task_export = AST.create(
+            {
+                "backend_id": cls.backend.id,
+                "method_type": "export",
+                "name": "TEST Export",
+                "filepath": cls.directory_output,
+            }
         )
 
     def setUp(self):
