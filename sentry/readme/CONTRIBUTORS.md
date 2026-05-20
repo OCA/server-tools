@@ -1,0 +1,8 @@
+- Mohammed Barsi <barsi@mba.pe>
+- Andrius Preimantas <andrius@versada.eu>
+- Naglis Jonaitis <naglis@versada.eu>
+- Atte Isopuro <atte.isopuro@avoin.systems>
+- Florian Mounier <florian.mounier@kozea.fr>
+- Jon Ashton <j@jonashton.com>
+- Mark Schuit <mark@aprima.nl>
+- Atchuthan <atchuthan.shanmugasundaram@akretion.com>
