@@ -1,6 +1,10 @@
-================
-Tracking Manager
-================
+.. image:: https://odoo-community.org/readme-banner-image
+   :target: https://odoo-community.org/get-involved?utm_source=readme
+   :alt: Odoo Community Association
+
+=======================
+Tracking Manager Domain
+=======================
 
 .. 
    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -13,26 +17,28 @@ Tracking Manager
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github
-    :target: https://github.com/OCA/server-tools/tree/17.0/tracking_manager
+    :target: https://github.com/OCA/server-tools/tree/19.0/tracking_manager_domain
     :alt: OCA/server-tools
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/server-tools-17-0/server-tools-17-0-tracking_manager
+    :target: https://translation.odoo-community.org/projects/server-tools-19-0/server-tools-19-0-tracking_manager_domain
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/server-tools&target_branch=17.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/server-tools&target_branch=19.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module allows to track all fields on every model that has a
-chatter, including one2many and many2many ones. This excludes the
-computed, readonly, related fields by default. In addition, line changes
-of a one2many field can be tracked (e.g. product_uom_qty of an
-order_line in a sale order).
+This module extends the Tracking Manager module to allow defining a
+domain filter on tracked fields. Changes are only recorded when the
+specified domain condition is satisfied on the parent record.
+
+This is useful when you want to limit tracking to specific record states
+or conditions, for example only tracking a field when a partner is a
+company.
 
 **Table of contents**
 
@@ -42,29 +48,11 @@ order_line in a sale order).
 Usage
 =====
 
-- In setting > models: select a model
-- Check "Active" under Custom Tracking.
-- You have two options - 1) manually configure tracked fields one by
-  one, or 2) determine tracked fields based on a specific domain.
-- For 1) manually configure tracked fields one by one
+-  Add an optional domain on the field to limit tracking on certain
+   condition.
 
-  - Click on Tracked Fields smart button, and select/unselect Custom
-    Tracking.
-
-- For 2) determine tracked fields based on a specific domain
-
-  - Select "Automatic configuration", and then set the domain
-    accordingly.
-  - Click "Update" for the domain to take effect.
-
-|image|
-
-- Then select the fields to track
-
-|image1|
-
-.. |image| image:: https://raw.githubusercontent.com/OCA/server-tools/17.0/tracking_manager/static/description/model_view.png
-.. |image1| image:: https://raw.githubusercontent.com/OCA/server-tools/17.0/tracking_manager/static/description/fields.png
+.. image:: https://raw.githubusercontent.com/OCA/server-tools/19.0/tracking_manager_domain/static/description/fields.drawio.png
+   :alt: fields
 
 Bug Tracker
 ===========
@@ -72,7 +60,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/server-tools/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/server-tools/issues/new?body=module:%20tracking_manager%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/server-tools/issues/new?body=module:%20tracking_manager_domain%0Aversion:%2019.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -82,13 +70,12 @@ Credits
 Authors
 -------
 
-* Akretion
+* glueckkanja AG
 
 Contributors
 ------------
 
-- Kévin Roche <kevin.roche@akretion.com>
-- Sébastien BEAU <sebastien.beau@akretion.com>
+-  Christopher Rogos <crogos@gmail.com>
 
 Maintainers
 -----------
@@ -103,17 +90,14 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-.. |maintainer-Kev-Roche| image:: https://github.com/Kev-Roche.png?size=40px
-    :target: https://github.com/Kev-Roche
-    :alt: Kev-Roche
-.. |maintainer-sebastienbeau| image:: https://github.com/sebastienbeau.png?size=40px
-    :target: https://github.com/sebastienbeau
-    :alt: sebastienbeau
+.. |maintainer-CRogos| image:: https://github.com/CRogos.png?size=40px
+    :target: https://github.com/CRogos
+    :alt: CRogos
 
-Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
+Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-Kev-Roche| |maintainer-sebastienbeau| 
+|maintainer-CRogos| 
 
-This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/17.0/tracking_manager>`_ project on GitHub.
+This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/19.0/tracking_manager_domain>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
