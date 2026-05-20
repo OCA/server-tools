@@ -6,7 +6,7 @@ import logging
 
 from psycopg2.extensions import AsIs
 
-from odoo import _, api, exceptions, fields, models
+from odoo import api, exceptions, fields, models
 
 _logger = logging.getLogger(__name__)
 
@@ -135,7 +135,9 @@ class TrgmIndex(models.Model):
 
         if not self._install_trgm_extension():
             raise exceptions.UserError(
-                _("The pg_trgm extension does not exists or cannot be installed.")
+                self.env._(
+                    "The pg_trgm extension does not exists or cannot be installed."
+                )
             )
 
         table_name = self.env[self.field_id.model_id.model]._table
@@ -145,7 +147,7 @@ class TrgmIndex(models.Model):
         lang = self.lang
 
         if is_translate:
-            index_name = f"{column_name}_{lang}_{index_type}_idx"
+            index_name = f"{column_name}_{lang}_{index_type}_idx".lower()
         else:
             index_name = f"{column_name}_{index_type}_idx"
 
