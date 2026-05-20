@@ -61,8 +61,8 @@ class AttachmentSynchronizeTask(models.Model):
     filepath = fields.Char(
         string="File Path", help="Path to imported/exported files in the Backend"
     )
-    backend_id = fields.Many2one("fs.storage", string="Backend")
-    attachment_ids = fields.One2many("attachment.queue", "task_id", string="Attachment")
+    backend_id = fields.Many2one("fs.storage")
+    attachment_ids = fields.One2many("attachment.queue", "task_id")
     move_path = fields.Char(help="Imported File will be moved to this path")
     new_name = fields.Char(
         help="Imported File will be renamed to this name.\n"

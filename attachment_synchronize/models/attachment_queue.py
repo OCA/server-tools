@@ -11,7 +11,7 @@ from odoo.addons.queue_job.exception import RetryableJobError
 class AttachmentQueue(models.Model):
     _inherit = "attachment.queue"
 
-    task_id = fields.Many2one("attachment.synchronize.task", string="Task")
+    task_id = fields.Many2one("attachment.synchronize.task")
     method_type = fields.Selection(related="task_id.method_type")
     fs_storage_id = fields.Many2one(
         "fs.storage",
