@@ -107,9 +107,7 @@ class FetchmailServer(models.Model):
             failed,
         )
 
-    def fetch_mail(self, raise_exception=True):
-        # Called before the fetch, in order to clean up right before
-        # retrieving emails.
+    def _fetch_mail(self, batch_limit=50):
         for server in self:
             _logger.info(
                 "start cleaning up emails on %s server %s",
@@ -119,14 +117,12 @@ class FetchmailServer(models.Model):
             imap_server = False
             if server.server_type == "imap":
                 try:
-                    imap_server = server.connect()
+                    imap_server = server._connect__()
                     imap_server.select()
                     if server.cleanup_days > 0:
                         self._cleanup_fetchmail_server(server, imap_server)
                     if server.purge_days > 0:
                         self._purge_fetchmail_server(server, imap_server)
-                    # Do the final cleanup: delete all messages
-                    # flagged as deleted
                     imap_server.expunge()
                 except Exception:
                     _logger.exception(
@@ -139,4 +135,4 @@ class FetchmailServer(models.Model):
                     if imap_server:
                         imap_server.close()
                         imap_server.logout()
-        return super().fetch_mail(raise_exception)
+        return super()._fetch_mail(batch_limit=batch_limit)
