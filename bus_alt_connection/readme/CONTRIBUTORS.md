@@ -1,0 +1,2 @@
+- Nils Hamerlinck \<<nils@trobz.com>\>
+- Ioan Galan \<<ioan@studio73.es>\>
