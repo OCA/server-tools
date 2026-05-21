@@ -1,6 +1,6 @@
 [project]
 name = "odoo-addons-oca-server-tools"
-version = "17.0.20260415.0"
+version = "17.0.20260521.0"
 dependencies = [
     "odoo-addon-attachment_logging>=17.0dev,<17.1dev",
     "odoo-addon-attachment_queue>=17.0dev,<17.1dev",
@@ -22,6 +22,7 @@ dependencies = [
     "odoo-addon-base_technical_user>=17.0dev,<17.1dev",
     "odoo-addon-base_view_inheritance_extension>=17.0dev,<17.1dev",
     "odoo-addon-base_write_diff>=17.0dev,<17.1dev",
+    "odoo-addon-bus_alt_connection>=17.0dev,<17.1dev",
     "odoo-addon-database_cleanup>=17.0dev,<17.1dev",
     "odoo-addon-dbfilter_from_header>=17.0dev,<17.1dev",
     "odoo-addon-fetchmail_attach_from_folder>=17.0dev,<17.1dev",
