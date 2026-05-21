@@ -374,7 +374,7 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !! source digest: sha256:ee3d4c88955253f4037b88f12085fc335206fe54512032059d08dddf4c753c51
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Alpha" src="https://img.shields.io/badge/maturity-Alpha-red.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/license-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/server-tools/tree/17.0/auto_backup_fs_file"><img alt="OCA/server-tools" src="https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/server-tools-17-0/server-tools-17-0-auto_backup_fs_file"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/server-tools&amp;target_branch=17.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Alpha" src="https://img.shields.io/badge/maturity-Alpha-red.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/license-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/server-tools/tree/16.0/auto_backup_fs_file"><img alt="OCA/server-tools" src="https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/server-tools-16-0/server-tools-16-0-auto_backup_fs_file"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/server-tools&amp;target_branch=16.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
 <p>This module enhances the database backup functionality in Odoo by
 introducing support for storing backups as files using the <tt class="docutils literal">fsspec</tt>
 library. It is designed to address the need for reliable and flexible
@@ -493,7 +493,7 @@ storage and attachment handling.</li>
 <li>This step is part of the storage configuration process.</li>
 <li>Save the changes after verifying the setup.</li>
 </ul>
-<p><img alt="Example of File Storage Configuration" src="https://raw.githubusercontent.com/OCA/server-tools/17.0/auto_backup_fs_file/images/file_storage_configuration.png" /></p>
+<img alt="Example of File Storage Configuration" src="https://raw.githubusercontent.com/OCA/server-tools/16.0/auto_backup_fs_file/images/file_storage_configuration.png" />
 <ol class="arabic simple" start="4">
 <li><strong>Verify Configuration</strong></li>
 </ol>
@@ -554,15 +554,15 @@ backup filename and associated database backup configuration.</li>
 <div class="section" id="screenshots">
 <h4><a class="toc-backref" href="#toc-entry-10">Screenshots</a></h4>
 <ul class="simple">
-<li><strong>Backup Configuration Form View</strong> <img alt="Backup Configuration Form" src="https://raw.githubusercontent.com/OCA/server-tools/17.0/auto_backup_fs_file/static/description/db_backup_form_view.png" /></li>
-<li><strong>Fs File Backups List View</strong> <img alt="Fs File Backups List" src="https://raw.githubusercontent.com/OCA/server-tools/17.0/auto_backup_fs_file/static/description/db_backup_fs_file_tree_view.png" /></li>
+<li><strong>Backup Configuration Form View</strong> <img alt="Backup Configuration Form" src="https://raw.githubusercontent.com/OCA/server-tools/16.0/auto_backup_fs_file/static/description/db_backup_form_view.png" /></li>
+<li><strong>Fs File Backups List View</strong> <img alt="Fs File Backups List" src="https://raw.githubusercontent.com/OCA/server-tools/16.0/auto_backup_fs_file/static/description/db_backup_fs_file_tree_view.png" /></li>
 </ul>
 </div>
 <div class="section" id="notes">
 <h4><a class="toc-backref" href="#toc-entry-11">Notes</a></h4>
 <ul class="simple">
-<li>Ensure that the FSSPEC storage is properly configured before using the
-<strong>Fs File</strong> method.</li>
+<li>Ensure that the FSSPEC storage is properly configured before using
+the <strong>Fs File</strong> method.</li>
 <li>This module adds a new stat button in the backup configuration form
 view to quickly access Fs File backups.</li>
 </ul>
@@ -576,8 +576,8 @@ view to quickly access Fs File backups.</li>
 model specifies the backup storage directory. For records using the
 <tt class="docutils literal">fs_file</tt> method, storage is actually controlled by the <tt class="docutils literal">fs_file</tt>
 field’s settings. However, since <tt class="docutils literal">folder</tt> is currently a required
-non-computed field in the <tt class="docutils literal">auto_backup</tt> addon, modifications to sync
-these two fields are not performed. Future versions may add this
+non-computed field in the <tt class="docutils literal">auto_backup</tt> addon, modifications to
+sync these two fields are not performed. Future versions may add this
 synchronization support.</li>
 <li><strong>Design limitation</strong>: The current implementation has a design
 constraint due to <tt class="docutils literal">fs_storage</tt> addon limitations. Since storage
@@ -590,7 +590,7 @@ backend can effectively be used.</li>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/server-tools/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-<a class="reference external" href="https://github.com/OCA/server-tools/issues/new?body=module:%20auto_backup_fs_file%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+<a class="reference external" href="https://github.com/OCA/server-tools/issues/new?body=module:%20auto_backup_fs_file%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
@@ -623,7 +623,7 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <p>OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.</p>
-<p>This module is part of the <a class="reference external" href="https://github.com/OCA/server-tools/tree/17.0/auto_backup_fs_file">OCA/server-tools</a> project on GitHub.</p>
+<p>This module is part of the <a class="reference external" href="https://github.com/OCA/server-tools/tree/16.0/auto_backup_fs_file">OCA/server-tools</a> project on GitHub.</p>
 <p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
 </div>
 </div>
