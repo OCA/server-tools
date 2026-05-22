@@ -131,6 +131,9 @@ class Vector(fields.Field):
             dimensions=dimensions, string=string, autopad=autopad, **kwargs
         )
 
+    def vector_dimensions(self, record):
+        return self.dimensions
+
     def _setup_attrs(self, model_class, name):
         res = super()._setup_attrs(model_class, name)
         if (
@@ -145,7 +148,10 @@ class Vector(fields.Field):
 
     @property
     def column_type(self):
-        return ("vector", f"vector({self.dimensions})")
+        return ("vector", self._get_pg_type(self.dimensions))
+
+    def _get_pg_type(self, dimensions):
+        return f"vector({dimensions})"
 
     def get_current_vector_size(self, cr, table, column):
         """Fetch the current vector size from pg_typeof()"""
@@ -167,9 +173,12 @@ class Vector(fields.Field):
     def update_db_column(self, model, column):
         if column:
             db_size = self.get_current_vector_size(model._cr, model._table, self.name)
-            if db_size is not None and db_size != self.dimensions:
+            if db_size is not None and db_size != self.vector_dimensions(model):
                 sql.convert_column(
-                    model._cr, model._table, self.name, self.column_type[1]
+                    model._cr,
+                    model._table,
+                    self.name,
+                    self._get_pg_type(self.vector_dimensions(model)),
                 )
         return super().update_db_column(model, column)
 
@@ -188,10 +197,12 @@ class Vector(fields.Field):
                 "Only np.ndarray or list of floats/int are allowed."
             )
         if not isinstance(value, VectorValue):
-            value = VectorValue(value, dimensions=self.dimensions, autopad=self.autopad)
-        if self.autopad and value.dimensions < self.dimensions:
-            value = value.pad(self.dimensions)
-        if validate and value.dimensions != self.dimensions:
+            value = VectorValue(
+                value, dimensions=self.vector_dimensions(record), autopad=self.autopad
+            )
+        if self.autopad and value.dimensions < self.vector_dimensions(record):
+            value = value.pad(self.vector_dimensions(record))
+        if validate and value.dimensions != self.vector_dimensions(record):
             raise ValueError(
                 f"Invalid vector size for {self.name}: {value.dimensions} != {self.dimensions}"
             )
@@ -206,11 +217,13 @@ class Vector(fields.Field):
                 "Only np.ndarray, list of floats/int or VectorValue are allowed."
             )
         if not isinstance(value, VectorValue):
-            value = VectorValue(value, dimensions=self.dimensions, autopad=self.autopad)
-        if self.autopad and value.dimensions < self.dimensions:
-            value = value.pad(self.dimensions)
+            value = VectorValue(
+                value, dimensions=self.vector_dimensions(record), autopad=self.autopad
+            )
+        if self.autopad and value.dimensions < self.vector_dimensions(record):
+            value = value.pad(self.vector_dimensions(record))
 
-        if value.dimensions != self.dimensions:
+        if value.dimensions != self.vector_dimensions(record):
             raise ValueError(
                 f"Invalid vector dimensions for {self.name}: "
                 f"{value.dimensions} != {self.dimensions}"
