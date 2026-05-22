@@ -14,3 +14,9 @@ class TestModel(models.Model):
 
     vector = Vector(dimensions=3, string="Default Vector")
     no_autopad = Vector(dimensions=3, string="Vector not autopadded", autopad=False)
+
+
+class TestModelUpgrade(models.Model):
+    _inherit = "vector.model"
+
+    vector = Vector(dimensions=5)

@@ -1,5 +1,5 @@
 # Copyright 2025 ACSONE SA/NV
-# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 from odoo import fields, models
 
 from ..register import register_vector

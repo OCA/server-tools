@@ -6,19 +6,10 @@ from odoo.exceptions import MissingError
 
 
 def pre_init_hook(cr):
-    """setup vector"""
-    cr.execute(
-        """
-        SELECT
-            tablename
-        FROM
-            pg_tables
-        WHERE
-            tablename='spatial_ref_sys';
-    """
-    )
-    check = cr.fetchone()
-    if check:
+    """setup vector extension if not already setup"""
+    cr.execute("SELECT typname, oid FROM pg_type WHERE oid = to_regtype('vector')")
+    type_info = dict(cr.fetchall())
+    if "vector" in type_info:
         return {}
     try:
         cr.execute(

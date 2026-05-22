@@ -2,11 +2,9 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 from __future__ import annotations
 
-import re
 from operator import attrgetter
 
 import numpy as np
-from psycopg2.extensions import AsIs
 
 from odoo import fields
 from odoo.tools import sql
@@ -59,7 +57,7 @@ class VectorValue:
         Pad the vector value to the given size.
         """
         if len(self._value) < dimensions:
-            self._value = [*self._value, *([0] * (dimensions - self.dimensions))]
+            self._value = [*self._value, *([0] * (dimensions - len(self._value)))]
         return self
 
     @property
@@ -152,13 +150,18 @@ class Vector(fields.Field):
     def get_current_vector_size(self, cr, table, column):
         """Fetch the current vector size from pg_typeof()"""
         cr.execute(
-            "SELECT pg_typeof(%s)::text FROM %s LIMIT 1;", (AsIs(column), AsIs(table))
+            """
+            SELECT atttypmod
+            FROM pg_attribute
+            JOIN pg_class ON pg_class.oid = pg_attribute.attrelid
+            WHERE pg_class.relname = %s
+            AND pg_attribute.attname = %s
+            """,
+            (table, column),
         )
         result = cr.fetchone()
         if result and result[0]:
-            match = re.search(r"vector\((\d+)\)", result[0])
-            if match:
-                return int(match.group(1))
+            return result[0]
         return None
 
     def update_db_column(self, model, column):
@@ -210,7 +213,7 @@ class Vector(fields.Field):
         if value.dimensions != self.dimensions:
             raise ValueError(
                 f"Invalid vector dimensions for {self.name}: "
-                "{value.dimensions} != {self.dimensions}"
+                f"{value.dimensions} != {self.dimensions}"
             )
         return value
 
@@ -220,5 +223,5 @@ class Vector(fields.Field):
     def convert_to_column(self, value, record, values=None, validate=True):
         return self.convert_to_record(value, record)
 
-    def convert_to_write(self, value, record, values=None):
-        return self.convert_to_column(value, record, values)
+    def convert_to_write(self, value, record):
+        return self.convert_to_column(value, record)
