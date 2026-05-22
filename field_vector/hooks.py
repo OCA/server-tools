@@ -3,19 +3,10 @@
 
 
 def pre_init_hook(env):
-    """setup vector"""
-    env.cr.execute(
-        """
-        SELECT
-            tablename
-        FROM
-            pg_tables
-        WHERE
-            tablename='spatial_ref_sys';
-    """
-    )
-    check = env.cr.fetchone()
-    if check:
+    """setup vector extension if not already setup"""
+    env.cr.execute("SELECT typname, oid FROM pg_type WHERE oid = to_regtype('vector')")
+    type_info = dict(env.cr.fetchall())
+    if "vector" in type_info:
         return {}
     try:
         env.cr.execute(
