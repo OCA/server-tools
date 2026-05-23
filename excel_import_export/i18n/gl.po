@@ -6,25 +6,27 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-05-23 07:43+0000\n"
+"Last-Translator: Pablo Castelo <pablocv@gmx.es>\n"
 "Language-Team: none\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "${object.post_import_do_something()}"
-msgstr ""
+msgstr "${object.post_import_do_something()}"
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/models/common.py:0
 #: code:addons/excel_import_export/models/common.py:0
 #, python-format
 msgid "'%s' sheet not found"
-msgstr ""
+msgstr "Folla '%s' non atopada"
 
 #. module: excel_import_export
 #: model:ir.model.fields,help:excel_import_export.field_export_xlsx_wizard__state
@@ -34,11 +36,14 @@ msgid ""
 "* Choose: wizard show in user selection mode\n"
 "* Get: wizard show results from user action"
 msgstr ""
+"Elixir: o asistente mostra o modo de selección do usuario\n"
+" Obter: o asistente mostra os resultados da acción do usuario"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "<b>Cell</b>: Location of data in excel sheet (e.g., A1, B1, ...)"
 msgstr ""
+"<b>Cell</b>: Localización dos datos na folla excel (por exemplo, A1, B1, ...)"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -46,6 +51,9 @@ msgid ""
 "<b>Continue</b>: If not selected, start rolling with specified first row "
 "cells. If selected, continue from previous one2many field"
 msgstr ""
+"<b>Continuar</b>: Se non se selecciona, empeza a rodar coas celas "
+"especificadas da primeira fila. Se se selecciona, continuar desde o campo "
+"one2many anterior"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -53,6 +61,8 @@ msgid ""
 "<b>Extend</b>: If selected, extend one row after one data row in order to "
 "preserve the sum line"
 msgstr ""
+"<b>Estender</b>: se se selecciona, estender unha fila despois dunha fila de "
+"datos para conservar a liña de suma"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -61,6 +71,10 @@ msgid ""
 "value, e.g., if field = product_id, <code>value</code> will represent "
 "product object, e.g., <code>${value and value.uom_id.name or \"\"}</code>"
 msgstr ""
+"<b>Cond. de campo</b>: código Python en <code>${...}</code> para manipular o "
+"valor do campo, por exemplo, se campo = product_id, <code>value</code> "
+"representará o produto obxecto, por exemplo, <code>${valor e "
+"valor.uom_id.name ou \"\"}</code>"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -70,11 +84,17 @@ msgid ""
 " 'ABC', e.g., <code>${value == \"ABC\" and \"X\" or \"Y\"}</code> thus can "
 "change from cell value to other value for import."
 msgstr ""
+"<b>Cond. de campo</b>: o código Python no valor <code>${...}</code> "
+"representará datos da cela de Excel, por exemplo, se A1 = 'ABC', <code>"
+"valor</code> representará 'ABC', por exemplo, <code>${value == \"ABC\" e "
+"\"X\" ou \"E\"}</code>, polo que pode cambiar do valor da cela a outro valor "
+"para importar."
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "<b>Field</b>: Field of the record to be imported to, e.g., product_id"
 msgstr ""
+"<b>Campo</b>: campo do rexistro ao que se importará, por exemplo, product_id"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -82,6 +102,8 @@ msgid ""
 "<b>Field</b>: Field of the record, e.g., product_id.uom_id.name. They are "
 "orm compliant."
 msgstr ""
+"<b>Campo</b>: Campo do rexistro, por exemplo, product_id.uom_id.name. "
+"Cumpren coas normas."
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -89,11 +111,13 @@ msgid ""
 "<b>No Delete</b>: By default, all one2many lines will be deleted before "
 "import. Select this, to avoid deletion"
 msgstr ""
+"<b>Sen eliminar</b>: de forma predeterminada, todas as liñas one2many "
+"eliminaranse antes da importación. Seleccione isto para evitar a eliminación"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "<b>Note:</b>"
-msgstr ""
+msgstr "<b>Nota:</b>"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -101,6 +125,8 @@ msgid ""
 "<b>Row Field</b>: Use _HEAD_ for the record itself, and one2many field "
 "(e.g., line_ids) for row data"
 msgstr ""
+"<b>Campo de fila</b>: use _HEAD_ para o rexistro en si e un campo one2many "
+"(por exemplo, line_ids) para os datos da fila"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -109,11 +135,16 @@ msgid ""
 "row data, e.g., order_line, line_ids<code>[max_row]</code> where "
 "<code>[max_row]</code> is optional number of rows to import"
 msgstr ""
+"<b>Campo de fila</b>: utilice _HEAD_ para o rexistro en si e un campo "
+"one2many para os datos da fila, por exemplo, order_line, line_ids<code>"
+"[max_row]</code> onde <code>[max_row]</code> é un número opcional de filas "
+"para importar"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "<b>Sheet</b>: Name (e.g., Sheet 1) or index (e.g., 1) of excel sheet"
 msgstr ""
+"<b>Folla</b>: Nome (p. ex., Folla 1) ou índice (p. ex., 1) da folla de Excel"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -121,6 +152,8 @@ msgid ""
 "<b>Sheet</b>: Name (e.g., Sheet 1) or index (e.g., 1) of excel sheet to "
 "export data to"
 msgstr ""
+"<b>Folla</b>: nome (por exemplo, folla 1) ou índice (por exemplo, 1) da "
+"folla de Excel á que exportar datos"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -129,6 +162,9 @@ msgid ""
 "<code>#?...?</code>, e.g., apply style for specific product, "
 "<code>#?value.name == \"ABC\" and #{font=bold;fill=red} or None?</code>"
 msgstr ""
+"<b>Estilo con Cond.</b>: Estilo condicional por código Python en <code>"
+"#?...?</code>, por exemplo, aplicar estilo para un produto específico, <code>"
+"#?value.name = = \"ABC\" e #{font=bold;fill=rede} ou Ningún?</code>"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -137,11 +173,15 @@ msgid ""
 "e.g., <code>#{align=left;style=text}</code>. See module's <b>style.py</b> "
 "for available styles."
 msgstr ""
+"<b>Estilo</b>: estilo predeterminado en <code>#{...}</code> que se aplica a "
+"cada cela, por exemplo, <code>#{align=left;style=text}</code> . Consulte o "
+"<b>style.py</b> do módulo para coñecer os estilos dispoñibles."
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "<b>Sum</b>: Add sum value on last row, <code>@{sum}</code>"
 msgstr ""
+"<b>Suma</b>: agregue o valor da suma na última fila, <code>@{sum}</code>"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -176,16 +216,49 @@ msgid ""
 "\n"
 "                                </code>"
 msgstr ""
+"<code class=\"oe_grey\">\n"
+"{\n"
+"    '__EXPORT__': {\n"
+"        'sae_order': {  # sheet can be name (string) or index (integer)\n"
+"            '_HEAD_': {\n"
+"                'B2': 'partner_id.display_name${value or \"\"}#"
+"{align=left;style=text}',\n"
+"                'B3': 'name${value or \"\"}#{align=left;style=text}',\n"
+"            },\n"
+"            'line_ids': {  # prefix with _CONT_ to continue rows from "
+"previous row field\n"
+"                'A6': 'product_id.display_name${value or \"\"}#{style=text}"
+"',\n"
+"                'C6': 'product_uom_qty${value or 0}#{style=number}',\n"
+"                'E6': 'price_unit${value or 0}#{style=number}',\n"
+"                'G6': 'price_subtotal${value or 0}#{style=number}',\n"
+"            },\n"
+"        },\n"
+"    },\n"
+"    '__IMPORT__': {\n"
+"        'sae_order': {  # sheet can be name (string) or index (integer)\n"
+"            'order_line': {  # prefix with _NODEL_ to not delete rows before "
+"import\n"
+"                'A6': 'product_id',\n"
+"                'C6': 'product_uom_qty',\n"
+"                'E6': 'price_unit${value &gt; 0 and value or 0}',\n"
+"            },\n"
+"        },\n"
+"    },\n"
+"    '__POST_IMPORT__': '${object.post_import_do_something()}',\n"
+"}\n"
+"\n"
+"                                </code>"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "<code>date, datetime, time</code>: some useful python classes"
-msgstr ""
+msgstr "<code>dáche, datetime, estafe</code>: algunhas clases útiles de python"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "<code>model</code>: active model, e.g., self.env['my.model']"
-msgstr ""
+msgstr "<code>modelo</code>: modelo activo, por exemplo, self.env['my.model']"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -193,66 +266,68 @@ msgid ""
 "<code>object</code>: record object or line object depends on <b>Row "
 "Field</b>"
 msgstr ""
+"<code>obxecto</code>: obxecto de rexistro ou obxecto de liña depende do <b>"
+"campo de fila</b>"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "<code>value</code>: value from <b>Cell</b>"
-msgstr ""
+msgstr "<code>valor</code>: valor da <b>Cela</b>"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "<code>value</code>: value from <b>Field</b>"
-msgstr ""
+msgstr "<code>valor</code>: valor do <b>campo</b>"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "Add Export Action"
-msgstr ""
+msgstr "Agregar Acción de Exportación"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "Add Import Action"
-msgstr ""
+msgstr "Engadir Acción de Importación"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "Add Report Menu"
-msgstr ""
+msgstr "Engadir informe Menú"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "Add data column"
-msgstr ""
+msgstr "Engadir columna de datos"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "Add header section"
-msgstr ""
+msgstr "Engadir sección de cabeceira"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "Add new report menu at root level"
-msgstr ""
+msgstr "Engadir un novo menú de informes no nivel raíz"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "Add row section"
-msgstr ""
+msgstr "Engadir sección de fila"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "Add sheet section"
-msgstr ""
+msgstr "Engadir sección de folla"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_report__choose_template
 msgid "Allow Choose Template"
-msgstr ""
+msgstr "Permitir Elixir Modelo"
 
 #. module: excel_import_export
 #: model:ir.model,name:excel_import_export.model_xlsx_styles
 msgid "Available styles for excel"
-msgstr ""
+msgstr "Estilos dispoñibles para excel"
 
 #. module: excel_import_export
 #: model:ir.model.fields,help:excel_import_export.field_xlsx_template_import__no_delete
@@ -260,21 +335,23 @@ msgid ""
 "By default, all rows will be deleted before import.\n"
 "Select No Delete, otherwise"
 msgstr ""
+"Por defecto, todas as filas borraranse antes da importación.\n"
+"Seleccione Non borrar, pola contra"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__csv_delimiter
 msgid "CSV Delimiter"
-msgstr ""
+msgstr "Delimitador CSV"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__csv_extension
 msgid "CSV File Extension"
-msgstr ""
+msgstr "Extensión de arquivo CSV"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__csv_quote
 msgid "CSV Quoting"
-msgstr ""
+msgstr "Cotización CSV"
 
 #. module: excel_import_export
 #: model:ir.model.fields,help:excel_import_export.field_xlsx_template__post_import_hook
@@ -282,6 +359,8 @@ msgid ""
 "Call a function after successful import, i.e.,\n"
 "${object.post_import_do_something()}"
 msgstr ""
+"Chamar a unha función despois da importación con éxito, é dicir,\n"
+"${object.post_import_do_something()}"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.export_xlsx_wizard
@@ -289,13 +368,13 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:excel_import_export.report_xlsx_wizard
 #: model_terms:ir.ui.view,arch_db:excel_import_export.xlsx_report_view
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__excel_cell
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_import__excel_cell
 msgid "Cell"
-msgstr ""
+msgstr "Cela"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_export_xlsx_wizard__changeset_change_ids
@@ -310,7 +389,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__changeset_change_ids
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_import__changeset_change_ids
 msgid "Changeset Changes"
-msgstr ""
+msgstr "Cambios do conxunto de cambios"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_export_xlsx_wizard__changeset_ids
@@ -325,7 +404,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__changeset_ids
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_import__changeset_ids
 msgid "Changesets"
-msgstr ""
+msgstr "Conxuntos de cambios"
 
 #. module: excel_import_export
 #: model:ir.model.fields.selection,name:excel_import_export.selection__export_xlsx_wizard__state__choose
@@ -334,54 +413,54 @@ msgstr ""
 #: model:ir.model.fields.selection,name:excel_import_export.selection__report_sale_order__state__choose
 #: model:ir.model.fields.selection,name:excel_import_export.selection__xlsx_report__state__choose
 msgid "Choose"
-msgstr ""
+msgstr "Elixir"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.xlsx_report_view
 msgid "Choose Template:"
-msgstr ""
+msgstr "Elixa Modelo:"
 
 #. module: excel_import_export
 #: model_terms:ir.actions.act_window,help:excel_import_export.action_xlsx_template
 msgid "Click to create a XLSX Template Object."
-msgstr ""
+msgstr "Faga clic para crear un obxecto de modelo XLSX."
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.export_xlsx_wizard
 #: model_terms:ir.ui.view,arch_db:excel_import_export.import_xlsx_wizard
 #: model_terms:ir.ui.view,arch_db:excel_import_export.xlsx_report_view
 msgid "Close"
-msgstr ""
+msgstr "Pechar"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.export_xlsx_wizard
 msgid "Complete Prepare File (.xlsx)"
-msgstr ""
+msgstr "Ficheiro Preparado Completo (.xlsx)"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.xlsx_report_view
 msgid "Complete Prepare Report (.xlsx)"
-msgstr ""
+msgstr "Informe de preparación completo (.xlsx)"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__is_cont
 msgid "Continue"
-msgstr ""
+msgstr "Continuar"
 
 #. module: excel_import_export
 #: model:ir.model.fields,help:excel_import_export.field_xlsx_template_export__is_cont
 msgid "Continue data rows after last data row"
-msgstr ""
+msgstr "Continuar as filas de datos despois da última fila de datos"
 
 #. module: excel_import_export
 #: model:ir.model.fields,help:excel_import_export.field_xlsx_template__to_csv
 msgid "Convert file into CSV format on export"
-msgstr ""
+msgstr "Converter o arquivo en formato CSV ao exportalo"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__to_csv
 msgid "Convert to CSV?"
-msgstr ""
+msgstr "Converter a CSV?"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_export_xlsx_wizard__count_pending_changeset_changes
@@ -396,7 +475,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__count_pending_changeset_changes
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_import__count_pending_changeset_changes
 msgid "Count Pending Changeset Changes"
-msgstr ""
+msgstr "Contar os cambios do conxunto de cambios pendentes"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_export_xlsx_wizard__count_pending_changesets
@@ -411,7 +490,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__count_pending_changesets
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_import__count_pending_changesets
 msgid "Count Pending Changesets"
-msgstr ""
+msgstr "Contar conxuntos de cambios pendentes"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_export_xlsx_wizard__create_uid
@@ -421,7 +500,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__create_uid
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_import__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creado por"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_export_xlsx_wizard__create_date
@@ -431,33 +510,33 @@ msgstr ""
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__create_date
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_import__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creado o"
 
 #. module: excel_import_export
 #: model:ir.model.fields.selection,name:excel_import_export.selection__xlsx_template_export__section_type__data
 #: model:ir.model.fields.selection,name:excel_import_export.selection__xlsx_template_import__section_type__data
 msgid "Data"
-msgstr ""
+msgstr "Datos"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__style
 msgid "Default Style"
-msgstr ""
+msgstr "Estilo por defecto"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__description
 msgid "Description"
-msgstr ""
+msgstr "Descrición"
 
 #. module: excel_import_export
 #: model:ir.model,name:excel_import_export.model_xlsx_template_export
 msgid "Detailed of how excel data will be exported"
-msgstr ""
+msgstr "Detalle de como se exportarán os datos de Excel"
 
 #. module: excel_import_export
 #: model:ir.model,name:excel_import_export.model_xlsx_template_import
 msgid "Detailed of how excel data will be imported"
-msgstr ""
+msgstr "Detalle de como se importarán os datos de Excel"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_export_xlsx_wizard__display_name
@@ -467,24 +546,24 @@ msgstr ""
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__display_name
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_import__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Mostrar Nome"
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/wizard/import_xlsx_wizard.py:0
 #, python-format
 msgid "Document must be in %s states"
-msgstr ""
+msgstr "O documento debe estar en %s estados"
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/wizard/import_xlsx_wizard.py:0
 #, python-format
 msgid "Document must be in draft state"
-msgstr ""
+msgstr "O documento debe estar en estado de borrador"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__use_report_wizard
 msgid "Easy Reporting"
-msgstr ""
+msgstr "Informes fáciles"
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/models/xlsx_import.py:0
@@ -493,6 +572,8 @@ msgid ""
 "Error deleting data\n"
 "%s"
 msgstr ""
+"Erro ao borrar datos\n"
+"%s"
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/models/xlsx_export.py:0
@@ -501,69 +582,71 @@ msgid ""
 "Error filling data into Excel sheets\n"
 "%s"
 msgstr ""
+"Erro ao introducir datos en follas Excel\n"
+"%s"
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/models/xlsx_import.py:0
 #, python-format
 msgid "Error importing data"
-msgstr ""
+msgstr "Erro ao importar datos"
 
 #. module: excel_import_export
 #: model:ir.model.fields.selection,name:excel_import_export.selection__ir_actions_report__report_type__excel
 msgid "Excel"
-msgstr ""
+msgstr "Excel"
 
 #. module: excel_import_export
 #: model:ir.model,name:excel_import_export.model_xlsx_export
 msgid "Excel Export AbstractModel"
-msgstr ""
+msgstr "ModeloAbstracto Exportación Excel"
 
 #. module: excel_import_export
 #: model:ir.model,name:excel_import_export.model_xlsx_import
 msgid "Excel Import AbstractModel"
-msgstr ""
+msgstr "Importar Excel Modeloabstracto"
 
 #. module: excel_import_export
 #: model:ir.ui.menu,name:excel_import_export.menu_excel_import_export
 msgid "Excel Import/Export"
-msgstr ""
+msgstr "Importación/Exportación Excel"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.xlsx_report_view
 msgid "Excel Report"
-msgstr ""
+msgstr "Informe Excel"
 
 #. module: excel_import_export
 #: model:ir.model,name:excel_import_export.model_xlsx_report
 msgid "Excel Report AbstractModel"
-msgstr ""
+msgstr "ModeloAbstracto de Informe Excel"
 
 #. module: excel_import_export
 #: model:ir.model,name:excel_import_export.model_xlsx_template
 msgid "Excel template file and instruction"
-msgstr ""
+msgstr "Arquivo de modelo Excel e instrucións"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.report_xlsx_wizard
 msgid "Execute"
-msgstr ""
+msgstr "Executar"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.xlsx_report_view
 msgid "Execute Report"
-msgstr ""
+msgstr "Executar informe"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__export_ids
 #: model_terms:ir.ui.view,arch_db:excel_import_export.export_xlsx_wizard
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "Export"
-msgstr ""
+msgstr "Exportar"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__export_action_id
 msgid "Export Action"
-msgstr ""
+msgstr "Acción de exportación"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -573,57 +656,69 @@ msgid ""
 "                                  The record itself will be mapped to the header part of excel sheet. The record can contain multiple one2many fields, which will be written as data lines.\n"
 "                                  You can look at following instruction as Excel Sheet(s), each with 1 header section (_HEAD_) and multiple row sections (one2many fields)."
 msgstr ""
+"Instrución de Exportación é como escribir datos dun rexistro de datos activo "
+"a celas especificadas nunha folla de Excel.\n"
+"                                  Por exemplo, un rexistro activo pode ser "
+"unha orde de venda que o usuario desexa exportar.\n"
+"                                  O rexistro será mapeado á parte do "
+"encabezado da folla de Excel. O rexistro pode conter múltiples campos "
+"one2many, que serán escritos como liñas de datos.\n"
+"                                  Pode ver as seguintes instrucións como "
+"follas de Excel, cada unha cunha sección de encabezado (_HEAD_) e múltiples "
+"seccións de fila (campos one2many)."
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__is_extend
 msgid "Extend"
-msgstr ""
+msgstr "Estender"
 
 #. module: excel_import_export
 #: model:ir.model.fields,help:excel_import_export.field_xlsx_template_export__is_extend
 msgid "Extend a blank row after filling each record, to extend the footer"
 msgstr ""
+"Estender unha fila en branco despois de encher cada rexistro, para estender "
+"o pé de páxina"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__field_name
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_import__field_name
 msgid "Field"
-msgstr ""
+msgstr "Campo"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__field_cond
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_import__field_cond
 msgid "Field Cond."
-msgstr ""
+msgstr "Campo Cond."
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_export_xlsx_wizard__data
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_report__data
 msgid "File"
-msgstr ""
+msgstr "Arquivo"
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/wizard/import_xlsx_wizard.py:0
 #, python-format
 msgid "File \"%(fname)s\" not found in template, %(name)s."
-msgstr ""
+msgstr "Arquivo \"%(fname)s\" non atopado no modelo, %(name)s."
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__datas
 msgid "File Content"
-msgstr ""
+msgstr "Contido do arquivo"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_export_xlsx_wizard__name
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_report__name
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__fname
 msgid "File Name"
-msgstr ""
+msgstr "Nome do Arquivo"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "Following are more explaination on each column:"
-msgstr ""
+msgstr "A continuación atopará máis explicacións sobre cada columna:"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -631,6 +726,9 @@ msgid ""
 "Following show very simple example of the dictionary construct.\n"
 "                                    Normally, this will be within templates.xml file within addons."
 msgstr ""
+"A continuación móstrase un exemplo moi simple da construción do dicionario.\n"
+"                                    Normalmente, isto será dentro do arquivo "
+"templates.xml dentro de addons."
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -638,16 +736,21 @@ msgid ""
 "For code block <code>${...}</code> and <code>#?...?</code>, following object"
 " are available,"
 msgstr ""
+"Para o bloque de código <code>${...}</code> e <code>#?...?</code>, están "
+"dispoñibles os seguintes obxectos,"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "For code block <code>${...}</code>, following object are available,"
 msgstr ""
+"Para o bloque de código <code>${...}</code>, están dispoñibles os seguintes "
+"obxectos,"
 
 #. module: excel_import_export
 #: model:ir.model,name:excel_import_export.model_report_xlsx_wizard
 msgid "Generic Report Wizard, used with template reporting option"
 msgstr ""
+"Asistente para informes xenéricos, utilizado coa opción de informes de modelo"
 
 #. module: excel_import_export
 #: model:ir.model.fields.selection,name:excel_import_export.selection__export_xlsx_wizard__state__get
@@ -656,43 +759,43 @@ msgstr ""
 #: model:ir.model.fields.selection,name:excel_import_export.selection__report_sale_order__state__get
 #: model:ir.model.fields.selection,name:excel_import_export.selection__xlsx_report__state__get
 msgid "Get"
-msgstr ""
+msgstr "Obter"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.export_xlsx_wizard
 msgid "Get Import Template"
-msgstr ""
+msgstr "Obter modelo de importación"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__gname
 msgid "Group Name"
-msgstr ""
+msgstr "Nome do Grupo"
 
 #. module: excel_import_export
 #: model:ir.model.fields.selection,name:excel_import_export.selection__xlsx_template_export__section_type__head
 #: model:ir.model.fields.selection,name:excel_import_export.selection__xlsx_template_import__section_type__head
 msgid "Head"
-msgstr ""
+msgstr "Cabeza"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "Help with Export Instruction"
-msgstr ""
+msgstr "Axuda con Instrucións de Exportación"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "Help with Import Instruction"
-msgstr ""
+msgstr "Axuda con Instrucións de Importación"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.export_xlsx_wizard
 msgid "Here is the exported file:"
-msgstr ""
+msgstr "Aquí está o arquivo exportado:"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.xlsx_report_view
 msgid "Here is the report file:"
-msgstr ""
+msgstr "Aquí está o arquivo do informe:"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_export_xlsx_wizard__id
@@ -702,13 +805,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__id
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_import__id
 msgid "ID"
-msgstr ""
+msgstr "ID (identificación)"
 
 #. module: excel_import_export
 #: model:ir.model.fields,help:excel_import_export.field_xlsx_template_export__row_field
 #: model:ir.model.fields,help:excel_import_export.field_xlsx_template_import__row_field
 msgid "If section type is row, this field is required"
-msgstr ""
+msgstr "Se o tipo de sección é fila, este campo é obrigatorio"
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/models/xlsx_export.py:0
@@ -718,39 +821,42 @@ msgid ""
 "Some exporting data contain special character\n"
 "%s"
 msgstr ""
+"Erro de carácter ilegal\n"
+"Algúns datos de exportación conteñen caracteres especiais.\n"
+"%s"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__import_ids
 #: model_terms:ir.ui.view,arch_db:excel_import_export.import_xlsx_wizard
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "Import"
-msgstr ""
+msgstr "Importar"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__import_action_id
 msgid "Import Action"
-msgstr ""
+msgstr "Importar Acción"
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/wizard/import_xlsx_wizard.py:0
 #, python-format
 msgid "Import Excel"
-msgstr ""
+msgstr "Importar Excel"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_import_xlsx_wizard__import_file
 msgid "Import File (*.xlsx)"
-msgstr ""
+msgstr "Importar arquivo (.xlsx)"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.import_xlsx_wizard
 msgid "Import File Template"
-msgstr ""
+msgstr "Importar modelo de arquivo"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_import_xlsx_wizard__attachment_ids
 msgid "Import File(s) (*.xlsx)"
-msgstr ""
+msgstr "Importar arquivos (.xlsx)"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -760,11 +866,21 @@ msgid ""
 "                                  In reverse direction to exporting, data from excel's cells will be mapped to record fields during import.\n"
 "                                  Cells can be mapped to record in header section (_HEAD_) and data table can be mapped to row section (one2many field, begins from specifed cells."
 msgstr ""
+"A instrución de importación é como obter datos dunha folla de Excel e "
+"escribilos nun rexistro activo.\n"
+"                                  Por exemplo, o usuario crea un documento "
+"de pedido de vendas e desexa importar liñas de pedido desde Excel.\n"
+"                                  En dirección inversa á exportación, os "
+"datos das celas de Excel asignaranse aos campos de rexistro durante a "
+"importación.\n"
+"                                  As celas pódense asignar a rexistros na "
+"sección de encabezado (_HEAD_) e a táboa de datos pódese asignar á sección "
+"de filas (campo un a moitos, comeza desde as celas especificadas)."
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.import_xlsx_wizard
 msgid "Import Successful!"
-msgstr ""
+msgstr "Importación exitosa!"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -772,6 +888,8 @@ msgid ""
 "In header section part, map data fields (e.g., number, partner_id.name) into"
 " cells (e.g., B1, B2)."
 msgstr ""
+"Na parte da sección do encabezado, asigne os campos de datos (por exemplo, "
+"número, partner_id.nome) a celas (por exemplo, B1, B2)."
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -779,6 +897,8 @@ msgid ""
 "In header section, map cells (e.g., B1, B2) into data fields (e.g., number, "
 "partner_id)."
 msgstr ""
+"Na sección do encabezado, asigne celas (por exemplo, B1, B2) a campos de "
+"datos (por exemplo, número, partner_id)."
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -787,6 +907,10 @@ msgid ""
 "order_line), and map data field (i.e., product_id.name, uom_id.name, qty) "
 "into the first row cells to start rolling (e.g., A6, B6, C6)."
 msgstr ""
+"Na sección de filas, a lista de datos despregarase desde o campo de fila "
+"one2many (por exemplo, order_line) e o campo de datos do mapa (é dicir, "
+"product_id.name, uom_id.name, qty) ás celas da primeira fila para comezar a "
+"rodar (por exemplo, A6, B6, C6)."
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
@@ -795,50 +919,53 @@ msgid ""
 "(e.g., order_line) by mapping cells on first row onwards (e.g., A6, B6, C6) "
 "to fields (e.g., product_id, uom_id, qty)"
 msgstr ""
+"Na sección de filas, a táboa de datos de Excel pódese importar a un campo de "
+"fila one2many (p. ex., order_line) asignando celas da primeira fila en "
+"diante (p. ex., A6, B6, C6) aos campos (p. ex., product_id, uom_id, qty)"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "Input Instruction (Dict.)"
-msgstr ""
+msgstr "Instrución de entrada (Dict.)"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__instruction
 msgid "Instruction"
-msgstr ""
+msgstr "Instrución"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__input_instruction
 msgid "Instruction (Input)"
-msgstr ""
+msgstr "Instrución (entrada)"
 
 #. module: excel_import_export
 #: model:ir.model.fields,help:excel_import_export.field_xlsx_template__instruction
 msgid "Instruction on how to import/export, prepared by system."
-msgstr ""
+msgstr "Instrución sobre como importar/exportar, preparada polo sistema."
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/models/xlsx_import.py:0
 #, python-format
 msgid "Invalid declaration, %s has no valid field type"
-msgstr ""
+msgstr "Declaración non válida, %s non ten ningún tipo de campo válido"
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/models/xlsx_import.py:0
 #, python-format
 msgid "Invalid file style, only .xls or .xlsx file allowed"
-msgstr ""
+msgstr "Estilo de arquivo non válido, só permítense arquivos .xls ou .xlsx"
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/models/common.py:0
 #, python-format
 msgid "Invalid style type %s"
-msgstr ""
+msgstr "Tipo de estilo non válido %s"
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/models/common.py:0
 #, python-format
 msgid "Invalid value %(value)s for style type %(key)s"
-msgstr ""
+msgstr "Valor non válido %(value)s para o tipo de estilo %(key)s"
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/models/xlsx_export.py:0
@@ -847,6 +974,8 @@ msgid ""
 "Key Error\n"
 "%s"
 msgstr ""
+"Erro de clave\n"
+"%s"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_export_xlsx_wizard____last_update
@@ -856,7 +985,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export____last_update
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_import____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última Modificación o"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_export_xlsx_wizard__write_uid
@@ -866,7 +995,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__write_uid
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_import__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Actualizado por Última vez por"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_export_xlsx_wizard__write_date
@@ -876,7 +1005,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__write_date
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_import__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Última Actualización o"
 
 #. module: excel_import_export
 #: model:ir.model.fields,help:excel_import_export.field_xlsx_template__gname
@@ -884,30 +1013,32 @@ msgid ""
 "Multiple template of same model, can belong to same group,\n"
 "result in multiple template selection"
 msgstr ""
+"Varios modelos do mesmo modelo, poden pertencer ao mesmo grupo,\n"
+"dar como resultado unha selección de modelos múltiples"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_import__no_delete
 msgid "No Delete"
-msgstr ""
+msgstr "Sen Eliminar"
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/models/xlsx_import.py:0
 #, python-format
 msgid "No data_dict['__IMPORT__'] in template %s"
-msgstr ""
+msgstr "Non data_dict['__IMPORT__'] no modelo %s"
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/models/xlsx_template.py:0
 #, python-format
 msgid "No file content!"
-msgstr ""
+msgstr "Sen contido de arquivo!"
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/models/xlsx_report.py:0
 #: code:addons/excel_import_export/wizard/export_xlsx_wizard.py:0
 #, python-format
 msgid "No file in %s"
-msgstr ""
+msgstr "Ningún arquivo en %s"
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/models/xlsx_report.py:0
@@ -915,62 +1046,63 @@ msgstr ""
 #: code:addons/excel_import_export/wizard/import_xlsx_wizard.py:0
 #, python-format
 msgid "No template found"
-msgstr ""
+msgstr "Non se atopou ningún modelo"
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/models/xlsx_export.py:0
 #, python-format
 msgid "Not enough worksheets"
-msgstr ""
+msgstr "Non hai suficientes follas de traballo"
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/models/ir_report.py:0
 #, python-format
 msgid "Only one id is allowed for excel_import_export"
-msgstr ""
+msgstr "Só se permite unha identificación para excel_import_export"
 
 #. module: excel_import_export
 #: model:ir.model.fields,help:excel_import_export.field_xlsx_template__redirect_action
 msgid "Optional action, redirection after finish import operation"
 msgstr ""
+"Acción opcional, redirección despois de finalizar a operación de importación"
 
 #. module: excel_import_export
 #: model:ir.model.fields,help:excel_import_export.field_xlsx_template__csv_extension
 msgid "Optional for CSV, default is .csv"
-msgstr ""
+msgstr "Opcional para CSV, o valor predeterminado é .csv"
 
 #. module: excel_import_export
 #: model:ir.model.fields,help:excel_import_export.field_xlsx_template__csv_delimiter
 msgid "Optional for CSV, default is comma."
-msgstr ""
+msgstr "Opcional para CSV, o valor predeterminado é cómaa."
 
 #. module: excel_import_export
 #: model:ir.model.fields,help:excel_import_export.field_xlsx_template__csv_quote
 msgid "Optional for CSV, default is full quoting."
-msgstr ""
+msgstr "Opcional para CSV, o valor predeterminado son as citas completas."
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/wizard/import_xlsx_wizard.py:0
 #, python-format
 msgid "Please select Excel file to import"
-msgstr ""
+msgstr "Seleccione o arquivo Excel para importar"
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/models/common.py:0
 #: code:addons/excel_import_export/models/common.py:0
 #, python-format
 msgid "Position %s is not valid"
-msgstr ""
+msgstr "A posición %s non é válida"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__post_import_hook
 msgid "Post Import Function Hook"
-msgstr ""
+msgstr "Gancho de función posterior á importación"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "Post Import Hook"
-msgstr ""
+msgstr "Gancho posterior á importación"
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/models/xlsx_import.py:0
@@ -979,125 +1111,127 @@ msgid ""
 "Post import operation error\n"
 "%s"
 msgstr ""
+"Erro de operación posterior á importación\n"
+"%s"
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/models/xlsx_export.py:0
 #, python-format
 msgid "Records in %s exceed max records allowed"
-msgstr ""
+msgstr "Os rexistros en %s superan o máximo de rexistros permitidos"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "Remove Export Action"
-msgstr ""
+msgstr "Eliminar acción de exportación"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "Remove Import Action"
-msgstr ""
+msgstr "Eliminar acción de importación"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "Remove Report Menu"
-msgstr ""
+msgstr "Quitar menú Informe"
 
 #. module: excel_import_export
 #: model:ir.model,name:excel_import_export.model_ir_actions_report
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__report_action_id
 msgid "Report Action"
-msgstr ""
+msgstr "Informar Acción"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__report_menu_id
 msgid "Report Menu"
-msgstr ""
+msgstr "Menú Informe"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__result_model_id
 msgid "Report Model"
-msgstr ""
+msgstr "Modelo de informe"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_ir_actions_report__report_type
 msgid "Report Type"
-msgstr ""
+msgstr "Tipo de Informe"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_report_xlsx_wizard__res_model
 msgid "Res Model"
-msgstr ""
+msgstr "Modelo Rec"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_import_xlsx_wizard__res_id
 msgid "Resource ID"
-msgstr ""
+msgstr "ID do Recurso"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_export_xlsx_wizard__res_ids
 msgid "Resource IDs"
-msgstr ""
+msgstr "IDs do Recurso"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_export_xlsx_wizard__res_model
 #: model:ir.model.fields,field_description:excel_import_export.field_import_xlsx_wizard__res_model
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__res_model
 msgid "Resource Model"
-msgstr ""
+msgstr "Modelo do Recurso"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__result_field
 msgid "Result Field"
-msgstr ""
+msgstr "Campo do Recurso"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__redirect_action
 msgid "Return Action"
-msgstr ""
+msgstr "Acción de devolución"
 
 #. module: excel_import_export
 #: model:ir.model.fields.selection,name:excel_import_export.selection__xlsx_template_export__section_type__row
 #: model:ir.model.fields.selection,name:excel_import_export.selection__xlsx_template_import__section_type__row
 msgid "Row"
-msgstr ""
+msgstr "Fila"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__row_field
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_import__row_field
 msgid "Row Field"
-msgstr ""
+msgstr "Campo de fila"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_import_xlsx_wizard__datas
 msgid "Sample"
-msgstr ""
+msgstr "Exemplo"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "Sample Input Instruction as Dictionary"
-msgstr ""
+msgstr "Instrución de entrada de mostra como Dicionario"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_report_xlsx_wizard__domain
 msgid "Search Criterias"
-msgstr ""
+msgstr "Criterios de procura"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__section_type
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_import__section_type
 msgid "Section Type"
-msgstr ""
+msgstr "Tipo de Sección"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__sequence
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_import__sequence
 msgid "Sequence"
-msgstr ""
+msgstr "Secuencia"
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/wizard/import_xlsx_wizard.py:0
 #, python-format
 msgid "Set Templates"
-msgstr ""
+msgstr "Establecer Modelos"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__sheet
@@ -1105,55 +1239,55 @@ msgstr ""
 #: model:ir.model.fields.selection,name:excel_import_export.selection__xlsx_template_export__section_type__sheet
 #: model:ir.model.fields.selection,name:excel_import_export.selection__xlsx_template_import__section_type__sheet
 msgid "Sheet"
-msgstr ""
+msgstr "Folla"
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/models/xlsx_export.py:0
 #: code:addons/excel_import_export/models/xlsx_import.py:0
 #, python-format
 msgid "Sheet %s not found"
-msgstr ""
+msgstr "Folla %s s non atopada"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__show_instruction
 msgid "Show Output"
-msgstr ""
+msgstr "Mostrar saída"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_export_xlsx_wizard__state
 #: model:ir.model.fields,field_description:excel_import_export.field_import_xlsx_wizard__state
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_report__state
 msgid "State"
-msgstr ""
+msgstr "Estado"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__style_cond
 msgid "Style w/Cond."
-msgstr ""
+msgstr "Estilo con Cond."
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__is_sum
 msgid "Sum"
-msgstr ""
+msgstr "Suma"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_export_xlsx_wizard__template_id
 #: model:ir.model.fields,field_description:excel_import_export.field_import_xlsx_wizard__template_id
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_report__template_id
 msgid "Template"
-msgstr ""
+msgstr "Modelo"
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/models/ir_report.py:0
 #, python-format
 msgid "Template %(report_name)s on model %(model)s is not unique!"
-msgstr ""
+msgstr "O modelo %(report_name)s no modelo %(model)s non é única!"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_import_xlsx_wizard__fname
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template__name
 msgid "Template Name"
-msgstr ""
+msgstr "Nome de Modelo"
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/models/common.py:0
@@ -1162,24 +1296,26 @@ msgid ""
 "Template with CSV Quoting = False, data must not contain the same char as "
 "delimiter -> \"%s\""
 msgstr ""
+"Modelo con cita CSV = Falso, os datos non deben conter o mesmo carácter que "
+"o delimitador -> \"%s\""
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/models/xlsx_export.py:0
 #: code:addons/excel_import_export/models/xlsx_import.py:0
 #, python-format
 msgid "Template's model mismatch"
-msgstr ""
+msgstr "O modelo do modelo non coincide"
 
 #. module: excel_import_export
 #: model:ir.model.fields,help:excel_import_export.field_xlsx_template__res_model
 msgid "The database object this attachment will be attached to."
-msgstr ""
+msgstr "O obxecto da base de datos ao que se anexará este anexo."
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/models/xlsx_template.py:0
 #, python-format
 msgid "The selected redirect action is not for model %s"
-msgstr ""
+msgstr "A acción de redirección seleccionada non é para o modelo %s"
 
 #. module: excel_import_export
 #: model:ir.model.fields,help:excel_import_export.field_ir_actions_report__report_type
@@ -1189,12 +1325,17 @@ msgid ""
 "browser PDF means the report will be rendered using Wkhtmltopdf and "
 "downloaded by the user."
 msgstr ""
+"O tipo de informe que se xerará, cada un co seu propio método de xeración. "
+"HTML significa que o informe se abrirá directamente no navegador PDF quere "
+"dicir que o informe se renderizará utilizando Wkhtmltopdf e será descargado "
+"polo usuario."
 
 #. module: excel_import_export
 #: code:addons/excel_import_export/wizard/import_xlsx_wizard.py:0
 #, python-format
 msgid "This import action is not usable in this document context"
 msgstr ""
+"Esta acción de importación non se pode utilizar no contexto deste documento"
 
 #. module: excel_import_export
 #: model:ir.model.fields,help:excel_import_export.field_xlsx_template__show_instruction
@@ -1202,16 +1343,20 @@ msgid ""
 "This is the computed instruction based on tab Import/Export,\n"
 "to be used by xlsx import/export engine"
 msgstr ""
+"Esta é a instrución calculada baseada na pestana Importar/Exportar,\n"
+"para ser utilizado polo motor de importación/exportación xlsx"
 
 #. module: excel_import_export
 #: model:ir.model.fields,help:excel_import_export.field_xlsx_template__input_instruction
 msgid "This is used to construct instruction in tab Import/Export"
-msgstr ""
+msgstr "Isto utilízase para construír instrucións na pestana Importar/Exportar"
 
 #. module: excel_import_export
 #: model:ir.model.fields,help:excel_import_export.field_xlsx_template__use_report_wizard
 msgid "Use common report wizard model, instead of create specific model"
 msgstr ""
+"Utilice o modelo de asistente de informes común, en lugar de crear un modelo "
+"específico"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_export_xlsx_wizard__user_can_see_changeset
@@ -1226,49 +1371,49 @@ msgstr ""
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__user_can_see_changeset
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_import__user_can_see_changeset
 msgid "User Can See Changeset"
-msgstr ""
+msgstr "Usuario pode ver conxunto de cambios"
 
 #. module: excel_import_export
 #: model:ir.model.fields,help:excel_import_export.field_xlsx_template__result_model_id
 msgid "When use commone wizard, choose the result model"
-msgstr ""
+msgstr "Cando use o asistente común, elixa o modelo de resultado"
 
 #. module: excel_import_export
 #: model:ir.model,name:excel_import_export.model_export_xlsx_wizard
 msgid "Wizard for exporting excel"
-msgstr ""
+msgstr "Asistente para exportar excel"
 
 #. module: excel_import_export
 #: model:ir.model,name:excel_import_export.model_import_xlsx_wizard
 msgid "Wizard for importing excel"
-msgstr ""
+msgstr "Asistente para importar excel"
 
 #. module: excel_import_export
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_export__template_id
 #: model:ir.model.fields,field_description:excel_import_export.field_xlsx_template_import__template_id
 #: model_terms:ir.ui.view,arch_db:excel_import_export.view_xlsx_template_form
 msgid "XLSX Template"
-msgstr ""
+msgstr "Modelo XLSX"
 
 #. module: excel_import_export
 #: model:ir.actions.act_window,name:excel_import_export.action_xlsx_template
 #: model:ir.ui.menu,name:excel_import_export.menu_xlsx_template
 msgid "XLSX Templates"
-msgstr ""
+msgstr "Modelo XLSX"
 
 #. module: excel_import_export
 #: model:ir.model.fields,help:excel_import_export.field_import_xlsx_wizard__attachment_ids
 msgid "You can select multiple files to import."
-msgstr ""
+msgstr "Pode seleccionar varios arquivos para importar."
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.export_xlsx_wizard
 #: model_terms:ir.ui.view,arch_db:excel_import_export.import_xlsx_wizard
 #: model_terms:ir.ui.view,arch_db:excel_import_export.xlsx_report_view
 msgid "or"
-msgstr ""
+msgstr "ou"
 
 #. module: excel_import_export
 #: model_terms:ir.ui.view,arch_db:excel_import_export.import_xlsx_wizard
 msgid "⇒ Get Sample Import Template"
-msgstr ""
+msgstr "⇒ Obter modelo de importación de mostra"
