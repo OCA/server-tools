@@ -6,40 +6,42 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-05-23 07:43+0000\n"
+"Last-Translator: Pablo Castelo <pablocv@gmx.es>\n"
 "Language-Team: none\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: fetchmail_incoming_log
 #: model:ir.model.fields,field_description:fetchmail_incoming_log.field_mail_thread__changeset_change_ids
 msgid "Changeset Changes"
-msgstr ""
+msgstr "Cambios no conxunto de modificacións"
 
 #. module: fetchmail_incoming_log
 #: model:ir.model.fields,field_description:fetchmail_incoming_log.field_mail_thread__changeset_ids
 msgid "Changesets"
-msgstr ""
+msgstr "Conxuntos de cambios"
 
 #. module: fetchmail_incoming_log
 #: model:ir.model.fields,field_description:fetchmail_incoming_log.field_mail_thread__count_pending_changeset_changes
 msgid "Count Pending Changeset Changes"
-msgstr ""
+msgstr "Contar os cambios do conxunto de cambios pendentes"
 
 #. module: fetchmail_incoming_log
 #: model:ir.model.fields,field_description:fetchmail_incoming_log.field_mail_thread__count_pending_changesets
 msgid "Count Pending Changesets"
-msgstr ""
+msgstr "Contar conxuntos de cambios pendentes"
 
 #. module: fetchmail_incoming_log
 #: model:ir.model,name:fetchmail_incoming_log.model_mail_thread
 msgid "Email Thread"
-msgstr ""
+msgstr "Fío correo electrónico"
 
 #. module: fetchmail_incoming_log
 #: model:ir.model.fields,field_description:fetchmail_incoming_log.field_mail_thread__user_can_see_changeset
 msgid "User Can See Changeset"
-msgstr ""
+msgstr "O usuario pode ver o conxunto de cambios"
