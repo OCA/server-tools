@@ -9,47 +9,48 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-01 02:10+0000\n"
-"PO-Revision-Date: 2017-12-01 02:10+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2026-05-23 04:50+0000\n"
+"Last-Translator: Pablo Castelo <pablocv@gmx.es>\n"
 "Language-Team: Galician (https://www.transifex.com/oca/teams/23907/gl/)\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: base_multi_image
 #: model:ir.model,name:base_multi_image.model_base_multi_image_owner
 msgid " Wizard for base multi image "
-msgstr ""
+msgstr " Asistente para a imaxe múltiple base "
 
 #. module: base_multi_image
 #: model:ir.model,name:base_multi_image.model_base_multi_image_image
 msgid " image model for multiple image functionality "
-msgstr ""
+msgstr " modelo de imaxe para a funcionalidade de imaxes múltiples "
 
 #. module: base_multi_image
 #: code:addons/base_multi_image/models/image.py:0
 #: model:ir.model.constraint,message:base_multi_image.constraint_base_multi_image_image_uniq_name_owner
 #, python-format
 msgid "A document can have only one image with the same name."
-msgstr ""
+msgstr "Cada documento pode ter só unha imaxe co mesmo nome."
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__attachment_id
 msgid "Attachment"
-msgstr ""
+msgstr "Adxunto"
 
 #. module: base_multi_image
 #: model_terms:ir.actions.act_window,help:base_multi_image.image_action
 msgid "Click to add an image attached to an specific record."
-msgstr ""
+msgstr "Pulse para engadir unha imaxe relacionada cun rexistro específico."
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__comments
 #: model_terms:ir.ui.view,arch_db:base_multi_image.image_form_view
 msgid "Comments"
-msgstr ""
+msgstr "Comentarios"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__create_uid
@@ -64,32 +65,32 @@ msgstr "Creado en"
 #. module: base_multi_image
 #: model:ir.model.fields.selection,name:base_multi_image.selection__base_multi_image_image__storage__db
 msgid "Database"
-msgstr ""
+msgstr "Base de datos"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome a mostrar"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__extension
 msgid "File extension"
-msgstr ""
+msgstr "Extensión do arquivo"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__filename
 msgid "Filename"
-msgstr ""
+msgstr "Nome do arquivo"
 
 #. module: base_multi_image
 #: model:ir.model.fields.selection,name:base_multi_image.selection__base_multi_image_image__storage__filestore
 msgid "Filestore"
-msgstr ""
+msgstr "Almacenamento"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__image_main
 msgid "Full-sized image"
-msgstr ""
+msgstr "Imaxe de tamaño completo"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__id
@@ -99,33 +100,33 @@ msgstr "ID"
 #. module: base_multi_image
 #: model_terms:ir.ui.view,arch_db:base_multi_image.image_form_view
 msgid "Image"
-msgstr ""
+msgstr "Imaxe"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__path
 #: model:ir.model.fields,help:base_multi_image.field_base_multi_image_image__path
 msgid "Image path"
-msgstr ""
+msgstr "Roteiro da imaxe"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__url
 msgid "Image remote URL"
-msgstr ""
+msgstr "URL remota da imaxe"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__file_db_store
 msgid "Image stored in database"
-msgstr ""
+msgstr "Imaxe almacenada na base de datos"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__name
 msgid "Image title"
-msgstr ""
+msgstr "Título da imaxe"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_owner__image_ids
 msgid "Images"
-msgstr ""
+msgstr "Imaxes"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image____last_update
@@ -147,17 +148,17 @@ msgstr "Última actualización en"
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_owner__image_main
 #, python-format
 msgid "Main image"
-msgstr ""
+msgstr "Imaxe principal"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_owner__image_main_medium
 msgid "Medium image"
-msgstr ""
+msgstr "Imaxe media"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__image_medium
 msgid "Medium-sized image"
-msgstr ""
+msgstr "Imaxe de tamaño medio"
 
 #. module: base_multi_image
 #: model:ir.model.fields,help:base_multi_image.field_base_multi_image_image__image_medium
@@ -166,12 +167,15 @@ msgid ""
 "with aspect ratio preserved, only when the image exceeds one of those sizes. "
 "Use this field in form views or kanban views."
 msgstr ""
+"Imaxe de tamaño medio. É redimensionada automaticamente a un tamaño de 128 x "
+"128 px, preservando a proporción de aspecto, só cando a imaxe excede un "
+"destes tamaños. Use este campo para vistas formulario ou kanban."
 
 #. module: base_multi_image
 #: model:ir.actions.act_window,name:base_multi_image.image_action
 #: model:ir.ui.menu,name:base_multi_image.image_menu
 msgid "Multi images"
-msgstr ""
+msgstr "Multi imaxes"
 
 #. module: base_multi_image
 #: model_terms:ir.ui.view,arch_db:base_multi_image.image_form_view
@@ -181,38 +185,38 @@ msgstr "Nome"
 #. module: base_multi_image
 #: model:ir.model.fields.selection,name:base_multi_image.selection__base_multi_image_image__storage__file
 msgid "OS file"
-msgstr ""
+msgstr "Arquivo do SO"
 
 #. module: base_multi_image
 #: model_terms:ir.ui.view,arch_db:base_multi_image.image_form_view
 msgid "Options"
-msgstr ""
+msgstr "Opcións"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__owner_id
 #: model_terms:ir.ui.view,arch_db:base_multi_image.image_form_view
 msgid "Owner"
-msgstr ""
+msgstr "Propietario"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__owner_model
 msgid "Owner Model"
-msgstr ""
+msgstr "Modelo Propietario"
 
 #. module: base_multi_image
 #: model_terms:ir.ui.view,arch_db:base_multi_image.image_form_view
 msgid "Preview"
-msgstr ""
+msgstr "Previsualización"
 
 #. module: base_multi_image
 #: model_terms:ir.ui.view,arch_db:base_multi_image.image_kanban_view
 msgid "Product Images"
-msgstr ""
+msgstr "Imaxe do Produto"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__owner_ref_id
 msgid "Referenced Owner"
-msgstr ""
+msgstr "Propietario de referencia"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__sequence
@@ -222,17 +226,17 @@ msgstr "Secuencia"
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__show_technical
 msgid "Show Technical"
-msgstr ""
+msgstr "Mostrar técnica"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_owner__image_main_small
 msgid "Small image"
-msgstr ""
+msgstr "Imaxe pequena"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__image_small
 msgid "Small-sized image"
-msgstr ""
+msgstr "Imaxe de pequeno tamaño"
 
 #. module: base_multi_image
 #: model:ir.model.fields,help:base_multi_image.field_base_multi_image_image__image_small
@@ -240,37 +244,40 @@ msgid ""
 "Small-sized image. It is automatically resized as a 64 x 64 px image, with "
 "aspect ratio preserved. Use this field anywhere a small image is required."
 msgstr ""
+"Imaxe de tamaño medio. É redimensionada automaticamente a un tamaño de 64 x "
+"64 px, preservando a proporción de aspecto. Use este campo onde se requira "
+"unha imaxe pequena."
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__storage
 msgid "Storage"
-msgstr ""
+msgstr "Almacenamento"
 
 #. module: base_multi_image
 #: model:ir.model.fields.selection,name:base_multi_image.selection__base_multi_image_image__storage__url
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #. module: base_multi_image
 #: code:addons/base_multi_image/models/image.py:0
 #, python-format
 msgid "You must provide a file path for the image."
-msgstr ""
+msgstr "Debe prover un roteiro de arquivo para a imaxe."
 
 #. module: base_multi_image
 #: code:addons/base_multi_image/models/image.py:0
 #, python-format
 msgid "You must provide an URL for the image."
-msgstr ""
+msgstr "Debe prover unha URL para a imaxe."
 
 #. module: base_multi_image
 #: code:addons/base_multi_image/models/image.py:0
 #, python-format
 msgid "You must provide an attached file for the image."
-msgstr ""
+msgstr "Debe prover un arquivo adxunto para a imaxe."
 
 #. module: base_multi_image
 #: code:addons/base_multi_image/models/image.py:0
 #, python-format
 msgid "You must provide an attachment for the image."
-msgstr ""
+msgstr "Debe prover un adxunto para a imaxe."
