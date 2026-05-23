@@ -6,13 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-05-23 18:14+0000\n"
+"Last-Translator: Pablo Castelo <pablocv@gmx.es>\n"
 "Language-Team: none\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: scheduler_error_mailer
 #: model:mail.template,body_html:scheduler_error_mailer.scheduler_error_mailer
@@ -48,66 +50,105 @@ msgid ""
 "    \n"
 "        "
 msgstr ""
+"\n"
+"                \n"
+"<div style=\"font-family: 'Lucida Grande', Ubuntu, Arial, Verdana, sans-"
+"serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n"
+"\n"
+"<p>Odoo tentou executar o programador <em><t t-out=\"object.name or ''\"/></"
+"em> na base de datos <em><t t-out=\"ctx.get('dbname')\"/></em> pero fallou. "
+"Aquí está a mensaxe de erro:</p>\n"
+"\n"
+"<strong>\n"
+"<t t-out=\"ctx.get('job_exception') or 'Failed to get the error message from "
+"the context.'\"/>\n"
+"</strong>\n"
+"\n"
+"<p>Podes consultar os rexistros do servidor Odoo para obter máis información "
+"sobre este fallo.</p>\n"
+"\n"
+"<p>Propiedades do planificador <em><t t-out=\"object.name or ''\"/>:</em>:</"
+"p>\n"
+"<ul>\n"
+"<li>Modelo: <t t-out=\"object.model_id.name or ''\"/></li>\n"
+"<li>Código Python: <code><t t-out=\"object.code or ''\"/></code></li>\n"
+"<li>Intervalo: <t t-out=\"object.interval_number or '0'\"/><t t-"
+"out=\"object.interval_type or ''\"/></li>\n"
+"<li>Número de chamadas: <t t-out=\"object.numbercall or '0'\"/></li>\n"
+"<li>Repetición perdida: <t t-out=\"object.doall\"/></li>\n"
+"<li>Usuario: <t t-out=\"object.user_id.name or ''\"/></li>\n"
+"</ul>\n"
+"\n"
+"<p>\n"
+"-- <br/>\n"
+"Correo electrónico automático enviado por Odoo. Non respondas.<br/>\n"
+"Base de datos: <t t-out=\"ctx.get('dbname')\"/>\n"
+"</p>\n"
+"</div>\n"
+"    \n"
+"        "
 
 #. module: scheduler_error_mailer
 #: model:ir.model.fields,field_description:scheduler_error_mailer.field_ir_cron__changeset_change_ids
 msgid "Changeset Changes"
-msgstr ""
+msgstr "Cambios no conxunto de modificacións"
 
 #. module: scheduler_error_mailer
 #: model:ir.model.fields,field_description:scheduler_error_mailer.field_ir_cron__changeset_ids
 msgid "Changesets"
-msgstr ""
+msgstr "Conxuntos de cambios"
 
 #. module: scheduler_error_mailer
 #: model:ir.model.fields,field_description:scheduler_error_mailer.field_ir_cron__count_pending_changeset_changes
 msgid "Count Pending Changeset Changes"
-msgstr ""
+msgstr "Contar os cambios do conxunto de cambios pendentes"
 
 #. module: scheduler_error_mailer
 #: model:ir.model.fields,field_description:scheduler_error_mailer.field_ir_cron__count_pending_changesets
 msgid "Count Pending Changesets"
-msgstr ""
+msgstr "Contar conxuntos de cambios pendentes"
 
 #. module: scheduler_error_mailer
 #: model:ir.model.fields,field_description:scheduler_error_mailer.field_ir_cron__email_template_id
 msgid "Error E-mail Template"
-msgstr ""
+msgstr "Modelo de correo electrónico de erro"
 
 #. module: scheduler_error_mailer
 #: model:ir.model,name:scheduler_error_mailer.model_ir_cron
 msgid "Scheduled Actions"
-msgstr ""
+msgstr "Accións planificadas"
 
 #. module: scheduler_error_mailer
 #: model:mail.template,name:scheduler_error_mailer.scheduler_error_mailer
 msgid "Scheduler Error"
-msgstr ""
+msgstr "Erro de programación"
 
 #. module: scheduler_error_mailer
 #: model:ir.model.fields,help:scheduler_error_mailer.field_ir_cron__email_template_id
 msgid "Select the email template that will be sent when this scheduler fails."
 msgstr ""
+"Seleccione o modelo de correo electrónico que se enviará cando falla este "
+"planificador."
 
 #. module: scheduler_error_mailer
 #: code:addons/scheduler_error_mailer/models/ir_cron.py:0
 #, python-format
 msgid "Task failure with UID = %d."
-msgstr ""
+msgstr "Erro de Tarefa con UID = %d."
 
 #. module: scheduler_error_mailer
 #: model:ir.actions.server,name:scheduler_error_mailer.test_scheduler_error_mailer_ir_actions_server
 #: model:ir.cron,cron_name:scheduler_error_mailer.test_scheduler_error_mailer
 #: model:ir.cron,name:scheduler_error_mailer.test_scheduler_error_mailer
 msgid "Test Scheduler Error Mailer"
-msgstr ""
+msgstr "Programador de probas Mailer de erros"
 
 #. module: scheduler_error_mailer
 #: model:ir.model.fields,field_description:scheduler_error_mailer.field_ir_cron__user_can_see_changeset
 msgid "User Can See Changeset"
-msgstr ""
+msgstr "O usuario pode ver o conxunto de cambios"
 
 #. module: scheduler_error_mailer
 #: model:mail.template,subject:scheduler_error_mailer.scheduler_error_mailer
 msgid "[DB {{ctx.get('dbname')}}] Scheduler '{{object.name or ''}}' FAILED"
-msgstr ""
+msgstr "[DB {{ctx.get('dbname')}}] Programador '{{object.name or ''}}' FALLOU"
