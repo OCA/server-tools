@@ -48,6 +48,12 @@ class Base(models.AbstractModel):
         )
         for field_name, owner_field_name in self._tm_get_fields_to_notify():
             owner = self[field_name]
+
+            # Robustness fix: Handle polymorphic fields (like res_id on mail.message)
+            # which return an integer instead of a BaseModel Recordset.
+            if not isinstance(owner, models.BaseModel) or not owner:
+                continue
+
             data[owner._name][owner.id][owner_field_name].append(
                 {
                     "mode": mode,
@@ -64,16 +70,62 @@ class Base(models.AbstractModel):
         changes = []
         for field_name, before in values.items():
             field = self._fields[field_name]
-            if before != self[field_name]:
+            after = self[field_name]
+
+            if before != after:
                 if field.type == "many2many":
-                    old = format_m2m(before)
-                    new = format_m2m(self[field_name])
+                    before_records = before
+                    after_records = after
+
+                    # Specific filters for product M2M fields to avoid false positives
+                    # caused by the UI sending default/inherited values automatically.
+                    if self._name in ("product.template", "product.product"):
+                        if field_name == "route_ids":
+                            # Ignore routes inherited from categories and warehouses
+                            ignore_routes = self.env['stock.location.route']
+                            categ = self.categ_id if hasattr(self, "categ_id") else False
+                            while categ:
+                                ignore_routes |= categ.route_ids
+                                categ = getattr(categ, "parent_id", False)
+                            for wh in self.env['stock.warehouse'].search([]):
+                                ignore_routes |= wh.route_ids
+
+                            before_records -= ignore_routes
+                            after_records -= ignore_routes
+
+                        elif field_name == "taxes_id":
+                            # Ignore company default sale taxes
+                            company = self.company_id or self.env.company
+                            if hasattr(company, "account_sale_tax_id"):
+                                before_records -= company.account_sale_tax_id
+                                after_records -= company.account_sale_tax_id
+
+                        elif field_name == "supplier_taxes_id":
+                            # Ignore company default purchase taxes
+                            company = self.company_id or self.env.company
+                            if hasattr(company, "account_purchase_tax_id"):
+                                before_records -= company.account_purchase_tax_id
+                                after_records -= company.account_purchase_tax_id
+
+                    # If the manually selected records are identical, skip tracking
+                    if set(before_records.ids) == set(after_records.ids):
+                        continue
+
+                    old = format_m2m(before_records)
+                    new = format_m2m(after_records)
+
+                    # Final safety check on formatted strings
+                    if old == new:
+                        continue
+
                 elif field.type == "many2one":
-                    old = before.display_name
-                    new = self[field_name]["display_name"]
+                    # Safe extraction to prevent crashes if the relation is empty
+                    old = before.display_name if before else ""
+                    new = after.display_name if after else ""
                 else:
                     old = before
-                    new = self[field_name]
+                    new = after
+
                 changes.append(
                     {
                         "name": self._tm_get_field_description(field_name),
