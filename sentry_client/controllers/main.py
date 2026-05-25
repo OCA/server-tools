@@ -168,14 +168,14 @@ class SentryClientController(http.Controller):
             # behaviour separate from "accountant" behaviour. Group full
             # names ("Sales / Salesperson") are easier to grok than xmlids
             # in Sentry tag-search.
-            all_groups = user.sudo().groups_id
+            all_groups = user.sudo().all_group_ids
             payload["groups"] = all_groups.mapped("full_name") or all_groups.mapped(
                 "name"
             )
             payload["categories"] = sorted(
                 {
                     cat.name
-                    for cat in all_groups.mapped("category_id")
+                    for cat in all_groups.mapped("privilege_id.category_id")
                     if cat and cat.name
                 }
             )
