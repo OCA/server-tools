@@ -1,0 +1,801 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils: https://docutils.sourceforge.io/" />
+<title>Sentry — Browser SDK</title>
+<style type="text/css">
+
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id: html4css1.css 9511 2024-01-13 09:50:07Z milde $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+Despite the name, some widely supported CSS2 features are used.
+
+See https://docutils.sourceforge.io/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+.subscript {
+  vertical-align: sub;
+  font-size: smaller }
+
+.superscript {
+  vertical-align: super;
+  font-size: smaller }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+object[type="image/svg+xml"], object[type="application/x-shockwave-flash"] {
+  overflow: hidden;
+}
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title, .code .error {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left, .figure.align-left, object.align-left, table.align-left {
+  clear: left ;
+  float: left ;
+  margin-right: 1em }
+
+img.align-right, .figure.align-right, object.align-right, table.align-right {
+  clear: right ;
+  float: right ;
+  margin-left: 1em }
+
+img.align-center, .figure.align-center, object.align-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+table.align-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.align-left {
+  text-align: left }
+
+.align-center {
+  clear: both ;
+  text-align: center }
+
+.align-right {
+  text-align: right }
+
+/* reset inner alignment in figures */
+div.align-right {
+  text-align: inherit }
+
+/* div.align-center * { */
+/*   text-align: left } */
+
+.align-top    {
+  vertical-align: top }
+
+.align-middle {
+  vertical-align: middle }
+
+.align-bottom {
+  vertical-align: bottom }
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font: inherit }
+
+pre.literal-block, pre.doctest-block, pre.math, pre.code {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+pre.code .ln { color: gray; } /* line numbers */
+pre.code, code { background-color: #eeeeee }
+pre.code .comment, code .comment { color: #5C6576 }
+pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
+pre.code .literal.string, code .literal.string { color: #0C5404 }
+pre.code .name.builtin, code .name.builtin { color: #352B84 }
+pre.code .deleted, code .deleted { background-color: #DEB0A1}
+pre.code .inserted, code .inserted { background-color: #A3D289}
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic, pre.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+/* "booktabs" style (no vertical lines) */
+table.docutils.booktabs {
+  border: 0px;
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+  border-collapse: collapse;
+}
+table.docutils.booktabs * {
+  border: 0px;
+}
+table.docutils.booktabs th {
+  border-bottom: thin solid;
+  text-align: left;
+}
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+</head>
+<body>
+<div class="document" id="sentry-browser-sdk">
+<h1 class="title">Sentry — Browser SDK</h1>
+
+<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!! This file is generated by oca-gen-addon-readme !!
+!! changes will be overwritten.                   !!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!! source digest: sha256:2806bcb76ed0eabb88da4ccee41b12bf8b2e013efd155c3bf592a56d77828c63
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/server-tools/tree/18.0/sentry_client"><img alt="OCA/server-tools" src="https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/server-tools-18-0/server-tools-18-0-sentry_client"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/server-tools&amp;target_branch=18.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
+<p>Capture uncaught JS errors and unhandled promise rejections in the Odoo
+web client to Sentry, with optional Performance Monitoring
+(BrowserTracing), Session Replay, Browser CPU Profiling, and Console-log
+capture tiers behind explicit opt-in toggles.</p>
+<p>The Sentry browser SDK ships <strong>vendored inside the module</strong> — no
+external CDN call, air-gapped friendly out of the box.</p>
+<p><strong>Standalone:</strong> works on its own. Reads DSN / release / environment from
+the <tt class="docutils literal">[sentry]</tt> section of <tt class="docutils literal">odoo.conf</tt>. Captures browser-side errors
+only.</p>
+<p><strong>Better together with ``sentry``:</strong> install alongside the server-side
+<tt class="docutils literal">`sentry</tt> &lt;../sentry&gt;`__ module to cluster client and server errors
+for the same user / release / environment into one Sentry issue. Both
+modules share the same <tt class="docutils literal">[sentry]</tt> config section by convention — fill
+in the section once and client + server events land in the same Sentry
+project.</p>
+<p>Each tier above Tier 0 is <strong>off by default</strong> and surfaces an in-form
+warning about its perf cost when enabled. Sample rates are sliders so
+admins can dial behaviour without a server restart. Individual users can
+opt out of session replay via their own preferences page.</p>
+<p><strong>Table of contents</strong></p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#configuration" id="toc-entry-1">Configuration</a><ul>
+<li><a class="reference internal" href="#pick-where-the-dsn-comes-from" id="toc-entry-2">1. Pick where the DSN comes from</a></li>
+<li><a class="reference internal" href="#settings-general-settings-sentry-browser-monitoring" id="toc-entry-3">2. Settings → General Settings → Sentry Browser Monitoring</a><ul>
+<li><a class="reference internal" href="#tier-0-capture-browser-errors-recommended-default-once-a-dsn-is-set" id="toc-entry-4">Tier 0 — Capture browser errors (recommended default once a DSN is set)</a></li>
+<li><a class="reference internal" href="#tier-1-performance-monitoring" id="toc-entry-5">Tier 1 — Performance monitoring</a></li>
+<li><a class="reference internal" href="#tier-2-session-replay" id="toc-entry-6">Tier 2 — Session replay</a></li>
+<li><a class="reference internal" href="#tier-3-optional-extras" id="toc-entry-7">Tier 3 — Optional extras</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#user-preferences-privacy-per-user-session-replay-opt-out" id="toc-entry-8">3. User preferences → Privacy — per-user session-replay opt-out</a></li>
+<li><a class="reference internal" href="#owl-component-context-on-backend-errors" id="toc-entry-9">4. OWL component context on backend errors</a></li>
+<li><a class="reference internal" href="#browser-profiling-extra-setup" id="toc-entry-10">Browser profiling — extra setup</a></li>
+<li><a class="reference internal" href="#vendored-sentry-sdk" id="toc-entry-11">Vendored Sentry SDK</a></li>
+<li><a class="reference internal" href="#sentry-server-compatibility" id="toc-entry-12">Sentry server compatibility</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#usage" id="toc-entry-13">Usage</a><ul>
+<li><a class="reference internal" href="#per-user-opt-out" id="toc-entry-14">Per-user opt-out</a></li>
+<li><a class="reference internal" href="#owl-component-context" id="toc-entry-15">OWL component context</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#known-issues-roadmap" id="toc-entry-16">Known issues / Roadmap</a></li>
+<li><a class="reference internal" href="#bug-tracker" id="toc-entry-17">Bug Tracker</a></li>
+<li><a class="reference internal" href="#credits" id="toc-entry-18">Credits</a><ul>
+<li><a class="reference internal" href="#authors" id="toc-entry-19">Authors</a></li>
+<li><a class="reference internal" href="#contributors" id="toc-entry-20">Contributors</a></li>
+<li><a class="reference internal" href="#other-credits" id="toc-entry-21">Other credits</a></li>
+<li><a class="reference internal" href="#maintainers" id="toc-entry-22">Maintainers</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="configuration">
+<h1><a class="toc-backref" href="#toc-entry-1">Configuration</a></h1>
+<div class="section" id="pick-where-the-dsn-comes-from">
+<h2><a class="toc-backref" href="#toc-entry-2">1. Pick where the DSN comes from</a></h2>
+<p>There are two ways to point the browser SDK at a Sentry project. Use
+<strong>one</strong>:</p>
+<p><strong>(a) Recommended — separate browser DSN via the Settings UI.</strong> Sentry’s
+own guidance is one project per platform: a Python project for backend
+errors and a JavaScript-Browser project for client-side errors. Set the
+dedicated browser DSN under <strong>Settings → General Settings → Sentry
+Browser Monitoring → Connection</strong>:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="26%" />
+<col width="37%" />
+<col width="37%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Field</th>
+<th class="head">Example</th>
+<th class="head">Notes</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><strong>Browser DSN</strong></td>
+<td><tt class="docutils literal"><span class="pre">https://&lt;p</span>
+<span class="pre">ublic_key&gt;&#64;sentry.exam</span>
+<span class="pre">ple.com/&lt;project_id&gt;</span></tt></td>
+<td>Public DSN of the
+JavaScript project.
+Safe to embed in
+client code per
+Sentry’s docs.</td>
+</tr>
+<tr><td><strong>Environment</strong></td>
+<td><tt class="docutils literal"><span class="pre">production-web</span></tt></td>
+<td>Tags every browser
+event. May differ from
+the backend env tag.</td>
+</tr>
+<tr><td><strong>Release</strong></td>
+<td>asset-bundle hash or
+deploy SHA</td>
+<td>Tags every browser
+event. May differ from
+the Odoo Python
+release.</td>
+</tr>
+</tbody>
+</table>
+<p>No Odoo restart required — changes take effect on the next page load.</p>
+<p><strong>(b) Fallback — shared DSN via ``odoo.conf`` ``[sentry]`` section.</strong> If
+the Connection fields above are left blank, the controller reads from
+the same <tt class="docutils literal">[sentry]</tt> section the OCA server-side <tt class="docutils literal">sentry</tt> module
+uses:</p>
+<pre class="code ini literal-block">
+<span class="k">[sentry]</span><span class="w">
+</span><span class="na">sentry_dsn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">https://&lt;public_key&gt;&#64;sentry.example.com/&lt;project_id&gt;</span><span class="w">
+</span><span class="na">sentry_release</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1.3.2</span><span class="w">
+</span><span class="na">sentry_environment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">production</span>
+</pre>
+<p>This path is convenient for single-project deployments that want both
+backend Python events and browser JavaScript events going to the same
+Sentry project. Editing <tt class="docutils literal">odoo.conf</tt> requires an Odoo restart.</p>
+<p>The UI value always wins when both are set.</p>
+</div>
+<div class="section" id="settings-general-settings-sentry-browser-monitoring">
+<h2><a class="toc-backref" href="#toc-entry-3">2. Settings → General Settings → Sentry Browser Monitoring</a></h2>
+<p>Each tier is independently toggleable:</p>
+<div class="section" id="tier-0-capture-browser-errors-recommended-default-once-a-dsn-is-set">
+<h3><a class="toc-backref" href="#toc-entry-4">Tier 0 — Capture browser errors (recommended default once a DSN is set)</a></h3>
+<p>Loads <tt class="docutils literal">bundle.min.js</tt> (~30KB gzipped). Wires <tt class="docutils literal">window.onerror</tt> and
+<tt class="docutils literal">window.onunhandledrejection</tt>. Sends events with the logged-in user’s
+id + email as <tt class="docutils literal"><span class="pre">Sentry.setUser(...)</span></tt>.</p>
+</div>
+<div class="section" id="tier-1-performance-monitoring">
+<h3><a class="toc-backref" href="#toc-entry-5">Tier 1 — Performance monitoring</a></h3>
+<p>Enables <tt class="docutils literal">BrowserTracing</tt>. Auto-instruments fetch / XHR, navigation
+timing, and long-task observer. <strong>Adds roughly 5–10% per-request
+overhead at sample rate 1.0</strong> plus extra bandwidth per traced request.
+Recommended in production: <tt class="docutils literal">0.05</tt> or below.</p>
+</div>
+<div class="section" id="tier-2-session-replay">
+<h3><a class="toc-backref" href="#toc-entry-6">Tier 2 — Session replay</a></h3>
+<p>Enables <tt class="docutils literal">&#64;sentry/replay</tt>. <strong>Adds ~100KB to every page</strong> and records
+DOM mutations + console + network activity. Strongly recommend
+<tt class="docutils literal"><span class="pre">Healthy-session</span> sample = 0.0</tt> and <tt class="docutils literal"><span class="pre">On-error</span> sample = 1.0</tt> so
+recording only kicks in for sessions that already hit an error.</p>
+</div>
+<div class="section" id="tier-3-optional-extras">
+<h3><a class="toc-backref" href="#toc-entry-7">Tier 3 — Optional extras</a></h3>
+<ul class="simple">
+<li><strong>User feedback widget</strong> — adds a feedback button.</li>
+<li><strong>Browser CPU profiling</strong> — captures JS Self-Profiling samples for
+traced transactions. Has its own sample-rate slider. <strong>Requires the
+page to be served with a ``Document-Policy: js-profiling`` HTTP
+header.</strong> See “Browser profiling — extra setup” below.</li>
+<li><strong>Console-log capture</strong> — uploads <tt class="docutils literal">console.log</tt> / <tt class="docutils literal">console.warn</tt>
+calls as Sentry Log entries. Spammy without filtering.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="user-preferences-privacy-per-user-session-replay-opt-out">
+<h2><a class="toc-backref" href="#toc-entry-8">3. User preferences → Privacy — per-user session-replay opt-out</a></h2>
+<p>Each user can disable session replay for their own sessions, regardless
+of the database-wide Tier 2 setting. The browser SDK still loads (the
+bundle URL doesn’t change), but the Replay integration is never
+registered for the opted-out user — no DOM observer, no recording.</p>
+<p>To enable: open the user’s profile (top-right avatar → My Profile →
+Preferences → Privacy) and check <strong>Disable Sentry session replay</strong>.</p>
+<p>The toggle is self-writeable: users can manage it without administrator
+help.</p>
+</div>
+<div class="section" id="owl-component-context-on-backend-errors">
+<h2><a class="toc-backref" href="#toc-entry-9">4. OWL component context on backend errors</a></h2>
+<p>When the OCA <tt class="docutils literal">sentry_client</tt> module is installed and Tier 0 is on, any
+OWL-component-raised exception in the backend (<tt class="docutils literal">/odoo/*</tt>) is captured
+to Sentry with two extra fields:</p>
+<ul class="simple">
+<li><tt class="docutils literal">tags.owl = true</tt></li>
+<li><tt class="docutils literal">extra.component_tree</tt> — the OWL component path of the failing
+render</li>
+</ul>
+<p>This complements (not replaces) Odoo’s standard <em>“Oops!”</em> dialog — both
+fire side by side. No configuration needed; the handler registers
+automatically when the module is installed.</p>
+</div>
+<div class="section" id="browser-profiling-extra-setup">
+<h2><a class="toc-backref" href="#toc-entry-10">Browser profiling — extra setup</a></h2>
+<p>The JS Self-Profiling API requires the browser to receive a permission
+header on the document HTML response:</p>
+<pre class="literal-block">
+Document-Policy: js-profiling
+</pre>
+<p>Odoo’s default web responses do not emit this header. You’ll need to add
+it at your reverse proxy. nginx example:</p>
+<pre class="code nginx literal-block">
+<span class="k">location</span><span class="w"> </span><span class="s">/odoo</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="kn">proxy_pass</span><span class="w"> </span><span class="s">http://odoo:8069</span><span class="p">;</span><span class="w">
+    </span><span class="kn">add_header</span><span class="w"> </span><span class="s">Document-Policy</span><span class="w"> </span><span class="s">&quot;js-profiling&quot;</span><span class="p">;</span><span class="w">
+</span><span class="p">}</span>
+</pre>
+<p>Without the header, the Profiling integration registers cleanly and
+sends profile payloads, but they will be empty — no client-side error,
+just no useful data in Sentry’s Profiling tab.</p>
+</div>
+<div class="section" id="vendored-sentry-sdk">
+<h2><a class="toc-backref" href="#toc-entry-11">Vendored Sentry SDK</a></h2>
+<p>The browser SDK ships <strong>vendored inside the module</strong> under
+<tt class="docutils literal"><span class="pre">sentry_client/static/lib/sentry/&lt;version&gt;/</span></tt>. The default <strong>Sentry SDK
+source URL</strong> points at this in-module path, so the browser loads the SDK
+from the same origin as Odoo — no traffic to <tt class="docutils literal"><span class="pre">browser.sentry-cdn.com</span></tt>,
+no air-gap workarounds needed.</p>
+<p>To bump the vendored version, run the refresh script:</p>
+<pre class="code bash literal-block">
+<span class="nb">cd</span><span class="w"> </span>sentry_client/<span class="w">
+</span>./scripts/refresh-vendor-bundle.sh<span class="w"> </span><span class="m">10</span>.55.0<span class="w">   </span><span class="c1"># whatever you want
+</span>git<span class="w"> </span>add<span class="w"> </span>static/lib/sentry/10.55.0/<span class="w">
+</span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;[IMP] sentry_client: bump vendored SDK to 10.55.0&quot;</span>
+</pre>
+<p>The script downloads each bundle from <tt class="docutils literal"><span class="pre">browser.sentry-cdn.com</span></tt>,
+verifies it against Sentry’s published SHA-384 SRI hash, drops the
+LICENSE file, and writes a SHA256SUMS for reviewers. After committing,
+update the <strong>Sentry SDK version</strong> in Settings → General Settings →
+Sentry Browser Monitoring to match.</p>
+<p>To revert to the public CDN at runtime (e.g. for quick A/B testing),
+override <strong>Sentry SDK source URL</strong> to <tt class="docutils literal"><span class="pre">https://browser.sentry-cdn.com</span></tt>
+in the Settings page.</p>
+</div>
+<div class="section" id="sentry-server-compatibility">
+<h2><a class="toc-backref" href="#toc-entry-12">Sentry server compatibility</a></h2>
+<p>The browser SDK talks to whatever Sentry instance you point the DSN at —
+either sentry.io or a self-hosted instance. Feature support depends on
+the Sentry server version:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Feature</th>
+<th class="head">Minimum Sentry
+server</th>
+<th class="head">Notes</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>Tier 0 — error
+capture</td>
+<td>v9.0+</td>
+<td>Basic event ingest,
+supported by every
+modern Sentry.</td>
+</tr>
+<tr><td>Tier 1 — performance
+/ tracing</td>
+<td>v10.0+</td>
+<td>The tracing UI
+shipped in Sentry
+10.</td>
+</tr>
+<tr><td>Tier 2 — session
+replay</td>
+<td>v22.10.0+ (Oct 2022)
++ feature flag</td>
+<td>Replay ingest was
+introduced in
+self-hosted 22.10.
+The feature must
+also be enabled on
+the server: set
+<tt class="docutils literal">SENTRY_FEATURES[
+&quot;organizations:sessi
+<span class="pre">on-replay&quot;]</span> = True</tt>
+(and <tt class="docutils literal"><span class="pre">…-ui</span></tt>,
+<tt class="docutils literal"><span class="pre">…-re</span>
+<span class="pre">cording-scrubbing</span></tt>)
+in
+<tt class="docutils literal">sentry.conf.py</tt>,
+then restart <tt class="docutils literal">web</tt>
++
+<tt class="docutils literal">ingest-
+<span class="pre">replay-recordings</span></tt>.
+Without the flag,
+browser envelopes
+arrive at
+``
+/api/&lt;n&gt;/envelope/``
+but are silently
+discarded — no UI
+surface, no error.</td>
+</tr>
+<tr><td>Tier 3 — feedback
+widget</td>
+<td>v23.6.0+ (Jun 2023)</td>
+<td>The modern
+programmatic
+feedback API. Older
+versions still work
+with the legacy
+<tt class="docutils literal">Sentr
+y.showReportDialog</tt>
+path, which this
+module does not use.</td>
+</tr>
+<tr><td>Tier 3 — browser
+profiling</td>
+<td>v24.0+ (Jan 2024)</td>
+<td>Plus the
+<tt class="docutils literal"><span class="pre">Document-Po</span>
+licy: <span class="pre">js-profiling</span></tt>
+header (see above).</td>
+</tr>
+<tr><td>Tier 3 — console-log
+capture</td>
+<td>v25.0+ (Mar 2025)</td>
+<td>Sentry Logs API.
+Server versions
+before v25 will
+ingest the events as
+a generic log
+envelope; the
+dedicated Logs UI
+requires v25+.</td>
+</tr>
+</tbody>
+</table>
+<p>For sentry.io: all features are always available.</p>
+<p>For self-hosted: check your tag at <tt class="docutils literal">/opt/sentry/install/_version.sh</tt>
+(or <tt class="docutils literal">docker exec <span class="pre">&lt;sentry-web&gt;</span> sentry <span class="pre">--version</span></tt>). If a feature you’ve
+enabled isn’t supported by your Sentry server, the browser SDK still
+sends the envelope but the server discards it — no client-side error.</p>
+</div>
+</div>
+<div class="section" id="usage">
+<h1><a class="toc-backref" href="#toc-entry-13">Usage</a></h1>
+<p>Once Tier 0 is enabled and a DSN is in <tt class="docutils literal">[sentry]</tt>, the next page load
+injects the (vendored) Sentry browser SDK and starts capturing errors.
+No further user action needed.</p>
+<p>To verify the integration:</p>
+<ol class="arabic simple">
+<li>Open the browser dev tools console on any Odoo page.</li>
+<li>Run <tt class="docutils literal">throw new <span class="pre">Error(&quot;sentry_client</span> smoke test&quot;)</tt>.</li>
+<li>The error appears in your Sentry project within a few seconds, tagged
+with your Odoo <tt class="docutils literal">user.id</tt>, <tt class="docutils literal">release</tt>, and <tt class="docutils literal">environment</tt>.</li>
+</ol>
+<div class="section" id="per-user-opt-out">
+<h2><a class="toc-backref" href="#toc-entry-14">Per-user opt-out</a></h2>
+<p>Top-right avatar → My Profile → Preferences → Privacy → <strong>Disable Sentry
+session replay</strong>. Saves to your own user record. The opt-out only
+suppresses session replay; basic error capture (Tier 0) still fires.</p>
+</div>
+<div class="section" id="owl-component-context">
+<h2><a class="toc-backref" href="#toc-entry-15">OWL component context</a></h2>
+<p>When the backend OWL stack raises an exception (the usual “Oops!” dialog
+you see in the Odoo web client), the resulting Sentry event
+automatically carries:</p>
+<ul class="simple">
+<li><tt class="docutils literal">tags.owl = true</tt></li>
+<li><tt class="docutils literal">extra.component_tree</tt> — the OWL component path</li>
+</ul>
+<p>No configuration needed — the OCA <tt class="docutils literal">sentry_client</tt> module registers an
+entry in <tt class="docutils literal">&#64;web/core/error_handlers</tt> at install time. Standard Odoo
+error UX is unaffected.</p>
+</div>
+</div>
+<div class="section" id="known-issues-roadmap">
+<h1><a class="toc-backref" href="#toc-entry-16">Known issues / Roadmap</a></h1>
+<ul class="simple">
+<li><strong>Server-side distributed-trace propagation</strong> — <tt class="docutils literal">release</tt> and
+<tt class="docutils literal">environment</tt> are shared with the OCA <tt class="docutils literal">sentry</tt> server-side module
+by convention (same <tt class="docutils literal">[sentry]</tt> section), and the browser already
+sends the right user context. Full distributed tracing (server span ⇄
+browser span correlation) would need OpenTelemetry hooks in the
+server-side <tt class="docutils literal">sentry</tt> module too — out of scope for this module; will
+go in a follow-up PR against <tt class="docutils literal">sentry/</tt>.</li>
+<li><strong>OWL error-boundary depth</strong> — the current handler captures the
+failing component tree + props. Could also enrich with the action
+context (active model, record IDs, view type) by reading
+<tt class="docutils literal">env.services.action.currentController</tt>. Optional polish.</li>
+<li><strong>Asset-bundle profiling preload</strong> — the JS Self-Profiling API needs
+the <tt class="docutils literal"><span class="pre">Document-Policy:</span> <span class="pre">js-profiling</span></tt> HTTP header on the document
+response, which Odoo doesn’t emit by default. CONFIGURE.md documents
+the nginx workaround; a small <tt class="docutils literal">ir.http.dispatch</tt> hook in this module
+could set the header conditionally when Tier 3 profiling is on.</li>
+</ul>
+</div>
+<div class="section" id="bug-tracker">
+<h1><a class="toc-backref" href="#toc-entry-17">Bug Tracker</a></h1>
+<p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/server-tools/issues">GitHub Issues</a>.
+In case of trouble, please check there if your issue has already been reported.
+If you spotted it first, help us to smash it by providing a detailed and welcomed
+<a class="reference external" href="https://github.com/OCA/server-tools/issues/new?body=module:%20sentry_client%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+<p>Do not contact contributors directly about support or help with technical issues.</p>
+</div>
+<div class="section" id="credits">
+<h1><a class="toc-backref" href="#toc-entry-18">Credits</a></h1>
+<div class="section" id="authors">
+<h2><a class="toc-backref" href="#toc-entry-19">Authors</a></h2>
+<ul class="simple">
+<li>Ledoent</li>
+</ul>
+</div>
+<div class="section" id="contributors">
+<h2><a class="toc-backref" href="#toc-entry-20">Contributors</a></h2>
+<ul class="simple">
+<li>Don Kendall &lt;<a class="reference external" href="mailto:dkendall&#64;ledoweb.com">dkendall&#64;ledoweb.com</a>&gt;</li>
+</ul>
+</div>
+<div class="section" id="other-credits">
+<h2><a class="toc-backref" href="#toc-entry-21">Other credits</a></h2>
+<p>The development of this module is led by
+<a class="reference external" href="https://ledoweb.com">Ledoent</a>.</p>
+<p>Companion to the OCA <tt class="docutils literal">`sentry</tt> &lt;../sentry&gt;`__ module for server-side
+error capture.</p>
+</div>
+<div class="section" id="maintainers">
+<h2><a class="toc-backref" href="#toc-entry-22">Maintainers</a></h2>
+<p>This module is maintained by the OCA.</p>
+<a class="reference external image-reference" href="https://odoo-community.org">
+<img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" />
+</a>
+<p>OCA, or the Odoo Community Association, is a nonprofit organization whose
+mission is to support the collaborative development of Odoo features and
+promote its widespread use.</p>
+<p>Current <a class="reference external" href="https://odoo-community.org/page/maintainer-role">maintainer</a>:</p>
+<p><a class="reference external image-reference" href="https://github.com/dnplkndll"><img alt="dnplkndll" src="https://github.com/dnplkndll.png?size=40px" /></a></p>
+<p>This module is part of the <a class="reference external" href="https://github.com/OCA/server-tools/tree/18.0/sentry_client">OCA/server-tools</a> project on GitHub.</p>
+<p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
+</div>
+</div>
+</div>
+</body>
+</html>
