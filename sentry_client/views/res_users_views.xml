@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright 2026 Ledoent
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <record id="view_users_form_preferences_inherit" model="ir.ui.view">
+        <field name="name">
+            res.users.preferences.form.inherit.sentry_client
+        </field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form_simple_modif" />
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='preferences_page']" position="inside">
+                <group string="Privacy">
+                    <field name="sentry_client_replay_optout" />
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Admin Users form — same toggle, so administrators can manage
+         the field on behalf of a user (e.g. responding to a privacy
+         request) without impersonating the user. -->
+    <record id="view_users_form_admin_inherit" model="ir.ui.view">
+        <field name="name">res.users.form.inherit.sentry_client</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='preferences']" position="inside">
+                <group string="Privacy">
+                    <field name="sentry_client_replay_optout" />
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
