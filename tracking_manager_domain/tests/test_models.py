@@ -83,3 +83,97 @@ class TestMailTrack(TransactionCase):
         ):
             # act
             person._mail_track(tracked_fields, initial_values)
+
+    def test_tm_post_message_keep_all(self):
+        partner = self.env.ref("base.main_partner")
+
+        data = {
+            "res.partner": {partner.id: {"phone": [{"mode": "test", "message": "msg"}]}}
+        }
+
+        fields = {
+            "res.partner": {
+                "phone": {"id": 1, "tracking_domain": "[('is_company', '=', True)]"}
+            }
+        }
+
+        with patch(
+            "odoo.addons.tracking_manager.models.models.Base._tm_post_message",
+            return_value=data,
+        ):
+            with patch.object(
+                type(self.env["base"]),
+                "_tm_all_tracking_domain_fields",
+                return_value=fields,
+            ):
+                res = self.env["base"]._tm_post_message(data)
+
+        self.assertIn(partner.id, res["res.partner"])
+
+    def test_tm_post_message_remove_field(self):
+        partner = self.env.ref("base.main_partner")
+
+        data = {
+            "res.partner": {partner.id: {"phone": [{"mode": "test", "message": "msg"}]}}
+        }
+
+        fields = {
+            "res.partner": {
+                "phone": {"id": 1, "tracking_domain": "[('is_company', '=', False)]"}
+            }
+        }
+
+        with patch(
+            "odoo.addons.tracking_manager.models.models.Base._tm_post_message",
+            return_value={"res.partner": {}},
+        ):
+            with patch.object(
+                type(self.env["base"]),
+                "_tm_all_tracking_domain_fields",
+                return_value=fields,
+            ):
+                res = self.env["base"]._tm_post_message(data)
+
+        self.assertEqual(res, {"res.partner": {}})
+
+    def test_tm_post_message_missing_record(self):
+        data = {
+            "res.partner": {999999: {"phone": [{"mode": "test", "message": "msg"}]}}
+        }
+
+        fields = {"res.partner": {"phone": {"id": 1, "tracking_domain": "[]"}}}
+
+        with patch(
+            "odoo.addons.tracking_manager.models.models.Base._tm_post_message",
+            return_value={"res.partner": {}},
+        ):
+            with patch.object(
+                type(self.env["base"]),
+                "_tm_all_tracking_domain_fields",
+                return_value=fields,
+            ):
+                res = self.env["base"]._tm_post_message(data)
+
+        self.assertEqual(res, {"res.partner": {}})
+
+    def test_tm_post_message_no_tracking_fields(self):
+        partner = self.env.ref("base.main_partner")
+
+        data = {
+            "res.partner": {partner.id: {"phone": [{"mode": "test", "message": "msg"}]}}
+        }
+
+        fields = {"res.partner": {}}
+
+        with patch(
+            "odoo.addons.tracking_manager.models.models.Base._tm_post_message",
+            return_value=data,
+        ):
+            with patch.object(
+                type(self.env["base"]),
+                "_tm_all_tracking_domain_fields",
+                return_value=fields,
+            ):
+                res = self.env["base"]._tm_post_message(data)
+
+        self.assertEqual(res, data)

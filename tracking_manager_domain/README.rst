@@ -51,8 +51,9 @@ Usage
 -  Add an optional domain on the field to limit tracking on certain
    condition.
 
-.. image:: https://raw.githubusercontent.com/OCA/server-tools/19.0/tracking_manager_domain/static/description/fields.drawio.png
-   :alt: fields
+|fields|
+
+.. |fields| image:: https://raw.githubusercontent.com/OCA/server-tools/19.0/tracking_manager_domain/static/description/fields.drawio.png
 
 Bug Tracker
 ===========
@@ -76,6 +77,7 @@ Contributors
 ------------
 
 -  Christopher Rogos <crogos@gmail.com>
+-  Nils Coenen <nils.coenen@nico-solutions.de>
 
 Maintainers
 -----------
