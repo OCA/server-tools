@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+<!--
+    Test views are used in ``tests/test_full_arch.py``
+
+    The views' inheritance follows this schema:
+
+          V1
+         /  \
+       V2    V3 <- primary
+      /  \     \
+    V4    V5    V6
+
+    According to Odoo's current inheriting system and its workflow for combining views,
+    we expect the V1 full architecture to include modifications made by V2, V4 and V5,
+    while V3's full architecture should include V1's full architecture and V6's arch
+-->
+    <record id="demo_view_1" model="ir.ui.view">
+        <field name="model">res.users</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="demo_view_2" model="ir.ui.view">
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base_view_full_arch.demo_view_1" />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="active" />
+                <field name="company_id" />
+                <field name="login" />
+                <field name="password" />
+            </field>
+        </field>
+    </record>
+    <record id="demo_view_3" model="ir.ui.view">
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base_view_full_arch.demo_view_1" />
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <xpath expr="//group" position="after">
+                <field name="groups_id" />
+            </xpath>
+        </field>
+    </record>
+    <record id="demo_view_4" model="ir.ui.view">
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base_view_full_arch.demo_view_2" />
+        <field name="arch" type="xml">
+            <field name="active" position="attributes">
+                <attribute name="widget">boolean_toggle</attribute>
+            </field>
+            <field name="company_id" position="attributes">
+                <attribute name="widget">selection</attribute>
+            </field>
+        </field>
+    </record>
+    <record id="demo_view_5" model="ir.ui.view">
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base_view_full_arch.demo_view_2" />
+        <field name="arch" type="xml">
+            <field name="password" position="attributes">
+                <attribute name="password">1</attribute>
+            </field>
+        </field>
+    </record>
+    <record id="demo_view_6" model="ir.ui.view">
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base_view_full_arch.demo_view_3" />
+        <field name="arch" type="xml">
+            <field name="groups_id" position="attributes">
+                <attribute name="readonly">1</attribute>
+            </field>
+        </field>
+    </record>
+
+    <!--
+        These next template is imported to test the ``format_doc`` function;
+        it is intentionally badly formatted, and the one used for comparison
+        is defined in tests/data/test_00_format_doc.xml
+    -->
+    <template id="test_format_doc">
+            <div>
+
+    Multi
+            line
+
+        text
+    <!--Multi
+
+                line
+   comment             -->
+
+                Multi
+line
+
+    tail
+
+    <ul>
+        <!--  Single  line    comment  -->
+
+        <li
+ id="single_line_text">   Single line     text </li   >
+
+
+                  <li id="empty_text_multi_line">
+
+
+
+              </li>
+        <li id="empty_text_single_line">   </li>
+
+        <li
+            id="null_text"/>
+      <li id="single_line_tail"/>    Single line tail
+
+    </ul>
+
+
+</div>
+
+
+    </template>
+</odoo>

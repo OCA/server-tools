@@ -145,16 +145,13 @@ msgid ""
 msgstr ""
 
 #. module: base_exception
-#: code:addons/base_exception/models/base_exception.py:0
+#: code:addons/base_exception/models/base_exception_method.py:0
 #, python-format
 msgid ""
 "Error when evaluating the exception.rule rule:\n"
-" %s \n"
-"(%s)"
+" %(rule_name)s \n"
+"(%(error)s)"
 msgstr ""
-"L'évaluation de la règle d'exception a généré une erreur :\n"
-" %s \n"
-"(%s)"
 
 #. module: base_exception
 #: model:ir.model,name:base_exception.model_base_exception
@@ -253,7 +250,7 @@ msgstr "Ignorer les exceptions"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule__is_blocking
-msgid "Is blocking"
+msgid "Is Blocking"
 msgstr ""
 
 #. module: base_exception
@@ -340,7 +337,7 @@ msgid "The exceptions can not be ignored, because some of them are blocking."
 msgstr ""
 
 #. module: base_exception
-#: code:addons/base_exception/models/base_exception.py:0
+#: code:addons/base_exception/models/exception_rule.py:0
 #, python-format
 msgid ""
 "There is a problem of configuration, python code, domain or method is "
@@ -376,6 +373,16 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_confirm
 msgid "_Close"
 msgstr "_Close"
+
+#, python-format
+#~ msgid ""
+#~ "Error when evaluating the exception.rule rule:\n"
+#~ " %s \n"
+#~ "(%s)"
+#~ msgstr ""
+#~ "L'évaluation de la règle d'exception a généré une erreur :\n"
+#~ " %s \n"
+#~ "(%s)"
 
 #~ msgid "Exceptions Rules"
 #~ msgstr "Règles d'exceptions"

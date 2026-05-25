@@ -1,0 +1,86 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* base_view_full_arch
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: base_view_full_arch
+#: model:ir.model.fields,field_description:base_view_full_arch.field_ir_ui_view__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: base_view_full_arch
+#: model:ir.model.fields,field_description:base_view_full_arch.field_ir_ui_view__full_arch
+#: model_terms:ir.ui.view,arch_db:base_view_full_arch.view_view_form_inherit
+msgid "Full Arch"
+msgstr ""
+
+#. module: base_view_full_arch
+#: model:ir.model.fields,field_description:base_view_full_arch.field_ir_ui_view__id
+msgid "ID"
+msgstr ""
+
+#. module: base_view_full_arch
+#: model:ir.model.fields,field_description:base_view_full_arch.field_ir_ui_view____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: base_view_full_arch
+#: model_terms:ir.ui.view,arch_db:base_view_full_arch.test_format_doc
+msgid ""
+"Multi\n"
+"            line\n"
+"\n"
+"        text"
+msgstr ""
+
+#. module: base_view_full_arch
+#: model_terms:ir.ui.view,arch_db:base_view_full_arch.test_format_doc
+msgid ""
+"Multi\n"
+"line\n"
+"\n"
+"    tail"
+msgstr ""
+
+#. module: base_view_full_arch
+#: model_terms:ir.ui.view,arch_db:base_view_full_arch.test_format_doc
+msgid "Single line     text"
+msgstr ""
+
+#. module: base_view_full_arch
+#: model_terms:ir.ui.view,arch_db:base_view_full_arch.test_format_doc
+msgid "Single line tail"
+msgstr ""
+
+#. module: base_view_full_arch
+#: model:ir.model.fields,field_description:base_view_full_arch.field_ir_ui_view__smart_search
+msgid "Smart Search"
+msgstr ""
+
+#. module: base_view_full_arch
+#: model:ir.model.fields,help:base_view_full_arch.field_ir_ui_view__full_arch
+msgid ""
+"Technical field to check the fully combined architecture of the view:\n"
+"* for primary views, displays the full arch of the view, combined with the inheriting views' modifications\n"
+"* for extension views, inherits the full arch from the inherited view\n"
+msgstr ""
+
+#. module: base_view_full_arch
+#: model:ir.model,name:base_view_full_arch.model_ir_ui_view
+msgid "View"
+msgstr ""
+
+#. module: base_view_full_arch
+#: model_terms:ir.ui.view,arch_db:base_view_full_arch.view_view_form_inherit
+msgid "View Architecture"
+msgstr ""

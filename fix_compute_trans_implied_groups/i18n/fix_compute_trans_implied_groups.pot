@@ -1,0 +1,44 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* fix_compute_trans_implied_groups
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: fix_compute_trans_implied_groups
+#: model:ir.model,name:fix_compute_trans_implied_groups.model_res_groups
+msgid "Access Groups"
+msgstr ""
+
+#. module: fix_compute_trans_implied_groups
+#: model:ir.model.fields,field_description:fix_compute_trans_implied_groups.field_res_groups__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: fix_compute_trans_implied_groups
+#: model:ir.model.fields,field_description:fix_compute_trans_implied_groups.field_res_groups__id
+msgid "ID"
+msgstr ""
+
+#. module: fix_compute_trans_implied_groups
+#: model:ir.model.fields,field_description:fix_compute_trans_implied_groups.field_res_groups____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: fix_compute_trans_implied_groups
+#: model:ir.model.fields,field_description:fix_compute_trans_implied_groups.field_res_groups__smart_search
+msgid "Smart Search"
+msgstr ""
+
+#. module: fix_compute_trans_implied_groups
+#: model:ir.model.fields,field_description:fix_compute_trans_implied_groups.field_res_groups__trans_implied_ids
+msgid "Transitively inherits"
+msgstr ""

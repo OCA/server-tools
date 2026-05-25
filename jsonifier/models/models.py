@@ -76,14 +76,19 @@ class Base(models.AbstractModel):
     def _jsonify_record(self, parser, rec, root):
         """JSONify one record (rec). Private function called by jsonify."""
         strict = self.env.context.get("jsonify_record_strict", False)
-        for field in parser:
-            field_dict, subparser = rec.__parse_field(field)
+        for field_key in parser:
+            field_dict, subparser = rec.__parse_field(field_key)
+            function = field_dict.get("function")
             try:
                 self._jsonify_record_validate_field(rec, field_dict, strict)
             except SwallableException:
-                continue
+                if not function:
+                    # If we have a function we can use it to get the value
+                    # even if the field is not available.
+                    # If not, well there's nothing we can do.
+                    continue
             json_key = field_dict.get("target", field_dict["name"])
-            if field_dict.get("function"):
+            if function:
                 try:
                     value = self._jsonify_record_handle_function(
                         rec, field_dict, strict
@@ -102,6 +107,9 @@ class Base(models.AbstractModel):
                 value = rec._jsonify_value(field, rec[field.name])
                 resolver = field_dict.get("resolver")
                 if resolver:
+                    if isinstance(resolver, int):
+                        # cached versions of the parser are stored as integer
+                        resolver = self.env["ir.exports.resolver"].browse(resolver)
                     value, json_key = self._jsonify_record_handle_resolver(
                         rec, field, resolver, json_key
                     )
@@ -121,15 +129,15 @@ class Base(models.AbstractModel):
             if strict:
                 # let it fail
                 rec._fields[field_name]  # pylint: disable=pointless-statement
-            if not tools.config["test_enable"]:
-                # If running live, log proper error
-                # so that techies can track it down
-                _logger.error(
-                    "%(model)s.%(fname)s not available",
-                    {"model": self._name, "fname": field_name},
-                )
+            else:
+                if not tools.config["test_enable"]:
+                    # If running live, log proper error
+                    # so that techies can track it down
+                    _logger.warning(
+                        "%(model)s.%(fname)s not available",
+                        {"model": self._name, "fname": field_name},
+                    )
                 raise SwallableException()
-
         return True
 
     def _jsonify_record_handle_function(self, rec, field_dict, strict):
@@ -208,7 +216,9 @@ class Base(models.AbstractModel):
         if isinstance(parser, list):
             parser = convert_simple_to_full_parser(parser)
         resolver = parser.get("resolver")
-
+        if isinstance(resolver, int):
+            # cached versions of the parser are stored as integer
+            resolver = self.env["ir.exports.resolver"].browse(resolver)
         results = [{} for record in self]
         parsers = {False: parser["fields"]} if "fields" in parser else parser["langs"]
         records = self

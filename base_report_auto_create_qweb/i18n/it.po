@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-06 02:24+0000\n"
-"PO-Revision-Date: 2023-04-10 16:35+0000\n"
+"PO-Revision-Date: 2025-01-16 16:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: base_report_auto_create_qweb
 #: model_terms:ir.ui.view,arch_db:base_report_auto_create_qweb.report_duplicate_form_view
@@ -49,17 +49,17 @@ msgstr "Nome visualizzato"
 #. module: base_report_auto_create_qweb
 #: model_terms:ir.ui.view,arch_db:base_report_auto_create_qweb.report_duplicate_form_view
 msgid "Duplicate"
-msgstr ""
+msgstr "Duplica"
 
 #. module: base_report_auto_create_qweb
 #: model:ir.model,name:base_report_auto_create_qweb.model_ir_actions_report_duplicate
 msgid "Duplicate Qweb report"
-msgstr ""
+msgstr "Duplica resoconto Qweb"
 
 #. module: base_report_auto_create_qweb
 #: model_terms:ir.ui.view,arch_db:base_report_auto_create_qweb.report_form_view
 msgid "Duplicate Report"
-msgstr ""
+msgstr "Duplica resoconto"
 
 #. module: base_report_auto_create_qweb
 #: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report__id
@@ -86,35 +86,35 @@ msgstr "Ultimo aggiornamento il"
 #. module: base_report_auto_create_qweb
 #: model:ir.model,name:base_report_auto_create_qweb.model_ir_actions_report
 msgid "Report Action"
-msgstr ""
+msgstr "Azione resoconto"
 
 #. module: base_report_auto_create_qweb
 #: model:ir.actions.act_window,name:base_report_auto_create_qweb.report_duplicate_action
 #: model_terms:ir.ui.view,arch_db:base_report_auto_create_qweb.report_duplicate_form_view
 msgid "Report duplication"
-msgstr ""
+msgstr "Duplicazione resoconto"
 
 #. module: base_report_auto_create_qweb
 #: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report__smart_search
 #: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report_duplicate__smart_search
 msgid "Smart Search"
-msgstr ""
+msgstr "Ricerca intelligente"
 
 #. module: base_report_auto_create_qweb
 #: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report_duplicate__suffix
 msgid "Suffix"
-msgstr ""
+msgstr "Suffisso"
 
 #. module: base_report_auto_create_qweb
 #: code:addons/base_report_auto_create_qweb/models/report_xml.py:0
 #, python-format
 msgid "Template Name must contain at least a dot in it's name"
-msgstr ""
+msgstr "Il nome del modello deve contenere almeno un punto nel nome"
 
 #. module: base_report_auto_create_qweb
 #: model:ir.model.fields,help:base_report_auto_create_qweb.field_ir_actions_report_duplicate__suffix
 msgid "This suffix will be added to the report"
-msgstr ""
+msgstr "Questo suffisso verrà aggiunto al resoconto"
 
 #. module: base_report_auto_create_qweb
 #: model_terms:ir.ui.view,arch_db:base_report_auto_create_qweb.report_duplicate_form_view

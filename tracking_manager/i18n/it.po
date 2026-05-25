@@ -1,0 +1,230 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* tracking_manager
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2025-06-04 16:26+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10.4\n"
+
+#. module: tracking_manager
+#: model_terms:ir.ui.view,arch_db:tracking_manager.track_o2m_m2m_template
+msgid "<b>Change :</b>"
+msgstr "<b>Modifica:</b>"
+
+#. module: tracking_manager
+#: model_terms:ir.ui.view,arch_db:tracking_manager.track_o2m_m2m_template
+msgid "<b>Delete :</b>"
+msgstr "<b>Cancella:</b>"
+
+#. module: tracking_manager
+#: model_terms:ir.ui.view,arch_db:tracking_manager.track_o2m_m2m_template
+msgid "<b>New :</b>"
+msgstr "<b>Nuovo:</b>"
+
+#. module: tracking_manager
+#: model_terms:ir.ui.view,arch_db:tracking_manager.view_model_form
+msgid "Active"
+msgstr "Attivo"
+
+#. module: tracking_manager
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model__active_custom_tracking
+msgid "Active Custom Tracking"
+msgstr "Attiva tracciamento personalizzato"
+
+#. module: tracking_manager
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model__assigned_attachment_ids
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model_fields__assigned_attachment_ids
+#: model:ir.model.fields,field_description:tracking_manager.field_mail_thread__assigned_attachment_ids
+#: model:ir.model.fields,field_description:tracking_manager.field_mail_tracking_value__assigned_attachment_ids
+msgid "Assigned Attachments"
+msgstr "Allegati assegnati"
+
+#. module: tracking_manager
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model__automatic_custom_tracking
+msgid "Automatic Custom Tracking"
+msgstr "Tracciamento personalizzato automatico"
+
+#. module: tracking_manager
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model__automatic_custom_tracking_domain
+msgid "Automatic Custom Tracking Domain"
+msgstr "Dominio tracciamento personalizzato automatico"
+
+#. module: tracking_manager
+#: model_terms:ir.ui.view,arch_db:tracking_manager.view_model_form
+msgid "Automatic configuration"
+msgstr "Configurazione automatica"
+
+#. module: tracking_manager
+#: model:ir.model,name:tracking_manager.model_base
+msgid "Base"
+msgstr "Base"
+
+#. module: tracking_manager
+#: model_terms:ir.ui.view,arch_db:tracking_manager.track_o2m_m2m_template
+msgid "Changed"
+msgstr "Modificato"
+
+#. module: tracking_manager
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model__changeset_change_ids
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model_fields__changeset_change_ids
+#: model:ir.model.fields,field_description:tracking_manager.field_mail_thread__changeset_change_ids
+#: model:ir.model.fields,field_description:tracking_manager.field_mail_tracking_value__changeset_change_ids
+msgid "Changeset Changes"
+msgstr "Modifiche dell'insieme di modifiche"
+
+#. module: tracking_manager
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model__changeset_ids
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model_fields__changeset_ids
+#: model:ir.model.fields,field_description:tracking_manager.field_mail_thread__changeset_ids
+#: model:ir.model.fields,field_description:tracking_manager.field_mail_tracking_value__changeset_ids
+msgid "Changesets"
+msgstr "Insiemi di modifiche"
+
+#. module: tracking_manager
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model_fields__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:tracking_manager.field_mail_thread__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:tracking_manager.field_mail_tracking_value__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr "Conteggio modifiche dell'insieme di modifiche in attesa"
+
+#. module: tracking_manager
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model__count_pending_changesets
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model_fields__count_pending_changesets
+#: model:ir.model.fields,field_description:tracking_manager.field_mail_thread__count_pending_changesets
+#: model:ir.model.fields,field_description:tracking_manager.field_mail_tracking_value__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr "Conteggio insieme di modifiche in attesa"
+
+#. module: tracking_manager
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model_fields__custom_tracking
+#: model_terms:ir.ui.view,arch_db:tracking_manager.view_model_form
+msgid "Custom Tracking"
+msgstr "Tracciamento personalizzato"
+
+#. module: tracking_manager
+#: model_terms:ir.ui.view,arch_db:tracking_manager.view_model_track_fields_search
+msgid "Custom Tracking OFF"
+msgstr "Tracciamento personalizzato spento"
+
+#. module: tracking_manager
+#: model_terms:ir.ui.view,arch_db:tracking_manager.view_model_track_fields_search
+msgid "Custom Tracking ON"
+msgstr "Tracciamento personalizzato acceso"
+
+#. module: tracking_manager
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model__display_name
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model_fields__display_name
+#: model:ir.model.fields,field_description:tracking_manager.field_mail_thread__display_name
+#: model:ir.model.fields,field_description:tracking_manager.field_mail_tracking_value__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: tracking_manager
+#: model_terms:ir.ui.view,arch_db:tracking_manager.view_model_form
+msgid "Domain"
+msgstr "Dominio"
+
+#. module: tracking_manager
+#: model:ir.model,name:tracking_manager.model_mail_thread
+msgid "Email Thread"
+msgstr "Discussione e-mail"
+
+#. module: tracking_manager
+#: model:ir.model,name:tracking_manager.model_ir_model_fields
+msgid "Fields"
+msgstr "Campi"
+
+#. module: tracking_manager
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model__id
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model_fields__id
+#: model:ir.model.fields,field_description:tracking_manager.field_mail_thread__id
+#: model:ir.model.fields,field_description:tracking_manager.field_mail_tracking_value__id
+msgid "ID"
+msgstr "ID"
+
+#. module: tracking_manager
+#: model:ir.model.fields,help:tracking_manager.field_ir_model__automatic_custom_tracking
+msgid "If tick new field will be automatically tracked if the domain match"
+msgstr ""
+"Se abilitato un nuovo campo verrà tracciato automaticamente se il dominio "
+"corrisponde"
+
+#. module: tracking_manager
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model____last_update
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model_fields____last_update
+#: model:ir.model.fields,field_description:tracking_manager.field_mail_thread____last_update
+#: model:ir.model.fields,field_description:tracking_manager.field_mail_tracking_value____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: tracking_manager
+#: model:ir.model,name:tracking_manager.model_mail_tracking_value
+msgid "Mail Tracking Value"
+msgstr "Valore tracciamento e-mail"
+
+#. module: tracking_manager
+#: model:ir.model,name:tracking_manager.model_ir_model
+msgid "Models"
+msgstr "Modelli"
+
+#. module: tracking_manager
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model_fields__native_tracking
+msgid "Native Tracking"
+msgstr "Tracciamento nativo"
+
+#. module: tracking_manager
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model__smart_search
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model_fields__smart_search
+#: model:ir.model.fields,field_description:tracking_manager.field_mail_thread__smart_search
+#: model:ir.model.fields,field_description:tracking_manager.field_mail_tracking_value__smart_search
+msgid "Smart Search"
+msgstr "Ricerca intelligente"
+
+#. module: tracking_manager
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model_fields__trackable
+msgid "Trackable"
+msgstr "Tracciabile"
+
+#. module: tracking_manager
+#: model:ir.actions.act_window,name:tracking_manager.ir_model_fields_action
+msgid "Trackable Fields"
+msgstr "Campi tracciabili"
+
+#. module: tracking_manager
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model__tracked_field_count
+msgid "Tracked Field Count"
+msgstr "Conteggio campi tracciati"
+
+#. module: tracking_manager
+#: model_terms:ir.ui.view,arch_db:tracking_manager.view_model_form
+msgid "Tracked Fields"
+msgstr "Campi tracciati"
+
+#. module: tracking_manager
+#: model_terms:ir.ui.view,arch_db:tracking_manager.view_model_form
+msgid "Update"
+msgstr "Aggiorna"
+
+#. module: tracking_manager
+#: model_terms:ir.ui.view,arch_db:tracking_manager.view_model_form
+msgid "Update fields configuration"
+msgstr "Aggiorna configurazione campi"
+
+#. module: tracking_manager
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model__user_can_see_changeset
+#: model:ir.model.fields,field_description:tracking_manager.field_ir_model_fields__user_can_see_changeset
+#: model:ir.model.fields,field_description:tracking_manager.field_mail_thread__user_can_see_changeset
+#: model:ir.model.fields,field_description:tracking_manager.field_mail_tracking_value__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr "L'utente può vedere l'insieme delle modifiche"

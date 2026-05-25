@@ -52,11 +52,11 @@ class IrModuleModule(models.Model):
         field_name: Odoo field name to store the analysis
         """
         return {
-            ".py": {"code": "python_code_qty"},
-            ".xml": {"code": "xml_code_qty"},
-            ".js": {"code": "js_code_qty"},
-            ".css": {"code": "css_code_qty"},
-            ".scss": {"code": "css_code_qty"},
+            ".py": {"code_count": "python_code_qty"},
+            ".xml": {"code_count": "xml_code_qty"},
+            ".js": {"code_count": "js_code_qty"},
+            ".css": {"code_count": "css_code_qty"},
+            ".scss": {"code_count": "css_code_qty"},
         }
 
     @api.model
@@ -166,7 +166,7 @@ class IrModuleModule(models.Model):
         if not path:
             return res
         for root, _, files in os.walk(path, followlinks=True):
-            if set(Path(root).parts) & set(exclude_directories):
+            if set(Path(root).relative_to(path).parts) & set(exclude_directories):
                 continue
             for name in files:
                 if name in exclude_files:
