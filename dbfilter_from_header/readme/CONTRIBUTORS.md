@@ -9,3 +9,7 @@
 - Lai Tim Siu (Quaritle Limited) \<<info@quartile.co>\>
 - Tharathip Chaweewongphan \<<tharathipc@ecosoft.co.th>\>
 - Eric Antones \<<eantones@nuobit.com>\>
+- [Vortex Dimensión Digital](https://www.dimensionvortex.com/):
+  - Jorge Rosado Julián \<<jorge.rosado@dimensionvortex.com>\>
+  - Juan L. Sánchez \<<juan.sanchez@dimensionvortex.com>\>
+  - Wang Zhong Jiang \<<wang.zhong@dimensionvortex.com>\>

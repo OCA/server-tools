@@ -1,3 +1,7 @@
+.. image:: https://odoo-community.org/readme-banner-image
+   :target: https://odoo-community.org/get-involved?utm_source=readme
+   :alt: Odoo Community Association
+
 ====================
 dbfilter_from_header
 ====================
@@ -13,17 +17,17 @@ dbfilter_from_header
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github
-    :target: https://github.com/OCA/server-tools/tree/18.0/dbfilter_from_header
+    :target: https://github.com/OCA/server-tools/tree/19.0/dbfilter_from_header
     :alt: OCA/server-tools
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/server-tools-18-0/server-tools-18-0-dbfilter_from_header
+    :target: https://translation.odoo-community.org/projects/server-tools-19-0/server-tools-19-0-dbfilter_from_header
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/server-tools&target_branch=18.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/server-tools&target_branch=19.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
@@ -55,17 +59,17 @@ Configuration
 Please keep in mind that the standard odoo dbfilter configuration is
 still applied before looking at the regular expression in the header.
 
--  For nginx, use:
+- For nginx, use:
 
-   ``proxy_set_header X-Odoo-dbfilter [your filter regex];``
+  ``proxy_set_header X-Odoo-dbfilter [your filter regex];``
 
--  For caddy, use:
+- For caddy, use:
 
-   ``proxy_header X-Odoo-dbfilter [your filter regex]``
+  ``proxy_header X-Odoo-dbfilter [your filter regex]``
 
--  For Apache, use:
+- For Apache, use:
 
-   ``RequestHeader set X-Odoo-dbfilter [your filter regex]``
+  ``RequestHeader set X-Odoo-dbfilter [your filter regex]``
 
 And make sure that proxy mode is enabled in Odoo's configuration file:
 
@@ -83,7 +87,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/server-tools/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/server-tools/issues/new?body=module:%20dbfilter_from_header%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/server-tools/issues/new?body=module:%20dbfilter_from_header%0Aversion:%2019.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -98,17 +102,22 @@ Authors
 Contributors
 ------------
 
--  Stéphane Bidoul <stephane.bidoul@acsone.eu>
--  Yannick Vaucher <yannick.vaucher@camptocamp.com>
--  Alexandre Fayolle <alexandre.fayolle@camptocamp.com>
--  Holger Brunn <hbrunn@therp.nl>
--  Laurent Mignon (aka lmi) <laurent.mignon@acsone.eu>
--  Sandy Carter <sandy.carter@savoirfairelinux.com>
--  Fabio Vilchez <fabio.vilchez@clearcorp.co.cr>
--  Jos De Graeve <Jos.DeGraeve@apertoso.be>
--  Lai Tim Siu (Quaritle Limited) <info@quartile.co>
--  Tharathip Chaweewongphan <tharathipc@ecosoft.co.th>
--  Eric Antones <eantones@nuobit.com>
+- Stéphane Bidoul <stephane.bidoul@acsone.eu>
+- Yannick Vaucher <yannick.vaucher@camptocamp.com>
+- Alexandre Fayolle <alexandre.fayolle@camptocamp.com>
+- Holger Brunn <hbrunn@therp.nl>
+- Laurent Mignon (aka lmi) <laurent.mignon@acsone.eu>
+- Sandy Carter <sandy.carter@savoirfairelinux.com>
+- Fabio Vilchez <fabio.vilchez@clearcorp.co.cr>
+- Jos De Graeve <Jos.DeGraeve@apertoso.be>
+- Lai Tim Siu (Quaritle Limited) <info@quartile.co>
+- Tharathip Chaweewongphan <tharathipc@ecosoft.co.th>
+- Eric Antones <eantones@nuobit.com>
+- `Vortex Dimensión Digital <https://www.dimensionvortex.com/>`__:
+
+  - Jorge Rosado Julián <jorge.rosado@dimensionvortex.com>
+  - Juan L. Sánchez <juan.sanchez@dimensionvortex.com>
+  - Wang Zhong Jiang <wang.zhong@dimensionvortex.com>
 
 Maintainers
 -----------
@@ -123,6 +132,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/18.0/dbfilter_from_header>`_ project on GitHub.
+This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/19.0/dbfilter_from_header>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
