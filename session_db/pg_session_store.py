@@ -2,7 +2,6 @@
 # @author Nicolas Seinlet
 # Copyright (c) ACSONE SA 2022
 # @author Stéphane Bidoul
-import json
 import logging
 import os
 
@@ -24,6 +23,24 @@ elif odoo.tools.config["workers"] == 0:
     import threading
 
     lock = threading.RLock()
+
+try:
+    import orjson
+
+    def json_dumps(value):
+        return orjson.dumps(value)
+
+    def json_loads(value):
+        return orjson.loads(value)
+
+except ImportError:
+    import json
+
+    def json_dumps(value):
+        return json.dumps(value).encode()
+
+    def json_loads(value):
+        return json.loads(value)
 
 
 def with_lock(func):
@@ -108,7 +125,7 @@ class PGSessionStore(sessions.SessionStore):
     @with_lock
     @with_cursor
     def save(self, session):
-        payload = json.dumps(dict(session))
+        payload = json_dumps(dict(session))
         self._cr.execute(
             """
                 INSERT INTO http_sessions(sid, write_date, payload)
@@ -130,7 +147,7 @@ class PGSessionStore(sessions.SessionStore):
     def get(self, sid):
         self._cr.execute("SELECT payload FROM http_sessions WHERE sid=%s", (sid,))
         try:
-            data = json.loads(self._cr.fetchone()[0])
+            data = json_loads(self._cr.fetchone()[0])
         except Exception:
             return self.new()
 

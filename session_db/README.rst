@@ -37,6 +37,11 @@ distributed filesystem to store the Odoo sessions.
 .. contents::
    :local:
 
+Installation
+============
+
+Session are serialized using json. To ensure best performance, the module orjson is used if available, otherwise the standard library json module is used.
+
 Usage
 =====
 
