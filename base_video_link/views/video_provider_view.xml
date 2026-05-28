@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+<record id="video_provider_view_tree" model="ir.ui.view">
+    <field name="model">video.provider</field>
+    <field name="arch" type="xml">
+        <tree>
+            <field name="name" />
+            <field name="code" />
+            <field name="pattern_video_url" />
+            <field name="pattern_thumbnail_url" />
+        </tree>
+    </field>
+</record>
+
+<record id="video_provider_view_form" model="ir.ui.view">
+    <field name="model">video.provider</field>
+    <field name="arch" type="xml">
+        <form string="Video Provider">
+            <div class="oe_title">
+                <label for="name" class="oe_edit_only" />
+                <h1>
+                    <field name="name" />
+                </h1>
+            </div>
+            <group name="config">
+                <field name="code" />
+                <field name="pattern_video_url" />
+                <field name="pattern_thumbnail_url" />
+            </group>
+        </form>
+    </field>
+</record>
+
+<record id="video_provider_view_search" model="ir.ui.view">
+    <field name="model">video.provider</field>
+    <field name="arch" type="xml">
+        <search string="Video Provider">
+            <field name="name" />
+            <field name="code" />
+        </search>
+    </field>
+</record>
+
+<record model="ir.actions.act_window" id="video_provider_action">
+    <field name="name">Video Provider</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">video.provider</field>
+    <field name="view_mode">tree,form</field>
+    <field name="search_view_id" ref="video_provider_view_search" />
+</record>
+
+</odoo>

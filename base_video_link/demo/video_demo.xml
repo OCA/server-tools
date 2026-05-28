@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+<record id="video_video_1" model="video.video">
+    <field name="provider_id" ref="video_provider_youtube" />
+    <field name="name">Talk</field>
+    <field name="identifier">6JByIDOnuv8</field>
+</record>
+
+</odoo>

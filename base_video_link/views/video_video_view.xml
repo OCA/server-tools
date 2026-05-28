@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+<record id="video_video_view_tree" model="ir.ui.view">
+    <field name="model">video.video</field>
+    <field name="arch" type="xml">
+        <tree>
+            <field name="sequence" widget="handle" />
+            <field name="name" />
+            <field name="provider_id" />
+        </tree>
+    </field>
+</record>
+
+<record id="video_video_view_form" model="ir.ui.view">
+    <field name="model">video.video</field>
+    <field name="arch" type="xml">
+        <form string="Video">
+            <div class="oe_title">
+                <label for="name" class="oe_edit_only" />
+                <h1>
+                    <field name="name" />
+                </h1>
+            </div>
+            <group name="config">
+                <field name="provider_id" />
+                <field name="identifier" />
+                <field name="url" />
+            </group>
+            <field name="thumbnail_url" widget="image_url" />
+        </form>
+    </field>
+</record>
+
+<record id="video_video_view" model="ir.ui.view">
+    <field name="model">video.video</field>
+    <field name="arch" type="xml">
+        <kanban sample="1">
+            <field name="sequence" widget="handle" />
+            <field name="name" />
+            <field name="url" />
+            <field name="thumbnail_url" />
+            <templates>
+                <t t-name="kanban-box">
+                    <div class="oe_kanban_global_click">
+                        <div class="o_kanban_image">
+                            <img
+                                    t-att-src="record.thumbnail_url.value"
+                                    t-att-alt="record.name.value"
+                                />
+                        </div>
+                        <div class="oe_kanban_details">
+                            <field name="provider_id" class="float-left" /> : <strong
+                                    class="o_kanban_record_title"
+                                ><field name="name" /></strong>
+                            <a
+                                    t-att-href="record.url.raw_value"
+                                    target="_blank"
+                                    class="btn btn-primary float-right"
+                                    role="button"
+                                >Open</a>
+                        </div>
+                    </div>
+                 </t>
+             </templates>
+        </kanban>
+     </field>
+</record>
+
+<record id="video_video_view_search" model="ir.ui.view">
+    <field name="model">video.video</field>
+    <field name="arch" type="xml">
+        <search string="Video">
+            <field name="name" />
+            <group string="Group By">
+                <filter
+                        string="Provider"
+                        name="provider"
+                        context="{'group_by': 'provider_id'}"
+                    />
+            </group>
+        </search>
+    </field>
+</record>
+
+<record model="ir.actions.act_window" id="video_video_action">
+    <field name="name">Video</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">video.video</field>
+    <field name="view_mode">tree,form</field>
+    <field name="search_view_id" ref="video_video_view_search" />
+</record>
+
+</odoo>
