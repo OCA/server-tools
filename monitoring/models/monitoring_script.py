@@ -12,6 +12,7 @@ from odoo.tools.safe_eval import safe_eval
 class MonitoringScript(models.Model):
     _name = "monitoring.script"
     _description = _("Monitoring Check")
+    _inherit = ["monitoring.output.mixin"]
 
     def _get_types(self):
         return [
@@ -83,33 +84,37 @@ class MonitoringScript(models.Model):
             result.update({"warning": self.warning, "critical": self.critical})
         return result
 
-    def validate(self, verbose=False):
-        def expect_bool(value, expect):
-            if isinstance(value, bool) and value == expect:
-                return "ok"
-            return "critical"
-
-        def expect_threshold(value, warning, critical):
-            if value >= critical:
-                return "critical"
-            if value >= warning:
-                return "warning"
+    def _state_expect_bool(self, value, expect):
+        if isinstance(value, bool) and value == expect:
             return "ok"
+        return "critical"
 
+    def _state_expect_threshold(self, value, warning, critical):
+        if value >= critical:
+            return "critical"
+        if value >= warning:
+            return "warning"
+        return "ok"
+
+    def validate(self, verbose=False):
         result = []
-        for rec in self:
+        for rec in self.with_context(active_test=False):
             value = rec._evaluate()
 
             if not isinstance(value, (int, float, bool)):
                 rec.state = "critical"
             elif rec.check_type == "false":
-                rec.state = expect_bool(value, False)
+                rec.state = rec._state_expect_bool(value, False)
             elif rec.check_type == "true":
-                rec.state = expect_bool(value, True)
+                rec.state = rec._state_expect_bool(value, True)
             elif rec.check_type == "lower":
-                rec.state = expect_threshold(value, rec.warning, rec.critical)
+                rec.state = rec._state_expect_threshold(
+                    value, rec.warning, rec.critical
+                )
             elif rec.check_type == "higher":
-                rec.state = expect_threshold(-value, -rec.warning, -rec.critical)
+                rec.state = rec._state_expect_threshold(
+                    -value, -rec.warning, -rec.critical
+                )
             else:
                 raise NotImplementedError()
 
@@ -120,3 +125,9 @@ class MonitoringScript(models.Model):
                 result.append(rec._render(value))
 
         return result
+
+    def validate_and_format(self, verbose=False):
+        self.ensure_one()
+
+        result = self.validate(verbose=verbose)
+        return self.format_output(result)
