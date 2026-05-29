@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 18.0\n"
+"Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -21,13 +21,13 @@ msgid ""
 msgstr ""
 
 #. module: tracking_manager_domain
-#: model:ir.model.fields,field_description:tracking_manager_domain.field_ir_model_fields__assigned_attachment_ids
-msgid "Assigned Attachments"
+#: model:ir.model,name:tracking_manager_domain.model_base
+msgid "Base"
 msgstr ""
 
 #. module: tracking_manager_domain
-#: model:ir.model,name:tracking_manager_domain.model_base
-msgid "Base"
+#: model:ir.model.fields,field_description:tracking_manager_domain.field_ir_model_fields__display_name
+msgid "Display Name"
 msgstr ""
 
 #. module: tracking_manager_domain
@@ -36,8 +36,8 @@ msgid "Fields"
 msgstr ""
 
 #. module: tracking_manager_domain
-#: model:ir.model.fields,field_description:tracking_manager_domain.field_ir_model_fields__smart_search
-msgid "Smart Search"
+#: model:ir.model.fields,field_description:tracking_manager_domain.field_ir_model_fields__id
+msgid "ID"
 msgstr ""
 
 #. module: tracking_manager_domain
