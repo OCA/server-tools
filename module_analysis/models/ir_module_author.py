@@ -23,13 +23,10 @@ class IrModuleAuthor(models.Model):
         store=True,
     )
 
-    _sql_constraints = [
-        (
-            "name_uniq",
-            "unique(name)",
-            "The name of the modules author should be unique per database!",
-        ),
-    ]
+    _name_uniq = models.Constraint(
+        "unique(name)",
+        "The name of the modules author should be unique per database!",
+    )
 
     @api.depends("installed_module_ids")
     def _compute_installed_module_qty(self):

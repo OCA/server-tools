@@ -99,7 +99,8 @@ class IrModuleModule(models.Model):
     def _analyse_code(self):
         IrModuleAuthor = self.env["ir.module.author"]
         IrModuleTypeRule = self.env["ir.module.type.rule"]
-        rules = IrModuleTypeRule.search([])
+        # ir.module.type.rule is a small config table; loading all is intentional.
+        rules = IrModuleTypeRule.search([])  # pylint: disable=no-search-all
 
         cfg = self.env["ir.config_parameter"]
         val = cfg.get_param("module_analysis.exclude_directories", "")
