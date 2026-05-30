@@ -5,10 +5,9 @@ import base64
 import os
 import tempfile
 
-from odoo_test_helper import FakeModelLoader
-
 from odoo import Command
 from odoo.exceptions import ValidationError
+from odoo.orm.model_classes import add_to_registry
 from odoo.tests import TransactionCase
 from odoo.tools import mute_logger
 
@@ -18,8 +17,6 @@ class TestMultiImage(TransactionCase):
     def setUpClass(cls):
         super().setUpClass()
 
-        cls.loader = FakeModelLoader(cls.env, cls.__module__)
-        cls.loader.backup_registry()
         # img_path = "product/static/img/product_product_11-image.png"
         # img_content = base64.b64encode(file_open(img_path, "rb").read())
         cls.transparent_image = (  # 1x1 Transparent GIF
@@ -33,15 +30,17 @@ class TestMultiImage(TransactionCase):
         )
         from .test_images import ImageOwnerTest
 
-        cls.loader.update_registry((ImageOwnerTest,))
-        for model in cls.registry.values():
-            if model._name not in cls.attrs_before:
-                cls.attrs_before[model._name] = {
-                    *vars(model),
-                    "__annotations__",
-                    "_rec_name",
-                    "_active_name",
-                }
+        # Load the test-only model with the standard 19.0 registry API, and
+        # remove it again on teardown so it does not leak into sibling tests.
+        # No odoo_test_helper needed: this is an add-only model (a new _name),
+        # so a plain del + re-setup is enough (no registry snapshot/restore).
+        add_to_registry(cls.registry, ImageOwnerTest)
+        cls.registry._setup_models__(cls.env.cr, ["base_multi_image.owner.test"])
+        cls.registry.init_models(
+            cls.env.cr, ["base_multi_image.owner.test"], {"models_to_check": True}
+        )
+        cls.addClassCleanup(cls._remove_test_model)
+
         cls.img_owner = cls.env["base_multi_image.owner.test"].create(
             {
                 "name": "Test Multiple Imges",
@@ -68,9 +67,9 @@ class TestMultiImage(TransactionCase):
         cls.img_owner.invalidate_recordset()
 
     @classmethod
-    def tearDownClass(cls):
-        cls.loader.restore_registry()
-        super().tearDownClass()
+    def _remove_test_model(cls):
+        del cls.registry["base_multi_image.owner.test"]
+        cls.registry._setup_models__(cls.env.cr)
 
     def test_all_images(self):
         self.assertEqual(len(self.img_owner.image_ids), 2)
