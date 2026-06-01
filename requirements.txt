@@ -1,6 +1,7 @@
 # generated from manifests external_dependencies
 cryptography
 dataclasses
+numpy
 odoo_test_helper
 odoorpc
 openpyxl
