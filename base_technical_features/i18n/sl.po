@@ -9,16 +9,17 @@ msgstr ""
 "Project-Id-Version: server-tools (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-06 09:17+0000\n"
-"PO-Revision-Date: 2016-01-06 10:15+0000\n"
-"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
+"PO-Revision-Date: 2026-06-01 11:46+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-server-tools-9-0/"
 "language/sl/)\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
-"%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: base_technical_features
 #: model:ir.model.fields,field_description:base_technical_features.field_basemodel_monkeypatch_display_name
@@ -54,7 +55,7 @@ msgstr "Tehnične funkcije"
 #: code:addons/base_technical_features/models/res_users.py:46
 #, python-format
 msgid "The user does not have access to technical features."
-msgstr "Uporabnik nima dostopa do tehničnih finkcij"
+msgstr "Uporabnik nima dostopa do tehničnih funkcij."
 
 #. module: base_technical_features
 #: model:ir.model,name:base_technical_features.model_res_users
