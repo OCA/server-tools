@@ -65,7 +65,7 @@ addon | version | maintainers | summary
 [fetchmail_attach_from_folder](fetchmail_attach_from_folder/) | 16.0.2.0.0 | <a href='https://github.com/NL66278'><img src='https://github.com/NL66278.png' width='32' height='32' style='border-radius:50%;' alt='NL66278'/></a> | Attach mails in an IMAP folder to existing objects
 [fetchmail_notify_error_to_sender](fetchmail_notify_error_to_sender/) | 16.0.1.0.0 |  | If fetching mails gives error, send an email to sender
 [fetchmail_notify_error_to_sender_test](fetchmail_notify_error_to_sender_test/) | 16.0.1.0.0 |  | Test for Fetchmail Notify Error to Sender
-[field_vector](field_vector/) | 16.0.1.0.0 | <a href='https://github.com/lmignon'><img src='https://github.com/lmignon.png' width='32' height='32' style='border-radius:50%;' alt='lmignon'/></a> | New specialized field to store vector data
+[field_vector](field_vector/) | 16.0.1.0.1 | <a href='https://github.com/lmignon'><img src='https://github.com/lmignon.png' width='32' height='32' style='border-radius:50%;' alt='lmignon'/></a> | New specialized field to store vector data
 [html_image_url_extractor](html_image_url_extractor/) | 16.0.1.0.0 |  | Extract images found in any HTML field
 [html_text](html_text/) | 16.0.1.0.1 |  | Generate excerpts from any HTML field
 [iap_alternative_provider](iap_alternative_provider/) | 16.0.1.0.0 | <a href='https://github.com/sebastienbeau'><img src='https://github.com/sebastienbeau.png' width='32' height='32' style='border-radius:50%;' alt='sebastienbeau'/></a> | Base module for providing alternative provider for iap apps
