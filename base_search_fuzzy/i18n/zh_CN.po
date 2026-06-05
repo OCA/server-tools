@@ -74,9 +74,9 @@ msgid "Index Type"
 msgstr "索引类型"
 
 #. module: base_search_fuzzy
-#: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index____last_update
-msgid "Last Modified on"
-msgstr "最后修改时间"
+#: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index__lang
+msgid "Language"
+msgstr ""
 
 #. module: base_search_fuzzy
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index__write_uid
@@ -107,7 +107,6 @@ msgstr ""
 #. module: base_search_fuzzy
 #. odoo-python
 #: code:addons/base_search_fuzzy/models/trgm_index.py:0
-#, python-format
 msgid "The pg_trgm extension does not exists or cannot be installed."
 msgstr "pg_trgm扩展名不存在或无法安装。"
 
@@ -122,6 +121,14 @@ msgstr "Trigram索引"
 #: model:ir.model.fields,help:base_search_fuzzy.field_trgm_index__field_id
 msgid "You can either select a field of type \"text\" or \"char\"."
 msgstr "您可以选择“text”或“char”类型的字段。"
+
+#. module: base_search_fuzzy
+#: model:ir.model.fields,help:base_search_fuzzy.field_trgm_index__lang
+msgid "You will need one index per installed language."
+msgstr ""
+
+#~ msgid "Last Modified on"
+#~ msgstr "最后修改时间"
 
 #~ msgid ""
 #~ "Cite from PostgreSQL documentation: \"As a rule of thumb, a GIN index is "

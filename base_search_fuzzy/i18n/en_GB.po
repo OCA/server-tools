@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2017-01-14 04:21+0000\n"
 "PO-Revision-Date: 2017-01-14 04:21+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: English (United Kingdom) (https://www.transifex.com/oca/"
-"teams/23907/en_GB/)\n"
+"Language-Team: English (United Kingdom) (https://www.transifex.com/oca/teams/"
+"23907/en_GB/)\n"
 "Language: en_GB\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -73,9 +73,9 @@ msgid "Index Type"
 msgstr ""
 
 #. module: base_search_fuzzy
-#: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index____last_update
-msgid "Last Modified on"
-msgstr "Last Modified on"
+#: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index__lang
+msgid "Language"
+msgstr ""
 
 #. module: base_search_fuzzy
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index__write_uid
@@ -104,7 +104,6 @@ msgstr ""
 #. module: base_search_fuzzy
 #. odoo-python
 #: code:addons/base_search_fuzzy/models/trgm_index.py:0
-#, python-format
 msgid "The pg_trgm extension does not exists or cannot be installed."
 msgstr ""
 
@@ -119,3 +118,11 @@ msgstr ""
 #: model:ir.model.fields,help:base_search_fuzzy.field_trgm_index__field_id
 msgid "You can either select a field of type \"text\" or \"char\"."
 msgstr ""
+
+#. module: base_search_fuzzy
+#: model:ir.model.fields,help:base_search_fuzzy.field_trgm_index__lang
+msgid "You will need one index per installed language."
+msgstr ""
+
+#~ msgid "Last Modified on"
+#~ msgstr "Last Modified on"
