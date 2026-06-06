@@ -165,9 +165,12 @@ class DbBackup(models.Model):
                             shutil.copyfileobj(cached, destiny)
                     # Generate new backup
                     else:
-                        db.dump_db(
-                            self.env.cr.dbname, destiny, backup_format=rec.backup_format
-                        )
+                        with self._db_management_enabled():
+                            db.dump_db(
+                                self.env.cr.dbname,
+                                destiny,
+                                backup_format=rec.backup_format,
+                            )
                         backup = backup or destiny.name
                 successful |= rec
 
@@ -178,9 +181,10 @@ class DbBackup(models.Model):
                 filename = self.filename(datetime.now(), ext=rec.backup_format)
                 with rec.backup_log():
 
-                    cached = db.dump_db(
-                        self.env.cr.dbname, None, backup_format=rec.backup_format
-                    )
+                    with self._db_management_enabled():
+                        cached = db.dump_db(
+                            self.env.cr.dbname, None, backup_format=rec.backup_format
+                        )
 
                     with cached:
                         with rec.sftp_connection() as remote:
@@ -206,6 +210,25 @@ class DbBackup(models.Model):
     def action_backup_all(self):
         """Run all scheduled backups."""
         return self.search([]).action_backup()
+
+    @contextmanager
+    def _db_management_enabled(self):
+        """Temporarily allow database management functions during a backup.
+
+        ``odoo.service.db.dump_db`` is protected by
+        ``check_db_management_enabled``, which raises ``AccessDenied`` when
+        ``list_db = False`` is set in the Odoo configuration. That option only
+        aims at hiding database management from the web interface; a scheduled
+        backup is a trusted server-side operation, so we re-enable the flag for
+        the duration of the dump and always restore its original value
+        afterwards.
+        """
+        list_db = tools.config["list_db"]
+        tools.config["list_db"] = True
+        try:
+            yield
+        finally:
+            tools.config["list_db"] = list_db
 
     @contextmanager
     def backup_log(self):
