@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-06 03:40+0000\n"
-"PO-Revision-Date: 2023-03-31 21:29+0000\n"
+"PO-Revision-Date: 2026-06-07 11:46+0000\n"
 "Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "Language: sl\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__action_id
@@ -251,7 +251,7 @@ msgstr "ID"
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view__write_uid
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__write_uid
 msgid "Last Updated by"
-msgstr "Zadnjič posodobil"
+msgstr "Zadnji posodobil"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_autovacuum__write_date
