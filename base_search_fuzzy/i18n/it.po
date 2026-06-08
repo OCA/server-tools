@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-06 02:24+0000\n"
-"PO-Revision-Date: 2024-01-05 10:36+0000\n"
+"PO-Revision-Date: 2026-06-08 15:05+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: base_search_fuzzy
 #: model:ir.model.fields,help:base_search_fuzzy.field_trgm_index__index_type
@@ -79,7 +79,7 @@ msgstr "Tipo indice"
 #. module: base_search_fuzzy
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index__lang
 msgid "Language"
-msgstr ""
+msgstr "Lingua"
 
 #. module: base_search_fuzzy
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index__write_uid
@@ -130,7 +130,7 @@ msgstr "Si può selezionare un campo di tipo \"text\" o \"char\"."
 #. module: base_search_fuzzy
 #: model:ir.model.fields,help:base_search_fuzzy.field_trgm_index__lang
 msgid "You will need one index per installed language."
-msgstr ""
+msgstr "Servirà un indice per lingua installata."
 
 #~ msgid "Last Modified on"
 #~ msgstr "Ultima modifica il"
