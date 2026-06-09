@@ -11,3 +11,6 @@
 - Bogdan Valentin Gabor \<<valentin.gabor@bt-group.com>\>
 - Dennis Sluijk <d.sluijk@onestein.nl>
 - Adam Heinz \<<adam.heinz@metricwise.com>\>
+- [OERP Canada](https://www.oerp.ca/):
+
+  - Hembert Iregui \<<hi@oerp.ca\>
