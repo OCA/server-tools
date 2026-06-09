@@ -365,7 +365,7 @@ class AuditlogRule(models.Model):
 
         @api.model_create_multi
         def create_full(self, vals_list, **kwargs):
-            self = self.with_context(auditlog_disabled=True)
+            self = self.with_context(auditlog_disabled_read=True)
             rule_model = self.env["auditlog.rule"]
             new_records = create_full.origin(self, vals_list, **kwargs)
             # Take a snapshot of record values from the cache instead of using
@@ -400,7 +400,7 @@ class AuditlogRule(models.Model):
 
         @api.model_create_multi
         def create_fast(self, vals_list, **kwargs):
-            self = self.with_context(auditlog_disabled=True)
+            self = self.with_context(auditlog_disabled_read=True)
             rule_model = self.env["auditlog.rule"]
             vals_list = rule_model._update_vals_list(vals_list)
             vals_list2 = copy.deepcopy(vals_list)
@@ -443,9 +443,9 @@ class AuditlogRule(models.Model):
             # avoid logs on `read` produced by auditlog during internal
             # processing: read data of relevant records, 'ir.model',
             # 'ir.model.fields'... (no interest in logging such operations)
-            if self.env.context.get("auditlog_disabled"):
+            if self.env.context.get("auditlog_disabled_read"):
                 return result
-            self = self.with_context(auditlog_disabled=True)
+            self = self.with_context(auditlog_disabled_read=True)
             rule_model = self.env["auditlog.rule"]
             if self.env.user in users_to_exclude:
                 return result
@@ -469,7 +469,12 @@ class AuditlogRule(models.Model):
         users_to_exclude = self.mapped("users_to_exclude_ids")
 
         def write_full(self, vals, **kwargs):
-            self = self.with_context(auditlog_disabled=True)
+            guard = self.env.context.get("auditlog_guard", set())
+            guard_keys = {(self._name, tuple(self.ids))}
+            if bool(guard.intersection(guard_keys)):
+                return write_full.origin(self, vals, **kwargs)
+            guard.update(guard_keys)
+            self = self.with_context(auditlog_guard=guard, auditlog_disabled_read=True)
             rule_model = self.env["auditlog.rule"]
             fields_list = rule_model.get_auditlog_fields(self)
             records_write = (
@@ -503,7 +508,7 @@ class AuditlogRule(models.Model):
             return result
 
         def write_fast(self, vals, **kwargs):
-            self = self.with_context(auditlog_disabled=True)
+            self = self.with_context(auditlog_disabled_read=True)
             rule_model = self.env["auditlog.rule"]
             # Log the user input only, no matter if the `vals` is updated
             # afterwards as it could not represent the real state
@@ -535,7 +540,7 @@ class AuditlogRule(models.Model):
         users_to_exclude = self.mapped("users_to_exclude_ids")
 
         def unlink_full(self, **kwargs):
-            self = self.with_context(auditlog_disabled=True)
+            self = self.with_context(auditlog_disabled_read=True)
             rule_model = self.env["auditlog.rule"]
             fields_list = rule_model.get_auditlog_fields(self)
             old_values = {
@@ -558,7 +563,7 @@ class AuditlogRule(models.Model):
             return unlink_full.origin(self, **kwargs)
 
         def unlink_fast(self, **kwargs):
-            self = self.with_context(auditlog_disabled=True)
+            self = self.with_context(auditlog_disabled_read=True)
             rule_model = self.env["auditlog.rule"]
             if self.env.user in users_to_exclude:
                 return unlink_fast.origin(self, **kwargs)
@@ -583,7 +588,7 @@ class AuditlogRule(models.Model):
 
         def export_data(self, fields_to_export):
             res = export_data.origin(self, fields_to_export)
-            self = self.with_context(auditlog_disabled=True)
+            self = self.with_context(auditlog_disabled_read=True)
             rule_model = self.env["auditlog.rule"]
             if self.env.user in users_to_exclude:
                 return res
