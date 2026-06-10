@@ -122,3 +122,12 @@ class TestAutoBackupFsFile(BaseCommon):
         backup_config.cleanup()  # Will use the computed is_expired
 
         self.assertEqual(backup_config.fs_file_backup_count, 0)
+
+        # Verify the backing ir.attachment is also removed (GC chain fires via unlink)
+        attachment = self.env["ir.attachment"].search(
+            [
+                ("res_model", "=", "db.backup.fs.file"),
+                ("res_field", "=", "backup_file"),
+            ]
+        )
+        self.assertFalse(attachment)
