@@ -2,6 +2,7 @@
 # @author Sébastien BEAU <sebastien.beau@akretion.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
+import math
 from contextlib import contextmanager
 from unittest.mock import Mock, patch
 
@@ -112,7 +113,7 @@ class TestRecompute(TransactionCase):
         ) as computed:
             self.env["recompute.field"]._run_all()
             self.assertEqual(computed["records"], len(records))
-            self.assertEqual(computed["calls"], len(records) // 10 + 1)
+            self.assertEqual(computed["calls"], math.ceil(len(records) / 10.0))
         self.assertEqual(recompute_field.state, "done")
 
         # Check that field have been recomputed correctly
@@ -173,11 +174,13 @@ class TestRecompute(TransactionCase):
                 )
                 self.assertEqual(recompute_field.step, 3000)
 
+                option_key = (
+                    "computed_fields_batch_size"
+                    "__res_partner__commercial_company_name"
+                )
                 with patch.dict(
                     config.options,
-                    {
-                        "computed_fields_batch_size__res_partner__commercial_company_name": 4000
-                    },
+                    {option_key: 4000},
                     clear=True,
                 ):
                     recompute_field = self.env["recompute.field"].create(
@@ -219,7 +222,10 @@ class TestRecompute(TransactionCase):
         # Purge field commercial_company_name to simulate
         # the installation of a new field
         self.env.cr.execute(
-            "UPDATE sale_order SET amount_untaxed=null, amount_tax=null, amount_total=null"
+            """
+            UPDATE sale_order
+            SET amount_untaxed=null, amount_tax=null, amount_total=null
+            """
         )
         self.env.invalidate_all()
 

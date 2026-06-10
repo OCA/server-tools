@@ -8,7 +8,7 @@ from functools import reduce
 from itertools import groupby
 
 from odoo import api, fields, models
-from odoo.exceptions import Warning as UserError
+from odoo.exceptions import UserError
 from odoo.tools import config
 from odoo.tools.translate import _
 
@@ -63,7 +63,8 @@ class RecomputeField(models.Model):
         return self.search([("state", "=", "todo")]).run()
 
     def run(self):
-        # Group tasks by compute method to avoid computing multifields computes multiple times
+        # Group tasks by compute method to avoid computing multifields
+        # computes multiple times
 
         def group_key(task):
             return task.model, str(self.env[task.model]._fields[task.field].compute)
@@ -122,14 +123,13 @@ def add_to_compute(self, field, records):
             records._name,
             len(records),
         )
-        with self.norecompute():
-            self["recompute.field"].create(
-                {
-                    "field": field.name,
-                    "model": records._name,
-                    "state": "todo",
-                }
-            )
+        self["recompute.field"].create(
+            {
+                "field": field.name,
+                "model": records._name,
+                "state": "todo",
+            }
+        )
     else:
         return ori_add_to_compute(self, field, records)
 
