@@ -23,8 +23,11 @@
                     </button>
                 </div>
             </xpath>
+            <field name="folder" position="attributes">
+                <attribute name="invisible">method == 'fs_file'</attribute>
+            </field>
             <field name="backup_format" position="after">
-                <field name="responsible_id" />
+                <field name="responsible_id" invisible="method != 'fs_file'" />
             </field>
         </field>
     </record>

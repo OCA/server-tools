@@ -70,6 +70,7 @@ class TestAutoBackupFsFile(BaseCommon):
             backup_config.name,
             f"Fs File Backup - {backup_config._get_fs_storage().name}",
         )
+        self.assertFalse(backup_config.folder)
 
         # Test computation of fs_file_backup_count
         self.assertEqual(backup_config.fs_file_backup_count, 0)
