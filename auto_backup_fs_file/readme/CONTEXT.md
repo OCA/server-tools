@@ -7,7 +7,18 @@ Practical examples include:
 - Automating backup processes in multi-environment setups, such as multi-company or multi-website configurations.
 
 APPROACH:
-The module extends the backup functionality from the `auto_backup` module by introducing a method that allows storing the resulting backup using an `fsspec` implementation. This is achieved through the integration of the `fs_file` from [storage repository](https://github.com/OCA/storage). The module leverages the `fsspec` library to provide a flexible and extensible interface for interacting with various filesystems. It automates the backup process by exporting Odoo instance data and storing it in the specified filesystem. Additionally, it allows users to download the backups for local storage or further processing.
+The module extends the backup functionality from the `auto_backup` module by introducing a method that allows storing the resulting backup using an `fsspec` implementation. This is achieved through the integration of the `fs_file` from [storage repository](https://github.com/OCA/storage). The module leverages the `fsspec` library to provide a flexible and extensible interface for interacting with various filesystems. It automates the backup process by exporting Odoo instance data and storing it in the specified filesystem.
+
+  Backup file cleanup is handled automatically based on the **Days to Keep**
+  configuration. When expired backup records are removed, the physical backup
+  files are not deleted synchronously. Instead, the module delegates file
+  deletion to the `fs_attachment` garbage collector (GC), which marks files
+  for deferred removal and physically deletes them during Odoo's autovacuum
+  cron cycle. This two-phase approach ensures transactional safety: files
+  are only removed once the GC confirms no database record still references
+  them.
+
+Additionally, it allows users to download the backups for local storage or further processing.
 
 USEFUL INFORMATION:
 - **Dependencies**: This module depends on the `fsspec` library, its relevant filesystem implementations, and the `fs_file` addon from OCA/storage. Ensure the required `fsspec` plugins are installed for your target filesystem.
