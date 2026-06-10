@@ -288,6 +288,7 @@ msgstr "Tous"
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_tracking_duration_mixin__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_tracking_value__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_mail_wizard_invite__assigned_attachment_ids
+#: model:ir.model.fields,field_description:autovacuum_message_attachment.field_module_auto_update__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_onboarding_onboarding__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_onboarding_onboarding_step__assigned_attachment_ids
 #: model:ir.model.fields,field_description:autovacuum_message_attachment.field_onboarding_progress__assigned_attachment_ids
