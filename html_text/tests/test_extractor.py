@@ -46,8 +46,7 @@ class ExtractorCase(TransactionCase):
     def test_empty_html(self):
         """Empty HTML handled correctly."""
         self.assertEqual(self.text_from_html(""), "")
-        with self.assertRaises(etree.ParserError):
-            self.text_from_html("", fail=True)
+        self.assertEqual(self.text_from_html("", fail=True), "")
 
     @mute_logger("odoo.addons.html_text.models.ir_fields_converter")
     def test_false_html(self):

@@ -7,3 +7,6 @@
   - Vicent Cubells
   - Víctor Martínez
 - Chau Le \<chaulb@trobz.com\>
+- [OERP Canada](https://www.oerp.ca/):
+
+  - Hembert Iregui <hi@oerp.ca>
