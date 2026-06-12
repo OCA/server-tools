@@ -10,15 +10,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-03 10:08+0000\n"
-"PO-Revision-Date: 2023-04-19 12:35+0000\n"
-"Last-Translator: Hughes Damry <hughes@damry.org>\n"
+"PO-Revision-Date: 2026-06-12 12:07+0000\n"
+"Last-Translator: Yann Papouin <ypa@decgroupe.com>\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: base_exception
 #: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_form
@@ -43,7 +43,7 @@ msgstr "Archivé"
 #. module: base_exception
 #: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_form
 msgid "As well as all the libraries provided in safe_eval."
-msgstr ""
+msgstr "ainsi que toutes les bibliothèques fournies dans safe_eval."
 
 #. module: base_exception
 #: model:ir.model.fields.selection,name:base_exception.selection__exception_rule__exception_type__by_domain
@@ -57,7 +57,6 @@ msgstr "Par méthode"
 
 #. module: base_exception
 #: model:ir.model.fields.selection,name:base_exception.selection__exception_rule__exception_type__by_py_code
-#, fuzzy
 msgid "By python code"
 msgstr "Code Python"
 
@@ -70,16 +69,16 @@ msgid ""
 "with several records\n"
 "By method: allow to select an existing check method"
 msgstr ""
-"Code python: permet de définir une vérification arbitraire\n"
-"Par domaine: limité à une selection par un domaine Odoo:\n"
+"Code python : permet de définir une vérification arbitraire\n"
+"Par domaine : limité à une selection par un domaine Odoo :\n"
 "           la performance peut être meilleure si les exceptions           "
 "sont évaluées sur plusieurs enregistrements\n"
-"Par méthode: permet de sélectionner une méthode de vérification existante"
+"Par méthode : permet de sélectionner une méthode de vérification existante"
 
 #. module: base_exception
 #: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_confirm
 msgid "Close"
-msgstr ""
+msgstr "Fermer"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule__create_uid
@@ -123,15 +122,14 @@ msgid ""
 " %(rule_name)s \n"
 "(%(error)s)"
 msgstr ""
-"Erreur lors de l'évaluation de la règle de restriction:\n"
+"Erreur lors de l'évaluation de la règle de restriction :\n"
 " %(rule_name)s \n"
 "(%(error)s)"
 
 #. module: base_exception
 #: model:ir.model,name:base_exception.model_base_exception
-#, fuzzy
 msgid "Exception"
-msgstr "Exceptions"
+msgstr "Exception"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule__name
@@ -145,13 +143,11 @@ msgstr "Règle de l'exception"
 
 #. module: base_exception
 #: model:ir.model,name:base_exception.model_exception_rule_confirm
-#, fuzzy
 msgid "Exception Rule Confirm Wizard"
-msgstr "exception.rule.confirm"
+msgstr "Assistant de confirmation de la règle d'exception"
 
 #. module: base_exception
 #: model:ir.model,name:base_exception.model_base_exception_method
-#, fuzzy
 msgid "Exception Rule Methods"
 msgstr "Règles de restriction"
 
@@ -168,9 +164,8 @@ msgstr "Règles de restriction"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule__exception_type
-#, fuzzy
 msgid "Exception Type"
-msgstr "Nom de l'exception"
+msgstr "Type d’Exception"
 
 #. module: base_exception
 #: model:res.groups,name:base_exception.group_exception_rule_manager
@@ -184,9 +179,8 @@ msgstr "Exceptions"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_base_exception__exceptions_summary
-#, fuzzy
 msgid "Exceptions Summary"
-msgstr "Gestionnaire d'exception"
+msgstr "Resumé des exceptions"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm__exception_ids
@@ -227,12 +221,12 @@ msgstr "Bloquante"
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule__write_uid
 msgid "Last Updated by"
-msgstr "Dernière mise à jour par"
+msgstr "Mis à jour par"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule__write_date
 msgid "Last Updated on"
-msgstr "Dernière mise à jour le"
+msgstr "Mis à jour le"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_base_exception__main_exception_id
@@ -291,7 +285,7 @@ msgstr "Séquence"
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule__smart_search
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm__smart_search
 msgid "Smart Search"
-msgstr ""
+msgstr "Recherche intelligente"
 
 #. module: base_exception
 #. odoo-python
@@ -307,13 +301,13 @@ msgid ""
 "There is a problem of configuration, python code, domain or method is "
 "missing to match the exception type."
 msgstr ""
-"Problème de configuration car il manque soit du code Python soit un domaine "
-"soit une méthode pour vérifier la restriction."
+"Problème de configuration car il manque, soit du code Python, soit un "
+"domaine, soit une méthode pour vérifier la restriction."
 
 #. module: base_exception
 #: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_form
 msgid "To block the exception use: <code>failed = True</code>"
-msgstr "Pour bloquer la restriction, utiliser:<code>failed = True</code>"
+msgstr "Pour bloquer la restriction, utiliser :<code>failed = True</code>"
 
 #. module: base_exception
 #: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_form
@@ -322,7 +316,7 @@ msgid ""
 "variables can be used:"
 msgstr ""
 "Différents champs peuvent utiliser du code ou des expressions en Python. Les "
-"variables suivante sont disponibles:"
+"variables suivante sont disponibles :"
 
 #. module: base_exception
 #: model:ir.model.fields,help:base_exception.field_exception_rule__is_blocking
