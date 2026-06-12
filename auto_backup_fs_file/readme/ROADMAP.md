@@ -1,0 +1,3 @@
+- **Folder field behavior**: The `folder` field on the `db.backup` model specifies the backup storage directory. For records using the `fs_file` method, storage is actually controlled by the `fs_file` field's settings. However, since `folder` is currently a required non-computed field in the `auto_backup` addon, modifications to sync these two fields are not performed. Future versions may add this synchronization support.
+
+- **Design limitation**: The current implementation has a design constraint due to `fs_storage` addon limitations. Since storage setting targets the `db.backup.fs.file` model, only one storage backend can effectively be used.

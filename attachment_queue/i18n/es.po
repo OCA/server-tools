@@ -217,6 +217,11 @@ msgid "File Content (raw)"
 msgstr "Contenido del Archivo (sin procesar)"
 
 #. module: attachment_queue
+#: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__fs_filename
+msgid "File Name into the filesystem storage"
+msgstr ""
+
+#. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__file_size
 msgid "File Size"
 msgstr "Tamaño del Archivo"
@@ -230,6 +235,26 @@ msgstr "Tipo de Archivo"
 #: model_terms:ir.ui.view,arch_db:attachment_queue.view_attachment_queue_search
 msgid "File type"
 msgstr "Tipo de archivo"
+
+#. module: attachment_queue
+#: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__fs_storage_id
+msgid "Filesystem Storage"
+msgstr ""
+
+#. module: attachment_queue
+#: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__fs_storage_code
+msgid "Filesystem Storage Code"
+msgstr ""
+
+#. module: attachment_queue
+#: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__fs_url
+msgid "Filesystem URL"
+msgstr ""
+
+#. module: attachment_queue
+#: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__fs_url_path
+msgid "Filesystem URL Path"
+msgstr ""
 
 #. module: attachment_queue
 #: model_terms:ir.ui.view,arch_db:attachment_queue.view_attachment_queue_search
@@ -307,6 +332,11 @@ msgstr "Anchura de la Imagen"
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__index_content
 msgid "Indexed Content"
 msgstr "Contenido Indexado"
+
+#. module: attachment_queue
+#: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__internal_url
+msgid "Internal URL"
+msgstr ""
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__message_is_follower
@@ -508,6 +538,26 @@ msgid "Stored Filename"
 msgstr "Nombre del Archivo Almacenado"
 
 #. module: attachment_queue
+#: model:ir.model.fields,help:attachment_queue.field_attachment_queue__fs_storage_code
+msgid ""
+"Technical code used to identify the storage backend into the code.This code "
+"must be unique. This code is used for example to define the storage backend "
+"to store the attachments via the configuration parameter "
+"'ir_attachment.storage.force.database' when the module 'fs_attachment' is "
+"installed."
+msgstr ""
+
+#. module: attachment_queue
+#: model:ir.model.fields,help:attachment_queue.field_attachment_queue__fs_url
+msgid "The URL to access the file from the filesystem storage."
+msgstr ""
+
+#. module: attachment_queue
+#: model:ir.model.fields,help:attachment_queue.field_attachment_queue__internal_url
+msgid "The URL to access the file from the server."
+msgstr ""
+
+#. module: attachment_queue
 #: model:mail.template,subject:attachment_queue.attachment_failure_notification
 msgid "The attachment {{object.name}} has failed"
 msgstr "El archivo adjunto {{object.name}} ha fallado"
@@ -522,9 +572,27 @@ msgstr ""
 "analizar y transformar los datos antes de importarlos al ERP o exportarlos"
 
 #. module: attachment_queue
+#: model:ir.model.fields,help:attachment_queue.field_attachment_queue__fs_filename
+msgid ""
+"The name of the file in the filesystem storage.To preserve the mimetype and "
+"the meaning of the filenamethe filename is computed from the name and the "
+"extension"
+msgstr ""
+
+#. module: attachment_queue
+#: model:ir.model.fields,help:attachment_queue.field_attachment_queue__fs_url_path
+msgid "The path to access the file from the filesystem storage."
+msgstr ""
+
+#. module: attachment_queue
 #: model_terms:ir.ui.view,arch_db:attachment_queue.view_reschedule_attachment
 msgid "The selected attachments will be rescheduled."
 msgstr "Los anexos seleccionados se reprogramarán."
+
+#. module: attachment_queue
+#: model:ir.model.fields,help:attachment_queue.field_attachment_queue__fs_storage_id
+msgid "The storage where the file is stored."
+msgstr ""
 
 #. module: attachment_queue
 #: model:ir.model.fields,field_description:attachment_queue.field_attachment_queue__type

@@ -1,0 +1,81 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* attachment_logging
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2026-02-10 11:50+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
+
+#. module: attachment_logging
+#. odoo-python
+#: code:addons/attachment_logging/models/ir_attachment.py:0
+#, python-format
+msgid "%(username)s %(action)s a file: %(filename)s"
+msgstr "%(username)s %(action)s un file: %(filename)s"
+
+#. module: attachment_logging
+#: model:ir.model,name:attachment_logging.model_ir_attachment
+msgid "Attachment"
+msgstr "Allegato"
+
+#. module: attachment_logging
+#: model_terms:ir.ui.view,arch_db:attachment_logging.res_config_settings_form_view
+msgid "Attachment Logging"
+msgstr "Tracciamento allegato"
+
+#. module: attachment_logging
+#: model:mail.message.subtype,name:attachment_logging.mt_attachment
+msgid "Attachments"
+msgstr "Allegati"
+
+#. module: attachment_logging
+#: model:ir.model,name:attachment_logging.model_res_config_settings
+msgid "Config Settings"
+msgstr "Impostazioni configurazione"
+
+#. module: attachment_logging
+#: model_terms:ir.ui.view,arch_db:attachment_logging.res_config_settings_form_view
+msgid "Log a note in record chatter when an attachment is added or removed."
+msgstr ""
+"Registra una nota nel record della conversazione quando un allegato è "
+"aggiunto o rimosso."
+
+#. module: attachment_logging
+#: model:ir.model.fields,help:attachment_logging.field_res_config_settings__use_attachment_log
+msgid "Log attachment operations in chatter"
+msgstr "Registra le operazioni allegato nella conversazione"
+
+#. module: attachment_logging
+#: model:ir.model.fields,field_description:attachment_logging.field_ir_attachment__smart_search
+#: model:ir.model.fields,field_description:attachment_logging.field_res_config_settings__smart_search
+msgid "Smart Search"
+msgstr "Ricerca intelligente"
+
+#. module: attachment_logging
+#: model:ir.model.fields,field_description:attachment_logging.field_res_config_settings__use_attachment_log
+msgid "Use Attachment Log"
+msgstr "Usa tracciamento allegato"
+
+#. module: attachment_logging
+#. odoo-python
+#: code:addons/attachment_logging/models/ir_attachment.py:0
+#, python-format
+msgid "attached"
+msgstr "allegato"
+
+#. module: attachment_logging
+#. odoo-python
+#: code:addons/attachment_logging/models/ir_attachment.py:0
+#, python-format
+msgid "unlinked"
+msgstr "scollegato"
