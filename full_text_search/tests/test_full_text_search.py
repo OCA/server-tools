@@ -5,13 +5,19 @@
 from odoo_test_helper import FakeModelLoader
 
 from odoo import fields
-from odoo.tests import SavepointCase
+from odoo.tests import TransactionCase
 
 
-class TestFullTextSearch(SavepointCase):
+class TestFullTextSearch(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.env = cls.env(
+            context=dict(
+                cls.env.context,
+                tracking_disable=True,
+            )
+        )
         cls.loader = FakeModelLoader(cls.env, cls.__module__)
         cls.loader.backup_registry()
 
@@ -76,6 +82,10 @@ class TestFullTextSearch(SavepointCase):
     def tearDownClass(cls):
         cls.loader.restore_registry()
         super().tearDownClass()
+
+    @classmethod
+    def check_attrs(cls):
+        pass
 
     def test_fields_definition(self):
         field = self.env["res.partner"]._fields["full_text"]
@@ -267,10 +277,10 @@ class TestFullTextSearch(SavepointCase):
             ],
         )
 
-    def test_search_order_default(self):
+    def test_search_order_regular(self):
         partners = self.env["res.partner"].search(
             [("full_text", "@@", "vincen or deni or roma")],
-            order=self.env["res.partner"]._order,
+            order="name desc",
         )
         self.assertEqual(
             partners, self.partner_1 | self.partner_2 | self.partner_3 | self.partner_4
@@ -278,10 +288,10 @@ class TestFullTextSearch(SavepointCase):
         self.assertEqual(
             partners.ids,
             [
-                self.partner_1.id,
-                self.partner_4.id,
-                self.partner_2.id,
                 self.partner_3.id,
+                self.partner_2.id,
+                self.partner_4.id,
+                self.partner_1.id,
             ],
         )
 

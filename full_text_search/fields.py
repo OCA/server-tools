@@ -8,57 +8,55 @@ import re
 from psycopg2.extensions import AsIs, QuotedString
 
 from odoo import fields
-from odoo.fields import resolve_mro
-from odoo.tools import pycompat
 
 _logger = logging.getLogger(__name__)
 
 
 class Searchable(fields.Field):
     type = "tsvector"
-    column_type = ("tsvector", "tsvector")
+    _column_type = ("tsvector", "tsvector")
     readonly = True
     copy = False
     fields = None
     dictionary = "english"
 
-    def _get_attrs(self, model, name):
-        attrs = super()._get_attrs(model, name)
+    def _get_attrs(self, model_class, name):
+        attrs = super()._get_attrs(model_class, name)
         attrs.pop("fields_add", None)
         return attrs
 
-    def _setup_attrs(self, model, name):
-        super()._setup_attrs(model, name)
+    def _setup_attrs(self, model_class, name):
+        rv = super()._setup_attrs(model_class, name)
+        if not self._base_fields:
+            return
 
         # Set up fields (with fields and fields_add)
         values = None
-        for field in reversed(resolve_mro(model, name, self._can_setup_from)):
-            if "fields" in field.args:
-                fields = field.args["fields"]
+        for field in self._base_fields:
+            if "fields" in field._args__:
+                fields = field._args__["fields"]
                 if not isinstance(fields, dict) or not fields:
                     raise ValueError(
-                        "%s: fields=%r must be a dict of field name/weight pairs"
-                        % (self, fields)
+                        f"{self}: fields={fields} must be a dict of field "
+                        "name/weight pairs"
                     )
                 if values is not None and values != fields:
                     _logger.warning(
-                        "%s: fields=%r overrides existing fields; use fields_add instead",
+                        "%s: fields=%r overrides existing fields; "
+                        "use fields_add instead",
                         self,
                         fields,
                     )
                 values = {**fields}
 
-            if "fields_add" in field.args:
-                fields_add = field.args["fields_add"]
+            if "fields_add" in field._args__:
+                fields_add = field._args__["fields_add"]
                 assert isinstance(
                     fields_add, dict
-                ), "%s: fields_add=%r must be a dict" % (self, fields_add)
-                assert (
-                    values is not None
-                ), "%s: fields_add=%r on no defined fields %r" % (
-                    self,
-                    fields_add,
-                    self.fields,
+                ), f"{self}: fields_add={fields_add} must be a dict"
+                assert values is not None, (
+                    f"{self}: fields_add={fields_add} on no defined "
+                    f"fields {self.fields}"
                 )
 
                 values = {**values, **fields_add}
@@ -66,12 +64,7 @@ class Searchable(fields.Field):
         if values is not None:
             self.fields = {key: val for key, val in values.items() if val is not None}
 
-        available_languages = self._fetch_languages(model)
-        if self.dictionary not in available_languages:
-            _logger.warning(
-                f"Dictionary '{self.dictionary}' not found, falling back to 'simple'"
-            )
-            self.dictionary = "simple"
+        return rv
 
     def _fetch_definition(self, model):
         """Fetch the definition of the tsvector column from the database."""
@@ -157,6 +150,14 @@ class Searchable(fields.Field):
             return True
 
     def update_db_column(self, model, column):
+        available_languages = self._fetch_languages(model)
+
+        if self.dictionary not in available_languages:
+            _logger.warning(
+                f"Dictionary '{self.dictionary}' not found, falling back to 'simple'"
+            )
+            self.dictionary = "simple"
+
         if column:
             if self._should_drop_column(model, column):
                 self._drop_column(model)
@@ -210,7 +211,8 @@ class Searchable(fields.Field):
         # If no field found, assume dynamic string value
         value = QuotedString(value)
         value.encoding = "utf-8"
-        value = pycompat.to_text(value.getquoted())
+        value = value.getquoted().decode("utf-8")
+
         return value
 
     def _dict_to_tsvector(self, dct, record):

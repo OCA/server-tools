@@ -3,9 +3,6 @@
     @author Florian Mounier <florian.mounier@akretion.com>
     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 */
-odoo.define("full_text_search.tsvector", function (require) {
-    "use strict";
+import {registry} from "@web/core/registry";
 
-    const field_utils = require("web.field_utils");
-    field_utils.parse.tsvector = (x) => x;
-});
+registry.category("parsers").add("tsvector", (x) => x);

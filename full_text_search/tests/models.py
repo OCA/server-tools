@@ -9,7 +9,6 @@ class ResPartnerBase(models.Model):
     _inherit = "res.partner"
 
     full_text = fields.Searchable(
-        "Full Text",
         fields={
             "name": "A",
             "street": "B",
@@ -34,7 +33,6 @@ class ResUsers(models.Model):
     _inherit = "res.users"
 
     full_text = fields.Searchable(
-        "Full Text",
         fields={
             "partner_info": "A",
             "login": "B",
