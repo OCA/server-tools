@@ -6,30 +6,32 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-06-12 12:25+0000\n"
+"Last-Translator: Yann Papouin <ypa@decgroupe.com>\n"
 "Language-Team: none\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: base_view_inheritance_extension
 #: model_terms:ir.ui.view,arch_db:base_view_inheritance_extension.view_partner_simple_form
 msgid "Partner form"
-msgstr ""
+msgstr "Formulaire du partenaire"
 
 #. module: base_view_inheritance_extension
 #: model_terms:ir.ui.view,arch_db:base_view_inheritance_extension.view_partner_simple_form
 msgid "Phone numbers"
-msgstr ""
+msgstr "Numéros de téléphone"
 
 #. module: base_view_inheritance_extension
 #: model:ir.model.fields,field_description:base_view_inheritance_extension.field_ir_ui_view__smart_search
 msgid "Smart Search"
-msgstr ""
+msgstr "Recherche intelligente"
 
 #. module: base_view_inheritance_extension
 #: model:ir.model,name:base_view_inheritance_extension.model_ir_ui_view
 msgid "View"
-msgstr ""
+msgstr "Vue"
