@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-03 10:08+0000\n"
-"PO-Revision-Date: 2026-06-12 09:44+0000\n"
+"PO-Revision-Date: 2026-06-12 10:38+0000\n"
 "Last-Translator: Yann Papouin <ypa@decgroupe.com>\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "Language: fr\n"
@@ -33,48 +33,48 @@ msgstr "Audit"
 #. module: auditlog
 #: model:ir.model,name:auditlog.model_auditlog_autovacuum
 msgid "Auditlog - Delete old logs"
-msgstr "Auditlog - Supprimer les anciens journaux"
+msgstr "Journal d'audit - Supprimer les anciens journaux"
 
 #. module: auditlog
 #: model:ir.model,name:auditlog.model_auditlog_http_session
 msgid "Auditlog - HTTP User session log"
-msgstr "Auditlog - Journal des session utilisateur en HTTP"
+msgstr "Journal d'audit - Journal des sessions utilisateur HTTP"
 
 #. module: auditlog
 #: model:ir.model,name:auditlog.model_auditlog_http_request
 msgid "Auditlog - HTTP request log"
-msgstr "Auditlog - Journal des requêtes HTTP"
+msgstr "Journal d'audit - Journal des requêtes HTTP"
 
 #. module: auditlog
 #: model:ir.model,name:auditlog.model_auditlog_log
 msgid "Auditlog - Log"
-msgstr "Auditlog - Journal"
+msgstr "Journal d'audit - Journal"
 
 #. module: auditlog
 #: model:ir.model,name:auditlog.model_auditlog_log_line
 #: model:ir.model,name:auditlog.model_auditlog_log_line_view
 msgid "Auditlog - Log details (fields updated)"
-msgstr "Auditlog - Détails (champs modifiés)"
+msgstr "Journal d'audit - Détails du journal (champs modifiés)"
 
 #. module: auditlog
 #: model:ir.model,name:auditlog.model_auditlog_rule
 msgid "Auditlog - Rule"
-msgstr "Auditlog - Règle"
+msgstr "Journal d'audit - Règle"
 
 #. module: auditlog
 #: model:res.groups,name:auditlog.group_auditlog_manager
 msgid "Auditlog Manager"
-msgstr "Responsable Auditlog"
+msgstr "Responsable du journal d'audit"
 
 #. module: auditlog
 #: model:ir.module.category,name:auditlog.security_auditlog_groups
 msgid "Auditlog Rights"
-msgstr "Droits Auditlog"
+msgstr "Droits du journal d'audit"
 
 #. module: auditlog
 #: model:res.groups,name:auditlog.group_auditlog_user
 msgid "Auditlog User"
-msgstr "Utilisateur Auditlog"
+msgstr "Utilisateur du journal d'audit"
 
 #. module: auditlog
 #: model:ir.actions.server,name:auditlog.ir_cron_auditlog_autovacuum_ir_actions_server
