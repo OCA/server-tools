@@ -746,3 +746,78 @@ class AuditlogFast_excluded_fields(AuditLogRuleCommon):
                 ]
             )
         )
+
+
+class AuditLogRuleBulkActions(AuditLogRuleCommon):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        country_model = cls.env.ref("base.model_res_country")
+        state_model = cls.env.ref("base.model_res_country_state")
+
+        existing_rules = cls.env["auditlog.rule"].search(
+            [("model_id", "in", (country_model.id, state_model.id))]
+        )
+        existing_rules.action_server_bulk_unsubscribe()
+        existing_rules.unlink()
+
+        cls.rule_country = cls.create_rule(
+            {
+                "name": "Country bulk rule",
+                "model_id": country_model.id,
+                "log_read": False,
+                "log_create": True,
+                "log_write": True,
+                "log_unlink": True,
+                "log_type": "fast",
+            }
+        )
+        cls.rule_state = cls.create_rule(
+            {
+                "name": "State bulk rule",
+                "model_id": state_model.id,
+                "log_read": False,
+                "log_create": True,
+                "log_write": True,
+                "log_unlink": True,
+                "log_type": "fast",
+            }
+        )
+        cls.rules = cls.rule_country | cls.rule_state
+
+    @classmethod
+    def tearDownClass(cls):
+        if cls.rules:
+            cls.rules.action_server_bulk_unsubscribe()
+            cls.rules.unlink()
+        super().tearDownClass()
+
+    def test_01_bulk_subscribe(self):
+        self.rules.action_server_bulk_unsubscribe()
+
+        action_result = self.rules.action_server_bulk_subscribe()
+
+        self.assertTrue(action_result)
+        self.rules.invalidate_recordset()
+        self.assertTrue(all(rule.state == "subscribed" for rule in self.rules))
+        for rule in self.rules:
+            self.assertTrue(rule.action_id)
+            self.assertEqual(rule.action_id.binding_model_id, rule.model_id)
+
+    def test_02_bulk_unsubscribe(self):
+        self.rules.action_server_bulk_unsubscribe()
+        self.rules.action_server_bulk_subscribe()
+        self.rules.invalidate_recordset()
+        action_ids = self.rules.mapped("action_id.id")
+        self.assertTrue(action_ids)
+
+        action_result = self.rules.action_server_bulk_unsubscribe()
+
+        self.assertTrue(action_result)
+        self.rules.invalidate_recordset()
+        self.assertTrue(all(rule.state == "draft" for rule in self.rules))
+        self.assertFalse(any(self.rules.mapped("action_id")))
+        remaining_actions = self.env["ir.actions.act_window"].search(
+            [("id", "in", action_ids)]
+        )
+        self.assertFalse(remaining_actions)
