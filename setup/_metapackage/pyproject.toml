@@ -1,11 +1,12 @@
 [project]
 name = "odoo-addons-oca-server-tools"
-version = "19.0.20260529.0"
+version = "19.0.20260613.0"
 dependencies = [
     "odoo-addon-auditlog==19.0.*",
     "odoo-addon-base_cron_exclusion==19.0.*",
     "odoo-addon-base_exception==19.0.*",
     "odoo-addon-base_partition==19.0.*",
+    "odoo-addon-base_search_fuzzy==19.0.*",
     "odoo-addon-base_technical_user==19.0.*",
     "odoo-addon-base_time_window==19.0.*",
     "odoo-addon-base_view_inheritance_extension==19.0.*",
