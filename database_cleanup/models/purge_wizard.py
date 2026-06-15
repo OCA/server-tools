@@ -59,7 +59,7 @@ class PurgeWizard(models.AbstractModel):
     @api.model_create_multi
     def create(self, values):
         # make sure the user trying this is actually supposed to do it
-        if self.env.ref("base.group_erp_manager") not in self.env.user.group_ids:
+        if self.env.ref("base.group_system") not in self.env.user.group_ids:
             raise AccessDenied
         return super().create(values)
 
