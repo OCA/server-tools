@@ -18,7 +18,7 @@ def environment():
     registry = odoo.modules.registry.Registry(common.get_db_name())
     with registry.cursor() as cr:
         env = odoo.api.Environment(cr, ADMIN_USER_ID, {})
-        env.user.group_ids |= env.ref("base.group_erp_manager")
+        env.user.group_ids |= env.ref("base.group_system")
         yield env
 
 
