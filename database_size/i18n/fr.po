@@ -6,24 +6,26 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-06-17 01:46+0000\n"
+"Last-Translator: Sylvain LE GAL <sylvain.legal@grap.coop>\n"
 "Language-Team: none\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: database_size
 #: model_terms:ir.ui.view,arch_db:database_size.res_config_settings_view_form
 msgid "<span> days</span>"
-msgstr ""
+msgstr "<span>jours</span>"
 
 #. module: database_size
 #: model:ir.model.fields,field_description:database_size.field_ir_model_size__attachment_size
 #: model:ir.model.fields,field_description:database_size.field_ir_model_size_report__attachment_size
 msgid "Attachment Size"
-msgstr ""
+msgstr "Taille de pièce jointe"
 
 #. module: database_size
 #: model:ir.model.fields,help:database_size.field_ir_model_size__attachment_size
@@ -31,17 +33,19 @@ msgid ""
 "Attachment Size in MB. Includes overlap of files that are also attached to "
 "other models."
 msgstr ""
+"Taille de pièce jointe en MO. Cela inclut les fichiers qui se recoupent avec "
+"d'autres modèles auxquels ils sont également associés."
 
 #. module: database_size
 #: model:ir.model.fields,field_description:database_size.field_ir_model_size__table_size
 #: model:ir.model.fields,field_description:database_size.field_ir_model_size_report__table_size
 msgid "Bare Table Size"
-msgstr ""
+msgstr "Taille de la table"
 
 #. module: database_size
 #: model:ir.model.fields,help:database_size.field_ir_model_size__table_size
 msgid "Bare Table Size in MB."
-msgstr ""
+msgstr "Taille de table in MO."
 
 #. module: database_size
 #: model:ir.model.fields,field_description:database_size.field_ir_model_size_report__diff_total_database_size
@@ -132,22 +136,24 @@ msgstr ""
 #: model:ir.model.fields,field_description:database_size.field_ir_model_size__tuples
 #: model:ir.model.fields,field_description:database_size.field_ir_model_size_report__tuples
 msgid "Estimated Rows"
-msgstr ""
+msgstr "Lignes estimées"
 
 #. module: database_size
 #: model:ir.model.fields,help:database_size.field_ir_model_size__measurement_date
 msgid "For the exact time, check the record's write_date."
 msgstr ""
+"Pour l'horaire exact, veuillez consulter le champs write_date de "
+"l'enregistrement."
 
 #. module: database_size
 #: model_terms:ir.ui.view,arch_db:database_size.ir_model_size_view_search
 msgid "Group By"
-msgstr ""
+msgstr "Regrouper par"
 
 #. module: database_size
 #: model:ir.model.fields,field_description:database_size.field_ir_model_size_report__historical_attachment_size
 msgid "Historical Attachment Size"
-msgstr ""
+msgstr "Taille des pièces jointes"
 
 #. module: database_size
 #: model:ir.model.fields,field_description:database_size.field_ir_model_size_report__historical_table_size
