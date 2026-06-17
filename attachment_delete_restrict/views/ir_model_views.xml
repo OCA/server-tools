@@ -11,7 +11,7 @@
                         <field name="restrict_delete_attachment" />
                     </group>
                     <group
-                        attrs="{'invisible': [('restrict_delete_attachment','not in',['custom', 'restrict_custom'])]}"
+                        attrs="{'invisible': [('restrict_delete_attachment','not in',['custom', 'owner_custom'])]}"
                     >
                         <field
                             name="delete_attachment_group_ids"
