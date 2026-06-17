@@ -4,6 +4,7 @@ import logging
 import re
 
 from odoo import _, api, fields, models
+from odoo.exceptions import UserError
 
 _logger = logging.getLogger(__name__)
 
@@ -30,7 +31,11 @@ class FetchmailServer(models.Model):
             if this.state != "done":
                 this.folders_available = _("Confirm connection first.")
                 continue
-            connection = this.connect()
+            try:
+                connection = this.connect()
+            except UserError:
+                this.folders_available = _("Confirm connection first.")
+                continue
             list_result = connection.list()
             if list_result[0] != "OK":
                 this.folders_available = _("Unable to retrieve folders.")
@@ -52,9 +57,9 @@ class FetchmailServer(models.Model):
         context={"active_test": False},
     )
     folders_only = fields.Boolean(
-        string="Only folders, not inbox",
-        help="Check this field to leave imap inbox alone"
-        " and only retrieve mail from configured folders.",
+        string="Process Only Specified Folders",
+        help="Enable this option to ignore the default IMAP inbox processing and "
+        "retrieve emails only from the specified folders.",
     )
     # Below existing fields, that are modified by this module.
     object_id = fields.Many2one(required=False)  # comodel_name='ir.model'
