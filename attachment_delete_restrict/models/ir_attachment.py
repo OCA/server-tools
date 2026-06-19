@@ -71,10 +71,10 @@ class IrAttachment(models.Model):
             name2models = {m.model: m for m in models}
             for rec in self:
                 if rec.res_model:
-                    model = name2models[rec.res_model]
-                    if (
-                        model.restrict_delete_attachment == "default"
-                        or not model.restrict_delete_attachment
+                    model = name2models.get(rec.res_model)
+                    if not model or model.restrict_delete_attachment in (
+                        "default",
+                        False,
                     ):
                         rec.sudo()._check_delete_attachment()
                     else:

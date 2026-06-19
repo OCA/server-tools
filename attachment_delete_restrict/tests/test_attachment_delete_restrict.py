@@ -137,6 +137,29 @@ class TestAttachmentDeleteAbstract(TransactionCase):
             )
         )
 
+    def test_unlink_orphan_res_model(self):
+        # An attachment whose res_model is not a registered model (e.g. left
+        # over from an uninstalled module) must not crash unlink; it falls
+        # back to the global configuration.
+        self.param.set_param(
+            "attachment_delete_restrict.global_restrict_delete_attachment", "owner"
+        )
+        attachment = (
+            self.env["ir.attachment"]
+            .with_user(self.user_owner)
+            .create(
+                {
+                    "name": "orphan attachment",
+                    "type": "binary",
+                    "res_model": "non.existent.model",
+                    "res_id": 1,
+                }
+            )
+        )
+        with self.assertRaises(ValidationError):
+            attachment.with_user(self.user).unlink()
+        attachment.with_user(self.user_owner).unlink()
+
     def _set_restrict_mode(self, restrict_mode):
         raise NotImplementedError
 
