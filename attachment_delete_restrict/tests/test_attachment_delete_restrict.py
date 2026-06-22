@@ -29,6 +29,28 @@ class AbstractCase:
         self._allow_group()
         self.attachment.with_user(self.user).unlink()
 
+    def test_restrict_custom_implied_group(self):
+        # Regression: the authorized group may be held by the user only
+        # through group implication. Membership must be resolved with
+        # all_user_ids (implication-aware), not user_ids (explicit members
+        # only), otherwise such a user is wrongly denied deletion.
+        self._set_restrict_mode("custom")
+        child_group = self.env["res.groups"].create({"name": "Delete child group"})
+        self.env["res.groups"].create(
+            {
+                "name": "Delete parent group",
+                "implied_ids": [Command.link(child_group.id)],
+                "user_ids": [Command.link(self.user.id)],
+            }
+        )
+        # The user belongs to child_group only via implication.
+        self.assertNotIn(self.user, child_group.user_ids)
+        self.assertIn(self.user, child_group.all_user_ids)
+        with self.assertRaises(ValidationError):
+            self.attachment.with_user(self.user).unlink()
+        self._allow_groups(child_group)
+        self.attachment.with_user(self.user).unlink()
+
     def test_restrict_owner(self):
         self._set_restrict_mode("owner")
         with self.assertRaises(ValidationError):
@@ -184,9 +206,12 @@ class TestAttachmentDeleteGlobal(TestAttachmentDeleteAbstract, AbstractCase):
         )
 
     def _allow_group(self):
+        self._allow_groups(self.group)
+
+    def _allow_groups(self, groups):
         self.param.set_param(
             "attachment_delete_restrict.global_delete_attachment_group_ids",
-            self.group.ids,
+            groups.ids,
         )
 
 
@@ -198,4 +223,9 @@ class TestAttachmentDeleteModel(TestAttachmentDeleteAbstract, AbstractCase):
         self.partner_model.write({"delete_attachment_user_ids": [(4, self.user.id)]})
 
     def _allow_group(self):
-        self.partner_model.write({"delete_attachment_group_ids": [(4, self.group.id)]})
+        self._allow_groups(self.group)
+
+    def _allow_groups(self, groups):
+        self.partner_model.write(
+            {"delete_attachment_group_ids": [Command.link(g) for g in groups.ids]}
+        )
