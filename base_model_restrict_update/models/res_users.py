@@ -17,8 +17,5 @@ class ResUsers(models.Model):
     @api.constrains("is_readonly_user", "group_ids")
     def _check_is_readonly_user(self):
         for user in self:
-            if (
-                user in self.env.ref("base.group_system").user_ids
-                and user.is_readonly_user
-            ):
+            if user.has_group("base.group_system") and user.is_readonly_user:
                 raise UserError(self.env._("You cannot make the admin user read-only."))

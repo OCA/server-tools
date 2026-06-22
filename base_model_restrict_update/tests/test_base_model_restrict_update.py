@@ -102,3 +102,17 @@ class TestBaseModelRestrictUpdate(common.TransactionCase):
         self.test_user.is_readonly_user = True
         with self.assertRaises(UserError):
             self.test_user.group_ids = [Command.link(group_system_id)]
+
+    def test_set_user_readonly_implied_admin(self):
+        # group_system may be held through group implication: the guard must
+        # rely on has_group (implication-aware), not the explicit user_ids
+        # relation, otherwise an implied admin could be made read-only.
+        group_system = self.env.ref("base.group_system")
+        admin_parent = self.env["res.groups"].create(
+            {"name": "Admin parent", "implied_ids": [Command.link(group_system.id)]}
+        )
+        self.test_user.group_ids = [Command.link(admin_parent.id)]
+        self.assertNotIn(self.test_user, group_system.user_ids)
+        self.assertTrue(self.test_user.has_group("base.group_system"))
+        with self.assertRaises(UserError):
+            self.test_user.is_readonly_user = True
