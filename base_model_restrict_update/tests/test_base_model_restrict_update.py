@@ -100,5 +100,38 @@ class TestBaseModelRestrictUpdate(common.TransactionCase):
             self.test_user.is_readonly_user = True
         self.test_user.group_ids = [Command.unlink(group_system_id)]
         self.test_user.is_readonly_user = True
+        self.assertFalse(self.test_user.has_group("base.group_system"))
         with self.assertRaises(UserError):
             self.test_user.group_ids = [Command.link(group_system_id)]
+
+    def test_set_user_readonly_implied_admin(self):
+        # group_system may be held through group implication: the guard must
+        # be implication-aware, not rely on the explicit user_ids relation,
+        # otherwise an implied admin could be made read-only.
+        group_system = self.env.ref("base.group_system")
+        admin_parent = self.env["res.groups"].create(
+            {"name": "Admin parent", "implied_ids": [Command.link(group_system.id)]}
+        )
+        self.test_user.group_ids = [Command.link(admin_parent.id)]
+        self.assertNotIn(self.test_user, group_system.user_ids)
+        self.assertTrue(self.test_user.has_group("base.group_system"))
+        with self.assertRaises(UserError):
+            self.test_user.is_readonly_user = True
+
+    def test_add_readonly_user_from_group(self):
+        group_system = self.env.ref("base.group_system")
+        self.test_user.is_readonly_user = True
+        with self.assertRaises(UserError):
+            group_system.user_ids = [Command.link(self.test_user.id)]
+        admin_parent = self.env["res.groups"].create({"name": "Admin parent"})
+        admin_parent.user_ids = [Command.link(self.test_user.id)]
+        with self.assertRaises(UserError):
+            admin_parent.implied_ids = [Command.link(group_system.id)]
+        admin_parent_2 = self.env["res.groups"].create({"name": "Admin parent 2"})
+        with self.assertRaises(UserError):
+            admin_parent_2.write(
+                {
+                    "user_ids": [Command.link(self.test_user.id)],
+                    "implied_ids": [Command.link(group_system.id)],
+                }
+            )
