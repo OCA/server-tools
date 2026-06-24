@@ -149,6 +149,51 @@ class PGSessionStore(sessions.SessionStore):
             (f"{max_lifetime} seconds",),
         )
 
+    @with_lock
+    @with_cursor
+    def get_missing_session_identifiers(self, identifiers: list[str]) -> set[str]:
+        """
+        :param identifiers: session identifiers whose file existence must be checked
+                            identifiers are a part session sid (first 42 chars)
+        :type identifiers: iterable
+        :return: the identifiers which are not present on the filesystem
+        :rtype: set
+
+        Note 1:
+        Working with identifiers 42 characters long means that
+        we don't have to work with the entire sid session,
+        while maintaining sufficient entropy to avoid collisions.
+        See details in ``generate_key``.
+
+        Note 2:
+        Scans the session store for inactive (GC'd) sessions.
+        Performance is acceptable for an infrequent background job.
+        """
+        missing_identifiers = set()
+        for identifier in identifiers:
+            self._cr.execute(
+                "SELECT sid FROM http_sessions WHERE sid LIKE %s||'%%' LIMIT 1",
+                (identifier,),
+            )
+            if self._cr.rowcount == 0:
+                missing_identifiers.add(identifier)
+        return missing_identifiers
+
+    @with_lock
+    @with_cursor
+    def delete_from_identifiers(self, identifiers: list[str]) -> None:
+        for identifier in identifiers:
+            if not http._session_identifier_re.match(
+                identifier
+            ) and not sessions._sha1_re.match(identifier):
+                raise ValueError(
+                    "Identifier format incorrect, "
+                    "did you pass in a string instead of a list?"
+                )
+            self._cr.execute(
+                "DELETE FROM http_sessions WHERE sid LIKE %s||'%%'", (identifier,)
+            )
+
 
 _original_session_store = http.root.__class__.session_store
 
