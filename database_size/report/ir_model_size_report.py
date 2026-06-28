@@ -85,8 +85,9 @@ class IrModelSizeReport(models.Model):
                 if field in values:
                     raise UserError(
                         self.env._(
-                            f"You cannot search on more than one value for {field} "
-                            "at the same time."
+                            "You cannot search on more than one value for %s "
+                            "at the same time.",
+                            field,
                         )
                     )
                 if clause[1] in ("=", "==") and clause[2]:
@@ -94,8 +95,11 @@ class IrModelSizeReport(models.Model):
                 else:
                     raise UserError(
                         self.env._(
-                            f"Searching {field} for '{clause[1]} {clause[2]}' is "
-                            "not supported."
+                            "Searching %(field)s for '%(operator)s %(value)s' "
+                            "is not supported.",
+                            field=field,
+                            operator=clause[1],
+                            value=clause[2],
                         )
                     )
                 new_domain.append((1, "=", 1))
@@ -138,8 +142,8 @@ class IrModelSizeReport(models.Model):
             ):
                 raise UserError(
                     self.env._(
-                        "There is no data from "
-                        f"{fields.Date.to_string(measurement_date)}"
+                        "There is no data from %s",
+                        fields.Date.to_string(measurement_date),
                     )
                 )
         else:
@@ -165,8 +169,8 @@ class IrModelSizeReport(models.Model):
             ):
                 raise UserError(
                     self.env._(
-                        "There is no data from "
-                        f"{fields.Date.to_string(historical_measurement_date)}"
+                        "There is no data from %s",
+                        fields.Date.to_string(historical_measurement_date),
                     )
                 )
         else:

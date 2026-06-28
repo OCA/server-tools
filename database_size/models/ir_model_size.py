@@ -13,13 +13,10 @@ class IrModelSize(models.Model):
     _description = "Disk space usage per model"
     _order = "measurement_date desc, total_model_size desc"
     _rec_name = "model"
-    _sql_constraints = [
-        (
-            "uniq_model_measurement_date",
-            "unique(model, measurement_date)",
-            "There is already a measurement for this model on the given date",
-        ),
-    ]
+    _uniq_model_measurement_date = models.Constraint(
+        "unique(model, measurement_date)",
+        "There is already a measurement for this model on the given date",
+    )
     model = fields.Char(index=True)
     model_name = fields.Char(
         compute="_compute_model_name",
