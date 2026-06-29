@@ -151,6 +151,56 @@ class TestDatabaseSize(TransactionCase):
         self.assertEqual(report.diff_total_database_size, 5)
         self.assertEqual(report.diff_total_model_size, 6)
 
+    def test_database_size_report_web_paths(self):
+        """Dates selected in the UI reach the query via search_fetch/read_group.
+
+        Compare the two oldest of three data sets, so that neither requested
+        date coincides with the defaults that `_table_query` falls back on.
+        """
+        for _i in range(3):
+            # Shift existing sets back one by one, oldest first, to avoid
+            # transient unique constraint violations
+            self.env.cr.execute(
+                "select distinct measurement_date from ir_model_size"
+                " order by measurement_date"
+            )
+            for (measurement_date,) in self.env.cr.fetchall():
+                self.env.cr.execute(
+                    """
+                    update ir_model_size
+                    set measurement_date = measurement_date - interval '10 days'
+                    where measurement_date = %s
+                    """,
+                    (measurement_date,),
+                )
+            self.env["ir.model.size"].invalidate_model(["measurement_date"])
+            self.env.ref(
+                "database_size.ir_cron_ir_model_size_measure"
+            ).ir_actions_server_id.run()
+
+        measurement_date = self.today - timedelta(days=10)
+        historical_date = self.today - timedelta(days=20)
+        domain = [
+            ("model", "=", "res.partner"),
+            ("measurement_date", "=", measurement_date),
+            ("historical_measurement_date", "=", historical_date),
+        ]
+        records = self.env["ir.model.size.report"].search_fetch(
+            domain, ["model", "measurement_date", "historical_measurement_date"]
+        )
+        self.assertTrue(records)
+        self.assertEqual(records.measurement_date, measurement_date)
+        self.assertEqual(records.historical_measurement_date, historical_date)
+
+        # The aggregation path used by group-by in the list view
+        result = self.env["ir.model.size.report"]._read_group(
+            domain,
+            groupby=["historical_measurement_date:day"],
+            aggregates=["__count"],
+        )
+        self.assertEqual(len(result), 1)
+        self.assertEqual(result[0][1], 1)
+
     def test_database_size_purge(self):
         """Records are purged according to their age"""
 

@@ -13,13 +13,10 @@ class IrModelSize(models.Model):
     _description = "Disk space usage per model"
     _order = "measurement_date desc, total_model_size desc"
     _rec_name = "model"
-    _sql_constraints = [
-        (
-            "uniq_model_measurement_date",
-            "unique(model, measurement_date)",
-            "There is already a measurement for this model on the given date",
-        ),
-    ]
+    _uniq_model_measurement_date = models.Constraint(
+        "unique(model, measurement_date)",
+        "There is already a measurement for this model on the given date",
+    )
     model = fields.Char(index=True)
     model_name = fields.Char(
         compute="_compute_model_name",
@@ -84,32 +81,40 @@ class IrModelSize(models.Model):
     def _compute_model_name(self):
         """Assign the model's label"""
         model2name = {
-            model.model: model.name for model in self.env["ir.model"].sudo().search([])
+            model.model: model.name
+            for model in self.env["ir.model"].sudo().search([])  # pylint: disable=no-search-all
         }
         for size in self:
             size.model_name = model2name.get(size.model, "<removed>")
 
     @api.model
-    def read_group(
-        self, domain, fields, groupby, offset=0, limit=None, orderby=False, lazy=True
+    def _read_group(
+        self,
+        domain,
+        groupby=(),
+        aggregates=(),
+        having=(),
+        offset=0,
+        limit=None,
+        order=None,
     ):
         """Enforce that grouped results are ordered.
 
-        Odoo will happily use the grouping field for ordering unless groupby is a
-        list, and as it happens the grouping is usually passed as a list, for
-        example: ['measurement_date:day']
+        When the caller doesn't pass an explicit order, default to the first
+        groupby field descending (e.g. ['measurement_date:day']) so the
+        size-report views stay sorted.
         """
-        if not orderby and groupby and isinstance(groupby, list | set):
+        if not order and groupby:
             field = groupby[0].split(":")[0]
-            orderby = f"{field} desc"
-        return super().read_group(
+            order = f"{field} desc"
+        return super()._read_group(
             domain,
-            fields,
             groupby,
+            aggregates,
+            having,
             offset=offset,
             limit=limit,
-            orderby=orderby,
-            lazy=lazy,
+            order=order,
         )
 
     @api.depends(

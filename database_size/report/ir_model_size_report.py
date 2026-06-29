@@ -85,8 +85,9 @@ class IrModelSizeReport(models.Model):
                 if field in values:
                     raise UserError(
                         self.env._(
-                            f"You cannot search on more than one value for {field} "
-                            "at the same time."
+                            "You cannot search on more than one value for"
+                            " %(field)s at the same time.",
+                            field=field,
                         )
                     )
                 if clause[1] in ("=", "==") and clause[2]:
@@ -94,8 +95,11 @@ class IrModelSizeReport(models.Model):
                 else:
                     raise UserError(
                         self.env._(
-                            f"Searching {field} for '{clause[1]} {clause[2]}' is "
-                            "not supported."
+                            "Searching %(field)s for '%(operator)s %(value)s'"
+                            " is not supported.",
+                            field=field,
+                            operator=clause[1],
+                            value=clause[2],
                         )
                     )
                 new_domain.append((1, "=", 1))
@@ -105,15 +109,16 @@ class IrModelSizeReport(models.Model):
             self = self.with_context(**values)
         return self, new_domain
 
-    @api.model
-    def _where_calc(self, domain, active_test=True):
+    def _search(self, domain, offset=0, limit=None, order=None, **kwargs):
         """Move the requested dates from the domain into the context"""
         (self, new_domain) = self._move_dates_to_context(domain)
-        return super()._where_calc(new_domain, active_test=active_test)
+        return super()._search(
+            new_domain, offset=offset, limit=limit, order=order, **kwargs
+        )
 
     @api.model
     def search(self, domain, offset=0, limit=None, order=None):
-        """Move the requested dates from the domain into the context"""
+        """Bind the requested dates to the returned records' context"""
         (self, new_domain) = self._move_dates_to_context(domain)
         return super().search(new_domain, offset=offset, limit=limit, order=order)
 
@@ -127,7 +132,7 @@ class IrModelSizeReport(models.Model):
     def _table_query(self):
         """Report comparative database size changes between two dates.
 
-        The dates are inserted in the context in this model's `search` method.
+        The dates are inserted in the context in this model's `_search` method.
         """
         measurement_date = self.env.context.get("measurement_date")
         if measurement_date:
@@ -138,8 +143,8 @@ class IrModelSizeReport(models.Model):
             ):
                 raise UserError(
                     self.env._(
-                        "There is no data from "
-                        f"{fields.Date.to_string(measurement_date)}"
+                        "There is no data from %(date)s",
+                        date=fields.Date.to_string(measurement_date),
                     )
                 )
         else:
@@ -165,8 +170,8 @@ class IrModelSizeReport(models.Model):
             ):
                 raise UserError(
                     self.env._(
-                        "There is no data from "
-                        f"{fields.Date.to_string(historical_measurement_date)}"
+                        "There is no data from %(date)s",
+                        date=fields.Date.to_string(historical_measurement_date),
                     )
                 )
         else:

@@ -5,7 +5,7 @@
         <field name="arch" type="xml">
             <search>
                 <field name="model" />
-                <group expand="0" string="Group By">
+                <group>
                     <filter
                         string="Date of Measurement"
                         name="group_measurement_date"
