@@ -29,6 +29,7 @@ addon | version | maintainers | summary
 [base_technical_user](base_technical_user/) | 19.0.1.0.0 |  | Add a technical user parameter on the company
 [base_time_window](base_time_window/) | 19.0.1.0.0 |  | Base model to handle time windows
 [base_view_inheritance_extension](base_view_inheritance_extension/) | 19.0.1.0.0 | <a href='https://github.com/hbrunn'><img src='https://github.com/hbrunn.png' width='32' height='32' style='border-radius:50%;' alt='hbrunn'/></a> | Adds more operators for view inheritance
+[base_write_diff](base_write_diff/) | 19.0.1.0.0 |  | Prevents updates on fields whose values won't change anyway
 [bus_alt_connection](bus_alt_connection/) | 19.0.1.0.0 |  | Needed when using PgBouncer as a connection pooler
 [database_cleanup](database_cleanup/) | 19.0.1.0.3 |  | Database cleanup
 [field_vector](field_vector/) | 19.0.1.0.0 | <a href='https://github.com/lmignon'><img src='https://github.com/lmignon.png' width='32' height='32' style='border-radius:50%;' alt='lmignon'/></a> | New specialized field to store vector data
