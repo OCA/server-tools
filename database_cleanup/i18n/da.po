@@ -9,86 +9,87 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-19 18:00+0000\n"
-"PO-Revision-Date: 2017-04-19 18:00+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"PO-Revision-Date: 2026-07-01 13:46+0000\n"
+"Last-Translator: Laura V <laura.valls@forgeflow.com>\n"
 "Language-Team: Danish (https://www.transifex.com/oca/teams/23907/da/)\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: database_cleanup
 #: model:ir.model,name:database_cleanup.model_cleanup_create_indexes_line
 msgid "Cleanup Create Indexes line"
-msgstr ""
+msgstr "Oprydning - Opret indekslinjer"
 
 #. module: database_cleanup
 #: model:ir.model,name:database_cleanup.model_cleanup_purge_line_column
 msgid "Cleanup Purge Line Column"
-msgstr ""
+msgstr "Oprydning - Rensningslinje for kolonne"
 
 #. module: database_cleanup
 #: model:ir.model,name:database_cleanup.model_cleanup_purge_line_data
 msgid "Cleanup Purge Line Data"
-msgstr ""
+msgstr "Oprydning - Rensningslinje for data"
 
 #. module: database_cleanup
 #: model:ir.model,name:database_cleanup.model_cleanup_purge_line_menu
 msgid "Cleanup Purge Line Menu"
-msgstr ""
+msgstr "Oprydning - Rensningslinje for menu"
 
 #. module: database_cleanup
 #: model:ir.model,name:database_cleanup.model_cleanup_purge_line_model
 msgid "Cleanup Purge Line Model"
-msgstr ""
+msgstr "Oprydning - Rensningslinje for model"
 
 #. module: database_cleanup
 #: model:ir.model,name:database_cleanup.model_cleanup_purge_line_module
 msgid "Cleanup Purge Line Module"
-msgstr ""
+msgstr "Oprydning - Rensningslinje for modul"
 
 #. module: database_cleanup
 #: model:ir.model,name:database_cleanup.model_cleanup_purge_line_table
 msgid "Cleanup Purge Line Table"
-msgstr ""
+msgstr "Oprydning - Rensningslinje for tabel"
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_column__purge_line_ids
 msgid "Columns to purge"
-msgstr ""
+msgstr "Kolonner til rensning"
 
 #. module: database_cleanup
 #: model:ir.actions.server,name:database_cleanup.cleanup_create_indexes_line_action
 #: model_terms:ir.ui.view,arch_db:database_cleanup.cleanup_create_indexes_wizard_view_form
 msgid "Create"
-msgstr ""
+msgstr "Opret"
 
 #. module: database_cleanup
 #: model_terms:ir.ui.view,arch_db:database_cleanup.cleanup_create_indexes_wizard_view_form
 msgid "Create all"
-msgstr ""
+msgstr "Opret alle"
 
 #. module: database_cleanup
 #: model:ir.model,name:database_cleanup.model_cleanup_create_indexes_wizard
 msgid "Create indexes"
-msgstr ""
+msgstr "Opret indekser"
 
 #. module: database_cleanup
 #: model:ir.actions.server,name:database_cleanup.cleanup_create_indexes_wizard_action
 #: model:ir.ui.menu,name:database_cleanup.menu_create_indexes
 msgid "Create missing indexes"
-msgstr ""
+msgstr "Opret manglende indekser"
 
 #. module: database_cleanup
 #: model_terms:ir.ui.view,arch_db:database_cleanup.cleanup_create_indexes_line_view_tree
 msgid "Create this index"
-msgstr ""
+msgstr "Opret dette indeks"
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_line__purged
 msgid "Created"
-msgstr ""
+msgstr "Oprettet"
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_line__create_uid
@@ -133,17 +134,17 @@ msgstr "Oprettet den"
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_data__data_id
 msgid "Data entry"
-msgstr ""
+msgstr "Datapost"
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_data__purge_line_ids
 msgid "Data to purge"
-msgstr ""
+msgstr "Data til rensning"
 
 #. module: database_cleanup
 #: model:ir.ui.menu,name:database_cleanup.menu_database_cleanup
 msgid "Database cleanup"
-msgstr ""
+msgstr "Database-oprydning"
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_line__display_name
@@ -169,17 +170,17 @@ msgstr "Vist navn"
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_line__field_id
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_field__field_id
 msgid "Field"
-msgstr ""
+msgstr "Felt"
 
 #. module: database_cleanup
 #: model:ir.model,name:database_cleanup.model_ir_model_fields
 msgid "Fields"
-msgstr ""
+msgstr "Felter"
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_field__purge_line_ids
 msgid "Fields to purge"
-msgstr ""
+msgstr "Felter til rensning"
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_line__id
@@ -244,43 +245,43 @@ msgstr "Sidst opdateret den"
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_menu__menu_id
 msgid "Menu entry"
-msgstr ""
+msgstr "Menuindgang"
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_menu__purge_line_ids
 msgid "Menus to purge"
-msgstr ""
+msgstr "Menuer til rensning"
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_column__model_id
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_field__model_id
 msgid "Model"
-msgstr ""
+msgstr "Model"
 
 #. module: database_cleanup
 #: model:ir.model,name:database_cleanup.model_ir_model_data
 msgid "Model Data"
-msgstr ""
+msgstr "Modeldata"
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_field__model_name
 msgid "Model Technical Name"
-msgstr ""
+msgstr "Teknisk modelnavn"
 
 #. module: database_cleanup
 #: model:ir.model,name:database_cleanup.model_ir_model
 msgid "Models"
-msgstr ""
+msgstr "Modeller"
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_model__purge_line_ids
 msgid "Models to purge"
-msgstr ""
+msgstr "Modeller til rensning"
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_module__purge_line_ids
 msgid "Modules to purge"
-msgstr ""
+msgstr "Moduler til rensning"
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_line__name
@@ -299,48 +300,48 @@ msgstr "Navn"
 #. odoo-python
 #: code:addons/database_cleanup/models/purge_menus.py:0
 msgid "No dangling menu entries found"
-msgstr ""
+msgstr "Ingen forældede menuindgange fundet"
 
 #. module: database_cleanup
 #. odoo-python
 #: code:addons/database_cleanup/models/purge_modules.py:0
 msgid "No modules found to purge"
-msgstr ""
+msgstr "Ingen moduler fundet til rensning"
 
 #. module: database_cleanup
 #. odoo-python
 #: code:addons/database_cleanup/models/purge_columns.py:0
 msgid "No orphaned columns found"
-msgstr ""
+msgstr "Ingen forældede kolonner fundet"
 
 #. module: database_cleanup
 #. odoo-python
 #: code:addons/database_cleanup/models/purge_data.py:0
 msgid "No orphaned data entries found"
-msgstr ""
+msgstr "Ingen forældede dataposter fundet"
 
 #. module: database_cleanup
 #. odoo-python
 #: code:addons/database_cleanup/models/purge_fields.py:0
 msgid "No orphaned fields found"
-msgstr ""
+msgstr "Ingen forældede felter fundet"
 
 #. module: database_cleanup
 #. odoo-python
 #: code:addons/database_cleanup/models/purge_models.py:0
 msgid "No orphaned models found"
-msgstr ""
+msgstr "Ingen forældede modeller fundet"
 
 #. module: database_cleanup
 #. odoo-python
 #: code:addons/database_cleanup/models/purge_tables.py:0
 msgid "No orphaned tables found"
-msgstr ""
+msgstr "Ingen forældede tabeller fundet"
 
 #. module: database_cleanup
 #: model_terms:ir.ui.view,arch_db:database_cleanup.form_purge_wizard
 msgid "Nothing found to clean up."
-msgstr ""
+msgstr "Intet fundet til oprydning."
 
 #. module: database_cleanup
 #: model:ir.actions.server,name:database_cleanup.action_purge_column_line
@@ -352,18 +353,18 @@ msgstr ""
 #: model:ir.actions.server,name:database_cleanup.action_purge_table_line
 #: model_terms:ir.ui.view,arch_db:database_cleanup.form_purge_wizard
 msgid "Purge"
-msgstr ""
+msgstr "Rens"
 
 #. module: database_cleanup
 #: model:ir.model,name:database_cleanup.model_cleanup_purge_line
 msgid "Purge Column Abstract Wizard"
-msgstr ""
+msgstr "Rensningsguide - abstrakt linje"
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_wizard__purge_line_ids
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard__purge_line_ids
 msgid "Purge Line"
-msgstr ""
+msgstr "Rensningslinje"
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_column__wizard_id
@@ -374,134 +375,134 @@ msgstr ""
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_module__wizard_id
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_table__wizard_id
 msgid "Purge Wizard"
-msgstr ""
+msgstr "Rensningsguide"
 
 #. module: database_cleanup
 #: model_terms:ir.ui.view,arch_db:database_cleanup.form_purge_wizard
 msgid "Purge all"
-msgstr ""
+msgstr "Rens alle"
 
 #. module: database_cleanup
 #: model:ir.actions.server,name:database_cleanup.action_purge_columns
 #: model:ir.model,name:database_cleanup.model_cleanup_purge_wizard_column
 msgid "Purge columns"
-msgstr ""
+msgstr "Rens kolonner"
 
 #. module: database_cleanup
 #: model:ir.model,name:database_cleanup.model_cleanup_purge_wizard_data
 msgid "Purge data"
-msgstr ""
+msgstr "Rens data"
 
 #. module: database_cleanup
 #: model:ir.actions.server,name:database_cleanup.action_purge_data
 msgid "Purge data entries that refer to missing resources"
-msgstr ""
+msgstr "Rens dataposter der refererer til manglende ressourcer"
 
 #. module: database_cleanup
 #: model:ir.model,name:database_cleanup.model_cleanup_purge_line_field
 #: model:ir.model,name:database_cleanup.model_cleanup_purge_wizard_field
 msgid "Purge fields"
-msgstr ""
+msgstr "Rens felter"
 
 #. module: database_cleanup
 #: model:ir.actions.server,name:database_cleanup.action_purge_menus
 #: model:ir.model,name:database_cleanup.model_cleanup_purge_wizard_menu
 msgid "Purge menus"
-msgstr ""
+msgstr "Rens menuer"
 
 #. module: database_cleanup
 #: model:ir.actions.server,name:database_cleanup.action_purge_fields
 #: model:ir.actions.server,name:database_cleanup.action_purge_models
 #: model:ir.model,name:database_cleanup.model_cleanup_purge_wizard_model
 msgid "Purge models"
-msgstr ""
+msgstr "Rens modeller"
 
 #. module: database_cleanup
 #: model:ir.actions.server,name:database_cleanup.action_purge_modules
 #: model:ir.model,name:database_cleanup.model_cleanup_purge_wizard_module
 msgid "Purge modules"
-msgstr ""
+msgstr "Rens moduler"
 
 #. module: database_cleanup
 #: model:ir.ui.menu,name:database_cleanup.menu_purge_columns
 msgid "Purge obsolete columns"
-msgstr ""
+msgstr "Rens forældede kolonner"
 
 #. module: database_cleanup
 #: model:ir.ui.menu,name:database_cleanup.menu_purge_data
 msgid "Purge obsolete data entries"
-msgstr ""
+msgstr "Rens forældede dataposter"
 
 #. module: database_cleanup
 #: model:ir.ui.menu,name:database_cleanup.menu_purge_fields
 msgid "Purge obsolete fields"
-msgstr ""
+msgstr "Rens forældede felter"
 
 #. module: database_cleanup
 #: model:ir.ui.menu,name:database_cleanup.menu_purge_menus
 msgid "Purge obsolete menu entries"
-msgstr ""
+msgstr "Rens forældede menuindgange"
 
 #. module: database_cleanup
 #: model:ir.ui.menu,name:database_cleanup.menu_purge_models
 msgid "Purge obsolete models"
-msgstr ""
+msgstr "Rens forældede modeller"
 
 #. module: database_cleanup
 #: model:ir.ui.menu,name:database_cleanup.menu_purge_modules
 msgid "Purge obsolete modules"
-msgstr ""
+msgstr "Rens forældede moduler"
 
 #. module: database_cleanup
 #: model:ir.ui.menu,name:database_cleanup.menu_purge_tables
 msgid "Purge obsolete tables"
-msgstr ""
+msgstr "Rens forældede tabeller"
 
 #. module: database_cleanup
 #: model:ir.model,name:database_cleanup.model_cleanup_purge_wizard
 msgid "Purge stuff"
-msgstr ""
+msgstr "Rensningsguide (generel)"
 
 #. module: database_cleanup
 #: model:ir.actions.server,name:database_cleanup.action_purge_tables
 #: model:ir.model,name:database_cleanup.model_cleanup_purge_wizard_table
 msgid "Purge tables"
-msgstr ""
+msgstr "Rens tabeller"
 
 #. module: database_cleanup
 #: model_terms:ir.ui.view,arch_db:database_cleanup.purge_column_line_tree
 msgid "Purge this column"
-msgstr ""
+msgstr "Rens denne kolonne"
 
 #. module: database_cleanup
 #: model_terms:ir.ui.view,arch_db:database_cleanup.purge_field_line_tree
 msgid "Purge this field"
-msgstr ""
+msgstr "Rens dette felt"
 
 #. module: database_cleanup
 #: model_terms:ir.ui.view,arch_db:database_cleanup.purge_menu_line_tree
 msgid "Purge this menu"
-msgstr ""
+msgstr "Rens denne menu"
 
 #. module: database_cleanup
 #: model_terms:ir.ui.view,arch_db:database_cleanup.purge_model_line_tree
 msgid "Purge this model"
-msgstr ""
+msgstr "Rens denne model"
 
 #. module: database_cleanup
 #: model_terms:ir.ui.view,arch_db:database_cleanup.purge_module_line_tree
 msgid "Purge this module"
-msgstr ""
+msgstr "Rens dette modul"
 
 #. module: database_cleanup
 #: model_terms:ir.ui.view,arch_db:database_cleanup.tree_purge_line
 msgid "Purge this record"
-msgstr ""
+msgstr "Rens denne post"
 
 #. module: database_cleanup
 #: model_terms:ir.ui.view,arch_db:database_cleanup.purge_table_line_tree
 msgid "Purge this table"
-msgstr ""
+msgstr "Rens denne tabel"
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line__purged
@@ -513,28 +514,28 @@ msgstr ""
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_module__purged
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_table__purged
 msgid "Purged"
-msgstr ""
+msgstr "Renset"
 
 #. module: database_cleanup
 #: model:ir.model.fields.selection,name:database_cleanup.selection__cleanup_purge_line_table__table_type__base
 msgid "SQL Table"
-msgstr ""
+msgstr "SQL-tabel"
 
 #. module: database_cleanup
 #: model:ir.model.fields.selection,name:database_cleanup.selection__cleanup_purge_line_table__table_type__view
 msgid "SQL View"
-msgstr ""
+msgstr "SQL-visning"
 
 #. module: database_cleanup
 #: model_terms:ir.ui.view,arch_db:database_cleanup.form_purge_wizard
 msgid "Select lines"
-msgstr ""
+msgstr "Vælg linjer"
 
 #. module: database_cleanup
 #. odoo-python
 #: code:addons/database_cleanup/models/purge_wizard.py:0
 msgid "Select lines to purge"
-msgstr ""
+msgstr "Vælg linjer til rensning"
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_line__smart_search
@@ -559,28 +560,28 @@ msgstr ""
 #: model:ir.model.fields,field_description:database_cleanup.field_ir_model_data__smart_search
 #: model:ir.model.fields,field_description:database_cleanup.field_ir_model_fields__smart_search
 msgid "Smart Search"
-msgstr ""
+msgstr "Smart søgning"
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_table__table_type
 msgid "Table Type"
-msgstr ""
+msgstr "Tabeltype"
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_table__purge_line_ids
 msgid "Tables to purge"
-msgstr ""
+msgstr "Tabeller til rensning"
 
 #. module: database_cleanup
 #: model:ir.model.fields,help:database_cleanup.field_cleanup_purge_line_field__model_id
 msgid "The model this field belongs to"
-msgstr ""
+msgstr "Den model dette felt tilhører"
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_line__wizard_id
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line__wizard_id
 msgid "Wizard"
-msgstr ""
+msgstr "Guide"
 
 #~ msgid "Last Modified on"
 #~ msgstr "Sidst ændret den"
