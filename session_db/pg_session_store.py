@@ -186,10 +186,7 @@ class PGSessionStore(sessions.SessionStore):
             if not http._session_identifier_re.match(
                 identifier
             ) and not sessions._sha1_re.match(identifier):
-                raise ValueError(
-                    "Identifier format incorrect, "
-                    "did you pass in a string instead of a list?"
-                )
+                continue
             self._cr.execute(
                 "DELETE FROM http_sessions WHERE sid LIKE %s||'%%'", (identifier,)
             )
