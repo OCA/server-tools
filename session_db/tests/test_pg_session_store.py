@@ -100,3 +100,48 @@ class TestPGSessionStore(TransactionCase):
         assert "postgres://test:PASSWORD@localhost:5432/test" == _make_postgres_uri(
             **connection_info
         )
+
+    def test_missing_session_identifiers(self):
+        session = self.session_store.new()
+        self.session_store.save(session)
+        missing_identifiers = self.session_store.get_missing_session_identifiers(
+            [session.sid]
+        )
+        self.assertEqual(missing_identifiers, set())
+        self.session_store.delete_from_identifiers([session.sid])
+        missing_identifiers = self.session_store.get_missing_session_identifiers(
+            [session.sid]
+        )
+        self.assertEqual(missing_identifiers, {session.sid})
+
+    def test_revoke_res_device_log(self):
+        # Truncate the session table to ensure that the session store is empty before
+        # starting the test
+        self.session_store._cr.execute("TRUNCATE TABLE http_sessions")
+
+        # Create a session and save it to the session store
+        session = self.session_store.new()
+        self.session_store.save(session)
+
+        # Patch odoo.http.root.session_store to use the test session store
+        with mock.patch("odoo.http.root.session_store", self.session_store):
+            # Create a res.device.log entry for the session
+            log = self.env["res.device"].create(
+                {
+                    "session_identifier": session.sid,
+                    "user_id": self.ref("base.user_demo"),
+                    "first_activity": "2020-01-01 00:00:00",
+                    "last_activity": "2020-01-01 00:00:00",
+                }
+            )
+            log._revoke()
+
+        # The session shouldn't exist anymore in the session store
+        missing_identifiers = self.session_store.get_missing_session_identifiers(
+            [session.sid]
+        )
+        self.assertEqual(missing_identifiers, {session.sid})
+
+        # This will return a new session if it can't fetch one
+        session_in_store = self.session_store.get(session.sid)
+        self.assertNotEqual(session_in_store.sid, session.sid)

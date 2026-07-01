@@ -67,6 +67,13 @@ Authors
 * Odoo SA
 * ACSONE SA/NV
 
+Contributors
+------------
+
+- Nicolas Seinlet
+- Stéphane Bidoul <stephane.bidoul@acsone.eu> (https://acsone.eu)
+- Dennis Sluijk <d.sluijk@onestein.nl> (https://onestein.nl)
+
 Maintainers
 -----------
 
