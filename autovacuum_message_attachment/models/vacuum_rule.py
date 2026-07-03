@@ -71,6 +71,14 @@ class VacuumRule(models.Model):
         "keeped in the database after creation. Once the delay is "
         "passed, they will be automatically deleted.",
     )
+    batch_size = fields.Integer(
+        required=True,
+        default=1000,
+        help="Maximum number of records deleted per cron run. Prevents the "
+        "vacuum from loading and deleting the whole backlog at once; the "
+        "remaining records are handled on the next runs. Set to -1 for no "
+        "limit (delete everything in one run).",
+    )
     active = fields.Boolean(default=True)
     description = fields.Text()
 
@@ -93,6 +101,15 @@ class VacuumRule(models.Model):
             if not rule.retention_time:
                 raise exceptions.ValidationError(
                     self.env._("The Retention Time can't be 0 days")
+                )
+
+    @api.constrains("batch_size")
+    def _check_batch_size(self):
+        for rule in self:
+            # -1 is the sentinel for "no limit"; 0 and other negatives are invalid.
+            if rule.batch_size == 0 or rule.batch_size < -1:
+                raise exceptions.ValidationError(
+                    self.env._("The Batch Size must be strictly positive or -1")
                 )
 
     @api.constrains("inheriting_model")

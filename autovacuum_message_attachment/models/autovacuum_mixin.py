@@ -5,6 +5,7 @@ import logging
 
 from odoo import api, models
 from odoo.modules.registry import Registry
+from odoo.osv import expression
 from odoo.tools.safe_eval import datetime, safe_eval
 
 _logger = logging.getLogger(__name__)
@@ -42,22 +43,73 @@ class AutovacuumMixin(models.AbstractModel):
     def _get_autovacuum_domain(self, rule):
         return []
 
-    def _get_autovacuum_records(self, rule):
+    # Domain evaluated on the resource model (rule.model_id) to keep only the
+    # records whose linked resource matches the business filter.
+    def _get_autovacuum_rule_domain(self, rule):
         if rule.model_id and rule.model_filter_domain:
-            return self._get_autovacuum_records_model(rule)
-        return self.search(self._get_autovacuum_domain(rule))
+            return safe_eval(
+                rule.model_filter_domain, locals_dict={"datetime": datetime}
+            )
+        return None
 
-    def _get_autovacuum_records_model(self, rule):
-        domain = self._get_autovacuum_domain(rule)
-        record_domain = safe_eval(
-            rule.model_filter_domain, locals_dict={"datetime": datetime}
-        )
-        autovacuum_relation = self._autovacuum_relation
+    def _get_autovacuum_limit(self, rule):
+        # batch_size caps how many records a single cron run deletes so the
+        # whole backlog is not loaded at once; -1 means no limit.
+        return rule.batch_size if rule.batch_size > 0 else None
+
+    # Records domain rewritten through the relation so it can run on the
+    # resource model instead of on self (message_ids.date -> ...).
+    def _prefix_domain_fields(self, prefix, domain):
+        if not prefix.endswith("."):
+            prefix = f"{prefix}."
+        result = []
         for leaf in domain:
-            if not isinstance(leaf, (tuple | list)):
-                record_domain.append(leaf)
+            # A string leaf is an operator ('&', '|', '!'): keep it as-is.
+            if not isinstance(leaf, tuple | list):
+                result.append(leaf)
                 continue
             field, operator, value = leaf
-            record_domain.append((f"{autovacuum_relation}.{field}", operator, value))
-        records = self.env[rule.model_id.model].search(record_domain)
-        return self.search(domain + [("res_id", "in", records.ids)])
+            result.append((f"{prefix}{field}", operator, value))
+        return result
+
+    def _get_autovacuum_records_model(self, rule):
+        limit = self._get_autovacuum_limit(rule)
+
+        # Domain to filter the mixin (e.g. mail.message, mail.attachment)
+        mixin_domain = self._get_autovacuum_domain(rule)
+
+        # Domain to filter the model attached to the mixin
+        # E.g. SO, PO, ...
+        record_domain = self._get_autovacuum_rule_domain(rule)
+
+        # Retrieve only the records impacted
+        # Note: for domain "[]", it's pointless to run this test
+        if record_domain:
+            autovacuum_relation = self._autovacuum_relation
+            # Optimization: retrieve the minimum necessary
+            # We only want the records with mixin records
+            # to be deleted
+            record_domain = expression.AND(
+                [
+                    record_domain,
+                    self._prefix_domain_fields(autovacuum_relation, mixin_domain),
+                ]
+            )
+            records = self.env[rule.model_id.model].search(
+                record_domain,
+                # Thanks to the optimization with _prefix_domain_fields,
+                # We now have at least 1 mixin-record per related-record
+                # => We can also limit this search here
+                #   and this won't affect the final search
+                limit=limit,
+            )
+            mixin_domain = expression.AND(
+                [mixin_domain, [("res_id", "in", records.ids)]]
+            )
+        return self.search(
+            mixin_domain,
+            limit=limit,
+        )
+
+    # Retro-compatibility
+    _get_autovacuum_records = _get_autovacuum_records_model
