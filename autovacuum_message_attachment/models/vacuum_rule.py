@@ -58,6 +58,7 @@ class VacuumRule(models.Model):
         [
             ("email", "Email"),
             ("comment", "Comment"),
+            ("auto_comment", "Automated Targeted Notification"),
             ("notification", "System notification"),
             ("user_notification", "User Specific Notification"),
             ("all", "All"),
