@@ -3,3 +3,4 @@
 from . import models
 from . import wizard
 from .hooks import uninstall_hook
+from .post_load import post_load
