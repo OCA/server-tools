@@ -9,7 +9,7 @@ msgstr ""
 "PO-Revision-Date: 2026-07-09 09:46+0000\n"
 "Last-Translator: Laura V <laura.valls@forgeflow.com>\n"
 "Language-Team: none\n"
-"Language: da\n"
+"Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -19,7 +19,7 @@ msgstr ""
 #. module: base_cron_exclusion
 #: model:ir.model.fields,field_description:base_cron_exclusion.field_ir_cron__display_name
 msgid "Display Name"
-msgstr "Vis navn"
+msgstr "Visningsnamn"
 
 #. module: base_cron_exclusion
 #: model:ir.model.fields,field_description:base_cron_exclusion.field_ir_cron__id
@@ -30,16 +30,16 @@ msgstr "ID"
 #: model:ir.model.fields,field_description:base_cron_exclusion.field_ir_cron__mutually_exclusive_cron_ids
 #: model_terms:ir.ui.view,arch_db:base_cron_exclusion.ir_cron_view_form
 msgid "Mutually Exclusive Scheduled Actions"
-msgstr "Indbyrdes udelukkende planlagte handlinger"
+msgstr "Ömsesidigt uteslutande schemalagda åtgärder"
 
 #. module: base_cron_exclusion
 #: model:ir.model,name:base_cron_exclusion.model_ir_cron
 msgid "Scheduled Actions"
-msgstr "Planlagte handlinger"
+msgstr "Schemalagda åtgärder"
 
 #. module: base_cron_exclusion
 #. odoo-python
 #: code:addons/base_cron_exclusion/models/ir_cron.py:0
 msgid "You can not mutually exclude a scheduled actions with itself."
 msgstr ""
-"Du kan ikke gøre en planlagt handling indbyrdes udelukkende med sig selv."
+"Du kan inte göra en schemalagd åtgärd ömsesidigt uteslutande med sig själv."
