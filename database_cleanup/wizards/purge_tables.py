@@ -17,6 +17,15 @@ class CleanupPurgeWizardTable(models.TransientModel):
     _description = "Purge tables"
     blacklist = [
         "endpoint_route",  # web-api/endpoint_route_handler
+        # \/\/ from Registry.setup_signaling() \/\/
+        "orm_signaling_assets",
+        "orm_signaling_default",
+        "orm_signaling_groups",
+        "orm_signaling_registry",
+        "orm_signaling_routing",
+        "orm_signaling_stable",
+        "orm_signaling_templates",
+        # /\/\ from Registry.setup_signaling() /\/\
     ]
 
     @api.model
