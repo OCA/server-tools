@@ -1,4 +1,5 @@
 from copy import deepcopy
+from unittest.mock import patch
 
 from lxml import etree
 
@@ -152,3 +153,142 @@ class TestUpgradeAnalysis(common.TransactionCase):
         )
         self.assertIn('<field name="module_ids" eval="None"/>', diff)
         self.assertIn('<field name="display_name"/>', diff)
+
+    def test_analyze(self):
+        """
+        Test a full analysis run.
+        For the time being, only xmlid related functionality is tested
+        """
+        analysis = self.env["upgrade.analysis"].create(
+            {
+                "config_id": self.env["upgrade.comparison.config"]
+                .create(
+                    {
+                        "database": self.env.cr.dbname,
+                    }
+                )
+                .id,
+            }
+        )
+        upgrade_analysis_version = (
+            self.env["ir.module.module"]
+            .search([("name", "=", "upgrade_analysis")])
+            .latest_version
+        )
+
+        self.env["upgrade.record"].create(
+            {
+                "name": "upgrade_analysis.test_noupdate_xmlid",
+                "mode": "create",
+                "type": "xmlid",
+                "module": "upgrade_analysis",
+                "model": "upgrade.comparison.config",
+                "noupdate": True,
+            }
+        )
+
+        class RemoteUpgradeRecord:
+            _records = {
+                1: {
+                    "name": "other_module.test_noupdate_xmlid",
+                    "mode": "create",
+                    "type": "xmlid",
+                    "module": "other_module",
+                    "prefix": "other_module",
+                    "model": "upgrade.comparison.config",
+                    "noupdate": True,
+                    "suffix": "test_noupdate_xmlid",
+                },
+            }
+
+            def search(self, domain):
+                if domain == [("type", "=", "xmlid")]:
+                    return [
+                        _id
+                        for _id, vals in self._records.items()
+                        if vals["type"] == "xmlid"
+                    ]
+                return []
+
+            def read(self, ids, fields):  # pylint: disable=method-required-super
+                return [
+                    {field: record.get(field) for field in fields}
+                    for _id, record in self._records.items()
+                    if _id in ids
+                ]
+
+            def field_dump(self):
+                return []
+
+            def list_modules(self):
+                return set(record["module"] for record in self._records.values())
+
+            def get_xml_records(self, module):
+                if module == "other_module":
+                    return [
+                        """
+                        <odoo noupdate="1">
+                            <record
+                                id="test_noupdate_xmlid"
+                                model="upgrade.comparison.config"
+                            >
+                                <field
+                                    name="name"
+                                >Noupdate xmlid from other_module</field>
+                                <field name="server">some_server</field>
+                            </record>
+                        </odoo>
+                        """
+                    ]
+
+        def local_get_xml_records(module):
+            if module == "upgrade_analysis":
+                return [
+                    """
+                    <odoo noupdate="1">
+                        <record
+                            id="test_noupdate_xmlid"
+                            model="upgrade.comparison.config"
+                        >
+                            <field
+                                name="name"
+                            >Noupdate xmlid from upgrade_analysis</field>
+                            <field name="server">some_server</field>
+                        </record>
+                    </odoo>
+                    """
+                ]
+
+        written_files = {}
+
+        def write_file(module_name, version, content, filename="upgrade_analysis.txt"):
+            written_files[f"{module_name}-{version}-{filename}"] = content
+
+        with (
+            patch.object(analysis.config_id.__class__, "get_connection"),
+            patch.object(
+                analysis.__class__, "_get_remote_model"
+            ) as patched_get_remote_model,
+            patch.object(analysis.__class__, "_write_file") as patched_write_file,
+            patch.object(
+                self.env["upgrade.record"].__class__, "get_xml_records"
+            ) as patched_get_xml_records,
+        ):
+            patched_get_remote_model.side_effect = lambda *args: RemoteUpgradeRecord()
+            patched_get_xml_records.side_effect = local_get_xml_records
+            patched_write_file.side_effect = write_file
+            analysis.analyze()
+
+        expected_noupdate_content = """<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+  <record id="test_noupdate_xmlid" model="upgrade.comparison.config">
+    <field name="name">Noupdate xmlid from upgrade_analysis</field>
+  </record>
+</odoo>
+"""
+        self.assertEqual(
+            written_files[
+                f"upgrade_analysis-{upgrade_analysis_version}-noupdate_changes.xml"
+            ],
+            expected_noupdate_content,
+        )
