@@ -540,7 +540,7 @@ def compare_xml_sets(old_records, new_records):
         if entry["noupdate_switched"]:
             content += " (noupdate switched)"
         reprs[module_map(entry["module"])].append(content)
-    return reprs
+    return reprs, moved_records, renamed_records, modified_records
 
 
 def compare_model_sets(old_records, new_records):
