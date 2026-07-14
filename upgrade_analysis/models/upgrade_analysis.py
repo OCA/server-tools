@@ -164,7 +164,9 @@ class UpgradeAnalysis(models.Model):
             {field: record[field] for field in flds}
             for record in RemoteRecord.read(remote_xml_record_ids, flds)
         ]
-        res_xml = compare.compare_xml_sets(remote_xml_records, local_xml_records)
+        res_xml, moved_xml_records, renamed_xml_records, modified_xml_records = (
+            compare.compare_xml_sets(remote_xml_records, local_xml_records)
+        )
 
         # Retrieve model representations and compare
         flds = [
@@ -270,7 +272,9 @@ class UpgradeAnalysis(models.Model):
             )
         noupdate_modules = []
         try:
-            noupdate_modules = self.generate_noupdate_changes()
+            noupdate_modules = self.generate_noupdate_changes(
+                moved_xml_records, renamed_xml_records, modified_xml_records
+            )
         except Exception as e:
             _logger.exception(f"Error generating noupdate changes: {e}")
             general_log += "ERROR: error when generating noupdate changes: {e}\n"
@@ -486,7 +490,9 @@ class UpgradeAnalysis(models.Model):
 
         return records_update, records_noupdate
 
-    def generate_noupdate_changes(self):
+    def generate_noupdate_changes(
+        self, moved_xml_records, renamed_xml_records, modified_xml_records
+    ):
         """Communicate with the remote server to fetch all xml data records
         per module, and generate a diff in XML format that can be imported
         from the module's migration script using openupgrade.load_data()
@@ -498,6 +504,14 @@ class UpgradeAnalysis(models.Model):
         local_modules = local_record_obj.list_modules()
         all_remote_modules = remote_record_obj.list_modules()
         changed_modules = []
+        # {new_module: {name: previous_module}}
+        renamed_xmlids = {}
+        for renamed_xml_record in renamed_xml_records:
+            if renamed_xml_record.get("old") or not renamed_xml_record.get("new"):
+                continue
+            renamed_xmlids.setdefault(renamed_xml_record["module"], {}).update(
+                {renamed_xml_record["suffix"]: renamed_xml_record["renamed"]}
+            )
         for local_module in local_modules:
             remote_files = []
             remote_modules = []
@@ -515,6 +529,35 @@ class UpgradeAnalysis(models.Model):
                     )
                     remote_update.update(add_remote_update)
                     remote_noupdate.update(add_remote_noupdate)
+                if any(
+                    renamed_from_module == remote_module
+                    for renamed_from_module in renamed_xmlids.get(
+                        local_module, {}
+                    ).values()
+                ):
+                    # if xmlids have been renamed (moved) to the current module, query
+                    # their definition from the module that contained it previously
+                    remote_modules.append(remote_module)
+                    renamed_from_module_files = remote_record_obj.get_xml_records(
+                        remote_module
+                    )
+                    renamed_from_module_update, renamed_from_module_noupdate = (
+                        self._parse_files(renamed_from_module_files, remote_module)
+                    )
+                    remote_update.update(
+                        {
+                            name: xml
+                            for name, xml in renamed_from_module_update.items()
+                            if renamed_xmlids[local_module].get(name) == remote_module
+                        }
+                    )
+                    remote_noupdate.update(
+                        {
+                            name: xml
+                            for name, xml in renamed_from_module_noupdate.items()
+                            if renamed_xmlids[local_module].get(name) == remote_module
+                        }
+                    )
             if not remote_modules:
                 continue
             local_files = local_record_obj.get_xml_records(local_module)
