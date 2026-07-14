@@ -25,10 +25,7 @@ class CleanupPurgeLineModule(models.TransientModel):
             return True
         self.logger.info("Purging modules %s", ", ".join(module_names))
         installed = modules.filtered(lambda x: x.state in ("installed", "to upgrade"))
-        to_remove = modules - installed
-        to_remove += to_remove.downstream_dependencies()
-        to_remove.write({"state": "to remove"})
-        installed.button_immediate_uninstall()
+        installed.module_uninstall()
         with self.env.registry.cursor() as new_cr:
             self.env(cr=new_cr)["ir.module.module"].browse(modules.ids).unlink()
         return self.write({"purged": True})
