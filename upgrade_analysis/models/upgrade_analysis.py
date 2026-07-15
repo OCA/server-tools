@@ -370,11 +370,23 @@ class UpgradeAnalysis(models.Model):
                         "name"
                     }:
                         # if previous version has set a field but current version
-                        # doesn't, set whatever the NULL value of the field is
-                        # (usually None)
+                        # doesn't, reset it to the value a fresh install would give
+                        # it: the field's default. Only fall back to the field's
+                        # falsy value when there is no default. Using falsy_value
+                        # unconditionally is wrong for fields whose default is truthy
+                        # (e.g. ir.rule.perm_* or active) and can even produce
+                        # records that violate model constraints.
                         model = self.env[local_record.attrib["model"]]
                         field = model._fields[attribs["name"]]
-                        eval_constant = ast.unparse(ast.Constant(field.falsy_value))
+                        reset_value = model.default_get([field.name]).get(
+                            field.name, field.falsy_value
+                        )
+                        try:
+                            eval_constant = ast.unparse(ast.Constant(reset_value))
+                        except ValueError:
+                            # non-scalar default (e.g. x2many command list):
+                            # keep the previous behaviour
+                            eval_constant = ast.unparse(ast.Constant(field.falsy_value))
                         if eval_constant != "''":
                             attribs["eval"] = eval_constant
                     element.append(etree.Element(record_remote_dict[key].tag, attribs))
