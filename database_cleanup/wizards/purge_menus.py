@@ -4,6 +4,7 @@
 # pylint: disable=consider-merging-classes-inherited
 from odoo import api, fields, models
 from odoo.exceptions import UserError
+from odoo.fields import Command
 
 
 class CleanupPurgeWizardMenu(models.TransientModel):
@@ -22,19 +23,15 @@ class CleanupPurgeWizardMenu(models.TransientModel):
             .with_context(active_test=False)
             .search([("action", "!=", False)])
         ):
+            command = Command.create({"name": menu.complete_name, "menu_id": menu.id})
+            if not menu.action.exists():
+                # Menus may have actions that do not exist or have been deleted
+                res.append(command)
+                continue
             if menu.action.type != "ir.actions.act_window":
                 continue
             if menu.action.res_model and menu.action.res_model not in self.env:
-                res.append(
-                    (
-                        0,
-                        0,
-                        {
-                            "name": menu.complete_name,
-                            "menu_id": menu.id,
-                        },
-                    )
-                )
+                res.append(command)
         if not res:
             raise UserError(self.env._("No dangling menu entries found"))
         return res
