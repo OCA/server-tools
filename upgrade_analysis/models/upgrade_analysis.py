@@ -416,7 +416,23 @@ class UpgradeAnalysis(models.Model):
                             eval_constant = ast.unparse(ast.Constant(field.falsy_value))
                         if eval_constant != "''":
                             attribs["eval"] = eval_constant
-                    element.append(etree.Element(record_remote_dict[key].tag, attribs))
+                        new_element = etree.Element(
+                            record_remote_dict[key].tag, attribs
+                        )
+                        # Only emit the reset when the value a fresh install
+                        # would give the field actually differs from what the
+                        # previous version set. If they are equal, the
+                        # (noupdate) record already holds the right value and
+                        # needs no change.
+                        if self._get_node_value(new_element) == self._get_node_value(
+                            record_remote_dict[key]
+                        ):
+                            continue
+                        element.append(new_element)
+                    else:
+                        element.append(
+                            etree.Element(record_remote_dict[key].tag, attribs)
+                        )
                 else:
                     oldrepr = self._get_node_value(record_remote_dict[key])
                     newrepr = self._get_node_value(record_local_dict[key])
