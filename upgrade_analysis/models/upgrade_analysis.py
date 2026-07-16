@@ -314,9 +314,27 @@ class UpgradeAnalysis(models.Model):
             return element.text
         return etree.tostring(element)
 
+    def _get_available_modules(self, module_name):
+        """Return the set of module names a given module may reference in its
+        data files: the module itself plus its (transitive) dependencies.
+        """
+        module = self.env["ir.module.module"].search([("name", "=", module_name)])
+        if not module:
+            return set()
+        upstream = module.upstream_dependencies(
+            exclude_states=("uninstalled", "uninstallable", "to remove")
+        )
+        return {module_name} | set(upstream.mapped("name"))
+
     def _get_xml_diff(
-        self, remote_update, remote_noupdate, local_update, local_noupdate
+        self,
+        remote_update,
+        remote_noupdate,
+        local_update,
+        local_noupdate,
+        local_module,
     ):
+        available_modules = self._get_available_modules(local_module)
         odoo = etree.Element("odoo")
         for xml_id in sorted(local_noupdate.keys()):
             local_record = local_noupdate[xml_id]
@@ -355,11 +373,20 @@ class UpgradeAnalysis(models.Model):
                     # Does the field still exist?
                     if record_remote_dict[key].tag == "field":
                         field_name = remote_record.xpath(key)[0].attrib.get("name")
+                        model_name = local_record.attrib["model"]
                         if (
-                            local_record.attrib["model"] not in self.env
-                            or field_name
-                            not in self.env[local_record.attrib["model"]]._fields.keys()
+                            model_name not in self.env
+                            or field_name not in self.env[model_name]._fields
                         ):
+                            continue
+                        # When the record was moved to another module, its
+                        # previous definition may set a field that is declared
+                        # in a module the current one does not depend on (e.g.
+                        # the field lives in a module that depends on this one).
+                        # That field is still managed by its own module, so it
+                        # must not be reset from here.
+                        field = self.env[model_name]._fields[field_name]
+                        if field._module and field._module not in available_modules:
                             continue
                     # Overwrite an existing value with an empty one.
                     attribs = deepcopy(record_remote_dict[key]).attrib
@@ -575,7 +602,11 @@ class UpgradeAnalysis(models.Model):
             local_files = local_record_obj.get_xml_records(local_module)
             local_update, local_noupdate = self._parse_files(local_files, local_module)
             diff = self._get_xml_diff(
-                remote_update, remote_noupdate, local_update, local_noupdate
+                remote_update,
+                remote_noupdate,
+                local_update,
+                local_noupdate,
+                local_module,
             )
             if diff:
                 module = self.env["ir.module.module"].search(
