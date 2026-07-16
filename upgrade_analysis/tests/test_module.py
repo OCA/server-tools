@@ -150,6 +150,7 @@ class TestUpgradeAnalysis(common.TransactionCase):
                     """
                 ),
             },
+            "upgrade_analysis",
         )
         self.assertIn('<field name="module_ids" eval="None"/>', diff)
         self.assertIn('<field name="display_name"/>', diff)
