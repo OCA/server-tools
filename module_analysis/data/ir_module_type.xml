@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Copyright (C) 2019-Today: GRAP (<http://www.grap.coop/>)
+@author: Sylvain LE GAL (https://twitter.com/legalsylvain)
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+ -->
+<odoo>
+    <record id="module_type_odoo" model="ir.module.type">
+        <field name="name">Odoo Core</field>
+    </record>
+    <record id="module_type_oca" model="ir.module.type">
+        <field name="name">OCA</field>
+    </record>
+</odoo>
