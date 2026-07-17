@@ -127,7 +127,10 @@ class CustomInfoValue(models.Model):
     def _compute_owner_id(self):
         """Get the id from the linked record."""
         for record in self:
-            record.owner_id = "{},{}".format(record.model, record.res_id)
+            ref = False
+            if record.res_id:
+                ref = "{},{}".format(record.model, record.res_id)
+            record.owner_id = ref
 
     def _inverse_owner_id(self):
         """Store the owner according to the model and ID."""
