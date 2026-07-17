@@ -317,8 +317,9 @@ msgid ""
 msgstr ""
 
 #. module: auto_backup
-#: model:ir.model.fields,field_description:auto_backup.field_db_backup__smart_search
-msgid "Smart Search"
+#. odoo-python
+#: code:addons/auto_backup/models/db_backup.py:0
+msgid "Success"
 msgstr ""
 
 #. module: auto_backup
