@@ -4,7 +4,7 @@
 # Copyright 2020 Hibou Corp.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 from odoo import _, api, fields, models
-from odoo.exceptions import ValidationError
+from odoo.exceptions import UserError, ValidationError
 
 
 class ExceptionRuleConfirm(models.AbstractModel):
@@ -34,4 +34,13 @@ class ExceptionRuleConfirm(models.AbstractModel):
 
     def action_confirm(self):
         self.ensure_one()
+        if self.ignore:
+            if any(self.exception_ids.mapped("is_blocking")):
+                raise UserError(
+                    _(
+                        "The exceptions can not be ignored, because "
+                        "some of them are blocking."
+                    )
+                )
+            self.related_model_id.action_ignore_exceptions()
         return {"type": "ir.actions.act_window_close"}

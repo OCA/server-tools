@@ -141,6 +141,13 @@ class TestBaseException(TransactionCase):
         with self.assertRaises(UserError):
             self.po.action_ignore_exceptions()
         self.assertFalse(self.po.ignore_exception)
+        # The confirmation wizard must enforce the same blocking check, even
+        # when a downstream wizard sets ``ignore_exception`` directly.
+        self.exception_rule_confirm.exception_ids = self.po.exception_ids
+        self.exception_rule_confirm.ignore = True
+        with self.assertRaises(UserError):
+            self.exception_rule_confirm.action_confirm()
+        self.assertFalse(self.po.ignore_exception)
         with self.assertRaises(ValidationError):
             self.po.button_confirm()
         self.po.with_context(raise_exception=False).button_confirm()
