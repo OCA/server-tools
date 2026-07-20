@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2026 XXP
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record id="module_form_quick_upgrade" model="ir.ui.view">
+        <field name="name">ir.module.module.form.quick.upgrade</field>
+        <field name="model">ir.module.module</field>
+        <field name="inherit_id" ref="base.module_form"/>
+        <field name="arch" type="xml">
+            <button name="button_immediate_upgrade" position="after">
+                <button name="button_immediate_quick_upgrade"
+                        states="installed"
+                        string="Quick upgrade"
+                        type="object"
+                        class="btn btn-secondary me-1"
+                        groups="base.group_system"/>
+            </button>
+        </field>
+    </record>
+
+    <record id="module_view_kanban_quick_upgrade" model="ir.ui.view">
+        <field name="name">ir.module.module.kanban.quick.upgrade</field>
+        <field name="model">ir.module.module</field>
+        <field name="inherit_id" ref="base.module_view_kanban"/>
+        <field name="arch" type="xml">
+            <a name="button_immediate_upgrade" position="after">
+                <a t-if="installed"
+                   name="button_immediate_quick_upgrade"
+                   type="object"
+                   role="menuitem"
+                   class="dropdown-item"
+                   groups="base.group_system">Quick upgrade</a>
+            </a>
+        </field>
+    </record>
+
+</odoo>
