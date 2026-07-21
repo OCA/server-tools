@@ -150,6 +150,7 @@ class TestUpgradeAnalysis(common.TransactionCase):
                     """
                 ),
             },
+            "upgrade_analysis",
         )
         self.assertIn('<field name="module_ids" eval="None"/>', diff)
         self.assertIn('<field name="display_name"/>', diff)
@@ -157,7 +158,19 @@ class TestUpgradeAnalysis(common.TransactionCase):
     def test_analyze(self):
         """
         Test a full analysis run.
-        For the time being, only xmlid related functionality is tested
+        For the time being, only xmlid related functionality is tested.
+
+        The record is detected as renamed from ``other_module`` to
+        ``upgrade_analysis`` and the generated ``noupdate_changes.xml``
+        exercises the discarded-field handling:
+
+        - ``name``: value changed, so it is written;
+        - ``port``: dropped, and the value a fresh install gives (its default)
+          differs from the previous one, so a reset is written;
+        - ``username``: dropped, but the default equals the previous value, so
+          nothing is written;
+        - ``database``: dropped, but its field is (patched to be) declared in a
+          module the current one does not depend on, so it is left untouched.
         """
         analysis = self.env["upgrade.analysis"].create(
             {
@@ -235,7 +248,9 @@ class TestUpgradeAnalysis(common.TransactionCase):
                                 <field
                                     name="name"
                                 >Noupdate xmlid from other_module</field>
-                                <field name="server">some_server</field>
+                                <field name="port" eval="7000"/>
+                                <field name="username" eval="'admin'"/>
+                                <field name="database">some_database</field>
                             </record>
                         </odoo>
                         """
@@ -253,7 +268,6 @@ class TestUpgradeAnalysis(common.TransactionCase):
                             <field
                                 name="name"
                             >Noupdate xmlid from upgrade_analysis</field>
-                            <field name="server">some_server</field>
                         </record>
                     </odoo>
                     """
@@ -264,6 +278,10 @@ class TestUpgradeAnalysis(common.TransactionCase):
         def write_file(module_name, version, content, filename="upgrade_analysis.txt"):
             written_files[f"{module_name}-{version}-{filename}"] = content
 
+        # Pretend the "database" field is declared in a module that depends on
+        # (and is therefore not reachable from) upgrade_analysis.
+        database_field = self.env["upgrade.comparison.config"]._fields["database"]
+
         with (
             patch.object(analysis.config_id.__class__, "get_connection"),
             patch.object(
@@ -273,6 +291,7 @@ class TestUpgradeAnalysis(common.TransactionCase):
             patch.object(
                 self.env["upgrade.record"].__class__, "get_xml_records"
             ) as patched_get_xml_records,
+            patch.object(database_field, "_module", "some_dependent_module"),
         ):
             patched_get_remote_model.side_effect = lambda *args: RemoteUpgradeRecord()
             patched_get_xml_records.side_effect = local_get_xml_records
@@ -283,6 +302,7 @@ class TestUpgradeAnalysis(common.TransactionCase):
 <odoo>
   <record id="test_noupdate_xmlid" model="upgrade.comparison.config">
     <field name="name">Noupdate xmlid from upgrade_analysis</field>
+    <field name="port" eval="8069"/>
   </record>
 </odoo>
 """
