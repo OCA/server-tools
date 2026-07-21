@@ -59,14 +59,19 @@ class DbBackupFsFile(models.Model):
         FsStorage = self.env["fs.storage"]
         fs_storages = FsStorage.search([])
         fs_storage = fs_storages.filtered(
-            lambda item: item.field_xmlids
-            and "auto_backup_fs_file.field_db_backup_fs_file__backup_file"
-            in item.field_xmlids
+            lambda item: (
+                item.field_xmlids
+                and "auto_backup_fs_file.field_db_backup_fs_file__backup_file"
+                in item.field_xmlids
+            )
         )
         if not fs_storage:
             fs_storage = fs_storages.filtered(
-                lambda item: item.model_xmlids
-                and "auto_backup_fs_file.model_db_backup_fs_file" in item.model_xmlids
+                lambda item: (
+                    item.model_xmlids
+                    and "auto_backup_fs_file.model_db_backup_fs_file"
+                    in item.model_xmlids
+                )
             )
         if fs_storage:
             return fs_storage

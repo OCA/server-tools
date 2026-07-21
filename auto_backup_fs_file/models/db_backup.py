@@ -74,6 +74,7 @@ class DbBackup(models.Model):
     def action_backup(self):
         """Override the action_backup method to add the fs_file method."""
         fs_backups = self.filtered(lambda it: it.method == "fs_file")
+        successful_fs = self.browse()
         dbname = self.env.cr.dbname
         for fs_backup in fs_backups:
             with fs_backup.backup_log():
@@ -114,7 +115,9 @@ class DbBackup(models.Model):
                         summary=_("Database backup is ready to download."),
                         user_id=user_to_notify.id,
                     )
+                successful_fs |= fs_backup
         res = super().action_backup()
+        successful_fs.cleanup()
         return res
 
     def action_open_fs_backups_view(self):
