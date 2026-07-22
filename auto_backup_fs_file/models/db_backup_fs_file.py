@@ -22,6 +22,7 @@ class DbBackupFsFile(models.Model):
         help="Indicates whether the backup has exceeded its storage time.",
     )
 
+    @api.depends("db_backup_id.days_to_keep", "create_date")
     def _compute_is_expired(self):
         """Compute whether the backup has exceeded its storage time."""
         for record in self:
@@ -33,6 +34,25 @@ class DbBackupFsFile(models.Model):
                 record.is_expired = fields.Datetime.now() > expiration_date
             else:
                 record.is_expired = False
+
+    def unlink(self):
+        """Unlink backing ir.attachment records before deleting the DB record.
+
+        Odoo's base Model.unlink() does cascade-delete ir.attachment via raw
+        SQL, but we make this explicit to ensure the fs_attachment GC stack
+        (_fs_mark_for_gc) is triggered reliably. The physical file on the
+        external storage is removed by the autovacuum GC job
+        (fs_file_gc._gc_files), not synchronously here.
+        """
+        attachments = self.env["ir.attachment"].search(
+            [
+                ("res_model", "=", self._name),
+                ("res_id", "in", self.ids),
+                ("res_field", "=", "backup_file"),
+            ]
+        )
+        attachments.unlink()
+        return super().unlink()
 
     @api.model
     def fs_storage(self):
@@ -51,7 +71,3 @@ class DbBackupFsFile(models.Model):
         if fs_storage:
             return fs_storage
         return False
-
-    def get_fs_storage_filename(self):
-        self.ensure_one()
-        return self.backup_file.attachment.store_fname.split("://")[-1]
