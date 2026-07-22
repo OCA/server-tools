@@ -87,6 +87,15 @@ exporting Odoo instance data and storing it in the specified filesystem.
 Additionally, it allows users to download the backups for local storage
 or further processing.
 
+Backup file cleanup is handled automatically based on the **Days to
+Keep** configuration. When expired backup records are removed, the
+physical backup files are not deleted synchronously. Instead, the module
+delegates file deletion to the ``fs_attachment`` garbage collector (GC),
+which marks files for deferred removal and physically deletes them
+during Odoo's autovacuum cron cycle. This two-phase approach ensures
+transactional safety: files are only removed once the GC confirms no
+database record still references them.
+
 USEFUL INFORMATION:
 
 -  **Dependencies**: This module depends on the ``fsspec`` library, its
@@ -98,7 +107,7 @@ Installation
 ============
 
 This addon itself does not introduce any dependencies, but its
-dependencies may require additional packages.:wa
+dependencies may require additional packages.
 
 Configuration
 =============
@@ -182,6 +191,31 @@ How to Use the Module
    backup filename and associated database backup configuration.
 -  Use this view to manage or download backups as needed.
 
+5. Cleanup and File Deletion
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Backup retention is controlled by the **Days to Keep** field on the
+backup configuration. When this value is greater than 0, the automatic
+cleanup process removes expired backup records during each backup run.
+
+When a backup record is deleted (either by automatic cleanup or manually
+from the list view), the physical backup file in the filesystem storage
+is **not removed immediately**. Instead, the file is marked for deferred
+deletion by the ``fs_attachment`` garbage collector (GC), which runs
+periodically via Odoo's autovacuum cron. Physical files are only removed
+from the storage backend once the GC confirms no database record
+references them.
+
+This means:
+
+-  **Immediately after deletion**: the database record is gone, but the
+   file may still exist in the storage backend for a short period.
+-  **After the next autovacuum cycle**: the file is permanently deleted
+   from the storage backend.
+
+This behavior requires the storage's ``autovacuum_gc`` flag to be
+enabled (the default). If disabled, files must be managed manually.
+
 Screenshots
 ~~~~~~~~~~~
 
@@ -205,11 +239,11 @@ Known issues / Roadmap
 
 -  **Folder field behavior**: The ``folder`` field on the ``db.backup``
    model specifies the backup storage directory. For records using the
-   ``fs_file`` method, storage is actually controlled by the ``fs_file``
-   field's settings. However, since ``folder`` is currently a required
-   non-computed field in the ``auto_backup`` addon, modifications to
-   sync these two fields are not performed. Future versions may add this
-   synchronization support.
+   ``fs_file`` method, storage is controlled by the ``fs_file`` field's
+   settings. The ``folder`` field is hidden (``invisible``) and no
+   longer required when ``method='fs_file'``, so it no longer interferes
+   with ``fs_file`` configurations. No auto-sync between both fields is
+   performed since the methods are mutually exclusive.
 
 -  **Design limitation**: The current implementation has a design
    constraint due to ``fs_storage`` addon limitations. Since storage

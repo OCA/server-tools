@@ -405,19 +405,20 @@ Only for development or testing purpose, do not use in production.
 <li><a class="reference internal" href="#perform-a-backup" id="toc-entry-7">2. Perform a Backup</a></li>
 <li><a class="reference internal" href="#view-fs-file-backups" id="toc-entry-8">3. View Fs File Backups</a></li>
 <li><a class="reference internal" href="#manage-fs-file-backups" id="toc-entry-9">4. Manage Fs File Backups</a></li>
-<li><a class="reference internal" href="#screenshots" id="toc-entry-10">Screenshots</a></li>
-<li><a class="reference internal" href="#notes" id="toc-entry-11">Notes</a></li>
+<li><a class="reference internal" href="#cleanup-and-file-deletion" id="toc-entry-10">5. Cleanup and File Deletion</a></li>
+<li><a class="reference internal" href="#screenshots" id="toc-entry-11">Screenshots</a></li>
+<li><a class="reference internal" href="#notes" id="toc-entry-12">Notes</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a class="reference internal" href="#known-issues-roadmap" id="toc-entry-12">Known issues / Roadmap</a></li>
-<li><a class="reference internal" href="#bug-tracker" id="toc-entry-13">Bug Tracker</a></li>
-<li><a class="reference internal" href="#credits" id="toc-entry-14">Credits</a><ul>
-<li><a class="reference internal" href="#authors" id="toc-entry-15">Authors</a></li>
-<li><a class="reference internal" href="#contributors" id="toc-entry-16">Contributors</a></li>
-<li><a class="reference internal" href="#other-credits" id="toc-entry-17">Other credits</a></li>
-<li><a class="reference internal" href="#maintainers" id="toc-entry-18">Maintainers</a></li>
+<li><a class="reference internal" href="#known-issues-roadmap" id="toc-entry-13">Known issues / Roadmap</a></li>
+<li><a class="reference internal" href="#bug-tracker" id="toc-entry-14">Bug Tracker</a></li>
+<li><a class="reference internal" href="#credits" id="toc-entry-15">Credits</a><ul>
+<li><a class="reference internal" href="#authors" id="toc-entry-16">Authors</a></li>
+<li><a class="reference internal" href="#contributors" id="toc-entry-17">Contributors</a></li>
+<li><a class="reference internal" href="#other-credits" id="toc-entry-18">Other credits</a></li>
+<li><a class="reference internal" href="#maintainers" id="toc-entry-19">Maintainers</a></li>
 </ul>
 </li>
 </ul>
@@ -450,6 +451,14 @@ interacting with various filesystems. It automates the backup process by
 exporting Odoo instance data and storing it in the specified filesystem.
 Additionally, it allows users to download the backups for local storage
 or further processing.</p>
+<p>Backup file cleanup is handled automatically based on the <strong>Days to
+Keep</strong> configuration. When expired backup records are removed, the
+physical backup files are not deleted synchronously. Instead, the module
+delegates file deletion to the <tt class="docutils literal">fs_attachment</tt> garbage collector (GC),
+which marks files for deferred removal and physically deletes them
+during Odoo’s autovacuum cron cycle. This two-phase approach ensures
+transactional safety: files are only removed once the GC confirms no
+database record still references them.</p>
 <p>USEFUL INFORMATION:</p>
 <ul class="simple">
 <li><strong>Dependencies</strong>: This module depends on the <tt class="docutils literal">fsspec</tt> library, its
@@ -461,7 +470,7 @@ your target filesystem.</li>
 <div class="section" id="installation">
 <h2><a class="toc-backref" href="#toc-entry-2">Installation</a></h2>
 <p>This addon itself does not introduce any dependencies, but its
-dependencies may require additional packages.:wa</p>
+dependencies may require additional packages.</p>
 </div>
 <div class="section" id="configuration">
 <h2><a class="toc-backref" href="#toc-entry-3">Configuration</a></h2>
@@ -551,15 +560,37 @@ backup filename and associated database backup configuration.</li>
 <li>Use this view to manage or download backups as needed.</li>
 </ul>
 </div>
+<div class="section" id="cleanup-and-file-deletion">
+<h4><a class="toc-backref" href="#toc-entry-10">5. Cleanup and File Deletion</a></h4>
+<p>Backup retention is controlled by the <strong>Days to Keep</strong> field on the
+backup configuration. When this value is greater than 0, the automatic
+cleanup process removes expired backup records during each backup run.</p>
+<p>When a backup record is deleted (either by automatic cleanup or manually
+from the list view), the physical backup file in the filesystem storage
+is <strong>not removed immediately</strong>. Instead, the file is marked for deferred
+deletion by the <tt class="docutils literal">fs_attachment</tt> garbage collector (GC), which runs
+periodically via Odoo’s autovacuum cron. Physical files are only removed
+from the storage backend once the GC confirms no database record
+references them.</p>
+<p>This means:</p>
+<ul class="simple">
+<li><strong>Immediately after deletion</strong>: the database record is gone, but the
+file may still exist in the storage backend for a short period.</li>
+<li><strong>After the next autovacuum cycle</strong>: the file is permanently deleted
+from the storage backend.</li>
+</ul>
+<p>This behavior requires the storage’s <tt class="docutils literal">autovacuum_gc</tt> flag to be
+enabled (the default). If disabled, files must be managed manually.</p>
+</div>
 <div class="section" id="screenshots">
-<h4><a class="toc-backref" href="#toc-entry-10">Screenshots</a></h4>
+<h4><a class="toc-backref" href="#toc-entry-11">Screenshots</a></h4>
 <ul class="simple">
 <li><strong>Backup Configuration Form View</strong> <img alt="Backup Configuration Form" src="https://raw.githubusercontent.com/OCA/server-tools/16.0/auto_backup_fs_file/static/description/db_backup_form_view.png" /></li>
 <li><strong>Fs File Backups List View</strong> <img alt="Fs File Backups List" src="https://raw.githubusercontent.com/OCA/server-tools/16.0/auto_backup_fs_file/static/description/db_backup_fs_file_tree_view.png" /></li>
 </ul>
 </div>
 <div class="section" id="notes">
-<h4><a class="toc-backref" href="#toc-entry-11">Notes</a></h4>
+<h4><a class="toc-backref" href="#toc-entry-12">Notes</a></h4>
 <ul class="simple">
 <li>Ensure that the FSSPEC storage is properly configured before using
 the <strong>Fs File</strong> method.</li>
@@ -570,15 +601,15 @@ view to quickly access Fs File backups.</li>
 </div>
 </div>
 <div class="section" id="known-issues-roadmap">
-<h2><a class="toc-backref" href="#toc-entry-12">Known issues / Roadmap</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-13">Known issues / Roadmap</a></h2>
 <ul class="simple">
 <li><strong>Folder field behavior</strong>: The <tt class="docutils literal">folder</tt> field on the <tt class="docutils literal">db.backup</tt>
 model specifies the backup storage directory. For records using the
-<tt class="docutils literal">fs_file</tt> method, storage is actually controlled by the <tt class="docutils literal">fs_file</tt>
-field’s settings. However, since <tt class="docutils literal">folder</tt> is currently a required
-non-computed field in the <tt class="docutils literal">auto_backup</tt> addon, modifications to
-sync these two fields are not performed. Future versions may add this
-synchronization support.</li>
+<tt class="docutils literal">fs_file</tt> method, storage is controlled by the <tt class="docutils literal">fs_file</tt> field’s
+settings. The <tt class="docutils literal">folder</tt> field is hidden (<tt class="docutils literal">invisible</tt>) and no
+longer required when <tt class="docutils literal"><span class="pre">method='fs_file'</span></tt>, so it no longer interferes
+with <tt class="docutils literal">fs_file</tt> configurations. No auto-sync between both fields is
+performed since the methods are mutually exclusive.</li>
 <li><strong>Design limitation</strong>: The current implementation has a design
 constraint due to <tt class="docutils literal">fs_storage</tt> addon limitations. Since storage
 setting targets the <tt class="docutils literal">db.backup.fs.file</tt> model, only one storage
@@ -586,7 +617,7 @@ backend can effectively be used.</li>
 </ul>
 </div>
 <div class="section" id="bug-tracker">
-<h2><a class="toc-backref" href="#toc-entry-13">Bug Tracker</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-14">Bug Tracker</a></h2>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/server-tools/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
@@ -594,28 +625,28 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
-<h2><a class="toc-backref" href="#toc-entry-14">Credits</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-15">Credits</a></h2>
 <div class="section" id="authors">
-<h3><a class="toc-backref" href="#toc-entry-15">Authors</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-16">Authors</a></h3>
 <ul class="simple">
 <li>Binhex</li>
 </ul>
 </div>
 <div class="section" id="contributors">
-<h3><a class="toc-backref" href="#toc-entry-16">Contributors</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-17">Contributors</a></h3>
 <ul class="simple">
 <li>Rolando Pérez Rebollo <a class="reference external" href="mailto:r.perez&#64;binhex.cloud">r.perez&#64;binhex.cloud</a></li>
 </ul>
 </div>
 <div class="section" id="other-credits">
-<h3><a class="toc-backref" href="#toc-entry-17">Other credits</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-18">Other credits</a></h3>
 <p>The development of this module has been financially supported by:</p>
 <ul class="simple">
 <li>Binhex</li>
 </ul>
 </div>
 <div class="section" id="maintainers">
-<h3><a class="toc-backref" href="#toc-entry-18">Maintainers</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-19">Maintainers</a></h3>
 <p>This module is maintained by the OCA.</p>
 <a class="reference external image-reference" href="https://odoo-community.org">
 <img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" />
