@@ -27,6 +27,17 @@ class DbBackup(models.Model):
 
     responsible_id = fields.Many2one("res.users", help="User to be notified.")
 
+    folder = fields.Char(required=False, default=False)
+
+    @api.constrains("method", "folder")
+    def _check_folder_required_for_method(self):
+        """folder is only required for local and sftp methods, not fs_file."""
+        for record in self:
+            if record.method and record.method != "fs_file" and not record.folder:
+                raise ValidationError(
+                    _("Folder is required for local and SFTP backup methods.")
+                )
+
     @api.model
     def _get_fs_storage(self):
         """Get the fs_storage to be used for fs_file backups."""

@@ -16,16 +16,24 @@
                         type="object"
                         icon="fa-archive"
                     >
-                                <field
+                        <field
                             string="Backups"
                             name="fs_file_backup_count"
                             widget="statinfo"
                         />
-                </button>
+                    </button>
                 </div>
             </xpath>
+            <field name="folder" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': [('method', '=', 'fs_file')]}</attribute>
+            </field>
             <field name="backup_format" position="after">
-                <field name="responsible_id" />
+                <field
+                    name="responsible_id"
+                    attrs="{'invisible': [('method', '!=', 'fs_file')]}"
+                />
             </field>
         </field>
     </record>
