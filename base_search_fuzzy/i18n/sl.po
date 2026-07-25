@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-01 02:10+0000\n"
-"PO-Revision-Date: 2023-04-11 13:22+0000\n"
+"PO-Revision-Date: 2026-07-25 09:07+0000\n"
 "Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "Language: sl\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: base_search_fuzzy
 #: model:ir.model.fields,help:base_search_fuzzy.field_trgm_index__index_type
@@ -27,6 +27,9 @@ msgid ""
 "search index type.See: https://www.postgresql.org/docs/current/textsearch-"
 "indexes.html"
 msgstr ""
+"Citat iz dokumentacije PostgreSQL: Indeksi GIN so najprimernejša vrsta "
+"indeksov za iskanje po besedilu. Glej: https://www.postgresql.org/docs/"
+"current/textsearch-indexes.html"
 
 #. module: base_search_fuzzy
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index__create_uid
@@ -76,7 +79,7 @@ msgstr "Tip indeksa"
 #. module: base_search_fuzzy
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index__lang
 msgid "Language"
-msgstr ""
+msgstr "Jezik"
 
 #. module: base_search_fuzzy
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index__write_uid
@@ -91,7 +94,7 @@ msgstr "Zadnjič posodobljeno"
 #. module: base_search_fuzzy
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index__smart_search
 msgid "Smart Search"
-msgstr ""
+msgstr "Pametno iskanje"
 
 #. module: base_search_fuzzy
 #: model:ir.model.fields,help:base_search_fuzzy.field_trgm_index__index_name
@@ -101,6 +104,9 @@ msgid ""
 "this index is reused. If the index is located in another table then a number "
 "is added at the end of the index name."
 msgstr ""
+"Naziv indeksa se samodejno ustvari v obliki fieldname_indextype_idx. Če "
+"indeks že obstaja in se nahaja v isti tabeli, se ta indeks ponovno uporabi. "
+"Če se indeks nahaja v drugi tabeli, se na konec imena indeksa doda številka."
 
 #. module: base_search_fuzzy
 #. odoo-python
@@ -123,7 +129,7 @@ msgstr "Izberete lahko polje tipa \"text\" ali \"char\"."
 #. module: base_search_fuzzy
 #: model:ir.model.fields,help:base_search_fuzzy.field_trgm_index__lang
 msgid "You will need one index per installed language."
-msgstr ""
+msgstr "Za vsak nameščen jezik boste potrebovali en indeks."
 
 #~ msgid "Last Modified on"
 #~ msgstr "Zadnjič spremenjeno"
