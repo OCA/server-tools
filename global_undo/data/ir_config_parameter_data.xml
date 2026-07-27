@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Pol Reig <pol.reig@qubiq.es>
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo noupdate="1">
+    <record
+        id="ir_config_parameter_global_undo_retention_days"
+        model="ir.config_parameter"
+    >
+        <field name="key">global_undo.retention_days</field>
+        <field name="value">30</field>
+    </record>
+
+    <!-- Longer on purpose: past this, a deleted record is gone for good. -->
+    <record
+        id="ir_config_parameter_global_undo_trash_retention_days"
+        model="ir.config_parameter"
+    >
+        <field name="key">global_undo.trash_retention_days</field>
+        <field name="value">180</field>
+    </record>
+</odoo>
