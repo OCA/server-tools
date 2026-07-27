@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2026 Pol Reig <pol.reig@qubiq.es>
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<templates xml:space="preserve">
+
+    <t t-name="global_undo.GlobalUndoSystray">
+        <div class="o_global_undo o_mail_systray_item d-flex align-items-center">
+            <button
+                class="btn btn-link p-1 o_global_undo_button o_global_undo_undo"
+                t-att-title="buttonTitle('undo')"
+                t-att-disabled="state.pending or !state.undo"
+                t-on-click="() => this.undoService.undo()"
+            >
+                <i class="fa fa-undo" role="img" aria-label="Undo" />
+            </button>
+            <button
+                class="btn btn-link p-1 o_global_undo_button o_global_undo_redo"
+                t-att-title="buttonTitle('redo')"
+                t-att-disabled="state.pending or !state.redo"
+                t-on-click="() => this.undoService.redo()"
+            >
+                <i class="fa fa-repeat" role="img" aria-label="Redo" />
+            </button>
+            <Dropdown onOpened.bind="onOpened" menuClass="'o_global_undo_menu'">
+                <button
+                    class="btn btn-link p-1 o_global_undo_button"
+                    title="Undo history"
+                >
+                    <i class="fa fa-history" role="img" aria-label="History" />
+                </button>
+                <t t-set-slot="content">
+                    <div class="px-3 py-2 text-muted small">Recent operations</div>
+                    <div
+                        t-if="!state.history.length"
+                        class="px-3 py-2 text-muted fst-italic"
+                    >
+                        Nothing recorded yet.
+                    </div>
+                    <t t-foreach="state.history" t-as="entry" t-key="entry.id">
+                        <div
+                            class="px-3 py-1 o_global_undo_entry"
+                            t-att-class="{ 'text-muted text-decoration-line-through': entry.state != 'done' }"
+                        >
+                            <div t-out="entry.name" />
+                            <small class="text-muted" t-out="formatDate(entry.date)" />
+                        </div>
+                    </t>
+                    <div role="separator" class="dropdown-divider" />
+                    <DropdownItem onSelected="() => this.undoService.openHistory()">
+                        <i class="fa fa-list me-2" />Open full history
+                    </DropdownItem>
+                    <DropdownItem onSelected="() => this.undoService.openTrash()">
+                        <i class="fa fa-trash me-2" />Open trash
+                    </DropdownItem>
+                </t>
+            </Dropdown>
+        </div>
+    </t>
+
+</templates>
