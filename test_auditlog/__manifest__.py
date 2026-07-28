@@ -4,7 +4,7 @@
 {
     "name": "Audit Log Tests",
     "summary": "Additional unit tests for Audit Log based on accounting models",
-    "version": "19.0.1.0.0",
+    "version": "19.0.2.0.0",
     "author": "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "website": "https://github.com/OCA/server-tools",
