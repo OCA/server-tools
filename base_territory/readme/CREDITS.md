@@ -1,3 +1,3 @@
 The development of this module has been financially supported by:
 
-- Open Source Integrators \<<https://opensourceintegrators.com>\>
+- Gray Matter Logic \<<https://www.graymatterlogic.com>\>

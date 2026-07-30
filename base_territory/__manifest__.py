@@ -1,4 +1,4 @@
-# Copyright (C) 2020 Open Source Integrators
+# Copyright (C) 2020 Gray Matter Logic
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
@@ -7,7 +7,7 @@
     " districts and regions to be used for Field Service operations or Sales.",
     "version": "19.0.1.0.0",
     "category": "Hidden",
-    "author": "Open Source Integrators, Odoo Community Association (OCA)",
+    "author": "Gray Matter Logic, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/field-service",
     "depends": ["base"],
     "data": [
