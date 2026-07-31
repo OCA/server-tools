@@ -82,7 +82,7 @@ class Module(models.Model):
     def _save_installed_checksums(self):
         checksums = {}
         installed_modules = self.search(
-            ["&", ("state", "=", "installed"), ("name", "!=", "studio_customization")]
+            ["&", ("state", "=", "installed"), ("imported", "=", False)]
         )
         for module in installed_modules:
             checksums[module.name] = module._get_checksum_dir()
@@ -94,7 +94,7 @@ class Module(models.Model):
             [
                 "&",
                 ("state", "in", ["to install", "to remove", "to upgrade"]),
-                ("name", "!=", "studio_customization"),
+                ("imported", "=", False),
             ]
         )
 
@@ -102,7 +102,7 @@ class Module(models.Model):
     def _get_modules_with_changed_checksum(self):
         saved_checksums = self._get_saved_checksums()
         installed_modules = self.search(
-            ["&", ("state", "=", "installed"), ("name", "!=", "studio_customization")]
+            ["&", ("state", "=", "installed"), ("imported", "=", False)]
         )
         return installed_modules.filtered(
             lambda r: r._get_checksum_dir() != saved_checksums.get(r.name),
