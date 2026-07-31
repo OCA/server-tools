@@ -81,19 +81,19 @@ class Module(models.Model):
     @api.model
     def _save_installed_checksums(self):
         checksums = {}
-        installed_modules = self.search([("state", "=", "installed")])
+        installed_modules = self.search(["&", ("state", "=", "installed"), ("name", "!=", "studio_customization")])
         for module in installed_modules:
             checksums[module.name] = module._get_checksum_dir()
         self._save_checksums(checksums)
 
     @api.model
     def _get_modules_partially_installed(self):
-        return self.search([("state", "in", ("to install", "to remove", "to upgrade"))])
+        return self.search(["&", ("state", "in", ["to install", "to remove", "to upgrade"]), ("name", "!=", "studio_customization")])
 
     @api.model
     def _get_modules_with_changed_checksum(self):
         saved_checksums = self._get_saved_checksums()
-        installed_modules = self.search([("state", "=", "installed")])
+        installed_modules = self.search(["&", ("state", "=", "installed"), ("name", "!=", "studio_customization")])
         return installed_modules.filtered(
             lambda r: r._get_checksum_dir() != saved_checksums.get(r.name),
         )
