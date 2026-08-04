@@ -67,9 +67,9 @@ instances.
 It allows you to define how resources should be shared, according to
 your priorities, e.g. :
 
-- key odoo instance on host A can open up to 30 connections
-- while odoo instance on host B, dedicated to reports, can open up to 10
-  connections only
+-  key odoo instance on host A can open up to 30 connections
+-  while odoo instance on host B, dedicated to reports, can open up to
+   10 connections only
 
 And most importantly, it helps you to ensure that ``max_connections``
 will never be reached on pg server side.
@@ -80,8 +80,8 @@ Why is this module needed?
 When configuring PgBouncer, you can choose between 2 transaction pooling
 modes:
 
-- pool_mode = session
-- pool_mode = transaction
+-  pool_mode = session
+-  pool_mode = transaction
 
 If we choose pool_mode = session, then one server connection will be
 tied to a given odoo process until its death, which is exactly what
@@ -108,6 +108,18 @@ That's what this module implements, by overriding the relevant method of
 the
 `Dispatcher <https://github.com/odoo/odoo/blob/12.0/addons/bus/models/bus.py#L105>`__.
 
+What about cron workers?
+------------------------
+
+Since the cron workers were reworked to be woken up through
+``LISTEN cron_trigger``, they also keep a long-lived listening
+connection to the ``postgres`` database, with the same PgBouncer
+limitation as the bus dispatcher.
+
+This module also redirects those cron LISTEN connections to the
+alternate host/port, while the connections actually processing the jobs
+keep going through the regular ``db_host``/``db_port`` (i.e. PgBouncer).
+
 **Table of contents**
 
 .. contents::
@@ -120,8 +132,8 @@ You don't need to install this module in the database(s) to enable it.
 
 But you need to load it server-wide:
 
-- By starting Odoo with ``--load=web,bus_alt_connection``
-- Or by updating its configuration file:
+-  By starting Odoo with ``--load=web,bus_alt_connection``
+-  Or by updating its configuration file:
 
 .. code:: ini
 
@@ -134,12 +146,12 @@ Configuration
 
 You need to define how to connect directly to the database:
 
-- Either by defining environment variables:
+-  Either by defining environment variables:
 
-     - ``IMDISPATCHER_DB_HOST=db-01``
-     - ``IMDISPATCHER_DB_PORT=5432``
+      -  ``IMDISPATCHER_DB_HOST=db-01``
+      -  ``IMDISPATCHER_DB_PORT=5432``
 
-- Or in Odoo's configuration file:
+-  Or in Odoo's configuration file:
 
 .. code:: ini
 
@@ -147,6 +159,23 @@ You need to define how to connect directly to the database:
    (...)
    imdispatcher_db_host = db-01
    imdispatcher_db_port = 5432
+
+The cron LISTEN connections use the same settings by default. If you
+need a different host/port for them, you can override it:
+
+-  Either by defining environment variables:
+
+      -  ``ODOO_CRON_DB_HOST=db-01``
+      -  ``ODOO_CRON_DB_PORT=5432``
+
+-  Or in Odoo's configuration file:
+
+.. code:: ini
+
+   [options]
+   (...)
+   cron_db_host = db-01
+   cron_db_port = 5432
 
 Bug Tracker
 ===========
@@ -169,7 +198,8 @@ Authors
 Contributors
 ------------
 
-- Nils Hamerlinck <nils@trobz.com>
+-  Nils Hamerlinck <nils@trobz.com>
+-  Moisés López <moylop260@vauxoo.com>
 
 Maintainers
 -----------

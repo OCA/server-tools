@@ -69,3 +69,14 @@ we need odoo to connect directly to the pg server, bypassing PgBouncer.
 That's what this module implements, by overriding the relevant method of
 the
 [Dispatcher](https://github.com/odoo/odoo/blob/12.0/addons/bus/models/bus.py#L105).
+
+## What about cron workers?
+
+Since the cron workers were reworked to be woken up through `LISTEN
+cron_trigger`, they also keep a long-lived listening connection to the
+`postgres` database, with the same PgBouncer limitation as the bus
+dispatcher.
+
+This module also redirects those cron LISTEN connections to the
+alternate host/port, while the connections actually processing the jobs
+keep going through the regular `db_host`/`db_port` (i.e. PgBouncer).

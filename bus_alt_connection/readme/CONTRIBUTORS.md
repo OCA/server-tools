@@ -1,1 +1,2 @@
 - Nils Hamerlinck \<<nils@trobz.com>\>
+- Moisés López \<<moylop260@vauxoo.com>\>
