@@ -1,2 +1,3 @@
-Additional search fields can be configured at Settings \> Technical \>
-Database \> Models, using the "Search Translated Name" field.
+Go to Settings \> Technical \> Database \> Models, open a model and tick
+"Search Translated Name" to search its name in all the installed
+languages.
