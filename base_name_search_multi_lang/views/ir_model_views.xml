@@ -7,9 +7,9 @@
         <field name="model">ir.model</field>
         <field name="inherit_id" ref="base.view_model_form" />
         <field name="arch" type="xml">
-            <field name="state" position="after">
+            <xpath expr="//sheet/group/group/field[@name='state']" position="after">
                 <field name="name_search_multi_lang" />
-            </field>
+            </xpath>
         </field>
     </record>
 </odoo>

@@ -1,2 +1,2 @@
-Just type into any field with translated term, such as Product on a Sale
-Order.
+Just type into any field with translated names, such as Product on a Sales
+Order, or into the search box of a list view.

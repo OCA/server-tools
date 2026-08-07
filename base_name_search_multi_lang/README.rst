@@ -29,20 +29,20 @@ Name Search Multi Lang
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
 This module extends the name search feature to use other translated
-language.
+languages.
 
 For example, if a product name in English is "Chair", and Thai is "เก้าอี้"
 
-Given user language preference is English, when user type name to search
-on product field, "Chair", the product with this name will be found. But
-if user type in Thai, "เก้าอี้", no result will be shown.
+Given user language preference is English, when user types name to
+search on product field, "Chair", the product with this name will be
+found. But if user types in Thai, "เก้าอี้", no result will be shown.
 
 With this module installed, and model product.product is set to use
-"Search Translated Name". Search by Thai name, "เก้าอี้", now find the
+"Search Translated Name". Searching by Thai name, "เก้าอี้", now finds the
 product "Chair".
 
-Please also note that, this search feature is available only on Many2one
-field.
+Every search matching a translated field with a pattern is extended, so
+this covers the Many2one fields as well as the search views.
 
 **Table of contents**
 
@@ -58,8 +58,8 @@ Database > Models, using the "Search Translated Name" field.
 Usage
 =====
 
-Just type into any field with translated term, such as Product on a Sale
-Order.
+Just type into any field with translated names, such as Product on a
+Sales Order, or into the search box of a list view.
 
 Bug Tracker
 ===========
@@ -83,6 +83,11 @@ Contributors
 ------------
 
 - Kitti U. <kittiu@ecosoft.co.th>
+
+Migration
+~~~~~~~~~
+
+- Nakrob S. <nakrobs@ecosoft.co.th> (18.0 migration)
 
 Maintainers
 -----------
