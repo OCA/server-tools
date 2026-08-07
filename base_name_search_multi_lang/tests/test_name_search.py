@@ -6,7 +6,7 @@ from odoo.tests.common import TransactionCase, tagged
 @tagged("-at_install", "post_install")
 class NameSearchCase(TransactionCase):
     def setUp(self):
-        super(NameSearchCase, self).setUp()
+        super().setUp()
         # Install another language, th_TH
         self.env["res.lang"]._activate_lang("th_TH")
         self.env.ref("base.module_base")._update_translations()
