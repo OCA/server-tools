@@ -270,6 +270,17 @@ class TestClientSetup(TransactionCase):
             "Failed to use 'sentry_release' parameter appropriately",
         )
 
+    @patch("odoo.addons.sentry.hooks.sentry_sdk.capture_message")
+    def test_sentry_startup_message_toggle(self, capture_message):
+        self.patch_config({"sentry_startup_message": False})
+        initialize_sentry(sentry_hooks.sentry_config)
+        capture_message.assert_not_called()
+
+        capture_message.reset_mock()
+        self.patch_config({"sentry_startup_message": True})
+        initialize_sentry(sentry_hooks.sentry_config)
+        capture_message.assert_called_once_with("Starting Odoo Server", "info")
+
     def test_initialize_sentry_patches_application_call_when_server_missing(self):
         original_root = odoo.http.root
         original_application = odoo.http.Application
