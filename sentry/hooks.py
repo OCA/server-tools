@@ -179,9 +179,10 @@ def initialize_sentry(config):
 
         odoo.http.Application.__call__ = sentry_application_call
 
-    with sentry_sdk.new_scope() as scope:
-        scope.set_extra("debug", False)
-        sentry_sdk.capture_message("Starting Odoo Server", "info")
+    if config.get("sentry_startup_message", True) not in (False, "False", "false"):
+        with sentry_sdk.new_scope() as scope:
+            scope.set_extra("debug", False)
+            sentry_sdk.capture_message("Starting Odoo Server", "info")
 
     return client
 

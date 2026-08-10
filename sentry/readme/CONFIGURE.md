@@ -32,3 +32,4 @@ options:
     sentry_environment = production
     sentry_release = 1.3.2
     sentry_odoo_dir = /home/odoo/odoo/
+    sentry_startup_message = true
