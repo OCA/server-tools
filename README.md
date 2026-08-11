@@ -32,7 +32,7 @@ addon | version | maintainers | summary
 [base_view_inheritance_extension](base_view_inheritance_extension/) | 19.0.1.0.0 | <a href='https://github.com/hbrunn'><img src='https://github.com/hbrunn.png' width='32' height='32' style='border-radius:50%;' alt='hbrunn'/></a> | Adds more operators for view inheritance
 [base_write_diff](base_write_diff/) | 19.0.1.0.0 |  | Prevents updates on fields whose values won't change anyway
 [bus_alt_connection](bus_alt_connection/) | 19.0.1.0.0 |  | Needed when using PgBouncer as a connection pooler
-[database_cleanup](database_cleanup/) | 19.0.1.0.4 |  | Database cleanup
+[database_cleanup](database_cleanup/) | 19.0.1.0.5 |  | Database cleanup
 [dbfilter_from_header](dbfilter_from_header/) | 19.0.1.0.0 |  | Filter databases with HTTP headers
 [field_vector](field_vector/) | 19.0.1.0.0 | <a href='https://github.com/lmignon'><img src='https://github.com/lmignon.png' width='32' height='32' style='border-radius:50%;' alt='lmignon'/></a> | New specialized field to store vector data
 [iap_alternative_provider](iap_alternative_provider/) | 19.0.1.0.0 | <a href='https://github.com/sebastienbeau'><img src='https://github.com/sebastienbeau.png' width='32' height='32' style='border-radius:50%;' alt='sebastienbeau'/></a> | Base module for providing alternative provider for iap apps
