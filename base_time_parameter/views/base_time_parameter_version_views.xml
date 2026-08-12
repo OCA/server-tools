@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record id="base_time_parameter_version_view_tree" model="ir.ui.view">
-        <field name="name">base.time.parameter.version.tree</field>
+        <field name="name">base.time.parameter.version.list</field>
         <field name="model">base.time.parameter.version</field>
         <field name="arch" type="xml">
-            <tree editable="bottom">
+            <list editable="bottom">
                 <field name="parameter_id" readonly="1" />
                 <field name="code" />
                 <field name="type" />
                 <field name="date_from" />
                 <field name="value" />
                 <field name="value_reference" />
-            </tree>
+            </list>
         </field>
     </record>
     <record id="base_time_parameter_version_view_search" model="ir.ui.view">
@@ -30,9 +30,8 @@
         <field name="name">Versions</field>
         <field name="res_model">base.time.parameter.version</field>
         <field name="binding_model_id" ref="model_base_time_parameter" />
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="domain">[('parameter_id', '=', active_id)]</field>
         <field name="context">{'search_default_parameter_id': active_id}</field>
     </record>
-
 </odoo>

@@ -13,33 +13,22 @@
                         <field name="code" />
                         <field name="model_id" />
                         <field name="type" />
-                        <field
-                            name="record_model"
-                            attrs="{'invisible': [('type', '!=', 'record')]}"
-                        />
+                        <field name="record_model" invisible="type != 'record'" />
                     </group>
                     <group string="Versions">
-                        <field
-                            name="version_ids"
-                            nolabel="1"
-                            context="{'default_parameter_id': active_id}"
-                        >
-                            <tree editable="bottom">
+                        <field name="version_ids" nolabel="1">
+                            <list editable="bottom">
                                 <field name="date_from" />
-                                <field name="type" invisible="1" />
+                                <field name="type" column_invisible="1" />
                                 <field
                                     name="value"
-                                    attrs="{'column_invisible':[('parent.type', '=', 'record')]}"
+                                    column_invisible="parent.type == 'record'"
                                 />
                                 <field
                                     name="value_reference"
-                                    attrs="{'column_invisible':[
-                                        '|',
-                                        ('parent.type', '!=', 'record'),
-                                        ('parent.record_model', '!=', False),
-                                    ]}"
+                                    column_invisible="parent.type != 'record' or parent.record_model"
                                 />
-                            </tree>
+                            </list>
                         </field>
                     </group>
                     <field name="description" placeholder="Description" />
@@ -60,12 +49,12 @@
         </field>
     </record>
 
-    <!-- Tree View -->
+    <!-- List View -->
     <record id="base_time_parameter_view_tree" model="ir.ui.view">
-        <field name="name">base.time.parameter.tree</field>
+        <field name="name">base.time.parameter.list</field>
         <field name="model">base.time.parameter</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="code" widget="badge" />
                 <field name="name" />
                 <field name="model_id" />
@@ -75,7 +64,7 @@
                     required="1"
                     groups="base.group_multi_company"
                 />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -104,12 +93,12 @@
     <record id="base_time_parameter_action" model="ir.actions.act_window">
         <field name="name">Time Parameters</field>
         <field name="res_model">base.time.parameter</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="search_view_id" ref="base_time_parameter_view_search" />
     </record>
     <record id="base_time_parameter_action_tree" model="ir.actions.act_window.view">
         <field name="act_window_id" ref="base_time_parameter_action" />
-        <field name="view_mode">tree</field>
+        <field name="view_mode">list</field>
         <field name="view_id" ref="base_time_parameter_view_tree" />
     </record>
     <record id="base_time_parameter_action_form" model="ir.actions.act_window.view">

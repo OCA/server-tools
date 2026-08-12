@@ -88,5 +88,5 @@ class TimeParameterVersion(models.Model):
             elif self.type == "string":
                 pass
             else:
-                method = "_validate_{}".format(self.type)
+                method = f"_validate_{self.type}"
                 self.value = globals()[method](self.value)

@@ -9,7 +9,7 @@ JOE_BIDEN = "The value is 'Joe Biden'"
 
 class TestTimeParameter(TransactionCase):
     def setUp(self):
-        super(TestTimeParameter, self).setUp()
+        super().setUp()
 
         self.boolean_parameter = self.env["base.time.parameter"].create(
             {
@@ -121,7 +121,6 @@ class TestTimeParameter(TransactionCase):
         self.assertEqual(value, "Joe Biden", JOE_BIDEN)
 
     def test_02_base_get_time_parameter(self):
-
         # TEST MODEL
 
         value = self.env["res.partner"].get_time_parameter(
