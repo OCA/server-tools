@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-01-14 04:21+0000\n"
-"PO-Revision-Date: 2026-05-14 14:45+0000\n"
+"PO-Revision-Date: 2026-08-13 19:46+0000\n"
 "Last-Translator: Bosd <c5e2fd43-d292-4c90-9d1f-74ff3436329a@anonaddy.me>\n"
 "Language-Team: Dutch (https://www.transifex.com/oca/teams/23907/nl/)\n"
 "Language: nl\n"
@@ -78,7 +78,7 @@ msgstr "Indextype"
 #. module: base_search_fuzzy
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index__lang
 msgid "Language"
-msgstr ""
+msgstr "Taal"
 
 #. module: base_search_fuzzy
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index__write_uid
@@ -129,7 +129,7 @@ msgstr "U kunt een veld selecteren van het type \"text\" of \"char\"."
 #. module: base_search_fuzzy
 #: model:ir.model.fields,help:base_search_fuzzy.field_trgm_index__lang
 msgid "You will need one index per installed language."
-msgstr ""
+msgstr "U heeft één index per geïnstalleerde taal nodig."
 
 #~ msgid "Last Modified on"
 #~ msgstr "Laatst bijgewerkt op"
