@@ -22,7 +22,9 @@
     "installable": True,
     "depends": ["base"],
     "external_dependencies": {
-        "python": ["mako", "dataclasses", "odoorpc", "openupgradelib"],
+        # Keep mako below 1.4.0 as it requires MarkupSafe >= 2.0.0 which
+        # causes dependency hell when running Odoo 16 with Python 3.10
+        "python": ["mako<1.4.0", "dataclasses", "odoorpc", "openupgradelib"],
     },
     "license": "AGPL-3",
 }
