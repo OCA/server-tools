@@ -5,7 +5,7 @@ cryptography
 dataclasses
 dnspython
 josepy
-mako<1.4.0
+mako
 numpy
 odoo_test_helper
 odoorpc
