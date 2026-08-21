@@ -6,3 +6,4 @@
 - Jon Ashton \<<jon@monkeyinferno.com>\>
 - Mark Schuit \<<mark@gig.solutions>\>
 - Atchuthan \<<atchuthan@sodexis.com>\>
+- Koert van der Veer \<<info@ondergetekende.nl>\>
