@@ -1,5 +1,5 @@
-Clean your Odoo database from remnants of modules, models, columns and
-tables left by uninstalled modules (prior to 7.0) or a homebrew database
+Clean your Odoo database from remnants of modules, models, columns, tables and
+attachment records left by uninstalled modules (prior to 7.0) or a homebrew database
 upgrade to a new major version of Odoo.
 
 Caution! This module is potentially harmful and can *easily* destroy the

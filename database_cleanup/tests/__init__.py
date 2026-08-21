@@ -4,6 +4,7 @@
 from . import common
 from . import test_create_indexes
 from . import test_identifier_adapter
+from . import test_purge_attachments
 from . import test_purge_columns
 from . import test_purge_data
 from . import test_purge_fields
