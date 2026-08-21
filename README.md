@@ -56,7 +56,7 @@ addon | version | maintainers | summary
 [base_view_inheritance_extension](base_view_inheritance_extension/) | 16.0.1.2.2 |  | Adds more operators for view inheritance
 [bus_alt_connection](bus_alt_connection/) | 16.0.1.0.0 |  | Needed when using PgBouncer as a connection pooler
 [cron_daylight_saving_time_resistant](cron_daylight_saving_time_resistant/) | 16.0.1.0.1 | <a href='https://github.com/florian-dacosta'><img src='https://github.com/florian-dacosta.png' width='32' height='32' style='border-radius:50%;' alt='florian-dacosta'/></a> | Run cron on fixed hours
-[database_cleanup](database_cleanup/) | 16.0.1.2.2 |  | Database cleanup
+[database_cleanup](database_cleanup/) | 16.0.2.0.0 |  | Database cleanup
 [datetime_formatter](datetime_formatter/) | 16.0.1.0.0 |  | Helper functions to give correct format to date[time] fields
 [dbfilter_from_header](dbfilter_from_header/) | 16.0.1.0.1 |  | Filter databases with HTTP headers
 [excel_import_export](excel_import_export/) | 16.0.1.3.2 | <a href='https://github.com/kittiu'><img src='https://github.com/kittiu.png' width='32' height='32' style='border-radius:50%;' alt='kittiu'/></a> | Base module for developing Excel import/export/report
