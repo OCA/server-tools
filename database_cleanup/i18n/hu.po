@@ -19,8 +19,27 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: database_cleanup
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_attachment__attachment_id
+msgid "Attachment"
+msgstr ""
+
+#. module: database_cleanup
+#. odoo-python
+#: code:addons/database_cleanup/models/purge_attachments.py:0
+#, python-format
+msgid ""
+"Attachment storage is not 'file'. Purge of orphaned attachments only works "
+"with file storage."
+msgstr ""
+
+#. module: database_cleanup
 #: model:ir.model,name:database_cleanup.model_cleanup_create_indexes_line
 msgid "Cleanup Create Indexes line"
+msgstr ""
+
+#. module: database_cleanup
+#: model:ir.model,name:database_cleanup.model_cleanup_purge_line_attachment
+msgid "Cleanup Purge Line Attachment"
 msgstr ""
 
 #. module: database_cleanup
@@ -98,6 +117,7 @@ msgstr ""
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_line__create_uid
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_wizard__create_uid
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_attachment__create_uid
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_column__create_uid
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_data__create_uid
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_field__create_uid
@@ -106,6 +126,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_module__create_uid
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_property__create_uid
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_table__create_uid
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_attachment__create_uid
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_column__create_uid
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_data__create_uid
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_field__create_uid
@@ -120,6 +141,7 @@ msgstr "Készítette"
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_line__create_date
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_wizard__create_date
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_attachment__create_date
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_column__create_date
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_data__create_date
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_field__create_date
@@ -128,6 +150,7 @@ msgstr "Készítette"
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_module__create_date
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_property__create_date
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_table__create_date
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_attachment__create_date
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_column__create_date
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_data__create_date
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_field__create_date
@@ -157,6 +180,7 @@ msgstr ""
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_line__display_name
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_wizard__display_name
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_attachment__display_name
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_column__display_name
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_data__display_name
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_field__display_name
@@ -165,6 +189,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_module__display_name
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_property__display_name
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_table__display_name
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_attachment__display_name
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_column__display_name
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_data__display_name
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_field__display_name
@@ -187,6 +212,11 @@ msgid "Empty default property"
 msgstr ""
 
 #. module: database_cleanup
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_attachment__error_message
+msgid "Error Message"
+msgstr ""
+
+#. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_line__field_id
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_field__field_id
 msgid "Field"
@@ -203,8 +233,14 @@ msgid "Fields to purge"
 msgstr ""
 
 #. module: database_cleanup
+#: model:ir.model.fields.selection,name:database_cleanup.selection__cleanup_purge_line_attachment__reason__missing_file
+msgid "File missing in filestore"
+msgstr ""
+
+#. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_line__id
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_wizard__id
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_attachment__id
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_column__id
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_data__id
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_field__id
@@ -213,6 +249,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_module__id
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_property__id
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_table__id
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_attachment__id
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_column__id
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_data__id
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_field__id
@@ -227,6 +264,7 @@ msgstr "ID"
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_line____last_update
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_wizard____last_update
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_attachment____last_update
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_column____last_update
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_data____last_update
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_field____last_update
@@ -235,6 +273,7 @@ msgstr "ID"
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_module____last_update
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_property____last_update
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_table____last_update
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_attachment____last_update
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_column____last_update
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_data____last_update
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_field____last_update
@@ -249,6 +288,7 @@ msgstr "Utolsó frissítés dátuma"
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_line__write_uid
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_wizard__write_uid
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_attachment__write_uid
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_column__write_uid
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_data__write_uid
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_field__write_uid
@@ -257,6 +297,7 @@ msgstr "Utolsó frissítés dátuma"
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_module__write_uid
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_property__write_uid
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_table__write_uid
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_attachment__write_uid
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_column__write_uid
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_data__write_uid
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_field__write_uid
@@ -271,6 +312,7 @@ msgstr "Utoljára frissítve, által"
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_line__write_date
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_wizard__write_date
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_attachment__write_date
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_column__write_date
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_data__write_date
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_field__write_date
@@ -279,6 +321,7 @@ msgstr "Utoljára frissítve, által"
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_module__write_date
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_property__write_date
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_table__write_date
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_attachment__write_date
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_column__write_date
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_data__write_date
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_field__write_date
@@ -335,6 +378,7 @@ msgstr ""
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_line__name
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line__name
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_attachment__name
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_column__name
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_data__name
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_field__name
@@ -358,6 +402,13 @@ msgstr ""
 #: code:addons/database_cleanup/models/purge_modules.py:0
 #, python-format
 msgid "No modules found to purge"
+msgstr ""
+
+#. module: database_cleanup
+#. odoo-python
+#: code:addons/database_cleanup/models/purge_attachments.py:0
+#, python-format
+msgid "No orphaned attachment entries found"
 msgstr ""
 
 #. module: database_cleanup
@@ -411,6 +462,7 @@ msgid "Property"
 msgstr ""
 
 #. module: database_cleanup
+#: model:ir.actions.server,name:database_cleanup.action_purge_attachment_line
 #: model:ir.actions.server,name:database_cleanup.action_purge_column_line
 #: model:ir.actions.server,name:database_cleanup.action_purge_data_line
 #: model:ir.actions.server,name:database_cleanup.action_purge_field_line
@@ -431,6 +483,7 @@ msgstr ""
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_wizard__purge_line_ids
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard__purge_line_ids
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_attachment__purge_line_ids
 msgid "Purge Line"
 msgstr ""
 
@@ -449,6 +502,11 @@ msgstr ""
 #. module: database_cleanup
 #: model_terms:ir.ui.view,arch_db:database_cleanup.form_purge_wizard
 msgid "Purge all"
+msgstr ""
+
+#. module: database_cleanup
+#: model:ir.model,name:database_cleanup.model_cleanup_purge_wizard_attachment
+msgid "Purge attachments"
 msgstr ""
 
 #. module: database_cleanup
@@ -533,6 +591,12 @@ msgid "Purge obsolete tables"
 msgstr ""
 
 #. module: database_cleanup
+#: model:ir.actions.server,name:database_cleanup.action_purge_attachments
+#: model:ir.ui.menu,name:database_cleanup.menu_purge_attachments
+msgid "Purge orphaned attachments"
+msgstr ""
+
+#. module: database_cleanup
 #: model:ir.actions.server,name:database_cleanup.action_purge_property
 #: model:ir.model,name:database_cleanup.model_cleanup_purge_wizard_property
 msgid "Purge properties"
@@ -556,6 +620,7 @@ msgstr ""
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line__purged
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_attachment__purged
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_column__purged
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_data__purged
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_field__purged
@@ -568,6 +633,7 @@ msgid "Purged"
 msgstr ""
 
 #. module: database_cleanup
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_attachment__reason
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_property__reason
 msgid "Reason"
 msgstr "Indoklás"
@@ -622,5 +688,6 @@ msgstr ""
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_line__wizard_id
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line__wizard_id
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_attachment__wizard_id
 msgid "Wizard"
 msgstr ""
