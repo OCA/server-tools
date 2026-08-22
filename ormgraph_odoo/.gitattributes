@@ -1,0 +1,13 @@
+# Ignore bundled frontend assets, documentation, and static files from GitHub Linguist stats
+static/** -linguist-detectable
+static/** linguist-vendored
+docs/** -linguist-detectable
+docs/** linguist-documentation
+*.html -linguist-detectable
+*.html linguist-vendored
+*.css -linguist-detectable
+*.css linguist-vendored
+*.js -linguist-detectable
+*.js linguist-vendored
+*.json -linguist-detectable
+*.json linguist-vendored

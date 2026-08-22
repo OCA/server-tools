@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>ORMGraph for Odoo — Architecture &amp; ERD Studio</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #FCFBFE; color: #1F1824; line-height: 1.55;">
+
+    <div style="max-width: 900px; margin: 0 auto; padding: 24px 16px;">
+
+        <!-- ══ MODULE HEADER ═══════════════════════════════════ -->
+        <div style="border-bottom: 2px solid #1F1824; padding-bottom: 20px; margin-bottom: 28px;">
+            <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px;">
+                <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                    <h1 style="font-size: 28px; font-weight: 900; letter-spacing: -0.02em; color: #1F1824; margin: 0; text-transform: uppercase;">
+                        ORMGraph for Odoo
+                    </h1>
+                </div>
+
+                <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                    <span style="font-size: 10.5px; font-weight: 700; font-family: monospace; background: rgba(1, 126, 132, 0.1); color: #017E84; border: 1px solid rgba(1, 126, 132, 0.3); padding: 3px 8px; border-radius: 4px;">
+                        Odoo 17 · 18 · 19
+                    </span>
+                    <span style="font-size: 10.5px; font-weight: 700; font-family: monospace; background: rgba(228, 169, 0, 0.12); color: #B38600; border: 1px solid rgba(228, 169, 0, 0.3); padding: 3px 8px; border-radius: 4px;">
+                        Community &amp; Enterprise
+                    </span>
+                </div>
+            </div>
+
+            <p style="font-size: 14.5px; color: #524759; line-height: 1.6; margin: 0 0 18px 0;">
+                An interactive architecture intelligence and Entity Relationship Diagram (ERD) studio for Odoo. Designed to explore complex model topologies, trace relational field highways, and export publication-ready diagrams with zero browser freeze.
+            </p>
+
+            <!-- Quick Action Button -->
+            <div>
+                <a href="/ormgraph/studio" target="_blank" style="display: inline-block; font-size: 12px; font-weight: 800; text-transform: uppercase; color: #FFFFFF; background: #714B67; border: 2px solid #1F1824; padding: 8px 18px; text-decoration: none; box-shadow: 3px 3px 0px #1F1824; letter-spacing: 0.03em;">
+                    ⚡ Open ORMGraph Studio
+                </a>
+            </div>
+        </div>
+
+        <!-- ══ KEY FEATURES (BRUTALIST CARDS) ══════════════════ -->
+        <div style="margin-bottom: 36px;">
+            <div style="border-bottom: 2px solid #1F1824; padding-bottom: 6px; margin-bottom: 20px;">
+                <h2 style="font-size: 18px; font-weight: 900; letter-spacing: -0.01em; color: #1F1824; margin: 0; text-transform: uppercase;">
+                    Key Capabilities
+                </h2>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px;">
+                
+                <!-- Feature 1 -->
+                <div style="background: #FFFFFF; border: 2px solid #1F1824; padding: 18px; box-shadow: 4px 4px 0px #714B67;">
+                    <div style="font-family: monospace; font-size: 10px; font-weight: 700; color: #714B67; text-transform: uppercase; margin-bottom: 6px;">
+                        CANVAS // 01
+                    </div>
+                    <div style="font-size: 15px; font-weight: 900; color: #1F1824; margin-bottom: 6px; text-transform: uppercase;">
+                        0-Load Architecture
+                    </div>
+                    <p style="font-size: 12.5px; color: #524759; margin: 0; line-height: 1.5;">
+                        Select any installed module from the sidebar to instantly render its models, Many2one/One2many links, and 1st-degree foreign dependencies.
+                    </p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div style="background: #FFFFFF; border: 2px solid #1F1824; padding: 18px; box-shadow: 4px 4px 0px #017E84;">
+                    <div style="font-family: monospace; font-size: 10px; font-weight: 700; color: #017E84; text-transform: uppercase; margin-bottom: 6px;">
+                        ERD STUDIO // 02
+                    </div>
+                    <div style="font-size: 15px; font-weight: 900; color: #1F1824; margin-bottom: 6px; text-transform: uppercase;">
+                        Interactive ERD Cards
+                    </div>
+                    <p style="font-size: 12.5px; color: #524759; margin: 0; line-height: 1.5;">
+                        Visual database schema table cards with color-coded badges for relational, numeric, computed, and selection fields with drag &amp; zoom.
+                    </p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div style="background: #FFFFFF; border: 2px solid #1F1824; padding: 18px; box-shadow: 4px 4px 0px #E4A900;">
+                    <div style="font-family: monospace; font-size: 10px; font-weight: 700; color: #E4A900; text-transform: uppercase; margin-bottom: 6px;">
+                        RELATIONAL PATHS // 03
+                    </div>
+                    <div style="font-size: 15px; font-weight: 900; color: #1F1824; margin-bottom: 6px; text-transform: uppercase;">
+                        BFS Multi-Hop Pathfinder
+                    </div>
+                    <p style="font-size: 12.5px; color: #524759; margin: 0; line-height: 1.5;">
+                        Calculates the shortest relational route between any two database models and generates 1-click ORM dot-notation code (e.g. <code>partner_id.currency_id</code>).
+                    </p>
+                </div>
+
+                <!-- Feature 4 -->
+                <div style="background: #FFFFFF; border: 2px solid #1F1824; padding: 18px; box-shadow: 4px 4px 0px #21B799;">
+                    <div style="font-family: monospace; font-size: 10px; font-weight: 700; color: #21B799; text-transform: uppercase; margin-bottom: 6px;">
+                        ZIP EXPORT // 04
+                    </div>
+                    <div style="font-size: 15px; font-weight: 900; color: #1F1824; margin-bottom: 6px; text-transform: uppercase;">
+                        Smart Multi-Cluster Exporter
+                    </div>
+                    <p style="font-size: 12.5px; color: #524759; margin: 0; line-height: 1.5;">
+                        Auto-detects large graphs (&gt; 20 models) and partitions them into Hub sub-graphs, bundling crisp watermarked PNGs into a downloadable ZIP archive.
+                    </p>
+                </div>
+
+                <!-- Feature 5 -->
+                <div style="background: #FFFFFF; border: 2px solid #1F1824; padding: 18px; box-shadow: 4px 4px 0px #E46E78;">
+                    <div style="font-family: monospace; font-size: 10px; font-weight: 700; color: #E46E78; text-transform: uppercase; margin-bottom: 6px;">
+                        INTEGRATION // 05
+                    </div>
+                    <div style="font-size: 15px; font-weight: 900; color: #1F1824; margin-bottom: 6px; text-transform: uppercase;">
+                        1-Click Model Stat Button
+                    </div>
+                    <p style="font-size: 12.5px; color: #524759; margin: 0; line-height: 1.5;">
+                        Direct "Architecture Visualizer" smart button integrated inside <code>Settings ➔ Technical ➔ Database Structure ➔ Models</code> for immediate model inspection.
+                    </p>
+                </div>
+
+                <!-- Feature 6 -->
+                <div style="background: #FFFFFF; border: 2px solid #1F1824; padding: 18px; box-shadow: 4px 4px 0px #5B899E;">
+                    <div style="font-family: monospace; font-size: 10px; font-weight: 700; color: #5B899E; text-transform: uppercase; margin-bottom: 6px;">
+                        DIAGNOSTICS // 06
+                    </div>
+                    <div style="font-size: 15px; font-weight: 900; color: #1F1824; margin-bottom: 6px; text-transform: uppercase;">
+                        Architecture Health &amp; Schema
+                    </div>
+                    <p style="font-size: 12.5px; color: #524759; margin: 0; line-height: 1.5;">
+                        Explore full database schemas, circular dependencies, isolated orphan models, degree centrality, and model inheritance hierarchies in one dashboard.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ══ HOW TO USE (STEP GUIDE) ═════════════════════════ -->
+        <div style="background: #FFFFFF; border: 2px solid #1F1824; padding: 22px; margin-bottom: 36px; box-shadow: 4px 4px 0px #1F1824; border-radius: 4px;">
+            <div style="border-bottom: 2px solid #1F1824; padding-bottom: 6px; margin-bottom: 16px;">
+                <h3 style="font-size: 16px; font-weight: 900; letter-spacing: -0.01em; color: #1F1824; margin: 0; text-transform: uppercase;">
+                    Quick Start Guide
+                </h3>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px;">
+                <div>
+                    <div style="font-family: monospace; font-size: 11px; font-weight: 700; color: #714B67; margin-bottom: 4px;">
+                        STEP 01
+                    </div>
+                    <div style="font-size: 13.5px; font-weight: 800; color: #1F1824; margin-bottom: 4px;">
+                        Open Studio
+                    </div>
+                    <p style="font-size: 12px; color: #524759; margin: 0; line-height: 1.5;">
+                        Launch from the Odoo Main Apps Drawer or click the Smart Button in any Technical Model Form.
+                    </p>
+                </div>
+
+                <div>
+                    <div style="font-family: monospace; font-size: 11px; font-weight: 700; color: #017E84; margin-bottom: 4px;">
+                        STEP 02
+                    </div>
+                    <div style="font-size: 13.5px; font-weight: 800; color: #1F1824; margin-bottom: 4px;">
+                        Select a Module
+                    </div>
+                    <p style="font-size: 12px; color: #524759; margin: 0; line-height: 1.5;">
+                        Pick any installed module (e.g. <code>sale</code>, <code>fleet</code>, <code>account</code>) from the left sidebar to generate its live jaal.
+                    </p>
+                </div>
+
+                <div>
+                    <div style="font-family: monospace; font-size: 11px; font-weight: 700; color: #E4A900; margin-bottom: 4px;">
+                        STEP 03
+                    </div>
+                    <div style="font-size: 13.5px; font-weight: 800; color: #1F1824; margin-bottom: 4px;">
+                        Explore &amp; Export
+                    </div>
+                    <p style="font-size: 12px; color: #524759; margin: 0; line-height: 1.5;">
+                        Switch to ERD Cards, trace Pathfinder highways, and download high-res PNG or multi-cluster ZIP bundles.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ══ ABOUT THE CREATOR ═══════════════════════════════ -->
+        <div style="background: #FFFFFF; border: 2px solid #1F1824; box-shadow: 4px 4px 0px #714B67; padding: 22px; margin-bottom: 28px; border-radius: 4px;">
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 12px;">
+                <div>
+                    <div style="font-family: monospace; font-size: 10px; font-weight: 700; color: #714B67; text-transform: uppercase; margin-bottom: 2px;">
+                        DEVELOPER &amp; ARCHITECT
+                    </div>
+                    <h3 style="font-size: 17px; font-weight: 900; color: #1F1824; margin: 0; text-transform: uppercase;">
+                        PIYUSH KUMAR
+                    </h3>
+                </div>
+
+                <div style="display: inline-flex; align-items: center; gap: 6px; font-size: 10.5px; font-weight: 700; color: #21B799; background: rgba(33, 183, 153, 0.1); border: 1px solid rgba(33, 183, 153, 0.3); padding: 3px 8px; border-radius: 4px; font-family: monospace;">
+                    <span style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #21B799;"></span>
+                    <span>FULL-STACK SOFTWARE ENGINEER</span>
+                </div>
+            </div>
+
+            <p style="font-size: 13px; color: #524759; line-height: 1.6; margin: 0 0 16px 0;">
+                Crafted by <strong>Piyush Kumar</strong>, Full-Stack Software Engineer &amp; Odoo Specialist based in Gurugram, India. Building high-performance developer tooling, backend systems, and AI-powered software solutions.
+            </p>
+
+            <!-- Social Links Grid (Clean Typography Brutalist Buttons) -->
+            <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                <a href="https://iampiyush.one" target="_blank" style="display: inline-block; font-size: 12px; font-weight: 800; text-transform: uppercase; color: #1F1824; background: #E4A900; border: 2px solid #1F1824; padding: 8px 18px; text-decoration: none; box-shadow: 3px 3px 0px #1F1824; letter-spacing: 0.03em;">
+                    PORTFOLIO
+                </a>
+                <a href="https://github.com/iam-piyush" target="_blank" style="display: inline-block; font-size: 12px; font-weight: 800; text-transform: uppercase; color: #1F1824; background: #FCFBFE; border: 2px solid #1F1824; padding: 8px 18px; text-decoration: none; box-shadow: 3px 3px 0px #1F1824; letter-spacing: 0.03em;">
+                    GITHUB
+                </a>
+                <a href="https://linkedin.com/in/iam-piyush" target="_blank" style="display: inline-block; font-size: 12px; font-weight: 800; text-transform: uppercase; color: #1F1824; background: #FCFBFE; border: 2px solid #1F1824; padding: 8px 18px; text-decoration: none; box-shadow: 3px 3px 0px #1F1824; letter-spacing: 0.03em;">
+                    LINKEDIN
+                </a>
+                <a href="https://x.com/ipiyuush" target="_blank" style="display: inline-block; font-size: 12px; font-weight: 800; text-transform: uppercase; color: #1F1824; background: #FCFBFE; border: 2px solid #1F1824; padding: 8px 18px; text-decoration: none; box-shadow: 3px 3px 0px #1F1824; letter-spacing: 0.03em;">
+                    TWITTER
+                </a>
+            </div>
+        </div>
+
+        <!-- ══ FOOTER ═══════════════════════════════════════════ -->
+        <div style="border-top: 2px solid #1F1824; padding-top: 16px; text-align: center; font-family: monospace; font-size: 10.5px; color: #8F8F8F;">
+            ORMGRAPH FOR ODOO &bull; BY <a href="https://iampiyush.one" target="_blank" style="color: #714B67; font-weight: 800; text-decoration: none;">PIYUSH KUMAR</a> &bull; LGPL-3 LICENSE
+        </div>
+
+    </div>
+
+</body>
+</html>

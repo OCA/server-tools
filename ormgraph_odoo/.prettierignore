@@ -1,0 +1,4 @@
+# Ignore compiled Next.js frontend build artifacts
+static/src/
+static/description/index.html
+README.md
