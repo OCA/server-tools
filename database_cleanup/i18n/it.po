@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-03 10:08+0000\n"
-"PO-Revision-Date: 2024-05-28 09:34+0000\n"
+"PO-Revision-Date: 2026-08-24 08:46+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -17,12 +17,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_attachment__attachment_id
 msgid "Attachment"
-msgstr ""
+msgstr "Allegato"
 
 #. module: database_cleanup
 #. odoo-python
@@ -32,6 +32,8 @@ msgid ""
 "Attachment storage is not 'file'. Purge of orphaned attachments only works "
 "with file storage."
 msgstr ""
+"Lo spazio di archiviazione degli allegati non è un \"file\". L'eliminazione "
+"degli allegati orfani funziona solo con lo spazio di archiviazione file."
 
 #. module: database_cleanup
 #: model:ir.model,name:database_cleanup.model_cleanup_create_indexes_line
@@ -41,7 +43,7 @@ msgstr "Pulizia riga creazione indici"
 #. module: database_cleanup
 #: model:ir.model,name:database_cleanup.model_cleanup_purge_line_attachment
 msgid "Cleanup Purge Line Attachment"
-msgstr ""
+msgstr "Pulizia allegato riga spurgo"
 
 #. module: database_cleanup
 #: model:ir.model,name:database_cleanup.model_cleanup_purge_line_column
@@ -215,7 +217,7 @@ msgstr "Proprietà predefinita vuota"
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_attachment__error_message
 msgid "Error Message"
-msgstr ""
+msgstr "Messaggio di errore"
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_line__field_id
@@ -236,7 +238,7 @@ msgstr "Campi da pulire"
 #. module: database_cleanup
 #: model:ir.model.fields.selection,name:database_cleanup.selection__cleanup_purge_line_attachment__reason__missing_file
 msgid "File missing in filestore"
-msgstr ""
+msgstr "File mancante nel deposito file"
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_line__id
@@ -409,7 +411,7 @@ msgstr "Nessun modulo da eliminare trovato"
 #: code:addons/database_cleanup/models/purge_attachments.py:0
 #, python-format
 msgid "No orphaned attachment entries found"
-msgstr ""
+msgstr "Nessun allegato orfano presente"
 
 #. module: database_cleanup
 #. odoo-python
@@ -507,7 +509,7 @@ msgstr "Pulisci tutto"
 #. module: database_cleanup
 #: model:ir.model,name:database_cleanup.model_cleanup_purge_wizard_attachment
 msgid "Purge attachments"
-msgstr ""
+msgstr "Purga allegati"
 
 #. module: database_cleanup
 #: model:ir.actions.server,name:database_cleanup.action_purge_columns
@@ -594,7 +596,7 @@ msgstr "Pulisci tabelle obsolete"
 #: model:ir.actions.server,name:database_cleanup.action_purge_attachments
 #: model:ir.ui.menu,name:database_cleanup.menu_purge_attachments
 msgid "Purge orphaned attachments"
-msgstr ""
+msgstr "Purga allegati orfani"
 
 #. module: database_cleanup
 #: model:ir.actions.server,name:database_cleanup.action_purge_property
