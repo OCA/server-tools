@@ -8,6 +8,7 @@ from collections import defaultdict
 
 from odoo import Command, api, models, tools
 from odoo.exceptions import AccessError
+from odoo.tools import float_compare, float_repr, float_round
 
 from ..tools import format_m2m
 
@@ -61,21 +62,53 @@ class Base(models.AbstractModel):
     def _tm_get_field_description(self, field_name):
         return self._fields[field_name].get_description(self.env)["string"]
 
+    def _tm_get_digits(self, field):
+        """Return the decimal digits of a float field, None for other fields.
+
+        Float fields declared without precision also return None: their values
+        are stored and compared with the full float precision.
+        """
+        if field.type == "monetary":
+            currency_field = field.get_currency_field(self)
+            currency = currency_field and self[currency_field]
+            return currency.decimal_places if currency else None
+        if field.type != "float":
+            return None
+        digits = field.get_digits(self.env)
+        return digits and digits[1]
+
+    def _tm_has_changed(self, before, after, digits):
+        if digits is None:
+            return before != after
+        # `float_round`, applied to every written value, may return a value that
+        # differs by one unit in the last place from the one read from database
+        # (0.1 -> 0.09999999999999999). Both are stored identically, so such a
+        # difference is not a change.
+        return float_compare(before, after, precision_digits=digits) != 0
+
+    def _tm_format_values(self, field, before, after, digits):
+        if field.type == "many2many":
+            return format_m2m(before), format_m2m(after)
+        if field.type == "many2one":
+            return before.display_name, after["display_name"]
+        if digits is not None:
+            # displaying the raw value would expose the representation error of
+            # the rounding done on write (0.1 -> 0.09999999999999999)
+            return (
+                float_repr(float_round(before, precision_digits=digits), digits),
+                float_repr(float_round(after, precision_digits=digits), digits),
+            )
+        return before, after
+
     def _tm_get_changes(self, values):
         self.ensure_one()
         changes = []
         for field_name, before in values.items():
             field = self._fields[field_name]
-            if before != self[field_name]:
-                if field.type == "many2many":
-                    old = format_m2m(before)
-                    new = format_m2m(self[field_name])
-                elif field.type == "many2one":
-                    old = before.display_name
-                    new = self[field_name]["display_name"]
-                else:
-                    old = before
-                    new = self[field_name]
+            after = self[field_name]
+            digits = self._tm_get_digits(field)
+            if self._tm_has_changed(before, after, digits):
+                old, new = self._tm_format_values(field, before, after, digits)
                 changes.append(
                     {
                         "name": self._tm_get_field_description(field_name),
