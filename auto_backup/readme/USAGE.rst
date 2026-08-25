@@ -15,6 +15,18 @@ a path and everything will be backed up automatically. This is done
 through an SSH (encrypted) tunnel, thanks to pysftp, so your data is
 safe!
 
+Secure SFTP connection with host key verification
+-------------------------------------------------
+
+A new optional field **Host Public Key** has been added.
+
+- Paste the exact public key of your SFTP server (you can obtain it with
+  `ssh-keyscan -t rsa,ecdsa,ed25519 your.sftp.server`).
+- When filled, Odoo will **verify the server identity** and refuse the connection if the key does not match → protects against man-in-the-middle attacks.
+- Leave empty → old behaviour (no host key checking, backward compatible).
+
+The "Test SFTP Connection" button now also validates the host key.
+
 Test connection
 ~~~~~~~~~~~~~~~
 
