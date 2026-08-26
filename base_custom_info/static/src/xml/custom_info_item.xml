@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<template>
+    <t t-name="base_custom_info.table">
+        <div class="o_group">
+            <table class="o_group o_inner_group">
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+    </t>
+    <t t-name="base_custom_info.item">
+        <tr>
+            <td class="o_td_label">
+                <label class="o_form_label" t-esc="data.data['name']" />
+            </td>
+            <td style="width: 100%" class="result_data custom_info_value" />
+        </tr>
+    </t>
+</template>
