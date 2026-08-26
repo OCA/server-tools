@@ -1,0 +1,44 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* fetchmail_incoming_log
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: fetchmail_incoming_log
+#: model:ir.model.fields,field_description:fetchmail_incoming_log.field_mail_thread__changeset_change_ids
+msgid "Changeset Changes"
+msgstr ""
+
+#. module: fetchmail_incoming_log
+#: model:ir.model.fields,field_description:fetchmail_incoming_log.field_mail_thread__changeset_ids
+msgid "Changesets"
+msgstr ""
+
+#. module: fetchmail_incoming_log
+#: model:ir.model.fields,field_description:fetchmail_incoming_log.field_mail_thread__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr ""
+
+#. module: fetchmail_incoming_log
+#: model:ir.model.fields,field_description:fetchmail_incoming_log.field_mail_thread__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr ""
+
+#. module: fetchmail_incoming_log
+#: model:ir.model,name:fetchmail_incoming_log.model_mail_thread
+msgid "Email Thread"
+msgstr ""
+
+#. module: fetchmail_incoming_log
+#: model:ir.model.fields,field_description:fetchmail_incoming_log.field_mail_thread__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr ""
