@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2023 Moduon Team S.L.
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl-3.0) -->
+<data noupdate="1">
+    <record id="res_partner_fields_name" model="ir.sequence">
+        <field name="name">Partners default: Ref</field>
+        <field name="code">base_sequence_default.res.partner.fields.ref</field>
+        <field name="prefix">AUTOREF/</field>
+        <field name="padding">3</field>
+        <field name="company_id" eval="False" />
+        <field name="implementation">standard</field>
+    </record>
+</data>
