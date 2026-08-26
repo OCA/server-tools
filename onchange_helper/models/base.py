@@ -21,19 +21,19 @@ class Base(models.AbstractModel):
         return new_values
 
     @api.model
-    def play_onchanges(self, values, onchange_fields):
+    def play_onchanges(self, values, onchange_fields, view_info=None):
         """
         :param values: dict of input value that
         :param onchange_fields: fields for which onchange methods will be
-        played
+            played
+        :param view_info: view containing the fields that should change,
+            as returned by `get_view`
+
         Order in onchange_fields is very important as onchanges methods will
         be played in that order.
         :return: changed values
         """
-        # _onchange_spec() will return onchange fields from the default view
-        # we need all fields in the dict even the empty ones
-        # otherwise 'onchange()' will not apply changes to them
-        onchange_specs = {field_name: "1" for field_name, field in self._fields.items()}
+        onchange_specs = self._onchange_spec(view_info=view_info)
         all_values = values.copy()
         # If self is a record (play onchange on existing record)
         # we take the value of the field
@@ -50,9 +50,20 @@ class Base(models.AbstractModel):
         else:
             # We get default values, they may be used in onchange
             record_values = self.default_get(self._fields.keys())
+        # we need all fields in the dict even the empty ones
+        # otherwise 'onchange()' will not apply changes to them
         for field in self._fields:
             if field not in all_values:
                 all_values[field] = record_values.get(field, False)
+
+        if not self:
+            # Precomputed fields will be computed just before creation
+            # and should not be overwritten by changed values
+            all_values = {
+                field_name: all_values[field_name]
+                for field_name in all_values
+                if not self._fields[field_name].precompute
+            }
 
         new_values = {}
         for field in onchange_fields:
