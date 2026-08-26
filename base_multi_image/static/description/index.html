@@ -374,7 +374,7 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !! source digest: sha256:7d7d7ff49238ae637a43a041331145a0a62413ed8585f0f750d866394e2c75b5
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/license-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/server-tools/tree/18.0/base_multi_image"><img alt="OCA/server-tools" src="https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/server-tools-18-0/server-tools-18-0-base_multi_image"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/server-tools&amp;target_branch=18.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/server-tools/tree/18.0/base_multi_image"><img alt="OCA/server-tools" src="https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/server-tools-18-0/server-tools-18-0-base_multi_image"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/server-tools&amp;target_branch=18.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
 <p>This module extends the functionality of any model to support multiple
 images (a gallery) attached to it and allow you to manage them.</p>
 <p><strong>Table of contents</strong></p>
@@ -400,7 +400,7 @@ images (a gallery) attached to it and allow you to manage them.</p>
 </ul>
 </div>
 <div class="section" id="installation">
-<h2><a class="toc-backref" href="#toc-entry-1">Installation</a></h2>
+<h1><a class="toc-backref" href="#toc-entry-1">Installation</a></h1>
 <p>This module adds abstract models to work on. Its sole purpose is to
 serve as base for other modules that implement galleries, so if you
 install this one manually you will notice no change. You should install
@@ -416,7 +416,7 @@ automatically.</p>
 <p>… but you probably prefer to manage them from the forms supplied by
 submodules that inherit this behavior.</p>
 <div class="section" id="development">
-<h3><a class="toc-backref" href="#toc-entry-3">Development</a></h3>
+<h2><a class="toc-backref" href="#toc-entry-3">Development</a></h2>
 <p>To develop a module based on this one:</p>
 <ul>
 <li><p class="first">See module <tt class="docutils literal">product_multi_image</tt> as an example.</p>
@@ -447,7 +447,7 @@ class MyOwner(models.Model):
 </li>
 <li><p class="first">If the model you are extending already had an image field, and you
 want to trick Odoo to make those images to multi-image mode, you will
-need to make use of the provided ~.hooks.pre_init_hook_for_submodules
+need to make use of the provided ~.hooks.post_init_hook_for_submodules
 and ~.hooks.uninstall_hook_for_submodules, like the
 <tt class="docutils literal">product_multi_image</tt> module does:</p>
 <pre class="literal-block">
@@ -515,20 +515,16 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <li>Sodexis &lt;<a class="reference external" href="mailto:dev&#64;sodexis.com">dev&#64;sodexis.com</a>&gt;</li>
 <li>Dave Lasley &lt;<a class="reference external" href="mailto:dave&#64;laslabs.com">dave&#64;laslabs.com</a>&gt;</li>
 <li>Shepilov Vladislav &lt;<a class="reference external" href="mailto:shepilov.v&#64;protonmail.com">shepilov.v&#64;protonmail.com</a>&gt;</li>
-<li><a class="reference external" href="https://www.greenice.com">Greenice</a>:<ul>
+<li><a class="reference external" href="https://www.greenice.com">Greenice</a>:</li>
 <li>Fernando La Chica &lt;<a class="reference external" href="mailto:fernandolachica&#64;gmail.com">fernandolachica&#64;gmail.com</a>&gt;</li>
-</ul>
-</li>
-<li><a class="reference external" href="https://www.heliconia.io">Heliconia Solutions Pvt. Ltd.</a><ul>
-<li>Bhavesh Heliconia</li>
-</ul>
-</li>
+<li>Ugnė Sinkevičienė &lt;<a class="reference external" href="mailto:ugne&#64;versada.eu">ugne&#64;versada.eu</a>&gt;</li>
+<li>Andrius Laukavičius &lt;<a class="reference external" href="mailto:andrius.laukavicius&#64;versada.eu">andrius.laukavicius&#64;versada.eu</a>&gt;</li>
 </ul>
 </div>
 <div class="section" id="other-credits">
 <h3><a class="toc-backref" href="#toc-entry-9">Other credits</a></h3>
 <div class="section" id="original-implementation">
-<h4><a class="toc-backref" href="#toc-entry-10">Original implementation</a></h4>
+<h3><a class="toc-backref" href="#toc-entry-10">Original implementation</a></h3>
 <p>This module is inspired in previous module <em>product_images</em> from
 OpenLabs and Akretion.</p>
 </div>
