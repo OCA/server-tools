@@ -1,2 +1,3 @@
-* Tom Blauwendraat <tom@sunflowerweb.nl>
+* Tom Blauwendraat <tblauwendraat@therp.nl>
 * Francesco Apruzzese <cescoap@gmail.com>
+* [Therp BV](https://therp.nl)
