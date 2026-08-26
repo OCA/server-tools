@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import logging
+import re
 import warnings
 from collections import abc
 
@@ -32,39 +33,47 @@ except ImportError:  # pragma: no cover
     )  # pragma: no cover
 
 
-def before_send(event, hint):
-    """Prevent the capture of any exceptions in
-    the DEFAULT_IGNORED_EXCEPTIONS list
-        -- or --
-    Add context to event if include_context is True
-    and sanitize sensitive data"""
+def before_send_wrap(sentry_ignore_regex):
+    def before_send(event, hint):
+        """Prevent the capture of any exceptions in
+        the DEFAULT_IGNORED_EXCEPTIONS list
+            -- or --
+        Add context to event if include_context is True
+        and sanitize sensitive data"""
 
-    exc_info = hint.get("exc_info")
-    if exc_info is None and "log_record" in hint:
-        # Odoo handles UserErrors by logging the raw exception rather
-        # than a message string in odoo/http.py
-        try:
-            module_name = hint["log_record"].msg.__module__
-            class_name = hint["log_record"].msg.__class__.__name__
-            qualified_name = module_name + "." + class_name
-        except AttributeError:
-            qualified_name = "not found"
+        exc_info = hint.get("exc_info")
+        if exc_info is None and "log_record" in hint:
+            # Odoo handles UserErrors by logging the raw exception rather
+            # than a message string in odoo/http.py
+            try:
+                module_name = hint["log_record"].msg.__module__
+                class_name = hint["log_record"].msg.__class__.__name__
+                qualified_name = module_name + "." + class_name
+            except AttributeError:
+                qualified_name = "not found"
 
-        if qualified_name in const.DEFAULT_IGNORED_EXCEPTIONS:
-            return None
+            if qualified_name in const.DEFAULT_IGNORED_EXCEPTIONS:
+                return None
 
-    if event.setdefault("tags", {})["include_context"]:
-        cxtest = get_extra_context(odoo.http.request)
-        info_request = ["tags", "user", "extra", "request"]
+            if sentry_ignore_regex is not None and type(hint["log_record"].msg) is str:
+                # Check if the message matches the regex
+                if sentry_ignore_regex.search(hint["log_record"].msg):
+                    return None
 
-        for item in info_request:
-            info_item = event.setdefault(item, {})
-            info_item.update(cxtest.setdefault(item, {}))
+        if event.setdefault("tags", {})["include_context"]:
+            cxtest = get_extra_context(odoo.http.request)
+            info_request = ["tags", "user", "extra", "request"]
 
-    raven_processor = SanitizeOdooCookiesProcessor()
-    raven_processor.process(event)
+            for item in info_request:
+                info_item = event.setdefault(item, {})
+                info_item.update(cxtest.setdefault(item, {}))
 
-    return event
+        raven_processor = SanitizeOdooCookiesProcessor()
+        raven_processor.process(event)
+
+        return event
+
+    return before_send
 
 
 def get_odoo_commit(odoo_dir):
@@ -97,6 +106,16 @@ def initialize_sentry(config):
             "Its not neccesary send it, will use `HttpTranport` by default.",
             DeprecationWarning,
         )
+    sentry_ignore_regex = None
+    if regex_pattern := config.get("sentry_ignore_regex"):
+        try:
+            sentry_ignore_regex = re.compile(regex_pattern)
+        except re.error as e:
+            _logger.warning(
+                "Invalid regex pattern '%s' for 'sentry_ignore_regex': %s",
+                regex_pattern,
+                e,
+            )
     options = {}
     for option in const.get_sentry_options():
         value = config.get("sentry_%s" % option.key, option.default)
@@ -118,7 +137,7 @@ def initialize_sentry(config):
     options["ignore_errors"] = options["ignore_exceptions"]
     del options["ignore_exceptions"]
 
-    options["before_send"] = before_send
+    options["before_send"] = before_send_wrap(sentry_ignore_regex)
 
     options["integrations"] = [
         options["logging_level"],

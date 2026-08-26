@@ -98,6 +98,9 @@ configuration file:
                                and will only be used to extract the Odoo Git commit, which will be
                                sent to Sentry, to allow to distinguish between Odoo updates.
                                Overridden by *sentry_release*
+
+``sentry_ignore_regex``        A regex pattern to filter / ignore logs. This is useful to ignore
+                               specific log messages that are not relevant.
 =============================  ====================================================================  ==========================================================
 
 Other `client arguments
@@ -186,6 +189,7 @@ Contributors
 * Florian Mounier <florian.mounier@akretion.com>
 * Jon Ashton <jon@monkeyinferno.com>
 * Mark Schuit <mark@gig.solutions>
+* Dennis Sluijk <d.sluijk@onestein.nl>
 
 Other credits
 ~~~~~~~~~~~~~
