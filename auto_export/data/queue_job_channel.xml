@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 ACSONE SA/NV
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="queue.job.channel" id="channel_auto_export">
+        <field name="name">AUTO_EXPORT</field>
+        <field name="parent_id" ref="queue_job.channel_root" />
+    </record>
+</odoo>
