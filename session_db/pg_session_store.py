@@ -2,6 +2,8 @@
 # @author Nicolas Seinlet
 # Copyright (c) ACSONE SA 2022
 # @author Stéphane Bidoul
+import base64
+import binascii
 import json
 import logging
 import os
@@ -66,6 +68,7 @@ class PGSessionStore(sessions.SessionStore):
         self._cr = None
         self._open_connection()
         self._setup_db()
+        self.prefix_binary = "base64::"
 
     def __del__(self):
         self._close_connection()
@@ -108,7 +111,8 @@ class PGSessionStore(sessions.SessionStore):
     @with_lock
     @with_cursor
     def save(self, session):
-        payload = json.dumps(dict(session))
+        json_session = self.session_to_str(dict(session))
+        payload = json.dumps(json_session)
         self._cr.execute(
             """
                 INSERT INTO http_sessions(sid, write_date, payload)
@@ -131,6 +135,7 @@ class PGSessionStore(sessions.SessionStore):
         self._cr.execute("SELECT payload FROM http_sessions WHERE sid=%s", (sid,))
         try:
             data = json.loads(self._cr.fetchone()[0])
+            data = self.str_to_session(data)
         except Exception:
             return self.new()
 
@@ -148,6 +153,45 @@ class PGSessionStore(sessions.SessionStore):
             "WHERE now() at time zone 'UTC' - write_date > %s",
             (f"{max_lifetime} seconds",),
         )
+
+    def _traverse_and_convert(self, data_node, conversion_func):
+        """
+        Recursively applies a conversion function to all elements in dicts and lists.
+        """
+        if isinstance(data_node, dict):
+            return {
+                self._traverse_and_convert(
+                    key, conversion_func
+                ): self._traverse_and_convert(value, conversion_func)
+                for key, value in data_node.items()
+            }
+        if isinstance(data_node, list):
+            return [
+                self._traverse_and_convert(item, conversion_func) for item in data_node
+            ]
+
+        return conversion_func(data_node)
+
+    def session_to_str(self, data):
+        def convert(value):
+            if isinstance(value, bytes):
+                return self.prefix_binary + base64.b64encode(value).decode("utf-8")
+            return value
+
+        return self._traverse_and_convert(data, convert)
+
+    def str_to_session(self, data):
+        def convert(value):
+            if isinstance(value, str) and value.startswith(self.prefix_binary):
+                try:
+                    return base64.b64decode(
+                        value[len(self.prefix_binary) :], validate=True
+                    )
+                except (ValueError, TypeError, binascii.Error):
+                    return value
+            return value
+
+        return self._traverse_and_convert(data, convert)
 
 
 _original_session_store = http.root.__class__.session_store
