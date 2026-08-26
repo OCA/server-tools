@@ -1,0 +1,11 @@
+/* Audit Team Name Styling - Targeted but reliable selector */
+.o_field_char.audit_team_name_field {
+    background-color: #d1ecf1 !important;
+    color: #0c5460 !important;
+    border: 3px solid #bee5eb !important;
+    border-radius: 10px !important;
+    max-width: fit-content !important;
+    padding: 8px 12px !important;
+    font-weight: 500 !important;
+    margin-bottom: 30px !important;
+}

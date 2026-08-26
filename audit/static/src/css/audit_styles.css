@@ -1,0 +1,18 @@
+/* Pass/Fail styling for percentage scores */
+.pass-fail-score.text-success::before {
+    content: "PASS";
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 0.95rem;
+    margin-right: 6px;
+    font-weight: bold;
+}
+
+.pass-fail-score.text-danger::before {
+    content: "FAIL";
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 0.95rem;
+    margin-right: 6px;
+    font-weight: bold;
+}

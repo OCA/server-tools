@@ -2,6 +2,8 @@ var globals = require('globals');
 jsdoc = require("eslint-plugin-jsdoc");
 
 const config = [{
+    ignores: ["audit/static/src/css/fontawesome.js"],
+}, {
     plugins: {
       jsdoc,
     },
@@ -199,6 +201,18 @@ const config = [{
     languageOptions: {
         ecmaVersion: 2024,
         sourceType: "module",
+    },
+}, {
+    files: ["audit/static/src/**/*.js"],
+    languageOptions: {
+        ecmaVersion: 2024,
+        sourceType: "module",
+    },
+    rules: {
+        // `/** @odoo-module **/` is not a standard JSDoc tag
+        "jsdoc/check-tag-names": "off",
+        "no-inline-comments": "off",
+        "sort-imports": "off",
     },
 }];
 
