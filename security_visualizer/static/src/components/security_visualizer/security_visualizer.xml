@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2026 Kobros-Tech Ltd (http://kobros-tech.com).
+License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html). -->
+<templates xml:space="preserve">
+
+    <t t-name="security_visualizer.SecurityVisualizer" owl="1">
+        <div class="o_action">
+            <div class="o_content p-3" t-ref="scrollContainer">
+
+            <!-- Header with navigation tabs -->
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h2 class="mb-2">Security Visualizer</h2>
+                    <ul class="nav nav-tabs card-header-tabs">
+                        <li class="nav-item">
+                            <a
+                                    class="nav-link"
+                                    t-att-class="{active: state.currentView === 'analyzer'}"
+                                    t-on-click="() => this.switchView('analyzer')"
+                                    href="#"
+                                >
+                                Analyzer
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                    class="nav-link"
+                                    t-att-class="{active: state.currentView === 'matrix'}"
+                                    t-on-click="() => this.switchView('matrix')"
+                                    href="#"
+                                >
+                                Access Matrix
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Analyzer View (hidden via d-none, not destroyed) -->
+            <div t-attf-class="#{state.currentView !== 'analyzer' ? 'd-none' : ''}">
+                <div class="row mt-3">
+                    <!-- Left Panel: Selectors -->
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="mb-0">Analysis Parameters</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <label class="form-label fw-bold">User:</label>
+                                    <AutoComplete
+                                            value="state.selectedUserDisplay"
+                                            sources="userSources"
+                                            onSelect.bind="onUserSelected"
+                                            placeholder="'Search users...'"
+                                        />
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label fw-bold">Model:</label>
+                                    <AutoComplete
+                                            value="state.selectedModelDisplay"
+                                            sources="modelSources"
+                                            onSelect.bind="onModelSelected"
+                                            placeholder="'Search models...'"
+                                        />
+                                </div>
+
+                                <div class="mb-3">
+                                    <label
+                                            class="form-label fw-bold"
+                                        >Record ID (optional):</label>
+                                    <input
+                                            type="number"
+                                            class="form-control"
+                                            placeholder="Leave empty for model-level analysis"
+                                            t-on-input="onRecordIdChange"
+                                        />
+                                </div>
+
+                                <button
+                                        class="btn btn-primary w-100"
+                                        t-on-click="analyzeAccess"
+                                        t-att-disabled="state.isAnalyzing"
+                                    >
+                                    <t t-if="state.isAnalyzing">
+                                        <i class="fa fa-spinner fa-spin" /> Analyzing...
+                                    </t>
+                                    <t t-else="">
+                                        <i class="fa fa-search" /> Analyze Access
+                                    </t>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Panel: Results -->
+                    <div class="col-md-8">
+                        <t t-if="state.analysisResult">
+                            <RuleExplainer analysisResult="state.analysisResult" />
+                        </t>
+
+                        <t t-else="">
+                            <div class="alert alert-info">
+                                <i class="fa fa-info-circle" />
+                                Select a user and model, then click "Analyze Access" to see a detailed CRUD security analysis.
+                            </div>
+                        </t>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Access Matrix View (hidden via d-none, not destroyed) -->
+            <div t-attf-class="#{state.currentView !== 'matrix' ? 'd-none' : ''}">
+                <div class="container-fluid">
+                    <div class="row">
+                        <!-- Matrix Filters Sidebar -->
+                        <div class="col-md-4">
+                            <div class="card mb-3">
+                                <div class="card-header">
+                                    <h6 class="mb-0">
+                                        <i class="fa fa-filter me-2" />
+                                        Matrix Filters
+                                    </h6>
+                                </div>
+                                <div class="card-body">
+                                    <!-- User Multi-Selector -->
+                                    <div class="mb-3">
+                                        <label class="form-label fw-bold">
+                                            <i class="fa fa-users me-1" />
+                                            Select Users to Compare
+                                        </label>
+                                        <div class="mb-1">
+                                            <TagsList tags="matrixUserTagsList" />
+                                        </div>
+                                        <AutoComplete
+                                                value="''"
+                                                sources="userSources"
+                                                onSelect.bind="onMatrixUserSelected"
+                                                placeholder="'Search users...'"
+                                                resetOnSelect="true"
+                                            />
+                                        <small class="text-muted">
+                                            Search and add users to compare
+                                        </small>
+                                    </div>
+
+                                    <!-- Model Multi-Selector -->
+                                    <div class="mb-3">
+                                        <label class="form-label fw-bold">
+                                            <i class="fa fa-cubes me-1" />
+                                            Select Models to Compare
+                                        </label>
+                                        <div class="mb-1">
+                                            <TagsList tags="matrixModelTagsList" />
+                                        </div>
+                                        <AutoComplete
+                                                value="''"
+                                                sources="modelSources"
+                                                onSelect.bind="onMatrixModelSelected"
+                                                placeholder="'Search models...'"
+                                                resetOnSelect="true"
+                                            />
+                                        <small class="text-muted">
+                                            Search and add models to compare
+                                        </small>
+                                    </div>
+
+                                    <!-- Generate Matrix Button -->
+                                    <button
+                                            class="btn btn-primary w-100"
+                                            t-on-click="loadAccessMatrix"
+                                            t-att-disabled="state.isLoadingMatrix"
+                                        >
+                                        <i
+                                                t-att-class="state.isLoadingMatrix ? 'fa fa-spinner fa-spin me-2' : 'fa fa-table me-2'"
+                                            />
+                                        <t
+                                                t-if="state.isLoadingMatrix"
+                                            >Loading Matrix...</t>
+                                        <t t-else="">Generate Access Matrix</t>
+                                    </button>
+
+                                    <div class="alert alert-info mt-3 mb-0">
+                                        <small>
+                                            <i class="fa fa-info-circle me-1" />
+                                            Select users and models to compare their access rights across all CRUD operations.
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Matrix Results -->
+                        <div class="col-md-8">
+                            <t t-if="state.isLoadingMatrix">
+                                <div class="text-center mt-5">
+                                    <i class="fa fa-spinner fa-spin fa-3x" />
+                                    <p class="mt-3">Loading access matrix...</p>
+                                </div>
+                            </t>
+                            <t t-elif="state.matrixData">
+                                <AccessMatrix matrixData="state.matrixData" />
+                            </t>
+                            <t t-else="">
+                                <div class="card">
+                                    <div class="card-body text-center py-5">
+                                        <i class="fa fa-table fa-3x text-muted mb-3" />
+                                        <h5>No Matrix Generated Yet</h5>
+                                        <p class="text-muted">
+                                            Select users and models from the filters, then click "Generate Access Matrix" to compare access rights.
+                                        </p>
+                                    </div>
+                                </div>
+                            </t>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scroll to top button -->
+            <button
+                    class="scroll-to-top"
+                    t-att-class="{'visible': state.showScrollTop}"
+                    t-on-click="scrollToTop"
+                    title="Scroll to top"
+                >
+                <i class="fa fa-arrow-up" />
+            </button>
+
+            </div>
+        </div>
+    </t>
+
+</templates>

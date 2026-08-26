@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2026 Kobros-Tech Ltd (http://kobros-tech.com).
+License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html). -->
+<templates xml:space="preserve">
+
+    <t t-name="security_visualizer.RuleExplainer" owl="1">
+        <div class="rule_explainer">
+
+            <!-- Analysis Context Banner -->
+            <t t-if="context.userName">
+                <div class="alert alert-primary mb-3">
+                    <strong>Analyzing:</strong>
+                    User <strong><t t-esc="context.userName" /></strong>
+                    on model <strong><t t-esc="context.modelName" /></strong>
+                    <small class="text-muted ms-1">(<t
+                            t-esc="context.technicalModel"
+                        />)</small>
+                </div>
+            </t>
+
+            <!-- Step 1: CRUD Summary Table -->
+            <div class="card mb-3">
+                <div
+                    class="card-header step-header"
+                    t-on-click="() => this.toggleStep('step1')"
+                >
+                    <h6 class="mb-0 d-flex align-items-center">
+                        <i
+                            class="fa me-2 step-chevron"
+                            t-att-class="state.step1 ? 'fa-chevron-down' : 'fa-chevron-right'"
+                        />
+                        <i class="fa fa-shield me-2" />
+                        Step 1: Model-Level Access (ACL)
+                        <!-- Inline verdict badges when collapsed -->
+                        <span class="ms-auto d-flex gap-1">
+                            <t t-foreach="step1Badges" t-as="b" t-key="b.label">
+                                <span
+                                    class="badge"
+                                    t-att-class="b.allowed ? 'bg-success' : 'bg-danger'"
+                                    t-att-title="b.label === 'C' ? 'Create' : b.label === 'R' ? 'Read' : b.label === 'W' ? 'Write' : 'Delete'"
+                                >
+                                    <t t-esc="b.label" />
+                                </span>
+                            </t>
+                            <t t-if="hasConflicts">
+                                <span class="badge bg-warning text-dark">Conflict</span>
+                            </t>
+                        </span>
+                    </h6>
+                </div>
+                <t t-if="state.step1">
+                    <div class="card-body">
+                        <t t-if="summaryTable.length">
+                            <div class="table-responsive">
+                                <table class="table table-sm table-bordered mb-2">
+                                    <thead>
+                                        <tr>
+                                            <th>Operation</th>
+                                            <th class="text-center">Verdict</th>
+                                            <th class="text-center">Conflict?</th>
+                                            <th class="text-center">Granting Groups</th>
+                                            <th class="text-center">Denying Groups</th>
+                                            <th>Explanation</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t
+                                            t-foreach="summaryTable"
+                                            t-as="row"
+                                            t-key="row.operation"
+                                        >
+                                            <tr>
+                                                <td class="fw-bold">
+                                                    <t t-esc="row.operation_display" />
+                                                </td>
+                                                <td class="text-center">
+                                                    <span
+                                                        class="badge"
+                                                        t-att-class="row.allowed ? 'bg-success' : 'bg-danger'"
+                                                    >
+                                                        <t t-esc="row.verdict" />
+                                                    </span>
+                                                </td>
+                                                <td class="text-center">
+                                                    <t t-if="row.has_conflict">
+                                                        <span
+                                                            class="badge bg-warning text-dark"
+                                                        >Yes</span>
+                                                    </t>
+                                                    <t t-else="">
+                                                        <span
+                                                            class="text-muted"
+                                                        >No</span>
+                                                    </t>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span class="badge bg-success"><t
+                                                            t-esc="row.granting_count"
+                                                        /></span>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span class="badge bg-secondary"><t
+                                                            t-esc="row.denying_count"
+                                                        /></span>
+                                                </td>
+                                                <td>
+                                                    <small><t
+                                                            t-esc="crudSummary.operations[row.operation.toLowerCase()] ? crudSummary.operations[row.operation.toLowerCase()].explanation : ''"
+                                                        /></small>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <!-- Conflict explanation -->
+                            <t t-if="hasConflicts">
+                                <div class="alert alert-warning mt-2 mb-0">
+                                    <i class="fa fa-exclamation-triangle me-1" />
+                                    <t t-esc="crudSummary.conflict_explanation" />
+                                </div>
+                            </t>
+                            <t t-else="">
+                                <div class="alert alert-success mt-2 mb-0">
+                                    <i class="fa fa-check-circle me-1" />
+                                    <t t-esc="crudSummary.conflict_explanation" />
+                                </div>
+                            </t>
+                        </t>
+                    </div>
+                </t>
+            </div>
+
+            <!-- Step 2: Record Rules per operation -->
+            <div class="card mb-3">
+                <div
+                    class="card-header step-header"
+                    t-on-click="() => this.toggleStep('step2')"
+                >
+                    <h6 class="mb-0 d-flex align-items-center">
+                        <i
+                            class="fa me-2 step-chevron"
+                            t-att-class="state.step2 ? 'fa-chevron-down' : 'fa-chevron-right'"
+                        />
+                        <i class="fa fa-filter me-2" />
+                        Step 2: Record Rules (ir.rule)
+                        <span class="ms-auto">
+                            <span class="badge bg-info">
+                                <t t-esc="totalRecordRules" /> rule(s)
+                            </span>
+                        </span>
+                    </h6>
+                </div>
+                <t t-if="state.step2">
+                    <div class="card-body">
+                        <t t-foreach="operations" t-as="op" t-key="op">
+                            <t t-set="opRules" t-value="getRulesForOp(op)" />
+                            <t t-if="hasRulesForOp(op)">
+                                <h6 class="mt-3 mb-2 border-bottom pb-1">
+                                    <t t-esc="operationLabels[op]" /> rules:
+                                </h6>
+
+                                <!-- Global Rules -->
+                                <t
+                                    t-if="opRules.global_rules and opRules.global_rules.length"
+                                >
+                                    <div class="ms-2 mb-2">
+                                        <small class="text-danger fw-bold">
+                                            <i class="fa fa-globe me-1" />
+                                            Global (AND logic):
+                                        </small>
+                                        <div class="rule-list mt-1">
+                                            <t
+                                                t-foreach="opRules.global_rules"
+                                                t-as="rule"
+                                                t-key="rule.id"
+                                            >
+                                                <div class="rule-item">
+                                                    <div class="rule-name"><t
+                                                            t-esc="rule.name"
+                                                        /></div>
+                                                    <pre class="rule-domain"><t
+                                                            t-esc="formatDomain(rule.domain)"
+                                                        /></pre>
+                                                </div>
+                                            </t>
+                                        </div>
+                                    </div>
+                                </t>
+
+                                <!-- Group Rules -->
+                                <t
+                                    t-if="opRules.group_rules and opRules.group_rules.length"
+                                >
+                                    <div class="ms-2 mb-2">
+                                        <small class="text-primary fw-bold">
+                                            <i class="fa fa-users me-1" />
+                                            Group (OR logic):
+                                        </small>
+                                        <div class="rule-list mt-1">
+                                            <t
+                                                t-foreach="opRules.group_rules"
+                                                t-as="rule"
+                                                t-key="rule.id"
+                                            >
+                                                <div class="rule-item">
+                                                    <div class="rule-name">
+                                                        <t t-esc="rule.name" />
+                                                        <small class="text-muted">
+                                                            (<t
+                                                                t-esc="rule.groups.join(', ')"
+                                                            />)
+                                                        </small>
+                                                    </div>
+                                                    <pre class="rule-domain"><t
+                                                            t-esc="formatDomain(rule.domain)"
+                                                        /></pre>
+                                                </div>
+                                            </t>
+                                        </div>
+                                    </div>
+                                </t>
+                            </t>
+                        </t>
+
+                        <t t-if="totalRecordRules === 0">
+                            <div class="alert alert-info mb-0">
+                                <i class="fa fa-info-circle me-1" />
+                                No record rules apply to this model. All records are accessible if model access is granted.
+                            </div>
+                        </t>
+                    </div>
+                </t>
+            </div>
+
+            <!-- Step 3: Simulation Results (if record ID was provided) -->
+            <t t-if="simulations">
+                <div class="card mb-3">
+                    <div
+                        class="card-header step-header"
+                        t-on-click="() => this.toggleStep('step3')"
+                    >
+                        <h6 class="mb-0 d-flex align-items-center">
+                            <i
+                                class="fa me-2 step-chevron"
+                                t-att-class="state.step3 ? 'fa-chevron-down' : 'fa-chevron-right'"
+                            />
+                            <i class="fa fa-flask me-2" />
+                            Step 3: Record Simulation
+                            <span class="ms-auto d-flex gap-1">
+                                <t t-foreach="operations" t-as="op" t-key="op">
+                                    <t t-set="sim" t-value="simulations[op]" />
+                                    <span
+                                        t-if="sim"
+                                        class="badge"
+                                        t-att-class="sim.has_access ? 'bg-success' : 'bg-danger'"
+                                        t-att-title="operationLabels[op]"
+                                    >
+                                        <t t-esc="operationShortLabels[op]" />
+                                    </span>
+                                </t>
+                            </span>
+                        </h6>
+                    </div>
+                    <t t-if="state.step3">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-sm table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Operation</th>
+                                            <th class="text-center">Access</th>
+                                            <th>Explanation</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-foreach="operations" t-as="op" t-key="op">
+                                            <t t-set="sim" t-value="simulations[op]" />
+                                            <tr t-if="sim">
+                                                <td class="fw-bold"><t
+                                                        t-esc="operationLabels[op]"
+                                                    /></td>
+                                                <td class="text-center">
+                                                    <span
+                                                        class="badge"
+                                                        t-att-class="sim.has_access ? 'bg-success' : 'bg-danger'"
+                                                    >
+                                                        <t
+                                                            t-if="sim.has_access"
+                                                        >GRANTED</t>
+                                                        <t t-else="">DENIED</t>
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="sim.explanation" />
+                                                    <t t-if="sim.error">
+                                                        <span
+                                                            class="badge bg-warning text-dark ms-2"
+                                                        >
+                                                            <t t-esc="sim.error" />
+                                                        </span>
+                                                    </t>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+            </t>
+
+        </div>
+    </t>
+
+</templates>
