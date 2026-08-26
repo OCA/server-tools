@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- Top Menu -->
+    <menuitem
+        id="menu_json_export_engine_root"
+        name="JSON Export Engine"
+        sequence="90"
+    />
+
+    <!-- Configuration Menu -->
+    <menuitem
+        id="menu_json_export_config"
+        name="Configuration"
+        parent="menu_json_export_engine_root"
+        sequence="10"
+    />
+
+    <menuitem
+        id="menu_json_export_schema"
+        name="Export Schemas"
+        parent="menu_json_export_config"
+        action="json_export_schema_action"
+        sequence="10"
+    />
+
+    <menuitem
+        id="menu_json_export_endpoint"
+        name="REST Endpoints"
+        parent="menu_json_export_config"
+        action="json_export_endpoint_action"
+        sequence="20"
+    />
+
+    <menuitem
+        id="menu_json_export_webhook"
+        name="Webhooks"
+        parent="menu_json_export_config"
+        action="json_export_webhook_action"
+        sequence="30"
+    />
+
+    <menuitem
+        id="menu_json_export_schedule"
+        name="Scheduled Exports"
+        parent="menu_json_export_config"
+        action="json_export_schedule_action"
+        sequence="40"
+    />
+
+    <!-- Monitoring Menu -->
+    <menuitem
+        id="menu_json_export_monitoring"
+        name="Monitoring"
+        parent="menu_json_export_engine_root"
+        sequence="20"
+    />
+
+    <menuitem
+        id="menu_json_export_log"
+        name="Export Logs"
+        parent="menu_json_export_monitoring"
+        action="json_export_log_action"
+        sequence="10"
+    />
+</odoo>

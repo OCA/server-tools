@@ -1,0 +1,951 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils: https://docutils.sourceforge.io/" />
+<title>JSON Export Engine</title>
+<style type="text/css">
+
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id: html4css1.css 9511 2024-01-13 09:50:07Z milde $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+Despite the name, some widely supported CSS2 features are used.
+
+See https://docutils.sourceforge.io/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+.subscript {
+  vertical-align: sub;
+  font-size: smaller }
+
+.superscript {
+  vertical-align: super;
+  font-size: smaller }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+object[type="image/svg+xml"], object[type="application/x-shockwave-flash"] {
+  overflow: hidden;
+}
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title, .code .error {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left, .figure.align-left, object.align-left, table.align-left {
+  clear: left ;
+  float: left ;
+  margin-right: 1em }
+
+img.align-right, .figure.align-right, object.align-right, table.align-right {
+  clear: right ;
+  float: right ;
+  margin-left: 1em }
+
+img.align-center, .figure.align-center, object.align-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+table.align-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.align-left {
+  text-align: left }
+
+.align-center {
+  clear: both ;
+  text-align: center }
+
+.align-right {
+  text-align: right }
+
+/* reset inner alignment in figures */
+div.align-right {
+  text-align: inherit }
+
+/* div.align-center * { */
+/*   text-align: left } */
+
+.align-top    {
+  vertical-align: top }
+
+.align-middle {
+  vertical-align: middle }
+
+.align-bottom {
+  vertical-align: bottom }
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font: inherit }
+
+pre.literal-block, pre.doctest-block, pre.math, pre.code {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+pre.code .ln { color: gray; } /* line numbers */
+pre.code, code { background-color: #eeeeee }
+pre.code .comment, code .comment { color: #5C6576 }
+pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
+pre.code .literal.string, code .literal.string { color: #0C5404 }
+pre.code .name.builtin, code .name.builtin { color: #352B84 }
+pre.code .deleted, code .deleted { background-color: #DEB0A1}
+pre.code .inserted, code .inserted { background-color: #A3D289}
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic, pre.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+/* "booktabs" style (no vertical lines) */
+table.docutils.booktabs {
+  border: 0px;
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+  border-collapse: collapse;
+}
+table.docutils.booktabs * {
+  border: 0px;
+}
+table.docutils.booktabs th {
+  border-bottom: thin solid;
+  text-align: left;
+}
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+</head>
+<body>
+<div class="document" id="json-export-engine">
+<h1 class="title">JSON Export Engine</h1>
+
+<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!! This file is generated by oca-gen-addon-readme !!
+!! changes will be overwritten.                   !!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!! source digest: sha256:702b7b1fb50020a0fe3b2b7364b734dd03d97049df863f61f2eee19b4be88af0
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Alpha" src="https://img.shields.io/badge/maturity-Alpha-red.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/server-tools/tree/18.0/json_export_engine"><img alt="OCA/server-tools" src="https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/server-tools-18-0/server-tools-18-0-json_export_engine"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/server-tools&amp;target_branch=18.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
+<p>Universal JSON / Schema Export Engine for Odoo.</p>
+<p>This module provides a complete framework for exporting data from any
+Odoo model as structured JSON, with support for:</p>
+<ul class="simple">
+<li><strong>Dynamic Schema Builder</strong>: Use Odoo’s built-in export field selector
+to interactively choose which fields (including nested relational
+fields) to include in your JSON output. No code required.</li>
+<li><strong>JSON Schema Generation</strong>: Auto-generates a JSON Schema (draft-07)
+from the selected fields and model definition, including field types,
+nullable markers, selection enums, and nested relational structures.
+Available both in the UI and via a dedicated REST endpoint.</li>
+<li><strong>REST API Endpoints</strong>: Generate REST-like API endpoints for any
+schema with configurable authentication (none, API key, or
+session-based), pagination, and CORS support. Each endpoint exposes
+both a data URL and a schema URL.</li>
+<li><strong>Webhooks</strong>: Push data to external systems automatically when records
+are created, updated, or deleted. Supports HMAC-SHA256 signing, custom
+headers, and retry with exponential backoff.</li>
+<li><strong>Scheduled Exports</strong>: Export data on a schedule (minutes, hours,
+days, weeks) as JSON or JSON Lines files, delivered as Odoo
+attachments or HTTP POST to an external URL. Supports incremental
+exports (only changed records).</li>
+<li><strong>Export Logs</strong>: Full audit trail of all export operations (API calls,
+webhooks, scheduled exports, manual exports) with timing and error
+tracking.</li>
+</ul>
+<p>Minimal dependencies: only requires <tt class="docutils literal">base</tt>, <tt class="docutils literal">web</tt>, and
+<tt class="docutils literal">jsonifier</tt>.</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">This is an alpha version, the data model and design can change at any time without warning.
+Only for development or testing purpose, do not use in production.
+<a class="reference external" href="https://odoo-community.org/page/development-status">More details on development status</a></p>
+</div>
+<p><strong>Table of contents</strong></p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#configuration" id="toc-entry-1">Configuration</a></li>
+<li><a class="reference internal" href="#usage" id="toc-entry-2">Usage</a></li>
+<li><a class="reference internal" href="#api-reference" id="toc-entry-3">API Reference</a><ul>
+<li><a class="reference internal" href="#rest-api-endpoints" id="toc-entry-4">REST API Endpoints</a></li>
+<li><a class="reference internal" href="#authentication" id="toc-entry-5">Authentication</a></li>
+<li><a class="reference internal" href="#pagination" id="toc-entry-6">Pagination</a></li>
+<li><a class="reference internal" href="#filtering" id="toc-entry-7">Filtering</a></li>
+<li><a class="reference internal" href="#sorting" id="toc-entry-8">Sorting</a></li>
+<li><a class="reference internal" href="#field-selection" id="toc-entry-9">Field Selection</a></li>
+<li><a class="reference internal" href="#response-format" id="toc-entry-10">Response Format</a><ul>
+<li><a class="reference internal" href="#success-200" id="toc-entry-11">Success (200)</a></li>
+<li><a class="reference internal" href="#error" id="toc-entry-12">Error</a></li>
+<li><a class="reference internal" href="#http-status-codes" id="toc-entry-13">HTTP Status Codes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#rate-limiting" id="toc-entry-14">Rate Limiting</a></li>
+<li><a class="reference internal" href="#webhook-payload" id="toc-entry-15">Webhook Payload</a><ul>
+<li><a class="reference internal" href="#headers" id="toc-entry-16">Headers</a></li>
+<li><a class="reference internal" href="#deduplication" id="toc-entry-17">Deduplication</a></li>
+<li><a class="reference internal" href="#signature-verification" id="toc-entry-18">Signature Verification</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#async-support-queue-job" id="toc-entry-19">Async Support (queue_job)</a></li>
+<li><a class="reference internal" href="#log-autovacuum" id="toc-entry-20">Log Autovacuum</a><ul>
+<li><a class="reference internal" href="#configuration-1" id="toc-entry-21">Configuration</a></li>
+<li><a class="reference internal" href="#activation" id="toc-entry-22">Activation</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#example-curl-commands" id="toc-entry-23">Example curl Commands</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#bug-tracker" id="toc-entry-24">Bug Tracker</a></li>
+<li><a class="reference internal" href="#credits" id="toc-entry-25">Credits</a><ul>
+<li><a class="reference internal" href="#authors" id="toc-entry-26">Authors</a></li>
+<li><a class="reference internal" href="#contributors" id="toc-entry-27">Contributors</a></li>
+<li><a class="reference internal" href="#maintainers" id="toc-entry-28">Maintainers</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="configuration">
+<h1><a class="toc-backref" href="#toc-entry-1">Configuration</a></h1>
+<p><strong>Creating an Export Schema:</strong></p>
+<ol class="arabic simple">
+<li>Navigate to <strong>JSON Export Engine &gt; Configuration &gt; Export Schemas</strong>.</li>
+<li>Create a new schema:<ul>
+<li>Select the target model (e.g., <tt class="docutils literal">res.partner</tt>,
+<tt class="docutils literal">product.product</tt>)</li>
+<li>Click <strong>Select Fields to Export</strong> to interactively choose fields
+(including nested relational fields)</li>
+<li>Optionally set a domain filter to limit which records are exported</li>
+<li>Configure options: record limit, whether to include the record ID,
+and preview count</li>
+</ul>
+</li>
+<li>Click <strong>Refresh Preview</strong> to see sample JSON output.</li>
+<li>Check the <strong>JSON Schema</strong> tab to see the auto-generated JSON Schema
+(draft-07) describing the structure of the exported data.</li>
+</ol>
+<p><strong>REST Endpoints:</strong></p>
+<ol class="arabic">
+<li><p class="first">In the schema form, go to the <strong>Endpoints</strong> tab.</p>
+</li>
+<li><p class="first">Add an endpoint with a route path (e.g., <tt class="docutils literal">partners</tt>).</p>
+</li>
+<li><p class="first">Choose authentication type:</p>
+<ul class="simple">
+<li><strong>API Key</strong>: A key is auto-generated when you select this option.
+Use the copy button to grab it. Pass via the <tt class="docutils literal"><span class="pre">X-API-Key</span></tt> HTTP
+header.</li>
+<li><strong>Session (Logged-in User)</strong>: Uses Odoo’s session cookie.</li>
+<li><strong>No Authentication</strong>: Open access (use with caution).</li>
+</ul>
+</li>
+<li><p class="first">Two URLs are generated for each endpoint:</p>
+<ul class="simple">
+<li><strong>Data URL</strong>: <tt class="docutils literal"><span class="pre">https://your-odoo.com/api/json_export/partners</span></tt>
+returns JSON data</li>
+<li><strong>Schema URL</strong>:
+<tt class="docutils literal"><span class="pre">https://your-odoo.com/api/json_export/partners/schema</span></tt> returns
+the full API response schema (JSON Schema draft-07)</li>
+</ul>
+</li>
+<li><p class="first"><strong>Pagination</strong> is controlled from the endpoint settings:</p>
+<ul class="simple">
+<li>Enable <strong>Paginate</strong> and set <strong>Page Size</strong> to split results into
+pages. Navigate with <tt class="docutils literal"><span class="pre">?page=2</span></tt> or <tt class="docutils literal"><span class="pre">?page=last</span></tt>.</li>
+<li>Disable <strong>Paginate</strong> to return all records in a single response.</li>
+<li>The response includes navigation links (<tt class="docutils literal">first</tt>, <tt class="docutils literal">last</tt>,
+<tt class="docutils literal">next</tt>, <tt class="docutils literal">prev</tt>) when pagination is enabled.</li>
+</ul>
+</li>
+<li><p class="first">Example call with API key:</p>
+<pre class="literal-block">
+curl -H &quot;X-API-Key: &lt;your-key&gt;&quot; https://your-odoo.com/api/json_export/partners
+</pre>
+</li>
+</ol>
+<p><strong>Webhooks:</strong></p>
+<ol class="arabic simple">
+<li>In the schema form, go to the <strong>Webhooks</strong> tab.</li>
+<li>Add a webhook with a destination URL.</li>
+<li>Select which events trigger the webhook (create, write, delete).</li>
+<li>Optionally set a secret key for HMAC-SHA256 payload signing.</li>
+<li>Add custom headers if the receiving system requires them.</li>
+</ol>
+<p><strong>Scheduled Exports:</strong></p>
+<ol class="arabic simple">
+<li>In the schema form, go to the <strong>Schedules</strong> tab.</li>
+<li>Add a schedule with the desired interval.</li>
+<li>Choose the output format (JSON or JSON Lines) and destination (Odoo
+attachment or HTTP POST).</li>
+<li>Enable <strong>Incremental</strong> to only export records changed since the last
+run.</li>
+</ol>
+</div>
+<div class="section" id="usage">
+<h1><a class="toc-backref" href="#toc-entry-2">Usage</a></h1>
+</div>
+<div class="section" id="api-reference">
+<h1><a class="toc-backref" href="#toc-entry-3">API Reference</a></h1>
+<div class="section" id="rest-api-endpoints">
+<h2><a class="toc-backref" href="#toc-entry-4">REST API Endpoints</a></h2>
+<p>Each configured endpoint exposes two URLs:</p>
+<ul class="simple">
+<li><strong>Data URL</strong>: <tt class="docutils literal">GET <span class="pre">/api/json_export/&lt;route_path&gt;</span></tt></li>
+<li><strong>Schema URL</strong>: <tt class="docutils literal">GET <span class="pre">/api/json_export/&lt;route_path&gt;/schema</span></tt></li>
+</ul>
+</div>
+<div class="section" id="authentication">
+<h2><a class="toc-backref" href="#toc-entry-5">Authentication</a></h2>
+<p>Three authentication modes are supported per endpoint:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="36%" />
+<col width="43%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Mode</th>
+<th class="head">Header</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><tt class="docutils literal">none</tt></td>
+<td>—</td>
+<td>No authentication
+required</td>
+</tr>
+<tr><td><tt class="docutils literal">api_key</tt></td>
+<td><tt class="docutils literal"><span class="pre">X-API-Key:</span> &lt;key&gt;</tt></td>
+<td>API key validated via
+constant-time comparison</td>
+</tr>
+<tr><td><tt class="docutils literal">user</tt></td>
+<td>Session cookie</td>
+<td>Requires an active Odoo
+user session</td>
+</tr>
+</tbody>
+</table>
+<pre class="code bash literal-block">
+<span class="c1"># API Key example
+</span>curl<span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;X-API-Key: YOUR_KEY&quot;</span><span class="w"> </span>https://odoo.example.com/api/json_export/products
+</pre>
+</div>
+<div class="section" id="pagination">
+<h2><a class="toc-backref" href="#toc-entry-6">Pagination</a></h2>
+<p>Paginated endpoints return results in pages. Control pagination with
+query parameters:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="32%" />
+<col width="48%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Parameter</th>
+<th class="head">Example</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><tt class="docutils literal">page</tt></td>
+<td><tt class="docutils literal"><span class="pre">?page=2</span></tt></td>
+<td>Page number (1-based)</td>
+</tr>
+<tr><td><tt class="docutils literal">page</tt></td>
+<td><tt class="docutils literal"><span class="pre">?page=last</span></tt></td>
+<td>Jump to the last page</td>
+</tr>
+</tbody>
+</table>
+<p>The response includes a <tt class="docutils literal">pagination</tt> object with navigation links:</p>
+<pre class="code json literal-block">
+<span class="p">{</span><span class="w">
+  </span><span class="nt">&quot;pagination&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">&quot;page&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">&quot;page_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w">
+    </span><span class="nt">&quot;total&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">243</span><span class="p">,</span><span class="w">
+    </span><span class="nt">&quot;pages&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+    </span><span class="nt">&quot;first&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/api/json_export/products?page=1&quot;</span><span class="p">,</span><span class="w">
+    </span><span class="nt">&quot;last&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/api/json_export/products?page=5&quot;</span><span class="p">,</span><span class="w">
+    </span><span class="nt">&quot;next&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/api/json_export/products?page=2&quot;</span><span class="p">,</span><span class="w">
+    </span><span class="nt">&quot;prev&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span>
+</pre>
+</div>
+<div class="section" id="filtering">
+<h2><a class="toc-backref" href="#toc-entry-7">Filtering</a></h2>
+<p>When <tt class="docutils literal">allow_filtering</tt> is enabled on the endpoint, use
+<tt class="docutils literal"><span class="pre">?filter[field][operator]=value</span></tt> query parameters. Multiple filters
+compose with AND logic.</p>
+<p><strong>Supported operators:</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="23%" />
+<col width="62%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Operator</th>
+<th class="head">SQL equivalent</th>
+<th class="head">Example</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><tt class="docutils literal">eq</tt></td>
+<td><tt class="docutils literal">=</tt></td>
+<td><tt class="docutils literal"><span class="pre">?filter[name][eq]=Acme</span></tt></td>
+</tr>
+<tr><td><tt class="docutils literal">ne</tt></td>
+<td><tt class="docutils literal">!=</tt></td>
+<td><tt class="docutils literal"><span class="pre">?filter[status][ne]=draft</span></tt></td>
+</tr>
+<tr><td><tt class="docutils literal">like</tt></td>
+<td><tt class="docutils literal">like</tt></td>
+<td><tt class="docutils literal"><span class="pre">?filter[name][like]=Acme%</span></tt></td>
+</tr>
+<tr><td><tt class="docutils literal">ilike</tt></td>
+<td><tt class="docutils literal">ilike</tt></td>
+<td><tt class="docutils literal"><span class="pre">?filter[name][ilike]=acme</span></tt></td>
+</tr>
+<tr><td><tt class="docutils literal">gt</tt></td>
+<td><tt class="docutils literal">&gt;</tt></td>
+<td><tt class="docutils literal"><span class="pre">?filter[amount][gt]=100</span></tt></td>
+</tr>
+<tr><td><tt class="docutils literal">gte</tt></td>
+<td><tt class="docutils literal">&gt;=</tt></td>
+<td><tt class="docutils literal"><span class="pre">?filter[amount][gte]=100</span></tt></td>
+</tr>
+<tr><td><tt class="docutils literal">lt</tt></td>
+<td><tt class="docutils literal">&lt;</tt></td>
+<td><tt class="docutils literal"><span class="pre">?filter[amount][lt]=500</span></tt></td>
+</tr>
+<tr><td><tt class="docutils literal">lte</tt></td>
+<td><tt class="docutils literal">&lt;=</tt></td>
+<td><tt class="docutils literal"><span class="pre">?filter[amount][lte]=500</span></tt></td>
+</tr>
+<tr><td><tt class="docutils literal">in</tt></td>
+<td><tt class="docutils literal">in</tt></td>
+<td><tt class="docutils literal"><span class="pre">?filter[state][in]=draft,confirmed</span></tt></td>
+</tr>
+</tbody>
+</table>
+<p>Only fields included in the export schema parser can be used for
+filtering. Attempting to filter on other fields returns a 400 error.</p>
+<pre class="code bash literal-block">
+curl<span class="w"> </span><span class="s2">&quot;https://odoo.example.com/api/json_export/products?filter[name][ilike]=widget&amp;filter[qty][gt]=0&quot;</span>
+</pre>
+</div>
+<div class="section" id="sorting">
+<h2><a class="toc-backref" href="#toc-entry-8">Sorting</a></h2>
+<p>When <tt class="docutils literal">allow_sorting</tt> is enabled, use <tt class="docutils literal"><span class="pre">?sort=field1,-field2</span></tt> to
+control the order. Prefix a field name with <tt class="docutils literal">-</tt> for descending order.</p>
+<pre class="code bash literal-block">
+curl<span class="w"> </span><span class="s2">&quot;https://odoo.example.com/api/json_export/products?sort=-create_date,name&quot;</span>
+</pre>
+</div>
+<div class="section" id="field-selection">
+<h2><a class="toc-backref" href="#toc-entry-9">Field Selection</a></h2>
+<p>When <tt class="docutils literal">allow_field_selection</tt> is enabled, use <tt class="docutils literal"><span class="pre">?fields=field1,field2</span></tt>
+to return only a subset of fields. Requesting a field not in the schema
+parser returns a 400 error.</p>
+<pre class="code bash literal-block">
+curl<span class="w"> </span><span class="s2">&quot;https://odoo.example.com/api/json_export/products?fields=id,name,price&quot;</span>
+</pre>
+</div>
+<div class="section" id="response-format">
+<h2><a class="toc-backref" href="#toc-entry-10">Response Format</a></h2>
+<div class="section" id="success-200">
+<h3><a class="toc-backref" href="#toc-entry-11">Success (200)</a></h3>
+<pre class="code json literal-block">
+<span class="p">{</span><span class="w">
+  </span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">],</span><span class="w">
+  </span><span class="nt">&quot;pagination&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">},</span><span class="w">
+  </span><span class="nt">&quot;meta&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">&quot;schema&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Products&quot;</span><span class="p">,</span><span class="w">
+    </span><span class="nt">&quot;model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;product.template&quot;</span><span class="p">,</span><span class="w">
+    </span><span class="nt">&quot;duration_ms&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span>
+</pre>
+</div>
+<div class="section" id="error">
+<h3><a class="toc-backref" href="#toc-entry-12">Error</a></h3>
+<pre class="code json literal-block">
+<span class="p">{</span><span class="w">
+  </span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nt">&quot;error&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span><span class="w">
+    </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Field 'password' is not allowed for filtering.&quot;</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span>
+</pre>
+</div>
+<div class="section" id="http-status-codes">
+<h3><a class="toc-backref" href="#toc-entry-13">HTTP Status Codes</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="7%" />
+<col width="93%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Code</th>
+<th class="head">Meaning</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>200</td>
+<td>Success</td>
+</tr>
+<tr><td>400</td>
+<td>Bad request (invalid filter, sort, or fields parameter)</td>
+</tr>
+<tr><td>401</td>
+<td>Unauthorized (missing or invalid credentials)</td>
+</tr>
+<tr><td>404</td>
+<td>Endpoint not found</td>
+</tr>
+<tr><td>429</td>
+<td>Rate limit exceeded</td>
+</tr>
+<tr><td>500</td>
+<td>Internal server error</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="rate-limiting">
+<h2><a class="toc-backref" href="#toc-entry-14">Rate Limiting</a></h2>
+<p>When <tt class="docutils literal">rate_limit</tt> is enabled on an endpoint, the server enforces a
+sliding-window rate limit per client IP address.</p>
+<ul class="simple">
+<li><strong>``rate_limit_count``</strong> — maximum requests allowed per window
+(default: 60)</li>
+<li><strong>``rate_limit_window``</strong> — window duration in seconds (default: 60)</li>
+</ul>
+<p>When the limit is exceeded, the API returns:</p>
+<pre class="literal-block">
+HTTP/1.1 429 Too Many Requests
+Retry-After: 12
+Content-Type: application/json
+
+{&quot;success&quot;: false, &quot;error&quot;: {&quot;code&quot;: 429, &quot;message&quot;: &quot;Rate limit exceeded. Try again later.&quot;}}
+</pre>
+<p><strong>Limitation:</strong> The rate limit store is in-memory per worker process. In
+a multi-process deployment, each worker tracks limits independently. For
+strict global rate limiting, use a reverse proxy (e.g., nginx
+<tt class="docutils literal">limit_req</tt>).</p>
+</div>
+<div class="section" id="webhook-payload">
+<h2><a class="toc-backref" href="#toc-entry-15">Webhook Payload</a></h2>
+<p>When a webhook fires, it sends a POST request with the following
+structure:</p>
+<pre class="code json literal-block">
+<span class="p">{</span><span class="w">
+  </span><span class="nt">&quot;event&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;create&quot;</span><span class="p">,</span><span class="w">
+  </span><span class="nt">&quot;model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;res.partner&quot;</span><span class="p">,</span><span class="w">
+  </span><span class="nt">&quot;schema&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Partners&quot;</span><span class="p">,</span><span class="w">
+  </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-01-15T10:30:00&quot;</span><span class="p">,</span><span class="w">
+  </span><span class="nt">&quot;delivery_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;a1b2c3d4-e5f6-7890-abcd-ef1234567890&quot;</span><span class="p">,</span><span class="w">
+  </span><span class="nt">&quot;records&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span>
+</pre>
+<div class="section" id="headers">
+<h3><a class="toc-backref" href="#toc-entry-16">Headers</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="37%" />
+<col width="63%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Header</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><tt class="docutils literal"><span class="pre">Content-Type</span></tt></td>
+<td><tt class="docutils literal">application/json</tt></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">X-Delivery-ID</span></tt></td>
+<td>Unique UUID for deduplication — same
+across retries</td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">X-Webhook-Signature</span></tt></td>
+<td>HMAC-SHA256 hex digest (when
+<tt class="docutils literal">secret_key</tt> is set)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="deduplication">
+<h3><a class="toc-backref" href="#toc-entry-17">Deduplication</a></h3>
+<p>Each webhook delivery is assigned a unique <tt class="docutils literal">delivery_id</tt> (UUID v4).
+This ID is included both in the JSON payload and as the
+<tt class="docutils literal"><span class="pre">X-Delivery-ID</span></tt> HTTP header. The same <tt class="docutils literal">delivery_id</tt> is preserved
+across all retry attempts, allowing consumers to detect and discard
+duplicate deliveries.</p>
+</div>
+<div class="section" id="signature-verification">
+<h3><a class="toc-backref" href="#toc-entry-18">Signature Verification</a></h3>
+<p>When a <tt class="docutils literal">secret_key</tt> is configured, verify the signature:</p>
+<pre class="code python literal-block">
+<span class="kn">import</span><span class="w"> </span><span class="nn">hmac</span><span class="o">,</span><span class="w"> </span><span class="nn">hashlib</span><span class="w">
+
+</span><span class="n">expected</span> <span class="o">=</span> <span class="n">hmac</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="w">
+</span>    <span class="n">secret_key</span><span class="o">.</span><span class="n">encode</span><span class="p">(),</span><span class="w">
+</span>    <span class="n">request_body</span><span class="p">,</span><span class="w">
+</span>    <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">,</span><span class="w">
+</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span><span class="w">
+
+</span><span class="k">assert</span> <span class="n">hmac</span><span class="o">.</span><span class="n">compare_digest</span><span class="p">(</span><span class="n">expected</span><span class="p">,</span> <span class="n">request</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s2">&quot;X-Webhook-Signature&quot;</span><span class="p">])</span>
+</pre>
+</div>
+</div>
+<div class="section" id="async-support-queue-job">
+<h2><a class="toc-backref" href="#toc-entry-19">Async Support (queue_job)</a></h2>
+<p>When the <tt class="docutils literal">queue_job</tt> module is installed, webhook deliveries and
+scheduled exports can be processed asynchronously via background jobs.</p>
+<ul class="simple">
+<li><strong>Webhooks</strong>: Enable <tt class="docutils literal">async_delivery</tt> on a webhook record.
+Deliveries will be enqueued via <tt class="docutils literal">with_delay()</tt> instead of executing
+inline.</li>
+<li><strong>Schedules</strong>: Enable <tt class="docutils literal">async_export</tt> on a schedule record. The cron
+entry point will enqueue <tt class="docutils literal">_run_scheduled_export()</tt> as a background
+job.</li>
+</ul>
+<p>When <tt class="docutils literal">queue_job</tt> is <strong>not</strong> installed, these flags have no effect and
+processing falls back to synchronous execution.</p>
+</div>
+<div class="section" id="log-autovacuum">
+<h2><a class="toc-backref" href="#toc-entry-20">Log Autovacuum</a></h2>
+<p>Export log entries accumulate over time. The module includes an
+autovacuum mechanism to clean up old records.</p>
+<div class="section" id="configuration-1">
+<h3><a class="toc-backref" href="#toc-entry-21">Configuration</a></h3>
+<p>Set the retention period via the system parameter:</p>
+<pre class="literal-block">
+json_export_engine.log_retention_days = 90
+</pre>
+<p>The default retention is <strong>90 days</strong>.</p>
+</div>
+<div class="section" id="activation">
+<h3><a class="toc-backref" href="#toc-entry-22">Activation</a></h3>
+<p>The autovacuum cron job (<tt class="docutils literal">JSON Export: Log Autovacuum</tt>) is <strong>inactive
+by default</strong>. To enable it:</p>
+<ol class="arabic simple">
+<li>Go to <strong>Settings &gt; Technical &gt; Automation &gt; Scheduled Actions</strong></li>
+<li>Find <em>JSON Export: Log Autovacuum</em></li>
+<li>Set it to <strong>Active</strong></li>
+</ol>
+<p>The cron runs daily and deletes log entries older than the configured
+retention period in batches.</p>
+</div>
+</div>
+<div class="section" id="example-curl-commands">
+<h2><a class="toc-backref" href="#toc-entry-23">Example curl Commands</a></h2>
+<pre class="code bash literal-block">
+<span class="c1"># List all partners (no auth)
+</span>curl<span class="w"> </span>https://odoo.example.com/api/json_export/demo-partners<span class="w">
+
+</span><span class="c1"># With API key
+</span>curl<span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;X-API-Key: abc123&quot;</span><span class="w"> </span>https://odoo.example.com/api/json_export/products<span class="w">
+
+</span><span class="c1"># Page 2
+</span>curl<span class="w"> </span><span class="s2">&quot;https://odoo.example.com/api/json_export/demo-partners?page=2&quot;</span><span class="w">
+
+</span><span class="c1"># Filter + sort + field selection
+</span>curl<span class="w"> </span><span class="s2">&quot;https://odoo.example.com/api/json_export/demo-partners?filter[name][ilike]=acme&amp;sort=-name&amp;fields=id,name,email&quot;</span><span class="w">
+
+</span><span class="c1"># Get JSON schema
+</span>curl<span class="w"> </span>https://odoo.example.com/api/json_export/demo-partners/schema
+</pre>
+</div>
+</div>
+<div class="section" id="bug-tracker">
+<h1><a class="toc-backref" href="#toc-entry-24">Bug Tracker</a></h1>
+<p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/server-tools/issues">GitHub Issues</a>.
+In case of trouble, please check there if your issue has already been reported.
+If you spotted it first, help us to smash it by providing a detailed and welcomed
+<a class="reference external" href="https://github.com/OCA/server-tools/issues/new?body=module:%20json_export_engine%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+<p>Do not contact contributors directly about support or help with technical issues.</p>
+</div>
+<div class="section" id="credits">
+<h1><a class="toc-backref" href="#toc-entry-25">Credits</a></h1>
+<div class="section" id="authors">
+<h2><a class="toc-backref" href="#toc-entry-26">Authors</a></h2>
+<ul class="simple">
+<li>kobros-tech</li>
+</ul>
+</div>
+<div class="section" id="contributors">
+<h2><a class="toc-backref" href="#toc-entry-27">Contributors</a></h2>
+<ul class="simple">
+<li>Mohamed Alkobrosli <a class="reference external" href="mailto:mohamed&#64;kobros-tech.com">mohamed&#64;kobros-tech.com</a>
+(<a class="reference external" href="https://kobros-tech.com/">Kobros-Tech</a>)</li>
+</ul>
+</div>
+<div class="section" id="maintainers">
+<h2><a class="toc-backref" href="#toc-entry-28">Maintainers</a></h2>
+<p>This module is maintained by the OCA.</p>
+<a class="reference external image-reference" href="https://odoo-community.org">
+<img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" />
+</a>
+<p>OCA, or the Odoo Community Association, is a nonprofit organization whose
+mission is to support the collaborative development of Odoo features and
+promote its widespread use.</p>
+<p>Current <a class="reference external" href="https://odoo-community.org/page/maintainer-role">maintainer</a>:</p>
+<p><a class="reference external image-reference" href="https://github.com/kobros-tech"><img alt="kobros-tech" src="https://github.com/kobros-tech.png?size=40px" /></a></p>
+<p>This module is part of the <a class="reference external" href="https://github.com/OCA/server-tools/tree/18.0/json_export_engine">OCA/server-tools</a> project on GitHub.</p>
+<p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
+</div>
+</div>
+</div>
+</body>
+</html>
