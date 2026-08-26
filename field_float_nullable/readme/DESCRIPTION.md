@@ -1,0 +1,1 @@
+This addon provides a new field float (floatNullable) that supports NULL values instead of defaulting to 0.0.
