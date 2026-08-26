@@ -1,0 +1,41 @@
+<odoo>
+    <record id="base_notification_rule_demo" model="base.notification.rule">
+        <field name="name">Demo: Notify on Partner Update</field>
+        <field name="model_id" ref="base.model_res_partner" />
+        <field name="trigger">on_write</field>
+        <field name="active">True</field>
+        <field name="notify_mode">immediate</field>
+        <field name="message_type">email</field>
+        <field name="partner_ids" eval="[(4, ref('base.user_admin'))]" />
+        <field name="domain">[]</field>
+        <field name="python_code">
+# Available variables:
+#  - env: Odoo Environment on which the action is triggered
+#  - model: Odoo Model of the record on which the action is triggered; is a void recordset
+#  - rule: base.notification.rule record; may be void
+#  - record: record on which the action is triggered; may be void
+#  - records: recordset of all records on which the action is triggered in multi-mode; may be void
+#  - time, datetime, dateutil, timezone: useful Python libraries
+#  - float_compare: Odoo function to compare floats based on specific precisions
+#  - log: log(message, level='info'): logging function to record debug information in ir.logging table
+#  - UserError: Warning Exception to use with raise
+#  - Command: x2Many commands namespace
+
+# To return partners, assign: partners = env['res.partner'].browse(3)
+# To return a message, assign: message = "foo"
+
+
+partners = record.write_uid.partner_id
+record_ids_str = ", ".join(map(str, records.ids))
+message = _(
+    "Event: %s for model: %s (IDs: %s) was triggered"
+) % (
+    self.trigger,
+    records._description,
+    record_ids_str,
+)
+log(message, level='info')
+
+        </field>
+    </record>
+</odoo>
