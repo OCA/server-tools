@@ -70,6 +70,7 @@ class ThrowAwayCache:
     ]
 
     def __init__(self, env):
+        self._env = env
         self._transaction = env.transaction
 
     def __enter__(self):
@@ -80,6 +81,12 @@ class ThrowAwayCache:
         to the cursor, so if we want to keep using the same cursor, we need to
         patch out these properties.
         """
+        # Flush any pending updates and recomputations first. If the cache is
+        # set aside while recomputations of stored computed fields are still
+        # pending, they end up being consumed after the swap/read/restore
+        # cycle without ever being persisted, leaving NULL columns in the
+        # database (see OCA/server-tools#3635).
+        self._env.flush_all()
         for attribute in self.transaction_attributes:
             instance = getattr(self._transaction, attribute)
             setattr(
