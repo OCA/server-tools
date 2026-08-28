@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright 2024 jesanmor - Jesús Sánchez <jesanmor.dev@gmail.com>
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+ -->
+<templates>
+    <t t-name="ShowServerActionInputBoxTemplate">
+        <div class="o_show_server_action_input_box_main">
+            <strong>
+                <p class="server-record-name" />
+            </strong>
+            <div class="single-edition-checkbox">
+                <input type="checkbox" id="singleEditionCheckbox" class="o_input" />
+                <label for="singleEditionCheckbox">Individual Editing</label>
+            </div>
+            <style>
+            .modal-lg{
+                max-width: 650px;
+            }
+            .o_show_server_action_input_box_main{
+                padding: 15px;
+            }
+        </style>
+            <div class="o_show_server_action_input_box" />
+            <div>
+                <button
+                    class="btn-primary"
+                    t-on-click="_onAcceptButtonClick"
+                >Accept</button>
+                <button
+                    class="btn-secondary"
+                    t-on-click="_onCancelButtonClick"
+                >Cancel</button>
+            </div>
+        </div>
+    </t>
+</templates>
