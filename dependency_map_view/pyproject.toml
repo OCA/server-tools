@@ -1,0 +1,7 @@
+[build-system]
+requires = ["whool"]
+build-backend = "whool.buildapi"
+
+[tool.whool]
+addons-dirs = ["."]
+depends = ["odoo-addons-oca-web"]

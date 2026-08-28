@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_dependency_map_default" model="ir.ui.view">
+        <field name="name">dependency.map.default</field>
+        <field name="model">base</field>
+        <field name="type">dependency_map</field>
+        <field name="arch" type="xml">
+            <dependency_map />
+        </field>
+    </record>
+</odoo>

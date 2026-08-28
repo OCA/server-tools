@@ -1,0 +1,178 @@
+.o_dependency_map_view {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.o_dependency_map_container {
+    flex: 1;
+    display: flex;
+    background: #ecf0f1;
+    overflow: hidden;
+}
+
+.o_map_sidebar {
+    width: 280px;
+    background: white;
+    border-right: 2px solid #bdc3c7;
+    display: flex;
+    flex-direction: column;
+    
+    .sidebar_header {
+        padding: 15px;
+        border-bottom: 2px solid #ecf0f1;
+        background: #f8f9fa;
+        
+        h5 {
+            margin: 0;
+            font-size: 15px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+    }
+    
+    .sidebar_content {
+        flex: 1;
+        overflow-y: auto;
+        
+        .record_item {
+            padding: 10px 15px;
+            cursor: pointer;
+            border-bottom: 1px solid #ecf0f1;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            
+            &:hover {
+                background: #f8f9fa;
+            }
+            
+            &.active {
+                background: #3498db;
+                color: white;
+                font-weight: 500;
+                
+                i {
+                    color: white;
+                }
+            }
+            
+            i {
+                color: #95a5a6;
+                font-size: 8px;
+            }
+            
+            span {
+                flex: 1;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+        }
+    }
+}
+
+.o_map_content {
+    flex: 1;
+    position: relative;
+    background: #f5f7fa;
+    background-image: 
+        linear-gradient(rgba(200, 200, 200, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(200, 200, 200, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+.o_map_toolbar {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    z-index: 10;
+    display: flex;
+    gap: 10px;
+    
+    .btn {
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        
+        &.active {
+            background: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+    }
+}
+
+.o_map_legend {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    z-index: 10;
+    min-width: 200px;
+    
+    h6 {
+        margin: 0 0 10px 0;
+        font-size: 13px;
+        font-weight: 600;
+        color: #2c3e50;
+    }
+    
+    .legend_item {
+        display: flex;
+        align-items: center;
+        margin: 8px 0;
+        font-size: 12px;
+        
+        .legend_dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            margin-right: 8px;
+            border: 2px solid rgba(0,0,0,0.2);
+        }
+    }
+    
+    hr {
+        margin: 10px 0;
+    }
+    
+    small {
+        display: block;
+        line-height: 1.6;
+    }
+}
+
+.o_map_canvas {
+    width: 100%;
+    height: 100%;
+    
+    // Override vis.js default styles for cleaner look
+    canvas {
+        outline: none !important;
+    }
+}
+
+.o_map_empty {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #95a5a6;
+    
+    i {
+        color: #bdc3c7;
+    }
+    
+    h4 {
+        color: #7f8c8d;
+        margin-bottom: 10px;
+    }
+    
+    p {
+        color: #95a5a6;
+        font-size: 14px;
+    }
+}
