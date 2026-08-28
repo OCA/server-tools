@@ -799,3 +799,74 @@ class AuditlogFast_excluded_fields(AuditLogRuleCommon):
                 ]
             )
         )
+
+
+class TestAuditlogRecursion(AuditLogRuleCommon):
+    """Verify that re-entrant write calls caused by compute/inverse methods
+    do not produce a RecursionError when auditlog is active."""
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.partner_model_id = cls.env.ref("base.model_res_partner").id
+        cls.partner_rule_full = cls.env["auditlog.rule"].create(
+            {
+                "name": "testrule for partner full",
+                "model_id": cls.partner_model_id,
+                "log_create": True,
+                "log_write": True,
+                "log_type": "full",
+            }
+        )
+        cls.partner_rule_fast = cls.env["auditlog.rule"].create(
+            {
+                "name": "testrule for partner fast",
+                "model_id": cls.partner_model_id,
+                "log_create": True,
+                "log_write": True,
+                "log_type": "fast",
+            }
+        )
+
+    def _make_company_with_child(self):
+        company = self.env["res.partner"].create(
+            {"name": "Test Company", "is_company": True, "street": "1 Old St"}
+        )
+        child = self.env["res.partner"].create(
+            {"name": "Test Contact", "parent_id": company.id, "type": "contact"}
+        )
+        return company, child
+
+    def test_no_recursion_write_full_reentrant(self):
+        """write_full must not recurse when auditlog_disabled is already set.
+
+        Simulate a compute/inverse method calling write() on an audited model
+        while already inside an auditlog write call (auditlog_disabled=True).
+        """
+        self.partner_rule_full.subscribe()
+        company, child = self._make_company_with_child()
+        # Writing company address triggers _fields_sync which writes to child.
+        # Both are audited — without the guard this re-enters write_full.
+        company.write({"street": "2 New St"})
+        self.assertEqual(child.street, "2 New St")
+
+    def test_no_recursion_write_fast_reentrant(self):
+        """write_fast must not recurse when auditlog_disabled is already set."""
+        self.partner_rule_fast.subscribe()
+        company, child = self._make_company_with_child()
+        company.write({"street": "3 Fast St"})
+        self.assertEqual(child.street, "3 Fast St")
+
+    def test_write_full_guard_skips_logging(self):
+        """write_full early-exit must skip logging when auditlog_disabled is set."""
+        self.partner_rule_full.subscribe()
+        partner = self.env["res.partner"].create({"name": "Guard Test Partner"})
+        log_count_before = self.env["auditlog.log"].search_count(
+            [("model_id", "=", self.partner_model_id), ("res_id", "=", partner.id)]
+        )
+        partner.with_context(auditlog_disabled=True).write({"name": "Guard Updated"})
+        log_count_after = self.env["auditlog.log"].search_count(
+            [("model_id", "=", self.partner_model_id), ("res_id", "=", partner.id)]
+        )
+        self.assertEqual(log_count_before, log_count_after)
+        self.assertEqual(partner.name, "Guard Updated")

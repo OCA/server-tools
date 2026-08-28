@@ -442,6 +442,8 @@ class AuditlogRule(models.Model):
         users_to_exclude = self.mapped("users_to_exclude_ids")
 
         def write_full(self, vals, **kwargs):
+            if self.env.context.get("auditlog_disabled"):
+                return write_full.origin(self, vals, **kwargs)
             self = self.with_context(auditlog_disabled=True)
             rule_model = self.env["auditlog.rule"]
             fields_list = rule_model.get_auditlog_fields(self)
@@ -478,6 +480,8 @@ class AuditlogRule(models.Model):
             return result
 
         def write_fast(self, vals, **kwargs):
+            if self.env.context.get("auditlog_disabled"):
+                return write_fast.origin(self, vals, **kwargs)
             self = self.with_context(auditlog_disabled=True)
             rule_model = self.env["auditlog.rule"]
             # Log the user input only, no matter if the `vals` is updated
