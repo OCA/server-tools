@@ -27,6 +27,17 @@ class DbBackup(models.Model):
 
     responsible_id = fields.Many2one("res.users", help="User to be notified.")
 
+    folder = fields.Char(required=False, default=False)
+
+    @api.constrains("method", "folder")
+    def _check_folder_required_for_method(self):
+        """folder is only required for local and sftp methods, not fs_file."""
+        for record in self:
+            if record.method and record.method != "fs_file" and not record.folder:
+                raise ValidationError(
+                    _("Folder is required for local and SFTP backup methods.")
+                )
+
     @api.model
     def _get_fs_storage(self):
         """Get the fs_storage to be used for fs_file backups."""
@@ -63,6 +74,7 @@ class DbBackup(models.Model):
     def action_backup(self):
         """Override the action_backup method to add the fs_file method."""
         fs_backups = self.filtered(lambda it: it.method == "fs_file")
+        successful_fs = self.browse()
         dbname = self.env.cr.dbname
         for fs_backup in fs_backups:
             with fs_backup.backup_log():
@@ -103,7 +115,9 @@ class DbBackup(models.Model):
                         summary=_("Database backup is ready to download."),
                         user_id=user_to_notify.id,
                     )
+                successful_fs |= fs_backup
         res = super().action_backup()
+        successful_fs.cleanup()
         return res
 
     def action_open_fs_backups_view(self):
@@ -115,14 +129,18 @@ class DbBackup(models.Model):
         return action
 
     def cleanup(self):
-        """Extend cleanup to fs_file backups."""
+        """Extend cleanup to fs_file backups.
+
+        Physical file removal is handled by the fs_attachment GC stack:
+        unlink() on db.backup.fs.file cascades to ir.attachment.unlink(),
+        which marks the file in fs.file.gc for deferred deletion by the
+        autovacuum job.
+        """
         for db_backup_conf in self.filtered(
             lambda record: record.method == "fs_file" and record.days_to_keep
         ):
             with db_backup_conf.cleanup_log():
                 to_delete = db_backup_conf.fs_file_backup_ids.filtered("is_expired")
-                for backup in to_delete:
-                    self._get_fs_storage().fs.rm_file(backup.get_fs_storage_filename())
                 to_delete.unlink()
         res = super().cleanup()
         return res
