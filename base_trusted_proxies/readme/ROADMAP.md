@@ -1,0 +1,2 @@
+- Attention, setting `ODOO_TRUSTED_PROXIES` to a value higher than the actual number of trusted proxies allows IP Spoofing.
+- Add a special value reserved to mean that all the proxies are trusted.
