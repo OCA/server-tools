@@ -1,0 +1,28 @@
+@font-face {
+    font-family: "FontAwesome";
+    src:
+        url("../../lib/fontawesome-6.7.2/webfonts/fa-solid-900.woff2?v=6.7.2")
+            format("woff2"),
+        url("../../lib/fontawesome-6.7.2/webfonts/fa-solid-900.ttf?v=6.7.2")
+            format("truetype"),
+        url("../../lib/fontawesome-6.7.2/webfonts/fa-brands-400.woff2?v=6.7.2")
+            format("woff2"),
+        url("../../lib/fontawesome-6.7.2/webfonts/fa-brands-400.ttf?v=6.7.2")
+            format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
+:root,
+:host {
+    --fa-style-family: "FontAwesome";
+}
+
+.btn.fa,
+.btn.fas,
+.btn.far,
+.btn.fal,
+.btn.fab {
+    font-weight: 900;
+}
