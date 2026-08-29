@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="chatgpt_model_gpt56_sol" model="ai.chatgpt.model">
+            <field name="name">GPT-5.6 Sol</field>
+            <field name="code">gpt-5.6-sol</field>
+            <field name="sequence">10</field>
+            <field name="description">Flagship frontier reasoning model. Designed for complex multi-step reasoning, deep logic, advanced agentic orchestration, and long-horizon tasks (supports 1M+ token context window).</field>
+        </record>
+
+        <record id="chatgpt_model_gpt56_terra" model="ai.chatgpt.model">
+            <field name="name">GPT-5.6 Terra</field>
+            <field name="code">gpt-5.6-terra</field>
+            <field name="sequence">20</field>
+            <field name="description">Balanced workhorse model for interactive workflows, business operations, coding, and day-to-day AI agent tasks with optimized speed and cost efficiency.</field>
+        </record>
+
+        <record id="chatgpt_model_gpt56_luna" model="ai.chatgpt.model">
+            <field name="name">GPT-5.6 Luna</field>
+            <field name="code">gpt-5.6-luna</field>
+            <field name="sequence">30</field>
+            <field name="description">High-speed, low-latency model optimized for real-time conversational chat, quick summaries, document classification, and high-frequency tasks.</field>
+        </record>
+
+        <record id="chatgpt_model_gpt55" model="ai.chatgpt.model">
+            <field name="name">GPT-5.5</field>
+            <field name="code">gpt-5.5</field>
+            <field name="sequence">40</field>
+            <field name="description">High-capability general reasoning model with strong agentic tool calling and deep contextual comprehension.</field>
+        </record>
+
+        <record id="chatgpt_model_gpt54" model="ai.chatgpt.model">
+            <field name="name">GPT-5.4</field>
+            <field name="code">gpt-5.4</field>
+            <field name="sequence">50</field>
+            <field name="description">Versatile foundation model for structured business logic, text analysis, and multi-turn dialogues.</field>
+        </record>
+
+        <record id="chatgpt_model_gpt54_mini" model="ai.chatgpt.model">
+            <field name="name">GPT-5.4 Mini</field>
+            <field name="code">gpt-5.4-mini</field>
+            <field name="sequence">60</field>
+            <field name="description">Compact high-throughput model designed for lightweight queries, rapid responses, and lower resource consumption.</field>
+        </record>
+    </data>
+</odoo>
