@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tree View -->
+    <record id="view_ai_chatgpt_model_tree" model="ir.ui.view">
+        <field name="name">ai.chatgpt.model.list</field>
+        <field name="model">ai.chatgpt.model</field>
+        <field name="arch" type="xml">
+            <list string="ChatGPT Subscription Models" editable="bottom">
+                <field name="sequence" widget="handle"/>
+                <field name="name" placeholder="e.g. GPT-5.7 Pro"/>
+                <field name="code" placeholder="e.g. gpt-5.7-pro"/>
+                <field name="active" widget="boolean_toggle"/>
+                <field name="description" optional="show"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_ai_chatgpt_model_form" model="ir.ui.view">
+        <field name="name">ai.chatgpt.model.form</field>
+        <field name="model">ai.chatgpt.model</field>
+        <field name="arch" type="xml">
+            <form string="ChatGPT Subscription Model">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1><field name="name" placeholder="e.g. GPT-5.7 Pro"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="code" placeholder="e.g. gpt-5.7-pro"/>
+                            <field name="sequence"/>
+                        </group>
+                        <group>
+                            <field name="active" widget="boolean_toggle"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Description &amp; Notes">
+                            <field name="description" placeholder="Add information about the model capabilities, pricing tier, or context window..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_ai_chatgpt_model_search" model="ir.ui.view">
+        <field name="name">ai.chatgpt.model.search</field>
+        <field name="model">ai.chatgpt.model</field>
+        <field name="arch" type="xml">
+            <search string="Search ChatGPT Models">
+                <field name="name"/>
+                <field name="code"/>
+                <filter string="Active" name="active" domain="[('active', '=', True)]"/>
+                <filter string="Archived" name="archived" domain="[('active', '=', False)]"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_ai_chatgpt_models" model="ir.actions.act_window">
+        <field name="name">ChatGPT Subscription Models</field>
+        <field name="res_model">ai.chatgpt.model</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add a new ChatGPT subscription model!
+            </p>
+            <p>
+                Configure technical model identifiers supported by OpenAI Codex endpoint (e.g. <code>gpt-5.6-luna</code>, <code>gpt-5.5</code>, <code>gpt-5.4</code>, etc.).
+                These models will immediately become selectable on all AI Agents.
+            </p>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_inherit_ai_chatgpt_oauth" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.ai.chatgpt.oauth</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="priority" eval="30"/>
+        <field name="arch" type="xml">
+            <xpath expr="//setting[@id='openai_provider']" position="replace">
+                <setting id="openai_provider"
+                         string="Use your own ChatGPT / OpenAI account"
+                         help="Connect with your standard OpenAI API key or connect a ChatGPT subscription (Free/Plus/Team/Pro)"
+                         groups="base.group_system">
+                    <field name="openai_key_enabled"/>
+                    <field name="openai_api_key_available" invisible="1"/>
+                    <field name="openai_oauth_connected" invisible="1"/>
+
+                    <div invisible="not openai_key_enabled" class="content-group mt-2">
+                        <!-- Connection Type Selector -->
+                        <div class="mb-3">
+                            <label for="openai_auth_mode" string="Connection Type" class="o_light_label fw-bold d-block mb-1"/>
+                            <field name="openai_auth_mode" widget="radio"/>
+                        </div>
+
+                        <!-- 1. Standard API Key Mode (Default) -->
+                        <div invisible="openai_auth_mode != 'api_key'" class="card border p-3 mb-2 bg-light-subtle">
+                            <label for="openai_key" string="OpenAI API Key" class="o_light_label fw-bold d-block mb-1"/>
+                            <div class="d-flex gap-2 align-items-center">
+                                <field name="openai_key"
+                                       placeholder="sk-proj-..."
+                                       password="True"
+                                       nolabel="1"
+                                       class="flex-grow-1 font-monospace"/>
+                                <button name="action_test_openai_api_key"
+                                        type="object"
+                                        string="Test Key"
+                                        class="btn btn-secondary"
+                                        icon="fa-check"
+                                        noSaveDialog="true"/>
+                            </div>
+                            <div class="text-muted small mt-2">
+                                Standard pay-as-you-go API key used for AI Agents, text generation, knowledge embeddings, and voice services.
+                            </div>
+                        </div>
+
+                        <!-- 2. ChatGPT Subscription Mode (OAuth) -->
+                        <div invisible="openai_auth_mode != 'oauth'" class="card border p-3 mb-2 bg-light-subtle">
+                            <!-- Not Connected State -->
+                            <div invisible="openai_oauth_connected">
+                                <p class="text-muted small mb-2">
+                                    Sign in directly with your ChatGPT account (Free, Plus, Team, or Pro) without paying for API tokens.
+                                </p>
+                                <button name="action_open_chatgpt_oauth_wizard"
+                                        type="object"
+                                        string="Connect ChatGPT Subscription"
+                                        class="btn btn-primary"
+                                        icon="fa-sign-in"
+                                        noSaveDialog="true"/>
+                            </div>
+
+                            <!-- Connected State -->
+                            <div invisible="not openai_oauth_connected">
+                                <div class="d-flex align-items-center gap-2 mb-2">
+                                    <i class="fa fa-check-circle text-success fs-5"/>
+                                    <div>
+                                        <div class="text-success fw-bold">ChatGPT Subscription Connected</div>
+                                        <div class="text-muted small">AI Agents and Chat route through this subscription</div>
+                                    </div>
+                                </div>
+
+                                <div class="p-2 rounded border bg-body small mb-3">
+                                    <div class="mb-1 text-truncate">
+                                        <span class="text-muted me-1">Account:</span>
+                                        <field name="openai_oauth_account_id" readonly="1" class="font-monospace fw-semibold"/>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 pt-1 border-top">
+                                        <div>
+                                            <i class="fa fa-circle text-success me-1" style="font-size: 8px; vertical-align: middle;"/>
+                                            <field name="openai_oauth_expires_info" readonly="1" class="d-inline text-muted"/>
+                                        </div>
+                                        <div>
+                                            <i class="fa fa-check-circle text-primary me-1"/>
+                                            <field name="openai_oauth_models_label" readonly="1" class="d-inline fw-semibold text-primary"/>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex flex-wrap gap-2 mb-2">
+                                    <button name="action_sync_chatgpt_models"
+                                            type="object"
+                                            string="Sync Models"
+                                            class="btn btn-sm btn-secondary"
+                                            icon="fa-refresh"
+                                            noSaveDialog="true"/>
+                                    <button name="%(action_ai_chatgpt_models)d"
+                                            type="action"
+                                            string="Manage Models"
+                                            class="btn btn-sm btn-outline-primary"
+                                            icon="fa-list-ul"
+                                            noSaveDialog="true"/>
+                                    <button name="action_test_chatgpt_oauth"
+                                            type="object"
+                                            string="Test Connection"
+                                            class="btn btn-sm btn-secondary"
+                                            icon="fa-check"
+                                            noSaveDialog="true"/>
+                                    <button name="action_disconnect_chatgpt_oauth"
+                                            type="object"
+                                            string="Disconnect"
+                                            class="btn btn-sm btn-outline-danger ms-auto"
+                                            icon="fa-power-off"
+                                            noSaveDialog="true"/>
+                                </div>
+
+                                <div class="text-muted small mt-1 pt-1 border-top">
+                                    <i class="fa fa-info-circle me-1"/>
+                                    <strong>Supported Models:</strong> When OpenAI launches new models (e.g. <code>gpt-5.7</code>), click <em>Manage Models</em> to add them directly to your AI Agents.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Optional Secondary API Key when using OAuth (Knowledge Base & Voice) -->
+                        <div invisible="openai_auth_mode != 'oauth'" class="mt-2">
+                            <details class="text-muted small">
+                                <summary class="cursor-pointer text-primary fw-semibold">
+                                    Optional: Add OpenAI API key for Knowledge base &amp; voice
+                                </summary>
+                                <div class="p-2 border rounded mt-2 bg-white">
+                                    <div class="d-flex gap-2 align-items-center">
+                                        <field name="openai_key"
+                                               placeholder="sk-proj-..."
+                                               password="True"
+                                               nolabel="1"
+                                               class="flex-grow-1 font-monospace form-control-sm"/>
+                                        <button name="action_test_openai_api_key"
+                                                type="object"
+                                                string="Test"
+                                                class="btn btn-sm btn-secondary"
+                                                icon="fa-check"
+                                                noSaveDialog="true"/>
+                                    </div>
+                                    <div class="text-muted mt-1 small">
+                                        ChatGPT subscription handles text chat &amp; agents. Knowledge embeddings &amp; voice require an API key.
+                                    </div>
+                                </div>
+                            </details>
+                        </div>
+                    </div>
+                </setting>
+            </xpath>
+        </field>
+    </record>
+</odoo>
