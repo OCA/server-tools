@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Main menu under Settings / Technical -->
+    <menuitem
+        id="menu_encryption_root"
+        name="Encryption"
+        parent="base.menu_custom"
+        sequence="100"
+        groups="group_encryption_auditor"
+    />
+
+    <!-- Audit Log Menu -->
+    <menuitem
+        id="menu_audit_log"
+        name="Audit Log"
+        parent="menu_encryption_root"
+        action="action_audit_log"
+        sequence="10"
+    />
+
+    <!-- Key Rotation Menu -->
+    <menuitem
+        id="menu_key_rotation"
+        name="Rotate Encryption Key"
+        parent="menu_encryption_root"
+        action="action_key_rotation_wizard"
+        sequence="20"
+        groups="group_encryption_admin"
+    />
+
+    <!-- Migration Menu -->
+    <menuitem
+        id="menu_migration"
+        name="Encrypt Existing Data"
+        parent="menu_encryption_root"
+        action="action_migration_wizard"
+        sequence="30"
+        groups="group_encryption_admin"
+    />
+</odoo>
