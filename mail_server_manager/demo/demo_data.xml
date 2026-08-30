@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <!-- Demo users for testing -->
+    <record
+        id="demo_user_mail_1"
+        model="res.users"
+        context="{'no_reset_password': True}"
+    >
+        <field name="name">Demo Mail User 1</field>
+        <field name="login">demo_mail_user_1</field>
+        <field name="email">demo1@personal.com</field>
+        <field name="groups_id" eval="[(4, ref('base.group_user'))]" />
+    </record>
+
+    <record
+        id="demo_user_mail_2"
+        model="res.users"
+        context="{'no_reset_password': True}"
+    >
+        <field name="name">Demo Mail User 2</field>
+        <field name="login">demo_mail_user_2</field>
+        <field name="email">demo2@personal.com</field>
+        <field name="groups_id" eval="[(4, ref('base.group_user'))]" />
+    </record>
+
+    <!-- Demo mail accounts (without actual server creation for demo) -->
+    <!-- Note: These are for UI demonstration only, not functional accounts -->
+</odoo>
