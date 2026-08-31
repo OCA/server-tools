@@ -71,6 +71,23 @@ class TestTrackingManager(TransactionCase):
         self.flush_tracking()
         return self.partner.message_ids
 
+    def _create_tracked_child(self, latitude):
+        """Return a child partner whose (float) latitude is tracked."""
+        self.env.ref("base.field_res_partner__child_ids").custom_tracking = True
+        self.env.ref("base.field_res_partner__partner_latitude").custom_tracking = True
+        child = self.env["res.partner"].create(
+            {
+                "name": "Test child",
+                "parent_id": self.partner.id,
+                "partner_latitude": latitude,
+            }
+        )
+        self.flush_tracking()
+        self.partner.message_ids.unlink()
+        # values read from database are not rounded, unlike written ones
+        self.env.invalidate_all()
+        return child
+
     def test_m2m_add_line(self):
         self.partner = self.env["res.partner"].browse(self.partner.id)
         self.partner.write(
@@ -271,3 +288,17 @@ class TestTrackingManager(TransactionCase):
         )
         child.write({"parent_id": False})
         self.assertEqual(len(self.messages), 1)
+
+    def test_o2m_update_float_without_change(self):
+        child = self._create_tracked_child(0.1)
+        child.write({"partner_latitude": 0.1})
+        self.assertEqual(len(self.messages), 0)
+
+    def test_o2m_update_float(self):
+        child = self._create_tracked_child(0.1)
+        child.write({"partner_latitude": 1.5})
+        self.assertEqual(len(self.messages), 1)
+        self.assertEqual(self.messages.body.count("Change :"), 1)
+        # values are displayed with the precision of the field (10, 7)
+        self.assertIn("0.1000000", self.messages.body)
+        self.assertIn("1.5000000", self.messages.body)
