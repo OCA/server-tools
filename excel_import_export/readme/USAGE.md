@@ -69,6 +69,33 @@ excel_import_export_demo/report_sale_order)
 5.  Create instruction dictionary for report in xlsx.template model --
     templates.xml
 
+**Use Case 4:** Import and Update Existing Records by Database ID
+
+This feature enables batch updating of existing data by including the record ID
+in the export template and using it during import to match and update corresponding
+records.
+
+**Scenario:** Suitable for procurement quotation processes where product quotes
+need to be batch updated. For example, a purchase order contains hundreds of
+products. You can export the details to suppliers for quoting, then import the
+supplier's returned quotes to quickly update the prices in the quotation for
+easy comparison.
+
+**Workflow:**
+
+1.  Define Export Template: When exporting purchase details, include id field (ID) 
+    in the template.
+
+2.  Configure Import Template: In the import template's ID field, enter ".id"
+    to leverage Odoo's built-in mechanism for matching and updating corresponding
+    records.
+
+3.  Execute Import: Select the file with supplier quotes for import.
+
+4.  Complete Update: After successful import, the prices in the related purchase
+    quotation lines will automatically update to the latest quotes provided by
+    the supplier.
+
 **Note:**
 
 Another option for reporting is to use report action
