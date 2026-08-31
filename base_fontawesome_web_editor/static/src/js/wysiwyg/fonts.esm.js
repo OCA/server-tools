@@ -45,9 +45,26 @@ patch(fonts, {
                 data.selector += ", " + match[0];
                 data.names.push(match[1]);
             } else {
+                let css = cssText.replace(/(^.*\{\s*)|(\s*\}\s*$)/g, "");
+                // FontAwesome >= 6.7.2 declares the icon's glyph via the --fa
+                // custom property instead of a classic `content` declaration.
+                // Odoo core's fontToImg() still parses `content: "..."` to
+                // extract the glyph, so synthesize one from --fa when it's
+                // the only declaration available. If the codepoint can't be
+                // parsed (e.g. unsupported --fa format), skip silently rather
+                // than crash; that icon just won't be convertible to an image.
+                if (!/content:/.test(css)) {
+                    const faMatch = css.match(/--fa:\s*["']\\([0-9a-fA-F]+)["']/);
+                    if (faMatch) {
+                        const codePoint = parseInt(faMatch[1], 16);
+                        if (Number.isFinite(codePoint)) {
+                            css += ` content: "${String.fromCodePoint(codePoint)}";`;
+                        }
+                    }
+                }
                 data = {
                     selector: match[0],
-                    css: cssText.replace(/(^.*\{\s*)|(\s*\}\s*$)/g, ""),
+                    css: css,
                     names: [match[1]],
                 };
             }
