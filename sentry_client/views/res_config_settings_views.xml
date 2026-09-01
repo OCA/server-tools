@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright 2026 Ledoent
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.sentry_client</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//app[@name='general_settings']" position="inside">
+                <block
+                    name="sentry_client"
+                    title="Sentry Browser Monitoring"
+                    id="sentry_client_setting_container"
+                >
+                    <setting
+                        id="sentry_client_connection"
+                        string="Connection"
+                        help="Browser DSN, environment, and release tags. Leave blank to inherit from the [sentry] section of odoo.conf — useful when the same Sentry project is shared with the server-side OCA `sentry` module. Sentry recommends a separate project per platform; set a dedicated Browser DSN here to split JavaScript events from backend Python events."
+                    >
+                        <div class="row mt-2">
+                            <label
+                                for="sentry_client_browser_dsn"
+                                string="Browser DSN"
+                                class="col-lg-3 o_light_label"
+                            />
+                            <field
+                                name="sentry_client_browser_dsn"
+                                placeholder="https://&lt;public_key&gt;@sentry.example.com/&lt;project_id&gt;"
+                            />
+                        </div>
+                        <div class="row">
+                            <label
+                                for="sentry_client_environment"
+                                string="Environment"
+                                class="col-lg-3 o_light_label"
+                            />
+                            <field
+                                name="sentry_client_environment"
+                                placeholder="production-web"
+                            />
+                        </div>
+                        <div class="row">
+                            <label
+                                for="sentry_client_release"
+                                string="Release"
+                                class="col-lg-3 o_light_label"
+                            />
+                            <field name="sentry_client_release" placeholder="1.3.2" />
+                        </div>
+                    </setting>
+                    <setting
+                        id="sentry_client_tier0"
+                        string="Capture browser errors (Tier 0)"
+                        help="Loads the Sentry browser SDK on every page; reports uncaught JS errors and unhandled promise rejections. ~30KB bundle, negligible runtime cost. Requires a Browser DSN above or in the [sentry] section of odoo.conf."
+                        documentation="https://github.com/OCA/server-tools/tree/18.0/sentry_client"
+                    >
+                        <field name="sentry_client_enabled" />
+                        <div
+                            class="content-group"
+                            invisible="not sentry_client_enabled"
+                        >
+                            <div class="row mt-2">
+                                <label
+                                    for="sentry_client_cdn_version"
+                                    string="SDK version"
+                                    class="col-lg-3 o_light_label"
+                                />
+                                <field name="sentry_client_cdn_version" />
+                            </div>
+                            <div class="row">
+                                <label
+                                    for="sentry_client_cdn_base"
+                                    string="CDN base URL"
+                                    class="col-lg-3 o_light_label"
+                                />
+                                <field name="sentry_client_cdn_base" />
+                            </div>
+                        </div>
+                    </setting>
+                    <setting
+                        id="sentry_client_tier1"
+                        string="Performance monitoring (Tier 1)"
+                        help="Auto-instruments every fetch/XHR, navigation timing, and long-task observer."
+                    >
+                        <field name="sentry_client_tier1_tracing_enabled" />
+                        <div
+                            class="content-group"
+                            invisible="not sentry_client_tier1_tracing_enabled"
+                        >
+                            <div class="alert alert-warning mt-2" role="alert">
+                                <i
+                                class="fa fa-exclamation-triangle me-1"
+                                aria-hidden="true"
+                            />
+                                Adds roughly 5–10% per-request overhead at sample
+                                rate 1.0 and instruments every fetch/XHR.
+                                Recommended in production: 0.05 or below. In
+                                development, 1.0 is fine.
+                            </div>
+                            <div class="row">
+                                <label
+                                    for="sentry_client_tier1_traces_sample_rate"
+                                    string="Traces sample rate (0.0–1.0)"
+                                    class="col-lg-3 o_light_label"
+                                />
+                                <field name="sentry_client_tier1_traces_sample_rate" />
+                            </div>
+                        </div>
+                    </setting>
+                    <setting
+                        id="sentry_client_tier2"
+                        string="Session replay (Tier 2)"
+                        help="Records DOM mutations, console activity, and network requests for sessions."
+                    >
+                        <field name="sentry_client_tier2_replay_enabled" />
+                        <div
+                            class="content-group"
+                            invisible="not sentry_client_tier2_replay_enabled"
+                        >
+                            <div class="alert alert-warning mt-2" role="alert">
+                                <i
+                                class="fa fa-exclamation-triangle me-1"
+                                aria-hidden="true"
+                            />
+                                Adds ~100KB to every page and records DOM mutations
+                                + console + network activity. Keep Healthy-session
+                                sample at 0.0 and On-error sample at 1.0 so
+                                recording only kicks in for sessions that already
+                                broke.
+                            </div>
+                            <div class="row">
+                                <label
+                                    for="sentry_client_tier2_session_sample_rate"
+                                    string="Healthy-session sample (0.0–1.0)"
+                                    class="col-lg-3 o_light_label"
+                                />
+                                <field name="sentry_client_tier2_session_sample_rate" />
+                            </div>
+                            <div class="row">
+                                <label
+                                    for="sentry_client_tier2_error_sample_rate"
+                                    string="On-error sample (0.0–1.0)"
+                                    class="col-lg-3 o_light_label"
+                                />
+                                <field name="sentry_client_tier2_error_sample_rate" />
+                            </div>
+                        </div>
+                    </setting>
+                    <setting
+                        id="sentry_client_tier3_feedback"
+                        string="User feedback widget (Tier 3)"
+                        help="Adds a 'Report a bug' button to the navbar that opens Sentry's user-feedback modal."
+                    >
+                        <field name="sentry_client_tier3_feedback_enabled" />
+                    </setting>
+                    <setting
+                        id="sentry_client_tier3_profiling"
+                        string="Browser CPU profiling (Tier 3)"
+                        help="Captures JS Self-Profiling samples for traced transactions. Requires Tier 1 tracing AND a `Document-Policy: js-profiling` HTTP header on the document response."
+                    >
+                        <field name="sentry_client_tier3_profiling_enabled" />
+                        <div
+                            class="content-group"
+                            invisible="not sentry_client_tier3_profiling_enabled"
+                        >
+                            <div
+                                class="alert alert-warning mt-2"
+                                role="alert"
+                                invisible="sentry_client_tier1_tracing_enabled"
+                            >
+                                <i
+                                class="fa fa-exclamation-triangle me-1"
+                                aria-hidden="true"
+                            />
+                                Browser CPU profiling is enabled but Tier 1 tracing
+                                is OFF. Profiles only attach to traced transactions
+                                — with tracing off, no profiles will be collected.
+                                Enable Tier 1 to use profiling.
+                            </div>
+                            <div class="row">
+                                <label
+                                    for="sentry_client_tier3_profiles_sample_rate"
+                                    string="Profiles sample rate (0.0–1.0)"
+                                    class="col-lg-3 o_light_label"
+                                />
+                                <field
+                                    name="sentry_client_tier3_profiles_sample_rate"
+                                />
+                            </div>
+                        </div>
+                    </setting>
+                    <setting
+                        id="sentry_client_tier3_logs"
+                        string="Capture console logs (Tier 3)"
+                        help="Forwards `console.log`/`console.warn`/`console.error` calls as Sentry Log entries. Spammy without filtering — recommended only when debugging a specific issue."
+                    >
+                        <field name="sentry_client_tier3_logs_enabled" />
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>
