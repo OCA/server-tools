@@ -217,6 +217,34 @@ class TestDbBackup(common.TransactionCase):
             res,
         )
 
+    def test_action_backup_local_format_mismatch(self):
+        """Ensure backup is not copied if the format does not match."""
+        # This test ensures that when formats differ, dump_db is called again
+        rec1 = self.env["db.backup"].create(
+            {
+                "name": "Backup 1",
+                "method": "local",
+                "backup_format": "zip",
+                "folder": "/tmp/backup",
+            }
+        )
+        rec2 = self.env["db.backup"].create(
+            {
+                "name": "Backup 2",
+                "method": "local",
+                "backup_format": "dump",
+                "folder": "/tmp/backup",
+            }
+        )
+        recs = rec1 | rec2
+        with self.mock_assets() as assets, patch("builtins.open") as open_mock:
+            assets["os"].path.join.return_value = "/tmp/backup/file"
+            # destiny.name is used to set backup variable
+            open_mock.return_value.__enter__.return_value.name = "/tmp/backup/file"
+            recs.action_backup()
+            self.assertEqual(assets["db"].dump_db.call_count, 2)
+            assets["shutil"].copyfileobj.assert_not_called()
+
     def test_filename_default(self):
         """It should not error and should return a .dump.zip file str"""
         now = datetime.now()
