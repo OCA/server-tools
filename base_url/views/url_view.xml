@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="url_view_form" model="ir.ui.view">
+        <field name="model">url.url</field>
+        <field name="arch" type="xml">
+            <form string="Url rewriting edit form">
+                <sheet>
+                    <group>
+                        <field name="referential" />
+                        <field name="lang_id" />
+                        <field
+                            name="res_model"
+                            invisible="context.get('hide_res_model')"
+                        />
+                        <field name="res_model_field" invisible="True" />
+                        <field name="key" />
+                        <field name="res_id" invisible="context.get('hide_res_id')" />
+                        <field name="manual" />
+                        <field name="redirect" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="url_view_tree" model="ir.ui.view">
+        <field name="model">url.url</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="referential" />
+                <field name="lang_id" />
+                <field name="res_model" invisible="context.get('hide_res_model')" />
+                <field name="key" />
+                <field name="res_model_field" invisible="True" />
+                <field name="res_id" invisible="context.get('hide_res_id')" />
+                <field name="manual" />
+                <field name="redirect" />
+            </list>
+        </field>
+    </record>
+
+    <record id="base_url_action_view" model="ir.actions.act_window">
+        <field name="name">Url List</field>
+        <field name="res_model">url.url</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    <!-- This Menu Item Must have a parent -->
+    <menuitem
+        id="url_menu_view"
+        name="Url Rewrite"
+        parent="base.next_id_9"
+        action="base_url_action_view"
+    />
+</odoo>
