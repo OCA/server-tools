@@ -86,8 +86,6 @@ class TestImportedModules(TransactionCase):
         self.Imm = self.env["ir.module.module"]
         # Skip test if base_import_module is not installed (OCB)
         if "imported" not in self.Imm._fields:
-            # the field comes from base_import_module, which is not a
-            # dependency of this module
             self.skipTest("base_import_module is not installed")
         # Modules imported into the database (e.g. Odoo Studio customizations)
         # have no counterpart on the file system, so no checksum can be
