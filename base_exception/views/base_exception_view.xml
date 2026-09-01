@@ -42,6 +42,11 @@
                     <group>
                         <group colspan="4" groups="base.group_system">
                             <field name="model" />
+                            <field
+                                name="filter_domain"
+                                widget="domain"
+                                options="{'model': 'model', 'in_dialog': True}"
+                            />
                             <field name="exception_type" widget="radio" />
                             <field
                                 name="domain"

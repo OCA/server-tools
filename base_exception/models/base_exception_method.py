@@ -125,14 +125,17 @@ class BaseExceptionMethod(models.AbstractModel):
         elif rule_info.exception_type == "by_method":
             return self._detect_exceptions_by_method(rule_info)
 
-    def _get_base_domain(self):
-        return [("ignore_exception", "=", False)]
+    def _get_base_domain(self, rule_info=None):
+        domain = [("ignore_exception", "=", False)]
+        if rule_info is not None and rule_info.filter_domain:
+            domain = expression.AND([domain, safe_eval(rule_info.filter_domain)])
+        return domain
 
     def _detect_exceptions_by_py_code(self, rule_info):
         """
         Find exceptions found on self.
         """
-        domain = self._get_base_domain()
+        domain = self._get_base_domain(rule_info=rule_info)
         records = self.filtered_domain(domain)
         records_with_exception = self.env[self._name]
         for record in records:
@@ -144,7 +147,7 @@ class BaseExceptionMethod(models.AbstractModel):
         """
         Find exceptions found on self.
         """
-        base_domain = self._get_base_domain()
+        base_domain = self._get_base_domain(rule_info=rule_info)
         rule_domain = rule_info.domain
         domain = expression.AND([base_domain, rule_domain])
         return self.filtered_domain(domain)
@@ -153,6 +156,6 @@ class BaseExceptionMethod(models.AbstractModel):
         """
         Find exceptions found on self.
         """
-        base_domain = self._get_base_domain()
+        base_domain = self._get_base_domain(rule_info=rule_info)
         records = self.filtered_domain(base_domain)
         return getattr(records, rule_info.method)()

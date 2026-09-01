@@ -22,7 +22,12 @@ class ExceptionRule(models.Model):
     name = fields.Char("Exception Name", required=True, translate=True)
     description = fields.Text(translate=True)
     sequence = fields.Integer(help="Gives the sequence order when applying the test")
-    model = fields.Selection(selection=[], string="Apply on", required=True)
+    model = fields.Selection(selection=[], string="Apply on model", required=True)
+    filter_domain = fields.Char(
+        string="Apply on records",
+        default="[]",
+        help="If present, this condition must be satisfied to trigger the exception.",
+    )
 
     exception_type = fields.Selection(
         selection=[
@@ -119,6 +124,7 @@ class ExceptionRule(models.Model):
             "method": self.method,
             "code": self.code,
             "is_blocking": self.is_blocking,
+            "filter_domain": self.filter_domain,
         }
 
     @api.model_create_multi
