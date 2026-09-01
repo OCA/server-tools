@@ -187,6 +187,7 @@ class IrUiView(models.Model):
             </field>
         """
         node = self.locate_node(source, specs)
+        self._assert_node(node, specs)
         for spec in specs:
             attr_name = spec.get("name")
             # Parse ast from both node and spec
@@ -212,6 +213,7 @@ class IrUiView(models.Model):
             </attribute>
         </$node>"""
         node = self.locate_node(source, specs)
+        self._assert_node(node, specs)
         for attribute_node in specs:
             attribute_name = attribute_node.get("name")
             old_value = node.get(attribute_name) or ""
@@ -230,6 +232,7 @@ class IrUiView(models.Model):
             </attribute>
         </$node>"""
         node = self.locate_node(source, specs)
+        self._assert_node(node, specs)
         for attribute_node in specs:
             attribute_name = attribute_node.get("name")
             condition = attribute_node.get("condition")
@@ -275,3 +278,25 @@ class IrUiView(models.Model):
         domain_str = pattern.sub(r"\1", domain_str)
         pattern = re.compile(r"'([^']+)_is_a_var_to_replace'")
         return pattern.sub(r"\1", domain_str)
+
+    @api.model
+    def _assert_node(self, node, specs):
+        """Raise a ValueError detailing the failing specification if node is None"""
+        if node is None:
+            self._raise_view_error(
+                ValueError(
+                    self.env._(
+                        "Element '%s' cannot be located in parent view",
+                        etree.tostring(
+                            etree.Element(
+                                specs.tag,
+                                {
+                                    a: v
+                                    for a, v in specs.attrib.items()
+                                    if a != "position"
+                                },
+                            )
+                        ).decode("utf8"),
+                    )
+                ),
+            )
