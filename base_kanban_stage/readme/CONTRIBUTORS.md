@@ -1,0 +1,7 @@
+- Dave Lasley \<<dave@laslabs.com>\>
+- Oleg Bulkin \<<obulkin@laslabs.com>\>
+- Daniel Reis \<<dreis.pt@hotmail.com>\>
+- Alex Comba \<<alex.comba@agilebg.com>\>
+- Miquel Raïch \<<miquel.raich@forgeflow.com>\>
+- Helly kapatel \<<helly.kapatel@initos.com>\>
+- Jasmin Solanki \<<jasmin.solanki@forgeflow.com>\>
