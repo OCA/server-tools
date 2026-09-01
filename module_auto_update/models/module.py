@@ -79,10 +79,26 @@ class Module(models.Model):
         Icp.flush_model()
 
     @api.model
+    def _not_imported_domain(self):
+        """Domain excluding modules that only exist in the database.
+
+        Imported modules (Odoo Studio customizations, modules uploaded through
+        the web interface) have no counterpart on the file system, so no
+        checksum can be computed for them.
+
+        The ``imported`` field is added by ``base_import_module``, which is not
+        a dependency of this module. When it is not installed, no module can be
+        imported in the first place, so no filtering is needed.
+        """
+        if "imported" in self._fields:
+            return [("imported", "=", False)]
+        return []
+
+    @api.model
     def _save_installed_checksums(self):
         checksums = {}
         installed_modules = self.search(
-            ["&", ("state", "=", "installed"), ("imported", "=", False)]
+            [("state", "=", "installed"), *self._not_imported_domain()]
         )
         for module in installed_modules:
             checksums[module.name] = module._get_checksum_dir()
@@ -92,9 +108,8 @@ class Module(models.Model):
     def _get_modules_partially_installed(self):
         return self.search(
             [
-                "&",
                 ("state", "in", ["to install", "to remove", "to upgrade"]),
-                ("imported", "=", False),
+                *self._not_imported_domain(),
             ]
         )
 
@@ -102,7 +117,7 @@ class Module(models.Model):
     def _get_modules_with_changed_checksum(self):
         saved_checksums = self._get_saved_checksums()
         installed_modules = self.search(
-            ["&", ("state", "=", "installed"), ("imported", "=", False)]
+            [("state", "=", "installed"), *self._not_imported_domain()]
         )
         return installed_modules.filtered(
             lambda r: r._get_checksum_dir() != saved_checksums.get(r.name),
