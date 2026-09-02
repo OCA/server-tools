@@ -4,5 +4,7 @@
 - Stéphane Bidoul \<<stephane.bidoul@acsone.eu>\> (<https://acsone.eu>)
 - Eric Antones \<<eantones@nuobit.com>\>
 - Manuel Engel \<<manuel.engel@initos.com>\>
-- PyTech SRL <info@pytech.it>
-- Ooops404 <info@ooops404.com>
+- PyTech SRL \<<info@pytech.it>\>
+- Ooops404 \<<info@ooops404.com>\>
+- Ryan Cole \<<hello@ryanc.me>\>
+- Adam Heinz \<<adam.heinz@metricwise.com>\> (<https://metricwise.com>)
