@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ====================
 Database Auto-Backup
 ====================
@@ -17,7 +13,7 @@ Database Auto-Backup
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github
@@ -46,7 +42,7 @@ Before installing this module, you need to execute:
 
 ::
 
-   pip3 install pysftp==0.2.9
+   pip3 install "paramiko<4.0.0"
 
 Configuration
 =============
@@ -71,7 +67,7 @@ Keep your data safe, through an SSH tunnel!
 Want to go even further and write your backups to an external server?
 You can with this module! Specify the credentials to the server, specify
 a path and everything will be backed up automatically. This is done
-through an SSH (encrypted) tunnel, thanks to pysftp, so your data is
+through an SSH (encrypted) tunnel, thanks to Paramiko, so your data is
 safe!
 
 Test connection
@@ -108,12 +104,12 @@ manually execute the selected processes.
 Known issues / Roadmap
 ======================
 
-- On larger databases, it is possible that backups will die due to Odoo
-  server settings. In order to circumvent this without frivolously
-  changing settings, you need to run the backup from outside of the main
-  Odoo instance. How to do this is outlined in `this blog
-  post <https://blog.laslabs.com/2016/10/running-python-scripts-within-odoos-environment/>`__.
-- Backups won't work if list_db=False is configured in the instance.
+-  On larger databases, it is possible that backups will die due to Odoo
+   server settings. In order to circumvent this without frivolously
+   changing settings, you need to run the backup from outside of the
+   main Odoo instance. How to do this is outlined in `this blog
+   post <https://blog.laslabs.com/2016/10/running-python-scripts-within-odoos-environment/>`__.
+-  Backups won't work if list_db=False is configured in the instance.
 
 Bug Tracker
 ===========
@@ -140,15 +136,15 @@ Authors
 Contributors
 ------------
 
-- Yenthe Van Ginneken <yenthe.vanginneken@vanroey.be>
-- Alessio Gerace <alessio.gerace@agilebg.com>
-- Jairo Llopis <yajo.sk8@gmail.com>
-- Dave Lasley <dave@laslabs.com>
-- Andrea Stirpe <a.stirpe@onestein.nl>
-- Aitor Bouzas <aitor.bouzas@adaptivecity.com>
-- Simone Vanin <simone.vanin@agilebg.com>
-- Vu Nguyen Anh <vuna2004@gmail.com>
-- Alex Comba <alex.comba@agilebg.com>
+-  Yenthe Van Ginneken <yenthe.vanginneken@vanroey.be>
+-  Alessio Gerace <alessio.gerace@agilebg.com>
+-  Jairo Llopis <yajo.sk8@gmail.com>
+-  Dave Lasley <dave@laslabs.com>
+-  Andrea Stirpe <a.stirpe@onestein.nl>
+-  Aitor Bouzas <aitor.bouzas@adaptivecity.com>
+-  Simone Vanin <simone.vanin@agilebg.com>
+-  Vu Nguyen Anh <vuna2004@gmail.com>
+-  Alex Comba <alex.comba@agilebg.com>
 
 Maintainers
 -----------
