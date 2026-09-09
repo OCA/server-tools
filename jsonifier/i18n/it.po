@@ -1,0 +1,277 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* jsonifier
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2025-03-18 10:38+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10.2\n"
+
+#. module: jsonifier
+#: model:ir.model.fields,help:jsonifier.field_ir_exports_line__instance_method_name
+msgid "A method defined on the model that takes a record and a field_name"
+msgstr "Un metdo definito nel modello che usa un record e un field_name"
+
+#. module: jsonifier
+#: model:ir.model.fields,field_description:jsonifier.field_ir_exports_line__active
+msgid "Active"
+msgstr "Attiva"
+
+#. module: jsonifier
+#: model:ir.model,name:jsonifier.model_base
+msgid "Base"
+msgstr "Base"
+
+#. module: jsonifier
+#: model:ir.model.fields,help:jsonifier.field_ir_exports_resolver__python_code
+msgid ""
+"Compute the result from 'value' by setting the variable 'result'.\n"
+"\n"
+"For fields resolvers:\n"
+":param record: the record\n"
+":param name: name of the field\n"
+":param value: value of the field\n"
+":param field_type: type of the field\n"
+"\n"
+"For global resolvers:\n"
+":param value: JSON dict\n"
+":param record: the record\n"
+"\n"
+"In both types, you can override the final json key.\n"
+"To achieve this, simply return a dict like: \n"
+"{'result': {'_value': $value, '_json_key': $new_json_key}}"
+msgstr ""
+"Calcola il risultato dal 'value' impostando la variabile 'result'.\n"
+"\n"
+"Per risolutori campi:\n"
+":param record: il record\n"
+":param name: nome del campo\n"
+":param value: valore del campo\n"
+":param field_type: tipo del campo\n"
+"\n"
+"Per risolutori globali:\n"
+":param value: dizionario JSON \n"
+":param record: il record\n"
+"\n"
+"In entrambi i tipi, si può forzare la chiave JSON finale.\n"
+"Per farlo, restituire un dizionario come: \n"
+"{'result': {'_value': $value, '_json_key': $new_json_key}}"
+
+#. module: jsonifier
+#: model_terms:ir.ui.view,arch_db:jsonifier.view_ir_exports
+msgid "Configuration"
+msgstr "Configurazione"
+
+#. module: jsonifier
+#: model:ir.model.fields,field_description:jsonifier.field_ir_exports_resolver__create_uid
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: jsonifier
+#: model:ir.model.fields,field_description:jsonifier.field_ir_exports_resolver__create_date
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: jsonifier
+#: model:ir.actions.act_window,name:jsonifier.act_ui_exports_resolver_view
+#: model:ir.ui.menu,name:jsonifier.ui_exports_resolvers
+msgid "Custom Export Resolvers"
+msgstr "Identificatori esportazione personalizzati"
+
+#. module: jsonifier
+#: model:ir.model.fields,field_description:jsonifier.field_ir_exports__global_resolver_id
+msgid "Custom global resolver"
+msgstr "identificatore globale personalizzato"
+
+#. module: jsonifier
+#: model:ir.model.fields,field_description:jsonifier.field_ir_exports_line__resolver_id
+msgid "Custom resolver"
+msgstr "Identificatore personalizzato"
+
+#. module: jsonifier
+#: model:ir.model.fields,field_description:jsonifier.field_ir_exports_resolver__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: jsonifier
+#. odoo-python
+#: code:addons/jsonifier/models/ir_exports_line.py:0
+msgid "Either set a function or a resolver, not both."
+msgstr "Impostare una funzione o un identificatore, non entrambi."
+
+#. module: jsonifier
+#: model:ir.actions.act_window,name:jsonifier.act_ui_exports_view
+#: model:ir.ui.menu,name:jsonifier.ui_exports
+msgid "Export Fields"
+msgstr "Esporta campi"
+
+#. module: jsonifier
+#: model:ir.model,name:jsonifier.model_ir_exports_resolver
+msgid "Export Resolver"
+msgstr "Identificatore esportazione"
+
+#. module: jsonifier
+#: model:ir.model,name:jsonifier.model_ir_exports
+msgid "Exports"
+msgstr "Esportazioni"
+
+#. module: jsonifier
+#: model:ir.model,name:jsonifier.model_ir_exports_line
+msgid "Exports Line"
+msgstr "Riga esportazioni"
+
+#. module: jsonifier
+#: model:ir.model.fields.selection,name:jsonifier.selection__ir_exports_resolver__type__field
+msgid "Field"
+msgstr "Campo"
+
+#. module: jsonifier
+#: model:ir.model.fields,field_description:jsonifier.field_ir_exports_line__instance_method_name
+msgid "Function"
+msgstr "Funzione"
+
+#. module: jsonifier
+#: model:ir.model.fields.selection,name:jsonifier.selection__ir_exports_resolver__type__global
+msgid "Global"
+msgstr "Globale"
+
+#. module: jsonifier
+#: model:ir.model.fields,field_description:jsonifier.field_ir_exports_resolver__id
+msgid "ID"
+msgstr "ID"
+
+#. module: jsonifier
+#: model:ir.model.fields,help:jsonifier.field_ir_exports_line__lang_id
+msgid "If set, the language in which the field is exported"
+msgstr "Se impostato, la lingua in cui è esportato il campo"
+
+#. module: jsonifier
+#: model:ir.model.fields,help:jsonifier.field_ir_exports__global_resolver_id
+msgid "If set, will apply the global resolver to the result"
+msgstr "Se impostata, applicherà il riferimento globale al risultato"
+
+#. module: jsonifier
+#: model:ir.model.fields,help:jsonifier.field_ir_exports_line__resolver_id
+msgid "If set, will apply the resolver on the field value"
+msgstr "Se impostata, applicherà il riferimento al valore del campo"
+
+#. module: jsonifier
+#: model:ir.model.fields,help:jsonifier.field_ir_exports__language_agnostic
+msgid ""
+"If set, will set the lang to False when exporting lines without lang, "
+"otherwise it uses the lang in the given context to export these fields"
+msgstr ""
+"Se impostata, imposterà il linuaggio a False nell'esportazione di righe "
+"senza linguaggio, altrimenti utilizzerà il linguaggio nel dato contesto per "
+"esportare questi campi"
+
+#. module: jsonifier
+#: model_terms:ir.ui.view,arch_db:jsonifier.view_ir_exports
+msgid "Index"
+msgstr "Indice"
+
+#. module: jsonifier
+#: model:ir.model.fields,field_description:jsonifier.field_ir_exports_line__lang_id
+msgid "Language"
+msgstr "Lingua"
+
+#. module: jsonifier
+#: model:ir.model.fields,field_description:jsonifier.field_ir_exports__language_agnostic
+msgid "Language Agnostic"
+msgstr "Agnostico alla lingua"
+
+#. module: jsonifier
+#: model:ir.model.fields,field_description:jsonifier.field_ir_exports_resolver__write_uid
+msgid "Last Updated by"
+msgstr "Ultimo aggiornamento di"
+
+#. module: jsonifier
+#: model:ir.model.fields,field_description:jsonifier.field_ir_exports_resolver__write_date
+msgid "Last Updated on"
+msgstr "Ultimo aggiornamento il"
+
+#. module: jsonifier
+#: model:ir.model.fields,field_description:jsonifier.field_ir_exports_resolver__name
+msgid "Name"
+msgstr "Nome"
+
+#. module: jsonifier
+#. odoo-python
+#: code:addons/jsonifier/models/ir_exports_line.py:0
+msgid "Name and Target must have the same hierarchy depth"
+msgstr "Nome e obiettivo devno avere la stessa profondità gerarchica"
+
+#. module: jsonifier
+#: model:ir.model.fields,field_description:jsonifier.field_ir_exports_resolver__python_code
+msgid "Python Code"
+msgstr "Codice Python"
+
+#. module: jsonifier
+#: model:ir.model.fields,field_description:jsonifier.field_ir_exports__smart_search
+#: model:ir.model.fields,field_description:jsonifier.field_ir_exports_line__smart_search
+#: model:ir.model.fields,field_description:jsonifier.field_ir_exports_resolver__smart_search
+msgid "Smart Search"
+msgstr "Ricerca intelligente"
+
+#. module: jsonifier
+#: model:ir.model.fields,field_description:jsonifier.field_ir_exports_line__target
+msgid "Target"
+msgstr "Obiettivo"
+
+#. module: jsonifier
+#: model:ir.model.fields,help:jsonifier.field_ir_exports_line__target
+msgid ""
+"The complete path to the field where you can specify a target on the step as "
+"field:target"
+msgstr ""
+"Il percorso completo al campo dove si può indicare un obiettivo sul "
+"passaggio come field:target"
+
+#. module: jsonifier
+#. odoo-python
+#: code:addons/jsonifier/models/ir_exports_line.py:0
+msgid ""
+"The target must reference the same field as in name '%(name)s' not in "
+"'%(name_with_target)s'"
+msgstr ""
+"L'obiettivo deve far riferimento allo stesso campo come nel nome '%(name)s' "
+"non in '%(name_with_target)s'"
+
+#. module: jsonifier
+#: model:ir.model.fields,field_description:jsonifier.field_ir_exports_resolver__type
+msgid "Type"
+msgstr "Tipo"
+
+#. module: jsonifier
+#. odoo-python
+#: code:addons/jsonifier/models/models.py:0
+msgid "Wrong parser configuration for field: `%s`"
+msgstr "Errata configurazione parser per il campo: `%s`"
+
+#~ msgid ""
+#~ "Compute the result from 'value' by setting the variable 'result'.\n"
+#~ "For fields resolvers:\n"
+#~ ":param name: name of the field\n"
+#~ ":param value: value of the field\n"
+#~ ":param field_type: type of the field\n"
+#~ "For global resolvers:\n"
+#~ ":param value: JSON dict\n"
+#~ ":param record: the record"
+#~ msgstr ""
+#~ "Calcola il risultato da 'value'impostando la variabile 'result'.\n"
+#~ "Identificatri campi:\n"
+#~ ":param name: nome del campo\n"
+#~ ":param value: valore del cmapo\n"
+#~ ":param field_type: tipo del campo\n"
+#~ "Identificatori globali:\n"
+#~ ":param value: dizionario JSON\n"
+#~ ":param record: il record"
