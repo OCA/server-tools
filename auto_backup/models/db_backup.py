@@ -152,8 +152,8 @@ class DbBackup(models.Model):
                     _logger.exception(f"Action backup - OSError: {exc}")
 
                 with open(os.path.join(rec.folder, filename), "wb") as destiny:
-                    # Copy the cached backup
-                    if backup:
+                    # Copy the cached backup, ensuring that it is in the same format
+                    if backup and backup.endswith(rec.backup_format):
                         with open(backup) as cached:
                             shutil.copyfileobj(cached, destiny)
                     # Generate new backup
