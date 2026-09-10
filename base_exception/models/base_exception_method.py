@@ -90,9 +90,16 @@ class BaseExceptionMethod(models.AbstractModel):
         # table
         # and the "to add" part generates one INSERT (with unnest) per rule.
         raise_exception = False
-        test_mode = config["test_enable"] and not self.env.context.get(
-            "test_base_exception"
-        )
+        # The registry is not ready yet when modules are being installed or
+        # updated: the ongoing transaction holds exclusive locks on the tables
+        # it has just modified (ALTER TABLE ...), so any query made through a
+        # second connection would wait forever on those locks (and the locks
+        # cannot be released, as the current thread is the one waiting).
+        # Use the current cursor in that case, as already done when running
+        # tests.
+        test_mode = (
+            config["test_enable"] or not self.env.registry.ready
+        ) and not self.env.context.get("test_base_exception")
         # Write exceptions in a new transaction to be committed so that we can
         #  rollback the ongoing one while keeping the exceptions stored
         with self.env.registry.cursor() as new_cr:
