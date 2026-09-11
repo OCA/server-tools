@@ -143,7 +143,8 @@ def initialize_sentry(config):
     # Patch the wsgi server in case of further registration
     odoo.http.Application = SentryWsgiMiddleware(odoo.http.Application)
 
-    with sentry_sdk.new_scope() as scope:
+    scope_context = getattr(sentry_sdk, "new_scope", None) or sentry_sdk.push_scope
+    with scope_context() as scope:
         scope.set_extra("debug", False)
         sentry_sdk.capture_message("Starting Odoo Server", "info")
 
