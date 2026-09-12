@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 import inspect
 import logging
+import os
 import sys
 from unittest.mock import patch
 
@@ -14,8 +15,9 @@ import odoo.http
 from odoo import exceptions
 from odoo.tests import TransactionCase
 
+from .. import const
 from .. import hooks as sentry_hooks
-from ..const import to_int_if_defined
+from ..const import get_options_from_env, to_bool, to_int_if_defined
 from ..hooks import before_send, initialize_sentry
 
 GIT_SHA = "d670460b4b4aece5915caf5c68d12f560a9fe3e4"
@@ -80,6 +82,7 @@ class TestClientSetup(TransactionCase):
     def setUp(self):
         super().setUp()
         self.dsn = "http://public:secret@example.com/1"
+        self.clear_env()
         self.patch_config(
             {
                 "sentry_enabled": True,
@@ -110,6 +113,27 @@ class TestClientSetup(TransactionCase):
         )
         _config_patcher.start()
         self.addCleanup(_config_patcher.stop)
+
+    def patch_env(self, variables: dict):
+        """
+        Set `variables` in the environment, ensuring that they are unset again
+        when the test completes.
+        """
+        _env_patcher = patch.dict(os.environ, values=variables)
+        _env_patcher.start()
+        self.addCleanup(_env_patcher.stop)
+
+    def clear_env(self):
+        """
+        Drop the ODOO_SENTRY_* variables the machine running the tests happens to
+        carry, so a test reads the configuration it sets up itself rather than the
+        environment of whoever runs it.
+        """
+        prefix = f"{const.ENV_PREFIX}{const.ENV_OPTION_PREFIX}"
+        carried = {k: v for k, v in os.environ.items() if k.startswith(prefix)}
+        for key in carried:
+            del os.environ[key]
+        self.addCleanup(os.environ.update, carried)
 
     def log(self, level, msg, exc_info=None):
         self.logger.log(level, msg, exc_info=exc_info)
@@ -242,6 +266,67 @@ class TestClientSetup(TransactionCase):
 
     def test_undefined_to_int(self):
         self.assertIsNone(to_int_if_defined(""))
+
+    def test_options_from_env_are_selected_by_prefix(self):
+        """Only ODOO_SENTRY_* is ours, and it is renamed to the key the file uses."""
+        environ = {
+            "ODOO_SENTRY_DSN": self.dsn,
+            "ODOO_SENTRY_TRACES_SAMPLE_RATE": "0.5",
+            # sentry-sdk reads this one on its own, for whichever process it runs in
+            "SENTRY_DSN": "http://public:secret@example.com/2",
+            "ODOO_QUEUE_JOB_CHANNELS": "root:1",
+        }
+        self.assertEqual(
+            get_options_from_env(environ),
+            {"sentry_dsn": self.dsn, "sentry_traces_sample_rate": "0.5"},
+        )
+
+    def test_to_bool_reads_the_strings_a_config_source_delivers(self):
+        for value in ("true", "True", "1", "on", "YES", True):
+            self.assertTrue(to_bool(value), f"{value!r} should read as enabled")
+        for value in ("false", "False", "0", "off", "no", False):
+            self.assertFalse(to_bool(value), f"{value!r} should read as disabled")
+        # Missing or left empty says nothing, so the caller's default answers.
+        self.assertTrue(to_bool(None, default=True))
+        self.assertTrue(to_bool("  ", default=True))
+        self.assertFalse(to_bool(None))
+
+    def test_configured_entirely_through_the_environment(self):
+        """No configuration file at all: every option comes from the environment."""
+        self.patch_env(
+            {
+                "ODOO_SENTRY_ENABLED": "true",
+                "ODOO_SENTRY_DSN": self.dsn,
+            }
+        )
+        client = initialize_sentry({})._client
+        self.assertEqual(client.dsn, self.dsn)
+
+    def test_environment_wins_over_the_configuration_file(self):
+        env_dsn = "http://public:secret@example.com/2"
+        self.patch_env({"ODOO_SENTRY_DSN": env_dsn})
+        client = initialize_sentry(sentry_hooks.sentry_config)._client
+        self.assertEqual(client.dsn, env_dsn)
+
+    def test_both_sources_are_merged_per_option(self):
+        """An option set in only one of the two sources still reaches the client."""
+        self.patch_env({"ODOO_SENTRY_ENVIRONMENT": "from-env"})
+        client = initialize_sentry(sentry_hooks.sentry_config)._client
+        self.assertEqual(client.dsn, self.dsn, "the file should still be read")
+        self.assertEqual(client.options["environment"], "from-env")
+
+    def test_sentry_sdk_own_dsn_variable_is_not_read_as_ours(self):
+        self.patch_env({"SENTRY_DSN": "http://public:secret@example.com/2"})
+        client = initialize_sentry(sentry_hooks.sentry_config)._client
+        self.assertEqual(client.dsn, self.dsn)
+
+    def test_enabled_reads_the_string_false_as_off(self):
+        self.patch_config({"sentry_enabled": "False"})
+        self.assertIsNone(initialize_sentry(sentry_hooks.sentry_config))
+
+    def test_enabled_from_the_environment_reads_the_string_false_as_off(self):
+        self.patch_env({"ODOO_SENTRY_ENABLED": "False"})
+        self.assertIsNone(initialize_sentry(sentry_hooks.sentry_config))
 
     @patch("odoo.addons.sentry.hooks.get_odoo_commit", return_value=GIT_SHA)
     def test_config_odoo_dir(self, get_odoo_commit):
