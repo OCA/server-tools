@@ -101,7 +101,13 @@ def initialize_sentry(config):
     :param config: Sentry configuration
     :param client: class used to instantiate the sentry_sdk client.
     """
-    enabled = config.get("sentry_enabled", False)
+    # An environment variable wins over the file, the precedence queue_job's
+    # jobrunner has been applying to ODOO_QUEUE_JOB_* for years. Both sources stay
+    # supported, so an existing [sentry] section keeps working untouched, and a
+    # deployment that would rather not carry a configuration file at all can set
+    # every option through the environment instead.
+    config = {**config, **const.get_options_from_env()}
+    enabled = const.to_bool(config.get("sentry_enabled", False))
     if not (HAS_SENTRY_SDK and enabled):
         return
     _logger.info("Initializing sentry...")
@@ -149,7 +155,10 @@ def initialize_sentry(config):
 
     client = sentry_sdk.init(**options)
 
-    sentry_sdk.set_tag("include_context", config.get("sentry_include_context", True))
+    sentry_sdk.set_tag(
+        "include_context",
+        const.to_bool(config.get("sentry_include_context", True), default=True),
+    )
 
     if exclude_loggers:
         for item in exclude_loggers:
@@ -179,7 +188,7 @@ def initialize_sentry(config):
 
         odoo.http.Application.__call__ = sentry_application_call
 
-    if config.get("sentry_startup_message", True) not in (False, "False", "false"):
+    if const.to_bool(config.get("sentry_startup_message", True), default=True):
         with sentry_sdk.new_scope() as scope:
             scope.set_extra("debug", False)
             sentry_sdk.capture_message("Starting Odoo Server", "info")

@@ -382,17 +382,19 @@ with Odoo.</p>
 <ul class="simple">
 <li><a class="reference internal" href="#installation" id="toc-entry-1">Installation</a></li>
 <li><a class="reference internal" href="#configuration" id="toc-entry-2">Configuration</a><ul>
-<li><a class="reference internal" href="#example-odoo-configuration" id="toc-entry-3">Example Odoo configuration</a></li>
+<li><a class="reference internal" href="#environment-variables" id="toc-entry-3">Environment variables</a></li>
+<li><a class="reference internal" href="#example-odoo-configuration" id="toc-entry-4">Example Odoo configuration</a></li>
+<li><a class="reference internal" href="#example-environment" id="toc-entry-5">Example environment</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#usage" id="toc-entry-4">Usage</a></li>
-<li><a class="reference internal" href="#known-issues-roadmap" id="toc-entry-5">Known issues / Roadmap</a></li>
-<li><a class="reference internal" href="#bug-tracker" id="toc-entry-6">Bug Tracker</a></li>
-<li><a class="reference internal" href="#credits" id="toc-entry-7">Credits</a><ul>
-<li><a class="reference internal" href="#authors" id="toc-entry-8">Authors</a></li>
-<li><a class="reference internal" href="#contributors" id="toc-entry-9">Contributors</a></li>
-<li><a class="reference internal" href="#other-credits" id="toc-entry-10">Other credits</a></li>
-<li><a class="reference internal" href="#maintainers" id="toc-entry-11">Maintainers</a></li>
+<li><a class="reference internal" href="#usage" id="toc-entry-6">Usage</a></li>
+<li><a class="reference internal" href="#known-issues-roadmap" id="toc-entry-7">Known issues / Roadmap</a></li>
+<li><a class="reference internal" href="#bug-tracker" id="toc-entry-8">Bug Tracker</a></li>
+<li><a class="reference internal" href="#credits" id="toc-entry-9">Credits</a><ul>
+<li><a class="reference internal" href="#authors" id="toc-entry-10">Authors</a></li>
+<li><a class="reference internal" href="#contributors" id="toc-entry-11">Contributors</a></li>
+<li><a class="reference internal" href="#other-credits" id="toc-entry-12">Other credits</a></li>
+<li><a class="reference internal" href="#maintainers" id="toc-entry-13">Maintainers</a></li>
 </ul>
 </li>
 </ul>
@@ -422,8 +424,35 @@ can be configured by prepending the argument name with <em>sentry_</em> in
 your Odoo config file. Currently supported additional client arguments
 are:
 <tt class="docutils literal">with_locals, max_breadcrumbs, release, environment, server_name, shutdown_timeout, in_app_include, in_app_exclude, default_integrations, dist, sample_rate, send_default_pii, http_proxy, https_proxy, request_bodies, debug, attach_stacktrace, ca_certs, propagate_traces, traces_sample_rate, auto_enabling_integrations</tt>.</p>
+<div class="section" id="environment-variables">
+<h3><a class="toc-backref" href="#toc-entry-3">Environment variables</a></h3>
+<p>Every option above can also be set through an environment variable,
+named after the option it carries with an <tt class="docutils literal">ODOO_</tt> prefix:
+<tt class="docutils literal">sentry_dsn</tt> becomes <tt class="docutils literal">ODOO_SENTRY_DSN</tt>,
+<tt class="docutils literal">sentry_traces_sample_rate</tt> becomes
+<tt class="docutils literal">ODOO_SENTRY_TRACES_SAMPLE_RATE</tt>. This is the same shape <em>queue_job</em>
+uses for <tt class="docutils literal">ODOO_QUEUE_JOB_*</tt>.</p>
+<p>Both sources stay supported and are merged per option, the environment
+winning where the two disagree. An existing <tt class="docutils literal">[sentry]</tt> section keeps
+working as it is, and a deployment that would rather not ship a
+configuration file at all can set everything through the environment
+instead.</p>
+<p>The <tt class="docutils literal">ODOO_</tt> prefix is what keeps these apart from the <tt class="docutils literal">SENTRY_*</tt>
+variables <em>sentry-sdk</em> reads on its own. <tt class="docutils literal">SENTRY_DSN</tt> addresses
+whichever process the library runs in, so it is left alone rather than
+reused here.</p>
+<p>Two reasons a container may prefer the environment:</p>
+<ul class="simple">
+<li>Odoo reads only <tt class="docutils literal">[options]</tt> from its configuration file, and logs
+<tt class="docutils literal">unknown option ... in the config file</tt> for anything there it does
+not know. The <tt class="docutils literal">[sentry]</tt> section is quiet, but it exists only
+because these options had to leave <tt class="docutils literal">[options]</tt> for that reason.</li>
+<li><tt class="docutils literal"><span class="pre">odoo-bin</span> <span class="pre">-s</span></tt> rewrites the configuration file out of its own
+options, which drops every other section, <tt class="docutils literal">[sentry]</tt> included.</li>
+</ul>
+</div>
 <div class="section" id="example-odoo-configuration">
-<h3><a class="toc-backref" href="#toc-entry-3">Example Odoo configuration</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-4">Example Odoo configuration</a></h3>
 <p>Below is an example of Odoo configuration file with <em>Odoo Sentry</em>
 options:</p>
 <pre class="literal-block">
@@ -448,16 +477,32 @@ sentry_odoo_dir = /home/odoo/odoo/
 sentry_startup_message = true
 </pre>
 </div>
+<div class="section" id="example-environment">
+<h3><a class="toc-backref" href="#toc-entry-5">Example environment</a></h3>
+<p>The same setup, with <tt class="docutils literal">server_wide_modules</tt> left in the configuration
+file because that one is Odoo’s own option:</p>
+<pre class="literal-block">
+ODOO_SENTRY_DSN=https://&lt;public_key&gt;:&lt;secret_key&gt;&#64;sentry.example.com/&lt;project id&gt;
+ODOO_SENTRY_ENABLED=true
+ODOO_SENTRY_LOGGING_LEVEL=warn
+ODOO_SENTRY_EXCLUDE_LOGGERS=werkzeug
+ODOO_SENTRY_INCLUDE_CONTEXT=true
+ODOO_SENTRY_ENVIRONMENT=production
+ODOO_SENTRY_RELEASE=1.3.2
+ODOO_SENTRY_ODOO_DIR=/home/odoo/odoo/
+ODOO_SENTRY_STARTUP_MESSAGE=true
+</pre>
+</div>
 </div>
 <div class="section" id="usage">
-<h2><a class="toc-backref" href="#toc-entry-4">Usage</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-6">Usage</a></h2>
 <p>Once configured and installed, the module will report any logging event
 at and above the configured Sentry logging level, no additional actions
 are necessary.</p>
 <p><a class="reference external image-reference" href="https://runbot.odoo-community.org/runbot/149/14.0"><img alt="Try me on Runbot" src="https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas" /></a></p>
 </div>
 <div class="section" id="known-issues-roadmap">
-<h2><a class="toc-backref" href="#toc-entry-5">Known issues / Roadmap</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-7">Known issues / Roadmap</a></h2>
 <ul class="simple">
 <li><strong>No database separation</strong> – This module functions by intercepting
 all Odoo logging records in a running Odoo process. This means that
@@ -473,7 +518,7 @@ shortly describe what they were doing when things went wrong.</li>
 </ul>
 </div>
 <div class="section" id="bug-tracker">
-<h2><a class="toc-backref" href="#toc-entry-6">Bug Tracker</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-8">Bug Tracker</a></h2>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/server-tools/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
@@ -481,9 +526,9 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
-<h2><a class="toc-backref" href="#toc-entry-7">Credits</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-9">Credits</a></h2>
 <div class="section" id="authors">
-<h3><a class="toc-backref" href="#toc-entry-8">Authors</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-10">Authors</a></h3>
 <ul class="simple">
 <li>Mohammed Barsi</li>
 <li>Versada</li>
@@ -492,7 +537,7 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 </ul>
 </div>
 <div class="section" id="contributors">
-<h3><a class="toc-backref" href="#toc-entry-9">Contributors</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-11">Contributors</a></h3>
 <ul class="simple">
 <li>Mohammed Barsi &lt;<a class="reference external" href="mailto:barsintod&#64;gmail.com">barsintod&#64;gmail.com</a>&gt;</li>
 <li>Andrius Preimantas &lt;<a class="reference external" href="mailto:andrius&#64;versada.eu">andrius&#64;versada.eu</a>&gt;</li>
@@ -506,13 +551,13 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 </ul>
 </div>
 <div class="section" id="other-credits">
-<h3><a class="toc-backref" href="#toc-entry-10">Other credits</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-12">Other credits</a></h3>
 <ul class="simple">
 <li>Vauxoo</li>
 </ul>
 </div>
 <div class="section" id="maintainers">
-<h3><a class="toc-backref" href="#toc-entry-11">Maintainers</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-13">Maintainers</a></h3>
 <p>This module is maintained by the OCA.</p>
 <a class="reference external image-reference" href="https://odoo-community.org">
 <img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" />

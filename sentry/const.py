@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 import collections
 import logging
+import os
 
 from sentry_sdk import HttpTransport
 from sentry_sdk.consts import DEFAULT_OPTIONS
@@ -27,6 +28,26 @@ def to_float_if_defined(value):
     if value == "" or value is None:
         return
     return float(value)
+
+
+TRUTHY_VALUES = ("1", "on", "true", "yes")
+
+
+def to_bool(value, default=False):
+    """Read a boolean out of a value that a configuration file or an environment
+    variable can only deliver as a string.
+
+    ``bool("False")`` is ``True``, so a plain truth test on a string turns an option
+    the user switched off back on.
+    """
+    if value is None:
+        return default
+    if isinstance(value, str):
+        value = value.strip().lower()
+        # An option present but left empty says nothing, so it is not an answer of
+        # "off": keep the default the caller asked for.
+        return default if not value else value in TRUTHY_VALUES
+    return bool(value)
 
 
 SentryOption = collections.namedtuple("SentryOption", ["key", "default", "converter"])
@@ -132,3 +153,34 @@ def get_sentry_options():
         )
 
     return res
+
+
+# ENV_OPTION_PREFIX is what the options are already called in the configuration
+# file, so ODOO_SENTRY_DSN and sentry_dsn name the same option and neither source
+# needs a translation table.
+ENV_PREFIX = "ODOO_"
+ENV_OPTION_PREFIX = "SENTRY_"
+
+
+def get_options_from_env(environ=None):
+    """Return the options set through environment variables.
+
+    Keys come back in the shape the configuration file uses, so the caller merges
+    both sources without caring where each value came from: ``ODOO_SENTRY_DSN``
+    becomes ``sentry_dsn``. Every option is covered, including the ones this module
+    does not name itself, because the prefix is what selects them rather than a
+    list that would have to be kept up to date.
+
+    The ``ODOO_`` prefix follows ``queue_job``, which reads ``ODOO_QUEUE_JOB_*``
+    this way, and keeps these apart from the ``SENTRY_*`` variables ``sentry-sdk``
+    reads on its own. ``SENTRY_DSN`` addresses whichever process the library runs
+    in, so reusing it here would point Odoo at a DSN meant for something else.
+    """
+    if environ is None:
+        environ = os.environ
+    prefix = f"{ENV_PREFIX}{ENV_OPTION_PREFIX}"
+    return {
+        name[len(ENV_PREFIX) :].lower(): value
+        for name, value in environ.items()
+        if name.startswith(prefix)
+    }
