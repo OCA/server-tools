@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="xlsx_template_view_form_inherit_required" model="ir.ui.view">
+        <field name="name">xlsx.template.view.form.inherit.required</field>
+        <field name="model">xlsx.template</field>
+        <field name="inherit_id" ref="excel_import_export.view_xlsx_template_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='import_ids']/list/field[@name='field_cond']"
+                position="after"
+            >
+                <field name="required" invisible="section_type != 'data'" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
