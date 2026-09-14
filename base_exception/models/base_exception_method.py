@@ -100,6 +100,10 @@ class BaseExceptionMethod(models.AbstractModel):
         test_mode = (
             config["test_enable"] or not self.env.registry.ready
         ) and not self.env.context.get("test_base_exception")
+        # Resolve the main records (e.g. the sale order behind a sale order
+        # line) using the current cursor, which sees records created earlier
+        # in this same transaction even before they are committed.
+        main_records = self._get_main_records()
         # Write exceptions in a new transaction to be committed so that we can
         #  rollback the ongoing one while keeping the exceptions stored
         with self.env.registry.cursor() as new_cr:
@@ -118,9 +122,21 @@ class BaseExceptionMethod(models.AbstractModel):
                 )
             # In case we have new exception, or exceptions that were not ignored yet, or
             #  blocking exceptions, we need to raise an exception to rollback the
-            #  ongoing transaction
-            self_new_env = self.with_env(new_env)
-            if rules_to_add or self_new_env._must_raise_exception_after_detection():
+            #  ongoing transaction.
+            # Re-derive main_records through new_env rather than re-running
+            # self.with_env(new_env)._get_main_records(): when self are
+            # records just created earlier in the ongoing (not yet committed)
+            # transaction (e.g. a line added while editing a confirmed sale
+            # order), new_cr is a genuinely separate DB connection that
+            # cannot see them yet, and _get_main_records() traversal
+            # (e.g. sale.order.line -> order_id) would raise MissingError.
+            # main_records itself was already resolved above through the
+            # current cursor, so only rebinding it to new_env is needed here.
+            main_records_new_env = main_records.with_env(new_env)
+            if (
+                rules_to_add
+                or main_records_new_env._must_raise_exception_after_detection()
+            ):
                 raise_exception = True
         if raise_exception:
             raise BaseExceptionError(
