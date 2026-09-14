@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <record id="view_upgrade_analysis_tree" model="ir.ui.view">
         <field name="model">upgrade.analysis</field>
@@ -52,8 +52,8 @@
     </record>
 
     <menuitem
-        action="action_upgrade_analysis_tree"
         id="menu_upgrade_analysis"
+        action="action_upgrade_analysis_tree"
         name="Upgrade Analyses"
         parent="menu_upgrade"
     />

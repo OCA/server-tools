@@ -28,5 +28,5 @@ class IrModuleModule(models.Model):
                 module.is_odoo_module = False
                 continue
             absolute_repo_path = os.path.split(module_path)[0]
-            x, relative_repo_path = os.path.split(absolute_repo_path)
+            _x, relative_repo_path = os.path.split(absolute_repo_path)
             module.is_odoo_module = relative_repo_path == "addons"

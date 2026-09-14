@@ -135,7 +135,8 @@ def fieldprint(old, new, field, text, reprs):
             try:
                 old_selection_keys = literal_eval(old_selection_keys)
                 new_selection_keys = literal_eval(new_selection_keys)
-            except Exception:  # pylint: disable=except-pass
+            # pylint: disable=except-pass
+            except (ValueError, TypeError, SyntaxError, MemoryError, RecursionError):
                 pass
             if isinstance(old_selection_keys, tuple | list) and isinstance(
                 new_selection_keys, tuple | list
@@ -244,9 +245,8 @@ def compare_sets(old_records, new_records):
 
     obsolete_models = []
     for model in old_models:
-        if model not in new_models:
-            if model_map(model) not in new_models:
-                obsolete_models.append(model)
+        if model not in new_models and model_map(model) not in new_models:
+            obsolete_models.append(model)
 
     non_obsolete_old_records = []
     for column in copy.copy(old_records):
@@ -423,8 +423,10 @@ def compare_sets(old_records, new_records):
         f"# Direct match: {matched_direct}",
         f"# Found in other module: {matched_other_module}",
         f"# Found with different type: {matched_other_type}",
-        "# Found in other module with different type: "
-        f"{matched_other_module_other_type}",
+        (
+            "# Found in other module with different type: "
+            f"{matched_other_module_other_type}"
+        ),
         f"# In obsolete models: {in_obsolete_models}",
         f"# Not matched: {len(old_records)}",
         f"# New columns: {len(new_records)}",
