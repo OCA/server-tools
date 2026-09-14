@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <record id="view_upgrade_record_search" model="ir.ui.view">
         <field name="model">upgrade.record</field>
@@ -70,8 +70,8 @@
     </record>
 
     <menuitem
-        action="action_upgrade_record_tree"
         id="menu_upgrade_records"
+        action="action_upgrade_record_tree"
         name="Records"
         parent="menu_upgrade"
     />

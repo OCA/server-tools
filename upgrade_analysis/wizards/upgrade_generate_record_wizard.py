@@ -56,6 +56,9 @@ class GenerateWizard(models.TransientModel):
         # Free the registry
         delattr(thread, "_upgrade_registry")
 
+        # Commit to restart transaction to see db changes from registry initialization
+        self.env.cr.commit()  # pylint: disable=invalid-commit
+
         # Set domain property
         self.env.cr.execute(
             """ UPDATE upgrade_record our

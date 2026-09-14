@@ -45,8 +45,8 @@ class UpgradeInstallWizard(models.TransientModel):
 
         for start_pattern in BLACKLIST_MODULES_STARTS_WITH:
             modules = modules.filtered(
-                lambda x, start_pattern=start_pattern: not x.name.startswith(
-                    start_pattern
+                lambda x, start_pattern=start_pattern: (
+                    not x.name.startswith(start_pattern)
                 )
             )
         for end_pattern in BLACKLIST_MODULES_ENDS_WITH:

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <record id="view_upgrade_generate_record_wizard_form" model="ir.ui.view">
         <field name="model">upgrade.generate.record.wizard</field>
@@ -38,8 +38,8 @@
     </record>
 
     <menuitem
-        name="Generate Records Wizard"
         id="menu_upgrade_generate_record"
+        name="Generate Records Wizard"
         parent="menu_upgrade"
         action="action_upgrade_generate_record_wizard"
         sequence="15"

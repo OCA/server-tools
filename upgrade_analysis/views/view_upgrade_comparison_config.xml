@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <record id="view_upgrade_comparison_config_tree" model="ir.ui.view">
         <field name="model">upgrade.comparison.config</field>
@@ -68,8 +68,8 @@
     </record>
 
     <menuitem
-        action="action_upgrade_comparison_config_tree"
         id="menu_upgrade_comparison_config"
+        action="action_upgrade_comparison_config_tree"
         name="Comparison Configurations"
         parent="menu_upgrade"
     />
