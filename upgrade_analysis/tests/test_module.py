@@ -1,3 +1,4 @@
+import typing
 from copy import deepcopy
 from unittest.mock import patch
 
@@ -27,19 +28,12 @@ class TestUpgradeAnalysis(common.TransactionCase):
         wizard.select_odoo_modules()
         self.assertTrue(
             self.website_module.id in wizard.module_ids.ids,
-            "Select Odoo module should select 'product' module",
+            "Select Odoo module should select 'website' module",
         )
-        # New patch avoids to reinstall already installed modules, so this will fail
-        # wizard.select_oca_modules()
-        # self.assertTrue(
-        #     self.upgrade_analysis.id in wizard.module_ids.ids,
-        #     "Select OCA module should select 'upgrade_analysis' module",
-        # )
-
         wizard.select_other_modules()
         self.assertFalse(
             self.website_module.id in wizard.module_ids.ids,
-            "Select Other module should not select 'product' module",
+            "Select Other module should not select 'website' module",
         )
 
         wizard.unselect_modules()
@@ -57,6 +51,7 @@ class TestUpgradeAnalysis(common.TransactionCase):
         """
         Test the patched versions of Odoo's base functions
         """
+        # ir.model.constraint#_reflect_table_object
         self.assertFalse(
             self.env["upgrade.record"].search(
                 [
@@ -66,14 +61,44 @@ class TestUpgradeAnalysis(common.TransactionCase):
             )
         )
         with OdooPatch():
-            self.env["ir.model.constraint"]._reflect_model(self.IrModuleModule)
+            self.env["ir.model.constraint"]._reflect_constraints(["ir.module.module"])
         self.assertTrue(
             self.env["upgrade.record"].search(
                 [
                     ("name", "=", "base.constraint_ir_module_module_name_uniq"),
                     ("type", "=", "xmlid"),
                 ]
+            ),
+            "Expected upgrade record not created",
+        )
+        # base._convert_records
+        self.assertFalse(
+            self.env.ref("upgrade_analysis.test_country", False),
+            "Test country should not exist yet",
+        )
+        # the patch in base._convert_records relies on xmlids being reloaded,
+        # so first create the record normally.
+        self.env["res.country"].with_context(module="upgrade_analysis").load(
+            ("id", "name", "code"),
+            [("test_country", "Test Country", "XX")],
+        )
+        with OdooPatch():
+            self.env["res.country"].with_context(module="upgrade_analysis").load(
+                ("id", "name", "code"),
+                [("test_country", "Test Country", "XX")],
             )
+        self.assertTrue(
+            self.env.ref("upgrade_analysis.test_country", False),
+            "Test country should exist",
+        )
+        self.assertTrue(
+            self.env["upgrade.record"].search(
+                [
+                    ("name", "=", "upgrade_analysis.test_country"),
+                    ("type", "=", "xmlid"),
+                ]
+            ),
+            "Expected upgrade record not created",
         )
 
     def test_field_comparison(self):
@@ -96,11 +121,11 @@ class TestUpgradeAnalysis(common.TransactionCase):
                 ),
             )
 
-        state_field = [
+        state_field = next(
             field
             for field in new_fields
             if field["field"] == "state" and field["model"] == "upgrade.analysis"
-        ][0]
+        )
 
         state_field["selection_keys"] = "['done', 'new']"
         comparison = compare.compare_sets(old_fields, new_fields)
@@ -201,7 +226,7 @@ class TestUpgradeAnalysis(common.TransactionCase):
         )
 
         class RemoteUpgradeRecord:
-            _records = {
+            _records: typing.ClassVar = {
                 1: {
                     "name": "other_module.test_noupdate_xmlid",
                     "mode": "create",
@@ -234,7 +259,7 @@ class TestUpgradeAnalysis(common.TransactionCase):
                 return []
 
             def list_modules(self):
-                return set(record["module"] for record in self._records.values())
+                return {record["module"] for record in self._records.values()}
 
             def get_xml_records(self, module):
                 if module == "other_module":

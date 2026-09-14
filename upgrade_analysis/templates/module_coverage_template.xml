@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <template id="module_coverage">Module coverage <t t-out="start_version" /> -> <t
         t-out="end_version"
