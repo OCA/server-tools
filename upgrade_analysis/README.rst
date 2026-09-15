@@ -123,10 +123,13 @@ promote its widespread use.
 .. |maintainer-legalsylvain| image:: https://github.com/legalsylvain.png?size=40px
     :target: https://github.com/legalsylvain
     :alt: legalsylvain
+.. |maintainer-hbrunn| image:: https://github.com/hbrunn.png?size=40px
+    :target: https://github.com/hbrunn
+    :alt: hbrunn
 
 Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-StefanRijnhart| |maintainer-legalsylvain| 
+|maintainer-StefanRijnhart| |maintainer-legalsylvain| |maintainer-hbrunn| 
 
 This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/20.0/upgrade_analysis>`_ project on GitHub.
 
