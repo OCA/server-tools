@@ -37,8 +37,12 @@
                         <field name="server" />
                         <field name="port" />
                         <field name="database" />
-                        <field name="username" />
-                        <field name="password" />
+                        <field name="username" required="not api_key" />
+                        <field name="password" required="not api_key" />
+                        <field
+                            name="api_key"
+                            required="not username and not password"
+                        />
                         <field name="version" />
                     </group>
                     <button
