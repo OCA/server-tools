@@ -1,4 +1,5 @@
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# Copyright 2012 Akretion (https://www.akretion.com).
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
 from odoo import fields, models
 
@@ -6,7 +7,6 @@ from odoo import fields, models
 class FetchmailAttachmentCondition(models.Model):
     _name = "fetchmail.attachment.condition"
     _description = "Fetchmail Attachment Conditions"
-    _check_company_auto = True
 
     name = fields.Char(
         string="Condition Name",

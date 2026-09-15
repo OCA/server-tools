@@ -35,7 +35,7 @@ be imported creating a new ``attachment.queue`` object. These
 ``attachment.queue`` objects are files wrapped with additional fields
 (mainly a **Filed Type** and a **State**) making them ready to be
 processed by a custom module as you can read in the
-`attachment_queue <https://github.com/OCA/server-tools/tree/16.0/attachment_queue>`__
+`attachment_queue <https://github.com/OCA/server-tools/tree/18.0/attachment_queue>`__
 documentation.
 
 **Table of contents**
@@ -84,7 +84,8 @@ Contributors
 - Valentin CHEMIERE <valentin.chemiere@akretion.com>
 - Florian DA COSTA <florian.dacosta@akretion.com>
 - Sebastien BEAU <sebastian.beau@akretion.com>
-- Clément Mombereau <clement.mombereau@akretion.com.br>
+- Clément Mombereau <clement.mombereau@akretion.com>
+- Benoit GUILLOT <benoit.guillot@akretion.com>
 
 Maintainers
 -----------

@@ -1,4 +1,5 @@
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# Copyright 2012 Akretion (https://www.akretion.com).
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
 import base64
 
@@ -40,36 +41,41 @@ class AttachmentQueue(models.Model):
         return values
 
     @api.model
-    def prepare_data_from_basic_condition(self, cond, msg):
+    def prepare_data_from_basic_condition(self, cond, msg_dict):
         vals_list = []
-        # match_from and match_subj are True if empty or if matching with msg's values
+        # match_from and match_subj are True if empty or if matching with
+        # msg_dict's values
         match_from = (
             cond.email_from
-            and cond.email_from in msg.get("from", "")
+            and cond.email_from in msg_dict.get("from", "")
             or not cond.email_from
         )
         match_subj = (
             cond.email_subject
-            and cond.email_subject in msg.get("subject", "")
+            and cond.email_subject in msg_dict.get("subject", "")
             or not cond.email_subject
         )
         match_to = (
-            cond.email_to and cond.email_to in msg.get("to", "") or not cond.email_to
+            cond.email_to
+            and cond.email_to in msg_dict.get("to", "")
+            or not cond.email_to
         )
 
         if match_from and match_subj and match_to:
-            for att in msg["attachments"]:
+            for att in msg_dict["attachments"]:
                 if cond.file_extension in att[0] or not cond.file_extension:
-                    vals_list.append(self._get_attachment_queue_data(cond, msg, att))
+                    vals_list.append(
+                        self._get_attachment_queue_data(cond, msg_dict, att)
+                    )
         return vals_list
 
     @api.model
-    def _prepare_data_for_attachment_queue(self, msg):
+    def _prepare_data_for_attachment_queue(self, msg_dict):
         """Prepare the datas for the creation of one or many attachment.queue depending
         on the number of the email's attachments files and if the email matches the
         fetchmail.attachment.condition's conditions.
 
-        :param msg: a dictionnary with the email data
+        :param msg_dict: a dictionnary with the email data
         :type: dict
 
         :return: a list of dictionnary that contains the attachment.queue data
@@ -80,18 +86,18 @@ class AttachmentQueue(models.Model):
         file_condition_obj = self.env["fetchmail.attachment.condition"]
         conds = file_condition_obj.search([("server_id", "=", server_id)])
         for cond in conds:
-            vals_list = self.prepare_data_from_basic_condition(cond, msg)
+            vals_list = self.prepare_data_from_basic_condition(cond, msg_dict)
             if vals_list:
                 res += vals_list
         return res
 
     @api.model
-    def message_new(self, msg, custom_values):
-        """Create Attachments Queues objects from the new received email's attachments."""
+    def message_new(self, msg_dict, custom_values=None):
+        """Create Attachments Queues objects from the received email's attachments."""
         # Rewriting completely ``message_new`` instead of overiding it in order to
         # allows the creation of many new objects instead of only one.
         created_recs = []
-        res = self._prepare_data_for_attachment_queue(msg)
+        res = self._prepare_data_for_attachment_queue(msg_dict)
         if res:
             for vals in res:
                 created_recs.append(self.create(vals))
