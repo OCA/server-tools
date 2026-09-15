@@ -1,13 +1,13 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+from odoo.addons.mail.tests.common import MailCommon
 from odoo.addons.test_mail.data.test_mail_data import (
     MAIL_MULTIPART_IMAGE,
     MAIL_SINGLE_BINARY,
 )
-from odoo.addons.test_mail.tests.common import TestMailCommon
 
 
-class TestAttachmentQueueEmail(TestMailCommon):
+class TestAttachmentQueueEmail(MailCommon):
     def setUp(self):
         super().setUp()
         self.attach_condition_1 = self.env["fetchmail.attachment.condition"].create(

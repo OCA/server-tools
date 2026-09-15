@@ -5,7 +5,7 @@
 
 {
     "name": "Attachment Queue Email",
-    "version": "16.0.1.0.0",
+    "version": "18.0.1.0.0",
     "author": "Akretion,Odoo Community Association (OCA)",
     "category": "Generic Modules",
     "summary": "Create attachment from emails to be processed depending on their type",

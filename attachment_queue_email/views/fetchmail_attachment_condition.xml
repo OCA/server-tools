@@ -5,7 +5,7 @@
         <field name="name">view_fetchmail_attachment_condition_tree</field>
         <field name="model">fetchmail.attachment.condition</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name" />
                 <field name="email_from" />
                 <field name="email_to" />
@@ -13,7 +13,7 @@
                 <field name="file_extension" />
                 <field name="server_id" invisible="1" />
                 <field name="company_id" />
-            </tree>
+            </list>
         </field>
     </record>
 
