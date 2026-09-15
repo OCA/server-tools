@@ -1,7 +1,6 @@
 <?xml version="1.0" ?>
 <odoo>
-
-   <!-- Views and menus for the new object fetchmail.attachment.condition -->
+    <!-- Views and menus for the new object fetchmail.attachment.condition -->
     <record id="view_fetchmail_attachment_condition_tree" model="ir.ui.view">
         <field name="name">view_fetchmail_attachment_condition_tree</field>
         <field name="model">fetchmail.attachment.condition</field>
@@ -15,7 +14,7 @@
                 <field name="server_id" invisible="1" />
                 <field name="company_id" />
             </tree>
-       </field>
+        </field>
     </record>
 
     <record id="view_fetchmail_attachment_condition_form" model="ir.ui.view">
@@ -24,12 +23,12 @@
         <field name="arch" type="xml">
             <form string="Attachment Condition requirements">
                 <sheet>
-                  <div class="oe_title">
-                      <label class="oe_edit_only" for="name" />
-                      <h1>
-                          <field name="name" />
-                      </h1>
-                  </div>
+                    <div class="oe_title">
+                        <label class="oe_edit_only" for="name" />
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div>
                     <group string="Requirements" class="col-12 col-lg-6">
                         <field name="company_id" />
                         <field name="email_from" />
@@ -43,7 +42,6 @@
                     </group>
                 </sheet>
             </form>
-       </field>
+        </field>
     </record>
-
 </odoo>

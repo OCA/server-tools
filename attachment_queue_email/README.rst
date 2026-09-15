@@ -17,20 +17,26 @@ Attachment Queue Email
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github
-    :target: https://github.com/OCA/server-tools/tree/16.0/attachment_queue_email
+    :target: https://github.com/OCA/server-tools/tree/18.0/attachment_queue_email
     :alt: OCA/server-tools
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/server-tools-16-0/server-tools-16-0-attachment_queue_email
+    :target: https://translation.odoo-community.org/projects/server-tools-18-0/server-tools-18-0-attachment_queue_email
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/server-tools&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/server-tools&target_branch=18.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
 Abstract module for importing emails attachments.
 
-Each email's attachment matching a given **"Attachment Condition"** will be imported creating a new ``attachment.queue`` object. These ``attachment.queue`` objects are files wrapped with additional fields (mainly a **Filed Type** and a **State**) making them ready to be processed by a custom module as you can read in the `attachment_queue <https://github.com/OCA/server-tools/tree/16.0/attachment_queue>`_ documentation.
+Each email's attachment matching a given **"Attachment Condition"** will
+be imported creating a new ``attachment.queue`` object. These
+``attachment.queue`` objects are files wrapped with additional fields
+(mainly a **Filed Type** and a **State**) making them ready to be
+processed by a custom module as you can read in the
+`attachment_queue <https://github.com/OCA/server-tools/tree/16.0/attachment_queue>`__
+documentation.
 
 **Table of contents**
 
@@ -40,11 +46,19 @@ Each email's attachment matching a given **"Attachment Condition"** will be impo
 Usage
 =====
 
-Adding an **"Attachment Condition"** to your *Incoming Mail Server* configuration will lead to the creation of ``attachment.queue`` objects from emails attachments coming from this server and matching the given *Attachment Condition*.
+Adding an **"Attachment Condition"** to your *Incoming Mail Server*
+configuration will lead to the creation of ``attachment.queue`` objects
+from emails attachments coming from this server and matching the given
+*Attachment Condition*.
 
-  🔎 Recalling that, as the *Incoming Mail Servers* has only one *"Create a New Record"* field, the emails coming from that server **cannot be used to create other type of objects** than ``attachment.queue``.
+   🔎 Recalling that, as the *Incoming Mail Servers* has only one
+   *"Create a New Record"* field, the emails coming from that server
+   **cannot be used to create other type of objects** than
+   ``attachment.queue``.
 
-Filling the condition's **File Type** field will spread this value to the newly created ``attchment.queue`` objects so they can be processed by a custom module following this **File Type** field value.
+Filling the condition's **File Type** field will spread this value to
+the newly created ``attchment.queue`` objects so they can be processed
+by a custom module following this **File Type** field value.
 
 Bug Tracker
 ===========
@@ -52,7 +66,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/server-tools/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/server-tools/issues/new?body=module:%20attachment_queue_email%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/server-tools/issues/new?body=module:%20attachment_queue_email%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -60,20 +74,20 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Akretion
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Valentin CHEMIERE <valentin.chemiere@akretion.com>
-* Florian DA COSTA <florian.dacosta@akretion.com>
-* Sebastien BEAU <sebastian.beau@akretion.com>
-* Clément Mombereau <clement.mombereau@akretion.com.br>
+- Valentin CHEMIERE <valentin.chemiere@akretion.com>
+- Florian DA COSTA <florian.dacosta@akretion.com>
+- Sebastien BEAU <sebastian.beau@akretion.com>
+- Clément Mombereau <clement.mombereau@akretion.com.br>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -99,6 +113,6 @@ Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-florian-dacosta| |maintainer-sebastienbeau| |maintainer-bealdav| 
 
-This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/16.0/attachment_queue_email>`_ project on GitHub.
+This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/18.0/attachment_queue_email>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
