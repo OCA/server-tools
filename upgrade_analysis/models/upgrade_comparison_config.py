@@ -22,9 +22,14 @@ class UpgradeComparisonConfig(models.Model):
 
     database = fields.Char(required=True)
 
-    username = fields.Char(required=True, default="admin")
+    username = fields.Char(default="admin")
 
-    password = fields.Char(required=True, default="admin")
+    password = fields.Char(default="admin")
+
+    api_key = fields.Char(
+        help="If you connect to v19+ and your version of odoorpc supports it, "
+        "fill in an api key here instead of username and password"
+    )
 
     version = fields.Char()
 
@@ -50,7 +55,12 @@ class UpgradeComparisonConfig(models.Model):
                     port=self.port,
                 )
             ) from exc
-        remote.login(self.database, self.username, self.password)
+        login_args = {"db": self.database}
+        if not self.api_key:
+            login_args.update(login=self.username, password=self.password)
+        else:
+            login_args.update(api_key=self.api_key)
+        remote.login(**login_args)
         self.version = remote.version
         return remote
 
