@@ -6,7 +6,9 @@
 # flake8: noqa: C901
 
 import ast
+import functools
 import logging
+import operator
 import os
 from copy import deepcopy
 
@@ -155,17 +157,21 @@ class UpgradeAnalysis(models.Model):
             "domain",
             "definition",
         ]
-        local_xml_records = [
-            {field: record[field] for field in flds}
-            for record in LocalRecord.search([("type", "=", "xmlid")])
-        ]
+        local_xml_records_by_model = {}
+        for record in LocalRecord.search([("type", "=", "xmlid")]):
+            records = local_xml_records_by_model.setdefault(record["model"], [])
+            records.append({field: record[field] for field in flds})
+
+        remote_xml_records_by_model = {}
         remote_xml_record_ids = RemoteRecord.search([("type", "=", "xmlid")])
-        remote_xml_records = [
-            {field: record[field] for field in flds}
-            for record in RemoteRecord.read(remote_xml_record_ids, flds)
-        ]
+        for record in RemoteRecord.read(remote_xml_record_ids, flds):
+            records = remote_xml_records_by_model.setdefault(record["model"], [])
+            records.append({field: record[field] for field in flds})
+
         res_xml, moved_xml_records, renamed_xml_records, modified_xml_records = (
-            compare.compare_xml_sets(remote_xml_records, local_xml_records)
+            compare.compare_xml_sets(
+                remote_xml_records_by_model, local_xml_records_by_model
+            )
         )
 
         # Retrieve model representations and compare
@@ -194,8 +200,12 @@ class UpgradeAnalysis(models.Model):
                 record["module"]
                 for record in remote_records
                 + local_records
-                + remote_xml_records
-                + local_xml_records
+                + functools.reduce(
+                    operator.iadd, remote_xml_records_by_model.values(), []
+                )
+                + functools.reduce(
+                    operator.iadd, local_xml_records_by_model.values(), []
+                )
                 + remote_model_records
                 + local_model_records
             }

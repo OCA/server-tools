@@ -10,6 +10,10 @@
 
 import collections
 import copy
+import functools
+import itertools
+import logging
+import operator
 from ast import literal_eval
 
 try:
@@ -26,6 +30,9 @@ except ImportError:
         merged_models: dict = dc_field(default_factory=dict)
 
     apriori = NullApriori()
+
+
+_logger = logging.getLogger("upgrade_analysis")
 
 
 def module_map(module):
@@ -435,24 +442,20 @@ def compare_sets(old_records, new_records):
     return reprs
 
 
-def compare_xml_sets(old_records, new_records):
+def compare_xml_sets(old_records_by_model, new_records_by_model):
+    logger = _logger.getChild("compare_xml_sets")
     reprs = collections.defaultdict(list)
 
-    def match_updates(match_fields):
-        old_updated, new_updated = {}, {}
-        for column in copy.copy(old_records):
-            found_all = search(column, old_records, match_fields, True)
+    def match_updates(match_fields, records):
+        """
+        Remove xmlids declared in module a and updated in module b
+        """
+        for column in copy.copy(records):
+            found_all = search(column, records, match_fields, True)
             for found in found_all:
-                old_records.remove(found)
-        for column in copy.copy(new_records):
-            found_all = search(column, new_records, match_fields, True)
-            for found in found_all:
-                new_records.remove(found)
-        matched_records = list(old_updated.values()) + list(new_updated.values())
-        matched_records = [y for x in matched_records for y in x]
-        return matched_records
+                records.remove(found)
 
-    def match(match_fields, match_type="direct"):
+    def match(match_fields, match_type, old_records, new_records):
         matched_records = []
         for column in copy.copy(old_records):
             found = search(column, new_records, match_fields)
@@ -491,16 +494,39 @@ def compare_xml_sets(old_records, new_records):
         return matched_records
 
     # direct match
-    modified_records = match(["module", "model", "name"])
+    logger.info("seaching direct matches")
+    modified_records = []
+    for old_model, old_records in old_records_by_model.items():
+        new_records = new_records_by_model.get(model_map(old_model), [])
+        modified_records += match(
+            ["module", "model", "name"], "direct", old_records, new_records
+        )
 
     # updated records (will be excluded)
-    match_updates(["model", "name"])
+    logger.info("seaching updates")
+    for records in itertools.chain(
+        old_records_by_model.values(), new_records_by_model.values()
+    ):
+        match_updates(["model", "name"], records)
 
     # other module, same full xmlid
-    moved_records = match(["model", "name"], "moved")
+    logger.info("seaching moved records")
+    moved_records = []
+    for old_model, old_records in old_records_by_model.items():
+        new_records = new_records_by_model.get(model_map(old_model), [])
+        moved_records += match(["model", "name"], "moved", old_records, new_records)
 
     # other module, same suffix, other prefix
-    renamed_records = match(["model", "suffix", "other_prefix"], "renamed")
+    logger.info("seaching renamed records")
+    renamed_records = []
+    for old_model, old_records in old_records_by_model.items():
+        new_records = new_records_by_model.get(model_map(old_model), [])
+        renamed_records += match(
+            ["model", "suffix", "other_prefix"], "renamed", old_records, new_records
+        )
+
+    old_records = functools.reduce(operator.iadd, old_records_by_model.values(), [])
+    new_records = functools.reduce(operator.iadd, new_records_by_model.values(), [])
 
     for record in old_records:
         record["old"] = True
