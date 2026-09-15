@@ -1,0 +1,323 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* auto_backup_fs_file
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2026-02-10 11:50+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
+
+#. module: auto_backup_fs_file
+#: model:ir.model.fields,field_description:auto_backup_fs_file.field_db_backup_fs_file__message_needaction
+msgid "Action Needed"
+msgstr "Azione richiesta"
+
+#. module: auto_backup_fs_file
+#: model:ir.model.fields,field_description:auto_backup_fs_file.field_db_backup_fs_file__activity_ids
+msgid "Activities"
+msgstr "Attività"
+
+#. module: auto_backup_fs_file
+#: model:ir.model.fields,field_description:auto_backup_fs_file.field_db_backup_fs_file__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "Decorazione eccezione attività"
+
+#. module: auto_backup_fs_file
+#: model:ir.model.fields,field_description:auto_backup_fs_file.field_db_backup_fs_file__activity_state
+msgid "Activity State"
+msgstr "Stato attività"
+
+#. module: auto_backup_fs_file
+#: model:ir.model.fields,field_description:auto_backup_fs_file.field_db_backup_fs_file__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "Icona tipo attività"
+
+#. module: auto_backup_fs_file
+#: model:ir.model.fields,field_description:auto_backup_fs_file.field_db_backup_fs_file__message_attachment_count
+msgid "Attachment Count"
+msgstr "Conteggio allegati"
+
+#. module: auto_backup_fs_file
+#: model:ir.model.fields,field_description:auto_backup_fs_file.field_db_backup_fs_file__backup_file
+msgid "Backup File"
+msgstr "File di backup"
+
+#. module: auto_backup_fs_file
+#: model:ir.model.fields,field_description:auto_backup_fs_file.field_db_backup_fs_file__name
+msgid "Backup Filename"
+msgstr "Nome file backup"
+
+#. module: auto_backup_fs_file
+#: model_terms:ir.ui.view,arch_db:auto_backup_fs_file.view_backup_conf_form
+msgid "Backups"
+msgstr "Backup"
+
+#. module: auto_backup_fs_file
+#: model:ir.model.fields,help:auto_backup_fs_file.field_db_backup__method
+msgid "Choose the storage method for this backup."
+msgstr "Scegliere il metodo di archiviazione per questo backup."
+
+#. module: auto_backup_fs_file
+#: model:ir.model.fields,field_description:auto_backup_fs_file.field_db_backup_fs_file__create_uid
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: auto_backup_fs_file
+#: model:ir.model.fields,field_description:auto_backup_fs_file.field_db_backup_fs_file__create_date
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: auto_backup_fs_file
+#: model:ir.model.fields,field_description:auto_backup_fs_file.field_db_backup_fs_file__db_backup_id
+msgid "DB Backup"
+msgstr "Backup DB"
+
+#. module: auto_backup_fs_file
+#: model:ir.model,name:auto_backup_fs_file.model_db_backup
+msgid "Database Backup"
+msgstr "Backup database"
+
+#. module: auto_backup_fs_file
+#: model:ir.model,name:auto_backup_fs_file.model_db_backup_fs_file
+msgid "Database Backup Files"
+msgstr "File backup database"
+
+#. module: auto_backup_fs_file
+#: model:ir.model.fields,field_description:auto_backup_fs_file.field_db_backup_fs_file__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: auto_backup_fs_file
+#: model:mail.activity.type,name:auto_backup_fs_file.mail_act_download_backup
+msgid "Download Backup"
+msgstr "Scarica backup"
+
+#. module: auto_backup_fs_file
+#: model:ir.model.fields,field_description:auto_backup_fs_file.field_db_backup_fs_file__message_follower_ids
+msgid "Followers"
+msgstr "Seguito da"
+
+#. module: auto_backup_fs_file
+#: model:ir.model.fields,field_description:auto_backup_fs_file.field_db_backup_fs_file__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Seguito da (partner)"
+
+#. module: auto_backup_fs_file
+#: model:ir.model.fields,help:auto_backup_fs_file.field_db_backup_fs_file__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "Icona Font Awesome es. fa-tasks"
+
+#. module: auto_backup_fs_file
+#: model:ir.model.fields.selection,name:auto_backup_fs_file.selection__db_backup__method__fs_file
+msgid "Fs File"
+msgstr "File FS"
+
+#. module: auto_backup_fs_file
+#. odoo-python
+#: code:addons/auto_backup_fs_file/models/db_backup.py:0
+#, python-format
+msgid "Fs File Backup - %s"
+msgstr "Backup file FS - %s"
+
+#. module: auto_backup_fs_file
+#: model:ir.model.fields,field_description:auto_backup_fs_file.field_db_backup__fs_file_backup_count
+msgid "Fs File Backup Count"
+msgstr "Conteggio backup file FS"
+
+#. module: auto_backup_fs_file
+#: model:ir.actions.act_window,name:auto_backup_fs_file.db_backup_fs_file_act_window
+#: model:ir.model.fields,field_description:auto_backup_fs_file.field_db_backup__fs_file_backup_ids
+#: model:ir.ui.menu,name:auto_backup_fs_file.db_backup_fs_file_menu
+msgid "Fs File Backups"
+msgstr "Backup file FS"
+
+#. module: auto_backup_fs_file
+#: model:ir.model.fields,field_description:auto_backup_fs_file.field_db_backup_fs_file__has_message
+msgid "Has Message"
+msgstr "Ha un messaggio"
+
+#. module: auto_backup_fs_file
+#: model:ir.model.fields,field_description:auto_backup_fs_file.field_db_backup_fs_file__id
+msgid "ID"
+msgstr "ID"
+
+#. module: auto_backup_fs_file
+#: model:ir.model.fields,field_description:auto_backup_fs_file.field_db_backup_fs_file__activity_exception_icon
+msgid "Icon"
+msgstr "Icona"
+
+#. module: auto_backup_fs_file
+#: model:ir.model.fields,help:auto_backup_fs_file.field_db_backup_fs_file__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "Icona per indicare un'attività eccezione."
+
+#. module: auto_backup_fs_file
+#: model:ir.model.fields,help:auto_backup_fs_file.field_db_backup_fs_file__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Se selezionata, nuovi messaggi richiedono attenzione."
+
+#. module: auto_backup_fs_file
+#: model:ir.model.fields,help:auto_backup_fs_file.field_db_backup_fs_file__message_has_error
+#: model:ir.model.fields,help:auto_backup_fs_file.field_db_backup_fs_file__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Se selezionata, alcuni messaggi hanno un errore di consegna."
+
+#. module: auto_backup_fs_file
+#: model:ir.model.fields,help:auto_backup_fs_file.field_db_backup_fs_file__is_expired
+msgid "Indicates whether the backup has exceeded its storage time."
+msgstr "Indica se il backup ha superato il suo orario di archivio."
+
+#. module: auto_backup_fs_file
+#: model:ir.model.fields,field_description:auto_backup_fs_file.field_db_backup_fs_file__is_expired
+msgid "Is Expired"
+msgstr "È scatuto"
+
+#. module: auto_backup_fs_file
+#: model:ir.model.fields,field_description:auto_backup_fs_file.field_db_backup_fs_file__message_is_follower
+msgid "Is Follower"
+msgstr "Segue"
+
+#. module: auto_backup_fs_file
+#: model:ir.model.fields,field_description:auto_backup_fs_file.field_db_backup_fs_file__write_uid
+msgid "Last Updated by"
+msgstr "Ultimo aggiornamento di"
+
+#. module: auto_backup_fs_file
+#: model:ir.model.fields,field_description:auto_backup_fs_file.field_db_backup_fs_file__write_date
+msgid "Last Updated on"
+msgstr "Ultimo aggiornamento il"
+
+#. module: auto_backup_fs_file
+#: model:ir.model.fields,field_description:auto_backup_fs_file.field_db_backup_fs_file__message_has_error
+msgid "Message Delivery error"
+msgstr "Errore di consegna messaggio"
+
+#. module: auto_backup_fs_file
+#: model:ir.model.fields,field_description:auto_backup_fs_file.field_db_backup_fs_file__message_ids
+msgid "Messages"
+msgstr "Messaggi"
+
+#. module: auto_backup_fs_file
+#: model:ir.model.fields,field_description:auto_backup_fs_file.field_db_backup__method
+msgid "Method"
+msgstr "Metodo"
+
+#. module: auto_backup_fs_file
+#: model:ir.model.fields,field_description:auto_backup_fs_file.field_db_backup_fs_file__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "Scadenza mia attività"
+
+#. module: auto_backup_fs_file
+#: model:ir.model.fields,field_description:auto_backup_fs_file.field_db_backup_fs_file__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Scadenza prossima attività"
+
+#. module: auto_backup_fs_file
+#: model:ir.model.fields,field_description:auto_backup_fs_file.field_db_backup_fs_file__activity_summary
+msgid "Next Activity Summary"
+msgstr "Riepilogo prossima attività"
+
+#. module: auto_backup_fs_file
+#: model:ir.model.fields,field_description:auto_backup_fs_file.field_db_backup_fs_file__activity_type_id
+msgid "Next Activity Type"
+msgstr "Tipo prossima attività"
+
+#. module: auto_backup_fs_file
+#: model:ir.model.fields,field_description:auto_backup_fs_file.field_db_backup_fs_file__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Numero di azioni"
+
+#. module: auto_backup_fs_file
+#: model:ir.model.fields,field_description:auto_backup_fs_file.field_db_backup_fs_file__message_has_error_counter
+msgid "Number of errors"
+msgstr "Numero di errori"
+
+#. module: auto_backup_fs_file
+#: model:ir.model.fields,help:auto_backup_fs_file.field_db_backup_fs_file__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "Numero di messaggi che richiedono un'azione"
+
+#. module: auto_backup_fs_file
+#: model:ir.model.fields,help:auto_backup_fs_file.field_db_backup_fs_file__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Numero di messaggi con errore di consegna"
+
+#. module: auto_backup_fs_file
+#: model:ir.model.fields,field_description:auto_backup_fs_file.field_db_backup__responsible_id
+msgid "Responsible"
+msgstr "Responsabile"
+
+#. module: auto_backup_fs_file
+#: model:ir.model.fields,field_description:auto_backup_fs_file.field_db_backup_fs_file__activity_user_id
+msgid "Responsible User"
+msgstr "Utente responsabile"
+
+#. module: auto_backup_fs_file
+#: model:ir.model.fields,field_description:auto_backup_fs_file.field_db_backup_fs_file__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Errore consegna SMS"
+
+#. module: auto_backup_fs_file
+#: model:ir.model.fields,field_description:auto_backup_fs_file.field_db_backup__smart_search
+#: model:ir.model.fields,field_description:auto_backup_fs_file.field_db_backup_fs_file__smart_search
+msgid "Smart Search"
+msgstr "Ricerca intelligente"
+
+#. module: auto_backup_fs_file
+#: model:ir.model.fields,help:auto_backup_fs_file.field_db_backup_fs_file__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"Stato in base alle attività\n"
+"Scaduto: la data richiesta è trascorsa\n"
+"Oggi: la data attività è oggi\n"
+"Pianificato: attività future."
+
+#. module: auto_backup_fs_file
+#: model:ir.model.fields,help:auto_backup_fs_file.field_db_backup_fs_file__backup_file
+msgid "The file that contains the database backup"
+msgstr "Il file che contiene il backup del database"
+
+#. module: auto_backup_fs_file
+#: model:ir.model.fields,help:auto_backup_fs_file.field_db_backup_fs_file__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "Tipo di attività eccezione sul record."
+
+#. module: auto_backup_fs_file
+#: model:ir.model.fields,help:auto_backup_fs_file.field_db_backup__responsible_id
+msgid "User to be notified."
+msgstr "Utente da avvisare."
+
+#. module: auto_backup_fs_file
+#: model:ir.model.fields,field_description:auto_backup_fs_file.field_db_backup_fs_file__website_message_ids
+msgid "Website Messages"
+msgstr "Messaggi sito web"
+
+#. module: auto_backup_fs_file
+#: model:ir.model.fields,help:auto_backup_fs_file.field_db_backup_fs_file__website_message_ids
+msgid "Website communication history"
+msgstr "Cronologia comunicazioni sito web"
+
+#. module: auto_backup_fs_file
+#. odoo-python
+#: code:addons/auto_backup_fs_file/models/db_backup.py:0
+#, python-format
+msgid ""
+"You must configure a FS Storage for the '%(model_description)s' model - or "
+"'Backup File' - field to use the 'Fs File' backup method."
+msgstr ""
+"È necessario configurare un archivio FS per il modello '%(model_description)"
+"s', o il campo 'File di backup', per utilizzare il metodo di backup 'File "
+"FS'."
