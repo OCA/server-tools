@@ -4,7 +4,7 @@
 import base64
 from datetime import date, timedelta
 
-from odoo import api, exceptions
+from odoo import exceptions
 from odoo.modules.registry import Registry
 from odoo.tests import common
 from odoo.tools import DEFAULT_SERVER_DATE_FORMAT
@@ -23,16 +23,9 @@ class TestVacuumRule(common.TransactionCase):
         }
         return self.message_obj.create(vals)
 
-    def tearDown(self):
-        self.registry.leave_test_mode()
-        super().tearDown()
-
     def setUp(self):
         super().setUp()
-        self.registry.enter_test_mode(self.env.cr)
-        self.env = api.Environment(
-            self.registry.test_cr, self.env.uid, self.env.context
-        )
+        self.registry_enter_test_mode()
         self.subtype = self.env.ref("mail.mt_comment")
         self.message_obj = self.env["mail.message"]
         self.attachment_obj = self.env["ir.attachment"]
@@ -53,23 +46,24 @@ class TestVacuumRule(common.TransactionCase):
         m1 = self.create_mail_message("notification", self.subtype)
         m2 = self.create_mail_message("email", self.env.ref("mail.mt_note"))
         m3 = self.create_mail_message("email", False)
-        message_ids = [m1.id, m2.id, m3.id]
+        m4 = self.create_mail_message("email_outgoing", False)
+        message_ids = [m1.id, m2.id, m3.id, m4.id]
         self.message_obj.autovacuum(ttype="message")
         message = self.message_obj.search([("id", "in", message_ids)])
         # no message deleted because either message_type is wrong or subtype
         # is wrong or subtype is empty
-        self.assertEqual(len(message), 3)
+        self.assertEqual(len(message), 4)
 
         rule.write({"message_type": "notification", "retention_time": 405})
         self.message_obj.autovacuum(ttype="message")
         message = self.message_obj.search([("id", "in", message_ids)])
         # no message deleted because of retention time
-        self.assertEqual(len(message), 3)
+        self.assertEqual(len(message), 4)
         rule.write({"retention_time": 399})
         self.message_obj.autovacuum(ttype="message")
         message = self.message_obj.search([("id", "in", message_ids)])
 
-        self.assertEqual(len(message), 2)
+        self.assertEqual(len(message), 3)
 
         rule.write(
             {
@@ -80,7 +74,11 @@ class TestVacuumRule(common.TransactionCase):
         )
         self.message_obj.autovacuum(ttype="message")
         message = self.message_obj.search([("id", "in", message_ids)])
-        self.assertEqual(len(message), 0)
+        self.assertEqual(len(message), 1)
+
+        rule.message_type = "email_outgoing"
+        self.message_obj.autovacuum(ttype="message")
+        self.assertFalse(self.message_obj.search([("id", "in", message_ids)]))
 
     def create_attachment(self, name):
         vals = {

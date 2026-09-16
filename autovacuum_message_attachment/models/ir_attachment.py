@@ -4,7 +4,6 @@
 from datetime import timedelta
 
 from odoo import fields, models
-from odoo.osv import expression
 
 
 class IrAttachment(models.Model):
@@ -34,4 +33,4 @@ class IrAttachment(models.Model):
             # Avoid deleting attachment without model, if there are, it is
             # probably some attachments created by Odoo
             domains.append([("res_model", "!=", False)])
-        return expression.AND(domains)
+        return fields.Domain.AND(domains)

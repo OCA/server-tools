@@ -50,7 +50,7 @@ class AutovacuumMixin(models.AbstractModel):
     def _get_autovacuum_records_model(self, rule):
         domain = self._get_autovacuum_domain(rule)
         record_domain = safe_eval(
-            rule.model_filter_domain, locals_dict={"datetime": datetime}
+            rule.model_filter_domain, context={"datetime": datetime}
         )
         autovacuum_relation = self._autovacuum_relation
         for leaf in domain:
