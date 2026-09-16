@@ -19,6 +19,7 @@
                             <field name="ttype" />
                             <field name="company_id" />
                             <field name="retention_time" />
+                            <field name="batch_size" />
                         </group>
                         <group col="4" invisible="ttype != 'message'">
                             <field name="message_type" required="ttype == 'message'" />
