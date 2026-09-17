@@ -17,6 +17,9 @@
     "depends": ["base_setup"],
     "maintainers": ["hparfr", "sebastienbeau"],
     "license": "AGPL-3",
+    "external_dependencies": {
+        "python": ["decorator"],
+    },
     "data": [
         "security/base_exception_security.xml",
         "security/ir.model.access.csv",
