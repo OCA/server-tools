@@ -193,8 +193,7 @@ class TestBaseException(TransactionCase):
 
     def test_rollback_main_transaction(self):
         # Get new TestCursor
-        self.registry.enter_test_mode(self.cr)
-        self.addCleanup(self.registry.leave_test_mode)
+        self.registry_enter_test_mode()
         with (
             self.registry.cursor() as new_cr,
             patch(
