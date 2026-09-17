@@ -4,13 +4,18 @@
 # Copyright 2020 Hibou Corp.
 # Copyright 2023 ACSONE SA/NV (http://acsone.eu)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+import json
 import logging
 from collections import defaultdict
 
-from odoo import api, models
+from odoo import Command, api, models
+from odoo.api import Environment
 from odoo.exceptions import UserError
 from odoo.fields import Domain
+from odoo.tools import config
 from odoo.tools.safe_eval import safe_eval
+
+from ..exceptions import BaseExceptionError
 
 _logger = logging.getLogger(__name__)
 
@@ -84,11 +89,76 @@ class BaseExceptionMethod(models.AbstractModel):
         # the "to remove" part generates one DELETE per rule on the relation
         # table
         # and the "to add" part generates one INSERT (with unnest) per rule.
-        for rule_id, records in rules_to_remove.items():
-            records.write({"exception_ids": [(3, rule_id)]})
-        for rule_id, records in rules_to_add.items():
-            records.write({"exception_ids": [(4, rule_id)]})
+        raise_exception = False
+        # The registry is not ready yet when modules are being installed or
+        # updated: the ongoing transaction holds exclusive locks on the tables
+        # it has just modified (ALTER TABLE ...), so any query made through a
+        # second connection would wait forever on those locks (and the locks
+        # cannot be released, as the current thread is the one waiting).
+        # Use the current cursor in that case, as already done when running
+        # tests.
+        test_mode = (
+            config["test_enable"] or not self.env.registry.ready
+        ) and not self.env.context.get("test_base_exception")
+        # Resolve the main records (e.g. the sale order behind a sale order
+        # line) using the current cursor, which sees records created earlier
+        # in this same transaction even before they are committed.
+        main_records = self._get_main_records()
+        # Write exceptions in a new transaction to be committed so that we can
+        #  rollback the ongoing one while keeping the exceptions stored
+        with self.env.registry.cursor() as new_cr:
+            new_env = (
+                Environment(new_cr, self.env.uid, self.env.context)
+                if not test_mode
+                else self.env
+            )
+            for rule_id, records in rules_to_remove.items():
+                records.with_env(new_env).write(
+                    {"exception_ids": [Command.unlink(rule_id)]}
+                )
+            for rule_id, records in rules_to_add.items():
+                records.with_env(new_env).write(
+                    {"exception_ids": [Command.link(rule_id)]}
+                )
+            # In case we have new exception, or exceptions that were not ignored yet, or
+            #  blocking exceptions, we need to raise an exception to rollback the
+            #  ongoing transaction.
+            # Re-derive main_records through new_env rather than re-running
+            # self.with_env(new_env)._get_main_records(): when self are
+            # records just created earlier in the ongoing (not yet committed)
+            # transaction (e.g. a line added while editing a confirmed sale
+            # order), new_cr is a genuinely separate DB connection that
+            # cannot see them yet, and _get_main_records() traversal
+            # (e.g. sale.order.line -> order_id) would raise MissingError.
+            # main_records itself was already resolved above through the
+            # current cursor, so only rebinding it to new_env is needed here.
+            main_records_new_env = main_records.with_env(new_env)
+            if (
+                rules_to_add
+                or main_records_new_env._must_raise_exception_after_detection()
+            ):
+                raise_exception = True
+        if raise_exception:
+            raise BaseExceptionError(
+                json.dumps(self._detect_exception_get_exc_class_values())
+            )
         return all_exception_ids
+
+    def _detect_exception_get_exc_class_values(self):
+        return {
+            "src_model": self._name,
+            "target_model": self._name,
+        }
+
+    def _must_raise_exception_after_detection(self):
+        main_records = self._get_main_records()
+        all_ignore_exception = all(
+            main_records.filtered("exception_ids").mapped("ignore_exception")
+        )
+        any_blocking_exception = any(
+            rule.is_blocking for rule in main_records.exception_ids
+        )
+        return not all_ignore_exception or any_blocking_exception
 
     @api.model
     def _exception_rule_eval_context(self, rec):
