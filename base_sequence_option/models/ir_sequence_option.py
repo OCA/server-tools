@@ -96,21 +96,23 @@ class IrSequenceOptionLine(models.Model):
         store=True,
     )
 
-    def get_model_options(self, model):
-        return self.sudo().search(
-            [("use_sequence_option", "=", True), ("model", "=", model)]
-        )
+    def get_model_options(self, model, company=False):
+        domain = [("use_sequence_option", "=", True), ("model", "=", model)]
+        # Filter the company in SQL, options of all companies can be many
+        if company:
+            domain.append(("company_id", "=", company.id))
+        return self.sudo().search(domain)
 
     def get_sequence(self, record, options=False):
         """
         Find sequence option that match the record values
         """
-        if not options:
-            options = self.get_model_options(record._name)
         # multi-company
         company = (
             hasattr(record, "company_id") and record.company_id or self.env.company
         )
+        if not options:
+            options = self.get_model_options(record._name, company=company)
         options = options.filtered(lambda l: l.company_id == company)
         sequence = self.env["ir.sequence"]
         for option in options:
