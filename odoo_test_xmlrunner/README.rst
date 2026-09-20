@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ======================
 Unittest xUnit reports
 ======================
@@ -17,7 +13,7 @@ Unittest xUnit reports
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github
@@ -108,59 +104,33 @@ Add the following job to your ``.github/workflows/main.yml`` file:
 
    name: tests
 
-   permissions:
-       contents: read
-       checks: write
-       id-token: write
-
    on:
-     push:
-       branches: ["main"]
-       tags: ["*"]
      pull_request:
+     push:
 
    jobs:
      test:
        runs-on: ubuntu-22.04
-       container: ${{ matrix.container }}
-       name: ${{ matrix.name }}
-       strategy:
-         fail-fast: false
-         matrix:
-           include:
-             - container: ghcr.io/oca/oca-ci/py3.10-odoo17.0:latest
-               name: test with Odoo
        services:
          postgres:
-           image: postgres:12.0
+           image: postgres:17
            env:
              POSTGRES_USER: odoo
              POSTGRES_PASSWORD: odoo
              POSTGRES_DB: odoo
            ports:
              - 5432:5432
+       env:
+         DB: odoo
        steps:
-         - uses: actions/checkout@v3
-           with:
-             persist-credentials: false
-         - name: Install addons and dependencies
-           run: oca_install_addons
-         - name: Check licenses
-           run: manifestoo -d . check-licenses
-         - name: Check development status
-           run: manifestoo -d . check-dev-status --default-dev-status=Beta
-         - name: Initialize test db
-           run: oca_init_test_database
+         - uses: actions/checkout@v4
          - name: Run tests
-           run: oca_run_tests
-         - uses: codecov/codecov-action@v4
-           with:
-             token: ${{ secrets.CODECOV_TOKEN }}
-         - name: Publish Test Report
+           run: odoo --load=odoo_test_xmlrunner -i my_module --test-enable --stop-after-init
+         - name: Publish test report
            uses: mikepenz/action-junit-report@v4
-           if: success() || failure() # always run even if the previous step fails
+           if: success() || failure()
            with:
-             report_paths: 'test_results/*.xml'
+             report_paths: test_results/*.xml
 
 Bug Tracker
 ===========
