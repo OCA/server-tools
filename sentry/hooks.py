@@ -19,6 +19,7 @@ from .logutils import (
 
 _logger = logging.getLogger(__name__)
 HAS_SENTRY_SDK = True
+_ORIGINAL_APPLICATION_CALL = None
 try:
     import sentry_sdk
     from sentry_sdk.integrations.logging import ignore_logger
@@ -136,12 +137,29 @@ def initialize_sentry(config):
         for item in exclude_loggers:
             ignore_logger(item)
 
-    # The server app is already registered so patch it here
-    if server:
+    global _ORIGINAL_APPLICATION_CALL
+
+    # The server app is already registered so patch it here.
+    # this is mostly a defensive fallback
+    if server and server.app is not odoo.http.root:
         server.app = SentryWsgiMiddleware(server.app)
 
-    # Patch the wsgi server in case of further registration
-    odoo.http.Application = SentryWsgiMiddleware(odoo.http.Application)
+    # Patch the actual WSGI entrypoint while keeping
+    # odoo.http.Application as a class
+    # odoo.http.root as the regular root/application object
+    if _ORIGINAL_APPLICATION_CALL is None:
+        _ORIGINAL_APPLICATION_CALL = odoo.http.Application.__call__
+
+        def sentry_application_call(self, environ, start_response):
+            middleware = getattr(self, "_sentry_wsgi_middleware", None)
+            if middleware is None:
+                middleware = SentryWsgiMiddleware(
+                    _ORIGINAL_APPLICATION_CALL.__get__(self, type(self))
+                )
+                self._sentry_wsgi_middleware = middleware
+            return middleware(environ, start_response)
+
+        odoo.http.Application.__call__ = sentry_application_call
 
     with sentry_sdk.new_scope() as scope:
         scope.set_extra("debug", False)
