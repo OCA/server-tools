@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ==============
 Time Parameter
 ==============
@@ -17,7 +13,7 @@ Time Parameter
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-LGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-LGPL--3-blue.png
     :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
     :alt: License: LGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github
@@ -54,7 +50,11 @@ Create a parameter with different versions (start date and value).
 
 If model_id is empty, any model/record may get the time parameter.
 
-The value may be a text or reference.
+The value may be a text or, for the "Record" type, a reference.
+
+The value is parsed according to the type of the parameter when it is
+stored, so a version that the type cannot read is refused instead of
+failing later, when the parameter is used.
 
 Get the value like this:
 
@@ -66,6 +66,24 @@ Get the value like this:
    value = model.get_time_parameter("parameter_code_or_name", date=datetime.datetime.now()))
    # Pass the name of a date/datetime field of the record
    value = record.get_time_parameter("parameter_code_or_name", "date")
+   # Raise instead of returning None when there is no value at that date
+   value = model.get_time_parameter("parameter_code_or_name", raise_if_not_found=True)
+
+Which parameter is used
+-----------------------
+
+Several parameters may share the same code, and the most specific one
+wins:
+
+1. a parameter of the current company beats a parameter with no company
+   (a global one),
+2. a parameter of the model asking for it beats a parameter with no
+   model (one that applies to any model).
+
+So a module may ship a global parameter as a default value, and a
+company may override it by creating its own parameter with the same
+code. If the winning parameter has no version starting before the
+requested date, the next one is used.
 
 Example of implementation in another module
 -------------------------------------------
