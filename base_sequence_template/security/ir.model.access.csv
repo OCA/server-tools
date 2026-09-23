@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ir_sequence_template,access_ir_sequence_template,model_ir_sequence_template,base.group_user,1,0,0,0
+access_ir_sequence_template_system,access_ir_sequence_template_system,model_ir_sequence_template,base.group_system,1,1,1,1
+access_generate_company_sequences_wizard,access_generate_company_sequences_wizard,model_generate_company_sequences_wizard,base.group_system,1,1,1,1
