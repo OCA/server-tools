@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_data_autocomplete_template_tree" model="ir.ui.view">
+        <field name="name">data.autocomplete.template.tree</field>
+        <field name="model">data.autocomplete.template</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="model_id" />
+                <field name="company_id" />
+                <field name="user_id" />
+                <field name="active" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_data_autocomplete_template_form" model="ir.ui.view">
+        <field name="name">data.autocomplete.template.form</field>
+        <field name="model">data.autocomplete.template</field>
+        <field name="arch" type="xml">
+            <form string="Data Autocomplete Template">
+                <group>
+                    <field name="name" />
+                    <field name="active" />
+                </group>
+
+                <group>
+                    <field name="model_id" />
+                    <field name="company_id" />
+                    <field name="user_id" />
+                </group>
+
+                <separator string="Values (JSON)" />
+                <group>
+                    <field name="values_json" widget="text" />
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_data_autocomplete_template" model="ir.actions.act_window">
+        <field name="name">Data Autocomplete Templates</field>
+        <field name="res_model">data.autocomplete.template</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>
