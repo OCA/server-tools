@@ -1,0 +1,25 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* auditlog_stdout
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: auditlog_stdout
+#: model:ir.model.fields,help:auditlog_stdout.field_ir_model_fields__stdout
+msgid "If set, the log entries will be only logged to STDOUT "
+"(rather than creating an auditlog log and line entries)."
+msgstr ""
+
+#. module: auditlog_stdout
+#: model:ir.model.fields,field_description:auditlog_stdout.field_ir_model_fields__stdout
+msgid "Output to STDOUT"
+msgstr ""
