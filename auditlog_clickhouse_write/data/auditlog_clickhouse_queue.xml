@@ -1,0 +1,27 @@
+<odoo noupdate="1">
+    <record id="ir_cron_auditlog_clickhouse_write_enqueue_flush" model="ir.cron">
+        <field name="name">Auditlog ClickHouse Write: enqueue buffer flush</field>
+        <field name="model_id" ref="model_auditlog_log_buffer" />
+        <field name="state">code</field>
+        <field name="code">model._cron_flush_to_clickhouse()</field>
+        <field name="interval_number">5</field>
+        <field name="interval_type">minutes</field>
+        <field name="active">True</field>
+        <field name="user_id" ref="base.user_root" />
+    </record>
+
+    <record
+        id="action_configure_auditlog_clickhouse_write_cron"
+        model="ir.actions.act_window"
+    >
+        <field name="name">Edit buffer flush schedule</field>
+        <field name="res_model">ir.cron</field>
+        <field
+            name="res_id"
+            ref="auditlog_clickhouse_write.ir_cron_auditlog_clickhouse_write_enqueue_flush"
+        />
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>
