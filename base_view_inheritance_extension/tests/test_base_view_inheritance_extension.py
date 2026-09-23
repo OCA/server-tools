@@ -5,6 +5,7 @@
 
 from lxml import etree
 
+from odoo.exceptions import ValidationError
 from odoo.tests.common import TransactionCase
 
 
@@ -199,3 +200,47 @@ class TestBaseViewInheritanceExtension(TransactionCase):
         )
         with self.assertRaisesRegex(TypeError, "Attribute `domain` is not a dict"):
             self.env["ir.ui.view"].apply_inheritance_specs(source, specs)
+
+    def test_wraptext(self):
+        """Test textwrap transformations"""
+        base_view = self.env["ir.ui.view"].create(
+            {
+                "type": "qweb",
+                "arch": "<some>"
+                "<node>plain text 1<other_node />plain text2</node></some>",
+            }
+        )
+        inherited_view = self.env["ir.ui.view"].create(
+            {
+                "type": "qweb",
+                "inherit_id": base_view.id,
+                "arch": "<data>"
+                '<wraptext expr="//some/node" position="text" element="span" />'
+                '<wraptext expr="//some/node/other_node" position="tail" '
+                'element="div" />'
+                "</data>",
+            }
+        )
+        self.assertEqual(
+            base_view.with_context(load_all_views=True).get_combined_arch(),
+            "<some><node><span>plain text 1</span><other_node/>"
+            "<div>plain text2</div></node></some>",
+        )
+        translatable_arch = base_view.with_context(
+            load_all_views=True, edit_translations=True
+        )._get_combined_arch()
+        self.assertTrue(
+            translatable_arch.xpath("//some/node/span/span[@data-oe-translation-state]")
+        )
+        self.assertTrue(
+            translatable_arch.xpath("//some/node/div/span[@data-oe-translation-state]")
+        )
+
+        with self.assertRaisesRegex(ValidationError, "children"):
+            inherited_view.write({"arch": "<wraptext><node /></wraptext>"})
+        with self.assertRaisesRegex(ValidationError, "found"):
+            inherited_view.write({"arch": '<wraptext expr="//not/existing" />'})
+        with self.assertRaisesRegex(ValidationError, "positions"):
+            inherited_view.write(
+                {"arch": '<wraptext expr="//some/node" position="other" />'}
+            )
