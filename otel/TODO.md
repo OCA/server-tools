@@ -1,0 +1,9 @@
+ - Cron tracing
+ - Add span/trace IDs to logs (https://opentelemetry-python-contrib.readthedocs.io/en/latest/instrumentation/logging/logging.html)
+ - Allow enable/disable tracing per level (RPC, ORM, Cron, DB)
+ - For each type, a few options:
+    - Allowlist for methods (empty for all)
+    - Allow excluding particular models (ir.model.access, etc)
+    - Allow excluding model:method pairs?
+    - Only trace when parent is tracing (possible for DB?)
+ - PII handling
