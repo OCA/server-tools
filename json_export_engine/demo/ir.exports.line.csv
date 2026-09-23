@@ -1,0 +1,5 @@
+id,export_id:id,name
+demo_exp_line_name,demo_ir_exp_partner,name
+demo_exp_line_email,demo_ir_exp_partner,email
+demo_exp_line_phone,demo_ir_exp_partner,phone
+demo_exp_line_country,demo_ir_exp_partner,country_id/name
