@@ -1,0 +1,13 @@
+/*
+  Apply word wrap to the model size list views table headers, and align the
+  headers of table names to the left. This clarifies the various columns on
+  these busy list views.
+*/
+.o_list_view.ir_model_size_wrap_header .o_list_renderer .o_list_table thead th {
+    span.o_list_number_th {
+        text-align: left;
+    }
+    span {
+        text-wrap: wrap;
+    }
+}

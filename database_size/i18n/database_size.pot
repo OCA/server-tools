@@ -1,0 +1,397 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* database_size
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: database_size
+#: model_terms:ir.ui.view,arch_db:database_size.res_config_settings_view_form
+msgid "<span> days</span>"
+msgstr ""
+
+#. module: database_size
+#: model:ir.model.fields,field_description:database_size.field_ir_model_size__attachment_size
+#: model:ir.model.fields,field_description:database_size.field_ir_model_size_report__attachment_size
+msgid "Attachment Size"
+msgstr ""
+
+#. module: database_size
+#: model:ir.model.fields,help:database_size.field_ir_model_size__attachment_size
+msgid ""
+"Attachment Size in MB. Includes overlap of files that are also attached to "
+"other models."
+msgstr ""
+
+#. module: database_size
+#: model:ir.model.fields,field_description:database_size.field_ir_model_size__table_size
+#: model:ir.model.fields,field_description:database_size.field_ir_model_size_report__table_size
+msgid "Bare Table Size"
+msgstr ""
+
+#. module: database_size
+#: model:ir.model.fields,help:database_size.field_ir_model_size__table_size
+msgid "Bare Table Size in MB."
+msgstr ""
+
+#. module: database_size
+#: model:ir.model.fields,field_description:database_size.field_ir_model_size_report__diff_total_database_size
+msgid "Change in Total Database Size"
+msgstr ""
+
+#. module: database_size
+#: model:ir.model.fields,field_description:database_size.field_ir_model_size_report__diff_total_model_size
+msgid "Change in Total Model Size"
+msgstr ""
+
+#. module: database_size
+#: model:ir.actions.act_window,name:database_size.ir_model_size_report_action
+msgid "Compare Database Size per Model"
+msgstr ""
+
+#. module: database_size
+#: model:ir.ui.menu,name:database_size.ir_model_size_report_menu
+msgid "Compare Size per Model"
+msgstr ""
+
+#. module: database_size
+#: model:ir.model,name:database_size.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: database_size
+#: model:ir.model.fields,field_description:database_size.field_ir_model_index_size__create_uid
+#: model:ir.model.fields,field_description:database_size.field_ir_model_relation_size__create_uid
+#: model:ir.model.fields,field_description:database_size.field_ir_model_size__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: database_size
+#: model:ir.model.fields,field_description:database_size.field_ir_model_index_size__create_date
+#: model:ir.model.fields,field_description:database_size.field_ir_model_relation_size__create_date
+#: model:ir.model.fields,field_description:database_size.field_ir_model_size__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: database_size
+#: model:ir.ui.menu,name:database_size.database_size_menu
+#: model_terms:ir.ui.view,arch_db:database_size.res_config_settings_view_form
+msgid "Database Size"
+msgstr ""
+
+#. module: database_size
+#: model:ir.actions.act_window,name:database_size.ir_model_size_action
+msgid "Database Size per Model"
+msgstr ""
+
+#. module: database_size
+#: model:ir.model.fields,field_description:database_size.field_ir_model_size__measurement_date
+#: model:ir.model.fields,field_description:database_size.field_ir_model_size_report__measurement_date
+#: model_terms:ir.ui.view,arch_db:database_size.ir_model_size_view_search
+msgid "Date of Measurement"
+msgstr ""
+
+#. module: database_size
+#: model_terms:ir.ui.view,arch_db:database_size.ir_model_size_report_view_tree
+msgid "Details"
+msgstr ""
+
+#. module: database_size
+#: model:ir.model,name:database_size.model_ir_model_index_size
+msgid "Disk space usage of a single index"
+msgstr ""
+
+#. module: database_size
+#: model:ir.model,name:database_size.model_ir_model_relation_size
+msgid "Disk space usage of a single many2many table"
+msgstr ""
+
+#. module: database_size
+#: model:ir.model,name:database_size.model_ir_model_size
+msgid "Disk space usage per model"
+msgstr ""
+
+#. module: database_size
+#: model:ir.model.fields,field_description:database_size.field_ir_model_index_size__display_name
+#: model:ir.model.fields,field_description:database_size.field_ir_model_relation_size__display_name
+#: model:ir.model.fields,field_description:database_size.field_ir_model_size__display_name
+#: model:ir.model.fields,field_description:database_size.field_ir_model_size_report__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: database_size
+#: model:ir.model.fields,field_description:database_size.field_ir_model_size__tuples
+#: model:ir.model.fields,field_description:database_size.field_ir_model_size_report__tuples
+msgid "Estimated Rows"
+msgstr ""
+
+#. module: database_size
+#: model:ir.model.fields,help:database_size.field_ir_model_size__measurement_date
+msgid "For the exact time, check the record's write_date."
+msgstr ""
+
+#. module: database_size
+#: model_terms:ir.ui.view,arch_db:database_size.ir_model_size_view_search
+msgid "Group By"
+msgstr ""
+
+#. module: database_size
+#: model:ir.model.fields,field_description:database_size.field_ir_model_size_report__historical_attachment_size
+msgid "Historical Attachment Size"
+msgstr ""
+
+#. module: database_size
+#: model:ir.model.fields,field_description:database_size.field_ir_model_size_report__historical_table_size
+msgid "Historical Bare Table Size"
+msgstr ""
+
+#. module: database_size
+#: model:ir.model.fields,field_description:database_size.field_ir_model_size_report__historical_measurement_date
+msgid "Historical Date of Measurement"
+msgstr ""
+
+#. module: database_size
+#: model:ir.model,name:database_size.model_ir_model_size_report
+msgid "Historical Disk space usage per model"
+msgstr ""
+
+#. module: database_size
+#: model:ir.model.fields,field_description:database_size.field_ir_model_size_report__historical_tuples
+msgid "Historical Estimated Rows"
+msgstr ""
+
+#. module: database_size
+#: model:ir.model.fields,field_description:database_size.field_ir_model_size_report__historical_indexes_size
+msgid "Historical Index Size"
+msgstr ""
+
+#. module: database_size
+#: model:ir.model.fields,field_description:database_size.field_ir_model_size_report__historical_relations_size
+msgid "Historical Many2many Tables Size"
+msgstr ""
+
+#. module: database_size
+#: model:ir.model.fields,field_description:database_size.field_ir_model_size_report__historical_total_database_size
+msgid "Historical Total Database Size"
+msgstr ""
+
+#. module: database_size
+#: model:ir.model.fields,field_description:database_size.field_ir_model_size_report__historical_total_model_size
+msgid "Historical Total Model Size"
+msgstr ""
+
+#. module: database_size
+#: model:ir.model.fields,field_description:database_size.field_ir_model_size_report__historical_total_table_size
+msgid "Historical Total Table Size"
+msgstr ""
+
+#. module: database_size
+#: model:ir.model.fields,field_description:database_size.field_ir_model_index_size__id
+#: model:ir.model.fields,field_description:database_size.field_ir_model_relation_size__id
+#: model:ir.model.fields,field_description:database_size.field_ir_model_size__id
+#: model:ir.model.fields,field_description:database_size.field_ir_model_size_report__id
+msgid "ID"
+msgstr ""
+
+#. module: database_size
+#: model:ir.model.fields,field_description:database_size.field_ir_model_size__indexes_size
+#: model:ir.model.fields,field_description:database_size.field_ir_model_size_report__indexes_size
+msgid "Index Size"
+msgstr ""
+
+#. module: database_size
+#: model:ir.model.fields,field_description:database_size.field_ir_model_size__ir_model_index_size_ids
+#: model_terms:ir.ui.view,arch_db:database_size.ir_model_size_view_form
+msgid "Indexes"
+msgstr ""
+
+#. module: database_size
+#: model:ir.model.fields,field_description:database_size.field_ir_model_index_size__ir_model_size_id
+#: model:ir.model.fields,field_description:database_size.field_ir_model_relation_size__ir_model_size_id
+msgid "Ir Model Size"
+msgstr ""
+
+#. module: database_size
+#: model:ir.model.fields,field_description:database_size.field_res_config_settings__database_size_retention_daily
+msgid "Keep Daily Measurements for"
+msgstr ""
+
+#. module: database_size
+#: model:ir.model.fields,field_description:database_size.field_res_config_settings__database_size_retention_monthly
+msgid "Keep Monthly Measurements for"
+msgstr ""
+
+#. module: database_size
+#: model:ir.model.fields,field_description:database_size.field_ir_model_index_size__write_uid
+#: model:ir.model.fields,field_description:database_size.field_ir_model_relation_size__write_uid
+#: model:ir.model.fields,field_description:database_size.field_ir_model_size__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: database_size
+#: model:ir.model.fields,field_description:database_size.field_ir_model_index_size__write_date
+#: model:ir.model.fields,field_description:database_size.field_ir_model_relation_size__write_date
+#: model:ir.model.fields,field_description:database_size.field_ir_model_size__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: database_size
+#: model:ir.model.fields,field_description:database_size.field_ir_model_size__relations_size
+#: model:ir.model.fields,field_description:database_size.field_ir_model_size_report__relations_size
+msgid "Many2many Tables Size"
+msgstr ""
+
+#. module: database_size
+#: model_terms:ir.ui.view,arch_db:database_size.ir_model_size_view_form
+msgid "Many2many tables"
+msgstr ""
+
+#. module: database_size
+#: model:ir.model.fields,field_description:database_size.field_ir_model_size__model
+#: model:ir.model.fields,field_description:database_size.field_ir_model_size_report__model
+#: model_terms:ir.ui.view,arch_db:database_size.ir_model_size_view_search
+msgid "Model"
+msgstr ""
+
+#. module: database_size
+#: model:ir.model.fields,field_description:database_size.field_ir_model_size__model_name
+#: model:ir.model.fields,field_description:database_size.field_ir_model_size_report__model_name
+msgid "Model Name"
+msgstr ""
+
+#. module: database_size
+#: model:ir.model.fields,field_description:database_size.field_ir_model_index_size__name
+#: model:ir.model.fields,field_description:database_size.field_ir_model_relation_size__name
+msgid "Name"
+msgstr ""
+
+#. module: database_size
+#: model_terms:ir.ui.view,arch_db:database_size.ir_model_size_report_view_search
+msgid "Notable Change"
+msgstr ""
+
+#. module: database_size
+#: model_terms:ir.ui.view,arch_db:database_size.ir_model_size_report_view_search
+msgid "One Month Ago"
+msgstr ""
+
+#. module: database_size
+#: model_terms:ir.ui.view,arch_db:database_size.ir_model_size_report_view_search
+msgid "One Year Ago"
+msgstr ""
+
+#. module: database_size
+#: model:ir.model.fields,field_description:database_size.field_res_config_settings__database_size_purge
+msgid "Purge Older Model Size Measurements"
+msgstr ""
+
+#. module: database_size
+#: model:ir.model.fields,field_description:database_size.field_ir_model_size__ir_model_relation_size_ids
+msgid "Relations"
+msgstr ""
+
+#. module: database_size
+#: model:ir.model.fields,help:database_size.field_ir_model_size__tuples
+msgid "Rows in use, including dead tuples"
+msgstr ""
+
+#. module: database_size
+#: model_terms:ir.ui.view,arch_db:database_size.res_config_settings_view_form
+msgid "Set to 0 to keep monthly measurements forever."
+msgstr ""
+
+#. module: database_size
+#: model:ir.model.fields,field_description:database_size.field_ir_model_index_size__size
+#: model:ir.model.fields,field_description:database_size.field_ir_model_relation_size__size
+msgid "Size"
+msgstr ""
+
+#. module: database_size
+#: model:ir.ui.menu,name:database_size.ir_model_size_menu
+msgid "Size per Model"
+msgstr ""
+
+#. module: database_size
+#: model:ir.model.fields,field_description:database_size.field_ir_model_index_size__smart_search
+#: model:ir.model.fields,field_description:database_size.field_ir_model_relation_size__smart_search
+#: model:ir.model.fields,field_description:database_size.field_ir_model_size__smart_search
+#: model:ir.model.fields,field_description:database_size.field_ir_model_size_report__smart_search
+#: model:ir.model.fields,field_description:database_size.field_res_config_settings__smart_search
+msgid "Smart Search"
+msgstr ""
+
+#. module: database_size
+#: model:ir.actions.server,name:database_size.ir_cron_ir_model_size_measure_ir_actions_server
+msgid "Take model size measurements"
+msgstr ""
+
+#. module: database_size
+#: model:ir.model.fields,help:database_size.field_res_config_settings__database_size_retention_monthly
+msgid ""
+"The period of time (in days) during which database size measurmeents are "
+"kept of the first day of each month. If set to 0, measurements will be kept "
+"forever."
+msgstr ""
+
+#. module: database_size
+#: model:ir.model.fields,help:database_size.field_res_config_settings__database_size_retention_daily
+msgid ""
+"The period of time (in days) during which the daily database size "
+"measurements are kept. If set to 0, measurements will be kept forever."
+msgstr ""
+
+#. module: database_size
+#: model:ir.model.constraint,message:database_size.constraint_ir_model_size_uniq_model_measurement_date
+msgid "There is already a measurement for this model on the given date"
+msgstr ""
+
+#. module: database_size
+#: model:ir.model.fields,field_description:database_size.field_ir_model_size__total_database_size
+#: model:ir.model.fields,field_description:database_size.field_ir_model_size_report__total_database_size
+msgid "Total Database Size"
+msgstr ""
+
+#. module: database_size
+#: model:ir.model.fields,field_description:database_size.field_ir_model_size__total_model_size
+#: model:ir.model.fields,field_description:database_size.field_ir_model_size_report__total_model_size
+msgid "Total Model Size"
+msgstr ""
+
+#. module: database_size
+#: model:ir.model.fields,help:database_size.field_ir_model_size__total_database_size
+msgid "Total Model Size in MB. This includes many2many tables"
+msgstr ""
+
+#. module: database_size
+#: model:ir.model.fields,help:database_size.field_ir_model_size__indexes_size
+msgid "Total Size of Indexes in MB"
+msgstr ""
+
+#. module: database_size
+#: model:ir.model.fields,help:database_size.field_ir_model_size__relations_size
+msgid "Total Size of many2many relations in MB"
+msgstr ""
+
+#. module: database_size
+#: model:ir.model.fields,field_description:database_size.field_ir_model_size__total_table_size
+#: model:ir.model.fields,field_description:database_size.field_ir_model_size_report__total_table_size
+msgid "Total Table Size"
+msgstr ""
+
+#. module: database_size
+#: model:ir.model.fields,help:database_size.field_ir_model_size__total_table_size
+msgid "Total Table Size in MB. This includes indexes and toast tables"
+msgstr ""
+
+#. module: database_size
+#: model:ir.model.fields,help:database_size.field_ir_model_size__total_model_size
+msgid "Total model size in MB. This includes attachments."
+msgstr ""

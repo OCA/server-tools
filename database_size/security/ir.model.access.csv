@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ir_model_size,access_ir_model_size,model_ir_model_size,base.group_system,1,1,0,0
+access_ir_model_index_size,access_ir_model_index_size,model_ir_model_index_size,base.group_system,1,1,0,0
+access_ir_model_size_report,access_ir_model_size_report,model_ir_model_size_report,base.group_system,1,0,0,0
+access_ir_model_relation_size,access_ir_model_relation_size,model_ir_model_relation_size,base.group_system,1,1,0,0
