@@ -27,6 +27,7 @@ addon | version | maintainers | summary
 [base_cron_exclusion](base_cron_exclusion/) | 19.0.1.0.0 | <a href='https://github.com/LoisRForgeFlow'><img src='https://github.com/LoisRForgeFlow.png' width='32' height='32' style='border-radius:50%;' alt='LoisRForgeFlow'/></a> | Allow you to select scheduled actions that should not run simultaneously.
 [base_exception](base_exception/) | 19.0.1.0.0 | <a href='https://github.com/hparfr'><img src='https://github.com/hparfr.png' width='32' height='32' style='border-radius:50%;' alt='hparfr'/></a> <a href='https://github.com/sebastienbeau'><img src='https://github.com/sebastienbeau.png' width='32' height='32' style='border-radius:50%;' alt='sebastienbeau'/></a> | This module provide an abstract model to manage customizable exceptions to be applied on different models (sale order, invoice, ...)
 [base_fontawesome](base_fontawesome/) | 19.0.1.0.0 |  | Up to date Fontawesome resources.
+[base_kanban_stage](base_kanban_stage/) | 19.0.1.0.0 |  | Provides stage model and abstract logic for inheritance
 [base_partition](base_partition/) | 19.0.1.0.0 |  | Base module that provide the partition method on all models
 [base_search_fuzzy](base_search_fuzzy/) | 19.0.1.0.0 |  | Fuzzy search with the PostgreSQL trigram extension
 [base_technical_user](base_technical_user/) | 19.0.1.0.0 |  | Add a technical user parameter on the company
