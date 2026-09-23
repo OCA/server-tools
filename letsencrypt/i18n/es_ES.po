@@ -1,0 +1,248 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * letsencrypt
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-08-01 02:44+0000\n"
+"PO-Revision-Date: 2017-08-01 02:44+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Spanish (Spain) (https://www.transifex.com/oca/teams/23907/"
+"es_ES/)\n"
+"Language: es_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: letsencrypt
+#: code:addons/letsencrypt/models/letsencrypt.py:0
+#, python-format
+msgid "A wildcard is only allowed at the start of a domain"
+msgstr ""
+
+#. module: letsencrypt
+#: model:ir.model,name:letsencrypt.model_letsencrypt
+msgid "Abstract model providing functions for letsencrypt"
+msgstr ""
+
+#. module: letsencrypt
+#: model:ir.model.fields,field_description:letsencrypt.field_letsencrypt__changeset_change_ids
+#: model:ir.model.fields,field_description:letsencrypt.field_res_config_settings__changeset_change_ids
+msgid "Changeset Changes"
+msgstr ""
+
+#. module: letsencrypt
+#: model:ir.model.fields,field_description:letsencrypt.field_letsencrypt__changeset_ids
+#: model:ir.model.fields,field_description:letsencrypt.field_res_config_settings__changeset_ids
+msgid "Changesets"
+msgstr ""
+
+#. module: letsencrypt
+#: model:ir.actions.server,name:letsencrypt.cronjob_ir_actions_server
+#: model:ir.cron,cron_name:letsencrypt.cronjob
+#: model:ir.cron,name:letsencrypt.cronjob
+msgid "Check Let's Encrypt certificates"
+msgstr ""
+
+#. module: letsencrypt
+#: model:ir.model,name:letsencrypt.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: letsencrypt
+#: code:addons/letsencrypt/models/letsencrypt.py:0
+#, python-format
+msgid "Could not respond to letsencrypt challenges."
+msgstr ""
+
+#. module: letsencrypt
+#: model:ir.model.fields,field_description:letsencrypt.field_letsencrypt__count_pending_changeset_changes
+#: model:ir.model.fields,field_description:letsencrypt.field_res_config_settings__count_pending_changeset_changes
+msgid "Count Pending Changeset Changes"
+msgstr ""
+
+#. module: letsencrypt
+#: model:ir.model.fields,field_description:letsencrypt.field_letsencrypt__count_pending_changesets
+#: model:ir.model.fields,field_description:letsencrypt.field_res_config_settings__count_pending_changesets
+msgid "Count Pending Changesets"
+msgstr ""
+
+#. module: letsencrypt
+#: model:ir.model.fields,field_description:letsencrypt.field_res_config_settings__letsencrypt_dns_provider
+msgid "DNS provider"
+msgstr ""
+
+#. module: letsencrypt
+#: model:ir.model.fields,field_description:letsencrypt.field_res_config_settings__letsencrypt_dns_shell_script
+msgid "DNS update script"
+msgstr ""
+
+#. module: letsencrypt
+#: code:addons/letsencrypt/models/letsencrypt.py:0
+#, python-format
+msgid "Domain %s: Let's Encrypt doesn't support IP addresses!"
+msgstr ""
+
+#. module: letsencrypt
+#: code:addons/letsencrypt/models/letsencrypt.py:0
+#, python-format
+msgid "Domain %s: Let's encrypt doesn't work with local domains!"
+msgstr ""
+
+#. module: letsencrypt
+#: model:ir.model.fields,field_description:letsencrypt.field_res_config_settings__letsencrypt_altnames
+msgid "Domain names"
+msgstr ""
+
+#. module: letsencrypt
+#: model:ir.model.fields,help:letsencrypt.field_res_config_settings__letsencrypt_altnames
+msgid "Domains to use for the certificate. Separate with commas or newlines."
+msgstr ""
+
+#. module: letsencrypt
+#: code:addons/letsencrypt/models/letsencrypt.py:0
+#, python-format
+msgid "Error calling %(cmdline)s: %(returncode)d"
+msgstr ""
+
+#. module: letsencrypt
+#: code:addons/letsencrypt/controllers/main.py:0
+#, python-format
+msgid "Error opening file %s"
+msgstr ""
+
+#. module: letsencrypt
+#: code:addons/letsencrypt/models/letsencrypt.py:0
+#, python-format
+msgid "Error updating name"
+msgstr ""
+
+#. module: letsencrypt
+#: model:ir.model.fields,help:letsencrypt.field_res_config_settings__letsencrypt_reload_command
+msgid "Fill this with the command to restart your web server."
+msgstr ""
+
+#. module: letsencrypt
+#: model:ir.model.fields,help:letsencrypt.field_res_config_settings__letsencrypt_dns_provider
+msgid ""
+"For wildcard certificates we need to add a TXT record on your DNS. If you "
+"set this to \"Shell script\" you can enter a shell script. Other options can "
+"be added by installing additional modules."
+msgstr ""
+
+#. module: letsencrypt
+#: model_terms:ir.ui.view,arch_db:letsencrypt.res_config_settings_view_form
+msgid "Let's Encrypt"
+msgstr ""
+
+#. module: letsencrypt
+#: model:ir.model.fields,field_description:letsencrypt.field_res_config_settings__letsencrypt_needs_dns_provider
+msgid "Letsencrypt Needs Dns Provider"
+msgstr ""
+
+#. module: letsencrypt
+#: model_terms:ir.ui.view,arch_db:letsencrypt.res_config_settings_view_form
+msgid "List the domains for the certificate"
+msgstr ""
+
+#. module: letsencrypt
+#: code:addons/letsencrypt/models/letsencrypt.py:0
+#, python-format
+msgid "No DNS provider set, can't request wildcard certificate"
+msgstr ""
+
+#. module: letsencrypt
+#: code:addons/letsencrypt/models/letsencrypt.py:0
+#, python-format
+msgid "No shell command configured for updating DNS records"
+msgstr ""
+
+#. module: letsencrypt
+#: model:ir.model.fields,field_description:letsencrypt.field_res_config_settings__letsencrypt_prefer_dns
+msgid "Prefer DNS validation"
+msgstr ""
+
+#. module: letsencrypt
+#: model:ir.model.fields,field_description:letsencrypt.field_res_config_settings__letsencrypt_reload_command
+msgid "Server reload command"
+msgstr ""
+
+#. module: letsencrypt
+#: model_terms:ir.ui.view,arch_db:letsencrypt.res_config_settings_view_form
+msgid "Set a DNS provider if you need wildcard certificates"
+msgstr ""
+
+#. module: letsencrypt
+#: model:ir.model.fields.selection,name:letsencrypt.selection__res_config_settings__letsencrypt_dns_provider__shell
+msgid "Shell script"
+msgstr ""
+
+#. module: letsencrypt
+#: model:ir.model.fields,field_description:letsencrypt.field_res_config_settings__letsencrypt_testing_mode
+msgid "Use testing server"
+msgstr ""
+
+#. module: letsencrypt
+#: model:ir.model.fields,help:letsencrypt.field_res_config_settings__letsencrypt_testing_mode
+msgid ""
+"Use the Let's Encrypt staging server, which has higher rate limits but "
+"doesn't create valid certificates."
+msgstr ""
+
+#. module: letsencrypt
+#: model_terms:ir.ui.view,arch_db:letsencrypt.res_config_settings_view_form
+msgid ""
+"Use the testing server, which has higher rate limits but creates invalid "
+"certificates."
+msgstr ""
+
+#. module: letsencrypt
+#: model:ir.model.fields,field_description:letsencrypt.field_letsencrypt__user_can_see_changeset
+#: model:ir.model.fields,field_description:letsencrypt.field_res_config_settings__user_can_see_changeset
+msgid "User Can See Changeset"
+msgstr ""
+
+#. module: letsencrypt
+#: model:ir.model.fields,help:letsencrypt.field_res_config_settings__letsencrypt_prefer_dns
+#: model_terms:ir.ui.view,arch_db:letsencrypt.res_config_settings_view_form
+msgid ""
+"Validate through DNS even when HTTP validation is possible. Use this if your "
+"Odoo instance isn't publicly accessible."
+msgstr ""
+
+#. module: letsencrypt
+#: model_terms:ir.ui.view,arch_db:letsencrypt.res_config_settings_view_form
+msgid "Write a command to reload the server"
+msgstr ""
+
+#. module: letsencrypt
+#: model:ir.model.fields,help:letsencrypt.field_res_config_settings__letsencrypt_dns_shell_script
+msgid ""
+"Write a shell script that will update your DNS TXT records. You can use the "
+"$LETSENCRYPT_DNS_CHALLENGE and $LETSENCRYPT_DNS_DOMAIN variables."
+msgstr ""
+
+#. module: letsencrypt
+#: model_terms:ir.ui.view,arch_db:letsencrypt.res_config_settings_view_form
+msgid "Write a shell script to update your DNS records"
+msgstr ""
+
+#. module: letsencrypt
+#: code:addons/letsencrypt/models/res_config_settings.py:0
+#, python-format
+msgid "You didn't write a DNS update script!"
+msgstr ""
+
+#~ msgid "Display Name"
+#~ msgstr "Nombre para mostrar"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última modificación en"
