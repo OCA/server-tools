@@ -3,6 +3,7 @@ cryptography
 dataclasses
 numpy
 odoorpc
+openpyxl
 openupgradelib
 paramiko<4.0.0
 pysftp
