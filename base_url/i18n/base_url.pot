@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -74,11 +74,6 @@ msgid "Lang"
 msgstr ""
 
 #. module: base_url
-#: model:ir.model.fields,field_description:base_url.field_url_url____last_update
-msgid "Last Modified on"
-msgstr ""
-
-#. module: base_url
 #: model:ir.model.fields,field_description:base_url.field_url_url__write_uid
 msgid "Last Updated by"
 msgstr ""
@@ -91,6 +86,11 @@ msgstr ""
 #. module: base_url
 #: model:ir.model.fields,field_description:base_url.field_url_url__manual
 msgid "Manual"
+msgstr ""
+
+#. module: base_url
+#: model:ir.model.fields,field_description:base_url.field_url_url__res_model_field
+msgid "Model Name"
 msgstr ""
 
 #. module: base_url
@@ -124,6 +124,12 @@ msgid "Res Model"
 msgstr ""
 
 #. module: base_url
+#: model:ir.model.fields,field_description:base_url.field_abstract_url__smart_search
+#: model:ir.model.fields,field_description:base_url.field_url_url__smart_search
+msgid "Smart Search"
+msgstr ""
+
+#. module: base_url
 #: model:ir.model,name:base_url.model_url_url
 #: model:ir.model.fields,field_description:base_url.field_abstract_url__url_ids
 msgid "Url"
@@ -135,33 +141,32 @@ msgid "Url Key"
 msgstr ""
 
 #. module: base_url
+#. odoo-python
+#: code:addons/base_url/models/abstract_url.py:0
+msgid ""
+"Url Key already exists in other model\n"
+"- Model name: %(model_name)s\n"
+"- Record ID: %(record_id)s\n"
+"- Url Key: %(url_key)s\n"
+"- Url ID: %(url_id)s"
+msgstr ""
+
+#. module: base_url
+#: model:ir.actions.act_window,name:base_url.base_url_action_view
+msgid "Url List"
+msgstr ""
+
+#. module: base_url
 #: model:ir.model.fields,field_description:base_url.field_abstract_url__url_need_refresh
 msgid "Url Need Refresh"
 msgstr ""
 
 #. module: base_url
+#: model:ir.ui.menu,name:base_url.url_menu_view
+msgid "Url Rewrite"
+msgstr ""
+
+#. module: base_url
 #: model_terms:ir.ui.view,arch_db:base_url.url_view_form
 msgid "Url rewriting edit form"
-msgstr ""
-
-#. module: base_url
-#. odoo-python
-#: code:addons/base_url/models/abstract_url.py:0
-#, python-format
-msgid ""
-"Url_key already exist in other model\n"
-"- name: %(model_name)s\n"
-" - id: %(model_id)s\n"
-"- url_key: %(url_key)s\n"
-" - url_key_id %(url_id)s"
-msgstr ""
-
-#. module: base_url
-#: model:ir.ui.menu,name:base_url.url_menu_view
-msgid "Url_rewrite"
-msgstr ""
-
-#. module: base_url
-#: model:ir.actions.act_window,name:base_url.base_url_action_view
-msgid "url list Viewer"
 msgstr ""
