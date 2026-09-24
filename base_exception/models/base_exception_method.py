@@ -104,6 +104,8 @@ class BaseExceptionMethod(models.AbstractModel):
         # line) using the current cursor, which sees records created earlier
         # in this same transaction even before they are committed.
         main_records = self._get_main_records()
+        no_rollback = self._exceptions_no_rollback()
+        test_mode = test_mode or no_rollback
         # Write exceptions in a new transaction to be committed so that we can
         #  rollback the ongoing one while keeping the exceptions stored
         with self.env.registry.cursor() as new_cr:
@@ -138,11 +140,20 @@ class BaseExceptionMethod(models.AbstractModel):
                 or main_records_new_env._must_raise_exception_after_detection()
             ):
                 raise_exception = True
-        if raise_exception:
+        if raise_exception and not no_rollback:
             raise BaseExceptionError(
                 json.dumps(self._detect_exception_get_exc_class_values())
             )
         return all_exception_ids
+
+    def _exceptions_no_rollback(self):
+        """Store exceptions in the ongoing transaction without raising, for the
+        records in context ``base_exception_no_rollback={model: ids}``."""
+        main_records = self._get_main_records()
+        allowed = self.env.context.get("base_exception_no_rollback") or {}
+        return bool(main_records) and set(main_records.ids) <= set(
+            allowed.get(main_records._name, ())
+        )
 
     def _detect_exception_get_exc_class_values(self):
         return {
