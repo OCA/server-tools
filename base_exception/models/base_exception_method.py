@@ -12,7 +12,7 @@ from psycopg2.errors import LockNotAvailable
 
 from odoo import Command, _, api, models
 from odoo.api import Environment
-from odoo.exceptions import UserError
+from odoo.exceptions import MissingError, UserError
 from odoo.osv import expression
 from odoo.tools import config, mute_logger
 from odoo.tools.safe_eval import safe_eval
@@ -163,9 +163,15 @@ class BaseExceptionMethod(models.AbstractModel):
         transaction would then wait for the ongoing one, which is itself
         waiting for this method to return: PostgreSQL cannot detect that
         deadlock and the request would hang forever. So the independent
-        transaction only waits ``_get_exception_lock_timeout()``; then the
-        data is written in the ongoing transaction, and written again in a
-        new transaction if the ongoing one is rolled back, once its locks
+        transaction only waits ``_get_exception_lock_timeout()``.
+
+        The records may also have been created by the ongoing transaction
+        (e.g. a line added to a confirmed order), which the independent
+        transaction cannot see yet.
+
+        In both cases the data is written in the ongoing transaction, so
+        the exceptions are still detected and raised, and written again in
+        a new transaction if the ongoing one is rolled back, once its locks
         are released.
 
         :return: the environment the data was written with
@@ -180,11 +186,12 @@ class BaseExceptionMethod(models.AbstractModel):
                     (self._get_exception_lock_timeout(),),
                 )
                 write_func(new_env)
-        except LockNotAvailable:
+        except (LockNotAvailable, MissingError) as error:
             _logger.info(
-                "Rows locked, exceptions of %s are written in the ongoing "
-                "transaction and again if it is rolled back",
+                "Exceptions of %s are written in the ongoing transaction, and "
+                "again if it is rolled back, as the independent one failed: %s",
                 self,
+                error,
             )
         else:
             return new_env
@@ -195,11 +202,15 @@ class BaseExceptionMethod(models.AbstractModel):
 
         @self.env.cr.postrollback.add
         def write_exceptions_after_rollback():
-            # Records created by the rolled back transaction no longer exist,
-            # and an error here would break closing its cursor.
+            # An error here would break closing the rolled back cursor.
             try:
                 with registry.cursor() as cr:
                     write_func(Environment(cr, uid, context))
+            except MissingError:
+                _logger.debug(
+                    "Records created by the rolled back transaction, no "
+                    "exceptions to write"
+                )
             except Exception as error:
                 _logger.warning(
                     "Exceptions could not be written after a rollback: %s", error
