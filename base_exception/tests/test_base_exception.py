@@ -242,3 +242,22 @@ class TestBaseException(TransactionCase):
         po_sudo = self.po.with_user(user).sudo()
         with self.assertRaises(BaseExceptionError):
             po_sudo.detect_exceptions()
+
+    @patch_base_exception_method_env
+    def test_no_rollback_context(self):
+        po = self.po.with_context(
+            base_exception_no_rollback={self.po._name: self.po.ids}
+        )
+        # No BaseExceptionError: the exceptions are stored with the current
+        # cursor and returned.
+        self.assertEqual(po.detect_exceptions(), self.exception_rule.ids)
+        self.assertEqual(self.po.exception_ids, self.exception_rule)
+
+    @patch_base_exception_method_env
+    def test_no_rollback_context_other_records(self):
+        other_po = self.po.copy()
+        po = self.po.with_context(
+            base_exception_no_rollback={self.po._name: other_po.ids}
+        )
+        with self.assertRaises(BaseExceptionError):
+            po.detect_exceptions()
