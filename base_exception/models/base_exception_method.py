@@ -8,11 +8,13 @@ import json
 import logging
 from collections import defaultdict
 
+from psycopg2.errors import LockNotAvailable
+
 from odoo import Command, _, api, models
 from odoo.api import Environment
-from odoo.exceptions import UserError
+from odoo.exceptions import MissingError, UserError
 from odoo.osv import expression
-from odoo.tools import config
+from odoo.tools import config, mute_logger
 from odoo.tools.safe_eval import safe_eval
 
 from ..exceptions import BaseExceptionError
@@ -104,6 +106,15 @@ class BaseExceptionMethod(models.AbstractModel):
         # line) using the current cursor, which sees records created earlier
         # in this same transaction even before they are committed.
         main_records = self._get_main_records()
+
+        def write_exceptions(env):
+            for rule_id, records in rules_to_remove.items():
+                records.with_env(env).write(
+                    {"exception_ids": [Command.unlink(rule_id)]}
+                )
+            for rule_id, records in rules_to_add.items():
+                records.with_env(env).write({"exception_ids": [Command.link(rule_id)]})
+
         # Write exceptions in a new transaction to be committed so that we can
         #  rollback the ongoing one while keeping the exceptions stored
         with self.env.registry.cursor() as new_cr:
@@ -112,27 +123,20 @@ class BaseExceptionMethod(models.AbstractModel):
                 if not test_mode
                 else self.env
             )
-            for rule_id, records in rules_to_remove.items():
-                records.with_env(new_env).write(
-                    {"exception_ids": [Command.unlink(rule_id)]}
-                )
-            for rule_id, records in rules_to_add.items():
-                records.with_env(new_env).write(
-                    {"exception_ids": [Command.link(rule_id)]}
-                )
+            write_env = self._write_exceptions_independently(new_env, write_exceptions)
             # In case we have new exception, or exceptions that were not ignored yet, or
             #  blocking exceptions, we need to raise an exception to rollback the
             #  ongoing transaction.
-            # Re-derive main_records through new_env rather than re-running
-            # self.with_env(new_env)._get_main_records(): when self are
+            # Re-derive main_records through write_env rather than re-running
+            # self.with_env(write_env)._get_main_records(): when self are
             # records just created earlier in the ongoing (not yet committed)
             # transaction (e.g. a line added while editing a confirmed sale
             # order), new_cr is a genuinely separate DB connection that
             # cannot see them yet, and _get_main_records() traversal
             # (e.g. sale.order.line -> order_id) would raise MissingError.
             # main_records itself was already resolved above through the
-            # current cursor, so only rebinding it to new_env is needed here.
-            main_records_new_env = main_records.with_env(new_env)
+            # current cursor, so only rebinding it to write_env is needed here.
+            main_records_new_env = main_records.with_env(write_env)
             if (
                 rules_to_add
                 or main_records_new_env._must_raise_exception_after_detection()
@@ -143,6 +147,76 @@ class BaseExceptionMethod(models.AbstractModel):
                 json.dumps(self._detect_exception_get_exc_class_values())
             )
         return all_exception_ids
+
+    def _get_exception_lock_timeout(self):
+        """Milliseconds the independent transaction waits for a row lock
+        before giving up on writing the exceptions on its own."""
+        return 2000
+
+    def _write_exceptions_independently(self, new_env, write_func):
+        """Call ``write_func(env)`` to write exception data through
+        ``new_env``, whose independent transaction is committed so the data
+        survives a rollback of the ongoing one.
+
+        The ongoing transaction may already hold locks on the rows to write
+        (e.g. an order line it has just written). The independent
+        transaction would then wait for the ongoing one, which is itself
+        waiting for this method to return: PostgreSQL cannot detect that
+        deadlock and the request would hang forever. So the independent
+        transaction only waits ``_get_exception_lock_timeout()``.
+
+        The records may also have been created by the ongoing transaction
+        (e.g. a line added to a confirmed order), which the independent
+        transaction cannot see yet.
+
+        In both cases the data is written in the ongoing transaction, so
+        the exceptions are still detected and raised, and written again in
+        a new transaction if the ongoing one is rolled back, once its locks
+        are released.
+
+        :return: the environment the data was written with
+        """
+        if new_env is self.env:
+            write_func(new_env)
+            return new_env
+        try:
+            with mute_logger("odoo.sql_db"), new_env.cr.savepoint():
+                new_env.cr.execute(
+                    "SET LOCAL lock_timeout = %s",
+                    (self._get_exception_lock_timeout(),),
+                )
+                write_func(new_env)
+        except (LockNotAvailable, MissingError) as error:
+            _logger.info(
+                "Exceptions of %s are written in the ongoing transaction, and "
+                "again if it is rolled back, as the independent one failed: %s",
+                self,
+                error,
+            )
+        else:
+            return new_env
+        write_func(self.env)
+        registry = self.env.registry
+        uid = self.env.uid
+        context = dict(self.env.context)
+
+        @self.env.cr.postrollback.add
+        def write_exceptions_after_rollback():
+            # An error here would break closing the rolled back cursor.
+            try:
+                with registry.cursor() as cr:
+                    write_func(Environment(cr, uid, context))
+            except MissingError:
+                _logger.debug(
+                    "Records created by the rolled back transaction, no "
+                    "exceptions to write"
+                )
+            except Exception as error:
+                _logger.warning(
+                    "Exceptions could not be written after a rollback: %s", error
+                )
+
+        return self.env
 
     def _detect_exception_get_exc_class_values(self):
         return {
