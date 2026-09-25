@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright 2019 Ecosoft Co., Ltd.
+  License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).-->
+<odoo>
+    <record id="report_crm_lead_template" model="xlsx.template">
+        <field name="res_model">report.crm.lead</field>
+        <field name="fname">report_crm_lead.xlsx</field>
+        <field name="name">Report CRM Lead Template</field>
+        <field name="description">Sample Report Sales Order Tempalte for testing</field>
+        <field name="input_instruction">
+            {
+                '__EXPORT__': {
+                    'crm_lead': {
+                        'results': {
+                            'A4': 'name',
+                            'B4': 'partner_id.name',
+                            'C4': 'country_id.name',
+                            'D4': 'activity_date_deadline${value or ""}#{style=date}',
+                            'E4': 'activity_summary',
+                            'F4': 'stage_id.name',
+                            'G4': 'expected_revenue${value or 0}#{style=number}',
+                            'H4': 'team_id.name',
+                        },
+                    },
+                    'revenue_by_country': {
+                        'revenue_by_country': {
+                            'A3': 'country_id.name',
+                            'B3': 'expected_revenue${value or 0}#{style=number}'
+                        },
+                    },
+                    'revenue_by_team': {
+                        'revenue_by_team': {
+                            'A3': 'team_id.name',
+                            'B3': 'expected_revenue${value or 0}#{style=number}'
+                        },
+                    },
+                },
+            }
+        </field>
+    </record>
+    <function model="xlsx.template" name="load_xlsx_template">
+        <value eval="[ref('report_crm_lead_template')]" />
+    </function>
+</odoo>
