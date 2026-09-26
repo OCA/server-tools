@@ -80,6 +80,42 @@ class TestModule(TransactionCase):
         self.assertFalse(Imm._get_modules_with_changed_checksum())
 
 
+class TestImportedModules(TransactionCase):
+    def setUp(self):
+        super().setUp()
+        self.Imm = self.env["ir.module.module"]
+        # Skip test if base_import_module is not installed (OCB)
+        if "imported" not in self.Imm._fields:
+            self.skipTest("base_import_module is not installed")
+        # Modules imported into the database (e.g. Odoo Studio customizations)
+        # have no counterpart on the file system, so no checksum can be
+        # computed for them.
+        self.imported_module = self.Imm.create(
+            {
+                "name": "test_imported_module",
+                "state": "installed",
+                "imported": True,
+            }
+        )
+
+    def test_save_installed_checksums_skips_imported(self):
+        self.Imm._save_installed_checksums()
+        self.assertNotIn("test_imported_module", self.Imm._get_saved_checksums())
+
+    def test_changed_checksum_skips_imported(self):
+        # no checksum was ever saved for the imported module
+        self.Imm._save_checksums({})
+        self.assertNotIn(
+            self.imported_module, self.Imm._get_modules_with_changed_checksum()
+        )
+
+    def test_partially_installed_skips_imported(self):
+        self.imported_module.state = "to upgrade"
+        self.assertNotIn(
+            self.imported_module, self.Imm._get_modules_partially_installed()
+        )
+
+
 @odoo.tests.tagged("post_install", "-at_install")
 class TestModuleAfterInstall(TransactionCase):
     def setUp(self):
