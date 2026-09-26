@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_db_backup_fs_file_read,Read db.backup fs.file,model_db_backup_fs_file,base.group_erp_manager,1,0,0,0
+access_db_backup_fs_file_write,Write db.backup fs.file,model_db_backup_fs_file,base.group_system,1,1,1,1
