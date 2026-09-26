@@ -12,6 +12,7 @@ from datetime import datetime, timedelta
 from glob import iglob
 
 import pysftp
+from markupsafe import Markup
 
 from odoo import _, api, exceptions, fields, models, tools
 from odoo.exceptions import UserError
@@ -204,9 +205,12 @@ class DbBackup(models.Model):
             yield
         except Exception:
             _logger.exception(f"Database backup failed: {self.name}")
-            escaped_tb = tools.html_escape(traceback.format_exc())
             self.message_post(  # pylint: disable=translation-required
-                body=f"<p>{_('Database backup failed.')}</p><pre>{escaped_tb}</pre>",
+                body=Markup("<p>%s</p><pre>%s</pre>")
+                % (
+                    _("Database backup failed."),
+                    traceback.format_exc(),
+                ),
                 subtype_id=self.env.ref("auto_backup.mail_message_subtype_failure").id,
             )
         else:
@@ -247,11 +251,11 @@ class DbBackup(models.Model):
             yield
         except Exception:
             _logger.exception(f"Cleanup of old database backups failed: {self.name}")
-            escaped_tb = tools.html_escape(traceback.format_exc())
             self.message_post(  # pylint: disable=translation-required
-                body=(
-                    f"<p>{_('Cleanup of old database backups failed.')}</p>"
-                    f"<pre>{escaped_tb}</pre>"
+                body=Markup("<p>%s</p><pre>%s</pre>")
+                % (
+                    _("Cleanup of old database backups failed."),
+                    traceback.format_exc(),
                 ),
                 subtype_id=self.env.ref("auto_backup.failure").id,
             )
