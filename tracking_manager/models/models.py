@@ -6,7 +6,7 @@
 
 from collections import defaultdict
 
-from odoo import Command, api, models, tools
+from odoo import Command, _, api, models, tools
 from odoo.exceptions import AccessError
 
 from ..tools import format_m2m
@@ -73,6 +73,10 @@ class Base(models.AbstractModel):
                 elif field.type == "many2one":
                     old = before.display_name
                     new = self[field_name]["display_name"]
+                elif field.type == "boolean":
+                    # a falsy value would be rendered as an empty string
+                    old = _("Yes") if before else _("No")
+                    new = _("Yes") if self[field_name] else _("No")
                 else:
                     old = before
                     new = self[field_name]
