@@ -150,6 +150,31 @@ class TestMatchAlgorithms(TransactionCase):
         self._test_search_matches(email_domain.EmailDomain)
         self._test_apply_matching(email_domain.EmailDomain)
 
+    def test_email_exact_case_insensitive(self):
+        """Email matching must be case-insensitive regardless of stored casing."""
+        from ..match_algorithm.email_exact import EmailExact
+
+        mixed_case_email = TEST_EMAIL.replace("reynaert", "Reynaert").replace(
+            "dutchsagas", "DutchSagas"
+        )
+        self.test_partner.write({"email": mixed_case_email})
+        MAIL_MESSAGE["from"] = TEST_EMAIL
+        matcher = EmailExact()
+        matches = matcher.search_matches(self.folder, MAIL_MESSAGE)
+        self.assertEqual(matches, self.test_partner)
+
+    def test_email_domain_case_insensitive(self):
+        """Domain matching must be case-insensitive regardless of stored casing."""
+        mixed_case_email = TEST_EMAIL.replace("dutchsagas", "DutchSagas")
+        self.test_partner.write({"email": mixed_case_email})
+        alternate_email = TEST_EMAIL.replace("reynaert@", "mariken@")
+        MAIL_MESSAGE["from"] = alternate_email
+        self.folder.match_algorithm = "email_domain"
+        self.folder.match_first = True
+        matcher = email_domain.EmailDomain()
+        matches = matcher.search_matches(self.folder, MAIL_MESSAGE)
+        self.assertEqual(matches, self.test_partner)
+
     def test_email_domain(self):
         """Test with email in same domain, but different mailbox."""
         ALTERNATE_EMAIL = TEST_EMAIL.replace("reynaert@", "mariken@")
