@@ -1,4 +1,5 @@
-- Tom Blauwendraat \<tom@sunflowerweb.nl\>
+- Tom Blauwendraat \<tblauwendraat@therp.nl\>
 - Francesco Apruzzese \<cescoap@gmail.com\>
 - [Heliconia Solutions Pvt. Ltd.](https://www.heliconia.io)
   - Bhavesh Heliconia
+- [Therp BV](<https://therp.nl)
