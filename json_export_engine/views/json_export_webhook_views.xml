@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- Form View -->
+    <record id="json_export_webhook_form_view" model="ir.ui.view">
+        <field name="name">json.export.webhook.form</field>
+        <field name="model">json.export.webhook</field>
+        <field name="arch" type="xml">
+            <form string="JSON Export Webhook">
+                <header>
+                    <button
+                        name="action_reset_state"
+                        string="Reset to Active"
+                        type="object"
+                        class="oe_highlight"
+                        invisible="state == 'active'"
+                    />
+                    <field
+                        name="state"
+                        widget="statusbar"
+                        statusbar_visible="active,error,paused"
+                    />
+                </header>
+                <sheet>
+                    <group>
+                        <group string="Webhook">
+                            <field name="name" />
+                            <field name="schema_id" options="{'no_create': True}" />
+                            <field name="active" />
+                            <field name="url" widget="url" placeholder="https://..." />
+                        </group>
+                        <group string="Events">
+                            <field name="on_create" />
+                            <field name="on_write" />
+                            <field name="on_unlink" />
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Security">
+                            <field name="secret_key" password="True" />
+                            <field name="max_retries" />
+                            <field name="async_delivery" />
+                        </group>
+                        <group string="Status">
+                            <field name="last_call_date" />
+                            <field name="last_call_status" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Custom Headers" name="headers">
+                            <field name="header_ids" nolabel="1">
+                                <list editable="bottom">
+                                    <field name="key" />
+                                    <field name="value" />
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- List View -->
+    <record id="json_export_webhook_tree_view" model="ir.ui.view">
+        <field name="name">json.export.webhook.list</field>
+        <field name="model">json.export.webhook</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name" />
+                <field name="schema_id" />
+                <field name="url" />
+                <field name="on_create" />
+                <field name="on_write" />
+                <field name="on_unlink" />
+                <field
+                    name="state"
+                    decoration-success="state == 'active'"
+                    decoration-danger="state == 'error'"
+                    decoration-muted="state == 'paused'"
+                    widget="badge"
+                />
+                <field name="last_call_date" />
+                <field name="active" />
+            </list>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="json_export_webhook_action" model="ir.actions.act_window">
+        <field name="name">Webhooks</field>
+        <field name="res_model">json.export.webhook</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>
