@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="data_import_pickup_view_form" model="ir.ui.view">
+        <field name="name">data.import.pickup.form</field>
+        <field name="model">data.import.pickup</field>
+        <field name="arch" type="xml">
+            <form string="Data Import Pick-up">
+                <sheet>
+                    <widget
+                        name="web_ribbon"
+                        title="Archived"
+                        bg_color="text-bg-danger"
+                        invisible="active"
+                    />
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Name" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Source">
+                            <field name="backend_id" />
+                            <field name="filename_pattern" />
+                            <field name="file_format" />
+                            <field name="encoding" invisible="file_format != 'csv'" />
+                            <field name="has_header" />
+                            <field name="column_names" />
+                        </group>
+                        <group string="Directories">
+                            <field name="path_in" />
+                            <field name="path_processing" />
+                            <field name="path_done" />
+                            <field name="path_error" />
+                        </group>
+                        <group>
+                            <field name="active" invisible="1" />
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                            />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="data_import_pickup_view_list" model="ir.ui.view">
+        <field name="name">data.import.pickup.list</field>
+        <field name="model">data.import.pickup</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="sequence" widget="handle" />
+                <field name="name" />
+                <field name="backend_id" />
+                <field name="path_in" />
+                <field name="file_format" />
+                <field name="company_id" groups="base.group_multi_company" />
+            </list>
+        </field>
+    </record>
+    <record id="data_import_pickup_action" model="ir.actions.act_window">
+        <field name="name">Data Import Pick-ups</field>
+        <field name="res_model">data.import.pickup</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    <menuitem
+        id="menu_data_import_pickup"
+        action="data_import_pickup_action"
+        parent="data_import_log.menu_data_import_setting"
+        sequence="10"
+    />
+</odoo>
