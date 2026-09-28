@@ -16,7 +16,7 @@ class ResUsers(models.Model):
         with cls.pool.cursor() as cr:
             env = api.Environment(cr, SUPERUSER_ID, {})
             remote = env["res.users"].remote
-            if not config["test_enable"]:
+            if remote and not config["test_enable"]:
                 remote.ensure_one()
         result = method()
         if not result:
