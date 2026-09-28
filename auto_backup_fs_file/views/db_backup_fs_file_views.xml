@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2025 Binhex
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record model="ir.ui.view" id="db_backup_fs_file_form_view">
+        <field name="name">db.backup.fs.file.form.view</field>
+        <field name="model">db.backup.fs.file</field>
+        <field name="arch" type="xml">
+            <form>
+                <header />
+                <sheet>
+                    <group>
+                        <field name="name" />
+                        <field name="backup_file" />
+                        <field name="db_backup_id" />
+                        <field name="create_date" />
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" />
+                    <field name="activity_ids" widget="mail_activity" />
+                    <field name="message_ids" widget="mail_thread" />
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="db_backup_fs_file_search_view">
+        <field name="name">db.backup.fs.file.search.view</field>
+        <field name="model">db.backup.fs.file</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="db_backup_fs_file_tree_view">
+        <field name="name">db.backup.fs.file.tree.view</field>
+        <field name="model">db.backup.fs.file</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="db_backup_id" />
+                <field name="create_date" />
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="db_backup_fs_file_act_window">
+        <field name="name">Fs File Backups</field>
+        <field name="res_model">db.backup.fs.file</field>
+    </record>
+
+    <record model="ir.ui.menu" id="db_backup_fs_file_menu">
+        <field name="name">Fs File Backups</field>
+        <field name="parent_id" ref="base.next_id_9" />
+        <field name="action" ref="db_backup_fs_file_act_window" />
+        <field name="sequence" eval="166" />
+    </record>
+
+</odoo>
