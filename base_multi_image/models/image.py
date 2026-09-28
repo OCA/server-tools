@@ -106,7 +106,7 @@ class Image(models.Model):
         )
 
     def _get_image_from_filestore(self):
-        return self.attachment_id.datas
+        return self.sudo().attachment_id.datas
 
     def _get_image_from_db(self):
         return self.file_db_store
