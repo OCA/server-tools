@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ====================
 Database Auto-Backup
 ====================
@@ -17,7 +13,7 @@ Database Auto-Backup
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github
@@ -72,6 +68,18 @@ You can with this module! Specify the credentials to the server, specify
 a path and everything will be backed up automatically. This is done
 through an SSH (encrypted) tunnel, thanks to pysftp, so your data is
 safe!
+
+Secure SFTP connection with host key verification
+-------------------------------------------------
+
+A new optional field **Host Public Key** has been added.
+
+- Paste the exact public key of your SFTP server (you can obtain it with
+  `ssh-keyscan -t rsa,ecdsa,ed25519 your.sftp.server`).
+- When filled, Odoo will **verify the server identity** and refuse the connection if the key does not match → protects against man-in-the-middle attacks.
+- Leave empty → old behaviour (no host key checking, backward compatible).
+
+The "Test SFTP Connection" button now also validates the host key.
 
 Test connection
 ~~~~~~~~~~~~~~~

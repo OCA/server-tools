@@ -11,6 +11,7 @@ from datetime import datetime, timedelta
 from unittest.mock import PropertyMock, patch
 
 import pysftp
+from paramiko import HostKeys
 
 from odoo import tools
 from odoo.exceptions import UserError
@@ -56,13 +57,23 @@ class TestDbBackup(common.TransactionCase):
                 with patch("%s.sftp_connection" % class_name):
                     yield filtered
 
-    def new_record(self, method="sftp"):
-        vals = {"name": "Têst backup", "method": method, "days_to_keep": 1}
+    def new_record(self, method="sftp", name_suffix=None):
+        name = "Test backup"
+        if name_suffix is not None:
+            name += f" {name_suffix}"
+        elif self.env.registry.in_test_mode():  # always true in tests
+            # make name unique per call
+            name += f" {id(self)}-{datetime.now().microsecond}"
+        vals = {
+            "name": name,
+            "method": method,
+            "days_to_keep": 1,
+        }
         if method == "sftp":
             vals.update(
                 {
                     "sftp_host": "test_host",
-                    "sftp_port": "222",
+                    "sftp_port": 222,
                     "sftp_user": "tuser",
                     "sftp_password": "password",
                     "folder": "/folder/",
@@ -73,7 +84,7 @@ class TestDbBackup(common.TransactionCase):
 
     def test_compute_name_sftp(self):
         """It should create proper SFTP URI"""
-        rec_id = self.new_record()
+        rec_id = self.new_record(name_suffix="compute_name_sftp")
         self.assertEqual(
             "sftp://%(user)s@%(host)s:%(port)s%(folder)s"
             % {
@@ -87,7 +98,7 @@ class TestDbBackup(common.TransactionCase):
 
     def test_check_folder(self):
         """It should not allow recursive backups"""
-        rec_id = self.new_record("local")
+        rec_id = self.new_record("local", name_suffix="check_folder")
         with self.assertRaises(UserError):
             rec_id.write(
                 {
@@ -100,7 +111,7 @@ class TestDbBackup(common.TransactionCase):
     def test_action_sftp_test_connection_success(self, _):
         """It should raise connection succeeded warning"""
         with patch("%s.sftp_connection" % class_name, new_callable=PropertyMock):
-            rec_id = self.new_record()
+            rec_id = self.new_record(name_suffix="action_sftp_test_connection_success")
             with self.assertRaises(UserError):
                 rec_id.action_sftp_test_connection()
         _.assert_called_once_with("Connection Test Succeeded!")
@@ -111,7 +122,7 @@ class TestDbBackup(common.TransactionCase):
         with patch(
             "%s.sftp_connection" % class_name, new_callable=PropertyMock
         ) as conn:
-            rec_id = self.new_record()
+            rec_id = self.new_record(name_suffix="action_sftp_test_connection_fail")
             conn().side_effect = TestConnectionException
             with self.assertRaises(UserError):
                 rec_id.action_sftp_test_connection()
@@ -119,7 +130,7 @@ class TestDbBackup(common.TransactionCase):
 
     def test_action_backup_local(self):
         """It should backup local database"""
-        rec_id = self.new_record("local")
+        rec_id = self.new_record("local", name_suffix="backup_local")
         filename = rec_id.filename(datetime.now())
         rec_id.action_backup()
         generated_backup = [f for f in os.listdir(rec_id.folder) if f >= filename]
@@ -127,7 +138,7 @@ class TestDbBackup(common.TransactionCase):
 
     def test_action_backup_local_cleanup(self):
         """Backup local database and cleanup old databases"""
-        rec_id = self.new_record("local")
+        rec_id = self.new_record("local", name_suffix="backup_local_cleanup")
         old_date = datetime.now() - timedelta(days=3)
         filename = rec_id.filename(old_date)
         with patch("%s.datetime" % model) as mock_date:
@@ -143,21 +154,21 @@ class TestDbBackup(common.TransactionCase):
 
     def _test_action_backup_sftp_mkdirs(self):
         """It should create remote dirs"""
-        rec_id = self.new_record()
+        rec_id = self.new_record(name_suffix="action_backup_sftp_mkdirs")
         with self.mock_assets():
             with self.patch_filtered_sftp(rec_id):
                 with patch("%s.cleanup" % class_name, new_callable=PropertyMock):
-                    conn = rec_id.sftp_connection().__enter__()
+                    conn = rec_id.sftp_connection()
                     rec_id.action_backup()
                     conn.makedirs.assert_called_once_with(rec_id.folder)
 
     def _test_action_backup_sftp_mkdirs_conn_exception(self):
         """It should guard from ConnectionException on remote.mkdirs"""
-        rec_id = self.new_record()
+        rec_id = self.new_record(name_suffix="action_backup_sftp_mkdirs_conn_exception")
         with self.mock_assets():
             with self.patch_filtered_sftp(rec_id):
                 with patch("%s.cleanup" % class_name, new_callable=PropertyMock):
-                    conn = rec_id.sftp_connection().__enter__()
+                    conn = rec_id.sftp_connection()
                     conn.makedirs.side_effect = TestConnectionException
                     rec_id.action_backup()
                     # No error was raised, test pass
@@ -165,58 +176,64 @@ class TestDbBackup(common.TransactionCase):
 
     def test_action_backup_sftp_remote_open(self):
         """It should open remote file w/ proper args"""
-        rec_id = self.new_record()
+        rec_id = self.new_record(name_suffix="backup_sftp_remote_open")
         with self.mock_assets() as assets:
-            with self.patch_filtered_sftp(rec_id):
-                with patch("%s.cleanup" % class_name, new_callable=PropertyMock):
-                    conn = rec_id.sftp_connection().__enter__()
+            with patch("%s.cleanup" % class_name, new_callable=PropertyMock):
+                with patch("%s.sftp_connection" % class_name) as mock_sftp_conn:
+                    # Create a proper mock for the SFTP connection context manager
+                    mock_remote = mock_sftp_conn.return_value.__enter__.return_value
                     rec_id.action_backup()
-                    conn.open.assert_called_once_with(assets["os"].path.join(), "wb")
+                    mock_remote.open.assert_called_once_with(
+                        assets["os"].path.join(), "wb"
+                    )
 
     def test_action_backup_all_search(self):
         """It should search all records"""
-        rec_id = self.new_record()
+        rec_id = self.new_record(name_suffix="action_backup_all_search")
         with patch("%s.search" % class_name, new_callable=PropertyMock):
             rec_id.action_backup_all()
             rec_id.search.assert_called_once_with([])
 
     def test_action_backup_all_return(self):
         """It should return result of backup operation"""
-        rec_id = self.new_record()
+        rec_id = self.new_record(name_suffix="action_backup_all_return")
         with patch("%s.search" % class_name, new_callable=PropertyMock):
             res = rec_id.action_backup_all()
             self.assertEqual(rec_id.search().action_backup(), res)
 
     @patch("%s.pysftp" % model)
-    def test_sftp_connection_init_passwd(self, pysftp):
-        """It should initiate SFTP connection w/ proper args and pass"""
-        rec_id = self.new_record()
-        rec_id.sftp_connection()
-        pysftp.Connection.assert_called_once_with(
-            host=rec_id.sftp_host,
-            username=rec_id.sftp_user,
-            port=rec_id.sftp_port,
-            password=rec_id.sftp_password,
+    def test_sftp_connection(self, pysftp):
+        """It should create the SFTP connection with correct arguments and cnopts"""
+
+        # 1. Password authentication
+        rec_pwd = self.new_record(name_suffix="pwd")  # <-- unique name
+        rec_pwd.sftp_connection()
+        pysftp.Connection.assert_called_with(
+            host=rec_pwd.sftp_host,
+            username=rec_pwd.sftp_user,
+            port=rec_pwd.sftp_port,
+            password=rec_pwd.sftp_password,
+            cnopts=pysftp.CnOpts.return_value,
         )
 
-    @patch("%s.pysftp" % model)
-    def test_sftp_connection_init_key(self, pysftp):
-        """It should initiate SFTP connection w/ proper args and key"""
-        rec_id = self.new_record()
-        rec_id.write({"sftp_private_key": "pkey", "sftp_password": "pkeypass"})
-        rec_id.sftp_connection()
-        pysftp.Connection.assert_called_once_with(
-            host=rec_id.sftp_host,
-            username=rec_id.sftp_user,
-            port=rec_id.sftp_port,
-            private_key=rec_id.sftp_private_key,
-            private_key_pass=rec_id.sftp_password,
+        # 2. Private key authentication
+        pysftp.reset_mock()
+        rec_key = self.new_record(name_suffix="key")  # <-- unique name
+        rec_key.write({"sftp_private_key": "/fake/key", "sftp_password": "keypass"})
+        rec_key.sftp_connection()
+        pysftp.Connection.assert_called_with(
+            host=rec_key.sftp_host,
+            username=rec_key.sftp_user,
+            port=rec_key.sftp_port,
+            private_key=rec_key.sftp_private_key,
+            private_key_pass=rec_key.sftp_password,
+            cnopts=pysftp.CnOpts.return_value,
         )
 
     @patch("%s.pysftp" % model)
     def test_sftp_connection_return(self, pysftp):
         """It should return new sftp connection"""
-        rec_id = self.new_record()
+        rec_id = self.new_record(name_suffix="sftp_connection_return")
         res = rec_id.sftp_connection()
         self.assertEqual(
             pysftp.Connection(),
@@ -240,3 +257,47 @@ class TestDbBackup(common.TransactionCase):
         now = datetime.now()
         res = self.Model.filename(now, ext="dump")
         self.assertTrue(res.endswith(".dump"))
+
+    def test_sftp_host_key_verification(self):
+        """Test all host public key scenarios: valid, invalid, and disabled"""
+        backup = self.new_record(name_suffix="hostkey")
+
+        # ------------------------------------------------------------------
+        # 1. Valid key → HostKeys populated correctly, connection created
+        # ------------------------------------------------------------------
+        with patch("pysftp.Connection") as mock_conn:
+            valid_ssh_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCqGKukO1De7zhZj6+H0qtjTkVxwTCpvKe4eCZ0FPqri0cb2JZfXJ/DgYSF6vUpwmJG8wVQZKjeGcjDOL5UlsuusFncCzWBQ7RKNUSesmQRMSGkVb1/3j+skZ6UtW+5u09lHNsj6tQ51s1SPrCBkedbNf0Tp0GbMJDyR4e9T04ZZwIDAQAB"  # noqa: B950
+            backup.host_public_key = valid_ssh_key
+            backup.sftp_connection()  # Parses real key, no exception
+
+            # Verify cnopts.hostkeys has the entry for our host
+            cnopts = mock_conn.call_args.kwargs["cnopts"]
+            self.assertIsInstance(cnopts.hostkeys, HostKeys)
+            self.assertIn(backup.sftp_host, cnopts.hostkeys)
+            keys = cnopts.hostkeys.lookup(backup.sftp_host)
+            self.assertIsNotNone(keys)
+            self.assertEqual(len(keys), 1)
+
+        # ------------------------------------------------------------------
+        # 2. Invalid format (too few parts) → "Invalid host public key"
+        # ------------------------------------------------------------------
+        backup.host_public_key = "invalid"  # len(parts) < 2 → ValueError
+        with self.assertRaises(UserError) as cm:
+            backup.sftp_connection()
+        self.assertIn("Invalid host public key", str(cm.exception))
+
+        # ------------------------------------------------------------------
+        # 3. Valid format but bad base64 (padding error) →
+        # "Error loading host public key"
+        # ------------------------------------------------------------------
+        backup.host_public_key = "ssh-rsa ABC"  # decodebytes() fails → binascii.Error
+        with self.assertRaises(UserError) as cm:
+            backup.sftp_connection()
+        self.assertIn("Error loading host public key", str(cm.exception))
+
+        # ------------------------------------------------------------------
+        # 4. Empty key → cnopts.hostkeys = None (backward compatible, no warning)
+        # ------------------------------------------------------------------
+        with patch("pysftp.Connection") as mock_conn:
+            backup.host_public_key = None
+            backup.sftp_connection()
