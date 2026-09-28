@@ -97,6 +97,11 @@ def initialize_sentry(config):
             "Its not neccesary send it, will use `HttpTranport` by default.",
             DeprecationWarning,
         )
+    if config.get("sentry_with_locals"):
+        warnings.warn(
+            "`with_locals` has been deprecated.  "
+            "Use `include_local_variables` instead."
+        )
     options = {}
     for option in const.get_sentry_options():
         value = config.get("sentry_%s" % option.key, option.default)
