@@ -430,25 +430,20 @@ class FetchmailServerFolder(models.Model):
         )
         return None
 
+    @api.model
     def attach_mail(self, match_object, message_dict):
         """Attach mail to match_object."""
-        self.ensure_one()
-        partner = False
-        model_name = self.model_id.model
-        if model_name == "res.partner":
-            partner = match_object
-        elif "partner_id" in self.env[model_name]._fields:
-            partner = match_object.partner_id
         message_model = self.env["mail.message"]
         msg_values = {
             key: val
             for key, val in message_dict.items()
             if key in message_model._fields
         }
+        partner = self._get_partner_from_object(match_object)
         msg_values.update(
             {
                 "author_id": partner and partner.id or False,
-                "model": model_name,
+                "model": match_object._name,
                 "res_id": match_object.id,
                 "message_type": "email",
             }
@@ -463,10 +458,19 @@ class FetchmailServerFolder(models.Model):
         message = message_model.create(msg_values)
         _logger.debug(
             "Message with id %(message_id)s created"
-            " for %(model_name)s with id %(thread_id)s",
+            " for %(match_object._name)s with id %(thread_id)s",
             {
                 "message_id": message.id,
-                "model_name": model_name,
+                "match_object._name": match_object._name,
                 "thread_id": match_object.id,
             },
         )
+
+    @api.model
+    def _get_partner_from_object(self, match_object):
+        """Get partner from object."""
+        if match_object._name == "res.partner":
+            return match_object
+        if "partner_id" in match_object._fields:
+            return match_object.partner_id
+        return False

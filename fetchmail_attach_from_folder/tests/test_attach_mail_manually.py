@@ -3,9 +3,20 @@
 # pylint: disable=method-required-super
 from unittest.mock import MagicMock, patch
 
+from odoo.fields import Command
 from odoo.tests.common import TransactionCase
 
 from odoo.addons.mail.models.fetchmail import FetchmailServer
+
+from .common import get_message_body
+
+
+def get_message_org(email, subject):
+    # get_message_body returns an array of tuples, similar to what
+    # IMAP4.fetch(...) would return. There will be a tuple
+    # for each message. The actual messages are in the second
+    # part of each tuple.
+    return get_message_body(email, subject)[0][1]
 
 
 class TestAttachMailManually(TransactionCase):
@@ -57,15 +68,8 @@ class TestAttachMailManually(TransactionCase):
         return mock_conn
 
     def _mock_fetch_msg(self, connection, message_uid):
-        """Return a tuple like the real fetch_msg: (dict, bytes)"""
-        mail_message = {
-            "subject": "Test",
-            "date": "2025-07-23 12:00:00",
-            "from": "test@example.com",
-            "body": "<p>Body</p>",
-        }
-        raw_message = b"Raw MIME message here"
-        return mail_message, raw_message
+        """Return raw message body (bytes)."""
+        return get_message_org("test@example.com", "Test")
 
     @patch.object(FetchmailServer, "connect")
     def test_default_get_populates_mail_ids(self, mock_connect):
@@ -90,35 +94,24 @@ class TestAttachMailManually(TransactionCase):
         """Only mails with object_id should be attached."""
         mock_conn = self._mock_connection()
         mock_connect.return_value = mock_conn
+        message_org = get_message_org("test@example.com", "With Object")
         with patch.object(
             self.folder.__class__,
             "fetch_msg",
-            side_effect=lambda conn, message_uid: (
-                {
-                    "subject": "With Object",
-                    "date": "2025-07-23",
-                    "from": "test@example.com",
-                    "body": "<p>Body</p>",
-                },
-                b"raw_message",
-            ),
+            side_effect=lambda conn, message_uid: message_org,
         ):
             wizard = self.Wizard.create(
                 {
                     "folder_id": self.folder.id,
                     "mail_ids": [
-                        (
-                            0,
-                            0,
+                        Command.create(
                             {
                                 "message_uid": "1",
                                 "subject": "No Object",
                                 "object_id": False,
                             },
                         ),
-                        (
-                            0,
-                            0,
+                        Command.create(
                             {
                                 "message_uid": "2",
                                 "subject": "With Object",
@@ -139,28 +132,28 @@ class TestAttachMailManually(TransactionCase):
         """Test _prepare_mail returns correct structure."""
         folder = self.folder
         message_uid = "123"
-        mail_message = {
+        message_dict = {
             "subject": "Test",
             "date": "2025-07-23",
             "from": "test@example.com",
             "body": "<p>Body</p>",
         }
-        result = self.Wizard._prepare_mail(folder, message_uid, mail_message)
+        result = self.Wizard._prepare_mail(folder, message_uid, message_dict)
         expected = {
             "message_uid": "123",
             "subject": "Test",
             "date": "2025-07-23",
             "body": "<p>Body</p>",
             "email_from": "test@example.com",
-            "object_id": "res.partner,-1",
         }
         self.assertEqual(result, expected)
 
     def test_wizard_name_is_translated(self):
         """Test that default name is translated."""
+        message_org = get_message_org("test@example.com", "With Object")
         with (
             patch.object(FetchmailServer, "connect", return_value=MagicMock()),
-            patch.object(self.folder.__class__, "fetch_msg", return_value=({}, b"raw")),
+            patch.object(self.folder.__class__, "fetch_msg", return_value=message_org),
             patch.object(
                 self.folder.__class__, "get_message_uids", return_value=[b"1"]
             ),
