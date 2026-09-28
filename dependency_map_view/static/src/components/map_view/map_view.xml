@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="dependency_map_view.MapController">
+        <Layout display="props.display" className="'o_dependency_map_view'">
+            <DependencyMapRenderer resModel="props.resModel"/>
+        </Layout>
+    </t>
+    <t t-name="dependency_map_view.MapView">
+        <div class="o_dependency_map_container">
+            <div class="o_map_sidebar">
+                <div class="sidebar_header">
+                    <h5><i class="fa fa-list"/> Records</h5>
+                </div>
+                <div class="sidebar_content">
+                    <t t-if="state.loading">
+                        <div class="text-center p-3">
+                            <i class="fa fa-spinner fa-spin"/>
+                        </div>
+                    </t>
+                    <t t-else="">
+                        <t t-foreach="state.records" t-as="record" t-key="record.id">
+                            <div class="record_item"
+                                 t-att-class="{ 'active': state.selectedRecord?.id === record.id }"
+                                 t-on-click="() => this.selectRecord(record)">
+                                <i class="fa fa-circle me-2"/>
+                                <span t-esc="record.display_name"/>
+                            </div>
+                        </t>
+                    </t>
+                </div>
+            </div>
+
+            <div class="o_map_content">
+                <t t-if="!state.selectedRecord">
+                    <div class="o_map_empty">
+                        <i class="fa fa-code-fork fa-4x mb-3"/>
+                        <h4>Select a Record</h4>
+                        <p>Choose a record from the sidebar</p>
+                    </div>
+                </t>
+                <t t-else="">
+                    <!-- Legend -->
+                    <div class="o_map_legend">
+                        <h6><i class="fa fa-info-circle"/> Relationship Types</h6>
+                        <div class="legend_item">
+                            <span class="legend_dot" style="background: #9b59b6; border-color: #8e44ad;"/>
+                            <span>Selected Record</span>
+                        </div>
+                        <div class="legend_item">
+                            <span class="legend_dot" style="background: #f39c12; border-color: #e67e22;"/>
+                            <span>Many2One (Parent)</span>
+                        </div>
+                        <div class="legend_item">
+                            <span class="legend_dot" style="background: #3498db; border-color: #2980b9;"/>
+                            <span>One2Many (Children)</span>
+                        </div>
+                        <div class="legend_item">
+                            <span class="legend_dot" style="background: #27ae60; border-color: #229954;"/>
+                            <span>Many2Many (Tags)</span>
+                        </div>
+                        <hr/>
+                        <small>
+                            <strong>Lines:</strong><br/>
+                            Solid = One2Many<br/>
+                            Dashed = Many2One/Many2Many
+                        </small>
+                    </div>
+
+                    <div t-ref="mapContainer" class="o_map_canvas"/>
+                </t>
+            </div>
+        </div>
+    </t>
+</templates>
