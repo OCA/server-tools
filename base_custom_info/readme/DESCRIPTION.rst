@@ -1,7 +1,9 @@
 This module allows you to attach custom information to records without the need
 to alter the database structure too much.
 
-This module defines several concepts that you have to understand.
+This module defines several concepts that you have to understand : templates with 
+properties sorted in categories. (properties are like fields and will contains 
+values).
 
 Templates
 ---------
@@ -51,13 +53,12 @@ Categories
 ----------
 
 *Properties* can also belong to a *category*, which allows you to sort them in
-a logical way, and makes further development easier.
+a logical way, and makes further development easier. Categories are not required.
 
-For example, the ``website_sale_custom_info`` addon uses these to display a
+For example, the ``website_sale_custom_info`` old addon uses these to display a
 technical datasheet per product in your online shop, sorted and separated by
-category.
-
-You are not required to give a *category* to every *property*.
+category. This addon was never finished and thus, not merged. But you can browse
+the code in the ``e-commerce`` repository (see ``Pull requests`` tabs).
 
 Options
 -------
