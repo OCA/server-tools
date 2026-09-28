@@ -46,7 +46,7 @@ addon | version | maintainers | summary
 [base_kanban_stage_state](base_kanban_stage_state/) | 14.0.1.0.0 |  | Maps stages from base_kanban_stage to states
 [base_m2m_custom_field](base_m2m_custom_field/) | 14.0.1.1.0 |  | Customizations of Many2many
 [base_model_restrict_update](base_model_restrict_update/) | 14.0.1.1.0 |  | Update Restrict Model
-[base_multi_image](base_multi_image/) | 14.0.1.0.1 |  | Allow multiple images for database objects
+[base_multi_image](base_multi_image/) | 14.0.1.0.2 |  | Allow multiple images for database objects
 [base_name_search_improved](base_name_search_improved/) | 14.0.1.1.2 |  | Friendlier search when typing in relation fields
 [base_name_search_multi_lang](base_name_search_multi_lang/) | 14.0.1.0.0 | <a href='https://github.com/kittiu'><img src='https://github.com/kittiu.png' width='32' height='32' style='border-radius:50%;' alt='kittiu'/></a> | Name search by multiple active language
 [base_order_by_related](base_order_by_related/) | 14.0.1.0.0 | <a href='https://github.com/thomaspaulb'><img src='https://github.com/thomaspaulb.png' width='32' height='32' style='border-radius:50%;' alt='thomaspaulb'/></a> | Order by non-stored related fields
