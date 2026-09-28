@@ -1,0 +1,3 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+access_security_analyzer_system,Security Analyzer - System,model_security_analyzer,base.group_system,1,0,0,0
+access_security_visualizer_analysis_system,Security Visualizer Analysis - System,model_security_visualizer_analysis,base.group_system,1,1,1,1
