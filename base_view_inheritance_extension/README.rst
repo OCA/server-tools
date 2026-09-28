@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 =========================
 Extended view inheritance
 =========================
@@ -17,7 +13,7 @@ Extended view inheritance
 .. |badge1| image:: https://img.shields.io/badge/maturity-Mature-brightgreen.png
     :target: https://odoo-community.org/page/development-status
     :alt: Mature
-.. |badge2| image:: https://img.shields.io/badge/license-LGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-LGPL--3-blue.png
     :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
     :alt: License: LGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github
@@ -76,10 +72,43 @@ conditional changes**
        $domain_to_add
    </attribute>
 
+**Wrap loose text in an element for further processing**
+
+.. code:: xml
+
+      <wraptext expr="//some/node" position="text" element="span" />
+      <wraptext expr="//some/node/other_node" position="tail" element="div" />
+
+which transforms
+
+.. code:: xml
+
+       <some>
+           <node>
+               plain text 1
+               <other_node />
+               plain text2
+           </node>
+       </some>
+
+to
+
+.. code:: xml
+
+       <some>
+           <node>
+               <span>plain text 1</span>
+               <other_node />
+               <div>plain text2</div>
+           </node>
+       </some>
+
+making those texts accessible for further operations
+
 Known issues / Roadmap
 ======================
 
-- Support an ``eval`` attribute for our new node types.
+-  Support an ``eval`` attribute for our new node types.
 
 Bug Tracker
 ===========
@@ -102,19 +131,19 @@ Authors
 Contributors
 ------------
 
-- Holger Brunn <hbrunn@therp.nl>
-- Ronald Portier <rportier@therp.nl>
-- `Tecnativa <https://www.tecnativa.com>`__:
+-  Holger Brunn <mail@hunki-enterprises.com>
+-  Ronald Portier <rportier@therp.nl>
+-  `Tecnativa <https://www.tecnativa.com>`__:
 
-  - Sergio Teruel
-  - Carlos Dauden
+   -  Sergio Teruel
+   -  Carlos Dauden
 
-- `Trobz <https://www.trobz.com>`__:
+-  `Trobz <https://www.trobz.com>`__:
 
-  - Nhan Tran <nhant@trobz.com>
+   -  Nhan Tran <nhant@trobz.com>
 
-- Iván Todorovich <ivan.todorovich@camptocamp.com>
-- Frederic Grall <fgr@apik.cloud>
+-  Iván Todorovich <ivan.todorovich@camptocamp.com>
+-  Frederic Grall <fgr@apik.cloud>
 
 Maintainers
 -----------
@@ -128,6 +157,14 @@ This module is maintained by the OCA.
 OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
+
+.. |maintainer-hbrunn| image:: https://github.com/hbrunn.png?size=40px
+    :target: https://github.com/hbrunn
+    :alt: hbrunn
+
+Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
+
+|maintainer-hbrunn| 
 
 This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/18.0/base_view_inheritance_extension>`_ project on GitHub.
 

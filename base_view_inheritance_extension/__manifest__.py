@@ -12,4 +12,5 @@
     "website": "https://github.com/OCA/server-tools",
     "depends": ["base"],
     "demo": ["demo/ir_ui_view.xml"],
+    "maintainers": ["hbrunn"],
 }
