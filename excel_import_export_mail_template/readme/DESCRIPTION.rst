@@ -1,0 +1,1 @@
+This module allows you to add excel export to an email template
