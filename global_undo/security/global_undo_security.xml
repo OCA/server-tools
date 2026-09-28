@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Pol Reig <pol.reig@qubiq.es>
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="global_undo_group_user" model="res.groups">
+        <field name="name">Global Undo: User</field>
+        <field name="category_id" ref="base.module_category_hidden" />
+        <field
+            name="comment"
+        >Operations of these users are journalled and can be undone by themselves. Removing a user from this group disables recording for them.</field>
+    </record>
+
+    <record id="global_undo_group_manager" model="res.groups">
+        <field name="name">Global Undo: Administrator</field>
+        <field name="category_id" ref="base.module_category_hidden" />
+        <field
+            name="implied_ids"
+            eval="[Command.link(ref('global_undo_group_user'))]"
+        />
+        <field name="comment">Can review and undo the operations of every user.</field>
+    </record>
+
+    <record id="base.group_user" model="res.groups">
+        <field
+            name="implied_ids"
+            eval="[Command.link(ref('global_undo_group_user'))]"
+        />
+    </record>
+
+    <record id="base.group_system" model="res.groups">
+        <field
+            name="implied_ids"
+            eval="[Command.link(ref('global_undo_group_manager'))]"
+        />
+    </record>
+
+    <record id="global_undo_transaction_rule_user" model="ir.rule">
+        <field name="name">Global Undo: own history only</field>
+        <field name="model_id" ref="model_global_undo_transaction" />
+        <field name="domain_force">[('user_id', '=', user.id)]</field>
+        <field name="groups" eval="[Command.link(ref('global_undo_group_user'))]" />
+    </record>
+
+    <record id="global_undo_transaction_rule_manager" model="ir.rule">
+        <field name="name">Global Undo: all history</field>
+        <field name="model_id" ref="model_global_undo_transaction" />
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[Command.link(ref('global_undo_group_manager'))]" />
+    </record>
+
+    <record id="global_undo_transaction_rule_company" model="ir.rule">
+        <field name="name">Global Undo: allowed companies</field>
+        <field name="model_id" ref="model_global_undo_transaction" />
+        <field
+            name="domain_force"
+        >['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+        <field name="global" eval="True" />
+    </record>
+
+    <record id="global_undo_operation_rule_user" model="ir.rule">
+        <field name="name">Global Undo: own operations only</field>
+        <field name="model_id" ref="model_global_undo_operation" />
+        <field name="domain_force">[('user_id', '=', user.id)]</field>
+        <field name="groups" eval="[Command.link(ref('global_undo_group_user'))]" />
+    </record>
+
+    <record id="global_undo_operation_rule_manager" model="ir.rule">
+        <field name="name">Global Undo: all operations</field>
+        <field name="model_id" ref="model_global_undo_operation" />
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[Command.link(ref('global_undo_group_manager'))]" />
+    </record>
+
+    <record id="global_undo_operation_rule_company" model="ir.rule">
+        <field name="name">Global Undo: allowed companies (operations)</field>
+        <field name="model_id" ref="model_global_undo_operation" />
+        <field
+            name="domain_force"
+        >['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+        <field name="global" eval="True" />
+    </record>
+</odoo>

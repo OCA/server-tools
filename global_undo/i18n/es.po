@@ -1,0 +1,196 @@
+# Spanish translation of global_undo.
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: global_undo
+msgid "%(model)s has no method %(method)s."
+msgstr "%(model)s no tiene el método %(method)s."
+
+#. module: global_undo
+msgid "%(record)s already exists."
+msgstr "%(record)s ya existe."
+
+#. module: global_undo
+msgid "%(record)s belongs to a company you are not working in."
+msgstr "%(record)s pertenece a una empresa en la que no estás trabajando."
+
+#. module: global_undo
+msgid "%(record)s changed after this operation; undoing it would discard newer edits."
+msgstr "%(record)s ha cambiado después de esta operación; deshacerla descartaría cambios más recientes."
+
+#. module: global_undo
+msgid "%(record)s is already done; stock moves cannot be reverted automatically."
+msgstr "%(record)s ya está hecho; los movimientos de stock no se pueden revertir automáticamente."
+
+#. module: global_undo
+msgid "%(record)s is not in the trash."
+msgstr "%(record)s no está en la papelera."
+
+#. module: global_undo
+msgid "%(record)s is posted; only its posting can be undone."
+msgstr "%(record)s está contabilizado; solo se puede deshacer su contabilización."
+
+#. module: global_undo
+msgid "%(record)s is reconciled or paid; unpost it manually first."
+msgstr "%(record)s está conciliado o cobrado; pásalo a borrador manualmente primero."
+
+#. module: global_undo
+msgid "%(record)s is secured by a hash and can no longer be changed."
+msgstr "%(record)s está protegido por un hash y ya no se puede modificar."
+
+#. module: global_undo
+msgid "%(record)s no longer exists."
+msgstr "%(record)s ya no existe."
+
+#. module: global_undo
+msgid "Empty step"
+msgstr "Paso vacío"
+
+#. module: global_undo
+msgid "Model %(model)s is no longer installed."
+msgstr "El modelo %(model)s ya no está instalado."
+
+#. module: global_undo
+msgid "Nothing left to redo."
+msgstr "No queda nada por rehacer."
+
+#. module: global_undo
+msgid "Nothing left to undo."
+msgstr "No queda nada por deshacer."
+
+#. module: global_undo
+msgid "Nothing to undo (Ctrl+Z)"
+msgstr "Nada que deshacer (Ctrl+Z)"
+
+#. module: global_undo
+msgid "Nothing to redo (Ctrl+Shift+Z)"
+msgstr "Nada que rehacer (Ctrl+Shift+Z)"
+
+#. module: global_undo
+msgid "Undo (Ctrl+Z): %s"
+msgstr "Deshacer (Ctrl+Z): %s"
+
+#. module: global_undo
+msgid "Redo (Ctrl+Shift+Z): %s"
+msgstr "Rehacer (Ctrl+Shift+Z): %s"
+
+#. module: global_undo
+msgid "Redone: %(step)s"
+msgstr "Rehecho: %(step)s"
+
+#. module: global_undo
+msgid "Undone: %(step)s"
+msgstr "Deshecho: %(step)s"
+
+#. module: global_undo
+msgid "This operation cannot be %(direction)s:\n%(reasons)s"
+msgstr "Esta operación no se puede %(direction)s:\n%(reasons)s"
+
+#. module: global_undo
+msgid "undone"
+msgstr "deshacer"
+
+#. module: global_undo
+msgid "redone"
+msgstr "rehacer"
+
+#. module: global_undo
+msgid "You are not allowed to %(access)s %(model)s records."
+msgstr "No tienes permiso para %(access)s registros de %(model)s."
+
+#. module: global_undo
+msgid "You are not allowed to %(access)s %(record)s."
+msgstr "No tienes permiso para %(access)s %(record)s."
+
+#. module: global_undo
+msgid "You can only undo your own operations."
+msgstr "Solo puedes deshacer tus propias operaciones."
+
+#. module: global_undo
+#: model:ir.model,name:global_undo.model_global_undo_transaction
+msgid "Global Undo Transaction"
+msgstr "Paso de deshacer global"
+
+#. module: global_undo
+#: model:ir.model,name:global_undo.model_global_undo_operation
+msgid "Global Undo Operation"
+msgstr "Operación de deshacer global"
+
+#. module: global_undo
+#: model:ir.model,name:global_undo.model_global_undo_exclusion
+msgid "Global Undo Excluded Model"
+msgstr "Modelo excluido de deshacer global"
+
+#. module: global_undo
+#: model:ir.model,name:global_undo.model_global_undo_action
+msgid "Global Undo Business Action"
+msgstr "Acción de negocio deshacible"
+
+#. module: global_undo
+#: model:ir.ui.menu,name:global_undo.global_undo_menu
+msgid "Global Undo"
+msgstr "Deshacer global"
+
+#. module: global_undo
+#: model:ir.ui.menu,name:global_undo.global_undo_transaction_menu
+msgid "Undo History"
+msgstr "Historial"
+
+#. module: global_undo
+#: model:ir.ui.menu,name:global_undo.global_undo_operation_menu_trash
+msgid "Trash"
+msgstr "Papelera"
+
+#. module: global_undo
+#: model:ir.ui.menu,name:global_undo.global_undo_action_menu
+msgid "Undoable Actions"
+msgstr "Acciones deshacibles"
+
+#. module: global_undo
+#: model:ir.ui.menu,name:global_undo.global_undo_exclusion_menu
+msgid "Excluded Models"
+msgstr "Modelos excluidos"
+
+#. module: global_undo
+#: model:ir.model.fields.selection,name:global_undo.selection__global_undo_operation__kind__create
+msgid "Created"
+msgstr "Creado"
+
+#. module: global_undo
+#: model:ir.model.fields.selection,name:global_undo.selection__global_undo_operation__kind__write
+msgid "Updated"
+msgstr "Modificado"
+
+#. module: global_undo
+#: model:ir.model.fields.selection,name:global_undo.selection__global_undo_operation__kind__unlink
+msgid "Deleted"
+msgstr "Eliminado"
+
+#. module: global_undo
+#: model:ir.model.fields.selection,name:global_undo.selection__global_undo_operation__kind__action
+msgid "Executed"
+msgstr "Ejecutado"
+
+#. module: global_undo
+#: model:ir.model.fields.selection,name:global_undo.selection__global_undo_transaction__state__done
+msgid "Applied"
+msgstr "Aplicado"
+
+#. module: global_undo
+#: model:ir.model.fields.selection,name:global_undo.selection__global_undo_transaction__state__undone
+msgid "Undone"
+msgstr "Deshecho"
+
+#. module: global_undo
+#: model:ir.model.fields.selection,name:global_undo.selection__global_undo_transaction__state__discarded
+msgid "Discarded"
+msgstr "Descartado"

@@ -1,0 +1,27 @@
+// Copyright 2026 Pol Reig <pol.reig@qubiq.es>
+// License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+
+.o_global_undo {
+    .o_global_undo_button {
+        color: inherit;
+        opacity: 0.7;
+
+        &:hover:not(:disabled) {
+            opacity: 1;
+        }
+
+        &:disabled {
+            opacity: 0.3;
+        }
+    }
+}
+
+.o_global_undo_menu {
+    min-width: 22rem;
+    max-width: 30rem;
+
+    .o_global_undo_entry {
+        white-space: normal;
+        word-break: break-word;
+    }
+}

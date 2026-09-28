@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Pol Reig <pol.reig@qubiq.es>
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <menuitem
+        id="global_undo_menu"
+        name="Global Undo"
+        parent="base.menu_administration"
+        groups="global_undo_group_manager"
+        sequence="70"
+    />
+
+    <menuitem
+        id="global_undo_transaction_menu"
+        name="Undo History"
+        parent="global_undo_menu"
+        action="global_undo_transaction_action"
+        sequence="10"
+    />
+
+    <menuitem
+        id="global_undo_operation_menu_trash"
+        name="Trash"
+        parent="global_undo_menu"
+        action="global_undo_operation_action_trash"
+        sequence="20"
+    />
+
+    <menuitem
+        id="global_undo_menu_configuration"
+        name="Configuration"
+        parent="global_undo_menu"
+        sequence="90"
+    />
+
+    <menuitem
+        id="global_undo_action_menu"
+        name="Undoable Actions"
+        parent="global_undo_menu_configuration"
+        action="global_undo_action_action"
+        sequence="10"
+    />
+
+    <menuitem
+        id="global_undo_exclusion_menu"
+        name="Excluded Models"
+        parent="global_undo_menu_configuration"
+        action="global_undo_exclusion_action"
+        sequence="20"
+    />
+</odoo>
