@@ -54,7 +54,7 @@ addon | version | maintainers | summary
 [base_technical_user](base_technical_user/) | 16.0.1.0.1 |  | Add a technical user parameter on the company
 [base_time_window](base_time_window/) | 16.0.1.1.0 |  | Base model to handle time windows
 [base_view_inheritance_extension](base_view_inheritance_extension/) | 16.0.1.2.2 |  | Adds more operators for view inheritance
-[bus_alt_connection](bus_alt_connection/) | 16.0.1.0.0 |  | Needed when using PgBouncer as a connection pooler
+[bus_alt_connection](bus_alt_connection/) | 16.0.1.0.1 |  | Needed when using PgBouncer as a connection pooler
 [cron_daylight_saving_time_resistant](cron_daylight_saving_time_resistant/) | 16.0.1.0.1 | <a href='https://github.com/florian-dacosta'><img src='https://github.com/florian-dacosta.png' width='32' height='32' style='border-radius:50%;' alt='florian-dacosta'/></a> | Run cron on fixed hours
 [database_cleanup](database_cleanup/) | 16.0.2.0.0 |  | Database cleanup
 [datetime_formatter](datetime_formatter/) | 16.0.1.0.0 |  | Helper functions to give correct format to date[time] fields
