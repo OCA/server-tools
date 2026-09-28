@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <!-- Form View -->
+    <record id="json_export_endpoint_form_view" model="ir.ui.view">
+        <field name="name">json.export.endpoint.form</field>
+        <field name="model">json.export.endpoint</field>
+        <field name="arch" type="xml">
+            <form string="JSON Export Endpoint">
+                <sheet>
+                    <widget
+                        name="web_ribbon"
+                        title="Archived"
+                        bg_color="bg-danger"
+                        attrs="{'invisible': [('active', '=', True)]}"
+                    />
+                    <group>
+                        <group string="Endpoint">
+                            <field name="name" />
+                            <field name="active" invisible="1" />
+                            <field name="schema_id" options="{'no_create': True}" />
+                            <field name="route_path" placeholder="e.g. products" />
+                            <field name="full_url" widget="url" />
+                            <field name="schema_url" widget="url" />
+                        </group>
+                        <group string="Authentication">
+                            <field name="auth_type" />
+                            <field
+                                name="api_key"
+                                attrs="{'invisible': [('auth_type', '!=', 'api_key')]}"
+                                widget="CopyClipboardChar"
+                            />
+                            <field
+                                name="api_key_generated_at"
+                                attrs="{'invisible': [('auth_type', '!=', 'api_key')]}"
+                            />
+                            <button
+                                name="action_generate_api_key"
+                                string="Re-generate API Key"
+                                type="object"
+                                class="btn-link"
+                                icon="fa-refresh"
+                                attrs="{'invisible': [('auth_type', '!=', 'api_key')]}"
+                                confirm="This will invalidate the current API key. Continue?"
+                            />
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Pagination">
+                            <field name="paginate" />
+                            <field
+                                name="page_size"
+                                attrs="{'invisible': [('paginate', '=', False)]}"
+                            />
+                        </group>
+                        <group string="CORS">
+                            <field
+                                name="cors_origin"
+                                placeholder="* or https://example.com"
+                            />
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Query Parameters">
+                            <field name="allow_filtering" />
+                            <field name="allow_sorting" />
+                            <field name="allow_field_selection" />
+                        </group>
+                        <group string="Rate Limiting">
+                            <field name="rate_limit" />
+                            <field
+                                name="rate_limit_count"
+                                attrs="{'invisible': [('rate_limit', '=', False)]}"
+                            />
+                            <field
+                                name="rate_limit_window"
+                                attrs="{'invisible': [('rate_limit', '=', False)]}"
+                            />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree View -->
+    <record id="json_export_endpoint_tree_view" model="ir.ui.view">
+        <field name="name">json.export.endpoint.tree</field>
+        <field name="model">json.export.endpoint</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="schema_id" />
+                <field name="route_path" />
+                <field name="full_url" widget="url" />
+                <field name="auth_type" />
+                <field name="active" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="json_export_endpoint_action" model="ir.actions.act_window">
+        <field name="name">REST Endpoints</field>
+        <field name="res_model">json.export.endpoint</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>
