@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.module.category" id="module_category_audit">
+        <field name="name">Audit</field>
+        <field name="sequence">230</field>
+    </record>
+
+    <record id="res_groups_privilege_audit" model="res.groups.privilege">
+        <field name="name">Audit</field>
+        <field name="category_id" ref="module_category_audit" />
+        <field name="sequence">1</field>
+    </record>
+
+    <record id="group_audit_permission" model="res.groups">
+        <field name="name">Audit Permission</field>
+        <field name="privilege_id" ref="res_groups_privilege_audit" />
+        <field name="implied_ids" eval="[Command.link(ref('base.group_user'))]" />
+    </record>
+</odoo>

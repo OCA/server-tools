@@ -1,0 +1,13 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_audit_domain,audit.domain,model_audit_domain,audit.group_audit_permission,1,1,1,1
+access_audit_target,audit.target,model_audit_target,audit.group_audit_permission,1,1,1,1
+access_audit_inspector,audit.inspector,model_audit_inspector,audit.group_audit_permission,1,1,1,1
+access_audit_section,audit.section,model_audit_section,audit.group_audit_permission,1,1,1,1
+access_audit_question,audit.question,model_audit_question,audit.group_audit_permission,1,1,1,1
+access_audit_snapshot,audit.snapshot,model_audit_snapshot,audit.group_audit_permission,1,1,1,1
+access_audit_snapshot_section,audit.snapshot_section,model_audit_snapshot_section,audit.group_audit_permission,1,1,1,1
+access_audit_snapshot_question,audit.snapshot_question,model_audit_snapshot_question,audit.group_audit_permission,1,1,1,1
+access_audit_domain_target_rel,audit.domain_target_rel,model_audit_domain_target_rel,audit.group_audit_permission,1,1,1,1
+access_audit_menu_access_control,audit.menu.access.control,model_audit_menu_access_control,audit.group_audit_permission,1,1,1,1
+access_audit_team_user,audit.team user,model_audit_team,audit.group_audit_permission,1,1,1,1
+access_audit_team_admin,audit.team admin,model_audit_team,audit.group_audit_permission,1,1,1,1
