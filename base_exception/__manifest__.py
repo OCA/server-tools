@@ -17,6 +17,9 @@
     "depends": ["base_setup"],
     "maintainers": ["hparfr", "sebastienbeau"],
     "license": "AGPL-3",
+    "external_dependencies": {
+        "python": ["decorator"],
+    },
     "data": [
         "security/base_exception_security.xml",
         "security/ir.model.access.csv",
@@ -24,4 +27,9 @@
         "views/base_exception_view.xml",
     ],
     "installable": True,
+    "assets": {
+        "web.assets_backend": [
+            "base_exception/static/src/js/base_exception.esm.js",
+        ],
+    },
 }
