@@ -1,68 +1,107 @@
-# Copyright - 2015-2018 Therp BV <https://acme.com>.
+# Copyright - 2015-2026 Therp BV <https://therp.nl>.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# pylint: disable=method-required-super
+from datetime import datetime
+from unittest.mock import patch
+
+from odoo import fields
+from odoo.fields import Command
 from odoo.tests.common import TransactionCase
 
 from ..match_algorithm import email_domain
 
 TEST_EMAIL = "reynaert@dutchsagas.nl"
 TEST_SUBJECT = "Test subject"
-MSG_BODY = [
-    (
-        "1 (RFC822 {1149}",
-        "Return-Path: <ronald@acme.com>\r\n"
-        "Delivered-To: demo@yourcompany.example.com\r\n"
-        "Received: from localhost (localhost [127.0.0.1])\r\n"
-        "\tby vanaheim.acme.com (Postfix) with ESMTP id 14A3183163\r\n"
-        "\tfor <demo@yourcompany.example.com>;"
-        " Mon, 26 Mar 2018 16:03:52 +0200 (CEST)\r\n"
-        "To: Test User <nonexistingemail@yourcompany.example.com>\r\n"
-        f"From: Reynaert de Vos <{TEST_EMAIL}>\r\n"
-        f"Subject: {TEST_SUBJECT}\r\n"
-        "Message-ID: <485a8041-d560-a981-5afc-d31c1f136748@acme.com>\r\n"
-        "Date: Mon, 26 Mar 2018 16:03:51 +0200\r\n"
-        "User-Agent: Mock Test\r\n"
-        "MIME-Version: 1.0\r\n"
-        "Content-Type: text/plain; charset=utf-8\r\n"
-        "Content-Language: en-US\r\n"
-        "Content-Transfer-Encoding: 7bit\r\n\r\n"
-        "Hallo Wereld!\r\n",
-    )
-]
 MAIL_MESSAGE = {"subject": TEST_SUBJECT, "to": "demo@yourcompany.example.com"}
 
 
+def get_message_body(email, subject):
+    """Get Message Body, as returned by fetch() from connection.
+
+    fetch returns a list of tuples with the message information.
+    """
+    return [
+        (
+            "1 (RFC822 {1149}",
+            "Return-Path: <ronald@acme.com>\r\n"
+            "Delivered-To: demo@yourcompany.example.com\r\n"
+            "Received: from localhost (localhost [127.0.0.1])\r\n"
+            "\tby vanaheim.acme.com (Postfix) with ESMTP id 14A3183163\r\n"
+            "\tfor <demo@yourcompany.example.com>;"
+            " Mon, 26 Mar 2018 16:03:52 +0200 (CEST)\r\n"
+            "To: Test User <nonexistingemail@yourcompany.example.com>\r\n"
+            f"From: Reynaert de Vos <{email}>\r\n"
+            f"Subject: {subject}\r\n"
+            "Message-ID: <485a8041-d560-a981-5afc-d31c1f136748@acme.com>\r\n"
+            "Date: Mon, 26 Mar 2018 16:03:51 +0200\r\n"
+            "User-Agent: Mock Test\r\n"
+            "MIME-Version: 1.0\r\n"
+            "Content-Type: text/plain; charset=utf-8\r\n"
+            "Content-Language: en-US\r\n"
+            "Content-Transfer-Encoding: 7bit\r\n\r\n"
+            "Hallo Wereld!\r\n",
+        )
+    ]
+
+
 class MockConnection:
-    def select(self, path):
+    def select(self, path=None):
         """Mock selecting a folder."""
         return ("OK",)
 
-    def store(self, msgid, msg_item, value):
+    def create(self, path):
+        """Mock creating a folder."""
+        return ("OK",)
+
+    def store(self, message_uid, msg_item, value):
         """Mock store command."""
         return "OK"
 
-    def fetch(self, msgid, parts):
-        """Return RFC822 formatted message."""
-        return ("OK", MSG_BODY)
+    def copy(self, message_uid, folder_path):
+        """Mock copy command."""
+        return "OK"
+
+    def fetch(self, message_uid, parts):
+        """Return RFC822 formatted message.
+
+        By passing special values in message_uid, we can manipulate
+        the body returned.
+        """
+        email = (
+            "the_smart_red_one@reynaerde.waesland"
+            if message_uid == "test no match"
+            else TEST_EMAIL
+        )
+        return ("OK", get_message_body(email, TEST_SUBJECT))
 
     def search(self, charset, criteria):
-        """Return some msgid's."""
+        """Return some message uid's."""
         return ("OK", ["123 456"])
+
+    def uid(self, command, *args):
+        """Return from the appropiate mocked method."""
+        method = getattr(self, command)
+        return method(*args)
+
+    def expunge(self):
+        """Mock an IMAP4.expunge action"""
+        return ("OK", None)
+
+    def close(self):
+        pass
 
 
 class TestMatchAlgorithms(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-
         cls.partner_model = cls.env["res.partner"]
         cls.test_partner = cls.partner_model.with_context(tracking_disable=True).create(
             {
                 "name": "Reynaert de Vos",
                 "email": TEST_EMAIL,
                 "is_company": False,
-                "category_id": [
-                    (6, 0, []),
-                ],
+                "category_id": [Command.clear()],
             }
         )
         cls.server_model = cls.env["fetchmail.server"]
@@ -138,12 +177,25 @@ class TestMatchAlgorithms(TransactionCase):
         folder = self.folder
         folder.match_algorithm = "email_exact"
         connection = MockConnection()
-        msgid = "<485a8041-d560-a981-5afc-d31c1f136748@acme.com>"
-        folder.apply_matching(connection, msgid)
+        message_uid = "<485a8041-d560-a981-5afc-d31c1f136748@acme.com>"
+        folder.apply_matching(connection, message_uid)
+
+    def test_apply_matching_exact_no_match(self):
+        folder = self.folder
+        folder.match_algorithm = "email_exact"
+        connection = MockConnection()
+        message_uid = "test no match"
+        folder.apply_matching(connection, message_uid)
 
     def test_retrieve_imap_folder_domain(self):
         folder = self.folder
         folder.match_algorithm = "email_domain"
+        connection = MockConnection()
+        folder.retrieve_imap_folder(connection)
+
+    def test_archive_messages(self):
+        folder = self.folder
+        folder.archive_path = "archived_messages"
         connection = MockConnection()
         folder.retrieve_imap_folder(connection)
 
@@ -153,8 +205,44 @@ class TestMatchAlgorithms(TransactionCase):
         self.folder.apply_matching(connection, "1")
         self.assertFalse(self.test_partner.category_id)
 
+    def test_get_criteria(self):
+        self.folder.write({"fetch_unseen_only": False, "fetch_last_day_only": False})
+        criteria = self.folder.get_criteria()
+        self.assertEqual(criteria, "UNDELETED")
+        self.folder.write({"fetch_unseen_only": True, "fetch_last_day_only": False})
+        criteria = self.folder.get_criteria()
+        self.assertEqual(criteria, "UNSEEN UNDELETED")
+        self.folder.write({"fetch_last_day_only": True})
+        criteria = self.folder.get_criteria()
+        criteria_words = criteria.split()
+        criteria_words[0] = "SINCE"
+        since_date = datetime.strptime(criteria_words[1], "%d-%b-%Y").date()
+        yesterday = fields.Date.subtract(fields.Date.context_today(self.folder), days=1)
+        self.assertEqual(since_date, yesterday)
+
     def test_action(self):
         connection = MockConnection()
         self.folder.action_id = self.server_action
         self.folder.apply_matching(connection, "1")
         self.assertEqual(self.partner_category, self.test_partner.category_id)
+
+    def test_button_confirm_folder(self):
+        """Test the button_confirm_folder method."""
+        folder = self.folder
+        with patch.object(
+            self.server.__class__, "connect", return_value=MockConnection()
+        ):
+            folder.active = False
+            folder.button_confirm_folder()
+            self.assertEqual(folder.state, "draft")
+
+            folder.active = True
+            folder.button_confirm_folder()
+            self.assertEqual(folder.state, "done")
+
+    def test_set_draft(self):
+        """Test the set_draft method."""
+        folder = self.folder
+        res = folder.set_draft()
+        self.assertEqual(res, True)
+        self.assertEqual(folder.state, "draft")

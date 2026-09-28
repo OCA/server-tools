@@ -1,4 +1,4 @@
-# Copyright - 2013-2024 Therp BV <https://therp.nl>.
+# Copyright - 2013-2026 Therp BV <https://therp.nl>.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 import email
 import email.policy
@@ -7,6 +7,7 @@ from xmlrpc import client as xmlrpclib
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError, ValidationError
+from odoo.tools.mail import decode_message_header, email_split_and_format
 
 from .. import match_algorithm
 
@@ -33,57 +34,67 @@ class FetchmailServerFolder(models.Model):
     )
     path = fields.Char(
         required=True,
-        help="The path to your mail folder."
-        " Typically would be something like 'INBOX.myfolder'",
+        string="Fetch from Folder",
+        help="Specify the IMAP folder path to retrieve emails from. "
+        "Typically, this would be something like 'INBOX.myfolder'.",
     )
     archive_path = fields.Char(
-        help="The path where successfully retrieved messages will be stored."
+        string="Archive Folder",
+        help="Specify the folder where successfully retrieved emails will be moved "
+        "after processing. If left empty, emails will remain in the original folder.",
     )
     model_id = fields.Many2one(
         comodel_name="ir.model",
         required=True,
         ondelete="cascade",
+        string="Target Model",
         help="The model to attach emails to",
     )
     model_field = fields.Char(
-        "Field (model)",
-        help="The field in your model that contains the field to match against.\n"
+        help="Specify the field in the model that will be used for email matching.\n"
         "Examples:\n"
-        "'email' if your model is res.partner, or "
-        "'partner_id.email' if you're matching sale orders",
+        "- 'email' if your model is res.partner\n"
+        "- 'partner_id.email' if matching sale orders.",
     )
     model_order = fields.Char(
-        "Order (model)",
-        help="Field(s) to order by, this mostly useful in conjunction "
-        "with 'Use 1st match'",
+        help="Specify the field(s) to order by when matching emails. "
+        "This is mostly useful in conjunction with 'Use 1st Match'.",
     )
     match_algorithm = fields.Selection(
         selection=[
-            ("odoo_standard", "Odoo standard"),
-            ("email_domain", "Domain of email address"),
-            ("email_exact", "Exact mailadress"),
+            ("odoo_standard", "Odoo Standard"),
+            ("email_domain", "Domain of Email Address"),
+            ("email_exact", "Exact Email Address"),
         ],
         required=True,
-        help="The algorithm used to determine which object an email matches.",
+        string="Matching Algorithm",
+        help="Select the algorithm used to determine which object an email matches.",
     )
     mail_field = fields.Char(
-        "Field (email)",
-        help="The field in the email used for matching."
-        " Typically this is 'to' or 'from'",
+        string="Email Field",
+        help="Specify the field in the email used for matching. "
+        "Typically, this is 'to', 'from' or 'reply_to'.",
     )
     delete_matching = fields.Boolean(
-        "Delete matches", help="Delete matched emails from server"
+        string="Delete Matched Emails",
+        help="Enable this option to delete emails after they are successfully "
+        "processed and matched.",
     )
     flag_nonmatching = fields.Boolean(
+        string="Flag Non-Matching Emails",
         default=True,
-        help="Flag emails in the server that don't match any object in Odoo",
+        help="Enable this option to mark emails as important if they do not match "
+        "any object in Odoo.",
     )
     match_first = fields.Boolean(
-        "Use 1st match",
-        help="If there are multiple matches, use the first one. If "
-        "not checked, multiple matches count as no match at all",
+        string="Use First Match",
+        help="If there are multiple matches, use the first one. "
+        "If disabled, multiple matches will be considered as no match.",
     )
-    domain = fields.Char(help="Fill in a search filter to narrow down objects to match")
+    domain = fields.Char(
+        string="Matching Domain",
+        help="Define a search filter to narrow down objects for email matching.",
+    )
     msg_state = fields.Selection(
         selection=[("sent", "Sent"), ("received", "Received")],
         string="Message state",
@@ -93,13 +104,31 @@ class FetchmailServerFolder(models.Model):
     active = fields.Boolean(default=True)
     action_id = fields.Many2one(
         comodel_name="ir.actions.server",
-        name="Server action",
-        help="Optional custom server action to trigger for each incoming "
-        "mail, on the record that was created or updated by this mail",
+        string="Server Action",
+        help="Specify an optional custom server action to trigger for each incoming"
+        " email. The action will run on the record that was created or updated by"
+        " this email.",
     )
     fetch_unseen_only = fields.Boolean(
-        help="By default all undeleted emails are searched. Checking this "
-        "field adds the unread condition.",
+        help="By default, all undeleted emails are retrieved. "
+        "Enable this option to fetch only unread emails.",
+    )
+    fetch_last_day_only = fields.Boolean(
+        string="Fetch Last 24 Hours Only",
+        help="By default, all emails in the folder are searched. Enable this "
+        "option to only fetch emails received in the last 24 hours. This helps "
+        "avoid reprocessing emails if they are not deleted after processing.",
+    )
+    seen = fields.Selection(
+        selection=[
+            ("on_fetch", "Immediately on Fetch"),
+            ("all", "After Processing"),
+            ("matching", "When matching"),
+            ("none", "Never"),
+        ],
+        string="Mark email as seen",
+        required=True,
+        default="on_fetch",
     )
 
     def button_confirm_folder(self):
@@ -175,27 +204,37 @@ class FetchmailServerFolder(models.Model):
                 )
 
     def get_criteria(self):
-        return "UNDELETED" if not self.fetch_unseen_only else "UNSEEN UNDELETED"
+        criteria = "UNSEEN UNDELETED" if self.fetch_unseen_only else "UNDELETED"
+        if self.fetch_last_day_only:
+            yesterday = fields.Date.subtract(
+                fields.Date.context_today(self), days=1
+            ).strftime("%d-%b-%Y")
+            criteria = f"SINCE {yesterday} {criteria}"
+        return criteria
 
     def retrieve_imap_folder(self, connection):
         """Retrieve all mails for one IMAP folder."""
         self.ensure_one()
-        msgids = self.get_msgids(connection, self.get_criteria())
-        for msgid in msgids[0].split():
+        message_uids = self.get_message_uids(connection, self.get_criteria())
+        for message_uid in message_uids[0].split():
             # We will accept exceptions for single messages
             try:
                 self.env.cr.execute("savepoint apply_matching")
-                self.apply_matching(connection, msgid)
+                self.apply_matching(connection, message_uid)
                 self.env.cr.execute("release savepoint apply_matching")
             except Exception:
                 self.env.cr.execute("rollback to savepoint apply_matching")
                 _logger.exception(
-                    "Failed to fetch mail %(msgid)s from server %(server)s",
-                    {"msgid": msgid, "server": self.server_id.name},
+                    "Failed to fetch mail %(message_uid)s from server %(server)s",
+                    {"message_uid": message_uid, "server": self.server_id.name},
                 )
 
-    def get_msgids(self, connection, criteria):
+    def get_message_uids(self, connection, criteria):
         """Return imap ids of messages to process"""
+        # Note that these message_uids are linked to the folder on
+        # the imap server. They have nothing at all todo with the
+        # message_id field that is part of the message itself, and the
+        # two should not be confused.
         self.ensure_one()
         server = self.server_id
         _logger.info(
@@ -207,7 +246,8 @@ class FetchmailServerFolder(models.Model):
                 _("Could not open folder %(folder)s on server %(server)s")
                 % {"folder": self.path, "server": server.name}
             )
-        result, msgids = connection.search(None, criteria)
+        charset = None  # Generally we do not need to set a charset.
+        result, message_uids = connection.uid("search", charset, criteria)
         if result != "OK":
             raise UserError(
                 _("Could not search folder %(folder)s on server %(server)s")
@@ -217,14 +257,14 @@ class FetchmailServerFolder(models.Model):
             "finished checking for emails in folder %(folder)s on server %(server)s",
             {"folder": self.path, "server": server.name},
         )
-        return msgids
+        return message_uids
 
-    def apply_matching(self, connection, msgid):
+    def apply_matching(self, connection, message_uid):
         """Return id of object matched (which will be the thread_id)."""
         self.ensure_one()
         thread_id = None
         thread_model = self.env["mail.thread"]
-        message_org = self.fetch_msg(connection, msgid)
+        message_org = self.fetch_msg(connection, message_uid)
         if self.match_algorithm == "odoo_standard":
             thread_id = thread_model.message_process(
                 self.model_id.model,
@@ -242,9 +282,9 @@ class FetchmailServerFolder(models.Model):
         matched = True if thread_id else False
         if matched:
             self.run_server_action(thread_id)
-        self.update_msg(connection, msgid, matched=matched)
-        if self.archive_path:
-            self._archive_msg(connection, msgid)
+        self.update_msg(connection, message_uid, matched=matched)
+        if self.archive_path and not self.delete_matching:
+            self._archive_msg(connection, message_uid)
         return thread_id  # Can be None if no match found.
 
     def run_server_action(self, matched_object_ids):
@@ -263,34 +303,41 @@ class FetchmailServerFolder(models.Model):
                 }
             ).run()
 
-    def fetch_msg(self, connection, msgid):
+    def fetch_msg(self, connection, message_uid):
         """Select a single message from a folder."""
         self.ensure_one()
-        result, msgdata = connection.fetch(msgid, "(RFC822)")
+        command = "(RFC822)" if self.seen == "on_fetch" else "(BODY.PEEK[])"
+        result, msgdata = connection.uid("fetch", message_uid, command)
         if result != "OK":
             raise UserError(
-                _("Could not fetch %(msgid)s in folder %(folder)s on server %(server)s")
-                % {"msgid": msgid, "folder": self.path, "server": self.server_id.name}
+                _(
+                    "Could not fetch %(message_uid)s in folder %(folder)s"
+                    " on server %(server)s",
+                    message_uid=message_uid,
+                    folder=self.path,
+                    server=self.server_id.name,
+                )
             )
         message_org = msgdata[0][1]  # rfc822 message source
         return message_org
 
-    def update_msg(self, connection, msgid, matched=True, flagged=False):
+    def update_msg(self, connection, message_uid, matched=True, flagged=False):
         """Update msg in imap folder depending on match and settings."""
+        if self.seen == "all" or (matched and self.seen == "matching"):
+            connection.uid("store", message_uid, "+FLAGS", "\\Seen")
         if matched:
             if self.delete_matching:
-                connection.store(msgid, "+FLAGS", "\\DELETED")
+                connection.uid("store", message_uid, "+FLAGS", "\\DELETED")
             elif flagged and self.flag_nonmatching:
-                connection.store(msgid, "-FLAGS", "\\FLAGGED")
+                connection.uid("store", message_uid, "-FLAGS", "\\FLAGGED")
         else:
             if self.flag_nonmatching:
-                connection.store(msgid, "+FLAGS", "\\FLAGGED")
+                connection.uid("store", message_uid, "+FLAGS", "\\FLAGGED")
 
-    def _archive_msg(self, connection, msgid):
+    def _archive_msg(self, connection, message_uid):
         """Archive message. Folder should already have been created."""
-        self.ensure_one()
-        connection.copy(msgid, self.archive_path)
-        connection.store(msgid, "+FLAGS", "\\Deleted")
+        connection.uid("copy", message_uid, self.archive_path)
+        connection.uid("store", message_uid, "+FLAGS", "\\Deleted")
         connection.expunge()
 
     @api.model
@@ -308,6 +355,17 @@ class FetchmailServerFolder(models.Model):
         thread_model = self.env["mail.thread"]
         message_dict = thread_model.message_parse(
             message, save_original=self.server_id.original
+        )
+        # Populate `reply_to`
+        message_dict["reply_to"] = ",".join(
+            {
+                formatted_email
+                for address in [
+                    decode_message_header(message, "Reply-To", separator=","),
+                ]
+                if address
+                for formatted_email in email_split_and_format(address)
+            }
         )
         return message_dict
 
@@ -331,10 +389,15 @@ class FetchmailServerFolder(models.Model):
         matches = matcher.search_matches(self, message_dict)
         if not matches:
             _logger.info(
-                "No match found for message %(subject)s with msgid %(msgid)s",
+                "No match found for message %(subject)s"
+                " with message_uid %(message_uid)s -"
+                " To: %(to)s - From: %(from)s - Reply-To: %(reply_to)s",
                 {
                     "subject": message_dict.get("subject", "no subject"),
-                    "msgid": message_dict.get("message_id", "no msgid"),
+                    "message_uid": message_dict.get("message_id", "no message_uid"),
+                    "to": message_dict.get("to", ""),
+                    "from": message_dict.get("from", ""),
+                    "reply_to": message_dict.get("reply_to", ""),
                 },
             )
             return None
