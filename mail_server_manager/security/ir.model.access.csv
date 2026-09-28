@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mail_server_account_admin,mail.server.account.admin,model_mail_server_account,base.group_system,1,1,1,1
+access_mail_server_account_user,mail.server.account.user,model_mail_server_account,base.group_user,1,0,0,0
+access_mail_server_password_wizard,mail.server.password.wizard,model_mail_server_password_wizard,base.group_system,1,1,1,1
+access_mail_password_change_wizard_user,mail.password.change.wizard.user,model_mail_password_change_wizard,base.group_user,1,1,1,1

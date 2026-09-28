@@ -1,0 +1,1242 @@
+# Traduction du serveur Odoo.
+# Ce fichier contient la traduction des modules suivants :
+# 	* mail_server_manager
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0-20251222\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-01-17 13:28+0000\n"
+"PO-Revision-Date: 2026-01-17 13:28+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mail_server_manager
+#. odoo-python
+#: code:addons/mail_server_manager/models/mail_account.py:0
+msgid "%d SMTP server(s) fixed with correct from_filter."
+msgstr "%d serveur(s) SMTP corrigé(s) avec le bon from_filter."
+
+#. module: mail_server_manager
+#. odoo-python
+#: code:addons/mail_server_manager/models/mail_account.py:0
+msgid "%d SMTP server(s) updated with correct from_filter."
+msgstr "%d serveur(s) SMTP mis à jour avec le bon from_filter."
+
+#. module: mail_server_manager
+#. odoo-python
+#: code:addons/mail_server_manager/models/mail_account.py:0
+msgid "%d new accounts imported."
+msgstr "%d nouveaux comptes importés."
+
+#. module: mail_server_manager
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_view_mail_account_form
+msgid "0 = use system default"
+msgstr "0 = utiliser la valeur par défaut du système"
+
+#. module: mail_server_manager
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_view_mail_account_form
+msgid "<span class=\"o_stat_text\">IMAP Server</span>"
+msgstr "<span class=\"o_stat_text\">Serveur IMAP</span>"
+
+#. module: mail_server_manager
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_view_users_form_mailbox
+msgid "<span class=\"o_stat_text\">Mail Account</span>"
+msgstr "<span class=\"o_stat_text\">Compte Mail</span>"
+
+#. module: mail_server_manager
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_view_mail_account_form
+msgid "<span class=\"o_stat_text\">SMTP Server</span>"
+msgstr "<span class=\"o_stat_text\">Serveur SMTP</span>"
+
+#. module: mail_server_manager
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_view_users_preferences_mailbox
+msgid ""
+"<strong>Configure Your Email Client</strong><br/>\n"
+"                        Use these settings to configure Thunderbird, Outlook, or any email client."
+msgstr ""
+"<strong>Configurez votre client de messagerie</strong><br/>\n"
+"                        Utilisez ces paramètres pour configurer Thunderbird, Outlook ou tout autre client de messagerie."
+
+#. module: mail_server_manager
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_password_change_wizard_form
+msgid ""
+"<strong>Identity Verified</strong><br/>\n"
+"                        You can now set a new password for your mail account.\n"
+"                        Leave the fields empty to auto-generate a secure password."
+msgstr ""
+"<strong>Identité vérifiée</strong><br/>\n"
+"                        Vous pouvez maintenant définir un nouveau mot de passe pour votre compte mail.\n"
+"                        Laissez les champs vides pour générer automatiquement un mot de passe sécurisé."
+
+#. module: mail_server_manager
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_password_change_wizard_form
+msgid ""
+"<strong>Important!</strong><br/>\n"
+"                        Copy and save this password now. It will not be shown again.\n"
+"                        Use this password to configure your email client (Thunderbird, Outlook, etc.)."
+msgstr ""
+"<strong>Important !</strong><br/>\n"
+"                        Copiez et enregistrez ce mot de passe maintenant. Il ne sera plus affiché.\n"
+"                        Utilisez ce mot de passe pour configurer votre client de messagerie (Thunderbird, Outlook, etc.)."
+
+#. module: mail_server_manager
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_password_change_wizard_form
+msgid ""
+"<strong>Security Verification</strong><br/>\n"
+"                        Please enter your Odoo password to verify your identity before changing your mail password."
+msgstr ""
+"<strong>Vérification de sécurité</strong><br/>\n"
+"                        Veuillez saisir votre mot de passe Odoo pour vérifier votre identité avant de modifier votre mot de passe mail."
+
+#. module: mail_server_manager
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_password_wizard_form
+msgid ""
+"<strong>⚠️ Important:</strong> This password will only be shown once. \n"
+"                    Please copy it now and store it securely."
+msgstr ""
+"<strong>⚠️ Important :</strong> Ce mot de passe ne sera affiché qu'une seule fois.\n"
+"                    Veuillez le copier maintenant et le stocker en lieu sûr."
+
+#. module: mail_server_manager
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_view_users_form_mailbox
+msgid "Account Information"
+msgstr "Informations du compte"
+
+#. module: mail_server_manager
+#. odoo-python
+#: code:addons/mail_server_manager/models/mail_account.py:0
+msgid "Account(s) successfully recovered and repaired."
+msgstr "Compte(s) récupéré(s) et réparé(s) avec succès."
+
+#. module: mail_server_manager
+#: model:ir.model.fields,field_description:mail_server_manager.field_mail_server_account__message_needaction
+msgid "Action Needed"
+msgstr "Action Requise"
+
+#. module: mail_server_manager
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_view_mail_account_form
+msgid "Activate"
+msgstr "Activer"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,field_description:mail_server_manager.field_mail_server_account__active
+#: model:ir.model.fields.selection,name:mail_server_manager.selection__mail_server_account__state__active
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_view_mail_account_search
+msgid "Active"
+msgstr "Actif"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,field_description:mail_server_manager.field_mail_server_account__message_attachment_count
+msgid "Attachment Count"
+msgstr "Nombre de pièces jointes"
+
+#. module: mail_server_manager
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_view_mail_account_form
+msgid "Attempt to recover this account from error state"
+msgstr "Tenter de récupérer ce compte depuis l'état d'erreur"
+
+#. module: mail_server_manager
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_res_config_settings_view_form
+msgid "Auto-creation"
+msgstr "Création automatique"
+
+#. module: mail_server_manager
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_res_config_settings_view_form
+msgid "Automatically create a mailbox for each new user"
+msgstr "Créer automatiquement une boîte mail pour chaque nouvel utilisateur"
+
+#. module: mail_server_manager
+#. odoo-python
+#: code:addons/mail_server_manager/models/mail_account.py:0
+msgid "Batch Fix Complete"
+msgstr "Correction par lot terminée"
+
+#. module: mail_server_manager
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_password_change_wizard_form
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: mail_server_manager
+#. odoo-python
+#: code:addons/mail_server_manager/models/mail_account.py:0
+msgid ""
+"Cannot create mail account: Invalid email address format.\n"
+"\n"
+"Please provide a valid email address (e.g., user@domain.com)"
+msgstr ""
+"Impossible de créer le compte mail : Format d'adresse email invalide.\n"
+"\n"
+"Veuillez fournir une adresse email valide (ex. : utilisateur@domaine.com)"
+
+#. module: mail_server_manager
+#. odoo-python
+#: code:addons/mail_server_manager/models/mail_account.py:0
+msgid ""
+"Cannot delete mail accounts linked to active users: %s.\n"
+"\n"
+"Please deactivate the users first or unlink the mail accounts."
+msgstr ""
+"Impossible de supprimer les comptes mail liés à des utilisateurs actifs : %s.\n"
+"\n"
+"Veuillez d'abord désactiver les utilisateurs ou dissocier les comptes mail."
+
+#. module: mail_server_manager
+#. odoo-python
+#: code:addons/mail_server_manager/models/mail_account.py:0
+msgid "Cette adresse email existe déjà."
+msgstr "Cette adresse email existe déjà."
+
+#. module: mail_server_manager
+#. odoo-python
+#: code:addons/mail_server_manager/models/res_users.py:0
+#: model:ir.actions.act_window,name:mail_server_manager.action_mail_password_change_wizard
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_password_change_wizard_form
+msgid "Change Mail Password"
+msgstr "Changer le mot de passe mail"
+
+#. module: mail_server_manager
+#: model:ir.model,name:mail_server_manager.model_mail_password_change_wizard
+msgid "Change Mail Password Wizard"
+msgstr "Assistant de changement de mot de passe mail"
+
+#. module: mail_server_manager
+#: model:ir.model.fields.selection,name:mail_server_manager.selection__mail_password_change_wizard__state__change
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_password_change_wizard_form
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_view_users_preferences_mailbox
+msgid "Change Password"
+msgstr "Changer le mot de passe"
+
+#. module: mail_server_manager
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_password_change_wizard_form
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_password_wizard_form
+msgid "Close"
+msgstr "Fermer"
+
+#. module: mail_server_manager
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_res_config_settings_view_form
+msgid "Config Path"
+msgstr "Chemin de configuration"
+
+#. module: mail_server_manager
+#: model:ir.model,name:mail_server_manager.model_res_config_settings
+msgid "Config Settings"
+msgstr "Paramètres de configuration"
+
+#. module: mail_server_manager
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_view_users_form_mailbox
+msgid "Configuration"
+msgstr "Configuration"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,field_description:mail_server_manager.field_mail_password_change_wizard__confirm_mail_password
+msgid "Confirm New Password"
+msgstr "Confirmer le nouveau mot de passe"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,field_description:mail_server_manager.field_res_users__create_mailbox
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_view_users_form_mailbox
+msgid "Create Mailbox"
+msgstr "Créer une boîte mail"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,field_description:mail_server_manager.field_res_config_settings__mail_server_manager_auto_create
+msgid "Create Mailbox by Default"
+msgstr "Créer une boîte mail par défaut"
+
+#. module: mail_server_manager
+#: model_terms:ir.actions.act_window,help:mail_server_manager.mail_server_manager_action_mail_account
+msgid "Create your first mail account"
+msgstr "Créez votre premier compte mail"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,field_description:mail_server_manager.field_mail_password_change_wizard__create_uid
+#: model:ir.model.fields,field_description:mail_server_manager.field_mail_server_account__create_uid
+#: model:ir.model.fields,field_description:mail_server_manager.field_mail_server_password_wizard__create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,field_description:mail_server_manager.field_mail_password_change_wizard__create_date
+#: model:ir.model.fields,field_description:mail_server_manager.field_mail_server_account__create_date
+#: model:ir.model.fields,field_description:mail_server_manager.field_mail_server_password_wizard__create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,field_description:mail_server_manager.field_mail_password_change_wizard__current_odoo_password
+msgid "Current Odoo Password"
+msgstr "Mot de passe Odoo actuel"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,help:mail_server_manager.field_mail_server_account__state
+msgid ""
+"Current state of the mail account:\n"
+"- Draft: Account created but not yet provisioned\n"
+"- Active: Account is working normally\n"
+"- Suspended: Account temporarily disabled\n"
+"- Error: An error occurred during provisioning"
+msgstr ""
+"État actuel du compte mail :\n"
+"- Brouillon : Compte créé mais pas encore provisionné\n"
+"- Actif : Le compte fonctionne normalement\n"
+"- Suspendu : Compte temporairement désactivé\n"
+"- Erreur : Une erreur est survenue lors du provisionnement"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,field_description:mail_server_manager.field_mail_server_account__daily_email_limit
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_res_config_settings_view_form
+msgid "Daily Email Limit"
+msgstr "Limite quotidienne d'emails"
+
+#. module: mail_server_manager
+#. odoo-python
+#: code:addons/mail_server_manager/models/mail_mail.py:0
+msgid ""
+"Daily email limit reached (%s emails). Please try again tomorrow or contact "
+"your administrator."
+msgstr ""
+"Limite quotidienne d'emails atteinte (%s emails). Veuillez réessayer demain ou contacter votre administrateur."
+
+#. module: mail_server_manager
+#: model:ir.model.fields,help:mail_server_manager.field_mail_server_account__last_sync
+msgid "Date and time of the last synchronization with the mail server."
+msgstr "Date et heure de la dernière synchronisation avec le serveur de messagerie."
+
+#. module: mail_server_manager
+#: model:ir.model.fields,help:mail_server_manager.field_mail_server_account__last_email_count_reset
+msgid "Date when the email count was last reset."
+msgstr "Date à laquelle le compteur d'emails a été réinitialisé pour la dernière fois."
+
+#. module: mail_server_manager
+#: model:ir.model.fields,field_description:mail_server_manager.field_res_config_settings__mail_server_manager_daily_email_limit
+msgid "Default Daily Email Limit"
+msgstr "Limite quotidienne d'emails par défaut"
+
+#. module: mail_server_manager
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_res_config_settings_view_form
+msgid "Default maximum emails per day per user (0 = unlimited)"
+msgstr "Nombre maximum d'emails par jour et par utilisateur par défaut (0 = illimité)"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,help:mail_server_manager.field_res_config_settings__mail_server_manager_daily_email_limit
+msgid ""
+"Default maximum number of emails a user can send per day. Set to 0 for "
+"unlimited. Can be overridden per account."
+msgstr ""
+"Nombre maximum d'emails qu'un utilisateur peut envoyer par jour par défaut. 0 pour illimité. Peut être écrasé par compte."
+
+#. module: mail_server_manager
+#: model:ir.model.fields,field_description:mail_server_manager.field_mail_mail__display_name
+#: model:ir.model.fields,field_description:mail_server_manager.field_mail_password_change_wizard__display_name
+#: model:ir.model.fields,field_description:mail_server_manager.field_mail_server_account__display_name
+#: model:ir.model.fields,field_description:mail_server_manager.field_mail_server_manager_mixin__display_name
+#: model:ir.model.fields,field_description:mail_server_manager.field_mail_server_password_wizard__display_name
+#: model:ir.model.fields,field_description:mail_server_manager.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:mail_server_manager.field_res_users__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: mail_server_manager
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_res_config_settings_view_form
+msgid "Domain used for email addresses (e.g. figacycles.com)"
+msgstr "Domaine utilisé pour les adresses email (ex. : figacycles.com)"
+
+#. module: mail_server_manager
+#: model:ir.model.fields.selection,name:mail_server_manager.selection__mail_password_change_wizard__state__done
+msgid "Done"
+msgstr "Terminé"
+
+#. module: mail_server_manager
+#: model:ir.model.fields.selection,name:mail_server_manager.selection__mail_server_account__state__draft
+msgid "Draft"
+msgstr "Brouillon"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,field_description:mail_server_manager.field_mail_password_change_wizard__email
+#: model:ir.model.fields,field_description:mail_server_manager.field_mail_server_account__email
+#: model:ir.model.fields,field_description:mail_server_manager.field_mail_server_password_wizard__email
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_view_mail_account_form
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_view_users_preferences_mailbox
+msgid "Email Address"
+msgstr "Adresse Email"
+
+#. module: mail_server_manager
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_view_users_preferences_mailbox
+msgid "Email Client Configuration"
+msgstr "Configuration du client de messagerie"
+
+#. module: mail_server_manager
+#. odoo-python
+#: code:addons/mail_server_manager/models/mail_account.py:0
+msgid "Email account %s not found."
+msgstr "Compte email %s introuvable."
+
+#. module: mail_server_manager
+#. odoo-python
+#: code:addons/mail_server_manager/models/mail_account.py:0
+msgid "Email address %s already exists on the mail server."
+msgstr "L'adresse email %s existe déjà sur le serveur de messagerie."
+
+#. module: mail_server_manager
+#. odoo-python
+#: code:addons/mail_server_manager/models/mail_account.py:0
+msgid "Email address is required."
+msgstr "L'adresse email est requise."
+
+#. module: mail_server_manager
+#: model:ir.model.fields,field_description:mail_server_manager.field_mail_server_account__emails_sent_today
+msgid "Emails Sent Today"
+msgstr "Emails envoyés aujourd'hui"
+
+#. module: mail_server_manager
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_view_users_preferences_mailbox
+msgid "Encryption"
+msgstr "Chiffrement"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,help:mail_server_manager.field_res_config_settings__mail_server_manager_imap_encryption
+msgid "Encryption type for IMAP connection"
+msgstr "Type de chiffrement pour la connexion IMAP"
+
+#. module: mail_server_manager
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_res_config_settings_view_form
+msgid "Encryption type for IMAP connections"
+msgstr "Type de chiffrement pour les connexions IMAP"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,help:mail_server_manager.field_res_config_settings__mail_server_manager_smtp_encryption
+msgid "Encryption type for SMTP connection"
+msgstr "Type de chiffrement pour la connexion SMTP"
+
+#. module: mail_server_manager
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_res_config_settings_view_form
+msgid "Encryption type for SMTP connections"
+msgstr "Type de chiffrement pour les connexions SMTP"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,help:mail_server_manager.field_mail_password_change_wizard__current_odoo_password
+msgid "Enter your current Odoo password to verify your identity."
+msgstr "Saisissez votre mot de passe Odoo actuel pour vérifier votre identité."
+
+#. module: mail_server_manager
+#: model:ir.model.fields.selection,name:mail_server_manager.selection__mail_server_account__state__error
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_view_mail_account_search
+msgid "Error"
+msgstr "Erreur"
+
+#. module: mail_server_manager
+#. odoo-python
+#: code:addons/mail_server_manager/models/mail_account.py:0
+msgid ""
+"Error during mail account modification. Please contact your administrator."
+msgstr "Erreur lors de la modification du compte mail. Veuillez contacter votre administrateur."
+
+#. module: mail_server_manager
+#. odoo-python
+#: code:addons/mail_server_manager/models/mail_account.py:0
+msgid ""
+"Failed to create mail account for '%s'.\n"
+"\n"
+"Error: %s"
+msgstr ""
+"Échec de la création du compte mail pour '%s'.\n"
+"\n"
+"Erreur : %s"
+
+#. module: mail_server_manager
+#. odoo-python
+#: code:addons/mail_server_manager/models/res_users.py:0
+msgid "Failed to create mail account: %s"
+msgstr "Échec de la création du compte mail : %s"
+
+#. module: mail_server_manager
+#. odoo-python
+#: code:addons/mail_server_manager/models/mail_account.py:0
+msgid ""
+"Failed to recover mail account '%s'.\n"
+"\n"
+"Error: %s"
+msgstr ""
+"Échec de la récupération du compte mail '%s'.\n"
+"\n"
+"Erreur : %s"
+
+#. module: mail_server_manager
+#. odoo-python
+#: code:addons/mail_server_manager/models/mail_account.py:0
+msgid "Fichier de configuration mail introuvable."
+msgstr "Fichier de configuration mail introuvable."
+
+#. module: mail_server_manager
+#: model:ir.actions.server,name:mail_server_manager.mail_server_manager_action_fix_all_smtp
+msgid "Fix All SMTP Owners (Odoo 19)"
+msgstr "Corriger tous les propriétaires SMTP (Odoo 19)"
+
+#. module: mail_server_manager
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_view_mail_account_form
+msgid "Fix SMTP Owner"
+msgstr "Corriger le propriétaire SMTP"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,field_description:mail_server_manager.field_mail_server_account__message_follower_ids
+msgid "Followers"
+msgstr "Abonnés"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,field_description:mail_server_manager.field_mail_server_account__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Abonnés (Partenaires)"
+
+#. module: mail_server_manager
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_view_mail_account_form
+msgid "Generate a new secure password for this mail account"
+msgstr "Générer un nouveau mot de passe sécurisé pour ce compte mail"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,field_description:mail_server_manager.field_mail_password_change_wizard__generated_password
+#: model:ir.model.fields,field_description:mail_server_manager.field_mail_server_password_wizard__password
+msgid "Generated Password"
+msgstr "Mot de passe généré"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,field_description:mail_server_manager.field_mail_server_account__has_message
+msgid "Has Message"
+msgstr "A un message"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,field_description:mail_server_manager.field_mail_mail__id
+#: model:ir.model.fields,field_description:mail_server_manager.field_mail_password_change_wizard__id
+#: model:ir.model.fields,field_description:mail_server_manager.field_mail_server_account__id
+#: model:ir.model.fields,field_description:mail_server_manager.field_mail_server_manager_mixin__id
+#: model:ir.model.fields,field_description:mail_server_manager.field_mail_server_password_wizard__id
+#: model:ir.model.fields,field_description:mail_server_manager.field_res_config_settings__id
+#: model:ir.model.fields,field_description:mail_server_manager.field_res_users__id
+msgid "ID"
+msgstr "ID"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,field_description:mail_server_manager.field_res_config_settings__mail_server_manager_imap_encryption
+#: model:ir.model.fields,field_description:mail_server_manager.field_res_users__imap_encryption
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_res_config_settings_view_form
+msgid "IMAP Encryption"
+msgstr "Chiffrement IMAP"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,field_description:mail_server_manager.field_res_config_settings__mail_server_manager_imap_host
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_res_config_settings_view_form
+msgid "IMAP Host"
+msgstr "Hôte IMAP"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,field_description:mail_server_manager.field_res_config_settings__mail_server_manager_imap_port
+#: model:ir.model.fields,field_description:mail_server_manager.field_res_users__imap_port
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_res_config_settings_view_form
+msgid "IMAP Port"
+msgstr "Port IMAP"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,field_description:mail_server_manager.field_res_users__imap_server
+msgid "IMAP Server"
+msgstr "Serveur IMAP"
+
+#. module: mail_server_manager
+#. odoo-python
+#: code:addons/mail_server_manager/models/mail_account.py:0
+msgid "IMAP Server Configuration Reminder"
+msgstr "Rappel de configuration du serveur IMAP"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,help:mail_server_manager.field_res_config_settings__mail_server_manager_imap_host
+msgid "IMAP server host"
+msgstr "Hôte du serveur IMAP"
+
+#. module: mail_server_manager
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_res_config_settings_view_form
+msgid "IMAP server host (e.g. mail)"
+msgstr "Hôte du serveur IMAP (ex. : mail)"
+
+#. module: mail_server_manager
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_res_config_settings_view_form
+msgid "IMAP server port (e.g. 993)"
+msgstr "Port du serveur IMAP (ex. : 993)"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,help:mail_server_manager.field_res_users__create_mailbox
+msgid "If checked, a mailbox will be automatically created for this user"
+msgstr "Si coché, une boîte mail sera automatiquement créée pour cet utilisateur"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,help:mail_server_manager.field_mail_server_account__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Si coché, de nouveaux messages requièrent votre attention."
+
+#. module: mail_server_manager
+#: model:ir.model.fields,help:mail_server_manager.field_mail_server_account__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Si coché, certains messages ont une erreur de livraison."
+
+#. module: mail_server_manager
+#: model:ir.model.fields,help:mail_server_manager.field_res_config_settings__mail_server_manager_auto_create
+msgid "If enabled, a mailbox will be created by default for new users"
+msgstr "Si activé, une boîte mail sera créée par défaut pour les nouveaux utilisateurs"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,help:mail_server_manager.field_res_config_settings__mail_server_manager_overwrite_email
+msgid ""
+"If enabled, creating a mailbox will overwrite the user's existing email. If "
+"disabled, the user's personal email is preserved and the internal email is "
+"only used for sending via the SMTP server."
+msgstr ""
+"Si activé, la création d'une boîte mail remplacera l'email existant de l'utilisateur. Si désactivé, l'email personnel de l'utilisateur est conservé et l'email interne est uniquement utilisé pour l'envoi via le serveur SMTP."
+
+#. module: mail_server_manager
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_res_config_settings_view_form
+msgid "If enabled, creating a mailbox will replace the user's existing email"
+msgstr "Si activé, la création d'une boîte mail remplacera l'email existant de l'utilisateur"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,help:mail_server_manager.field_mail_server_account__active
+msgid "If unchecked, the mail account is hidden but not deleted."
+msgstr "Si décoché, le compte mail est masqué mais non supprimé."
+
+#. module: mail_server_manager
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_view_users_preferences_mailbox
+msgid "Incoming Mail (IMAP)"
+msgstr "Courrier entrant (IMAP)"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,field_description:mail_server_manager.field_mail_server_account__fetchmail_server_id
+msgid "Incoming Mail Server (IMAP)"
+msgstr "Serveur de messagerie entrant (IMAP)"
+
+#. module: mail_server_manager
+#. odoo-python
+#: code:addons/mail_server_manager/wizards/change_password_wizard.py:0
+msgid "Incorrect password. Please try again."
+msgstr "Mot de passe incorrect. Veuillez réessayer."
+
+#. module: mail_server_manager
+#: model:ir.model.fields,field_description:mail_server_manager.field_res_users__internal_email
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_view_users_form_mailbox
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_view_users_tree_mailbox
+msgid "Internal Email"
+msgstr "Email interne"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,field_description:mail_server_manager.field_mail_server_account__notes
+msgid "Internal Notes"
+msgstr "Notes internes"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,help:mail_server_manager.field_res_users__internal_email
+msgid "Internal email address for this user (from Mail Server Manager)"
+msgstr "Adresse email interne pour cet utilisateur (depuis Mail Server Manager)"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,help:mail_server_manager.field_mail_server_account__notes
+msgid "Internal notes about this mail account (not visible to users)."
+msgstr "Notes internes sur ce compte mail (non visibles par les utilisateurs)."
+
+#. module: mail_server_manager
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_view_mail_account_form
+msgid "Internal notes about this mail account..."
+msgstr "Notes internes sur ce compte mail..."
+
+#. module: mail_server_manager
+#. odoo-python
+#: code:addons/mail_server_manager/models/mail_account.py:0
+msgid ""
+"Invalid email address format: '%s'.\n"
+"\n"
+"Only alphanumeric characters, dots, underscores, hyphens, and plus signs are allowed."
+msgstr ""
+"Format d'adresse email invalide : '%s'.\n"
+"\n"
+"Seuls les caractères alphanumériques, les points, les tirets bas, les traits d'union et les signes plus sont autorisés."
+
+#. module: mail_server_manager
+#. odoo-python
+#: code:addons/mail_server_manager/models/mail_account.py:0
+msgid ""
+"Invalid email address: '%s'.\n"
+"\n"
+"Both username and domain are required."
+msgstr ""
+"Adresse email invalide : '%s'.\n"
+"\n"
+"Le nom d'utilisateur et le domaine sont tous deux requis."
+
+#. module: mail_server_manager
+#. odoo-python
+#: code:addons/mail_server_manager/models/mail_account.py:0
+msgid ""
+"Invalid email address: '%s'.\n"
+"\n"
+"The email address contains invalid characters or format."
+msgstr ""
+"Adresse email invalide : '%s'.\n"
+"\n"
+"L'adresse email contient des caractères ou un format invalides."
+
+#. module: mail_server_manager
+#. odoo-python
+#: code:addons/mail_server_manager/models/mail_account.py:0
+msgid ""
+"Invalid email domain: '%s'.\n"
+"\n"
+"The domain must contain at least one dot (e.g., example.com)"
+msgstr ""
+"Domaine email invalide : '%s'.\n"
+"\n"
+"Le domaine doit contenir au moins un point (ex. : exemple.com)"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,field_description:mail_server_manager.field_mail_server_account__message_is_follower
+msgid "Is Follower"
+msgstr "Est abonné"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,field_description:mail_server_manager.field_mail_server_account__last_email_count_reset
+msgid "Last Count Reset"
+msgstr "Dernière réinitialisation du compteur"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,field_description:mail_server_manager.field_mail_server_account__last_password_reset
+msgid "Last Password Reset"
+msgstr "Dernière réinitialisation du mot de passe"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,field_description:mail_server_manager.field_mail_server_account__last_sync
+msgid "Last Sync"
+msgstr "Dernière synchronisation"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,field_description:mail_server_manager.field_mail_password_change_wizard__write_uid
+#: model:ir.model.fields,field_description:mail_server_manager.field_mail_server_account__write_uid
+#: model:ir.model.fields,field_description:mail_server_manager.field_mail_server_password_wizard__write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,field_description:mail_server_manager.field_mail_password_change_wizard__write_date
+#: model:ir.model.fields,field_description:mail_server_manager.field_mail_server_account__write_date
+#: model:ir.model.fields,field_description:mail_server_manager.field_mail_server_password_wizard__write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,help:mail_server_manager.field_mail_password_change_wizard__new_mail_password
+msgid "Leave empty to auto-generate a secure password."
+msgstr "Laissez vide pour générer automatiquement un mot de passe sécurisé."
+
+#. module: mail_server_manager
+#: model:ir.model.fields,field_description:mail_server_manager.field_mail_password_change_wizard__mail_account_id
+#: model:ir.model.fields,field_description:mail_server_manager.field_mail_server_password_wizard__mail_account_id
+#: model:ir.model.fields,field_description:mail_server_manager.field_res_users__mail_account_id
+msgid "Mail Account"
+msgstr "Compte Mail"
+
+#. module: mail_server_manager
+#: model:ir.actions.act_window,name:mail_server_manager.mail_server_manager_action_mail_account
+#: model:ir.ui.menu,name:mail_server_manager.mail_server_manager_menu_mail_account
+msgid "Mail Accounts"
+msgstr "Comptes Mail"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,field_description:mail_server_manager.field_res_config_settings__mail_server_manager_config_path
+msgid "Mail Config Path"
+msgstr "Chemin de configuration mail"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,field_description:mail_server_manager.field_res_config_settings__mail_server_manager_domain
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_res_config_settings_view_form
+msgid "Mail Domain"
+msgstr "Domaine Mail"
+
+#. module: mail_server_manager
+#: model:ir.ui.menu,name:mail_server_manager.mail_server_manager_menu_mail_server_root
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_view_users_form_mailbox
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_view_users_preferences_mailbox
+msgid "Mail Server"
+msgstr "Serveur Mail"
+
+#. module: mail_server_manager
+#: model:ir.model,name:mail_server_manager.model_mail_server_account
+msgid "Mail Server Account"
+msgstr "Compte du serveur mail"
+
+#. module: mail_server_manager
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_res_config_settings_view_form
+msgid "Mail Server Management"
+msgstr "Gestion du serveur mail"
+
+#. module: mail_server_manager
+#: model:ir.model,name:mail_server_manager.model_mail_server_manager_mixin
+msgid "Mail Server Manager Configuration Mixin"
+msgstr "Mixin de configuration du gestionnaire de serveur mail"
+
+#. module: mail_server_manager
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_view_mail_account_form
+msgid "Mail Servers"
+msgstr "Serveurs Mail"
+
+#. module: mail_server_manager
+#: model_terms:ir.actions.act_window,help:mail_server_manager.mail_server_manager_action_mail_account
+msgid ""
+"Mail accounts created here will be automatically provisioned on the mail "
+"server."
+msgstr "Les comptes mail créés ici seront automatiquement provisionnés sur le serveur de messagerie."
+
+#. module: mail_server_manager
+#. odoo-python
+#: code:addons/mail_server_manager/models/mail_account.py:0
+msgid "Mail configuration file not found."
+msgstr "Fichier de configuration mail introuvable."
+
+#. module: mail_server_manager
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_view_users_tree_mailbox
+msgid "Mailbox"
+msgstr "Boîte mail"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,field_description:mail_server_manager.field_res_users__mailbox_created
+msgid "Mailbox Created"
+msgstr "Boîte mail créée"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,help:mail_server_manager.field_mail_server_account__daily_email_limit
+msgid "Maximum emails per day for this account. 0 = use system default."
+msgstr "Nombre maximum d'emails par jour pour ce compte. 0 = utiliser la valeur par défaut du système."
+
+#. module: mail_server_manager
+#: model:ir.model.fields,help:mail_server_manager.field_mail_server_account__quota_mb
+msgid "Maximum mailbox size in megabytes (default: 1024 MB = 1 GB)."
+msgstr "Taille maximale de la boîte mail en mégaoctets (par défaut : 1024 Mo = 1 Go)."
+
+#. module: mail_server_manager
+#: model:ir.model.fields,field_description:mail_server_manager.field_mail_server_account__message_has_error
+msgid "Message Delivery error"
+msgstr "Erreur de livraison du message"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,field_description:mail_server_manager.field_mail_server_account__message_ids
+msgid "Messages"
+msgstr "Messages"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,field_description:mail_server_manager.field_mail_password_change_wizard__new_mail_password
+msgid "New Mail Password"
+msgstr "Nouveau mot de passe mail"
+
+#. module: mail_server_manager
+#. odoo-python
+#: code:addons/mail_server_manager/models/mail_account.py:0
+msgid "No IMAP server associated with this account."
+msgstr "Aucun serveur IMAP associé à ce compte."
+
+#. module: mail_server_manager
+#. odoo-python
+#: code:addons/mail_server_manager/models/mail_account.py:0
+msgid "No SMTP server associated with this account."
+msgstr "Aucun serveur SMTP associé à ce compte."
+
+#. module: mail_server_manager
+#. odoo-python
+#: code:addons/mail_server_manager/models/res_users.py:0
+msgid "No mail account associated with this user."
+msgstr "Aucun compte mail associé à cet utilisateur."
+
+#. module: mail_server_manager
+#. odoo-python
+#: code:addons/mail_server_manager/wizards/change_password_wizard.py:0
+msgid "No password set for this user."
+msgstr "Aucun mot de passe défini pour cet utilisateur."
+
+#. module: mail_server_manager
+#: model:ir.model.fields.selection,name:mail_server_manager.selection__res_config_settings__mail_server_manager_imap_encryption__none
+#: model:ir.model.fields.selection,name:mail_server_manager.selection__res_config_settings__mail_server_manager_smtp_encryption__none
+msgid "None"
+msgstr "Aucun"
+
+#. module: mail_server_manager
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_view_mail_account_form
+msgid "Notes"
+msgstr "Notes"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,field_description:mail_server_manager.field_mail_server_account__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Nombre d'actions"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,help:mail_server_manager.field_mail_server_account__emails_sent_today
+msgid "Number of emails sent today (resets at midnight)."
+msgstr "Nombre d'emails envoyés aujourd'hui (réinitialisé à minuit)."
+
+#. module: mail_server_manager
+#: model:ir.model.fields,field_description:mail_server_manager.field_mail_server_account__message_has_error_counter
+msgid "Number of errors"
+msgstr "Nombre d'erreurs"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,help:mail_server_manager.field_mail_server_account__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "Nombre de messages nécessitant une action"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,help:mail_server_manager.field_mail_server_account__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Nombre de messages avec erreur de livraison"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,help:mail_server_manager.field_mail_server_account__password_reset_count
+msgid "Number of password resets in the current rate limit window."
+msgstr "Nombre de réinitialisations de mot de passe dans la fenêtre de limitation de taux actuelle."
+
+#. module: mail_server_manager
+#: model:ir.model.fields,field_description:mail_server_manager.field_mail_server_account__user_id
+msgid "Odoo User"
+msgstr "Utilisateur Odoo"
+
+#. module: mail_server_manager
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_view_users_preferences_mailbox
+msgid "Outgoing Mail (SMTP)"
+msgstr "Courrier sortant (SMTP)"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,field_description:mail_server_manager.field_mail_server_account__mail_server_id
+msgid "Outgoing Mail Server (SMTP)"
+msgstr "Serveur de messagerie sortant (SMTP)"
+
+#. module: mail_server_manager
+#: model:ir.model,name:mail_server_manager.model_mail_mail
+msgid "Outgoing Mails"
+msgstr "Courriers sortants"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,field_description:mail_server_manager.field_res_config_settings__mail_server_manager_overwrite_email
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_res_config_settings_view_form
+msgid "Overwrite User Email"
+msgstr "Remplacer l'email de l'utilisateur"
+
+#. module: mail_server_manager
+#. odoo-python
+#: code:addons/mail_server_manager/wizards/password_wizard.py:0
+msgid "Password Copied"
+msgstr "Mot de passe copié"
+
+#. module: mail_server_manager
+#: model:ir.model,name:mail_server_manager.model_mail_server_password_wizard
+msgid "Password Display Wizard"
+msgstr "Assistant d'affichage du mot de passe"
+
+#. module: mail_server_manager
+#. odoo-python
+#: code:addons/mail_server_manager/models/mail_account.py:0
+#: model:ir.actions.act_window,name:mail_server_manager.mail_server_manager_action_password_wizard
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_password_wizard_form
+msgid "Password Generated"
+msgstr "Mot de passe généré"
+
+#. module: mail_server_manager
+#. odoo-python
+#: code:addons/mail_server_manager/wizards/password_wizard.py:0
+msgid "Password copied to clipboard. Please store it securely."
+msgstr "Mot de passe copié dans le presse-papiers. Veuillez le stocker en lieu sûr."
+
+#. module: mail_server_manager
+#. odoo-python
+#: code:addons/mail_server_manager/wizards/change_password_wizard.py:0
+msgid "Password must be at least 8 characters long."
+msgstr "Le mot de passe doit comporter au moins 8 caractères."
+
+#. module: mail_server_manager
+#. odoo-python
+#: code:addons/mail_server_manager/models/mail_account.py:0
+msgid ""
+"Password reset rate limit exceeded.\n"
+"\n"
+"You can only reset the password 3 times per hour. Please wait before trying again."
+msgstr ""
+"Limite de taux de réinitialisation du mot de passe dépassée.\n"
+"\n"
+"Vous ne pouvez réinitialiser le mot de passe que 3 fois par heure. Veuillez patienter avant de réessayer."
+
+#. module: mail_server_manager
+#. odoo-python
+#: code:addons/mail_server_manager/wizards/change_password_wizard.py:0
+msgid "Passwords do not match."
+msgstr "Les mots de passe ne correspondent pas."
+
+#. module: mail_server_manager
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_res_config_settings_view_form
+msgid "Path to the docker-mailserver configuration folder"
+msgstr "Chemin vers le dossier de configuration docker-mailserver"
+
+#. module: mail_server_manager
+#. odoo-python
+#: code:addons/mail_server_manager/models/mail_account.py:0
+msgid ""
+"Permission error writing to the mail file. Please check folder permissions "
+"in Mail/config."
+msgstr "Erreur d'autorisation lors de l'écriture dans le fichier mail. Veuillez vérifier les permissions du dossier dans Mail/config."
+
+#. module: mail_server_manager
+#. odoo-python
+#: code:addons/mail_server_manager/wizards/change_password_wizard.py:0
+msgid "Please enter your current Odoo password."
+msgstr "Veuillez saisir votre mot de passe Odoo actuel."
+
+#. module: mail_server_manager
+#. odoo-python
+#: code:addons/mail_server_manager/models/mail_account.py:0
+msgid ""
+"Please go to Settings → Technical → Incoming Mail Servers and click 'Test & "
+"Confirm' on the newly created IMAP server(s) to enable incoming email "
+"fetching for: %s"
+msgstr ""
+"Veuillez aller dans Paramètres → Technique → Serveurs de messagerie entrants et cliquer sur 'Tester & Confirmer' sur le(s) serveur(s) IMAP nouvellement créé(s) pour activer la récupération des emails entrants pour : %s"
+
+#. module: mail_server_manager
+#. odoo-python
+#: code:addons/mail_server_manager/wizards/change_password_wizard.py:0
+msgid "Please verify your identity first."
+msgstr "Veuillez d'abord vérifier votre identité."
+
+#. module: mail_server_manager
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_view_users_preferences_mailbox
+msgid "Port"
+msgstr "Port"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,field_description:mail_server_manager.field_mail_server_account__quota_mb
+msgid "Quota (MB)"
+msgstr "Quota (Mo)"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,help:mail_server_manager.field_mail_password_change_wizard__confirm_mail_password
+msgid "Re-enter the new password to confirm."
+msgstr "Resaisissez le nouveau mot de passe pour confirmer."
+
+#. module: mail_server_manager
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_view_mail_account_form
+msgid "Reactivate this suspended mail account"
+msgstr "Réactiver ce compte mail suspendu"
+
+#. module: mail_server_manager
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_view_mail_account_form
+msgid "Recover"
+msgstr "Récupérer"
+
+#. module: mail_server_manager
+#. odoo-python
+#: code:addons/mail_server_manager/models/mail_account.py:0
+msgid "Recovery Complete"
+msgstr "Récupération terminée"
+
+#. module: mail_server_manager
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_view_mail_account_form
+msgid "Remove owner_user_id from SMTP server to fix Odoo 19 validation error"
+msgstr "Supprimer owner_user_id du serveur SMTP pour corriger l'erreur de validation Odoo 19"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,field_description:mail_server_manager.field_mail_server_account__password_reset_count
+msgid "Reset Count"
+msgstr "Compteur de réinitialisation"
+
+#. module: mail_server_manager
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_view_mail_account_form
+msgid "Reset Password"
+msgstr "Réinitialiser le mot de passe"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,field_description:mail_server_manager.field_res_config_settings__mail_server_manager_smtp_encryption
+#: model:ir.model.fields,field_description:mail_server_manager.field_res_users__smtp_encryption
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_res_config_settings_view_form
+msgid "SMTP Encryption"
+msgstr "Chiffrement SMTP"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,field_description:mail_server_manager.field_res_config_settings__mail_server_manager_smtp_host
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_res_config_settings_view_form
+msgid "SMTP Host"
+msgstr "Hôte SMTP"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,field_description:mail_server_manager.field_res_config_settings__mail_server_manager_smtp_port
+#: model:ir.model.fields,field_description:mail_server_manager.field_res_users__smtp_port
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_res_config_settings_view_form
+msgid "SMTP Port"
+msgstr "Port SMTP"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,field_description:mail_server_manager.field_res_users__smtp_server
+msgid "SMTP Server"
+msgstr "Serveur SMTP"
+
+#. module: mail_server_manager
+#. odoo-python
+#: code:addons/mail_server_manager/models/mail_account.py:0
+msgid "SMTP Servers Fixed"
+msgstr "Serveurs SMTP corrigés"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,help:mail_server_manager.field_res_config_settings__mail_server_manager_smtp_host
+msgid "SMTP server host"
+msgstr "Hôte du serveur SMTP"
+
+#. module: mail_server_manager
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_res_config_settings_view_form
+msgid "SMTP server host (e.g. mail)"
+msgstr "Hôte du serveur SMTP (ex. : mail)"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,help:mail_server_manager.field_res_config_settings__mail_server_manager_smtp_port
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_res_config_settings_view_form
+msgid "SMTP server port (587 for STARTTLS, 465 for SSL)"
+msgstr "Port du serveur SMTP (587 pour STARTTLS, 465 pour SSL)"
+
+#. module: mail_server_manager
+#: model:ir.model.fields.selection,name:mail_server_manager.selection__res_config_settings__mail_server_manager_imap_encryption__ssl
+#: model:ir.model.fields.selection,name:mail_server_manager.selection__res_config_settings__mail_server_manager_smtp_encryption__ssl
+msgid "SSL/TLS"
+msgstr "SSL/TLS"
+
+#. module: mail_server_manager
+#: model:ir.model.fields.selection,name:mail_server_manager.selection__res_config_settings__mail_server_manager_smtp_encryption__starttls
+msgid "STARTTLS"
+msgstr "STARTTLS"
+
+#. module: mail_server_manager
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_view_users_preferences_mailbox
+msgid "Server"
+msgstr "Serveur"
+
+#. module: mail_server_manager
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_view_mail_account_form
+msgid "Settings"
+msgstr "Paramètres"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,field_description:mail_server_manager.field_mail_password_change_wizard__state
+#: model:ir.model.fields,field_description:mail_server_manager.field_mail_server_account__state
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_view_mail_account_search
+msgid "State"
+msgstr "État"
+
+#. module: mail_server_manager
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_view_mail_account_form
+msgid "Statistics"
+msgstr "Statistiques"
+
+#. module: mail_server_manager
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_view_mail_account_form
+msgid "Suspend"
+msgstr "Suspendre"
+
+#. module: mail_server_manager
+#: model:ir.model.fields.selection,name:mail_server_manager.selection__mail_server_account__state__suspended
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_view_mail_account_search
+msgid "Suspended"
+msgstr "Suspendu"
+
+#. module: mail_server_manager
+#. odoo-python
+#: code:addons/mail_server_manager/models/mail_account.py:0
+msgid "Sync Completed"
+msgstr "Synchronisation terminée"
+
+#. module: mail_server_manager
+#: model:ir.actions.server,name:mail_server_manager.mail_server_manager_action_sync_mail_accounts
+msgid "Sync from Server"
+msgstr "Synchroniser depuis le serveur"
+
+#. module: mail_server_manager
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_view_mail_account_form
+msgid "Temporarily disable this mail account"
+msgstr "Désactiver temporairement ce compte mail"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,help:mail_server_manager.field_mail_server_account__fetchmail_server_id
+msgid ""
+"The IMAP server automatically created for this account. Used for receiving "
+"incoming emails."
+msgstr "Le serveur IMAP automatiquement créé pour ce compte. Utilisé pour recevoir les emails entrants."
+
+#. module: mail_server_manager
+#: model:ir.model.fields,help:mail_server_manager.field_mail_server_account__user_id
+msgid ""
+"The Odoo user linked to this mail account. This user will be able to send "
+"emails using this address."
+msgstr "L'utilisateur Odoo lié à ce compte mail. Cet utilisateur pourra envoyer des emails en utilisant cette adresse."
+
+#. module: mail_server_manager
+#: model:ir.model.fields,help:mail_server_manager.field_mail_server_account__mail_server_id
+msgid ""
+"The SMTP server automatically created for this account. Used for sending "
+"outgoing emails."
+msgstr "Le serveur SMTP automatiquement créé pour ce compte. Utilisé pour envoyer les emails sortants."
+
+#. module: mail_server_manager
+#: model:ir.model.fields,help:mail_server_manager.field_mail_password_change_wizard__email
+#: model:ir.model.fields,help:mail_server_manager.field_mail_server_account__email
+#: model:ir.model.fields,help:mail_server_manager.field_mail_server_password_wizard__email
+msgid "The email address for this mail account (e.g., user@domain.com)"
+msgstr "L'adresse email pour ce compte mail (ex. : utilisateur@domaine.com)"
+
+#. module: mail_server_manager
+#: model:ir.model.fields,help:mail_server_manager.field_mail_server_password_wizard__password
+msgid "This password will only be shown once. Please copy it now."
+msgstr "Ce mot de passe ne sera affiché qu'une seule fois. Veuillez le copier maintenant."
+
+#. module: mail_server_manager
+#: model:ir.model.fields,help:mail_server_manager.field_mail_server_account__last_password_reset
+msgid "Timestamp of the last password reset (used for rate limiting)."
+msgstr "Horodatage de la dernière réinitialisation du mot de passe (utilisé pour la limitation de taux)."
+
+#. module: mail_server_manager
+#: model:ir.model,name:mail_server_manager.model_res_users
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_view_mail_account_search
+msgid "User"
+msgstr "Utilisateur"
+
+#. module: mail_server_manager
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_view_mail_account_form
+msgid "User Information"
+msgstr "Informations utilisateur"
+
+#. module: mail_server_manager
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_view_users_preferences_mailbox
+msgid "Username"
+msgstr "Nom d'utilisateur"
+
+#. module: mail_server_manager
+#: model:ir.model.fields.selection,name:mail_server_manager.selection__mail_password_change_wizard__state__verify
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_password_change_wizard_form
+msgid "Verify Identity"
+msgstr "Vérifier l'identité"
+
+#. module: mail_server_manager
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_view_mail_account_form
+msgid "View incoming mail server configuration"
+msgstr "Voir la configuration du serveur de messagerie entrant"
+
+#. module: mail_server_manager
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_view_mail_account_form
+msgid "View outgoing mail server configuration"
+msgstr "Voir la configuration du serveur de messagerie sortant"
+
+#. module: mail_server_manager
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_view_users_preferences_mailbox
+msgid "Your Email Account"
+msgstr "Votre compte email"
+
+#. module: mail_server_manager
+#: model_terms:ir.ui.view,arch_db:mail_server_manager.mail_server_manager_view_mail_account_form
+msgid "email@domain.com"
+msgstr "email@domaine.com"

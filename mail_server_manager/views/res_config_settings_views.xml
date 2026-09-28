@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="mail_server_manager_res_config_settings_view_form" model="ir.ui.view">
+        <field
+            name="name"
+        >res.config.settings.view.form.inherit.mail_server_manager</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base_setup.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//app[@name='general_settings']" position="inside">
+                <block
+                    title="Mail Server Management"
+                    name="mail_server_manager_settings"
+                >
+                    <setting
+                        id="mail_server_domain"
+                        string="Mail Domain"
+                        help="Domain used for email addresses (e.g. figacycles.com)"
+                    >
+                        <field name="mail_server_manager_domain" />
+                    </setting>
+                    <setting
+                        id="mail_server_smtp_host"
+                        string="SMTP Host"
+                        help="SMTP server host (e.g. mail)"
+                    >
+                        <field name="mail_server_manager_smtp_host" />
+                    </setting>
+                    <setting
+                        id="mail_server_imap_host"
+                        string="IMAP Host"
+                        help="IMAP server host (e.g. mail)"
+                    >
+                        <field name="mail_server_manager_imap_host" />
+                    </setting>
+                    <setting
+                        id="mail_server_imap_port"
+                        string="IMAP Port"
+                        help="IMAP server port (e.g. 993)"
+                    >
+                        <field name="mail_server_manager_imap_port" />
+                    </setting>
+                    <setting
+                        id="mail_server_config_path"
+                        string="Config Path"
+                        help="Path to the docker-mailserver configuration folder"
+                    >
+                        <field name="mail_server_manager_config_path" />
+                    </setting>
+                    <setting
+                        id="mail_server_auto_create"
+                        string="Auto-creation"
+                        help="Automatically create a mailbox for each new user"
+                    >
+                        <field name="mail_server_manager_auto_create" />
+                    </setting>
+                    <setting
+                        id="mail_server_overwrite_email"
+                        string="Overwrite User Email"
+                        help="If enabled, creating a mailbox will replace the user's existing email"
+                    >
+                        <field name="mail_server_manager_overwrite_email" />
+                    </setting>
+                    <setting
+                        id="mail_server_daily_limit"
+                        string="Daily Email Limit"
+                        help="Default maximum emails per day per user (0 = unlimited)"
+                    >
+                        <field name="mail_server_manager_daily_email_limit" />
+                    </setting>
+                    <setting
+                        id="mail_server_smtp_port"
+                        string="SMTP Port"
+                        help="SMTP server port (587 for STARTTLS, 465 for SSL)"
+                    >
+                        <field name="mail_server_manager_smtp_port" />
+                    </setting>
+                    <setting
+                        id="mail_server_smtp_encryption"
+                        string="SMTP Encryption"
+                        help="Encryption type for SMTP connections"
+                    >
+                        <field name="mail_server_manager_smtp_encryption" />
+                    </setting>
+                    <setting
+                        id="mail_server_imap_encryption"
+                        string="IMAP Encryption"
+                        help="Encryption type for IMAP connections"
+                    >
+                        <field name="mail_server_manager_imap_encryption" />
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>

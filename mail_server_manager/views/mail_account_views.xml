@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Mail account tree -->
+    <record id="mail_server_manager_view_mail_account_tree" model="ir.ui.view">
+        <field name="name">mail.server.account.tree</field>
+        <field name="model">mail.server.account</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="email" />
+                <field name="user_id" />
+                <field
+                    name="state"
+                    widget="badge"
+                    decoration-success="state == 'active'"
+                    decoration-warning="state == 'suspended'"
+                    decoration-danger="state == 'error'"
+                    decoration-muted="state == 'draft'"
+                />
+                <field name="quota_mb" />
+                <field name="last_sync" />
+            </list>
+        </field>
+    </record>
+
+    <!-- Mail account form -->
+    <record id="mail_server_manager_view_mail_account_form" model="ir.ui.view">
+        <field name="name">mail.server.account.form</field>
+        <field name="model">mail.server.account</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button
+                        name="action_reset_password"
+                        type="object"
+                        string="Reset Password"
+                        class="btn-primary"
+                        invisible="state != 'active'"
+                        title="Generate a new secure password for this mail account"
+                    />
+                    <button
+                        name="action_suspend"
+                        type="object"
+                        string="Suspend"
+                        class="btn-warning"
+                        invisible="state != 'active'"
+                        title="Temporarily disable this mail account"
+                    />
+                    <button
+                        name="action_activate"
+                        type="object"
+                        string="Activate"
+                        class="btn-success"
+                        invisible="state != 'suspended'"
+                        title="Reactivate this suspended mail account"
+                    />
+                    <button
+                        name="action_recover_from_error"
+                        type="object"
+                        string="Recover"
+                        class="btn-danger"
+                        invisible="state != 'error' and mail_server_id and fetchmail_server_id"
+                        title="Attempt to recover this account from error state"
+                    />
+                    <button
+                        name="action_fix_smtp_owner"
+                        type="object"
+                        string="Fix SMTP Owner"
+                        class="btn-secondary"
+                        invisible="not mail_server_id"
+                        title="Remove owner_user_id from SMTP server to fix Odoo 19 validation error"
+                    />
+                    <field
+                        name="state"
+                        widget="statusbar"
+                        statusbar_visible="draft,active,suspended"
+                    />
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button
+                            name="action_open_smtp_server"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-envelope-o"
+                            invisible="not mail_server_id"
+                            title="View outgoing mail server configuration"
+                        >
+                            <span class="o_stat_text">SMTP Server</span>
+                        </button>
+                        <button
+                            name="action_open_imap_server"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-inbox"
+                            invisible="not fetchmail_server_id"
+                            title="View incoming mail server configuration"
+                        >
+                            <span class="o_stat_text">IMAP Server</span>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <label for="email" string="Email Address" />
+                        <h1>
+                            <field
+                                name="email"
+                                placeholder="email@domain.com"
+                                readonly="state != 'draft'"
+                            />
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="User Information">
+                            <field name="user_id" />
+                            <field name="active" widget="boolean_toggle" />
+                        </group>
+                        <group string="Mail Servers">
+                            <field name="mail_server_id" readonly="1" />
+                            <field name="fetchmail_server_id" readonly="1" />
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Settings">
+                            <field name="quota_mb" />
+                            <field
+                                name="daily_email_limit"
+                                help="0 = use system default"
+                            />
+                        </group>
+                        <group string="Statistics">
+                            <field name="emails_sent_today" readonly="1" />
+                            <field name="last_sync" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Notes" name="notes">
+                            <field
+                                name="notes"
+                                placeholder="Internal notes about this mail account..."
+                                nolabel="1"
+                            />
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter />
+            </form>
+        </field>
+    </record>
+
+    <!-- Search -->
+    <record id="mail_server_manager_view_mail_account_search" model="ir.ui.view">
+        <field name="name">mail.server.account.search</field>
+        <field name="model">mail.server.account</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="email" />
+                <field name="user_id" />
+                <filter
+                    string="Active"
+                    name="active"
+                    domain="[('state', '=', 'active')]"
+                />
+                <filter
+                    string="Suspended"
+                    name="suspended"
+                    domain="[('state', '=', 'suspended')]"
+                />
+                <filter
+                    string="Error"
+                    name="error"
+                    domain="[('state', '=', 'error')]"
+                />
+                <separator />
+                <filter
+                    string="State"
+                    name="groupby_state"
+                    context="{'group_by': 'state'}"
+                />
+                <filter
+                    string="User"
+                    name="groupby_user"
+                    context="{'group_by': 'user_id'}"
+                />
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="mail_server_manager_action_mail_account" model="ir.actions.act_window">
+        <field name="name">Mail Accounts</field>
+        <field name="res_model">mail.server.account</field>
+        <field name="view_mode">list,form</field>
+        <field
+            name="search_view_id"
+            ref="mail_server_manager_view_mail_account_search"
+        />
+        <field name="context">{'search_default_active': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first mail account
+            </p>
+            <p>
+                Mail accounts created here will be automatically provisioned on the mail server.
+            </p>
+        </field>
+    </record>
+
+    <!-- Action sync -->
+    <record
+        id="mail_server_manager_action_sync_mail_accounts"
+        model="ir.actions.server"
+    >
+        <field name="name">Sync from Server</field>
+        <field name="model_id" ref="model_mail_server_account" />
+        <field name="binding_model_id" ref="model_mail_server_account" />
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="code">
+action = env['mail.server.account'].action_sync_from_server()
+        </field>
+    </record>
+
+    <!-- Action to fix all SMTP servers with owner_user_id issue -->
+    <record id="mail_server_manager_action_fix_all_smtp" model="ir.actions.server">
+        <field name="name">Fix All SMTP Owners (Odoo 19)</field>
+        <field name="model_id" ref="model_mail_server_account" />
+        <field name="binding_model_id" ref="model_mail_server_account" />
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="code">
+action = env['mail.server.account'].action_fix_all_smtp_owners()
+        </field>
+    </record>
+
+    <!-- Menu -->
+    <menuitem
+        id="mail_server_manager_menu_mail_server_root"
+        name="Mail Server"
+        parent="base.menu_administration"
+        sequence="50"
+    />
+    <menuitem
+        id="mail_server_manager_menu_mail_account"
+        name="Mail Accounts"
+        parent="mail_server_manager_menu_mail_server_root"
+        action="mail_server_manager_action_mail_account"
+        sequence="10"
+    />
+</odoo>
