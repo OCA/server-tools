@@ -13,4 +13,5 @@
     "depends": ["base"],
     "external_dependencies": {"python": ["astor"]},
     "demo": ["demo/ir_ui_view.xml"],
+    "maintainers": ["hbrunn"],
 }

@@ -10,7 +10,8 @@ import re
 import astor
 from lxml import etree
 
-from odoo import api, models
+from odoo import _, api, models
+from odoo.exceptions import ValidationError
 from odoo.osv import expression
 
 
@@ -87,6 +88,85 @@ class IrUiView(models.Model):
         if hasattr(self, "inheritance_handler_%s" % node.tag):
             handler = getattr(self, "inheritance_handler_%s" % node.tag)
         return handler
+
+    @api.model
+    def inheritance_handler_wraptext(self, source, specs):
+        """Implement wraptext inheritance spec
+
+        .. code-block:: xml
+
+            <wraptext expr="//some/node" position="text" element="span" />
+
+        Which transforms xml like
+
+        .. code-block:: xml
+
+            <some>
+                <node>
+                    plain text
+                    <other_node />
+                </node>
+            </some>
+
+        to
+
+        .. code-block:: xml
+
+            <some>
+                <node>
+                    <span>plain text</span>
+                    <other_node />
+                </node>
+            </some>
+
+        """
+        if len(specs):
+            raise ValidationError(_("wraptext elements cannot have children"))
+
+        expression = specs.attrib.get("expr")
+        found = source.xpath(specs.attrib["expr"])
+        if not found:
+            raise ValidationError(
+                _("wraptext: nothing found for expression %r", expression)
+            )
+
+        found = found[0]
+        text_position = specs.attrib.get("position", "text")
+        if text_position not in ("text", "tail"):
+            raise ValidationError(
+                _("wraptext: the only valid positions are 'text' or 'tail'")
+            )
+
+        wrapped = etree.Element(specs.attrib.get("element", "t"))
+        wrapped.text = getattr(found, text_position)
+        setattr(found, text_position, None)
+
+        if self.env.context.get("edit_translations") and not wrapped.text:
+            # translation might have wrapped the text already in a <span> element
+            # we wrap this element so that subsequent view manipulations find
+            # the wrapped element at the same position in the tree it would be at
+            # without translation
+            next_sibling = found.getnext()
+
+            if (
+                text_position == "text"
+                and len(found)
+                and found[0].attrib.get("data-oe-translation-state")
+            ):
+                wrapped.append(found[0])
+            elif (
+                text_position == "tail"
+                and next_sibling is not None
+                and next_sibling.attrib.get("data-oe-translation-state")
+            ):
+                wrapped.append(next_sibling)
+
+        if text_position == "text":
+            found.insert(0, wrapped)
+        elif text_position == "tail":
+            found.addnext(wrapped)
+
+        return source
 
     @api.model
     def _get_inheritance_handler_attributes(self, node):

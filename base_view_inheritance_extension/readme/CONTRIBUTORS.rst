@@ -1,4 +1,4 @@
-* Holger Brunn <hbrunn@therp.nl>
+* Holger Brunn <mail@hunki-enterprises.com>
 * Ronald Portier <rportier@therp.nl>
 * `Tecnativa <https://www.tecnativa.com>`_:
 
