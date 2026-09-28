@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="remote_odoo_match_config_view_list" model="ir.ui.view">
+        <field name="name">remote.odoo.match.config.list</field>
+        <field name="model">remote.odoo.match.config</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="model_id" />
+                <field name="model_name" />
+                <field name="operation" />
+                <field name="use_external_id" />
+                <field name="recursive_match" />
+                <field name="match_field_ids" widget="many2many_tags" />
+            </list>
+        </field>
+    </record>
+
+    <record id="remote_odoo_match_config_view_form" model="ir.ui.view">
+        <field name="name">remote.odoo.match.config.form</field>
+        <field name="model">remote.odoo.match.config</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field
+                                name="model_id"
+                                options="{'no_create': True, 'no_open': True}"
+                            />
+                            <field name="model_name" invisible="1" />
+                            <field name="operation" />
+                        </group>
+                        <group>
+                            <field name="use_external_id" />
+                            <field name="recursive_match" />
+                            <field name="match_strategy" />
+                            <field name="action_id" readonly="1" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Match Fields" name="match_fields">
+                            <field
+                                name="match_field_ids"
+                                widget="many2many_tags"
+                                options="{'no_create': True}"
+                            />
+                            <p class="text-muted">
+                                Fields used to look up the remote record when
+                                no External ID match is available.
+                            </p>
+                        </page>
+                        <page string="Create Fields" name="export_fields">
+                            <field
+                                name="export_field_ids"
+                                widget="many2many_tags"
+                                options="{'no_create': True}"
+                            />
+                            <p class="text-muted">
+                                Fields sent when CREATING the remote record.
+                                Leave empty to send every stored writable
+                                scalar / many2one field of the model.
+                            </p>
+                        </page>
+                        <page string="Update Fields" name="update_fields">
+                            <field
+                                name="update_field_ids"
+                                widget="many2many_tags"
+                                options="{'no_create': True}"
+                            />
+                            <p class="text-muted">
+                                Fields sent when UPDATING an existing remote
+                                record. Leave empty to reuse the create field
+                                set.
+                            </p>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="remote_odoo_match_config_action" model="ir.actions.act_window">
+        <field name="name">Remote Export Configuration</field>
+        <field name="res_model">remote.odoo.match.config</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

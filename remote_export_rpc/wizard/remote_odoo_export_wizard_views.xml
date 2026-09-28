@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="remote_odoo_export_wizard_view_form" model="ir.ui.view">
+        <field name="name">remote.odoo.export.wizard.form</field>
+        <field name="model">remote.odoo.export.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Remote Export">
+                <sheet>
+                    <group>
+                        <field name="model_name" readonly="1" />
+                        <field name="record_count" readonly="1" />
+                        <field name="match_config_id" readonly="1" />
+                        <field name="record_ids_str" invisible="1" />
+                    </group>
+                    <group string="Remote instances">
+                        <field
+                            name="instance_ids"
+                            widget="many2many_tags"
+                            nolabel="1"
+                            colspan="2"
+                        />
+                    </group>
+                    <group string="Operation">
+                        <field name="operation" />
+                    </group>
+                    <group string="Match settings">
+                        <field name="use_external_id" />
+                        <field name="recursive_match" />
+                        <field name="match_strategy" />
+                        <field
+                            name="override_match_field_ids"
+                            widget="many2many_tags"
+                            options="{'no_create': True}"
+                        />
+                    </group>
+                    <group string="Result" invisible="not result_text">
+                        <field name="result_text" nolabel="1" readonly="1" />
+                    </group>
+                </sheet>
+                <footer>
+                    <button
+                        name="action_export"
+                        string="Export"
+                        type="object"
+                        class="btn-primary"
+                    />
+                    <button string="Close" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>
