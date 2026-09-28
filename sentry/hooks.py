@@ -6,7 +6,6 @@ import warnings
 from collections import abc
 
 import odoo.http
-from odoo.service.server import server
 from odoo.tools import config as odoo_config
 
 from . import const
@@ -77,6 +76,16 @@ def get_odoo_commit(odoo_dir):
         _logger.debug("Odoo directory: '%s' not a valid git repository", odoo_dir)
 
 
+class OdooSentryWsgiMiddleware(SentryWsgiMiddleware):
+    """
+    Odoo specific middleware to forward custom application attributes to the
+    odoo application.
+    """
+
+    def __getattr__(self, item):
+        return getattr(self.app, item)
+
+
 def initialize_sentry(config):
     """Setup an instance of :class:`sentry_sdk.Client`.
     :param config: Sentry configuration
@@ -135,12 +144,7 @@ def initialize_sentry(config):
         for item in exclude_loggers:
             ignore_logger(item)
 
-    # The server app is already registered so patch it here
-    if server:
-        server.app = SentryWsgiMiddleware(server.app)
-
-    # Patch the wsgi server in case of further registration
-    odoo.http.Application = SentryWsgiMiddleware(odoo.http.Application)
+    odoo.http.root = OdooSentryWsgiMiddleware(odoo.http.root)
 
     with sentry_sdk.push_scope() as scope:
         scope.set_extra("debug", False)
