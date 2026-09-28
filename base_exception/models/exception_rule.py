@@ -5,13 +5,11 @@
 # Copyright 2023 ACSONE SA/NV (http://acsone.eu)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-import logging
+from jinja2 import Template
 
 from odoo import _, api, fields, models, tools
-from odoo.exceptions import ValidationError
+from odoo.exceptions import UserError, ValidationError
 from odoo.tools.safe_eval import safe_eval
-
-_logger = logging.getLogger(__name__)
 
 
 class ExceptionRule(models.Model):
@@ -20,7 +18,24 @@ class ExceptionRule(models.Model):
     _order = "active desc, sequence asc"
 
     name = fields.Char("Exception Name", required=True, translate=True)
-    description = fields.Text(translate=True)
+    description = fields.Text(
+        "Description",
+        translate=True,
+        help="You can use placeholders here. Check the help text"
+        " on field Description Text Type for more information",
+    )
+    description_text_type = fields.Selection(
+        [
+            ("plain", "Text"),
+            ("jinja", "Jinja"),
+        ],
+        default="plain",
+        required=True,
+        help="Define how the text in the description field shall be handled.\n"
+        "Text: Use the description as it is without formatting it\n"
+        "Jinja: The description is parsed. {{object.field}} syntax can be used to"
+        "to define dynamic values in the description",
+    )
     sequence = fields.Integer(help="Gives the sequence order when applying the test")
     model = fields.Selection(selection=[], string="Apply on", required=True)
 
@@ -71,6 +86,53 @@ class ExceptionRule(models.Model):
         self.ensure_one()
         return safe_eval(self.domain)
 
+    def description_needs_rendering(self):
+        self.ensure_one()
+
+        return self.description and self.description_text_type != "plain"
+
+    def render_description(self, record):
+        self.ensure_one()
+
+        if not self.description:
+            return ""
+
+        if self.description_text_type == "plain":
+            return self.description
+        elif self.description_text_type == "jinja":
+            return self._render_description_by_jinja(record)
+
+    def _render_description_by_jinja(self, record):
+        self.ensure_one()
+
+        res = None
+        try:
+            res = Template(self.description).render(
+                **self._render_description_context(record)
+            )
+        except Exception as e:
+            raise UserError(
+                _(
+                    "Exception rule '%(rule)s' has an invalid Jinja description.\n"
+                    "The following error was raised while rendering it:\n\n %(error)s",
+                    rule=self.name,
+                    error=e,
+                )
+            )
+
+        return res
+
+    def _render_description_context(self, record):
+        self.ensure_one()
+
+        return {
+            "exception": self,
+            # Same as for the exception code context but no "self".
+            # self is in use by Jinja
+            "object": record,
+            "obj": record,
+        }
+
     def _get_rules_info_for_domain(self, domain):
         """returns the rules that match the domain
 
@@ -110,6 +172,7 @@ class ExceptionRule(models.Model):
             "id": self.id,
             "name": self.name,
             "description": self.description,
+            "description_text_type": self.description_text_type,
             "sequence": self.sequence,
             "model": self.model,
             "exception_type": self.exception_type,
