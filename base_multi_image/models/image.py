@@ -62,7 +62,7 @@ class Image(models.Model):
     @tools.ormcache("self")
     def _selection_owner_ref_id(self):
         """Allow any model; after all, this field is readonly."""
-        return [(r.model, r.name) for r in self.env["ir.model"].search([])]
+        return [(r.model, r.name) for r in self.env["ir.model"].sudo().search([])]
 
     @api.depends("owner_model", "owner_id")
     def _compute_owner_ref_id(self):
