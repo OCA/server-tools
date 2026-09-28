@@ -1,0 +1,420 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* server_action_input_box
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0-20241112\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-05-17 18:01+0000\n"
+"PO-Revision-Date: 2025-05-17 18:01+0000\n"
+"Last-Translator: jesanmor with Chatgpt\n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: server_action_input_box
+#. odoo-javascript
+#: code:addons/server_action_input_box/static/src/js/show_server_action_input_box.js:0
+msgid " records"
+msgstr " registros"
+
+#. module: server_action_input_box
+#. odoo-python
+#: code:addons/server_action_input_box/models/server_action_input_box.py:0
+msgid ""
+"# ---Predefined Variables--- #\n"
+"# All variables allowed in a server action such as:\n"
+"#  - env: Odoo environment in which the action is triggered.\n"
+"#  - model: Odoo model of the record on which the action is triggered.\n"
+"#  - record: record on which the action is triggered.\n"
+"#  - records: set of records on which the action is triggered.\n"
+"#  - time, datetime, dateutil, timezone: useful Python libraries.\n"
+"#  - log(message, level='info'): logging function to log debugging information in the ir.logging table.\n"
+"#  - UserError: Exception warning for use with raise.\n"
+"#  - To return an action, assign: action = {...}\n"
+"# Variable names: configured in the 'Unique Name' field.\n"
+"#  - These will contain the value entered in the input box.\n"
+"#  - Indicates the data type: 'string', 'int', 'float' 'boolean'.\n"
+"#  - Input lists, tuples, sets, and dictionaries as 'string' and perform the conversion in your code.\n"
+"\n"
+"\n"
+"\n"
+msgstr ""
+"# ---Variables Predefinidas--- #\n"
+"# Todas las variables permitidas en una acción de servidor, como:\n"
+"#  - env: Entorno de Odoo en el que se desencadena la acción.\n"
+"#  - model: Modelo de Odoo del registro en el que se desencadena la acción.\n"
+"#  - record: Registro en el que se desencadena la acción.\n"
+"#  - records: Conjunto de registros en los que se desencadena la acción.\n"
+"#  - time, datetime, dateutil, timezone: Bibliotecas de Python útiles.\n"
+"#  - log(message, level='info'): Función de registro para guardar información de depuración en la tabla ir.logging.\n"
+"#  - UserError: Advertencia de excepción para usar con raise.\n"
+"#  - Para devolver una acción, asignar: action = {...}\n"
+"# Nombres de variables: configurados en el campo 'Nombre Único'.\n"
+"#  - Estos contendrán el valor introducido en la caja de entrada.\n"
+"#  - Indica el tipo de datos: 'string', 'int', 'float', 'boolean'.\n"
+"#  - Introduce listas, tuplas, conjuntos y diccionarios como 'string' y realiza la conversión en tu código.\n"
+"\n"
+"\n"
+"\n"
+
+#. module: server_action_input_box
+#. odoo-python
+#: code:addons/server_action_input_box/models/server_action_input_box_line.py:0
+msgid ""
+"'%s' is not a valid parameter name.                         Remove spaces "
+"and special characters or numbers at the beginning."
+msgstr ""
+"'%s' no es un nombre de parámetro válido. Elimina los espacios, caracteres "
+"especiales o números al inicio."
+
+#. module: server_action_input_box
+#. odoo-python
+#: code:addons/server_action_input_box/models/server_action_input_box_line.py:0
+msgid ""
+"'%s' is not a valid parameter name.                     Remove spaces and "
+"special characters or numbers at the beginning."
+msgstr ""
+"'%s' no es un nombre de parámetro válido. Elimina los espacios, caracteres "
+"especiales o números al inicio."
+
+#. module: server_action_input_box
+#: model_terms:ir.ui.view,arch_db:server_action_input_box.server_action_input_box_view_form
+msgid ""
+"<code>UserError</code>: Exception warning for use with <code>raise</code>."
+msgstr ""
+"<code>UserError</code>: Advertencia de excepción para usar con <code>raise</code>."
+
+#. module: server_action_input_box
+#: model_terms:ir.ui.view,arch_db:server_action_input_box.server_action_input_box_view_form
+msgid "<code>Variable names</code>: configured in the 'Unique Name' field."
+msgstr ""
+"<code>Nombres de variables</code>: configurados en el campo 'Nombre Único'."
+
+#. module: server_action_input_box
+#: model_terms:ir.ui.view,arch_db:server_action_input_box.server_action_input_box_view_form
+msgid "<code>env</code>: Odoo environment in which the action is triggered."
+msgstr ""
+"<code>env</code>: Entorno de Odoo en el que se desencadena la acción."
+
+#. module: server_action_input_box
+#: model_terms:ir.ui.view,arch_db:server_action_input_box.server_action_input_box_view_form
+msgid ""
+"<code>log(message, level='info')</code>: logging function to log debugging "
+"information in the <code>ir.logging</code> table."
+msgstr ""
+"<code>log(message, level='info')</code>: función de registro para guardar información de depuración en la tabla <code>ir.logging</code>."
+
+#. module: server_action_input_box
+#: model_terms:ir.ui.view,arch_db:server_action_input_box.server_action_input_box_view_form
+msgid ""
+"<code>model</code>: Odoo model of the record on which the action is "
+"triggered."
+msgstr ""
+"<code>model</code>: Modelo de Odoo del registro en el que se desencadena la acción."
+
+#. module: server_action_input_box
+#: model_terms:ir.ui.view,arch_db:server_action_input_box.server_action_input_box_view_form
+msgid "<code>record</code>: record on which the action is triggered."
+msgstr ""
+"<code>record</code>: Registro en el que se desencadena la acción."
+
+#. module: server_action_input_box
+#: model_terms:ir.ui.view,arch_db:server_action_input_box.server_action_input_box_view_form
+msgid "<code>records</code>: set of records on which the action is triggered."
+msgstr ""
+"<code>records</code>: Conjunto de registros en los que se desencadena la acción."
+
+#. module: server_action_input_box
+#: model_terms:ir.ui.view,arch_db:server_action_input_box.server_action_input_box_view_form
+msgid ""
+"<code>time, datetime, dateutil, timezone</code>: useful Python libraries."
+msgstr ""
+"<code>time, datetime, dateutil, timezone</code>: Bibliotecas de Python útiles."
+
+#. module: server_action_input_box
+#. odoo-javascript
+#: code:addons/server_action_input_box/static/src/xml/show_server_action_input_box.xml:0
+msgid "Accept"
+msgstr "Aceptar"
+
+#. module: server_action_input_box
+#: model:ir.actions.act_window,name:server_action_input_box.server_action_input_box_action
+#: model:ir.ui.menu,name:server_action_input_box.menu_server_action_input_box
+msgid "Actions with Parameters"
+msgstr "Acciones con Parámetros"
+
+#. module: server_action_input_box
+#: model:ir.model.fields,field_description:server_action_input_box.field_server_action_input_box__active_action
+#: model_terms:ir.ui.view,arch_db:server_action_input_box.server_action_input_box_view_search
+msgid "Active"
+msgstr "Activo"
+
+#. module: server_action_input_box
+#: model:ir.model.fields,field_description:server_action_input_box.field_server_action_input_box__cancel_button
+msgid "Add cancel button"
+msgstr "Añadir botón de cancelar"
+
+#. module: server_action_input_box
+#: model_terms:ir.ui.view,arch_db:server_action_input_box.server_action_input_box_view_form
+msgid "All variables allowed in a server action such as:"
+msgstr "Todas las variables permitidas en una acción de servidor, como:"
+
+#. module: server_action_input_box
+#: model:ir.model.fields,field_description:server_action_input_box.field_server_action_input_box__apply_to_linked_field_lines
+msgid "Apply to linked field lines"
+msgstr "Aplicar a las líneas de campo vinculadas"
+
+#. module: server_action_input_box
+#: model:ir.model.fields,field_description:server_action_input_box.field_server_action_input_box__show_confirmation_dialog
+msgid "Ask for confirmation"
+msgstr "Solicitar confirmación"
+
+#. module: server_action_input_box
+#: model:ir.model.fields.selection,name:server_action_input_box.selection__server_action_input_box_line__data_type__bool
+msgid "Boolean"
+msgstr "Booleano"
+
+#. module: server_action_input_box
+#. odoo-javascript
+#: code:addons/server_action_input_box/static/src/xml/show_server_action_input_box.xml:0
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: server_action_input_box
+#: model_terms:ir.ui.view,arch_db:server_action_input_box.server_action_input_box_view_form
+msgid "Code"
+msgstr "Código"
+
+#. module: server_action_input_box
+#: model:ir.model.fields,field_description:server_action_input_box.field_server_action_input_box__create_uid
+#: model:ir.model.fields,field_description:server_action_input_box.field_server_action_input_box_line__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: server_action_input_box
+#: model:ir.model.fields,field_description:server_action_input_box.field_server_action_input_box__create_date
+#: model:ir.model.fields,field_description:server_action_input_box.field_server_action_input_box_line__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: server_action_input_box
+#: model:ir.model.fields,field_description:server_action_input_box.field_server_action_input_box_line__data_type
+msgid "Data Type"
+msgstr "Tipo de Datos"
+
+#. module: server_action_input_box
+#: model:ir.model.fields,field_description:server_action_input_box.field_server_action_input_box__display_name
+#: model:ir.model.fields,field_description:server_action_input_box.field_server_action_input_box_line__display_name
+msgid "Display Name"
+msgstr "Nombre de Visualización"
+
+#. module: server_action_input_box
+#: model:ir.model.fields.selection,name:server_action_input_box.selection__server_action_input_box_line__data_type__float
+msgid "Floating Point"
+msgstr "Punto Flotante"
+
+#. module: server_action_input_box
+#: model_terms:ir.ui.view,arch_db:server_action_input_box.server_action_input_box_view_form
+msgid "Help"
+msgstr "Ayuda"
+
+#. module: server_action_input_box
+#: model:ir.model.fields,field_description:server_action_input_box.field_server_action_input_box__id
+#: model:ir.model.fields,field_description:server_action_input_box.field_server_action_input_box_line__id
+msgid "ID"
+msgstr "ID"
+
+#. module: server_action_input_box
+#: model_terms:ir.ui.view,arch_db:server_action_input_box.server_action_input_box_view_form
+msgid "Indicates the data type: 'string', 'int', 'float' 'boolean'."
+msgstr "Indica el tipo de datos: 'string', 'int', 'float', 'boolean'."
+
+#. module: server_action_input_box
+#. odoo-javascript
+#: code:addons/server_action_input_box/static/src/xml/show_server_action_input_box.xml:0
+msgid "Individual Editing"
+msgstr "Edición Individual"
+
+#. module: server_action_input_box
+#: model_terms:ir.ui.view,arch_db:server_action_input_box.server_action_input_box_view_form
+msgid ""
+"Input lists, tuples, sets, and dictionaries as 'string' and perform the "
+"conversion in your code."
+msgstr ""
+"Introduce listas, tuplas, conjuntos y diccionarios como 'string' y realiza la conversión en tu código."
+
+#. module: server_action_input_box
+#: model:ir.model.fields.selection,name:server_action_input_box.selection__server_action_input_box_line__data_type__int
+msgid "Integer"
+msgstr "Entero"
+
+#. module: server_action_input_box
+#: model:ir.model.fields,field_description:server_action_input_box.field_server_action_input_box__write_uid
+#: model:ir.model.fields,field_description:server_action_input_box.field_server_action_input_box_line__write_uid
+msgid "Last Updated by"
+msgstr "Última Actualización por"
+
+#. module: server_action_input_box
+#: model:ir.model.fields,field_description:server_action_input_box.field_server_action_input_box__write_date
+#: model:ir.model.fields,field_description:server_action_input_box.field_server_action_input_box_line__write_date
+msgid "Last Updated on"
+msgstr "Última Actualización el"
+
+#. module: server_action_input_box
+#: model:ir.model.fields,field_description:server_action_input_box.field_server_action_input_box__linked_field_lines_id
+#: model_terms:ir.ui.view,arch_db:server_action_input_box.server_action_input_box_view_list
+#: model_terms:ir.ui.view,arch_db:server_action_input_box.server_action_input_box_view_search
+msgid "Linked field"
+msgstr "Campo vinculado"
+
+#. module: server_action_input_box
+#: model:ir.model.fields,field_description:server_action_input_box.field_server_action_input_box__model_id
+#: model_terms:ir.ui.view,arch_db:server_action_input_box.server_action_input_box_view_search
+msgid "Model"
+msgstr "Modelo"
+
+#. module: server_action_input_box
+#. odoo-javascript
+#: code:addons/server_action_input_box/static/src/js/show_server_action_input_box.js:0
+msgid "Modifying record: "
+msgstr "Modificando registro: "
+
+#. module: server_action_input_box
+#. odoo-javascript
+#: code:addons/server_action_input_box/static/src/js/show_server_action_input_box.js:0
+msgid "Modifying: "
+msgstr "Modificando: "
+
+#. module: server_action_input_box
+#: model:ir.model.fields,field_description:server_action_input_box.field_server_action_input_box__name
+#: model_terms:ir.ui.view,arch_db:server_action_input_box.server_action_input_box_view_form
+#: model_terms:ir.ui.view,arch_db:server_action_input_box.server_action_input_box_view_search
+msgid "Name"
+msgstr "Nombre"
+
+#. module: server_action_input_box
+#: model_terms:ir.actions.act_window,help:server_action_input_box.server_action_input_box_action
+msgid "No server action defined. Click here to define one."
+msgstr "No se ha definido ninguna acción de servidor. Haz clic aquí para definir una."
+
+#. module: server_action_input_box
+#: model:ir.model.fields,field_description:server_action_input_box.field_server_action_input_box_line__parameter_label
+msgid "Parameter Label"
+msgstr "Etiqueta del Parámetro"
+
+#. module: server_action_input_box
+#: model:ir.model.fields,field_description:server_action_input_box.field_server_action_input_box__server_action_input_box_line_ids
+msgid "Parameter lines"
+msgstr "Líneas de parámetros"
+
+#. module: server_action_input_box
+#: model_terms:ir.ui.view,arch_db:server_action_input_box.server_action_input_box_view_form
+msgid "Parameters"
+msgstr "Parámetros"
+
+#. module: server_action_input_box
+#: model_terms:ir.ui.view,arch_db:server_action_input_box.server_action_input_box_view_form
+msgid "Predefined Variables"
+msgstr "Variables Predefinidas"
+
+#. module: server_action_input_box
+#: model:ir.model.fields,field_description:server_action_input_box.field_server_action_input_box__code
+msgid "Python code"
+msgstr "Código Python"
+
+#. module: server_action_input_box
+#: model_terms:ir.ui.view,arch_db:server_action_input_box.server_action_input_box_view_search
+msgid "Search Actions"
+msgstr "Buscar Acciones"
+
+#. module: server_action_input_box
+#: model:ir.model,name:server_action_input_box.model_ir_actions_server
+msgid "Server Action"
+msgstr "Acción de Servidor"
+
+#. module: server_action_input_box
+#: model:ir.model,name:server_action_input_box.model_server_action_input_box
+msgid "Server Action Input Box"
+msgstr "Caja de Entrada de Acción de Servidor"
+
+#. module: server_action_input_box
+#: model:ir.model,name:server_action_input_box.model_server_action_input_box_line
+msgid "Server Action Input Box Line"
+msgstr "Línea de Caja de Entrada de Acción de Servidor"
+
+#. module: server_action_input_box
+#: model:ir.model.fields,field_description:server_action_input_box.field_server_action_input_box__ir_action_server_id
+msgid "Server action"
+msgstr "Acción de servidor"
+
+#. module: server_action_input_box
+#: model:ir.model.fields,field_description:server_action_input_box.field_server_action_input_box_line__server_action_input_box_id
+msgid "Server action input box"
+msgstr "Caja de entrada de acción de servidor"
+
+#. module: server_action_input_box
+#: model:ir.model.fields.selection,name:server_action_input_box.selection__server_action_input_box_line__data_type__string
+msgid "Text"
+msgstr "Texto"
+
+#. module: server_action_input_box
+#. odoo-python
+#: code:addons/server_action_input_box/models/server_action_input_box.py:0
+msgid ""
+"The value '%(param_name)s' for '%(name)s' is not of type '%(data_type)s'."
+msgstr ""
+"El valor '%(param_name)s' para '%(name)s' no es del tipo '%(data_type)s'."
+
+#. module: server_action_input_box
+#: model_terms:ir.ui.view,arch_db:server_action_input_box.server_action_input_box_view_form
+msgid "These will contain the value entered in the input box."
+msgstr "Estos contendrán el valor introducido en la caja de entrada."
+
+#. module: server_action_input_box
+#: model_terms:ir.ui.view,arch_db:server_action_input_box.server_action_input_box_view_form
+msgid "To return an action, assign: <code>action = {...}</code>."
+msgstr "Para devolver una acción, asignar: <code>action = {...}</code>."
+
+#. module: server_action_input_box
+#: model:ir.model.fields,field_description:server_action_input_box.field_server_action_input_box_line__name
+msgid "Unique Name"
+msgstr "Nombre Único"
+
+#. module: server_action_input_box
+#. odoo-javascript
+#: code:addons/server_action_input_box/static/src/js/show_server_action_input_box.js:0
+msgid "Write Confirmation"
+msgstr "Confirmación de Escritura"
+
+#. module: server_action_input_box
+#. odoo-javascript
+#: code:addons/server_action_input_box/static/src/js/show_server_action_input_box.js:0
+msgid "You are going to modify records"
+msgstr "Vas a modificar registros"
+
+#. module: server_action_input_box
+#. odoo-python
+#: code:addons/server_action_input_box/models/ir_action_server.py:0
+msgid "You are not allowed to delete these protected records:\n"
+msgstr "No tienes permiso para eliminar estos registros protegidos:\n"
+
+#. module: base
+#: model:ir.module.module,summary:base.module_server_action_input_box
+msgid ""
+"Shows a parameter input box in a server action under the 'Action' menu of the model."
+msgstr ""
+"Muestra una caja de entrada de parámetros en una acción de servidor bajo el menú 'Acción' del modelo."
+
+#. module: base
+#: model:ir.module.module,description:base.module_server_action_input_box
+msgid ""
+"Server actions provide the ability to perform operations both on an individual and mass level on the records of a model. In certain cases, it is necessary to adjust certain parameters of these actions as per the circumstances. By incorporating an input box provided by this module, we have the flexibility to specify these parameters on the fly, without the need to directly modify the server action."
+"Although all code configuration is done through this module, its execution takes place within a server action, ensuring the inherent security and reliability of the Odoo environment."
+msgstr ""
+"Las acciones de servidor permiten realizar operaciones tanto a nivel individual como masivo en los registros de un modelo. En ciertos casos, es necesario ajustar ciertos parámetros de estas acciones según las circunstancias. Al incorporar una caja de entrada proporcionada por este módulo, tenemos la flexibilidad de especificar estos parámetros sobre la marcha, sin necesidad de modificar directamente la acción de servidor."
+"Aunque toda la configuración del código se realiza a través de este módulo, su ejecución tiene lugar dentro de una acción de servidor, garantizando la seguridad y fiabilidad inherentes del entorno de Odoo."

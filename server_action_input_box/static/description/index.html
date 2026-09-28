@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Server Action Input Box</title>
+</head>
+<body>
+    <h1>Server Action Input Box</h1>
+
+    <p>
+        <img src="https://img.shields.io/badge/maturity-Beta-yellow.png" alt="Beta">
+        <img src="https://img.shields.io/badge/licence-AGPL--3-blue.png" alt="License: AGPL-3">
+        <img src="https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github" alt="OCA/server-tools">
+        <img src="https://img.shields.io/badge/Translate-Chatgpt-F47D42.png" alt="Translate me on Chatgpt">
+    </p>
+    
+    <h2>Description</h2>
+    <p>
+      Server actions provide us with the capability to perform operations on records of a model, both individually and in bulk. 
+      In certain cases, it is necessary to adjust specific parameters of these actions based on circumstances. Through the incorporation 
+      of an input box provided by this module, we have the flexibility to specify these parameters on the fly, without the need to 
+      directly modify the server action.
+    </p>
+    <p>
+      Although all code configuration is done through this module, its execution takes place within a server action, ensuring the 
+      security and reliability inherent in the Odoo environment.
+    </p>
+    <p>
+      Developed by <a href="https://github.com/jesanmor">Jesanmor</a>.
+    </p>
+    
+    <h2>Table of contents</h2>
+    <ul>
+      <li><a href="#key-features">Key Features</a></li>
+      <li><a href="#installation">Installation</a></li>
+      <li><a href="#usage-screenshots">Usage Screenshots</a></li>
+      <li><a href="#license">License</a></li>
+      <li><a href="#credits">Credits</a></li>
+    </ul>
+    
+    <h2 id="key-features">Key Features</h2>
+    <ul>
+      <li><strong>Perfect Integration:</strong> Seamlessly integrates with Odoo Server Actions via “Actions with Parameters” in the “Technical” menu.</li>
+      <li><strong>User-Friendly Interface:</strong> Configure target models, requested parameters, and Python code using Server Actions environment variables and custom parameters.</li>
+      <li><strong>Flexible Configuration:</strong> Supports bulk or individual execution, choosing one2many fields for mass processing.</li>
+      <li><strong>Security:</strong> Executes inside a Server Action for maximum safety. Includes optional confirmation prompts.</li>
+    </ul>
+    
+    <h2 id="installation">Installation</h2>
+    <ol>
+      <li>Clone the module from <a href="https://github.com/OCA/server-tools/tree/18.0/server_action_input_box">OCA/server-tools</a>.</li>
+      <li>Install the module in your Odoo instance.</li>
+      <li>Configure the module according to your business needs.</li>
+    </ol>
+    
+    <div class="section text-center">
+      <h2 id="usage-screenshots">Usage Screenshots</h2>
+
+      <div class="screenshot mt-4 mb5 py-4">
+        <div class="screenshot-title mb-2 fw-bold">Access the application from the menu: Technical > Actions > Actions with parameters</div>
+        <img class="border border-dark w-100 shadow" style="max-width:800px;" src="/quantsmo_action_input_box/static/src/img/tree_view.jpg" alt="Access the application from the menu">
+      </div>
+
+      <div class="screenshot mt-4 mb5 py-4">
+        <div class="screenshot-title mb-2 fw-bold">Example of action to change the text case</div>
+        <img class="border border-dark w-100 shadow" style="max-width:800px;" src="/quantsmo_action_input_box/static/src/img/use_case_b_config.jpg" alt="Example of action to change the text case">
+      </div>
+
+      <div class="screenshot mt-4 mb5 py-4">
+        <div class="screenshot-title mb-2 fw-bold">Access the action from the model menu</div>
+        <img class="border border-dark w-100 shadow" style="max-width:800px;" src="/quantsmo_action_input_box/static/src/img/action_menu.jpg" alt="Access the action from the model menu">
+      </div>
+
+      <div class="screenshot mt-4 mb5 py-4">
+        <div class="screenshot-title mb-2 fw-bold">View of the configured action input box</div>
+        <img class="border border-dark w-100 shadow" style="max-width:800px;" src="/quantsmo_action_input_box/static/src/img/use_case_b_result.jpg" alt="Configured action input box">
+      </div>
+
+      <div class="screenshot mt-4 mb5 py-4">
+        <div class="screenshot-title mb-2 fw-bold">Optionally you can activate write confirmation</div>
+        <img class="border border-dark w-100 shadow" style="max-width:800px;" src="/quantsmo_action_input_box/static/src/img/write_confirmation_result.jpg" alt="Write confirmation enabled">
+      </div>
+
+      <div class="screenshot mt-4 mb5 py-4">
+        <div class="screenshot-title mb-2 fw-bold">Apply to records from a One2many field</div>
+        <img class="border border-dark w-100 shadow" style="max-width:800px;" src="/quantsmo_action_input_box/static/src/img/use_case_a_config.jpg" alt="Set an action to apply to records in a one2many field">
+      </div>
+
+      <div class="screenshot mt-4 mb5 py-4">
+        <div class="screenshot-title mb-2 fw-bold">View of the configured action input box (One2many use case)</div>
+        <img class="border border-dark w-100 shadow" style="max-width:800px;" src="/quantsmo_action_input_box/static/src/img/use_case_a_result.jpg" alt="Input box for one2many records">
+      </div>
+    </div>
+    
+    <h2 id="license">License</h2>
+    <p>
+      "Server Action Input Box" is licensed under the 
+      <a href="http://www.gnu.org/licenses/agpl-3.0-standalone.html">GNU AFFERO GENERAL PUBLIC LICENSE v3.0</a>.
+    </p>
+    
+    <h2 id="credits">Credits</h2>
+    
+    <h4>Authors</h4>
+    <ul>
+      <li>Jesanmor</li>
+    </ul>
+    
+    <h4>Contributors</h4>
+    <ul>
+      <li>Jesús Sánchez &lt;jesanmor.dev@gmail.com&gt;</li>
+    </ul>
+    
+    <h4>Maintainers</h4>
+    <p>This module is maintained by the OCA.</p>
+    <a href="https://odoo-community.org">
+      <img src="https://odoo-community.org/logo.png" alt="Odoo Community Association" />
+    </a>
+    <p>
+      The Odoo Community Association (OCA) is a nonprofit organization whose mission is to support the collaborative development of 
+      Odoo features and promote its widespread use.
+    </p>
+    
+    <p>This module is part of the <a href="https://github.com/OCA/server-tools/tree/18.0/server_action_input_box">OCA/server-tools</a> project on GitHub.</p>
+    <p>You are welcome to contribute. Learn how at <a href="https://odoo-community.org/page/Contribute">OCA Contribution Guide</a>.</p>
+    
+</body>
+</html>
