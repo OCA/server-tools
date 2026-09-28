@@ -10,7 +10,7 @@ and external backups should be kept, automatically!
 Want to go even further and write your backups to an external server?
 You can with this module! Specify the credentials to the server, specify
 a path and everything will be backed up automatically. This is done
-through an SSH (encrypted) tunnel, thanks to pysftp, so your data is
+through an SSH (encrypted) tunnel, thanks to Paramiko, so your data is
 safe!
 
 ## Test connection
