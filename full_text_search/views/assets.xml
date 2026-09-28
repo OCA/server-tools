@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright 2026 Akretion (http://www.akretion.com).
+    @author Florian Mounier <florian.mounier@akretion.com>
+    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <template
+        id="assets_backend"
+        name="Full Text Search"
+        inherit_id="web.assets_backend"
+    >
+        <xpath expr=".">
+            <script
+                type="text/javascript"
+                src="/full_text_search/static/src/js/tsvector.js"
+            />
+        </xpath>
+    </template>
+</odoo>
