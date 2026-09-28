@@ -1,3 +1,7 @@
+.. image:: https://odoo-community.org/readme-banner-image
+   :target: https://odoo-community.org/get-involved?utm_source=readme
+   :alt: Odoo Community Association
+
 ================
 Base Fontawesome
 ================
@@ -13,7 +17,7 @@ Base Fontawesome
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/licence-LGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/license-LGPL--3-blue.png
     :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
     :alt: License: LGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github
@@ -55,6 +59,22 @@ For example, brand_icon is necessary if we are using an icon of a brand::
 
     <button brand_icon="fas fa-handshake-slash" string=" fas fa-handshake-slash"/>
 
+Icon picker widget
+~~~~~~~~~~~~~~~~~~~
+
+This module also provides a reusable ``fontawesome_picker`` field widget. Apply it
+to any ``Char`` field that stores a FontAwesome CSS class to get a searchable grid
+of the icons currently loaded, with a live preview, instead of typing the class by
+hand::
+
+    <field name="icon" widget="fontawesome_picker"/>
+
+Selecting an icon writes its full class (for example ``fa fa-shopping-cart``) into
+the field. The catalog is read at runtime from the loaded ``v4-shims`` stylesheet,
+i.e. the icons that render with the standard ``fa fa-x`` class regardless of their
+style (solid, regular or brand) and of the assets bundle they are shown in. The
+widget is meant for form views.
+
 Bug Tracker
 ===========
 
@@ -80,6 +100,7 @@ Contributors
 * Simone Orsi simone.orsi@camptocamp.com
 * Enric Tobella <etobella@creublanca.es>
 * Tony Galmiche <tony.galmiche@infosaone.com>
+* Mariano Martinez <mariano.martinez@factorlibre.com>
 
 Maintainers
 ~~~~~~~~~~~

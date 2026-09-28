@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+
+    <t t-name="base_fontawesome.FontAwesomePicker" owl="1">
+        <div class="o_field_fontawesome_picker">
+            <t t-if="props.readonly">
+                <span class="o_fa_picker_readonly">
+                    <i t-if="props.value" t-att-class="props.value" class="me-1" />
+                    <span t-esc="props.value or ''" />
+                </span>
+            </t>
+            <t t-else="">
+                <div class="o_fa_picker_control d-flex align-items-center">
+                    <button
+                        t-ref="toggle"
+                        type="button"
+                        class="btn btn-secondary o_fa_picker_toggle d-flex align-items-center"
+                        t-on-click="togglePopover"
+                    >
+                        <i t-if="props.value" t-att-class="props.value" class="me-2" />
+                        <span t-esc="props.value or placeholderLabel" />
+                    </button>
+                    <button
+                        t-if="props.value"
+                        type="button"
+                        class="btn btn-link text-danger o_fa_picker_clear"
+                        t-att-title="clearLabel"
+                        t-on-click="clear"
+                    >
+                        <i class="fa fa-times" />
+                    </button>
+                </div>
+            </t>
+        </div>
+    </t>
+
+    <t t-name="base_fontawesome.FontAwesomePickerGrid" owl="1">
+        <div class="o_fa_picker_grid_wrapper">
+            <input
+                type="text"
+                t-ref="autofocus"
+                class="form-control o_fa_picker_search"
+                t-att-placeholder="searchPlaceholder"
+                t-model="state.search"
+            />
+            <div t-if="props.empty" class="o_fa_picker_empty text-muted p-2">
+                <t t-esc="emptyLabel" />
+            </div>
+            <t t-else="">
+                <div class="o_fa_picker_grid">
+                    <button
+                        t-foreach="visibleIcons"
+                        t-as="icon"
+                        t-key="icon"
+                        type="button"
+                        class="btn o_fa_picker_item"
+                        t-att-title="icon"
+                        t-on-click="() => this.onSelect(icon)"
+                    >
+                        <i t-attf-class="fa {{icon}}" />
+                    </button>
+                </div>
+                <div t-if="hasMore" class="o_fa_picker_more text-muted small p-1">
+                    <t t-esc="moreLabel" />
+                </div>
+            </t>
+        </div>
+    </t>
+
+</templates>
