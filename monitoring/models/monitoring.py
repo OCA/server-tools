@@ -1,14 +1,18 @@
 # © 2023 initOS GmbH
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+import logging
 import uuid
 
 from odoo import _, api, fields, models
+
+_logger = logging.getLogger(__name__)
 
 
 class Monitoring(models.Model):
     _name = "monitoring"
     _description = _("Monitoring definition")
+    _inherit = ["monitoring.output.mixin"]
 
     def _get_states(self):
         return [
@@ -65,7 +69,7 @@ class Monitoring(models.Model):
     def validate(self, send_mail=False):
         self.ensure_one()
 
-        result = self.script_ids.validate(self.verbose)
+        result = self.script_ids.validate(self._use_verbose())
 
         if (
             send_mail
@@ -77,3 +81,12 @@ class Monitoring(models.Model):
             self.mail_sent = True
 
         return result
+
+    def validate_and_format(self, send_mail=False):
+        self.ensure_one()
+
+        result = self.validate(send_mail=send_mail)
+        return self.format_output(result)
+
+    def _use_verbose(self):
+        return self.output_format == "prometheus" or self.verbose
