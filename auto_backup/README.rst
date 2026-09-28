@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ====================
 Database Auto-Backup
 ====================
@@ -17,7 +13,7 @@ Database Auto-Backup
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github
@@ -74,6 +70,21 @@ a path and everything will be backed up automatically. This is done
 through an SSH (encrypted) tunnel, thanks to pysftp, so your data is
 safe!
 
+Secure SFTP connection with host key verification
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+A new optional field **Host Public Key** has been added.
+
+-  Paste the exact public key of your SFTP server (you can obtain it
+   with ``ssh-keyscan -t rsa,ecdsa,ed25519 your.sftp.server``).
+-  When filled, Odoo will **verify the server identity** and refuse the
+   connection if the key does not match → protects against
+   man-in-the-middle attacks.
+-  Leave empty → old behaviour (no host key checking, backward
+   compatible).
+
+The "Test SFTP Connection" button now also validates the host key.
+
 Test connection
 ---------------
 
@@ -108,13 +119,13 @@ manually execute the selected processes.
 Known issues / Roadmap
 ======================
 
-- On larger databases, it is possible that backups will die due to Odoo
-  server settings. In order to circumvent this without frivolously
-  changing settings, you need to run the backup from outside of the main
-  Odoo instance. How to do this (for version 9.0) was outlined in `this
-  blog
-  post <https://web.archive.org/web/20240805225230/https://blog.laslabs.com/2016/10/running-python-scripts-within-odoos-environment/>`__.
-- Backups won't work if list_db=False is configured in the instance.
+-  On larger databases, it is possible that backups will die due to Odoo
+   server settings. In order to circumvent this without frivolously
+   changing settings, you need to run the backup from outside of the
+   main Odoo instance. How to do this (for version 9.0) was outlined in
+   `this blog
+   post <https://web.archive.org/web/20240805225230/https://blog.laslabs.com/2016/10/running-python-scripts-within-odoos-environment/>`__.
+-  Backups won't work if list_db=False is configured in the instance.
 
 Bug Tracker
 ===========
@@ -141,15 +152,15 @@ Authors
 Contributors
 ------------
 
-- Yenthe Van Ginneken <yenthe.vanginneken@vanroey.be>
-- Alessio Gerace <alessio.gerace@agilebg.com>
-- Jairo Llopis <yajo.sk8@gmail.com>
-- Dave Lasley <dave@laslabs.com>
-- Andrea Stirpe <a.stirpe@onestein.nl>
-- Aitor Bouzas <aitor.bouzas@adaptivecity.com>
-- Simone Vanin <simone.vanin@agilebg.com>
-- Vu Nguyen Anh <vuna2004@gmail.com>
-- Alex Comba <alex.comba@agilebg.com>
+-  Yenthe Van Ginneken <yenthe.vanginneken@vanroey.be>
+-  Alessio Gerace <alessio.gerace@agilebg.com>
+-  Jairo Llopis <yajo.sk8@gmail.com>
+-  Dave Lasley <dave@laslabs.com>
+-  Andrea Stirpe <a.stirpe@onestein.nl>
+-  Aitor Bouzas <aitor.bouzas@adaptivecity.com>
+-  Simone Vanin <simone.vanin@agilebg.com>
+-  Vu Nguyen Anh <vuna2004@gmail.com>
+-  Alex Comba <alex.comba@agilebg.com>
 
 Maintainers
 -----------
