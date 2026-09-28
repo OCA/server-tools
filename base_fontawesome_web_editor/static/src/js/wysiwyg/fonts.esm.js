@@ -45,7 +45,9 @@ patch(fonts, {
             } else {
                 data = {
                     selector: match[0],
-                    css: cssText.replace(/(^.*\{\s*)|(\s*\}\s*$)/g, ""),
+                    css: cssText
+                        .replace(/(^.*\{\s*)|(\s*\}\s*$)/g, "")
+                        .replace("--fa: ", "content: "),
                     names: [match[1]],
                 };
             }
