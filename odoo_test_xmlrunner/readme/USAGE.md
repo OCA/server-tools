@@ -51,58 +51,32 @@ Add the following job to your `.github/workflows/main.yml` file:
 ```yaml
 name: tests
 
-permissions:
-    contents: read
-    checks: write
-    id-token: write
-
 on:
-  push:
-    branches: ["main"]
-    tags: ["*"]
   pull_request:
+  push:
 
 jobs:
   test:
     runs-on: ubuntu-22.04
-    container: ${{ matrix.container }}
-    name: ${{ matrix.name }}
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - container: ghcr.io/oca/oca-ci/py3.10-odoo17.0:latest
-            name: test with Odoo
     services:
       postgres:
-        image: postgres:12.0
+        image: postgres:17
         env:
           POSTGRES_USER: odoo
           POSTGRES_PASSWORD: odoo
           POSTGRES_DB: odoo
         ports:
           - 5432:5432
+    env:
+      DB: odoo
     steps:
-      - uses: actions/checkout@v3
-        with:
-          persist-credentials: false
-      - name: Install addons and dependencies
-        run: oca_install_addons
-      - name: Check licenses
-        run: manifestoo -d . check-licenses
-      - name: Check development status
-        run: manifestoo -d . check-dev-status --default-dev-status=Beta
-      - name: Initialize test db
-        run: oca_init_test_database
+      - uses: actions/checkout@v4
       - name: Run tests
-        run: oca_run_tests
-      - uses: codecov/codecov-action@v4
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-      - name: Publish Test Report
+        run: odoo --load=odoo_test_xmlrunner -i my_module --test-enable --stop-after-init
+      - name: Publish test report
         uses: mikepenz/action-junit-report@v4
-        if: success() || failure() # always run even if the previous step fails
+        if: success() || failure()
         with:
-          report_paths: 'test_results/*.xml'
+          report_paths: test_results/*.xml
 
 ```
