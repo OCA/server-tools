@@ -11,6 +11,7 @@ from sentry_sdk.integrations.wsgi import SentryWsgiMiddleware
 from sentry_sdk.transport import HttpTransport
 
 import odoo.http
+import odoo.http.router
 from odoo import exceptions
 from odoo.tests import TransactionCase
 
@@ -282,8 +283,8 @@ class TestClientSetup(TransactionCase):
         capture_message.assert_called_once_with("Starting Odoo Server", "info")
 
     def test_initialize_sentry_patches_application_call_when_server_missing(self):
-        original_root = odoo.http.root
-        original_application = odoo.http.Application
+        original_root = odoo.http.router.root
+        original_application = odoo.http.router.Application
 
         class DummyRoot:
             def __init__(self):
@@ -296,25 +297,25 @@ class TestClientSetup(TransactionCase):
         try:
             dummy_root = DummyRoot()
             original_call = DummyApplication.__call__
-            odoo.http.root = dummy_root
-            odoo.http.Application = DummyApplication
+            odoo.http.router.root = dummy_root
+            odoo.http.router.Application = DummyApplication
             with (
                 patch("odoo.addons.sentry.hooks.server", new=None),
                 patch("odoo.addons.sentry.hooks._ORIGINAL_APPLICATION_CALL", new=None),
             ):
                 initialize_sentry(sentry_hooks.sentry_config)
-            self.assertTrue(inspect.isclass(odoo.http.Application))
-            self.assertIs(odoo.http.root, dummy_root)
-            self.assertTrue(hasattr(odoo.http.root, "session_store"))
-            self.assertIs(odoo.http.root.session_store, dummy_root.session_store)
-            self.assertIsNot(odoo.http.Application.__call__, original_call)
+            self.assertTrue(inspect.isclass(odoo.http.router.Application))
+            self.assertIs(odoo.http.router.root, dummy_root)
+            self.assertTrue(hasattr(odoo.http.router.root, "session_store"))
+            self.assertIs(odoo.http.router.root.session_store, dummy_root.session_store)
+            self.assertIsNot(odoo.http.router.Application.__call__, original_call)
         finally:
-            odoo.http.root = original_root
-            odoo.http.Application = original_application
+            odoo.http.router.root = original_root
+            odoo.http.router.Application = original_application
 
     def test_initialize_sentry_wraps_server_app_and_patches_application_call(self):
-        original_root = odoo.http.root
-        original_application = odoo.http.Application
+        original_root = odoo.http.router.root
+        original_application = odoo.http.router.Application
 
         class DummyRoot:
             def __init__(self):
@@ -332,19 +333,19 @@ class TestClientSetup(TransactionCase):
         try:
             dummy_root = DummyRoot()
             original_call = DummyApplication.__call__
-            odoo.http.root = dummy_root
-            odoo.http.Application = DummyApplication
+            odoo.http.router.root = dummy_root
+            odoo.http.router.Application = DummyApplication
             with (
                 patch("odoo.addons.sentry.hooks.server", new=dummy_server),
                 patch("odoo.addons.sentry.hooks._ORIGINAL_APPLICATION_CALL", new=None),
             ):
                 initialize_sentry(sentry_hooks.sentry_config)
             self.assertIsInstance(dummy_server.app, SentryWsgiMiddleware)
-            self.assertTrue(inspect.isclass(odoo.http.Application))
-            self.assertIs(odoo.http.root, dummy_root)
-            self.assertTrue(hasattr(odoo.http.root, "session_store"))
-            self.assertIs(odoo.http.root.session_store, dummy_root.session_store)
-            self.assertIsNot(odoo.http.Application.__call__, original_call)
+            self.assertTrue(inspect.isclass(odoo.http.router.Application))
+            self.assertIs(odoo.http.router.root, dummy_root)
+            self.assertTrue(hasattr(odoo.http.router.root, "session_store"))
+            self.assertIs(odoo.http.router.root.session_store, dummy_root.session_store)
+            self.assertIsNot(odoo.http.router.Application.__call__, original_call)
         finally:
-            odoo.http.root = original_root
-            odoo.http.Application = original_application
+            odoo.http.router.root = original_root
+            odoo.http.router.Application = original_application
