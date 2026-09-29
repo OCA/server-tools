@@ -16,11 +16,10 @@ class SanitizeKeysProcessor:
     MASK = "*" * 8
 
     def process(self, data, **kwargs):
-        if "exception" in data:
-            if "values" in data["exception"]:
-                for value in data["exception"].get("values", []):
-                    if "stacktrace" in value:
-                        self.filter_stacktrace(value["stacktrace"])
+        if "exception" in data and "values" in data["exception"]:
+            for value in data["exception"].get("values", []):
+                if "stacktrace" in value:
+                    self.filter_stacktrace(value["stacktrace"])
 
         if "request" in data:
             self.filter_http(data["request"])

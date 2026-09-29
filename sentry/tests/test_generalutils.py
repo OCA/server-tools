@@ -44,5 +44,5 @@ class TestGeneralUtils(TransactionCase):
         }
         self.assertEqual(
             ["REMOTE_ADDR", "SERVER_PORT"],
-            list(key for key, _ in generalutils.get_environ(fake_environ)),
+            [key for key, _ in generalutils.get_environ(fake_environ)],
         )
