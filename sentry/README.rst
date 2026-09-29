@@ -162,6 +162,7 @@ Contributors
 - Mark Schuit <mark@gig.solutions>
 - Atchuthan <atchuthan@sodexis.com>
 - Koert van der Veer <info@ondergetekende.nl>
+- Don Kendall <dkendall@ledoweb.com>
 
 Other credits
 -------------
