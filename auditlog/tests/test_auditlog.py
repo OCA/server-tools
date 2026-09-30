@@ -606,6 +606,31 @@ class AuditLogRuleTestForUserFields(AuditLogRuleCommon):
         # Checking log lines are created
         self.assertTrue(delete_log_record)
 
+    def test_07_AuditlogFull_archive_record_log(self):
+        # Create a dedicated partner and archive it
+        partner = (
+            self.env["res.partner"]
+            .with_context(tracking_disable=True)
+            .create({"name": "testpartner_archive", "active": True})
+        )
+        partner.write({"active": False})
+        log = self.auditlog_log.search(
+            [
+                ("model_id", "=", self.auditlog_rule.model_id.id),
+                ("method", "=", "write"),
+                ("res_id", "=", partner.id),
+            ],
+            order="id desc",
+            limit=1,
+        )
+        self.assertTrue(log)
+        active_line = log.line_ids.filtered(
+            lambda line: line.field_name == "active" or line.field_id.name == "active"
+        )
+        self.assertTrue(active_line)
+        self.assertEqual(active_line.old_value_text, "True")
+        self.assertFalse(active_line.new_value_text)
+
 
 class AuditLogRuleTestForUserModel(AuditLogRuleCommon):
     @classmethod
