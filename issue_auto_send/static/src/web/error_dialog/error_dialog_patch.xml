@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-inherit="web.ErrorDialog" t-inherit-mode="extension">
+        <xpath expr="//t[@t-set-slot='footer']//button" position="after">
+            <button
+                t-if="canSendIssueReport()"
+                class="btn btn-secondary o_issue_auto_send_button ms-auto ms-md-2"
+                t-on-click="onClickSendIssueReport"
+                t-att-disabled="state.issueAutoSendStatus === 'sending' or state.issueAutoSendStatus === 'sent'"
+            >
+                <i class="fa fa-github me-1" />
+                <t t-out="getIssueReportButtonText()" />
+            </button>
+            <span
+                t-if="canSendIssueReport() and issueAutoSend.auto_send"
+                class="o_issue_auto_send_active text-muted align-self-center ms-2"
+            >
+                <i class="fa fa-check-circle text-success me-1" />Auto send active
+            </span>
+        </xpath>
+    </t>
+</templates>

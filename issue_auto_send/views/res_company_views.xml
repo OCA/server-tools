@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_company_form" model="ir.ui.view">
+        <field name="name">res.company.form.inherit.issue_auto_send</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='general_info']" position="after">
+                <page name="issue_auto_send" string="Error Reports">
+                    <group name="issue_auto_send_main">
+                        <field name="issue_auto_send_enabled" />
+                        <field
+                            name="issue_auto_send_github_url"
+                            widget="url"
+                            placeholder="https://github.com/my-company/odoo-errors"
+                        />
+                        <field
+                            name="issue_auto_send_github_user"
+                            placeholder="my-error-bot"
+                        />
+                        <field name="issue_auto_send_github_token" password="True" />
+                    </group>
+                    <group name="issue_auto_send_test">
+                        <button
+                            name="action_test_github_connection"
+                            type="object"
+                            string="Test GitHub Connection"
+                            icon="fa-plug"
+                            class="btn-secondary"
+                            colspan="2"
+                        />
+                        <field
+                            name="issue_auto_send_check_result"
+                            invisible="not issue_auto_send_check_result"
+                        />
+                    </group>
+                    <group name="issue_auto_send_advanced_toggle">
+                        <field
+                            name="issue_auto_send_show_advanced"
+                            widget="boolean_toggle"
+                        />
+                    </group>
+                    <div
+                        name="issue_auto_send_advanced"
+                        invisible="not issue_auto_send_show_advanced"
+                    >
+                        <group>
+                            <field name="issue_auto_send_target" widget="radio" />
+                        </group>
+                        <group>
+                            <field name="issue_auto_send_email_enabled" />
+                            <field
+                                name="issue_auto_send_email_to"
+                                invisible="not issue_auto_send_email_enabled"
+                                required="issue_auto_send_email_enabled"
+                                placeholder="support@example.com, dev@example.com"
+                            />
+                        </group>
+                        <group>
+                            <field name="issue_auto_send_skip_duplicates" />
+                            <field
+                                name="issue_auto_send_duplicate_hours"
+                                invisible="not issue_auto_send_skip_duplicates"
+                            />
+                        </group>
+                        <group>
+                            <!-- Clicking with unsaved changes saves the company, which
+                                 reloads the page and closes the error dialog; save
+                                 first. -->
+                            <button
+                                name="action_raise_dummy_server_error"
+                                type="object"
+                                string="Raise Dummy Server Error"
+                                icon="fa-bug"
+                                class="btn-secondary"
+                                colspan="2"
+                                confirm="This raises a real Odoo server error to test the send button. Save your changes first: saving the company reloads the page and closes the error dialog."
+                            />
+                        </group>
+                    </div>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Also available from a menu: it never saves the company form, so the page
+         is not reloaded and the error dialog stays open. -->
+    <record id="action_raise_dummy_server_error" model="ir.actions.server">
+        <field name="name">Raise Dummy Server Error</field>
+        <field name="model_id" ref="base.model_res_company" />
+        <field name="state">code</field>
+        <field name="code">model.action_raise_dummy_server_error()</field>
+    </record>
+
+    <menuitem
+        id="menu_raise_dummy_server_error"
+        name="Raise Dummy Server Error"
+        parent="base.menu_custom"
+        action="action_raise_dummy_server_error"
+        sequence="200"
+    />
+</odoo>

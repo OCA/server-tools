@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="issue_auto_send_log_view_list" model="ir.ui.view">
+        <field name="name">issue.auto.send.log.list</field>
+        <field name="model">issue.auto.send.log</field>
+        <field name="arch" type="xml">
+            <list create="false" edit="false">
+                <field name="last_date" />
+                <field name="module" />
+                <field name="title" />
+                <field name="occurrence_count" />
+                <field name="last_sent_date" />
+                <field name="url" widget="url" />
+                <field name="digest" optional="hide" />
+                <field name="first_date" optional="hide" />
+                <field
+                    name="company_id"
+                    groups="base.group_multi_company"
+                    optional="hide"
+                />
+            </list>
+        </field>
+    </record>
+
+    <record id="issue_auto_send_log_view_search" model="ir.ui.view">
+        <field name="name">issue.auto.send.log.search</field>
+        <field name="model">issue.auto.send.log</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="title" />
+                <field name="module" />
+                <field name="digest" />
+                <filter
+                    name="not_sent"
+                    string="Not Reported"
+                    domain="[('last_sent_date', '=', False)]"
+                />
+                <filter
+                    name="group_by_module"
+                    string="Module"
+                    context="{'group_by': 'module'}"
+                />
+            </search>
+        </field>
+    </record>
+
+    <record id="issue_auto_send_log_action" model="ir.actions.act_window">
+        <field name="name">Error Reports</field>
+        <field name="res_model">issue.auto.send.log</field>
+        <field name="view_mode">list</field>
+    </record>
+
+    <menuitem
+        id="issue_auto_send_log_menu"
+        name="Error Reports"
+        parent="base.menu_custom"
+        action="issue_auto_send_log_action"
+        sequence="199"
+    />
+</odoo>
