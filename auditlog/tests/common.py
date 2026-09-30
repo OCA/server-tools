@@ -2,6 +2,8 @@
 
 from odoo.tests.common import TransactionCase
 
+from ..models.rule import PATCHED_METHODS
+
 
 class AuditLogRuleCommon(TransactionCase):
     @classmethod
@@ -26,7 +28,7 @@ class AuditLogRuleCommon(TransactionCase):
 
         # Assert no patched methods remain
         for model in cls.models:
-            for method in ["create", "read", "write", "unlink"]:
+            for method in PATCHED_METHODS:
                 assert not hasattr(
                     getattr(cls.env[model], method), "origin"
                 ), f"{model} {method} still patched"

@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 =========
 Audit Log
 =========
@@ -17,7 +13,7 @@ Audit Log
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github
@@ -57,6 +53,33 @@ Get the details:
 
 |image2|
 
+Reads are logged when they go through the ``read`` or ``search_read``
+methods. This covers the reads of the web client (``web_read`` and
+``web_search_read`` call ``read``), of RPC calls and of server code.
+Field values accessed directly on records, reports and ``read_group``
+are not logged.
+
+By default, a read log stores the value of every field read. Uncheck
+*Log Read Values* on the rule to store only the names of the fields
+read, in the *Fields Read* field of the log. It keeps read logs much
+smaller, and it keeps sensitive values out of the logs: users who can
+open the logs of a record would otherwise see the values of fields they
+are not allowed to read on the record itself.
+
+Data exports (the *Export* action and the ``export_data`` method) are
+logged by *Log Reads* too, since an export reads the records. One log is
+created per exported record, with the exported fields in *Fields Read*.
+Exports never store the exported values. Records exported through a
+relation, such as the lines of an order, are not logged on their own
+model.
+
+Read logs without values and export logs have no lines, so they are not
+listed in the *Log Lines* menu.
+
+With a *Full log* rule, a creation log stores only the fields that have
+a value: empty fields (False, 0, empty text or relation) are not logged,
+except boolean fields.
+
 A scheduled action exists to delete logs older than 6 months (180 days)
 automatically but is not enabled by default. To activate it and/or
 change the delay, go to the Configuration / Technical / Automation /
@@ -82,10 +105,14 @@ right to configure the auditlog configuration rules.
 Known issues / Roadmap
 ======================
 
-   - log only operations triggered by some users (currently it logs all
-     users)
-   - log read operations does not work on all data models, need
-     investigation
+   -  log only operations triggered by some users (currently it logs all
+      users)
+   -  log ``read_group`` calls (grouped views, pivot and graph):
+      grouping by a field returns all its distinct values, but no record
+      ids, so these reads need logs that are not bound to a record
+   -  log the other reads that do not go through ``read``,
+      ``search_read`` or ``export_data``: ``copy_data``, binary
+      downloads, reports, and field values read directly on records
 
 Bug Tracker
 ===========
@@ -108,24 +135,24 @@ Authors
 Contributors
 ------------
 
-- Sebastien Alix <sebastien.alix@camptocamp.com>
-- Holger Brunn <hbrunn@therp.nl>
-- Holden Rehg <holdenrehg@gmail.com>
-- Eric Lembregts <eric@lembregts.eu>
-- Pieter Paulussen <pieter.paulussen@me.com>
-- Alan Ramos <alan.ramos@jarsa.com.mx>
-- Stefan Rijnhart <stefan@opener.amsterdam>
-- Bhavesh Odedra <bodedra@opensourceintegrators.com>
-- Hardik Suthar <hsuthar@opensourceintegrators.com>
-- Kitti U. <kittiu@ecosoft.co.th>
-- Bogdan Valentin Gabor <valentin.gabor@bt-group.com>
-- Adam Heinz <adam.heinz@metricwise.com>
+-  Sebastien Alix <sebastien.alix@camptocamp.com>
+-  Holger Brunn <hbrunn@therp.nl>
+-  Holden Rehg <holdenrehg@gmail.com>
+-  Eric Lembregts <eric@lembregts.eu>
+-  Pieter Paulussen <pieter.paulussen@me.com>
+-  Alan Ramos <alan.ramos@jarsa.com.mx>
+-  Stefan Rijnhart <stefan@opener.amsterdam>
+-  Bhavesh Odedra <bodedra@opensourceintegrators.com>
+-  Hardik Suthar <hsuthar@opensourceintegrators.com>
+-  Kitti U. <kittiu@ecosoft.co.th>
+-  Bogdan Valentin Gabor <valentin.gabor@bt-group.com>
+-  Adam Heinz <adam.heinz@metricwise.com>
 
 Other credits
 -------------
 
-- Icon: built with different icons from the `Oxygen
-  theme <https://en.wikipedia.org/wiki/Oxygen_Project>`__ (LGPL)
+-  Icon: built with different icons from the `Oxygen
+   theme <https://en.wikipedia.org/wiki/Oxygen_Project>`__ (LGPL)
 
 Maintainers
 -----------

@@ -12,6 +12,33 @@ Get the details:
 
 ![image](../static/description/log.png)
 
+Reads are logged when they go through the `read` or `search_read`
+methods. This covers the reads of the web client (`web_read` and
+`web_search_read` call `read`), of RPC calls and of server code. Field
+values accessed directly on records, reports and `read_group` are not
+logged.
+
+By default, a read log stores the value of every field read. Uncheck
+*Log Read Values* on the rule to store only the names of the fields read,
+in the *Fields Read* field of the log. It keeps read logs much smaller,
+and it keeps sensitive values out of the logs: users who can open the
+logs of a record would otherwise see the values of fields they are not
+allowed to read on the record itself.
+
+Data exports (the *Export* action and the `export_data` method) are
+logged by *Log Reads* too, since an export reads the records. One log is
+created per exported record, with the exported fields in *Fields Read*.
+Exports never store the exported values. Records exported through a
+relation, such as the lines of an order, are not logged on their own
+model.
+
+Read logs without values and export logs have no lines, so they are not
+listed in the *Log Lines* menu.
+
+With a *Full log* rule, a creation log stores only the fields that have
+a value: empty fields (False, 0, empty text or relation) are not logged,
+except boolean fields.
+
 A scheduled action exists to delete logs older than 6 months (180 days)
 automatically but is not enabled by default. To activate it and/or
 change the delay, go to the Configuration / Technical / Automation /
