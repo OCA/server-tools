@@ -8,5 +8,3 @@ manual tuning.
 This module is mostly useful for PostgreSQL <= 17. PostgreSQL 18.0 introduces
 the `autovacuum_vacuum_max_threshold` parameter, which already provides the
 capability this module targets.
-
-The `pgstattuple` extension must be installed on the database.
