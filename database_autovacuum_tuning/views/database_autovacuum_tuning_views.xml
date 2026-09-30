@@ -3,12 +3,12 @@
     <record id="database_autovacuum_tuning_view_tree" model="ir.ui.view">
         <field name="model">database.autovacuum.tuning</field>
         <field name="arch" type="xml">
-            <list>
+            <tree>
                 <field name="create_date" />
                 <field name="name" />
                 <field name="vacuum_threshold" />
                 <field name="analyze_threshold" />
-            </list>
+            </tree>
         </field>
     </record>
 
@@ -36,7 +36,7 @@
     <record id="action_model_autovacuum_tuning" model="ir.actions.act_window">
         <field name="name">Database Vacuum Tuning</field>
         <field name="res_model">database.autovacuum.tuning</field>
-        <field name="view_mode">list</field>
+        <field name="view_mode">tree</field>
         <field name="search_view_id" ref="databaseautovacuum_tuning_view_search" />
     </record>
 

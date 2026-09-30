@@ -4,7 +4,7 @@
 {
     "name": "Database Autovacuum Tuning",
     "summary": "Scheduled checks for Odoo autovacuum thresholds and scale factors",
-    "version": "18.0.1.0.1",
+    "version": "17.0.1.0.0",
     "author": "Camptocamp, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/server-tools",
     "category": "Tools",

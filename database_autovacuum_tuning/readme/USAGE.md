@@ -18,3 +18,15 @@
 	```
 5. Monitor vacuum activity and table bloat, then adjust the settings if your
 	workload changes.
+6. Disabling the cron or setting a threshold to zero does not reset settings
+	already applied to tables. Reset them explicitly when the defaults must be
+	restored:
+
+	```sql
+	ALTER TABLE {schemaname}.{tablename} RESET (
+		autovacuum_vacuum_scale_factor,
+		autovacuum_vacuum_threshold,
+		autovacuum_analyze_scale_factor,
+		autovacuum_analyze_threshold
+	)
+	```

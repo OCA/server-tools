@@ -1,6 +1,7 @@
 # Copyright 2026 Camptocamp (https://www.camptocamp.com).
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html)
 
+from psycopg2 import sql
 
 from odoo import api, fields, models
 
@@ -15,22 +16,28 @@ class DatabaseAutovacuumTuning(models.Model):
 
     @api.model
     def _db_autovacuum_tune(self):
+        """Apply fixed autovacuum thresholds to tables exceeding the limit."""
         vacuum_threshold, analyze_threshold = self._get_thresholds()
-        if vacuum_threshold <= 0:
+        if vacuum_threshold <= 0 or analyze_threshold <= 0:
             return
-        results = self._get_tables_exceeding_dead_tuples(vacuum_threshold)
+        results = self._get_tables_exceeding_dead_tuples(
+            vacuum_threshold, analyze_threshold
+        )
         for schemaname, tablename, _ in results:
-            self.env.cr.execute(
-                f"""
-                ALTER TABLE {schemaname}.{tablename} SET (
+            query = sql.SQL(
+                """
+                ALTER TABLE {}.{} SET (
                     autovacuum_vacuum_scale_factor = 0,
                     autovacuum_vacuum_threshold = %s,
                     autovacuum_analyze_scale_factor = 0,
                     autovacuum_analyze_threshold = %s
                 )
-                """,
-                (vacuum_threshold, analyze_threshold),
+                """
+            ).format(
+                sql.Identifier(schemaname),
+                sql.Identifier(tablename),
             )
+            self.env.cr.execute(query, (vacuum_threshold, analyze_threshold))
             self.sudo().create(
                 {
                     "name": f"{schemaname}.{tablename}",
@@ -39,7 +46,14 @@ class DatabaseAutovacuumTuning(models.Model):
                 }
             )
 
-    def _get_tables_exceeding_dead_tuples(self, vacuum_threshold):
+    def _get_tables_exceeding_dead_tuples(self, vacuum_threshold, analyze_threshold):
+        """Return tables exceeding the threshold without current settings."""
+        expected_options = [
+            "autovacuum_vacuum_scale_factor=0",
+            f"autovacuum_vacuum_threshold={vacuum_threshold}",
+            "autovacuum_analyze_scale_factor=0",
+            f"autovacuum_analyze_threshold={analyze_threshold}",
+        ]
         query = """
             SELECT
                 t.schemaname,
@@ -49,15 +63,21 @@ class DatabaseAutovacuumTuning(models.Model):
             JOIN pg_stat_all_tables AS st
                 ON st.schemaname = t.schemaname
                 AND st.relname = t.tablename
+            JOIN pg_class AS c
+                ON c.oid = st.relid
             WHERE t.tableowner = current_user
                 AND t.schemaname = 'public'
                 AND st.n_dead_tup > %s
+                AND NOT (
+                    COALESCE(c.reloptions, '{}') @> %s::text[]
+                )
             ORDER BY t.schemaname, t.tablename
         """
-        self.env.cr.execute(query, (vacuum_threshold,))
+        self.env.cr.execute(query, (vacuum_threshold, expected_options))
         return self.env.cr.fetchall()
 
     def _get_thresholds(self):
+        """Return configured vacuum and analyze thresholds as integers."""
         try:
             vacuum_threshold = int(
                 self.env["ir.config_parameter"]
