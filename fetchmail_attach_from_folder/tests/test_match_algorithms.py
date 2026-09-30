@@ -1,5 +1,7 @@
 # Copyright - 2015-2018 Therp BV <https://acme.com>.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+from unittest.mock import patch
+
 from odoo.tests.common import TransactionCase
 
 from ..match_algorithm import email_domain
@@ -158,3 +160,11 @@ class TestMatchAlgorithms(TransactionCase):
         self.folder.action_id = self.server_action
         self.folder.apply_matching(connection, "1")
         self.assertEqual(self.partner_category, self.test_partner.category_id)
+
+    def test_fetch_mail_accepts_kwargs(self):
+        """Ensure fetch_mail accepts and forwards kwargs (e.g. raise_exception)."""
+        self.server.folders_only = True
+        with patch.object(type(self.folder), "fetch_mail") as mock_folder_fetch:
+            res = self.server.fetch_mail(raise_exception=False)
+            self.assertTrue(res)
+            mock_folder_fetch.assert_called_once()
