@@ -588,6 +588,8 @@ class AuditlogRule(models.Model):
         """Create logs. `old_values` and `new_values` are dictionaries, e.g:
         {RES_ID: {'FIELD': VALUE, ...}}
         """
+        if not res_ids:
+            return
         if old_values is None:
             old_values = EMPTY_DICT
         if new_values is None:
@@ -599,22 +601,27 @@ class AuditlogRule(models.Model):
         model_id = self.pool._auditlog_model_cache[res_model]
         auditlog_rule = self.env["auditlog.rule"].search([("model_id", "=", model_id)])
         fields_to_exclude = auditlog_rule.fields_to_exclude_ids.mapped("name")
-
         vals = {
             "model_id": model_id,
             "method": method,
             "user_id": uid,
-            "http_request_id": http_request_model.current_http_request(),
-            "http_session_id": http_session_model.current_http_session(),
         }
         vals.update(additional_log_values or {})
         if method == "export_data":
-            vals.update({"name": res_model, "res_ids": str(res_ids)})
+            vals.update(
+                {
+                    "name": res_model,
+                    "res_ids": str(res_ids),
+                    "http_request_id": http_request_model.current_http_request(),
+                    "http_session_id": http_session_model.current_http_session(),
+                }
+            )
             return log_model.create(vals)
 
-        for res_id in res_ids:
-            res = model_model.browse(res_id)
-            log_vals = {**vals, "name": res.display_name, "res_id": res_id}
+        vals_list = []
+        for res in model_model.browse(res_ids):
+            res_id = res.id
+            log_vals = {**vals, "res_id": res_id}
 
             diff = DictDiffer(
                 new_values.get(res_id, EMPTY_DICT), old_values.get(res_id, EMPTY_DICT)
@@ -642,7 +649,15 @@ class AuditlogRule(models.Model):
                     fields_to_exclude,
                 )
             if method == "unlink" or log_vals.get("line_ids", {}):
-                log_model.create(log_vals)
+                log_vals["name"] = res.display_name
+                vals_list.append(log_vals)
+        if not vals_list:
+            return
+        http_vals = {
+            "http_request_id": http_request_model.current_http_request(),
+            "http_session_id": http_session_model.current_http_session(),
+        }
+        log_model.create([dict(http_vals, **log_vals) for log_vals in vals_list])
 
     def _get_field(self, model_id, field_name):
         model = self.env["ir.model"].sudo().browse(model_id)
