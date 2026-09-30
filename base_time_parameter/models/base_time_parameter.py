@@ -7,6 +7,8 @@ from datetime import datetime
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
+from .base_time_parameter_version import _validate_boolean
+
 
 class TimeParameter(models.Model):
     _name = "base.time.parameter"
@@ -66,8 +68,15 @@ class TimeParameter(models.Model):
             ("code", "=", False),
             ("name", "=", code),
         ]
-        parameter = self.env["base.time.parameter"].search(domain)
-        if parameter:
+        parameters = self.env["base.time.parameter"].search(domain)
+        # The domain matches the parameters of the current company together
+        # with the global ones (no company), and the parameters of the model
+        # together with those that apply to any model. Sort the most specific
+        # ones first so that a module may ship a global default that a company
+        # overrides with its own parameter, instead of both matching at once.
+        for parameter in parameters.sorted(
+            key=lambda p: (bool(p.company_id), bool(p.model_id)), reverse=True
+        ):
             value = parameter._get(date, get=get)
             if value:
                 return value
@@ -75,10 +84,14 @@ class TimeParameter(models.Model):
         if not raise_if_not_found:
             return
         # Raise error
-        model_name = model.name
         raise UserError(
-            _("No parameter for model '%(model_name)s', code '%(code)s', date %(date)s")
-            % (model_name, code, date)
+            _(
+                "No parameter for model '%(model_name)s', code '%(code)s', "
+                "date %(date)s",
+                model_name=model.name,
+                code=code,
+                date=date,
+            )
         )
 
     def _get(self, date=None, get="value"):
@@ -93,7 +106,7 @@ class TimeParameter(models.Model):
         version = versions[0]
         if get == "value":
             if self.type == "boolean":
-                return version.value == "True" and True or False
+                return _validate_boolean(version.value or "") == "True"
             elif self.type == "date":
                 return datetime.strptime(version.value, "%Y-%m-%d").date()
             elif self.type == "float":
@@ -102,7 +115,7 @@ class TimeParameter(models.Model):
                 return int(version.value)
             elif self.type == "json":
                 return json.loads(version.value)
-            elif self.type == "reference":
+            elif self.type in ("record", "reference"):
                 return version.value_reference
             elif self.type == "reference_id":
                 return version.value_reference and version.value_reference.id or 0
@@ -110,6 +123,11 @@ class TimeParameter(models.Model):
                 return version.value
         elif get == "date":
             return version.date_from
+
+    @api.constrains("type")
+    def _check_version_values(self):
+        """The versions are stored as text, parsed according to this type."""
+        self.version_ids._check_value()
 
     _sql_constraints = [
         (
