@@ -1,0 +1,277 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * base_multi_image
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-11-26 03:36+0000\n"
+"PO-Revision-Date: 2016-11-26 03:36+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"Language-Team: Galician (Spain) (https://www.transifex.com/oca/teams/23907/"
+"gl_ES/)\n"
+"Language: gl_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: base_multi_image
+#: model:ir.model,name:base_multi_image.model_base_multi_image_owner
+msgid " Wizard for base multi image "
+msgstr ""
+
+#. module: base_multi_image
+#: model:ir.model,name:base_multi_image.model_base_multi_image_image
+msgid " image model for multiple image functionality "
+msgstr ""
+
+#. module: base_multi_image
+#: code:addons/base_multi_image/models/image.py:0
+#: model:ir.model.constraint,message:base_multi_image.constraint_base_multi_image_image_uniq_name_owner
+#, python-format
+msgid "A document can have only one image with the same name."
+msgstr ""
+
+#. module: base_multi_image
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__attachment_id
+msgid "Attachment"
+msgstr ""
+
+#. module: base_multi_image
+#: model_terms:ir.actions.act_window,help:base_multi_image.image_action
+msgid "Click to add an image attached to an specific record."
+msgstr ""
+
+#. module: base_multi_image
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__comments
+#: model_terms:ir.ui.view,arch_db:base_multi_image.image_form_view
+msgid "Comments"
+msgstr ""
+
+#. module: base_multi_image
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: base_multi_image
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: base_multi_image
+#: model:ir.model.fields.selection,name:base_multi_image.selection__base_multi_image_image__storage__db
+msgid "Database"
+msgstr ""
+
+#. module: base_multi_image
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: base_multi_image
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__extension
+msgid "File extension"
+msgstr ""
+
+#. module: base_multi_image
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__filename
+msgid "Filename"
+msgstr ""
+
+#. module: base_multi_image
+#: model:ir.model.fields.selection,name:base_multi_image.selection__base_multi_image_image__storage__filestore
+msgid "Filestore"
+msgstr ""
+
+#. module: base_multi_image
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__image_main
+msgid "Full-sized image"
+msgstr ""
+
+#. module: base_multi_image
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__id
+msgid "ID"
+msgstr "ID"
+
+#. module: base_multi_image
+#: model_terms:ir.ui.view,arch_db:base_multi_image.image_form_view
+msgid "Image"
+msgstr ""
+
+#. module: base_multi_image
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__path
+#: model:ir.model.fields,help:base_multi_image.field_base_multi_image_image__path
+msgid "Image path"
+msgstr ""
+
+#. module: base_multi_image
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__url
+msgid "Image remote URL"
+msgstr ""
+
+#. module: base_multi_image
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__file_db_store
+msgid "Image stored in database"
+msgstr ""
+
+#. module: base_multi_image
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__name
+msgid "Image title"
+msgstr ""
+
+#. module: base_multi_image
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_owner__image_ids
+msgid "Images"
+msgstr ""
+
+#. module: base_multi_image
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: base_multi_image
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: base_multi_image
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: base_multi_image
+#: code:addons/base_multi_image/models/owner.py:0
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_owner__image_main
+#, python-format
+msgid "Main image"
+msgstr ""
+
+#. module: base_multi_image
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_owner__image_main_medium
+msgid "Medium image"
+msgstr ""
+
+#. module: base_multi_image
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__image_medium
+msgid "Medium-sized image"
+msgstr ""
+
+#. module: base_multi_image
+#: model:ir.model.fields,help:base_multi_image.field_base_multi_image_image__image_medium
+msgid ""
+"Medium-sized image. It is automatically resized as a 128 x 128 px image, "
+"with aspect ratio preserved, only when the image exceeds one of those sizes. "
+"Use this field in form views or kanban views."
+msgstr ""
+
+#. module: base_multi_image
+#: model:ir.actions.act_window,name:base_multi_image.image_action
+#: model:ir.ui.menu,name:base_multi_image.image_menu
+msgid "Multi images"
+msgstr ""
+
+#. module: base_multi_image
+#: model_terms:ir.ui.view,arch_db:base_multi_image.image_form_view
+msgid "Name"
+msgstr ""
+
+#. module: base_multi_image
+#: model:ir.model.fields.selection,name:base_multi_image.selection__base_multi_image_image__storage__file
+msgid "OS file"
+msgstr ""
+
+#. module: base_multi_image
+#: model_terms:ir.ui.view,arch_db:base_multi_image.image_form_view
+msgid "Options"
+msgstr ""
+
+#. module: base_multi_image
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__owner_id
+#: model_terms:ir.ui.view,arch_db:base_multi_image.image_form_view
+msgid "Owner"
+msgstr ""
+
+#. module: base_multi_image
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__owner_model
+msgid "Owner Model"
+msgstr ""
+
+#. module: base_multi_image
+#: model_terms:ir.ui.view,arch_db:base_multi_image.image_form_view
+msgid "Preview"
+msgstr ""
+
+#. module: base_multi_image
+#: model_terms:ir.ui.view,arch_db:base_multi_image.image_kanban_view
+msgid "Product Images"
+msgstr ""
+
+#. module: base_multi_image
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__owner_ref_id
+msgid "Referenced Owner"
+msgstr ""
+
+#. module: base_multi_image
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: base_multi_image
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__show_technical
+msgid "Show Technical"
+msgstr ""
+
+#. module: base_multi_image
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_owner__image_main_small
+msgid "Small image"
+msgstr ""
+
+#. module: base_multi_image
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__image_small
+msgid "Small-sized image"
+msgstr ""
+
+#. module: base_multi_image
+#: model:ir.model.fields,help:base_multi_image.field_base_multi_image_image__image_small
+msgid ""
+"Small-sized image. It is automatically resized as a 64 x 64 px image, with "
+"aspect ratio preserved. Use this field anywhere a small image is required."
+msgstr ""
+
+#. module: base_multi_image
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image__storage
+msgid "Storage"
+msgstr ""
+
+#. module: base_multi_image
+#: model:ir.model.fields.selection,name:base_multi_image.selection__base_multi_image_image__storage__url
+msgid "URL"
+msgstr ""
+
+#. module: base_multi_image
+#: code:addons/base_multi_image/models/image.py:0
+#, python-format
+msgid "You must provide a file path for the image."
+msgstr ""
+
+#. module: base_multi_image
+#: code:addons/base_multi_image/models/image.py:0
+#, python-format
+msgid "You must provide an URL for the image."
+msgstr ""
+
+#. module: base_multi_image
+#: code:addons/base_multi_image/models/image.py:0
+#, python-format
+msgid "You must provide an attached file for the image."
+msgstr ""
+
+#. module: base_multi_image
+#: code:addons/base_multi_image/models/image.py:0
+#, python-format
+msgid "You must provide an attachment for the image."
+msgstr ""
