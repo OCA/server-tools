@@ -18,6 +18,16 @@ methods. This covers the reads of the web client (`web_read` and
 values accessed directly on records, reports and `read_group` are not
 logged.
 
+By default, a read log stores the value of every field read. Uncheck
+*Log Read Values* on the rule to store only the names of the fields read,
+in the *Fields Read* field of the log. It keeps read logs much smaller,
+and it keeps sensitive values out of the logs: users who can open the
+logs of a record would otherwise see the values of fields they are not
+allowed to read on the record itself.
+
+Read logs without values have no lines, so they are not listed in the
+*Log Lines* menu.
+
 A scheduled action exists to delete logs older than 6 months (180 days)
 automatically but is not enabled by default. To activate it and/or
 change the delay, go to the Configuration / Technical / Automation /
