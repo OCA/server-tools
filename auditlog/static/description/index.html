@@ -397,6 +397,11 @@ can group them by user sessions, date, data model or HTTP requests:</p>
 <p><img alt="image1" src="https://raw.githubusercontent.com/OCA/server-tools/17.0/auditlog/static/description/logs.png" /></p>
 <p>Get the details:</p>
 <p><img alt="image2" src="https://raw.githubusercontent.com/OCA/server-tools/17.0/auditlog/static/description/log.png" /></p>
+<p>Reads are logged when they go through the <tt class="docutils literal">read</tt> or <tt class="docutils literal">search_read</tt>
+methods. This covers the reads of the web client (<tt class="docutils literal">web_read</tt> and
+<tt class="docutils literal">web_search_read</tt> call <tt class="docutils literal">read</tt>), of RPC calls and of server code.
+Field values accessed directly on records, reports and <tt class="docutils literal">read_group</tt>
+are not logged.</p>
 <p>A scheduled action exists to delete logs older than 6 months (180 days)
 automatically but is not enabled by default. To activate it and/or
 change the delay, go to the Configuration / Technical / Automation /

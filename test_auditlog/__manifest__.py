@@ -9,7 +9,7 @@
     "license": "AGPL-3",
     "website": "https://github.com/OCA/server-tools",
     "category": "Tools",
-    "depends": ["account", "auditlog"],
+    "depends": ["account", "auditlog", "web"],
     "data": [],
     "application": False,
     "installable": True,
