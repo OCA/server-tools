@@ -6,6 +6,6 @@
   Odoo client-side error reporting to this module as well, by
   integrating [raven-js](https://github.com/getsentry/raven-js).
   Additionally, [Sentry user feedback
-  form](https://docs.sentry.io/learn/user-feedback/) could be integrated
+  form](https://docs.sentry.io/product/user-feedback/) could be integrated
   into the Odoo client error dialog window to allow users shortly
   describe what they were doing when things went wrong.
