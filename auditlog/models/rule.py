@@ -6,6 +6,7 @@ from collections import defaultdict
 
 from odoo import Command, _, api, fields, models
 from odoo.exceptions import UserError
+from odoo.models import fix_import_export_id_paths
 from odoo.tools.misc import OrderedSet
 
 FIELDS_BLACKLIST = [
@@ -119,6 +120,15 @@ class AuditlogRule(models.Model):
         help=(
             "Select this if you want to keep track of read/open on any "
             "record of the model of this rule"
+        ),
+    )
+    log_read_values = fields.Boolean(
+        default=True,
+        help=(
+            "Store the values of the fields read. Uncheck it to store only "
+            "their names: read logs stay small, and sensitive values are not "
+            "copied into logs that users without access to those values can "
+            "open"
         ),
     )
     log_write = fields.Boolean(
@@ -606,12 +616,17 @@ class AuditlogRule(models.Model):
                 vals["line_ids"] = self._create_log_line_on_create(
                     vals, diff.added(), new_values, fields_to_exclude
                 )
-            elif method == "read":
+            elif method == "read" and auditlog_rule.log_read_values:
                 vals["line_ids"] = self._create_log_line_on_read(
                     vals,
                     list(old_values.get(res_id, EMPTY_DICT).keys()),
                     old_values,
                     fields_to_exclude,
+                )
+            elif method == "read":
+                vals["read_field_names"] = self._get_log_field_names(
+                    old_values.get(res_id, EMPTY_DICT),
+                    fields_to_exclude + FIELDS_BLACKLIST,
                 )
             elif method == "write":
                 vals["line_ids"] = self._create_log_line_on_write(
@@ -624,7 +639,11 @@ class AuditlogRule(models.Model):
                     old_values,
                     fields_to_exclude,
                 )
-            if method == "unlink" or vals.get("line_ids", {}):
+            if (
+                method == "unlink"
+                or vals.get("line_ids", {})
+                or vals.get("read_field_names")
+            ):
                 vals["name"] = res.display_name
                 vals_list.append(vals)
         if not vals_list:
@@ -657,6 +676,18 @@ class AuditlogRule(models.Model):
                 field_data = field.read(load="_classic_write")[0]
                 cache[model.model][field_name] = field_data
         return cache[model.model][field_name]
+
+    @api.model
+    def _get_log_field_names(self, field_names, fields_to_exclude):
+        """Return the field names or export paths that are not excluded, as
+        text. An export path such as 'partner_id/name' is excluded on its
+        first field.
+        """
+        return ", ".join(
+            name
+            for name in field_names
+            if fix_import_export_id_paths(name)[0] not in fields_to_exclude
+        )
 
     def _create_log_line_on_read(
         self, log_vals, fields_list, read_values, fields_to_exclude

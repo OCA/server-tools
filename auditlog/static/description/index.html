@@ -402,6 +402,14 @@ methods. This covers the reads of the web client (<tt class="docutils literal">w
 <tt class="docutils literal">web_search_read</tt> call <tt class="docutils literal">read</tt>), of RPC calls and of server code.
 Field values accessed directly on records, reports and <tt class="docutils literal">read_group</tt>
 are not logged.</p>
+<p>By default, a read log stores the value of every field read. Uncheck
+<em>Log Read Values</em> on the rule to store only the names of the fields
+read, in the <em>Fields Read</em> field of the log. It keeps read logs much
+smaller, and it keeps sensitive values out of the logs: users who can
+open the logs of a record would otherwise see the values of fields they
+are not allowed to read on the record itself.</p>
+<p>Read logs without values have no lines, so they are not listed in the
+<em>Log Lines</em> menu.</p>
 <p>A scheduled action exists to delete logs older than 6 months (180 days)
 automatically but is not enabled by default. To activate it and/or
 change the delay, go to the Configuration / Technical / Automation /
