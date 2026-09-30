@@ -433,7 +433,7 @@ class AuditlogRule(models.Model):
             records_write = (
                 self.filtered(lambda r: not isinstance(r.id, models.NewId))
                 .sudo()
-                .with_context(prefetch_fields=False)
+                .with_context(prefetch_fields=False, active_test=False)
             )
             if not records_write:
                 return write_full.origin(self, vals, **kwargs)
@@ -501,7 +501,7 @@ class AuditlogRule(models.Model):
             old_values = {
                 d["id"]: d
                 for d in self.sudo()
-                .with_context(prefetch_fields=False)
+                .with_context(prefetch_fields=False, active_test=False)
                 .read(fields_list)
             }
             if self.env.user in users_to_exclude:
