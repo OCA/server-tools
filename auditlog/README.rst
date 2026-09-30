@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 =========
 Audit Log
 =========
@@ -17,7 +13,7 @@ Audit Log
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github
@@ -57,6 +53,12 @@ Get the details:
 
 |image2|
 
+Reads are logged when they go through the ``read`` or ``search_read``
+methods. This covers the reads of the web client (``web_read`` and
+``web_search_read`` call ``read``), of RPC calls and of server code.
+Field values accessed directly on records, reports and ``read_group``
+are not logged.
+
 A scheduled action exists to delete logs older than 6 months (180 days)
 automatically but is not enabled by default. To activate it and/or
 change the delay, go to the Configuration / Technical / Automation /
@@ -82,10 +84,10 @@ right to configure the auditlog configuration rules.
 Known issues / Roadmap
 ======================
 
-   - log only operations triggered by some users (currently it logs all
-     users)
-   - log read operations does not work on all data models, need
-     investigation
+   -  log only operations triggered by some users (currently it logs all
+      users)
+   -  log read operations does not work on all data models, need
+      investigation
 
 Bug Tracker
 ===========
@@ -108,24 +110,24 @@ Authors
 Contributors
 ------------
 
-- Sebastien Alix <sebastien.alix@camptocamp.com>
-- Holger Brunn <hbrunn@therp.nl>
-- Holden Rehg <holdenrehg@gmail.com>
-- Eric Lembregts <eric@lembregts.eu>
-- Pieter Paulussen <pieter.paulussen@me.com>
-- Alan Ramos <alan.ramos@jarsa.com.mx>
-- Stefan Rijnhart <stefan@opener.amsterdam>
-- Bhavesh Odedra <bodedra@opensourceintegrators.com>
-- Hardik Suthar <hsuthar@opensourceintegrators.com>
-- Kitti U. <kittiu@ecosoft.co.th>
-- Bogdan Valentin Gabor <valentin.gabor@bt-group.com>
-- Adam Heinz <adam.heinz@metricwise.com>
+-  Sebastien Alix <sebastien.alix@camptocamp.com>
+-  Holger Brunn <hbrunn@therp.nl>
+-  Holden Rehg <holdenrehg@gmail.com>
+-  Eric Lembregts <eric@lembregts.eu>
+-  Pieter Paulussen <pieter.paulussen@me.com>
+-  Alan Ramos <alan.ramos@jarsa.com.mx>
+-  Stefan Rijnhart <stefan@opener.amsterdam>
+-  Bhavesh Odedra <bodedra@opensourceintegrators.com>
+-  Hardik Suthar <hsuthar@opensourceintegrators.com>
+-  Kitti U. <kittiu@ecosoft.co.th>
+-  Bogdan Valentin Gabor <valentin.gabor@bt-group.com>
+-  Adam Heinz <adam.heinz@metricwise.com>
 
 Other credits
 -------------
 
-- Icon: built with different icons from the `Oxygen
-  theme <https://en.wikipedia.org/wiki/Oxygen_Project>`__ (LGPL)
+-  Icon: built with different icons from the `Oxygen
+   theme <https://en.wikipedia.org/wiki/Oxygen_Project>`__ (LGPL)
 
 Maintainers
 -----------

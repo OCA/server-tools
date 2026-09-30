@@ -17,6 +17,7 @@ FIELDS_BLACKLIST = [
     "display_name",
     "__last_update",
 ]
+PATCHED_METHODS = ["create", "read", "search_read", "write", "unlink"]
 # Used for performance, to avoid a dictionary instanciation when we need an
 # empty dict to simplify algorithms
 EMPTY_DICT = {}
@@ -211,6 +212,8 @@ class AuditlogRule(models.Model):
             new_method = self._make_create()
         elif method_name == "read":
             new_method = self._make_read()
+        elif method_name == "search_read":
+            new_method = self._make_search_read()
         elif method_name == "write":
             new_method = self._make_write()
         elif method_name == "unlink":
@@ -242,6 +245,10 @@ class AuditlogRule(models.Model):
             check_attr = "auditlog_ruled_read"
             if rule.log_read and not hasattr(model_model, check_attr):
                 updated = rule._patch_method(model_model, "read", check_attr)
+            #   -> search_read
+            check_attr = "auditlog_ruled_search_read"
+            if rule.log_read and not hasattr(model_model, check_attr):
+                updated = rule._patch_method(model_model, "search_read", check_attr)
             #   -> write
             check_attr = "auditlog_ruled_write"
             if rule.log_write and not hasattr(model_model, check_attr):
@@ -257,14 +264,15 @@ class AuditlogRule(models.Model):
         updated = False
         for rule in self:
             model_model = self.env[rule.model_id.model or rule.model_model]
-            for method in ["create", "read", "write", "unlink"]:
-                if getattr(rule, "log_%s" % method) and hasattr(
+            for method in PATCHED_METHODS:
+                check_attr = "auditlog_ruled_%s" % method
+                if hasattr(model_model, check_attr) and hasattr(
                     getattr(model_model, method), "origin"
                 ):
                     setattr(
                         type(model_model), method, getattr(model_model, method).origin
                     )
-                    delattr(type(model_model), "auditlog_ruled_%s" % method)
+                    delattr(type(model_model), check_attr)
                     updated = True
         if updated:
             self._update_registry()
@@ -389,36 +397,56 @@ class AuditlogRule(models.Model):
 
         def read(self, fields=None, load="_classic_read", **kwargs):
             result = read.origin(self, fields, load, **kwargs)
-            # Sometimes the result is not a list but a dictionary
-            # Also, we can not modify the current result as it will break calls
-            result2 = result
-            if not isinstance(result2, list):
-                result2 = [result]
-            read_values = {d["id"]: d for d in result2}
-            # Old API
-
-            # If the call came from auditlog itself, skip logging:
-            # avoid logs on `read` produced by auditlog during internal
-            # processing: read data of relevant records, 'ir.model',
-            # 'ir.model.fields'... (no interest in logging such operations)
-            if self.env.context.get("auditlog_disabled"):
-                return result
-            self = self.with_context(auditlog_disabled=True)
-            rule_model = self.env["auditlog.rule"]
-            if self.env.user in users_to_exclude:
-                return result
-            rule_model.sudo().create_logs(
-                self.env.uid,
-                self._name,
-                self.ids,
-                "read",
-                read_values,
-                None,
-                {"log_type": log_type},
+            self.env["auditlog.rule"]._create_read_logs(
+                self, result, log_type, users_to_exclude
             )
             return result
 
         return read
+
+    def _make_search_read(self):
+        """Instanciate a search_read method that log its calls."""
+        self.ensure_one()
+        log_type = self.log_type
+        users_to_exclude = self.mapped("users_to_exclude_ids")
+
+        @api.model
+        def search_read(self, *args, **kwargs):
+            result = search_read.origin(self, *args, **kwargs)
+            self.env["auditlog.rule"]._create_read_logs(
+                self, result, log_type, users_to_exclude
+            )
+            return result
+
+        return search_read
+
+    @api.model
+    def _create_read_logs(self, records, result, log_type, users_to_exclude):
+        """Log the values returned by a read operation done on `records`."""
+        # If the call came from auditlog itself, skip logging:
+        # avoid logs on `read` produced by auditlog during internal
+        # processing: read data of relevant records, 'ir.model',
+        # 'ir.model.fields'... (no interest in logging such operations)
+        if records.env.context.get("auditlog_disabled"):
+            return
+        if records.env.user in users_to_exclude:
+            return
+        # Sometimes the result is not a list but a dictionary
+        # Also, we can not modify the current result as it will break calls
+        result2 = result
+        if not isinstance(result2, list):
+            result2 = [result]
+        read_values = {d["id"]: d for d in result2}
+        records = records.with_context(auditlog_disabled=True)
+        records.env["auditlog.rule"].sudo().create_logs(
+            records.env.uid,
+            records._name,
+            list(read_values),
+            "read",
+            read_values,
+            None,
+            {"log_type": log_type},
+        )
 
     def _make_write(self):
         """Instanciate a write method that log its calls."""

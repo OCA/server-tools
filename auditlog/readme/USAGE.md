@@ -12,6 +12,12 @@ Get the details:
 
 ![image](../static/description/log.png)
 
+Reads are logged when they go through the `read` or `search_read`
+methods. This covers the reads of the web client (`web_read` and
+`web_search_read` call `read`), of RPC calls and of server code. Field
+values accessed directly on records, reports and `read_group` are not
+logged.
+
 A scheduled action exists to delete logs older than 6 months (180 days)
 automatically but is not enabled by default. To activate it and/or
 change the delay, go to the Configuration / Technical / Automation /
