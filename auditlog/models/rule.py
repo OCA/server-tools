@@ -18,7 +18,7 @@ FIELDS_BLACKLIST = [
     "display_name",
     "__last_update",
 ]
-PATCHED_METHODS = ["create", "read", "search_read", "write", "unlink"]
+PATCHED_METHODS = ["create", "read", "search_read", "write", "unlink", "export_data"]
 # Used for performance, to avoid a dictionary instanciation when we need an
 # empty dict to simplify algorithms
 EMPTY_DICT = {}
@@ -118,8 +118,8 @@ class AuditlogRule(models.Model):
     log_read = fields.Boolean(
         "Log Reads",
         help=(
-            "Select this if you want to keep track of read/open on any "
-            "record of the model of this rule"
+            "Select this if you want to keep track of read/open and export "
+            "of any record of the model of this rule"
         ),
     )
     log_read_values = fields.Boolean(
@@ -128,7 +128,7 @@ class AuditlogRule(models.Model):
             "Store the values of the fields read. Uncheck it to store only "
             "their names: read logs stay small, and sensitive values are not "
             "copied into logs that users without access to those values can "
-            "open"
+            "open. Exports never store values"
         ),
     )
     log_write = fields.Boolean(
@@ -228,6 +228,8 @@ class AuditlogRule(models.Model):
             new_method = self._make_write()
         elif method_name == "unlink":
             new_method = self._make_unlink()
+        elif method_name == "export_data":
+            new_method = self._make_export_data()
         if new_method:
             new_method.origin = getattr(model_class, method_name)
             setattr(model_class, method_name, new_method)
@@ -267,6 +269,10 @@ class AuditlogRule(models.Model):
             check_attr = "auditlog_ruled_unlink"
             if rule.log_unlink and not hasattr(model_model, check_attr):
                 updated = rule._patch_method(model_model, "unlink", check_attr)
+            #   -> export
+            check_attr = "auditlog_ruled_export_data"
+            if rule.log_read and not hasattr(model_model, check_attr):
+                updated = rule._patch_method(model_model, "export_data", check_attr)
         return updated
 
     def _revert_methods(self):
@@ -573,6 +579,36 @@ class AuditlogRule(models.Model):
 
         return unlink_full if self.log_type == "full" else unlink_fast
 
+    def _make_export_data(self):
+        """Instanciate an export_data method that log its calls."""
+        self.ensure_one()
+        log_type = self.log_type
+        users_to_exclude = self.mapped("users_to_exclude_ids")
+
+        def export_data(self, fields_to_export, **kwargs):
+            result = export_data.origin(self, fields_to_export, **kwargs)
+            if self.env.context.get("auditlog_disabled"):
+                return result
+            if self.env.user in users_to_exclude:
+                return result
+            self = self.with_context(auditlog_disabled=True)
+            rule_model = self.env["auditlog.rule"]
+            export_values = {
+                res_id: dict.fromkeys(fields_to_export) for res_id in self.ids
+            }
+            rule_model.sudo().create_logs(
+                self.env.uid,
+                self._name,
+                self.ids,
+                "export",
+                export_values,
+                None,
+                {"log_type": log_type},
+            )
+            return result
+
+        return export_data
+
     def create_logs(
         self,
         uid,
@@ -628,6 +664,10 @@ class AuditlogRule(models.Model):
                     old_values.get(res_id, EMPTY_DICT),
                     fields_to_exclude + FIELDS_BLACKLIST,
                 )
+            elif method == "export":
+                vals["read_field_names"] = self._get_log_field_names(
+                    old_values.get(res_id, EMPTY_DICT), fields_to_exclude
+                )
             elif method == "write":
                 vals["line_ids"] = self._create_log_line_on_write(
                     vals, diff.changed(), old_values, new_values, fields_to_exclude
@@ -640,7 +680,7 @@ class AuditlogRule(models.Model):
                     fields_to_exclude,
                 )
             if (
-                method == "unlink"
+                method in ("unlink", "export")
                 or vals.get("line_ids", {})
                 or vals.get("read_field_names")
             ):

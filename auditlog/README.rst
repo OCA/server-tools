@@ -66,8 +66,15 @@ smaller, and it keeps sensitive values out of the logs: users who can
 open the logs of a record would otherwise see the values of fields they
 are not allowed to read on the record itself.
 
-Read logs without values have no lines, so they are not listed in the
-*Log Lines* menu.
+Data exports (the *Export* action and the ``export_data`` method) are
+logged by *Log Reads* too, since an export reads the records. One log is
+created per exported record, with the exported fields in *Fields Read*.
+Exports never store the exported values. Records exported through a
+relation, such as the lines of an order, are not logged on their own
+model.
+
+Read logs without values and export logs have no lines, so they are not
+listed in the *Log Lines* menu.
 
 A scheduled action exists to delete logs older than 6 months (180 days)
 automatically but is not enabled by default. To activate it and/or
@@ -96,8 +103,12 @@ Known issues / Roadmap
 
    -  log only operations triggered by some users (currently it logs all
       users)
-   -  log read operations does not work on all data models, need
-      investigation
+   -  log ``read_group`` calls (grouped views, pivot and graph):
+      grouping by a field returns all its distinct values, but no record
+      ids, so these reads need logs that are not bound to a record
+   -  log the other reads that do not go through ``read``,
+      ``search_read`` or ``export_data``: ``copy_data``, binary
+      downloads, reports, and field values read directly on records
 
 Bug Tracker
 ===========

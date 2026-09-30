@@ -5,6 +5,7 @@
 
 
 from odoo import fields
+from odoo.exceptions import UserError
 
 from odoo.addons.base.models.ir_model import MODULE_UNINSTALL_FLAG
 from odoo.addons.base.models.res_users import name_boolean_group
@@ -319,6 +320,35 @@ class AuditlogCommon:
         log = self._search_group_logs("read", group).ensure_one()
         self.assertFalse(log.line_ids)
         self.assertEqual(log.read_field_names, "name, share")
+
+    def test_LogExport(self):
+        """Tests export results"""
+        comment_field = self.env.ref("base.field_res_groups__comment")
+        self.groups_rule.write({"fields_to_exclude_ids": [(4, comment_field.id)]})
+        self.groups_rule.subscribe()
+        groups = self.env["res.groups"].create(
+            [{"name": "testgroup1"}, {"name": "testgroup2"}]
+        )
+        self.env["res.groups"].browse(groups.ids).export_data(
+            ["name", "comment", "implied_ids/name", "id"]
+        )
+        logs = self._search_group_logs("export", groups)
+        self.assertEqual(sorted(logs.mapped("res_id")), sorted(groups.ids))
+        self.assertFalse(logs.line_ids)
+        self.assertEqual(
+            set(logs.mapped("read_field_names")), {"name, implied_ids/name, id"}
+        )
+
+    def test_LogExportNotAllowed(self):
+        """Tests an export refused to the user is not logged"""
+        user = self.env.ref("base.public_user")
+        self.groups_rule.subscribe()
+        group = self.env["res.groups"].create({"name": "testgroup1"})
+        with self.assertRaises(UserError):
+            self.env["res.groups"].with_user(user).browse(group.id).export_data(
+                ["name"]
+            )
+        self.assertFalse(self._search_group_logs("export", group))
 
     def test_http_session(self):
         display_name = (

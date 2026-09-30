@@ -408,8 +408,14 @@ read, in the <em>Fields Read</em> field of the log. It keeps read logs much
 smaller, and it keeps sensitive values out of the logs: users who can
 open the logs of a record would otherwise see the values of fields they
 are not allowed to read on the record itself.</p>
-<p>Read logs without values have no lines, so they are not listed in the
-<em>Log Lines</em> menu.</p>
+<p>Data exports (the <em>Export</em> action and the <tt class="docutils literal">export_data</tt> method) are
+logged by <em>Log Reads</em> too, since an export reads the records. One log is
+created per exported record, with the exported fields in <em>Fields Read</em>.
+Exports never store the exported values. Records exported through a
+relation, such as the lines of an order, are not logged on their own
+model.</p>
+<p>Read logs without values and export logs have no lines, so they are not
+listed in the <em>Log Lines</em> menu.</p>
 <p>A scheduled action exists to delete logs older than 6 months (180 days)
 automatically but is not enabled by default. To activate it and/or
 change the delay, go to the Configuration / Technical / Automation /
@@ -430,8 +436,12 @@ right to configure the auditlog configuration rules.</p>
 <ul class="simple">
 <li>log only operations triggered by some users (currently it logs all
 users)</li>
-<li>log read operations does not work on all data models, need
-investigation</li>
+<li>log <tt class="docutils literal">read_group</tt> calls (grouped views, pivot and graph):
+grouping by a field returns all its distinct values, but no record
+ids, so these reads need logs that are not bound to a record</li>
+<li>log the other reads that do not go through <tt class="docutils literal">read</tt>,
+<tt class="docutils literal">search_read</tt> or <tt class="docutils literal">export_data</tt>: <tt class="docutils literal">copy_data</tt>, binary
+downloads, reports, and field values read directly on records</li>
 </ul>
 </blockquote>
 </div>
