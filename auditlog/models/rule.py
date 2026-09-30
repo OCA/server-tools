@@ -7,6 +7,7 @@ from collections import defaultdict
 from odoo import Command, _, api, fields, models
 from odoo.exceptions import UserError
 from odoo.models import fix_import_export_id_paths
+from odoo.tools.mail import is_html_empty
 from odoo.tools.misc import OrderedSet
 
 FIELDS_BLACKLIST = [
@@ -680,7 +681,7 @@ class AuditlogRule(models.Model):
                     fields_to_exclude,
                 )
             if (
-                method in ("unlink", "export")
+                method in ("create", "unlink", "export")
                 or vals.get("line_ids", {})
                 or vals.get("read_field_names")
             ):
@@ -838,7 +839,12 @@ class AuditlogRule(models.Model):
                 continue
             field = self._get_field(log_vals["model_id"], field_name)
             # not all fields have an ir.models.field entry (ie. related fields)
-            if field:
+            if field and not (
+                log_vals["log_type"] == "full"
+                and self._is_empty_create_value(
+                    field, new_values[log_vals["res_id"]][field_name]
+                )
+            ):
                 line_vals.append(
                     Command.create(
                         self._prepare_log_line_vals_on_create(
@@ -847,6 +853,17 @@ class AuditlogRule(models.Model):
                     )
                 )
         return line_vals
+
+    @api.model
+    def _is_empty_create_value(self, field, value):
+        """Tell whether a value logged on a full 'create' operation is empty.
+        A boolean is never empty, as False is a meaningful value.
+        """
+        if field["ttype"] == "boolean":
+            return False
+        if field["ttype"] == "html":
+            return is_html_empty(value)
+        return not value
 
     def _prepare_log_line_vals_on_create(self, log_vals, field, new_values):
         """Prepare the dictionary of values used to create a log line on a

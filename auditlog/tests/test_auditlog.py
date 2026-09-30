@@ -375,6 +375,20 @@ class TestAuditlogFull(AuditLogRuleCommon, AuditlogCommon):
             }
         )
 
+    def test_LogCreationSkipEmptyValues(self):
+        """Full create logs no empty value, except booleans"""
+        self.groups_rule.subscribe()
+        group = self.env["res.groups"].create(
+            {"name": "testgroup1", "share": False, "comment": False, "color": 0}
+        )
+        log = self._search_group_logs("create", group).ensure_one()
+        field_names = log.line_ids.mapped("field_name")
+        self.assertIn("name", field_names)
+        self.assertIn("share", field_names)
+        self.assertNotIn("comment", field_names)
+        self.assertNotIn("color", field_names)
+        self.assertNotIn("implied_ids", field_names)
+
 
 class TestAuditlogFast(AuditLogRuleCommon, AuditlogCommon):
     @classmethod
@@ -392,6 +406,27 @@ class TestAuditlogFast(AuditLogRuleCommon, AuditlogCommon):
                 "log_type": "fast",
             }
         )
+
+    def test_LogCreationKeepEmptyValues(self):
+        """Fast create logs the values given, empty ones included"""
+        self.groups_rule.subscribe()
+        group = self.env["res.groups"].create(
+            {"name": "testgroup1", "share": False, "comment": False, "color": 0}
+        )
+        log = self._search_group_logs("create", group).ensure_one()
+        self.assertEqual(
+            set(log.line_ids.mapped("field_name")),
+            {"name", "share", "comment", "color"},
+        )
+
+    def test_LogCreationWithoutLines(self):
+        """A create is logged even when no field is left to log"""
+        name_field = self.env.ref("base.field_res_groups__name")
+        self.groups_rule.write({"fields_to_exclude_ids": [(4, name_field.id)]})
+        self.groups_rule.subscribe()
+        group = self.env["res.groups"].create({"name": "testgroup1"})
+        log = self._search_group_logs("create", group).ensure_one()
+        self.assertFalse(log.line_ids)
 
 
 class TestFieldRemoval(AuditLogRuleCommon):

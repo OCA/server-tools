@@ -35,6 +35,10 @@ model.
 Read logs without values and export logs have no lines, so they are not
 listed in the *Log Lines* menu.
 
+With a *Full log* rule, a creation log stores only the fields that have
+a value: empty fields (False, 0, empty text or relation) are not logged,
+except boolean fields.
+
 A scheduled action exists to delete logs older than 6 months (180 days)
 automatically but is not enabled by default. To activate it and/or
 change the delay, go to the Configuration / Technical / Automation /
