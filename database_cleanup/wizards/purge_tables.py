@@ -15,7 +15,7 @@ class CleanupPurgeWizardTable(models.TransientModel):
     _inherit = "cleanup.purge.wizard"
     _name = "cleanup.purge.wizard.table"
     _description = "Purge tables"
-    blacklist = [
+    blacklist = [  # noqa: RUF012
         "endpoint_route",  # web-api/endpoint_route_handler
         # \/\/ from Registry.setup_signaling() \/\/
         "orm_signaling_assets",

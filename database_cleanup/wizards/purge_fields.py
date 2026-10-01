@@ -24,7 +24,7 @@ class CleanupPurgeWizardField(models.TransientModel):
             if field_id.name in ignored_fields:
                 continue
             model = self.env[field_id.model_id.model]
-            if field_id.name not in model._fields.keys():
+            if field_id.name not in model._fields:
                 res.append(
                     (
                         0,

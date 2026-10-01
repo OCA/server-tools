@@ -16,12 +16,10 @@ class CreateIndexesWizard(models.TransientModel):
     )
 
     def find(self):
-        res = list()
-        for field in self.env["ir.model.fields"].search(
-            [
-                ("index", "=", True),
-            ]
-        ):
+        res = []
+        # index is a selection of index kinds since Odoo 20: any value means
+        # the field is indexed
+        for field in self.env["ir.model.fields"].search([("index", "!=", False)]):
             if field.model not in self.env.registry:
                 continue
             model = self.env[field.model]

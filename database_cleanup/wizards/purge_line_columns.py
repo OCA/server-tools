@@ -12,7 +12,7 @@ class CleanupPurgeLineColumn(models.TransientModel):
     _name = "cleanup.purge.line.column"
     _description = "Cleanup Purge Line Column"
 
-    model_id = fields.Many2one("ir.model", "Model", required=True, ondelete="CASCADE")
+    model_id = fields.Many2one("ir.model", required=True, ondelete="CASCADE")
     wizard_id = fields.Many2one(
         "cleanup.purge.wizard.column", "Purge Wizard", readonly=True
     )

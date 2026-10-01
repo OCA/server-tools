@@ -10,5 +10,5 @@ class IrModelFields(models.Model):
 
     def _prepare_update(self):
         """this function crashes for undefined models"""
-        self = self.filtered(lambda x: x.model in self.env)
-        return super()._prepare_update()
+        records = self.filtered(lambda x: x.model in self.env)
+        return super(IrModelFields, records)._prepare_update()

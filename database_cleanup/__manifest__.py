@@ -3,14 +3,14 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
     "name": "Database cleanup",
-    "version": "19.0.1.0.6",
+    "version": "20.0.1.0.0",
     "author": "Therp BV,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/server-tools",
     "depends": ["base"],
     "license": "AGPL-3",
     "category": "Tools",
     "data": [
-        "security/ir.model.access.csv",
+        "security/ir.access.csv",
         "views/purge_wizard.xml",
         "views/purge_line.xml",
         "wizards/purge_menus.xml",

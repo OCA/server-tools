@@ -10,11 +10,11 @@ class IrModel(models.Model):
 
     def _drop_table(self):
         """this function crashes for undefined models"""
-        self = self.filtered(lambda x: x.model in self.env)
-        return super()._drop_table()
+        records = self.filtered(lambda x: x.model in self.env)
+        return super(IrModel, records)._drop_table()
 
     @api.depends()
     def _inherited_models(self):
         """this function crashes for undefined models"""
-        self = self.filtered(lambda x: x.model in self.env)
-        return super()._inherited_models()
+        records = self.filtered(lambda x: x.model in self.env)
+        return super(IrModel, records)._inherited_models()

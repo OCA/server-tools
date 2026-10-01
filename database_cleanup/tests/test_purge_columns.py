@@ -51,7 +51,9 @@ class TestCleanupPurgeLineColumn(Common):
             )
             wizard.purge_all()
             # must be removed by the wizard
-            with self.assertRaises(ProgrammingError):
-                with env.registry.cursor() as cr:
-                    with mute_logger("odoo.sql_db"):
-                        cr.execute("select database_cleanup_test from res_partner")
+            with (
+                self.assertRaises(ProgrammingError),
+                env.registry.cursor() as cr,
+                mute_logger("odoo.sql_db"),
+            ):
+                cr.execute("select database_cleanup_test from res_partner")
