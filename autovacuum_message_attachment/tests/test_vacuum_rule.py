@@ -1,10 +1,9 @@
 # © 2018 Akretion (Florian da Costa)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-import base64
-from datetime import date, timedelta
+from datetime import timedelta
 
-from odoo import api, exceptions
+from odoo import exceptions, fields
 from odoo.modules.registry import Registry
 from odoo.tests import common
 from odoo.tools import DEFAULT_SERVER_DATE_FORMAT
@@ -23,21 +22,17 @@ class TestVacuumRule(common.TransactionCase):
         }
         return self.message_obj.create(vals)
 
-    def tearDown(self):
-        self.registry.leave_test_mode()
-        super().tearDown()
-
     def setUp(self):
         super().setUp()
-        self.registry.enter_test_mode(self.env.cr)
-        self.env = api.Environment(
-            self.registry.test_cr, self.env.uid, self.env.context
-        )
+        # The mixin deletes records in a separate cursor and commits: in test
+        # mode the registry hands out TestCursor instances wrapping the test
+        # cursor instead of real connections.
+        self.enterContext(self.registry_test_mode())
         self.subtype = self.env.ref("mail.mt_comment")
         self.message_obj = self.env["mail.message"]
         self.attachment_obj = self.env["ir.attachment"]
         self.partner_model = self.env.ref("base.model_res_partner")
-        today = date.today()
+        today = fields.Date.today()
         self.before_400_days = today - timedelta(days=400)
 
     def test_mail_vacuum_rules(self):
@@ -85,7 +80,7 @@ class TestVacuumRule(common.TransactionCase):
     def create_attachment(self, name):
         vals = {
             "name": name,
-            "datas": base64.b64encode(b"Content"),
+            "raw": b"Content",
             "res_id": self.env.ref("base.partner_root").id,
             "res_model": "res.partner",
         }
@@ -104,7 +99,7 @@ class TestVacuumRule(common.TransactionCase):
         a2 = self.create_attachment("test24")
         # Force create date to old date to test deletion with 100 days
         # retention time
-        before_102_days = date.today() - timedelta(days=102)
+        before_102_days = fields.Date.today() - timedelta(days=102)
         before_102_days_str = before_102_days.strftime(DEFAULT_SERVER_DATE_FORMAT)
         self.env.cr.execute(
             """
@@ -113,7 +108,7 @@ class TestVacuumRule(common.TransactionCase):
         """,
             (before_102_days_str, a2.id),
         )
-        a2.write({"create_date": date.today() - timedelta(days=102)})
+        a2.write({"create_date": fields.Date.today() - timedelta(days=102)})
         a3 = self.create_attachment("other")
         self.env.cr.execute(
             """

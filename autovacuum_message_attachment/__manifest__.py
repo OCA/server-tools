@@ -3,7 +3,7 @@
 
 {
     "name": "AutoVacuum Mail Message and Attachment",
-    "version": "18.0.1.0.1",
+    "version": "20.0.1.0.0",
     "category": "Tools",
     "website": "https://github.com/OCA/server-tools",
     "author": "Akretion, Odoo Community Association (OCA)",
@@ -12,5 +12,5 @@
     "summary": "Automatically delete old mail messages and attachments",
     "maintainers": ["florian-dacosta"],
     "depends": ["mail"],
-    "data": ["data/data.xml", "views/rule_vacuum.xml", "security/ir.model.access.csv"],
+    "data": ["data/data.xml", "views/rule_vacuum.xml", "security/ir.access.csv"],
 }

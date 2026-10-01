@@ -11,11 +11,11 @@ class VacuumRule(models.Model):
     name = fields.Char(required=True)
     ttype = fields.Selection(
         selection=[("attachment", "Attachment"), ("message", "Message")],
-        string="Type",
+        string="Record Type",
         required=True,
     )
     filename_pattern = fields.Char(
-        help=("If set, only attachments containing this pattern will be" " deleted.")
+        help=("If set, only attachments containing this pattern will be deleted.")
     )
     inheriting_model = fields.Char(
         help="If set, this model will be searched and only related attachments will "
@@ -23,7 +23,6 @@ class VacuumRule(models.Model):
     )
     company_id = fields.Many2one(
         "res.company",
-        string="Company",
         default=lambda self: self.env.company,
     )
     message_subtype_ids = fields.Many2many(
@@ -110,8 +109,8 @@ class VacuumRule(models.Model):
             ):
                 raise exceptions.ValidationError(
                     self.env._(
-                        "No inheritance of ir.attachment "
-                        f"was found on model {rule.inheriting_model}"
+                        "No inheritance of ir.attachment was found on model %s",
+                        rule.inheriting_model,
                     )
                 )
             attachment_field = self.env[rule.inheriting_model]._inherits.get(
@@ -120,8 +119,8 @@ class VacuumRule(models.Model):
             if not attachment_field:
                 raise exceptions.ValidationError(
                     self.env._(
-                        "Cannot find relation to ir.attachment "
-                        f"on model {rule.inheriting_model}"
+                        "Cannot find relation to ir.attachment on model %s",
+                        rule.inheriting_model,
                     )
                 )
 

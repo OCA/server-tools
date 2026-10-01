@@ -4,12 +4,12 @@
 from datetime import timedelta
 
 from odoo import fields, models
-from odoo.osv import expression
+from odoo.fields import Domain
 
 
 class MailMessage(models.Model):
     _name = "mail.message"
-    _inherit = ["mail.message", "autovacuum.mixin"]
+    _inherit = ["mail.message", "autovacuum.mixin"]  # noqa: RUF012
     _autovacuum_relation = "message_ids"
 
     def _get_autovacuum_domain(self, rule):
@@ -35,4 +35,4 @@ class MailMessage(models.Model):
             domains.append([("subtype_id", "in", subtype_ids)])
         elif not subtype_ids and not rule.empty_subtype:
             domains.append([("subtype_id", "!=", False)])
-        return expression.AND(domains)
+        return Domain.AND(domains)

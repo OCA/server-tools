@@ -4,6 +4,7 @@
 import logging
 
 from odoo import api, models
+from odoo.fields import Domain
 from odoo.modules.registry import Registry
 from odoo.tools.safe_eval import datetime, safe_eval
 
@@ -28,8 +29,8 @@ class AutovacuumMixin(models.AbstractModel):
                     # fields, cleared right after.
                     batch_delete.with_env(new_env).unlink()
                     new_env.cr.commit()
-            except Exception as e:
-                _logger.exception(f"Failed to delete Ms : {self._name} - {str(e)}")
+            except Exception:
+                _logger.exception("Failed to delete records of model %s", self._name)
 
     # Call by cron
     @api.model
@@ -40,7 +41,7 @@ class AutovacuumMixin(models.AbstractModel):
             records.batch_unlink()
 
     def _get_autovacuum_domain(self, rule):
-        return []
+        return Domain.TRUE
 
     def _get_autovacuum_records(self, rule):
         if rule.model_id and rule.model_filter_domain:
@@ -48,16 +49,15 @@ class AutovacuumMixin(models.AbstractModel):
         return self.search(self._get_autovacuum_domain(rule))
 
     def _get_autovacuum_records_model(self, rule):
-        domain = self._get_autovacuum_domain(rule)
-        record_domain = safe_eval(
-            rule.model_filter_domain, locals_dict={"datetime": datetime}
+        domain = Domain(self._get_autovacuum_domain(rule))
+        record_domain = Domain(
+            safe_eval(rule.model_filter_domain, {"datetime": datetime})
         )
         autovacuum_relation = self._autovacuum_relation
-        for leaf in domain:
-            if not isinstance(leaf, (tuple | list)):
-                record_domain.append(leaf)
-                continue
-            field, operator, value = leaf
-            record_domain.append((f"{autovacuum_relation}.{field}", operator, value))
-        records = self.env[rule.model_id.model].search(record_domain)
-        return self.search(domain + [("res_id", "in", records.ids)])
+        related_domain = domain.map_conditions(
+            lambda cond: Domain(
+                f"{autovacuum_relation}.{cond.field_expr}", cond.operator, cond.value
+            )
+        )
+        records = self.env[rule.model_id.model].search(record_domain & related_domain)
+        return self.search(domain & Domain("res_id", "in", records.ids))
