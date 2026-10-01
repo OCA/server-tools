@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_data_import_log_user,data.import.log.user,model_data_import_log,base.group_user,1,0,1,0
+access_data_import_log_system,data.import.log.system,model_data_import_log,base.group_system,1,1,1,1
+access_data_import_error_user,data.import.error.user,model_data_import_error,base.group_user,1,0,1,0
+access_data_import_error_system,data.import.error.system,model_data_import_error,base.group_system,1,1,1,1
