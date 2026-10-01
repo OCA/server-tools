@@ -1,0 +1,18 @@
+<odoo noupdate="1">
+    <record model="ir.rule" id="ir_sequence_option_multi_company_rule">
+        <field name="name">Sequence Option: multi-company</field>
+        <field name="model_id" ref="model_ir_sequence_option" />
+        <field name="global" eval="True" />
+        <field name="domain_force">
+            [('company_id', 'in', company_ids)]
+        </field>
+    </record>
+    <record model="ir.rule" id="ir_sequence_option_line_multi_company_rule">
+        <field name="name">Sequence Option Line: multi-company</field>
+        <field name="model_id" ref="model_ir_sequence_option_line" />
+        <field name="global" eval="True" />
+        <field name="domain_force">
+            [('company_id', 'in', company_ids)]
+        </field>
+    </record>
+</odoo>
