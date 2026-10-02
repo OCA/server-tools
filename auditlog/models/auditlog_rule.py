@@ -102,13 +102,36 @@ class ThrowAwayCache:
         for env in self._transaction.envs:
             self._original_field_cache_memos[env] = dict(env._field_cache_memo)
             env._field_cache_memo.clear()
+
+        # ``Environment._field_dirty`` is a ``functools.cached_property`` holding
+        # a reference to ``transaction.field_dirty``. Environments that already
+        # accessed it keep pointing at the original mapping even though we just
+        # replaced the attribute on the transaction, so they would look up dirty
+        # values in the throw away cache and fail. Drop the memo so that it gets
+        # resolved again against the container currently set on the transaction.
+        self._reset_field_dirty_memo()
         return self
+
+    def _reset_field_dirty_memo(self):
+        """Drop the ``_field_dirty`` memo of every environment.
+
+        It has to be done both when the transaction containers are replaced and
+        when they are restored, so that the environments always resolve the
+        mapping that is currently set on the transaction. Note that environments
+        may also be created inside the context manager (e.g. by calling
+        ``sudo()``), hence resetting them again on exit.
+        """
+        for env in self._transaction.envs:
+            env.__dict__.pop("_field_dirty", None)
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         """Restore the original cache data storage of the transaction."""
         for attribute in self.transaction_attributes:
             attr = getattr(self, f"_original_{attribute}")
             setattr(self._transaction, attribute, attr)
+
+        # See the comment in __enter__.
+        self._reset_field_dirty_memo()
 
         # Restore the contents of the field_cache_memo of each env. Environments
         # are read-only objects, so we cannot patch back the actual stashed copies.
