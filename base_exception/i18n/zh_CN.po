@@ -38,12 +38,12 @@ msgstr "应用于"
 #. module: base_exception
 #: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_form
 msgid "Archived"
-msgstr ""
+msgstr "已归档"
 
 #. module: base_exception
 #: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_form
 msgid "As well as all the libraries provided in safe_eval."
-msgstr ""
+msgstr "以及 safe_eval 提供的所有库。"
 
 #. module: base_exception
 #: model:ir.model.fields.selection,name:base_exception.selection__exception_rule__exception_type__by_domain
@@ -53,7 +53,7 @@ msgstr "通过域"
 #. module: base_exception
 #: model:ir.model.fields.selection,name:base_exception.selection__exception_rule__exception_type__by_method
 msgid "By method"
-msgstr ""
+msgstr "按方法"
 
 #. module: base_exception
 #: model:ir.model.fields.selection,name:base_exception.selection__exception_rule__exception_type__by_py_code
@@ -68,12 +68,12 @@ msgid ""
 "           performance can be better when exceptions           are evaluated "
 "with several records\n"
 "By method: allow to select an existing check method"
-msgstr ""
+msgstr "按 Python 代码：可定义任意检查\n按域：仅限用 Odoo 域筛选；对多条记录评估例外时性能可能更好\n按方法：选择一个已有的检查方法"
 
 #. module: base_exception
 #: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_confirm
 msgid "Close"
-msgstr ""
+msgstr "关闭"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule__create_uid
@@ -115,7 +115,7 @@ msgid ""
 "Error when evaluating the exception.rule rule:\n"
 " %(rule_name)s \n"
 "(%(error)s)"
-msgstr ""
+msgstr "评估例外规则时出错：\n %(rule_name)s \n（%(error)s）"
 
 #. module: base_exception
 #: model:ir.model,name:base_exception.model_base_exception
@@ -208,7 +208,7 @@ msgstr "忽略异常"
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule__is_blocking
 msgid "Is Blocking"
-msgstr ""
+msgstr "阻断性"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule__write_uid
@@ -228,7 +228,7 @@ msgstr "主要异常"
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule__method
 msgid "Method"
-msgstr ""
+msgstr "方法"
 
 #. module: base_exception
 #. odoo-python
@@ -275,13 +275,13 @@ msgstr "序列"
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule__smart_search
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm__smart_search
 msgid "Smart Search"
-msgstr ""
+msgstr "智能搜索"
 
 #. module: base_exception
 #. odoo-python
 #: code:addons/base_exception/models/base_exception.py:0
 msgid "The exceptions can not be ignored, because some of them are blocking."
-msgstr ""
+msgstr "部分例外是阻断性的，不能忽略。"
 
 #. module: base_exception
 #. odoo-python
@@ -289,7 +289,7 @@ msgstr ""
 msgid ""
 "There is a problem of configuration, python code, domain or method is "
 "missing to match the exception type."
-msgstr ""
+msgstr "配置有问题：缺少与例外类型对应的 Python 代码、域或方法。"
 
 #. module: base_exception
 #: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_form
@@ -306,7 +306,7 @@ msgstr "各种字段可能使用Python代码或Python表达式。可以使用以
 #. module: base_exception
 #: model:ir.model.fields,help:base_exception.field_exception_rule__is_blocking
 msgid "When checked the exception can not be ignored"
-msgstr ""
+msgstr "勾选后该例外不能被忽略"
 
 #~ msgid "Last Modified on"
 #~ msgstr "最后修改时间"
