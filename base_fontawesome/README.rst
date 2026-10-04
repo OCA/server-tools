@@ -36,6 +36,15 @@ Provide up to date `Fontawesome <http://fontawesome.io/>`__ resources.
 
 Current version: 6.7.2 (the version of this module matches it).
 
+Odoo's HTML editor lists the Font Awesome icons it can insert, and its
+email conversion turns them into images, by reading ``.fa-name::before``
+rules from the page's style sheets. Font Awesome 6 does not write such
+rules (it sets each icon through a CSS variable), so the module adds
+them for every icon, with the icon that ``fa fa-name`` markup draws.
+They are generated from the bundled Font Awesome by
+``scripts/build_editor_css.py``: run it again after updating Font
+Awesome.
+
 **Table of contents**
 
 .. contents::
@@ -59,6 +68,15 @@ For example, brand_icon is necessary if we are using an icon of a brand:
    <button brand_icon="fas fa-hand-sparkles" string=" fas fa-hand-sparkles"/>
 
    <button brand_icon="fas fa-handshake-slash" string=" fas fa-handshake-slash"/>
+
+Known issues / Roadmap
+======================
+
+- Emails draw their icons with Odoo's own Font Awesome 4.7 font, as
+  images: icons new in Font Awesome 6 come out blank there.
+- The ``.fa-name::before`` rules are loaded in the backend only, where
+  the website builder and the email editors run; HTML editors of the
+  frontend (e.g. the forum) still list no Font Awesome icon.
 
 Bug Tracker
 ===========
@@ -86,6 +104,7 @@ Contributors
 - Enric Tobella <etobella@creublanca.es>
 - Tony Galmiche <tony.galmiche@infosaone.com>
 - Nils Coenen <nils.coenen@nico-solutions.de>
+- Cliff Kujala <cliff@corsa.pro> (`CORSA.pro <https://www.corsa.pro>`__)
 
 Maintainers
 -----------

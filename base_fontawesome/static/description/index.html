@@ -377,15 +377,24 @@ ul.auto-toc {
 <p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/lgpl-3.0-standalone.html"><img alt="License: LGPL-3" src="https://img.shields.io/badge/license-LGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/server-tools/tree/19.0/base_fontawesome"><img alt="OCA/server-tools" src="https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/server-tools-19-0/server-tools-19-0-base_fontawesome"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/server-tools&amp;target_branch=19.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
 <p>Provide up to date <a class="reference external" href="http://fontawesome.io/">Fontawesome</a> resources.</p>
 <p>Current version: 6.7.2 (the version of this module matches it).</p>
+<p>Odoo’s HTML editor lists the Font Awesome icons it can insert, and its
+email conversion turns them into images, by reading <tt class="docutils literal"><span class="pre">.fa-name::before</span></tt>
+rules from the page’s style sheets. Font Awesome 6 does not write such
+rules (it sets each icon through a CSS variable), so the module adds
+them for every icon, with the icon that <tt class="docutils literal">fa <span class="pre">fa-name</span></tt> markup draws.
+They are generated from the bundled Font Awesome by
+<tt class="docutils literal">scripts/build_editor_css.py</tt>: run it again after updating Font
+Awesome.</p>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
 <li><a class="reference internal" href="#usage" id="toc-entry-1">Usage</a></li>
-<li><a class="reference internal" href="#bug-tracker" id="toc-entry-2">Bug Tracker</a></li>
-<li><a class="reference internal" href="#credits" id="toc-entry-3">Credits</a><ul>
-<li><a class="reference internal" href="#authors" id="toc-entry-4">Authors</a></li>
-<li><a class="reference internal" href="#contributors" id="toc-entry-5">Contributors</a></li>
-<li><a class="reference internal" href="#maintainers" id="toc-entry-6">Maintainers</a></li>
+<li><a class="reference internal" href="#known-issues-roadmap" id="toc-entry-2">Known issues / Roadmap</a></li>
+<li><a class="reference internal" href="#bug-tracker" id="toc-entry-3">Bug Tracker</a></li>
+<li><a class="reference internal" href="#credits" id="toc-entry-4">Credits</a><ul>
+<li><a class="reference internal" href="#authors" id="toc-entry-5">Authors</a></li>
+<li><a class="reference internal" href="#contributors" id="toc-entry-6">Contributors</a></li>
+<li><a class="reference internal" href="#maintainers" id="toc-entry-7">Maintainers</a></li>
 </ul>
 </li>
 </ul>
@@ -406,8 +415,18 @@ configuration of the icon.</p>
 &lt;button brand_icon=&quot;fas fa-handshake-slash&quot; string=&quot; fas fa-handshake-slash&quot;/&gt;
 </pre>
 </div>
+<div class="section" id="known-issues-roadmap">
+<h2><a class="toc-backref" href="#toc-entry-2">Known issues / Roadmap</a></h2>
+<ul class="simple">
+<li>Emails draw their icons with Odoo’s own Font Awesome 4.7 font, as
+images: icons new in Font Awesome 6 come out blank there.</li>
+<li>The <tt class="docutils literal"><span class="pre">.fa-name::before</span></tt> rules are loaded in the backend only, where
+the website builder and the email editors run; HTML editors of the
+frontend (e.g. the forum) still list no Font Awesome icon.</li>
+</ul>
+</div>
 <div class="section" id="bug-tracker">
-<h2><a class="toc-backref" href="#toc-entry-2">Bug Tracker</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-3">Bug Tracker</a></h2>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/server-tools/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
@@ -415,25 +434,26 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
-<h2><a class="toc-backref" href="#toc-entry-3">Credits</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-4">Credits</a></h2>
 <div class="section" id="authors">
-<h3><a class="toc-backref" href="#toc-entry-4">Authors</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-5">Authors</a></h3>
 <ul class="simple">
 <li>Camptocamp</li>
 <li>Creu Blanca</li>
 </ul>
 </div>
 <div class="section" id="contributors">
-<h3><a class="toc-backref" href="#toc-entry-5">Contributors</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-6">Contributors</a></h3>
 <ul class="simple">
 <li>Simone Orsi <a class="reference external" href="mailto:simone.orsi&#64;camptocamp.com">simone.orsi&#64;camptocamp.com</a></li>
 <li>Enric Tobella &lt;<a class="reference external" href="mailto:etobella&#64;creublanca.es">etobella&#64;creublanca.es</a>&gt;</li>
 <li>Tony Galmiche &lt;<a class="reference external" href="mailto:tony.galmiche&#64;infosaone.com">tony.galmiche&#64;infosaone.com</a>&gt;</li>
 <li>Nils Coenen &lt;<a class="reference external" href="mailto:nils.coenen&#64;nico-solutions.de">nils.coenen&#64;nico-solutions.de</a>&gt;</li>
+<li>Cliff Kujala &lt;<a class="reference external" href="mailto:cliff&#64;corsa.pro">cliff&#64;corsa.pro</a>&gt; (<a class="reference external" href="https://www.corsa.pro">CORSA.pro</a>)</li>
 </ul>
 </div>
 <div class="section" id="maintainers">
-<h3><a class="toc-backref" href="#toc-entry-6">Maintainers</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-7">Maintainers</a></h3>
 <p>This module is maintained by the OCA.</p>
 <a class="reference external image-reference" href="https://odoo-community.org">
 <img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" />
