@@ -77,7 +77,9 @@ class TimeParameter(models.Model):
         self, model_name, code, date=None, raise_if_not_found=True, get="value"
     ):
         # Filter on company, model, code/name
-        model = self.env["ir.model"].search([("model", "=", model_name)])
+        # `_get` reads as superuser: asking for a parameter must not require
+        # access rights on the models themselves.
+        model = self.env["ir.model"]._get(model_name)
         parameters = self.search(self._get_lookup_domain(model, code))
         # The domain matches the parameters of the current company together
         # with the global ones (no company), and the parameters of the model

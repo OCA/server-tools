@@ -2,6 +2,7 @@ from datetime import date, datetime
 from unittest.mock import patch
 
 from odoo.exceptions import UserError, ValidationError
+from odoo.tests import new_test_user
 from odoo.tests.common import TransactionCase
 
 WRONG_MODEL = "Value is None because of wrong model"
@@ -444,4 +445,22 @@ class TestTimeParameter(TransactionCase):
         with self.assertRaises(UserError):
             Partner.get_time_parameter(
                 "TEST_LATER", date(2020, 1, 1), raise_if_not_found=True
+            )
+
+    def test_14_lookup_as_regular_user(self):
+        # Reading a parameter needs the rights on the parameters, not on
+        # ir.model, which a regular user cannot read.
+        user = new_test_user(
+            self.env,
+            login="time_parameter_user",
+            groups="base.group_user,base_time_parameter.group_time_parameter",
+        )
+        self._create_parameter(
+            "TEST_USER", "USER", company=self.env.company, kind="string"
+        )
+        value = self.env["res.partner"].with_user(user).get_time_parameter("TEST_USER")
+        self.assertEqual(value, "USER")
+        with self.assertRaises(UserError):
+            self.env["res.partner"].with_user(user).get_time_parameter(
+                "TEST_MISSING", raise_if_not_found=True
             )
