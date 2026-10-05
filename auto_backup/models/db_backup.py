@@ -8,7 +8,7 @@ import os
 import shutil
 import traceback
 from contextlib import contextmanager
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from glob import iglob
 
 import pysftp
@@ -151,13 +151,13 @@ class DbBackup(models.Model):
 
         # Start with local storage
         for rec in self.filtered(lambda r: r.method == "local"):
-            filename = self.filename(datetime.now(), ext=rec.backup_format)
+            filename = self.filename(datetime.now(timezone.utc), ext=rec.backup_format)
             with rec.backup_log():
                 # Directory must exist
                 try:
                     os.makedirs(rec.folder, exist_ok=True)
-                except OSError as exc:
-                    _logger.exception(f"Action backup - OSError: {exc}")
+                except OSError:
+                    _logger.exception("Action backup - OSError")
 
                 with open(os.path.join(rec.folder, filename), "wb") as destiny:
                     # Copy the cached backup
@@ -177,7 +177,9 @@ class DbBackup(models.Model):
         sftp = self.filtered(lambda r: r.method == "sftp")
         if sftp:
             for rec in sftp:
-                filename = self.filename(datetime.now(), ext=rec.backup_format)
+                filename = self.filename(
+                    datetime.now(timezone.utc), ext=rec.backup_format
+                )
                 with rec.backup_log():
                     cached = db.dump_db(
                         self.env.cr.dbname, None, backup_format=rec.backup_format
@@ -187,8 +189,8 @@ class DbBackup(models.Model):
                         with rec.sftp_connection() as remote:
                             try:
                                 remote.makedirs(rec.folder)
-                            except pysftp.ConnectionException as exc:
-                                _logger.exception(f"pysftp ConnectionException: {exc}")
+                            except pysftp.ConnectionException:
+                                _logger.exception("pysftp ConnectionException")
 
                             # Copy cached backup to remote server
                             with remote.open(
@@ -227,7 +229,7 @@ class DbBackup(models.Model):
 
     def cleanup(self):
         """Clean up old backups."""
-        now = datetime.now()
+        now = datetime.now(timezone.utc)
         for rec in self.filtered("days_to_keep"):
             with rec.cleanup_log():
                 bu_format = rec.backup_format
