@@ -7,6 +7,7 @@ import logging
 import os
 import shutil
 import traceback
+import tempfile
 from contextlib import contextmanager
 from datetime import datetime, timedelta
 from glob import iglob
@@ -167,26 +168,32 @@ class DbBackup(models.Model):
         # Ensure a local backup exists if we are going to write it remotely
         sftp = self.filtered(lambda r: r.method == "sftp")
         if sftp:
-            for rec in sftp:
-                filename = self.filename(datetime.now(), ext=rec.backup_format)
-                with rec.backup_log():
-                    cached = db.dump(
-                        self.env.cr.dbname, None, backup_format=rec.backup_format
-                    )
+         for rec in sftp:
+          filename = self.filename(datetime.now(), ext=rec.backup_format)
+          with rec.backup_log():
+              with tempfile.TemporaryFile() as cached:
+                  db.dump(
+                      self.env.cr.dbname,
+                      cached,
+                      backup_format=rec.backup_format,
+                  )
+                  cached.seek(0)
 
-                    with cached:
-                        with rec.sftp_connection() as remote:
-                            try:
-                                remote.makedirs(rec.folder)
-                            except pysftp.ConnectionException as exc:
-                                _logger.exception(f"pysftp ConnectionException: {exc}")
+                  with rec.sftp_connection() as remote:
+                      try:
+                          remote.makedirs(rec.folder)
+                      except pysftp.ConnectionException as exc:
+                          _logger.exception(
+                              f"pysftp ConnectionException: {exc}"
+                          )
 
-                            # Copy cached backup to remote server
-                            with remote.open(
-                                os.path.join(rec.folder, filename), "wb"
-                            ) as destiny:
-                                shutil.copyfileobj(cached, destiny)
-                        successful |= rec
+                    # Copy cached backup to remote server
+                      with remote.open(
+                          os.path.join(rec.folder, filename), "wb"
+                      ) as destiny:
+                          shutil.copyfileobj(cached, destiny)
+
+                  successful |= rec
 
         # Remove old files for successful backups
         successful.cleanup()
