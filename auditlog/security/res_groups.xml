@@ -1,20 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <record model="ir.module.category" id="security_auditlog_groups">
+    <record id="security_auditlog_groups" model="ir.module.category">
         <field name="name">Auditlog Rights</field>
     </record>
 
-    <record model="res.groups.privilege" id="res_groups_privilege_auditlog">
+    <record id="res_groups_privilege_auditlog" model="res.groups.privilege">
         <field name="name">Auditlog Rights</field>
         <field name="category_id" ref="security_auditlog_groups" />
-        <field name="sequence">99</field>
+        <field name="sequence" eval="99" />
     </record>
 
-    <record model="res.groups" id="group_auditlog_user">
+    <record id="group_auditlog_user" model="res.groups">
         <field name="name">Auditlog User</field>
         <field name="privilege_id" ref="res_groups_privilege_auditlog" />
     </record>
 
-    <record model="res.groups" id="group_auditlog_manager">
+    <record id="group_auditlog_manager" model="res.groups">
         <field name="name">Auditlog Manager</field>
         <field name="privilege_id" ref="res_groups_privilege_auditlog" />
         <field
