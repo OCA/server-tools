@@ -2,10 +2,12 @@ from datetime import date, datetime
 from unittest.mock import patch
 
 from lxml import etree
+from psycopg2 import IntegrityError
 
 from odoo.exceptions import UserError, ValidationError
 from odoo.tests import new_test_user
 from odoo.tests.common import TransactionCase
+from odoo.tools import mute_logger
 
 WRONG_MODEL = "Value is None because of wrong model"
 DONALD_TRUMP = "The value is 'Donald Trump'"
@@ -484,3 +486,12 @@ class TestTimeParameter(TransactionCase):
             self.assertEqual(len(nodes), 1, xmlid)
             self.assertEqual(nodes[0].get("groups"), "base.group_multi_company")
             self.assertFalse(nodes[0].get("required"), xmlid)
+
+    def test_16_code_is_unique_per_company(self):
+        other_company = self.env["res.company"].create({"name": "Other Company"})
+        self._create_parameter("TEST_UNIQUE", "1.0", company=self.env.company)
+        # Another company may have a parameter with the same code...
+        self._create_parameter("TEST_UNIQUE", "2.0", company=other_company)
+        # ... but the same company may not have two.
+        with self.assertRaises(IntegrityError), mute_logger("odoo.sql_db"):
+            self._create_parameter("TEST_UNIQUE", "3.0", company=self.env.company)

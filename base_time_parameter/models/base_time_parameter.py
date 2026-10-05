@@ -159,6 +159,6 @@ class TimeParameter(models.Model):
         (
             "_unique",
             "unique (code, company_id)",
-            "Two time parameters cannot have the same code.",
+            "The company already has a time parameter with this code.",
         ),
     ]
