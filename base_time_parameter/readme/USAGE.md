@@ -4,6 +4,11 @@ Create a parameter with different versions (start date and value).
 
 If model_id is empty, any model/record may get the time parameter.
 
+A parameter belongs to the current company by default. With several
+companies, the company is on the form: empty it to make the parameter a
+global one, used by every company that has no parameter of its own with
+the same code.
+
 The value may be a text or, for the "Record" type, a reference.
 
 The value is parsed according to the type of the parameter when it is

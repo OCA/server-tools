@@ -1,6 +1,8 @@
 from datetime import date, datetime
 from unittest.mock import patch
 
+from lxml import etree
+
 from odoo.exceptions import UserError, ValidationError
 from odoo.tests import new_test_user
 from odoo.tests.common import TransactionCase
@@ -464,3 +466,21 @@ class TestTimeParameter(TransactionCase):
             self.env["res.partner"].with_user(user).get_time_parameter(
                 "TEST_MISSING", raise_if_not_found=True
             )
+
+    def test_15_company_in_views(self):
+        # The company is on the form, so that a multi-company user may give a
+        # parameter to another company or make it global; and no view makes
+        # it mandatory, the model does not.
+        Parameter = self.env["base.time.parameter"]
+        self.assertFalse(Parameter._fields["company_id"].required)
+        for xmlid in (
+            "base_time_parameter.base_time_parameter_view_form",
+            "base_time_parameter.base_time_parameter_view_form_hide_model",
+            "base_time_parameter.base_time_parameter_view_tree",
+        ):
+            view = self.env.ref(xmlid)
+            arch = etree.fromstring(view.get_combined_arch())
+            nodes = arch.xpath("//field[@name='company_id'][not(ancestor::field)]")
+            self.assertEqual(len(nodes), 1, xmlid)
+            self.assertEqual(nodes[0].get("groups"), "base.group_multi_company")
+            self.assertFalse(nodes[0].get("required"), xmlid)
