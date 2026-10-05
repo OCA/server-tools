@@ -350,3 +350,98 @@ class TestTimeParameter(TransactionCase):
         self.assertIsNone(value, "The parameter is excluded by the domain")
         value = self.env["res.country"].get_time_parameter("US President")
         self.assertEqual(value, "Joe Biden", JOE_BIDEN)
+
+    def _create_parameter(self, code, value, company=False, kind="float", **vals):
+        versions = []
+        if value is not False:
+            versions = [(0, 0, {"date_from": date(2022, 1, 1), "value": value})]
+        return self.env["base.time.parameter"].create(
+            {
+                "code": code,
+                "type": kind,
+                "company_id": company and company.id,
+                "version_ids": versions,
+                **vals,
+            }
+        )
+
+    def test_10_zero_is_a_value(self):
+        # A company sets 0 on purpose: the global default must not come back.
+        self._create_parameter("TEST_ZERO", "7.0")
+        self._create_parameter("TEST_ZERO", "0.0", company=self.env.company)
+        value = self.env["res.partner"].get_time_parameter("TEST_ZERO")
+        self.assertEqual(value, 0.0, "The 0 of the company is the value")
+        self.assertIsNotNone(value)
+        # ... and it is a value for raise_if_not_found too.
+        value = self.env["res.partner"].get_time_parameter(
+            "TEST_ZERO", raise_if_not_found=True
+        )
+        self.assertEqual(value, 0.0)
+
+        self._create_parameter("TEST_INT_ZERO", "7", kind="integer")
+        self._create_parameter(
+            "TEST_INT_ZERO", "0", company=self.env.company, kind="integer"
+        )
+        value = self.env["res.partner"].get_time_parameter("TEST_INT_ZERO")
+        self.assertEqual(value, 0)
+        self.assertIsNotNone(value)
+
+    def test_11_false_is_a_value(self):
+        self._create_parameter("TEST_FALSE", "True", kind="boolean")
+        self._create_parameter(
+            "TEST_FALSE", "False", company=self.env.company, kind="boolean"
+        )
+        value = self.env["res.partner"].get_time_parameter("TEST_FALSE")
+        self.assertIs(value, False, "The False of the company is the value")
+
+    def test_12_version_without_value(self):
+        # The version in force has no value: the answer is None, the lookup
+        # does not go on to the next parameter.
+        self._create_parameter("TEST_EMPTY", "7.0")
+        company_parameter = self._create_parameter(
+            "TEST_EMPTY", "9.0", company=self.env.company
+        )
+        company_parameter.write(
+            {"version_ids": [(0, 0, {"date_from": date(2023, 1, 1), "value": False})]}
+        )
+        Partner = self.env["res.partner"]
+        value = Partner.get_time_parameter("TEST_EMPTY", date(2022, 6, 1))
+        self.assertEqual(value, 9.0)
+        value = Partner.get_time_parameter("TEST_EMPTY", date(2023, 6, 1))
+        self.assertIsNone(value, "The empty version of the company wins")
+        # It is not a missing parameter either.
+        value = Partner.get_time_parameter(
+            "TEST_EMPTY", date(2023, 6, 1), raise_if_not_found=True
+        )
+        self.assertIsNone(value)
+        # The date of that version is still available.
+        value = Partner.get_time_parameter("TEST_EMPTY", date(2023, 6, 1), get="date")
+        self.assertEqual(value, date(2023, 1, 1))
+        # Every type reads an empty version as None.
+        for kind in ("boolean", "date", "float", "integer", "json", "string"):
+            parameter = self._create_parameter(f"TEST_EMPTY_{kind}", "", kind=kind)
+            self.assertIsNone(parameter._get(date(2022, 6, 1)), kind)
+
+    def test_13_parameter_without_version_at_date_is_skipped(self):
+        # The parameter of the company only starts in 2030: until then the
+        # global one answers.
+        self._create_parameter("TEST_LATER", "7.0")
+        company_parameter = self._create_parameter(
+            "TEST_LATER", False, company=self.env.company
+        )
+        Partner = self.env["res.partner"]
+        value = Partner.get_time_parameter("TEST_LATER", date(2025, 1, 1))
+        self.assertEqual(value, 7.0, "A parameter with no version is skipped")
+        company_parameter.write(
+            {"version_ids": [(0, 0, {"date_from": date(2030, 1, 1), "value": "9.0"})]}
+        )
+        value = Partner.get_time_parameter("TEST_LATER", date(2025, 1, 1))
+        self.assertEqual(value, 7.0, "A version of the future is not in force")
+        value = Partner.get_time_parameter("TEST_LATER", date(2030, 1, 1))
+        self.assertEqual(value, 9.0)
+        # No parameter has a version at that date: not found.
+        self.assertIsNone(Partner.get_time_parameter("TEST_LATER", date(2020, 1, 1)))
+        with self.assertRaises(UserError):
+            Partner.get_time_parameter(
+                "TEST_LATER", date(2020, 1, 1), raise_if_not_found=True
+            )

@@ -82,8 +82,14 @@ wins:
 
 So a module may ship a global parameter as a default value, and a
 company may override it by creating its own parameter with the same
-code. If the winning parameter has no version starting before the
-requested date, the next one is used.
+code.
+
+What decides is the version, not its value: the most specific parameter
+that has a version in force at the requested date (one starting on or
+before it) is the answer, whatever that version holds. A company
+parameter set to 0 or False is not overridden by the global one, and a
+version with no value at all gives None. Only a parameter with no
+version in force at that date is skipped, and the next one is used.
 
 Example of implementation in another module
 -------------------------------------------

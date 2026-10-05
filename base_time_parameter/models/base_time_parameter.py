@@ -87,10 +87,13 @@ class TimeParameter(models.Model):
         for parameter in parameters.sorted(
             key=lambda p: (bool(p.company_id), bool(p.model_id)), reverse=True
         ):
-            value = parameter._get(date, get=get)
-            if value:
-                return value
-        # No value
+            # What decides is the version, not its value: the first parameter
+            # with a version in force at that date is the answer, be it 0,
+            # False or no value at all (None). Only a parameter with no
+            # version at that date leaves the question to the next one.
+            if parameter._get_version(date):
+                return parameter._get(date, get=get)
+        # No version in force
         if not raise_if_not_found:
             return
         # Raise error
@@ -123,8 +126,15 @@ class TimeParameter(models.Model):
         if not version:
             return False
         if get == "value":
-            if self.type == "boolean":
-                return _validate_boolean(version.value or "") == "True"
+            if self.type in ("record", "reference"):
+                return version.value_reference or None
+            elif self.type == "reference_id":
+                return version.value_reference and version.value_reference.id or 0
+            elif not version.value:
+                # A version with no value: there is nothing to parse.
+                return None
+            elif self.type == "boolean":
+                return _validate_boolean(version.value) == "True"
             elif self.type == "date":
                 return datetime.strptime(version.value, "%Y-%m-%d").date()
             elif self.type == "float":
@@ -133,10 +143,6 @@ class TimeParameter(models.Model):
                 return int(version.value)
             elif self.type == "json":
                 return json.loads(version.value)
-            elif self.type in ("record", "reference"):
-                return version.value_reference
-            elif self.type == "reference_id":
-                return version.value_reference and version.value_reference.id or 0
             elif self.type == "string":
                 return version.value
         elif get == "date":
