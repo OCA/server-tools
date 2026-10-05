@@ -14,7 +14,7 @@ from glob import iglob
 
 import pysftp
 
-from odoo import api, exceptions, fields, models, tools
+from odoo import _, api, exceptions, fields, models, tools
 from odoo.exceptions import UserError
 from odoo.modules import db
 
@@ -168,32 +168,34 @@ class DbBackup(models.Model):
         # Ensure a local backup exists if we are going to write it remotely
         sftp = self.filtered(lambda r: r.method == "sftp")
         if sftp:
-         for rec in sftp:
-          filename = self.filename(datetime.now(), ext=rec.backup_format)
-          with rec.backup_log():
-              with tempfile.TemporaryFile() as cached:
-                  db.dump(
-                      self.env.cr.dbname,
-                      cached,
-                      backup_format=rec.backup_format,
-                  )
-                  cached.seek(0)
+            for rec in sftp:
+                filename = self.filename(
+                    datetime.now(), ext=rec.backup_format
+                )
+                with rec.backup_log():
+                    with tempfile.TemporaryFile() as cached:
+                        db.dump(
+                            self.env.cr.dbname,
+                            cached,
+                            backup_format=rec.backup_format,
+                        )
+                        cached.seek(0)
 
-                  with rec.sftp_connection() as remote:
-                      try:
-                          remote.makedirs(rec.folder)
-                      except pysftp.ConnectionException as exc:
-                          _logger.exception(
-                              f"pysftp ConnectionException: {exc}"
-                          )
+                        with rec.sftp_connection() as remote:
+                            try:
+                                remote.makedirs(rec.folder)
+                            except pysftp.ConnectionException as exc:
+                                _logger.exception(
+                                    f"pysftp ConnectionException: {exc}"
+                                )
 
-                    # Copy cached backup to remote server
-                      with remote.open(
-                          os.path.join(rec.folder, filename), "wb"
-                      ) as destiny:
-                          shutil.copyfileobj(cached, destiny)
+                            # Copy cached backup to remote server
+                            with remote.open(
+                                os.path.join(rec.folder, filename), "wb"
+                            ) as destiny:
+                                shutil.copyfileobj(cached, destiny)
 
-                  successful |= rec
+                    successful |= rec
 
         # Remove old files for successful backups
         successful.cleanup()
